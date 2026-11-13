@@ -275,6 +275,7 @@ export type ScenarioId =
   | "the-old-forest"
   | "the-ring-goes-south"
   | "journey-in-the-dark"
+  | "breaking-of-the-fellowship"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -450,6 +451,7 @@ export interface GameState {
   oldForest?: import("./old-forest-types").OldForestState;
   ringSouth?: import("./ring-south-types").RingSouthState;
   journeyDark?: import("./journey-dark-types").JourneyDarkState;
+  breakingFellowship?: import("./breaking-fellowship-types").BreakingFellowshipState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -824,6 +826,8 @@ export interface GameState {
     jtdFool?: boolean;
     /** Journey in the Dark: this attack destroyed a character. */
     jtdDestroyed?: boolean;
+    /** Breaking of the Fellowship: Growing Threat's shadow moves the attacker after the attack. */
+    btfGrowing?: boolean;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

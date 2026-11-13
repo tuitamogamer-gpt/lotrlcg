@@ -41,22 +41,30 @@ export const isFliesSpiders = (s: GameState) =>
   (s.scenarioId as string) === FAS_SCENARIO;
 export const fasState = (s: GameState) => s.fliesSpiders;
 const activePlayer = (s: GameState) => s.table?.active ?? 0;
+/** Separate staging areas: Flies and Spiders' or Breaking of the Fellowship's. */
+export interface SplitAreaState {
+  split: boolean;
+  activeArea?: string;
+  areas: FliesSpidersArea[];
+}
+export const splitAreaState = (s: GameState): SplitAreaState | undefined =>
+  s.fliesSpiders ?? s.breakingFellowship;
 
 export function fasArea(
   s: GameState,
   player = activePlayer(s),
 ): FliesSpidersArea | undefined {
-  return fasState(s)?.areas.find((a) => a.players.includes(player));
+  return splitAreaState(s)?.areas.find((a) => a.players.includes(player));
 }
 export function fasAreaPlayers(
   s: GameState,
   player = activePlayer(s),
 ): number[] | undefined {
-  return fasState(s)?.split ? fasArea(s, player)?.players : undefined;
+  return splitAreaState(s)?.split ? fasArea(s, player)?.players : undefined;
 }
 /** Called before changing the active player; every mutable zone replacement is retained. */
 export function fasSyncArea(s: GameState) {
-  const q = fasState(s);
+  const q = splitAreaState(s);
   if (!q?.split) return;
   const area = q.areas.find((a) => a.id === q.activeArea);
   if (!area || !area.players.includes(activePlayer(s))) return;
@@ -72,7 +80,7 @@ export function fasSyncArea(s: GameState) {
   });
 }
 export function fasAreaView(s: GameState, player: number) {
-  const q = fasState(s),
+  const q = splitAreaState(s),
     area = fasArea(s, player);
   if (!q?.split || !area) return {};
   return {
@@ -88,14 +96,14 @@ export function fasAreaView(s: GameState, player: number) {
 }
 /** Called after saving the old area and before loading player-specific fields. */
 export function fasSelectArea(s: GameState, player: number) {
-  const q = fasState(s),
+  const q = splitAreaState(s),
     area = fasArea(s, player);
   if (!q?.split || !area) return;
   q.activeArea = area.id;
   Object.assign(s, fasAreaView(s, player));
 }
 export function fasAllAreaUnits(s: GameState): Unit[] {
-  const q = fasState(s);
+  const q = splitAreaState(s);
   if (!q?.split)
     return [
       ...s.staging,

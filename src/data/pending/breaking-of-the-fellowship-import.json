@@ -1,0 +1,1607 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "Breaking of the Fellowship",
+  "slug": "breaking-of-the-fellowship",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "142001",
+      "name": "Frodo Baggins",
+      "type_code": "hero",
+      "type_name": "Hero",
+      "sphere_code": "fellowship",
+      "sphere_name": "Fellowship",
+      "threat": 0,
+      "willpower": 2,
+      "attack": 1,
+      "defense": 2,
+      "health": 2,
+      "traits": "Hobbit. Ring-bearer.",
+      "text": "<b>Response:</b> After Frodo Baggins exhausts to defend an attack, exhaust The One Ring and spend 1 [fellowship] resource to target the attacking enemy. Then, this attack deals no damage and each player raises his threat by 2.",
+      "flavor": "\"But there is more about you now than appears on the surface.\" <cite>Bilbo, The Fellowship of the Ring</cite>",
+      "is_unique": true,
+      "deck_limit": 1,
+      "pack_name": "The Road Darkens",
+      "pack_code": "TRD",
+      "position": 1,
+      "illustrator": "Sebastian Giacobino",
+      "imagesrc": "/cards/142001.png",
+      "url": "https://ringsdb.com/card/142001",
+      "quantity": 1,
+      "octgnid": "f9196cda-8f50-4cc5-9aad-1c56cb677bca",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 1,
+          "quantity": 1,
+          "image_code": "142001",
+          "illustrator": "Sebastian Giacobino",
+          "octgnid": "f9196cda-8f50-4cc5-9aad-1c56cb677bca",
+          "imagesrc": "/bundles/cards/142001.png",
+          "date_release": "2014-10-03"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/142001",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:00008179-c6a7-46d0-be2f-b4b3b748afc2",
+      "octgnid": "00008179-c6a7-46d0-be2f-b4b3b748afc2",
+      "name": "Searching the Woods",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Forced: After stage 2B is discarded, if the total [threat] of encounter cards in this staging area is less than 4, reveal 1 encounter card.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 63,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "Breaking of the Fellowship",
+      "side": "A",
+      "back_name": "Searching the Woods",
+      "back_text": "If Frodo's Choice is not in play, any time players would place progress on this quest, discard an equal number of cards from the encounter deck instead.  Forced: After Frodo's Choice is revealed at this stage, advance to stage 4A.  Response: After you quest successfully, discard a non-unique location in any staging area.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/00008179-c6a7-46d0-be2f-b4b3b748afc2.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/00008179-c6a7-46d0-be2f-b4b3b748afc2.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 63,
+          "quantity": 1,
+          "octgnid": "00008179-c6a7-46d0-be2f-b4b3b748afc2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/00008179-c6a7-46d0-be2f-b4b3b748afc2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:13a4b435-fa14-42b8-975e-804d3b8b929d",
+      "octgnid": "13a4b435-fa14-42b8-975e-804d3b8b929d",
+      "name": "The Argonath",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "River.",
+      "text": "Immune to player card effects. X is the number of players in the game.\nThe players cannot travel here while Sarn Gebir is in play. While The Argonath is the active location, skip the combat phase.",
+      "is_unique": true,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 75,
+      "quantity": 1,
+      "quest": 2,
+      "victory": 1,
+      "encounter_set": "Breaking of the Fellowship",
+      "printed_stats": {
+        "threat": "X",
+        "quest": "2",
+        "victory": "1"
+      },
+      "imagesrc": "/cards/13a4b435-fa14-42b8-975e-804d3b8b929d.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 75,
+          "quantity": 1,
+          "octgnid": "13a4b435-fa14-42b8-975e-804d3b8b929d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/13a4b435-fa14-42b8-975e-804d3b8b929d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:43db612f-6c3c-4a3c-a4ba-816a85f47d16",
+      "octgnid": "43db612f-6c3c-4a3c-a4ba-816a85f47d16",
+      "name": "Slopes of Amon Hen",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest. Hills.",
+      "text": "Travel: A player at this staging area must engage an enemy in any staging area to travel here.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 79,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 3,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if the defending character has fewer printed hit points than the attacking enemy).",
+      "encounter_set": "Breaking of the Fellowship",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/43db612f-6c3c-4a3c-a4ba-816a85f47d16.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 79,
+          "quantity": 3,
+          "octgnid": "43db612f-6c3c-4a3c-a4ba-816a85f47d16",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/43db612f-6c3c-4a3c-a4ba-816a85f47d16.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:500d3f5b-2de3-4770-bb2a-7db2b104bbf2",
+      "octgnid": "500d3f5b-2de3-4770-bb2a-7db2b104bbf2",
+      "name": "The Company Divided",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Remove the Ring-bearer, and each card attached to it, from the game (treat The One Ring's text as blank while resolving this effect). Reduce each enemy's engagement cost to 0 until the end of the engagement phase. Skip the travel phase this round.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 62,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "Breaking of the Fellowship",
+      "side": "A",
+      "back_name": "The Company Divided",
+      "back_text": "Forced: At the end of the refresh phase, shuffle the Seat of Seeing and Frodo's Choice into the encounter discard pile. Then, place the encounter discard pile on the bottom of the encounter deck. Starting with the first player, each player creates his own staging area and advances to a different stage 3A of his choice. In player order, each player moves 1 encounter card from this staging area to his. When there are no encounter cards left at this stage, discard it.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/500d3f5b-2de3-4770-bb2a-7db2b104bbf2.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/500d3f5b-2de3-4770-bb2a-7db2b104bbf2.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 62,
+          "quantity": 1,
+          "octgnid": "500d3f5b-2de3-4770-bb2a-7db2b104bbf2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/500d3f5b-2de3-4770-bb2a-7db2b104bbf2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:57fdb41b-3a17-477d-89e7-b3b139d58642",
+      "octgnid": "57fdb41b-3a17-477d-89e7-b3b139d58642",
+      "name": "Fallen into Evil",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Corruption.",
+      "text": "When Revealed: Attach to a hero and move it to the first player's staging area. (Counts as a Condition attachment with the text: \"Attached hero loses the hero card type and gains the enemy card type with [threat] equal to its [willpower] and engagement cost equal to its threat cost. If Fallen into Evil is discarded, return attached hero to its owner's control.\"",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 83,
+      "quantity": 1,
+      "encounter_set": "Breaking of the Fellowship",
+      "printed_stats": {},
+      "imagesrc": "/cards/57fdb41b-3a17-477d-89e7-b3b139d58642.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 83,
+          "quantity": 1,
+          "octgnid": "57fdb41b-3a17-477d-89e7-b3b139d58642",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/57fdb41b-3a17-477d-89e7-b3b139d58642.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:67c97a60-a53c-4624-83ec-2122a74ea730",
+      "octgnid": "67c97a60-a53c-4624-83ec-2122a74ea730",
+      "name": "Wooded Shoreline",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "River. Forest.",
+      "text": "While Wooded Shoreline is in the staging area, it gains archery 2.\nTravel: Search the encounter deck and discard pile for an enemy and add it to the staging area to travel here. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 78,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 4,
+      "encounter_set": "Breaking of the Fellowship",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/67c97a60-a53c-4624-83ec-2122a74ea730.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 78,
+          "quantity": 3,
+          "octgnid": "67c97a60-a53c-4624-83ec-2122a74ea730",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/67c97a60-a53c-4624-83ec-2122a74ea730.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6d4c7a3b-e0e7-4267-8f53-6ba99054892c",
+      "octgnid": "6d4c7a3b-e0e7-4267-8f53-6ba99054892c",
+      "name": "River Anduin",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "River.",
+      "text": "While River Anduin is in the staging area it gains: \"Forced: At the end of the travel phase, each player at this stage raises his threat by 1. Then, River Anduin moves to the staging area to the left, if able.\"",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 77,
+      "quantity": 4,
+      "threat": 2,
+      "quest": 5,
+      "encounter_set": "Breaking of the Fellowship",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/6d4c7a3b-e0e7-4267-8f53-6ba99054892c.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 77,
+          "quantity": 4,
+          "octgnid": "6d4c7a3b-e0e7-4267-8f53-6ba99054892c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6d4c7a3b-e0e7-4267-8f53-6ba99054892c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:72276508-67e0-4133-8b9f-41fb8d44ffa9",
+      "octgnid": "72276508-67e0-4133-8b9f-41fb8d44ffa9",
+      "name": "Parth Galen",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "River. Lawn.",
+      "text": "Immune to player card effects.\nTravel: Search the encounter deck and discard pile for an enemy and add it to the staging area to travel here. Shuffle the encounter deck. While Parth Galen is in play, the players cannot win the game.",
+      "is_unique": true,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 73,
+      "quantity": 1,
+      "threat": 2,
+      "quest": 4,
+      "victory": 1,
+      "encounter_set": "Breaking of the Fellowship",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4",
+        "victory": "1"
+      },
+      "imagesrc": "/cards/72276508-67e0-4133-8b9f-41fb8d44ffa9.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 73,
+          "quantity": 1,
+          "octgnid": "72276508-67e0-4133-8b9f-41fb8d44ffa9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/72276508-67e0-4133-8b9f-41fb8d44ffa9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00",
+      "octgnid": "7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00",
+      "name": "The Seat of Amon Hen",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Forced: After stage 2B is discarded, if the total [threat] of encounter cards in this staging area is less than 4, reveal 1 encounter card.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 65,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "Breaking of the Fellowship",
+      "side": "A",
+      "back_name": "The Seat of Amon Hen",
+      "back_text": "If Frodo's Choice is not in play, any time players would place progress on this quest, discard an equal number of cards from the encounter deck instead.  Forced: After Frodo's Choice is revealed at this stage, advance to stage 4A.  Response: After you quest successfully, choose a player. That player draws 2 cards and lowers his threat by 2.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 65,
+          "quantity": 1,
+          "octgnid": "7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:87539fa5-677d-4163-aff5-321841981cd4",
+      "octgnid": "87539fa5-677d-4163-aff5-321841981cd4",
+      "name": "Orcs of the White Hand",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Remove all damage from each enemy at this stage. Each enemy at this stage gets +1 [threat], +1 [attack], and +1 [defense] until the end of the round.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 81,
+      "quantity": 2,
+      "shadow": "Shadow: If the defending character has fewer printed hit points than the attacking enemy, this attack is considered undefended.",
+      "encounter_set": "Breaking of the Fellowship",
+      "printed_stats": {},
+      "imagesrc": "/cards/87539fa5-677d-4163-aff5-321841981cd4.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 81,
+          "quantity": 2,
+          "octgnid": "87539fa5-677d-4163-aff5-321841981cd4",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/87539fa5-677d-4163-aff5-321841981cd4.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8948aa81-f7fb-4979-9add-555598df529a",
+      "octgnid": "8948aa81-f7fb-4979-9add-555598df529a",
+      "name": "Seat of Seeing",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Hills.",
+      "text": "Immune to player card effects.\nResponse: When Seat of Seeing is explored, choose a burden card in play, in the encounter deck, or in the discard pile, and remove it from the game. Shuffle the encounter deck. (If you are playing campaign mode, remove that card from the Campaign Pool.)",
+      "is_unique": true,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 74,
+      "quantity": 1,
+      "threat": 1,
+      "quest": 6,
+      "victory": 1,
+      "encounter_set": "Breaking of the Fellowship",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "6",
+        "victory": "1"
+      },
+      "imagesrc": "/cards/8948aa81-f7fb-4979-9add-555598df529a.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 74,
+          "quantity": 1,
+          "octgnid": "8948aa81-f7fb-4979-9add-555598df529a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8948aa81-f7fb-4979-9add-555598df529a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8f133b99-75d7-43b8-acec-3e298724134a",
+      "octgnid": "8f133b99-75d7-43b8-acec-3e298724134a",
+      "name": "Orc Hunting",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Forced: After stage 2B is discarded, if the total [threat] of encounter cards in this staging area is less than 4, reveal 1 encounter card.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 66,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "Breaking of the Fellowship",
+      "side": "A",
+      "back_name": "Orc Hunting",
+      "back_text": "If Frodo's Choice is not in play, any time players would place progress on this quest, discard an equal number of cards from the encounter deck instead.  Forced: After Frodo's Choice is revealed at this stage, advance to stage 4A.  Response: After you quest successfully, discard an enemy engaged with a player.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/8f133b99-75d7-43b8-acec-3e298724134a.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/8f133b99-75d7-43b8-acec-3e298724134a.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 66,
+          "quantity": 1,
+          "octgnid": "8f133b99-75d7-43b8-acec-3e298724134a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8f133b99-75d7-43b8-acec-3e298724134a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9bba91a8-d375-4935-9956-9cb4cc4716c5",
+      "octgnid": "9bba91a8-d375-4935-9956-9cb4cc4716c5",
+      "name": "Uruk-hai Tracker",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Uruk-hai.",
+      "text": "Surge. Toughness 1. Archery 1.\nUruk-hai Tracker gets +2 [attack] against characters with 2 or fewer printed hit points.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 71,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 3,
+      "defense": 1,
+      "health": 3,
+      "engagement": 33,
+      "shadow": "Shadow: Discard a non-objective attachment you control.",
+      "encounter_set": "Breaking of the Fellowship",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "3",
+        "defense": "1",
+        "health": "3",
+        "engagement": "33"
+      },
+      "imagesrc": "/cards/9bba91a8-d375-4935-9956-9cb4cc4716c5.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 71,
+          "quantity": 3,
+          "octgnid": "9bba91a8-d375-4935-9956-9cb4cc4716c5",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9bba91a8-d375-4935-9956-9cb4cc4716c5.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9ccd6851-ec1e-4d47-9e8d-486365c261e2",
+      "octgnid": "9ccd6851-ec1e-4d47-9e8d-486365c261e2",
+      "name": "Uruk-hai Captain",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Uruk-hai.",
+      "text": "Toughness 2. Cannot have attachments.\nAllies with fewer printed hit points than Uruk-hai Captain cannot defend against Uruk-hai Captain.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 69,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 5,
+      "defense": 2,
+      "health": 3,
+      "engagement": 36,
+      "shadow": "Shadow: Attacking enemy makes an additional attack after this one.",
+      "encounter_set": "Breaking of the Fellowship",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "2",
+        "health": "3",
+        "engagement": "36"
+      },
+      "imagesrc": "/cards/9ccd6851-ec1e-4d47-9e8d-486365c261e2.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 69,
+          "quantity": 2,
+          "octgnid": "9ccd6851-ec1e-4d47-9e8d-486365c261e2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9ccd6851-ec1e-4d47-9e8d-486365c261e2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a11ea1e0-372e-4932-86e4-f84737e842e9",
+      "octgnid": "a11ea1e0-372e-4932-86e4-f84737e842e9",
+      "name": "Uruk-hai Hunter",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Uruk-hai.",
+      "text": "Peril. Toughness 1.\nWhen Revealed: Either choose a player to reveal an encounter card, or Uruk-hai Hunter makes an immediate attack against you.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 72,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 4,
+      "defense": 1,
+      "health": 3,
+      "engagement": 28,
+      "encounter_set": "Breaking of the Fellowship",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "1",
+        "health": "3",
+        "engagement": "28"
+      },
+      "imagesrc": "/cards/a11ea1e0-372e-4932-86e4-f84737e842e9.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 72,
+          "quantity": 3,
+          "octgnid": "a11ea1e0-372e-4932-86e4-f84737e842e9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a11ea1e0-372e-4932-86e4-f84737e842e9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:aeba0e59-8dde-4422-bfb5-911ae8de42a1",
+      "octgnid": "aeba0e59-8dde-4422-bfb5-911ae8de42a1",
+      "name": "Growing Threat",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Peril.\nWhen Revealed: Either move 1 enemy engaged with you to the first player's staging area, or Growing Threat gains doomed 2 and surge.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 80,
+      "quantity": 2,
+      "shadow": "Shadow: After this attack, move attacking enemy to the first player's staging area.",
+      "encounter_set": "Breaking of the Fellowship",
+      "printed_stats": {},
+      "imagesrc": "/cards/aeba0e59-8dde-4422-bfb5-911ae8de42a1.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 80,
+          "quantity": 2,
+          "octgnid": "aeba0e59-8dde-4422-bfb5-911ae8de42a1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aeba0e59-8dde-4422-bfb5-911ae8de42a1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ba2e4a33-edc6-4638-a3f5-b818b080aea8",
+      "octgnid": "ba2e4a33-edc6-4638-a3f5-b818b080aea8",
+      "name": "The One Ring",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Artifact. Item. Ring.",
+      "text": "Setup: The first player claims The One Ring and attaches it to the Ring-bearer.  Attached hero does not count against the hero limit. The first player gains control of attached hero.   If The One Ring leaves play, the players lose the game.",
+      "is_unique": true,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 91,
+      "quantity": 1,
+      "printed_stats": {},
+      "imagesrc": "/cards/ba2e4a33-edc6-4638-a3f5-b818b080aea8.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 91,
+          "quantity": 1,
+          "octgnid": "ba2e4a33-edc6-4638-a3f5-b818b080aea8",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ba2e4a33-edc6-4638-a3f5-b818b080aea8.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c10ac747-573f-46c7-a228-8b6d1cd8875a",
+      "octgnid": "c10ac747-573f-46c7-a228-8b6d1cd8875a",
+      "name": "The Ring-bearer Sets Out",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Add Parth Galen to the staging area. If it is your quest phase, end the phase (do not resolve the quest).",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 67,
+      "quantity": 1,
+      "cost": 4,
+      "encounter_set": "Breaking of the Fellowship",
+      "side": "A",
+      "back_name": "The Ring-bearer Sets Out",
+      "back_text": "During the quest phase, reveal 1 additional encounter card for each player in the game. Response: After an enemy is revealed at this stage, raise your threat by X to engage that enemy. X is that enemy's [threat]. Each player (at any stage) may trigger this ability once per round.  When this stage is defeated, the players win the game.",
+      "back_type_code": "quest",
+      "back_quest": 16,
+      "back_imagesrc": "/cards/c10ac747-573f-46c7-a228-8b6d1cd8875a.B.jpg",
+      "printed_stats": {
+        "cost": "4"
+      },
+      "imagesrc": "/cards/c10ac747-573f-46c7-a228-8b6d1cd8875a.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 67,
+          "quantity": 1,
+          "octgnid": "c10ac747-573f-46c7-a228-8b6d1cd8875a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c10ac747-573f-46c7-a228-8b6d1cd8875a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c91a6d23-7dea-4efd-9f2b-326b74f9a935",
+      "octgnid": "c91a6d23-7dea-4efd-9f2b-326b74f9a935",
+      "name": "Uruk-hai Archer",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Uruk-hai.",
+      "text": "Peril. Toughness 1. Archery X.\nX is the number of players at this stage.  When Revealed: Discard an ally you control.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 70,
+      "quantity": 4,
+      "attack": 4,
+      "defense": 1,
+      "health": 4,
+      "engagement": 44,
+      "encounter_set": "Breaking of the Fellowship",
+      "printed_stats": {
+        "threat": "X",
+        "attack": "4",
+        "defense": "1",
+        "health": "4",
+        "engagement": "44"
+      },
+      "imagesrc": "/cards/c91a6d23-7dea-4efd-9f2b-326b74f9a935.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 70,
+          "quantity": 4,
+          "octgnid": "c91a6d23-7dea-4efd-9f2b-326b74f9a935",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c91a6d23-7dea-4efd-9f2b-326b74f9a935.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d32ba7ec-fa7d-4a1a-b157-da4186e62ea6",
+      "octgnid": "d32ba7ec-fa7d-4a1a-b157-da4186e62ea6",
+      "name": "The Great River",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Set Frodo's Choice, Seat of Seeing, and Parth Galen aside, out of play. Add The Argonath and Sarn Gebir to the staging area.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 61,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "Breaking of the Fellowship",
+      "side": "A",
+      "back_name": "The Great River",
+      "back_text": "Enemies get +2 [defense] and cannot be engaged. Skip the encounter phase.  The players cannot advance while The Argonath is in play.",
+      "back_type_code": "quest",
+      "back_quest": 12,
+      "back_imagesrc": "/cards/d32ba7ec-fa7d-4a1a-b157-da4186e62ea6.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/d32ba7ec-fa7d-4a1a-b157-da4186e62ea6.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 61,
+          "quantity": 1,
+          "octgnid": "d32ba7ec-fa7d-4a1a-b157-da4186e62ea6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d32ba7ec-fa7d-4a1a-b157-da4186e62ea6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d8cfafbd-7976-4a87-bdb3-a12c87503cd3",
+      "octgnid": "d8cfafbd-7976-4a87-bdb3-a12c87503cd3",
+      "name": "Sarn Gebir",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "River.",
+      "text": "Immune to player card effects.\nForced: When Sarn Gebir is explored, deal 1 damage to each exhausted character.",
+      "is_unique": true,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 76,
+      "quantity": 1,
+      "threat": 3,
+      "quest": 4,
+      "victory": 1,
+      "encounter_set": "Breaking of the Fellowship",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "4",
+        "victory": "1"
+      },
+      "imagesrc": "/cards/d8cfafbd-7976-4a87-bdb3-a12c87503cd3.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 76,
+          "quantity": 1,
+          "octgnid": "d8cfafbd-7976-4a87-bdb3-a12c87503cd3",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d8cfafbd-7976-4a87-bdb3-a12c87503cd3.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:da177cbd-31e7-42ea-b051-e61f28dbb749",
+      "octgnid": "da177cbd-31e7-42ea-b051-e61f28dbb749",
+      "name": "Black Feathered Arrows",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Until the end of the round, add 1 to the archery total at this stage for each ally currently at this stage.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 82,
+      "quantity": 3,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if the defending character has fewer printed hit points than the attacking enemy).",
+      "encounter_set": "Breaking of the Fellowship",
+      "printed_stats": {},
+      "imagesrc": "/cards/da177cbd-31e7-42ea-b051-e61f28dbb749.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 82,
+          "quantity": 3,
+          "octgnid": "da177cbd-31e7-42ea-b051-e61f28dbb749",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/da177cbd-31e7-42ea-b051-e61f28dbb749.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f1d2d99e-27e6-44d3-ad3d-ef727fa9ddc2",
+      "octgnid": "f1d2d99e-27e6-44d3-ad3d-ef727fa9ddc2",
+      "name": "Frodo's Choice",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Doom.",
+      "text": "If Frodo's Choice is discarded, reveal it instead.\nWhen Revealed: Take control of the first player token and the Ring-bearer (and each card attached to it). Attach to the Ring-bearer. For the rest of the game, you cannot lose control of the first player token.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 68,
+      "quantity": 1,
+      "encounter_set": "Breaking of the Fellowship",
+      "printed_stats": {},
+      "imagesrc": "/cards/f1d2d99e-27e6-44d3-ad3d-ef727fa9ddc2.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 68,
+          "quantity": 1,
+          "octgnid": "f1d2d99e-27e6-44d3-ad3d-ef727fa9ddc2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f1d2d99e-27e6-44d3-ad3d-ef727fa9ddc2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f4e81861-8cf6-41e7-b347-af7879fa8b06",
+      "octgnid": "f4e81861-8cf6-41e7-b347-af7879fa8b06",
+      "name": "Guard the Hobbits",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Forced: After stage 2B is discarded, if the total [threat] of encounter cards in this staging area is less than 4, reveal 1 encounter card.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 64,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "Breaking of the Fellowship",
+      "side": "A",
+      "back_name": "Guard the Hobbits",
+      "back_text": "If Frodo's Choice is not in play, any time players would place progress on this quest, discard an equal number of cards from the encounter deck instead.  Forced: After Frodo's Choice is revealed at this stage, advance to stage 4A.  Response: After you quest successfully, choose a player. Ready each of that player's heroes.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/f4e81861-8cf6-41e7-b347-af7879fa8b06.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/f4e81861-8cf6-41e7-b347-af7879fa8b06.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 64,
+          "quantity": 1,
+          "octgnid": "f4e81861-8cf6-41e7-b347-af7879fa8b06",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f4e81861-8cf6-41e7-b347-af7879fa8b06.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E0B.06",
+      "name": "Breaking of the Fellowship (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "TRD"
+      ],
+      "card_codes": [
+        "octgn:d32ba7ec-fa7d-4a1a-b157-da4186e62ea6",
+        "octgn:500d3f5b-2de3-4770-bb2a-7db2b104bbf2",
+        "octgn:00008179-c6a7-46d0-be2f-b4b3b748afc2",
+        "octgn:f4e81861-8cf6-41e7-b347-af7879fa8b06",
+        "octgn:7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00",
+        "octgn:8f133b99-75d7-43b8-acec-3e298724134a",
+        "octgn:c10ac747-573f-46c7-a228-8b6d1cd8875a",
+        "octgn:9ccd6851-ec1e-4d47-9e8d-486365c261e2",
+        "octgn:c91a6d23-7dea-4efd-9f2b-326b74f9a935",
+        "octgn:9bba91a8-d375-4935-9956-9cb4cc4716c5",
+        "octgn:a11ea1e0-372e-4932-86e4-f84737e842e9",
+        "octgn:6d4c7a3b-e0e7-4267-8f53-6ba99054892c",
+        "octgn:67c97a60-a53c-4624-83ec-2122a74ea730",
+        "octgn:43db612f-6c3c-4a3c-a4ba-816a85f47d16",
+        "octgn:aeba0e59-8dde-4422-bfb5-911ae8de42a1",
+        "octgn:87539fa5-677d-4163-aff5-321841981cd4",
+        "octgn:da177cbd-31e7-42ea-b051-e61f28dbb749",
+        "octgn:f1d2d99e-27e6-44d3-ad3d-ef727fa9ddc2",
+        "octgn:8948aa81-f7fb-4979-9add-555598df529a",
+        "octgn:72276508-67e0-4133-8b9f-41fb8d44ffa9",
+        "octgn:13a4b435-fa14-42b8-975e-804d3b8b929d",
+        "octgn:d8cfafbd-7976-4a87-bdb3-a12c87503cd3",
+        "142001",
+        "octgn:ba2e4a33-edc6-4638-a3f5-b818b080aea8"
+      ],
+      "cards": [
+        {
+          "code": "octgn:d32ba7ec-fa7d-4a1a-b157-da4186e62ea6",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:500d3f5b-2de3-4770-bb2a-7db2b104bbf2",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:00008179-c6a7-46d0-be2f-b4b3b748afc2",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:f4e81861-8cf6-41e7-b347-af7879fa8b06",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:8f133b99-75d7-43b8-acec-3e298724134a",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:c10ac747-573f-46c7-a228-8b6d1cd8875a",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:9ccd6851-ec1e-4d47-9e8d-486365c261e2",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c91a6d23-7dea-4efd-9f2b-326b74f9a935",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9bba91a8-d375-4935-9956-9cb4cc4716c5",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a11ea1e0-372e-4932-86e4-f84737e842e9",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6d4c7a3b-e0e7-4267-8f53-6ba99054892c",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:67c97a60-a53c-4624-83ec-2122a74ea730",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:43db612f-6c3c-4a3c-a4ba-816a85f47d16",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:aeba0e59-8dde-4422-bfb5-911ae8de42a1",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:87539fa5-677d-4163-aff5-321841981cd4",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:da177cbd-31e7-42ea-b051-e61f28dbb749",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f1d2d99e-27e6-44d3-ad3d-ef727fa9ddc2",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:8948aa81-f7fb-4979-9add-555598df529a",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:72276508-67e0-4133-8b9f-41fb8d44ffa9",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:13a4b435-fa14-42b8-975e-804d3b8b929d",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:d8cfafbd-7976-4a87-bdb3-a12c87503cd3",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "142001",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:ba2e4a33-edc6-4638-a3f5-b818b080aea8",
+          "quantity": 1,
+          "section": "player1Play1"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:d32ba7ec-fa7d-4a1a-b157-da4186e62ea6": 1,
+          "octgn:500d3f5b-2de3-4770-bb2a-7db2b104bbf2": 1,
+          "octgn:00008179-c6a7-46d0-be2f-b4b3b748afc2": 1,
+          "octgn:f4e81861-8cf6-41e7-b347-af7879fa8b06": 1,
+          "octgn:7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00": 1,
+          "octgn:8f133b99-75d7-43b8-acec-3e298724134a": 1,
+          "octgn:c10ac747-573f-46c7-a228-8b6d1cd8875a": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:9ccd6851-ec1e-4d47-9e8d-486365c261e2": 1,
+          "octgn:c91a6d23-7dea-4efd-9f2b-326b74f9a935": 3,
+          "octgn:9bba91a8-d375-4935-9956-9cb4cc4716c5": 2,
+          "octgn:a11ea1e0-372e-4932-86e4-f84737e842e9": 2,
+          "octgn:6d4c7a3b-e0e7-4267-8f53-6ba99054892c": 4,
+          "octgn:67c97a60-a53c-4624-83ec-2122a74ea730": 1,
+          "octgn:43db612f-6c3c-4a3c-a4ba-816a85f47d16": 3,
+          "octgn:aeba0e59-8dde-4422-bfb5-911ae8de42a1": 2,
+          "octgn:87539fa5-677d-4163-aff5-321841981cd4": 2,
+          "octgn:da177cbd-31e7-42ea-b051-e61f28dbb749": 3
+        },
+        "sharedSetAside": {
+          "octgn:f1d2d99e-27e6-44d3-ad3d-ef727fa9ddc2": 1,
+          "octgn:8948aa81-f7fb-4979-9add-555598df529a": 1,
+          "octgn:72276508-67e0-4133-8b9f-41fb8d44ffa9": 1
+        },
+        "sharedStagingArea": {
+          "octgn:13a4b435-fa14-42b8-975e-804d3b8b929d": 1,
+          "octgn:d8cfafbd-7976-4a87-bdb3-a12c87503cd3": 1
+        },
+        "player1Play1": {
+          "142001": 1,
+          "octgn:ba2e4a33-edc6-4638-a3f5-b818b080aea8": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q0B.06",
+      "name": "Breaking of the Fellowship",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "TRD"
+      ],
+      "card_codes": [
+        "octgn:d32ba7ec-fa7d-4a1a-b157-da4186e62ea6",
+        "octgn:500d3f5b-2de3-4770-bb2a-7db2b104bbf2",
+        "octgn:00008179-c6a7-46d0-be2f-b4b3b748afc2",
+        "octgn:f4e81861-8cf6-41e7-b347-af7879fa8b06",
+        "octgn:7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00",
+        "octgn:8f133b99-75d7-43b8-acec-3e298724134a",
+        "octgn:c10ac747-573f-46c7-a228-8b6d1cd8875a",
+        "octgn:9ccd6851-ec1e-4d47-9e8d-486365c261e2",
+        "octgn:c91a6d23-7dea-4efd-9f2b-326b74f9a935",
+        "octgn:9bba91a8-d375-4935-9956-9cb4cc4716c5",
+        "octgn:a11ea1e0-372e-4932-86e4-f84737e842e9",
+        "octgn:6d4c7a3b-e0e7-4267-8f53-6ba99054892c",
+        "octgn:67c97a60-a53c-4624-83ec-2122a74ea730",
+        "octgn:43db612f-6c3c-4a3c-a4ba-816a85f47d16",
+        "octgn:aeba0e59-8dde-4422-bfb5-911ae8de42a1",
+        "octgn:87539fa5-677d-4163-aff5-321841981cd4",
+        "octgn:da177cbd-31e7-42ea-b051-e61f28dbb749",
+        "octgn:57fdb41b-3a17-477d-89e7-b3b139d58642",
+        "octgn:f1d2d99e-27e6-44d3-ad3d-ef727fa9ddc2",
+        "octgn:8948aa81-f7fb-4979-9add-555598df529a",
+        "octgn:72276508-67e0-4133-8b9f-41fb8d44ffa9",
+        "octgn:13a4b435-fa14-42b8-975e-804d3b8b929d",
+        "octgn:d8cfafbd-7976-4a87-bdb3-a12c87503cd3",
+        "142001",
+        "octgn:ba2e4a33-edc6-4638-a3f5-b818b080aea8"
+      ],
+      "cards": [
+        {
+          "code": "octgn:d32ba7ec-fa7d-4a1a-b157-da4186e62ea6",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:500d3f5b-2de3-4770-bb2a-7db2b104bbf2",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:00008179-c6a7-46d0-be2f-b4b3b748afc2",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:f4e81861-8cf6-41e7-b347-af7879fa8b06",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:8f133b99-75d7-43b8-acec-3e298724134a",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:c10ac747-573f-46c7-a228-8b6d1cd8875a",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:9ccd6851-ec1e-4d47-9e8d-486365c261e2",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c91a6d23-7dea-4efd-9f2b-326b74f9a935",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9bba91a8-d375-4935-9956-9cb4cc4716c5",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a11ea1e0-372e-4932-86e4-f84737e842e9",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6d4c7a3b-e0e7-4267-8f53-6ba99054892c",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:67c97a60-a53c-4624-83ec-2122a74ea730",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:43db612f-6c3c-4a3c-a4ba-816a85f47d16",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:aeba0e59-8dde-4422-bfb5-911ae8de42a1",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:87539fa5-677d-4163-aff5-321841981cd4",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:da177cbd-31e7-42ea-b051-e61f28dbb749",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:57fdb41b-3a17-477d-89e7-b3b139d58642",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f1d2d99e-27e6-44d3-ad3d-ef727fa9ddc2",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:8948aa81-f7fb-4979-9add-555598df529a",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:72276508-67e0-4133-8b9f-41fb8d44ffa9",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:13a4b435-fa14-42b8-975e-804d3b8b929d",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:d8cfafbd-7976-4a87-bdb3-a12c87503cd3",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "142001",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:ba2e4a33-edc6-4638-a3f5-b818b080aea8",
+          "quantity": 1,
+          "section": "player1Play1"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:d32ba7ec-fa7d-4a1a-b157-da4186e62ea6": 1,
+          "octgn:500d3f5b-2de3-4770-bb2a-7db2b104bbf2": 1,
+          "octgn:00008179-c6a7-46d0-be2f-b4b3b748afc2": 1,
+          "octgn:f4e81861-8cf6-41e7-b347-af7879fa8b06": 1,
+          "octgn:7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00": 1,
+          "octgn:8f133b99-75d7-43b8-acec-3e298724134a": 1,
+          "octgn:c10ac747-573f-46c7-a228-8b6d1cd8875a": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:9ccd6851-ec1e-4d47-9e8d-486365c261e2": 2,
+          "octgn:c91a6d23-7dea-4efd-9f2b-326b74f9a935": 4,
+          "octgn:9bba91a8-d375-4935-9956-9cb4cc4716c5": 3,
+          "octgn:a11ea1e0-372e-4932-86e4-f84737e842e9": 3,
+          "octgn:6d4c7a3b-e0e7-4267-8f53-6ba99054892c": 4,
+          "octgn:67c97a60-a53c-4624-83ec-2122a74ea730": 3,
+          "octgn:43db612f-6c3c-4a3c-a4ba-816a85f47d16": 3,
+          "octgn:aeba0e59-8dde-4422-bfb5-911ae8de42a1": 2,
+          "octgn:87539fa5-677d-4163-aff5-321841981cd4": 2,
+          "octgn:da177cbd-31e7-42ea-b051-e61f28dbb749": 3,
+          "octgn:57fdb41b-3a17-477d-89e7-b3b139d58642": 1
+        },
+        "sharedSetAside": {
+          "octgn:f1d2d99e-27e6-44d3-ad3d-ef727fa9ddc2": 1,
+          "octgn:8948aa81-f7fb-4979-9add-555598df529a": 1,
+          "octgn:72276508-67e0-4133-8b9f-41fb8d44ffa9": 1
+        },
+        "sharedStagingArea": {
+          "octgn:13a4b435-fa14-42b8-975e-804d3b8b929d": 1,
+          "octgn:d8cfafbd-7976-4a87-bdb3-a12c87503cd3": 1
+        },
+        "player1Play1": {
+          "142001": 1,
+          "octgn:ba2e4a33-edc6-4638-a3f5-b818b080aea8": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "142001",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/142001.png",
+      "localPath": "/cards/142001.png",
+      "bytes": 129519,
+      "sha256": "2ba7fcc0552a48201306744ddc9d2409ddc041ab30b9d28f0e94b0cf7df788d4"
+    },
+    {
+      "code": "octgn:00008179-c6a7-46d0-be2f-b4b3b748afc2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/00008179-c6a7-46d0-be2f-b4b3b748afc2.jpg",
+      "localPath": "/cards/00008179-c6a7-46d0-be2f-b4b3b748afc2.jpg",
+      "bytes": 157671,
+      "sha256": "a50ac7b1fe5f8031269513a05ff6880b6fb10d6a99c1295e355928d5855abd29"
+    },
+    {
+      "code": "octgn:00008179-c6a7-46d0-be2f-b4b3b748afc2",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/00008179-c6a7-46d0-be2f-b4b3b748afc2.B.jpg",
+      "localPath": "/cards/00008179-c6a7-46d0-be2f-b4b3b748afc2.B.jpg",
+      "bytes": 154778,
+      "sha256": "74f5298d1b1bb78cdaa5cf53a6e7bbeb8a33d86237920672928949bc84108099"
+    },
+    {
+      "code": "octgn:13a4b435-fa14-42b8-975e-804d3b8b929d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/13a4b435-fa14-42b8-975e-804d3b8b929d.jpg",
+      "localPath": "/cards/13a4b435-fa14-42b8-975e-804d3b8b929d.jpg",
+      "bytes": 153189,
+      "sha256": "eebecc269f7863abe6b08979a2282e8ebc0ba1b1f7bb1e5fc95e1cf3680854c1"
+    },
+    {
+      "code": "octgn:43db612f-6c3c-4a3c-a4ba-816a85f47d16",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/43db612f-6c3c-4a3c-a4ba-816a85f47d16.jpg",
+      "localPath": "/cards/43db612f-6c3c-4a3c-a4ba-816a85f47d16.jpg",
+      "bytes": 154236,
+      "sha256": "ec59220fe2a3cfeea22bd4e6e5d8924ee85e72b39311c6c0d3ffaac8b8c6fee2"
+    },
+    {
+      "code": "octgn:500d3f5b-2de3-4770-bb2a-7db2b104bbf2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/500d3f5b-2de3-4770-bb2a-7db2b104bbf2.jpg",
+      "localPath": "/cards/500d3f5b-2de3-4770-bb2a-7db2b104bbf2.jpg",
+      "bytes": 163750,
+      "sha256": "2577d0137a98f979e7a59c82074e6264716713f332f8d12315c44bff779a1e7a"
+    },
+    {
+      "code": "octgn:500d3f5b-2de3-4770-bb2a-7db2b104bbf2",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/500d3f5b-2de3-4770-bb2a-7db2b104bbf2.B.jpg",
+      "localPath": "/cards/500d3f5b-2de3-4770-bb2a-7db2b104bbf2.B.jpg",
+      "bytes": 163085,
+      "sha256": "78404192933aa71a1d32ff747ccf38a9e579ebdccd906caf4cd9c02798528468"
+    },
+    {
+      "code": "octgn:57fdb41b-3a17-477d-89e7-b3b139d58642",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/57fdb41b-3a17-477d-89e7-b3b139d58642.jpg",
+      "localPath": "/cards/57fdb41b-3a17-477d-89e7-b3b139d58642.jpg",
+      "bytes": 164340,
+      "sha256": "2ea49592aaff822936976ecf640f388a6a8336709bfe75d92150d2e8e52d2fd5"
+    },
+    {
+      "code": "octgn:67c97a60-a53c-4624-83ec-2122a74ea730",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/67c97a60-a53c-4624-83ec-2122a74ea730.jpg",
+      "localPath": "/cards/67c97a60-a53c-4624-83ec-2122a74ea730.jpg",
+      "bytes": 155591,
+      "sha256": "c23b066a78c313a4ba700aa72221e0c86b4062c8005fabe22a984bb40b327547"
+    },
+    {
+      "code": "octgn:6d4c7a3b-e0e7-4267-8f53-6ba99054892c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6d4c7a3b-e0e7-4267-8f53-6ba99054892c.jpg",
+      "localPath": "/cards/6d4c7a3b-e0e7-4267-8f53-6ba99054892c.jpg",
+      "bytes": 149588,
+      "sha256": "8db3e5ac6c559ce61fb216fc6bae5ffe1028c3311df3597424552a1d5b116a27"
+    },
+    {
+      "code": "octgn:72276508-67e0-4133-8b9f-41fb8d44ffa9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/72276508-67e0-4133-8b9f-41fb8d44ffa9.jpg",
+      "localPath": "/cards/72276508-67e0-4133-8b9f-41fb8d44ffa9.jpg",
+      "bytes": 158494,
+      "sha256": "aa5f7245690a48fd9d426fcf9b328a6f2b579abe27d4959b5984086d19a36d00"
+    },
+    {
+      "code": "octgn:7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00.jpg",
+      "localPath": "/cards/7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00.jpg",
+      "bytes": 144394,
+      "sha256": "2e38f4d1479f5a49b7827738c0ca1ea29f1ec10d7024facb39d70efe74e353f7"
+    },
+    {
+      "code": "octgn:7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00.B.jpg",
+      "localPath": "/cards/7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00.B.jpg",
+      "bytes": 140777,
+      "sha256": "97085057167aaf7a2943d30d8572e272e9c6d4ccda790386a7cde8fd7a371ab9"
+    },
+    {
+      "code": "octgn:87539fa5-677d-4163-aff5-321841981cd4",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/87539fa5-677d-4163-aff5-321841981cd4.jpg",
+      "localPath": "/cards/87539fa5-677d-4163-aff5-321841981cd4.jpg",
+      "bytes": 169102,
+      "sha256": "7c1ef86fb86c4b6805371e14de41a89c87c97cea3b3e7b8b899e2b8106db04fe"
+    },
+    {
+      "code": "octgn:8948aa81-f7fb-4979-9add-555598df529a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8948aa81-f7fb-4979-9add-555598df529a.jpg",
+      "localPath": "/cards/8948aa81-f7fb-4979-9add-555598df529a.jpg",
+      "bytes": 160162,
+      "sha256": "b3f0a78ef77c3fd012a6f21b14cb7ca56b8e63b373c26de4600ee584866bbcab"
+    },
+    {
+      "code": "octgn:8f133b99-75d7-43b8-acec-3e298724134a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8f133b99-75d7-43b8-acec-3e298724134a.jpg",
+      "localPath": "/cards/8f133b99-75d7-43b8-acec-3e298724134a.jpg",
+      "bytes": 165044,
+      "sha256": "6ea9d8f0cece34a4ec8873d87f62d26459853fb915f09bce1da7a9f775bda0f7"
+    },
+    {
+      "code": "octgn:8f133b99-75d7-43b8-acec-3e298724134a",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8f133b99-75d7-43b8-acec-3e298724134a.B.jpg",
+      "localPath": "/cards/8f133b99-75d7-43b8-acec-3e298724134a.B.jpg",
+      "bytes": 163299,
+      "sha256": "c14da22f87bf621b2489e156b8a26cd5892ecd904808ef00e64e973eca0fce1a"
+    },
+    {
+      "code": "octgn:9bba91a8-d375-4935-9956-9cb4cc4716c5",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9bba91a8-d375-4935-9956-9cb4cc4716c5.jpg",
+      "localPath": "/cards/9bba91a8-d375-4935-9956-9cb4cc4716c5.jpg",
+      "bytes": 155382,
+      "sha256": "e8a5689389092ed77e0a667b404cfbddc0a82bc12e77a9e94b77666cd8f33c76"
+    },
+    {
+      "code": "octgn:9ccd6851-ec1e-4d47-9e8d-486365c261e2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9ccd6851-ec1e-4d47-9e8d-486365c261e2.jpg",
+      "localPath": "/cards/9ccd6851-ec1e-4d47-9e8d-486365c261e2.jpg",
+      "bytes": 156632,
+      "sha256": "7a4dca547969d23e4c26249cf37c7f00536a365a2150f0e4f9f67f1f083f0fd7"
+    },
+    {
+      "code": "octgn:a11ea1e0-372e-4932-86e4-f84737e842e9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a11ea1e0-372e-4932-86e4-f84737e842e9.jpg",
+      "localPath": "/cards/a11ea1e0-372e-4932-86e4-f84737e842e9.jpg",
+      "bytes": 154153,
+      "sha256": "53b7a90656afc9cb4fa7750cba75b1af2cdef76609d694160178e8188716ce59"
+    },
+    {
+      "code": "octgn:aeba0e59-8dde-4422-bfb5-911ae8de42a1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aeba0e59-8dde-4422-bfb5-911ae8de42a1.jpg",
+      "localPath": "/cards/aeba0e59-8dde-4422-bfb5-911ae8de42a1.jpg",
+      "bytes": 150769,
+      "sha256": "56705b6e35e474cec8eddf209649e563ae67d1777b1de1462d8c978f63d28562"
+    },
+    {
+      "code": "octgn:ba2e4a33-edc6-4638-a3f5-b818b080aea8",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ba2e4a33-edc6-4638-a3f5-b818b080aea8.jpg",
+      "localPath": "/cards/ba2e4a33-edc6-4638-a3f5-b818b080aea8.jpg",
+      "bytes": 145036,
+      "sha256": "6c44976cbca42bb57aa7f441b7e3e997161100a15e59c36b8f4626270b10e0b0"
+    },
+    {
+      "code": "octgn:c10ac747-573f-46c7-a228-8b6d1cd8875a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c10ac747-573f-46c7-a228-8b6d1cd8875a.jpg",
+      "localPath": "/cards/c10ac747-573f-46c7-a228-8b6d1cd8875a.jpg",
+      "bytes": 161612,
+      "sha256": "fdb0351f1a87c5d33d21b8709be31147cda1e2843547f30e80b969d2eb61f064"
+    },
+    {
+      "code": "octgn:c10ac747-573f-46c7-a228-8b6d1cd8875a",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c10ac747-573f-46c7-a228-8b6d1cd8875a.B.jpg",
+      "localPath": "/cards/c10ac747-573f-46c7-a228-8b6d1cd8875a.B.jpg",
+      "bytes": 155129,
+      "sha256": "895f52f6153ffbc21313e9440f2d17da179dbbd2e532b9a54633c494661b6dee"
+    },
+    {
+      "code": "octgn:c91a6d23-7dea-4efd-9f2b-326b74f9a935",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c91a6d23-7dea-4efd-9f2b-326b74f9a935.jpg",
+      "localPath": "/cards/c91a6d23-7dea-4efd-9f2b-326b74f9a935.jpg",
+      "bytes": 147395,
+      "sha256": "d859e82160d565bf41d11b05bccff8ab393e9ec4ddfbd12ae39e29ab4a01cd7c"
+    },
+    {
+      "code": "octgn:d32ba7ec-fa7d-4a1a-b157-da4186e62ea6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d32ba7ec-fa7d-4a1a-b157-da4186e62ea6.jpg",
+      "localPath": "/cards/d32ba7ec-fa7d-4a1a-b157-da4186e62ea6.jpg",
+      "bytes": 151353,
+      "sha256": "da5bc16ad4393d03cf112153f8007c7563177868a2f10ff39e48e060bbf2f9ac"
+    },
+    {
+      "code": "octgn:d32ba7ec-fa7d-4a1a-b157-da4186e62ea6",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d32ba7ec-fa7d-4a1a-b157-da4186e62ea6.B.jpg",
+      "localPath": "/cards/d32ba7ec-fa7d-4a1a-b157-da4186e62ea6.B.jpg",
+      "bytes": 156434,
+      "sha256": "0572182c8df98c4bae83313e65dafa2d54b99866e9d4ee264822150d56223a1d"
+    },
+    {
+      "code": "octgn:d8cfafbd-7976-4a87-bdb3-a12c87503cd3",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d8cfafbd-7976-4a87-bdb3-a12c87503cd3.jpg",
+      "localPath": "/cards/d8cfafbd-7976-4a87-bdb3-a12c87503cd3.jpg",
+      "bytes": 154299,
+      "sha256": "53115743e299b8be251abb6aea555ca2367b78bec4d72498a27fcd866393bb21"
+    },
+    {
+      "code": "octgn:da177cbd-31e7-42ea-b051-e61f28dbb749",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/da177cbd-31e7-42ea-b051-e61f28dbb749.jpg",
+      "localPath": "/cards/da177cbd-31e7-42ea-b051-e61f28dbb749.jpg",
+      "bytes": 157137,
+      "sha256": "7dd5f2571411ed30452a9f50e77054e51d419558802eca5a11a9b3e06ec58280"
+    },
+    {
+      "code": "octgn:f1d2d99e-27e6-44d3-ad3d-ef727fa9ddc2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f1d2d99e-27e6-44d3-ad3d-ef727fa9ddc2.jpg",
+      "localPath": "/cards/f1d2d99e-27e6-44d3-ad3d-ef727fa9ddc2.jpg",
+      "bytes": 138866,
+      "sha256": "dc3908bdf946d5e9104b267d827807f58c3baa9fd66812bec3215b2131c32834"
+    },
+    {
+      "code": "octgn:f4e81861-8cf6-41e7-b347-af7879fa8b06",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f4e81861-8cf6-41e7-b347-af7879fa8b06.jpg",
+      "localPath": "/cards/f4e81861-8cf6-41e7-b347-af7879fa8b06.jpg",
+      "bytes": 145271,
+      "sha256": "36ac7bef5096ad7f24a654b339243e5d726e13118b0919f0fcaaf5155f9e486a"
+    },
+    {
+      "code": "octgn:f4e81861-8cf6-41e7-b347-af7879fa8b06",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f4e81861-8cf6-41e7-b347-af7879fa8b06.B.jpg",
+      "localPath": "/cards/f4e81861-8cf6-41e7-b347-af7879fa8b06.B.jpg",
+      "bytes": 136674,
+      "sha256": "b73e041f32aebc473891a13a2f93fa477c35772f0f17448635030c88d371486c"
+    }
+  ]
+}

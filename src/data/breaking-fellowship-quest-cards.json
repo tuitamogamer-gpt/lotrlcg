@@ -1,0 +1,284 @@
+[
+  {
+    "code": "octgn:d32ba7ec-fa7d-4a1a-b157-da4186e62ea6",
+    "octgnid": "d32ba7ec-fa7d-4a1a-b157-da4186e62ea6",
+    "name": "The Great River",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set Frodo's Choice, Seat of Seeing, and Parth Galen aside, out of play. Add The Argonath and Sarn Gebir to the staging area.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 61,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Breaking of the Fellowship",
+    "side": "A",
+    "back_name": "The Great River",
+    "back_text": "Enemies get +2 [defense] and cannot be engaged. Skip the encounter phase.\nThe players cannot advance while The Argonath is in play.",
+    "back_type_code": "quest",
+    "back_quest": 12,
+    "back_imagesrc": "/cards/d32ba7ec-fa7d-4a1a-b157-da4186e62ea6.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/d32ba7ec-fa7d-4a1a-b157-da4186e62ea6.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 61,
+        "quantity": 1,
+        "octgnid": "d32ba7ec-fa7d-4a1a-b157-da4186e62ea6",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d32ba7ec-fa7d-4a1a-b157-da4186e62ea6.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 12
+  },
+  {
+    "code": "octgn:500d3f5b-2de3-4770-bb2a-7db2b104bbf2",
+    "octgnid": "500d3f5b-2de3-4770-bb2a-7db2b104bbf2",
+    "name": "The Company Divided",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Remove the Ring-bearer, and each card attached to it, from the game (treat The One Ring's text as blank while resolving this effect). Reduce each enemy's engagement cost to 0 until the end of the encounter phase. Skip the travel phase this round.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 62,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Breaking of the Fellowship",
+    "side": "A",
+    "back_name": "The Company Divided",
+    "back_text": "Forced: At the end of the refresh phase, shuffle Seat of Seeing and Frodo's Choice into the encounter discard pile. Then, place the encounter discard pile on the bottom of the encounter deck. Starting with the first player, each player creates his own staging area and advances to a different stage 3A of his choice. In player order, each player moves 1 encounter card from this staging area to his. When there are no encounter cards left at this stage, discard it.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/500d3f5b-2de3-4770-bb2a-7db2b104bbf2.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/500d3f5b-2de3-4770-bb2a-7db2b104bbf2.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 62,
+        "quantity": 1,
+        "octgnid": "500d3f5b-2de3-4770-bb2a-7db2b104bbf2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/500d3f5b-2de3-4770-bb2a-7db2b104bbf2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": null
+  },
+  {
+    "code": "octgn:00008179-c6a7-46d0-be2f-b4b3b748afc2",
+    "octgnid": "00008179-c6a7-46d0-be2f-b4b3b748afc2",
+    "name": "Searching the Woods",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Forced: After stage 2B is discarded, if the total [threat] of encounter cards in this staging area is less than 4, reveal 1 encounter card.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 63,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Breaking of the Fellowship",
+    "side": "A",
+    "back_name": "Searching the Woods",
+    "back_text": "If Frodo's Choice is not in play, any time players would place progress on this quest, discard an equal number of cards from the encounter deck instead.\nForced: After Frodo's Choice is revealed at this stage, advance to stage 4A.\nResponse: After you quest successfully, discard a non-unique location in any staging area.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/00008179-c6a7-46d0-be2f-b4b3b748afc2.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/00008179-c6a7-46d0-be2f-b4b3b748afc2.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 63,
+        "quantity": 1,
+        "octgnid": "00008179-c6a7-46d0-be2f-b4b3b748afc2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/00008179-c6a7-46d0-be2f-b4b3b748afc2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": null
+  },
+  {
+    "code": "octgn:f4e81861-8cf6-41e7-b347-af7879fa8b06",
+    "octgnid": "f4e81861-8cf6-41e7-b347-af7879fa8b06",
+    "name": "Guard the Hobbits",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Forced: After stage 2B is discarded, if the total [threat] of encounter cards in this staging area is less than 4, reveal 1 encounter card.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 64,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Breaking of the Fellowship",
+    "side": "A",
+    "back_name": "Guard the Hobbits",
+    "back_text": "If Frodo's Choice is not in play, any time players would place progress on this quest, discard an equal number of cards from the encounter deck instead.\nForced: After Frodo's Choice is revealed at this stage, advance to stage 4A.\nResponse: After you quest successfully, choose a player. Ready each of that player's heroes.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/f4e81861-8cf6-41e7-b347-af7879fa8b06.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/f4e81861-8cf6-41e7-b347-af7879fa8b06.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 64,
+        "quantity": 1,
+        "octgnid": "f4e81861-8cf6-41e7-b347-af7879fa8b06",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f4e81861-8cf6-41e7-b347-af7879fa8b06.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": null
+  },
+  {
+    "code": "octgn:7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00",
+    "octgnid": "7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00",
+    "name": "The Seat of Amon Hen",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Forced: After stage 2B is discarded, if the total [threat] of encounter cards in this staging area is less than 4, reveal 1 encounter card.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 65,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Breaking of the Fellowship",
+    "side": "A",
+    "back_name": "The Seat of Amon Hen",
+    "back_text": "If Frodo's Choice is not in play, any time players would place progress on this quest, discard an equal number of cards from the encounter deck instead.\nForced: After Frodo's Choice is revealed at this stage, advance to stage 4A.\nResponse: After you quest successfully, choose a player. That player draws 2 cards and lowers his threat by 2.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 65,
+        "quantity": 1,
+        "octgnid": "7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": null
+  },
+  {
+    "code": "octgn:8f133b99-75d7-43b8-acec-3e298724134a",
+    "octgnid": "8f133b99-75d7-43b8-acec-3e298724134a",
+    "name": "Orc Hunting",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Forced: After stage 2B is discarded, if the total [threat] of encounter cards in this staging area is less than 4, reveal 1 encounter card.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 66,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Breaking of the Fellowship",
+    "side": "A",
+    "back_name": "Orc Hunting",
+    "back_text": "If Frodo's Choice is not in play, any time players would place progress on this quest, discard an equal number of cards from the encounter deck instead.\nForced: After Frodo's Choice is revealed at this stage, advance to stage 4A.\nResponse: After you quest successfully, discard an enemy engaged with a player.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/8f133b99-75d7-43b8-acec-3e298724134a.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/8f133b99-75d7-43b8-acec-3e298724134a.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 66,
+        "quantity": 1,
+        "octgnid": "8f133b99-75d7-43b8-acec-3e298724134a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8f133b99-75d7-43b8-acec-3e298724134a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": null
+  },
+  {
+    "code": "octgn:c10ac747-573f-46c7-a228-8b6d1cd8875a",
+    "octgnid": "c10ac747-573f-46c7-a228-8b6d1cd8875a",
+    "name": "The Ring-bearer Sets Out",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add Parth Galen to the staging area. If it is your quest phase, end the phase (do not resolve the quest).",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 67,
+    "quantity": 1,
+    "cost": 4,
+    "encounter_set": "Breaking of the Fellowship",
+    "side": "A",
+    "back_name": "The Ring-bearer Sets Out",
+    "back_text": "During the quest phase, reveal 1 additional encounter card for each player in the game. Response: After an enemy is revealed at this stage, raise your threat by X to engage that enemy. X is that enemy's [threat]. Each player (at any stage) may trigger this ability once per round.\nWhen this stage is defeated, the players win the game.",
+    "back_type_code": "quest",
+    "back_quest": 16,
+    "back_imagesrc": "/cards/c10ac747-573f-46c7-a228-8b6d1cd8875a.B.jpg",
+    "printed_stats": {
+      "cost": "4"
+    },
+    "imagesrc": "/cards/c10ac747-573f-46c7-a228-8b6d1cd8875a.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 67,
+        "quantity": 1,
+        "octgnid": "c10ac747-573f-46c7-a228-8b6d1cd8875a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c10ac747-573f-46c7-a228-8b6d1cd8875a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 16
+  }
+]

@@ -1,4 +1,5 @@
 import { card } from "./cards";
+import { hasEnemyCondition } from "./enemy-conditions";
 import type { Attachment, GameState, Unit } from "./types";
 import { allCharacters, allHeroes, ownerOf, activeSeat } from "./table";
 
@@ -18,10 +19,7 @@ export const isEnemy = (u: {
 }) =>
   !u.cobasShipObjective &&
   (["enemy", "ship-enemy"].includes(card(u.code).type_code) ||
-    !!u.attachments?.some(
-      (a) =>
-        a.code === "octgn:617bc2e6-05a9-4c99-b3ff-8304ecb6ef32" && !a.blanked,
-    ));
+    hasEnemyCondition(u));
 
 /** Ordinary characters may attack ships; ships may only attack other ships. */
 export const shipCanAttack = (enemy: Unit, attacker: Unit) =>

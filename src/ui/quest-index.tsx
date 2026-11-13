@@ -99,6 +99,10 @@ const HEADLINES: Partial<
     lead: "Cross the Mines of Moria",
     em: "before the Balrog wakes.",
   },
+  "breaking-of-the-fellowship": {
+    lead: "Find the Ring-bearer",
+    em: "on the slopes of Amon Hen.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

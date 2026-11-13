@@ -1,0 +1,589 @@
+[
+  {
+    "code": "octgn:f1d2d99e-27e6-44d3-ad3d-ef727fa9ddc2",
+    "octgnid": "f1d2d99e-27e6-44d3-ad3d-ef727fa9ddc2",
+    "name": "Frodo's Choice",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Doom.",
+    "text": "If Frodo's Choice is discarded, reveal it instead.\nWhen Revealed: Take control of the first player token and the Ring-bearer (and each card attached to it). Attach to the Ring-bearer. For the rest of the game, you cannot lose control of the first player token.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 68,
+    "quantity": 1,
+    "encounter_set": "Breaking of the Fellowship",
+    "printed_stats": {},
+    "imagesrc": "/cards/f1d2d99e-27e6-44d3-ad3d-ef727fa9ddc2.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 68,
+        "quantity": 1,
+        "octgnid": "f1d2d99e-27e6-44d3-ad3d-ef727fa9ddc2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f1d2d99e-27e6-44d3-ad3d-ef727fa9ddc2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:9ccd6851-ec1e-4d47-9e8d-486365c261e2",
+    "octgnid": "9ccd6851-ec1e-4d47-9e8d-486365c261e2",
+    "name": "Uruk-hai Captain",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Uruk-hai.",
+    "text": "Toughness 2. Cannot have attachments.\nAllies with fewer printed hit points than Uruk-hai Captain cannot defend against Uruk-hai Captain.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 69,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 5,
+    "defense": 2,
+    "health": 3,
+    "engagement": 36,
+    "shadow": "Shadow: Attacking enemy makes an additional attack after this one.",
+    "encounter_set": "Breaking of the Fellowship",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "5",
+      "defense": "2",
+      "health": "3",
+      "engagement": "36"
+    },
+    "imagesrc": "/cards/9ccd6851-ec1e-4d47-9e8d-486365c261e2.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 69,
+        "quantity": 2,
+        "octgnid": "9ccd6851-ec1e-4d47-9e8d-486365c261e2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9ccd6851-ec1e-4d47-9e8d-486365c261e2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:c91a6d23-7dea-4efd-9f2b-326b74f9a935",
+    "octgnid": "c91a6d23-7dea-4efd-9f2b-326b74f9a935",
+    "name": "Uruk-hai Archer",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Uruk-hai.",
+    "text": "Peril. Toughness 1. Archery X.\nX is the number of players at this stage.\nWhen Revealed: Discard an ally you control.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 70,
+    "quantity": 4,
+    "attack": 4,
+    "defense": 1,
+    "health": 4,
+    "engagement": 44,
+    "encounter_set": "Breaking of the Fellowship",
+    "printed_stats": {
+      "threat": "X",
+      "attack": "4",
+      "defense": "1",
+      "health": "4",
+      "engagement": "44"
+    },
+    "imagesrc": "/cards/c91a6d23-7dea-4efd-9f2b-326b74f9a935.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 70,
+        "quantity": 4,
+        "octgnid": "c91a6d23-7dea-4efd-9f2b-326b74f9a935",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c91a6d23-7dea-4efd-9f2b-326b74f9a935.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:9bba91a8-d375-4935-9956-9cb4cc4716c5",
+    "octgnid": "9bba91a8-d375-4935-9956-9cb4cc4716c5",
+    "name": "Uruk-hai Tracker",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Uruk-hai.",
+    "text": "Surge. Toughness 1. Archery 1.\nUruk-hai Tracker gets +2 [attack] against characters with 2 or fewer printed hit points.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 71,
+    "quantity": 3,
+    "threat": 1,
+    "attack": 3,
+    "defense": 1,
+    "health": 3,
+    "engagement": 33,
+    "shadow": "Shadow: Discard a non-objective attachment you control.",
+    "encounter_set": "Breaking of the Fellowship",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "3",
+      "defense": "1",
+      "health": "3",
+      "engagement": "33"
+    },
+    "imagesrc": "/cards/9bba91a8-d375-4935-9956-9cb4cc4716c5.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 71,
+        "quantity": 3,
+        "octgnid": "9bba91a8-d375-4935-9956-9cb4cc4716c5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9bba91a8-d375-4935-9956-9cb4cc4716c5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:a11ea1e0-372e-4932-86e4-f84737e842e9",
+    "octgnid": "a11ea1e0-372e-4932-86e4-f84737e842e9",
+    "name": "Uruk-hai Hunter",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Uruk-hai.",
+    "text": "Peril. Toughness 1.\nWhen Revealed: Either choose a player to reveal an encounter card, or Uruk-hai Hunter makes an immediate attack against you.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 72,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 4,
+    "defense": 1,
+    "health": 3,
+    "engagement": 28,
+    "encounter_set": "Breaking of the Fellowship",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "4",
+      "defense": "1",
+      "health": "3",
+      "engagement": "28"
+    },
+    "imagesrc": "/cards/a11ea1e0-372e-4932-86e4-f84737e842e9.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 72,
+        "quantity": 3,
+        "octgnid": "a11ea1e0-372e-4932-86e4-f84737e842e9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a11ea1e0-372e-4932-86e4-f84737e842e9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:72276508-67e0-4133-8b9f-41fb8d44ffa9",
+    "octgnid": "72276508-67e0-4133-8b9f-41fb8d44ffa9",
+    "name": "Parth Galen",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "River. Lawn.",
+    "text": "Immune to player card effects.\nTravel: Search the encounter deck and discard pile for an enemy and add it to the staging area to travel here. Shuffle the encounter deck. While Parth Galen is in play, the players cannot win the game.",
+    "is_unique": true,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 73,
+    "quantity": 1,
+    "threat": 2,
+    "quest": 4,
+    "victory": 1,
+    "encounter_set": "Breaking of the Fellowship",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "4",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/72276508-67e0-4133-8b9f-41fb8d44ffa9.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 73,
+        "quantity": 1,
+        "octgnid": "72276508-67e0-4133-8b9f-41fb8d44ffa9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/72276508-67e0-4133-8b9f-41fb8d44ffa9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8948aa81-f7fb-4979-9add-555598df529a",
+    "octgnid": "8948aa81-f7fb-4979-9add-555598df529a",
+    "name": "Seat of Seeing",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Hills.",
+    "text": "Immune to player card effects.\nResponse: When Seat of Seeing is explored, choose a burden card in play, in the encounter deck, or in the discard pile, and remove it from the game. Shuffle the encounter deck. (If you are playing campaign mode, remove that card from the campaign pool.)",
+    "is_unique": true,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 74,
+    "quantity": 1,
+    "threat": 1,
+    "quest": 6,
+    "victory": 1,
+    "encounter_set": "Breaking of the Fellowship",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "6",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/8948aa81-f7fb-4979-9add-555598df529a.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 74,
+        "quantity": 1,
+        "octgnid": "8948aa81-f7fb-4979-9add-555598df529a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8948aa81-f7fb-4979-9add-555598df529a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:13a4b435-fa14-42b8-975e-804d3b8b929d",
+    "octgnid": "13a4b435-fa14-42b8-975e-804d3b8b929d",
+    "name": "The Argonath",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "River.",
+    "text": "Immune to player card effects. X is the number of players in the game.\nThe players cannot travel here while Sarn Gebir is in play. While The Argonath is the active location, skip the combat phase.",
+    "is_unique": true,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 75,
+    "quantity": 1,
+    "quest": 2,
+    "victory": 1,
+    "encounter_set": "Breaking of the Fellowship",
+    "printed_stats": {
+      "threat": "X",
+      "quest": "2",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/13a4b435-fa14-42b8-975e-804d3b8b929d.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 75,
+        "quantity": 1,
+        "octgnid": "13a4b435-fa14-42b8-975e-804d3b8b929d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/13a4b435-fa14-42b8-975e-804d3b8b929d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:d8cfafbd-7976-4a87-bdb3-a12c87503cd3",
+    "octgnid": "d8cfafbd-7976-4a87-bdb3-a12c87503cd3",
+    "name": "Sarn Gebir",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "River.",
+    "text": "Immune to player card effects.\nForced: When Sarn Gebir is explored, deal 1 damage to each exhausted character.",
+    "is_unique": true,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 76,
+    "quantity": 1,
+    "threat": 3,
+    "quest": 4,
+    "victory": 1,
+    "encounter_set": "Breaking of the Fellowship",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "4",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/d8cfafbd-7976-4a87-bdb3-a12c87503cd3.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 76,
+        "quantity": 1,
+        "octgnid": "d8cfafbd-7976-4a87-bdb3-a12c87503cd3",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d8cfafbd-7976-4a87-bdb3-a12c87503cd3.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:6d4c7a3b-e0e7-4267-8f53-6ba99054892c",
+    "octgnid": "6d4c7a3b-e0e7-4267-8f53-6ba99054892c",
+    "name": "River Anduin",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "River.",
+    "text": "While River Anduin is in the staging area it gains: \"Forced: At the end of the travel phase, each player at this stage raises his threat by 1. Then, River Anduin moves to the staging area to the left, if able.\"",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 77,
+    "quantity": 4,
+    "threat": 2,
+    "quest": 5,
+    "encounter_set": "Breaking of the Fellowship",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/6d4c7a3b-e0e7-4267-8f53-6ba99054892c.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 77,
+        "quantity": 4,
+        "octgnid": "6d4c7a3b-e0e7-4267-8f53-6ba99054892c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6d4c7a3b-e0e7-4267-8f53-6ba99054892c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:67c97a60-a53c-4624-83ec-2122a74ea730",
+    "octgnid": "67c97a60-a53c-4624-83ec-2122a74ea730",
+    "name": "Wooded Shoreline",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "River. Forest.",
+    "text": "While Wooded Shoreline is in the staging area, it gains archery 2.\nTravel: Search the encounter deck and discard pile for an enemy and add it to this staging area to travel here. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 78,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 4,
+    "encounter_set": "Breaking of the Fellowship",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/67c97a60-a53c-4624-83ec-2122a74ea730.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 78,
+        "quantity": 3,
+        "octgnid": "67c97a60-a53c-4624-83ec-2122a74ea730",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/67c97a60-a53c-4624-83ec-2122a74ea730.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:43db612f-6c3c-4a3c-a4ba-816a85f47d16",
+    "octgnid": "43db612f-6c3c-4a3c-a4ba-816a85f47d16",
+    "name": "Slopes of Amon Hen",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest. Hills.",
+    "text": "Travel: A player at this staging area must engage an enemy in any staging area to travel here.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 79,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 3,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if the defending character has fewer printed hit points than the attacking enemy).",
+    "encounter_set": "Breaking of the Fellowship",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/43db612f-6c3c-4a3c-a4ba-816a85f47d16.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 79,
+        "quantity": 3,
+        "octgnid": "43db612f-6c3c-4a3c-a4ba-816a85f47d16",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/43db612f-6c3c-4a3c-a4ba-816a85f47d16.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:aeba0e59-8dde-4422-bfb5-911ae8de42a1",
+    "octgnid": "aeba0e59-8dde-4422-bfb5-911ae8de42a1",
+    "name": "Growing Threat",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Peril.\nWhen Revealed: Either move 1 enemy engaged with you to the first player's staging area, or Growing Threat gains doomed 2 and surge.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 80,
+    "quantity": 2,
+    "shadow": "Shadow: After this attack, move attacking enemy to the first player's staging area.",
+    "encounter_set": "Breaking of the Fellowship",
+    "printed_stats": {},
+    "imagesrc": "/cards/aeba0e59-8dde-4422-bfb5-911ae8de42a1.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 80,
+        "quantity": 2,
+        "octgnid": "aeba0e59-8dde-4422-bfb5-911ae8de42a1",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aeba0e59-8dde-4422-bfb5-911ae8de42a1.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:87539fa5-677d-4163-aff5-321841981cd4",
+    "octgnid": "87539fa5-677d-4163-aff5-321841981cd4",
+    "name": "Orcs of the White Hand",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Remove all damage from each enemy at this stage. Each enemy at this stage gets +1 [threat], +1 [attack], and +1 [defense] until the end of the round.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 81,
+    "quantity": 2,
+    "shadow": "Shadow: If the defending character has fewer printed hit points than the attacking enemy, this attack is considered undefended.",
+    "encounter_set": "Breaking of the Fellowship",
+    "printed_stats": {},
+    "imagesrc": "/cards/87539fa5-677d-4163-aff5-321841981cd4.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 81,
+        "quantity": 2,
+        "octgnid": "87539fa5-677d-4163-aff5-321841981cd4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/87539fa5-677d-4163-aff5-321841981cd4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:da177cbd-31e7-42ea-b051-e61f28dbb749",
+    "octgnid": "da177cbd-31e7-42ea-b051-e61f28dbb749",
+    "name": "Black Feathered Arrows",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Until the end of the round, add 1 to the archery total at this stage for each ally currently at this stage.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 82,
+    "quantity": 3,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if the defending character has fewer printed hit points than the attacking enemy).",
+    "encounter_set": "Breaking of the Fellowship",
+    "printed_stats": {},
+    "imagesrc": "/cards/da177cbd-31e7-42ea-b051-e61f28dbb749.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 82,
+        "quantity": 3,
+        "octgnid": "da177cbd-31e7-42ea-b051-e61f28dbb749",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/da177cbd-31e7-42ea-b051-e61f28dbb749.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:57fdb41b-3a17-477d-89e7-b3b139d58642",
+    "octgnid": "57fdb41b-3a17-477d-89e7-b3b139d58642",
+    "name": "Fallen into Evil",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Corruption.",
+    "text": "When Revealed: Attach to a non-[fellowship] hero and move it to the first player's staging area. (Counts as a Condition attachment with the text: \"Attached hero loses the hero card type and gains the enemy card type with [threat] equal to its [willpower] and engagement cost equal to its threat cost. If Fallen into Evil is discarded, return attached hero to its owner's control.\")",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 83,
+    "quantity": 1,
+    "encounter_set": "Breaking of the Fellowship",
+    "printed_stats": {},
+    "imagesrc": "/cards/57fdb41b-3a17-477d-89e7-b3b139d58642.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 83,
+        "quantity": 1,
+        "octgnid": "57fdb41b-3a17-477d-89e7-b3b139d58642",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/57fdb41b-3a17-477d-89e7-b3b139d58642.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

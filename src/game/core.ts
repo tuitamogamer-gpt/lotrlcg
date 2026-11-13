@@ -354,7 +354,7 @@ export const globalUnits = (s: GameState) => [
   ...globalEngaged(s),
   ...(s.mountGram?.split
     ? gramAllAreaUnits(s)
-    : s.fliesSpiders?.split
+    : s.fliesSpiders?.split || s.breakingFellowship?.split
       ? fasAllAreaUnits(s)
       : foundationsAllAreaUnits(s)),
   ...(s.assaultOsgiliath?.controlled ?? []),

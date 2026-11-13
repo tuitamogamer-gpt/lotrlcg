@@ -32,6 +32,8 @@ import { RingSouthState } from "./ui/ring-south-state";
 import { RING_SOUTH_QUESTS } from "./game/ring-south-support";
 import { JourneyDarkState } from "./ui/journey-dark-state";
 import { JOURNEY_DARK_QUESTS } from "./game/journey-dark-support";
+import { BreakingFellowshipState } from "./ui/breaking-fellowship-state";
+import { BREAKING_FELLOWSHIP_QUESTS } from "./game/breaking-fellowship-support";
 import { DDCD_QUESTS } from "./game/dungeons-deep-support";
 import {
   discoveredTreasures,
@@ -3257,6 +3259,7 @@ export default function App() {
             <OldForestState s={game} inspect={setDetail} />
             <RingSouthState s={game} inspect={setDetail} />
             <JourneyDarkState s={game} inspect={setDetail} />
+            <BreakingFellowshipState s={game} inspect={setDetail} />
             <AshMountainsState s={game} inspect={setDetail} />
             <CouncilOfTheWiseState s={game} inspect={setDetail} />
             <WainridersScenarioState s={game} inspect={setDetail} />
@@ -4011,6 +4014,7 @@ export default function App() {
                       ...OLD_FOREST_QUESTS,
                       ...RING_SOUTH_QUESTS,
                       ...JOURNEY_DARK_QUESTS,
+                      ...BREAKING_FELLOWSHIP_QUESTS,
                       ...(carrockQuestCards as Card[]),
                       ...EMYN_MUIL_QUESTS,
                       ...CITY_QUESTS,

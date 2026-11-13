@@ -9,6 +9,7 @@ import { trialsCurrentQuest } from "./three-trials-support";
 import type { Attachment, GameState, Unit } from "./types";
 import { scenario } from "./scenarios";
 import { foundationsCurrentQuest } from "./foundations-stone-support";
+import { bfCurrentQuest } from "./breaking-fellowship-support";
 import { gramCurrentQuest, gramQuestUnit } from "./mount-gram-support";
 import { voyageCurrentQuest } from "./voyage-belegaer-support";
 import { fasCurrentQuest } from "./flies-spiders-support";
@@ -40,6 +41,7 @@ export function mainQuestCode(s: GameState): string | undefined {
   if (s.oldForest) return s.oldForest.currentQuest;
   if (s.ringSouth) return s.ringSouth.currentQuest;
   if (s.journeyDark) return s.journeyDark.currentQuest;
+  if (s.breakingFellowship) return bfCurrentQuest(s);
   if (s.landSorrow) return s.landSorrow.currentQuest;
   if (s.ashMountains) return s.ashMountains.currentQuest;
   if (s.wainriders) return s.wainriders.currentQuest;

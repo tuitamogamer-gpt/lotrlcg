@@ -1,0 +1,152 @@
+[
+  {
+    "name": "Black Feathered Arrows",
+    "code": "octgn:da177cbd-31e7-42ea-b051-e61f28dbb749",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Fallen into Evil",
+    "code": "octgn:57fdb41b-3a17-477d-89e7-b3b139d58642",
+    "normal": 1,
+    "easy": 0
+  },
+  {
+    "name": "Frodo Baggins",
+    "code": "142001",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Frodo's Choice",
+    "code": "octgn:f1d2d99e-27e6-44d3-ad3d-ef727fa9ddc2",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Growing Threat",
+    "code": "octgn:aeba0e59-8dde-4422-bfb5-911ae8de42a1",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Guard the Hobbits",
+    "code": "octgn:f4e81861-8cf6-41e7-b347-af7879fa8b06",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Orc Hunting",
+    "code": "octgn:8f133b99-75d7-43b8-acec-3e298724134a",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Orcs of the White Hand",
+    "code": "octgn:87539fa5-677d-4163-aff5-321841981cd4",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Parth Galen",
+    "code": "octgn:72276508-67e0-4133-8b9f-41fb8d44ffa9",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "River Anduin",
+    "code": "octgn:6d4c7a3b-e0e7-4267-8f53-6ba99054892c",
+    "normal": 4,
+    "easy": 4
+  },
+  {
+    "name": "Sarn Gebir",
+    "code": "octgn:d8cfafbd-7976-4a87-bdb3-a12c87503cd3",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Searching the Woods",
+    "code": "octgn:00008179-c6a7-46d0-be2f-b4b3b748afc2",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Seat of Seeing",
+    "code": "octgn:8948aa81-f7fb-4979-9add-555598df529a",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Slopes of Amon Hen",
+    "code": "octgn:43db612f-6c3c-4a3c-a4ba-816a85f47d16",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "The Argonath",
+    "code": "octgn:13a4b435-fa14-42b8-975e-804d3b8b929d",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The Company Divided",
+    "code": "octgn:500d3f5b-2de3-4770-bb2a-7db2b104bbf2",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The Great River",
+    "code": "octgn:d32ba7ec-fa7d-4a1a-b157-da4186e62ea6",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The One Ring",
+    "code": "octgn:ba2e4a33-edc6-4638-a3f5-b818b080aea8",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The Ring-bearer Sets Out",
+    "code": "octgn:c10ac747-573f-46c7-a228-8b6d1cd8875a",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The Seat of Amon Hen",
+    "code": "octgn:7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Uruk-hai Archer",
+    "code": "octgn:c91a6d23-7dea-4efd-9f2b-326b74f9a935",
+    "normal": 4,
+    "easy": 3
+  },
+  {
+    "name": "Uruk-hai Captain",
+    "code": "octgn:9ccd6851-ec1e-4d47-9e8d-486365c261e2",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Uruk-hai Hunter",
+    "code": "octgn:a11ea1e0-372e-4932-86e4-f84737e842e9",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "name": "Uruk-hai Tracker",
+    "code": "octgn:9bba91a8-d375-4935-9956-9cb4cc4716c5",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "name": "Wooded Shoreline",
+    "code": "octgn:67c97a60-a53c-4624-83ec-2122a74ea730",
+    "normal": 3,
+    "easy": 1
+  }
+]

@@ -63,6 +63,10 @@ export const PLAYMATS = {
     name: "The Mines of Moria",
     detail: "Drums in the deep · The Balrog at the Bridge of Khazad-dûm",
   },
+  "breaking-of-the-fellowship": {
+    name: "Amon Hen",
+    detail: "Down the Great River · The Company divided at Parth Galen",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -472,6 +476,7 @@ export const PLAYMAT_CHOICES = [
   "the-old-forest",
   "the-ring-goes-south",
   "journey-in-the-dark",
+  "breaking-of-the-fellowship",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",
