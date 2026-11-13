@@ -59,6 +59,10 @@ export const PLAYMATS = {
     name: "Hollin and the Redhorn Pass",
     detail: "The Council of Elrond · The Watcher at the Doors of Durin",
   },
+  "journey-in-the-dark": {
+    name: "The Mines of Moria",
+    detail: "Drums in the deep · The Balrog at the Bridge of Khazad-dûm",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -467,6 +471,7 @@ export const PLAYMAT_CHOICES = [
   "the-stone-of-erech",
   "the-old-forest",
   "the-ring-goes-south",
+  "journey-in-the-dark",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

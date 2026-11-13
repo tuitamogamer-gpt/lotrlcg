@@ -627,6 +627,24 @@ jobs:
           path: output/ring-south-release/failures
           retention-days: 7
 
+  journey-dark-simulation:
+    name: Journey in the Dark complete games (14 games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:journey-dark-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: journey-dark-simulation
+          path: output/journey-dark-release/failures
+          retention-days: 7
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -780,6 +798,8 @@ jobs:
             suite: test:browser-old-forest
           - group: ring-south
             suite: test:browser-ring-south
+          - group: journey-dark
+            suite: test:browser-journey-dark
           - group: hobbit-players
             suite: test:browser-hobbit-players
           - group: otd-players

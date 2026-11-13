@@ -189,7 +189,9 @@
     "test:old-forest-simulation": "node --import tsx --test tests/old-forest-simulation.test.ts",
     "test:browser-old-forest": "node --import tsx scripts/browser-old-forest.mjs",
     "test:ring-south-simulation": "node --import tsx --test tests/ring-south-simulation.test.ts",
-    "test:browser-ring-south": "node --import tsx scripts/browser-ring-south.mjs"
+    "test:browser-ring-south": "node --import tsx scripts/browser-ring-south.mjs",
+    "test:journey-dark-simulation": "node --import tsx --test tests/journey-dark-simulation.test.ts",
+    "test:browser-journey-dark": "node --import tsx scripts/browser-journey-dark.mjs"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

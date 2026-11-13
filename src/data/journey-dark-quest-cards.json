@@ -1,0 +1,125 @@
+[
+  {
+    "code": "octgn:91735f73-7dc8-48ee-8a61-b7c9648f5def",
+    "octgnid": "91735f73-7dc8-48ee-8a61-b7c9648f5def",
+    "name": "The Long Dark of Moria",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set The Balrog, The Great Bridge, and Chamber of Mazarbul aside out of play. Add Doom, Doom, Doom to the staging area and place 10 damage tokens on it. Each player adds 1 different location to the staging area.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 40,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Journey in the Dark",
+    "side": "A",
+    "back_name": "The Long Dark of Moria",
+    "back_text": "Forced: After a player optionally engages an enemy, remove 1 damage token from Doom, Doom, Doom.",
+    "back_type_code": "quest",
+    "back_quest": 14,
+    "back_imagesrc": "/cards/91735f73-7dc8-48ee-8a61-b7c9648f5def.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/91735f73-7dc8-48ee-8a61-b7c9648f5def.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 40,
+        "quantity": 1,
+        "octgnid": "91735f73-7dc8-48ee-8a61-b7c9648f5def",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/91735f73-7dc8-48ee-8a61-b7c9648f5def.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 14
+  },
+  {
+    "code": "octgn:e6b1a8ef-b595-4bca-9afb-3afbbd52d16e",
+    "octgnid": "e6b1a8ef-b595-4bca-9afb-3afbbd52d16e",
+    "name": "Drums in the Deep",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add Chamber of Mazarbul to the staging area.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 41,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Journey in the Dark",
+    "side": "A",
+    "back_name": "Drums in the Deep",
+    "back_text": "If there are no enemies in the staging area at the beginning of the quest phase, the first player reveals an additional encounter card during the staging step.\nThe players cannot advance unless there are X resource tokens on this stage. X is the number of players times 3.\nForced: After an enemy is defeated, place 1 resource token on this stage.",
+    "back_type_code": "quest",
+    "back_quest": 9,
+    "back_imagesrc": "/cards/e6b1a8ef-b595-4bca-9afb-3afbbd52d16e.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/e6b1a8ef-b595-4bca-9afb-3afbbd52d16e.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 41,
+        "quantity": 1,
+        "octgnid": "e6b1a8ef-b595-4bca-9afb-3afbbd52d16e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e6b1a8ef-b595-4bca-9afb-3afbbd52d16e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 9
+  },
+  {
+    "code": "octgn:52754c5f-30b8-4d55-b9c2-5dfa8020ead3",
+    "octgnid": "52754c5f-30b8-4d55-b9c2-5dfa8020ead3",
+    "name": "The Bridge of Khazad-dûm",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add The Great Bridge to the staging area. Each player reveals 1 encounter card and removes 1 damage token from Doom, Doom, Doom.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 42,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Journey in the Dark",
+    "side": "A",
+    "back_name": "The Bridge of Khazad-dûm",
+    "back_text": "No more than 5 progress can be placed on this stage each round.\nThe players cannot defeat this stage while The Great Bridge is in play. If the players defeat this stage, they win the game.",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "/cards/52754c5f-30b8-4d55-b9c2-5dfa8020ead3.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/52754c5f-30b8-4d55-b9c2-5dfa8020ead3.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 42,
+        "quantity": 1,
+        "octgnid": "52754c5f-30b8-4d55-b9c2-5dfa8020ead3",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/52754c5f-30b8-4d55-b9c2-5dfa8020ead3.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 15
+  }
+]

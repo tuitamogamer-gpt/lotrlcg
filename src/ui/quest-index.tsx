@@ -95,6 +95,10 @@ const HEADLINES: Partial<
     lead: "Take the Ring south",
     em: "to the Doors of Durin.",
   },
+  "journey-in-the-dark": {
+    lead: "Cross the Mines of Moria",
+    em: "before the Balrog wakes.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

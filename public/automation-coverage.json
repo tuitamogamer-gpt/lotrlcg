@@ -5,8 +5,8 @@
     "playerCards": 806,
     "heroes": 98,
     "deckCards": 704,
-    "encounterCards": 1428,
-    "scenarios": 95,
+    "encounterCards": 1445,
+    "scenarios": 96,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -102,17 +102,18 @@
       "flight-to-the-ford",
       "the-stone-of-erech",
       "the-old-forest",
-      "the-ring-goes-south"
+      "the-ring-goes-south",
+      "journey-in-the-dark"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2535,
-    "pending": 1648
+    "scripted": 2555,
+    "pending": 1628
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 190
+    "scripted": 193
   },
   "registeredCodes": [
     "01001",
@@ -1084,6 +1085,7 @@
     "octgn:14be3661-3f3c-4a89-b27f-ab7c15f92e4e",
     "octgn:14f41245-2616-4358-a8bb-6b9bcf83cf56",
     "octgn:14f7c98c-b425-4fac-850a-729d8fcdaa0c",
+    "octgn:14fb1fba-dd55-4511-80f3-14808fc0f174",
     "octgn:152a0b0a-7e01-41ce-98a4-3e7b0d6eaac4",
     "octgn:15602096-12af-47a0-9f9a-01778d2b0a7b",
     "octgn:1574141b-b11e-4be9-82c9-ddc1fb2f5269",
@@ -1148,6 +1150,7 @@
     "octgn:21165a65-1296-4664-a880-d85eea19a4ae",
     "octgn:215881a3-df0a-4163-a19d-33b444e7aa95",
     "octgn:21786f6e-9f9c-4850-9277-9ee77b6e0912",
+    "octgn:21a5e7e1-013b-478e-a1c3-ab0300541f39",
     "octgn:21eb71b5-6b96-4388-bd95-e2576483a95a",
     "octgn:21ee317d-9aca-43be-9782-521539827cb8",
     "octgn:21f520fd-5efe-41f9-9f02-7a65e36eb31f",
@@ -1282,6 +1285,7 @@
     "octgn:3733b627-08bd-4d12-a2ec-dadfcbfc6695",
     "octgn:379415fb-39c8-4cb8-aa19-ac54c46bcb4a",
     "octgn:37f205e5-5144-4987-8764-46909460797b",
+    "octgn:38853a8e-09c2-44f8-a76e-62aac1809d18",
     "octgn:388d173e-e32a-4e02-b029-99180e34b014",
     "octgn:389031d2-7a44-4c4d-82f2-cf79c08ce0ae",
     "octgn:389072e7-d59a-4a04-bed8-568cc367b06f",
@@ -1292,6 +1296,7 @@
     "octgn:3b26d048-24cb-4978-86f9-d255048426d8",
     "octgn:3b7c4f67-7de4-4b77-be50-0fd86e4ef2bc",
     "octgn:3bc03452-6c37-45e2-9241-e626ea51f382",
+    "octgn:3c53610e-0126-424f-a4cc-9e7710ebcffe",
     "octgn:3cbe2fe1-e7ab-4213-85dd-fd9b6244479f",
     "octgn:3cd4bb66-1621-4534-aa25-421d0d8b7189",
     "octgn:3d19de02-b3a9-4612-a90a-30b37bd1e9b1",
@@ -1451,6 +1456,7 @@
     "octgn:4e12f20f-aec3-4311-a656-10a517fd97fe",
     "octgn:4ebd8ec5-79fe-4305-9c33-e06d37b1c8d5",
     "octgn:4ee0293f-5c0c-4f7a-bc10-680d84eb9214",
+    "octgn:4f47ef56-46c8-4a6b-85dd-656eb71c5828",
     "octgn:4f4df8ea-7f18-4a76-85b0-7ece828bb837",
     "octgn:4fc6111a-93c3-4407-b067-1b82396b802f",
     "octgn:504d7fe3-a3a1-4e2c-b59d-dd391d370a20",
@@ -1772,6 +1778,7 @@
     "octgn:51b45e84-3f63-46ea-aa08-b83dd89244ff",
     "octgn:51e187ea-691c-46bc-b74f-c03d110d02cd",
     "octgn:522c612d-5f3c-4a02-a1a7-7d87191922e0",
+    "octgn:52754c5f-30b8-4d55-b9c2-5dfa8020ead3",
     "octgn:528afc17-e78f-4b02-8080-e936955a77b9",
     "octgn:529bb9e4-36c3-45bd-bac0-1ce5de6a581d",
     "octgn:52b0bc28-37bb-4097-b96a-cc7dc4af8721",
@@ -2012,6 +2019,7 @@
     "octgn:84877af6-0720-4ef8-802b-69b792c32e15",
     "octgn:84b7e934-3d4d-4966-accf-c257c4413035",
     "octgn:85045e14-3abc-4d58-824f-249b1fb3643d",
+    "octgn:8527856a-e0eb-4799-9985-e73f1ee5281a",
     "octgn:855580e2-87b1-444c-b37a-1062c050d9ee",
     "octgn:857da3db-7159-4dfa-a925-8547fb6df455",
     "octgn:85d48eb0-3339-4db6-976f-a800213e7eea",
@@ -2078,6 +2086,7 @@
     "octgn:90bdfcd8-0505-4f40-bf51-092f21525ef7",
     "octgn:90d620e5-d7be-42e6-9756-b92761ecd8c9",
     "octgn:91143aee-41e7-4cac-8ec2-e112689fcc17",
+    "octgn:91735f73-7dc8-48ee-8a61-b7c9648f5def",
     "octgn:918c4387-bf40-48f1-bf65-5ad5acb91784",
     "octgn:91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8",
     "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
@@ -2132,6 +2141,7 @@
     "octgn:9c3c6e43-7548-4eaf-8225-2f51ecafbc4a",
     "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b",
     "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b:B",
+    "octgn:9c81c18a-b143-48ae-a22c-821f52efc229",
     "octgn:9d1daee2-2d6e-4d9a-87e4-b706779555d4",
     "octgn:9d2926dc-ab14-492a-8f1e-b07c1b32b2d8",
     "octgn:9d451960-2db3-43df-9cd8-d525ef58cf55",
@@ -2169,6 +2179,7 @@
     "octgn:a56cab99-d482-4aa3-b5e4-b1e5b857515f",
     "octgn:a5aef3fe-7bb9-4165-ba0f-91127d8f21e3",
     "octgn:a5e60892-b524-43cf-a501-372a624e785e",
+    "octgn:a62b42dc-ab4a-4573-a281-53742e2739f5",
     "octgn:a652a7ef-25ad-4e43-94b4-f18c68e34e83",
     "octgn:a6b39458-b0f1-4b5d-a915-d3921eb35658",
     "octgn:a6dd52d0-375a-41ea-ae77-b0fd9bcb6629",
@@ -2225,6 +2236,7 @@
     "octgn:b06030a9-7ab9-48a6-b7da-5ffd8ce3a1a6",
     "octgn:b07cec11-452d-423a-b33e-3f9345c9f6e1",
     "octgn:b0a1f83b-f1b0-4945-afc8-91a1c25063e2",
+    "octgn:b0b64e9f-0a9f-42f1-9ad0-0e54db93dc47",
     "octgn:b0b77537-0c91-42c0-b111-647bc445a419",
     "octgn:b0d31a1c-2155-4a97-a5ff-912e32a4809e",
     "octgn:b1612370-142d-4557-8884-b3da12b4baca",
@@ -2237,6 +2249,7 @@
     "octgn:b2acb892-ab3b-4037-8751-c036f9f6f8bd",
     "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
     "octgn:b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0",
+    "octgn:b309f3a1-af3e-4c2e-9fce-59e8d88fbd7b",
     "octgn:b3147b4e-2a60-402f-a1aa-5d56c002326d",
     "octgn:b34e79d4-7806-4fd9-b12d-bb291e44f354",
     "octgn:b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8",
@@ -2256,6 +2269,7 @@
     "octgn:b645ea89-caa8-44ee-b290-fcd93204e838",
     "octgn:b64d2e55-f304-4356-a491-7ee80e149c5c",
     "octgn:b659e2a1-55b1-4562-ab2c-0e36772d8183",
+    "octgn:b69bdceb-a155-4aa6-b7e8-b0265f5d0928",
     "octgn:b6af7b48-e072-45e8-a745-4de2ac8ded8c",
     "octgn:b70846d1-3216-421a-9098-af2a4540b530",
     "octgn:b7431f72-5157-4a6d-a6c0-86bcf88f2669",
@@ -2286,6 +2300,7 @@
     "octgn:bc43ae57-6010-4924-919c-b37d1e33b958",
     "octgn:bc4f2e17-197c-4131-ad81-b892fe66ad88",
     "octgn:bcd41784-d260-4165-ae0f-74cb844d10b3",
+    "octgn:bd30f509-04f8-4135-a5e9-20d3cbbe7cd8",
     "octgn:bd837efe-9358-4fe9-8770-69b9b1fefb48",
     "octgn:be3ca12f-2550-48b4-9384-e71a1b401d4e",
     "octgn:be43a52a-370a-4481-bc84-8e004ecbfdca",
@@ -2398,6 +2413,7 @@
     "octgn:d1a3a535-7679-4757-871c-80c50c003cff",
     "octgn:d2bf00ad-2e1e-4537-b662-f6f20f9a1cfe",
     "octgn:d2cd3802-0667-4124-b7b6-5e753ff71ec3",
+    "octgn:d2e57235-6df7-40fc-9a47-1ad06b4ed7a3",
     "octgn:d33ef89b-13c9-49b2-a921-a527f27a415a",
     "octgn:d3a3d024-2321-4707-b319-eb62537e6d92",
     "octgn:d3bd47e5-cf59-4097-9cec-92a15fe56bf4",
@@ -2490,7 +2506,10 @@
     "octgn:e6721e44-5706-4a0f-a895-ced75f9c6219",
     "octgn:e6808a55-528f-444e-bf61-67748e7261e9",
     "octgn:e6995a7d-46af-4c90-86dc-9ef9c8e3a666",
+    "octgn:e6b1a8ef-b595-4bca-9afb-3afbbd52d16e",
     "octgn:e6d7da0a-eb6d-429b-b9f9-e32027866d1b",
+    "octgn:e6e7d9de-4b7d-422c-b367-8f2c65982468",
+    "octgn:e6fea7ff-7fdf-4938-a57b-6be82af1c152",
     "octgn:e70fa96c-f4c7-4d6c-ab14-41831a6eb8c8",
     "octgn:e7413cb0-3443-40d4-88f4-06d7cfa1ab1d",
     "octgn:e839fa89-15b4-451f-9fac-6a8f38e31d65",
@@ -2530,6 +2549,7 @@
     "octgn:ef4ae3ca-ce48-4cad-88ee-23917e9dcdcc",
     "octgn:ef6ebaef-6b53-4aa0-b03b-9929bd2bc492",
     "octgn:ef7c6601-a62d-440a-89b1-5a9d6208481b",
+    "octgn:ef815939-8e88-4a70-a4f4-bdf36a84ea77",
     "octgn:ef975c81-544a-4f1b-a3c4-d0bc42ef636c",
     "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
     "octgn:efd4cef9-ce8b-4985-8825-853ba98baa2b",
@@ -2606,6 +2626,7 @@
     "octgn:fb7d55c5-7198-45c5-97d7-be4c6a26fa68",
     "octgn:fbc99604-7183-41fe-b37c-d5a8f54bea0e",
     "octgn:fbfee53c-fec3-4b55-a8b4-c7329f8f973e",
+    "octgn:fc145eae-9671-4697-8d28-473f3b138295",
     "octgn:fc351b81-fc50-40a5-9f94-7ab885cb7a8c",
     "octgn:fc4f9f69-7870-4449-b89b-cd7b4dc158d0",
     "octgn:fc54b033-56cc-4ca9-8e0f-7f1c7b82bd6a",
@@ -3427,7 +3448,7 @@
     {
       "product": "the-road-darkens",
       "total": 91,
-      "scripted": 24,
+      "scripted": 44,
       "player": 18,
       "playerScripted": 3
     },
@@ -13945,7 +13966,7 @@
       "name": "Chamber of Mazarbul",
       "type": "location",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -14969,7 +14990,7 @@
       "name": "Moria Orc",
       "type": "enemy",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -17169,7 +17190,7 @@
       "name": "Mines of Moria",
       "type": "location",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -17361,7 +17382,7 @@
       "name": "Ancient Guardroom",
       "type": "location",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -19353,7 +19374,7 @@
       "name": "Fool of a Took!",
       "type": "treachery",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -22129,7 +22150,7 @@
       "name": "The Bridge of Kazad-dûm",
       "type": "quest",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -26225,7 +26246,7 @@
       "name": "Deep Fissure",
       "type": "treachery",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -27345,7 +27366,7 @@
       "name": "The Long Dark of Moria",
       "type": "quest",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -28185,7 +28206,7 @@
       "name": "The Great Bridge",
       "type": "location",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -28937,7 +28958,7 @@
       "name": "The Balrog",
       "type": "enemy",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -29849,7 +29870,7 @@
       "name": "They Are Coming!",
       "type": "treachery",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -30009,7 +30030,7 @@
       "name": "Moria Archer",
       "type": "enemy",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -30337,7 +30358,7 @@
       "name": "We Cannot Get Out",
       "type": "treachery",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -31273,7 +31294,7 @@
       "name": "Darkened Stairway",
       "type": "location",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -33025,7 +33046,7 @@
       "name": "Uruk from Mordor",
       "type": "enemy",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -34473,7 +34494,7 @@
       "name": "Drums in the Deep",
       "type": "quest",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -34489,7 +34510,7 @@
       "name": "Orc-chieftan",
       "type": "enemy",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -34497,7 +34518,7 @@
       "name": "Doom, Doom, Doom",
       "type": "objective",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -35385,7 +35406,7 @@
       "name": "Many-pillard Hall",
       "type": "location",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -36569,7 +36590,7 @@
       "name": "Great Cave-troll",
       "type": "enemy",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -37757,8 +37778,8 @@
       "id": "E0B.05",
       "name": "Journey in the Dark (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "journey-in-the-dark",
+      "state": "scripted"
     },
     {
       "id": "E0B.06",
@@ -37883,8 +37904,8 @@
       "id": "E0C.05",
       "name": "Journey in the Dark (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "journey-in-the-dark",
+      "state": "scripted"
     },
     {
       "id": "E0C.06",
@@ -39248,8 +39269,8 @@
       "id": "Q0B.05",
       "name": "Journey in the Dark",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "journey-in-the-dark",
+      "state": "scripted"
     },
     {
       "id": "Q0B.06",

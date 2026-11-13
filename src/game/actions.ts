@@ -17,6 +17,7 @@ import { flightFordPublicState } from "./flight-ford-support";
 import { stoneErechPublicState } from "./stone-erech-support";
 import { oldForestPublicState } from "./old-forest-support";
 import { ringSouthPublicState } from "./ring-south-support";
+import { journeyDarkPublicState } from "./journey-dark-support";
 import { ereborAllyPlayed } from "./erebor-treasures";
 import * as LandSorrowPlayers from "./land-sorrow-player";
 import { sorrowPublicState } from "./land-sorrow-support";
@@ -3614,6 +3615,7 @@ export function publicState(s: GameState) {
     stoneErech: stoneErechPublicState(s),
     oldForest: oldForestPublicState(s),
     ringSouth: ringSouthPublicState(s),
+    journeyDark: journeyDarkPublicState(s),
     fortressNurnPlayers: FortressPlayers.fortressNurnPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),

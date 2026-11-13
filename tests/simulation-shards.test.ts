@@ -29,7 +29,7 @@ test("four CI simulation shards cover every registered complete-game case exactl
   assert.equal(baseline.selectedCases.length, baseline.registeredCases);
   assert.equal(new Set(baseline.selectedCases).size, baseline.registeredCases);
   assert.equal(priorSimulationCases.cases.length, 259);
-  assert.equal(baseline.registeredCases, 484);
+  assert.equal(baseline.registeredCases, 489);
   assert.deepEqual(
     baseline.selectedCases
       .filter(
@@ -74,6 +74,7 @@ test("four CI simulation shards cover every registered complete-game case exactl
             "The Stone of Erech",
             "The Old Forest",
             "The Ring Goes South",
+            "Journey in the Dark",
             "The Black Serpent",
             "The Dungeons of Cirith Gurat",
             "The Crossings of Poros",

@@ -37,6 +37,10 @@ import {
   RING_SOUTH_ENCOUNTERS,
   RING_SOUTH_QUESTS,
 } from "./ring-south-scenario-data";
+import {
+  JOURNEY_DARK_ENCOUNTERS,
+  JOURNEY_DARK_QUESTS,
+} from "./journey-dark-scenario-data";
 import hobbitPlayers from "../data/hobbit-player-cards.json";
 import blackRidersPlayers from "../data/black-riders-player-cards.json";
 import roadDarkensPlayers from "../data/road-darkens-player-cards.json";
@@ -522,6 +526,7 @@ export const encounterCards = [
       ...STONE_ERECH_ENCOUNTERS,
       ...OLD_FOREST_ENCOUNTERS,
       ...RING_SOUTH_ENCOUNTERS,
+      ...JOURNEY_DARK_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -608,6 +613,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...STONE_ERECH_QUESTS,
     ...OLD_FOREST_QUESTS,
     ...RING_SOUTH_QUESTS,
+    ...JOURNEY_DARK_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -735,6 +741,7 @@ export const SCRIPTED = new Set(
     ...STONE_ERECH_QUESTS,
     ...OLD_FOREST_QUESTS,
     ...RING_SOUTH_QUESTS,
+    ...JOURNEY_DARK_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

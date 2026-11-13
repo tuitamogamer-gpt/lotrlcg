@@ -274,6 +274,7 @@ export type ScenarioId =
   | "the-stone-of-erech"
   | "the-old-forest"
   | "the-ring-goes-south"
+  | "journey-in-the-dark"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -448,6 +449,7 @@ export interface GameState {
   stoneErech?: import("./stone-erech-types").StoneErechState;
   oldForest?: import("./old-forest-types").OldForestState;
   ringSouth?: import("./ring-south-types").RingSouthState;
+  journeyDark?: import("./journey-dark-types").JourneyDarkState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -816,6 +818,12 @@ export interface GameState {
     rgsHowling?: boolean;
     /** The Ring Goes South: this attack destroyed a character. */
     rgsDestroyed?: boolean;
+    /** Journey in the Dark: Uruk from Mordor's shadow (a kill makes an additional attack). */
+    jtdUruk?: boolean;
+    /** Journey in the Dark: Fool of a Took!'s shadow (a kill reveals 1 card). */
+    jtdFool?: boolean;
+    /** Journey in the Dark: this attack destroyed a character. */
+    jtdDestroyed?: boolean;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;
