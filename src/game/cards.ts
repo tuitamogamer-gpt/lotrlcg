@@ -45,6 +45,10 @@ import {
   BREAKING_FELLOWSHIP_ENCOUNTERS,
   BREAKING_FELLOWSHIP_QUESTS,
 } from "./breaking-fellowship-scenario-data";
+import {
+  FOG_BARROW_ENCOUNTERS,
+  FOG_BARROW_QUESTS,
+} from "./fog-barrow-scenario-data";
 import hobbitPlayers from "../data/hobbit-player-cards.json";
 import blackRidersPlayers from "../data/black-riders-player-cards.json";
 import roadDarkensPlayers from "../data/road-darkens-player-cards.json";
@@ -532,6 +536,7 @@ export const encounterCards = [
       ...RING_SOUTH_ENCOUNTERS,
       ...JOURNEY_DARK_ENCOUNTERS,
       ...BREAKING_FELLOWSHIP_ENCOUNTERS,
+      ...FOG_BARROW_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -620,6 +625,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...RING_SOUTH_QUESTS,
     ...JOURNEY_DARK_QUESTS,
     ...BREAKING_FELLOWSHIP_QUESTS,
+    ...FOG_BARROW_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -749,6 +755,7 @@ export const SCRIPTED = new Set(
     ...RING_SOUTH_QUESTS,
     ...JOURNEY_DARK_QUESTS,
     ...BREAKING_FELLOWSHIP_QUESTS,
+    ...FOG_BARROW_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

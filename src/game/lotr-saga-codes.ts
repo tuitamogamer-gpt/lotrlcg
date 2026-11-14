@@ -29,7 +29,10 @@ export const ROAD_DARKENS_SCENARIO_IDS: readonly string[] = [
   "breaking-of-the-fellowship",
 ];
 /** Standalone scenarios played with the Saga's Ring-bearer rules. */
-export const LOTR_SAGA_STANDALONE_IDS: readonly string[] = ["the-old-forest"];
+export const LOTR_SAGA_STANDALONE_IDS: readonly string[] = [
+  "the-old-forest",
+  "fog-on-the-barrow-downs",
+];
 export const LOTR_SAGA_SCENARIO_IDS: readonly string[] = [
   ...BLACK_RIDERS_SCENARIO_IDS,
   ...LOTR_SAGA_STANDALONE_IDS,

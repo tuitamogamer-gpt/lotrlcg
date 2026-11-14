@@ -73,6 +73,12 @@ export interface Batch4ScenarioHooks {
   extraOptionalEngagements?(s: GameState, player: number): number;
   cannotCancel?(s: GameState, shadow?: boolean, code?: string): boolean;
   cannotReduceThreat?(s: GameState): boolean;
+  /** The hero cannot gain resources from card effects. */
+  cannotGainResources?(s: GameState, u: Unit): boolean;
+  /** The active player cannot draw cards from card effects. */
+  cannotDraw?(s: GameState): boolean;
+  /** The player cannot trigger Action or Response effects. */
+  abilitiesBlocked?(s: GameState, player: number): boolean;
   threatReduction?(s: GameState, amount: number, reason?: string): number;
   allyCost?(s: GameState): number;
   planningEnd?(s: GameState): void;

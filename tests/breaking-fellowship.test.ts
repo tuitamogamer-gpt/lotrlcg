@@ -1,6 +1,11 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { applyAction, canTravel, publicState } from "../src/game/engine";
+import {
+  applyAction,
+  canTravel,
+  publicState,
+  stageInfo,
+} from "../src/game/engine";
 import { card } from "../src/game/cards";
 import {
   engagementCost,
@@ -294,6 +299,11 @@ test("3B: progress discards encounter cards instead; Frodo's Choice is revealed 
   assert.equal(s.stage, 4);
   selectSeat(s, 1);
   assert.ok(s.staging.some((u) => u.code === BF.parth));
+  // Each player sees the number of his own stage.
+  assert.equal(stageInfo(s).questNumber, 4);
+  selectSeat(s, 0);
+  assert.equal(stageInfo(s).questNumber, 3);
+  selectSeat(s, 1);
   // It was the quest phase: the phase ended there without resolving.
   assert.ok(q.ended.includes(bfArea(s, 1)!.id));
   // Once Frodo's Choice is in play, progress is placed normally at stage 3.
@@ -620,6 +630,31 @@ test("Slopes of Amon Hen, Wooded Shoreline and Parth Galen travel; Seat of Seein
   progress(t, 1);
   flush(t);
   assert.ok(t.log.some((l) => /no burden card/.test(l.text)));
+});
+
+test("Each separate stage makes its own travel decision: travelling at one stage passes to the next", () => {
+  let s = divided(2);
+  for (const p of [0, 1])
+    forOwner(s, p, () => {
+      s.staging = [];
+      s.activeLocation = null;
+    });
+  selectSeat(s, 1);
+  const seat = stage(s, BF.seeing);
+  selectSeat(s, 0);
+  const river = stage(s, BF.anduin);
+  s.phase = "travel";
+  if (s.table) s.table.turn = 0;
+  s = act(s, { type: "TRAVEL", id: river.id });
+  s = settle(s);
+  // The first stage has travelled; the second still decides.
+  assert.equal(s.phase, "travel");
+  assert.equal(s.table!.active, 1);
+  s = act(s, { type: "TRAVEL", id: seat.id });
+  s = settle(s);
+  assert.notEqual(s.phase, "travel");
+  assert.equal(seatView(s, 0).activeLocation?.id, river.id);
+  assert.equal(seatView(s, 1).activeLocation?.id, seat.id);
 });
 
 test("3B responses after questing successfully: Searching the Woods, Guard the Hobbits, The Seat of Amon Hen and Orc Hunting", () => {

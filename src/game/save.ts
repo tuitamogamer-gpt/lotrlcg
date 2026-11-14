@@ -30,6 +30,7 @@ import {
   breakingFellowshipUnits,
   validateBreakingFellowship,
 } from "./breaking-fellowship-support";
+import { fogBarrowUnits, validateFogBarrow } from "./fog-barrow-support";
 import { validateHideTest } from "./hide-test";
 import { validateAsh, ashExtraUnits } from "./ash-mountains-support";
 import { validateAshPlayers } from "./ash-mountains-player";
@@ -384,7 +385,12 @@ export function validateSave(
         c.jtdFool,
         c.jtdDestroyed,
         c.btfGrowing,
+        c.fbChill,
+        c.fbNorth,
       ].every((b) => b === undefined || typeof b === "boolean") &&
+      (c.fbVictims === undefined ||
+        (Array.isArray(c.fbVictims) &&
+          c.fbVictims.every((n) => Number.isInteger(n) && n >= 0))) &&
       (c.attackResolved === undefined ||
         typeof c.attackResolved === "boolean") &&
       (c.freshConsideredShadows === undefined ||
@@ -956,6 +962,7 @@ export function validateSave(
         !validateRingSouth(s, validUnit as (v: unknown) => boolean) ||
         !validateJourneyDark(s, validUnit as (v: unknown) => boolean) ||
         !validateBreakingFellowship(s, validUnit as (v: unknown) => boolean) ||
+        !validateFogBarrow(s, validUnit as (v: unknown) => boolean) ||
         !validateLandSorrow(s, validUnit as (v: unknown) => boolean) ||
         !validateAsh(s, validUnit as (v: unknown) => boolean) ||
         !validateWainriders(s, validUnit as (v: unknown) => boolean, (c) =>
@@ -1680,6 +1687,7 @@ export function validateSave(
       ...ringSouthUnits(s),
       ...journeyDarkUnits(s),
       ...breakingFellowshipUnits(s),
+      ...fogBarrowUnits(s),
       ...(s.fortressNurnPlayers?.contracts.map((c) => c.unit) ?? []),
       ...(s.landSorrowPlayers?.contracts.flatMap((c) =>
         c.unit ? [c.unit] : [],

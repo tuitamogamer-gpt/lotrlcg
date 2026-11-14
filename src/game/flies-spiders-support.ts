@@ -41,14 +41,14 @@ export const isFliesSpiders = (s: GameState) =>
   (s.scenarioId as string) === FAS_SCENARIO;
 export const fasState = (s: GameState) => s.fliesSpiders;
 const activePlayer = (s: GameState) => s.table?.active ?? 0;
-/** Separate staging areas: Flies and Spiders' or Breaking of the Fellowship's. */
+/** Separate staging areas: Flies and Spiders', Breaking of the Fellowship's or Fog on the Barrow-downs'. */
 export interface SplitAreaState {
   split: boolean;
   activeArea?: string;
   areas: FliesSpidersArea[];
 }
 export const splitAreaState = (s: GameState): SplitAreaState | undefined =>
-  s.fliesSpiders ?? s.breakingFellowship;
+  s.fliesSpiders ?? s.breakingFellowship ?? s.fogBarrow;
 
 export function fasArea(
   s: GameState,

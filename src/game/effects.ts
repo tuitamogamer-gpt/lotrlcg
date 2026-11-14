@@ -783,6 +783,14 @@ function handleEffect(s: GameState, e: Effect) {
       afterPlayerAbility(s, ...(e.effects ?? []));
       break;
     case "playerAbilityResolve":
+      if (batch4Scenario(s).abilitiesBlocked?.(s, e.player ?? activeSeat(s))) {
+        log(
+          s,
+          `${card(e.code!).name}: the player cannot trigger Response effects.`,
+          "danger",
+        );
+        break;
+      }
       resolvePlayerAbility(
         s,
         {

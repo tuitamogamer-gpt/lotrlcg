@@ -20,6 +20,7 @@ import { oldForestPublicState } from "./old-forest-support";
 import { ringSouthPublicState } from "./ring-south-support";
 import { journeyDarkPublicState } from "./journey-dark-support";
 import { breakingFellowshipPublicState } from "./breaking-fellowship-support";
+import { fogBarrowPublicState } from "./fog-barrow-support";
 import { ereborAllyPlayed } from "./erebor-treasures";
 import * as LandSorrowPlayers from "./land-sorrow-player";
 import { sorrowPublicState } from "./land-sorrow-support";
@@ -2107,6 +2108,13 @@ export const responseCards = [
 ];
 
 export function availableAbilities(s: GameState, u: Unit) {
+  const abilities = printedAbilities(s, u);
+  // Frozen by Fear: the abilities are shown, but cannot be triggered.
+  return batch4Scenario(s).abilitiesBlocked?.(s, activeSeat(s))
+    ? abilities.map((a) => ({ ...a, disabled: true }))
+    : abilities;
+}
+function printedAbilities(s: GameState, u: Unit) {
   if (s.sailing?.test) return [];
   syncAttachmentText(s, u);
   if (u.code === FORDS.grima)
@@ -3129,6 +3137,10 @@ export function applyAction(input: GameState, action: Action): GameState {
       break;
     }
     case "ABILITY": {
+      requireRule(
+        !batch4Scenario(s).abilitiesBlocked?.(s, activeSeat(s)),
+        "You cannot trigger Action or Response effects until the end of the round.",
+      );
       const origin =
         s.hand.find((u) => u.id === action.id) ?? get(s, action.id);
       const abilityCard = action.attachmentId
@@ -3709,6 +3721,7 @@ export function publicState(s: GameState) {
     ringSouth: ringSouthPublicState(s),
     journeyDark: journeyDarkPublicState(s),
     breakingFellowship: breakingFellowshipPublicState(s),
+    fogBarrow: fogBarrowPublicState(s),
     fortressNurnPlayers: FortressPlayers.fortressNurnPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),

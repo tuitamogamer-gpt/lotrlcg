@@ -1,0 +1,166 @@
+[
+  {
+    "code": "octgn:262d615b-5b5d-4f16-975e-335d34e6c733",
+    "octgnid": "262d615b-5b5d-4f16-975e-335d34e6c733",
+    "name": "Trapped Inside a Barrow",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: End your quest phase (do not resolve the quest). Discard cards from the encounter deck until a Wight enemy is discarded. Add the discarded Wight enemy to the staging area. Discard all but X allies you control where X is the number of enemies engaged with you.",
+    "is_unique": false,
+    "pack_code": "FotBd",
+    "pack_name": "Fog on the Barrow-downs",
+    "position": 4,
+    "quantity": 4,
+    "cost": 4,
+    "encounter_set": "Fog on the Barrow-downs",
+    "side": "A",
+    "back_name": "Trapped Inside a Barrow",
+    "back_text": "Forced: When a location is revealed at this stage, cancel its effects and discard it. Then, raise your threat by that card's [threat] (including modifiers).\nForced: After this stage is defeated, advance to stage 3B at the beginning of the travel phase (combining staging areas with stage 3B) and place 1 progress on a Great Barrow at that stage.",
+    "back_type_code": "quest",
+    "back_quest": 9,
+    "back_imagesrc": "/cards/262d615b-5b5d-4f16-975e-335d34e6c733.B.jpg",
+    "printed_stats": {
+      "cost": "4"
+    },
+    "imagesrc": "/cards/262d615b-5b5d-4f16-975e-335d34e6c733.jpg",
+    "packs": [
+      {
+        "pack_code": "FotBd",
+        "pack_name": "Fog on the Barrow-downs",
+        "position": 4,
+        "quantity": 4,
+        "octgnid": "262d615b-5b5d-4f16-975e-335d34e6c733",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/262d615b-5b5d-4f16-975e-335d34e6c733.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 9
+  },
+  {
+    "code": "octgn:550e9f11-14bb-4fac-806a-3f43035b30c9",
+    "octgnid": "550e9f11-14bb-4fac-806a-3f43035b30c9",
+    "name": "The House of Tom Bombadil",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set each copy of Great Barrow, Standing Stones, and Hollow Circle aside, out of play. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "FotBd",
+    "pack_name": "Fog on the Barrow-downs",
+    "position": 1,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Fog on the Barrow-downs",
+    "side": "A",
+    "back_name": "The House of Tom Bombadil",
+    "back_text": "Skip the quest phase.\nForced: At the end of the round, place 1 progress on this stage.",
+    "back_type_code": "quest",
+    "back_quest": 1,
+    "back_imagesrc": "/cards/550e9f11-14bb-4fac-806a-3f43035b30c9.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/550e9f11-14bb-4fac-806a-3f43035b30c9.jpg",
+    "packs": [
+      {
+        "pack_code": "FotBd",
+        "pack_name": "Fog on the Barrow-downs",
+        "position": 1,
+        "quantity": 1,
+        "octgnid": "550e9f11-14bb-4fac-806a-3f43035b30c9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/550e9f11-14bb-4fac-806a-3f43035b30c9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 1
+  },
+  {
+    "code": "octgn:b477d0be-d70a-4eb4-8c35-89c17199cab3",
+    "octgnid": "b477d0be-d70a-4eb4-8c35-89c17199cab3",
+    "name": "Lost in the Fog",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player adds Standing Stones to the staging area. Each other player reveals 1 encounter card. Shuffle the encounter discard pile and each copy of Great Barrow into the encounter deck.",
+    "is_unique": false,
+    "pack_code": "FotBd",
+    "pack_name": "Fog on the Barrow-downs",
+    "position": 3,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Fog on the Barrow-downs",
+    "side": "A",
+    "back_name": "Lost in the Fog",
+    "back_text": "Progress cannot be placed here while Great Barrow is in play.\nForced: After a player is eliminated (at any stage), raise the threat of each player at this stage by 10.\nThe players cannot defeat this stage unless each player in the game is at this stage and Standing Stones is in the victory display. If the players defeat this stage, they win the game.",
+    "back_type_code": "quest",
+    "back_quest": 16,
+    "back_imagesrc": "/cards/b477d0be-d70a-4eb4-8c35-89c17199cab3.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/b477d0be-d70a-4eb4-8c35-89c17199cab3.jpg",
+    "packs": [
+      {
+        "pack_code": "FotBd",
+        "pack_name": "Fog on the Barrow-downs",
+        "position": 3,
+        "quantity": 1,
+        "octgnid": "b477d0be-d70a-4eb4-8c35-89c17199cab3",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b477d0be-d70a-4eb4-8c35-89c17199cab3.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 16
+  },
+  {
+    "code": "octgn:ed3c4835-2741-406c-b43e-0ad72f6b2496",
+    "octgnid": "ed3c4835-2741-406c-b43e-0ad72f6b2496",
+    "name": "Across the Downs",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add Hollow Circle to the staging area. Each player reveals 1 encounter card.",
+    "is_unique": false,
+    "pack_code": "FotBd",
+    "pack_name": "Fog on the Barrow-downs",
+    "position": 2,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Fog on the Barrow-downs",
+    "side": "A",
+    "back_name": "Across the Downs",
+    "back_text": "Forced: At the end of the refresh phase, raise each player's threat by 1.\nThe players cannot defeat this stage unless Hollow Circle is in the victory display.",
+    "back_type_code": "quest",
+    "back_quest": 14,
+    "back_imagesrc": "/cards/ed3c4835-2741-406c-b43e-0ad72f6b2496.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/ed3c4835-2741-406c-b43e-0ad72f6b2496.jpg",
+    "packs": [
+      {
+        "pack_code": "FotBd",
+        "pack_name": "Fog on the Barrow-downs",
+        "position": 2,
+        "quantity": 1,
+        "octgnid": "ed3c4835-2741-406c-b43e-0ad72f6b2496",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ed3c4835-2741-406c-b43e-0ad72f6b2496.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 14
+  }
+]

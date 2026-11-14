@@ -103,6 +103,10 @@ const HEADLINES: Partial<
     lead: "Find the Ring-bearer",
     em: "on the slopes of Amon Hen.",
   },
+  "fog-on-the-barrow-downs": {
+    lead: "Find the way north",
+    em: "through the fog and the barrows.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

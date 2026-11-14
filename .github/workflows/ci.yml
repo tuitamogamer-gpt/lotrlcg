@@ -663,6 +663,24 @@ jobs:
           path: output/breaking-fellowship-release/failures
           retention-days: 7
 
+  fog-barrow-simulation:
+    name: Fog on the Barrow-downs complete games (26 games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:fog-barrow-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: fog-barrow-simulation
+          path: output/fog-barrow-release/failures
+          retention-days: 7
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -820,6 +838,8 @@ jobs:
             suite: test:browser-journey-dark
           - group: breaking-fellowship
             suite: test:browser-breaking-fellowship
+          - group: fog-barrow
+            suite: test:browser-fog-barrow
           - group: hobbit-players
             suite: test:browser-hobbit-players
           - group: otd-players

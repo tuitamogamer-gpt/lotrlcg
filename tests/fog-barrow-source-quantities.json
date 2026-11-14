@@ -1,0 +1,128 @@
+[
+  {
+    "name": "Across the Downs",
+    "code": "octgn:ed3c4835-2741-406c-b43e-0ad72f6b2496",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Ancient Barrow",
+    "code": "octgn:24a841df-854e-444b-9b2f-0214f0e26002",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "name": "Barrow-wight",
+    "code": "octgn:1b9e02cc-d46e-4816-bdbd-9daa05590173",
+    "normal": 4,
+    "easy": 3
+  },
+  {
+    "name": "Chill Fog",
+    "code": "octgn:9dae9a06-1a90-4a9f-be69-b6451e4a1883",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Cold-wight",
+    "code": "octgn:516b75d8-9abe-423e-9ef1-a92f1c87c86f",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Dark-wight",
+    "code": "octgn:29562ee1-56d9-4a46-ba4b-1af24f85deb6",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Dreadful Song",
+    "code": "octgn:7fe0f143-9d3b-461a-b6bd-bc86e1491311",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Frodo Baggins",
+    "code": "141001",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Frozen by Fear",
+    "code": "octgn:f18b362f-1669-4743-8802-daf58e638198",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "name": "Great Barrow",
+    "code": "octgn:da95d039-0f3f-452b-9ff5-60c03432facc",
+    "normal": 5,
+    "easy": 3
+  },
+  {
+    "name": "Hollow Circle",
+    "code": "octgn:c616d30d-9242-401b-b386-4fe0660dc97b",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "I'm Waiting for You!",
+    "code": "octgn:a727d1ec-2bbf-452b-9e7d-92fffc39acd2",
+    "normal": 2,
+    "easy": 0
+  },
+  {
+    "name": "Long Groping Arm",
+    "code": "octgn:9a5fb929-296c-41ef-a0df-1d670d1c356d",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Lost in the Fog",
+    "code": "octgn:b477d0be-d70a-4eb4-8c35-89c17199cab3",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "North Downs",
+    "code": "octgn:d7d1581c-74a4-4c6f-acf9-e2d598ccb276",
+    "normal": 4,
+    "easy": 4
+  },
+  {
+    "name": "Standing Stones",
+    "code": "octgn:fa85988c-4530-414e-95a6-066002e0ef7a",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Stone Ring",
+    "code": "octgn:aa632825-0b60-4dc7-9733-8aa554631d6e",
+    "normal": 4,
+    "easy": 3
+  },
+  {
+    "name": "The House of Tom Bombadil",
+    "code": "octgn:550e9f11-14bb-4fac-806a-3f43035b30c9",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The One Ring",
+    "code": "octgn:c9575426-59ea-4863-bf6a-407e9eae3f33",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Tom Bombadil",
+    "code": "octgn:21b27ec8-a778-4bac-8228-aa013043b8ed",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Trapped Inside a Barrow",
+    "code": "octgn:262d615b-5b5d-4f16-975e-335d34e6c733",
+    "normal": 4,
+    "easy": 4
+  }
+]

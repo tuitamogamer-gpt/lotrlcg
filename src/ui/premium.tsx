@@ -67,6 +67,10 @@ export const PLAYMATS = {
     name: "Amon Hen",
     detail: "Down the Great River · The Company divided at Parth Galen",
   },
+  "fog-on-the-barrow-downs": {
+    name: "The Barrow-downs",
+    detail: "Lost in the fog · Trapped inside the barrows",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -477,6 +481,7 @@ export const PLAYMAT_CHOICES = [
   "the-ring-goes-south",
   "journey-in-the-dark",
   "breaking-of-the-fellowship",
+  "fog-on-the-barrow-downs",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

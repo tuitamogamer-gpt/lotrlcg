@@ -5,8 +5,8 @@
     "playerCards": 813,
     "heroes": 99,
     "deckCards": 710,
-    "encounterCards": 1461,
-    "scenarios": 97,
+    "encounterCards": 1476,
+    "scenarios": 98,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -104,17 +104,18 @@
       "the-old-forest",
       "the-ring-goes-south",
       "journey-in-the-dark",
-      "breaking-of-the-fellowship"
+      "breaking-of-the-fellowship",
+      "fog-on-the-barrow-downs"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2585,
-    "pending": 1598
+    "scripted": 2604,
+    "pending": 1579
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 196
+    "scripted": 197
   },
   "registeredCodes": [
     "01001",
@@ -1126,6 +1127,7 @@
     "octgn:1b0de48c-a010-490f-b0e3-0ced635b3b3b",
     "octgn:1b3b1063-e102-4fea-a29b-5692fbfb9cd6",
     "octgn:1b5b129a-0c2c-4750-b1d6-dd3ea82acb84",
+    "octgn:1b9e02cc-d46e-4816-bdbd-9daa05590173",
     "octgn:1ba09574-9d2a-4687-bd58-ca37ceadb023",
     "octgn:1c240b63-841f-4b76-9808-13c0ee0f986e",
     "octgn:1c65b78b-6b68-458f-9510-a00a9576a042",
@@ -1161,6 +1163,7 @@
     "octgn:215881a3-df0a-4163-a19d-33b444e7aa95",
     "octgn:21786f6e-9f9c-4850-9277-9ee77b6e0912",
     "octgn:21a5e7e1-013b-478e-a1c3-ab0300541f39",
+    "octgn:21b27ec8-a778-4bac-8228-aa013043b8ed",
     "octgn:21eb71b5-6b96-4388-bd95-e2576483a95a",
     "octgn:21ee317d-9aca-43be-9782-521539827cb8",
     "octgn:21f520fd-5efe-41f9-9f02-7a65e36eb31f",
@@ -1183,6 +1186,7 @@
     "octgn:246b941e-f8a7-46ba-966d-d0515111ab46",
     "octgn:24772594-75f3-4789-aeec-41526d845e11",
     "octgn:24a816f2-172f-4945-8d9b-21eb7fb68263",
+    "octgn:24a841df-854e-444b-9b2f-0214f0e26002",
     "octgn:24e431be-cde9-4f93-943a-de5e5ca9108b",
     "octgn:24ffba46-0c66-4559-ae13-d0980180f537",
     "octgn:254444df-3e65-4531-b6db-2fdacd0788b4",
@@ -1197,6 +1201,7 @@
     "octgn:25e58441-df9d-4935-a3c7-0a5b210538c5",
     "octgn:25eb1da3-b559-4e47-ae20-e6096a8cbc96",
     "octgn:2629ae83-bfb8-4be1-84a5-fa9e8b1fc20b",
+    "octgn:262d615b-5b5d-4f16-975e-335d34e6c733",
     "octgn:264adf61-31e1-46db-a655-7fee1d4282ae",
     "octgn:26642db7-c3a2-47f3-989d-27396e586d06",
     "octgn:26bb74c2-3c66-4828-8188-404bc42e713e",
@@ -1215,6 +1220,7 @@
     "octgn:28ba7c20-b660-40cb-9e2c-bf6ebaec723e",
     "octgn:29005ca1-107a-4473-8769-ce7d944e9844",
     "octgn:2935fd55-6945-4c20-8586-c435ceec52f3",
+    "octgn:29562ee1-56d9-4a46-ba4b-1af24f85deb6",
     "octgn:29662c71-2f27-405c-ae5a-db519ed91f33",
     "octgn:29f8a182-2e69-47d7-a742-296836371f41",
     "octgn:29fd0721-10ed-4315-b415-5fadeb010051",
@@ -1785,6 +1791,7 @@
     "octgn:51223bd0-ffd1-11df-a976-1801204c9092",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9093",
     "octgn:51681809-60af-4819-bfa0-3f568987f4ea",
+    "octgn:516b75d8-9abe-423e-9ef1-a92f1c87c86f",
     "octgn:51a5e288-cf6e-430d-bc66-715ad2be1a16",
     "octgn:51b186ac-ddf5-4909-a484-20d273be27c9",
     "octgn:51b45e84-3f63-46ea-aa08-b83dd89244ff",
@@ -1804,6 +1811,7 @@
     "octgn:54a26608-eebd-4bd6-855a-ceccb4507bab",
     "octgn:54c8ecae-73b1-4c42-84ed-0411551c363a",
     "octgn:54ed3453-1df4-458d-bc7d-e1f7c10de237",
+    "octgn:550e9f11-14bb-4fac-806a-3f43035b30c9",
     "octgn:552b11aa-b91e-44aa-8e54-1bad1aa74bbd",
     "octgn:5542dd91-98bd-4a72-bd19-f706f3440ab8",
     "octgn:5571b159-9889-4fcd-bc0e-13bea7443348",
@@ -2008,6 +2016,7 @@
     "octgn:7f9cf578-980e-43af-995f-27a84fd54a01",
     "octgn:7fa34ed7-6c3d-41a2-9c03-d8a766a35ece",
     "octgn:7fc629f3-3115-47df-b997-4a5026d97d2b",
+    "octgn:7fe0f143-9d3b-461a-b6bd-bc86e1491311",
     "octgn:801078c6-56a9-45f2-b5a4-7e38cb5bc507",
     "octgn:80764232-a3c9-47f1-9034-9c9ac82002e4",
     "octgn:809ff5de-8273-4491-adfb-3a27d4b316f3",
@@ -2148,6 +2157,7 @@
     "octgn:9a29c251-6119-47b2-8e10-ba4d33c0747e",
     "octgn:9a37677f-6bb6-4ff1-bf0e-8d0798e268c9",
     "octgn:9a5884f4-c2a8-4696-97b5-f0c5c5e92b6d",
+    "octgn:9a5fb929-296c-41ef-a0df-1d670d1c356d",
     "octgn:9a870606-9e85-4bdc-a70d-3d1831703eb8",
     "octgn:9afed95c-399f-4823-a277-342ece74a9e4",
     "octgn:9b135a59-15f9-4e3b-be8e-76b7f5841658",
@@ -2169,6 +2179,7 @@
     "octgn:9d451960-2db3-43df-9cd8-d525ef58cf55",
     "octgn:9d58de28-c518-4888-8e91-a52bb5c3e663",
     "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+    "octgn:9dae9a06-1a90-4a9f-be69-b6451e4a1883",
     "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7",
     "octgn:9dda3cf1-e5bd-4cab-8c3b-b29db1220249",
     "octgn:9e0bb4e8-9b4f-4780-9b83-ea6bc86745ae",
@@ -2209,6 +2220,7 @@
     "octgn:a6e68650-e413-4e85-b687-b927d5a87821",
     "octgn:a6ea339d-aec3-4ec7-9374-c1442385c260",
     "octgn:a7231cbd-0620-4b15-9c2c-68d4e7c79a8f",
+    "octgn:a727d1ec-2bbf-452b-9e7d-92fffc39acd2",
     "octgn:a750ab9c-9b29-4ca4-8221-8fa27cd74fe2",
     "octgn:a7907eca-8205-40a3-95ba-f30e31aaad82",
     "octgn:a7ae0add-ff9b-4976-8932-cff6d6e9a4dc",
@@ -2226,6 +2238,7 @@
     "octgn:a961751d-414b-4a53-9da4-5708f8b7bb1f",
     "octgn:a9e14405-1ac0-4db8-8357-1ac2e9d59624",
     "octgn:aa3355cb-57e1-4d8b-8a1b-9be22581a9f3",
+    "octgn:aa632825-0b60-4dc7-9733-8aa554631d6e",
     "octgn:aa6914e2-4b79-4a95-ab3e-386d6a924bee",
     "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
     "octgn:ab2ac791-b266-43b2-b6ee-0d412a1100bc",
@@ -2279,6 +2292,7 @@
     "octgn:b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8",
     "octgn:b4543d6e-168b-4ac6-ae65-022e13ce4098",
     "octgn:b4769083-91fb-4e9c-9736-17e8c28ff971",
+    "octgn:b477d0be-d70a-4eb4-8c35-89c17199cab3",
     "octgn:b49b5be7-5bfc-4e65-bced-862a409e097d",
     "octgn:b4b0bdc8-5edb-40c9-a9ca-dac60fe7cb38",
     "octgn:b53fd0fc-5734-4bdc-b26f-c2133da31c3d",
@@ -2376,6 +2390,7 @@
     "octgn:c5d1793e-a4e2-4a40-97e9-e5e6f8b1cdfb",
     "octgn:c5e9ef20-a88f-40fb-861f-c44de8e12bd9",
     "octgn:c60642b2-4ce3-42e8-8cb5-41c9ac9251fb",
+    "octgn:c616d30d-9242-401b-b386-4fe0660dc97b",
     "octgn:c69c1fe9-076a-4a5b-8388-9f653015d84d",
     "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
     "octgn:c71fa40c-524e-43ec-b058-7ea239fdfd1d",
@@ -2455,6 +2470,7 @@
     "octgn:d760ba6c-e377-4d22-ac46-04bfb2b3c65f",
     "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
     "octgn:d7885efa-3af6-48e6-8eb1-5750892fdb34",
+    "octgn:d7d1581c-74a4-4c6f-acf9-e2d598ccb276",
     "octgn:d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41",
     "octgn:d7fd973b-6b4e-4f4b-9fc5-4886dcf80996",
     "octgn:d80a5ca5-20d8-4c4b-814c-0c91bba40d43",
@@ -2469,6 +2485,7 @@
     "octgn:da177cbd-31e7-42ea-b051-e61f28dbb749",
     "octgn:da46fcb3-2810-4c21-9070-43969532ef9b",
     "octgn:da6d1bd2-575b-4292-9757-3792b79a4b78",
+    "octgn:da95d039-0f3f-452b-9ff5-60c03432facc",
     "octgn:daa67624-18ba-43a3-92c6-6e5586166bb0",
     "octgn:dae6e913-3b2e-4e53-aad4-69946d3386ca",
     "octgn:db1ee7dd-d43c-40a0-9e89-89a5b233af70",
@@ -2565,6 +2582,7 @@
     "octgn:ec9f4d54-a419-4b3e-a6b9-605119950d07",
     "octgn:ecc8fd11-b2b9-4adc-91eb-6fcc1212e7ce",
     "octgn:eccef05c-0f43-4cfa-91c6-e9eaf0eff7c9",
+    "octgn:ed3c4835-2741-406c-b43e-0ad72f6b2496",
     "octgn:ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d",
     "octgn:edae55ef-8025-4553-9ff8-e81526effd59",
     "octgn:ede538df-8c8e-44b6-bab2-3a60e8a50449",
@@ -2591,6 +2609,7 @@
     "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
     "octgn:f0d30258-7122-4004-a689-9ff50a00b3af:B",
     "octgn:f16aabcd-6a98-4e4a-89ca-0f0d69407d85",
+    "octgn:f18b362f-1669-4743-8802-daf58e638198",
     "octgn:f1d2d99e-27e6-44d3-ad3d-ef727fa9ddc2",
     "octgn:f24f8d3e-3193-4111-9fea-ecdbbafd921a",
     "octgn:f250a697-b5aa-4041-9bad-a66b2ab8ccba",
@@ -2646,6 +2665,7 @@
     "octgn:f9e9bc93-8044-474c-8f80-d3787edbca5f",
     "octgn:fa3a740d-36b7-4fa9-b5d5-6d70aa50f078",
     "octgn:fa4aaa97-c06d-42d5-b796-2f6200d9a404",
+    "octgn:fa85988c-4530-414e-95a6-066002e0ef7a",
     "octgn:fa8e0538-d920-4f0e-9810-103c5186531f",
     "octgn:fa9df618-126b-4ea9-95d7-22cd5dad6d2f",
     "octgn:fab58a26-eaa6-4e6b-aa59-575bab8a2599",
@@ -2919,7 +2939,7 @@
     {
       "product": "fog-on-the-barrow-downs",
       "total": 21,
-      "scripted": 0,
+      "scripted": 19,
       "player": 1,
       "playerScripted": 0
     },
@@ -14525,7 +14545,7 @@
       "name": "Barrow-wight",
       "type": "enemy",
       "pack": "Fog on the Barrow-downs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fog-on-the-barrow-downs"
     },
     {
@@ -15029,7 +15049,7 @@
       "name": "Tom Bombadil",
       "type": "objective-ally",
       "pack": "Fog on the Barrow-downs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fog-on-the-barrow-downs"
     },
     {
@@ -15357,7 +15377,7 @@
       "name": "Ancient Barrow",
       "type": "location",
       "pack": "Fog on the Barrow-downs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fog-on-the-barrow-downs"
     },
     {
@@ -15517,7 +15537,7 @@
       "name": "Trapped Inside a Barrow",
       "type": "quest",
       "pack": "Fog on the Barrow-downs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fog-on-the-barrow-downs"
     },
     {
@@ -15821,7 +15841,7 @@
       "name": "Dark-wight",
       "type": "enemy",
       "pack": "Fog on the Barrow-downs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fog-on-the-barrow-downs"
     },
     {
@@ -22053,7 +22073,7 @@
       "name": "Cold-wight",
       "type": "enemy",
       "pack": "Fog on the Barrow-downs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fog-on-the-barrow-downs"
     },
     {
@@ -22405,7 +22425,7 @@
       "name": "The House of Tom Bombadil",
       "type": "quest",
       "pack": "Fog on the Barrow-downs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fog-on-the-barrow-downs"
     },
     {
@@ -25789,7 +25809,7 @@
       "name": "Dreadful Song",
       "type": "treachery",
       "pack": "Fog on the Barrow-downs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fog-on-the-barrow-downs"
     },
     {
@@ -28037,7 +28057,7 @@
       "name": "Long Groping Arm",
       "type": "treachery",
       "pack": "Fog on the Barrow-downs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fog-on-the-barrow-downs"
     },
     {
@@ -28349,7 +28369,7 @@
       "name": "Chill Fog",
       "type": "treachery",
       "pack": "Fog on the Barrow-downs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fog-on-the-barrow-downs"
     },
     {
@@ -29069,7 +29089,7 @@
       "name": "I'm Waiting for You!",
       "type": "treachery",
       "pack": "Fog on the Barrow-downs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fog-on-the-barrow-downs"
     },
     {
@@ -29325,7 +29345,7 @@
       "name": "Stone Ring",
       "type": "location",
       "pack": "Fog on the Barrow-downs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fog-on-the-barrow-downs"
     },
     {
@@ -30173,7 +30193,7 @@
       "name": "Lost in the Fog",
       "type": "quest",
       "pack": "Fog on the Barrow-downs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fog-on-the-barrow-downs"
     },
     {
@@ -32069,7 +32089,7 @@
       "name": "Hollow Circle",
       "type": "location",
       "pack": "Fog on the Barrow-downs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fog-on-the-barrow-downs"
     },
     {
@@ -33461,7 +33481,7 @@
       "name": "North Downs",
       "type": "location",
       "pack": "Fog on the Barrow-downs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fog-on-the-barrow-downs"
     },
     {
@@ -33661,7 +33681,7 @@
       "name": "Great Barrow",
       "type": "location",
       "pack": "Fog on the Barrow-downs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fog-on-the-barrow-downs"
     },
     {
@@ -35269,7 +35289,7 @@
       "name": "Across the Downs",
       "type": "quest",
       "pack": "Fog on the Barrow-downs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fog-on-the-barrow-downs"
     },
     {
@@ -35661,7 +35681,7 @@
       "name": "Frozen by Fear",
       "type": "treachery",
       "pack": "Fog on the Barrow-downs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fog-on-the-barrow-downs"
     },
     {
@@ -36429,7 +36449,7 @@
       "name": "Standing Stones",
       "type": "location",
       "pack": "Fog on the Barrow-downs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fog-on-the-barrow-downs"
     },
     {
@@ -39566,8 +39586,8 @@
       "id": "Q99.05",
       "name": "Fog on the Barrow-downs",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "fog-on-the-barrow-downs",
+      "state": "scripted"
     },
     {
       "id": "Q99.06",

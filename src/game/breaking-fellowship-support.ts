@@ -82,6 +82,8 @@ export function breakingFellowshipStageInfo(s: GameState) {
     story: (front ? c.text : c.back_text) || (c.back_text ?? ""),
     questImage: front ? c.imagesrc : c.back_imagesrc,
     side: front ? ("A" as const) : ("B" as const),
+    // A player at a separate stage sees that stage's own number.
+    questNumber: Number(c.cost),
   };
 }
 /** Units the scenario holds outside the ordinary zones. */

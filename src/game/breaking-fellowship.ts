@@ -530,6 +530,12 @@ const findUnit = (s: GameState, id?: string) =>
 export function breakingFellowshipEffect(s: GameState, e: Effect): boolean {
   const q = s.breakingFellowship;
   if (!q) return false;
+  // Each separate stage makes its own travel decision: a player who travels
+  // ends only his own stage's travel phase.
+  if (e.kind === "travelDone" && q.split) {
+    passTravel(s);
+    return true;
+  }
   // The Great River: skip the encounter phase; River Anduin at the end of
   // the travel phase; The Argonath: skip the combat phase.
   if (e.kind === "startEncounter" && e.text !== "btf-river") {

@@ -1,0 +1,548 @@
+[
+  {
+    "code": "octgn:1b9e02cc-d46e-4816-bdbd-9daa05590173",
+    "octgnid": "1b9e02cc-d46e-4816-bdbd-9daa05590173",
+    "name": "Barrow-wight",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Wight.",
+    "text": "While Barrow-wight is engaged with a player, that player's threat cannot be reduced.\nForced: After Barrow-wight attacks and destroys a character, that character's controller raises his threat by 2.",
+    "is_unique": false,
+    "pack_code": "FotBd",
+    "pack_name": "Fog on the Barrow-downs",
+    "position": 11,
+    "quantity": 4,
+    "threat": 3,
+    "attack": 5,
+    "defense": 1,
+    "health": 6,
+    "engagement": 30,
+    "encounter_set": "Fog on the Barrow-downs",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "5",
+      "defense": "1",
+      "health": "6",
+      "engagement": "30"
+    },
+    "imagesrc": "/cards/1b9e02cc-d46e-4816-bdbd-9daa05590173.jpg",
+    "packs": [
+      {
+        "pack_code": "FotBd",
+        "pack_name": "Fog on the Barrow-downs",
+        "position": 11,
+        "quantity": 4,
+        "octgnid": "1b9e02cc-d46e-4816-bdbd-9daa05590173",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1b9e02cc-d46e-4816-bdbd-9daa05590173.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:21b27ec8-a778-4bac-8228-aa013043b8ed",
+    "octgnid": "21b27ec8-a778-4bac-8228-aa013043b8ed",
+    "name": "Tom Bombadil",
+    "type_code": "objective-ally",
+    "sphere_code": "encounter",
+    "traits": "Legend.",
+    "text": "When Revealed: Choose a player. That player gains control of Tom Bombadil, ready and committed to the quest. At the end of the round, discard Tom Bombadil. Then, shuffle the encounter discard pile into the encounter deck. This effect cannot be canceled.",
+    "is_unique": true,
+    "pack_code": "FotBd",
+    "pack_name": "Fog on the Barrow-downs",
+    "position": 19,
+    "quantity": 1,
+    "willpower": 3,
+    "attack": 3,
+    "defense": 3,
+    "health": 6,
+    "encounter_set": "Fog on the Barrow-downs",
+    "printed_stats": {
+      "willpower": "3",
+      "attack": "3",
+      "defense": "3",
+      "health": "6"
+    },
+    "imagesrc": "/cards/21b27ec8-a778-4bac-8228-aa013043b8ed.jpg",
+    "packs": [
+      {
+        "pack_code": "FotBd",
+        "pack_name": "Fog on the Barrow-downs",
+        "position": 19,
+        "quantity": 1,
+        "octgnid": "21b27ec8-a778-4bac-8228-aa013043b8ed",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/21b27ec8-a778-4bac-8228-aa013043b8ed.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:24a841df-854e-444b-9b2f-0214f0e26002",
+    "octgnid": "24a841df-854e-444b-9b2f-0214f0e26002",
+    "name": "Ancient Barrow",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ruins. Downs.",
+    "text": "X is 1 plus the number of facedown cards under this location.\nForced: After Ancient Barrow enters play, each player places an ally he controls facedown under this location. When Ancient Barrow leaves play as an explored location, return each ally under this location to its owner's hand.",
+    "is_unique": false,
+    "pack_code": "FotBd",
+    "pack_name": "Fog on the Barrow-downs",
+    "position": 8,
+    "quantity": 3,
+    "quest": 4,
+    "encounter_set": "Fog on the Barrow-downs",
+    "printed_stats": {
+      "threat": "X",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/24a841df-854e-444b-9b2f-0214f0e26002.jpg",
+    "packs": [
+      {
+        "pack_code": "FotBd",
+        "pack_name": "Fog on the Barrow-downs",
+        "position": 8,
+        "quantity": 3,
+        "octgnid": "24a841df-854e-444b-9b2f-0214f0e26002",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/24a841df-854e-444b-9b2f-0214f0e26002.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:29562ee1-56d9-4a46-ba4b-1af24f85deb6",
+    "octgnid": "29562ee1-56d9-4a46-ba4b-1af24f85deb6",
+    "name": "Dark-wight",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Wight.",
+    "text": "While Dark-wight is engaged with a player, that player's heroes cannot gain resources from card effects.\nForced: After Dark-wight attacks and destroys a character, that character's controller discards all resources from each hero he controls.",
+    "is_unique": false,
+    "pack_code": "FotBd",
+    "pack_name": "Fog on the Barrow-downs",
+    "position": 13,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 3,
+    "defense": 1,
+    "health": 7,
+    "engagement": 40,
+    "encounter_set": "Fog on the Barrow-downs",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "1",
+      "health": "7",
+      "engagement": "40"
+    },
+    "imagesrc": "/cards/29562ee1-56d9-4a46-ba4b-1af24f85deb6.jpg",
+    "packs": [
+      {
+        "pack_code": "FotBd",
+        "pack_name": "Fog on the Barrow-downs",
+        "position": 13,
+        "quantity": 3,
+        "octgnid": "29562ee1-56d9-4a46-ba4b-1af24f85deb6",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/29562ee1-56d9-4a46-ba4b-1af24f85deb6.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:516b75d8-9abe-423e-9ef1-a92f1c87c86f",
+    "octgnid": "516b75d8-9abe-423e-9ef1-a92f1c87c86f",
+    "name": "Cold-wight",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Wight.",
+    "text": "While Cold-wight is engaged with a player, that player cannot draw cards from card effects.\nForced: After Cold-wight attacks and destroys a character, that character's controller discards a random card from his hand.",
+    "is_unique": false,
+    "pack_code": "FotBd",
+    "pack_name": "Fog on the Barrow-downs",
+    "position": 12,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 4,
+    "defense": 1,
+    "health": 5,
+    "engagement": 35,
+    "encounter_set": "Fog on the Barrow-downs",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "4",
+      "defense": "1",
+      "health": "5",
+      "engagement": "35"
+    },
+    "imagesrc": "/cards/516b75d8-9abe-423e-9ef1-a92f1c87c86f.jpg",
+    "packs": [
+      {
+        "pack_code": "FotBd",
+        "pack_name": "Fog on the Barrow-downs",
+        "position": 12,
+        "quantity": 3,
+        "octgnid": "516b75d8-9abe-423e-9ef1-a92f1c87c86f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/516b75d8-9abe-423e-9ef1-a92f1c87c86f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:7fe0f143-9d3b-461a-b6bd-bc86e1491311",
+    "octgnid": "7fe0f143-9d3b-461a-b6bd-bc86e1491311",
+    "name": "Dreadful Song",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Enchantment.",
+    "text": "Peril.\nWhen Revealed: Attach to a questing hero you control. Counts as a Condition attachment with the text: \"Limit 1 per hero. Attached hero's [willpower] is reduced to 0. Forced: At the end of the round, raise your threat by 1 for each Wight enemy engaged with you.\"",
+    "is_unique": false,
+    "pack_code": "FotBd",
+    "pack_name": "Fog on the Barrow-downs",
+    "position": 18,
+    "quantity": 2,
+    "encounter_set": "Fog on the Barrow-downs",
+    "printed_stats": {},
+    "imagesrc": "/cards/7fe0f143-9d3b-461a-b6bd-bc86e1491311.jpg",
+    "packs": [
+      {
+        "pack_code": "FotBd",
+        "pack_name": "Fog on the Barrow-downs",
+        "position": 18,
+        "quantity": 2,
+        "octgnid": "7fe0f143-9d3b-461a-b6bd-bc86e1491311",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7fe0f143-9d3b-461a-b6bd-bc86e1491311.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:9a5fb929-296c-41ef-a0df-1d670d1c356d",
+    "octgnid": "9a5fb929-296c-41ef-a0df-1d670d1c356d",
+    "name": "Long Groping Arm",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Peril.\nWhen Revealed: Until the end of the phase, each Wight enemy engaged with you contributes its [threat] to the total [threat] in the staging area. If no enemies are engaged with you, search the encounter deck and discard pile for a Wight enemy and put it into play engaged with you. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "FotBd",
+    "pack_name": "Fog on the Barrow-downs",
+    "position": 15,
+    "quantity": 3,
+    "encounter_set": "Fog on the Barrow-downs",
+    "printed_stats": {},
+    "imagesrc": "/cards/9a5fb929-296c-41ef-a0df-1d670d1c356d.jpg",
+    "packs": [
+      {
+        "pack_code": "FotBd",
+        "pack_name": "Fog on the Barrow-downs",
+        "position": 15,
+        "quantity": 3,
+        "octgnid": "9a5fb929-296c-41ef-a0df-1d670d1c356d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9a5fb929-296c-41ef-a0df-1d670d1c356d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:9dae9a06-1a90-4a9f-be69-b6451e4a1883",
+    "octgnid": "9dae9a06-1a90-4a9f-be69-b6451e4a1883",
+    "name": "Chill Fog",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Discard all resources in play. Each player raises his threat by 1 for each resource he discarded this way. If no resources were discarded this way, Chill Fog gains surge.",
+    "is_unique": false,
+    "pack_code": "FotBd",
+    "pack_name": "Fog on the Barrow-downs",
+    "position": 16,
+    "quantity": 2,
+    "shadow": "Shadow: Raise your threat by 1 for each damage dealt by this attack.",
+    "encounter_set": "Fog on the Barrow-downs",
+    "printed_stats": {},
+    "imagesrc": "/cards/9dae9a06-1a90-4a9f-be69-b6451e4a1883.jpg",
+    "packs": [
+      {
+        "pack_code": "FotBd",
+        "pack_name": "Fog on the Barrow-downs",
+        "position": 16,
+        "quantity": 2,
+        "octgnid": "9dae9a06-1a90-4a9f-be69-b6451e4a1883",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9dae9a06-1a90-4a9f-be69-b6451e4a1883.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:a727d1ec-2bbf-452b-9e7d-92fffc39acd2",
+    "octgnid": "a727d1ec-2bbf-452b-9e7d-92fffc39acd2",
+    "name": "I'm Waiting for You!",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each Wight enemy engaged with a player makes an immediate attack. If no attacks were made this way, I'm Waiting for You! gains surge.",
+    "is_unique": false,
+    "pack_code": "FotBd",
+    "pack_name": "Fog on the Barrow-downs",
+    "position": 14,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+3 [attack] instead if the defending character is an ally).",
+    "encounter_set": "Fog on the Barrow-downs",
+    "printed_stats": {},
+    "imagesrc": "/cards/a727d1ec-2bbf-452b-9e7d-92fffc39acd2.jpg",
+    "packs": [
+      {
+        "pack_code": "FotBd",
+        "pack_name": "Fog on the Barrow-downs",
+        "position": 14,
+        "quantity": 2,
+        "octgnid": "a727d1ec-2bbf-452b-9e7d-92fffc39acd2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a727d1ec-2bbf-452b-9e7d-92fffc39acd2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:aa632825-0b60-4dc7-9733-8aa554631d6e",
+    "octgnid": "aa632825-0b60-4dc7-9733-8aa554631d6e",
+    "name": "Stone Ring",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ruins. Downs.",
+    "text": "While Stone Ring is in the staging area, each Wight enemy engaged with a player gets +1 [attack] and +1 [defense] and applies the first sentence of its game text to each player at this stage as if it were engaged with him.",
+    "is_unique": false,
+    "pack_code": "FotBd",
+    "pack_name": "Fog on the Barrow-downs",
+    "position": 9,
+    "quantity": 4,
+    "threat": 3,
+    "quest": 3,
+    "encounter_set": "Fog on the Barrow-downs",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/aa632825-0b60-4dc7-9733-8aa554631d6e.jpg",
+    "packs": [
+      {
+        "pack_code": "FotBd",
+        "pack_name": "Fog on the Barrow-downs",
+        "position": 9,
+        "quantity": 4,
+        "octgnid": "aa632825-0b60-4dc7-9733-8aa554631d6e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aa632825-0b60-4dc7-9733-8aa554631d6e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:c616d30d-9242-401b-b386-4fe0660dc97b",
+    "octgnid": "c616d30d-9242-401b-b386-4fe0660dc97b",
+    "name": "Hollow Circle",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ruins. Downs.",
+    "text": "Immune to player card effects.\nTravel: Each player searches the encounter deck and discard pile for a Wight enemy and puts it into play engaged with him. Shuffle the encounter deck.",
+    "is_unique": true,
+    "pack_code": "FotBd",
+    "pack_name": "Fog on the Barrow-downs",
+    "position": 5,
+    "quantity": 1,
+    "threat": 3,
+    "quest": 3,
+    "victory": 3,
+    "encounter_set": "Fog on the Barrow-downs",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3",
+      "victory": "3"
+    },
+    "imagesrc": "/cards/c616d30d-9242-401b-b386-4fe0660dc97b.jpg",
+    "packs": [
+      {
+        "pack_code": "FotBd",
+        "pack_name": "Fog on the Barrow-downs",
+        "position": 5,
+        "quantity": 1,
+        "octgnid": "c616d30d-9242-401b-b386-4fe0660dc97b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c616d30d-9242-401b-b386-4fe0660dc97b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:d7d1581c-74a4-4c6f-acf9-e2d598ccb276",
+    "octgnid": "d7d1581c-74a4-4c6f-acf9-e2d598ccb276",
+    "name": "North Downs",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Downs.",
+    "text": "While North Downs is in the staging area, characters use their [willpower] instead of [defense] when defending against Wight enemies.",
+    "is_unique": false,
+    "pack_code": "FotBd",
+    "pack_name": "Fog on the Barrow-downs",
+    "position": 10,
+    "quantity": 4,
+    "threat": 2,
+    "quest": 5,
+    "shadow": "Shadow: Attacking enemy gets +2 [attack]. If this attack destroys a character, raise each player's threat by 2.",
+    "encounter_set": "Fog on the Barrow-downs",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/d7d1581c-74a4-4c6f-acf9-e2d598ccb276.jpg",
+    "packs": [
+      {
+        "pack_code": "FotBd",
+        "pack_name": "Fog on the Barrow-downs",
+        "position": 10,
+        "quantity": 4,
+        "octgnid": "d7d1581c-74a4-4c6f-acf9-e2d598ccb276",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d7d1581c-74a4-4c6f-acf9-e2d598ccb276.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:da95d039-0f3f-452b-9ff5-60c03432facc",
+    "octgnid": "da95d039-0f3f-452b-9ff5-60c03432facc",
+    "name": "Great Barrow",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ruins. Downs.",
+    "text": "Peril. Immune to player card effects. The players cannot travel here.\nForced: After Great Barrow enters the staging area, remove each character you control from the quest and create your own staging area. Then, advance to a separate stage 4A by yourself.",
+    "is_unique": false,
+    "pack_code": "FotBd",
+    "pack_name": "Fog on the Barrow-downs",
+    "position": 7,
+    "quantity": 5,
+    "threat": 1,
+    "quest": 1,
+    "victory": 5,
+    "encounter_set": "Fog on the Barrow-downs",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "1",
+      "victory": "5"
+    },
+    "imagesrc": "/cards/da95d039-0f3f-452b-9ff5-60c03432facc.jpg",
+    "packs": [
+      {
+        "pack_code": "FotBd",
+        "pack_name": "Fog on the Barrow-downs",
+        "position": 7,
+        "quantity": 5,
+        "octgnid": "da95d039-0f3f-452b-9ff5-60c03432facc",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/da95d039-0f3f-452b-9ff5-60c03432facc.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f18b362f-1669-4743-8802-daf58e638198",
+    "octgnid": "f18b362f-1669-4743-8802-daf58e638198",
+    "name": "Frozen by Fear",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge. Doomed 1.\nWhen Revealed: Until the end of the round, players cannot trigger Action or Response effects.",
+    "is_unique": false,
+    "pack_code": "FotBd",
+    "pack_name": "Fog on the Barrow-downs",
+    "position": 17,
+    "quantity": 3,
+    "shadow": "Shadow: Until the end of the round, attacking enemy cannot take damage.",
+    "encounter_set": "Fog on the Barrow-downs",
+    "printed_stats": {},
+    "imagesrc": "/cards/f18b362f-1669-4743-8802-daf58e638198.jpg",
+    "packs": [
+      {
+        "pack_code": "FotBd",
+        "pack_name": "Fog on the Barrow-downs",
+        "position": 17,
+        "quantity": 3,
+        "octgnid": "f18b362f-1669-4743-8802-daf58e638198",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f18b362f-1669-4743-8802-daf58e638198.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:fa85988c-4530-414e-95a6-066002e0ef7a",
+    "octgnid": "fa85988c-4530-414e-95a6-066002e0ef7a",
+    "name": "Standing Stones",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ruins. Downs.",
+    "text": "Immune to player card effects.\nTravel: The first player searches the encounter deck, discard pile, and victory display for a Great Barrow and adds it to the staging area. Shuffle the encounter deck.",
+    "is_unique": true,
+    "pack_code": "FotBd",
+    "pack_name": "Fog on the Barrow-downs",
+    "position": 6,
+    "quantity": 1,
+    "threat": 4,
+    "quest": 4,
+    "victory": 3,
+    "encounter_set": "Fog on the Barrow-downs",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "4",
+      "victory": "3"
+    },
+    "imagesrc": "/cards/fa85988c-4530-414e-95a6-066002e0ef7a.jpg",
+    "packs": [
+      {
+        "pack_code": "FotBd",
+        "pack_name": "Fog on the Barrow-downs",
+        "position": 6,
+        "quantity": 1,
+        "octgnid": "fa85988c-4530-414e-95a6-066002e0ef7a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fa85988c-4530-414e-95a6-066002e0ef7a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

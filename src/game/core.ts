@@ -311,6 +311,7 @@ export const canGainResources = (
   !(cardEffect && !transfer && noPlayerCardEconomy(s)) &&
   // The Baggins Bilbo cannot gain resources from player card effects.
   !(cardEffect && isBagginsBilbo(u.code)) &&
+  !(cardEffect && batch4Scenario(s).cannotGainResources?.(s, u)) &&
   !carrockSacked(u) &&
   !druadanForestCannotGainResources(s, u, cardEffect) &&
   !Fords.fordsCannotGainResources(s, cardEffect);
@@ -533,6 +534,25 @@ export function choose(
   options: Option[],
   description?: string,
 ) {
+  // A player who cannot trigger Actions or Responses is not offered them.
+  const blocked = batch4Scenario(s).abilitiesBlocked;
+  if (blocked && options.some((o) => o.ability)) {
+    const allowed = options.filter(
+      (o) => !o.ability || !blocked(s, o.ability.player),
+    );
+    if (allowed.length < options.length) {
+      log(
+        s,
+        `${title}: the player cannot trigger Action or Response effects.`,
+        "danger",
+      );
+      if (!allowed.some((o) => o.id !== "skip")) {
+        prepend(s, ...(allowed[0]?.effects ?? []));
+        return;
+      }
+      options = allowed;
+    }
+  }
   if (options.length)
     s.choice = {
       title,
@@ -1515,6 +1535,14 @@ export function draw(
   }
   if (allActiveLocations(s).some((l) => l.code === "01095" && !l.blanked)) {
     log(s, "Enchanted Stream prevents card draw.", "danger");
+    return;
+  }
+  if (cardEffect && batch4Scenario(s).cannotDraw?.(s)) {
+    log(
+      s,
+      "An encounter card prevents drawing cards from card effects.",
+      "danger",
+    );
     return;
   }
   if (count > 0 && s.shackles > 0) {
