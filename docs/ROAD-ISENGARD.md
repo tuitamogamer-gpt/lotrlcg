@@ -131,3 +131,25 @@ victory, every Wizardry effect and staging-area effect, every enemy,
 treachery and shadow, Saruman in combat, saves and the scenario panel data.
 The source test pins the snapshot, the normal and easy quantities, the
 corrections and all 26 faces.
+
+The complete-game matrix plays fourteen games from setup with exact save
+restoration after every action, physical conservation (including the
+set-aside cards, the Ents under the players' control or removed from the
+game, Saruman's Staff, the cards Orthanc looks at and treacheries being
+resolved) and private-view checks: the players rouse the Ents with their
+Quest Action, take control of all four in some games, break Isengard and
+reach The Voice of Saruman, where Saruman's Staff and the encounter deck
+wear them down. A second matrix starts twelve games at The Voice of Saruman
+with 12 progress, Saruman beyond his hit points and the four Ents roused:
+nine of them are won through the staging step, Orthanc and the Staff's
+attacks. Hidden and decisions review parity is checked in both matrices.
+
+The browser suite runs eight native setups with exact physical inventories
+and shows the three printed quest cards, an Ent's Quest Action, the choice to
+advance from stage 1, Breaking Isengard, Steaming Vent's Wizardry, The Voice
+of Saruman with Saruman engaged through Orthanc, the Staff's attack with two
+shadow cards, Orthanc's look at the top cards, Isengard Orc's choice, the
+victory and the elimination at 1280/390/320px; it checks all 26 faces.
+
+The additive account-choice SQL migration is included; it has not been
+applied to a hosted database.
