@@ -5,6 +5,7 @@ import * as BlackRidersPlayers from "./black-riders-player-cards";
 import * as TreasonPlayers from "./treason-saruman-player-cards";
 import * as LandShadowPlayers from "./land-shadow-player-cards";
 import * as FlameWestPlayers from "./flame-west-player-cards";
+import * as MountainFirePlayers from "./mountain-fire-player-cards";
 import * as RoadDarkensPlayers from "./road-darkens-player-cards";
 import { roadDarkensFrodoDefended } from "./lotr-saga";
 import {
@@ -172,7 +173,8 @@ export function playerAttack(
     | "battle-fury"
     | "charge-into-battle"
     | "great-yew-bow"
-    | "roheryn",
+    | "roheryn"
+    | "eomer",
 ) {
   ids = [...new Set(ids)];
   requireRule(
@@ -231,12 +233,18 @@ export function playerAttack(
                   u.attachments.some((a) => a.code === "145012") &&
                   rhosgobelCanFight(enemy, u),
               )
-            : attackersFor(
-                s,
-                enemy,
-                abilityMode === "battle-fury" ? ids[0] : undefined,
-                abilityMode === "charge-into-battle",
-              )
+            : abilityMode === "eomer"
+              ? allCharacters(s).filter(
+                  (u) =>
+                    ownerOf(s, u) === activeSeat(s) &&
+                    eomerCanAttack(s, enemy, u),
+                )
+              : attackersFor(
+                  s,
+                  enemy,
+                  abilityMode === "battle-fury" ? ids[0] : undefined,
+                  abilityMode === "charge-into-battle",
+                )
     ).find((u) => u.id === id),
   );
   if (abilityMode === "haldir")
@@ -266,6 +274,13 @@ export function playerAttack(
         s.staging.some((u) => u.id === enemy.id) &&
         !playerEffectImmune(s, enemy, "132014"),
       "Great Yew Bow declares only its hero against an enemy in the staging area.",
+    );
+  if (abilityMode === "eomer")
+    requireRule(
+      ids.length === 1 &&
+        s.staging.some((u) => u.id === enemy.id) &&
+        !playerEffectImmune(s, enemy, "146003"),
+      "Éomer's Response declares him alone against an enemy in the staging area.",
     );
   requireRule(
     attackers.every(Boolean),
@@ -309,10 +324,21 @@ export function playerAttack(
   Depths.depthsPlayerAttackStarted(s, enemy);
   const priorQueue = s.queue.length;
   attackers.forEach((u) => {
+    // Éomer is declared after questing exhausted him; a ready Éomer (Captains
+    // of the West) exhausts as he is declared.
+    if (
+      abilityMode === "eomer" &&
+      !u!.exhausted &&
+      !Angmar.angmarNoCombatExhaust(s, u!) &&
+      !pathOfNeed(s, u!) &&
+      !foundationsPlayerNoAttackExhaust(u!)
+    )
+      exhaustCharacter(s, u!);
     if (
       abilityMode !== "hands-upon-bow" &&
       abilityMode !== "great-yew-bow" &&
       abilityMode !== "roheryn" &&
+      abilityMode !== "eomer" &&
       abilityMode !== "battle-fury" &&
       !Angmar.angmarNoCombatExhaust(s, u!) &&
       (abilityMode === "knight" ||
@@ -387,6 +413,11 @@ export function playerAttack(
       enemy,
       attackers as Unit[],
     ),
+    ...MountainFirePlayers.mountainFirePlayerAttackersDeclared(
+      s,
+      enemy,
+      attackers as Unit[],
+    ),
     fx("resolvePlayerAttack", {
       target: enemy.id,
       ids,
@@ -424,6 +455,27 @@ export function playerAttack(
   Angmar.angmarAttackDeclared(s, enemy, attackers as Unit[]);
 }
 
+/**
+ * Éomer (The Mountain of Fire): after he commits to the quest, his Response
+ * declares him as an attacker against an enemy in the staging area even though
+ * questing exhausted him.
+ */
+export function eomerCanAttack(s: GameState, enemy: Unit, u: Unit) {
+  return (
+    u.code === "146003" &&
+    !u.blanked &&
+    canFight(u) &&
+    !batch4Scenario(s).cannotAttack?.(s, u, enemy) &&
+    shipCanAttack(enemy, u) &&
+    Cobas.cobasCanAttackEnemy(s, enemy, u) &&
+    Voyage.voyageCanAttackEnemy(s, enemy, u) &&
+    Storm.stormcallerCanAttackEnemy(s, enemy, u) &&
+    longDarkCanAttack(s, enemy) &&
+    khazadCanAttack(u) &&
+    rhosgobelCanFight(enemy, u) &&
+    !amonPlayerCannotDeclareAttack(s, ownerOf(s, u))
+  );
+}
 /** Great Yew Bow: its hero attacks alone, as a ranged attack, into staging. */
 export function greatYewBowCanAttack(s: GameState, enemy: Unit, u: Unit) {
   return (
@@ -537,6 +589,7 @@ export function playerAttackResolved(
   otdPlayerAttackResolved(s, ids);
   TreasonPlayers.treasonPlayerAttackResolved(s, ids);
   LandShadowPlayers.landShadowPlayerAttackResolved(s, ids);
+  MountainFirePlayers.mountainFirePlayerAttackResolved(s, ids);
   WildsPlayers.wildsPlayerAttackResolved(s, ids);
   EredPlayers.eredMithrinPlayerAttackResolved(s, ids);
   Raid.raidPlayerAttackFinished(s, enemy);
@@ -585,6 +638,7 @@ export function playerAttackKilled(
   landSorrowPlayerAttackKilled(s, enemy, ids);
   BlackRidersPlayers.blackRidersPlayerAttackKilled(s, enemy, ids);
   TreasonPlayers.treasonPlayerAttackKilled(s, enemy, ids);
+  MountainFirePlayers.mountainFirePlayerAttackKilled(s, enemy, ids);
   EredPlayers.eredMithrinPlayerAttackKilled(s, enemy, ids);
   BatchPlayers.batch4PlayerAttackKilled(s, enemy, ids);
   Realm.realmAttackKilled(s, ids);

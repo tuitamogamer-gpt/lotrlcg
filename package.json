@@ -218,6 +218,7 @@
     "test:browser-treason-saruman-players": "node --import tsx scripts/browser-treason-saruman-players.mjs",
     "test:browser-land-shadow-players": "node --import tsx scripts/browser-land-shadow-players.mjs",
     "test:browser-flame-west-players": "node --import tsx scripts/browser-flame-west-players.mjs",
+    "test:browser-mountain-fire-players": "node --import tsx scripts/browser-mountain-fire-players.mjs",
     "test:cirith-ungol-simulation": "node --import tsx --test tests/cirith-ungol-simulation.test.ts",
     "test:browser-cirith-ungol": "node --import tsx scripts/browser-cirith-ungol.mjs",
     "test:black-gate-simulation": "node --import tsx --test tests/black-gate-simulation.test.ts",

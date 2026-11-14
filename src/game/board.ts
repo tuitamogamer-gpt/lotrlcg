@@ -36,6 +36,7 @@ import * as BlackRidersPlayers from "./black-riders-player-cards";
 import * as TreasonPlayers from "./treason-saruman-player-cards";
 import * as LandShadowPlayers from "./land-shadow-player-cards";
 import * as FlameWestPlayers from "./flame-west-player-cards";
+import * as MountainFirePlayers from "./mountain-fire-player-cards";
 import * as RoadDarkensPlayers from "./road-darkens-player-cards";
 import * as WildsPlayers from "./wilds-player";
 import { batch4Scenario } from "./batch4-scenarios";
@@ -609,6 +610,7 @@ export function charactersCommitted(
   dwarfCharactersCommitted(s, actual);
   elfCharactersCommitted(s, actual);
   rohanCharactersCommitted(s, actual);
+  MountainFirePlayers.mountainFirePlayerCharactersCommitted(s, actual);
   foundationsPlayerCharactersCommitted(s, actual, exhaustedIds);
   Angmar.angmarCharactersCommitted(
     s,
@@ -1719,6 +1721,7 @@ export function characterLeftPlay(
       `round:celeborn:${u.id}`,
       `round:naith-guide:${u.id}`,
       `round:elf-entered:${u.id}`,
+      ...MountainFirePlayers.mountainFirePlayerLeavingKeys(u.id),
     ];
     s.used = s.used.filter(
       (key) =>
@@ -2676,6 +2679,7 @@ export function phaseEnd(s: GameState) {
   const departures = globalCharacters(s)
     .filter((u) => u.temporary || u.beornReturn)
     .map((u) => fx("allyDeparture", { target: u.id, player: ownerOf(s, u) }));
+  const mountainFireEffects = MountainFirePlayers.mountainFirePlayerPhaseEnd(s);
   globalEachSeat(s, () => phaseEndPlayer(s));
   eachArea(s, () => redhornPhaseEnd(s));
   prepend(
@@ -2684,6 +2688,7 @@ export function phaseEnd(s: GameState) {
     ...departures,
     ...otdEffects,
     ...treasonEffects,
+    ...mountainFireEffects,
     ...cityDepartures,
     ...wainDepartures,
   );
@@ -3023,6 +3028,7 @@ export function engage(s: GameState, u: Unit, optional = false) {
   BlackRidersPlayers.blackRidersPlayerEnemyEngaged(s, u);
   LandShadowPlayers.landShadowPlayerEnemyEngaged(s, u);
   FlameWestPlayers.flameWestPlayerEnemyEngaged(s, u, optional);
+  MountainFirePlayers.mountainFirePlayerEnemyEngaged(s, u, optional);
   ShadowEastPlayers.shadowEastPlayerEngaged(s, u);
   Umbar.umbarEngaged(s, u);
   batch4Scenario(s).engaged?.(s, u, optional);
@@ -3959,6 +3965,7 @@ export function allyEntryResponses(
   RoadDarkensPlayers.roadDarkensPlayerAllyEntered(s, u);
   TreasonPlayers.treasonPlayerAllyEntered(s, u);
   LandShadowPlayers.landShadowPlayerAllyEntered(s, u);
+  MountainFirePlayers.mountainFirePlayerAllyEntered(s, u);
   EredFinalPlayers.eredFinalPlayerAllyEntered(s, u, played, fromHand);
   EredPlayers.eredMithrinPlayerAllyEntered(s, u, played);
   BatchPlayers.batch4PlayerAllyEntered(s, u, played);

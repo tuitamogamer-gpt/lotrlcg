@@ -11,6 +11,7 @@ import * as BlackRidersPlayers from "./black-riders-player-cards";
 import * as TreasonPlayers from "./treason-saruman-player-cards";
 import * as LandShadowPlayers from "./land-shadow-player-cards";
 import * as FlameWestPlayers from "./flame-west-player-cards";
+import * as MountainFirePlayers from "./mountain-fire-player-cards";
 import * as RoadDarkensPlayers from "./road-darkens-player-cards";
 import { ereborCostReduction } from "./erebor-treasures";
 import { wandererNoMatch, sarumanPays } from "./wainriders-player-support";
@@ -794,6 +795,7 @@ export function stats(s: GameState, u: Unit) {
         longDarkBonus.attack +
         carrockBonus.attack +
         gondorBonus.attack +
+        MountainFirePlayers.mountainFirePlayerStats(s, u).attack +
         emynMuilStatBonus(s, u) +
         (u.code === "rc135" && s.mendorBoost ? 2 : 0) +
         (u.tempAttack ?? 0) -
@@ -860,6 +862,7 @@ export function stats(s: GameState, u: Unit) {
             scenarioBonus.defense +
             carrockBonus.defense +
             gondorBonus.defense +
+            MountainFirePlayers.mountainFirePlayerStats(s, u).defense +
             (u.code === "rc135" && s.mendorBoost ? 2 : 0) +
             (u.tempDefense ?? 0) +
             drownedPlayerDefense(s, u) -
@@ -1280,6 +1283,7 @@ export const enemyAttackPrevented = (
   elfEnemyCannotAttack(s, u, player) ||
   collectorEnemyCannotAttack(s, u, player) ||
   longDarkPlayerEnemyCannotAttack(s, u, player) ||
+  MountainFirePlayers.mountainFirePlayerEnemyCannotAttack(s, u, player) ||
   MumakPlayers.mumakilEnemyCannotAttack(s, u, player);
 
 export const canFight = (u: Unit) =>
@@ -1348,6 +1352,7 @@ export function eligiblePayers(s: GameState, c: Card, target?: Unit) {
         sarumanPays(h, c) ||
         stewardPlayerCanPay(s, h, c, actualCost) ||
         HaradPlayers.haradStormNoResourceMatch(s, c) ||
+        MountainFirePlayers.mountainFirePlayerNoResourceMatch(s, c) ||
         EredSupport.eredMithrinPlayerNoResourceMatch(s, c) ||
         EredFinalSupport.eredFinalPlayerResourceMatch(s, h, c) ||
         WildsSupport.wildsPlayerNoResourceMatch(s, c) ||

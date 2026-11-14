@@ -1,0 +1,82 @@
+[
+  {
+    "code": "146003",
+    "face": "front",
+    "source": "https://ringsdb.com/bundles/cards/146003.png",
+    "localPath": "/cards/146003.png",
+    "bytes": 68598,
+    "sha256": "139ebee6dfbc07dbb7c64d756b4fe8a3168525caaf2da3c94f82c214dfd1451c"
+  },
+  {
+    "code": "146004",
+    "face": "front",
+    "source": "https://ringsdb.com/bundles/cards/146004.png",
+    "localPath": "/cards/146004.png",
+    "bytes": 20289,
+    "sha256": "65ab0b21fe0a125b35825a82146b79aa47cb30315c08e7a860521f1cc76b27a8"
+  },
+  {
+    "code": "146005",
+    "face": "front",
+    "source": "https://ringsdb.com/bundles/cards/146005.png",
+    "localPath": "/cards/146005.png",
+    "bytes": 63125,
+    "sha256": "738814cae013449f60d4b0009afe14bfb6a8a2ebd82ad7a00e0d329f22003724"
+  },
+  {
+    "code": "146006",
+    "face": "front",
+    "source": "https://ringsdb.com/bundles/cards/146006.png",
+    "localPath": "/cards/146006.png",
+    "bytes": 67355,
+    "sha256": "9946bae18fe3c315ff42300f955500af2b7e80def72a36f623c06cf01b2d93a7"
+  },
+  {
+    "code": "146007",
+    "face": "front",
+    "source": "https://ringsdb.com/bundles/cards/146007.png",
+    "localPath": "/cards/146007.png",
+    "bytes": 64396,
+    "sha256": "20782bcf64881f5f925528f6cb31fcc094e4ee0a75739d6f8a4056ba6a6eb253"
+  },
+  {
+    "code": "146008",
+    "face": "front",
+    "source": "https://ringsdb.com/bundles/cards/146008.png",
+    "localPath": "/cards/146008.png",
+    "bytes": 67372,
+    "sha256": "d7ed7e4432f8020f63a707419b020bb9217a24c6dc48eb1c8dc5b7c40a15ab8d"
+  },
+  {
+    "code": "146009",
+    "face": "front",
+    "source": "https://ringsdb.com/bundles/cards/146009.png",
+    "localPath": "/cards/146009.png",
+    "bytes": 20490,
+    "sha256": "51e6c693a2d17f2528b89d12da21fa7c25e6a09c79f333d0bcb164191af820f0"
+  },
+  {
+    "code": "146010",
+    "face": "front",
+    "source": "https://ringsdb.com/bundles/cards/146010.png",
+    "localPath": "/cards/146010.png",
+    "bytes": 17532,
+    "sha256": "1a28fae89b00b29f42f0430a43f6ee2b9a1a1b9e716951d8c467b0a487b860a6"
+  },
+  {
+    "code": "146011",
+    "face": "front",
+    "source": "https://ringsdb.com/bundles/cards/146011.png",
+    "localPath": "/cards/146011.png",
+    "bytes": 62910,
+    "sha256": "320a823bd8f1bd80b78465bb98d5ff3beb7837ffe78cae1248fbdf2199d5ae9e"
+  },
+  {
+    "code": "146013",
+    "face": "front",
+    "source": "https://ringsdb.com/bundles/cards/146013.png",
+    "localPath": "/cards/146013.png",
+    "bytes": 71908,
+    "sha256": "559864f92e23e3404683846d45b5046f05f208bb4db62816497ef24f848f6b1c"
+  }
+]

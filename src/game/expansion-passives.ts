@@ -17,6 +17,7 @@ import { FLAME_WEST_ARAGORN } from "./lotr-saga-codes";
 import { isHero, isAlly, unitType } from "./card-types";
 import { allActiveLocations, allCharacters, ownerOf, seatView } from "./table";
 import { marshPlayerNoQuestExhaust } from "./marsh-player-cards";
+import { mountainFireCaptainsNoQuestExhaust } from "./mountain-fire-player-support";
 
 /** Explicit rules registrations. Unregistered reference text never grants support. */
 import { elfNoQuestExhaust } from "./elf-player-cards";
@@ -147,6 +148,10 @@ const rules: Record<string, AttachmentRule> = {
   "145011": { type: "hero", traits: ["Gondor"], restricted: 1 },
   "145012": { type: "hero", traits: ["Dúnedain"] },
   "145013": { names: ["Aragorn"] },
+  // The Mountain of Fire player attachments: their Responses and bonuses are
+  // in mountain-fire-player-cards.ts.
+  "146009": { type: "hero", traits: ["Ring-bearer"], limit: 1 },
+  "146011": { type: "hero", traits: ["Rohan"], restricted: 1 },
   // The Tower of Cirith Ungol: Last of the Company (the Ring-bearer trait;
   // the Fellowship sphere is in hasResourceIcon).
   "octgn:ad4739ac-fd18-4add-9b83-860c1fcc2b54": {
@@ -507,6 +512,7 @@ export function questExhausts(s: GameState, u: Unit) {
   if (elfNoQuestExhaust(s, u)) return false;
   if (pathOfNeed(s, u)) return false;
   if (marshPlayerNoQuestExhaust(s, u)) return false;
+  if (mountainFireCaptainsNoQuestExhaust(s, u)) return false;
   const p = seatView(s, ownerOf(s, u));
   if (u.code === "22028" && effectiveThreat(s, ownerOf(s, u)) >= 40)
     return false;

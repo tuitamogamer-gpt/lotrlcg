@@ -2,9 +2,9 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 850,
-    "heroes": 110,
-    "deckCards": 736,
+    "playerCards": 860,
+    "heroes": 112,
+    "deckCards": 744,
     "encounterCards": 1680,
     "scenarios": 110,
     "scenarioIds": [
@@ -122,8 +122,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2878,
-    "pending": 1305
+    "scripted": 2888,
+    "pending": 1295
   },
   "scenarioRecipes": {
     "total": 355,
@@ -820,7 +820,17 @@
     "145062",
     "146001",
     "146002",
+    "146003",
+    "146004",
+    "146005",
+    "146006",
+    "146007",
+    "146008",
+    "146009",
+    "146010",
+    "146011",
     "146012",
+    "146013",
     "146041",
     "16001",
     "16002",
@@ -3738,9 +3748,9 @@
     {
       "product": "the-mountain-of-fire",
       "total": 81,
-      "scripted": 64,
+      "scripted": 74,
       "player": 13,
-      "playerScripted": 3
+      "playerScripted": 13
     },
     {
       "product": "the-mumakil",
@@ -10721,7 +10731,7 @@
       "name": "Éomer",
       "type": "hero",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -10729,7 +10739,7 @@
       "name": "Tom Cotton",
       "type": "hero",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -10737,7 +10747,7 @@
       "name": "Rosie Cotton",
       "type": "ally",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -10745,7 +10755,7 @@
       "name": "Elfhelm",
       "type": "ally",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -10753,7 +10763,7 @@
       "name": "Elladan",
       "type": "ally",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -10761,7 +10771,7 @@
       "name": "Elrohir",
       "type": "ally",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -10769,7 +10779,7 @@
       "name": "Orc Disguise",
       "type": "attachment",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -10777,7 +10787,7 @@
       "name": "Captains of the West",
       "type": "event",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -10785,7 +10795,7 @@
       "name": "Gúthwinë",
       "type": "attachment",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -10801,7 +10811,7 @@
       "name": "Raise the Shire",
       "type": "event",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {

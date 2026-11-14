@@ -949,6 +949,11 @@ export function canPlay(
   if (treasonProblem) return treasonProblem;
   const landShadowProblem = LandShadowPlayers.landShadowPlayerPlayProblem(s, u);
   if (landShadowProblem) return landShadowProblem;
+  const mountainFireProblem = MountainFirePlayers.mountainFirePlayerPlayProblem(
+    s,
+    u,
+  );
+  if (mountainFireProblem) return mountainFireProblem;
   const wainProblem = WainPlayers.wainridersPlayerEventProblem(s, c.code);
   if (wainProblem) return wainProblem;
   const isengardProblem = Isengard.isengardEventProblem(s, c.code);
@@ -1549,6 +1554,7 @@ export function resolvePlayerCard(
   if (played) Voyage.voyagePlayerCardPlayed(s, c);
   if (played) cityPlayerCardPlayed(s, c);
   if (played) haradPlayerCardPlayed(s, c);
+  if (played) MountainFirePlayers.mountainFirePlayerCardPlayed(s, c);
   log(s, `${played ? "Played" : "Put into play"} ${c.name}.`, "good");
   if (
     c.type_code === "attachment" &&
@@ -1732,6 +1738,7 @@ export function handlePlayerEventAbilityEffect(
     !WainPlayers.wainridersPlayerEvent(s, physical.code) &&
     !TreasonPlayers.treasonPlayerEvent(s, physical.code) &&
     !LandShadowPlayers.landShadowPlayerEvent(s, physical.code) &&
+    !MountainFirePlayers.mountainFirePlayerEvent(s, physical.code) &&
     !WrathPlayers.wrathRuinPlayerEvent(
       s,
       physical.code,
@@ -2186,15 +2193,20 @@ function printedAbilities(s: GameState, u: Unit) {
     ];
   if (s.hand.some((x) => x.id === u.id)) {
     const bloodHandLabel = bloodPlayerHandAbilityLabel(u.code);
+    const mountainFireHandLabel =
+      MountainFirePlayers.mountainFirePlayerHandAbilityLabel(u.code);
     const label =
       Angmar.angmarAbilityLabel(u.code) ??
       bloodHandLabel ??
+      mountainFireHandLabel ??
       redhornPlayerHandAbilityLabel(u.code);
     const problem = Angmar.angmarAbilityLabel(u.code)
       ? Angmar.angmarAbilityProblem(s, u)
       : bloodHandLabel
         ? bloodPlayerHandAbilityProblem(s, u)
-        : redhornPlayerHandAbilityProblem(s, u);
+        : mountainFireHandLabel
+          ? MountainFirePlayers.mountainFirePlayerHandAbilityProblem(s, u)
+          : redhornPlayerHandAbilityProblem(s, u);
     return label
       ? [
           {
@@ -3239,6 +3251,10 @@ export function applyAction(input: GameState, action: Action): GameState {
               !action.attachmentId &&
                 (Angmar.useAngmarAbility(s, handUnit) ||
                   useBloodPlayerHandAbility(s, handUnit) ||
+                  MountainFirePlayers.useMountainFirePlayerHandAbility(
+                    s,
+                    handUnit,
+                  ) ||
                   useRedhornPlayerHandAbility(s, handUnit)),
               "This card has no action from hand.",
             );

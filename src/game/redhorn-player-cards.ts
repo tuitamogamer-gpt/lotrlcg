@@ -40,6 +40,7 @@ import {
 } from "./board";
 import { hasResourceIcon } from "./expansion-passives";
 import { isSacked } from "./carrock";
+import { titleInPlay } from "./mountain-fire-player-support";
 import {
   allActiveLocations,
   allCharacters,
@@ -222,17 +223,10 @@ export function redhornPlayerStats(s: GameState, u: Unit) {
     will: 0,
     attack:
       countBonus +
-      (u.code === "04028" &&
-      !u.blanked &&
-      allHeroes(s).some((v) => v.code === "04001")
-        ? 2
-        : 0),
+      (u.code === "04028" && !u.blanked && titleInPlay(s, "Elrohir") ? 2 : 0),
+    // "While Elladan is in play": the hero or The Mountain of Fire's ally.
     defense:
-      u.code === "04001" &&
-      !u.blanked &&
-      allHeroes(s).some((v) => v.code === "04028")
-        ? 2
-        : 0,
+      u.code === "04001" && !u.blanked && titleInPlay(s, "Elladan") ? 2 : 0,
   };
 }
 export function redhornPlayerAttackBonus(

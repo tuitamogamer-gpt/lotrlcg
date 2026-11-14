@@ -617,6 +617,18 @@ export function handle(s: GameState, e: Effect) {
   }
 }
 
+/**
+ * The engagement cost an enemy checks with against the active player's
+ * threat: Orc Disguise adds 5 for an Orc during that check only.
+ */
+const checkCost = (s: GameState, u: Unit) =>
+  engagementCost(s, u) +
+  MountainFirePlayers.mountainFirePlayerEngagementCheckBonus(
+    s,
+    u,
+    activeSeat(s),
+  );
+
 function handleEffect(s: GameState, e: Effect) {
   if (e.kind === "playerAttackContextEnd") {
     const context = s.playerAttackContexts?.at(-1);
@@ -2150,6 +2162,7 @@ function handleEffect(s: GameState, e: Effect) {
         }
       });
       passives.push(...WrathPlayers.wrathRuinPlayerRoundEnd(s));
+      forced.push(...MountainFirePlayers.mountainFirePlayerRoundEnd(s));
       prepend(s, ...passives, ...forced, fx("endRoundAfterCollector"));
       break;
     }
@@ -2299,7 +2312,13 @@ function handleEffect(s: GameState, e: Effect) {
               activeSeat(s),
             ) &&
             !longDarkPlayerIgnoreEngagement(s, u) &&
-            engagementCost(s, u) <= effectiveThreat(s, i),
+            engagementCost(s, u) +
+              MountainFirePlayers.mountainFirePlayerEngagementCheckBonus(
+                s,
+                u,
+                i,
+              ) <=
+              effectiveThreat(s, i),
         ),
       );
       if (eligible)
@@ -2359,9 +2378,9 @@ function handleEffect(s: GameState, e: Effect) {
               activeSeat(s),
             ) &&
             !longDarkPlayerIgnoreEngagement(s, u) &&
-            engagementCost(s, u) <= effectiveThreat(s),
+            checkCost(s, u) <= effectiveThreat(s),
         )
-        .sort((a, b) => engagementCost(s, b) - engagementCost(s, a))[0];
+        .sort((a, b) => checkCost(s, b) - checkCost(s, a))[0];
       if (enemy && !s.table?.seats[activeSeat(s)].eliminated) engage(s, enemy);
       break;
     }

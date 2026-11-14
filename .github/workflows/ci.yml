@@ -1086,6 +1086,8 @@ jobs:
             suite: test:browser-land-shadow-players
           - group: flame-west-players
             suite: test:browser-flame-west-players
+          - group: mountain-fire-players
+            suite: test:browser-mountain-fire-players
           - group: hobbit-players
             suite: test:browser-hobbit-players
           - group: otd-players
