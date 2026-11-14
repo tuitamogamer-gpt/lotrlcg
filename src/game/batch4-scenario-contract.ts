@@ -17,6 +17,8 @@ export interface Batch4ScenarioHooks {
   archeryTargets?(s: GameState, characters: Unit[]): Unit[] | undefined;
   /** After damage is healed from a unit. */
   healed?(s: GameState, u: Unit, amount: number): void;
+  /** The most damage that can be healed from this unit now (a per-round cap). */
+  healLimit?(s: GameState, u: Unit): number | undefined;
   threatRaised?(s: GameState, player: number, amount: number): void;
   threatEliminationReduction?(s: GameState, player: number): number;
   cannotHeal?(s: GameState, unit: Unit): boolean;

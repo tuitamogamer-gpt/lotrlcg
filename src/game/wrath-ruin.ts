@@ -531,9 +531,10 @@ export function wrathRuinEffect(s: GameState, e: Effect) {
       if (!stageLive(s)) break;
       if (s.stage === 2) {
         if (controlled(s).some((u) => u.code === W.gate)) {
-          win(s);
-          s.reason =
-            "The fellowship holds the Gate of Dorwinion and drives Ulchor’s army from the city.";
+          win(
+            s,
+            "The fellowship holds the Gate of Dorwinion and drives Ulchor’s army from the city.",
+          );
         }
         break;
       }

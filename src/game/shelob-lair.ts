@@ -195,9 +195,10 @@ function advance(s: GameState) {
   if (q.currentQuest === SL.betrayal) {
     // 3B: not unless both Shelob and Gollum are in the victory display.
     if (!inVictory(s, SL.shelob) || !inVictory(s, SL.gollum)) return true;
-    win(s);
-    s.reason =
-      "Gollum's Betrayal is defeated with Shelob and Gollum in the victory display: Frodo escapes Shelob's Lair, and the players win the game.";
+    win(
+      s,
+      "Gollum's Betrayal is defeated with Shelob and Gollum in the victory display: Frodo escapes Shelob's Lair, and the players win the game.",
+    );
     return true;
   }
   q.advancing = true;

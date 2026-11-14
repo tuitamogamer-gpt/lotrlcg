@@ -1288,9 +1288,10 @@ export const GREY_COMPANY_HOOKS: Batch4ScenarioHooks = {
   explored: (s, u) => {
     const q = s.greyCompany;
     if (!q || u.code !== GC.stone || q.currentQuest !== GC.following) return;
-    win(s);
-    s.reason =
-      "The Stone of Erech is explored: the Dead are summoned to the Stone, and the players win the game.";
+    win(
+      s,
+      "The Stone of Erech is explored: the Dead are summoned to the Stone, and the players win the game.",
+    );
   },
   effect: greyCompanyEffect,
   sharedEffect: (e) =>

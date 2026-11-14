@@ -1029,8 +1029,10 @@ export const LAKE_TOWN_HOOKS: Batch4ScenarioHooks = {
     const vp = s.victory,
       burned = lakeTownDamage(s);
     if (vp > burned) {
-      win(s);
-      s.reason = `Smaug is defeated: ${plural(vp, "victory point")} outweigh the ${burned} damage on Lake-town, and the town is saved.`;
+      win(
+        s,
+        `Smaug is defeated: ${plural(vp, "victory point")} outweigh the ${burned} damage on Lake-town, and the town is saved.`,
+      );
     } else {
       s.status = "lost";
       s.reason = `Smaug is defeated, but Lake-town has ${burned} damage against ${plural(vp, "victory point")}: Lake-town has burned and the players have lost.`;

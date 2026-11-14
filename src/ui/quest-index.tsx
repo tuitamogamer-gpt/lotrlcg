@@ -135,6 +135,10 @@ const HEADLINES: Partial<
     lead: "Take the Paths of the Dead",
     em: "to the Stone of Erech.",
   },
+  "the-siege-of-gondor": {
+    lead: "Fall upon the Corsairs",
+    em: "at Pelargir.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

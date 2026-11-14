@@ -189,9 +189,10 @@ function advance(s: GameState) {
   if (at(s, POM.across) && victoryLocations(s).length < POM_VICTORY_LOCATIONS)
     return true;
   if (q.currentQuest === POM.lights) {
-    win(s);
-    s.reason =
-      '"Don\'t Look at the Lights!" is defeated with Sméagol as guide: the hobbits cross the Dead Marshes, and the players win the game.';
+    win(
+      s,
+      '"Don\'t Look at the Lights!" is defeated with Sméagol as guide: the hobbits cross the Dead Marshes, and the players win the game.',
+    );
     return true;
   }
   q.advancing = true;

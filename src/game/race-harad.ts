@@ -122,7 +122,7 @@ export function raceHaradAdvance(s: GameState) {
   if (s.progress < ([0, 15, 20, 20][s.stage - 1])) return true;
   if (s.stage === 4 && stageLive(s) && [...s.staging, ...allActiveLocations(s), ...q.area].some((u) => u.code === R.river)) return true;
   if (questDefeated(s, q.currentQuest)) return true;
-  if (s.stage === 4) { win(s); s.reason = "The Oliphaunts cross the river Harnen and escape their pursuers."; }
+  if (s.stage === 4) { win(s, "The Oliphaunts cross the river Harnen and escape their pursuers."); }
   else { q.advancing = true; prepend(s, fx("raceHaradAdvance", { player: firstPlayer(s) })); }
   return true;
 }

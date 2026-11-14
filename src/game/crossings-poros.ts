@@ -154,9 +154,10 @@ export function crossingsPorosCombatEnd(s: GameState) {
   )
     return;
   if (questDefeated(s, P.battle)) return;
-  win(s);
-  s.reason =
-    "The attack on the Crossings of Poros is repelled. The refugees cross safely into Gondor.";
+  win(
+    s,
+    "The attack on the Crossings of Poros is repelled. The refugees cross safely into Gondor.",
+  );
 }
 export function crossingsPorosStats(s: GameState, u: Unit) {
   const boss = live(s) && u.code === P.serpent && !u.blanked ? s.stage : 0,

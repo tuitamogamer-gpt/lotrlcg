@@ -763,10 +763,12 @@ export function tlmEffect(s: GameState, e: Effect): boolean {
     }
     case "tlmVictory":
       q.advancing = false;
-      win(s);
-      s.reason = q.treasures.length
-        ? `Smaug is driven off and the heroes discover ${q.treasures.map((c) => card(c).name).join(", ")}.`
-        : "Smaug is driven off from the Lonely Mountain.";
+      win(
+        s,
+        q.treasures.length
+          ? `Smaug is driven off and the heroes discover ${q.treasures.map((c) => card(c).name).join(", ")}.`
+          : "Smaug is driven off from the Lonely Mountain.",
+      );
       return true;
     case "tlmTreachery":
       treachery(s, e);

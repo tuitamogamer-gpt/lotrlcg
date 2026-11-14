@@ -74,6 +74,10 @@ import {
   GREY_COMPANY_ENCOUNTERS,
   GREY_COMPANY_QUESTS,
 } from "./grey-company-scenario-data";
+import {
+  SIEGE_GONDOR_ENCOUNTERS,
+  SIEGE_GONDOR_QUESTS,
+} from "./siege-gondor-scenario-data";
 import hobbitPlayers from "../data/hobbit-player-cards.json";
 import blackRidersPlayers from "../data/black-riders-player-cards.json";
 import roadDarkensPlayers from "../data/road-darkens-player-cards.json";
@@ -575,6 +579,7 @@ export const encounterCards = [
       ...CROSS_ROADS_ENCOUNTERS,
       ...SHELOB_LAIR_ENCOUNTERS,
       ...GREY_COMPANY_ENCOUNTERS,
+      ...SIEGE_GONDOR_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -671,6 +676,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...CROSS_ROADS_QUESTS,
     ...SHELOB_LAIR_QUESTS,
     ...GREY_COMPANY_QUESTS,
+    ...SIEGE_GONDOR_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -808,6 +814,7 @@ export const SCRIPTED = new Set(
     ...CROSS_ROADS_QUESTS,
     ...SHELOB_LAIR_QUESTS,
     ...GREY_COMPANY_QUESTS,
+    ...SIEGE_GONDOR_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

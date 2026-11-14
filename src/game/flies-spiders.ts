@@ -695,9 +695,10 @@ export function fasEffect(s: GameState, e: Effect): boolean {
       const stage = fasStageNumber(s);
       if (stage === 4) {
         q.treasures = [OTD_RING];
-        win(s);
-        s.reason =
-          "The spiders are beaten off and the Dwarves are cut free. The company has discovered the treasure card Bilbo's Magic Ring.";
+        win(
+          s,
+          "The spiders are beaten off and the Dwarves are cut free. The company has discovered the treasure card Bilbo's Magic Ring.",
+        );
         return true;
       }
       if (stage === 1) {

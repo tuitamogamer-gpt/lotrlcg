@@ -327,9 +327,10 @@ export function massingEffect(s: GameState, e: Effect): boolean {
     case "massingNextStage": {
       q.advancing = false;
       if (s.stage >= MASSING_QUESTS.length) {
-        win(s);
-        s.reason =
-          "The heroes outrun the horde across the Pelennor Fields and reach the gates of Minas Tirith.";
+        win(
+          s,
+          "The heroes outrun the horde across the Pelennor Fields and reach the gates of Minas Tirith.",
+        );
         break;
       }
       s.stage++;

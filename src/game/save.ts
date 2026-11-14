@@ -49,6 +49,7 @@ import {
   greyCompanyUnits,
   validateGreyCompany,
 } from "./grey-company-support";
+import { siegeGondorUnits, validateSiegeGondor } from "./siege-gondor-support";
 import { validateHideTest } from "./hide-test";
 import { validateAsh, ashExtraUnits } from "./ash-mountains-support";
 import { validateAshPlayers } from "./ash-mountains-player";
@@ -423,6 +424,9 @@ export function validateSave(
       (c.slDiscardOnKill === undefined ||
         typeof c.slDiscardOnKill === "boolean") &&
       (c.gcNoPhantom === undefined || typeof c.gcNoPhantom === "boolean") &&
+      [c.sgPort, c.sgPirate, c.sgRaiding].every(
+        (flag) => flag === undefined || typeof flag === "boolean",
+      ) &&
       (c.fbVictims === undefined ||
         (Array.isArray(c.fbVictims) &&
           c.fbVictims.every((n) => Number.isInteger(n) && n >= 0))) &&
@@ -1006,6 +1010,7 @@ export function validateSave(
         !validateCrossRoads(s, validUnit as (v: unknown) => boolean) ||
         !validateShelobLair(s, validUnit as (v: unknown) => boolean) ||
         !validateGreyCompany(s, validUnit as (v: unknown) => boolean) ||
+        !validateSiegeGondor(s, validUnit as (v: unknown) => boolean) ||
         !validateLandSorrow(s, validUnit as (v: unknown) => boolean) ||
         !validateAsh(s, validUnit as (v: unknown) => boolean) ||
         !validateWainriders(s, validUnit as (v: unknown) => boolean, (c) =>
@@ -1738,6 +1743,7 @@ export function validateSave(
       ...crossRoadsUnits(s),
       ...shelobLairUnits(s),
       ...greyCompanyUnits(s),
+      ...siegeGondorUnits(s),
       ...(s.fortressNurnPlayers?.contracts.map((c) => c.unit) ?? []),
       ...(s.landSorrowPlayers?.contracts.flatMap((c) =>
         c.unit ? [c.unit] : [],

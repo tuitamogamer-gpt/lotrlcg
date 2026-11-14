@@ -1315,11 +1315,13 @@ export function check(s: GameState) {
   syncSeat(s);
 }
 
-export function win(s: GameState) {
+/** The players win; a scenario passes its own victory text as the reason. */
+export function win(s: GameState, reason?: string) {
   if (s.status !== "playing") return;
   s.status = "won";
   s.reason =
-    s.scenarioId === "deadmens-dike"
+    reason ??
+    (s.scenarioId === "deadmens-dike"
       ? "Thaurdir is overcome. Your fellowship and Iârion escape the haunted ruins of Fornost."
       : s.scenarioId === "the-weather-hills"
         ? "The Orc counter-attack is broken. Your fellowship survives the storm and clears Amon Forn."
@@ -1374,8 +1376,11 @@ export function win(s: GameState) {
                                                     : s.scenarioId ===
                                                         "flight-from-moria"
                                                       ? "Your fellowship finds an exit and escapes the darkness of Moria."
-                                                      : "The prisoner is free, the Nazgûl defeated, and your fellowship has escaped Dol Guldur.";
-  if (s.ulfast)
+                                                      : s.scenarioId ===
+                                                          "dol-guldur"
+                                                        ? "The prisoner is free, the Nazgûl defeated, and your fellowship has escaped Dol Guldur."
+                                                        : "The players win the game.");
+  if (s.ulfast && reason === undefined)
     s.reason = "Your fellowship defeats the City Guard and escapes Ulfast.";
   s.choice = null;
   s.queue = [];

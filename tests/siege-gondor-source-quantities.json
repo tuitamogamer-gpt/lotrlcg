@@ -1,0 +1,100 @@
+[
+  {
+    "name": "Black Sails",
+    "code": "octgn:1600dd03-7b19-4dd2-924c-30c30b09cb9d",
+    "set": "26/32",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Corsair Captain",
+    "code": "octgn:87464aa2-e890-4151-8a93-55c2be3e44b2",
+    "set": "14/32",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Corsair Dromon",
+    "code": "octgn:9c6c003c-b9c7-4240-9e59-414d31b4be3c",
+    "set": "6/32",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Corsair of Umbar",
+    "code": "octgn:22c55625-210c-4843-81ee-d8d6430885b0",
+    "set": "16/32",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Driven to the Brink",
+    "code": "octgn:1db13c26-879b-49cd-9f94-8ba1a0c4f5a4",
+    "set": "31/32",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Fell Folk of Umbar",
+    "code": "octgn:a7ac2b78-52a7-4bd9-b37f-3d424876c7d8",
+    "set": "24/32",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Great Corsair Ship",
+    "code": "octgn:83dd1a59-118c-468d-a47e-e472b066ff3e",
+    "set": "2/32",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Haradrim Pirate",
+    "code": "octgn:2c3f8a11-c7a5-4709-ab8d-7435763f558b",
+    "set": "21/32",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Pelargir Quays",
+    "code": "octgn:2251670c-c03c-4fd7-9621-c179c9ce79f8",
+    "set": "12/32",
+    "normal": 2,
+    "easy": 0
+  },
+  {
+    "name": "Port of Pelargir",
+    "code": "octgn:688d04e8-80d8-4ea8-9274-0712f26fac9b",
+    "set": "9/32",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Raiding the Coasts",
+    "code": "octgn:a7a8a783-8a22-49fd-a1b7-42e92a44f78c",
+    "set": "29/32",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "The Corsair Fleet",
+    "code": "octgn:0140d146-771e-4f19-9de8-d7cf0b4d8268",
+    "set": "1/32",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Umbar Pirate Crew",
+    "code": "octgn:8d3c19e0-28f2-4a3d-91b2-8e9911ac4c91",
+    "set": "19/32",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Umbar War Galley",
+    "code": "octgn:f3ffbb95-5024-41d4-b783-d5fbff5bfa32",
+    "set": "3/32",
+    "normal": 3,
+    "easy": 3
+  }
+]

@@ -216,6 +216,7 @@ export function rhosgobelHeal(
     target.damage,
     Math.max(0, value),
     target.code === RHOS.wilyador ? 5 : Infinity,
+    batch4Scenario(s).healLimit?.(s, target) ?? Infinity,
   );
   if (!amount) return 0;
   target.damage -= amount;

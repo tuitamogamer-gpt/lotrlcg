@@ -366,9 +366,10 @@ export function witheredHeathHostLeaves(
     scoreSign(s, g.sign);
   q.guards = q.guards.filter((g) => g.guardId !== u.id);
   if (u.code === H.drake && defeated && s.stage === 4) {
-    win(s);
-    s.reason =
-      "The Cold-Drake is defeated. The heroes can continue their hunt for Dagnir.";
+    win(
+      s,
+      "The Cold-Drake is defeated. The heroes can continue their hunt for Dagnir.",
+    );
   }
 }
 export function witheredHeathAttackFinished(

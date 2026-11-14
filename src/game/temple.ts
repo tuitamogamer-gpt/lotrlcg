@@ -191,9 +191,10 @@ export function templeProgressLocation(s: GameState, u: Unit, value: number) {
   const before = u.progress;
   u.progress += Math.max(0, value);
   if (u.code === T.grotto && !u.blanked && before < 8 && u.progress >= 8) {
-    win(s);
-    s.reason =
-      "The eighth progress is placed on The Grotto's Entrance. The sunken ruins are found.";
+    win(
+      s,
+      "The eighth progress is placed on The Grotto's Entrance. The sunken ruins are found.",
+    );
   }
   return true;
 }
@@ -204,9 +205,10 @@ export function templeCheck(s: GameState) {
     (u) => u.code === T.grotto && !u.blanked && u.progress >= 8,
   );
   if (grotto && s.status === "playing") {
-    win(s);
-    s.reason =
-      "The eighth progress is placed on The Grotto's Entrance. The sunken ruins are found.";
+    win(
+      s,
+      "The eighth progress is placed on The Grotto's Entrance. The sunken ruins are found.",
+    );
   }
 }
 

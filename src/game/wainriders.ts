@@ -220,8 +220,7 @@ function finishTest(s: GameState, passed: boolean) {
   q.currentQuest = WAINRIDERS_QUESTS[s.stage - 1].code;
   s.progress = q.progress[s.stage - 1] + (passed ? t.excess : 0);
   if (q.challengerSteps === 12) {
-    win(s);
-    s.reason = "The challengers complete two circuits and win their freedom.";
+    win(s, "The challengers complete two circuits and win their freedom.");
     return;
   }
   log(

@@ -585,9 +585,10 @@ export const SHADOW_PAST_HOOKS: Batch4ScenarioHooks = {
   explored: (s, u) => {
     if (!s.shadowPast) return;
     if (u.code === SP.ferry) {
-      win(s);
-      s.reason =
-        "Bucklebury Ferry is explored: the hobbits cross the Brandywine and escape the Black Riders.";
+      win(
+        s,
+        "Bucklebury Ferry is explored: the hobbits cross the Brandywine and escape the Black Riders.",
+      );
     } else if (u.code === SP.bagEnd && !u.blanked)
       prepend(s, fx("spBagEnd", { player: firstPlayer(s) }));
   },

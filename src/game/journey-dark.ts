@@ -159,9 +159,10 @@ function advance(s: GameState) {
   if (s.stage === 3) {
     // 3B: the stage cannot be defeated while The Great Bridge is in play.
     if (inPlay(s, JD.bridge)) return true;
-    win(s);
-    s.reason =
-      "The Bridge of Khazad-dûm is defeated: the Company of the Ring escapes the Mines of Moria.";
+    win(
+      s,
+      "The Bridge of Khazad-dûm is defeated: the Company of the Ring escapes the Mines of Moria.",
+    );
     return true;
   }
   q.advancing = true;

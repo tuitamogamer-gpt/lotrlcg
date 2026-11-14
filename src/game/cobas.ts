@@ -245,8 +245,7 @@ export function cobasAdvance(s: GameState) {
       (s.progress >= (cobasStageInfo(s)?.quest ?? Infinity) ||
         (s.victoryCards ?? []).includes(C.flagship))
     ) {
-      win(s);
-      s.reason = "Your fleet breaks the Corsair blockade of Cobas Haven.";
+      win(s, "Your fleet breaks the Corsair blockade of Cobas Haven.");
     }
     return true;
   }

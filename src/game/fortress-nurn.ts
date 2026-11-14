@@ -356,9 +356,10 @@ function check(s: GameState) {
     !s.stageRevealing &&
     (s.victoryCards ?? []).includes(N.ulchor)
   ) {
-    win(s);
-    s.reason =
-      "Thane Ulchor falls in the great hall of Dol Rhugar, and his fortress is broken.";
+    win(
+      s,
+      "Thane Ulchor falls in the great hall of Dol Rhugar, and his fortress is broken.",
+    );
   }
 }
 function threatBonus(s: GameState, u: Unit) {

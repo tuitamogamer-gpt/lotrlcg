@@ -137,9 +137,10 @@ export function advanceFordsIsen(s: GameState) {
   if (s.stage === 3 && enemies(s).length) return true;
   if (questDefeated(s, mainQuestCode(s)!)) return true;
   if (s.stage === 3) {
-    win(s);
-    s.reason =
-      "Gríma is safe and the Dunlendings are defeated. The Fords of Isen hold.";
+    win(
+      s,
+      "Gríma is safe and the Dunlendings are defeated. The Fords of Isen hold.",
+    );
     return true;
   }
   s.stage++;

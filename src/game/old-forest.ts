@@ -176,9 +176,10 @@ function advance(s: GameState) {
   if (goal <= 0 || s.progress < goal) return true;
   // Withywindle: the players cannot win the game while it is in play.
   if (withywindleInPlay(s)) return true;
-  win(s);
-  s.reason =
-    "The Wicked Willow is defeated: the hobbits escape Old Man Willow and the Old Forest.";
+  win(
+    s,
+    "The Wicked Willow is defeated: the hobbits escape Old Man Willow and the Old Forest.",
+  );
   return true;
 }
 /** "Search the encounter deck and discard pile for ...": one option per card and zone. */

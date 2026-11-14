@@ -137,9 +137,7 @@ export function advanceCatchOrc(s: GameState) {
   )
     return true;
   if (questDefeated(s, mainQuestCode(s)!)) return true;
-  win(s);
-  s.reason =
-    "Mugash is captured. You carry the Wizard's prize back to Isengard.";
+  win(s, "Mugash is captured. You carry the Wizard's prize back to Isengard.");
   return true;
 }
 export const catchProgressBlocked = (s: GameState) =>

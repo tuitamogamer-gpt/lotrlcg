@@ -1046,8 +1046,7 @@ export function dreadEffect(s: GameState, e: Effect) {
       break;
     case "dreadEscape":
       if (!locations(s).length) {
-        win(s);
-        s.reason = "You have escaped Carn Dûm.";
+        win(s, "You have escaped Carn Dûm.");
       } else
         prepend(
           s,

@@ -289,6 +289,7 @@ export type ScenarioId =
   | "journey-to-the-cross-roads"
   | "shelobs-lair"
   | "the-passing-of-the-grey-company"
+  | "the-siege-of-gondor"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -473,6 +474,7 @@ export interface GameState {
   crossRoads?: import("./cross-roads-types").CrossRoadsState;
   shelobLair?: import("./shelob-lair-types").ShelobLairState;
   greyCompany?: import("./grey-company-types").GreyCompanyState;
+  siegeGondor?: import("./siege-gondor-types").SiegeGondorState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -880,6 +882,12 @@ export interface GameState {
     slDiscardOnKill?: boolean;
     /** The Passing of the Grey Company: Faithless Dead's shadow, the attacking enemy loses Phantom for this attack. */
     gcNoPhantom?: boolean;
+    /** The Siege of Gondor: Port of Pelargir's shadow, a character this attack damages cannot ready. */
+    sgPort?: boolean;
+    /** The Siege of Gondor: Haradrim Pirate's shadow, -1 defense for each damage on the defender. */
+    sgPirate?: boolean;
+    /** The Siege of Gondor: Raiding the Coasts' shadow, an attachment is discarded if a character is destroyed. */
+    sgRaiding?: boolean;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

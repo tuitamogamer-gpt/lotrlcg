@@ -183,9 +183,10 @@ function stageAdvance(s: GameState) {
     s.progress >= 25
   ) {
     if (s.stage === 2) {
-      win(s);
-      s.reason =
-        "The fellowship emerges from Torech Gorgor before its supplies run out.";
+      win(
+        s,
+        "The fellowship emerges from Torech Gorgor before its supplies run out.",
+      );
     } else {
       q.advancing = true;
       prepend(s, fx("ashDefeatQuest", { player: firstPlayer(s) }));

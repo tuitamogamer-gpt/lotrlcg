@@ -177,9 +177,10 @@ function advance(s: GameState) {
   if (goal <= 0 || s.progress < goal) return true;
   // Saruman's Staff: while Saruman has any hit points remaining, the players cannot win.
   if (staffLive(s) && sarumanHitPoints(s) > 0) return true;
-  win(s);
-  s.reason =
-    "The Voice of Saruman is defeated and Saruman has no hit points remaining: the Ents hold Isengard, and the players win the game.";
+  win(
+    s,
+    "The Voice of Saruman is defeated and Saruman has no hit points remaining: the Ents hold Isengard, and the players win the game.",
+  );
   return true;
 }
 

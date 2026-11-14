@@ -496,9 +496,10 @@ export function ommEffect(s: GameState, e: Effect): boolean {
     case "ommNextStage":
       q.advancing = false;
       if (s.stage >= OMM_QUESTS.length) {
-        win(s);
-        s.reason =
-          "The Great Goblin is slain and the company escapes Goblin Town into the dark beneath the mountains.";
+        win(
+          s,
+          "The Great Goblin is slain and the company escapes Goblin Town into the dark beneath the mountains.",
+        );
         break;
       }
       s.stage = 3;

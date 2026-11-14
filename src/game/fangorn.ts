@@ -386,8 +386,7 @@ export function fangornEffect(s: GameState, e: Effect): boolean {
       }
       delete q.progressTrigger;
       if (e.value === 0) {
-        win(s);
-        s.reason = "You escape Fangorn with Mugash in custody.";
+        win(s, "You escape Fangorn with Mugash in custody.");
         break;
       }
       s.stage = e.value!;

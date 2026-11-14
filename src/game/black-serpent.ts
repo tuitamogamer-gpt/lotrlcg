@@ -216,9 +216,10 @@ export function blackSerpentAdvance(s: GameState) {
     return true;
   if (questDefeated(s, q.currentQuest)) return true;
   if (s.stage === 3) {
-    win(s);
-    s.reason =
-      "The fellowship has seized the Serpent’s banner, garb and summons for the road to Cirith Gurat.";
+    win(
+      s,
+      "The fellowship has seized the Serpent’s banner, garb and summons for the road to Cirith Gurat.",
+    );
   } else {
     q.advancing = true;
     prepend(s, fx("blackSerpentAdvance", { player: firstPlayer(s) }));

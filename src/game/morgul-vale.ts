@@ -124,9 +124,10 @@ export function advanceMorgulVale(s: GameState) {
     return true;
   if (questDefeated(s, mainQuestCode(s)!)) return true;
   if (s.stage === 3) {
-    win(s);
-    s.reason =
-      "The three Captains are defeated. Faramir is rescued before reaching Minas Morgul.";
+    win(
+      s,
+      "The three Captains are defeated. Faramir is rescued before reaching Minas Morgul.",
+    );
     return true;
   }
   s.stage++;

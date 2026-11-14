@@ -116,8 +116,7 @@ export function fireNightCheck(s: GameState) {
     if (s.flow) s.flow.pending = null;
     log(s, s.reason, "danger");
   } else if ((dagnir(s)?.damage ?? 0) >= 20) {
-    win(s);
-    s.reason = "Dagnir retreats into the night. Hrogar’s Hill is saved.";
+    win(s, "Dagnir retreats into the night. Hrogar’s Hill is saved.");
   }
 }
 export function fireNightHillDamage(s: GameState, amount: number) {

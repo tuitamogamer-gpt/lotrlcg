@@ -43,7 +43,7 @@ export function beneathSandsAdvance(s: GameState) {
   if (!q.initialized || q.advancing || s.stageRevealing || s.phase === "setup" || s.status !== "playing") return true;
   if (s.progress < 5 || (stageLive(s, 3) && enemies(s).some((u) => u.code === B.broodMother))) return true;
   if (questDefeated(s, q.currentQuest)) return true;
-  if (s.stage === 3) { win(s); s.reason = "The Brood Mother is defeated and the missing companions are rescued from the spiders’ hive."; }
+  if (s.stage === 3) { win(s, "The Brood Mother is defeated and the missing companions are rescued from the spiders’ hive."); }
   else { q.advancing = true; prepend(s, fx("beneathSandsAdvance", { player: firstPlayer(s) })); }
   return true;
 }

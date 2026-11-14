@@ -158,9 +158,7 @@ export function umbarAdvance(s: GameState) {
     return true;
   if (questDefeated(s, q.currentQuest)) return true;
   if (s.stage === 2) {
-    win(s);
-    s.reason =
-      "The city guard is defeated. Your fellowship escapes from Umbar.";
+    win(s, "The city guard is defeated. Your fellowship escapes from Umbar.");
   } else {
     q.advancing = true;
     prepend(s, fx("umbarAdvance", { player: firstPlayer(s) }));

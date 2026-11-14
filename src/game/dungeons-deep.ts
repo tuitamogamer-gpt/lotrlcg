@@ -272,9 +272,10 @@ export function ddcdEffect(s: GameState, e: Effect): boolean {
     case "ddcdNextStage":
       q.advancing = false;
       if (s.stage === 3) {
-        win(s);
-        s.reason =
-          "Rescued by the Eagles from the wargs' burning pines, the company escapes the Misty Mountains with Bilbo and his ring.";
+        win(
+          s,
+          "Rescued by the Eagles from the wargs' burning pines, the company escapes the Misty Mountains with Bilbo and his ring.",
+        );
         break;
       }
       s.stage = 3;

@@ -155,9 +155,10 @@ export function wildsKingsEnemyLeaves(
   destruction = true,
 ) {
   if (wildsKings(s) && u.code === W.drake && s.stage === 3 && destruction) {
-    win(s);
-    s.reason =
-      "The Fire-drake is defeated, securing a new home for the Haradrim in Dale.";
+    win(
+      s,
+      "The Fire-drake is defeated, securing a new home for the Haradrim in Dale.",
+    );
   }
 }
 export function wildsKingsAttackDeclared(

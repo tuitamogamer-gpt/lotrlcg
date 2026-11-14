@@ -292,11 +292,12 @@ export function voyageAdvance(s: GameState) {
       !s.queue.length &&
       (s.progress >= 10 || ![...s.staging, ...allEngaged(s)].some(shipEnemy))
     ) {
-      win(s);
-      s.reason =
+      win(
+        s,
         s.progress >= 10
           ? "Your fleet loses the Corsair pursuers and completes the voyage."
-          : "Your fleet defeats the Corsair pursuers and completes the voyage.";
+          : "Your fleet defeats the Corsair pursuers and completes the voyage.",
+      );
     }
     return true;
   }

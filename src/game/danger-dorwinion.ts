@@ -188,9 +188,10 @@ export function dangerDorwinionCheck(s: GameState) {
   const q = s.dangerDorwinion;
   if (!q) return;
   if (q.cultistDefeated && s.status === "playing") {
-    win(s);
-    s.reason =
-      "The leader of the cult is defeated. Dorwinion is free of its hidden enemy.";
+    win(
+      s,
+      "The leader of the cult is defeated. Dorwinion is free of its hidden enemy.",
+    );
     return;
   }
   for (const clue of live(s, D.evidence))

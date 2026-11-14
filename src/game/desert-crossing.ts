@@ -126,9 +126,10 @@ export function desertCrossingAdvance(s: GameState) {
     return true;
   if (questDefeated(s, q.currentQuest)) return true;
   if (s.stage === 3) {
-    win(s);
-    s.reason =
-      "The Were-worms are defeated and the fellowship crosses the desert.";
+    win(
+      s,
+      "The Were-worms are defeated and the fellowship crosses the desert.",
+    );
   } else {
     q.advancing = true;
     prepend(s, fx("desertAdvance", { player: firstPlayer(s) }));

@@ -139,8 +139,7 @@ export function wildsAnduinExplored(s: GameState, u: Unit) {
     wildsAnduinCheck(s);
   }
   if (u.code === W.ford && s.stage === 3) {
-    win(s);
-    s.reason = "The companions have rescued Haldan and crossed the Old Ford.";
+    win(s, "The companions have rescued Haldan and crossed the Old Ford.");
   }
 }
 export function wildsAnduinEnemyDestination(s: GameState, u: Unit) {

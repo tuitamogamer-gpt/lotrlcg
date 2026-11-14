@@ -1369,9 +1369,10 @@ export const RING_SOUTH_HOOKS: Batch4ScenarioHooks = {
     const x = u.damage;
     const p = firstPlayer(s);
     if (live(u, RS.doors)) {
-      win(s);
-      s.reason =
-        "Doors of Durin is explored: the Company of the Ring enters the Mines of Moria.";
+      win(
+        s,
+        "Doors of Durin is explored: the Company of the Ring enters the Mines of Moria.",
+      );
       return;
     }
     const kind = live(u, RS.hill)

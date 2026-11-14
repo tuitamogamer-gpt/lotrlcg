@@ -207,9 +207,10 @@ function advance(s: GameState) {
   )
     return true;
   if (s.stage === 2) {
-    win(s);
-    s.reason =
-      "Race to Rivendell is defeated: the Ring-bearer reaches the Ford of Bruinen and Rivendell.";
+    win(
+      s,
+      "Race to Rivendell is defeated: the Ring-bearer reaches the Ford of Bruinen and Rivendell.",
+    );
     return true;
   }
   q.advancing = true;

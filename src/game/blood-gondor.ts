@@ -161,9 +161,10 @@ export function advanceBloodGondor(s: GameState) {
     return true;
   if (questDefeated(s, mainQuestCode(s)!)) return true;
   if (s.stage === 2) {
-    win(s);
-    s.reason =
-      "You break through the ambush and pursue the captives into the Morgul Vale.";
+    win(
+      s,
+      "You break through the ambush and pursue the captives into the Morgul Vale.",
+    );
     return true;
   }
   s.stage = 2;

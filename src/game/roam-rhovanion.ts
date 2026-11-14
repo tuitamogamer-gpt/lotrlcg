@@ -226,8 +226,7 @@ export function roamRhovanionCheck(s: GameState) {
   if (stageLive(s, R.gambit)) {
     const urdug = enemies(s).find((u) => u.code === R.urdugEnemy);
     if (urdug && urdug.damage >= stats(s, urdug).health) {
-      win(s);
-      s.reason = "Urdug's treachery is defeated and Durin's Key is recovered.";
+      win(s, "Urdug's treachery is defeated and Durin's Key is recovered.");
     }
   }
 }

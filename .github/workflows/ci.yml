@@ -789,6 +789,24 @@ jobs:
           path: output/grey-company-release/failures
           retention-days: 7
 
+  siege-gondor-simulation:
+    name: The Siege of Gondor complete games (26 games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:siege-gondor-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: siege-gondor-simulation
+          path: output/siege-gondor-release/failures
+          retention-days: 7
+
   shelob-lair-simulation:
     name: Shelob's Lair complete games (26 games)
     runs-on: ubuntu-latest
@@ -980,6 +998,8 @@ jobs:
             suite: test:browser-shelob-lair
           - group: grey-company
             suite: test:browser-grey-company
+          - group: siege-gondor
+            suite: test:browser-siege-gondor
           - group: treason-saruman-players
             suite: test:browser-treason-saruman-players
           - group: land-shadow-players

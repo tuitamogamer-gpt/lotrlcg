@@ -1,0 +1,552 @@
+[
+  {
+    "code": "octgn:83dd1a59-118c-468d-a47e-e472b066ff3e",
+    "octgnid": "83dd1a59-118c-468d-a47e-e472b066ff3e",
+    "name": "Great Corsair Ship",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ship.",
+    "text": "X is the number of resources on The Corsair Fleet. The players cannot travel here unless there are at least 3 Ship locations in the victory display. Travel: Each player searches the encounter deck and discard pile for a Corsair enemy and adds it to the staging area. One of those enemies must be Corsair Captain, if able.",
+    "is_unique": true,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 30,
+    "quantity": 1,
+    "threat": 0,
+    "quest": 5,
+    "victory": 5,
+    "encounter_set": "The Siege of Gondor",
+    "printed_stats": {
+      "threat": "X",
+      "quest": "5",
+      "victory": "5"
+    },
+    "imagesrc": "/cards/83dd1a59-118c-468d-a47e-e472b066ff3e.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 30,
+        "quantity": 1,
+        "octgnid": "83dd1a59-118c-468d-a47e-e472b066ff3e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/83dd1a59-118c-468d-a47e-e472b066ff3e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f3ffbb95-5024-41d4-b783-d5fbff5bfa32",
+    "octgnid": "f3ffbb95-5024-41d4-b783-d5fbff5bfa32",
+    "name": "Umbar War Galley",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ship.",
+    "text": "While Umbar War Galley is the active location, each Corsair enemy gets -10 engagement cost. Travel: Shuffle the encounter discard pile into the encounter deck and discard cards from the top until a Corsair enemy is discarded. Add the discarded enemy to the staging area.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 31,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 3,
+    "victory": 3,
+    "encounter_set": "The Siege of Gondor",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3",
+      "victory": "3"
+    },
+    "imagesrc": "/cards/f3ffbb95-5024-41d4-b783-d5fbff5bfa32.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 31,
+        "quantity": 3,
+        "octgnid": "f3ffbb95-5024-41d4-b783-d5fbff5bfa32",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f3ffbb95-5024-41d4-b783-d5fbff5bfa32.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:9c6c003c-b9c7-4240-9e59-414d31b4be3c",
+    "octgnid": "9c6c003c-b9c7-4240-9e59-414d31b4be3c",
+    "name": "Corsair Dromon",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ship.",
+    "text": "While Corsair Dromon is the active location, each Corsair enemy gains Archery 1. Travel: Shuffle the encounter discard pile into the encounter deck and discard cards from the top until a Corsair enemy is discarded. Add the discarded enemy to the staging area.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 32,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 2,
+    "victory": 2,
+    "encounter_set": "The Siege of Gondor",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2",
+      "victory": "2"
+    },
+    "imagesrc": "/cards/9c6c003c-b9c7-4240-9e59-414d31b4be3c.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 32,
+        "quantity": 3,
+        "octgnid": "9c6c003c-b9c7-4240-9e59-414d31b4be3c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9c6c003c-b9c7-4240-9e59-414d31b4be3c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:688d04e8-80d8-4ea8-9274-0712f26fac9b",
+    "octgnid": "688d04e8-80d8-4ea8-9274-0712f26fac9b",
+    "name": "Port of Pelargir",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "City.",
+    "text": "While Port of Pelargir is in the staging area, no more than 1 damage can be healed from each character each round.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 33,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 4,
+    "shadow": "Shadow: If this attack damages a character, that character cannot ready until the end of the round.",
+    "encounter_set": "The Siege of Gondor",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/688d04e8-80d8-4ea8-9274-0712f26fac9b.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 33,
+        "quantity": 3,
+        "octgnid": "688d04e8-80d8-4ea8-9274-0712f26fac9b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/688d04e8-80d8-4ea8-9274-0712f26fac9b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:2251670c-c03c-4fd7-9621-c179c9ce79f8",
+    "octgnid": "2251670c-c03c-4fd7-9621-c179c9ce79f8",
+    "name": "Pelargir Quays",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "City.",
+    "text": "Forced: At the end of the round, place a damage token here. Then, if there are 4 damage tokens here, discard Pelargir Quays and assign 4 damage among characters in play.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 34,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 4,
+    "encounter_set": "The Siege of Gondor",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/2251670c-c03c-4fd7-9621-c179c9ce79f8.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 34,
+        "quantity": 2,
+        "octgnid": "2251670c-c03c-4fd7-9621-c179c9ce79f8",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2251670c-c03c-4fd7-9621-c179c9ce79f8.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:87464aa2-e890-4151-8a93-55c2be3e44b2",
+    "octgnid": "87464aa2-e890-4151-8a93-55c2be3e44b2",
+    "name": "Corsair Captain",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Corsair.",
+    "text": "Cannot be optionally engaged. If the active location is a Ship, Corsair Captain gets -30 engagement cost and gains: \"Forced: When Corsair Captain engages you, it makes an immediate attack.\"",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 35,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 5,
+    "defense": 3,
+    "health": 6,
+    "engagement": 49,
+    "encounter_set": "The Siege of Gondor",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "5",
+      "defense": "3",
+      "health": "6",
+      "engagement": "49"
+    },
+    "imagesrc": "/cards/87464aa2-e890-4151-8a93-55c2be3e44b2.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 35,
+        "quantity": 2,
+        "octgnid": "87464aa2-e890-4151-8a93-55c2be3e44b2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/87464aa2-e890-4151-8a93-55c2be3e44b2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:22c55625-210c-4843-81ee-d8d6430885b0",
+    "octgnid": "22c55625-210c-4843-81ee-d8d6430885b0",
+    "name": "Corsair of Umbar",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Corsair.",
+    "text": "If the active location is a Ship, Corsair of Umbar gets +2 [attack] and +2 [defense].",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 36,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 2,
+    "defense": 1,
+    "health": 3,
+    "engagement": 29,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if the active location is a Ship).",
+    "encounter_set": "The Siege of Gondor",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "2",
+      "defense": "1",
+      "health": "3",
+      "engagement": "29"
+    },
+    "imagesrc": "/cards/22c55625-210c-4843-81ee-d8d6430885b0.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 36,
+        "quantity": 3,
+        "octgnid": "22c55625-210c-4843-81ee-d8d6430885b0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/22c55625-210c-4843-81ee-d8d6430885b0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8d3c19e0-28f2-4a3d-91b2-8e9911ac4c91",
+    "octgnid": "8d3c19e0-28f2-4a3d-91b2-8e9911ac4c91",
+    "name": "Umbar Pirate Crew",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Corsair.",
+    "text": "Cannot have attachments. Forced: When Umbar Pirate Crew engages you, exhaust a character you control.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 37,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 6,
+    "defense": 2,
+    "health": 8,
+    "engagement": 39,
+    "shadow": "Shadow: If the active location is a Ship, return attacking enemy to the staging area after this attack.",
+    "encounter_set": "The Siege of Gondor",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "6",
+      "defense": "2",
+      "health": "8",
+      "engagement": "39"
+    },
+    "imagesrc": "/cards/8d3c19e0-28f2-4a3d-91b2-8e9911ac4c91.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 37,
+        "quantity": 2,
+        "octgnid": "8d3c19e0-28f2-4a3d-91b2-8e9911ac4c91",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8d3c19e0-28f2-4a3d-91b2-8e9911ac4c91.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:2c3f8a11-c7a5-4709-ab8d-7435763f558b",
+    "octgnid": "2c3f8a11-c7a5-4709-ab8d-7435763f558b",
+    "name": "Haradrim Pirate",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Corsair.",
+    "text": "Forced: When Haradrim Pirate engages you, deal 1 damage to a character you control (2 damage instead if the active location is a Ship).",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 38,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 3,
+    "defense": 2,
+    "health": 4,
+    "engagement": 34,
+    "shadow": "Shadow: Defending character gets -1 [defense] for each damage on it.",
+    "encounter_set": "The Siege of Gondor",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "2",
+      "health": "4",
+      "engagement": "34"
+    },
+    "imagesrc": "/cards/2c3f8a11-c7a5-4709-ab8d-7435763f558b.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 38,
+        "quantity": 3,
+        "octgnid": "2c3f8a11-c7a5-4709-ab8d-7435763f558b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2c3f8a11-c7a5-4709-ab8d-7435763f558b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:a7ac2b78-52a7-4bd9-b37f-3d424876c7d8",
+    "octgnid": "a7ac2b78-52a7-4bd9-b37f-3d424876c7d8",
+    "name": "Fell Folk of Umbar",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Peril.\nWhen Revealed: Either return each Corsair enemy engaged with you to the staging area, or discard cards from the top of the encounter deck until a Corsair enemy is discarded and put that enemy into play engaged with you.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 39,
+    "quantity": 2,
+    "encounter_set": "The Siege of Gondor",
+    "printed_stats": {},
+    "imagesrc": "/cards/a7ac2b78-52a7-4bd9-b37f-3d424876c7d8.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 39,
+        "quantity": 2,
+        "octgnid": "a7ac2b78-52a7-4bd9-b37f-3d424876c7d8",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a7ac2b78-52a7-4bd9-b37f-3d424876c7d8.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:1600dd03-7b19-4dd2-924c-30c30b09cb9d",
+    "octgnid": "1600dd03-7b19-4dd2-924c-30c30b09cb9d",
+    "name": "Black Sails",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Doomed 1.\nWhen Revealed: Each Ship location in the staging area gets +1 [threat] until the end of the phase. If there are no non-unique Ship locations in the staging area, search the encounter deck and discard pile for a Ship location and add it to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 40,
+    "quantity": 2,
+    "encounter_set": "The Siege of Gondor",
+    "printed_stats": {},
+    "imagesrc": "/cards/1600dd03-7b19-4dd2-924c-30c30b09cb9d.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 40,
+        "quantity": 2,
+        "octgnid": "1600dd03-7b19-4dd2-924c-30c30b09cb9d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1600dd03-7b19-4dd2-924c-30c30b09cb9d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:a7a8a783-8a22-49fd-a1b7-42e92a44f78c",
+    "octgnid": "a7a8a783-8a22-49fd-a1b7-42e92a44f78c",
+    "name": "Raiding the Coasts",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player must choose: either add 3 to the total [threat] in the staging area until the end of the phase, or discard the highest cost attachment you control.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 41,
+    "quantity": 3,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, discard an attachment you control.",
+    "encounter_set": "The Siege of Gondor",
+    "printed_stats": {},
+    "imagesrc": "/cards/a7a8a783-8a22-49fd-a1b7-42e92a44f78c.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 41,
+        "quantity": 3,
+        "octgnid": "a7a8a783-8a22-49fd-a1b7-42e92a44f78c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a7a8a783-8a22-49fd-a1b7-42e92a44f78c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:1db13c26-879b-49cd-9f94-8ba1a0c4f5a4",
+    "octgnid": "1db13c26-879b-49cd-9f94-8ba1a0c4f5a4",
+    "name": "Driven to the Brink",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Peril.\nWhen Revealed: Either immediately end the quest phase (without resolving the quest), or assign X damage among questing characters you control. X is the number of resources on The Corsair Fleet.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 42,
+    "quantity": 2,
+    "shadow": "Shadow: Exhaust a character you control.",
+    "encounter_set": "The Siege of Gondor",
+    "printed_stats": {},
+    "imagesrc": "/cards/1db13c26-879b-49cd-9f94-8ba1a0c4f5a4.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 42,
+        "quantity": 2,
+        "octgnid": "1db13c26-879b-49cd-9f94-8ba1a0c4f5a4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1db13c26-879b-49cd-9f94-8ba1a0c4f5a4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:0140d146-771e-4f19-9de8-d7cf0b4d8268",
+    "octgnid": "0140d146-771e-4f19-9de8-d7cf0b4d8268",
+    "name": "The Corsair Fleet",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Corsair.",
+    "text": "Forced: At the beginning of the staging step, place 1 resource on this objective. Then, each player must choose: either reveal an encounter card, or assign X damage among characters he controls. X is the number of resources here.",
+    "is_unique": true,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 71,
+    "quantity": 1,
+    "encounter_set": "The Siege of Gondor",
+    "printed_stats": {},
+    "imagesrc": "/cards/0140d146-771e-4f19-9de8-d7cf0b4d8268.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 71,
+        "quantity": 1,
+        "octgnid": "0140d146-771e-4f19-9de8-d7cf0b4d8268",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0140d146-771e-4f19-9de8-d7cf0b4d8268.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:6f9211cc-a523-4a0f-9d44-c757e2f9947b",
+    "octgnid": "6f9211cc-a523-4a0f-9d44-c757e2f9947b",
+    "name": "The Siege of Gondor",
+    "type_code": "rules",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Frodo: When playing the scenarios in The Flame of the West in campaign mode, players cannot use any card with the title \"Frodo Baggins.\"\nThis scenario contains no quest-specific instructions.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 999,
+    "quantity": 0,
+    "encounter_set": "The Siege of Gondor",
+    "back_name": "The Siege of Gondor",
+    "back_text": "",
+    "back_type_code": "rules",
+    "back_imagesrc": "/cards/6f9211cc-a523-4a0f-9d44-c757e2f9947b.B.jpg",
+    "printed_stats": {},
+    "imagesrc": "/cards/6f9211cc-a523-4a0f-9d44-c757e2f9947b.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 999,
+        "quantity": 0,
+        "octgnid": "6f9211cc-a523-4a0f-9d44-c757e2f9947b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6f9211cc-a523-4a0f-9d44-c757e2f9947b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

@@ -48,7 +48,7 @@ export function mumakilAdvance(s: GameState) {
     q.advancing = true;
     prepend(s, fx("mumakilAdvance", { player: firstPlayer(s) }));
   } else {
-    win(s); s.reason = "The Oliphaunts are captured alive. The fellowship rides north.";
+    win(s, "The Oliphaunts are captured alive. The fellowship rides north.");
   }
   return true;
 }

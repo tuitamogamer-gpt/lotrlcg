@@ -137,9 +137,10 @@ export function riverRunningAdvance(s: GameState) {
   if (s.progress < (riverRunningStageInfo(s)?.quest ?? Infinity)) return true;
   if (questDefeated(s, q.currentQuest)) return true;
   if (s.stage === 2) {
-    win(s);
-    s.reason =
-      "The fellowship crosses the River Running and escapes the Easterling riders.";
+    win(
+      s,
+      "The fellowship crosses the River Running and escapes the Easterling riders.",
+    );
     return true;
   }
   s.stage = 2;

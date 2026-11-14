@@ -236,9 +236,10 @@ export function wastesCheck(s: GameState) {
 }
 export function wastesEnemyDefeated(s: GameState, u: Unit) {
   if (isWastes(s) && s.stage === 3 && u.code === W.leader) {
-    win(s);
-    s.reason =
-      "The Pack Leader is destroyed. The Wargs scatter, and your fellowship continues after Iârion's captors.";
+    win(
+      s,
+      "The Pack Leader is destroyed. The Wargs scatter, and your fellowship continues after Iârion's captors.",
+    );
   }
 }
 export function wastesEngaged(s: GameState, u: Unit) {

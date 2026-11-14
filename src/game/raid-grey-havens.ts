@@ -395,9 +395,10 @@ export function raidAdvance(s: GameState) {
     s.victoryCards?.includes(R.sahir) &&
     locations(s).every((u) => u.damage === 0)
   ) {
-    win(s);
-    s.reason =
-      "Captain Sahír is defeated and the fires in the Grey Havens are extinguished.";
+    win(
+      s,
+      "Captain Sahír is defeated and the fires in the Grey Havens are extinguished.",
+    );
   }
   return true;
 }

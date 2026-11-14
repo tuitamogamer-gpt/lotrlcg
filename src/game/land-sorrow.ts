@@ -226,9 +226,10 @@ function sorrowAdvance(s: GameState) {
     q.advancing = true;
     prepend(s, fx("sorrowDefeatQuest", { player: firstPlayer(s) }));
   } else if (!stageLive(s) || !sorrowWardens(s).length) {
-    win(s);
-    s.reason =
-      "The captives of Nurn win their freedom, and Ulchor’s lieutenants are driven from the fields.";
+    win(
+      s,
+      "The captives of Nurn win their freedom, and Ulchor’s lieutenants are driven from the fields.",
+    );
   }
   return true;
 }

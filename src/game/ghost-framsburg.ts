@@ -209,9 +209,10 @@ export function ghostFramsburgAdvance(s: GameState) {
     return true;
   if (s.stage === 3) {
     if (s.victoryCards?.includes(G.shade)) {
-      win(s);
-      s.reason =
-        "Fram's Shade is laid to rest and the companions recover Wormsbane.";
+      win(
+        s,
+        "Fram's Shade is laid to rest and the companions recover Wormsbane.",
+      );
     }
     return true;
   }

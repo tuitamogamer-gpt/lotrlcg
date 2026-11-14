@@ -852,9 +852,7 @@ export const TEMPLE_DOOM_HOOKS: Batch4ScenarioHooks = {
   sideDefeated: (s, u) => {
     if (u.code === T.lost) returnDial(s, u.id);
     if (u.code === T.tribute) {
-      win(s);
-      s.reason =
-        "Thane Ulchor lies defeated and the tribute to Mordor is ended.";
+      win(s, "Thane Ulchor lies defeated and the tribute to Mordor is ended.");
     }
   },
   cannotDefend: (s, enemy, defender) =>

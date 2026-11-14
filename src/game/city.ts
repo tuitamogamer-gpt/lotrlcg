@@ -107,9 +107,10 @@ export function cityCheck(s: GameState) {
     (s.victoryCards ?? []).includes(C.sahir) &&
     s.status === "playing"
   ) {
-    win(s);
-    s.reason =
-      "Captain Sahír is defeated. The Corsairs' treacherous plot is ended.";
+    win(
+      s,
+      "Captain Sahír is defeated. The Corsairs' treacherous plot is ended.",
+    );
   }
 }
 export function cityAdvance(s: GameState) {

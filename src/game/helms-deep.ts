@@ -176,9 +176,10 @@ function advance(s: GameState) {
   // 5B: if there are no enemies in play, the players win the game.
   if (q.currentQuest === HD.rides && stageLive(s)) {
     if (!enemiesInPlay(s).length) {
-      win(s);
-      s.reason =
-        "The King Rides Out: the hosts of Isengard are driven from Helm's Deep, and the players win the game.";
+      win(
+        s,
+        "The King Rides Out: the hosts of Isengard are driven from Helm's Deep, and the players win the game.",
+      );
     }
     return true;
   }

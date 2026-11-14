@@ -897,9 +897,10 @@ export const CROSS_ROADS_HOOKS: Batch4ScenarioHooks = {
   },
   explored: (s, u) => {
     if (!s.crossRoads || u.code !== JTC.crossroads) return;
-    win(s);
-    s.reason =
-      "The Cross-roads is explored: the Men of Harad are ambushed, and the players win the game.";
+    win(
+      s,
+      "The Cross-roads is explored: the Men of Harad are ambushed, and the players win the game.",
+    );
   },
   travelProblem: (s, u) => {
     const q = s.crossRoads;

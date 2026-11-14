@@ -776,10 +776,12 @@ export function wmaEffect(s: GameState, e: Effect): boolean {
       removed.push(...q.sackDeck.splice(0), ...q.drawn.splice(0));
       if (s.victoryCards?.includes(W.cave)) q.treasures = [...WMA_TREASURES];
       s.stageRevealing = false;
-      win(s);
-      s.reason = q.treasures.length
-        ? "Dawn turns the Trolls to stone. The company has discovered Sting, Glamdring and Orcrist in the Troll Cave."
-        : "Dawn turns the Trolls to stone, and the company escapes the Trollshaws.";
+      win(
+        s,
+        q.treasures.length
+          ? "Dawn turns the Trolls to stone. The company has discovered Sting, Glamdring and Orcrist in the Troll Cave."
+          : "Dawn turns the Trolls to stone, and the company escapes the Trollshaws.",
+      );
       log(s, s.reason, "good");
       break;
     }

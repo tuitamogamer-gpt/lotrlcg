@@ -1,0 +1,42 @@
+[
+  {
+    "code": "octgn:7ea102d6-77de-431f-9475-c9be874a5195",
+    "octgnid": "7ea102d6-77de-431f-9475-c9be874a5195",
+    "name": "Attack on Pelargir",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Add The Corsair Fleet (Corsair side faceup) and Great Corsair Ship to the staging area. Each player searches the encounter deck for a Ship location and adds it to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 69,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Siege of Gondor",
+    "side": "A",
+    "back_name": "Attack on Pelargir",
+    "back_text": "Each Ship location in the staging area is immune to player card effects. The players cannot defeat this stage while Great Corsair Ship is in play. When this stage is defeated, the players win the game.",
+    "back_type_code": "quest",
+    "back_quest": 20,
+    "back_imagesrc": "/cards/7ea102d6-77de-431f-9475-c9be874a5195.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/7ea102d6-77de-431f-9475-c9be874a5195.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 69,
+        "quantity": 1,
+        "octgnid": "7ea102d6-77de-431f-9475-c9be874a5195",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7ea102d6-77de-431f-9475-c9be874a5195.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

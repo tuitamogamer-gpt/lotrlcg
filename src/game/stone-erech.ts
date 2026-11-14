@@ -141,9 +141,10 @@ function advance(s: GameState) {
   // 1B: the players cannot defeat this stage while Tarlang's Neck is in play.
   if (s.stage === 1 && stageLive(s) && neckInPlay(s)) return true;
   if (s.stage === STONE_ERECH_QUESTS.length) {
-    win(s);
-    s.reason =
-      "The Shadow Host is defeated: the players have escaped the Blackroot Vale with Derufin.";
+    win(
+      s,
+      "The Shadow Host is defeated: the players have escaped the Blackroot Vale with Derufin.",
+    );
     return true;
   }
   q.advancing = true;

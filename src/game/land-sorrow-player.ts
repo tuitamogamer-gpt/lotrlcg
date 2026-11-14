@@ -45,7 +45,7 @@ import { isAlly } from "./card-types";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { playerEffectImmune } from "./player-effect-immunity";
 import { playerCardImmune } from "./card-immunity";
-import { rhosgobelHealingAllowed } from "./rhosgobel";
+import { rhosgobelHeal, rhosgobelHealingAllowed } from "./rhosgobel";
 import { isSacked } from "./carrock";
 import { canLeaveHand } from "./hand-rules";
 import { batch4Scenario } from "./batch4-scenarios";
@@ -86,9 +86,9 @@ const phaseKey = (s: GameState) =>
         : s.phase
   }`;
 const isEagleAlly = (u: Unit) => isAlly(u) && hasTrait(u, "Eagle");
+/** Heals go through the shared heal rules (healing caps and heal responses). */
 const heal = (s: GameState, u: Unit, amount = 1) => {
-  if (!rhosgobelHealingAllowed(s, u)) return;
-  u.damage = Math.max(0, u.damage - amount);
+  rhosgobelHeal(s, u, amount);
 };
 const readyable = (s: GameState, u: Unit, code: string) =>
   u.exhausted &&

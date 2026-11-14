@@ -135,8 +135,7 @@ export function wildsMirkwoodAdvance(s: GameState) {
     !allEngaged(s).length &&
     !questDefeated(s, q.currentQuest)
   ) {
-    win(s);
-    s.reason = "The companions have escaped from Taur-nu-Fuin.";
+    win(s, "The companions have escaped from Taur-nu-Fuin.");
   }
   if (
     q.currentQuest === W.fear &&
@@ -144,8 +143,7 @@ export function wildsMirkwoodAdvance(s: GameState) {
     !q.nemesisId &&
     !questDefeated(s, q.currentQuest)
   ) {
-    win(s);
-    s.reason = "The companions have escaped the Forest of Great Fear.";
+    win(s, "The companions have escaped the Forest of Great Fear.");
   }
   return true;
 }
@@ -208,9 +206,10 @@ export function wildsMirkwoodHostLeaves(
   if (q.nemesisId === u.id) {
     delete q.nemesisId;
     if (q.currentQuest === W.fear && defeated) {
-      win(s);
-      s.reason =
-        "The companions have defeated the nemesis of the Forest of Great Fear.";
+      win(
+        s,
+        "The companions have defeated the nemesis of the Forest of Great Fear.",
+      );
     }
   }
   if (!defeated) {

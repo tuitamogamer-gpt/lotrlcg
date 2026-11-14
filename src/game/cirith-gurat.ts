@@ -243,9 +243,10 @@ export function cirithGuratAdvance(s: GameState) {
     return true;
   if (questDefeated(s, q.currentQuest)) return true;
   if (s.stage === 3) {
-    win(s);
-    s.reason =
-      "The prisoners are rescued and your fellowship fights its way out of Cirith Gurat.";
+    win(
+      s,
+      "The prisoners are rescued and your fellowship fights its way out of Cirith Gurat.",
+    );
   } else {
     q.advancing = true;
     prepend(s, fx("cirithGuratAdvance", { player: firstPlayer(s) }));

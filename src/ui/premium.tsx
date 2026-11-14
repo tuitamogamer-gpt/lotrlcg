@@ -99,6 +99,10 @@ export const PLAYMATS = {
     name: "The Paths of the Dead",
     detail: "The Dark Door under the Dwimorberg · The Stone of Erech",
   },
+  "the-siege-of-gondor": {
+    name: "Pelargir upon Anduin",
+    detail: "The fleet of Umbar at the quays · The great ship of the Corsairs",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -517,6 +521,7 @@ export const PLAYMAT_CHOICES = [
   "journey-to-the-cross-roads",
   "shelobs-lair",
   "the-passing-of-the-grey-company",
+  "the-siege-of-gondor",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

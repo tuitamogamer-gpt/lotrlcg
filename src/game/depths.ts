@@ -298,9 +298,10 @@ export function depthsCharacterLeaves(
   }
   if (!destruction) return;
   if (u.code === D.thing && s.stage === 3 && questLive(s)) {
-    win(s);
-    s.reason =
-      "The Thing in the Depths is destroyed and the Stormcaller is saved.";
+    win(
+      s,
+      "The Thing in the Depths is destroyed and the Stormcaller is saved.",
+    );
     return;
   }
 }

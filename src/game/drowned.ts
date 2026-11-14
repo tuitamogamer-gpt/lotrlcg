@@ -307,8 +307,7 @@ export function drownedLocationExplored(
     !u.blanked &&
     s.victoryCards?.includes(u.code)
   ) {
-    win(s);
-    s.reason = "The heroes escape the flooded shrine with Na'asiyah.";
+    win(s, "The heroes escape the flooded shrine with Na'asiyah.");
   }
 }
 export function drownedAdvance(s: GameState) {

@@ -61,6 +61,7 @@ export const FLAME_WEST_ARAGORN = "145001";
 /** The Lord of the Rings Saga scenarios of The Flame of the West. */
 export const FLAME_WEST_SCENARIO_IDS: readonly string[] = [
   "the-passing-of-the-grey-company",
+  "the-siege-of-gondor",
 ];
 export const isFlameWestScenarioId = (id: string | undefined) =>
   !!id && FLAME_WEST_SCENARIO_IDS.includes(id);

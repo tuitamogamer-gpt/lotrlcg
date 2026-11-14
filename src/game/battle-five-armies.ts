@@ -424,9 +424,10 @@ export function bofaEffect(s: GameState, e: Effect): boolean {
       );
       return true;
     case "bofaVictory":
-      win(s);
-      s.reason =
-        "Bolg falls and the Eagles and Beorn break the Goblin host: the Battle of Five Armies is won.";
+      win(
+        s,
+        "Bolg falls and the Eagles and Beorn break the Goblin host: the Battle of Five Armies is won.",
+      );
       return true;
     case "bofaTreachery":
       treachery(s, e);

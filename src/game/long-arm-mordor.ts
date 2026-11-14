@@ -151,8 +151,7 @@ export function mordorAdvance(s: GameState) {
     prepend(s, fx("mordorAdvance", { player: firstPlayer(s) }));
   } else if (s.stage === 4 && s.progress >= 15 && !enemies(s).some((e) => e.code === M.chieftain)) {
     if (questDefeated(s, q.currentQuest)) return true;
-    win(s);
-    s.reason = "The Uruk Chieftain is defeated and the heroes escape into the jungle.";
+    win(s, "The Uruk Chieftain is defeated and the heroes escape into the jungle.");
   }
   return true;
 }

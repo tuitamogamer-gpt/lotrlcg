@@ -252,9 +252,10 @@ function advance(s: GameState) {
       ? s.progress
       : area!.progress;
   if (progress < 16 || parthInPlay(s)) return true;
-  win(s);
-  s.reason =
-    "The Ring-bearer Sets Out is defeated: Frodo leaves the Company and sets out for Mordor.";
+  win(
+    s,
+    "The Ring-bearer Sets Out is defeated: Frodo leaves the Company and sets out for Mordor.",
+  );
   return true;
 }
 function check(s: GameState) {

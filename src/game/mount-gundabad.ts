@@ -1581,9 +1581,10 @@ export function mountGundabadEffect(s: GameState, e: Effect) {
         discardAttachment(s, held.h, held.a);
         detach(s, u);
         addVictoryCard(s, u.code);
-        win(s);
-        s.reason =
-          "Reforged Wormsbane slays Dagnir in the heart of Mount Gundabad.";
+        win(
+          s,
+          "Reforged Wormsbane slays Dagnir in the heart of Mount Gundabad.",
+        );
       }
       break;
     }

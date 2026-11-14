@@ -712,9 +712,10 @@ function check(s: GameState) {
   returnHidden(s);
   // 3B: if there are no Nazgûl enemies in play, the players win the game.
   if (q.finale && s.stage === 3 && stageLive(s) && !kdNazgulInPlay(s).length) {
-    win(s);
-    s.reason =
-      "No Nazgûl enemy remains in play: the Ringwraiths are driven from Weathertop.";
+    win(
+      s,
+      "No Nazgûl enemy remains in play: the Ringwraiths are driven from Weathertop.",
+    );
   }
 }
 const spies = (s: GameState, u: Unit) =>

@@ -280,9 +280,10 @@ function advance(s: GameState) {
     s.progress >= LOST_QUEST &&
     (s.victoryCards ?? []).includes(FB.standing)
   ) {
-    win(s);
-    s.reason =
-      "Lost in the Fog is defeated: the hobbits find their way off the Barrow-downs to the East Road.";
+    win(
+      s,
+      "Lost in the Fog is defeated: the hobbits find their way off the Barrow-downs to the East Road.",
+    );
   }
   return true;
 }

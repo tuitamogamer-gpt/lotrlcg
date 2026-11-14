@@ -151,9 +151,10 @@ function advance(s: GameState) {
   }
   // 2B: the players cannot defeat this stage while Uglúk is in play.
   if (uglukInPlay(s)) return true;
-  win(s);
-  s.reason =
-    "Rescue the Captives is defeated: the players rescue each Captive hero before the Uruk-hai reach Isengard.";
+  win(
+    s,
+    "Rescue the Captives is defeated: the players rescue each Captive hero before the Uruk-hai reach Isengard.",
+  );
   return true;
 }
 /** To Isengard!: if there are no Captives in play, the players lose the game. */

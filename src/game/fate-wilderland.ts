@@ -164,9 +164,10 @@ export function fateWilderlandOpeningHandsKept(s: GameState) {
 }
 export function fateWilderlandCheck(s: GameState) {
   if (s.fateWilderland?.urdugDestroyed && s.status === "playing") {
-    win(s);
-    s.reason =
-      "Urdug is defeated. The Goblin army breaks, and Wilderland is saved.";
+    win(
+      s,
+      "Urdug is defeated. The Goblin army breaks, and Wilderland is saved.",
+    );
   }
 }
 export function fateWilderlandStats(s: GameState, u: Unit) {

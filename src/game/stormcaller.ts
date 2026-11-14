@@ -442,8 +442,7 @@ export function stormcallerCharacterLeaves(
   _destruction: boolean,
 ) {
   if (isStormcaller(s) && u.code === V.stormcaller) {
-    win(s);
-    s.reason = "The fleet captures the Stormcaller and recovers the key.";
+    win(s, "The fleet captures the Stormcaller and recovers the key.");
   }
 }
 export function stormcallerDamageDealt(
@@ -759,9 +758,10 @@ export function stormcallerEffect(s: GameState, e: Effect) {
       break;
     case "stormcallerAdvance": {
       if (s.stage === 4 || s.stage === q.enemyStage) {
-        win(s);
-        s.reason =
-          "The fleet catches the Stormcaller and recovers the stolen key.";
+        win(
+          s,
+          "The fleet catches the Stormcaller and recovers the stolen key.",
+        );
         q.advancing = false;
         break;
       }
