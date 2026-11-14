@@ -753,6 +753,24 @@ jobs:
           path: output/passage-marshes-release/failures
           retention-days: 7
 
+  cross-roads-simulation:
+    name: Journey to the Cross-roads complete games (26 games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:cross-roads-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: cross-roads-simulation
+          path: output/cross-roads-release/failures
+          retention-days: 7
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -920,6 +938,8 @@ jobs:
             suite: test:browser-road-isengard
           - group: passage-marshes
             suite: test:browser-passage-marshes
+          - group: cross-roads
+            suite: test:browser-cross-roads
           - group: treason-saruman-players
             suite: test:browser-treason-saruman-players
           - group: hobbit-players

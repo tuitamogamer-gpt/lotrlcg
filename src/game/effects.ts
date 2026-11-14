@@ -1938,6 +1938,11 @@ function handleEffect(s: GameState, e: Effect) {
       batch4Scenario(s).travelBegin?.(s);
       break;
     case "startEncounter":
+      if (batch4Scenario(s).skipPhase?.(s, "encounter")) {
+        log(s, "Skip the encounter phase.", "good");
+        prepend(s, fx("startCombat", { text: "skipped-encounter" }));
+        break;
+      }
       startPhase(s, "encounter");
       batch4Scenario(s).encounterBegin?.(s);
       Drowned.drownedEncounterStart(s);
@@ -2339,7 +2344,12 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     }
     case "startCombat":
-      if (e.text !== "mordor-encounter-end") {
+      if (batch4Scenario(s).skipPhase?.(s, "combat")) {
+        log(s, "Skip the combat phase.", "good");
+        prepend(s, fx("refreshReady"));
+        break;
+      }
+      if (e.text !== "mordor-encounter-end" && e.text !== "skipped-encounter") {
         const forced = [
           ...(batch4Scenario(s).encounterEnd?.(s) ?? []),
           ...Mordor.mordorEncounterEnd(s),

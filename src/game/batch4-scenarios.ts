@@ -20,6 +20,7 @@ import { URUK_HAI_HOOKS } from "./uruk-hai";
 import { HELMS_DEEP_HOOKS } from "./helms-deep";
 import { ROAD_ISENGARD_HOOKS } from "./road-isengard";
 import { PASSAGE_MARSHES_HOOKS } from "./passage-marshes";
+import { CROSS_ROADS_HOOKS } from "./cross-roads";
 import { LAND_SORROW_HOOKS } from "./land-sorrow";
 import { ASH_HOOKS } from "./ash-mountains";
 import { WAINRIDERS_HOOKS } from "./wainriders";
@@ -88,6 +89,8 @@ export function batch4Scenario(s: GameState): Batch4ScenarioHooks {
       return ROAD_ISENGARD_HOOKS;
     case "the-passage-of-the-marshes":
       return PASSAGE_MARSHES_HOOKS;
+    case "journey-to-the-cross-roads":
+      return CROSS_ROADS_HOOKS;
     case "the-land-of-sorrow":
       return LAND_SORROW_HOOKS;
     case "under-the-ash-mountains":
@@ -172,4 +175,5 @@ export const batch4SharedEffect = (effect: Effect) =>
     HELMS_DEEP_HOOKS,
     ROAD_ISENGARD_HOOKS,
     PASSAGE_MARSHES_HOOKS,
+    CROSS_ROADS_HOOKS,
   ].some((hooks) => hooks.sharedEffect?.(effect));

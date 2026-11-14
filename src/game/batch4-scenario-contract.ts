@@ -202,6 +202,8 @@ export interface Batch4ScenarioHooks {
   firstPlayerChanged?(s: GameState, refresh: boolean): void;
   /** At the end of the staging step, before the quest is resolved. */
   stagingEnd?(s: GameState): void;
+  /** The encounter or combat phase is skipped this round. */
+  skipPhase?(s: GameState, phase: "encounter" | "combat"): boolean;
   /** A hero actually spent resources from its pool. */
   resourcesSpent?(s: GameState, hero: Unit, amount: number): void;
   /** Effects at the beginning of the round, before resources are collected. */

@@ -51,6 +51,7 @@ export const isTreasonSarumanScenarioId = (id: string | undefined) =>
 /** The Lord of the Rings Saga scenarios of The Land of Shadow. */
 export const LAND_SHADOW_SCENARIO_IDS: readonly string[] = [
   "the-passage-of-the-marshes",
+  "journey-to-the-cross-roads",
 ];
 export const isLandShadowScenarioId = (id: string | undefined) =>
   !!id && LAND_SHADOW_SCENARIO_IDS.includes(id);

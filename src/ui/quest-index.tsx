@@ -123,6 +123,10 @@ const HEADLINES: Partial<
     lead: "Tame Sméagol",
     em: "and cross the Dead Marshes.",
   },
+  "journey-to-the-cross-roads": {
+    lead: "Ambush the Men of Harad",
+    em: "on the road to the Cross-roads.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

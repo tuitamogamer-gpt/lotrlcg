@@ -286,6 +286,7 @@ export type ScenarioId =
   | "helms-deep"
   | "the-road-to-isengard"
   | "the-passage-of-the-marshes"
+  | "journey-to-the-cross-roads"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -467,6 +468,7 @@ export interface GameState {
   helmsDeep?: import("./helms-deep-types").HelmsDeepState;
   roadIsengard?: import("./road-isengard-types").RoadIsengardState;
   passageMarshes?: import("./passage-marshes-types").PassageMarshesState;
+  crossRoads?: import("./cross-roads-types").CrossRoadsState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -862,6 +864,14 @@ export interface GameState {
     riKillDiscard?: number[];
     /** The Passage of the Marshes: Groping Dead's shadow places a mire token if this attack destroys a character. */
     pomMireOnKill?: boolean;
+    /** Journey to the Cross-roads: this attack destroyed a character. */
+    jtcKilled?: boolean;
+    /** Captain of Harad's shadow: a kill returns the attacker to the staging area. */
+    jtcReturnOnKill?: boolean;
+    /** Marching Up the Road's shadow: a kill places the attacker under The Black Gate. */
+    jtcGateOnKill?: boolean;
+    /** Arrows Thick in the Air's shadow: the attacker goes under The Black Gate after this attack. */
+    jtcGateAfter?: boolean;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

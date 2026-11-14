@@ -1,0 +1,116 @@
+[
+  {
+    "name": "Ambush the Men of Harad",
+    "code": "octgn:b32e4536-aa58-4a09-8025-12028cd28288",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Arrows Thick in the Air",
+    "code": "octgn:75c1d9eb-9ade-4c71-a918-74cf5b526ff2",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Captain of Harad",
+    "code": "octgn:fc7041f2-b7f8-44a2-bf4c-beadd8016470",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "name": "Fierce Southrons",
+    "code": "octgn:d12e280f-44f3-469e-a2e8-e3bfd541f909",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Foothills of Ephel Dúath",
+    "code": "octgn:8fa4b202-cb8e-470d-ae2b-aa945ac652c5",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Frodo Baggins",
+    "code": "144001",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Haradrim Archer",
+    "code": "octgn:c04f4018-e001-4a31-a003-9914e3f585ee",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Haradrim Soldier",
+    "code": "octgn:456329e9-c7c4-42ac-9edd-e769aea198ea",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Henneth Annûn",
+    "code": "octgn:62ceb94f-5838-4c5c-9547-8786c4c64051",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Hills of Ithilien",
+    "code": "octgn:de09949d-6bc8-470c-a500-6b1fd4a5f391",
+    "normal": 4,
+    "easy": 4
+  },
+  {
+    "name": "Ithilien Woods",
+    "code": "octgn:808f60ad-a63f-4504-9b67-4fd45d630add",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Man of Harad",
+    "code": "octgn:62dea330-3ec7-4db0-bea7-382cb3454f83",
+    "normal": 4,
+    "easy": 4
+  },
+  {
+    "name": "Marching Up the Road",
+    "code": "octgn:b774e6b4-461c-46eb-9398-dcb2af4cfab5",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Oliphaunt",
+    "code": "octgn:2163f5ef-63a3-4afc-8084-fe730774d216",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Southward Road",
+    "code": "octgn:2b9c8fa1-a5c3-441e-95c1-c10c85948dc1",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "The Black Gate",
+    "code": "octgn:2522fc59-6617-4c74-9723-4a120431aa3f",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The Cross-roads",
+    "code": "octgn:22f6fc49-6a00-4104-a9fa-4823435175a1",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The Dark Lord's Summons",
+    "code": "octgn:2591dde9-00c6-488e-a109-94136e4f9876",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "The One Ring",
+    "code": "octgn:32267333-091c-4bbf-bb29-5f21c8b79188",
+    "normal": 1,
+    "easy": 1
+  }
+]

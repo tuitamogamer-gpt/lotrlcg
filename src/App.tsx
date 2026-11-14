@@ -42,8 +42,10 @@ import { HelmsDeepState } from "./ui/helms-deep-state";
 import { HELMS_DEEP_QUESTS } from "./game/helms-deep-support";
 import { RoadIsengardState } from "./ui/road-isengard-state";
 import { PassageMarshesState } from "./ui/passage-marshes-state";
+import { CrossRoadsState } from "./ui/cross-roads-state";
 import { ROAD_ISENGARD_QUESTS } from "./game/road-isengard-support";
 import { PASSAGE_MARSHES_QUESTS } from "./game/passage-marshes-support";
+import { CROSS_ROADS_QUESTS } from "./game/cross-roads-support";
 import { DDCD_QUESTS } from "./game/dungeons-deep-support";
 import {
   discoveredTreasures,
@@ -3310,6 +3312,7 @@ export default function App() {
             <HelmsDeepState s={game} inspect={setDetail} />
             <RoadIsengardState s={game} inspect={setDetail} />
             <PassageMarshesState s={game} inspect={setDetail} />
+            <CrossRoadsState s={game} inspect={setDetail} />
             <AshMountainsState s={game} inspect={setDetail} />
             <CouncilOfTheWiseState s={game} inspect={setDetail} />
             <WainridersScenarioState s={game} inspect={setDetail} />
@@ -4071,6 +4074,7 @@ export default function App() {
                       ...HELMS_DEEP_QUESTS,
                       ...ROAD_ISENGARD_QUESTS,
                       ...PASSAGE_MARSHES_QUESTS,
+                      ...CROSS_ROADS_QUESTS,
                       ...(carrockQuestCards as Card[]),
                       ...EMYN_MUIL_QUESTS,
                       ...CITY_QUESTS,

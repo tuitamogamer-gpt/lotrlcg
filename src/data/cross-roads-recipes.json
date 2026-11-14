@@ -1,0 +1,320 @@
+[
+  {
+    "id": "E0B.11",
+    "name": "Journey to the Cross-roads (Easy)",
+    "mode": "easy",
+    "campaign": false,
+    "pack_codes": ["LoS"],
+    "card_codes": [
+      "octgn:b32e4536-aa58-4a09-8025-12028cd28288",
+      "octgn:62dea330-3ec7-4db0-bea7-382cb3454f83",
+      "octgn:fc7041f2-b7f8-44a2-bf4c-beadd8016470",
+      "octgn:62ceb94f-5838-4c5c-9547-8786c4c64051",
+      "octgn:2b9c8fa1-a5c3-441e-95c1-c10c85948dc1",
+      "octgn:8fa4b202-cb8e-470d-ae2b-aa945ac652c5",
+      "octgn:808f60ad-a63f-4504-9b67-4fd45d630add",
+      "octgn:de09949d-6bc8-470c-a500-6b1fd4a5f391",
+      "octgn:2591dde9-00c6-488e-a109-94136e4f9876",
+      "octgn:b774e6b4-461c-46eb-9398-dcb2af4cfab5",
+      "octgn:d12e280f-44f3-469e-a2e8-e3bfd541f909",
+      "octgn:75c1d9eb-9ade-4c71-a918-74cf5b526ff2",
+      "octgn:2163f5ef-63a3-4afc-8084-fe730774d216",
+      "octgn:456329e9-c7c4-42ac-9edd-e769aea198ea",
+      "octgn:c04f4018-e001-4a31-a003-9914e3f585ee",
+      "octgn:2522fc59-6617-4c74-9723-4a120431aa3f",
+      "octgn:22f6fc49-6a00-4104-a9fa-4823435175a1",
+      "144001",
+      "octgn:32267333-091c-4bbf-bb29-5f21c8b79188"
+    ],
+    "cards": [
+      {
+        "code": "octgn:b32e4536-aa58-4a09-8025-12028cd28288",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:62dea330-3ec7-4db0-bea7-382cb3454f83",
+        "quantity": 4,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:fc7041f2-b7f8-44a2-bf4c-beadd8016470",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:62ceb94f-5838-4c5c-9547-8786c4c64051",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:2b9c8fa1-a5c3-441e-95c1-c10c85948dc1",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:8fa4b202-cb8e-470d-ae2b-aa945ac652c5",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:808f60ad-a63f-4504-9b67-4fd45d630add",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:de09949d-6bc8-470c-a500-6b1fd4a5f391",
+        "quantity": 4,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:2591dde9-00c6-488e-a109-94136e4f9876",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:b774e6b4-461c-46eb-9398-dcb2af4cfab5",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:d12e280f-44f3-469e-a2e8-e3bfd541f909",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:75c1d9eb-9ade-4c71-a918-74cf5b526ff2",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:2163f5ef-63a3-4afc-8084-fe730774d216",
+        "quantity": 3,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "octgn:456329e9-c7c4-42ac-9edd-e769aea198ea",
+        "quantity": 3,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "octgn:c04f4018-e001-4a31-a003-9914e3f585ee",
+        "quantity": 3,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "octgn:2522fc59-6617-4c74-9723-4a120431aa3f",
+        "quantity": 1,
+        "section": "sharedStagingArea"
+      },
+      {
+        "code": "octgn:22f6fc49-6a00-4104-a9fa-4823435175a1",
+        "quantity": 1,
+        "section": "sharedStagingArea"
+      },
+      {
+        "code": "144001",
+        "quantity": 1,
+        "section": "player1Play1"
+      },
+      {
+        "code": "octgn:32267333-091c-4bbf-bb29-5f21c8b79188",
+        "quantity": 1,
+        "section": "player1Play1"
+      }
+    ],
+    "sections": {
+      "sharedQuestDeck": {
+        "octgn:b32e4536-aa58-4a09-8025-12028cd28288": 1
+      },
+      "sharedEncounterDeck": {
+        "octgn:62dea330-3ec7-4db0-bea7-382cb3454f83": 4,
+        "octgn:fc7041f2-b7f8-44a2-bf4c-beadd8016470": 2,
+        "octgn:62ceb94f-5838-4c5c-9547-8786c4c64051": 1,
+        "octgn:2b9c8fa1-a5c3-441e-95c1-c10c85948dc1": 1,
+        "octgn:8fa4b202-cb8e-470d-ae2b-aa945ac652c5": 3,
+        "octgn:808f60ad-a63f-4504-9b67-4fd45d630add": 2,
+        "octgn:de09949d-6bc8-470c-a500-6b1fd4a5f391": 4,
+        "octgn:2591dde9-00c6-488e-a109-94136e4f9876": 3,
+        "octgn:b774e6b4-461c-46eb-9398-dcb2af4cfab5": 1,
+        "octgn:d12e280f-44f3-469e-a2e8-e3bfd541f909": 1,
+        "octgn:75c1d9eb-9ade-4c71-a918-74cf5b526ff2": 3
+      },
+      "sharedEncounterDeck2": {
+        "octgn:2163f5ef-63a3-4afc-8084-fe730774d216": 3,
+        "octgn:456329e9-c7c4-42ac-9edd-e769aea198ea": 3,
+        "octgn:c04f4018-e001-4a31-a003-9914e3f585ee": 3
+      },
+      "sharedStagingArea": {
+        "octgn:2522fc59-6617-4c74-9723-4a120431aa3f": 1,
+        "octgn:22f6fc49-6a00-4104-a9fa-4823435175a1": 1
+      },
+      "player1Play1": {
+        "144001": 1,
+        "octgn:32267333-091c-4bbf-bb29-5f21c8b79188": 1
+      }
+    },
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "automated": false
+  },
+  {
+    "id": "Q0B.11",
+    "name": "Journey to the Cross-roads",
+    "mode": "standard",
+    "campaign": false,
+    "pack_codes": ["LoS"],
+    "card_codes": [
+      "octgn:b32e4536-aa58-4a09-8025-12028cd28288",
+      "octgn:62dea330-3ec7-4db0-bea7-382cb3454f83",
+      "octgn:fc7041f2-b7f8-44a2-bf4c-beadd8016470",
+      "octgn:62ceb94f-5838-4c5c-9547-8786c4c64051",
+      "octgn:2b9c8fa1-a5c3-441e-95c1-c10c85948dc1",
+      "octgn:8fa4b202-cb8e-470d-ae2b-aa945ac652c5",
+      "octgn:808f60ad-a63f-4504-9b67-4fd45d630add",
+      "octgn:de09949d-6bc8-470c-a500-6b1fd4a5f391",
+      "octgn:2591dde9-00c6-488e-a109-94136e4f9876",
+      "octgn:b774e6b4-461c-46eb-9398-dcb2af4cfab5",
+      "octgn:d12e280f-44f3-469e-a2e8-e3bfd541f909",
+      "octgn:75c1d9eb-9ade-4c71-a918-74cf5b526ff2",
+      "octgn:2163f5ef-63a3-4afc-8084-fe730774d216",
+      "octgn:456329e9-c7c4-42ac-9edd-e769aea198ea",
+      "octgn:c04f4018-e001-4a31-a003-9914e3f585ee",
+      "octgn:2522fc59-6617-4c74-9723-4a120431aa3f",
+      "octgn:22f6fc49-6a00-4104-a9fa-4823435175a1",
+      "144001",
+      "octgn:32267333-091c-4bbf-bb29-5f21c8b79188"
+    ],
+    "cards": [
+      {
+        "code": "octgn:b32e4536-aa58-4a09-8025-12028cd28288",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:62dea330-3ec7-4db0-bea7-382cb3454f83",
+        "quantity": 4,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:fc7041f2-b7f8-44a2-bf4c-beadd8016470",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:62ceb94f-5838-4c5c-9547-8786c4c64051",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:2b9c8fa1-a5c3-441e-95c1-c10c85948dc1",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:8fa4b202-cb8e-470d-ae2b-aa945ac652c5",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:808f60ad-a63f-4504-9b67-4fd45d630add",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:de09949d-6bc8-470c-a500-6b1fd4a5f391",
+        "quantity": 4,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:2591dde9-00c6-488e-a109-94136e4f9876",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:b774e6b4-461c-46eb-9398-dcb2af4cfab5",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:d12e280f-44f3-469e-a2e8-e3bfd541f909",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:75c1d9eb-9ade-4c71-a918-74cf5b526ff2",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:2163f5ef-63a3-4afc-8084-fe730774d216",
+        "quantity": 3,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "octgn:456329e9-c7c4-42ac-9edd-e769aea198ea",
+        "quantity": 3,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "octgn:c04f4018-e001-4a31-a003-9914e3f585ee",
+        "quantity": 3,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "octgn:2522fc59-6617-4c74-9723-4a120431aa3f",
+        "quantity": 1,
+        "section": "sharedStagingArea"
+      },
+      {
+        "code": "octgn:22f6fc49-6a00-4104-a9fa-4823435175a1",
+        "quantity": 1,
+        "section": "sharedStagingArea"
+      },
+      {
+        "code": "144001",
+        "quantity": 1,
+        "section": "player1Play1"
+      },
+      {
+        "code": "octgn:32267333-091c-4bbf-bb29-5f21c8b79188",
+        "quantity": 1,
+        "section": "player1Play1"
+      }
+    ],
+    "sections": {
+      "sharedQuestDeck": {
+        "octgn:b32e4536-aa58-4a09-8025-12028cd28288": 1
+      },
+      "sharedEncounterDeck": {
+        "octgn:62dea330-3ec7-4db0-bea7-382cb3454f83": 4,
+        "octgn:fc7041f2-b7f8-44a2-bf4c-beadd8016470": 3,
+        "octgn:62ceb94f-5838-4c5c-9547-8786c4c64051": 1,
+        "octgn:2b9c8fa1-a5c3-441e-95c1-c10c85948dc1": 2,
+        "octgn:8fa4b202-cb8e-470d-ae2b-aa945ac652c5": 3,
+        "octgn:808f60ad-a63f-4504-9b67-4fd45d630add": 2,
+        "octgn:de09949d-6bc8-470c-a500-6b1fd4a5f391": 4,
+        "octgn:2591dde9-00c6-488e-a109-94136e4f9876": 3,
+        "octgn:b774e6b4-461c-46eb-9398-dcb2af4cfab5": 2,
+        "octgn:d12e280f-44f3-469e-a2e8-e3bfd541f909": 2,
+        "octgn:75c1d9eb-9ade-4c71-a918-74cf5b526ff2": 3
+      },
+      "sharedEncounterDeck2": {
+        "octgn:2163f5ef-63a3-4afc-8084-fe730774d216": 3,
+        "octgn:456329e9-c7c4-42ac-9edd-e769aea198ea": 3,
+        "octgn:c04f4018-e001-4a31-a003-9914e3f585ee": 3
+      },
+      "sharedStagingArea": {
+        "octgn:2522fc59-6617-4c74-9723-4a120431aa3f": 1,
+        "octgn:22f6fc49-6a00-4104-a9fa-4823435175a1": 1
+      },
+      "player1Play1": {
+        "144001": 1,
+        "octgn:32267333-091c-4bbf-bb29-5f21c8b79188": 1
+      }
+    },
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "automated": false
+  }
+]

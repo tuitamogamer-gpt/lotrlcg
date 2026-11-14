@@ -1,0 +1,42 @@
+[
+  {
+    "code": "octgn:b32e4536-aa58-4a09-8025-12028cd28288",
+    "octgnid": "b32e4536-aa58-4a09-8025-12028cd28288",
+    "name": "Ambush the Men of Harad",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Add The Black Gate and The Cross-roads to the staging area. Shuffle the Men of Harad encounter set and place it facedown under The Cross-roads. Each player, except the first player, searches the encounter deck for a different non-unique location and adds it to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 68,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Journey to the Cross-roads",
+    "side": "A",
+    "back_name": "Ambush the Men of Harad",
+    "back_text": "Forced: At the beginning of the quest phase, reveal the top facedown card from under The Cross-roads and add it to the staging area.\nThe players cannot defeat this stage while The Cross-roads is in play. When The Cross-roads is explored, the players win the game.",
+    "back_type_code": "quest",
+    "back_quest": 20,
+    "back_imagesrc": "/cards/b32e4536-aa58-4a09-8025-12028cd28288.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/b32e4536-aa58-4a09-8025-12028cd28288.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 68,
+        "quantity": 1,
+        "octgnid": "b32e4536-aa58-4a09-8025-12028cd28288",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b32e4536-aa58-4a09-8025-12028cd28288.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

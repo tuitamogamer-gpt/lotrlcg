@@ -5,8 +5,8 @@
     "playerCards": 825,
     "heroes": 103,
     "deckCards": 718,
-    "encounterCards": 1540,
-    "scenarios": 102,
+    "encounterCards": 1556,
+    "scenarios": 103,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -109,17 +109,18 @@
       "the-uruk-hai",
       "helms-deep",
       "the-road-to-isengard",
-      "the-passage-of-the-marshes"
+      "the-passage-of-the-marshes",
+      "journey-to-the-cross-roads"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2692,
-    "pending": 1491
+    "scripted": 2709,
+    "pending": 1474
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 209
+    "scripted": 212
   },
   "registeredCodes": [
     "01001",
@@ -1190,6 +1191,7 @@
     "octgn:20e1ee03-f6c4-4b63-a816-4c9660e51eb0",
     "octgn:21165a65-1296-4664-a880-d85eea19a4ae",
     "octgn:215881a3-df0a-4163-a19d-33b444e7aa95",
+    "octgn:2163f5ef-63a3-4afc-8084-fe730774d216",
     "octgn:21786f6e-9f9c-4850-9277-9ee77b6e0912",
     "octgn:21a5e7e1-013b-478e-a1c3-ab0300541f39",
     "octgn:21b27ec8-a778-4bac-8228-aa013043b8ed",
@@ -1200,6 +1202,7 @@
     "octgn:2223ef81-40c3-422d-a593-a861c3af39fc",
     "octgn:228a03b8-ec05-4562-90f5-0c7d969490b0",
     "octgn:22d6a151-ee2a-4ad0-9d97-5eddd5cc0391",
+    "octgn:22f6fc49-6a00-4104-a9fa-4823435175a1",
     "octgn:2301fc93-a05e-4dd4-b06e-40d659783d8b",
     "octgn:231bf335-bf9b-44d9-a919-e59aa1d46473",
     "octgn:232256cb-40ee-4cec-84ac-995b3ba43eb2",
@@ -1219,10 +1222,12 @@
     "octgn:24a841df-854e-444b-9b2f-0214f0e26002",
     "octgn:24e431be-cde9-4f93-943a-de5e5ca9108b",
     "octgn:24ffba46-0c66-4559-ae13-d0980180f537",
+    "octgn:2522fc59-6617-4c74-9723-4a120431aa3f",
     "octgn:254444df-3e65-4531-b6db-2fdacd0788b4",
     "octgn:2573b8e3-d3a1-47c0-acc8-e6151f223383",
     "octgn:257f9b44-2744-4f02-bbf6-115d12b52e8d",
     "octgn:257ffa68-7458-4f3c-bc7e-8d46b27cd837",
+    "octgn:2591dde9-00c6-488e-a109-94136e4f9876",
     "octgn:25940aea-cc56-43bf-a8d6-f9d349b0c01f",
     "octgn:25ae9bce-b4c0-4ff8-aeb3-d0b57d3914d2",
     "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06",
@@ -1262,6 +1267,7 @@
     "octgn:2b3939a5-7ee7-4b6a-a889-84487815a1a5",
     "octgn:2b3973f5-e6f6-4611-87b7-b6e3dc33eb66",
     "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1",
+    "octgn:2b9c8fa1-a5c3-441e-95c1-c10c85948dc1",
     "octgn:2ba77eca-870d-41d9-84cb-f0f33b6d9f15",
     "octgn:2bf5a4d1-9d74-4e1a-8725-cf4a3a47dde9",
     "octgn:2c1f75cf-a6b5-4aa6-abbd-e1beb803e2e2",
@@ -1401,6 +1407,7 @@
     "octgn:44d3c25c-e3ef-4ff0-a16a-8a75937bfffe",
     "octgn:451b7209-4dea-4167-948e-dca0079fb997",
     "octgn:4530258b-c362-4efe-a0c0-92a4f74c75b3",
+    "octgn:456329e9-c7c4-42ac-9edd-e769aea198ea",
     "octgn:4576db5c-fdc2-45f2-ac8b-d1edb8150678",
     "octgn:460a1e18-8a57-44a5-bd06-f0c1b13c86b5",
     "octgn:463d0c53-2275-410f-b311-139f19561b46",
@@ -1925,8 +1932,10 @@
     "octgn:6220ef6b-f314-4cf9-92df-f9551d6cfde0",
     "octgn:624d5999-1a76-4783-b4e4-d9b596242d18",
     "octgn:626abd2c-11bc-416b-9db6-a72d5525d3de",
+    "octgn:62ceb94f-5838-4c5c-9547-8786c4c64051",
     "octgn:62d5807c-caef-49bd-8cbc-cb6429647fce",
     "octgn:62d814e4-e0cf-437b-8ee7-b26478beb721",
+    "octgn:62dea330-3ec7-4db0-bea7-382cb3454f83",
     "octgn:6302e603-fade-43b3-a6b3-235af412fdfa",
     "octgn:63b0498f-9180-4e62-83c1-b9aa29f24712",
     "octgn:63f46289-b5ef-44d1-b6cb-ce382031a768",
@@ -2015,6 +2024,7 @@
     "octgn:74fc62c2-b1b6-4338-819a-1f00f871312c",
     "octgn:7562e662-3b3e-4378-9a3f-c45908bc05cf",
     "octgn:75b111c9-fb49-4a53-ac50-729ff2d06abe",
+    "octgn:75c1d9eb-9ade-4c71-a918-74cf5b526ff2",
     "octgn:76506b8b-4bd1-478f-bc04-512f2b1fc13f",
     "octgn:766735f8-3b17-4b50-aee3-a869837f986c",
     "octgn:768bab66-1707-41a4-adf3-3baad2e7daad",
@@ -2073,6 +2083,7 @@
     "octgn:801078c6-56a9-45f2-b5a4-7e38cb5bc507",
     "octgn:8042f7de-6fed-49cf-95be-450f0fae1601",
     "octgn:80764232-a3c9-47f1-9034-9c9ac82002e4",
+    "octgn:808f60ad-a63f-4504-9b67-4fd45d630add",
     "octgn:809ff5de-8273-4491-adfb-3a27d4b316f3",
     "octgn:80e25c61-e49c-40cb-b8e7-b4c45620163c",
     "octgn:81632d10-625e-42f0-9e6b-09574a9ffbc3",
@@ -2167,6 +2178,7 @@
     "octgn:8f5cdb72-aeae-49f7-bcc8-a2288b6bfb95",
     "octgn:8f6254c0-a723-4e66-bdc7-4c92eed415f8",
     "octgn:8f6e5d67-81c7-4db8-9cb0-ef45b71490c6",
+    "octgn:8fa4b202-cb8e-470d-ae2b-aa945ac652c5",
     "octgn:9031b458-f7e0-4c55-9266-f30aaaf718c1",
     "octgn:9042242b-054d-413e-83c7-bb9f42551a8a",
     "octgn:90b5e33a-3708-40ab-8d20-5a997237e536",
@@ -2357,6 +2369,7 @@
     "octgn:b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0",
     "octgn:b309f3a1-af3e-4c2e-9fce-59e8d88fbd7b",
     "octgn:b3147b4e-2a60-402f-a1aa-5d56c002326d",
+    "octgn:b32e4536-aa58-4a09-8025-12028cd28288",
     "octgn:b34e79d4-7806-4fd9-b12d-bb291e44f354",
     "octgn:b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8",
     "octgn:b41e6b34-4d6a-47de-9b07-b039013efbc5",
@@ -2381,6 +2394,7 @@
     "octgn:b6af7b48-e072-45e8-a745-4de2ac8ded8c",
     "octgn:b70846d1-3216-421a-9098-af2a4540b530",
     "octgn:b7431f72-5157-4a6d-a6c0-86bcf88f2669",
+    "octgn:b774e6b4-461c-46eb-9398-dcb2af4cfab5",
     "octgn:b77620fa-89a8-4f09-8552-ba4204e472d2",
     "octgn:b77a9e58-9a88-4aec-9029-8d84269b0a3c",
     "octgn:b793d1f1-012e-4e13-aad0-d91833f6f8c6",
@@ -2421,6 +2435,7 @@
     "octgn:bf925a7c-b427-4fb6-ba6b-dbc86304a69f",
     "octgn:bfa3b9da-d0e3-4ad6-8d1d-f32975f69551",
     "octgn:bfae3bf9-24e1-46af-b202-fb6c676a5dd9",
+    "octgn:c04f4018-e001-4a31-a003-9914e3f585ee",
     "octgn:c057b0ef-eb85-4afc-9ca8-60a0cca92bcc",
     "octgn:c08310b6-5201-4c70-975e-61a2e7ff329b",
     "octgn:c084e998-a5c8-4efd-a6ed-441f9f912c99",
@@ -2526,6 +2541,7 @@
     "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958",
     "octgn:d0b6992d-9dc4-41fa-a483-b4ad0a3d60b3",
     "octgn:d0bf9c82-d626-4602-a383-4a5660a08c5f",
+    "octgn:d12e280f-44f3-469e-a2e8-e3bfd541f909",
     "octgn:d198aa74-21ec-462a-ac1a-f9c2fcf526cb",
     "octgn:d1a3a535-7679-4757-871c-80c50c003cff",
     "octgn:d1cc0af9-7ab3-449b-baa2-da0bfdf6c987",
@@ -2581,6 +2597,7 @@
     "octgn:dd7ca673-fc3c-4caf-859a-ca32722e68dc",
     "octgn:ddac1c59-4e5d-4a90-9666-0753133d4de9",
     "octgn:ddb20145-e570-4099-8d8a-11d64895939b",
+    "octgn:de09949d-6bc8-470c-a500-6b1fd4a5f391",
     "octgn:de212258-f124-4cda-baab-4f696c2b5766",
     "octgn:de744bed-1461-4442-b9a1-193d00fd39a3",
     "octgn:de8d68fc-15c4-4689-933e-1b2ca638cd78",
@@ -2773,6 +2790,7 @@
     "octgn:fc4f9f69-7870-4449-b89b-cd7b4dc158d0",
     "octgn:fc54b033-56cc-4ca9-8e0f-7f1c7b82bd6a",
     "octgn:fc6d1863-5007-4705-9d47-99d6d118e5ca",
+    "octgn:fc7041f2-b7f8-44a2-bf4c-beadd8016470",
     "octgn:fc70a2bc-c2ba-4364-a609-811daa0d6780",
     "octgn:fc8711c3-a458-4f0b-86d2-61fb3fd70316",
     "octgn:fca6840a-ae90-42c7-b0cb-79ef8c7de099",
@@ -3466,7 +3484,7 @@
     {
       "product": "the-land-of-shadow",
       "total": 75,
-      "scripted": 21,
+      "scripted": 38,
       "player": 14,
       "playerScripted": 2
     },
@@ -15110,7 +15128,7 @@
       "name": "Oliphaunt",
       "type": "enemy",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -15270,7 +15288,7 @@
       "name": "The Cross-roads",
       "type": "location",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -15502,7 +15520,7 @@
       "name": "The Black Gate",
       "type": "objective",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -15542,7 +15560,7 @@
       "name": "The Dark Lord's Summons",
       "type": "treachery",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -16102,7 +16120,7 @@
       "name": "Southward Road",
       "type": "location",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -18222,7 +18240,7 @@
       "name": "Haradrim Soldier",
       "type": "enemy",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -23558,7 +23576,7 @@
       "name": "Henneth Annun",
       "type": "location",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -23582,7 +23600,7 @@
       "name": "Man of Harad",
       "type": "enemy",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -25006,7 +25024,7 @@
       "name": "Arrows Thick in the Air",
       "type": "treachery",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -25982,7 +26000,7 @@
       "name": "Ithilien Woods",
       "type": "location",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -27382,7 +27400,7 @@
       "name": "Foothills of Ephel Duath",
       "type": "location",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -30190,7 +30208,7 @@
       "name": "Ambush the Men of Harad",
       "type": "quest",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -30558,7 +30576,7 @@
       "name": "Marching Up the Road",
       "type": "treachery",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -31606,7 +31624,7 @@
       "name": "Haradrim Archer",
       "type": "enemy",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -33094,7 +33112,7 @@
       "name": "Fierce Southrons",
       "type": "treachery",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -33982,7 +34000,7 @@
       "name": "Hills of Ithilien",
       "type": "location",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -36806,7 +36824,7 @@
       "name": "Captain of Harad",
       "type": "enemy",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -37964,8 +37982,8 @@
       "id": "E0B.11",
       "name": "Journey to the Cross-roads (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "journey-to-the-cross-roads",
+      "state": "scripted"
     },
     {
       "id": "E0B.12",
@@ -38090,8 +38108,8 @@
       "id": "E0C.11",
       "name": "Journey to the Cross-roads (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "journey-to-the-cross-roads",
+      "state": "scripted"
     },
     {
       "id": "E0C.12",
@@ -39455,8 +39473,8 @@
       "id": "Q0B.11",
       "name": "Journey to the Cross-roads",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "journey-to-the-cross-roads",
+      "state": "scripted"
     },
     {
       "id": "Q0B.12",

@@ -205,6 +205,8 @@
     "test:browser-road-isengard": "node --import tsx scripts/browser-road-isengard.mjs",
     "test:passage-marshes-simulation": "node --import tsx --test tests/passage-marshes-simulation.test.ts",
     "test:browser-passage-marshes": "node --import tsx scripts/browser-passage-marshes.mjs",
+    "test:cross-roads-simulation": "node --import tsx --test tests/cross-roads-simulation.test.ts",
+    "test:browser-cross-roads": "node --import tsx scripts/browser-cross-roads.mjs",
     "test:browser-treason-saruman-players": "node --import tsx scripts/browser-treason-saruman-players.mjs"
   },
   "dependencies": {

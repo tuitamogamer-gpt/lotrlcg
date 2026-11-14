@@ -83,6 +83,10 @@ export const PLAYMATS = {
     name: "The Ring of Isengard",
     detail: "The Ents of Fangorn · The Voice of Saruman",
   },
+  "journey-to-the-cross-roads": {
+    name: "The Road to the Black Gate",
+    detail: "Ambush in Ithilien · The Men of Harad march to Mordor",
+  },
   "the-passage-of-the-marshes": {
     name: "The Mere of Dead Faces",
     detail: "The taming of Sméagol · The mire and the candles of the dead",
@@ -502,6 +506,7 @@ export const PLAYMAT_CHOICES = [
   "helms-deep",
   "the-road-to-isengard",
   "the-passage-of-the-marshes",
+  "journey-to-the-cross-roads",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

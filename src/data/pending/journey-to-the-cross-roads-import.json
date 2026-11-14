@@ -1,0 +1,1204 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "Journey to the Cross-roads",
+  "slug": "journey-to-the-cross-roads",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "144001",
+      "name": "Frodo Baggins",
+      "type_code": "hero",
+      "type_name": "Hero",
+      "sphere_code": "fellowship",
+      "sphere_name": "Fellowship",
+      "threat": 0,
+      "willpower": 2,
+      "attack": 1,
+      "defense": 2,
+      "health": 2,
+      "traits": "Hobbit. Ring-bearer.",
+      "text": "<b>Action:</b> Spend 1 [fellowship] resource and exhaust The One Ring to give Frodo Baggins +2 [willpower] and +2 [attack] until the end of the round.",
+      "flavor": "\"It's my doom, I think, to go to that Shadow yonder, so that a way will be found.\" <cite>The Two Towers</cite>",
+      "is_unique": true,
+      "deck_limit": 1,
+      "pack_name": "The Land of Shadow",
+      "pack_code": "LoS",
+      "position": 1,
+      "illustrator": "Melanie Maier",
+      "imagesrc": "/cards/144001.png",
+      "url": "https://ringsdb.com/card/144001",
+      "quantity": 1,
+      "octgnid": "fe58a6d3-7028-41c1-ab00-5e33e7d77b5f",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 1,
+          "quantity": 1,
+          "image_code": "144001",
+          "illustrator": "Melanie Maier",
+          "octgnid": "fe58a6d3-7028-41c1-ab00-5e33e7d77b5f",
+          "imagesrc": "/bundles/cards/144001.png",
+          "date_release": "2015-11-19"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/144001",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2163f5ef-63a3-4afc-8084-fe730774d216",
+      "octgnid": "2163f5ef-63a3-4afc-8084-fe730774d216",
+      "name": "Oliphaunt",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Harad. Creature.",
+      "text": "Cannot have attachments or take more than 3 damage each round.\nForced: After Oliphaunt engages you, exhaust each ally you control.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 56,
+      "quantity": 3,
+      "threat": 3,
+      "attack": 6,
+      "defense": 2,
+      "health": 9,
+      "engagement": 44,
+      "shadow": "Shadow: Attacking enemy gets +3 [attack].",
+      "encounter_set": "Men of Harad",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "6",
+        "defense": "2",
+        "health": "9",
+        "engagement": "44"
+      },
+      "imagesrc": "/cards/2163f5ef-63a3-4afc-8084-fe730774d216.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 56,
+          "quantity": 3,
+          "octgnid": "2163f5ef-63a3-4afc-8084-fe730774d216",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2163f5ef-63a3-4afc-8084-fe730774d216.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:22f6fc49-6a00-4104-a9fa-4823435175a1",
+      "octgnid": "22f6fc49-6a00-4104-a9fa-4823435175a1",
+      "name": "The Cross-roads",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Road.",
+      "text": "Immune to player card effects.\nThe Cross-roads gets -1 [threat] for each facedown card under it. The players cannot travel here unless there are no facedown cards under The Cross-roads and at least 20 progress tokens on stage 1B.",
+      "is_unique": true,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 30,
+      "quantity": 1,
+      "threat": 9,
+      "quest": 9,
+      "victory": 9,
+      "encounter_set": "Journey to the Cross-roads",
+      "printed_stats": {
+        "threat": "9",
+        "quest": "9",
+        "victory": "9"
+      },
+      "imagesrc": "/cards/22f6fc49-6a00-4104-a9fa-4823435175a1.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 30,
+          "quantity": 1,
+          "octgnid": "22f6fc49-6a00-4104-a9fa-4823435175a1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/22f6fc49-6a00-4104-a9fa-4823435175a1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2522fc59-6617-4c74-9723-4a120431aa3f",
+      "octgnid": "2522fc59-6617-4c74-9723-4a120431aa3f",
+      "name": "The Black Gate",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Forced: At the end of the planning phase, place each Harad enemy in the staging area facedown under The Black Gate.  If there are at least X facedown cards under The Black Gate, the players lose the game. X is 3 more than the number of players.",
+      "is_unique": true,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 27,
+      "quantity": 1,
+      "encounter_set": "Journey to the Cross-roads",
+      "printed_stats": {},
+      "imagesrc": "/cards/2522fc59-6617-4c74-9723-4a120431aa3f.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 27,
+          "quantity": 1,
+          "octgnid": "2522fc59-6617-4c74-9723-4a120431aa3f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2522fc59-6617-4c74-9723-4a120431aa3f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2591dde9-00c6-488e-a109-94136e4f9876",
+      "octgnid": "2591dde9-00c6-488e-a109-94136e4f9876",
+      "name": "The Dark Lord's Summons",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Peril.\nWhen Revealed: Either place the lowest [attack] Harad enemy engaged with you facedown under The Black Gate, or reveal the top facedown card from under The Cross-roads and put it into play engaged with you.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 36,
+      "quantity": 3,
+      "encounter_set": "Journey to the Cross-roads",
+      "printed_stats": {},
+      "imagesrc": "/cards/2591dde9-00c6-488e-a109-94136e4f9876.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 36,
+          "quantity": 3,
+          "octgnid": "2591dde9-00c6-488e-a109-94136e4f9876",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2591dde9-00c6-488e-a109-94136e4f9876.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2b9c8fa1-a5c3-441e-95c1-c10c85948dc1",
+      "octgnid": "2b9c8fa1-a5c3-441e-95c1-c10c85948dc1",
+      "name": "Southward Road",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest. Road.",
+      "text": "While Southward Road is the active location, each player may optionally engage an additional enemy during the encounter phase.   Travel: The first player reveals the top facedown card underneath The Crossroads and adds it to the staging area to travel here.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 32,
+      "quantity": 2,
+      "threat": 4,
+      "quest": 5,
+      "encounter_set": "Journey to the Cross-roads",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/2b9c8fa1-a5c3-441e-95c1-c10c85948dc1.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 32,
+          "quantity": 2,
+          "octgnid": "2b9c8fa1-a5c3-441e-95c1-c10c85948dc1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2b9c8fa1-a5c3-441e-95c1-c10c85948dc1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:32267333-091c-4bbf-bb29-5f21c8b79188",
+      "octgnid": "32267333-091c-4bbf-bb29-5f21c8b79188",
+      "name": "The One Ring",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Artifact. Item. Ring.",
+      "text": "Setup: The first player claims The One Ring and attaches it to the Ring-bearer. Attached hero does not count against the hero limit. The first player gains control of attached hero. If The One Ring leaves play, the players lose the game.",
+      "is_unique": true,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 63,
+      "quantity": 1,
+      "printed_stats": {},
+      "imagesrc": "/cards/32267333-091c-4bbf-bb29-5f21c8b79188.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 63,
+          "quantity": 1,
+          "octgnid": "32267333-091c-4bbf-bb29-5f21c8b79188",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32267333-091c-4bbf-bb29-5f21c8b79188.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:456329e9-c7c4-42ac-9edd-e769aea198ea",
+      "octgnid": "456329e9-c7c4-42ac-9edd-e769aea198ea",
+      "name": "Haradrim Soldier",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Harad.",
+      "text": "Forced: After Haradrim Soldier engages you, it makes an immediate attack.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 57,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 4,
+      "defense": 3,
+      "health": 4,
+      "engagement": 40,
+      "shadow": "Shadow: Attacking enemy makes an additional attack against you after this one.",
+      "encounter_set": "Men of Harad",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "3",
+        "health": "4",
+        "engagement": "40"
+      },
+      "imagesrc": "/cards/456329e9-c7c4-42ac-9edd-e769aea198ea.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 57,
+          "quantity": 3,
+          "octgnid": "456329e9-c7c4-42ac-9edd-e769aea198ea",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/456329e9-c7c4-42ac-9edd-e769aea198ea.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:62ceb94f-5838-4c5c-9547-8786c4c64051",
+      "octgnid": "62ceb94f-5838-4c5c-9547-8786c4c64051",
+      "name": "Henneth Annun",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Refuge.",
+      "text": "While Henneth Annun is the active location, skip both the encounter phase and combat phase, and  ignore the Forced effects on stage 1B and The Black Gate.  Forced: After Henneth Annun becomes the active location, return each engaged enemy to the staging area.",
+      "is_unique": true,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 31,
+      "quantity": 1,
+      "threat": 1,
+      "quest": 1,
+      "victory": 1,
+      "encounter_set": "Journey to the Cross-roads",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "1",
+        "victory": "1"
+      },
+      "imagesrc": "/cards/62ceb94f-5838-4c5c-9547-8786c4c64051.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 31,
+          "quantity": 1,
+          "octgnid": "62ceb94f-5838-4c5c-9547-8786c4c64051",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/62ceb94f-5838-4c5c-9547-8786c4c64051.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:62dea330-3ec7-4db0-bea7-382cb3454f83",
+      "octgnid": "62dea330-3ec7-4db0-bea7-382cb3454f83",
+      "name": "Man of Harad",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Harad.",
+      "text": "Surge. Archery 1.\nForced: After Man of Harad engages you, discard 1 random card from your hand.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 28,
+      "quantity": 4,
+      "threat": 1,
+      "attack": 3,
+      "defense": 1,
+      "health": 4,
+      "engagement": 36,
+      "shadow": "Shadow: Discard 1 random card from your hand.",
+      "encounter_set": "Journey to the Cross-roads",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "3",
+        "defense": "1",
+        "health": "4",
+        "engagement": "36"
+      },
+      "imagesrc": "/cards/62dea330-3ec7-4db0-bea7-382cb3454f83.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 28,
+          "quantity": 4,
+          "octgnid": "62dea330-3ec7-4db0-bea7-382cb3454f83",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/62dea330-3ec7-4db0-bea7-382cb3454f83.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:75c1d9eb-9ade-4c71-a918-74cf5b526ff2",
+      "octgnid": "75c1d9eb-9ade-4c71-a918-74cf5b526ff2",
+      "name": "Arrows Thick in the Air",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each Harad enemy gains Archery 2 until the end of the round.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 39,
+      "quantity": 3,
+      "shadow": "Shadow: Either place attacking enemy facedown under The Black Gate after this attack, or it makes an additional attack against you after this one.",
+      "encounter_set": "Journey to the Cross-roads",
+      "printed_stats": {},
+      "imagesrc": "/cards/75c1d9eb-9ade-4c71-a918-74cf5b526ff2.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 39,
+          "quantity": 3,
+          "octgnid": "75c1d9eb-9ade-4c71-a918-74cf5b526ff2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/75c1d9eb-9ade-4c71-a918-74cf5b526ff2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:808f60ad-a63f-4504-9b67-4fd45d630add",
+      "octgnid": "808f60ad-a63f-4504-9b67-4fd45d630add",
+      "name": "Ithilien Woods",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "While Ithilien Woods is the active location, it gains: \"Forced: After a player engages a Harad enemy, he readies a character he controls.\"  Travel: The first player reveals the top card of the encounter deck to travel here.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 34,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 3,
+      "encounter_set": "Journey to the Cross-roads",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/808f60ad-a63f-4504-9b67-4fd45d630add.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 34,
+          "quantity": 2,
+          "octgnid": "808f60ad-a63f-4504-9b67-4fd45d630add",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/808f60ad-a63f-4504-9b67-4fd45d630add.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8fa4b202-cb8e-470d-ae2b-aa945ac652c5",
+      "octgnid": "8fa4b202-cb8e-470d-ae2b-aa945ac652c5",
+      "name": "Foothills of Ephel Duath",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest. Hills.",
+      "text": "While Foothills of Ephel Duath is the active location, each Harad enemy gets -1 [threat].  Travel: The first player engages an enemy in the staging area to travel here.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 33,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 6,
+      "encounter_set": "Journey to the Cross-roads",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "6"
+      },
+      "imagesrc": "/cards/8fa4b202-cb8e-470d-ae2b-aa945ac652c5.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 33,
+          "quantity": 3,
+          "octgnid": "8fa4b202-cb8e-470d-ae2b-aa945ac652c5",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8fa4b202-cb8e-470d-ae2b-aa945ac652c5.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b32e4536-aa58-4a09-8025-12028cd28288",
+      "octgnid": "b32e4536-aa58-4a09-8025-12028cd28288",
+      "name": "Ambush the Men of Harad",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Add The Black Gate and The Crossroads to the staging area. Shuffle the Men of Harad encounter set and place it facedown under The Crossroads. Each player, except the first player, searches the encounter deck for a different non-unique location adds it to the staging area. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 68,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "Journey to the Cross-roads",
+      "side": "A",
+      "back_name": "Ambush the Men of Harad",
+      "back_text": "Forced: At the beginning of the quest phase, reveal the top card facedown card from under The Crossroads and add it to the staging area.  The players cannot defeat this stage while The Crossroads is in play. When The Cross roads is explored, the players win the game.",
+      "back_type_code": "quest",
+      "back_quest": 20,
+      "back_imagesrc": "/cards/b32e4536-aa58-4a09-8025-12028cd28288.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/b32e4536-aa58-4a09-8025-12028cd28288.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 68,
+          "quantity": 1,
+          "octgnid": "b32e4536-aa58-4a09-8025-12028cd28288",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b32e4536-aa58-4a09-8025-12028cd28288.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b774e6b4-461c-46eb-9398-dcb2af4cfab5",
+      "octgnid": "b774e6b4-461c-46eb-9398-dcb2af4cfab5",
+      "name": "Marching Up the Road",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player must either return an enemy engaged with him to the staging area, or search the encounter deck and discard pile for a Harad enemy and put it into play engaged with him.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 37,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, place attacking enemy facedown under The Black Gate.",
+      "encounter_set": "Journey to the Cross-roads",
+      "printed_stats": {},
+      "imagesrc": "/cards/b774e6b4-461c-46eb-9398-dcb2af4cfab5.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 37,
+          "quantity": 2,
+          "octgnid": "b774e6b4-461c-46eb-9398-dcb2af4cfab5",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b774e6b4-461c-46eb-9398-dcb2af4cfab5.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c04f4018-e001-4a31-a003-9914e3f585ee",
+      "octgnid": "c04f4018-e001-4a31-a003-9914e3f585ee",
+      "name": "Haradrim Archer",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Harad.",
+      "text": "Archery X. X is the number of players in the game.\nForced: After Haradrim Archer engages you, assign X damage among characters you control.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 58,
+      "quantity": 3,
+      "attack": 3,
+      "defense": 1,
+      "health": 5,
+      "engagement": 42,
+      "shadow": "Shadow: Deal 1 damage to the defending character.",
+      "encounter_set": "Men of Harad",
+      "printed_stats": {
+        "threat": "X",
+        "attack": "3",
+        "defense": "1",
+        "health": "5",
+        "engagement": "42"
+      },
+      "imagesrc": "/cards/c04f4018-e001-4a31-a003-9914e3f585ee.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 58,
+          "quantity": 3,
+          "octgnid": "c04f4018-e001-4a31-a003-9914e3f585ee",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c04f4018-e001-4a31-a003-9914e3f585ee.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d12e280f-44f3-469e-a2e8-e3bfd541f909",
+      "octgnid": "d12e280f-44f3-469e-a2e8-e3bfd541f909",
+      "name": "Fierce Southrons",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Peril.\nWhen Revealed: Either place the lowest [threat] Harad enemy in the staging area facedown under The Black Gate and reveal an additional encounter card, or each enemy in the staging area makes an immediate attack against you.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 38,
+      "quantity": 2,
+      "encounter_set": "Journey to the Cross-roads",
+      "printed_stats": {},
+      "imagesrc": "/cards/d12e280f-44f3-469e-a2e8-e3bfd541f909.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 38,
+          "quantity": 2,
+          "octgnid": "d12e280f-44f3-469e-a2e8-e3bfd541f909",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d12e280f-44f3-469e-a2e8-e3bfd541f909.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:de09949d-6bc8-470c-a500-6b1fd4a5f391",
+      "octgnid": "de09949d-6bc8-470c-a500-6b1fd4a5f391",
+      "name": "Hills of Ithilien",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest. Hills.",
+      "text": "While Hills of Ithilien is the active location, it gains: \"Forced: After a player engages a Harad enemy, deal 1 damage to that enemy.\"",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 35,
+      "quantity": 4,
+      "threat": 2,
+      "quest": 4,
+      "shadow": "Shadow: Discard a nonobjective attachment you control.",
+      "encounter_set": "Journey to the Cross-roads",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/de09949d-6bc8-470c-a500-6b1fd4a5f391.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 35,
+          "quantity": 4,
+          "octgnid": "de09949d-6bc8-470c-a500-6b1fd4a5f391",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/de09949d-6bc8-470c-a500-6b1fd4a5f391.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fc7041f2-b7f8-44a2-bf4c-beadd8016470",
+      "octgnid": "fc7041f2-b7f8-44a2-bf4c-beadd8016470",
+      "name": "Captain of Harad",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Harad.",
+      "text": "Forced: After Captain of Harad engages you, each Harad enemy gets +1 [attack] and 10 engagement cost until the end of the round.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 29,
+      "quantity": 3,
+      "threat": 4,
+      "attack": 4,
+      "defense": 3,
+      "health": 5,
+      "engagement": 38,
+      "shadow": "Shadow: If this attack destroys a character, return attacking enemy to the staging area.",
+      "encounter_set": "Journey to the Cross-roads",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "4",
+        "defense": "3",
+        "health": "5",
+        "engagement": "38"
+      },
+      "imagesrc": "/cards/fc7041f2-b7f8-44a2-bf4c-beadd8016470.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 29,
+          "quantity": 3,
+          "octgnid": "fc7041f2-b7f8-44a2-bf4c-beadd8016470",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fc7041f2-b7f8-44a2-bf4c-beadd8016470.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E0B.11",
+      "name": "Journey to the Cross-roads (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "LoS"
+      ],
+      "card_codes": [
+        "octgn:b32e4536-aa58-4a09-8025-12028cd28288",
+        "octgn:62dea330-3ec7-4db0-bea7-382cb3454f83",
+        "octgn:fc7041f2-b7f8-44a2-bf4c-beadd8016470",
+        "octgn:62ceb94f-5838-4c5c-9547-8786c4c64051",
+        "octgn:2b9c8fa1-a5c3-441e-95c1-c10c85948dc1",
+        "octgn:8fa4b202-cb8e-470d-ae2b-aa945ac652c5",
+        "octgn:808f60ad-a63f-4504-9b67-4fd45d630add",
+        "octgn:de09949d-6bc8-470c-a500-6b1fd4a5f391",
+        "octgn:2591dde9-00c6-488e-a109-94136e4f9876",
+        "octgn:b774e6b4-461c-46eb-9398-dcb2af4cfab5",
+        "octgn:d12e280f-44f3-469e-a2e8-e3bfd541f909",
+        "octgn:75c1d9eb-9ade-4c71-a918-74cf5b526ff2",
+        "octgn:2163f5ef-63a3-4afc-8084-fe730774d216",
+        "octgn:456329e9-c7c4-42ac-9edd-e769aea198ea",
+        "octgn:c04f4018-e001-4a31-a003-9914e3f585ee",
+        "octgn:2522fc59-6617-4c74-9723-4a120431aa3f",
+        "octgn:22f6fc49-6a00-4104-a9fa-4823435175a1",
+        "144001",
+        "octgn:32267333-091c-4bbf-bb29-5f21c8b79188"
+      ],
+      "cards": [
+        {
+          "code": "octgn:b32e4536-aa58-4a09-8025-12028cd28288",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:62dea330-3ec7-4db0-bea7-382cb3454f83",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fc7041f2-b7f8-44a2-bf4c-beadd8016470",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:62ceb94f-5838-4c5c-9547-8786c4c64051",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2b9c8fa1-a5c3-441e-95c1-c10c85948dc1",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8fa4b202-cb8e-470d-ae2b-aa945ac652c5",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:808f60ad-a63f-4504-9b67-4fd45d630add",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:de09949d-6bc8-470c-a500-6b1fd4a5f391",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2591dde9-00c6-488e-a109-94136e4f9876",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b774e6b4-461c-46eb-9398-dcb2af4cfab5",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d12e280f-44f3-469e-a2e8-e3bfd541f909",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:75c1d9eb-9ade-4c71-a918-74cf5b526ff2",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2163f5ef-63a3-4afc-8084-fe730774d216",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:456329e9-c7c4-42ac-9edd-e769aea198ea",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:c04f4018-e001-4a31-a003-9914e3f585ee",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:2522fc59-6617-4c74-9723-4a120431aa3f",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:22f6fc49-6a00-4104-a9fa-4823435175a1",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "144001",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:32267333-091c-4bbf-bb29-5f21c8b79188",
+          "quantity": 1,
+          "section": "player1Play1"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:b32e4536-aa58-4a09-8025-12028cd28288": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:62dea330-3ec7-4db0-bea7-382cb3454f83": 4,
+          "octgn:fc7041f2-b7f8-44a2-bf4c-beadd8016470": 2,
+          "octgn:62ceb94f-5838-4c5c-9547-8786c4c64051": 1,
+          "octgn:2b9c8fa1-a5c3-441e-95c1-c10c85948dc1": 1,
+          "octgn:8fa4b202-cb8e-470d-ae2b-aa945ac652c5": 3,
+          "octgn:808f60ad-a63f-4504-9b67-4fd45d630add": 2,
+          "octgn:de09949d-6bc8-470c-a500-6b1fd4a5f391": 4,
+          "octgn:2591dde9-00c6-488e-a109-94136e4f9876": 3,
+          "octgn:b774e6b4-461c-46eb-9398-dcb2af4cfab5": 1,
+          "octgn:d12e280f-44f3-469e-a2e8-e3bfd541f909": 1,
+          "octgn:75c1d9eb-9ade-4c71-a918-74cf5b526ff2": 3
+        },
+        "sharedEncounterDeck2": {
+          "octgn:2163f5ef-63a3-4afc-8084-fe730774d216": 3,
+          "octgn:456329e9-c7c4-42ac-9edd-e769aea198ea": 3,
+          "octgn:c04f4018-e001-4a31-a003-9914e3f585ee": 3
+        },
+        "sharedStagingArea": {
+          "octgn:2522fc59-6617-4c74-9723-4a120431aa3f": 1,
+          "octgn:22f6fc49-6a00-4104-a9fa-4823435175a1": 1
+        },
+        "player1Play1": {
+          "144001": 1,
+          "octgn:32267333-091c-4bbf-bb29-5f21c8b79188": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q0B.11",
+      "name": "Journey to the Cross-roads",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "LoS"
+      ],
+      "card_codes": [
+        "octgn:b32e4536-aa58-4a09-8025-12028cd28288",
+        "octgn:62dea330-3ec7-4db0-bea7-382cb3454f83",
+        "octgn:fc7041f2-b7f8-44a2-bf4c-beadd8016470",
+        "octgn:62ceb94f-5838-4c5c-9547-8786c4c64051",
+        "octgn:2b9c8fa1-a5c3-441e-95c1-c10c85948dc1",
+        "octgn:8fa4b202-cb8e-470d-ae2b-aa945ac652c5",
+        "octgn:808f60ad-a63f-4504-9b67-4fd45d630add",
+        "octgn:de09949d-6bc8-470c-a500-6b1fd4a5f391",
+        "octgn:2591dde9-00c6-488e-a109-94136e4f9876",
+        "octgn:b774e6b4-461c-46eb-9398-dcb2af4cfab5",
+        "octgn:d12e280f-44f3-469e-a2e8-e3bfd541f909",
+        "octgn:75c1d9eb-9ade-4c71-a918-74cf5b526ff2",
+        "octgn:2163f5ef-63a3-4afc-8084-fe730774d216",
+        "octgn:456329e9-c7c4-42ac-9edd-e769aea198ea",
+        "octgn:c04f4018-e001-4a31-a003-9914e3f585ee",
+        "octgn:2522fc59-6617-4c74-9723-4a120431aa3f",
+        "octgn:22f6fc49-6a00-4104-a9fa-4823435175a1",
+        "144001",
+        "octgn:32267333-091c-4bbf-bb29-5f21c8b79188"
+      ],
+      "cards": [
+        {
+          "code": "octgn:b32e4536-aa58-4a09-8025-12028cd28288",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:62dea330-3ec7-4db0-bea7-382cb3454f83",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fc7041f2-b7f8-44a2-bf4c-beadd8016470",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:62ceb94f-5838-4c5c-9547-8786c4c64051",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2b9c8fa1-a5c3-441e-95c1-c10c85948dc1",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8fa4b202-cb8e-470d-ae2b-aa945ac652c5",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:808f60ad-a63f-4504-9b67-4fd45d630add",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:de09949d-6bc8-470c-a500-6b1fd4a5f391",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2591dde9-00c6-488e-a109-94136e4f9876",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b774e6b4-461c-46eb-9398-dcb2af4cfab5",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d12e280f-44f3-469e-a2e8-e3bfd541f909",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:75c1d9eb-9ade-4c71-a918-74cf5b526ff2",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2163f5ef-63a3-4afc-8084-fe730774d216",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:456329e9-c7c4-42ac-9edd-e769aea198ea",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:c04f4018-e001-4a31-a003-9914e3f585ee",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:2522fc59-6617-4c74-9723-4a120431aa3f",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:22f6fc49-6a00-4104-a9fa-4823435175a1",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "144001",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:32267333-091c-4bbf-bb29-5f21c8b79188",
+          "quantity": 1,
+          "section": "player1Play1"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:b32e4536-aa58-4a09-8025-12028cd28288": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:62dea330-3ec7-4db0-bea7-382cb3454f83": 4,
+          "octgn:fc7041f2-b7f8-44a2-bf4c-beadd8016470": 3,
+          "octgn:62ceb94f-5838-4c5c-9547-8786c4c64051": 1,
+          "octgn:2b9c8fa1-a5c3-441e-95c1-c10c85948dc1": 2,
+          "octgn:8fa4b202-cb8e-470d-ae2b-aa945ac652c5": 3,
+          "octgn:808f60ad-a63f-4504-9b67-4fd45d630add": 2,
+          "octgn:de09949d-6bc8-470c-a500-6b1fd4a5f391": 4,
+          "octgn:2591dde9-00c6-488e-a109-94136e4f9876": 3,
+          "octgn:b774e6b4-461c-46eb-9398-dcb2af4cfab5": 2,
+          "octgn:d12e280f-44f3-469e-a2e8-e3bfd541f909": 2,
+          "octgn:75c1d9eb-9ade-4c71-a918-74cf5b526ff2": 3
+        },
+        "sharedEncounterDeck2": {
+          "octgn:2163f5ef-63a3-4afc-8084-fe730774d216": 3,
+          "octgn:456329e9-c7c4-42ac-9edd-e769aea198ea": 3,
+          "octgn:c04f4018-e001-4a31-a003-9914e3f585ee": 3
+        },
+        "sharedStagingArea": {
+          "octgn:2522fc59-6617-4c74-9723-4a120431aa3f": 1,
+          "octgn:22f6fc49-6a00-4104-a9fa-4823435175a1": 1
+        },
+        "player1Play1": {
+          "144001": 1,
+          "octgn:32267333-091c-4bbf-bb29-5f21c8b79188": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "144001",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/144001.png",
+      "localPath": "/cards/144001.png",
+      "bytes": 155746,
+      "sha256": "20b64143efbc18e5687b3f9534b780a44a0f941421147cd9bfc070ca0a0f61a1"
+    },
+    {
+      "code": "octgn:2163f5ef-63a3-4afc-8084-fe730774d216",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2163f5ef-63a3-4afc-8084-fe730774d216.jpg",
+      "localPath": "/cards/2163f5ef-63a3-4afc-8084-fe730774d216.jpg",
+      "bytes": 149621,
+      "sha256": "6328df1c970a0af3a01c6f6ef5c9228493d84c9d4ce2d777b18c803e47818a62"
+    },
+    {
+      "code": "octgn:22f6fc49-6a00-4104-a9fa-4823435175a1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/22f6fc49-6a00-4104-a9fa-4823435175a1.jpg",
+      "localPath": "/cards/22f6fc49-6a00-4104-a9fa-4823435175a1.jpg",
+      "bytes": 150514,
+      "sha256": "0d14f5e46fffceca33343df14c2e4d4bbedf4a78f0c015dd2aa52b52744c9aa3"
+    },
+    {
+      "code": "octgn:2522fc59-6617-4c74-9723-4a120431aa3f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2522fc59-6617-4c74-9723-4a120431aa3f.jpg",
+      "localPath": "/cards/2522fc59-6617-4c74-9723-4a120431aa3f.jpg",
+      "bytes": 133673,
+      "sha256": "c749e31d57fde0e60cb48f5460ae2e6013bf797b3151648c0613649e99bb2f11"
+    },
+    {
+      "code": "octgn:2591dde9-00c6-488e-a109-94136e4f9876",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2591dde9-00c6-488e-a109-94136e4f9876.jpg",
+      "localPath": "/cards/2591dde9-00c6-488e-a109-94136e4f9876.jpg",
+      "bytes": 155329,
+      "sha256": "e7414f396af6dcc6e693e258c8b4b2c7dbf6bb26b606405e6356d1a53819fb30"
+    },
+    {
+      "code": "octgn:2b9c8fa1-a5c3-441e-95c1-c10c85948dc1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2b9c8fa1-a5c3-441e-95c1-c10c85948dc1.jpg",
+      "localPath": "/cards/2b9c8fa1-a5c3-441e-95c1-c10c85948dc1.jpg",
+      "bytes": 154140,
+      "sha256": "de745cb63ecd3d6c8cbdb3b90a33166210f7329e4f7301e2e9f1f4f8193ae85f"
+    },
+    {
+      "code": "octgn:32267333-091c-4bbf-bb29-5f21c8b79188",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32267333-091c-4bbf-bb29-5f21c8b79188.jpg",
+      "localPath": "/cards/32267333-091c-4bbf-bb29-5f21c8b79188.jpg",
+      "bytes": 142861,
+      "sha256": "c956495e3def53b5c44878d3ddb3e43d943e83f68a691e9d2e78b5954700c7ed"
+    },
+    {
+      "code": "octgn:456329e9-c7c4-42ac-9edd-e769aea198ea",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/456329e9-c7c4-42ac-9edd-e769aea198ea.jpg",
+      "localPath": "/cards/456329e9-c7c4-42ac-9edd-e769aea198ea.jpg",
+      "bytes": 154473,
+      "sha256": "1da78324283df85da0646451b1abdee8af7c6a5f7d048623d0f8859023826396"
+    },
+    {
+      "code": "octgn:62ceb94f-5838-4c5c-9547-8786c4c64051",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/62ceb94f-5838-4c5c-9547-8786c4c64051.jpg",
+      "localPath": "/cards/62ceb94f-5838-4c5c-9547-8786c4c64051.jpg",
+      "bytes": 150350,
+      "sha256": "7e021da5b64076ed6c38db1822260af35723882514e3084418fad4327fd25620"
+    },
+    {
+      "code": "octgn:62dea330-3ec7-4db0-bea7-382cb3454f83",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/62dea330-3ec7-4db0-bea7-382cb3454f83.jpg",
+      "localPath": "/cards/62dea330-3ec7-4db0-bea7-382cb3454f83.jpg",
+      "bytes": 149038,
+      "sha256": "b58deb479a6f2090211d01fdf2c76b219c4ea3cdc5ba52b7c841a5092e14ccc3"
+    },
+    {
+      "code": "octgn:75c1d9eb-9ade-4c71-a918-74cf5b526ff2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/75c1d9eb-9ade-4c71-a918-74cf5b526ff2.jpg",
+      "localPath": "/cards/75c1d9eb-9ade-4c71-a918-74cf5b526ff2.jpg",
+      "bytes": 148204,
+      "sha256": "104e349871a980e8f8d90a46469c9040803ce724aee6731396b83b8b66c648e9"
+    },
+    {
+      "code": "octgn:808f60ad-a63f-4504-9b67-4fd45d630add",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/808f60ad-a63f-4504-9b67-4fd45d630add.jpg",
+      "localPath": "/cards/808f60ad-a63f-4504-9b67-4fd45d630add.jpg",
+      "bytes": 146863,
+      "sha256": "6793ccaed77d27a241d761a74f5db6eba9f559460cc17dbc06b0eb5daca542ad"
+    },
+    {
+      "code": "octgn:8fa4b202-cb8e-470d-ae2b-aa945ac652c5",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8fa4b202-cb8e-470d-ae2b-aa945ac652c5.jpg",
+      "localPath": "/cards/8fa4b202-cb8e-470d-ae2b-aa945ac652c5.jpg",
+      "bytes": 148097,
+      "sha256": "c45318d1b3a12ae2e223bf98b143ea44d7d419e51f426443a94d1814ccce20b6"
+    },
+    {
+      "code": "octgn:b32e4536-aa58-4a09-8025-12028cd28288",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b32e4536-aa58-4a09-8025-12028cd28288.jpg",
+      "localPath": "/cards/b32e4536-aa58-4a09-8025-12028cd28288.jpg",
+      "bytes": 155096,
+      "sha256": "1aa250a2a888f63d5eb933f58927ae3abc323083096a7d9ee5a55a68ed73394f"
+    },
+    {
+      "code": "octgn:b32e4536-aa58-4a09-8025-12028cd28288",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b32e4536-aa58-4a09-8025-12028cd28288.B.jpg",
+      "localPath": "/cards/b32e4536-aa58-4a09-8025-12028cd28288.B.jpg",
+      "bytes": 148789,
+      "sha256": "1cbf9eac18ef184184b4e30d18f06ec8806e8002204ccd89848d133477136744"
+    },
+    {
+      "code": "octgn:b774e6b4-461c-46eb-9398-dcb2af4cfab5",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b774e6b4-461c-46eb-9398-dcb2af4cfab5.jpg",
+      "localPath": "/cards/b774e6b4-461c-46eb-9398-dcb2af4cfab5.jpg",
+      "bytes": 167764,
+      "sha256": "4b4e49d3a12b17121822f11753f8f69bf9e222ba9b7e3c3e2b0270d1745dd1cc"
+    },
+    {
+      "code": "octgn:c04f4018-e001-4a31-a003-9914e3f585ee",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c04f4018-e001-4a31-a003-9914e3f585ee.jpg",
+      "localPath": "/cards/c04f4018-e001-4a31-a003-9914e3f585ee.jpg",
+      "bytes": 149696,
+      "sha256": "87089460ccb1b98f949f2e36bd70e87c72c4e85b9ab73baffdb61dd69b056cc5"
+    },
+    {
+      "code": "octgn:d12e280f-44f3-469e-a2e8-e3bfd541f909",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d12e280f-44f3-469e-a2e8-e3bfd541f909.jpg",
+      "localPath": "/cards/d12e280f-44f3-469e-a2e8-e3bfd541f909.jpg",
+      "bytes": 148107,
+      "sha256": "754bc8ed762b719dace0e5a6d55388a50e767c37774d0a34d434608de153ce0a"
+    },
+    {
+      "code": "octgn:de09949d-6bc8-470c-a500-6b1fd4a5f391",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/de09949d-6bc8-470c-a500-6b1fd4a5f391.jpg",
+      "localPath": "/cards/de09949d-6bc8-470c-a500-6b1fd4a5f391.jpg",
+      "bytes": 140303,
+      "sha256": "f5e09add254747724994b780f1e39bdc4e25a4c92a789b4ff6eebb5d84ae2d66"
+    },
+    {
+      "code": "octgn:fc7041f2-b7f8-44a2-bf4c-beadd8016470",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fc7041f2-b7f8-44a2-bf4c-beadd8016470.jpg",
+      "localPath": "/cards/fc7041f2-b7f8-44a2-bf4c-beadd8016470.jpg",
+      "bytes": 151897,
+      "sha256": "e101800fd61c7ab72960c7a56fd316bd5e3384b287ec27d423503c6190456967"
+    }
+  ]
+}

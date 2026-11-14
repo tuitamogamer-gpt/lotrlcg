@@ -26,6 +26,7 @@ import { urukHaiPublicState } from "./uruk-hai-support";
 import { helmsDeepPublicState } from "./helms-deep-support";
 import { roadIsengardPublicState } from "./road-isengard-support";
 import { passageMarshesPublicState } from "./passage-marshes-support";
+import { crossRoadsPublicState } from "./cross-roads-support";
 import * as LandShadowPlayers from "./land-shadow-player-cards";
 import { ereborAllyPlayed } from "./erebor-treasures";
 import * as LandSorrowPlayers from "./land-sorrow-player";
@@ -3769,6 +3770,7 @@ export function publicState(s: GameState) {
     helmsDeep: helmsDeepPublicState(s),
     roadIsengard: roadIsengardPublicState(s),
     passageMarshes: passageMarshesPublicState(s),
+    crossRoads: crossRoadsPublicState(s),
     fortressNurnPlayers: FortressPlayers.fortressNurnPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),

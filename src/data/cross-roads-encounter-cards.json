@@ -1,0 +1,594 @@
+[
+  {
+    "code": "octgn:2163f5ef-63a3-4afc-8084-fe730774d216",
+    "octgnid": "2163f5ef-63a3-4afc-8084-fe730774d216",
+    "name": "Oliphaunt",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Harad. Creature.",
+    "text": "Cannot have attachments or take more than 3 damage each round.\nForced: After Oliphaunt engages you, exhaust each ally you control.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 56,
+    "quantity": 3,
+    "threat": 3,
+    "attack": 6,
+    "defense": 2,
+    "health": 9,
+    "engagement": 44,
+    "shadow": "Shadow: Attacking enemy gets +3 [attack].",
+    "encounter_set": "Men of Harad",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "6",
+      "defense": "2",
+      "health": "9",
+      "engagement": "44"
+    },
+    "imagesrc": "/cards/2163f5ef-63a3-4afc-8084-fe730774d216.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 56,
+        "quantity": 3,
+        "octgnid": "2163f5ef-63a3-4afc-8084-fe730774d216",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2163f5ef-63a3-4afc-8084-fe730774d216.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:22f6fc49-6a00-4104-a9fa-4823435175a1",
+    "octgnid": "22f6fc49-6a00-4104-a9fa-4823435175a1",
+    "name": "The Cross-roads",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Road.",
+    "text": "Immune to player card effects.\nThe Cross-roads gets -1 [threat] for each facedown card under it. The players cannot travel here unless there are no facedown cards under The Cross-roads and at least 20 progress tokens on stage 1B.",
+    "is_unique": true,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 30,
+    "quantity": 1,
+    "threat": 9,
+    "quest": 9,
+    "victory": 9,
+    "encounter_set": "Journey to the Cross-roads",
+    "printed_stats": {
+      "threat": "9",
+      "quest": "9",
+      "victory": "9"
+    },
+    "imagesrc": "/cards/22f6fc49-6a00-4104-a9fa-4823435175a1.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 30,
+        "quantity": 1,
+        "octgnid": "22f6fc49-6a00-4104-a9fa-4823435175a1",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/22f6fc49-6a00-4104-a9fa-4823435175a1.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:2522fc59-6617-4c74-9723-4a120431aa3f",
+    "octgnid": "2522fc59-6617-4c74-9723-4a120431aa3f",
+    "name": "The Black Gate",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Mordor.",
+    "text": "Forced: At the end of the planning phase, place each Harad enemy in the staging area facedown under The Black Gate.\nIf there are at least X facedown cards under The Black Gate, the players lose the game. X is 3 more than the number of players.",
+    "is_unique": true,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 27,
+    "quantity": 1,
+    "encounter_set": "Journey to the Cross-roads",
+    "printed_stats": {},
+    "imagesrc": "/cards/2522fc59-6617-4c74-9723-4a120431aa3f.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 27,
+        "quantity": 1,
+        "octgnid": "2522fc59-6617-4c74-9723-4a120431aa3f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2522fc59-6617-4c74-9723-4a120431aa3f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:2591dde9-00c6-488e-a109-94136e4f9876",
+    "octgnid": "2591dde9-00c6-488e-a109-94136e4f9876",
+    "name": "The Dark Lord's Summons",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Mordor.",
+    "text": "Peril.\nWhen Revealed: Either place the lowest [attack] Harad enemy engaged with you facedown under The Black Gate, or reveal the top facedown card from under The Cross-roads and put it into play engaged with you.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 36,
+    "quantity": 3,
+    "encounter_set": "Journey to the Cross-roads",
+    "printed_stats": {},
+    "imagesrc": "/cards/2591dde9-00c6-488e-a109-94136e4f9876.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 36,
+        "quantity": 3,
+        "octgnid": "2591dde9-00c6-488e-a109-94136e4f9876",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2591dde9-00c6-488e-a109-94136e4f9876.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:2b9c8fa1-a5c3-441e-95c1-c10c85948dc1",
+    "octgnid": "2b9c8fa1-a5c3-441e-95c1-c10c85948dc1",
+    "name": "Southward Road",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest. Road.",
+    "text": "While Southward Road is the active location, each player may optionally engage an additional enemy during the encounter phase.\nTravel: The first player reveals the top facedown card under The Cross-roads and adds it to the staging area to travel here.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 32,
+    "quantity": 2,
+    "threat": 4,
+    "quest": 5,
+    "encounter_set": "Journey to the Cross-roads",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/2b9c8fa1-a5c3-441e-95c1-c10c85948dc1.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 32,
+        "quantity": 2,
+        "octgnid": "2b9c8fa1-a5c3-441e-95c1-c10c85948dc1",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2b9c8fa1-a5c3-441e-95c1-c10c85948dc1.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:456329e9-c7c4-42ac-9edd-e769aea198ea",
+    "octgnid": "456329e9-c7c4-42ac-9edd-e769aea198ea",
+    "name": "Haradrim Soldier",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Harad.",
+    "text": "Forced: After Haradrim Soldier engages you, it makes an immediate attack.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 57,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 4,
+    "defense": 3,
+    "health": 4,
+    "engagement": 40,
+    "shadow": "Shadow: Attacking enemy makes an additional attack against you after this one.",
+    "encounter_set": "Men of Harad",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "4",
+      "defense": "3",
+      "health": "4",
+      "engagement": "40"
+    },
+    "imagesrc": "/cards/456329e9-c7c4-42ac-9edd-e769aea198ea.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 57,
+        "quantity": 3,
+        "octgnid": "456329e9-c7c4-42ac-9edd-e769aea198ea",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/456329e9-c7c4-42ac-9edd-e769aea198ea.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:62ceb94f-5838-4c5c-9547-8786c4c64051",
+    "octgnid": "62ceb94f-5838-4c5c-9547-8786c4c64051",
+    "name": "Henneth Annûn",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Refuge.",
+    "text": "While Henneth Annûn is the active location, skip both the encounter phase and combat phase, and ignore the Forced effects on stage 1B and The Black Gate.\nForced: After Henneth Annûn becomes the active location, return each engaged enemy to the staging area.",
+    "is_unique": true,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 31,
+    "quantity": 1,
+    "threat": 1,
+    "quest": 1,
+    "victory": 1,
+    "encounter_set": "Journey to the Cross-roads",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "1",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/62ceb94f-5838-4c5c-9547-8786c4c64051.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 31,
+        "quantity": 1,
+        "octgnid": "62ceb94f-5838-4c5c-9547-8786c4c64051",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/62ceb94f-5838-4c5c-9547-8786c4c64051.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:62dea330-3ec7-4db0-bea7-382cb3454f83",
+    "octgnid": "62dea330-3ec7-4db0-bea7-382cb3454f83",
+    "name": "Man of Harad",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Harad.",
+    "text": "Surge. Archery 1.\nForced: After Man of Harad engages you, discard 1 random card from your hand.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 28,
+    "quantity": 4,
+    "threat": 1,
+    "attack": 3,
+    "defense": 1,
+    "health": 4,
+    "engagement": 36,
+    "shadow": "Shadow: Discard 1 random card from your hand.",
+    "encounter_set": "Journey to the Cross-roads",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "3",
+      "defense": "1",
+      "health": "4",
+      "engagement": "36"
+    },
+    "imagesrc": "/cards/62dea330-3ec7-4db0-bea7-382cb3454f83.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 28,
+        "quantity": 4,
+        "octgnid": "62dea330-3ec7-4db0-bea7-382cb3454f83",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/62dea330-3ec7-4db0-bea7-382cb3454f83.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:75c1d9eb-9ade-4c71-a918-74cf5b526ff2",
+    "octgnid": "75c1d9eb-9ade-4c71-a918-74cf5b526ff2",
+    "name": "Arrows Thick in the Air",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each Harad enemy gains Archery 2 until the end of the round.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 39,
+    "quantity": 3,
+    "shadow": "Shadow: Either place attacking enemy facedown under The Black Gate after this attack, or it makes an additional attack against you after this one.",
+    "encounter_set": "Journey to the Cross-roads",
+    "printed_stats": {},
+    "imagesrc": "/cards/75c1d9eb-9ade-4c71-a918-74cf5b526ff2.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 39,
+        "quantity": 3,
+        "octgnid": "75c1d9eb-9ade-4c71-a918-74cf5b526ff2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/75c1d9eb-9ade-4c71-a918-74cf5b526ff2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:808f60ad-a63f-4504-9b67-4fd45d630add",
+    "octgnid": "808f60ad-a63f-4504-9b67-4fd45d630add",
+    "name": "Ithilien Woods",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest.",
+    "text": "While Ithilien Woods is the active location, it gains: \"Forced: After a player engages a Harad enemy, he readies a character he controls.\"\nTravel: The first player reveals the top card of the encounter deck to travel here.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 34,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 3,
+    "encounter_set": "Journey to the Cross-roads",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/808f60ad-a63f-4504-9b67-4fd45d630add.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 34,
+        "quantity": 2,
+        "octgnid": "808f60ad-a63f-4504-9b67-4fd45d630add",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/808f60ad-a63f-4504-9b67-4fd45d630add.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8fa4b202-cb8e-470d-ae2b-aa945ac652c5",
+    "octgnid": "8fa4b202-cb8e-470d-ae2b-aa945ac652c5",
+    "name": "Foothills of Ephel Dúath",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest. Hills.",
+    "text": "While Foothills of Ephel Dúath is the active location, each Harad enemy gets -1 [threat].\nTravel: The first player engages an enemy in the staging area to travel here.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 33,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 6,
+    "encounter_set": "Journey to the Cross-roads",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "6"
+    },
+    "imagesrc": "/cards/8fa4b202-cb8e-470d-ae2b-aa945ac652c5.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 33,
+        "quantity": 3,
+        "octgnid": "8fa4b202-cb8e-470d-ae2b-aa945ac652c5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8fa4b202-cb8e-470d-ae2b-aa945ac652c5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:b774e6b4-461c-46eb-9398-dcb2af4cfab5",
+    "octgnid": "b774e6b4-461c-46eb-9398-dcb2af4cfab5",
+    "name": "Marching Up the Road",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player must either return an enemy engaged with him to the staging area, or search the encounter deck for a Harad enemy and put it into play engaged with him.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 37,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, place attacking enemy facedown under The Black Gate.",
+    "encounter_set": "Journey to the Cross-roads",
+    "printed_stats": {},
+    "imagesrc": "/cards/b774e6b4-461c-46eb-9398-dcb2af4cfab5.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 37,
+        "quantity": 2,
+        "octgnid": "b774e6b4-461c-46eb-9398-dcb2af4cfab5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b774e6b4-461c-46eb-9398-dcb2af4cfab5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:c04f4018-e001-4a31-a003-9914e3f585ee",
+    "octgnid": "c04f4018-e001-4a31-a003-9914e3f585ee",
+    "name": "Haradrim Archer",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Harad.",
+    "text": "Archery X. X is the number of players in the game.\nForced: After Haradrim Archer engages you, assign X damage among characters you control.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 58,
+    "quantity": 3,
+    "attack": 3,
+    "defense": 1,
+    "health": 5,
+    "engagement": 42,
+    "shadow": "Shadow: Deal 1 damage to the defending character.",
+    "encounter_set": "Men of Harad",
+    "printed_stats": {
+      "threat": "X",
+      "attack": "3",
+      "defense": "1",
+      "health": "5",
+      "engagement": "42"
+    },
+    "imagesrc": "/cards/c04f4018-e001-4a31-a003-9914e3f585ee.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 58,
+        "quantity": 3,
+        "octgnid": "c04f4018-e001-4a31-a003-9914e3f585ee",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c04f4018-e001-4a31-a003-9914e3f585ee.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:d12e280f-44f3-469e-a2e8-e3bfd541f909",
+    "octgnid": "d12e280f-44f3-469e-a2e8-e3bfd541f909",
+    "name": "Fierce Southrons",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Peril.\nWhen Revealed: Either place the lowest [threat] Harad enemy in the staging area facedown under The Black Gate and reveal an additional encounter card, or each enemy in the staging area makes an immediate attack against you.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 38,
+    "quantity": 2,
+    "encounter_set": "Journey to the Cross-roads",
+    "printed_stats": {},
+    "imagesrc": "/cards/d12e280f-44f3-469e-a2e8-e3bfd541f909.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 38,
+        "quantity": 2,
+        "octgnid": "d12e280f-44f3-469e-a2e8-e3bfd541f909",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d12e280f-44f3-469e-a2e8-e3bfd541f909.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:de09949d-6bc8-470c-a500-6b1fd4a5f391",
+    "octgnid": "de09949d-6bc8-470c-a500-6b1fd4a5f391",
+    "name": "Hills of Ithilien",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest. Hills.",
+    "text": "While Hills of Ithilien is the active location, it gains: \"Forced: After a player engages a Harad enemy, deal 1 damage to that enemy.\"",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 35,
+    "quantity": 4,
+    "threat": 2,
+    "quest": 4,
+    "shadow": "Shadow: Discard a non-objective attachment you control.",
+    "encounter_set": "Journey to the Cross-roads",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/de09949d-6bc8-470c-a500-6b1fd4a5f391.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 35,
+        "quantity": 4,
+        "octgnid": "de09949d-6bc8-470c-a500-6b1fd4a5f391",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/de09949d-6bc8-470c-a500-6b1fd4a5f391.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:fc7041f2-b7f8-44a2-bf4c-beadd8016470",
+    "octgnid": "fc7041f2-b7f8-44a2-bf4c-beadd8016470",
+    "name": "Captain of Harad",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Harad.",
+    "text": "Forced: After Captain of Harad engages you, each Harad enemy gets +1 [attack] and -10 engagement cost until the end of the round.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 29,
+    "quantity": 3,
+    "threat": 4,
+    "attack": 4,
+    "defense": 3,
+    "health": 5,
+    "engagement": 38,
+    "shadow": "Shadow: If this attack destroys a character, return attacking enemy to the staging area.",
+    "encounter_set": "Journey to the Cross-roads",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "4",
+      "defense": "3",
+      "health": "5",
+      "engagement": "38"
+    },
+    "imagesrc": "/cards/fc7041f2-b7f8-44a2-bf4c-beadd8016470.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 29,
+        "quantity": 3,
+        "octgnid": "fc7041f2-b7f8-44a2-bf4c-beadd8016470",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fc7041f2-b7f8-44a2-bf4c-beadd8016470.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

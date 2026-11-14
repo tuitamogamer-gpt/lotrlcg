@@ -62,6 +62,10 @@ import {
   PASSAGE_MARSHES_ENCOUNTERS,
   PASSAGE_MARSHES_QUESTS,
 } from "./passage-marshes-scenario-data";
+import {
+  CROSS_ROADS_ENCOUNTERS,
+  CROSS_ROADS_QUESTS,
+} from "./cross-roads-scenario-data";
 import hobbitPlayers from "../data/hobbit-player-cards.json";
 import blackRidersPlayers from "../data/black-riders-player-cards.json";
 import roadDarkensPlayers from "../data/road-darkens-player-cards.json";
@@ -558,6 +562,7 @@ export const encounterCards = [
       ...HELMS_DEEP_ENCOUNTERS,
       ...ROAD_ISENGARD_ENCOUNTERS,
       ...PASSAGE_MARSHES_ENCOUNTERS,
+      ...CROSS_ROADS_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -651,6 +656,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...HELMS_DEEP_QUESTS,
     ...ROAD_ISENGARD_QUESTS,
     ...PASSAGE_MARSHES_QUESTS,
+    ...CROSS_ROADS_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -785,6 +791,7 @@ export const SCRIPTED = new Set(
     ...HELMS_DEEP_QUESTS,
     ...ROAD_ISENGARD_QUESTS,
     ...PASSAGE_MARSHES_QUESTS,
+    ...CROSS_ROADS_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,
