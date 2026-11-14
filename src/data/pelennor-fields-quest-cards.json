@@ -1,0 +1,202 @@
+[
+  {
+    "code": "octgn:77a7f095-bd59-45a1-a866-d58e17e3bd6d",
+    "octgnid": "77a7f095-bd59-45a1-a866-d58e17e3bd6d",
+    "name": "The Garrison of Gondor",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set Minas Tirith, Grond, The Witch-king, and each copy of Wraith on Wings aside, out of play. Search the encounter deck for a copy of Pelennor Field and make it the active location. Shuffle the encounter deck. The players may attach Esquire of Rohan and Esquire of Gondor to different heroes.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 73,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Battle of the Pelennor Fields",
+    "side": "A",
+    "back_name": "The Garrison of Gondor",
+    "back_text": "Skip the quest phase and combat phase. Forced: At the end of the planning phase, place 1 progress here.",
+    "back_type_code": "quest",
+    "back_quest": 2,
+    "back_imagesrc": "/cards/77a7f095-bd59-45a1-a866-d58e17e3bd6d.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/77a7f095-bd59-45a1-a866-d58e17e3bd6d.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 73,
+        "quantity": 1,
+        "octgnid": "77a7f095-bd59-45a1-a866-d58e17e3bd6d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/77a7f095-bd59-45a1-a866-d58e17e3bd6d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:58616050-8a7f-4a9b-a8dc-e0d09e383741",
+    "octgnid": "58616050-8a7f-4a9b-a8dc-e0d09e383741",
+    "name": "Retreat from Osgiliath",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player adds 1 set aside Wraith on Wings to the staging area and reveals an encounter card. Starting with the first player, each player discards cards from the top of his deck until he discards an ally that is not in play. Put the discarded ally into play in the staging area and treat its text box as if it were blank until the end of the phase.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 74,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Battle of the Pelennor Fields",
+    "side": "A",
+    "back_name": "Retreat from Osgiliath",
+    "back_text": "X is the total cost of all allies in the staging area. Allies in the staging area are treated as if their text box is blank, are immune to player card effects, and are under no player's control. Forced: At the end of the round, assign damage among allies in the staging area equal to the number of enemies in the staging area.",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "/cards/58616050-8a7f-4a9b-a8dc-e0d09e383741.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/58616050-8a7f-4a9b-a8dc-e0d09e383741.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 74,
+        "quantity": 1,
+        "octgnid": "58616050-8a7f-4a9b-a8dc-e0d09e383741",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/58616050-8a7f-4a9b-a8dc-e0d09e383741.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:98a48eec-841f-48da-83e7-fa148a03de8b",
+    "octgnid": "98a48eec-841f-48da-83e7-fa148a03de8b",
+    "name": "The White City Besieged",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player takes control of each ally he owns in the staging area and exhausts it. The first player adds Minas Tirith, Grond, and The Witch-king (Captain side faceup) to the staging area. Each other player searches the encounter deck and discard pile for a different enemy and adds it to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 75,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Battle of the Pelennor Fields",
+    "side": "A",
+    "back_name": "The White City Besieged",
+    "back_text": "Assault. The White City Besieged gets +4 quest points for each player in the game. The players cannot travel to Pelennor locations. Forced: When an enemy is destroyed, place progress on this stage equal to that enemy's total [threat] (progress must be placed on any active location first).",
+    "back_type_code": "quest",
+    "back_quest": 4,
+    "back_imagesrc": "/cards/98a48eec-841f-48da-83e7-fa148a03de8b.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/98a48eec-841f-48da-83e7-fa148a03de8b.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 75,
+        "quantity": 1,
+        "octgnid": "98a48eec-841f-48da-83e7-fa148a03de8b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/98a48eec-841f-48da-83e7-fa148a03de8b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:0507932f-0030-4763-8478-29bb407103d4",
+    "octgnid": "0507932f-0030-4763-8478-29bb407103d4",
+    "name": "Rohan has Come!",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Set The Witch-king aside, out of play. Each player searches the top 10 cards of his deck for an ally that matches the sphere of a hero he controls and puts it into play under his control. Each player shuffles his deck.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 76,
+    "quantity": 1,
+    "cost": 4,
+    "encounter_set": "The Battle of the Pelennor Fields",
+    "side": "A",
+    "back_name": "Rohan has Come!",
+    "back_text": "Progress that would be placed on this stage by questing successfully is instead assigned as damage among enemies in play. (Progress must be placed on the active location first.) Forced: At the end of the quest phase, advance to stage 5A.",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "/cards/0507932f-0030-4763-8478-29bb407103d4.B.jpg",
+    "printed_stats": {
+      "cost": "4"
+    },
+    "imagesrc": "/cards/0507932f-0030-4763-8478-29bb407103d4.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 76,
+        "quantity": 1,
+        "octgnid": "0507932f-0030-4763-8478-29bb407103d4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0507932f-0030-4763-8478-29bb407103d4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:7367d16a-2b23-4a95-9050-266e93d8ab50",
+    "octgnid": "7367d16a-2b23-4a95-9050-266e93d8ab50",
+    "name": "Fighting in the Fields",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player adds The Witch-king to the staging area (Sorcerer side faceup). Then, he searches the encounter deck and discard pile for a Fell Beast and attaches it to The Witch-king, if able. Shuffle the encounter deck. Each other player reveals an encounter card.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 77,
+    "quantity": 1,
+    "cost": 5,
+    "encounter_set": "The Battle of the Pelennor Fields",
+    "side": "A",
+    "back_name": "Fighting in the Fields",
+    "back_text": "The Witch-king and shadow cards dealt to The Witch-king are immune to player card effects. Forced: When an enemy attacks and destroys a character, deal 1 damage to Minas Tirith. This stage cannot be defeated unless Aragorn is in play and The Witch-king is in the victory display. If the players defeat this stage, they win the game.",
+    "back_type_code": "quest",
+    "back_quest": 20,
+    "back_imagesrc": "/cards/7367d16a-2b23-4a95-9050-266e93d8ab50.B.jpg",
+    "printed_stats": {
+      "cost": "5"
+    },
+    "imagesrc": "/cards/7367d16a-2b23-4a95-9050-266e93d8ab50.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 77,
+        "quantity": 1,
+        "octgnid": "7367d16a-2b23-4a95-9050-266e93d8ab50",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7367d16a-2b23-4a95-9050-266e93d8ab50.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

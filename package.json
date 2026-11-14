@@ -213,6 +213,8 @@
     "test:browser-grey-company": "node --import tsx scripts/browser-grey-company.mjs",
     "test:siege-gondor-simulation": "node --import tsx --test tests/siege-gondor-simulation.test.ts",
     "test:browser-siege-gondor": "node --import tsx scripts/browser-siege-gondor.mjs",
+    "test:pelennor-fields-simulation": "node --import tsx --test tests/pelennor-fields-simulation.test.ts",
+    "test:browser-pelennor-fields": "node --import tsx scripts/browser-pelennor-fields.mjs",
     "test:browser-treason-saruman-players": "node --import tsx scripts/browser-treason-saruman-players.mjs",
     "test:browser-land-shadow-players": "node --import tsx scripts/browser-land-shadow-players.mjs"
   },

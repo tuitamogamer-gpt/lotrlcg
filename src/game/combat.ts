@@ -453,6 +453,7 @@ export function resolvePlayerAttack(
           ereborAttackBonus(s, u, enemy) +
           watcherPlayerAttackBonus(s, u, enemy) +
           Rhudaur.rhudaurAttackBonus(s, enemy, u) +
+          (batch4Scenario(s).playerAttackBonus?.(s, u, enemy, attackers) ?? 0) +
           (card(enemy.code).traits?.includes("Orc")
             ? u.attachments.filter((a) => !a.blanked && a.code === "01039")
                 .length

@@ -26,6 +26,7 @@ import { urukHaiPublicState } from "./uruk-hai-support";
 import { shelobLairPublicState } from "./shelob-lair-support";
 import { greyCompanyPublicState } from "./grey-company-support";
 import { siegeGondorPublicState } from "./siege-gondor-support";
+import { pelennorFieldsPublicState } from "./pelennor-fields-support";
 import { helmsDeepPublicState } from "./helms-deep-support";
 import { roadIsengardPublicState } from "./road-isengard-support";
 import { passageMarshesPublicState } from "./passage-marshes-support";
@@ -3790,6 +3791,7 @@ export function publicState(s: GameState) {
     shelobLair: shelobLairPublicState(s),
     greyCompany: greyCompanyPublicState(s),
     siegeGondor: siegeGondorPublicState(s),
+    pelennorFields: pelennorFieldsPublicState(s),
     fortressNurnPlayers: FortressPlayers.fortressNurnPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),

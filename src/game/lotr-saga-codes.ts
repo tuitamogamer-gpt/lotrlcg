@@ -62,6 +62,7 @@ export const FLAME_WEST_ARAGORN = "145001";
 export const FLAME_WEST_SCENARIO_IDS: readonly string[] = [
   "the-passing-of-the-grey-company",
   "the-siege-of-gondor",
+  "the-battle-of-the-pelennor-fields",
 ];
 export const isFlameWestScenarioId = (id: string | undefined) =>
   !!id && FLAME_WEST_SCENARIO_IDS.includes(id);

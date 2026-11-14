@@ -29,7 +29,7 @@ test("four CI simulation shards cover every registered complete-game case exactl
   assert.equal(baseline.selectedCases.length, baseline.registeredCases);
   assert.equal(new Set(baseline.selectedCases).size, baseline.registeredCases);
   assert.equal(priorSimulationCases.cases.length, 259);
-  assert.equal(baseline.registeredCases, 539);
+  assert.equal(baseline.registeredCases, 544);
   assert.deepEqual(
     baseline.selectedCases
       .filter(
@@ -85,6 +85,7 @@ test("four CI simulation shards cover every registered complete-game case exactl
             "Shelob's Lair",
             "The Passing of the Grey Company",
             "The Siege of Gondor",
+            "The Battle of the Pelennor Fields",
             "The Black Serpent",
             "The Dungeons of Cirith Gurat",
             "The Crossings of Poros",

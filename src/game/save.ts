@@ -50,6 +50,10 @@ import {
   validateGreyCompany,
 } from "./grey-company-support";
 import { siegeGondorUnits, validateSiegeGondor } from "./siege-gondor-support";
+import {
+  pelennorFieldsUnits,
+  validatePelennorFields,
+} from "./pelennor-fields-support";
 import { validateHideTest } from "./hide-test";
 import { validateAsh, ashExtraUnits } from "./ash-mountains-support";
 import { validateAshPlayers } from "./ash-mountains-player";
@@ -424,9 +428,14 @@ export function validateSave(
       (c.slDiscardOnKill === undefined ||
         typeof c.slDiscardOnKill === "boolean") &&
       (c.gcNoPhantom === undefined || typeof c.gcNoPhantom === "boolean") &&
-      [c.sgPort, c.sgPirate, c.sgRaiding].every(
-        (flag) => flag === undefined || typeof flag === "boolean",
-      ) &&
+      [
+        c.sgPort,
+        c.sgPirate,
+        c.sgRaiding,
+        c.pfReturnOnKill,
+        c.pfDart,
+        c.pfRuin,
+      ].every((flag) => flag === undefined || typeof flag === "boolean") &&
       (c.fbVictims === undefined ||
         (Array.isArray(c.fbVictims) &&
           c.fbVictims.every((n) => Number.isInteger(n) && n >= 0))) &&
@@ -1011,6 +1020,7 @@ export function validateSave(
         !validateShelobLair(s, validUnit as (v: unknown) => boolean) ||
         !validateGreyCompany(s, validUnit as (v: unknown) => boolean) ||
         !validateSiegeGondor(s, validUnit as (v: unknown) => boolean) ||
+        !validatePelennorFields(s, validUnit as (v: unknown) => boolean) ||
         !validateLandSorrow(s, validUnit as (v: unknown) => boolean) ||
         !validateAsh(s, validUnit as (v: unknown) => boolean) ||
         !validateWainriders(s, validUnit as (v: unknown) => boolean, (c) =>
@@ -1744,6 +1754,7 @@ export function validateSave(
       ...shelobLairUnits(s),
       ...greyCompanyUnits(s),
       ...siegeGondorUnits(s),
+      ...pelennorFieldsUnits(s),
       ...(s.fortressNurnPlayers?.contracts.map((c) => c.unit) ?? []),
       ...(s.landSorrowPlayers?.contracts.flatMap((c) =>
         c.unit ? [c.unit] : [],

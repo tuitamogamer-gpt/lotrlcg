@@ -19,6 +19,20 @@ export interface Batch4ScenarioHooks {
   healed?(s: GameState, u: Unit, amount: number): void;
   /** The most damage that can be healed from this unit now (a per-round cap). */
   healLimit?(s: GameState, u: Unit): number | undefined;
+  /** Attack added to one character of a player attack, knowing all its attackers. */
+  playerAttackBonus?(
+    s: GameState,
+    attacker: Unit,
+    enemy: Unit,
+    attackers: Unit[],
+  ): number;
+  /** Progress from player card effects cannot be placed on the current quest. */
+  playerQuestProgressBlocked?(s: GameState): boolean;
+  /**
+   * A played event that would cancel a just-revealed encounter card's effects
+   * is canceled itself (code is the revealed card); the encounter card resolves.
+   */
+  revealCancelCountered?(s: GameState, code: string): boolean;
   threatRaised?(s: GameState, player: number, amount: number): void;
   threatEliminationReduction?(s: GameState, player: number): number;
   cannotHeal?(s: GameState, unit: Unit): boolean;

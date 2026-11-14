@@ -1545,12 +1545,26 @@ function handleEffect(s: GameState, e: Effect) {
         break;
       }
       const continuationCount = s.queue.length;
-      const resolved = spendEvent(
+      const spent = spendEvent(
         s,
         e.code!,
         e.source,
         e.code === "08005" ? e.value : 0,
       );
+      // An encounter card can cancel an event that cancels a card just
+      // revealed from the encounter deck (not a shadow effect).
+      const canceledCode = e.cancelledEffects?.find(
+        (x) =>
+          !!x.code &&
+          (x.kind === "revealCard" ||
+            (x.kind === "placeEncounter" && x.text === "revealed")),
+      )?.code;
+      const resolved =
+        spent &&
+        !(
+          canceledCode &&
+          batch4Scenario(s).revealCancelCountered?.(s, canceledCode)
+        );
       const mandatory = s.queue.splice(0, s.queue.length - continuationCount);
       const finish = mandatory.filter(
         (effect) => effect.kind === "eventFinish",

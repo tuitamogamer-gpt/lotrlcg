@@ -78,6 +78,11 @@ import {
   SIEGE_GONDOR_ENCOUNTERS,
   SIEGE_GONDOR_QUESTS,
 } from "./siege-gondor-scenario-data";
+import {
+  PELENNOR_FIELDS_BOONS,
+  PELENNOR_FIELDS_ENCOUNTERS,
+  PELENNOR_FIELDS_QUESTS,
+} from "./pelennor-fields-scenario-data";
 import hobbitPlayers from "../data/hobbit-player-cards.json";
 import blackRidersPlayers from "../data/black-riders-player-cards.json";
 import roadDarkensPlayers from "../data/road-darkens-player-cards.json";
@@ -580,6 +585,8 @@ export const encounterCards = [
       ...SHELOB_LAIR_ENCOUNTERS,
       ...GREY_COMPANY_ENCOUNTERS,
       ...SIEGE_GONDOR_ENCOUNTERS,
+      ...PELENNOR_FIELDS_ENCOUNTERS,
+      ...PELENNOR_FIELDS_BOONS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -677,6 +684,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...SHELOB_LAIR_QUESTS,
     ...GREY_COMPANY_QUESTS,
     ...SIEGE_GONDOR_QUESTS,
+    ...PELENNOR_FIELDS_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -815,6 +823,7 @@ export const SCRIPTED = new Set(
     ...SHELOB_LAIR_QUESTS,
     ...GREY_COMPANY_QUESTS,
     ...SIEGE_GONDOR_QUESTS,
+    ...PELENNOR_FIELDS_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

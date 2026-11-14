@@ -5,8 +5,8 @@
     "playerCards": 837,
     "heroes": 106,
     "deckCards": 727,
-    "encounterCards": 1603,
-    "scenarios": 106,
+    "encounterCards": 1627,
+    "scenarios": 107,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -113,17 +113,18 @@
       "journey-to-the-cross-roads",
       "shelobs-lair",
       "the-passing-of-the-grey-company",
-      "the-siege-of-gondor"
+      "the-siege-of-gondor",
+      "the-battle-of-the-pelennor-fields"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2775,
-    "pending": 1408
+    "scripted": 2804,
+    "pending": 1379
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 221
+    "scripted": 224
   },
   "registeredCodes": [
     "01001",
@@ -799,7 +800,10 @@
     "144013",
     "145001",
     "145009",
+    "145014",
+    "145015",
     "145016",
+    "145062",
     "146012",
     "16001",
     "16002",
@@ -1035,6 +1039,7 @@
     "drowned-water-logged-halls",
     "fate-lost-island",
     "octgn:00008179-c6a7-46d0-be2f-b4b3b748afc2",
+    "octgn:0002f646-cdaf-40cf-9993-faccb260c583",
     "octgn:001dbc8b-3b8e-4f02-bdbd-7e78c6ecd348",
     "octgn:007721bf-3e80-4857-aaf4-aabb65d1827d",
     "octgn:00d81c85-395e-4990-b0ff-7cbd9908f541",
@@ -1062,6 +1067,7 @@
     "octgn:047ca6cd-733d-46aa-b2db-48a9c63bfc24",
     "octgn:04a23a2e-a14f-4c54-b54f-eeef36d3a92b",
     "octgn:04f24d17-9764-4385-b22c-0e45f6fa5654",
+    "octgn:0507932f-0030-4763-8478-29bb407103d4",
     "octgn:0554f2f9-c578-4644-9c28-b617e846b787",
     "octgn:05738935-2cd4-4ce3-a977-9e4f59689a32",
     "octgn:058a5508-6b20-4305-94ea-53d5d2f33595",
@@ -1083,7 +1089,9 @@
     "octgn:08af0240-fb38-4a33-a1f0-af07fd496b42",
     "octgn:08b55b0b-93e5-42d3-a746-703c7ce9146f",
     "octgn:0909409e-d2d3-4304-b239-76bb6da0dceb",
+    "octgn:097b7d54-bfa9-4b13-a1b8-337b03cac21d",
     "octgn:09aeff64-6e0d-4dfa-af21-2e7805441376",
+    "octgn:09b27f8f-60ab-4764-8c78-52fb09597921",
     "octgn:0a0e6044-c5ab-43ed-832a-71516c7d035a",
     "octgn:0a1166fb-fb90-4651-a8ae-7d532e41c2b6",
     "octgn:0a6774e7-f110-4917-84b5-1f81a7aefbf8",
@@ -1144,6 +1152,7 @@
     "octgn:14fb1fba-dd55-4511-80f3-14808fc0f174",
     "octgn:152a0b0a-7e01-41ce-98a4-3e7b0d6eaac4",
     "octgn:15602096-12af-47a0-9f9a-01778d2b0a7b",
+    "octgn:15734584-04cf-41b7-8a86-d1a435d6f8dc",
     "octgn:1574141b-b11e-4be9-82c9-ddc1fb2f5269",
     "octgn:1589883f-87ae-4f4d-a92b-e5e23c25c8e0",
     "octgn:159f5a8f-1e1f-4282-9936-94b10e348176",
@@ -1363,6 +1372,7 @@
     "octgn:35b3cfde-9964-4173-88c5-e5e5cb8f84ac",
     "octgn:35ea4640-1019-409c-b6a4-8a9906def475",
     "octgn:35ed8128-584c-43cc-ae7c-a4430e78940c",
+    "octgn:3612e715-a474-4911-a247-58c76f2ef277",
     "octgn:365efac0-2631-483c-91ce-19da7585bd1a",
     "octgn:36905f8f-3807-432b-bd0f-892c97504afd",
     "octgn:36a22f2b-56d9-4148-a962-f7fbdf60f3a1",
@@ -1373,6 +1383,7 @@
     "octgn:3733b627-08bd-4d12-a2ec-dadfcbfc6695",
     "octgn:379415fb-39c8-4cb8-aa19-ac54c46bcb4a",
     "octgn:37f205e5-5144-4987-8764-46909460797b",
+    "octgn:3820df8d-531b-4c37-815d-536f645bb289",
     "octgn:38853a8e-09c2-44f8-a76e-62aac1809d18",
     "octgn:388d173e-e32a-4e02-b029-99180e34b014",
     "octgn:389031d2-7a44-4c4d-82f2-cf79c08ce0ae",
@@ -1446,6 +1457,7 @@
     "octgn:46c7bfd7-96b7-4fe4-a110-3464ba6c0023",
     "octgn:46e10da4-a188-4502-b53f-6644495a1319",
     "octgn:4732976c-a400-498f-9f97-108995fcd99f",
+    "octgn:47360b1a-2428-4795-aec5-30f0a8805d76",
     "octgn:474616b8-11f2-44fe-bad3-a9d3e2bdd208",
     "octgn:475d31c0-45d5-4a9f-aaac-c23b93c73f03",
     "octgn:4765cbea-5ae8-4e39-a811-a67f1f6ca2a0",
@@ -1526,6 +1538,7 @@
     "octgn:4a2696f1-65e1-41d5-8828-38ece23167df",
     "octgn:4a28b128-1f89-4ad0-b27b-4cb1755c2d23",
     "octgn:4a5c11eb-44b8-4c6e-a9fa-83112dbd57c0",
+    "octgn:4a6539aa-2404-430f-94ab-0f674d965adc",
     "octgn:4abe9f52-1e56-479a-a59f-c3f7075ec493",
     "octgn:4ae7d13b-4b73-477b-ab71-5bd6bfc7b912",
     "octgn:4b36df3f-d75b-4b3a-9324-9ab31c10d7b9",
@@ -1558,6 +1571,7 @@
     "octgn:4f4df8ea-7f18-4a76-85b0-7ece828bb837",
     "octgn:4fc6111a-93c3-4407-b067-1b82396b802f",
     "octgn:500d3f5b-2de3-4770-bb2a-7db2b104bbf2",
+    "octgn:503d55b2-1f02-46d2-b672-230912c8563e",
     "octgn:504d7fe3-a3a1-4e2c-b59d-dd391d370a20",
     "octgn:5073c7a3-a3f6-4aca-b2a2-e0b830af3985",
     "octgn:50950a5b-0002-432a-b6d6-4ac2ca12e501",
@@ -1921,6 +1935,7 @@
     "octgn:57fdb41b-3a17-477d-89e7-b3b139d58642",
     "octgn:5842e027-3789-4253-a382-27527ec4fe8a",
     "octgn:5855e76e-e807-4a8c-9035-de7b9cb4366e",
+    "octgn:58616050-8a7f-4a9b-a8dc-e0d09e383741",
     "octgn:58d90f80-eb1a-46d9-a5c1-2e7b8c5b8451",
     "octgn:58f1cb80-d8de-4f96-98d0-0fdf61988da3",
     "octgn:58f1cb80-d8de-4f96-98d0-0fdf61988da3:B",
@@ -2026,6 +2041,7 @@
     "octgn:6df2979e-ad8d-4c3b-a27c-5ed4b9b2f948",
     "octgn:6e193811-584d-4888-a1b8-5296522b5cd1",
     "octgn:6e449166-50ab-4ec5-875f-3cc8adcbb64e",
+    "octgn:6e85113d-a2a6-44a7-895c-ca5115f7b7d2",
     "octgn:6f7cdfa5-f61f-44b1-8b6c-2b3f477f7557",
     "octgn:6f9211cc-a523-4a0f-9d44-c757e2f9947b",
     "octgn:6f999889-bd70-42c9-ad2a-b159a5e2f73c",
@@ -2033,6 +2049,7 @@
     "octgn:702e659f-949c-491d-84ab-e1d5b4166f46",
     "octgn:70cc4fe9-8e97-4d83-8f48-06dc6a43c43e",
     "octgn:70decac2-b07f-4c96-9684-4c008f19610b",
+    "octgn:70e85866-2f0a-4f4b-b39d-34d36adfc7ab",
     "octgn:70fc56ec-dca4-485a-8c5e-7d0cf4e17038",
     "octgn:71060c15-34c0-44ad-885b-4b6c18d2962a",
     "octgn:71079813-3afe-41b7-8746-92dcc1f91084",
@@ -2051,6 +2068,7 @@
     "octgn:7295a9fb-961f-42ad-b07d-33793e2f2274",
     "octgn:72b4cfd3-457b-4574-b638-c0fcce49dd68",
     "octgn:73515869-890b-4169-9104-b2e882d921ae",
+    "octgn:7367d16a-2b23-4a95-9050-266e93d8ab50",
     "octgn:7371cfea-03d0-4bc0-98a1-d99e0acdbf88",
     "octgn:73752e58-5dc1-40ea-b294-3c8f1998142d",
     "octgn:737724a5-2603-40b0-8a0b-4e72dbb3775e",
@@ -2077,6 +2095,7 @@
     "octgn:76a512ea-3a6a-4c99-8c29-d980dea802ff",
     "octgn:771c6c83-a602-4c35-92f6-5ac349c4ec8c",
     "octgn:77833ba7-253c-4d4b-9c45-1764ce014dce",
+    "octgn:77a7f095-bd59-45a1-a866-d58e17e3bd6d",
     "octgn:77dd117d-b2b6-4324-aa59-09fd1343fde9",
     "octgn:783ecb94-e005-4ff7-8bc3-76196bba9249",
     "octgn:78520dc7-5891-47f3-8782-ca930c434374",
@@ -2102,6 +2121,7 @@
     "octgn:7b491dcc-668a-431f-b0a1-ec2bf34840a7",
     "octgn:7b8369b4-cca1-4076-8985-1c7be238ccb0",
     "octgn:7b9dd852-ed19-4a00-b09e-f6c2cee549fa",
+    "octgn:7c069b32-99b8-42b7-a310-893d925c8ca7",
     "octgn:7c463bf7-9a1a-4d8a-879b-f966f19d0695",
     "octgn:7c5f503a-61aa-4f12-acdf-e52fc51e295f",
     "octgn:7c690a1f-83c5-4465-9c64-eaddc1b592e7",
@@ -2155,6 +2175,7 @@
     "octgn:836a759d-d768-4119-929f-cfe874ba944a",
     "octgn:838eebac-81db-4f00-aaba-024d70a1582d",
     "octgn:83a8586f-bb6d-4e90-84c7-3909034dad16",
+    "octgn:83d7214f-d8ae-47f8-bd0a-c48f9a187568",
     "octgn:83dd1a59-118c-468d-a47e-e472b066ff3e",
     "octgn:8472068c-fdd7-4197-8046-b9da12c29135",
     "octgn:84877af6-0720-4ef8-802b-69b792c32e15",
@@ -2276,6 +2297,7 @@
     "octgn:98461b3e-54c4-4eb9-9172-616c9bebb0f6",
     "octgn:984d2a01-f12a-4e8b-800c-6a04b1904049",
     "octgn:98a2fb10-f2fc-462c-9f2e-8945419d9c4f",
+    "octgn:98a48eec-841f-48da-83e7-fa148a03de8b",
     "octgn:98bf5fdc-ff74-48e2-88c8-0e4134fd6984",
     "octgn:98cc592d-6e3e-494a-bddf-ef5e0908c279",
     "octgn:98dff367-a068-4aac-a46b-7dc201aff42d",
@@ -2299,6 +2321,7 @@
     "octgn:9b75cef3-e5a3-4284-aff6-9a0b473fa37d",
     "octgn:9bba91a8-d375-4935-9956-9cb4cc4716c5",
     "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664",
+    "octgn:9be86dec-0c44-4468-ac29-260dedaca54b",
     "octgn:9c3c6e43-7548-4eaf-8225-2f51ecafbc4a",
     "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b",
     "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b:B",
@@ -2320,6 +2343,7 @@
     "octgn:9e864a49-89b3-4ea0-be1f-f4336adfa088",
     "octgn:9e9e76b7-ef3c-4c7c-baf2-061dc0d2ccd0",
     "octgn:9eb0298a-cb92-426d-87c6-37749aaae44b",
+    "octgn:9f1f5ce8-2fa6-40e3-ba7c-34fb94db014b",
     "octgn:9feef7b4-4ca7-4adc-aeb7-56947254588a",
     "octgn:9ff94935-ae08-4d86-859f-f4d0776a66e5",
     "octgn:a0417d08-1905-46f9-bd65-067c1c59f0a3",
@@ -2345,6 +2369,7 @@
     "octgn:a4e9aa38-54a7-4e99-bab6-330804b24a6e",
     "octgn:a4ffb8cd-fd95-4b47-95d1-637bd2bd78a1",
     "octgn:a516b400-b53f-4c21-8e44-c0a889caa8d5",
+    "octgn:a531dc43-7feb-4e63-96ad-a33cdb3b717a",
     "octgn:a53e4587-03e4-4120-8aa5-9601a7069edd",
     "octgn:a56cab99-d482-4aa3-b5e4-b1e5b857515f",
     "octgn:a5aef3fe-7bb9-4165-ba0f-91127d8f21e3",
@@ -2398,6 +2423,7 @@
     "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc",
     "octgn:ad7fc95f-4a8d-4a15-b170-b0db3c3002f0",
     "octgn:adf2480a-644a-47ee-8deb-bd08ff32bf31",
+    "octgn:ae16b39f-ed64-4aa9-b6b8-1fbfbda70e6f",
     "octgn:ae20c7c6-9950-4799-a88e-d0b394879af2",
     "octgn:ae435070-552a-43a9-816f-9f23f1a6dbba",
     "octgn:ae49e8e5-98f1-4562-935f-5e1ab64631e0",
@@ -2444,6 +2470,7 @@
     "octgn:b56f7d39-ca8d-4979-baa6-8a2f875d6463",
     "octgn:b585f28e-7612-4f07-83f7-0fed8d391e3d",
     "octgn:b59afed1-a224-4793-b149-0a6aadc9ba7e",
+    "octgn:b5afe22c-f57f-4e26-993f-ef40fba8e105",
     "octgn:b5c08c5b-dd05-4139-b262-e9d5c0f29016",
     "octgn:b5c7bf41-7642-4d25-9794-cb247f540182",
     "octgn:b622efab-65dd-4a49-af87-8984066ab4ae",
@@ -2467,6 +2494,7 @@
     "octgn:b81e837e-f4e8-43e9-892a-8bfaecbd1416",
     "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
     "octgn:b89a5a01-88c0-434a-a061-1654c6f84477",
+    "octgn:b8d832c5-e9f8-4690-a60c-07c09980ea27",
     "octgn:b922eedf-eea0-471d-bc52-90becc2a0769",
     "octgn:b93c5b70-0655-4577-9f5e-68ca00d4bfc8",
     "octgn:b9b2c1fc-2954-46f3-8b6c-71300a35eb5d",
@@ -2493,6 +2521,7 @@
     "octgn:bececd5f-87dd-4141-8ecf-69e43ecc0ff4",
     "octgn:beedf6c6-6214-47d8-bd82-81280543b141",
     "octgn:befbd3c9-45b3-4e68-b19e-5981a6571835",
+    "octgn:bf56e98f-1aa5-4e79-a116-d99bf2408e07",
     "octgn:bf925a7c-b427-4fb6-ba6b-dbc86304a69f",
     "octgn:bfa3b9da-d0e3-4ad6-8d1d-f32975f69551",
     "octgn:bfae3bf9-24e1-46af-b202-fb6c676a5dd9",
@@ -2629,6 +2658,7 @@
     "octgn:d760ba6c-e377-4d22-ac46-04bfb2b3c65f",
     "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
     "octgn:d7885efa-3af6-48e6-8eb1-5750892fdb34",
+    "octgn:d7a51190-1d0e-4363-b71d-6bb44a133e1b",
     "octgn:d7d1581c-74a4-4c6f-acf9-e2d598ccb276",
     "octgn:d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41",
     "octgn:d7fd973b-6b4e-4f4b-9fc5-4886dcf80996",
@@ -3483,9 +3513,9 @@
     {
       "product": "the-flame-of-the-west",
       "total": 82,
-      "scripted": 37,
+      "scripted": 66,
       "player": 15,
-      "playerScripted": 2
+      "playerScripted": 4
     },
     {
       "product": "the-fortress-of-nurn",
@@ -10557,7 +10587,7 @@
       "name": "Esquire of Rohan",
       "type": "attachment",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -10565,7 +10595,7 @@
       "name": "Esquire of Gondor",
       "type": "attachment",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -10581,7 +10611,7 @@
       "name": "Wraith on Wings",
       "type": "enemy",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -12637,7 +12667,7 @@
       "name": "Gate of Gondor",
       "type": "location",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -13029,7 +13059,7 @@
       "name": "Rohan has Come!",
       "type": "quest",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -13333,7 +13363,7 @@
       "name": "Southron Champion",
       "type": "enemy",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -13357,7 +13387,7 @@
       "name": "Grond",
       "type": "location",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -14221,7 +14251,7 @@
       "name": "The Witch-king",
       "type": "enemy",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -17221,7 +17251,7 @@
       "name": "Pelennor Field",
       "type": "location",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -17397,7 +17427,7 @@
       "name": "The Battle of the Pelennor Fields",
       "type": "rules",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -18421,7 +18451,7 @@
       "name": "Minas Tirith",
       "type": "objective",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -19189,7 +19219,7 @@
       "name": "Dread and Despair",
       "type": "treachery",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -19669,7 +19699,7 @@
       "name": "Spells of Ruin",
       "type": "treachery",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -22909,7 +22939,7 @@
       "name": "Retreat from Osgiliath",
       "type": "quest",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -24509,7 +24539,7 @@
       "name": "Fell Beast",
       "type": "treachery",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -24613,7 +24643,7 @@
       "name": "Shadow of Mordor",
       "type": "treachery",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -24861,7 +24891,7 @@
       "name": "Fighting in the Fields",
       "type": "quest",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -25229,7 +25259,7 @@
       "name": "The Garrison of Gondor",
       "type": "quest",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -25653,7 +25683,7 @@
       "name": "City Wall",
       "type": "location",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -26389,7 +26419,7 @@
       "name": "Orc of the Eye",
       "type": "enemy",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -28093,7 +28123,7 @@
       "name": "The White City Besieged",
       "type": "quest",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -28397,7 +28427,7 @@
       "name": "The Black Serpent",
       "type": "enemy",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -28645,7 +28675,7 @@
       "name": "Black Dart",
       "type": "treachery",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -29101,7 +29131,7 @@
       "name": "The Rammas is Breached",
       "type": "treachery",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -29893,7 +29923,7 @@
       "name": "War Mumak",
       "type": "enemy",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -30501,7 +30531,7 @@
       "name": "Siege Tower",
       "type": "location",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -31021,7 +31051,7 @@
       "name": "Morgul Captain",
       "type": "enemy",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -31645,7 +31675,7 @@
       "name": "Fire-filled Trench",
       "type": "location",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -33653,7 +33683,7 @@
       "name": "Mordor Orc",
       "type": "enemy",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -38079,8 +38109,8 @@
       "id": "E0B.15",
       "name": "The Battle of the Pelennor Fields (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-battle-of-the-pelennor-fields",
+      "state": "scripted"
     },
     {
       "id": "E0B.16",
@@ -38205,8 +38235,8 @@
       "id": "E0C.15",
       "name": "The Battle of the Pelennor Fields (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-battle-of-the-pelennor-fields",
+      "state": "scripted"
     },
     {
       "id": "E0C.16",
@@ -39570,8 +39600,8 @@
       "id": "Q0B.15",
       "name": "The Battle of the Pelennor Fields",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-battle-of-the-pelennor-fields",
+      "state": "scripted"
     },
     {
       "id": "Q0B.16",

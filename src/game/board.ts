@@ -2439,6 +2439,7 @@ function placeProgress(
     batch4Scenario(s).successfulQuestProgressBlocked?.(s)
   )
     return;
+  if (playerEffect && batch4Scenario(s).playerQuestProgressBlocked?.(s)) return;
   if (Temple.templeQuestProgress(s, n)) return;
   if (Umbar.umbarProgress(s, n)) {
     advanceQuest(s);

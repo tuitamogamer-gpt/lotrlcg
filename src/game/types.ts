@@ -290,6 +290,7 @@ export type ScenarioId =
   | "shelobs-lair"
   | "the-passing-of-the-grey-company"
   | "the-siege-of-gondor"
+  | "the-battle-of-the-pelennor-fields"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -475,6 +476,7 @@ export interface GameState {
   shelobLair?: import("./shelob-lair-types").ShelobLairState;
   greyCompany?: import("./grey-company-types").GreyCompanyState;
   siegeGondor?: import("./siege-gondor-types").SiegeGondorState;
+  pelennorFields?: import("./pelennor-fields-types").PelennorFieldsState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -888,6 +890,12 @@ export interface GameState {
     sgPirate?: boolean;
     /** The Siege of Gondor: Raiding the Coasts' shadow, an attachment is discarded if a character is destroyed. */
     sgRaiding?: boolean;
+    /** The Battle of the Pelennor Fields: Morgul Captain's shadow, return the attacker if it destroys a character. */
+    pfReturnOnKill?: boolean;
+    /** The Battle of the Pelennor Fields: Black Dart's shadow, attach it to a hero this attack damages. */
+    pfDart?: boolean;
+    /** The Battle of the Pelennor Fields: Spells of Ruin's shadow, 2 damage to Minas Tirith if it destroys a character. */
+    pfRuin?: boolean;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

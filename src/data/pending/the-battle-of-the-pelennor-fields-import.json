@@ -1,0 +1,1948 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The Battle of the Pelennor Fields",
+  "slug": "the-battle-of-the-pelennor-fields",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "145001",
+      "name": "Aragorn",
+      "type_code": "hero",
+      "type_name": "Hero",
+      "sphere_code": "fellowship",
+      "sphere_name": "Fellowship",
+      "threat": 0,
+      "willpower": 2,
+      "attack": 3,
+      "defense": 2,
+      "health": 5,
+      "traits": "Dúnedain. Noble. Ranger.",
+      "text": "The first player gains control of Aragorn. If Aragorn leaves play,the players lose the game.\nWhile Aragorn has an <b><i>Artifact</i></b> attached, he gains sentinel and does not exhaust to quest.",
+      "flavor": "\"I have no help to send, therefore I must go myself...\"\n<cite>The Return of the King</cite>",
+      "is_unique": true,
+      "deck_limit": 1,
+      "pack_name": "The Flame of the West",
+      "pack_code": "FotW",
+      "position": 1,
+      "illustrator": "Javier Charro Martinez",
+      "imagesrc": "/cards/145001.png",
+      "url": "https://ringsdb.com/card/145001",
+      "quantity": 1,
+      "octgnid": "2e778689-9e3f-4da8-a473-781c777f6473",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 1,
+          "quantity": 1,
+          "image_code": "145001",
+          "illustrator": "Javier Charro Martinez",
+          "octgnid": "2e778689-9e3f-4da8-a473-781c777f6473",
+          "imagesrc": "/bundles/cards/145001.png",
+          "date_release": "2016-08-03"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/145001",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "145014",
+      "name": "Esquire of Rohan",
+      "type_code": "attachment",
+      "type_name": "Campaign",
+      "sphere_code": "boon",
+      "sphere_name": "Neutral",
+      "cost": "0",
+      "traits": "Title.",
+      "text": "Permanent.\r\n<b>Setup</b>: Attach to a hero.\r\nAttached hero gains the <b><i>Rohan</i></b> trait.\r\nAttached hero gets +1 [attack] while attacking with another <b><i>Rohan</i></b> character.",
+      "flavor": "\"Rise now, Meriadoc, esquire of Rohan of the household of Meduseld!\" -Théoden, The Return of the King",
+      "is_unique": true,
+      "deck_limit": 3,
+      "pack_name": "The Flame of the West",
+      "pack_code": "FotW",
+      "position": 14,
+      "illustrator": "Romana Kendelic",
+      "imagesrc": "/cards/145014.png",
+      "url": "https://ringsdb.com/card/145014",
+      "quantity": 1,
+      "octgnid": "9eb45361-6325-4e39-9029-9a8401d0d294",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 14,
+          "quantity": 1,
+          "image_code": "145014",
+          "illustrator": "Romana Kendelic",
+          "octgnid": "9eb45361-6325-4e39-9029-9a8401d0d294",
+          "imagesrc": "/bundles/cards/145014.png",
+          "date_release": "2016-08-03"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/145014",
+      "official": true,
+      "nightmare": false,
+      "ringsdb_type_code": "treasure"
+    },
+    {
+      "code": "145015",
+      "name": "Esquire of Gondor",
+      "type_code": "attachment",
+      "type_name": "Campaign",
+      "sphere_code": "boon",
+      "sphere_name": "Neutral",
+      "cost": "0",
+      "traits": "Title.",
+      "text": "Permanent.\r\n<b>Setup</b>: Attach to a hero.\r\nAttached hero gains the <b><i>Gondor</i></b> trait.\r\nAttached hero gets +1 [willpower] while committed to the quest with another <b><i>Gondor</i></b> character.",
+      "flavor": "\"Here do I swear fealty and service to Gondor, and to the Lord and Steward of the realm...\" -Pippin, The Return of the King",
+      "is_unique": true,
+      "deck_limit": 3,
+      "pack_name": "The Flame of the West",
+      "pack_code": "FotW",
+      "position": 15,
+      "illustrator": "Romana Kendelic",
+      "imagesrc": "/cards/145015.png",
+      "url": "https://ringsdb.com/card/145015",
+      "quantity": 1,
+      "octgnid": "b2df0294-f962-4e05-998a-d824d88cc13c",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 15,
+          "quantity": 1,
+          "image_code": "145015",
+          "illustrator": "Romana Kendelic",
+          "octgnid": "b2df0294-f962-4e05-998a-d824d88cc13c",
+          "imagesrc": "/bundles/cards/145015.png",
+          "date_release": "2016-08-03"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/145015",
+      "official": true,
+      "nightmare": false,
+      "ringsdb_type_code": "treasure"
+    },
+    {
+      "code": "145062",
+      "name": "Wraith on Wings",
+      "type_code": "enemy",
+      "type_name": "Campaign",
+      "sphere_code": "encounter",
+      "sphere_name": "Neutral",
+      "willpower": 0,
+      "attack": 6,
+      "defense": 4,
+      "health": 12,
+      "traits": "Nazgûl.",
+      "text": "<b>Setup:</b> Add Wraith on Wings to the staging area.\r\nCannot have non-<i><b>Morgul</b></i> attachments.\r\nWraith on Wings gets +1 [threat] and -1 enagement cost for each resource on it.\r\n<b>Forced:</b> At the beginning of the quest phase, place 1 resource on Wraith on Wings (Limit 5 resources.)",
+      "is_unique": false,
+      "deck_limit": 4,
+      "pack_name": "The Flame of the West",
+      "pack_code": "FotW",
+      "position": 62,
+      "illustrator": "S. C. Watson",
+      "imagesrc": "/cards/145062.png",
+      "url": "https://ringsdb.com/card/145062",
+      "quantity": 4,
+      "octgnid": "0c030b4b-1012-4b80-a942-0177e3923903",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 62,
+          "quantity": 4,
+          "image_code": "145062",
+          "illustrator": "S. C. Watson",
+          "octgnid": "0c030b4b-1012-4b80-a942-0177e3923903",
+          "imagesrc": "/bundles/cards/145062.png",
+          "date_release": "2016-08-03"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/145062",
+      "official": true,
+      "nightmare": false,
+      "ringsdb_type_code": "treasure",
+      "encounter_set": "The Battle of the Pelennor Fields"
+    },
+    {
+      "code": "octgn:0002f646-cdaf-40cf-9993-faccb260c583",
+      "octgnid": "0002f646-cdaf-40cf-9993-faccb260c583",
+      "name": "Gate of Gondor",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Minas Tirith.",
+      "text": "Immune to player card effects.  While Gate of Gondor is the active location, each enemy in play gets -30 engagement cost. Forced: When Gate of Gondor is explored, return each engaged enemy to the staging area. ",
+      "is_unique": true,
+      "pack_code": "FotW",
+      "pack_name": "The Flame of the West",
+      "position": 45,
+      "quantity": 1,
+      "threat": 5,
+      "quest": 3,
+      "victory": 5,
+      "encounter_set": "The Battle of the Pelennor Fields",
+      "printed_stats": {
+        "threat": "5",
+        "quest": "3",
+        "victory": "5"
+      },
+      "imagesrc": "/cards/0002f646-cdaf-40cf-9993-faccb260c583.jpg",
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 45,
+          "quantity": 1,
+          "octgnid": "0002f646-cdaf-40cf-9993-faccb260c583",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0002f646-cdaf-40cf-9993-faccb260c583.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:0507932f-0030-4763-8478-29bb407103d4",
+      "octgnid": "0507932f-0030-4763-8478-29bb407103d4",
+      "name": "Rohan has Come!",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Set The Witch-king aside, out of play. Each player searches the top 10 cards of his deck for an ally that matches the sphere of a hero he controls and puts it into play under his control. Each player shuffles his deck. ",
+      "is_unique": false,
+      "pack_code": "FotW",
+      "pack_name": "The Flame of the West",
+      "position": 76,
+      "quantity": 1,
+      "cost": 4,
+      "encounter_set": "The Battle of the Pelennor Fields",
+      "side": "A",
+      "back_name": "Rohan has Come!",
+      "back_text": "Progress that would be placed on this stage by questing successfully is instead assigned as damage among enemies in play. (Progress must be placed on the active location first.) Forced: At the end of the quest phase, advance to stage 5A. ",
+      "back_type_code": "quest",
+      "back_quest": 0,
+      "back_imagesrc": "/cards/0507932f-0030-4763-8478-29bb407103d4.B.jpg",
+      "printed_stats": {
+        "cost": "4"
+      },
+      "imagesrc": "/cards/0507932f-0030-4763-8478-29bb407103d4.jpg",
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 76,
+          "quantity": 1,
+          "octgnid": "0507932f-0030-4763-8478-29bb407103d4",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0507932f-0030-4763-8478-29bb407103d4.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:097b7d54-bfa9-4b13-a1b8-337b03cac21d",
+      "octgnid": "097b7d54-bfa9-4b13-a1b8-337b03cac21d",
+      "name": "Southron Champion",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Harad.",
+      "text": "Forced: After Southron Champion is dealt a shadow card with no shadow effect, either deal 3 damage to Minas Tirith, or it makes an additional attack after this one. ",
+      "is_unique": false,
+      "pack_code": "FotW",
+      "pack_name": "The Flame of the West",
+      "position": 52,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 4,
+      "defense": 2,
+      "health": 4,
+      "engagement": 34,
+      "shadow": "Shadow: Deal 1 damage to Minas Tirith.",
+      "encounter_set": "The Battle of the Pelennor Fields",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "2",
+        "health": "4",
+        "engagement": "34"
+      },
+      "imagesrc": "/cards/097b7d54-bfa9-4b13-a1b8-337b03cac21d.jpg",
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 52,
+          "quantity": 2,
+          "octgnid": "097b7d54-bfa9-4b13-a1b8-337b03cac21d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/097b7d54-bfa9-4b13-a1b8-337b03cac21d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:09b27f8f-60ab-4764-8c78-52fb09597921",
+      "octgnid": "09b27f8f-60ab-4764-8c78-52fb09597921",
+      "name": "Grond",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Siege.",
+      "text": "Immune to player card effects.  X is the number of resources here. Forced: At the beginning of the quest phase, place 1 resource on Grond. Then, deal X damage to Minas Tirith. Travel: The Witch-king makes an immediate attack against each player, in turn order. ",
+      "is_unique": true,
+      "pack_code": "FotW",
+      "pack_name": "The Flame of the West",
+      "position": 44,
+      "quantity": 1,
+      "threat": 0,
+      "quest": 3,
+      "victory": 4,
+      "encounter_set": "The Battle of the Pelennor Fields",
+      "printed_stats": {
+        "threat": "0",
+        "quest": "3",
+        "victory": "4"
+      },
+      "imagesrc": "/cards/09b27f8f-60ab-4764-8c78-52fb09597921.jpg",
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 44,
+          "quantity": 1,
+          "octgnid": "09b27f8f-60ab-4764-8c78-52fb09597921",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/09b27f8f-60ab-4764-8c78-52fb09597921.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:15734584-04cf-41b7-8a86-d1a435d6f8dc",
+      "octgnid": "15734584-04cf-41b7-8a86-d1a435d6f8dc",
+      "name": "The Witch-king",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Nazgûl. Captain.",
+      "text": "Immune to player card effects.  Cannot be optionally engaged or take damage. Forced: At the beginning of the quest phase, discard cards from the encounter deck until an enemy is discarded. Add the discarded enemy to the staging area. ",
+      "is_unique": true,
+      "pack_code": "FotW",
+      "pack_name": "The Flame of the West",
+      "position": 79,
+      "quantity": 1,
+      "threat": 6,
+      "attack": 6,
+      "defense": 6,
+      "health": 14,
+      "engagement": 50,
+      "victory": 6,
+      "encounter_set": "The Battle of the Pelennor Fields",
+      "back_name": "The Witch-king",
+      "back_text": "Only the engaged player can declare attackers against The Witch-king.  Forced: At the beginning of the envounter phase, The Witch-king engages the first player. Then, it makes an immediate attack.",
+      "back_type_code": "enemy",
+      "back_imagesrc": "/cards/15734584-04cf-41b7-8a86-d1a435d6f8dc.B.jpg",
+      "printed_stats": {
+        "threat": "6",
+        "attack": "6",
+        "defense": "6",
+        "health": "14",
+        "engagement": "50",
+        "victory": "6"
+      },
+      "imagesrc": "/cards/15734584-04cf-41b7-8a86-d1a435d6f8dc.jpg",
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 79,
+          "quantity": 1,
+          "octgnid": "15734584-04cf-41b7-8a86-d1a435d6f8dc",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/15734584-04cf-41b7-8a86-d1a435d6f8dc.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3612e715-a474-4911-a247-58c76f2ef277",
+      "octgnid": "3612e715-a474-4911-a247-58c76f2ef277",
+      "name": "Pelennor Field",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Pelennor.",
+      "text": "While at least 1 enemy is in the staging area, progress cannot be placed on locations in the staging area. ",
+      "is_unique": false,
+      "pack_code": "FotW",
+      "pack_name": "The Flame of the West",
+      "position": 47,
+      "quantity": 4,
+      "threat": 2,
+      "quest": 4,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if it has the Harad trait).",
+      "encounter_set": "The Battle of the Pelennor Fields",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/3612e715-a474-4911-a247-58c76f2ef277.jpg",
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 47,
+          "quantity": 4,
+          "octgnid": "3612e715-a474-4911-a247-58c76f2ef277",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3612e715-a474-4911-a247-58c76f2ef277.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3820df8d-531b-4c37-815d-536f645bb289",
+      "octgnid": "3820df8d-531b-4c37-815d-536f645bb289",
+      "name": "The Battle of the Pelennor Fields",
+      "type_code": "rules",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Rulesheet Card 1\nAssault: Progress cannot be placed on the quest stage by player card effects or by questing successfully. However, progress can still be placed on the active location as normal. When the players quest unsuccessfully, each player does not raise his threat. Instead, the players must deal X damage to Minas Tirith. X is the amount by which the total threat in the staging area was greater than the total willpower of each character committed to the quest.",
+      "is_unique": false,
+      "pack_code": "FotW",
+      "pack_name": "The Flame of the West",
+      "position": 999,
+      "quantity": 0,
+      "encounter_set": "The Battle of the Pelennor Fields",
+      "back_name": "The Battle of the Pelennor Fields",
+      "back_text": "Rulesheet Card 2",
+      "back_type_code": "rules",
+      "back_imagesrc": "/cards/3820df8d-531b-4c37-815d-536f645bb289.B.jpg",
+      "printed_stats": {},
+      "imagesrc": "/cards/3820df8d-531b-4c37-815d-536f645bb289.jpg",
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 999,
+          "quantity": 0,
+          "octgnid": "3820df8d-531b-4c37-815d-536f645bb289",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3820df8d-531b-4c37-815d-536f645bb289.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:47360b1a-2428-4795-aec5-30f0a8805d76",
+      "octgnid": "47360b1a-2428-4795-aec5-30f0a8805d76",
+      "name": "Minas Tirith",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Gondor. City Minas Tirith has 30 hit points plus 10 for each player. Forced: At the end of the round, deal 1 damage to Minas Tirith for each enemy in the staging area. Then, if Minas Tirith has no hit points remaining, the players lose the game. ",
+      "is_unique": true,
+      "pack_code": "FotW",
+      "pack_name": "The Flame of the West",
+      "position": 43,
+      "quantity": 1,
+      "encounter_set": "The Battle of the Pelennor Fields",
+      "printed_stats": {},
+      "imagesrc": "/cards/47360b1a-2428-4795-aec5-30f0a8805d76.jpg",
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 43,
+          "quantity": 1,
+          "octgnid": "47360b1a-2428-4795-aec5-30f0a8805d76",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/47360b1a-2428-4795-aec5-30f0a8805d76.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4a6539aa-2404-430f-94ab-0f674d965adc",
+      "octgnid": "4a6539aa-2404-430f-94ab-0f674d965adc",
+      "name": "Dread and Despair",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Sorcery.",
+      "text": "Peril. Doomed 1.\nWhen Revealed: Discard an ally you control. Until the end of the phase, add 1 to the total [threat] in the staging area for each ally in your discard pile. ",
+      "is_unique": false,
+      "pack_code": "FotW",
+      "pack_name": "The Flame of the West",
+      "position": 60,
+      "quantity": 2,
+      "shadow": "Shadow: Discard a non-objective attachment you control.",
+      "encounter_set": "The Battle of the Pelennor Fields",
+      "printed_stats": {},
+      "imagesrc": "/cards/4a6539aa-2404-430f-94ab-0f674d965adc.jpg",
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 60,
+          "quantity": 2,
+          "octgnid": "4a6539aa-2404-430f-94ab-0f674d965adc",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4a6539aa-2404-430f-94ab-0f674d965adc.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:503d55b2-1f02-46d2-b672-230912c8563e",
+      "octgnid": "503d55b2-1f02-46d2-b672-230912c8563e",
+      "name": "Spells of Ruin",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Sorcery.",
+      "text": "When Revealed: Either deal 1 damage to each exhausted character, or deal 5 damage to Minas Tirith. ",
+      "is_unique": false,
+      "pack_code": "FotW",
+      "pack_name": "The Flame of the West",
+      "position": 59,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, deal 2 damage to Minas Tirith.",
+      "encounter_set": "The Battle of the Pelennor Fields",
+      "printed_stats": {},
+      "imagesrc": "/cards/503d55b2-1f02-46d2-b672-230912c8563e.jpg",
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 59,
+          "quantity": 2,
+          "octgnid": "503d55b2-1f02-46d2-b672-230912c8563e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/503d55b2-1f02-46d2-b672-230912c8563e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:58616050-8a7f-4a9b-a8dc-e0d09e383741",
+      "octgnid": "58616050-8a7f-4a9b-a8dc-e0d09e383741",
+      "name": "Retreat from Osgiliath",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player adds 1 set aside Wraith on Wings to the staging area and reveals an encounter card. Starting with the first player, each player discards cards from the top of his deck until he discards an ally that is not in play. Put the discarded ally into play in the staging area and treat its text box as if it were blank until the end of the phase.  ",
+      "is_unique": false,
+      "pack_code": "FotW",
+      "pack_name": "The Flame of the West",
+      "position": 74,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Battle of the Pelennor Fields",
+      "side": "A",
+      "back_name": "Retreat from Osgiliath",
+      "back_text": "X is the total cost of each ally in the staging area.  Allies in the staging area are treated as if their text box is blank, are immune to player card effects, and are under no player's control. Forced: At the end of the round, assign damage among allies in the staging area equal to the number of enemies in the staging area. ",
+      "back_type_code": "quest",
+      "back_quest": 0,
+      "back_imagesrc": "/cards/58616050-8a7f-4a9b-a8dc-e0d09e383741.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/58616050-8a7f-4a9b-a8dc-e0d09e383741.jpg",
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 74,
+          "quantity": 1,
+          "octgnid": "58616050-8a7f-4a9b-a8dc-e0d09e383741",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/58616050-8a7f-4a9b-a8dc-e0d09e383741.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6e85113d-a2a6-44a7-895c-ca5115f7b7d2",
+      "octgnid": "6e85113d-a2a6-44a7-895c-ca5115f7b7d2",
+      "name": "Fell Beast",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Morgul.",
+      "text": "Surge.\nWhen Revealed: Attach to a Nazgûl enemy. Limit 1 per enemy. (Counts as a Mount attachment with the text: \"Attached enemy gets +1 [threat], +1 [attack], +1 [defense] and -10 engagement cost. Forced: At the end of the round, return attached enemy to the staging area.\") ",
+      "is_unique": false,
+      "pack_code": "FotW",
+      "pack_name": "The Flame of the West",
+      "position": 57,
+      "quantity": 2,
+      "encounter_set": "The Battle of the Pelennor Fields",
+      "printed_stats": {},
+      "imagesrc": "/cards/6e85113d-a2a6-44a7-895c-ca5115f7b7d2.jpg",
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 57,
+          "quantity": 2,
+          "octgnid": "6e85113d-a2a6-44a7-895c-ca5115f7b7d2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6e85113d-a2a6-44a7-895c-ca5115f7b7d2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:70e85866-2f0a-4f4b-b39d-34d36adfc7ab",
+      "octgnid": "70e85866-2f0a-4f4b-b39d-34d36adfc7ab",
+      "name": "Shadow of Mordor",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Sorcery.",
+      "text": "Doomed 1.\nWhen Revealed: Each player deals 1 damage to a hero he controls. Until the end of the round, treat the printed text box of each damaged character as if it were blank, except for Traits. ",
+      "is_unique": false,
+      "pack_code": "FotW",
+      "pack_name": "The Flame of the West",
+      "position": 61,
+      "quantity": 2,
+      "encounter_set": "The Battle of the Pelennor Fields",
+      "printed_stats": {},
+      "imagesrc": "/cards/70e85866-2f0a-4f4b-b39d-34d36adfc7ab.jpg",
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 61,
+          "quantity": 2,
+          "octgnid": "70e85866-2f0a-4f4b-b39d-34d36adfc7ab",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/70e85866-2f0a-4f4b-b39d-34d36adfc7ab.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7367d16a-2b23-4a95-9050-266e93d8ab50",
+      "octgnid": "7367d16a-2b23-4a95-9050-266e93d8ab50",
+      "name": "Fighting in the Fields",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The first player adds The Witch-king to the staging area (Sorcerer side faceup). Then, he searches the encounter deck and discard pile for a Fell Beast and attaches it to The Witch-king, if able. Each other player reveals an encounter card. ",
+      "is_unique": false,
+      "pack_code": "FotW",
+      "pack_name": "The Flame of the West",
+      "position": 77,
+      "quantity": 1,
+      "cost": 5,
+      "encounter_set": "The Battle of the Pelennor Fields",
+      "side": "A",
+      "back_name": "Fighting in the Fields",
+      "back_text": " The Witch-king and encounter cards dealt to The Witch-king are immune to player card effects. Forced: When an enemy attacks and destroys a character, deal 1 damage to Minas Tirith. The players cannot defeat this stage unless Aragorn is in play and The Witch-king is in the victory display. If the players defeat this stage, they win the game. ",
+      "back_type_code": "quest",
+      "back_quest": 20,
+      "back_imagesrc": "/cards/7367d16a-2b23-4a95-9050-266e93d8ab50.B.jpg",
+      "printed_stats": {
+        "cost": "5"
+      },
+      "imagesrc": "/cards/7367d16a-2b23-4a95-9050-266e93d8ab50.jpg",
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 77,
+          "quantity": 1,
+          "octgnid": "7367d16a-2b23-4a95-9050-266e93d8ab50",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7367d16a-2b23-4a95-9050-266e93d8ab50.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:77a7f095-bd59-45a1-a866-d58e17e3bd6d",
+      "octgnid": "77a7f095-bd59-45a1-a866-d58e17e3bd6d",
+      "name": "The Garrison of Gondor",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Set Minas Tirith, Grond, The Witch-king, and each copy of Wraith on Wings aside, out of play. Search the encounter deck for a copy of Pelennor Field and make it the active location. Shuffle the encounter deck. The players may attach Esquire of Rohan and Esquire of Gondor to different heroes. ",
+      "is_unique": false,
+      "pack_code": "FotW",
+      "pack_name": "The Flame of the West",
+      "position": 73,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The Battle of the Pelennor Fields",
+      "side": "A",
+      "back_name": "The Garrison of Gondor",
+      "back_text": "Skip the quest phase and combat phase. Forced: At the end of the planning phase, place 1 progress here. ",
+      "back_type_code": "quest",
+      "back_quest": 2,
+      "back_imagesrc": "/cards/77a7f095-bd59-45a1-a866-d58e17e3bd6d.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/77a7f095-bd59-45a1-a866-d58e17e3bd6d.jpg",
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 73,
+          "quantity": 1,
+          "octgnid": "77a7f095-bd59-45a1-a866-d58e17e3bd6d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/77a7f095-bd59-45a1-a866-d58e17e3bd6d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7c069b32-99b8-42b7-a310-893d925c8ca7",
+      "octgnid": "7c069b32-99b8-42b7-a310-893d925c8ca7",
+      "name": "City Wall",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Minas Tirith.",
+      "text": "While City Wall is the active location, damage that would be placed on Minas Tirith must be placed here first. Forced: When City Wall has damage equal to its quest points, discard it. Then, each player raises his threat by 3. ",
+      "is_unique": false,
+      "pack_code": "FotW",
+      "pack_name": "The Flame of the West",
+      "position": 46,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 4,
+      "encounter_set": "The Battle of the Pelennor Fields",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/7c069b32-99b8-42b7-a310-893d925c8ca7.jpg",
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 46,
+          "quantity": 3,
+          "octgnid": "7c069b32-99b8-42b7-a310-893d925c8ca7",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7c069b32-99b8-42b7-a310-893d925c8ca7.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:83d7214f-d8ae-47f8-bd0a-c48f9a187568",
+      "octgnid": "83d7214f-d8ae-47f8-bd0a-c48f9a187568",
+      "name": "Orc of the Eye",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Mordor.",
+      "text": "Peril. Archery 1.\nWhen Revealed: Either deal 2 damage to a hero you control, or deal 2 damage to Minas Tirith. ",
+      "is_unique": false,
+      "pack_code": "FotW",
+      "pack_name": "The Flame of the West",
+      "position": 54,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 3,
+      "defense": 1,
+      "health": 3,
+      "engagement": 40,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if it is an Orc).",
+      "encounter_set": "The Battle of the Pelennor Fields",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "1",
+        "health": "3",
+        "engagement": "40"
+      },
+      "imagesrc": "/cards/83d7214f-d8ae-47f8-bd0a-c48f9a187568.jpg",
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 54,
+          "quantity": 3,
+          "octgnid": "83d7214f-d8ae-47f8-bd0a-c48f9a187568",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/83d7214f-d8ae-47f8-bd0a-c48f9a187568.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:98a48eec-841f-48da-83e7-fa148a03de8b",
+      "octgnid": "98a48eec-841f-48da-83e7-fa148a03de8b",
+      "name": "The White City Besieged",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player takes control of each ally he owns in the staging area and exhausts it. The first player adds Minas Tirith, Grond, and The Witch-king (Captain side faceup) to the staging area. Each other player searches the encounter deck and discard pile for a different enemy and adds it to the staging area.  ",
+      "is_unique": false,
+      "pack_code": "FotW",
+      "pack_name": "The Flame of the West",
+      "position": 75,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "The Battle of the Pelennor Fields",
+      "side": "A",
+      "back_name": "The White City Besieged",
+      "back_text": "Assault.  The White City Besieged gets +4 quest points for each player.  The players cannot travel to Pelennor locations. Forced: When an enemy is destroyed, place progress on this stage equal to its total [threat] (progress must be placed on any active location first). ",
+      "back_type_code": "quest",
+      "back_quest": 4,
+      "back_imagesrc": "/cards/98a48eec-841f-48da-83e7-fa148a03de8b.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/98a48eec-841f-48da-83e7-fa148a03de8b.jpg",
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 75,
+          "quantity": 1,
+          "octgnid": "98a48eec-841f-48da-83e7-fa148a03de8b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/98a48eec-841f-48da-83e7-fa148a03de8b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9be86dec-0c44-4468-ac29-260dedaca54b",
+      "octgnid": "9be86dec-0c44-4468-ac29-260dedaca54b",
+      "name": "The Black Serpent",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Harad.",
+      "text": "Cannot have attachments or be attacked by more than 1 character at a time. When Revealed: The Black Serpent makes an immediate attack against the first player.",
+      "is_unique": true,
+      "pack_code": "FotW",
+      "pack_name": "The Flame of the West",
+      "position": 50,
+      "quantity": 1,
+      "threat": 4,
+      "attack": 5,
+      "defense": 2,
+      "health": 5,
+      "engagement": 38,
+      "victory": 4,
+      "encounter_set": "The Battle of the Pelennor Fields",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "5",
+        "defense": "2",
+        "health": "5",
+        "engagement": "38",
+        "victory": "4"
+      },
+      "imagesrc": "/cards/9be86dec-0c44-4468-ac29-260dedaca54b.jpg",
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 50,
+          "quantity": 1,
+          "octgnid": "9be86dec-0c44-4468-ac29-260dedaca54b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9be86dec-0c44-4468-ac29-260dedaca54b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9f1f5ce8-2fa6-40e3-ba7c-34fb94db014b",
+      "octgnid": "9f1f5ce8-2fa6-40e3-ba7c-34fb94db014b",
+      "name": "Black Dart",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Morgul.",
+      "text": "Peril.\nWhen Revealed: Remove a hero you control from the quest and attach Black Dark to that hero. Limit 1 per hero. (Counts as a Condition attachment with the text: \"Forced: At the end of the round, deal 1 damage to attached hero.\") ",
+      "is_unique": false,
+      "pack_code": "FotW",
+      "pack_name": "The Flame of the West",
+      "position": 58,
+      "quantity": 2,
+      "shadow": "Shadow: If this attack damages a hero, attach Black Dart to that hero.",
+      "encounter_set": "The Battle of the Pelennor Fields",
+      "printed_stats": {},
+      "imagesrc": "/cards/9f1f5ce8-2fa6-40e3-ba7c-34fb94db014b.jpg",
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 58,
+          "quantity": 2,
+          "octgnid": "9f1f5ce8-2fa6-40e3-ba7c-34fb94db014b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9f1f5ce8-2fa6-40e3-ba7c-34fb94db014b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a531dc43-7feb-4e63-96ad-a33cdb3b717a",
+      "octgnid": "a531dc43-7feb-4e63-96ad-a33cdb3b717a",
+      "name": "The Rammas is Breached",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player searches the encounter deck and discard pile for an enemy and puts it into play engaged with him.",
+      "is_unique": false,
+      "pack_code": "FotW",
+      "pack_name": "The Flame of the West",
+      "position": 56,
+      "quantity": 2,
+      "shadow": "Shadow: Either deal 3 damage to Minas Tirith, or attacking enemy makes an additional attack after this one.",
+      "encounter_set": "The Battle of the Pelennor Fields",
+      "printed_stats": {},
+      "imagesrc": "/cards/a531dc43-7feb-4e63-96ad-a33cdb3b717a.jpg",
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 56,
+          "quantity": 2,
+          "octgnid": "a531dc43-7feb-4e63-96ad-a33cdb3b717a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a531dc43-7feb-4e63-96ad-a33cdb3b717a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ae16b39f-ed64-4aa9-b6b8-1fbfbda70e6f",
+      "octgnid": "ae16b39f-ed64-4aa9-b6b8-1fbfbda70e6f",
+      "name": "War Mumak",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Harad. Creature.",
+      "text": "Archery 2.\nCannot have attachments or take more than 3 damage each round. Forced: When War Mumak is defeated, reduce each player's threat by 4. ",
+      "is_unique": false,
+      "pack_code": "FotW",
+      "pack_name": "The Flame of the West",
+      "position": 51,
+      "quantity": 2,
+      "threat": 4,
+      "attack": 6,
+      "defense": 2,
+      "health": 9,
+      "engagement": 46,
+      "victory": 4,
+      "encounter_set": "The Battle of the Pelennor Fields",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "6",
+        "defense": "2",
+        "health": "9",
+        "engagement": "46",
+        "victory": "4"
+      },
+      "imagesrc": "/cards/ae16b39f-ed64-4aa9-b6b8-1fbfbda70e6f.jpg",
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 51,
+          "quantity": 2,
+          "octgnid": "ae16b39f-ed64-4aa9-b6b8-1fbfbda70e6f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ae16b39f-ed64-4aa9-b6b8-1fbfbda70e6f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b5afe22c-f57f-4e26-993f-ef40fba8e105",
+      "octgnid": "b5afe22c-f57f-4e26-993f-ef40fba8e105",
+      "name": "Siege Tower",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Siege.",
+      "text": "While Siege Tower is in the staging area, it gains Archery 3. Forced: After Siege Tower becomes the active location, shuffle the encounter discard pile into the encounter deck and discard cards from the top until an enemy is discarded. Add the discarded enemy to the staging area. ",
+      "is_unique": false,
+      "pack_code": "FotW",
+      "pack_name": "The Flame of the West",
+      "position": 49,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 3,
+      "encounter_set": "The Battle of the Pelennor Fields",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/b5afe22c-f57f-4e26-993f-ef40fba8e105.jpg",
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 49,
+          "quantity": 3,
+          "octgnid": "b5afe22c-f57f-4e26-993f-ef40fba8e105",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b5afe22c-f57f-4e26-993f-ef40fba8e105.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b8d832c5-e9f8-4690-a60c-07c09980ea27",
+      "octgnid": "b8d832c5-e9f8-4690-a60c-07c09980ea27",
+      "name": "Morgul Captain",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Mordor.",
+      "text": "Peril.\nWhen Revealed: Put the topmost Orc enemy in the discard pile into play engaged with you.",
+      "is_unique": false,
+      "pack_code": "FotW",
+      "pack_name": "The Flame of the West",
+      "position": 53,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 3,
+      "defense": 1,
+      "health": 4,
+      "engagement": 35,
+      "shadow": "Shadow: If this attack destroys a character, return attacking enemy to the staging area.",
+      "encounter_set": "The Battle of the Pelennor Fields",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "1",
+        "health": "4",
+        "engagement": "35"
+      },
+      "imagesrc": "/cards/b8d832c5-e9f8-4690-a60c-07c09980ea27.jpg",
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 53,
+          "quantity": 2,
+          "octgnid": "b8d832c5-e9f8-4690-a60c-07c09980ea27",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b8d832c5-e9f8-4690-a60c-07c09980ea27.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:bf56e98f-1aa5-4e79-a116-d99bf2408e07",
+      "octgnid": "bf56e98f-1aa5-4e79-a116-d99bf2408e07",
+      "name": "Fire-filled Trench",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Pelennor. Siege.",
+      "text": "Forced: When a player plays an event that would cancel the effects of a treachery card just revealed from the encounter deck, cancel the effects of that event. Then, discard Fire-filled Trench. ",
+      "is_unique": false,
+      "pack_code": "FotW",
+      "pack_name": "The Flame of the West",
+      "position": 48,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 3,
+      "encounter_set": "The Battle of the Pelennor Fields",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/bf56e98f-1aa5-4e79-a116-d99bf2408e07.jpg",
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 48,
+          "quantity": 3,
+          "octgnid": "bf56e98f-1aa5-4e79-a116-d99bf2408e07",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bf56e98f-1aa5-4e79-a116-d99bf2408e07.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d7a51190-1d0e-4363-b71d-6bb44a133e1b",
+      "octgnid": "d7a51190-1d0e-4363-b71d-6bb44a133e1b",
+      "name": "Mordor Orc",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Mordor.",
+      "text": "Surge.\nWhile Minas Tirith is in play, undefended damage dealt by Mordor Orc must be assigned to Minas Tirith. ",
+      "is_unique": false,
+      "pack_code": "FotW",
+      "pack_name": "The Flame of the West",
+      "position": 55,
+      "quantity": 5,
+      "threat": 1,
+      "attack": 2,
+      "defense": 1,
+      "health": 2,
+      "engagement": 30,
+      "shadow": "Shadow: If Minas Tirith is in play, engage Mordor Orc and deal it a shadow card.",
+      "encounter_set": "The Battle of the Pelennor Fields",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "2",
+        "defense": "1",
+        "health": "2",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/d7a51190-1d0e-4363-b71d-6bb44a133e1b.jpg",
+      "packs": [
+        {
+          "pack_code": "FotW",
+          "pack_name": "The Flame of the West",
+          "position": 55,
+          "quantity": 5,
+          "octgnid": "d7a51190-1d0e-4363-b71d-6bb44a133e1b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d7a51190-1d0e-4363-b71d-6bb44a133e1b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E0B.15",
+      "name": "The Battle of the Pelennor Fields (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "FotW"
+      ],
+      "card_codes": [
+        "octgn:77a7f095-bd59-45a1-a866-d58e17e3bd6d",
+        "octgn:58616050-8a7f-4a9b-a8dc-e0d09e383741",
+        "octgn:98a48eec-841f-48da-83e7-fa148a03de8b",
+        "octgn:0507932f-0030-4763-8478-29bb407103d4",
+        "octgn:7367d16a-2b23-4a95-9050-266e93d8ab50",
+        "octgn:0002f646-cdaf-40cf-9993-faccb260c583",
+        "octgn:7c069b32-99b8-42b7-a310-893d925c8ca7",
+        "octgn:3612e715-a474-4911-a247-58c76f2ef277",
+        "octgn:bf56e98f-1aa5-4e79-a116-d99bf2408e07",
+        "octgn:b5afe22c-f57f-4e26-993f-ef40fba8e105",
+        "octgn:ae16b39f-ed64-4aa9-b6b8-1fbfbda70e6f",
+        "octgn:097b7d54-bfa9-4b13-a1b8-337b03cac21d",
+        "octgn:b8d832c5-e9f8-4690-a60c-07c09980ea27",
+        "octgn:83d7214f-d8ae-47f8-bd0a-c48f9a187568",
+        "octgn:d7a51190-1d0e-4363-b71d-6bb44a133e1b",
+        "octgn:a531dc43-7feb-4e63-96ad-a33cdb3b717a",
+        "octgn:6e85113d-a2a6-44a7-895c-ca5115f7b7d2",
+        "octgn:9f1f5ce8-2fa6-40e3-ba7c-34fb94db014b",
+        "octgn:503d55b2-1f02-46d2-b672-230912c8563e",
+        "octgn:4a6539aa-2404-430f-94ab-0f674d965adc",
+        "octgn:70e85866-2f0a-4f4b-b39d-34d36adfc7ab",
+        "octgn:47360b1a-2428-4795-aec5-30f0a8805d76",
+        "octgn:09b27f8f-60ab-4764-8c78-52fb09597921",
+        "octgn:15734584-04cf-41b7-8a86-d1a435d6f8dc",
+        "145062",
+        "145014",
+        "145015",
+        "octgn:3820df8d-531b-4c37-815d-536f645bb289",
+        "145001"
+      ],
+      "cards": [
+        {
+          "code": "octgn:77a7f095-bd59-45a1-a866-d58e17e3bd6d",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:58616050-8a7f-4a9b-a8dc-e0d09e383741",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:98a48eec-841f-48da-83e7-fa148a03de8b",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:0507932f-0030-4763-8478-29bb407103d4",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:7367d16a-2b23-4a95-9050-266e93d8ab50",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:0002f646-cdaf-40cf-9993-faccb260c583",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7c069b32-99b8-42b7-a310-893d925c8ca7",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3612e715-a474-4911-a247-58c76f2ef277",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:bf56e98f-1aa5-4e79-a116-d99bf2408e07",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b5afe22c-f57f-4e26-993f-ef40fba8e105",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ae16b39f-ed64-4aa9-b6b8-1fbfbda70e6f",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:097b7d54-bfa9-4b13-a1b8-337b03cac21d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b8d832c5-e9f8-4690-a60c-07c09980ea27",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:83d7214f-d8ae-47f8-bd0a-c48f9a187568",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d7a51190-1d0e-4363-b71d-6bb44a133e1b",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a531dc43-7feb-4e63-96ad-a33cdb3b717a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6e85113d-a2a6-44a7-895c-ca5115f7b7d2",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9f1f5ce8-2fa6-40e3-ba7c-34fb94db014b",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:503d55b2-1f02-46d2-b672-230912c8563e",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4a6539aa-2404-430f-94ab-0f674d965adc",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:70e85866-2f0a-4f4b-b39d-34d36adfc7ab",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:47360b1a-2428-4795-aec5-30f0a8805d76",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:09b27f8f-60ab-4764-8c78-52fb09597921",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:15734584-04cf-41b7-8a86-d1a435d6f8dc",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "145062",
+          "quantity": 4,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "145014",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "145015",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:3820df8d-531b-4c37-815d-536f645bb289",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "145001",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:3612e715-a474-4911-a247-58c76f2ef277",
+          "quantity": 1,
+          "section": "sharedActiveLocation"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:77a7f095-bd59-45a1-a866-d58e17e3bd6d": 1,
+          "octgn:58616050-8a7f-4a9b-a8dc-e0d09e383741": 1,
+          "octgn:98a48eec-841f-48da-83e7-fa148a03de8b": 1,
+          "octgn:0507932f-0030-4763-8478-29bb407103d4": 1,
+          "octgn:7367d16a-2b23-4a95-9050-266e93d8ab50": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:0002f646-cdaf-40cf-9993-faccb260c583": 1,
+          "octgn:7c069b32-99b8-42b7-a310-893d925c8ca7": 3,
+          "octgn:3612e715-a474-4911-a247-58c76f2ef277": 3,
+          "octgn:bf56e98f-1aa5-4e79-a116-d99bf2408e07": 2,
+          "octgn:b5afe22c-f57f-4e26-993f-ef40fba8e105": 2,
+          "octgn:ae16b39f-ed64-4aa9-b6b8-1fbfbda70e6f": 1,
+          "octgn:097b7d54-bfa9-4b13-a1b8-337b03cac21d": 2,
+          "octgn:b8d832c5-e9f8-4690-a60c-07c09980ea27": 1,
+          "octgn:83d7214f-d8ae-47f8-bd0a-c48f9a187568": 3,
+          "octgn:d7a51190-1d0e-4363-b71d-6bb44a133e1b": 4,
+          "octgn:a531dc43-7feb-4e63-96ad-a33cdb3b717a": 1,
+          "octgn:6e85113d-a2a6-44a7-895c-ca5115f7b7d2": 1,
+          "octgn:9f1f5ce8-2fa6-40e3-ba7c-34fb94db014b": 1,
+          "octgn:503d55b2-1f02-46d2-b672-230912c8563e": 2,
+          "octgn:4a6539aa-2404-430f-94ab-0f674d965adc": 2,
+          "octgn:70e85866-2f0a-4f4b-b39d-34d36adfc7ab": 1
+        },
+        "sharedSetAside": {
+          "145014": 1,
+          "145015": 1,
+          "145062": 4,
+          "octgn:47360b1a-2428-4795-aec5-30f0a8805d76": 1,
+          "octgn:09b27f8f-60ab-4764-8c78-52fb09597921": 1,
+          "octgn:15734584-04cf-41b7-8a86-d1a435d6f8dc": 1,
+          "octgn:3820df8d-531b-4c37-815d-536f645bb289": 1
+        },
+        "player1Play1": {
+          "145001": 1
+        },
+        "sharedActiveLocation": {
+          "octgn:3612e715-a474-4911-a247-58c76f2ef277": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q0B.15",
+      "name": "The Battle of the Pelennor Fields",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "FotW"
+      ],
+      "card_codes": [
+        "octgn:77a7f095-bd59-45a1-a866-d58e17e3bd6d",
+        "octgn:58616050-8a7f-4a9b-a8dc-e0d09e383741",
+        "octgn:98a48eec-841f-48da-83e7-fa148a03de8b",
+        "octgn:0507932f-0030-4763-8478-29bb407103d4",
+        "octgn:7367d16a-2b23-4a95-9050-266e93d8ab50",
+        "octgn:0002f646-cdaf-40cf-9993-faccb260c583",
+        "octgn:7c069b32-99b8-42b7-a310-893d925c8ca7",
+        "octgn:3612e715-a474-4911-a247-58c76f2ef277",
+        "octgn:bf56e98f-1aa5-4e79-a116-d99bf2408e07",
+        "octgn:b5afe22c-f57f-4e26-993f-ef40fba8e105",
+        "octgn:9be86dec-0c44-4468-ac29-260dedaca54b",
+        "octgn:ae16b39f-ed64-4aa9-b6b8-1fbfbda70e6f",
+        "octgn:097b7d54-bfa9-4b13-a1b8-337b03cac21d",
+        "octgn:b8d832c5-e9f8-4690-a60c-07c09980ea27",
+        "octgn:83d7214f-d8ae-47f8-bd0a-c48f9a187568",
+        "octgn:d7a51190-1d0e-4363-b71d-6bb44a133e1b",
+        "octgn:a531dc43-7feb-4e63-96ad-a33cdb3b717a",
+        "octgn:6e85113d-a2a6-44a7-895c-ca5115f7b7d2",
+        "octgn:9f1f5ce8-2fa6-40e3-ba7c-34fb94db014b",
+        "octgn:503d55b2-1f02-46d2-b672-230912c8563e",
+        "octgn:4a6539aa-2404-430f-94ab-0f674d965adc",
+        "octgn:70e85866-2f0a-4f4b-b39d-34d36adfc7ab",
+        "octgn:47360b1a-2428-4795-aec5-30f0a8805d76",
+        "octgn:09b27f8f-60ab-4764-8c78-52fb09597921",
+        "octgn:15734584-04cf-41b7-8a86-d1a435d6f8dc",
+        "145062",
+        "145014",
+        "145015",
+        "octgn:3820df8d-531b-4c37-815d-536f645bb289",
+        "145001"
+      ],
+      "cards": [
+        {
+          "code": "octgn:77a7f095-bd59-45a1-a866-d58e17e3bd6d",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:58616050-8a7f-4a9b-a8dc-e0d09e383741",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:98a48eec-841f-48da-83e7-fa148a03de8b",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:0507932f-0030-4763-8478-29bb407103d4",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:7367d16a-2b23-4a95-9050-266e93d8ab50",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:0002f646-cdaf-40cf-9993-faccb260c583",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7c069b32-99b8-42b7-a310-893d925c8ca7",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3612e715-a474-4911-a247-58c76f2ef277",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:bf56e98f-1aa5-4e79-a116-d99bf2408e07",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b5afe22c-f57f-4e26-993f-ef40fba8e105",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9be86dec-0c44-4468-ac29-260dedaca54b",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ae16b39f-ed64-4aa9-b6b8-1fbfbda70e6f",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:097b7d54-bfa9-4b13-a1b8-337b03cac21d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b8d832c5-e9f8-4690-a60c-07c09980ea27",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:83d7214f-d8ae-47f8-bd0a-c48f9a187568",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d7a51190-1d0e-4363-b71d-6bb44a133e1b",
+          "quantity": 5,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a531dc43-7feb-4e63-96ad-a33cdb3b717a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6e85113d-a2a6-44a7-895c-ca5115f7b7d2",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9f1f5ce8-2fa6-40e3-ba7c-34fb94db014b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:503d55b2-1f02-46d2-b672-230912c8563e",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4a6539aa-2404-430f-94ab-0f674d965adc",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:70e85866-2f0a-4f4b-b39d-34d36adfc7ab",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:47360b1a-2428-4795-aec5-30f0a8805d76",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:09b27f8f-60ab-4764-8c78-52fb09597921",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:15734584-04cf-41b7-8a86-d1a435d6f8dc",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "145062",
+          "quantity": 4,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "145014",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "145015",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:3820df8d-531b-4c37-815d-536f645bb289",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "145001",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:3612e715-a474-4911-a247-58c76f2ef277",
+          "quantity": 1,
+          "section": "sharedActiveLocation"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:77a7f095-bd59-45a1-a866-d58e17e3bd6d": 1,
+          "octgn:58616050-8a7f-4a9b-a8dc-e0d09e383741": 1,
+          "octgn:98a48eec-841f-48da-83e7-fa148a03de8b": 1,
+          "octgn:0507932f-0030-4763-8478-29bb407103d4": 1,
+          "octgn:7367d16a-2b23-4a95-9050-266e93d8ab50": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:0002f646-cdaf-40cf-9993-faccb260c583": 1,
+          "octgn:7c069b32-99b8-42b7-a310-893d925c8ca7": 3,
+          "octgn:3612e715-a474-4911-a247-58c76f2ef277": 3,
+          "octgn:bf56e98f-1aa5-4e79-a116-d99bf2408e07": 3,
+          "octgn:b5afe22c-f57f-4e26-993f-ef40fba8e105": 3,
+          "octgn:9be86dec-0c44-4468-ac29-260dedaca54b": 1,
+          "octgn:ae16b39f-ed64-4aa9-b6b8-1fbfbda70e6f": 2,
+          "octgn:097b7d54-bfa9-4b13-a1b8-337b03cac21d": 2,
+          "octgn:b8d832c5-e9f8-4690-a60c-07c09980ea27": 2,
+          "octgn:83d7214f-d8ae-47f8-bd0a-c48f9a187568": 3,
+          "octgn:d7a51190-1d0e-4363-b71d-6bb44a133e1b": 5,
+          "octgn:a531dc43-7feb-4e63-96ad-a33cdb3b717a": 2,
+          "octgn:6e85113d-a2a6-44a7-895c-ca5115f7b7d2": 2,
+          "octgn:9f1f5ce8-2fa6-40e3-ba7c-34fb94db014b": 2,
+          "octgn:503d55b2-1f02-46d2-b672-230912c8563e": 2,
+          "octgn:4a6539aa-2404-430f-94ab-0f674d965adc": 2,
+          "octgn:70e85866-2f0a-4f4b-b39d-34d36adfc7ab": 2
+        },
+        "sharedSetAside": {
+          "145014": 1,
+          "145015": 1,
+          "145062": 4,
+          "octgn:47360b1a-2428-4795-aec5-30f0a8805d76": 1,
+          "octgn:09b27f8f-60ab-4764-8c78-52fb09597921": 1,
+          "octgn:15734584-04cf-41b7-8a86-d1a435d6f8dc": 1,
+          "octgn:3820df8d-531b-4c37-815d-536f645bb289": 1
+        },
+        "player1Play1": {
+          "145001": 1
+        },
+        "sharedActiveLocation": {
+          "octgn:3612e715-a474-4911-a247-58c76f2ef277": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "145001",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/145001.png",
+      "localPath": "/cards/145001.png",
+      "bytes": 440877,
+      "sha256": "a28111d456d887dbbd613a1964d96ec38120281bd4d37eab2eb2699b0a76f080"
+    },
+    {
+      "code": "145014",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/145014.png",
+      "localPath": "/cards/145014.png",
+      "bytes": 593643,
+      "sha256": "bf8a796289be3d59f2840d8aa6e768e14c7b2e24e3d5a00af82e8e2711e19745"
+    },
+    {
+      "code": "145015",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/145015.png",
+      "localPath": "/cards/145015.png",
+      "bytes": 538508,
+      "sha256": "2e13f74f658643bb3323d84e02e844e11889f5f42862f3a4aff819c2d04e2a06"
+    },
+    {
+      "code": "145062",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/145062.png",
+      "localPath": "/cards/145062.png",
+      "bytes": 533216,
+      "sha256": "12b27e8e8af9d49e223378042bb5851e229e56da440f0bb8fa2d10d114e30b67"
+    },
+    {
+      "code": "octgn:0002f646-cdaf-40cf-9993-faccb260c583",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0002f646-cdaf-40cf-9993-faccb260c583.jpg",
+      "localPath": "/cards/0002f646-cdaf-40cf-9993-faccb260c583.jpg",
+      "bytes": 150348,
+      "sha256": "3a03bbb89d931b2d1919c5dcf238d62cad87fa716c338cf23f95b77bb650f559"
+    },
+    {
+      "code": "octgn:0507932f-0030-4763-8478-29bb407103d4",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0507932f-0030-4763-8478-29bb407103d4.jpg",
+      "localPath": "/cards/0507932f-0030-4763-8478-29bb407103d4.jpg",
+      "bytes": 141807,
+      "sha256": "631a49f27b4bc5945a1a3384d6596e4c8c37fa94478b903bc0af09e96047256f"
+    },
+    {
+      "code": "octgn:0507932f-0030-4763-8478-29bb407103d4",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0507932f-0030-4763-8478-29bb407103d4.B.jpg",
+      "localPath": "/cards/0507932f-0030-4763-8478-29bb407103d4.B.jpg",
+      "bytes": 137648,
+      "sha256": "8dcd69a4bf383d27a34dc949e9801b701fadb629da105223bb5aafabc062cfef"
+    },
+    {
+      "code": "octgn:097b7d54-bfa9-4b13-a1b8-337b03cac21d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/097b7d54-bfa9-4b13-a1b8-337b03cac21d.jpg",
+      "localPath": "/cards/097b7d54-bfa9-4b13-a1b8-337b03cac21d.jpg",
+      "bytes": 148076,
+      "sha256": "597af93c15b8958aae9dc912c06815036fa00be9dc9e4d4fbb6f50d0754d58da"
+    },
+    {
+      "code": "octgn:09b27f8f-60ab-4764-8c78-52fb09597921",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/09b27f8f-60ab-4764-8c78-52fb09597921.jpg",
+      "localPath": "/cards/09b27f8f-60ab-4764-8c78-52fb09597921.jpg",
+      "bytes": 153005,
+      "sha256": "06f516c53898c5b3f8fb0a47595f01b0cd9758a96e4b1422febd80bd11d89f00"
+    },
+    {
+      "code": "octgn:15734584-04cf-41b7-8a86-d1a435d6f8dc",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/15734584-04cf-41b7-8a86-d1a435d6f8dc.jpg",
+      "localPath": "/cards/15734584-04cf-41b7-8a86-d1a435d6f8dc.jpg",
+      "bytes": 151639,
+      "sha256": "e48dc6d48bb56c4e9c2065916e7bb4495d066ca915a66e122080a1e01939ef98"
+    },
+    {
+      "code": "octgn:15734584-04cf-41b7-8a86-d1a435d6f8dc",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/15734584-04cf-41b7-8a86-d1a435d6f8dc.B.jpg",
+      "localPath": "/cards/15734584-04cf-41b7-8a86-d1a435d6f8dc.B.jpg",
+      "bytes": 149663,
+      "sha256": "175dbeab7fe5e5f6b7d398c4497d9b2e1142f628344496f970b9c30258ae2e7a"
+    },
+    {
+      "code": "octgn:3612e715-a474-4911-a247-58c76f2ef277",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3612e715-a474-4911-a247-58c76f2ef277.jpg",
+      "localPath": "/cards/3612e715-a474-4911-a247-58c76f2ef277.jpg",
+      "bytes": 151150,
+      "sha256": "e3842b1dfa75d64549299bfcf10bc55a9b9ed4e687a9a980be1cc42e073a7c5f"
+    },
+    {
+      "code": "octgn:3820df8d-531b-4c37-815d-536f645bb289",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3820df8d-531b-4c37-815d-536f645bb289.jpg",
+      "localPath": "/cards/3820df8d-531b-4c37-815d-536f645bb289.jpg",
+      "bytes": 172243,
+      "sha256": "09796edc907f66cae2e43d3b9d90ae643f26b138b299110563f4b7987b35697e"
+    },
+    {
+      "code": "octgn:3820df8d-531b-4c37-815d-536f645bb289",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3820df8d-531b-4c37-815d-536f645bb289.B.jpg",
+      "localPath": "/cards/3820df8d-531b-4c37-815d-536f645bb289.B.jpg",
+      "bytes": 167119,
+      "sha256": "0f1c284cb5976cc97c526e3c255e96f53ac191aae7ad453cc9798bfad2db4532"
+    },
+    {
+      "code": "octgn:47360b1a-2428-4795-aec5-30f0a8805d76",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/47360b1a-2428-4795-aec5-30f0a8805d76.jpg",
+      "localPath": "/cards/47360b1a-2428-4795-aec5-30f0a8805d76.jpg",
+      "bytes": 146933,
+      "sha256": "8868467c30a793dbefd4e459425b8379d9a93147031a4db1901b1ea5b6ddfc7b"
+    },
+    {
+      "code": "octgn:4a6539aa-2404-430f-94ab-0f674d965adc",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4a6539aa-2404-430f-94ab-0f674d965adc.jpg",
+      "localPath": "/cards/4a6539aa-2404-430f-94ab-0f674d965adc.jpg",
+      "bytes": 148177,
+      "sha256": "2ccc3f2c7789913a9c6291892e8c9965811f5fe07da56a3e8ecfe33bab6c649e"
+    },
+    {
+      "code": "octgn:503d55b2-1f02-46d2-b672-230912c8563e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/503d55b2-1f02-46d2-b672-230912c8563e.jpg",
+      "localPath": "/cards/503d55b2-1f02-46d2-b672-230912c8563e.jpg",
+      "bytes": 150883,
+      "sha256": "7d6f5224295c85c3f7569dbce675adb548d31d83825e3341ebb7d12b4a4c5fe7"
+    },
+    {
+      "code": "octgn:58616050-8a7f-4a9b-a8dc-e0d09e383741",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/58616050-8a7f-4a9b-a8dc-e0d09e383741.jpg",
+      "localPath": "/cards/58616050-8a7f-4a9b-a8dc-e0d09e383741.jpg",
+      "bytes": 159270,
+      "sha256": "713447c32230350a57dfa5e2f8c33ded41ec9bd17a92483980cae20013759030"
+    },
+    {
+      "code": "octgn:58616050-8a7f-4a9b-a8dc-e0d09e383741",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/58616050-8a7f-4a9b-a8dc-e0d09e383741.B.jpg",
+      "localPath": "/cards/58616050-8a7f-4a9b-a8dc-e0d09e383741.B.jpg",
+      "bytes": 159724,
+      "sha256": "232e2cb015bfca771a334d2cb5c2d6a78932e2ed6acd89467123b4697cee54ed"
+    },
+    {
+      "code": "octgn:6e85113d-a2a6-44a7-895c-ca5115f7b7d2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6e85113d-a2a6-44a7-895c-ca5115f7b7d2.jpg",
+      "localPath": "/cards/6e85113d-a2a6-44a7-895c-ca5115f7b7d2.jpg",
+      "bytes": 154355,
+      "sha256": "5e9815f1c919946040ee2b69ad5c3b27de3f186ec7a254e76e21aa17b29de3dc"
+    },
+    {
+      "code": "octgn:70e85866-2f0a-4f4b-b39d-34d36adfc7ab",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/70e85866-2f0a-4f4b-b39d-34d36adfc7ab.jpg",
+      "localPath": "/cards/70e85866-2f0a-4f4b-b39d-34d36adfc7ab.jpg",
+      "bytes": 153340,
+      "sha256": "13af4358e8ada33da7aa649d1aa18fa220608d306f344e617647d1418edaa689"
+    },
+    {
+      "code": "octgn:7367d16a-2b23-4a95-9050-266e93d8ab50",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7367d16a-2b23-4a95-9050-266e93d8ab50.jpg",
+      "localPath": "/cards/7367d16a-2b23-4a95-9050-266e93d8ab50.jpg",
+      "bytes": 150517,
+      "sha256": "dd080e6c4f60579388f3eab2a20c98441458f1eaaaea1b079dbddbc948fc629b"
+    },
+    {
+      "code": "octgn:7367d16a-2b23-4a95-9050-266e93d8ab50",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7367d16a-2b23-4a95-9050-266e93d8ab50.B.jpg",
+      "localPath": "/cards/7367d16a-2b23-4a95-9050-266e93d8ab50.B.jpg",
+      "bytes": 144388,
+      "sha256": "0f9e7e860a0700321703a9916934052848334e076bfb31b671e95a015fa8b4ca"
+    },
+    {
+      "code": "octgn:77a7f095-bd59-45a1-a866-d58e17e3bd6d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/77a7f095-bd59-45a1-a866-d58e17e3bd6d.jpg",
+      "localPath": "/cards/77a7f095-bd59-45a1-a866-d58e17e3bd6d.jpg",
+      "bytes": 152150,
+      "sha256": "98e717f120a7d0c31f376f429ef2e8a841f2b192c7e89c73b3f876c23eb30e87"
+    },
+    {
+      "code": "octgn:77a7f095-bd59-45a1-a866-d58e17e3bd6d",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/77a7f095-bd59-45a1-a866-d58e17e3bd6d.B.jpg",
+      "localPath": "/cards/77a7f095-bd59-45a1-a866-d58e17e3bd6d.B.jpg",
+      "bytes": 147691,
+      "sha256": "4c800c1b6954dc1e82a0f80189464deb4b56f393c86bb66659d168aa47546e33"
+    },
+    {
+      "code": "octgn:7c069b32-99b8-42b7-a310-893d925c8ca7",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7c069b32-99b8-42b7-a310-893d925c8ca7.jpg",
+      "localPath": "/cards/7c069b32-99b8-42b7-a310-893d925c8ca7.jpg",
+      "bytes": 146843,
+      "sha256": "0417c1188f7369485a7e0057d0fe7bd6855f9b65079c36473ca9a63436fdbbf8"
+    },
+    {
+      "code": "octgn:83d7214f-d8ae-47f8-bd0a-c48f9a187568",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/83d7214f-d8ae-47f8-bd0a-c48f9a187568.jpg",
+      "localPath": "/cards/83d7214f-d8ae-47f8-bd0a-c48f9a187568.jpg",
+      "bytes": 154168,
+      "sha256": "23c09ccd3eaa2e9f76c3e8ab96b2d7b0fdd5a293947e58ce2b12296de4a5da74"
+    },
+    {
+      "code": "octgn:98a48eec-841f-48da-83e7-fa148a03de8b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/98a48eec-841f-48da-83e7-fa148a03de8b.jpg",
+      "localPath": "/cards/98a48eec-841f-48da-83e7-fa148a03de8b.jpg",
+      "bytes": 154360,
+      "sha256": "4d5024cf4b79f2bc7869c7e49b1bc7f8ad853520ab8260b61fdfa49449a1aabd"
+    },
+    {
+      "code": "octgn:98a48eec-841f-48da-83e7-fa148a03de8b",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/98a48eec-841f-48da-83e7-fa148a03de8b.B.jpg",
+      "localPath": "/cards/98a48eec-841f-48da-83e7-fa148a03de8b.B.jpg",
+      "bytes": 150706,
+      "sha256": "40f1b94436b285e0541a670b2c5789689ee527cd73c9b3eb7aee28ce47ab0bdd"
+    },
+    {
+      "code": "octgn:9be86dec-0c44-4468-ac29-260dedaca54b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9be86dec-0c44-4468-ac29-260dedaca54b.jpg",
+      "localPath": "/cards/9be86dec-0c44-4468-ac29-260dedaca54b.jpg",
+      "bytes": 160965,
+      "sha256": "22cb62c6b96bf47fd6f362fa6b92004e2654e1c3ce6fdac28ccc59dc22f50f83"
+    },
+    {
+      "code": "octgn:9f1f5ce8-2fa6-40e3-ba7c-34fb94db014b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9f1f5ce8-2fa6-40e3-ba7c-34fb94db014b.jpg",
+      "localPath": "/cards/9f1f5ce8-2fa6-40e3-ba7c-34fb94db014b.jpg",
+      "bytes": 146168,
+      "sha256": "8afef1c83faf991edb134936b8e20d1a22c3a66333ad3193d14afee832cb9e3f"
+    },
+    {
+      "code": "octgn:a531dc43-7feb-4e63-96ad-a33cdb3b717a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a531dc43-7feb-4e63-96ad-a33cdb3b717a.jpg",
+      "localPath": "/cards/a531dc43-7feb-4e63-96ad-a33cdb3b717a.jpg",
+      "bytes": 153559,
+      "sha256": "9ec14db0cd73e861e4698f297a722801553070bae6166f458918f4cb69145f6e"
+    },
+    {
+      "code": "octgn:ae16b39f-ed64-4aa9-b6b8-1fbfbda70e6f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ae16b39f-ed64-4aa9-b6b8-1fbfbda70e6f.jpg",
+      "localPath": "/cards/ae16b39f-ed64-4aa9-b6b8-1fbfbda70e6f.jpg",
+      "bytes": 155391,
+      "sha256": "1dc0381475c8642b4df481c8f273ed676394cd470d59233106046a33ad9968c4"
+    },
+    {
+      "code": "octgn:b5afe22c-f57f-4e26-993f-ef40fba8e105",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b5afe22c-f57f-4e26-993f-ef40fba8e105.jpg",
+      "localPath": "/cards/b5afe22c-f57f-4e26-993f-ef40fba8e105.jpg",
+      "bytes": 150983,
+      "sha256": "43013517c112dc562088568bc9c88a752c084481db60ef2564b6997370d1350e"
+    },
+    {
+      "code": "octgn:b8d832c5-e9f8-4690-a60c-07c09980ea27",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b8d832c5-e9f8-4690-a60c-07c09980ea27.jpg",
+      "localPath": "/cards/b8d832c5-e9f8-4690-a60c-07c09980ea27.jpg",
+      "bytes": 157988,
+      "sha256": "d401301b8dbe6cb6b66b6acf0845850d65540b8eae05db5df8647e983702748c"
+    },
+    {
+      "code": "octgn:bf56e98f-1aa5-4e79-a116-d99bf2408e07",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bf56e98f-1aa5-4e79-a116-d99bf2408e07.jpg",
+      "localPath": "/cards/bf56e98f-1aa5-4e79-a116-d99bf2408e07.jpg",
+      "bytes": 155861,
+      "sha256": "13505c159666f3d3be4c89886f28efb22f201e07dbca676a18769aefcb169b24"
+    },
+    {
+      "code": "octgn:d7a51190-1d0e-4363-b71d-6bb44a133e1b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d7a51190-1d0e-4363-b71d-6bb44a133e1b.jpg",
+      "localPath": "/cards/d7a51190-1d0e-4363-b71d-6bb44a133e1b.jpg",
+      "bytes": 153090,
+      "sha256": "6c54ada4d98fc532124bd8e4d036924c6c1f2acb4a1523908dcec106a41d42e1"
+    }
+  ]
+}

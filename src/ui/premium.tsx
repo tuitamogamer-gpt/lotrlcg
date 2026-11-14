@@ -103,6 +103,10 @@ export const PLAYMATS = {
     name: "Pelargir upon Anduin",
     detail: "The fleet of Umbar at the quays · The great ship of the Corsairs",
   },
+  "the-battle-of-the-pelennor-fields": {
+    name: "The Pelennor Fields",
+    detail: "The White City besieged · Grond at the Gate · The horns of Rohan",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -522,6 +526,7 @@ export const PLAYMAT_CHOICES = [
   "shelobs-lair",
   "the-passing-of-the-grey-company",
   "the-siege-of-gondor",
+  "the-battle-of-the-pelennor-fields",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

@@ -139,6 +139,10 @@ const HEADLINES: Partial<
     lead: "Fall upon the Corsairs",
     em: "at Pelargir.",
   },
+  "the-battle-of-the-pelennor-fields": {
+    lead: "Defend the White City",
+    em: "on the Pelennor Fields.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

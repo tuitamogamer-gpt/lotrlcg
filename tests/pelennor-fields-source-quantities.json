@@ -1,0 +1,142 @@
+[
+  {
+    "name": "Black Dart",
+    "code": "octgn:9f1f5ce8-2fa6-40e3-ba7c-34fb94db014b",
+    "set": "38/45",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "City Wall",
+    "code": "octgn:7c069b32-99b8-42b7-a310-893d925c8ca7",
+    "set": "6/45",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Dread and Despair",
+    "code": "octgn:4a6539aa-2404-430f-94ab-0f674d965adc",
+    "set": "42/45",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Fell Beast",
+    "code": "octgn:6e85113d-a2a6-44a7-895c-ca5115f7b7d2",
+    "set": "36/45",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Fire-filled Trench",
+    "code": "octgn:bf56e98f-1aa5-4e79-a116-d99bf2408e07",
+    "set": "13/45",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "name": "Gate of Gondor",
+    "code": "octgn:0002f646-cdaf-40cf-9993-faccb260c583",
+    "set": "5/45",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Grond",
+    "code": "octgn:09b27f8f-60ab-4764-8c78-52fb09597921",
+    "set": "4/45",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Minas Tirith",
+    "code": "octgn:47360b1a-2428-4795-aec5-30f0a8805d76",
+    "set": "3/45",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Mordor Orc",
+    "code": "octgn:d7a51190-1d0e-4363-b71d-6bb44a133e1b",
+    "set": "29/45",
+    "normal": 5,
+    "easy": 4
+  },
+  {
+    "name": "Morgul Captain",
+    "code": "octgn:b8d832c5-e9f8-4690-a60c-07c09980ea27",
+    "set": "24/45",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Orc of the Eye",
+    "code": "octgn:83d7214f-d8ae-47f8-bd0a-c48f9a187568",
+    "set": "26/45",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Pelennor Field",
+    "code": "octgn:3612e715-a474-4911-a247-58c76f2ef277",
+    "set": "9/45",
+    "normal": 4,
+    "easy": 4
+  },
+  {
+    "name": "Shadow of Mordor",
+    "code": "octgn:70e85866-2f0a-4f4b-b39d-34d36adfc7ab",
+    "set": "44/45",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Siege Tower",
+    "code": "octgn:b5afe22c-f57f-4e26-993f-ef40fba8e105",
+    "set": "16/45",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "name": "Southron Champion",
+    "code": "octgn:097b7d54-bfa9-4b13-a1b8-337b03cac21d",
+    "set": "22/45",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Spells of Ruin",
+    "code": "octgn:503d55b2-1f02-46d2-b672-230912c8563e",
+    "set": "40/45",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "The Black Serpent",
+    "code": "octgn:9be86dec-0c44-4468-ac29-260dedaca54b",
+    "set": "19/45",
+    "normal": 1,
+    "easy": 0
+  },
+  {
+    "name": "The Rammas is Breached",
+    "code": "octgn:a531dc43-7feb-4e63-96ad-a33cdb3b717a",
+    "set": "34/45",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "The Witch-king",
+    "code": "octgn:15734584-04cf-41b7-8a86-d1a435d6f8dc",
+    "set": "2/45",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "War Mûmak",
+    "code": "octgn:ae16b39f-ed64-4aa9-b6b8-1fbfbda70e6f",
+    "set": "20/45",
+    "normal": 2,
+    "easy": 1
+  }
+]
