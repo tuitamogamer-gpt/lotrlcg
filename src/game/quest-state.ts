@@ -45,6 +45,7 @@ export function mainQuestCode(s: GameState): string | undefined {
   if (s.breakingFellowship) return bfCurrentQuest(s);
   if (s.fogBarrow) return fbCurrentQuest(s);
   if (s.urukHai) return s.urukHai.currentQuest;
+  if (s.helmsDeep) return s.helmsDeep.currentQuest;
   if (s.landSorrow) return s.landSorrow.currentQuest;
   if (s.ashMountains) return s.ashMountains.currentQuest;
   if (s.wainriders) return s.wainriders.currentQuest;

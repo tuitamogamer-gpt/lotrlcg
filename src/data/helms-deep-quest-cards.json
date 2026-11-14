@@ -1,0 +1,200 @@
+[
+  {
+    "code": "octgn:9550172a-c624-40fd-b654-f2430ed93df1",
+    "octgnid": "9550172a-c624-40fd-b654-f2430ed93df1",
+    "name": "The King of the Golden Hall",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set The Defense of Helm's Deep and 1 copy of Deeping Wall aside, out of play. Each player sets 1 copy of Soldier of Isengard aside, out of play. Then, the players must choose: either each player shuffles 1 copy of Poisoned Counsels into his deck, or advance to stage 2A (bypassing stage 1B).",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 72,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Helm's Deep",
+    "side": "A",
+    "back_name": "The King of the Golden Hall",
+    "back_text": "When Revealed: Each player chooses 1 ally in his hand that matches the sphere of a hero he controls and puts it into play under his control.\nSkip the quest phase and combat phase.\nForced: At the end of the round, advance to stage 2A.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/9550172a-c624-40fd-b654-f2430ed93df1.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/9550172a-c624-40fd-b654-f2430ed93df1.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 72,
+        "quantity": 1,
+        "octgnid": "9550172a-c624-40fd-b654-f2430ed93df1",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9550172a-c624-40fd-b654-f2430ed93df1.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8f5cdb72-aeae-49f7-bcc8-a2288b6bfb95",
+    "octgnid": "8f5cdb72-aeae-49f7-bcc8-a2288b6bfb95",
+    "name": "Assault on Helm's Deep",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add The Defense of Helm's Deep and each set aside copy of Soldier of Isengard to the staging area. Make Deeping Wall the active location. Shuffle the encounter deck. Then, each player reveals 1 encounter card.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 73,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Helm's Deep",
+    "side": "A",
+    "back_name": "Assault on Helm's Deep",
+    "back_text": "Defense.\nForced: At the end of the combat phase, if the number of enemies in the staging area is less than the number of players in the game, the first player reveals an encounter card.\nForced: At the end of the round place 1 progress here for each enemy in the staging area (bypassing any active location).",
+    "back_type_code": "quest",
+    "back_quest": 8,
+    "back_imagesrc": "/cards/8f5cdb72-aeae-49f7-bcc8-a2288b6bfb95.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/8f5cdb72-aeae-49f7-bcc8-a2288b6bfb95.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 73,
+        "quantity": 1,
+        "octgnid": "8f5cdb72-aeae-49f7-bcc8-a2288b6bfb95",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8f5cdb72-aeae-49f7-bcc8-a2288b6bfb95.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:7e20690f-d1bb-4ac3-b2bf-da55f1f95bcc",
+    "octgnid": "7e20690f-d1bb-4ac3-b2bf-da55f1f95bcc",
+    "name": "The Hosts of Isengard",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Search the encounter deck, discard pile, and victory display for Helm's Gate and add it to the staging area. Shuffle the encounter deck. Make Helm's Gate the active location, returning any previous active location to the staging area.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 74,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Helm's Deep",
+    "side": "A",
+    "back_name": "The Hosts of Isengard",
+    "back_text": "Defense.\nForced: After resolving the quest, if the encounter deck did not place at least 1 progress on this stage as the result of questing, the first player reveals 1 encounter card.",
+    "back_type_code": "quest",
+    "back_quest": 8,
+    "back_imagesrc": "/cards/7e20690f-d1bb-4ac3-b2bf-da55f1f95bcc.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/7e20690f-d1bb-4ac3-b2bf-da55f1f95bcc.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 74,
+        "quantity": 1,
+        "octgnid": "7e20690f-d1bb-4ac3-b2bf-da55f1f95bcc",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7e20690f-d1bb-4ac3-b2bf-da55f1f95bcc.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:abc54411-1805-4ef4-8c47-517ffe72312e",
+    "octgnid": "abc54411-1805-4ef4-8c47-517ffe72312e",
+    "name": "The Wall is Breached!",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck. Discard cards from the encounter deck until X enemies are discarded. X is the number of players. Add each enemy discarded this way to the staging area.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 75,
+    "quantity": 1,
+    "cost": 4,
+    "encounter_set": "Helm's Deep",
+    "side": "A",
+    "back_name": "The Wall is Breached!",
+    "back_text": "Defense.\nForced: After a character is destroyed, place 1 progress on this stage (bypassing any active location).\nIf this stage is defeated, the players lose the game.",
+    "back_type_code": "quest",
+    "back_quest": 8,
+    "back_imagesrc": "/cards/abc54411-1805-4ef4-8c47-517ffe72312e.B.jpg",
+    "printed_stats": {
+      "cost": "4"
+    },
+    "imagesrc": "/cards/abc54411-1805-4ef4-8c47-517ffe72312e.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 75,
+        "quantity": 1,
+        "octgnid": "abc54411-1805-4ef4-8c47-517ffe72312e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/abc54411-1805-4ef4-8c47-517ffe72312e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:6950e7ae-27be-4def-954c-8dabe8dd612b",
+    "octgnid": "6950e7ae-27be-4def-954c-8dabe8dd612b",
+    "name": "The King Rides Out",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck. Discard cards from the encounter deck until X enemies are discarded. X is the number of players. Add each enemy discarded this way to the staging area.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 76,
+    "quantity": 1,
+    "cost": 5,
+    "encounter_set": "Helm's Deep",
+    "side": "A",
+    "back_name": "The King Rides Out",
+    "back_text": "Skip the quest phase. Players cannot reduce their threat.\nIf there are no enemies in play, the players win the game.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/6950e7ae-27be-4def-954c-8dabe8dd612b.B.jpg",
+    "printed_stats": {
+      "cost": "5"
+    },
+    "imagesrc": "/cards/6950e7ae-27be-4def-954c-8dabe8dd612b.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 76,
+        "quantity": 1,
+        "octgnid": "6950e7ae-27be-4def-954c-8dabe8dd612b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6950e7ae-27be-4def-954c-8dabe8dd612b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

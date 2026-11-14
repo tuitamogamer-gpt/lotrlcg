@@ -31,7 +31,10 @@ export const ROAD_DARKENS_SCENARIO_IDS: readonly string[] = [
 /** The Treason of Saruman's Fellowship-sphere Aragorn, who stands in for the Ring-bearer. */
 export const TOS_ARAGORN = "143001";
 /** The Lord of the Rings Saga scenarios of The Treason of Saruman. */
-export const TREASON_SARUMAN_SCENARIO_IDS: readonly string[] = ["the-uruk-hai"];
+export const TREASON_SARUMAN_SCENARIO_IDS: readonly string[] = [
+  "the-uruk-hai",
+  "helms-deep",
+];
 export const isTreasonSarumanScenarioId = (id: string | undefined) =>
   !!id && TREASON_SARUMAN_SCENARIO_IDS.includes(id);
 /** Standalone scenarios played with the Saga's Ring-bearer rules. */

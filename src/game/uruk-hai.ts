@@ -1,37 +1,17 @@
 import type { Effect, GameState, Option, Unit } from "./types";
 import type { Batch4ScenarioHooks } from "./batch4-scenario-contract";
 import { card, name } from "./cards";
-import {
-  choose,
-  fx,
-  get,
-  log,
-  make,
-  prepend,
-  random,
-  shuffle,
-  threatOf,
-} from "./core";
-import {
-  depositInFlightEncounterCards,
-  discardAttachment,
-  engage,
-  questDefeated,
-  revealed,
-  win,
-} from "./board";
+import { choose, fx, get, log, make, prepend, random, shuffle } from "./core";
+import { depositInFlightEncounterCards, questDefeated, win } from "./board";
 import {
   activeSeat,
-  attachmentController,
   firstPlayer,
   forOwner,
   globalCharacters,
   globalEngaged,
-  globalPlayerOrder,
   ownerOf,
   playerOrder,
   seatName,
-  seatView,
 } from "./table";
 import { isAlly, isHero } from "./card-types";
 import { isEnemy } from "./ships";
@@ -44,11 +24,19 @@ import {
   UH_LOST_PURSUIT,
   UH_START_PURSUIT,
   URUK_HAI_RECIPES,
-  isUrukHaiCode,
-  uhArchery,
-  uhToughness,
   urukHaiStageInfo,
 } from "./uruk-hai-support";
+import {
+  urukOptions,
+  whiteHandArchery,
+  whiteHandCharacterDestroyed,
+  whiteHandEffect,
+  whiteHandEnemyRevealed,
+  whiteHandShadow,
+  whiteHandStagingThreat,
+  whiteHandToughness,
+  whiteHandTreachery,
+} from "./white-hand";
 export * from "./uruk-hai-support";
 
 const TREACHERIES: readonly string[] = [
@@ -205,15 +193,13 @@ function encounter(
   const q = s.urukHai;
   if (!q) return false;
   const player = activeSeat(s);
-  if ([UH.uruks, UH.uruk, UH.snaga].includes(code as never)) {
+  if (whiteHandEnemyRevealed(s, code, fromReveal)) return true;
+  if ([UH.uruks, UH.snaga].includes(code as never)) {
     if (!fromReveal) return true;
     const u = [...s.staging].reverse().find((x) => x.code === code);
     prepend(
       s,
-      fx(
-        code === UH.uruks ? "uhUruks" : code === UH.uruk ? "uhUruk" : "uhSnaga",
-        { target: u?.id, player },
-      ),
+      fx(code === UH.uruks ? "uhUruks" : "uhSnaga", { target: u?.id, player }),
     );
     return true;
   }
@@ -234,27 +220,6 @@ function encounter(
     fx("uhTreacheryDone", { source: u.id, player }),
   );
   return true;
-}
-/** "Search the encounter deck and discard pile for an Uruk-hai enemy": one option per card and zone. */
-function urukOptions(
-  s: GameState,
-  kind: string,
-  player: number,
-  engaged = false,
-): Option[] {
-  const options: Option[] = [];
-  for (const [zone, cards] of [
-    ["deck", s.encounterDeck],
-    ["discard", s.encounterDiscard],
-  ] as const)
-    for (const code of [...new Set(cards.filter((c) => isUrukHaiCode(c)))])
-      options.push({
-        id: `${zone}-${code}`,
-        code,
-        label: `${card(code).name} · ${zone === "deck" ? "encounter deck" : "discard pile"}`,
-        effects: [fx(kind, { code, text: zone, flag: engaged, player })],
-      });
-  return options;
 }
 function treachery(s: GameState, code: string) {
   const q = s.urukHai!;
@@ -307,37 +272,9 @@ function treachery(s: GameState, code: string) {
         "danger",
       );
       return;
-    case UH.fighting: {
-      const players = q.fighting?.round === s.round ? q.fighting.players : [];
-      q.fighting = {
-        round: s.round,
-        players: [...new Set([...players, p])].sort(),
-      };
-      log(
-        s,
-        `Fighting Uruk-hai: until the end of the round, each enemy engaged with ${who(s, p)} adds its threat to the total threat in the staging area.`,
-        "danger",
-      );
-      const options = urukOptions(s, "uhRevealUruk", p, true);
-      if (!options.length) {
-        shuffle(s, s.encounterDeck);
-        log(
-          s,
-          "Fighting Uruk-hai: no Uruk-hai enemy is in the encounter deck or discard pile; the encounter deck is shuffled.",
-        );
-        return;
-      }
-      prepend(s, fx("uhShuffle", { text: "Fighting Uruk-hai", player: p }));
-      forOwner(s, p, () =>
-        choose(
-          s,
-          `Fighting Uruk-hai · Reveal an Uruk-hai enemy engaged with you${seatLabel(s, p)}`,
-          options,
-          "Peril. Search the encounter deck and discard pile for an Uruk-hai enemy, reveal it, and put it into play engaged with you. Then the encounter deck is shuffled.",
-        ),
-      );
+    case UH.fighting:
+      whiteHandTreachery(s, code);
       return;
-    }
     case UH.orders:
       prepend(s, ...playerOrder(s).map((player) => fx("uhOrders", { player })));
       return;
@@ -378,11 +315,8 @@ function shadow(s: GameState, code: string) {
     case UH.banks:
       prepend(s, fx("uhBanks", { player: p }));
       return true;
-    case UH.fighter:
-      prepend(s, fx("uhDiscardAttachment", { player: p }));
-      return true;
   }
-  return false;
+  return whiteHandShadow(s, code);
 }
 function attackFinished(s: GameState, c: NonNullable<GameState["combat"]>) {
   if (!s.urukHai || !c.uhKilled || !c.uhKillPursuit) return [];
@@ -401,6 +335,7 @@ function attackFinished(s: GameState, c: NonNullable<GameState["combat"]>) {
 export function urukHaiEffect(s: GameState, e: Effect): boolean {
   const q = s.urukHai;
   if (!q || !e.kind.startsWith("uh")) return false;
+  if (whiteHandEffect(s, e)) return true;
   const first = firstPlayer(s);
   const p = e.player ?? activeSeat(s),
     u = findUnit(s, e.target);
@@ -479,31 +414,6 @@ export function urukHaiEffect(s: GameState, e: Effect): boolean {
       );
       return true;
     }
-    case "uhRevealUruk": {
-      const zone = e.text === "discard" ? s.encounterDiscard : s.encounterDeck;
-      const i = zone.lastIndexOf(e.code!);
-      if (i < 0) return true;
-      zone.splice(i, 1);
-      log(
-        s,
-        `${who(s, p)} ${verb(s, "reveal")} ${card(e.code!).name} from the encounter ${e.text === "discard" ? "discard pile" : "deck"}.`,
-        "danger",
-      );
-      // Fighting Uruk-hai: the revealed enemy is put into play engaged.
-      if (e.flag)
-        prepend(s, fx("uhEngageRevealed", { code: e.code, player: p }));
-      revealed(s, e.code!, undefined, "encounter");
-      return true;
-    }
-    case "uhEngageRevealed": {
-      const enemy = [...s.staging].reverse().find((x) => x.code === e.code);
-      if (enemy) engage(s, enemy);
-      return true;
-    }
-    case "uhShuffle":
-      shuffle(s, s.encounterDeck);
-      log(s, `${e.text ?? "The Uruk-hai"}: the encounter deck is shuffled.`);
-      return true;
     case "uhTreachery": {
       const held = q.resolving.find((x) => x.id === e.source);
       if (held) treachery(s, held.code);
@@ -594,52 +504,6 @@ export function urukHaiEffect(s: GameState, e: Effect): boolean {
           },
         ],
         "Peril. When Revealed: either increase the pursuit value by 3, or reveal an additional encounter card.",
-      );
-      return true;
-    }
-    case "uhUruk": {
-      const characters = [...s.heroes, ...s.allies];
-      const options: Option[] = [
-        ...(characters.length
-          ? [
-              {
-                id: "damage",
-                label: "Assign 3 damage among characters you control",
-                effects: [fx("uhAssign", { value: 3, player: p })],
-              },
-            ]
-          : []),
-        {
-          id: "reveal",
-          label: "Reveal an additional encounter card",
-          effects: [fx("reveal", { player: p })],
-        },
-      ];
-      choose(
-        s,
-        `Isengard Uruk · Choose one${seatLabel(s, p)}`,
-        options,
-        "Peril. When Revealed: either assign 3 damage among characters you control, or reveal an additional encounter card.",
-      );
-      return true;
-    }
-    case "uhAssign": {
-      const remaining = e.value ?? 0;
-      const characters = [...s.heroes, ...s.allies];
-      if (remaining <= 0 || !characters.length) return true;
-      choose(
-        s,
-        `Isengard Uruk · Assign damage · ${remaining} remaining${seatLabel(s, p)}`,
-        characters.map((c) => ({
-          id: c.id,
-          code: c.code,
-          label: `${name(c)} · ${c.damage} damage`,
-          effects: [
-            fx("damage", { target: c.id, value: 1, player: p }),
-            fx("uhAssign", { value: remaining - 1, player: p }),
-          ],
-        })),
-        "Assign the damage one at a time among characters you control.",
       );
       return true;
     }
@@ -804,50 +668,6 @@ export function urukHaiEffect(s: GameState, e: Effect): boolean {
         );
       }
       return true;
-    case "uhDiscardAttachment": {
-      const hosts = [...globalCharacters(s), ...s.staging, ...globalEngaged(s)];
-      const choices = hosts.flatMap((host) =>
-        host.attachments
-          .filter(
-            (a) =>
-              attachmentController(s, host, a) === p &&
-              card(a.code).type_code !== "objective",
-          )
-          .map((a) => ({ host, a })),
-      );
-      if (!choices.length) {
-        log(
-          s,
-          `Uruk-hai Fighter: ${who(s, p)} control${s.table ? "s" : ""} no non-objective attachment.`,
-        );
-        return true;
-      }
-      choose(
-        s,
-        `Uruk-hai Fighter · Discard a non-objective attachment you control${seatLabel(s, p)}`,
-        choices.map(({ host, a }) => ({
-          id: a.id,
-          code: a.code,
-          label: `${card(a.code).name} · ${name(host)}`,
-          effects: [
-            fx("uhDropAttachment", {
-              target: host.id,
-              source: a.id,
-              player: p,
-            }),
-          ],
-        })),
-      );
-      return true;
-    }
-    case "uhDropAttachment": {
-      const a = u?.attachments.find((x) => x.id === e.source);
-      if (u && a) {
-        log(s, `${card(a.code).name} is discarded.`, "danger");
-        discardAttachment(s, u, a);
-      }
-      return true;
-    }
     default:
       return true;
   }
@@ -905,20 +725,7 @@ export const URUK_HAI_HOOKS: Batch4ScenarioHooks = {
   threatBonus: (s, u) =>
     s.urukHai && live(u, UH.plains) ? s.staging.filter(isLocation).length : 0,
   // Fighting Uruk-hai: each enemy engaged with that player adds its threat.
-  stagingThreat: (s) => {
-    const f = s.urukHai?.fighting;
-    if (!f || f.round !== s.round) return 0;
-    return f.players
-      .filter((p) => globalPlayerOrder(s).includes(p))
-      .reduce(
-        (n, p) =>
-          n +
-          seatView(s, p)
-            .engaged.filter((x) => isEnemy(x))
-            .reduce((m, x) => m + threatOf(s, x), 0),
-        0,
-      );
-  },
+  stagingThreat: (s) => (s.urukHai ? whiteHandStagingThreat(s) : 0),
   // Unseen Barrier: no more than 3 progress on the current quest this round.
   progress: (s, amount, quest) => {
     const q = s.urukHai;
@@ -969,7 +776,7 @@ export const URUK_HAI_HOOKS: Batch4ScenarioHooks = {
       log(s, "Follow the Orcs: Uglúk cannot take damage.");
       return 0;
     }
-    const t = u.blanked ? 0 : uhToughness(u.code);
+    const t = u.blanked ? 0 : whiteHandToughness(u.code);
     if (!t) return amount;
     const reduced = Math.max(0, amount - t);
     log(
@@ -982,7 +789,7 @@ export const URUK_HAI_HOOKS: Batch4ScenarioHooks = {
   combatBegin: (s) => {
     if (!s.urukHai) return;
     const archery = s.staging.reduce(
-      (n, x) => n + (x.blanked ? 0 : uhArchery(x.code)),
+      (n, x) => n + (x.blanked ? 0 : whiteHandArchery(x.code)),
       0,
     );
     if (archery > 0)
@@ -1054,9 +861,8 @@ export const URUK_HAI_HOOKS: Batch4ScenarioHooks = {
     )
       return;
     c.uhKilled = true;
-    const enemy = get(s, c.enemyId);
-    if (c.uhOrders || (enemy && live(enemy, UH.fighter)))
-      c.returnToStaging = true;
+    whiteHandCharacterDestroyed(s, u, context);
+    if (c.uhOrders) c.returnToStaging = true;
   },
   effect: urukHaiEffect,
   sharedEffect: (e) =>

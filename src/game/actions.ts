@@ -23,6 +23,7 @@ import { journeyDarkPublicState } from "./journey-dark-support";
 import { breakingFellowshipPublicState } from "./breaking-fellowship-support";
 import { fogBarrowPublicState } from "./fog-barrow-support";
 import { urukHaiPublicState } from "./uruk-hai-support";
+import { helmsDeepPublicState } from "./helms-deep-support";
 import { ereborAllyPlayed } from "./erebor-treasures";
 import * as LandSorrowPlayers from "./land-sorrow-player";
 import { sorrowPublicState } from "./land-sorrow-support";
@@ -3734,6 +3735,7 @@ export function publicState(s: GameState) {
     breakingFellowship: breakingFellowshipPublicState(s),
     fogBarrow: fogBarrowPublicState(s),
     urukHai: urukHaiPublicState(s),
+    helmsDeep: helmsDeepPublicState(s),
     fortressNurnPlayers: FortressPlayers.fortressNurnPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),

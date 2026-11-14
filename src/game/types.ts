@@ -283,6 +283,7 @@ export type ScenarioId =
   | "breaking-of-the-fellowship"
   | "fog-on-the-barrow-downs"
   | "the-uruk-hai"
+  | "helms-deep"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -461,6 +462,7 @@ export interface GameState {
   breakingFellowship?: import("./breaking-fellowship-types").BreakingFellowshipState;
   fogBarrow?: import("./fog-barrow-types").FogBarrowState;
   urukHai?: import("./uruk-hai-types").UrukHaiState;
+  helmsDeep?: import("./helms-deep-types").HelmsDeepState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -848,6 +850,10 @@ export interface GameState {
     uhOrders?: boolean;
     /** The Uruk-hai: this attack destroyed a character. */
     uhKilled?: boolean;
+    /** Helm's Deep: this attack destroyed a character. */
+    hdKilled?: boolean;
+    /** Helm's Deep: Scaling Ladders' progress if this attack destroys a character. */
+    hdKillProgress?: number;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

@@ -32,6 +32,7 @@ import {
 } from "./breaking-fellowship-support";
 import { fogBarrowUnits, validateFogBarrow } from "./fog-barrow-support";
 import { urukHaiUnits, validateUrukHai } from "./uruk-hai-support";
+import { helmsDeepUnits, validateHelmsDeep } from "./helms-deep-support";
 import { validateHideTest } from "./hide-test";
 import { validateAsh, ashExtraUnits } from "./ash-mountains-support";
 import { validateAshPlayers } from "./ash-mountains-player";
@@ -390,9 +391,12 @@ export function validateSave(
         c.fbNorth,
         c.uhOrders,
         c.uhKilled,
+        c.hdKilled,
       ].every((b) => b === undefined || typeof b === "boolean") &&
       (c.uhKillPursuit === undefined ||
         (integer(c.uhKillPursuit) && c.uhKillPursuit >= 0)) &&
+      (c.hdKillProgress === undefined ||
+        (integer(c.hdKillProgress) && c.hdKillProgress >= 0)) &&
       (c.fbVictims === undefined ||
         (Array.isArray(c.fbVictims) &&
           c.fbVictims.every((n) => Number.isInteger(n) && n >= 0))) &&
@@ -969,6 +973,7 @@ export function validateSave(
         !validateBreakingFellowship(s, validUnit as (v: unknown) => boolean) ||
         !validateFogBarrow(s, validUnit as (v: unknown) => boolean) ||
         !validateUrukHai(s, validUnit as (v: unknown) => boolean) ||
+        !validateHelmsDeep(s, validUnit as (v: unknown) => boolean) ||
         !validateLandSorrow(s, validUnit as (v: unknown) => boolean) ||
         !validateAsh(s, validUnit as (v: unknown) => boolean) ||
         !validateWainriders(s, validUnit as (v: unknown) => boolean, (c) =>
@@ -1695,6 +1700,7 @@ export function validateSave(
       ...breakingFellowshipUnits(s),
       ...fogBarrowUnits(s),
       ...urukHaiUnits(s),
+      ...helmsDeepUnits(s),
       ...(s.fortressNurnPlayers?.contracts.map((c) => c.unit) ?? []),
       ...(s.landSorrowPlayers?.contracts.flatMap((c) =>
         c.unit ? [c.unit] : [],

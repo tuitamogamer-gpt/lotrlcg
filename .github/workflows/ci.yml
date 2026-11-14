@@ -699,6 +699,24 @@ jobs:
           path: output/uruk-hai-release/failures
           retention-days: 7
 
+  helms-deep-simulation:
+    name: Helm's Deep complete games (26 games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:helms-deep-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: helms-deep-simulation
+          path: output/helms-deep-release/failures
+          retention-days: 7
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -860,6 +878,8 @@ jobs:
             suite: test:browser-fog-barrow
           - group: uruk-hai
             suite: test:browser-uruk-hai
+          - group: helms-deep
+            suite: test:browser-helms-deep
           - group: hobbit-players
             suite: test:browser-hobbit-players
           - group: otd-players

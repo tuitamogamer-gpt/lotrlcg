@@ -1,0 +1,512 @@
+[
+  {
+    "code": "143021",
+    "name": "Poisoned Counsels",
+    "type_code": "treachery",
+    "type_name": "Campaign",
+    "sphere_code": "burden",
+    "sphere_name": "Neutral",
+    "traits": "Corruption.",
+    "text": "Poisoned Counsels functions like a player card.\nForced: After you draw this card, discard all other cards in your hand.",
+    "flavor": "\"And ever Wormtongue's whispering was in your ears, poisoning your thought, chilling your heart, weakening your limbs...\" –Gandalf, The Two Towers",
+    "is_unique": false,
+    "deck_limit": 4,
+    "pack_name": "The Treason of Saruman",
+    "pack_code": "ToS",
+    "position": 21,
+    "illustrator": "John Gravato",
+    "imagesrc": "/cards/143021.png",
+    "url": "https://ringsdb.com/card/143021",
+    "quantity": 4,
+    "octgnid": "c7ada690-5aa3-4855-b2c1-35e30336edac",
+    "has_errata": false,
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 21,
+        "quantity": 4,
+        "image_code": "143021",
+        "illustrator": "John Gravato",
+        "octgnid": "c7ada690-5aa3-4855-b2c1-35e30336edac",
+        "imagesrc": "/bundles/cards/143021.png",
+        "date_release": "2015-04-23"
+      }
+    ],
+    "source": "ringsdb",
+    "source_url": "https://ringsdb.com/card/143021",
+    "official": true,
+    "nightmare": false,
+    "ringsdb_type_code": "treasure",
+    "encounter_set": "Helm's Deep"
+  },
+  {
+    "code": "octgn:c6204e5d-7020-4360-b2ad-7db4edcc7303",
+    "octgnid": "c6204e5d-7020-4360-b2ad-7db4edcc7303",
+    "name": "The Defense of Helm's Deep",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Siege.",
+    "text": "Add 1 to the total [threat] in the staging area for each resource token here.\nForced: At the end of the quest phase, place 1 resource token here.\nIf there are 8 resource tokens here, add The Defense of Helm's Deep to the victory display and advance to stage 5A.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 33,
+    "quantity": 1,
+    "victory": 8,
+    "encounter_set": "Helm's Deep",
+    "printed_stats": {
+      "victory": "8"
+    },
+    "imagesrc": "/cards/c6204e5d-7020-4360-b2ad-7db4edcc7303.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 33,
+        "quantity": 1,
+        "octgnid": "c6204e5d-7020-4360-b2ad-7db4edcc7303",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c6204e5d-7020-4360-b2ad-7db4edcc7303.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:abd919a4-de0d-4f7f-8cc1-787ab31980c9",
+    "octgnid": "abd919a4-de0d-4f7f-8cc1-787ab31980c9",
+    "name": "Wild Hillman",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Dunland.",
+    "text": "Forced: After Wild Hillman attacks, place 1 progress on the active location.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 34,
+    "quantity": 3,
+    "threat": 3,
+    "attack": 3,
+    "defense": 2,
+    "health": 3,
+    "engagement": 24,
+    "shadow": "Shadow: Place 1 progress on the active location. Attacking enemy gets +1 [attack] for each progress on the active location.",
+    "encounter_set": "Helm's Deep",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "3",
+      "defense": "2",
+      "health": "3",
+      "engagement": "24"
+    },
+    "imagesrc": "/cards/abd919a4-de0d-4f7f-8cc1-787ab31980c9.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 34,
+        "quantity": 3,
+        "octgnid": "abd919a4-de0d-4f7f-8cc1-787ab31980c9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/abd919a4-de0d-4f7f-8cc1-787ab31980c9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:2223ef81-40c3-422d-a593-a861c3af39fc",
+    "octgnid": "2223ef81-40c3-422d-a593-a861c3af39fc",
+    "name": "Warrior of Dunland",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Dunland.",
+    "text": "Peril. Archery 1.\nWhen Revealed: Warrior of Dunland makes an immediate attack against you.\nForced: After Warrior of Dunland attacks and destroys a character, place 3 progress on the active location.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 35,
+    "quantity": 2,
+    "threat": 4,
+    "attack": 5,
+    "defense": 1,
+    "health": 5,
+    "engagement": 44,
+    "encounter_set": "Helm's Deep",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "5",
+      "defense": "1",
+      "health": "5",
+      "engagement": "44"
+    },
+    "imagesrc": "/cards/2223ef81-40c3-422d-a593-a861c3af39fc.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 35,
+        "quantity": 2,
+        "octgnid": "2223ef81-40c3-422d-a593-a861c3af39fc",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2223ef81-40c3-422d-a593-a861c3af39fc.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:509f3e41-385c-4b84-ad28-7cc2eed8028c",
+    "octgnid": "509f3e41-385c-4b84-ad28-7cc2eed8028c",
+    "name": "Soldier of Isengard",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Uruk-hai.",
+    "text": "Toughness 1. Archery 1.\nForced: After Soldier of Isengard attacks and destroys a character, place 1 progress on the current quest.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 36,
+    "quantity": 4,
+    "threat": 4,
+    "attack": 4,
+    "defense": 1,
+    "health": 4,
+    "engagement": 39,
+    "shadow": "Shadow: Exhaust a character you control.",
+    "encounter_set": "Helm's Deep",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "4",
+      "defense": "1",
+      "health": "4",
+      "engagement": "39"
+    },
+    "imagesrc": "/cards/509f3e41-385c-4b84-ad28-7cc2eed8028c.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 36,
+        "quantity": 4,
+        "octgnid": "509f3e41-385c-4b84-ad28-7cc2eed8028c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/509f3e41-385c-4b84-ad28-7cc2eed8028c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:b41e6b34-4d6a-47de-9b07-b039013efbc5",
+    "octgnid": "b41e6b34-4d6a-47de-9b07-b039013efbc5",
+    "name": "The Hornburg",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Helm's Deep.",
+    "text": "While The Hornburg is the active location, reduce the archery total by 1 for each player in the game.\nForced: When The Hornburg is explored, assign X damage among characters in play. X is the number of enemies in play.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 37,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 3,
+    "encounter_set": "Helm's Deep",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/b41e6b34-4d6a-47de-9b07-b039013efbc5.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 37,
+        "quantity": 3,
+        "octgnid": "b41e6b34-4d6a-47de-9b07-b039013efbc5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b41e6b34-4d6a-47de-9b07-b039013efbc5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:76506b8b-4bd1-478f-bc04-512f2b1fc13f",
+    "octgnid": "76506b8b-4bd1-478f-bc04-512f2b1fc13f",
+    "name": "Deeping Wall",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Helm's Deep.",
+    "text": "While Deeping Wall is the active location, each hero gets +1 [defense].\nForced: When Deeping Wall is explored, raise each player's threat by 4.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 38,
+    "quantity": 4,
+    "threat": 4,
+    "quest": 4,
+    "encounter_set": "Helm's Deep",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/76506b8b-4bd1-478f-bc04-512f2b1fc13f.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 38,
+        "quantity": 4,
+        "octgnid": "76506b8b-4bd1-478f-bc04-512f2b1fc13f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/76506b8b-4bd1-478f-bc04-512f2b1fc13f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:990e60bb-a627-4758-8230-81b40a57a382",
+    "octgnid": "990e60bb-a627-4758-8230-81b40a57a382",
+    "name": "Deeping Culvert",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Helm's Deep.",
+    "text": "X is 1 more than the number of allies controlled by the first player.\nForced: When Deeping Culvert is explored, each player searches the encounter deck and discard pile for an enemy, reveals it, and adds it to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 39,
+    "quantity": 2,
+    "quest": 2,
+    "encounter_set": "Helm's Deep",
+    "printed_stats": {
+      "threat": "X",
+      "quest": "2"
+    },
+    "imagesrc": "/cards/990e60bb-a627-4758-8230-81b40a57a382.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 39,
+        "quantity": 2,
+        "octgnid": "990e60bb-a627-4758-8230-81b40a57a382",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/990e60bb-a627-4758-8230-81b40a57a382.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:96580016-f869-4375-8937-3fb14dc0e264",
+    "octgnid": "96580016-f869-4375-8937-3fb14dc0e264",
+    "name": "Postern Door",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Helm's Deep.",
+    "text": "While Postern Door is the active location, each hero gets +1 [attack].\nForced: When Postern Door is explored, until the end of the round, players cannot declare attacks.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 40,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 2,
+    "encounter_set": "Helm's Deep",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "2"
+    },
+    "imagesrc": "/cards/96580016-f869-4375-8937-3fb14dc0e264.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 40,
+        "quantity": 2,
+        "octgnid": "96580016-f869-4375-8937-3fb14dc0e264",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/96580016-f869-4375-8937-3fb14dc0e264.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:a0e456e0-5681-41fb-bf0c-06b42d4929de",
+    "octgnid": "a0e456e0-5681-41fb-bf0c-06b42d4929de",
+    "name": "Helm's Gate",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Helm's Deep.",
+    "text": "While Helm's Gate is the active location, if any player is not engaged with an enemy, the first player reveals an encounter card at the end of each staging step.\nForced: When Helm's Gate is explored, each enemy gets -20 engagement cost and +2 [attack] until the end of the round.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 41,
+    "quantity": 2,
+    "threat": 5,
+    "quest": 3,
+    "encounter_set": "Helm's Deep",
+    "printed_stats": {
+      "threat": "5",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/a0e456e0-5681-41fb-bf0c-06b42d4929de.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 41,
+        "quantity": 2,
+        "octgnid": "a0e456e0-5681-41fb-bf0c-06b42d4929de",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a0e456e0-5681-41fb-bf0c-06b42d4929de.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:516f4454-d448-4bc3-8af3-665a0d50256d",
+    "octgnid": "516f4454-d448-4bc3-8af3-665a0d50256d",
+    "name": "Scaling Ladders",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge.\nWhen Revealed: Attach to the active location. (Counts as a Siege attachment with the text: \"Each enemy gets +1 [threat].\")",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 42,
+    "quantity": 3,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, place 1 progress on the current quest.",
+    "encounter_set": "Helm's Deep",
+    "printed_stats": {},
+    "imagesrc": "/cards/516f4454-d448-4bc3-8af3-665a0d50256d.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 42,
+        "quantity": 3,
+        "octgnid": "516f4454-d448-4bc3-8af3-665a0d50256d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/516f4454-d448-4bc3-8af3-665a0d50256d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:20e1ee03-f6c4-4b63-a816-4c9660e51eb0",
+    "octgnid": "20e1ee03-f6c4-4b63-a816-4c9660e51eb0",
+    "name": "Devilry of Saruman",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Place 3 progress on the main quest (bypassing any active location). Until the end of the round, treat each character's text box as if it was blank (except for Traits).",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 43,
+    "quantity": 3,
+    "shadow": "Shadow: Attacking enemy gets +2 [attack] and gains Toughness 2 until the end of the round.",
+    "encounter_set": "Helm's Deep",
+    "printed_stats": {},
+    "imagesrc": "/cards/20e1ee03-f6c4-4b63-a816-4c9660e51eb0.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 43,
+        "quantity": 3,
+        "octgnid": "20e1ee03-f6c4-4b63-a816-4c9660e51eb0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/20e1ee03-f6c4-4b63-a816-4c9660e51eb0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e496a120-ce3f-47f8-9087-d9c156744ac9",
+    "octgnid": "e496a120-ce3f-47f8-9087-d9c156744ac9",
+    "name": "Reckless Hate",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Peril.\nWhen Revealed: The enemy in the staging area with the highest [attack] makes an immediate attack against you. If no attack is made this way, Reckless Hate gains surge.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 44,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy makes an additional attack against you after this one.",
+    "encounter_set": "Helm's Deep",
+    "printed_stats": {},
+    "imagesrc": "/cards/e496a120-ce3f-47f8-9087-d9c156744ac9.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 44,
+        "quantity": 2,
+        "octgnid": "e496a120-ce3f-47f8-9087-d9c156744ac9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e496a120-ce3f-47f8-9087-d9c156744ac9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:90fe2776-1001-4871-a5ae-679b91992e7e",
+    "octgnid": "90fe2776-1001-4871-a5ae-679b91992e7e",
+    "name": "Night Without End",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Peril. Doomed 2.\nWhen Revealed: Either remove 1 resource token from The Defense of Helm's Deep, or reveal 2 additional encounter cards.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 45,
+    "quantity": 2,
+    "shadow": "Shadow: Return attacking enemy to the staging area after this attack.",
+    "encounter_set": "Helm's Deep",
+    "printed_stats": {},
+    "imagesrc": "/cards/90fe2776-1001-4871-a5ae-679b91992e7e.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 45,
+        "quantity": 2,
+        "octgnid": "90fe2776-1001-4871-a5ae-679b91992e7e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/90fe2776-1001-4871-a5ae-679b91992e7e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

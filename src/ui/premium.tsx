@@ -75,6 +75,10 @@ export const PLAYMATS = {
     name: "The Plains of Rohan",
     detail: "The pursuit value · Captives carried to Isengard",
   },
+  "helms-deep": {
+    name: "Helm's Deep",
+    detail: "The night assault · The King rides out at dawn",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -487,6 +491,7 @@ export const PLAYMAT_CHOICES = [
   "breaking-of-the-fellowship",
   "fog-on-the-barrow-downs",
   "the-uruk-hai",
+  "helms-deep",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

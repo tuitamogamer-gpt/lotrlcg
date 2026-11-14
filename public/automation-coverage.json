@@ -5,8 +5,8 @@
     "playerCards": 814,
     "heroes": 100,
     "deckCards": 710,
-    "encounterCards": 1492,
-    "scenarios": 99,
+    "encounterCards": 1506,
+    "scenarios": 100,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -106,17 +106,18 @@
       "journey-in-the-dark",
       "breaking-of-the-fellowship",
       "fog-on-the-barrow-downs",
-      "the-uruk-hai"
+      "the-uruk-hai",
+      "helms-deep"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2623,
-    "pending": 1560
+    "scripted": 2642,
+    "pending": 1541
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 200
+    "scripted": 203
   },
   "registeredCodes": [
     "01001",
@@ -766,6 +767,7 @@
     "143004",
     "143005",
     "143009",
+    "143021",
     "144005",
     "145009",
     "146012",
@@ -1167,6 +1169,7 @@
     "octgn:2087cb2d-ce6f-4d3a-befc-01859ec82e6c",
     "octgn:20a011e7-0153-45b1-9c6c-a68753683a79",
     "octgn:20c5f7b7-cfc4-44e1-aaf5-0010ceb9a1b9",
+    "octgn:20e1ee03-f6c4-4b63-a816-4c9660e51eb0",
     "octgn:21165a65-1296-4664-a880-d85eea19a4ae",
     "octgn:215881a3-df0a-4163-a19d-33b444e7aa95",
     "octgn:21786f6e-9f9c-4850-9277-9ee77b6e0912",
@@ -1176,6 +1179,7 @@
     "octgn:21ee317d-9aca-43be-9782-521539827cb8",
     "octgn:21f520fd-5efe-41f9-9f02-7a65e36eb31f",
     "octgn:21fec323-3155-4b64-8506-fa87d44f01fc",
+    "octgn:2223ef81-40c3-422d-a593-a861c3af39fc",
     "octgn:228a03b8-ec05-4562-90f5-0c7d969490b0",
     "octgn:22d6a151-ee2a-4ad0-9d97-5eddd5cc0391",
     "octgn:2301fc93-a05e-4dd4-b06e-40d659783d8b",
@@ -1489,6 +1493,7 @@
     "octgn:504d7fe3-a3a1-4e2c-b59d-dd391d370a20",
     "octgn:5073c7a3-a3f6-4aca-b2a2-e0b830af3985",
     "octgn:50950a5b-0002-432a-b6d6-4ac2ca12e501",
+    "octgn:509f3e41-385c-4b84-ad28-7cc2eed8028c",
     "octgn:50e62ade-1958-439d-9314-383d8621ecf5",
     "octgn:5100f009-8c78-4f2a-b77e-1bd9ccbfef77",
     "octgn:51124d05-205c-49e6-ad19-aa67185c8bdc",
@@ -1801,6 +1806,7 @@
     "octgn:51223bd0-ffd1-11df-a976-1801204c9093",
     "octgn:51681809-60af-4819-bfa0-3f568987f4ea",
     "octgn:516b75d8-9abe-423e-9ef1-a92f1c87c86f",
+    "octgn:516f4454-d448-4bc3-8af3-665a0d50256d",
     "octgn:51a5e288-cf6e-430d-bc66-715ad2be1a16",
     "octgn:51b186ac-ddf5-4909-a484-20d273be27c9",
     "octgn:51b45e84-3f63-46ea-aa08-b83dd89244ff",
@@ -1917,6 +1923,7 @@
     "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d",
     "octgn:68e3c34a-1af7-410f-ad57-85386181c6d7",
     "octgn:6948a0fa-e13f-4023-865f-3c8b6599c6a0",
+    "octgn:6950e7ae-27be-4def-954c-8dabe8dd612b",
     "octgn:6987d363-bcba-4f34-97b1-d26f080c843e",
     "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
     "octgn:6a3ae84d-6c74-4fbf-9254-b8c1d17c8384",
@@ -1976,6 +1983,7 @@
     "octgn:74fc62c2-b1b6-4338-819a-1f00f871312c",
     "octgn:7562e662-3b3e-4378-9a3f-c45908bc05cf",
     "octgn:75b111c9-fb49-4a53-ac50-729ff2d06abe",
+    "octgn:76506b8b-4bd1-478f-bc04-512f2b1fc13f",
     "octgn:766735f8-3b17-4b50-aee3-a869837f986c",
     "octgn:768bab66-1707-41a4-adf3-3baad2e7daad",
     "octgn:7691fb33-603e-4460-9f09-5f96bc05c2bb",
@@ -2018,6 +2026,7 @@
     "octgn:7d55e738-cc23-4e78-9a88-2a25fa4f3ca4",
     "octgn:7d71aa09-badb-4ba8-9d08-597a8d814020",
     "octgn:7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00",
+    "octgn:7e20690f-d1bb-4ac3-b2bf-da55f1f95bcc",
     "octgn:7e470346-1828-49c0-b241-58d0dbf27b4b",
     "octgn:7edae662-fc3f-40b3-868b-e5a43dbd0670",
     "octgn:7f0e7969-bca4-48a3-99b5-ba055bd376af",
@@ -2119,6 +2128,7 @@
     "octgn:8f133b99-75d7-43b8-acec-3e298724134a",
     "octgn:8f3395ff-bccf-4620-beec-581c585682f2",
     "octgn:8f38ca4f-5893-4bd4-854d-6788a3ada41f",
+    "octgn:8f5cdb72-aeae-49f7-bcc8-a2288b6bfb95",
     "octgn:8f6254c0-a723-4e66-bdc7-4c92eed415f8",
     "octgn:8f6e5d67-81c7-4db8-9cb0-ef45b71490c6",
     "octgn:9031b458-f7e0-4c55-9266-f30aaaf718c1",
@@ -2127,6 +2137,7 @@
     "octgn:90ba49e5-142b-4c40-8085-8087342d9b92",
     "octgn:90bdfcd8-0505-4f40-bf51-092f21525ef7",
     "octgn:90d620e5-d7be-42e6-9756-b92761ecd8c9",
+    "octgn:90fe2776-1001-4871-a5ae-679b91992e7e",
     "octgn:91143aee-41e7-4cac-8ec2-e112689fcc17",
     "octgn:91735f73-7dc8-48ee-8a61-b7c9648f5def",
     "octgn:918c4387-bf40-48f1-bf65-5ad5acb91784",
@@ -2144,10 +2155,12 @@
     "octgn:94befa92-9e5f-4838-b1e1-0b54d698bcb3",
     "octgn:94ef148f-62f7-4659-8a49-9c42b9ed7cef",
     "octgn:9511bcf2-9c06-413e-bf09-3bc076eb76d4",
+    "octgn:9550172a-c624-40fd-b654-f2430ed93df1",
     "octgn:95d26956-eda3-43b2-b68b-6f8010d076bd",
     "octgn:95f2f7ac-5d85-43e5-930d-d866b00bef26",
     "octgn:962991f0-44af-47ba-9ff0-0f7ed302a543",
     "octgn:9656a1c9-dd90-4096-b2ba-eb2491d08403",
+    "octgn:96580016-f869-4375-8937-3fb14dc0e264",
     "octgn:96f8534a-2683-4c8f-981d-daa470b792b7",
     "octgn:97584fc2-835e-411c-aae3-eb841c90fc43",
     "octgn:976d7409-0e67-43f1-b1bd-56cdeac073ef",
@@ -2163,6 +2176,7 @@
     "octgn:98bf5fdc-ff74-48e2-88c8-0e4134fd6984",
     "octgn:98cc592d-6e3e-494a-bddf-ef5e0908c279",
     "octgn:98dff367-a068-4aac-a46b-7dc201aff42d",
+    "octgn:990e60bb-a627-4758-8230-81b40a57a382",
     "octgn:9945fdee-b56e-488d-a5bf-33d5a82afdad",
     "octgn:99ab7a92-0e3e-4ec2-9a40-0f467920879d",
     "octgn:99b98ca0-1320-4630-8791-984a578685d2",
@@ -2205,6 +2219,7 @@
     "octgn:a0417d08-1905-46f9-bd65-067c1c59f0a3",
     "octgn:a0d5be90-8618-4fe4-a917-d8d969c11264",
     "octgn:a0e1e091-fbbb-459e-9cb7-2cc63bd85711",
+    "octgn:a0e456e0-5681-41fb-bf0c-06b42d4929de",
     "octgn:a0f5082c-acc7-4884-a3d4-a7eed0f053e6",
     "octgn:a11ea1e0-372e-4932-86e4-f84737e842e9",
     "octgn:a11f08ac-541b-46ba-9528-467dcbdc90c6",
@@ -2260,7 +2275,9 @@
     "octgn:ab92ac2e-30e8-4eb2-9818-7d7efd3658aa",
     "octgn:aba39503-0700-40c9-9c06-729e82bf67fe",
     "octgn:aba5ebdb-81d8-4e41-bddd-568f9ab2bd13",
+    "octgn:abc54411-1805-4ef4-8c47-517ffe72312e",
     "octgn:abd56f0e-0238-432b-84b2-7c715d96477b",
+    "octgn:abd919a4-de0d-4f7f-8cc1-787ab31980c9",
     "octgn:abeec7e9-ccf6-4145-ae1a-d7179c5a4b4d",
     "octgn:ac4724db-a3cc-4984-bef5-f51b0f4421f8",
     "octgn:ac9fe707-143f-492e-89e3-bdd02973a0f2",
@@ -2303,6 +2320,7 @@
     "octgn:b3147b4e-2a60-402f-a1aa-5d56c002326d",
     "octgn:b34e79d4-7806-4fd9-b12d-bb291e44f354",
     "octgn:b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8",
+    "octgn:b41e6b34-4d6a-47de-9b07-b039013efbc5",
     "octgn:b4543d6e-168b-4ac6-ae65-022e13ce4098",
     "octgn:b4769083-91fb-4e9c-9736-17e8c28ff971",
     "octgn:b477d0be-d70a-4eb4-8c35-89c17199cab3",
@@ -2406,6 +2424,7 @@
     "octgn:c5e9ef20-a88f-40fb-861f-c44de8e12bd9",
     "octgn:c60642b2-4ce3-42e8-8cb5-41c9ac9251fb",
     "octgn:c616d30d-9242-401b-b386-4fe0660dc97b",
+    "octgn:c6204e5d-7020-4360-b2ad-7db4edcc7303",
     "octgn:c69c1fe9-076a-4a5b-8388-9f653015d84d",
     "octgn:c6adadf8-569a-4943-817b-44bf1418e07e",
     "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
@@ -2560,6 +2579,7 @@
     "octgn:e46a15c0-abbe-4a2e-8951-0e9950aa0288",
     "octgn:e476b426-a9db-4d95-ab93-a32f4a5b7f48",
     "octgn:e48c7313-d1cb-4291-9dc1-9fff6fb23e83",
+    "octgn:e496a120-ce3f-47f8-9087-d9c156744ac9",
     "octgn:e49be9ae-10f1-44fe-a1b8-fc931be2d208",
     "octgn:e4ad5220-6251-4c65-8206-ab656540cc3b",
     "octgn:e4af5d7f-9af5-41bb-b22a-cce8b91ac791",
@@ -3617,7 +3637,7 @@
     {
       "product": "the-treason-of-saruman",
       "total": 81,
-      "scripted": 22,
+      "scripted": 41,
       "player": 20,
       "playerScripted": 4
     },
@@ -10149,7 +10169,7 @@
       "name": "Poisoned Counsels",
       "type": "treachery",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -14997,7 +15017,7 @@
       "name": "Devilry of Saruman",
       "type": "treachery",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -15125,7 +15145,7 @@
       "name": "Warrior of Dunland",
       "type": "enemy",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -19541,7 +19561,7 @@
       "name": "Soldier of Isengard",
       "type": "enemy",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -22101,7 +22121,7 @@
       "name": "Scaling Ladders",
       "type": "treachery",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -23901,7 +23921,7 @@
       "name": "The King Rides Out",
       "type": "quest",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -24981,7 +25001,7 @@
       "name": "Deeping Wall",
       "type": "location",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -25661,7 +25681,7 @@
       "name": "The Hosts of Isengard",
       "type": "quest",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -27285,7 +27305,7 @@
       "name": "Assault on Helm's Deep",
       "type": "quest",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -27421,7 +27441,7 @@
       "name": "Night Without End",
       "type": "treachery",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -27685,7 +27705,7 @@
       "name": "The King of the Golden Hall",
       "type": "quest",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -27765,7 +27785,7 @@
       "name": "Postern Door",
       "type": "location",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -27981,7 +28001,7 @@
       "name": "Deeping Culvert",
       "type": "location",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -28637,7 +28657,7 @@
       "name": "Helm's Gate",
       "type": "location",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -29477,7 +29497,7 @@
       "name": "The Wall is Breached!",
       "type": "quest",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -29501,7 +29521,7 @@
       "name": "Wild Hillman",
       "type": "enemy",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -30165,7 +30185,7 @@
       "name": "The Hornburg",
       "type": "location",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -32117,7 +32137,7 @@
       "name": "The Defense of Helm's Deep",
       "type": "objective",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -34429,7 +34449,7 @@
       "name": "Reckless Hate",
       "type": "treachery",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -37870,8 +37890,8 @@
       "id": "E0B.08",
       "name": "Helm's Deep (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "helms-deep",
+      "state": "scripted"
     },
     {
       "id": "E0B.09",
@@ -37996,8 +38016,8 @@
       "id": "E0C.08",
       "name": "Helm's Deep (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "helms-deep",
+      "state": "scripted"
     },
     {
       "id": "E0C.09",
@@ -39361,8 +39381,8 @@
       "id": "Q0B.08",
       "name": "Helm's Deep",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "helms-deep",
+      "state": "scripted"
     },
     {
       "id": "Q0B.09",

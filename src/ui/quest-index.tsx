@@ -111,6 +111,10 @@ const HEADLINES: Partial<
     lead: "Run down the Uruk-hai",
     em: "before they reach Isengard.",
   },
+  "helms-deep": {
+    lead: "Hold the Deeping Wall",
+    em: "until the King rides out.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

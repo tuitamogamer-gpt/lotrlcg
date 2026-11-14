@@ -38,6 +38,8 @@ import { FogBarrowState } from "./ui/fog-barrow-state";
 import { FOG_BARROW_QUESTS } from "./game/fog-barrow-support";
 import { UrukHaiState } from "./ui/uruk-hai-state";
 import { URUK_HAI_QUESTS } from "./game/uruk-hai-support";
+import { HelmsDeepState } from "./ui/helms-deep-state";
+import { HELMS_DEEP_QUESTS } from "./game/helms-deep-support";
 import { DDCD_QUESTS } from "./game/dungeons-deep-support";
 import {
   discoveredTreasures,
@@ -3301,6 +3303,7 @@ export default function App() {
             <BreakingFellowshipState s={game} inspect={setDetail} />
             <FogBarrowState s={game} inspect={setDetail} />
             <UrukHaiState s={game} inspect={setDetail} />
+            <HelmsDeepState s={game} inspect={setDetail} />
             <AshMountainsState s={game} inspect={setDetail} />
             <CouncilOfTheWiseState s={game} inspect={setDetail} />
             <WainridersScenarioState s={game} inspect={setDetail} />
@@ -4059,6 +4062,7 @@ export default function App() {
                       ...BREAKING_FELLOWSHIP_QUESTS,
                       ...FOG_BARROW_QUESTS,
                       ...URUK_HAI_QUESTS,
+                      ...HELMS_DEEP_QUESTS,
                       ...(carrockQuestCards as Card[]),
                       ...EMYN_MUIL_QUESTS,
                       ...CITY_QUESTS,
