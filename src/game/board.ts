@@ -3814,7 +3814,8 @@ export function allyCanEnter(s: GameState, code: string): boolean {
   if (
     c.type_code !== "ally" ||
     City.cityAllyProblem(s) ||
-    ShadowEastSupport.shadowEastPlayerAllyProblem(s, code)
+    ShadowEastSupport.shadowEastPlayerAllyProblem(s, code) ||
+    batch4Scenario(s).allyEntryProblem?.(s, code)
   )
     return false;
   if (s.scenarioId === "the-morgul-vale" && c.name === "Faramir") return false;
@@ -3862,6 +3863,7 @@ export function enterAlly(
   u.temporary = temporary;
   s.allies.push(u);
   City.cityAllyEntered(s, u);
+  batch4Scenario(s).allyEntering?.(s, u);
   finalRingAllyEntering(u);
   Angmar.angmarAllyEntering(u);
   if (offerRingMakerDoomed(s, u, played, fromHand)) return;

@@ -21,6 +21,7 @@ import { HELMS_DEEP_ADVENTURES } from "./helms-deep-scenario-data";
 import { ROAD_ISENGARD_ADVENTURES } from "./road-isengard-scenario-data";
 import { PASSAGE_MARSHES_ADVENTURES } from "./passage-marshes-scenario-data";
 import { CROSS_ROADS_ADVENTURES } from "./cross-roads-scenario-data";
+import { SHELOB_LAIR_ADVENTURES } from "./shelob-lair-scenario-data";
 import { LAND_SORROW_ADVENTURES } from "./land-sorrow-scenario-data";
 import { ASH_ADVENTURES } from "./ash-mountains-scenario-data";
 import { WAINRIDERS_ADVENTURES } from "./wainriders-scenario-data";
@@ -1209,6 +1210,7 @@ export const SCENARIOS = [
   ...ROAD_ISENGARD_ADVENTURES,
   ...PASSAGE_MARSHES_ADVENTURES,
   ...CROSS_ROADS_ADVENTURES,
+  ...SHELOB_LAIR_ADVENTURES,
 ] as const;
 /** The Mirkwood Paths campaign covers the three Core Set quests in order. */
 export const CAMPAIGN_CHAPTERS: readonly ScenarioId[] = [

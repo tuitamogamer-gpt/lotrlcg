@@ -52,6 +52,7 @@ export const isTreasonSarumanScenarioId = (id: string | undefined) =>
 export const LAND_SHADOW_SCENARIO_IDS: readonly string[] = [
   "the-passage-of-the-marshes",
   "journey-to-the-cross-roads",
+  "shelobs-lair",
 ];
 export const isLandShadowScenarioId = (id: string | undefined) =>
   !!id && LAND_SHADOW_SCENARIO_IDS.includes(id);

@@ -1,4 +1,4 @@
-import type { Effect, GameState, Option, Unit } from "./types";
+import type { Effect, GameState, Unit } from "./types";
 import type { Batch4ScenarioHooks } from "./batch4-scenario-contract";
 import { card, name } from "./cards";
 import {
@@ -15,16 +15,13 @@ import {
   threatOf,
 } from "./core";
 import {
-  characterLeftPlay,
   depositInFlightEncounterCards,
   discardAttachment,
   discardLocation,
   enemyAddedToStaging,
   engage,
-  exhaustCharacter,
   questDefeated,
   raiseThreat,
-  removeFromQuest,
   revealed,
   win,
 } from "./board";
@@ -44,10 +41,25 @@ import {
 import { isAlly, isHero } from "./card-types";
 import { isEnemy } from "./ships";
 import { mainQuestCode, mainQuestUnit } from "./quest-state";
-import { lotrSagaCheck, oneRing, oneRingExhausted } from "./lotr-saga";
+import { lotrSagaCheck } from "./lotr-saga";
 import { hasTrait } from "./expansion-passives";
-import { isMorgul } from "./black-riders-hunted";
-import { encounterCharacterEntered } from "./encounter-character-uniqueness";
+import {
+  fellowshipPayers,
+  gollumDefeated,
+  gollumEffect,
+  gollumFollows,
+  gollumShadow,
+  gollumTreachery,
+  lsGollum,
+  lsSmeagol,
+  morgulWraithCannotAttach,
+  morgulWraithEngagement,
+  morgulWraithImmune,
+  searchOptions,
+  smeagolFollows,
+  takeFrom,
+  takeVictory,
+} from "./land-shadow-gollum";
 import {
   POM,
   POM_VICTORY_LOCATIONS,
@@ -87,8 +99,6 @@ const traitOf = (c: string, trait: string) =>
   (card(c).traits ?? "").split(".").some((t) => t.trim() === trait);
 const isUndeadCode = (c: string) =>
   card(c).type_code === "enemy" && traitOf(c, "Undead");
-const isNazgulCode = (c: string) =>
-  card(c).type_code === "enemy" && traitOf(c, "Nazgûl");
 const isUndead = (u: Unit) => isEnemy(u) && hasTrait(u, "Undead");
 const seatLabel = (s: GameState, p: number) =>
   s.table ? ` · ${seatName(s, p)}` : "";
@@ -97,15 +107,9 @@ const Who = (s: GameState, p: number) => (s.table ? seatName(s, p) : "You");
 const verb = (s: GameState, base: string) => (s.table ? `${base}s` : base);
 const players = (s: GameState) => globalPlayerOrder(s).length;
 /** Sméagol, the objective-ally the first player controls. */
-export const pomSmeagol = (s: GameState) =>
-  s.passageMarshes
-    ? globalCharacters(s).find((u) => u.code === POM.smeagol)
-    : undefined;
+export const pomSmeagol = lsSmeagol;
 /** Gollum, the enemy side of the card. */
-export const pomGollum = (s: GameState) =>
-  s.passageMarshes
-    ? [...globalEngaged(s), ...s.staging].find((u) => u.code === POM.gollum)
-    : undefined;
+export const pomGollum = lsGollum;
 /** "The first player controls Sméagol." */
 const smeagolWithFirst = (s: GameState) => {
   const u = pomSmeagol(s);
@@ -134,64 +138,12 @@ function lose(s: GameState, reason: string) {
   s.queue = [];
   log(s, reason, "danger");
 }
-/** Take a card out of the victory display. */
-function takeVictory(s: GameState, code: string) {
-  const i = (s.victoryCards ?? []).indexOf(code);
-  if (i < 0) return false;
-  s.victoryCards!.splice(i, 1);
-  s.victory -= card(code).victory ?? 0;
-  return true;
-}
-/** "Search ... for ...": one option per card and zone. */
-function searchOptions(
-  s: GameState,
-  match: (code: string) => boolean,
-  kind: string,
-  player: number,
-  zones: readonly ("deck" | "discard" | "victory")[] = ["deck", "discard"],
-): Option[] {
-  const piles = {
-    deck: s.encounterDeck,
-    discard: s.encounterDiscard,
-    victory: s.victoryCards ?? [],
-  } as const;
-  const label = {
-    deck: "encounter deck",
-    discard: "discard pile",
-    victory: "victory display",
-  } as const;
-  const options: Option[] = [];
-  for (const zone of zones)
-    for (const code of [...new Set(piles[zone].filter(match))])
-      options.push({
-        id: `${zone}-${code}`,
-        code,
-        label: `${card(code).name} · ${label[zone]}`,
-        effects: [fx(kind, { code, text: zone, player })],
-      });
-  return options;
-}
-function takeFrom(s: GameState, zone: string | undefined, code: string) {
-  if (zone === "victory") return takeVictory(s, code);
-  const pile = zone === "discard" ? s.encounterDiscard : s.encounterDeck;
-  const i = pile.lastIndexOf(code);
-  if (i < 0) return false;
-  pile.splice(i, 1);
-  return true;
-}
 /** The index of the topmost Undead enemy in the encounter discard pile. */
 function topmostUndead(s: GameState) {
   for (let i = s.encounterDiscard.length - 1; i >= 0; i--)
     if (isUndeadCode(s.encounterDiscard[i])) return i;
   return -1;
 }
-/** The Fellowship heroes able to pay a Fellowship resource. */
-const fellowshipPayers = (s: GameState) =>
-  globalCharacters(s).filter(
-    (u) =>
-      isHero(u) && card(u.code).sphere_code === "fellowship" && u.resources > 0,
-  );
-
 // ---------------------------------------------------------------------------
 // Setup and the quest stages.
 
@@ -281,90 +233,6 @@ function mireDiscard(s: GameState) {
 // ---------------------------------------------------------------------------
 // Gollum and Sméagol.
 
-/** Forced: when Gollum is defeated, flip him to Sméagol and exhaust Sméagol. */
-function gollumDefeated(s: GameState, u: Unit) {
-  const first = firstPlayer(s);
-  const smeagol: Unit = {
-    ...make(s, POM.smeagol),
-    id: u.id,
-    owner: first,
-    controller: first,
-    exhausted: true,
-  };
-  forOwner(s, first, () => s.allies.push(smeagol));
-  delete s.passageMarshes!.gollumDefense;
-  log(
-    s,
-    `Gollum is defeated: he flips to Sméagol, exhausted, and ${s.table ? seatName(s, first) : "the first player"} gains control of Sméagol.`,
-    "good",
-  );
-  encounterCharacterEntered(s, smeagol);
-}
-/** Flip Sméagol to Gollum: Gollum enters play engaged with the first player. */
-function flipToGollum(s: GameState, text: string) {
-  const smeagol = pomSmeagol(s);
-  if (!smeagol) return false;
-  const owner = ownerOf(s, smeagol);
-  const first = firstPlayer(s);
-  removeFromQuest(s, smeagol);
-  forOwner(s, owner, () => {
-    s.allies = s.allies.filter((x) => x.id !== smeagol.id);
-    s.committedIds = s.committedIds.filter((id) => id !== smeagol.id);
-  });
-  for (const a of [...smeagol.attachments])
-    discardAttachment(s, smeagol, a, true);
-  characterLeftPlay(s, smeagol, owner, { zone: "captured", player: owner });
-  // Damage is discarded and Gollum is ready.
-  const gollum: Unit = {
-    ...make(s, POM.gollum),
-    id: smeagol.id,
-    owner: first,
-    exhausted: false,
-  };
-  log(
-    s,
-    `${text}: Sméagol flips to Gollum, who engages ${s.table ? seatName(s, first) : "the first player"}.`,
-    "danger",
-  );
-  forOwner(s, first, () => {
-    s.staging.push(gollum);
-    engage(s, gollum);
-  });
-  return true;
-}
-/**
- * "Gollum engages the first player": while he is in play, Gollum is engaged
- * with the first player. Returns true if he just engaged that player.
- */
-function gollumFollows(s: GameState) {
-  const gollum = pomGollum(s);
-  if (!gollum || gollum.blanked || s.status !== "playing") return false;
-  const first = firstPlayer(s);
-  const engagedWithFirst = seatView(s, first).engaged.some(
-    (u) => u.id === gollum.id,
-  );
-  if (engagedWithFirst) return false;
-  forOwner(s, first, () => engage(s, gollum));
-  return seatView(s, first).engaged.some((u) => u.id === gollum.id);
-}
-/** "The first player gains control of Sméagol." */
-function smeagolFollows(s: GameState) {
-  const smeagol = pomSmeagol(s);
-  if (!smeagol || !s.table) return;
-  const from = ownerOf(s, smeagol),
-    to = firstPlayer(s);
-  if (from === to || !globalPlayerOrder(s).includes(to)) return;
-  removeFromQuest(s, smeagol);
-  forOwner(s, from, () => {
-    s.allies = s.allies.filter((u) => u.id !== smeagol.id);
-    s.committedIds = s.committedIds.filter((id) => id !== smeagol.id);
-  });
-  smeagol.owner = to;
-  smeagol.controller = to;
-  forOwner(s, to, () => s.allies.push(smeagol));
-  log(s, `${seatName(s, to)} gains control of Sméagol.`);
-}
-
 // ---------------------------------------------------------------------------
 // Encounter cards and shadows.
 
@@ -397,7 +265,6 @@ function encounter(
 function treachery(s: GameState, held: Unit) {
   const q = s.passageMarshes!;
   const p = activeSeat(s);
-  const first = firstPlayer(s);
   switch (held.code) {
     case POM.creeping: {
       // Attach to the current quest, as a Condition attachment.
@@ -422,12 +289,8 @@ function treachery(s: GameState, held: Unit) {
     case POM.fellLight:
       prepend(s, fx("pomFellLight", { player: p }));
       return;
-    case POM.hates:
-      prepend(s, fx("pomHates", { player: first }));
-      return;
-    case POM.call:
-      prepend(s, fx("pomCall", { player: first }));
-      return;
+    default:
+      gollumTreachery(s, held.code);
   }
 }
 function shadow(s: GameState, code: string) {
@@ -510,26 +373,8 @@ function shadow(s: GameState, code: string) {
       );
       return true;
     }
-    case POM.hates: {
-      const bonus = enemy && live(enemy, POM.gollum) ? 3 : 1;
-      c.attackBonus += bonus;
-      log(
-        s,
-        `We Hates Them!: the attacking enemy gets +${bonus} attack.`,
-        "danger",
-      );
-      return true;
-    }
-    case POM.call:
-      c.extraAttacks = (c.extraAttacks ?? 0) + 1;
-      log(
-        s,
-        "Call of the Ring: the attacking enemy makes an additional attack after this one.",
-        "danger",
-      );
-      return true;
   }
-  return false;
+  return gollumShadow(s, code);
 }
 
 // ---------------------------------------------------------------------------
@@ -538,6 +383,7 @@ function shadow(s: GameState, code: string) {
 export function passageMarshesEffect(s: GameState, e: Effect): boolean {
   const q = s.passageMarshes;
   if (!q || !e.kind.startsWith("pom")) return false;
+  if (gollumEffect(s, e)) return true;
   const first = firstPlayer(s);
   const p = e.player ?? activeSeat(s);
   const u = e.target ? get(s, e.target) : undefined;
@@ -593,13 +439,6 @@ export function passageMarshesEffect(s: GameState, e: Effect): boolean {
       revealed(s, e.code, undefined, "encounter");
       return true;
     }
-    case "pomShuffle":
-      shuffle(s, s.encounterDeck);
-      log(
-        s,
-        `${e.text ?? "The Passage of the Marshes"}: the encounter deck is shuffled.`,
-      );
-      return true;
     // Quest stages.
     case "pomDefeat": {
       const before = s.queue.length;
@@ -786,13 +625,6 @@ export function passageMarshesEffect(s: GameState, e: Effect): boolean {
       return true;
     }
     // Travel costs.
-    case "pomExhaustSmeagol": {
-      const smeagol = pomSmeagol(s);
-      if (!smeagol || smeagol.exhausted) return true;
-      forOwner(s, ownerOf(s, smeagol), () => exhaustCharacter(s, smeagol));
-      log(s, `Sméagol is exhausted to travel to ${e.text}.`);
-      return true;
-    }
     case "pomSpendFellowship": {
       const payer = fellowshipPayers(s)[0];
       if (!payer) return true;
@@ -824,26 +656,6 @@ export function passageMarshesEffect(s: GameState, e: Effect): boolean {
       );
       return true;
     }
-    case "pomSmeagolFlips":
-      flipToGollum(s, e.text ?? "Sméagol");
-      return true;
-    case "pomGollumFollows":
-      if (gollumFollows(s) && e.flag && players(s) > 1) {
-        const gollum = pomGollum(s);
-        if (gollum) {
-          log(
-            s,
-            "Gollum engages the first player during the refresh phase and makes an immediate attack.",
-            "danger",
-          );
-          prepend(
-            s,
-            fx("immediateAttack", { target: gollum.id, player: first }),
-          );
-        }
-      }
-      return true;
-    // Treacheries.
     case "pomReek": {
       const mine = [...s.heroes, ...s.allies].filter((x) => x.committed);
       const committed = globalCharacters(s).filter((x) => x.committed);
@@ -903,143 +715,6 @@ export function passageMarshesEffect(s: GameState, e: Effect): boolean {
       );
       return true;
     }
-    case "pomHates": {
-      const ring = oneRing(s);
-      const payer = fellowshipPayers(s).find((x) => ownerOf(s, x) === first);
-      const resolve = fx("pomHatesResolve", { player: first });
-      if (!ring || ring.exhausted || ring.blanked || !payer) {
-        prepend(s, resolve);
-        return true;
-      }
-      choose(
-        s,
-        `We Hates Them! · Cancel this effect?${seatLabel(s, first)}`,
-        [
-          {
-            id: "cancel",
-            label:
-              "Spend 1 Fellowship resource and exhaust The One Ring to cancel this effect",
-            effects: [fx("pomHatesCancel", { player: first })],
-          },
-          { id: "resolve", label: "Do not cancel", effects: [resolve] },
-        ],
-        "When Revealed: either flip Sméagol to Gollum, or Gollum makes an immediate attack. The first player may spend 1 Fellowship resource and exhaust The One Ring to cancel this effect.",
-      );
-      return true;
-    }
-    case "pomHatesCancel": {
-      const ring = oneRing(s);
-      const payer = fellowshipPayers(s).find((x) => ownerOf(s, x) === first);
-      if (!ring || ring.exhausted || !payer) {
-        prepend(s, fx("pomHatesResolve", { player: first }));
-        return true;
-      }
-      spendResources(s, payer, 1);
-      ring.exhausted = true;
-      log(
-        s,
-        `We Hates Them!: ${name(payer)} spends 1 Fellowship resource and The One Ring is exhausted to cancel its effect.`,
-        "good",
-      );
-      batch4OneRing(s);
-      return true;
-    }
-    case "pomHatesResolve": {
-      if (pomSmeagol(s)) {
-        flipToGollum(s, "We Hates Them!");
-        return true;
-      }
-      const gollum = pomGollum(s);
-      if (!gollum) return true;
-      log(s, "We Hates Them!: Gollum makes an immediate attack.", "danger");
-      prepend(
-        s,
-        fx("immediateAttack", {
-          target: gollum.id,
-          player: ownerOf(s, gollum),
-        }),
-      );
-      return true;
-    }
-    case "pomCall": {
-      const search = searchOptions(s, isNazgulCode, "pomCallAdd", first, [
-        "deck",
-        "discard",
-        "victory",
-      ]);
-      const ring = oneRing(s);
-      const options: Option[] = [];
-      if (search.length)
-        options.push({
-          id: "search",
-          label:
-            "Search the encounter deck, discard pile and victory display for a Nazgûl enemy and add it to the staging area",
-          effects: [fx("pomCallSearch", { player: first })],
-        });
-      if (ring && !ring.exhausted && !ring.blanked)
-        options.push({
-          id: "ring",
-          label:
-            "Exhaust The One Ring and reveal the top card of the encounter deck",
-          effects: [fx("pomCallRing", { player: first })],
-        });
-      if (!options.length) {
-        log(
-          s,
-          "Call of the Ring: there is no Nazgûl enemy to find and The One Ring cannot be exhausted.",
-        );
-        return true;
-      }
-      choose(
-        s,
-        `Call of the Ring · The first player must choose${seatLabel(s, first)}`,
-        options,
-        "When Revealed: the first player must choose: either search the encounter deck, discard pile, and victory display for a Nazgûl enemy and add it to the staging area, or exhaust The One Ring and reveal the top card of the encounter deck.",
-      );
-      return true;
-    }
-    case "pomCallSearch": {
-      const options = searchOptions(s, isNazgulCode, "pomCallAdd", first, [
-        "deck",
-        "discard",
-        "victory",
-      ]);
-      if (options.length === 1) prepend(s, ...options[0].effects);
-      else if (options.length)
-        choose(
-          s,
-          `Call of the Ring · Add a Nazgûl enemy to the staging area${seatLabel(s, first)}`,
-          options,
-          "The first player searches the encounter deck, discard pile and victory display for a Nazgûl enemy and adds it to the staging area.",
-        );
-      return true;
-    }
-    case "pomCallAdd": {
-      if (!e.code || !takeFrom(s, e.text, e.code)) return true;
-      const enemy = make(s, e.code);
-      s.staging.push(enemy);
-      enemyAddedToStaging(s, enemy);
-      log(
-        s,
-        `Call of the Ring: ${name(enemy)} is added to the staging area from the ${e.text === "victory" ? "victory display" : e.text === "discard" ? "discard pile" : "encounter deck"}.`,
-        "danger",
-      );
-      prepend(s, fx("pomShuffle", { text: "Call of the Ring", player: first }));
-      return true;
-    }
-    case "pomCallRing": {
-      const ring = oneRing(s);
-      if (!ring || ring.exhausted) return true;
-      ring.exhausted = true;
-      log(
-        s,
-        "Call of the Ring: The One Ring is exhausted, and the first player reveals the top card of the encounter deck.",
-        "danger",
-      );
-      batch4OneRing(s);
-      prepend(s, fx("reveal", { player: first }));
-      return true;
-    }
     case "pomGrope": {
       const [location] = allActiveLocations(s);
       if (!location || !isLocation(location)) {
@@ -1059,9 +734,6 @@ export function passageMarshesEffect(s: GameState, e: Effect): boolean {
       return true;
   }
   return false;
-}
-function batch4OneRing(s: GameState) {
-  PASSAGE_MARSHES_HOOKS.oneRingExhausted?.(s);
 }
 /** The Forced effect of a location discarded by the Mire keyword. */
 function mireForced(s: GameState, code: string, p: number) {
@@ -1317,12 +989,9 @@ export const PASSAGE_MARSHES_HOOKS: Batch4ScenarioHooks = {
   threatBonus: (s, u) =>
     s.passageMarshes && live(u, POM.pools) ? u.resources : 0,
   // Morgul Wraith, while The One Ring is exhausted.
-  engagementBonus: (s, u) =>
-    s.passageMarshes && live(u, POM.wraith) && oneRingExhausted(s) ? -30 : 0,
-  immune: (s, u) =>
-    !!s.passageMarshes && live(u, POM.wraith) && oneRingExhausted(s),
-  cannotAttach: (s, u, code) =>
-    !!s.passageMarshes && live(u, POM.wraith) && !isMorgul(code),
+  engagementBonus: morgulWraithEngagement,
+  immune: morgulWraithImmune,
+  cannotAttach: morgulWraithCannotAttach,
   travelProblem: (s, u) => {
     if (!s.passageMarshes || u.blanked) return null;
     if (u.code === POM.mere || u.code === POM.pools) {

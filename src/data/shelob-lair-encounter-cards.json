@@ -1,0 +1,585 @@
+[
+  {
+    "code": "octgn:021affba-a51d-48f1-ac86-354f3e82d38d",
+    "octgnid": "021affba-a51d-48f1-ac86-354f3e82d38d",
+    "name": "Orc of Cirith Ungol",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Uruk.",
+    "text": "Peril.\nWhen Revealed: Either discard 1 random card from each player's hand, or Orc of Cirith Ungol makes an immediate attack against you.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 42,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 4,
+    "defense": 2,
+    "health": 5,
+    "engagement": 40,
+    "encounter_set": "Shelob's Lair",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "4",
+      "defense": "2",
+      "health": "5",
+      "engagement": "40"
+    },
+    "imagesrc": "/cards/021affba-a51d-48f1-ac86-354f3e82d38d.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 42,
+        "quantity": 3,
+        "octgnid": "021affba-a51d-48f1-ac86-354f3e82d38d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/021affba-a51d-48f1-ac86-354f3e82d38d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:1e2560ab-00ce-45c3-a374-f7bb6a3e6889",
+    "octgnid": "1e2560ab-00ce-45c3-a374-f7bb6a3e6889",
+    "name": "Den of Night",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "While Den of Night is in the staging area, it gains: \"Forced: After a 'When Revealed' effect is canceled, place 1 resource on Shelob.\"\nTravel: Place 1 resource on Shelob to travel here.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 49,
+    "quantity": 3,
+    "threat": 1,
+    "quest": 4,
+    "encounter_set": "Shelob's Lair",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/1e2560ab-00ce-45c3-a374-f7bb6a3e6889.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 49,
+        "quantity": 3,
+        "octgnid": "1e2560ab-00ce-45c3-a374-f7bb6a3e6889",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1e2560ab-00ce-45c3-a374-f7bb6a3e6889.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:31f8955f-40d5-41de-b886-77018b59d717",
+    "octgnid": "31f8955f-40d5-41de-b886-77018b59d717",
+    "name": "The Under-way",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "While The Under-way is in the staging area, each Orc enemy gets -5 engagement cost and gains: \"Forced: After this enemy engages a player, deal it a shadow card.\"",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 47,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 3,
+    "shadow": "Shadow: Deal the attacking enemy 2 additional shadow cards.",
+    "encounter_set": "Shelob's Lair",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/31f8955f-40d5-41de-b886-77018b59d717.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 47,
+        "quantity": 2,
+        "octgnid": "31f8955f-40d5-41de-b886-77018b59d717",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/31f8955f-40d5-41de-b886-77018b59d717.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:32873634-3a91-4d6f-988a-fb8bb5c16ef3",
+    "octgnid": "32873634-3a91-4d6f-988a-fb8bb5c16ef3",
+    "name": "Cleft of Cirith Ungol",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Mountain.",
+    "text": "Immune to player card effects.\nWhile Cleft of Cirith Ungol is in the victory display, Shelob gets +2 [attack], loses Indestructible, and gains: \"Shelob engages the first player.\"\nTravel: Place 1 resource on Shelob to travel here.",
+    "is_unique": true,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 45,
+    "quantity": 1,
+    "threat": 4,
+    "quest": 4,
+    "victory": 4,
+    "encounter_set": "Shelob's Lair",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "4",
+      "victory": "4"
+    },
+    "imagesrc": "/cards/32873634-3a91-4d6f-988a-fb8bb5c16ef3.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 45,
+        "quantity": 1,
+        "octgnid": "32873634-3a91-4d6f-988a-fb8bb5c16ef3",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32873634-3a91-4d6f-988a-fb8bb5c16ef3.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:35ea4640-1019-409c-b6a4-8a9906def475",
+    "octgnid": "35ea4640-1019-409c-b6a4-8a9906def475",
+    "name": "Shelob's Poison",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Attach to a hero you control and exhaust that hero. (Counts as a Condition attachment with the text: \"Limit 1 per hero. Treat attached hero's text box as blank, except for Traits. Attached hero cannot ready.\")",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 60,
+    "quantity": 2,
+    "shadow": "Shadow: If attacking enemy is Shelob, resolve the 'When Revealed' effect on Shelob's Poison.",
+    "encounter_set": "The Great Spider",
+    "printed_stats": {},
+    "imagesrc": "/cards/35ea4640-1019-409c-b6a4-8a9906def475.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 60,
+        "quantity": 2,
+        "octgnid": "35ea4640-1019-409c-b6a4-8a9906def475",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/35ea4640-1019-409c-b6a4-8a9906def475.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:4a2696f1-65e1-41d5-8828-38ece23167df",
+    "octgnid": "4a2696f1-65e1-41d5-8828-38ece23167df",
+    "name": "Sméagol's Secret Way",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Mountain.",
+    "text": "Immune to player card effects.\nTravel: Either exhaust Sméagol, or discard 1 random card from each player's hand.\nForced: After Sméagol's Secret Way is explored, each player either exhausts a character he controls, or discards 1 random card from his hand.",
+    "is_unique": true,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 44,
+    "quantity": 1,
+    "threat": 2,
+    "quest": 2,
+    "encounter_set": "Shelob's Lair",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2"
+    },
+    "imagesrc": "/cards/4a2696f1-65e1-41d5-8828-38ece23167df.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 44,
+        "quantity": 1,
+        "octgnid": "4a2696f1-65e1-41d5-8828-38ece23167df",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4a2696f1-65e1-41d5-8828-38ece23167df.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 2
+  },
+  {
+    "code": "octgn:51b6030d-3ce7-4139-b3bc-a408949533e2",
+    "octgnid": "51b6030d-3ce7-4139-b3bc-a408949533e2",
+    "name": "Morgul Vale",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Vale.",
+    "text": "Immune to player card effects.\nForced: After Morgul Vale is explored, search the encounter deck and discard pile for a Morgul Wraith and add it to the staging area. Shuffle the encounter deck. Then, the first player must either exhaust The One Ring, or discard 1 random card from each player's hand.",
+    "is_unique": true,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 43,
+    "quantity": 1,
+    "threat": 4,
+    "quest": 2,
+    "victory": 4,
+    "encounter_set": "Shelob's Lair",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "2",
+      "victory": "4"
+    },
+    "imagesrc": "/cards/51b6030d-3ce7-4139-b3bc-a408949533e2.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 43,
+        "quantity": 1,
+        "octgnid": "51b6030d-3ce7-4139-b3bc-a408949533e2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51b6030d-3ce7-4139-b3bc-a408949533e2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:5497d938-1549-498c-abeb-2ed617222b76",
+    "octgnid": "5497d938-1549-498c-abeb-2ed617222b76",
+    "name": "Lurking Malice",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Peril. Surge.\nWhen Revealed: Either place 1 resource on Shelob, or she makes an immediate attack against you.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 61,
+    "quantity": 3,
+    "shadow": "Shadow: If attacking enemy is Shelob, place 1 resource on her. Then, she gets +1 [attack] for each resource on her.",
+    "encounter_set": "The Great Spider",
+    "printed_stats": {},
+    "imagesrc": "/cards/5497d938-1549-498c-abeb-2ed617222b76.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 61,
+        "quantity": 3,
+        "octgnid": "5497d938-1549-498c-abeb-2ed617222b76",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5497d938-1549-498c-abeb-2ed617222b76.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:5ce0a255-9914-4a4f-9630-d1fe8e00bbc0",
+    "octgnid": "5ce0a255-9914-4a4f-9630-d1fe8e00bbc0",
+    "name": "Rage and Hunger",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shelob gets +2 [attack] until the end of the phase. Shelob makes an immediate attack against each player, in player order.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 62,
+    "quantity": 3,
+    "shadow": "Shadow: If attacking enemy is Shelob, she makes an additional attack against you after this one.",
+    "encounter_set": "The Great Spider",
+    "printed_stats": {},
+    "imagesrc": "/cards/5ce0a255-9914-4a4f-9630-d1fe8e00bbc0.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 62,
+        "quantity": 3,
+        "octgnid": "5ce0a255-9914-4a4f-9630-d1fe8e00bbc0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5ce0a255-9914-4a4f-9630-d1fe8e00bbc0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:65c93e63-0284-4449-8158-717d763b3023",
+    "octgnid": "65c93e63-0284-4449-8158-717d763b3023",
+    "name": "Many Openings",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each location in the staging area gets +1 [threat] until the end of the round. If the number of locations in the staging area is less than the number of players in the game, reveal an additional encounter card.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 51,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy gets +X [attack], where X is the active location's [threat].",
+    "encounter_set": "Shelob's Lair",
+    "printed_stats": {},
+    "imagesrc": "/cards/65c93e63-0284-4449-8158-717d763b3023.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 51,
+        "quantity": 2,
+        "octgnid": "65c93e63-0284-4449-8158-717d763b3023",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/65c93e63-0284-4449-8158-717d763b3023.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:6da65b9b-39a7-425d-baa1-00b406bcae36",
+    "octgnid": "6da65b9b-39a7-425d-baa1-00b406bcae36",
+    "name": "The Spider's Lair",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "Forced: When The Spider's Lair is explored, remove 1 resource from Shelob.\nForced: After The Spider's Lair becomes the active location, Shelob makes an immediate attack against the first player.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 46,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 4,
+    "encounter_set": "Shelob's Lair",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/6da65b9b-39a7-425d-baa1-00b406bcae36.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 46,
+        "quantity": 2,
+        "octgnid": "6da65b9b-39a7-425d-baa1-00b406bcae36",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6da65b9b-39a7-425d-baa1-00b406bcae36.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8ba47620-aead-42a5-a057-41cb038f5234",
+    "octgnid": "8ba47620-aead-42a5-a057-41cb038f5234",
+    "name": "Morgul Orc",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Uruk.",
+    "text": "Peril.\nWhen Revealed: Either discard 1 random card from your hand, or reveal an additional encounter card.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 41,
+    "quantity": 4,
+    "threat": 1,
+    "attack": 3,
+    "defense": 2,
+    "health": 3,
+    "engagement": 35,
+    "shadow": "Shadow: If this attack destroys a character, discard 1 random card from your hand.",
+    "encounter_set": "Shelob's Lair",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "3",
+      "defense": "2",
+      "health": "3",
+      "engagement": "35"
+    },
+    "imagesrc": "/cards/8ba47620-aead-42a5-a057-41cb038f5234.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 41,
+        "quantity": 4,
+        "octgnid": "8ba47620-aead-42a5-a057-41cb038f5234",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8ba47620-aead-42a5-a057-41cb038f5234.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ae49e8e5-98f1-4562-935f-5e1ab64631e0",
+    "octgnid": "ae49e8e5-98f1-4562-935f-5e1ab64631e0",
+    "name": "Deep Dark Passage",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "While Deep Dark Passage is in the staging area, it gains: \"Forced: When any amount of progress would be placed on a location in the staging area, reduce that amount by 1.\"\nTravel: Exhaust Sméagol to travel here.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 48,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 5,
+    "encounter_set": "Shelob's Lair",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/ae49e8e5-98f1-4562-935f-5e1ab64631e0.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 48,
+        "quantity": 3,
+        "octgnid": "ae49e8e5-98f1-4562-935f-5e1ab64631e0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ae49e8e5-98f1-4562-935f-5e1ab64631e0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:c03a693c-4fcf-4df5-868b-88e1df8531d9",
+    "octgnid": "c03a693c-4fcf-4df5-868b-88e1df8531d9",
+    "name": "Shelob",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature. Spider.",
+    "text": "Indestructible. Cannot have attachments.\nShelob gets +1 [threat] for each resource on her.\nForced: At the beginning of the quest phase, either place 1 resource on Shelob, or she makes an immediate attack against the first player.",
+    "is_unique": true,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 40,
+    "quantity": 1,
+    "threat": 4,
+    "attack": 4,
+    "defense": 4,
+    "health": 8,
+    "engagement": 50,
+    "victory": 8,
+    "encounter_set": "Shelob's Lair",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "4",
+      "defense": "4",
+      "health": "8",
+      "engagement": "50",
+      "victory": "8"
+    },
+    "imagesrc": "/cards/c03a693c-4fcf-4df5-868b-88e1df8531d9.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 40,
+        "quantity": 1,
+        "octgnid": "c03a693c-4fcf-4df5-868b-88e1df8531d9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c03a693c-4fcf-4df5-868b-88e1df8531d9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e3de3669-64a9-4ab5-a21c-7805e6259267",
+    "octgnid": "e3de3669-64a9-4ab5-a21c-7805e6259267",
+    "name": "Blocked Tunnel",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "When Revealed: Make Blocked Tunnel the active location, returning any other active location to the staging area.\nAction: Exhaust a character with a Weapon attachment to place 3 progress on Blocked Tunnel. (Any player may trigger this effect.)",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 59,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 9,
+    "encounter_set": "The Great Spider",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "9"
+    },
+    "imagesrc": "/cards/e3de3669-64a9-4ab5-a21c-7805e6259267.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 59,
+        "quantity": 2,
+        "octgnid": "e3de3669-64a9-4ab5-a21c-7805e6259267",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e3de3669-64a9-4ab5-a21c-7805e6259267.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f77579e7-23f0-4c27-a4e3-e1edcc529e1e",
+    "octgnid": "f77579e7-23f0-4c27-a4e3-e1edcc529e1e",
+    "name": "Exhalation of Decay",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player discards 1 random card from his hand and 1 non-objective attachment he controls.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 50,
+    "quantity": 2,
+    "shadow": "Shadow: Discard a non-objective attachment you control.",
+    "encounter_set": "Shelob's Lair",
+    "printed_stats": {},
+    "imagesrc": "/cards/f77579e7-23f0-4c27-a4e3-e1edcc529e1e.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 50,
+        "quantity": 2,
+        "octgnid": "f77579e7-23f0-4c27-a4e3-e1edcc529e1e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f77579e7-23f0-4c27-a4e3-e1edcc529e1e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

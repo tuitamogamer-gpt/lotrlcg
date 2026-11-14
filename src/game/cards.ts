@@ -66,6 +66,10 @@ import {
   CROSS_ROADS_ENCOUNTERS,
   CROSS_ROADS_QUESTS,
 } from "./cross-roads-scenario-data";
+import {
+  SHELOB_LAIR_ENCOUNTERS,
+  SHELOB_LAIR_QUESTS,
+} from "./shelob-lair-scenario-data";
 import hobbitPlayers from "../data/hobbit-player-cards.json";
 import blackRidersPlayers from "../data/black-riders-player-cards.json";
 import roadDarkensPlayers from "../data/road-darkens-player-cards.json";
@@ -563,6 +567,7 @@ export const encounterCards = [
       ...ROAD_ISENGARD_ENCOUNTERS,
       ...PASSAGE_MARSHES_ENCOUNTERS,
       ...CROSS_ROADS_ENCOUNTERS,
+      ...SHELOB_LAIR_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -657,6 +662,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...ROAD_ISENGARD_QUESTS,
     ...PASSAGE_MARSHES_QUESTS,
     ...CROSS_ROADS_QUESTS,
+    ...SHELOB_LAIR_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -792,6 +798,7 @@ export const SCRIPTED = new Set(
     ...ROAD_ISENGARD_QUESTS,
     ...PASSAGE_MARSHES_QUESTS,
     ...CROSS_ROADS_QUESTS,
+    ...SHELOB_LAIR_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

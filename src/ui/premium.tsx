@@ -91,6 +91,10 @@ export const PLAYMATS = {
     name: "The Mere of Dead Faces",
     detail: "The taming of Sméagol · The mire and the candles of the dead",
   },
+  "shelobs-lair": {
+    name: "Torech Ungol",
+    detail: "The stairs of Cirith Ungol · Shelob's webs in the dark",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -507,6 +511,7 @@ export const PLAYMAT_CHOICES = [
   "the-road-to-isengard",
   "the-passage-of-the-marshes",
   "journey-to-the-cross-roads",
+  "shelobs-lair",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

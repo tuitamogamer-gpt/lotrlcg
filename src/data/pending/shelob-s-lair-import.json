@@ -1,0 +1,1589 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "Shelob's Lair",
+  "slug": "shelob-s-lair",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "144001",
+      "name": "Frodo Baggins",
+      "type_code": "hero",
+      "type_name": "Hero",
+      "sphere_code": "fellowship",
+      "sphere_name": "Fellowship",
+      "threat": 0,
+      "willpower": 2,
+      "attack": 1,
+      "defense": 2,
+      "health": 2,
+      "traits": "Hobbit. Ring-bearer.",
+      "text": "<b>Action:</b> Spend 1 [fellowship] resource and exhaust The One Ring to give Frodo Baggins +2 [willpower] and +2 [attack] until the end of the round.",
+      "flavor": "\"It's my doom, I think, to go to that Shadow yonder, so that a way will be found.\" <cite>The Two Towers</cite>",
+      "is_unique": true,
+      "deck_limit": 1,
+      "pack_name": "The Land of Shadow",
+      "pack_code": "LoS",
+      "position": 1,
+      "illustrator": "Melanie Maier",
+      "imagesrc": "/cards/144001.png",
+      "url": "https://ringsdb.com/card/144001",
+      "quantity": 1,
+      "octgnid": "fe58a6d3-7028-41c1-ab00-5e33e7d77b5f",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 1,
+          "quantity": 1,
+          "image_code": "144001",
+          "illustrator": "Melanie Maier",
+          "octgnid": "fe58a6d3-7028-41c1-ab00-5e33e7d77b5f",
+          "imagesrc": "/bundles/cards/144001.png",
+          "date_release": "2015-11-19"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/144001",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:021affba-a51d-48f1-ac86-354f3e82d38d",
+      "octgnid": "021affba-a51d-48f1-ac86-354f3e82d38d",
+      "name": "Orc of Citith Ungol",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Uruk.",
+      "text": "Peril.\nWhen Revealed: Either discard 1 random card from each player's hand, or Orc of Cirith Ungol makes an immediate attack against you.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 42,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 4,
+      "defense": 2,
+      "health": 5,
+      "engagement": 40,
+      "encounter_set": "Shelob's Lair",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "2",
+        "health": "5",
+        "engagement": "40"
+      },
+      "imagesrc": "/cards/021affba-a51d-48f1-ac86-354f3e82d38d.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 42,
+          "quantity": 3,
+          "octgnid": "021affba-a51d-48f1-ac86-354f3e82d38d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/021affba-a51d-48f1-ac86-354f3e82d38d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:1e2560ab-00ce-45c3-a374-f7bb6a3e6889",
+      "octgnid": "1e2560ab-00ce-45c3-a374-f7bb6a3e6889",
+      "name": "Den of Night",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "While Den of Night is in the staging area, it gains: \"Forced: After a 'When Revealed' effect is canceled, place 1 resource on Shelob.\"  Travel: Place 1 resource on Shelob to travel here.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 49,
+      "quantity": 3,
+      "threat": 1,
+      "quest": 4,
+      "encounter_set": "Shelob's Lair",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/1e2560ab-00ce-45c3-a374-f7bb6a3e6889.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 49,
+          "quantity": 3,
+          "octgnid": "1e2560ab-00ce-45c3-a374-f7bb6a3e6889",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1e2560ab-00ce-45c3-a374-f7bb6a3e6889.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:29a12054-527c-41a3-9dd8-25565288fb4d",
+      "octgnid": "29a12054-527c-41a3-9dd8-25565288fb4d",
+      "name": "Gollum's Betrayal",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Add Cleft of Cirith Ungol to the staging area. Flip Smeagol to Gollum and heal all damage from Shelob. Each player places 1 resource on Shelob.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 72,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "Shelob's Lair",
+      "side": "A",
+      "back_name": "Gollum's Betrayal",
+      "back_text": "If Gollum is defeated, add him to the victory display. (Do not flip him over.)  While Shelob has at least 1 resource on her, she gains: \"Forced: When Shelob is dealt any amount of damage, cancel that damage and discard 1 resource from Shelob instead.\"   The players cannot defeat this stage unless Shelob and Gollum are in the victor display. If the players defeat this stage, they win the game.",
+      "back_type_code": "quest",
+      "back_quest": 8,
+      "back_imagesrc": "/cards/29a12054-527c-41a3-9dd8-25565288fb4d.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/29a12054-527c-41a3-9dd8-25565288fb4d.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 72,
+          "quantity": 1,
+          "octgnid": "29a12054-527c-41a3-9dd8-25565288fb4d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/29a12054-527c-41a3-9dd8-25565288fb4d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:31f8955f-40d5-41de-b886-77018b59d717",
+      "octgnid": "31f8955f-40d5-41de-b886-77018b59d717",
+      "name": "The Under-way",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "While The Under-way is in the staging area, each Orc enemy gets -5 engagement cost and gains: \"Forced: After this enemy engages a player, deal it a shadow card.\"",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 47,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 3,
+      "shadow": "Shadow: Deal the attacking enemy 2 additional shadow cards.",
+      "encounter_set": "Shelob's Lair",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/31f8955f-40d5-41de-b886-77018b59d717.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 47,
+          "quantity": 2,
+          "octgnid": "31f8955f-40d5-41de-b886-77018b59d717",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/31f8955f-40d5-41de-b886-77018b59d717.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:32267333-091c-4bbf-bb29-5f21c8b79188",
+      "octgnid": "32267333-091c-4bbf-bb29-5f21c8b79188",
+      "name": "The One Ring",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Artifact. Item. Ring.",
+      "text": "Setup: The first player claims The One Ring and attaches it to the Ring-bearer. Attached hero does not count against the hero limit. The first player gains control of attached hero. If The One Ring leaves play, the players lose the game.",
+      "is_unique": true,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 63,
+      "quantity": 1,
+      "printed_stats": {},
+      "imagesrc": "/cards/32267333-091c-4bbf-bb29-5f21c8b79188.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 63,
+          "quantity": 1,
+          "octgnid": "32267333-091c-4bbf-bb29-5f21c8b79188",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32267333-091c-4bbf-bb29-5f21c8b79188.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:32873634-3a91-4d6f-988a-fb8bb5c16ef3",
+      "octgnid": "32873634-3a91-4d6f-988a-fb8bb5c16ef3",
+      "name": "Cleft of Cirith Ungol",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Mountain.",
+      "text": "Immune to player card effects.\nWhile The Cleft of Cirith Ungol is in the victory display, Shelob gets +2 [attack], loses Indestructible, and gains: \"Shelob engages the first player.\"  Travel: Place 1 resource on Shelob to travel here.",
+      "is_unique": true,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 45,
+      "quantity": 1,
+      "threat": 4,
+      "quest": 4,
+      "victory": 4,
+      "encounter_set": "Shelob's Lair",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "4",
+        "victory": "4"
+      },
+      "imagesrc": "/cards/32873634-3a91-4d6f-988a-fb8bb5c16ef3.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 45,
+          "quantity": 1,
+          "octgnid": "32873634-3a91-4d6f-988a-fb8bb5c16ef3",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32873634-3a91-4d6f-988a-fb8bb5c16ef3.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:32993141-956c-4426-98d9-8705de6fee00",
+      "octgnid": "32993141-956c-4426-98d9-8705de6fee00",
+      "name": "Gollum",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Gollum.",
+      "text": "Immune to non-[fellowship] player card effects. Gollum engages the first player.\nForced: After Gollum engages the first player during the refresh phase, he makes an immediate attack. Forced: When Gollum is defeated, flip him to Smeagol and exhaust Smeagol.",
+      "is_unique": true,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 75,
+      "quantity": 1,
+      "threat": 2,
+      "attack": 2,
+      "defense": 2,
+      "health": 5,
+      "engagement": 30,
+      "encounter_set": "Gollum",
+      "back_name": "Smeagol",
+      "back_text": "Immune to player card effects. The first player gains control of Smeagol.\nForced: After the players quest unsuccessfully, flip Smeagol to Gollum.  If Smeagol is destroyed, the players lose the game.",
+      "back_type_code": "objective-ally",
+      "back_imagesrc": "/cards/32993141-956c-4426-98d9-8705de6fee00.B.jpg",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "2",
+        "health": "5",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/32993141-956c-4426-98d9-8705de6fee00.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 75,
+          "quantity": 1,
+          "octgnid": "32993141-956c-4426-98d9-8705de6fee00",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32993141-956c-4426-98d9-8705de6fee00.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:35ea4640-1019-409c-b6a4-8a9906def475",
+      "octgnid": "35ea4640-1019-409c-b6a4-8a9906def475",
+      "name": "Shelob's Poison",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Attach to a hero you control and exhaust that hero. (Counts as a Condition attachment with the text: \"Limit 1 per hero. Treat attached hero's text box as blank, except for Traits. Attached hero cannot ready.\")",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 60,
+      "quantity": 2,
+      "shadow": "Shadow: If attacking enemy is Shelob, resolve the 'When Revealed' effect on Shelob's Poison.",
+      "encounter_set": "The Great Spider",
+      "printed_stats": {},
+      "imagesrc": "/cards/35ea4640-1019-409c-b6a4-8a9906def475.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 60,
+          "quantity": 2,
+          "octgnid": "35ea4640-1019-409c-b6a4-8a9906def475",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/35ea4640-1019-409c-b6a4-8a9906def475.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:42e22482-0281-4811-aa65-2b342319ee07",
+      "octgnid": "42e22482-0281-4811-aa65-2b342319ee07",
+      "name": "We Hates Them",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nWhen Revealed: Either flip Smeagol to Gollum, or Gollum makes an immediate attack. The first player may spend 1 [fellowship] resource and exhaust The One Ring to cancel this effect.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 55,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+3 [attack] instead if the attacking enemy is Gollum).",
+      "encounter_set": "Gollum",
+      "printed_stats": {},
+      "imagesrc": "/cards/42e22482-0281-4811-aa65-2b342319ee07.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 55,
+          "quantity": 2,
+          "octgnid": "42e22482-0281-4811-aa65-2b342319ee07",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/42e22482-0281-4811-aa65-2b342319ee07.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4a2696f1-65e1-41d5-8828-38ece23167df",
+      "octgnid": "4a2696f1-65e1-41d5-8828-38ece23167df",
+      "name": "Smeagol's Secret Way",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Mountain.",
+      "text": "Immune to player card effects.\nTravel: Either exhaust Smeagol, or discard 1 random card from each player's hand.  Forced: After Smeagol's Secret Way is explored, each player either exhausts a character he controls, or discards 1 random card from his hand.",
+      "is_unique": true,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 44,
+      "quantity": 1,
+      "threat": 2,
+      "quest": 2,
+      "encounter_set": "Shelob's Lair",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/4a2696f1-65e1-41d5-8828-38ece23167df.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 44,
+          "quantity": 1,
+          "octgnid": "4a2696f1-65e1-41d5-8828-38ece23167df",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4a2696f1-65e1-41d5-8828-38ece23167df.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51b6030d-3ce7-4139-b3bc-a408949533e2",
+      "octgnid": "51b6030d-3ce7-4139-b3bc-a408949533e2",
+      "name": "Morgul Vale",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Vale.",
+      "text": "Immune to player card effects.\nForced: After Morgul Vale is explored, search the encounter deck and discard pile for a Morgul Wraith and add it to the staging area. Shuffle the encounter deck. Then, the first player must either exhaust The One Ring, or discard 1 random card from each player's hand.",
+      "is_unique": true,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 43,
+      "quantity": 1,
+      "threat": 4,
+      "quest": 2,
+      "victory": 4,
+      "encounter_set": "Shelob's Lair",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "2",
+        "victory": "4"
+      },
+      "imagesrc": "/cards/51b6030d-3ce7-4139-b3bc-a408949533e2.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 43,
+          "quantity": 1,
+          "octgnid": "51b6030d-3ce7-4139-b3bc-a408949533e2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51b6030d-3ce7-4139-b3bc-a408949533e2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:540e3fbc-a066-4dc6-a156-598f1b2751c0",
+      "octgnid": "540e3fbc-a066-4dc6-a156-598f1b2751c0",
+      "name": "The Spider's Pass",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Add Shelob to the staging area and shuffle all cards from The Great Spider encounter set and the encounter discard pile into the encounter deck.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 71,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "Shelob's Lair",
+      "side": "A",
+      "back_name": "The Spider's Pass",
+      "back_text": "Shelob cannot leave the staging area and Smeagol cannot attack or defend.  Each player cannot play, or put into play, more than 1 ally each round. No more than 4 progress can be placed on this stage each round.",
+      "back_type_code": "quest",
+      "back_quest": 16,
+      "back_imagesrc": "/cards/540e3fbc-a066-4dc6-a156-598f1b2751c0.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/540e3fbc-a066-4dc6-a156-598f1b2751c0.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 71,
+          "quantity": 1,
+          "octgnid": "540e3fbc-a066-4dc6-a156-598f1b2751c0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/540e3fbc-a066-4dc6-a156-598f1b2751c0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5497d938-1549-498c-abeb-2ed617222b76",
+      "octgnid": "5497d938-1549-498c-abeb-2ed617222b76",
+      "name": "Lurking Malice",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Peril. Surge.\nWhen Revealed: Either place 1 resource on Shelob, or she makes an immediate attack against you.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 61,
+      "quantity": 3,
+      "shadow": "Shadow: If attacking enemy is Shelob, place 1 resource on her. Then, she gets +1 [attack] for each resource on her.",
+      "encounter_set": "The Great Spider",
+      "printed_stats": {},
+      "imagesrc": "/cards/5497d938-1549-498c-abeb-2ed617222b76.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 61,
+          "quantity": 3,
+          "octgnid": "5497d938-1549-498c-abeb-2ed617222b76",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5497d938-1549-498c-abeb-2ed617222b76.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5ce0a255-9914-4a4f-9630-d1fe8e00bbc0",
+      "octgnid": "5ce0a255-9914-4a4f-9630-d1fe8e00bbc0",
+      "name": "Rage and Hunger",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Shelob gets +2 [attack] until the end of the phase. Then, she makes an immediate attack against each player, in player order.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 62,
+      "quantity": 3,
+      "shadow": "Shadow: If attacking enemy is Shelob, she makes an additional attack against you after this one.",
+      "encounter_set": "The Great Spider",
+      "printed_stats": {},
+      "imagesrc": "/cards/5ce0a255-9914-4a4f-9630-d1fe8e00bbc0.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 62,
+          "quantity": 3,
+          "octgnid": "5ce0a255-9914-4a4f-9630-d1fe8e00bbc0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5ce0a255-9914-4a4f-9630-d1fe8e00bbc0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5e8714e3-0581-4b6f-bf45-414098819626",
+      "octgnid": "5e8714e3-0581-4b6f-bf45-414098819626",
+      "name": "Call of the Ring",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The first player must choose: either search the encounter deck, discard pile, and victory display for a Nazgûl enemy and add it to the staging area, or exhaust The One Ring and reveal the top card of the encounter deck.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 54,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy makes an additional attack against you after this one.",
+      "encounter_set": "Nazgûl",
+      "printed_stats": {},
+      "imagesrc": "/cards/5e8714e3-0581-4b6f-bf45-414098819626.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 54,
+          "quantity": 2,
+          "octgnid": "5e8714e3-0581-4b6f-bf45-414098819626",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5e8714e3-0581-4b6f-bf45-414098819626.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:65c93e63-0284-4449-8158-717d763b3023",
+      "octgnid": "65c93e63-0284-4449-8158-717d763b3023",
+      "name": "Many Openings",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each location in the staging area gets +1 [threat] until the end of the round. If the number of locations in the staging area is less than the number of players in the game, reveal an additional encounter card.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 51,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +X [attack], where X is the active location's [threat].",
+      "encounter_set": "Shelob's Lair",
+      "printed_stats": {},
+      "imagesrc": "/cards/65c93e63-0284-4449-8158-717d763b3023.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 51,
+          "quantity": 2,
+          "octgnid": "65c93e63-0284-4449-8158-717d763b3023",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/65c93e63-0284-4449-8158-717d763b3023.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6da65b9b-39a7-425d-baa1-00b406bcae36",
+      "octgnid": "6da65b9b-39a7-425d-baa1-00b406bcae36",
+      "name": "The Spider's Lair",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "Forced: When The Spider's Lair is explored, remove 1 resource from Shelob.  Forced: After The Spider's Lair becomes the active location, Shelob makes an attack against the first player.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 46,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 4,
+      "encounter_set": "Shelob's Lair",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/6da65b9b-39a7-425d-baa1-00b406bcae36.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 46,
+          "quantity": 2,
+          "octgnid": "6da65b9b-39a7-425d-baa1-00b406bcae36",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6da65b9b-39a7-425d-baa1-00b406bcae36.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc",
+      "octgnid": "74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc",
+      "name": "Morgul Wraith",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Nazgûl.",
+      "text": "Cannot have non-Morgul attachments.\nWhile The One Ring is exhausted, Morgul Wraith gets -30 engagement cost and gains \"Immune to player card effects.\"",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 53,
+      "quantity": 2,
+      "threat": 4,
+      "attack": 5,
+      "defense": 4,
+      "health": 9,
+      "engagement": 45,
+      "encounter_set": "Nazgûl",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "5",
+        "defense": "4",
+        "health": "9",
+        "engagement": "45"
+      },
+      "imagesrc": "/cards/74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 53,
+          "quantity": 2,
+          "octgnid": "74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8ba47620-aead-42a5-a057-41cb038f5234",
+      "octgnid": "8ba47620-aead-42a5-a057-41cb038f5234",
+      "name": "Morgul Orc",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Uruk.",
+      "text": "Peril.\nWhen Revealed: Either discard 1 random card from your hand, or reveal an additional encounter card.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 41,
+      "quantity": 4,
+      "threat": 1,
+      "attack": 3,
+      "defense": 2,
+      "health": 3,
+      "engagement": 35,
+      "shadow": "Shadow: If this attack destroys a character, discard 1 random card from your hand.",
+      "encounter_set": "Shelob's Lair",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "3",
+        "defense": "2",
+        "health": "3",
+        "engagement": "35"
+      },
+      "imagesrc": "/cards/8ba47620-aead-42a5-a057-41cb038f5234.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 41,
+          "quantity": 4,
+          "octgnid": "8ba47620-aead-42a5-a057-41cb038f5234",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8ba47620-aead-42a5-a057-41cb038f5234.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ae49e8e5-98f1-4562-935f-5e1ab64631e0",
+      "octgnid": "ae49e8e5-98f1-4562-935f-5e1ab64631e0",
+      "name": "Deep Dark Passage",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "While Deep Dark Passage is in the staging area, it gains: \"Forced: When any amount of progress would be placed on a location in the staging area, reduce that amount by 1.\"  Travel: Exhaust Smeagol to travel here.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 48,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 5,
+      "encounter_set": "Shelob's Lair",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/ae49e8e5-98f1-4562-935f-5e1ab64631e0.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 48,
+          "quantity": 3,
+          "octgnid": "ae49e8e5-98f1-4562-935f-5e1ab64631e0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ae49e8e5-98f1-4562-935f-5e1ab64631e0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c03a693c-4fcf-4df5-868b-88e1df8531d9",
+      "octgnid": "c03a693c-4fcf-4df5-868b-88e1df8531d9",
+      "name": "Shelob",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Spider.",
+      "text": "Indestructible. Cannot have attachments.\nShelob gets +1 [threat] for each resource on her.  Forced: At the beginning of the quest phase, either place 1 resource on Shelob, or she makes an immediate attack against the first player.",
+      "is_unique": true,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 40,
+      "quantity": 1,
+      "threat": 4,
+      "attack": 4,
+      "defense": 4,
+      "health": 8,
+      "engagement": 50,
+      "victory": 8,
+      "encounter_set": "Shelob's Lair",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "4",
+        "defense": "4",
+        "health": "8",
+        "engagement": "50",
+        "victory": "8"
+      },
+      "imagesrc": "/cards/c03a693c-4fcf-4df5-868b-88e1df8531d9.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 40,
+          "quantity": 1,
+          "octgnid": "c03a693c-4fcf-4df5-868b-88e1df8531d9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c03a693c-4fcf-4df5-868b-88e1df8531d9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:da109a2a-65fe-410e-93b4-e09695966fe5",
+      "octgnid": "da109a2a-65fe-410e-93b4-e09695966fe5",
+      "name": "The Stairs of Cirith Ungol",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Set Cleft of Cirith Ungol, Shelob and The Great Spider encounter set aside, out of play. Put Smeagol into play under the first player's control. Make Morgul Vale the active location. Add Smeagol's Secret Way to the staging area.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 70,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "Shelob's Lair",
+      "side": "A",
+      "back_name": "The Stairs of Cirith Ungol",
+      "back_text": "Progress cannot be placed on Underground locations.  Response: After Smeagol's Secret Way is explored, discard 3 random cards from each player's hand to discard each Nazgûl enemy in the staging area.  Forced: At the end of the quest phase, if Smeagol's Secret Way is in the victory display, advance to stage 2A.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/da109a2a-65fe-410e-93b4-e09695966fe5.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/da109a2a-65fe-410e-93b4-e09695966fe5.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 70,
+          "quantity": 1,
+          "octgnid": "da109a2a-65fe-410e-93b4-e09695966fe5",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/da109a2a-65fe-410e-93b4-e09695966fe5.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e3de3669-64a9-4ab5-a21c-7805e6259267",
+      "octgnid": "e3de3669-64a9-4ab5-a21c-7805e6259267",
+      "name": "Blocked Tunnel",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "When Revealed: Make Blocked Tunnel the active location, returning any other active location to the staging area.  Action: Exhaust a character with a Weapon attachment to place 3 progress on Blocked Tunnel. (Any player may trigger this effect.)",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 59,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 9,
+      "encounter_set": "The Great Spider",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "9"
+      },
+      "imagesrc": "/cards/e3de3669-64a9-4ab5-a21c-7805e6259267.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 59,
+          "quantity": 2,
+          "octgnid": "e3de3669-64a9-4ab5-a21c-7805e6259267",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e3de3669-64a9-4ab5-a21c-7805e6259267.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f77579e7-23f0-4c27-a4e3-e1edcc529e1e",
+      "octgnid": "f77579e7-23f0-4c27-a4e3-e1edcc529e1e",
+      "name": "Exhalation of Decay",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player discards 1 random card from his hand and 1 non-objective attachment he controls.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 50,
+      "quantity": 2,
+      "shadow": "Shadow: Discard a non-objective attachment you control.",
+      "encounter_set": "Shelob's Lair",
+      "printed_stats": {},
+      "imagesrc": "/cards/f77579e7-23f0-4c27-a4e3-e1edcc529e1e.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 50,
+          "quantity": 2,
+          "octgnid": "f77579e7-23f0-4c27-a4e3-e1edcc529e1e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f77579e7-23f0-4c27-a4e3-e1edcc529e1e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E0B.12",
+      "name": "Shelob's Lair (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "LoS"
+      ],
+      "card_codes": [
+        "octgn:da109a2a-65fe-410e-93b4-e09695966fe5",
+        "octgn:540e3fbc-a066-4dc6-a156-598f1b2751c0",
+        "octgn:29a12054-527c-41a3-9dd8-25565288fb4d",
+        "octgn:8ba47620-aead-42a5-a057-41cb038f5234",
+        "octgn:021affba-a51d-48f1-ac86-354f3e82d38d",
+        "octgn:6da65b9b-39a7-425d-baa1-00b406bcae36",
+        "octgn:31f8955f-40d5-41de-b886-77018b59d717",
+        "octgn:ae49e8e5-98f1-4562-935f-5e1ab64631e0",
+        "octgn:1e2560ab-00ce-45c3-a374-f7bb6a3e6889",
+        "octgn:f77579e7-23f0-4c27-a4e3-e1edcc529e1e",
+        "octgn:65c93e63-0284-4449-8158-717d763b3023",
+        "octgn:74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc",
+        "octgn:5e8714e3-0581-4b6f-bf45-414098819626",
+        "octgn:42e22482-0281-4811-aa65-2b342319ee07",
+        "octgn:e3de3669-64a9-4ab5-a21c-7805e6259267",
+        "octgn:35ea4640-1019-409c-b6a4-8a9906def475",
+        "octgn:5497d938-1549-498c-abeb-2ed617222b76",
+        "octgn:5ce0a255-9914-4a4f-9630-d1fe8e00bbc0",
+        "octgn:32873634-3a91-4d6f-988a-fb8bb5c16ef3",
+        "octgn:c03a693c-4fcf-4df5-868b-88e1df8531d9",
+        "144001",
+        "octgn:32267333-091c-4bbf-bb29-5f21c8b79188",
+        "octgn:32993141-956c-4426-98d9-8705de6fee00",
+        "octgn:4a2696f1-65e1-41d5-8828-38ece23167df",
+        "octgn:51b6030d-3ce7-4139-b3bc-a408949533e2"
+      ],
+      "cards": [
+        {
+          "code": "octgn:da109a2a-65fe-410e-93b4-e09695966fe5",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:540e3fbc-a066-4dc6-a156-598f1b2751c0",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:29a12054-527c-41a3-9dd8-25565288fb4d",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:8ba47620-aead-42a5-a057-41cb038f5234",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:021affba-a51d-48f1-ac86-354f3e82d38d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6da65b9b-39a7-425d-baa1-00b406bcae36",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:31f8955f-40d5-41de-b886-77018b59d717",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ae49e8e5-98f1-4562-935f-5e1ab64631e0",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1e2560ab-00ce-45c3-a374-f7bb6a3e6889",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f77579e7-23f0-4c27-a4e3-e1edcc529e1e",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:65c93e63-0284-4449-8158-717d763b3023",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5e8714e3-0581-4b6f-bf45-414098819626",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:42e22482-0281-4811-aa65-2b342319ee07",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e3de3669-64a9-4ab5-a21c-7805e6259267",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:35ea4640-1019-409c-b6a4-8a9906def475",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:5497d938-1549-498c-abeb-2ed617222b76",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:5ce0a255-9914-4a4f-9630-d1fe8e00bbc0",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:32873634-3a91-4d6f-988a-fb8bb5c16ef3",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:c03a693c-4fcf-4df5-868b-88e1df8531d9",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "144001",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:32267333-091c-4bbf-bb29-5f21c8b79188",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:32993141-956c-4426-98d9-8705de6fee00",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:4a2696f1-65e1-41d5-8828-38ece23167df",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:51b6030d-3ce7-4139-b3bc-a408949533e2",
+          "quantity": 1,
+          "section": "sharedActiveLocation"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:da109a2a-65fe-410e-93b4-e09695966fe5": 1,
+          "octgn:540e3fbc-a066-4dc6-a156-598f1b2751c0": 1,
+          "octgn:29a12054-527c-41a3-9dd8-25565288fb4d": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:8ba47620-aead-42a5-a057-41cb038f5234": 3,
+          "octgn:021affba-a51d-48f1-ac86-354f3e82d38d": 2,
+          "octgn:6da65b9b-39a7-425d-baa1-00b406bcae36": 2,
+          "octgn:31f8955f-40d5-41de-b886-77018b59d717": 1,
+          "octgn:ae49e8e5-98f1-4562-935f-5e1ab64631e0": 3,
+          "octgn:1e2560ab-00ce-45c3-a374-f7bb6a3e6889": 3,
+          "octgn:f77579e7-23f0-4c27-a4e3-e1edcc529e1e": 2,
+          "octgn:65c93e63-0284-4449-8158-717d763b3023": 1,
+          "octgn:74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc": 1,
+          "octgn:5e8714e3-0581-4b6f-bf45-414098819626": 1,
+          "octgn:42e22482-0281-4811-aa65-2b342319ee07": 1
+        },
+        "sharedEncounterDeck2": {
+          "octgn:e3de3669-64a9-4ab5-a21c-7805e6259267": 2,
+          "octgn:35ea4640-1019-409c-b6a4-8a9906def475": 2,
+          "octgn:5497d938-1549-498c-abeb-2ed617222b76": 3,
+          "octgn:5ce0a255-9914-4a4f-9630-d1fe8e00bbc0": 3
+        },
+        "sharedSetAside": {
+          "octgn:32873634-3a91-4d6f-988a-fb8bb5c16ef3": 1,
+          "octgn:c03a693c-4fcf-4df5-868b-88e1df8531d9": 1
+        },
+        "player1Play1": {
+          "144001": 1,
+          "octgn:32267333-091c-4bbf-bb29-5f21c8b79188": 1
+        },
+        "sharedStagingArea": {
+          "octgn:32993141-956c-4426-98d9-8705de6fee00": 1,
+          "octgn:4a2696f1-65e1-41d5-8828-38ece23167df": 1
+        },
+        "sharedActiveLocation": {
+          "octgn:51b6030d-3ce7-4139-b3bc-a408949533e2": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q0B.12",
+      "name": "Shelob's Lair",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "LoS"
+      ],
+      "card_codes": [
+        "octgn:da109a2a-65fe-410e-93b4-e09695966fe5",
+        "octgn:540e3fbc-a066-4dc6-a156-598f1b2751c0",
+        "octgn:29a12054-527c-41a3-9dd8-25565288fb4d",
+        "octgn:8ba47620-aead-42a5-a057-41cb038f5234",
+        "octgn:021affba-a51d-48f1-ac86-354f3e82d38d",
+        "octgn:6da65b9b-39a7-425d-baa1-00b406bcae36",
+        "octgn:31f8955f-40d5-41de-b886-77018b59d717",
+        "octgn:ae49e8e5-98f1-4562-935f-5e1ab64631e0",
+        "octgn:1e2560ab-00ce-45c3-a374-f7bb6a3e6889",
+        "octgn:f77579e7-23f0-4c27-a4e3-e1edcc529e1e",
+        "octgn:65c93e63-0284-4449-8158-717d763b3023",
+        "octgn:74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc",
+        "octgn:5e8714e3-0581-4b6f-bf45-414098819626",
+        "octgn:42e22482-0281-4811-aa65-2b342319ee07",
+        "octgn:e3de3669-64a9-4ab5-a21c-7805e6259267",
+        "octgn:35ea4640-1019-409c-b6a4-8a9906def475",
+        "octgn:5497d938-1549-498c-abeb-2ed617222b76",
+        "octgn:5ce0a255-9914-4a4f-9630-d1fe8e00bbc0",
+        "octgn:32873634-3a91-4d6f-988a-fb8bb5c16ef3",
+        "octgn:c03a693c-4fcf-4df5-868b-88e1df8531d9",
+        "144001",
+        "octgn:32267333-091c-4bbf-bb29-5f21c8b79188",
+        "octgn:32993141-956c-4426-98d9-8705de6fee00",
+        "octgn:4a2696f1-65e1-41d5-8828-38ece23167df",
+        "octgn:51b6030d-3ce7-4139-b3bc-a408949533e2"
+      ],
+      "cards": [
+        {
+          "code": "octgn:da109a2a-65fe-410e-93b4-e09695966fe5",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:540e3fbc-a066-4dc6-a156-598f1b2751c0",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:29a12054-527c-41a3-9dd8-25565288fb4d",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:8ba47620-aead-42a5-a057-41cb038f5234",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:021affba-a51d-48f1-ac86-354f3e82d38d",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6da65b9b-39a7-425d-baa1-00b406bcae36",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:31f8955f-40d5-41de-b886-77018b59d717",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ae49e8e5-98f1-4562-935f-5e1ab64631e0",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1e2560ab-00ce-45c3-a374-f7bb6a3e6889",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f77579e7-23f0-4c27-a4e3-e1edcc529e1e",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:65c93e63-0284-4449-8158-717d763b3023",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5e8714e3-0581-4b6f-bf45-414098819626",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:42e22482-0281-4811-aa65-2b342319ee07",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e3de3669-64a9-4ab5-a21c-7805e6259267",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:35ea4640-1019-409c-b6a4-8a9906def475",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:5497d938-1549-498c-abeb-2ed617222b76",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:5ce0a255-9914-4a4f-9630-d1fe8e00bbc0",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:32873634-3a91-4d6f-988a-fb8bb5c16ef3",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:c03a693c-4fcf-4df5-868b-88e1df8531d9",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "144001",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:32267333-091c-4bbf-bb29-5f21c8b79188",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:32993141-956c-4426-98d9-8705de6fee00",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:4a2696f1-65e1-41d5-8828-38ece23167df",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:51b6030d-3ce7-4139-b3bc-a408949533e2",
+          "quantity": 1,
+          "section": "sharedActiveLocation"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:da109a2a-65fe-410e-93b4-e09695966fe5": 1,
+          "octgn:540e3fbc-a066-4dc6-a156-598f1b2751c0": 1,
+          "octgn:29a12054-527c-41a3-9dd8-25565288fb4d": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:8ba47620-aead-42a5-a057-41cb038f5234": 4,
+          "octgn:021affba-a51d-48f1-ac86-354f3e82d38d": 3,
+          "octgn:6da65b9b-39a7-425d-baa1-00b406bcae36": 2,
+          "octgn:31f8955f-40d5-41de-b886-77018b59d717": 2,
+          "octgn:ae49e8e5-98f1-4562-935f-5e1ab64631e0": 3,
+          "octgn:1e2560ab-00ce-45c3-a374-f7bb6a3e6889": 3,
+          "octgn:f77579e7-23f0-4c27-a4e3-e1edcc529e1e": 2,
+          "octgn:65c93e63-0284-4449-8158-717d763b3023": 2,
+          "octgn:74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc": 2,
+          "octgn:5e8714e3-0581-4b6f-bf45-414098819626": 2,
+          "octgn:42e22482-0281-4811-aa65-2b342319ee07": 2
+        },
+        "sharedEncounterDeck2": {
+          "octgn:e3de3669-64a9-4ab5-a21c-7805e6259267": 2,
+          "octgn:35ea4640-1019-409c-b6a4-8a9906def475": 2,
+          "octgn:5497d938-1549-498c-abeb-2ed617222b76": 3,
+          "octgn:5ce0a255-9914-4a4f-9630-d1fe8e00bbc0": 3
+        },
+        "sharedSetAside": {
+          "octgn:32873634-3a91-4d6f-988a-fb8bb5c16ef3": 1,
+          "octgn:c03a693c-4fcf-4df5-868b-88e1df8531d9": 1
+        },
+        "player1Play1": {
+          "144001": 1,
+          "octgn:32267333-091c-4bbf-bb29-5f21c8b79188": 1
+        },
+        "sharedStagingArea": {
+          "octgn:32993141-956c-4426-98d9-8705de6fee00": 1,
+          "octgn:4a2696f1-65e1-41d5-8828-38ece23167df": 1
+        },
+        "sharedActiveLocation": {
+          "octgn:51b6030d-3ce7-4139-b3bc-a408949533e2": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "144001",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/144001.png",
+      "localPath": "/cards/144001.png",
+      "bytes": 155746,
+      "sha256": "20b64143efbc18e5687b3f9534b780a44a0f941421147cd9bfc070ca0a0f61a1"
+    },
+    {
+      "code": "octgn:021affba-a51d-48f1-ac86-354f3e82d38d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/021affba-a51d-48f1-ac86-354f3e82d38d.jpg",
+      "localPath": "/cards/021affba-a51d-48f1-ac86-354f3e82d38d.jpg",
+      "bytes": 151441,
+      "sha256": "3736515c9e94a2473e9df5c6f5b1237d4b1e419e6a0b5db4359ae909b1a9faf8"
+    },
+    {
+      "code": "octgn:1e2560ab-00ce-45c3-a374-f7bb6a3e6889",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1e2560ab-00ce-45c3-a374-f7bb6a3e6889.jpg",
+      "localPath": "/cards/1e2560ab-00ce-45c3-a374-f7bb6a3e6889.jpg",
+      "bytes": 145086,
+      "sha256": "3a99db0ca0761c72d5122b1866cfb68b204eea74c8d3f5feadbf4f47f2a32087"
+    },
+    {
+      "code": "octgn:29a12054-527c-41a3-9dd8-25565288fb4d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/29a12054-527c-41a3-9dd8-25565288fb4d.jpg",
+      "localPath": "/cards/29a12054-527c-41a3-9dd8-25565288fb4d.jpg",
+      "bytes": 153027,
+      "sha256": "d94d4f62ff1f97765e341df3edbb1ee2994e88921d1a27200f7802b9f00e1541"
+    },
+    {
+      "code": "octgn:29a12054-527c-41a3-9dd8-25565288fb4d",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/29a12054-527c-41a3-9dd8-25565288fb4d.B.jpg",
+      "localPath": "/cards/29a12054-527c-41a3-9dd8-25565288fb4d.B.jpg",
+      "bytes": 148016,
+      "sha256": "f3d3e390b5a11e6de2f713a006a4d2c8b8e5d88ede448ccf22a874946ea1d2c7"
+    },
+    {
+      "code": "octgn:31f8955f-40d5-41de-b886-77018b59d717",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/31f8955f-40d5-41de-b886-77018b59d717.jpg",
+      "localPath": "/cards/31f8955f-40d5-41de-b886-77018b59d717.jpg",
+      "bytes": 147545,
+      "sha256": "83062d083cf4029a299ec3fae82cc19bf23039c780ed65f43c1cfbd8528cbae5"
+    },
+    {
+      "code": "octgn:32267333-091c-4bbf-bb29-5f21c8b79188",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32267333-091c-4bbf-bb29-5f21c8b79188.jpg",
+      "localPath": "/cards/32267333-091c-4bbf-bb29-5f21c8b79188.jpg",
+      "bytes": 142861,
+      "sha256": "c956495e3def53b5c44878d3ddb3e43d943e83f68a691e9d2e78b5954700c7ed"
+    },
+    {
+      "code": "octgn:32873634-3a91-4d6f-988a-fb8bb5c16ef3",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32873634-3a91-4d6f-988a-fb8bb5c16ef3.jpg",
+      "localPath": "/cards/32873634-3a91-4d6f-988a-fb8bb5c16ef3.jpg",
+      "bytes": 148758,
+      "sha256": "3fd2d513da2dd5ffbc02ff338013d5e491ad8c211f15dce02455872a9c8ab990"
+    },
+    {
+      "code": "octgn:32993141-956c-4426-98d9-8705de6fee00",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32993141-956c-4426-98d9-8705de6fee00.jpg",
+      "localPath": "/cards/32993141-956c-4426-98d9-8705de6fee00.jpg",
+      "bytes": 143154,
+      "sha256": "aa8ba5fc4ec000190926bd26faf566fb332cd9b8fcc65147fc5196239f87e3bf"
+    },
+    {
+      "code": "octgn:32993141-956c-4426-98d9-8705de6fee00",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32993141-956c-4426-98d9-8705de6fee00.B.jpg",
+      "localPath": "/cards/32993141-956c-4426-98d9-8705de6fee00.B.jpg",
+      "bytes": 144348,
+      "sha256": "1d8d21014264a018676edcd400f84ef02039c9a5ed1a6eefd577b0888f57cd77"
+    },
+    {
+      "code": "octgn:35ea4640-1019-409c-b6a4-8a9906def475",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/35ea4640-1019-409c-b6a4-8a9906def475.jpg",
+      "localPath": "/cards/35ea4640-1019-409c-b6a4-8a9906def475.jpg",
+      "bytes": 149805,
+      "sha256": "be0c16f270199cd1a2c0371e81fb6f6974f349c4c994dfd34e3a5131f04e2e2c"
+    },
+    {
+      "code": "octgn:42e22482-0281-4811-aa65-2b342319ee07",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/42e22482-0281-4811-aa65-2b342319ee07.jpg",
+      "localPath": "/cards/42e22482-0281-4811-aa65-2b342319ee07.jpg",
+      "bytes": 148308,
+      "sha256": "d2336989666795b26fc2550e4209dacd077d569219366f0cd8f5cfcc89c3dea6"
+    },
+    {
+      "code": "octgn:4a2696f1-65e1-41d5-8828-38ece23167df",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4a2696f1-65e1-41d5-8828-38ece23167df.jpg",
+      "localPath": "/cards/4a2696f1-65e1-41d5-8828-38ece23167df.jpg",
+      "bytes": 151838,
+      "sha256": "47460c4aec99990f96d9d0428518f330280ccd8fc1d8e31646d93875df1ad0bd"
+    },
+    {
+      "code": "octgn:51b6030d-3ce7-4139-b3bc-a408949533e2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51b6030d-3ce7-4139-b3bc-a408949533e2.jpg",
+      "localPath": "/cards/51b6030d-3ce7-4139-b3bc-a408949533e2.jpg",
+      "bytes": 150271,
+      "sha256": "06735bbd60357f9bcfb1fbfaf7eb907da67830168513dd6312c367c1349bc16e"
+    },
+    {
+      "code": "octgn:540e3fbc-a066-4dc6-a156-598f1b2751c0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/540e3fbc-a066-4dc6-a156-598f1b2751c0.jpg",
+      "localPath": "/cards/540e3fbc-a066-4dc6-a156-598f1b2751c0.jpg",
+      "bytes": 150292,
+      "sha256": "3481b64372d622c198c1e573ed090d785dcf9ea961db586cc0ae0d18564c3697"
+    },
+    {
+      "code": "octgn:540e3fbc-a066-4dc6-a156-598f1b2751c0",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/540e3fbc-a066-4dc6-a156-598f1b2751c0.B.jpg",
+      "localPath": "/cards/540e3fbc-a066-4dc6-a156-598f1b2751c0.B.jpg",
+      "bytes": 145907,
+      "sha256": "fbea6e7b91ca341265db3e8af09cf065d5e5cbe1808bc4c13f851a1d5560e6f0"
+    },
+    {
+      "code": "octgn:5497d938-1549-498c-abeb-2ed617222b76",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5497d938-1549-498c-abeb-2ed617222b76.jpg",
+      "localPath": "/cards/5497d938-1549-498c-abeb-2ed617222b76.jpg",
+      "bytes": 145112,
+      "sha256": "183d4778f5fa5e4b9d62af2ae16b0d1b3211e31d7067f1d3c27414b40e7eb691"
+    },
+    {
+      "code": "octgn:5ce0a255-9914-4a4f-9630-d1fe8e00bbc0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5ce0a255-9914-4a4f-9630-d1fe8e00bbc0.jpg",
+      "localPath": "/cards/5ce0a255-9914-4a4f-9630-d1fe8e00bbc0.jpg",
+      "bytes": 154286,
+      "sha256": "c796275b8ac02a768148c21c565d8bf3553b46402f443404cecbf343f468125f"
+    },
+    {
+      "code": "octgn:5e8714e3-0581-4b6f-bf45-414098819626",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5e8714e3-0581-4b6f-bf45-414098819626.jpg",
+      "localPath": "/cards/5e8714e3-0581-4b6f-bf45-414098819626.jpg",
+      "bytes": 149166,
+      "sha256": "f381b8eaff0ebd25e17fde65c4c514f03d7115048c98521e19d50ec77973bf53"
+    },
+    {
+      "code": "octgn:65c93e63-0284-4449-8158-717d763b3023",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/65c93e63-0284-4449-8158-717d763b3023.jpg",
+      "localPath": "/cards/65c93e63-0284-4449-8158-717d763b3023.jpg",
+      "bytes": 150335,
+      "sha256": "f1fcda9e4af57edc14aa113cf474a35c9b674cc37bfd69fc0f644de1665f8af4"
+    },
+    {
+      "code": "octgn:6da65b9b-39a7-425d-baa1-00b406bcae36",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6da65b9b-39a7-425d-baa1-00b406bcae36.jpg",
+      "localPath": "/cards/6da65b9b-39a7-425d-baa1-00b406bcae36.jpg",
+      "bytes": 158937,
+      "sha256": "ad768e083193a12187caebe4902dcd4068c6dba008368d48c9b6fb84ec98c1bb"
+    },
+    {
+      "code": "octgn:74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc.jpg",
+      "localPath": "/cards/74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc.jpg",
+      "bytes": 142177,
+      "sha256": "ec78e32d9cb5aed4ebc7f1134dbed7a665ef7d4f75e86d1a7211f0624c9a8cdc"
+    },
+    {
+      "code": "octgn:8ba47620-aead-42a5-a057-41cb038f5234",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8ba47620-aead-42a5-a057-41cb038f5234.jpg",
+      "localPath": "/cards/8ba47620-aead-42a5-a057-41cb038f5234.jpg",
+      "bytes": 148717,
+      "sha256": "b1a8473b2a9e90e5d7a685a74e82bda2e3b23743eb085aa628c6997d58a9bec3"
+    },
+    {
+      "code": "octgn:ae49e8e5-98f1-4562-935f-5e1ab64631e0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ae49e8e5-98f1-4562-935f-5e1ab64631e0.jpg",
+      "localPath": "/cards/ae49e8e5-98f1-4562-935f-5e1ab64631e0.jpg",
+      "bytes": 149445,
+      "sha256": "7cd0695c304a1cafd16534a2f384bed01bfba682c1dc697f52aeb164caee65d3"
+    },
+    {
+      "code": "octgn:c03a693c-4fcf-4df5-868b-88e1df8531d9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c03a693c-4fcf-4df5-868b-88e1df8531d9.jpg",
+      "localPath": "/cards/c03a693c-4fcf-4df5-868b-88e1df8531d9.jpg",
+      "bytes": 152573,
+      "sha256": "5e5514446e097f7cbbd38e38c29ff9b4a04ee766241e7e283e6ac6313e4e4d57"
+    },
+    {
+      "code": "octgn:da109a2a-65fe-410e-93b4-e09695966fe5",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/da109a2a-65fe-410e-93b4-e09695966fe5.jpg",
+      "localPath": "/cards/da109a2a-65fe-410e-93b4-e09695966fe5.jpg",
+      "bytes": 158430,
+      "sha256": "128b9c1c0aaa7114eaed95aada3f941a61ab6cfe4f81dc8a18b16bc868361fcf"
+    },
+    {
+      "code": "octgn:da109a2a-65fe-410e-93b4-e09695966fe5",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/da109a2a-65fe-410e-93b4-e09695966fe5.B.jpg",
+      "localPath": "/cards/da109a2a-65fe-410e-93b4-e09695966fe5.B.jpg",
+      "bytes": 148303,
+      "sha256": "b6761b85a0fbec5b45d24abd98f7551a84cf5c7b2215e16dae2e08ac19fa5422"
+    },
+    {
+      "code": "octgn:e3de3669-64a9-4ab5-a21c-7805e6259267",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e3de3669-64a9-4ab5-a21c-7805e6259267.jpg",
+      "localPath": "/cards/e3de3669-64a9-4ab5-a21c-7805e6259267.jpg",
+      "bytes": 151308,
+      "sha256": "9e15bece709bc4c0e2aa148cc48ae6cce8ce2a940ba4b6713ec7bc71231601c7"
+    },
+    {
+      "code": "octgn:f77579e7-23f0-4c27-a4e3-e1edcc529e1e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f77579e7-23f0-4c27-a4e3-e1edcc529e1e.jpg",
+      "localPath": "/cards/f77579e7-23f0-4c27-a4e3-e1edcc529e1e.jpg",
+      "bytes": 146247,
+      "sha256": "72046b8cdb210bda35806e10455291f2095b283f4fd0162b35ccb0df2f6d3d05"
+    }
+  ]
+}

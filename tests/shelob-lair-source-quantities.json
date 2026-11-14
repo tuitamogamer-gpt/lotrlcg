@@ -1,0 +1,152 @@
+[
+  {
+    "name": "Blocked Tunnel",
+    "code": "octgn:e3de3669-64a9-4ab5-a21c-7805e6259267",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Call of the Ring",
+    "code": "octgn:5e8714e3-0581-4b6f-bf45-414098819626",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Cleft of Cirith Ungol",
+    "code": "octgn:32873634-3a91-4d6f-988a-fb8bb5c16ef3",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Deep Dark Passage",
+    "code": "octgn:ae49e8e5-98f1-4562-935f-5e1ab64631e0",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Den of Night",
+    "code": "octgn:1e2560ab-00ce-45c3-a374-f7bb6a3e6889",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Exhalation of Decay",
+    "code": "octgn:f77579e7-23f0-4c27-a4e3-e1edcc529e1e",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Frodo Baggins",
+    "code": "144001",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Gollum",
+    "code": "octgn:32993141-956c-4426-98d9-8705de6fee00",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Gollum's Betrayal",
+    "code": "octgn:29a12054-527c-41a3-9dd8-25565288fb4d",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Lurking Malice",
+    "code": "octgn:5497d938-1549-498c-abeb-2ed617222b76",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Many Openings",
+    "code": "octgn:65c93e63-0284-4449-8158-717d763b3023",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Morgul Orc",
+    "code": "octgn:8ba47620-aead-42a5-a057-41cb038f5234",
+    "normal": 4,
+    "easy": 3
+  },
+  {
+    "name": "Morgul Vale",
+    "code": "octgn:51b6030d-3ce7-4139-b3bc-a408949533e2",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Morgul Wraith",
+    "code": "octgn:74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Orc of Cirith Ungol",
+    "code": "octgn:021affba-a51d-48f1-ac86-354f3e82d38d",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "name": "Rage and Hunger",
+    "code": "octgn:5ce0a255-9914-4a4f-9630-d1fe8e00bbc0",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Shelob",
+    "code": "octgn:c03a693c-4fcf-4df5-868b-88e1df8531d9",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Shelob's Poison",
+    "code": "octgn:35ea4640-1019-409c-b6a4-8a9906def475",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Sméagol's Secret Way",
+    "code": "octgn:4a2696f1-65e1-41d5-8828-38ece23167df",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The One Ring",
+    "code": "octgn:32267333-091c-4bbf-bb29-5f21c8b79188",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The Spider's Lair",
+    "code": "octgn:6da65b9b-39a7-425d-baa1-00b406bcae36",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "The Spider's Pass",
+    "code": "octgn:540e3fbc-a066-4dc6-a156-598f1b2751c0",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The Stairs of Cirith Ungol",
+    "code": "octgn:da109a2a-65fe-410e-93b4-e09695966fe5",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The Under-way",
+    "code": "octgn:31f8955f-40d5-41de-b886-77018b59d717",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "We Hates Them!",
+    "code": "octgn:42e22482-0281-4811-aa65-2b342319ee07",
+    "normal": 2,
+    "easy": 1
+  }
+]

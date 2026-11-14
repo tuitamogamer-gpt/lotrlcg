@@ -5,8 +5,8 @@
     "playerCards": 825,
     "heroes": 103,
     "deckCards": 718,
-    "encounterCards": 1556,
-    "scenarios": 103,
+    "encounterCards": 1572,
+    "scenarios": 104,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -110,17 +110,18 @@
       "helms-deep",
       "the-road-to-isengard",
       "the-passage-of-the-marshes",
-      "journey-to-the-cross-roads"
+      "journey-to-the-cross-roads",
+      "shelobs-lair"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2709,
-    "pending": 1474
+    "scripted": 2728,
+    "pending": 1455
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 212
+    "scripted": 215
   },
   "registeredCodes": [
     "01001",
@@ -1030,6 +1031,7 @@
     "octgn:019ebbd1-9632-4c0a-bd98-4ecef29afb1a",
     "octgn:01a43351-0e36-4175-9a94-693ff91404ad",
     "octgn:01b1d42b-11a4-4030-988d-064673169fec",
+    "octgn:021affba-a51d-48f1-ac86-354f3e82d38d",
     "octgn:021d423c-d9e4-4b7f-bca3-ee1ec4361a23",
     "octgn:022c654e-9d4d-40ff-9d67-8e465fda0e78",
     "octgn:026a36ed-0979-4422-a581-a4decdc3c102",
@@ -1169,6 +1171,7 @@
     "octgn:1d7a27ca-e24b-4449-8f2c-3bb44b088330",
     "octgn:1dab3395-7a34-4b66-aa7f-7834045a7eba",
     "octgn:1dcf16e8-8882-4b61-93ac-a7da643c52bd",
+    "octgn:1e2560ab-00ce-45c3-a374-f7bb6a3e6889",
     "octgn:1e54fa6e-c2a1-4456-ac48-8912ecc4722a",
     "octgn:1e5d3385-4362-4e76-91fc-30e5aebab5e2",
     "octgn:1e96a8e3-ad11-48d5-8554-7cb1a90937a7",
@@ -1258,6 +1261,7 @@
     "octgn:2935fd55-6945-4c20-8586-c435ceec52f3",
     "octgn:29562ee1-56d9-4a46-ba4b-1af24f85deb6",
     "octgn:29662c71-2f27-405c-ae5a-db519ed91f33",
+    "octgn:29a12054-527c-41a3-9dd8-25565288fb4d",
     "octgn:29f8a182-2e69-47d7-a742-296836371f41",
     "octgn:29fd0721-10ed-4315-b415-5fadeb010051",
     "octgn:2a7b5607-d7ed-4580-b27b-39cf12879297",
@@ -1305,12 +1309,14 @@
     "octgn:31ada226-448d-48f8-9f9a-c1f5046ad041",
     "octgn:31bd075d-e116-4a0f-81dd-942b52a6267c",
     "octgn:31c36264-7e6f-45df-a345-167d4df70885",
+    "octgn:31f8955f-40d5-41de-b886-77018b59d717",
     "octgn:321abaed-0b0c-465b-9f2a-bb9796e6b8c5",
     "octgn:32267333-091c-4bbf-bb29-5f21c8b79188",
     "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb",
     "octgn:32416ec8-b50d-4cd2-a62f-10f97c87be73",
     "octgn:3254a776-09e5-4576-9b3c-164cc93e1e26",
     "octgn:32621d0f-16a3-4ab9-a553-657834cb6691",
+    "octgn:32873634-3a91-4d6f-988a-fb8bb5c16ef3",
     "octgn:32993141-956c-4426-98d9-8705de6fee00",
     "octgn:32993141-956c-4426-98d9-8705de6fee00:B",
     "octgn:32ac7351-b154-4e94-8348-ed31385fb3a4",
@@ -1331,6 +1337,7 @@
     "octgn:356f37d9-34c9-4fae-864d-c34dff7eaaa4",
     "octgn:35787b76-d4d5-4bff-bc05-a270b6e4d98e",
     "octgn:35b3cfde-9964-4173-88c5-e5e5cb8f84ac",
+    "octgn:35ea4640-1019-409c-b6a4-8a9906def475",
     "octgn:35ed8128-584c-43cc-ae7c-a4430e78940c",
     "octgn:365efac0-2631-483c-91ce-19da7585bd1a",
     "octgn:36905f8f-3807-432b-bd0f-892c97504afd",
@@ -1490,6 +1497,7 @@
     "octgn:49aa4e88-3774-43f7-ab8d-05268ed3fb7e",
     "octgn:49e857d2-b78f-4b5f-8c07-604af73fd616",
     "octgn:4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a",
+    "octgn:4a2696f1-65e1-41d5-8828-38ece23167df",
     "octgn:4a28b128-1f89-4ad0-b27b-4cb1755c2d23",
     "octgn:4a5c11eb-44b8-4c6e-a9fa-83112dbd57c0",
     "octgn:4abe9f52-1e56-479a-a59f-c3f7075ec493",
@@ -1843,6 +1851,7 @@
     "octgn:51a5e288-cf6e-430d-bc66-715ad2be1a16",
     "octgn:51b186ac-ddf5-4909-a484-20d273be27c9",
     "octgn:51b45e84-3f63-46ea-aa08-b83dd89244ff",
+    "octgn:51b6030d-3ce7-4139-b3bc-a408949533e2",
     "octgn:51e187ea-691c-46bc-b74f-c03d110d02cd",
     "octgn:522c612d-5f3c-4a02-a1a7-7d87191922e0",
     "octgn:52754c5f-30b8-4d55-b9c2-5dfa8020ead3",
@@ -1855,6 +1864,8 @@
     "octgn:53ac8ba6-0487-4b1f-91e9-cf7ca9e7c1d0",
     "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376",
     "octgn:54014fda-7adc-49b0-96ac-656e849eaf7b",
+    "octgn:540e3fbc-a066-4dc6-a156-598f1b2751c0",
+    "octgn:5497d938-1549-498c-abeb-2ed617222b76",
     "octgn:54981b6b-c247-40f9-9321-fd7913b897dd",
     "octgn:54a26608-eebd-4bd6-855a-ceccb4507bab",
     "octgn:54c8ecae-73b1-4c42-84ed-0411551c363a",
@@ -1906,6 +1917,7 @@
     "octgn:5c0a0aea-af43-441b-9d7f-86a1dfd09f00",
     "octgn:5c31f690-9802-4638-8316-5380ef32575b",
     "octgn:5c5ce14a-332a-40fe-8f55-cfa2f53e8592",
+    "octgn:5ce0a255-9914-4a4f-9630-d1fe8e00bbc0",
     "octgn:5d0085bd-ebb9-46a7-ae28-698da3d11ae6",
     "octgn:5d811a82-3729-4b54-8748-e0abffd96e90",
     "octgn:5d991933-f49d-4ece-a288-7484ebc75d14",
@@ -1943,6 +1955,7 @@
     "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
     "octgn:6566587d-e2ac-46e6-adbd-fe667b077136",
     "octgn:65ad784f-d82e-4659-8d1c-53d2e4d19336",
+    "octgn:65c93e63-0284-4449-8158-717d763b3023",
     "octgn:65ef76b1-e624-4763-8906-899e4630225f",
     "octgn:65f48337-cec0-41a1-84ff-490c4f563ce4",
     "octgn:6603b3a5-b955-4109-a63d-b8405c86d0b7",
@@ -1979,6 +1992,7 @@
     "octgn:6d2cbe18-4504-46df-821c-d3ce588bcb3f",
     "octgn:6d485bbc-6876-4160-8111-77f3935123c9",
     "octgn:6d4c7a3b-e0e7-4267-8f53-6ba99054892c",
+    "octgn:6da65b9b-39a7-425d-baa1-00b406bcae36",
     "octgn:6da909d1-c3e0-4c13-8986-4b3a066e67b5",
     "octgn:6def55a1-ee80-4570-831b-d591e6effc11",
     "octgn:6df2979e-ad8d-4c3b-a27c-5ed4b9b2f948",
@@ -2151,6 +2165,7 @@
     "octgn:8b203ead-9fb6-4734-9109-3633fc24d1a9",
     "octgn:8b4dd0c5-3847-46f6-a69b-a4c7ee2b21c8",
     "octgn:8b7c17f3-09d1-45a4-93ff-3b17a3285f35",
+    "octgn:8ba47620-aead-42a5-a057-41cb038f5234",
     "octgn:8bb270a0-72b4-49d5-a4d3-a962edd5f67b",
     "octgn:8bd2808a-55d4-41f7-946a-2726a3583eaf",
     "octgn:8bd42629-07e8-4d8e-ac82-1f463c1cb7e6",
@@ -2340,6 +2355,7 @@
     "octgn:adf2480a-644a-47ee-8deb-bd08ff32bf31",
     "octgn:ae20c7c6-9950-4799-a88e-d0b394879af2",
     "octgn:ae435070-552a-43a9-816f-9f23f1a6dbba",
+    "octgn:ae49e8e5-98f1-4562-935f-5e1ab64631e0",
     "octgn:ae5727cb-4d88-4a28-99be-84a565292b67",
     "octgn:aeb2f711-4597-42c1-af8c-eb7d6f4fa79a",
     "octgn:aeba0e59-8dde-4422-bfb5-911ae8de42a1",
@@ -2435,6 +2451,7 @@
     "octgn:bf925a7c-b427-4fb6-ba6b-dbc86304a69f",
     "octgn:bfa3b9da-d0e3-4ad6-8d1d-f32975f69551",
     "octgn:bfae3bf9-24e1-46af-b202-fb6c676a5dd9",
+    "octgn:c03a693c-4fcf-4df5-868b-88e1df8531d9",
     "octgn:c04f4018-e001-4a31-a003-9914e3f585ee",
     "octgn:c057b0ef-eb85-4afc-9ca8-60a0cca92bcc",
     "octgn:c08310b6-5201-4c70-975e-61a2e7ff329b",
@@ -2577,6 +2594,7 @@
     "octgn:d9bde488-6391-492f-b3df-6dd6dbe4f9e9",
     "octgn:d9c04b71-93cd-455d-9f6e-4ee16cf7d1b4",
     "octgn:d9da588c-c96d-4971-813a-40e439e46764",
+    "octgn:da109a2a-65fe-410e-93b4-e09695966fe5",
     "octgn:da177cbd-31e7-42ea-b051-e61f28dbb749",
     "octgn:da46fcb3-2810-4c21-9070-43969532ef9b",
     "octgn:da6d1bd2-575b-4292-9757-3792b79a4b78",
@@ -2636,6 +2654,7 @@
     "octgn:e3bc9212-fbc0-48e0-b1c5-42b80ee58b5e",
     "octgn:e3d50c1b-4626-4bff-a247-f965166f9d2f",
     "octgn:e3d50fbb-2b94-481a-a1e5-7925ca8384ff",
+    "octgn:e3de3669-64a9-4ab5-a21c-7805e6259267",
     "octgn:e3e98df7-720f-49b8-995a-370961706cec",
     "octgn:e3fed535-98f8-461d-a092-7ada49be2550",
     "octgn:e40770a1-7b1b-4257-afca-443c55701850",
@@ -2751,6 +2770,7 @@
     "octgn:f6e8459b-b0d6-4d30-ad8e-6aacfa34ec32",
     "octgn:f6f56327-cc71-458c-bcdb-51ca6dab2fa1",
     "octgn:f7117e07-e8d2-4e7d-a5c3-5dd0f1c0d455",
+    "octgn:f77579e7-23f0-4c27-a4e3-e1edcc529e1e",
     "octgn:f77e471a-7dd2-4f05-ac8f-fbb534c66633",
     "octgn:f77ffb66-297c-49e0-8ed5-9cc3bd715926",
     "octgn:f7badc7a-4e37-4606-8557-0fa4719227c0",
@@ -3484,7 +3504,7 @@
     {
       "product": "the-land-of-shadow",
       "total": 75,
-      "scripted": 38,
+      "scripted": 57,
       "player": 14,
       "playerScripted": 2
     },
@@ -12728,7 +12748,7 @@
       "name": "Orc of Citith Ungol",
       "type": "enemy",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -14840,7 +14860,7 @@
       "name": "Den of Night",
       "type": "location",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -15976,7 +15996,7 @@
       "name": "Gollum's Betrayal",
       "type": "quest",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -16680,7 +16700,7 @@
       "name": "The Under-way",
       "type": "location",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -16752,7 +16772,7 @@
       "name": "Cleft of Cirith Ungol",
       "type": "location",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -17128,7 +17148,7 @@
       "name": "Shelob's Poison",
       "type": "treachery",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -19096,7 +19116,7 @@
       "name": "Smeagol's Secret Way",
       "type": "location",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -22240,7 +22260,7 @@
       "name": "Morgul Vale",
       "type": "location",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -22456,7 +22476,7 @@
       "name": "The Spider's Pass",
       "type": "quest",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -22480,7 +22500,7 @@
       "name": "Lurking Malice",
       "type": "treachery",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -23136,7 +23156,7 @@
       "name": "Rage and Hunger",
       "type": "treachery",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -23712,7 +23732,7 @@
       "name": "Many Openings",
       "type": "treachery",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -24344,7 +24364,7 @@
       "name": "The Spider's Lair",
       "type": "location",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -27040,7 +27060,7 @@
       "name": "Morgul Orc",
       "type": "enemy",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -29856,7 +29876,7 @@
       "name": "Deep Dark Passage",
       "type": "location",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -31616,7 +31636,7 @@
       "name": "Shelob",
       "type": "enemy",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -33744,7 +33764,7 @@
       "name": "The Stairs of Cirith Ungol",
       "type": "quest",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -34440,7 +34460,7 @@
       "name": "Blocked Tunnel",
       "type": "location",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -36296,7 +36316,7 @@
       "name": "Exhalation of Decay",
       "type": "treachery",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -37989,8 +38009,8 @@
       "id": "E0B.12",
       "name": "Shelob's Lair (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "shelobs-lair",
+      "state": "scripted"
     },
     {
       "id": "E0B.13",
@@ -38115,8 +38135,8 @@
       "id": "E0C.12",
       "name": "Shelob's Lair (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "shelobs-lair",
+      "state": "scripted"
     },
     {
       "id": "E0C.13",
@@ -39480,8 +39500,8 @@
       "id": "Q0B.12",
       "name": "Shelob's Lair",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "shelobs-lair",
+      "state": "scripted"
     },
     {
       "id": "Q0B.13",

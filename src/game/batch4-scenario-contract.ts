@@ -204,6 +204,10 @@ export interface Batch4ScenarioHooks {
   stagingEnd?(s: GameState): void;
   /** The encounter or combat phase is skipped this round. */
   skipPhase?(s: GameState, phase: "encounter" | "combat"): boolean;
+  /** Why an ally cannot be played or put into play now, beyond the ordinary rules. */
+  allyEntryProblem?(s: GameState, code: string): string | null;
+  /** An ally is entering play (played or put into play). */
+  allyEntering?(s: GameState, u: Unit): void;
   /** A hero actually spent resources from its pool. */
   resourcesSpent?(s: GameState, hero: Unit, amount: number): void;
   /** Effects at the beginning of the round, before resources are collected. */

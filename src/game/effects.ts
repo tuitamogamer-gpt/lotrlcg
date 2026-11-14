@@ -425,6 +425,7 @@ import {
 } from "./core";
 import {
   advanceDefense,
+  allyCanEnter,
   check,
   characterLeftPlay,
   damage,
@@ -3420,7 +3421,11 @@ export function extraEffect(s: GameState, e: Effect) {
     }
     case "brok": {
       const brok = s.hand.find((u) => u.code === "01019");
-      if (brok && !allCharacters(s).some((u) => u.code === "01019"))
+      if (
+        brok &&
+        !allCharacters(s).some((u) => u.code === "01019") &&
+        allyCanEnter(s, brok.code)
+      )
         choosePlayerResponse(
           s,
           brok.id,
@@ -3441,6 +3446,10 @@ export function extraEffect(s: GameState, e: Effect) {
     }
     case "freeAlly": {
       const a = s.hand.find((u) => u.id === e.target);
+      if (a && !allyCanEnter(s, a.code)) {
+        log(s, `${name(a)} cannot enter play now.`);
+        break;
+      }
       if (a) {
         s.hand = s.hand.filter((u) => u.id !== a.id);
         enterAlly(s, a);

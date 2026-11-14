@@ -287,6 +287,7 @@ export type ScenarioId =
   | "the-road-to-isengard"
   | "the-passage-of-the-marshes"
   | "journey-to-the-cross-roads"
+  | "shelobs-lair"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -469,6 +470,7 @@ export interface GameState {
   roadIsengard?: import("./road-isengard-types").RoadIsengardState;
   passageMarshes?: import("./passage-marshes-types").PassageMarshesState;
   crossRoads?: import("./cross-roads-types").CrossRoadsState;
+  shelobLair?: import("./shelob-lair-types").ShelobLairState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -872,6 +874,8 @@ export interface GameState {
     jtcGateOnKill?: boolean;
     /** Arrows Thick in the Air's shadow: the attacker goes under The Black Gate after this attack. */
     jtcGateAfter?: boolean;
+    /** Shelob's Lair: Morgul Orc's shadow discards a random card if this attack destroys a character. */
+    slDiscardOnKill?: boolean;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

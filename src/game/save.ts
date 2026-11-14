@@ -42,6 +42,7 @@ import {
   validatePassageMarshes,
 } from "./passage-marshes-support";
 import { crossRoadsUnits, validateCrossRoads } from "./cross-roads-support";
+import { shelobLairUnits, validateShelobLair } from "./shelob-lair-support";
 import { validateHideTest } from "./hide-test";
 import { validateAsh, ashExtraUnits } from "./ash-mountains-support";
 import { validateAshPlayers } from "./ash-mountains-player";
@@ -413,6 +414,8 @@ export function validateSave(
       [c.jtcKilled, c.jtcReturnOnKill, c.jtcGateOnKill, c.jtcGateAfter].every(
         (flag) => flag === undefined || typeof flag === "boolean",
       ) &&
+      (c.slDiscardOnKill === undefined ||
+        typeof c.slDiscardOnKill === "boolean") &&
       (c.fbVictims === undefined ||
         (Array.isArray(c.fbVictims) &&
           c.fbVictims.every((n) => Number.isInteger(n) && n >= 0))) &&
@@ -993,6 +996,7 @@ export function validateSave(
         !validateRoadIsengard(s, validUnit as (v: unknown) => boolean) ||
         !validatePassageMarshes(s, validUnit as (v: unknown) => boolean) ||
         !validateCrossRoads(s, validUnit as (v: unknown) => boolean) ||
+        !validateShelobLair(s, validUnit as (v: unknown) => boolean) ||
         !validateLandSorrow(s, validUnit as (v: unknown) => boolean) ||
         !validateAsh(s, validUnit as (v: unknown) => boolean) ||
         !validateWainriders(s, validUnit as (v: unknown) => boolean, (c) =>
@@ -1723,6 +1727,7 @@ export function validateSave(
       ...roadIsengardUnits(s),
       ...passageMarshesUnits(s),
       ...crossRoadsUnits(s),
+      ...shelobLairUnits(s),
       ...(s.fortressNurnPlayers?.contracts.map((c) => c.unit) ?? []),
       ...(s.landSorrowPlayers?.contracts.flatMap((c) =>
         c.unit ? [c.unit] : [],

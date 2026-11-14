@@ -127,6 +127,10 @@ const HEADLINES: Partial<
     lead: "Ambush the Men of Harad",
     em: "on the road to the Cross-roads.",
   },
+  "shelobs-lair": {
+    lead: "Climb the stairs of Cirith Ungol",
+    em: "and escape Shelob's Lair.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

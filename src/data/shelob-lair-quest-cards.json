@@ -1,0 +1,121 @@
+[
+  {
+    "code": "octgn:da109a2a-65fe-410e-93b4-e09695966fe5",
+    "octgnid": "da109a2a-65fe-410e-93b4-e09695966fe5",
+    "name": "The Stairs of Cirith Ungol",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set Cleft of Cirith Ungol, Shelob, and The Great Spider encounter set aside, out of play. Put Sméagol into play under the first player's control. Make Morgul Vale the active location. Add Sméagol's Secret Way to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 70,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Shelob's Lair",
+    "side": "A",
+    "back_name": "The Stairs of Cirith Ungol",
+    "back_text": "Progress cannot be placed on Underground locations.\nResponse: After Sméagol's Secret Way is explored, discard 3 random cards from each player's hand to discard each Nazgûl enemy in the staging area.\nForced: At the end of the quest phase, if Sméagol's Secret Way is in the victory display, advance to stage 2A.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/da109a2a-65fe-410e-93b4-e09695966fe5.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/da109a2a-65fe-410e-93b4-e09695966fe5.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 70,
+        "quantity": 1,
+        "octgnid": "da109a2a-65fe-410e-93b4-e09695966fe5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/da109a2a-65fe-410e-93b4-e09695966fe5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:540e3fbc-a066-4dc6-a156-598f1b2751c0",
+    "octgnid": "540e3fbc-a066-4dc6-a156-598f1b2751c0",
+    "name": "The Spider's Pass",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add Shelob to the staging area and shuffle all cards from The Great Spider encounter set and the encounter discard pile into the encounter deck.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 71,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Shelob's Lair",
+    "side": "A",
+    "back_name": "The Spider's Pass",
+    "back_text": "Shelob cannot leave the staging area and Sméagol cannot attack or defend.\nEach player cannot play, or put into play, more than 1 ally each round.\nNo more than 4 progress can be placed on this stage each round.",
+    "back_type_code": "quest",
+    "back_quest": 16,
+    "back_imagesrc": "/cards/540e3fbc-a066-4dc6-a156-598f1b2751c0.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/540e3fbc-a066-4dc6-a156-598f1b2751c0.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 71,
+        "quantity": 1,
+        "octgnid": "540e3fbc-a066-4dc6-a156-598f1b2751c0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/540e3fbc-a066-4dc6-a156-598f1b2751c0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:29a12054-527c-41a3-9dd8-25565288fb4d",
+    "octgnid": "29a12054-527c-41a3-9dd8-25565288fb4d",
+    "name": "Gollum's Betrayal",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add Cleft of Cirith Ungol to the staging area. Flip Sméagol to Gollum and heal all damage from Shelob. Each player places 1 resource on Shelob.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 72,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Shelob's Lair",
+    "side": "A",
+    "back_name": "Gollum's Betrayal",
+    "back_text": "If Gollum is defeated, add him to the victory display. (Do not flip him over.)\nWhile Shelob has at least 1 resource on her, she gains: \"Forced: When Shelob is dealt any amount of damage, cancel that damage and discard 1 resource from Shelob instead.\"\nThe players cannot defeat this stage unless both Shelob and Gollum are in the victory display. If the players defeat this stage, they win the game.",
+    "back_type_code": "quest",
+    "back_quest": 8,
+    "back_imagesrc": "/cards/29a12054-527c-41a3-9dd8-25565288fb4d.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/29a12054-527c-41a3-9dd8-25565288fb4d.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 72,
+        "quantity": 1,
+        "octgnid": "29a12054-527c-41a3-9dd8-25565288fb4d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/29a12054-527c-41a3-9dd8-25565288fb4d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]
