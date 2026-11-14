@@ -2,9 +2,9 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 806,
-    "heroes": 98,
-    "deckCards": 704,
+    "playerCards": 813,
+    "heroes": 99,
+    "deckCards": 710,
     "encounterCards": 1461,
     "scenarios": 97,
     "scenarioIds": [
@@ -109,8 +109,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2578,
-    "pending": 1605
+    "scripted": 2585,
+    "pending": 1598
   },
   "scenarioRecipes": {
     "total": 355,
@@ -750,8 +750,15 @@
     "141083",
     "141084",
     "142001",
+    "142002",
     "142003",
+    "142004",
     "142005",
+    "142006",
+    "142007",
+    "142008",
+    "142009",
+    "142010",
     "142084",
     "143004",
     "143005",
@@ -3472,9 +3479,9 @@
     {
       "product": "the-road-darkens",
       "total": 91,
-      "scripted": 67,
+      "scripted": 74,
       "player": 18,
-      "playerScripted": 3
+      "playerScripted": 10
     },
     {
       "product": "the-road-darkens-nightmare",
@@ -9750,7 +9757,7 @@
       "name": "Gandalf",
       "type": "hero",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -9766,7 +9773,7 @@
       "name": "Boromir",
       "type": "ally",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -9782,7 +9789,7 @@
       "name": "Bilbo Baggins",
       "type": "ally",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -9790,7 +9797,7 @@
       "name": "Flame of Anor",
       "type": "event",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -9798,7 +9805,7 @@
       "name": "Gandalf's Staff",
       "type": "attachment",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -9806,7 +9813,7 @@
       "name": "Wizard Pipe",
       "type": "attachment",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -9814,7 +9821,7 @@
       "name": "Fellowship of the Ring",
       "type": "attachment",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {

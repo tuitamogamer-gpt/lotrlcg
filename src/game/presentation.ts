@@ -460,6 +460,7 @@ export function recordObservation(
           MULLIGAN: "Your new opening hand",
           PLAY: "Card played",
           PLAY_DISCARD: "Event played from discard",
+          PLAY_DECK: "Card played with Gandalf",
           ABILITY: "Ability used",
           COMMIT: "Characters committed",
           RESOLVE_ESCAPE: "Escape test",

@@ -74,6 +74,11 @@ import {
   seatName,
 } from "../game/table";
 import type { Action, GameState, Unit } from "../game/types";
+import {
+  GANDALF_DECK_PREVIEW,
+  gandalfFaceupCard,
+} from "../game/road-darkens-player-cards";
+import { gandalfDeckPlayReason } from "../game/actions";
 import { emynMuilMustCommit } from "../game/emyn-muil";
 import { RHOS } from "../game/rhosgobel";
 import { ROAD } from "../game/road-rivendell";
@@ -550,6 +555,7 @@ export function Hand({
   s,
   inspect,
   play,
+  playDeck,
   dispatch,
   art,
   onPiles,
@@ -557,6 +563,8 @@ export function Hand({
   s: GameState;
   inspect: (u: Unit) => void;
   play: (u: Unit) => void;
+  /** Gandalf (The Road Darkens): play the faceup top card of the deck. */
+  playDeck?: () => void;
   dispatch: (a: Action) => unknown;
   art: (u: Unit) => ReactNode;
   onPiles: () => void;
@@ -568,9 +576,12 @@ export function Hand({
     "type",
   ] as const);
   const [onlyPlayable, setOnlyPlayable] = useState(false);
+  const deckTop = gandalfFaceupCard(s);
+  const deckReason = deckTop ? gandalfDeckPlayReason(s) : null;
   const handActionable = (u: Unit) =>
     !playReason(s, u) || availableAbilities(s, u).some((a) => !a.disabled);
-  const playable = s.hand.filter(handActionable).length;
+  const playable =
+    s.hand.filter(handActionable).length + (deckTop && !deckReason ? 1 : 0);
   const cards = [...s.hand]
     .filter((u) => !onlyPlayable || handActionable(u))
     .sort((a, b) =>
@@ -626,6 +637,39 @@ export function Hand({
         </label>
       </div>
       <motion.div layoutScroll className="hand-cards">
+        {deckTop &&
+          (() => {
+            const top = deckTopPreview(s, deckTop);
+            const label = deckReason ?? "Playable now with Gandalf";
+            return (
+              <div
+                className={`hand-card deck-top ${deckReason ? "" : "playable"}`}
+                role="group"
+                aria-label="Top of your deck, faceup"
+              >
+                <button
+                  className="hand-art"
+                  onClick={() => inspect(top)}
+                  aria-label={`Inspect the top card of your deck: ${card(deckTop).name}`}
+                  aria-description={label}
+                  title={`${card(deckTop).name} · ${label}`}
+                >
+                  {art(top)}
+                </button>
+                <span className="deck-top-label">Top of deck · faceup</span>
+                {playDeck && !deckReason && (
+                  <button
+                    className="hand-play deck-play"
+                    title="Play the top card of your deck with Gandalf"
+                    onClick={playDeck}
+                  >
+                    Play with Gandalf
+                    <ArrowRight size={13} />
+                  </button>
+                )}
+              </div>
+            );
+          })()}
         <CardPresence>
           {cards.map((u, i) => {
             const reason = playReason(s, u);
@@ -710,6 +754,21 @@ export function Hand({
 function PlusIcon() {
   return <span aria-hidden="true">+</span>;
 }
+/** A display unit for the faceup top card of the deck. */
+export const deckTopPreview = (s: GameState, code: string): Unit => ({
+  id: `${GANDALF_DECK_PREVIEW}${activeSeat(s)}`,
+  code,
+  owner: activeSeat(s),
+  exhausted: false,
+  damage: 0,
+  progress: 0,
+  resources: 0,
+  committed: false,
+  attachments: [],
+  boost: 0,
+  attacked: false,
+  shadows: [],
+});
 export function CardHoverPreview({ enabled }: { enabled: boolean }) {
   const [preview, setPreview] = useState<{
     src: string;

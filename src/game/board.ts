@@ -33,6 +33,7 @@ import * as EredSupport from "./ered-mithrin-player-support";
 import type { DamageContext } from "./damage-context";
 import * as BatchPlayers from "./batch4-player";
 import * as BlackRidersPlayers from "./black-riders-player-cards";
+import * as RoadDarkensPlayers from "./road-darkens-player-cards";
 import * as WildsPlayers from "./wilds-player";
 import { batch4Scenario } from "./batch4-scenarios";
 import { dealEnemyShadows } from "./considered-engagement";
@@ -1498,6 +1499,7 @@ export function damage(
   batch4Scenario(s).damageDealt?.(s, u, value, context);
   Mumakil.mumakilDamageDealt(s, u, value, context);
   HaradResponses.haradPlayerDamageTaken(s, u, value, context);
+  RoadDarkensPlayers.roadDarkensPlayerDamageTaken(s, u, value);
   if (u.damage >= stats(s, u).health)
     City.cityCharacterDestroyed(s, u, context);
   if (u.damage >= stats(s, u).health)
@@ -1847,6 +1849,7 @@ export function destroy(
     destruction &&
     ["ally", "objective-ally", "ship-objective", "hero"].includes(lastKnownType)
   ) {
+    RoadDarkensPlayers.roadDarkensPlayerCharacterDestroyed(s, u);
     for (const h of allHeroes(s))
       for (const a of h.attachments)
         if (
@@ -3895,6 +3898,7 @@ export function allyEntryResponses(
   ashPlayerAllyEntered(s, u);
   landSorrowPlayerAllyEntered(s, u);
   BlackRidersPlayers.blackRidersPlayerAllyEntered(s, u);
+  RoadDarkensPlayers.roadDarkensPlayerAllyEntered(s, u);
   EredFinalPlayers.eredFinalPlayerAllyEntered(s, u, played, fromHand);
   EredPlayers.eredMithrinPlayerAllyEntered(s, u, played);
   BatchPlayers.batch4PlayerAllyEntered(s, u, played);

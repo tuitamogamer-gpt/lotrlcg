@@ -967,6 +967,19 @@ main:focus {
   transform: translateY(-3px);
   border-color: #dcc487;
 }
+/* Gandalf (The Road Darkens): the faceup top card of the deck. */
+.hand-card.deck-top {
+  border-style: dashed;
+  border-color: #b8c4d080;
+}
+.deck-top-label {
+  display: block;
+  font-size: var(--text-small);
+  letter-spacing: 0.3px;
+  color: #c3cdd4;
+  padding: 6px 9px;
+  border-top: 1px solid var(--line);
+}
 .hand-art {
   position: relative;
   height: 126px;

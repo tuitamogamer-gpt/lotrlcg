@@ -136,9 +136,14 @@ import { watcherWaterCannotExhaust } from "./game/watcher-water";
 import { amonPlayerCannotDeclareAttack } from "./game/amon-din-player-cards";
 import {
   eventXMaximum,
+  gandalfDeckPlayReason,
   replayEventProblem,
   eventReplayPayments,
 } from "./game/actions";
+import {
+  GANDALF_DECK_PREVIEW,
+  gandalfFaceupCard,
+} from "./game/road-darkens-player-cards";
 import { isHero } from "./game/card-types";
 import {
   useState,
@@ -291,6 +296,7 @@ import {
   HideTestSummary,
   usePreference,
   playReason,
+  deckTopPreview,
 } from "./ui/experience";
 
 import {
@@ -477,6 +483,7 @@ const handPlayDefinition = (s: GameState, u: Unit, amount?: number): Card => {
     ...(u.id.startsWith("discard-play:")
       ? { playOrigin: "discard" as const }
       : {}),
+    ...(u.id.startsWith(GANDALF_DECK_PREVIEW) ? { gandalfDeckPlay: true } : {}),
     ...(c.cost === "X" && amount !== undefined ? { cost: amount } : {}),
   };
 };
@@ -1236,6 +1243,8 @@ export default function App() {
   const sound = !audio.preferences.muted;
   const [playCard, setPlayCard] = useState<Unit | null>(null);
   const [playDiscardIndex, setPlayDiscardIndex] = useState<number | null>(null);
+  /** The play dialog shows Gandalf's faceup top card of the deck. */
+  const [playDeck, setPlayDeck] = useState(false);
   const [target, setTarget] = useState("");
   const [payment, setPayment] = useState<Record<string, number>>({});
   const [xCost, setXCost] = useState(1);
@@ -1683,11 +1692,36 @@ export default function App() {
   const beginPlay = (u: Unit) => {
     if (!game) return;
     setPlayDiscardIndex(null);
+    setPlayDeck(false);
     const reason = playReason(game, u);
     if (reason) {
       notify(reason);
       return;
     }
+    setTarget("");
+    setXCost(1);
+    const c = handPlayDefinition(game, u);
+    const costing = c.cost === "X" ? { ...c, cost: 1 } : c;
+    const legalTargets = needsTarget(u) ? playTargets(game, u) : [];
+    const cost = legalTargets.length
+      ? Math.min(...legalTargets.map((host) => playCost(game, costing, host)))
+      : playCost(game, costing);
+    setPayment(planCardPayment(game, costing, cost));
+    setPlayCard(u);
+  };
+  const beginDeckPlay = () => {
+    if (!game) return;
+    const code = gandalfFaceupCard(game);
+    const reason = code
+      ? gandalfDeckPlayReason(game)
+      : "Your deck has no faceup top card.";
+    if (!code || reason) {
+      notify(reason ?? "");
+      return;
+    }
+    const u = deckTopPreview(game, code);
+    setPlayDiscardIndex(null);
+    setPlayDeck(true);
     setTarget("");
     setXCost(1);
     const c = handPlayDefinition(game, u);
@@ -1723,6 +1757,7 @@ export default function App() {
     }
     setTarget("");
     setXCost(1);
+    setPlayDeck(false);
     setPlayDiscardIndex(index);
     setPayment(eventReplayPayments(game, u)[0] ?? {});
     setShowPiles(false);
@@ -3539,6 +3574,7 @@ export default function App() {
                   s={game}
                   inspect={(u) => setDetail(card(u.code))}
                   play={beginPlay}
+                  playDeck={beginDeckPlay}
                   dispatch={dispatch}
                   art={(u) => <Art c={card(u.code)} />}
                   onPiles={() => setShowPiles(true)}
@@ -4411,21 +4447,28 @@ export default function App() {
                   onClick={() => {
                     if (
                       dispatch(
-                        playDiscardIndex === null
+                        playDeck
                           ? {
-                              type: "PLAY",
-                              id: playCard.id,
+                              type: "PLAY_DECK",
                               target,
                               payment,
                               amount: xCost,
                             }
-                          : {
-                              type: "PLAY_DISCARD",
-                              index: playDiscardIndex,
-                              target,
-                              payment,
-                              amount: xCost,
-                            },
+                          : playDiscardIndex === null
+                            ? {
+                                type: "PLAY",
+                                id: playCard.id,
+                                target,
+                                payment,
+                                amount: xCost,
+                              }
+                            : {
+                                type: "PLAY_DISCARD",
+                                index: playDiscardIndex,
+                                target,
+                                payment,
+                                amount: xCost,
+                              },
                       )
                     )
                       setPlayCard(null);

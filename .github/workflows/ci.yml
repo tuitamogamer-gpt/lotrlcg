@@ -826,6 +826,8 @@ jobs:
             suite: test:browser-otd-players
           - group: black-riders-players
             suite: test:browser-black-riders-players
+          - group: road-darkens-players
+            suite: test:browser-road-darkens-players
           - group: wainriders
             suite: test:browser-wainriders
           - group: ulfast

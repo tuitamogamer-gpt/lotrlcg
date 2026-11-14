@@ -5,6 +5,7 @@ import {
   blackRidersPlayerDefenseBonus,
   blackRidersPlayerUndefendedTargets,
 } from "../game/black-riders-player-cards";
+import { roadDarkensPlayerDefenseBonus } from "../game/road-darkens-player-cards";
 import { druadanForestAttackStat } from "../game/druadan-forest";
 import { batch4Scenario } from "../game/batch4-scenarios";
 import { stormcallerAttackBonus } from "../game/stormcaller-player";
@@ -327,7 +328,10 @@ export function CombatDialog({
           landSorrowPlayerAttackBonus(s, u, enemy) +
           blackRidersPlayerAttackBonus(s, u, enemy)
         : 0) +
-      (defending ? blackRidersPlayerDefenseBonus(s, u, enemy) : 0),
+      (defending
+        ? blackRidersPlayerDefenseBonus(s, u, enemy) +
+          roadDarkensPlayerDefenseBonus(s, u, enemy)
+        : 0),
     0,
   );
   const ownAttacker = picked.some((u) => ownerOf(s, u) === activeSeat(s));

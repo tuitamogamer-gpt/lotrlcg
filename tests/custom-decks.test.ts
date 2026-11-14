@@ -270,7 +270,7 @@ test("deckbuilding rules explain every problem and RingsDB lists import with a r
   const report = parseRingsDbDeck(
     {
       name: "Leadership rush",
-      heroes: { "01001": 1, "02001": 1, "142002": 1 },
+      heroes: { "01001": 1, "02001": 1, "143002": 1 },
       slots: {
         "01013": 3,
         "01014": 2,
@@ -307,5 +307,5 @@ test("deckbuilding rules explain every problem and RingsDB lists import with a r
   });
   assert.equal(report.unsupported.length, 1);
   assert.equal(report.unsupported[0].code, "22146");
-  assert.deepEqual(report.heroesDropped, ["142002"]);
+  assert.deepEqual(report.heroesDropped, ["143002"]);
 });

@@ -8,6 +8,7 @@ import {
 import { fortressNurnPlayerUnit } from "./fortress-nurn-player";
 import { hobbitPlayerExtraPayers } from "./hobbit-player-cards";
 import * as BlackRidersPlayers from "./black-riders-player-cards";
+import * as RoadDarkensPlayers from "./road-darkens-player-cards";
 import { ereborCostReduction } from "./erebor-treasures";
 import { wandererNoMatch, sarumanPays } from "./wainriders-player-support";
 import {
@@ -688,6 +689,7 @@ export function stats(s: GameState, u: Unit) {
           longDarkBonus.will,
           shadowFlameBonus.will,
           Realm.realmWillBonus(s, u),
+          RoadDarkensPlayers.roadDarkensPlayerWillBonus(s, u),
           u.code === "rc135" && s.mendorBoost ? 2 : 0,
           u.attachments.filter((a) => !a.blanked && a.code === "01027").length *
             2,
@@ -1326,6 +1328,7 @@ export function eligiblePayers(s: GameState, c: Card, target?: Unit) {
         Mordor.mordorIgnoresResourceMatch(s) ||
         (c.code === "22062" && hasTrait(h, "Rohan")) ||
         hasResourceIcon(h, c.sphere_code) ||
+        RoadDarkensPlayers.gandalfDeckPayer(h, c) ||
         (actualCost > 0 &&
           c.type_code === "ally" &&
           h.code === "04128" &&

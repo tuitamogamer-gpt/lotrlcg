@@ -1,6 +1,7 @@
 import { wainridersPlayerAttackKilled } from "./wainriders-player";
 import { hobbitPlayerNoDefenseExhaust } from "./hobbit-player-cards";
 import * as BlackRidersPlayers from "./black-riders-player-cards";
+import * as RoadDarkensPlayers from "./road-darkens-player-cards";
 import { roadDarkensFrodoDefended } from "./lotr-saga";
 import {
   otdPlayerAttackersDeclared,
@@ -598,7 +599,8 @@ export function combatDefenderDefense(
     stats(s, defender).defense +
       Angmar.angmarDefenseBonus(s, defender, enemy) +
       Rhudaur.rhudaurDefenseBonus(s, enemy, defender) +
-      BlackRidersPlayers.blackRidersPlayerDefenseBonus(s, defender, enemy) -
+      BlackRidersPlayers.blackRidersPlayerDefenseBonus(s, defender, enemy) +
+      RoadDarkensPlayers.roadDarkensPlayerDefenseBonus(s, defender, enemy) -
       (combat.defensePenalty ?? 0),
   );
 }

@@ -9,6 +9,7 @@ import {
   blackRidersPlayerEffect,
   blackRidersPlayerUndefendedTargets,
 } from "./black-riders-player-cards";
+import { roadDarkensPlayerEffect } from "./road-darkens-player-cards";
 import {
   hobbitPlayerEffect,
   hobbitPlayerRefreshEnd,
@@ -628,6 +629,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (fortressNurnPlayerEffect(s, e)) return;
   if (hobbitPlayerEffect(s, e)) return;
   if (blackRidersPlayerEffect(s, e)) return;
+  if (roadDarkensPlayerEffect(s, e)) return;
   if (wainridersPlayerEffect(s, e)) return;
   if (ulfastPlayerEffect(s, e)) return;
   if (HaradPlayers.handleHaradPlayerEffect(s, e)) return;

@@ -858,6 +858,11 @@
   outline: 2px solid #b9bf81;
   outline-offset: 3px;
 }
+/* Gandalf (The Road Darkens): another player's faceup top card of the deck. */
+.companion-deck-top > img {
+  outline: 1px dashed #b8c4d0a0;
+  outline-offset: 2px;
+}
 .companion-tokens {
   display: flex;
   gap: 3px;

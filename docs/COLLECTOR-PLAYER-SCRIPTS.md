@@ -47,7 +47,11 @@ Dúnedain Lookout cancels only an enemy's eligible When Revealed effect while th
 physical enemy still enters play, and respects encounter cancellation bans.
 
 End-round Sellsword group payment resolves before new-round resources. Galadriel
-and Elrond discard at the actual end of the round. Mablung's engagement bonus lasts
+and Elrond discard at the actual end of the round. Since The Road Darkens player
+import, both show the reviewed RingsDB scans pinned in
+`tests/road-darkens-player-art.json`, and Elrond's text follows the printed card
+("heal all damage from a hero"); see
+[The Road Darkens player scripts](ROAD-DARKENS-PLAYER-SCRIPTS.md). Mablung's engagement bonus lasts
 through phase changes and clears at round end; the client and coach display the
 current engagement cost. Elf-stone uses the explored location attachment snapshot
 and the current first player's hand, including with multiple active locations.

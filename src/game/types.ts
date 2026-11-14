@@ -7,6 +7,11 @@ export interface Card {
   playOrigin?: "hand" | "deck" | "discard";
   /** Physical owner for costs that inspect an owner’s private zones. */
   playOwner?: number;
+  /**
+   * Played from the top of the deck with Gandalf (The Road Darkens), who then
+   * has the printed leadership, lore, tactics and spirit icons.
+   */
+  gandalfDeckPlay?: boolean;
   code: string;
   name: string;
   type_code: string;
@@ -898,6 +903,13 @@ export type Action =
   | {
       type: "PLAY_DISCARD";
       index: number;
+      target?: string;
+      payment?: Record<string, number>;
+      amount?: number;
+    }
+  | {
+      /** Gandalf (The Road Darkens): play the faceup top card of the deck. */
+      type: "PLAY_DECK";
       target?: string;
       payment?: Record<string, number>;
       amount?: number;

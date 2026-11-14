@@ -14,6 +14,7 @@ import {
 } from "@phosphor-icons/react";
 import type { Action, Card, GameState, Unit } from "../game/types";
 import { card, imageUrl, name, cachedImageSource } from "../game/cards";
+import { gandalfFaceupCard } from "../game/road-darkens-player-cards";
 import { foundationsArea } from "../game/foundations-stone-support";
 import {
   availableAbilities,
@@ -581,6 +582,20 @@ export function OtherFellowships({
                     </span>
                   </button>
                 ))}
+                {gandalfFaceupCard(s, i) && (
+                  <span
+                    className="companion-art companion-deck-top"
+                    role="img"
+                    aria-label={`${seatName(s, i)}’s faceup top card of the deck: ${card(gandalfFaceupCard(s, i)!).name}`}
+                    title={`Top of ${seatName(s, i)}’s deck, faceup (Gandalf)`}
+                  >
+                    <img
+                      src={imageUrl(card(gandalfFaceupCard(s, i)!))}
+                      data-card-code={gandalfFaceupCard(s, i)!}
+                      alt=""
+                    />
+                  </span>
+                )}
               </div>
               {dispatch &&
                 [...p.heroes, ...p.allies]

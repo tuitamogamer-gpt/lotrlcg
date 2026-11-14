@@ -1,6 +1,7 @@
 import * as FortressPlayers from "./fortress-nurn-player";
 import * as HobbitPlayers from "./hobbit-player-cards";
 import * as BlackRidersPlayers from "./black-riders-player-cards";
+import * as RoadDarkensPlayers from "./road-darkens-player-cards";
 import { fortressNurnPublicState } from "./fortress-nurn-support";
 import { massingPublicState } from "./massing-osgiliath-support";
 import { wmaPublicState } from "./we-must-away-support";
@@ -779,6 +780,7 @@ export function canPlay(
     resolvingEffect?: boolean;
     target?: Unit;
     playOrigin?: Card["playOrigin"];
+    gandalfDeckPlay?: boolean;
   } = {},
 ): string | null {
   syncAttachmentText(s);
@@ -792,6 +794,7 @@ export function canPlay(
     ...card(u.code),
     playOwner: u.owner ?? activeSeat(s),
     ...(options.playOrigin ? { playOrigin: options.playOrigin } : {}),
+    ...(options.gandalfDeckPlay ? { gandalfDeckPlay: true } : {}),
     ...(["01051", "19153"].includes(u.code) && options.target
       ? { cost: Number(card(options.target.code).cost) || 0 }
       : {}),
@@ -913,6 +916,11 @@ export function canPlay(
     u,
   );
   if (blackRidersProblem) return blackRidersProblem;
+  const roadDarkensProblem = RoadDarkensPlayers.roadDarkensPlayerPlayProblem(
+    s,
+    u,
+  );
+  if (roadDarkensProblem) return roadDarkensProblem;
   const wainProblem = WainPlayers.wainridersPlayerEventProblem(s, c.code);
   if (wainProblem) return wainProblem;
   const isengardProblem = Isengard.isengardEventProblem(s, c.code);
@@ -1619,7 +1627,9 @@ export function resolvePlayerCard(
         DepthsPlayers.depthsPlayerEventCost(s, u.code, target);
         DrownedPlayers.drownedPlayerEventCost(s, u.code, target);
         HobbitPlayers.hobbitPlayerEventCost(s, u, target);
-        const abilityCost = finalRingEventCost(s, u.code, target);
+        const abilityCost =
+          finalRingEventCost(s, u.code, target) ??
+          RoadDarkensPlayers.roadDarkensPlayerEventCost(s, u);
         if (played) stewardFearEventPlayed(s);
         s.queue.push(
           fx("playerEventAbility", {
@@ -1678,6 +1688,12 @@ export function handlePlayerEventAbilityEffect(
     !FortressPlayers.fortressNurnPlayerEvent(s, physical.code, e.source) &&
     !HobbitPlayers.hobbitPlayerEvent(s, physical.code, e.source) &&
     !BlackRidersPlayers.blackRidersPlayerEvent(s, physical.code, e.source) &&
+    !RoadDarkensPlayers.roadDarkensPlayerEvent(
+      s,
+      physical.code,
+      e.source,
+      e.count,
+    ) &&
     !WainPlayers.wainridersPlayerEvent(s, physical.code) &&
     !WrathPlayers.wrathRuinPlayerEvent(
       s,
@@ -1815,6 +1831,7 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
     FortressPlayers.fortressNurnPlayerTargets(s, c.code) ??
     HobbitPlayers.hobbitPlayerTargets(s, c.code) ??
     BlackRidersPlayers.blackRidersPlayerTargets(s, c.code) ??
+    RoadDarkensPlayers.roadDarkensPlayerTargets(s, c.code) ??
     WainPlayers.wainridersPlayerTargets(s, c.code) ??
     UlfastPlayers.ulfastPlayerTargets(s, c.code) ??
     WrathPlayers.wrathRuinPlayerPlayTargets(s, c.code) ??
@@ -1988,6 +2005,7 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
 export const needsTarget = (u: Unit) =>
   [
     "141009",
+    "142007",
     "131016",
     "131017",
     "132009",
@@ -2479,6 +2497,23 @@ export function availableAbilities(s: GameState, u: Unit) {
       ],
     ])
       if (label) results.push({ id: a.id, label, disabled: !!problem });
+    const roadDarkensLabel = RoadDarkensPlayers.roadDarkensPlayerAbilityLabel(
+      a.code,
+    );
+    if (
+      roadDarkensLabel &&
+      !a.blanked &&
+      attachmentController(s, u, a) === activeSeat(s)
+    )
+      results.push({
+        id: a.id,
+        label: roadDarkensLabel,
+        disabled: !!RoadDarkensPlayers.roadDarkensPlayerAbilityProblem(
+          s,
+          u,
+          a.id,
+        ),
+      });
     if (a.blanked) continue;
     const hobbitLabel = HobbitPlayers.hobbitPlayerAbilityLabel(a.code);
     if (hobbitLabel && attachmentController(s, u, a) === activeSeat(s))
@@ -2727,6 +2762,106 @@ export function finishOpeningHands(s: GameState) {
     nextRound(s);
 }
 
+/**
+ * Play a card from the hand. Gandalf (The Road Darkens) plays the top card of
+ * the deck the same way, as if it was in the hand, and can pay for it with
+ * any of the four sphere icons.
+ */
+function playHandCard(
+  s: GameState,
+  action: Extract<Action, { type: "PLAY" }>,
+  gandalfDeckPlay = false,
+) {
+  const u = s.hand.find((u) => u.id === action.id);
+  requireRule(u, "Card is not in your hand.");
+  const reason = canPlay(s, u, gandalfDeckPlay ? { gandalfDeckPlay } : {});
+  requireRule(!reason, reason ?? "");
+  const c = card(u.code);
+  if (HaradPlayers.haradPlayerPrepareHandPlay(s, u, action)) return;
+  if (StormPlayers.stormcallerGuardianPlay(s, u, action)) return;
+  if (needsTarget(u))
+    requireRule(
+      playTargets(s, u).some((x) => x.id === action.target),
+      "Choose a legal target.",
+    );
+  if (CobasEconomy.cobasEconomyPrepareHandPlay(s, u, action)) return;
+  if (u.code === "01034")
+    requireRule(
+      ["defense", "attack"].includes(s.phase),
+      "Feint is a Combat Action.",
+    );
+  if (["01065", "01066"].includes(u.code))
+    requireRule(
+      ["quest", "staging"].includes(s.phase),
+      "This is a Quest Action.",
+    );
+  if (u.code === "01023")
+    requireRule(
+      s.hand.some((a) => allyCanEnter(s, a.code)),
+      "You need an eligible ally in hand.",
+    );
+  if (["01036", "08143", "10085", "19149"].includes(u.code))
+    requireRule(
+      action.payment &&
+        Object.values(action.payment).filter((v) => v > 0).length === 3,
+      "This card must use 3 different heroes’ resource pools.",
+    );
+  let effectiveCost =
+    c.code === "08010" ? playerOrder(s).length : Number(c.cost) || 0;
+  if (["01051", "19153"].includes(u.code)) {
+    const target = discardTarget(s, action.target!);
+    effectiveCost =
+      Number(card(seatView(s, target.player).discard[target.index]).cost) || 0;
+  }
+  if (["01067", "06083"].includes(u.code)) {
+    effectiveCost = action.amount ?? 0;
+    requireRule(
+      Number.isInteger(effectiveCost) &&
+        effectiveCost > 0 &&
+        effectiveCost <= eventXMaximum(s, u.code),
+      "Choose a positive X within the available cards.",
+    );
+  }
+  const actualPayment = pay(
+    s,
+    {
+      ...c,
+      cost: effectiveCost,
+      playOwner: u.owner ?? activeSeat(s),
+      ...(gandalfDeckPlay ? { gandalfDeckPlay } : {}),
+    },
+    action.payment,
+    get(s, action.target),
+  );
+  DepthsPlayers.depthsPlayerCardPaid(s, u, actualPayment, true, true);
+  CobasEconomy.cobasEconomyCardPaid(s, u, actualPayment, true, true);
+  s.hand = s.hand.filter((x) => x.id !== u.id);
+  resolvePaidPlayerCard(
+    s,
+    u,
+    action.target,
+    effectiveCost,
+    true,
+    true,
+    false,
+    action.amount ?? effectiveCost,
+  );
+}
+/** Gandalf's deck play, checked as the actual play of the top card would be. */
+export function gandalfDeckPlayReason(s: GameState): string | null {
+  const problem = RoadDarkensPlayers.gandalfDeckProblem(s);
+  if (problem) return problem;
+  const trial = structuredClone(s);
+  const u = takePlayerDeck(trial, 0);
+  trial.used.push(RoadDarkensPlayers.GANDALF_DECK_KEY);
+  trial.hand.push(u);
+  return (
+    canPlay(trial, u, { gandalfDeckPlay: true }) ??
+    (needsTarget(u) && !playTargets(trial, u).length
+      ? "No eligible target is available."
+      : null)
+  );
+}
 export function applyAction(input: GameState, action: Action): GameState {
   const s = structuredClone(input);
   syncAttachmentText(s);
@@ -2969,76 +3104,27 @@ export function applyAction(input: GameState, action: Action): GameState {
       });
       break;
     }
-    case "PLAY": {
-      const u = s.hand.find((u) => u.id === action.id);
-      requireRule(u, "Card is not in your hand.");
-      const reason = canPlay(s, u);
-      requireRule(!reason, reason ?? "");
-      const c = card(u.code);
-      if (HaradPlayers.haradPlayerPrepareHandPlay(s, u, action)) break;
-      if (StormPlayers.stormcallerGuardianPlay(s, u, action)) break;
-      if (needsTarget(u))
-        requireRule(
-          playTargets(s, u).some((x) => x.id === action.target),
-          "Choose a legal target.",
-        );
-      if (CobasEconomy.cobasEconomyPrepareHandPlay(s, u, action)) break;
-      if (u.code === "01034")
-        requireRule(
-          ["defense", "attack"].includes(s.phase),
-          "Feint is a Combat Action.",
-        );
-      if (["01065", "01066"].includes(u.code))
-        requireRule(
-          ["quest", "staging"].includes(s.phase),
-          "This is a Quest Action.",
-        );
-      if (u.code === "01023")
-        requireRule(
-          s.hand.some((a) => allyCanEnter(s, a.code)),
-          "You need an eligible ally in hand.",
-        );
-      if (["01036", "08143", "10085", "19149"].includes(u.code))
-        requireRule(
-          action.payment &&
-            Object.values(action.payment).filter((v) => v > 0).length === 3,
-          "This card must use 3 different heroes’ resource pools.",
-        );
-      let effectiveCost =
-        c.code === "08010" ? playerOrder(s).length : Number(c.cost) || 0;
-      if (["01051", "19153"].includes(u.code)) {
-        const target = discardTarget(s, action.target!);
-        effectiveCost =
-          Number(card(seatView(s, target.player).discard[target.index]).cost) ||
-          0;
-      }
-      if (["01067", "06083"].includes(u.code)) {
-        effectiveCost = action.amount ?? 0;
-        requireRule(
-          Number.isInteger(effectiveCost) &&
-            effectiveCost > 0 &&
-            effectiveCost <= eventXMaximum(s, u.code),
-          "Choose a positive X within the available cards.",
-        );
-      }
-      const actualPayment = pay(
+    case "PLAY":
+      playHandCard(s, action);
+      break;
+    case "PLAY_DECK": {
+      const problem = gandalfDeckPlayReason(s);
+      requireRule(!problem, problem ?? "");
+      // The top card is played as if it was in the hand.
+      const u = takePlayerDeck(s, 0);
+      s.used.push(RoadDarkensPlayers.GANDALF_DECK_KEY);
+      s.hand.push(u);
+      log(s, `Gandalf plays ${card(u.code).name} from the top of the deck.`);
+      playHandCard(
         s,
-        { ...c, cost: effectiveCost, playOwner: u.owner ?? activeSeat(s) },
-        action.payment,
-        get(s, action.target),
-      );
-      DepthsPlayers.depthsPlayerCardPaid(s, u, actualPayment, true, true);
-      CobasEconomy.cobasEconomyCardPaid(s, u, actualPayment, true, true);
-      s.hand = s.hand.filter((x) => x.id !== u.id);
-      resolvePaidPlayerCard(
-        s,
-        u,
-        action.target,
-        effectiveCost,
+        {
+          type: "PLAY",
+          id: u.id,
+          target: action.target,
+          payment: action.payment,
+          amount: action.amount,
+        },
         true,
-        true,
-        false,
-        action.amount ?? effectiveCost,
       );
       break;
     }
@@ -3217,6 +3303,11 @@ export function applyAction(input: GameState, action: Action): GameState {
             !BatchPlayers.useBatch4PlayerAbility(s, u, action.attachmentId) &&
             !HobbitPlayers.useHobbitPlayerAbility(s, u, action.attachmentId) &&
             !BlackRidersPlayers.useBlackRidersPlayerAbility(
+              s,
+              u,
+              action.attachmentId,
+            ) &&
+            !RoadDarkensPlayers.useRoadDarkensPlayerAbility(
               s,
               u,
               action.attachmentId,
@@ -4091,6 +4182,9 @@ export function publicState(s: GameState) {
               threatAttachments: attachments(p.threatAttachments ?? []),
               hand: p.hand.map((u) => ({ id: u.id, code: u.code })),
               deckCount: p.deck.length,
+              ...(RoadDarkensPlayers.gandalfFaceupCard(s, i)
+                ? { deckTop: RoadDarkensPlayers.gandalfFaceupCard(s, i) }
+                : {}),
               heroes: p.heroes.map(visibleUnit),
               allies: p.allies.map(visibleUnit),
               engaged: p.engaged.map(
@@ -4164,6 +4258,9 @@ export function publicState(s: GameState) {
         (!needsTarget(u) || playTargets(s, u).length > 0),
     })),
     deckCount: s.deck.length,
+    ...(RoadDarkensPlayers.gandalfFaceupCard(s)
+      ? { deckTop: RoadDarkensPlayers.gandalfFaceupCard(s) }
+      : {}),
     encounterCount: s.encounterDeck.length,
     pendingWolfReturns: s.pendingWolfReturns?.length ?? 0,
     ...(s.stewardFear

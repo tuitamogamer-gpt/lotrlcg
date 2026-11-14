@@ -72,6 +72,11 @@ const rules: Record<string, AttachmentRule> = {
   "141013": { type: "hero", traits: ["Hobbit"], limit: 1 },
   "141014": { type: "hero", restricted: 1, attack: 1 },
   "141015": { traits: ["Hobbit"], limit: 1 },
+  // The Lord of the Rings: The Road Darkens. Fellowship of the Ring's
+  // willpower and the abilities are in road-darkens-player-cards.ts.
+  "142008": { names: ["Gandalf"], restricted: 1 },
+  "142009": { traits: ["Istari"], limit: 1 },
+  "142010": { traits: ["Ring-bearer"] },
   "22110": { type: "hero", traits: ["Hobbit"], restricted: 1 },
   "22112": { type: "hero", limit: 1 },
   "22115": { health: 1 },

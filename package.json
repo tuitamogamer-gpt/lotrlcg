@@ -170,6 +170,7 @@
     "test:browser-hobbit-players": "node --import tsx scripts/browser-hobbit-players.mjs",
     "test:browser-otd-players": "node --import tsx scripts/browser-otd-players.mjs",
     "test:browser-black-riders-players": "node --import tsx scripts/browser-black-riders-players.mjs",
+    "test:browser-road-darkens-players": "node --import tsx scripts/browser-road-darkens-players.mjs",
     "test:flies-spiders-simulation": "node --import tsx --test tests/flies-spiders-simulation.test.ts",
     "test:browser-flies-spiders": "node --import tsx scripts/browser-flies-spiders.mjs",
     "test:lonely-mountain-simulation": "node --import tsx --test tests/lonely-mountain-simulation.test.ts",
