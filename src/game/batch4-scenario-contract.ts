@@ -4,7 +4,19 @@ import type { DamageContext } from "./damage-context";
 type Combat = NonNullable<GameState["combat"]>;
 export interface Batch4ScenarioHooks {
   setup?(s: GameState): void;
-  cardsDrawn?(s: GameState, player: number, count: number): void;
+  /** After a player draws cards; cardEffect is false for the resource phase draw. */
+  cardsDrawn?(
+    s: GameState,
+    player: number,
+    count: number,
+    cardEffect?: boolean,
+  ): void;
+  /** No card can be drawn at all, the resource phase draw included. */
+  drawBlocked?(s: GameState): boolean;
+  /** The characters that archery damage must be assigned to, if able. */
+  archeryTargets?(s: GameState, characters: Unit[]): Unit[] | undefined;
+  /** After damage is healed from a unit. */
+  healed?(s: GameState, u: Unit, amount: number): void;
   threatRaised?(s: GameState, player: number, amount: number): void;
   threatEliminationReduction?(s: GameState, player: number): number;
   cannotHeal?(s: GameState, unit: Unit): boolean;

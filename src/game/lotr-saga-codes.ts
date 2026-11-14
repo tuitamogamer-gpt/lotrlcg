@@ -34,6 +34,7 @@ export const TOS_ARAGORN = "143001";
 export const TREASON_SARUMAN_SCENARIO_IDS: readonly string[] = [
   "the-uruk-hai",
   "helms-deep",
+  "the-road-to-isengard",
 ];
 export const isTreasonSarumanScenarioId = (id: string | undefined) =>
   !!id && TREASON_SARUMAN_SCENARIO_IDS.includes(id);

@@ -1,0 +1,120 @@
+[
+  {
+    "code": "octgn:196d6c69-845a-494d-a49d-54d3dc6c1b4b",
+    "octgnid": "196d6c69-845a-494d-a49d-54d3dc6c1b4b",
+    "name": "The Voice of Saruman",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player draws 6 cards. Each player with more than 6 cards in his hand discards cards from his hand until he has only 6. Attach Saruman's Staff to Saruman.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 80,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Road to Isengard",
+    "side": "A",
+    "back_name": "The Voice of Saruman",
+    "back_text": "While Orthanc is the active location, Saruman is considered to be engaged with the first player.\nForced: When Orthanc is explored, cancel any progress placed on the quest this phase and return Orthanc to the staging area.\nIf a player has 0 cards in his hand, he is eliminated from the game. If the players defeat this stage, they win the game.",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "/cards/196d6c69-845a-494d-a49d-54d3dc6c1b4b.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/196d6c69-845a-494d-a49d-54d3dc6c1b4b.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 80,
+        "quantity": 1,
+        "octgnid": "196d6c69-845a-494d-a49d-54d3dc6c1b4b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/196d6c69-845a-494d-a49d-54d3dc6c1b4b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:7cae1eb0-8693-4eb8-b5f0-86a35a271410",
+    "octgnid": "7cae1eb0-8693-4eb8-b5f0-86a35a271410",
+    "name": "Rouse the Ents",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set Gates of Isengard, Orthanc, Saruman, and Saruman's Staff aside, out of play. Add each copy of Ent of Fangorn to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 78,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Road to Isengard",
+    "side": "A",
+    "back_name": "Rouse the Ents",
+    "back_text": "Players cannot draw cards or gain resources. Do not commit characters to the quest or reveal encounter cards during the quest phase.\nForced: At the end of the round, place 1 resource here. Then, the players may advance to stage 2. If the players advance, the first player shuffles the encounter discard pile into the encounter deck and reveals 1 encounter card for each resource here. Then, remove each Ent objective in the staging area from the game.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/7cae1eb0-8693-4eb8-b5f0-86a35a271410.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/7cae1eb0-8693-4eb8-b5f0-86a35a271410.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 78,
+        "quantity": 1,
+        "octgnid": "7cae1eb0-8693-4eb8-b5f0-86a35a271410",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7cae1eb0-8693-4eb8-b5f0-86a35a271410.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:9cb47ff2-5dff-404f-8fed-6ec0b6478ded",
+    "octgnid": "9cb47ff2-5dff-404f-8fed-6ec0b6478ded",
+    "name": "Breaking Isengard",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Make Gates of Isengard the active location. Add Saruman and Orthanc to the staging area.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 79,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Road to Isengard",
+    "side": "A",
+    "back_name": "Breaking Isengard",
+    "back_text": "The players cannot travel to Orthanc.\nForced: After a non-unique location is explored, place 1 damage here. Then, if there are 5 damage tokens here, advance to stage 3A.\nQuest Action: Exhaust Ent of Fangorn to place 2 progress on a non-unique location.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/9cb47ff2-5dff-404f-8fed-6ec0b6478ded.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/9cb47ff2-5dff-404f-8fed-6ec0b6478ded.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 79,
+        "quantity": 1,
+        "octgnid": "9cb47ff2-5dff-404f-8fed-6ec0b6478ded",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9cb47ff2-5dff-404f-8fed-6ec0b6478ded.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

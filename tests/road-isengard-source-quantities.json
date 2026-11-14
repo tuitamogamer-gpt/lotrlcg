@@ -1,0 +1,140 @@
+[
+  {
+    "name": "Aragorn",
+    "code": "143001",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Blast of Sorcery",
+    "code": "octgn:59c6b564-b927-481f-b505-ca9b1fe4f524",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Breaking Isengard",
+    "code": "octgn:9cb47ff2-5dff-404f-8fed-6ec0b6478ded",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Ent of Fangorn",
+    "code": "octgn:bb38c7cf-8c76-4b87-b218-5516bc366470",
+    "normal": 4,
+    "easy": 4
+  },
+  {
+    "name": "Gates of Isengard",
+    "code": "octgn:27299002-f9b0-4f9d-a87b-012a6a6993ca",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Gríma",
+    "code": "octgn:0fc7db5e-c389-4636-8c34-3d1dee3508ce",
+    "normal": 1,
+    "easy": 0
+  },
+  {
+    "name": "Isengard Orc",
+    "code": "octgn:0c6923ad-efbd-46b0-b5fc-93f90334ecf5",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Lieutenant of Orthanc",
+    "code": "octgn:44ca3879-246e-43c7-aa97-798be8dd193f",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Machines of Isengard",
+    "code": "octgn:a44d6ee9-79a6-4e55-ab8a-a165c4dbb882",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Open Pit",
+    "code": "octgn:d1cc0af9-7ab3-449b-baa2-da0bfdf6c987",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Orthanc",
+    "code": "octgn:9eb0298a-cb92-426d-87c6-37749aaae44b",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Plain of Isengard",
+    "code": "octgn:d30fcccc-2f1a-43bb-8bc4-ce0fccdd4a0f",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Poisoned Vapour",
+    "code": "octgn:dfd0e951-2ba4-45c5-bed9-24caf8ae868f",
+    "normal": 2,
+    "easy": 0
+  },
+  {
+    "name": "Ring-wall of Isengard",
+    "code": "octgn:f810a9d2-b2c2-49fd-966a-7bf9f0827030",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Rouse the Ents",
+    "code": "octgn:7cae1eb0-8693-4eb8-b5f0-86a35a271410",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Saruman",
+    "code": "octgn:e22fc95d-9729-40ea-b81c-1432a4a57e41",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Saruman's Orders",
+    "code": "octgn:c5d9d3c6-9321-4909-918d-2b81d7aa296d",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Saruman's Staff",
+    "code": "octgn:7275de5f-3f2f-47e0-a90a-58fc45c3bdcf",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Snaga",
+    "code": "octgn:c6adadf8-569a-4943-817b-44bf1418e07e",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "name": "Steaming Vent",
+    "code": "octgn:8ab1b53d-df75-487e-9351-60690fba1df5",
+    "normal": 3,
+    "easy": 1
+  },
+  {
+    "name": "The Voice of Saruman",
+    "code": "octgn:196d6c69-845a-494d-a49d-54d3dc6c1b4b",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Underground Armoury",
+    "code": "octgn:ef990329-db00-441a-8c7d-8b464321f093",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Wolf of Isengard",
+    "code": "octgn:fc2ed0de-aba1-49ad-94b3-94024116eeeb",
+    "normal": 2,
+    "easy": 1
+  }
+]

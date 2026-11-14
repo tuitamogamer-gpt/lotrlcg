@@ -1,0 +1,635 @@
+[
+  {
+    "code": "octgn:0c6923ad-efbd-46b0-b5fc-93f90334ecf5",
+    "octgnid": "0c6923ad-efbd-46b0-b5fc-93f90334ecf5",
+    "name": "Isengard Orc",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc.",
+    "text": "Peril. Archery 1.\nWhen Revealed: Either discard 1 random card from your hand, or reveal an encounter card.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 51,
+    "quantity": 2,
+    "threat": 1,
+    "attack": 2,
+    "defense": 1,
+    "health": 3,
+    "engagement": 29,
+    "shadow": "Shadow: Until the end of the round, attacking enemy gets +2 [defense].",
+    "encounter_set": "The Road to Isengard",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "2",
+      "defense": "1",
+      "health": "3",
+      "engagement": "29"
+    },
+    "imagesrc": "/cards/0c6923ad-efbd-46b0-b5fc-93f90334ecf5.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 51,
+        "quantity": 2,
+        "octgnid": "0c6923ad-efbd-46b0-b5fc-93f90334ecf5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0c6923ad-efbd-46b0-b5fc-93f90334ecf5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:0fc7db5e-c389-4636-8c34-3d1dee3508ce",
+    "octgnid": "0fc7db5e-c389-4636-8c34-3d1dee3508ce",
+    "name": "Gríma",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Rohan. Traitor.",
+    "text": "Doomed 2.\nForced: After Grima attacks a player, that player shuffles Grima back into the encounter deck and reveals an encounter card.",
+    "is_unique": true,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 49,
+    "quantity": 1,
+    "threat": 3,
+    "attack": 2,
+    "defense": 3,
+    "health": 3,
+    "engagement": 1,
+    "shadow": "Shadow: This attack is considered undefended.",
+    "encounter_set": "The Road to Isengard",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "2",
+      "defense": "3",
+      "health": "3",
+      "engagement": "1"
+    },
+    "imagesrc": "/cards/0fc7db5e-c389-4636-8c34-3d1dee3508ce.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 49,
+        "quantity": 1,
+        "octgnid": "0fc7db5e-c389-4636-8c34-3d1dee3508ce",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0fc7db5e-c389-4636-8c34-3d1dee3508ce.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:27299002-f9b0-4f9d-a87b-012a6a6993ca",
+    "octgnid": "27299002-f9b0-4f9d-a87b-012a6a6993ca",
+    "name": "Gates of Isengard",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Isengard.",
+    "text": "Immune to player card effects.\nForced: When Gates of Isengard is explored, each player searches the encounter deck and discard pile for an enemy and puts it into play engaged with him. Shuffle the encounter deck.",
+    "is_unique": true,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 54,
+    "quantity": 1,
+    "threat": 3,
+    "quest": 1,
+    "encounter_set": "The Road to Isengard",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "1",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/27299002-f9b0-4f9d-a87b-012a6a6993ca.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 54,
+        "quantity": 1,
+        "octgnid": "27299002-f9b0-4f9d-a87b-012a6a6993ca",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/27299002-f9b0-4f9d-a87b-012a6a6993ca.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 1
+  },
+  {
+    "code": "octgn:44ca3879-246e-43c7-aa97-798be8dd193f",
+    "octgnid": "44ca3879-246e-43c7-aa97-798be8dd193f",
+    "name": "Lieutenant of Orthanc",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Isengard.",
+    "text": "Forced: After Lieutenant of Orthanc attacks and destroys a character, that character's controller discards 1 random card from his hand.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 50,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 4,
+    "defense": 3,
+    "health": 5,
+    "engagement": 36,
+    "encounter_set": "The Road to Isengard",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "4",
+      "defense": "3",
+      "health": "5",
+      "engagement": "36"
+    },
+    "imagesrc": "/cards/44ca3879-246e-43c7-aa97-798be8dd193f.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 50,
+        "quantity": 2,
+        "octgnid": "44ca3879-246e-43c7-aa97-798be8dd193f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/44ca3879-246e-43c7-aa97-798be8dd193f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:59c6b564-b927-481f-b505-ca9b1fe4f524",
+    "octgnid": "59c6b564-b927-481f-b505-ca9b1fe4f524",
+    "name": "Blast of Sorcery",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Assign X damage among characters committed to the quest. X is 1 more than the number of players in the game.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 60,
+    "quantity": 3,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if the defending player has 1 or fewer cards in his hand).",
+    "encounter_set": "The Road to Isengard",
+    "printed_stats": {},
+    "imagesrc": "/cards/59c6b564-b927-481f-b505-ca9b1fe4f524.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 60,
+        "quantity": 3,
+        "octgnid": "59c6b564-b927-481f-b505-ca9b1fe4f524",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/59c6b564-b927-481f-b505-ca9b1fe4f524.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:7275de5f-3f2f-47e0-a90a-58fc45c3bdcf",
+    "octgnid": "7275de5f-3f2f-47e0-a90a-58fc45c3bdcf",
+    "name": "Saruman's Staff",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Artifact. Item. Staff.",
+    "text": "Forced: After a player draws any number of cards, Saruman attacks that player. Deal and resolve 2 shadow cards for this attack. Then, remove 1 damage from Saruman.\nWhile Saruman has any hit points remaining, the players cannot win the game.",
+    "is_unique": true,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 48,
+    "quantity": 1,
+    "encounter_set": "The Road to Isengard",
+    "printed_stats": {},
+    "imagesrc": "/cards/7275de5f-3f2f-47e0-a90a-58fc45c3bdcf.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 48,
+        "quantity": 1,
+        "octgnid": "7275de5f-3f2f-47e0-a90a-58fc45c3bdcf",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7275de5f-3f2f-47e0-a90a-58fc45c3bdcf.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8ab1b53d-df75-487e-9351-60690fba1df5",
+    "octgnid": "8ab1b53d-df75-487e-9351-60690fba1df5",
+    "name": "Steaming Vent",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Isengard.",
+    "text": "While Steaming Vent is in the staging area, it gains: \"Forced: After a player commits characters to the quest, he deals 1 damage to a questing character he controls.\"\nWizardry: Assign X damage among characters in play. X is 1 more than the number of players in the game.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 57,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 4,
+    "encounter_set": "The Road to Isengard",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/8ab1b53d-df75-487e-9351-60690fba1df5.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 57,
+        "quantity": 3,
+        "octgnid": "8ab1b53d-df75-487e-9351-60690fba1df5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8ab1b53d-df75-487e-9351-60690fba1df5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:9eb0298a-cb92-426d-87c6-37749aaae44b",
+    "octgnid": "9eb0298a-cb92-426d-87c6-37749aaae44b",
+    "name": "Orthanc",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Isengard.",
+    "text": "Immune to player card effects.\nWhile Orthanc is in the staging area, it gains: \"Forced: After the players quest successfully, the first player looks at the top 3 cards of the encounter deck, reveals 1, and discards the others.\"",
+    "is_unique": true,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 53,
+    "quantity": 1,
+    "threat": 2,
+    "quest": 1,
+    "encounter_set": "The Road to Isengard",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "1"
+    },
+    "imagesrc": "/cards/9eb0298a-cb92-426d-87c6-37749aaae44b.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 53,
+        "quantity": 1,
+        "octgnid": "9eb0298a-cb92-426d-87c6-37749aaae44b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9eb0298a-cb92-426d-87c6-37749aaae44b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:a44d6ee9-79a6-4e55-ab8a-a165c4dbb882",
+    "octgnid": "a44d6ee9-79a6-4e55-ab8a-a165c4dbb882",
+    "name": "Machines of Isengard",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Trigger the Wizardry effect on the active location. If no Wizardry effect is triggered this way, Machines of Isengard gains surge.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 62,
+    "quantity": 3,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, discard 1 random card from your hand.",
+    "encounter_set": "The Road to Isengard",
+    "printed_stats": {},
+    "imagesrc": "/cards/a44d6ee9-79a6-4e55-ab8a-a165c4dbb882.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 62,
+        "quantity": 3,
+        "octgnid": "a44d6ee9-79a6-4e55-ab8a-a165c4dbb882",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a44d6ee9-79a6-4e55-ab8a-a165c4dbb882.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:bb38c7cf-8c76-4b87-b218-5516bc366470",
+    "octgnid": "bb38c7cf-8c76-4b87-b218-5516bc366470",
+    "name": "Ent of Fangorn",
+    "type_code": "objective-ally",
+    "sphere_code": "encounter",
+    "traits": "Ent.",
+    "text": "While Ent of Fangorn is in the staging area, it gains: \"Quest Action: Exhaust a hero you control to discard the top card of the encounter deck. If that hero's [willpower] is greater than the discarded card's [threat], place 1 resource here. Then, if there are 3 resources here, discard them to take control of Ent of Fangorn. Any player may trigger this effect.\"",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 46,
+    "quantity": 4,
+    "willpower": 2,
+    "attack": 4,
+    "defense": 3,
+    "health": 4,
+    "encounter_set": "The Road to Isengard",
+    "printed_stats": {
+      "willpower": "2",
+      "attack": "4",
+      "defense": "3",
+      "health": "4"
+    },
+    "imagesrc": "/cards/bb38c7cf-8c76-4b87-b218-5516bc366470.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 46,
+        "quantity": 4,
+        "octgnid": "bb38c7cf-8c76-4b87-b218-5516bc366470",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bb38c7cf-8c76-4b87-b218-5516bc366470.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:d1cc0af9-7ab3-449b-baa2-da0bfdf6c987",
+    "octgnid": "d1cc0af9-7ab3-449b-baa2-da0bfdf6c987",
+    "name": "Open Pit",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Isengard.",
+    "text": "While Open Pit is in the staging area, it gains: \"Forced: After a player draws any number of cards from a player card effect, he raises his threat by 2.\"\nWizardry: Each player raises his threat by 2.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 59,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 3,
+    "encounter_set": "The Road to Isengard",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/d1cc0af9-7ab3-449b-baa2-da0bfdf6c987.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 59,
+        "quantity": 2,
+        "octgnid": "d1cc0af9-7ab3-449b-baa2-da0bfdf6c987",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d1cc0af9-7ab3-449b-baa2-da0bfdf6c987.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:d30fcccc-2f1a-43bb-8bc4-ce0fccdd4a0f",
+    "octgnid": "d30fcccc-2f1a-43bb-8bc4-ce0fccdd4a0f",
+    "name": "Plain of Isengard",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Isengard.",
+    "text": "X is the number of players in the game.\nWhile Plain of Isengard is in the staging area, archery damage must be assigned to allies, if able.\nWizardry: Each player discards 1 ally he controls.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 58,
+    "quantity": 2,
+    "quest": 3,
+    "encounter_set": "The Road to Isengard",
+    "printed_stats": {
+      "threat": "X",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/d30fcccc-2f1a-43bb-8bc4-ce0fccdd4a0f.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 58,
+        "quantity": 2,
+        "octgnid": "d30fcccc-2f1a-43bb-8bc4-ce0fccdd4a0f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d30fcccc-2f1a-43bb-8bc4-ce0fccdd4a0f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:dfd0e951-2ba4-45c5-bed9-24caf8ae868f",
+    "octgnid": "dfd0e951-2ba4-45c5-bed9-24caf8ae868f",
+    "name": "Poisoned Vapour",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge.\nWhen Revealed: Exhaust each damaged character. Until the end of the combat phase, treat each damaged character's text box as if it were blank (except for Traits).",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 61,
+    "quantity": 2,
+    "shadow": "Shadow: Discard a non-objective attachment you control.",
+    "encounter_set": "The Road to Isengard",
+    "printed_stats": {},
+    "imagesrc": "/cards/dfd0e951-2ba4-45c5-bed9-24caf8ae868f.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 61,
+        "quantity": 2,
+        "octgnid": "dfd0e951-2ba4-45c5-bed9-24caf8ae868f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dfd0e951-2ba4-45c5-bed9-24caf8ae868f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e22fc95d-9729-40ea-b81c-1432a4a57e41",
+    "octgnid": "e22fc95d-9729-40ea-b81c-1432a4a57e41",
+    "name": "Saruman",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Istari. Traitor.",
+    "text": "Indestructible. Immune to player card effects. Cannot leave the staging area.\nForced: When Saruman is dealt a shadow card with a Wizardry effect, the defending player resolves that Wizardry effect as if he is the only player in the game.",
+    "is_unique": true,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 47,
+    "quantity": 1,
+    "threat": 4,
+    "attack": 6,
+    "defense": 4,
+    "health": 6,
+    "engagement": 50,
+    "encounter_set": "The Road to Isengard",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "6",
+      "defense": "4",
+      "health": "6",
+      "engagement": "50"
+    },
+    "imagesrc": "/cards/e22fc95d-9729-40ea-b81c-1432a4a57e41.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 47,
+        "quantity": 1,
+        "octgnid": "e22fc95d-9729-40ea-b81c-1432a4a57e41",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e22fc95d-9729-40ea-b81c-1432a4a57e41.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ef990329-db00-441a-8c7d-8b464321f093",
+    "octgnid": "ef990329-db00-441a-8c7d-8b464321f093",
+    "name": "Underground Armoury",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Isengard.",
+    "text": "While Underground Armoury is in the staging area, it gains: \"Forced: After an enemy engages a player, deal it a shadow card.\"\nWizardry: Each player exhausts a character he controls.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 56,
+    "quantity": 2,
+    "threat": 4,
+    "quest": 3,
+    "encounter_set": "The Road to Isengard",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/ef990329-db00-441a-8c7d-8b464321f093.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 56,
+        "quantity": 2,
+        "octgnid": "ef990329-db00-441a-8c7d-8b464321f093",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ef990329-db00-441a-8c7d-8b464321f093.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f810a9d2-b2c2-49fd-966a-7bf9f0827030",
+    "octgnid": "f810a9d2-b2c2-49fd-966a-7bf9f0827030",
+    "name": "Ring-wall of Isengard",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Isengard.",
+    "text": "While Ring-wall of Isengard is in the staging area, it gains: \"Forced: After any amount of damage is healed from a character, its owner discards 1 card from his hand.\"\nWizardry: Each player discards 1 random card from his hand.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 55,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 2,
+    "encounter_set": "The Road to Isengard",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2"
+    },
+    "imagesrc": "/cards/f810a9d2-b2c2-49fd-966a-7bf9f0827030.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 55,
+        "quantity": 3,
+        "octgnid": "f810a9d2-b2c2-49fd-966a-7bf9f0827030",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f810a9d2-b2c2-49fd-966a-7bf9f0827030.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:fc2ed0de-aba1-49ad-94b3-94024116eeeb",
+    "octgnid": "fc2ed0de-aba1-49ad-94b3-94024116eeeb",
+    "name": "Wolf of Isengard",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Forced: When Wolf of Isengard is dealt a shadow card with a Wizardry effect, either discard 1 card from your hand, or Wolf of Isengard makes an additional attack against you after this one.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 52,
+    "quantity": 2,
+    "threat": 2,
+    "attack": 3,
+    "defense": 1,
+    "health": 4,
+    "engagement": 25,
+    "shadow": "Shadow: Deal 1 damage to defending character.",
+    "encounter_set": "The Road to Isengard",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "1",
+      "health": "4",
+      "engagement": "25"
+    },
+    "imagesrc": "/cards/fc2ed0de-aba1-49ad-94b3-94024116eeeb.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 52,
+        "quantity": 2,
+        "octgnid": "fc2ed0de-aba1-49ad-94b3-94024116eeeb",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fc2ed0de-aba1-49ad-94b3-94024116eeeb.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

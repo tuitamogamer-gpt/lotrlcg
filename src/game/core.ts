@@ -1524,6 +1524,10 @@ export function draw(
     log(s, "Shrine to Morgoth prevents card draw.", "danger");
     return;
   }
+  if (batch4Scenario(s).drawBlocked?.(s)) {
+    log(s, "An encounter card prevents drawing cards.", "danger");
+    return;
+  }
   if (cardEffect && noPlayerCardEconomy(s)) {
     log(
       s,
@@ -1560,7 +1564,7 @@ export function draw(
   if (n) {
     log(s, `Drew ${n} ${n === 1 ? "card" : "cards"}.`);
     Fords.fordsCardsDrawn(s);
-    batch4Scenario(s).cardsDrawn?.(s, activeSeat(s), n);
+    batch4Scenario(s).cardsDrawn?.(s, activeSeat(s), n, cardEffect);
   }
 }
 

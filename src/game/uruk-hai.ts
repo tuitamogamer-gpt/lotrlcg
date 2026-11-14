@@ -1,7 +1,7 @@
 import type { Effect, GameState, Option, Unit } from "./types";
 import type { Batch4ScenarioHooks } from "./batch4-scenario-contract";
 import { card, name } from "./cards";
-import { choose, fx, get, log, make, prepend, random, shuffle } from "./core";
+import { choose, fx, get, log, make, prepend, shuffle } from "./core";
 import { depositInFlightEncounterCards, questDefeated, win } from "./board";
 import {
   activeSeat,
@@ -17,7 +17,6 @@ import { isAlly, isHero } from "./card-types";
 import { isEnemy } from "./ships";
 import { mainQuestUnit } from "./quest-state";
 import { lotrSagaCheck } from "./lotr-saga";
-import { returnToStaging } from "./black-riders-hunted";
 import {
   UH,
   UH_BARRIER_LIMIT,
@@ -37,6 +36,13 @@ import {
   whiteHandToughness,
   whiteHandTreachery,
 } from "./white-hand";
+import {
+  snagaOrcsCharacterDestroyed,
+  snagaOrcsEffect,
+  snagaOrcsEnemyRevealed,
+  snagaOrcsShadow,
+  snagaOrcsTreachery,
+} from "./snaga-orcs";
 export * from "./uruk-hai-support";
 
 const TREACHERIES: readonly string[] = [
@@ -55,7 +61,6 @@ const isLocation = (u: Unit) => card(u.code).type_code === "location";
 const seatLabel = (s: GameState, p: number) =>
   s.table ? ` · ${seatName(s, p)}` : "";
 const who = (s: GameState, p: number) => (s.table ? seatName(s, p) : "you");
-const verb = (s: GameState, base: string) => (s.table ? `${base}s` : base);
 const following = (s: GameState) =>
   s.urukHai?.currentQuest === UH.follow && stageLive(s);
 const rescuing = (s: GameState) =>
@@ -194,13 +199,11 @@ function encounter(
   if (!q) return false;
   const player = activeSeat(s);
   if (whiteHandEnemyRevealed(s, code, fromReveal)) return true;
-  if ([UH.uruks, UH.snaga].includes(code as never)) {
+  if (snagaOrcsEnemyRevealed(s, code, fromReveal)) return true;
+  if (code === UH.uruks) {
     if (!fromReveal) return true;
     const u = [...s.staging].reverse().find((x) => x.code === code);
-    prepend(
-      s,
-      fx(code === UH.uruks ? "uhUruks" : "uhSnaga", { target: u?.id, player }),
-    );
+    prepend(s, fx("uhUruks", { target: u?.id, player }));
     return true;
   }
   if (!TREACHERIES.includes(code)) return false;
@@ -276,7 +279,7 @@ function treachery(s: GameState, code: string) {
       whiteHandTreachery(s, code);
       return;
     case UH.orders:
-      prepend(s, ...playerOrder(s).map((player) => fx("uhOrders", { player })));
+      snagaOrcsTreachery(s, code);
       return;
   }
 }
@@ -295,15 +298,6 @@ function shadow(s: GameState, code: string) {
         "danger",
       );
       return true;
-    case UH.orders:
-      c.attackBonus += 1;
-      c.uhOrders = true;
-      log(
-        s,
-        "Saruman's Orders: the attacking enemy gets +1 attack; if this attack destroys a character, it returns to the staging area.",
-        "danger",
-      );
-      return true;
     case UH.weariness:
       c.extraAttacks = (c.extraAttacks ?? 0) + 1;
       log(
@@ -316,7 +310,7 @@ function shadow(s: GameState, code: string) {
       prepend(s, fx("uhBanks", { player: p }));
       return true;
   }
-  return whiteHandShadow(s, code);
+  return snagaOrcsShadow(s, code) || whiteHandShadow(s, code);
 }
 function attackFinished(s: GameState, c: NonNullable<GameState["combat"]>) {
   if (!s.urukHai || !c.uhKilled || !c.uhKillPursuit) return [];
@@ -336,6 +330,7 @@ export function urukHaiEffect(s: GameState, e: Effect): boolean {
   const q = s.urukHai;
   if (!q || !e.kind.startsWith("uh")) return false;
   if (whiteHandEffect(s, e)) return true;
+  if (snagaOrcsEffect(s, e)) return true;
   const first = firstPlayer(s);
   const p = e.player ?? activeSeat(s),
     u = findUnit(s, e.target);
@@ -455,32 +450,6 @@ export function urukHaiEffect(s: GameState, e: Effect): boolean {
       );
       return true;
     }
-    case "uhOrders": {
-      const engaged = s.engaged.filter((x) => isEnemy(x));
-      const options: Option[] = [
-        ...engaged.map((x) => ({
-          id: `return-${x.id}`,
-          code: x.code,
-          label: `Return ${name(x)} to the staging area`,
-          effects: [fx("uhOrdersReturn", { target: x.id, player: p })],
-        })),
-        {
-          id: "reveal",
-          label: "Reveal an encounter card",
-          effects: [fx("reveal", { player: p })],
-        },
-      ];
-      choose(
-        s,
-        `Saruman's Orders · Choose${seatLabel(s, p)}`,
-        options,
-        "Each player must choose: either return an enemy engaged with him to the staging area, or reveal an encounter card.",
-      );
-      return true;
-    }
-    case "uhOrdersReturn":
-      if (u) returnToStaging(s, u);
-      return true;
     case "uhUruks": {
       choose(
         s,
@@ -504,26 +473,6 @@ export function urukHaiEffect(s: GameState, e: Effect): boolean {
           },
         ],
         "Peril. When Revealed: either increase the pursuit value by 3, or reveal an additional encounter card.",
-      );
-      return true;
-    }
-    case "uhSnaga": {
-      if (!s.hand.length) {
-        log(
-          s,
-          `Snaga: ${who(s, p)} ${s.table ? "has" : "have"} no card in hand.`,
-        );
-        return true;
-      }
-      const i = Math.floor(random(s) * s.hand.length);
-      const [discarded] = s.hand.splice(i, 1);
-      s.discard.push(discarded.code);
-      const cost = Number(card(discarded.code).cost) || 0;
-      if (u && cost > 0) u.roundThreat = (u.roundThreat ?? 0) + cost;
-      log(
-        s,
-        `Snaga: ${who(s, p)} ${verb(s, "discard")} a random card (${name(discarded)}, printed cost ${cost}); Snaga gets +${cost} threat until the end of the round.`,
-        "danger",
       );
       return true;
     }
@@ -862,7 +811,7 @@ export const URUK_HAI_HOOKS: Batch4ScenarioHooks = {
       return;
     c.uhKilled = true;
     whiteHandCharacterDestroyed(s, u, context);
-    if (c.uhOrders) c.returnToStaging = true;
+    snagaOrcsCharacterDestroyed(s, u, context);
   },
   effect: urukHaiEffect,
   sharedEffect: (e) =>

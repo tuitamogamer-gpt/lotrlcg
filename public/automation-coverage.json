@@ -5,8 +5,8 @@
     "playerCards": 814,
     "heroes": 100,
     "deckCards": 710,
-    "encounterCards": 1506,
-    "scenarios": 100,
+    "encounterCards": 1523,
+    "scenarios": 101,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -107,17 +107,18 @@
       "breaking-of-the-fellowship",
       "fog-on-the-barrow-downs",
       "the-uruk-hai",
-      "helms-deep"
+      "helms-deep",
+      "the-road-to-isengard"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2642,
-    "pending": 1541
+    "scripted": 2662,
+    "pending": 1521
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 203
+    "scripted": 206
   },
   "registeredCodes": [
     "01001",
@@ -1061,6 +1062,7 @@
     "octgn:0c0fdef7-f55a-4bcf-91f9-317cd7a00777",
     "octgn:0c15f99d-9066-4e7c-b364-104a0083d997",
     "octgn:0c44ed2b-976a-4b17-b7e7-e64b20f74fd7",
+    "octgn:0c6923ad-efbd-46b0-b5fc-93f90334ecf5",
     "octgn:0cb6d866-50dd-4eb0-a86a-8ed84bfeae0e",
     "octgn:0cdc4034-738d-487d-9a8c-8ef364772076",
     "octgn:0d30fbf1-6e8f-480f-9f2f-3196777f6e11",
@@ -1081,6 +1083,7 @@
     "octgn:0f3c746e-2d23-4cb9-a481-f919ffc8cdee",
     "octgn:0f5ffc36-fe0f-4097-ad67-dafda700d96f",
     "octgn:0f7ce386-9510-4fd5-93aa-145190f8d1de",
+    "octgn:0fc7db5e-c389-4636-8c34-3d1dee3508ce",
     "octgn:0fffdddc-d9f9-498a-9669-e840304ebb9b",
     "octgn:1062dfa2-d821-474d-9a8f-9eda79753222",
     "octgn:107805c4-6abf-4eb1-87fd-0ad7ffcfbf42",
@@ -1123,6 +1126,7 @@
     "octgn:1877b069-7015-4172-b5df-bbfd235b976f",
     "octgn:18d6f0aa-a62e-4ce5-b169-cae8836d8442",
     "octgn:19675b16-16ee-4477-a753-bd1cf7b51b7a",
+    "octgn:196d6c69-845a-494d-a49d-54d3dc6c1b4b",
     "octgn:19b732b9-a26a-4535-a438-7dd83cd4ecf2",
     "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1",
     "octgn:19e2470a-94c6-4f14-b824-7d2f952b60fd",
@@ -1217,6 +1221,7 @@
     "octgn:264adf61-31e1-46db-a655-7fee1d4282ae",
     "octgn:26642db7-c3a2-47f3-989d-27396e586d06",
     "octgn:26bb74c2-3c66-4828-8188-404bc42e713e",
+    "octgn:27299002-f9b0-4f9d-a87b-012a6a6993ca",
     "octgn:2744032b-21e4-4b52-a66e-f4c1926f451b",
     "octgn:275c7232-3671-4092-bb9a-9a62f9538225",
     "octgn:276e1411-be34-44fa-af2b-ebe9b36541f0",
@@ -1372,6 +1377,7 @@
     "octgn:447dd08d-693c-407f-8155-87164f212351",
     "octgn:4489214b-775c-4e63-b8ec-c504526e478f",
     "octgn:44c49a79-6396-494c-a311-bf1b25263acb",
+    "octgn:44ca3879-246e-43c7-aa97-798be8dd193f",
     "octgn:44d3c25c-e3ef-4ff0-a16a-8a75937bfffe",
     "octgn:451b7209-4dea-4167-948e-dca0079fb997",
     "octgn:4530258b-c362-4efe-a0c0-92a4f74c75b3",
@@ -1857,6 +1863,7 @@
     "octgn:59314974-a07d-4024-9951-40736209b6b9",
     "octgn:595c34f1-60e3-401a-bd65-df6dda627896",
     "octgn:5963e5c4-0f2e-43c4-afa2-a9b2cfde73d1",
+    "octgn:59c6b564-b927-481f-b505-ca9b1fe4f524",
     "octgn:5a0d35ad-e9af-48b1-8454-534753394ed2",
     "octgn:5a3a6917-900b-4878-9545-56c297a50248",
     "octgn:5a3d198a-5c72-42ec-b5ae-f183194632cf",
@@ -1963,6 +1970,7 @@
     "octgn:721bbc14-f14c-4464-9963-55a77ab2d9bc",
     "octgn:72276508-67e0-4133-8b9f-41fb8d44ffa9",
     "octgn:7271da0e-570b-461c-b632-b6f82ab2c146",
+    "octgn:7275de5f-3f2f-47e0-a90a-58fc45c3bdcf",
     "octgn:727b90c5-46b3-4568-9ab9-cb7c6e662428",
     "octgn:728f17db-d741-4f1b-92da-8aac3d78432d",
     "octgn:7295a9fb-961f-42ad-b07d-33793e2f2274",
@@ -2019,6 +2027,7 @@
     "octgn:7c5f503a-61aa-4f12-acdf-e52fc51e295f",
     "octgn:7c690a1f-83c5-4465-9c64-eaddc1b592e7",
     "octgn:7c92fba9-f79a-4004-886b-eb36698d1d34",
+    "octgn:7cae1eb0-8693-4eb8-b5f0-86a35a271410",
     "octgn:7cbf23fd-28c4-494c-97aa-b7fed050ad8b",
     "octgn:7ce50ea4-2496-414f-8fd5-5b076b58c9ee",
     "octgn:7d0387db-eba6-44e0-8602-b031a2927ca4",
@@ -2097,6 +2106,7 @@
     "octgn:8a4aebc3-32db-4b2f-965c-548058440a7c",
     "octgn:8a703700-ca1b-46fa-b5fc-67544c5ad254",
     "octgn:8a7a0942-0bd2-44b1-9a9b-057f38b225e9",
+    "octgn:8ab1b53d-df75-487e-9351-60690fba1df5",
     "octgn:8ab3701c-7814-403c-be93-21cdff4283ed",
     "octgn:8ac2d3ea-7e6d-4e9e-9cc5-70b65b24b835",
     "octgn:8affd994-f7f5-4341-8437-899f9a31b094",
@@ -2200,6 +2210,7 @@
     "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b",
     "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b:B",
     "octgn:9c81c18a-b143-48ae-a22c-821f52efc229",
+    "octgn:9cb47ff2-5dff-404f-8fed-6ec0b6478ded",
     "octgn:9ccd6851-ec1e-4d47-9e8d-486365c261e2",
     "octgn:9d1daee2-2d6e-4d9a-87e4-b706779555d4",
     "octgn:9d2926dc-ab14-492a-8f1e-b07c1b32b2d8",
@@ -2214,6 +2225,7 @@
     "octgn:9e678947-2687-4b3b-b98c-f05f289793ff",
     "octgn:9e864a49-89b3-4ea0-be1f-f4336adfa088",
     "octgn:9e9e76b7-ef3c-4c7c-baf2-061dc0d2ccd0",
+    "octgn:9eb0298a-cb92-426d-87c6-37749aaae44b",
     "octgn:9feef7b4-4ca7-4adc-aeb7-56947254588a",
     "octgn:9ff94935-ae08-4d86-859f-f4d0776a66e5",
     "octgn:a0417d08-1905-46f9-bd65-067c1c59f0a3",
@@ -2231,6 +2243,7 @@
     "octgn:a312e181-9209-4460-b6ba-c90c99e011fe",
     "octgn:a3173fc4-1ddb-470d-ae12-a35e24ea63a3",
     "octgn:a34ffb4e-c821-42aa-8dab-2914d274b3b1",
+    "octgn:a44d6ee9-79a6-4e55-ab8a-a165c4dbb882",
     "octgn:a46578d6-303e-4f35-9a11-8b9f807427ba",
     "octgn:a4cd5ce9-fc29-44b6-9bee-eafbbd431c49",
     "octgn:a4df63d1-cb3d-4510-9e26-3b734632f456",
@@ -2362,6 +2375,7 @@
     "octgn:ba77505a-1def-4537-a194-0b7482433a72",
     "octgn:babeedb8-f7cd-4e8a-a5c4-fbfdd57238fb",
     "octgn:bb1652ba-37e4-4a59-a7c7-39f398c0ab19",
+    "octgn:bb38c7cf-8c76-4b87-b218-5516bc366470",
     "octgn:bb58f446-da73-47e3-98e8-70f69ee77d34",
     "octgn:bb5d1d76-663f-4261-94ec-7a9bfc025acf",
     "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
@@ -2487,9 +2501,11 @@
     "octgn:d0bf9c82-d626-4602-a383-4a5660a08c5f",
     "octgn:d198aa74-21ec-462a-ac1a-f9c2fcf526cb",
     "octgn:d1a3a535-7679-4757-871c-80c50c003cff",
+    "octgn:d1cc0af9-7ab3-449b-baa2-da0bfdf6c987",
     "octgn:d2bf00ad-2e1e-4537-b662-f6f20f9a1cfe",
     "octgn:d2cd3802-0667-4124-b7b6-5e753ff71ec3",
     "octgn:d2e57235-6df7-40fc-9a47-1ad06b4ed7a3",
+    "octgn:d30fcccc-2f1a-43bb-8bc4-ce0fccdd4a0f",
     "octgn:d32ba7ec-fa7d-4a1a-b157-da4186e62ea6",
     "octgn:d33ef89b-13c9-49b2-a921-a527f27a415a",
     "octgn:d3a3d024-2321-4707-b319-eb62537e6d92",
@@ -2549,6 +2565,7 @@
     "octgn:df908f24-8927-42cf-a6dd-9dfc41de74c1",
     "octgn:df9ba79f-91a3-4fc7-a2af-6bddcc795f29",
     "octgn:dfd05c9f-1dc1-4af6-a22f-fe39969c6371",
+    "octgn:dfd0e951-2ba4-45c5-bed9-24caf8ae868f",
     "octgn:e0841275-753f-47bd-8d6d-807e4fb747ac",
     "octgn:e0fd5147-e1aa-42c3-972f-5cf0c93a6716",
     "octgn:e1001736-68fc-4e7b-a7df-23230876eb92",
@@ -2558,6 +2575,7 @@
     "octgn:e1b0b7ba-c097-481b-baba-53755545cbbe",
     "octgn:e1c521c0-2889-4f5e-a470-bf70bcf004bf",
     "octgn:e1edac2f-1d9c-44e6-af0a-10c3101f2709",
+    "octgn:e22fc95d-9729-40ea-b81c-1432a4a57e41",
     "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43",
     "octgn:e2a70b1d-2d38-48bd-a591-cd2844fe50fd",
     "octgn:e2c02f11-fdfb-402b-89de-1729d1364e4c",
@@ -2635,6 +2653,7 @@
     "octgn:ef7c6601-a62d-440a-89b1-5a9d6208481b",
     "octgn:ef815939-8e88-4a70-a4f4-bdf36a84ea77",
     "octgn:ef975c81-544a-4f1b-a3c4-d0bc42ef636c",
+    "octgn:ef990329-db00-441a-8c7d-8b464321f093",
     "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
     "octgn:efd4cef9-ce8b-4985-8825-853ba98baa2b",
     "octgn:efdbe76c-5b41-4f28-a390-a72ec784e5a3",
@@ -2688,6 +2707,7 @@
     "octgn:f77ffb66-297c-49e0-8ed5-9cc3bd715926",
     "octgn:f7badc7a-4e37-4606-8557-0fa4719227c0",
     "octgn:f7f5ca4e-42db-48f9-b4a5-efe419f53fa3",
+    "octgn:f810a9d2-b2c2-49fd-966a-7bf9f0827030",
     "octgn:f811f153-81f4-4688-8b4d-400215e6748a",
     "octgn:f829839e-b79d-465a-8ca9-bf6af975ce7b",
     "octgn:f86ef645-bc8b-41a0-b288-80118f5433cc",
@@ -2717,6 +2737,7 @@
     "octgn:fbc99604-7183-41fe-b37c-d5a8f54bea0e",
     "octgn:fbfee53c-fec3-4b55-a8b4-c7329f8f973e",
     "octgn:fc145eae-9671-4697-8d28-473f3b138295",
+    "octgn:fc2ed0de-aba1-49ad-94b3-94024116eeeb",
     "octgn:fc351b81-fc50-40a5-9f94-7ab885cb7a8c",
     "octgn:fc4f9f69-7870-4449-b89b-cd7b4dc158d0",
     "octgn:fc54b033-56cc-4ca9-8e0f-7f1c7b82bd6a",
@@ -3637,7 +3658,7 @@
     {
       "product": "the-treason-of-saruman",
       "total": 81,
-      "scripted": 41,
+      "scripted": 61,
       "player": 20,
       "playerScripted": 4
     },
@@ -13409,7 +13430,7 @@
       "name": "Isengard Orc",
       "type": "enemy",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -13713,7 +13734,7 @@
       "name": "Gríma",
       "type": "enemy",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -14393,7 +14414,7 @@
       "name": "The Voice of Saruman",
       "type": "quest",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -15657,7 +15678,7 @@
       "name": "Gates of Isengard",
       "type": "location",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -18137,7 +18158,7 @@
       "name": "Lieutenant of Orthanc",
       "type": "enemy",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -22857,7 +22878,7 @@
       "name": "Blast of Sorcery",
       "type": "treachery",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -24649,7 +24670,7 @@
       "name": "Saruman's Staff",
       "type": "objective",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -25553,7 +25574,7 @@
       "name": "Rouse the Ents",
       "type": "quest",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -26857,7 +26878,7 @@
       "name": "Steaming Vent",
       "type": "location",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -28321,7 +28342,7 @@
       "name": "Breaking Isengard",
       "type": "quest",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -28489,7 +28510,7 @@
       "name": "Orthanc",
       "type": "location",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -28889,7 +28910,7 @@
       "name": "Machines of Isengard",
       "type": "treachery",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -31249,7 +31270,7 @@
       "name": "Ent of Fangorn",
       "type": "objective-ally",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -33073,7 +33094,7 @@
       "name": "Open Pit",
       "type": "location",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -33145,7 +33166,7 @@
       "name": "Plain of Isengard",
       "type": "location",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -34073,7 +34094,7 @@
       "name": "Poisoned Vapour",
       "type": "treachery",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -34201,7 +34222,7 @@
       "name": "Saruman",
       "type": "enemy",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -35529,7 +35550,7 @@
       "name": "Underground Armoury",
       "type": "location",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -36289,7 +36310,7 @@
       "name": "Ring-wall of Isengard",
       "type": "location",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -36689,7 +36710,7 @@
       "name": "Wolf of Isengard",
       "type": "enemy",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -37897,8 +37918,8 @@
       "id": "E0B.09",
       "name": "The Road to Isengard (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-road-to-isengard",
+      "state": "scripted"
     },
     {
       "id": "E0B.10",
@@ -38023,8 +38044,8 @@
       "id": "E0C.09",
       "name": "The Road to Isengard (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-road-to-isengard",
+      "state": "scripted"
     },
     {
       "id": "E0C.10",
@@ -39388,8 +39409,8 @@
       "id": "Q0B.09",
       "name": "The Road to Isengard",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-road-to-isengard",
+      "state": "scripted"
     },
     {
       "id": "Q0B.10",

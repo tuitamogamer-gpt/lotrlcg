@@ -1,0 +1,1455 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The Road to Isengard",
+  "slug": "the-road-to-isengard",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "143001",
+      "name": "Aragorn",
+      "type_code": "hero",
+      "type_name": "Hero",
+      "sphere_code": "fellowship",
+      "sphere_name": "Fellowship",
+      "threat": 0,
+      "willpower": 2,
+      "attack": 3,
+      "defense": 2,
+      "health": 5,
+      "traits": "Dúnedain. Noble. Ranger.",
+      "text": "The first player gains control of Aragorn. If Aragorn leaves play, the players lose the game.\n<b>Action:</b> Spend 2 resources from Aragorn's resource pool to ready a hero.",
+      "flavor": "\"I am Aragorn son of Arathorn and am called Elessar, the Elfstone, Dunadan, the heir of Isildur Elendil’s son of Gondor.\"\n<cite>The Two Towers</cite>",
+      "is_unique": true,
+      "deck_limit": 1,
+      "pack_name": "The Treason of Saruman",
+      "pack_code": "ToS",
+      "position": 1,
+      "illustrator": "Mark Behm",
+      "imagesrc": "/cards/143001.png",
+      "url": "https://ringsdb.com/card/143001",
+      "quantity": 1,
+      "octgnid": "f5178135-1485-43c5-9660-99232a4cdca8",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 1,
+          "quantity": 1,
+          "image_code": "143001",
+          "illustrator": "Mark Behm",
+          "octgnid": "f5178135-1485-43c5-9660-99232a4cdca8",
+          "imagesrc": "/bundles/cards/143001.png",
+          "date_release": "2015-04-23"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/143001",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:0c6923ad-efbd-46b0-b5fc-93f90334ecf5",
+      "octgnid": "0c6923ad-efbd-46b0-b5fc-93f90334ecf5",
+      "name": "Isengard Orc",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "Peril. Archery 1.\nWhen Revealed: Either discard 1 random card from your hand, or reveal an encounter card.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 51,
+      "quantity": 2,
+      "threat": 1,
+      "attack": 2,
+      "defense": 1,
+      "health": 3,
+      "engagement": 29,
+      "shadow": "Shadow: Until the end of the round, attacking enemy gets +2 [defense].",
+      "encounter_set": "The Road to Isengard",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "2",
+        "defense": "1",
+        "health": "3",
+        "engagement": "29"
+      },
+      "imagesrc": "/cards/0c6923ad-efbd-46b0-b5fc-93f90334ecf5.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 51,
+          "quantity": 2,
+          "octgnid": "0c6923ad-efbd-46b0-b5fc-93f90334ecf5",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0c6923ad-efbd-46b0-b5fc-93f90334ecf5.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:0fc7db5e-c389-4636-8c34-3d1dee3508ce",
+      "octgnid": "0fc7db5e-c389-4636-8c34-3d1dee3508ce",
+      "name": "Gríma",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Rohan. Traitor.",
+      "text": "Doomed 2.\nForced: After Grima attacks a player, that player shuffles Grima back into the encounter deck and reveals an encounter card.",
+      "is_unique": true,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 49,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 2,
+      "defense": 3,
+      "health": 3,
+      "engagement": 1,
+      "shadow": "Shadow: This attack is considered undefended.",
+      "encounter_set": "The Road to Isengard",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "2",
+        "defense": "3",
+        "health": "3",
+        "engagement": "1"
+      },
+      "imagesrc": "/cards/0fc7db5e-c389-4636-8c34-3d1dee3508ce.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 49,
+          "quantity": 1,
+          "octgnid": "0fc7db5e-c389-4636-8c34-3d1dee3508ce",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0fc7db5e-c389-4636-8c34-3d1dee3508ce.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:196d6c69-845a-494d-a49d-54d3dc6c1b4b",
+      "octgnid": "196d6c69-845a-494d-a49d-54d3dc6c1b4b",
+      "name": "The Voice of Saruman",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player draws 6 cards. Each player with more than 6 cards in his hand discards cards from his hand until he has only 6. Attach Saruman's Staff to Saruman.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 80,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "The Road to Isengard",
+      "side": "A",
+      "back_name": "The Voice of Saruman",
+      "back_text": "While Orthanc is the active location, Saruman is considered to be engaged with the first player.  Forced: When Orthanc is explored, cancel any progress placed on the quest this phase and return Orthanc to the staging area.  If a player has 0 cards in his hand, he is eliminated from the game. If the players defeat this stage, they win the game.",
+      "back_type_code": "quest",
+      "back_quest": 15,
+      "back_imagesrc": "/cards/196d6c69-845a-494d-a49d-54d3dc6c1b4b.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/196d6c69-845a-494d-a49d-54d3dc6c1b4b.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 80,
+          "quantity": 1,
+          "octgnid": "196d6c69-845a-494d-a49d-54d3dc6c1b4b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/196d6c69-845a-494d-a49d-54d3dc6c1b4b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:27299002-f9b0-4f9d-a87b-012a6a6993ca",
+      "octgnid": "27299002-f9b0-4f9d-a87b-012a6a6993ca",
+      "name": "Gates of Isengard",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Isengard.",
+      "text": "Immune to player card effects.\nForced: When Gates of Isengard is explored, each player searches the encounter deck and discard pile for an enemy and puts it into play engaged with him. Shuffle the encounter deck.",
+      "is_unique": true,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 54,
+      "quantity": 1,
+      "threat": 3,
+      "quest": 1,
+      "encounter_set": "The Road to Isengard",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "1"
+      },
+      "imagesrc": "/cards/27299002-f9b0-4f9d-a87b-012a6a6993ca.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 54,
+          "quantity": 1,
+          "octgnid": "27299002-f9b0-4f9d-a87b-012a6a6993ca",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/27299002-f9b0-4f9d-a87b-012a6a6993ca.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:44ca3879-246e-43c7-aa97-798be8dd193f",
+      "octgnid": "44ca3879-246e-43c7-aa97-798be8dd193f",
+      "name": "Lieutenant of Orthanc",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Isengard.",
+      "text": "Forced: After Lieutenant of Orthanc attacks and destroys a character, that character's controller discards 1 random card from his hand.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 50,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 4,
+      "defense": 3,
+      "health": 5,
+      "engagement": 36,
+      "encounter_set": "The Road to Isengard",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "4",
+        "defense": "3",
+        "health": "5",
+        "engagement": "36"
+      },
+      "imagesrc": "/cards/44ca3879-246e-43c7-aa97-798be8dd193f.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 50,
+          "quantity": 2,
+          "octgnid": "44ca3879-246e-43c7-aa97-798be8dd193f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/44ca3879-246e-43c7-aa97-798be8dd193f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:59c6b564-b927-481f-b505-ca9b1fe4f524",
+      "octgnid": "59c6b564-b927-481f-b505-ca9b1fe4f524",
+      "name": "Blast of Sorcery",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Assign X damage among characters committed to the quest. X is 1 more than the number of players in the game.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 60,
+      "quantity": 3,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if the defending player has 1 or fewer cards in his hand).",
+      "encounter_set": "The Road to Isengard",
+      "printed_stats": {},
+      "imagesrc": "/cards/59c6b564-b927-481f-b505-ca9b1fe4f524.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 60,
+          "quantity": 3,
+          "octgnid": "59c6b564-b927-481f-b505-ca9b1fe4f524",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/59c6b564-b927-481f-b505-ca9b1fe4f524.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7275de5f-3f2f-47e0-a90a-58fc45c3bdcf",
+      "octgnid": "7275de5f-3f2f-47e0-a90a-58fc45c3bdcf",
+      "name": "Saruman's Staff",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Artifact. Item. Staff.",
+      "text": "Forced: After a player draws any number of cards, Saruman attacks that player. Deal and resolve 2 shadow cards for this attack. Then, remove 1 damage from Saruman.   While Saruman has any hit points remaining, the players cannot win the game.",
+      "is_unique": true,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 48,
+      "quantity": 1,
+      "encounter_set": "The Road to Isengard",
+      "printed_stats": {},
+      "imagesrc": "/cards/7275de5f-3f2f-47e0-a90a-58fc45c3bdcf.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 48,
+          "quantity": 1,
+          "octgnid": "7275de5f-3f2f-47e0-a90a-58fc45c3bdcf",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7275de5f-3f2f-47e0-a90a-58fc45c3bdcf.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7cae1eb0-8693-4eb8-b5f0-86a35a271410",
+      "octgnid": "7cae1eb0-8693-4eb8-b5f0-86a35a271410",
+      "name": "Rouse the Ents",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Set Gates of Isengard, Orthanc, Saruman, and Saruman's Staff aside, out of play. Add each copy of Ent of Fangorn to the staging area. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 78,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The Road to Isengard",
+      "side": "A",
+      "back_name": "Rouse the Ents",
+      "back_text": "Players cannot draw cards or gain resources. Do not commit characters to the quest or reveal encounter cards during the quest phase.  Forced: At the end of the round, place 1 resource here. Then, the players may advance to stage 2. If the players advance, the first player shuffles the encounter discard pile into the encounter deck and reveals 1 encounter card for each resource here. Then, remove each Ent objective in the staging area from the game.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/7cae1eb0-8693-4eb8-b5f0-86a35a271410.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/7cae1eb0-8693-4eb8-b5f0-86a35a271410.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 78,
+          "quantity": 1,
+          "octgnid": "7cae1eb0-8693-4eb8-b5f0-86a35a271410",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7cae1eb0-8693-4eb8-b5f0-86a35a271410.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8ab1b53d-df75-487e-9351-60690fba1df5",
+      "octgnid": "8ab1b53d-df75-487e-9351-60690fba1df5",
+      "name": "Steaming Vent",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Isengard.",
+      "text": "While Steaming Vent is in the staging area, it gains: \"Forced: After a player commits characters to the quest, he deals 1 damage to a questing character he controls.\"   Wizardry: Assign X damage among characters in play. X is 1 more than the number of players in the game.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 57,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 4,
+      "encounter_set": "The Road to Isengard",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/8ab1b53d-df75-487e-9351-60690fba1df5.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 57,
+          "quantity": 3,
+          "octgnid": "8ab1b53d-df75-487e-9351-60690fba1df5",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8ab1b53d-df75-487e-9351-60690fba1df5.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9cb47ff2-5dff-404f-8fed-6ec0b6478ded",
+      "octgnid": "9cb47ff2-5dff-404f-8fed-6ec0b6478ded",
+      "name": "Breaking Isengard",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Make Gates of Isengard the active location. Add Saruman and Orthanc to the staging area.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 79,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Road to Isengard",
+      "side": "A",
+      "back_name": "Breaking Isengard",
+      "back_text": "The players cannot travel to Orthanc.   Forced: After a non-unique location is explored, place 1 damage here. Then, if there are 5 damage tokens here, advance to stage 3A.   Quest Action: Exhaust Ent of Fangorn to place 2 progress on a non-unique location.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/9cb47ff2-5dff-404f-8fed-6ec0b6478ded.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/9cb47ff2-5dff-404f-8fed-6ec0b6478ded.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 79,
+          "quantity": 1,
+          "octgnid": "9cb47ff2-5dff-404f-8fed-6ec0b6478ded",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9cb47ff2-5dff-404f-8fed-6ec0b6478ded.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9eb0298a-cb92-426d-87c6-37749aaae44b",
+      "octgnid": "9eb0298a-cb92-426d-87c6-37749aaae44b",
+      "name": "Orthanc",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Isengard.",
+      "text": "Immune to player card effects.\nWhile Orthanc is in the staging area, it gains: \"Forced: After the players quest successfully, the first player looks at the top 3 cards of the encounter deck, reveals 1, and discards the others.\"",
+      "is_unique": true,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 53,
+      "quantity": 1,
+      "threat": 2,
+      "quest": 1,
+      "encounter_set": "The Road to Isengard",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "1"
+      },
+      "imagesrc": "/cards/9eb0298a-cb92-426d-87c6-37749aaae44b.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 53,
+          "quantity": 1,
+          "octgnid": "9eb0298a-cb92-426d-87c6-37749aaae44b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9eb0298a-cb92-426d-87c6-37749aaae44b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a44d6ee9-79a6-4e55-ab8a-a165c4dbb882",
+      "octgnid": "a44d6ee9-79a6-4e55-ab8a-a165c4dbb882",
+      "name": "Machines of Isengard",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Trigger the Wizardry effect on the active location. If no Wizardry effect is triggered this way, Machines of Isengard gains surge.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 62,
+      "quantity": 3,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, discard 1 random card from your hand.",
+      "encounter_set": "The Road to Isengard",
+      "printed_stats": {},
+      "imagesrc": "/cards/a44d6ee9-79a6-4e55-ab8a-a165c4dbb882.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 62,
+          "quantity": 3,
+          "octgnid": "a44d6ee9-79a6-4e55-ab8a-a165c4dbb882",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a44d6ee9-79a6-4e55-ab8a-a165c4dbb882.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:bb38c7cf-8c76-4b87-b218-5516bc366470",
+      "octgnid": "bb38c7cf-8c76-4b87-b218-5516bc366470",
+      "name": "Ent of Fangorn",
+      "type_code": "objective-ally",
+      "sphere_code": "encounter",
+      "traits": "Ent.",
+      "text": "While Ent of Fangorn is in the staging area, it gains: \"Quest Action: Exhaust a hero you control to discard the top card of the encounter deck. If that hero's [willpower] is greater than the discarded card's [threat], place 1 resource here. Then, if there are 3 resources here, discard them to take control of Ent of Fangorn. Any player may trigger this effect.\"",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 46,
+      "quantity": 4,
+      "willpower": 2,
+      "attack": 4,
+      "defense": 3,
+      "health": 4,
+      "encounter_set": "The Road to Isengard",
+      "printed_stats": {
+        "willpower": "2",
+        "attack": "4",
+        "defense": "3",
+        "health": "4"
+      },
+      "imagesrc": "/cards/bb38c7cf-8c76-4b87-b218-5516bc366470.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 46,
+          "quantity": 4,
+          "octgnid": "bb38c7cf-8c76-4b87-b218-5516bc366470",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bb38c7cf-8c76-4b87-b218-5516bc366470.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c5d9d3c6-9321-4909-918d-2b81d7aa296d",
+      "octgnid": "c5d9d3c6-9321-4909-918d-2b81d7aa296d",
+      "name": "Saruman's Orders",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player must choose: either return an enemy engaged with him to the staging area, or reveal an encounter card.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 67,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, return attacking enemy to the staging area.",
+      "encounter_set": "Snaga Orcs",
+      "printed_stats": {},
+      "imagesrc": "/cards/c5d9d3c6-9321-4909-918d-2b81d7aa296d.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 67,
+          "quantity": 2,
+          "octgnid": "c5d9d3c6-9321-4909-918d-2b81d7aa296d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c5d9d3c6-9321-4909-918d-2b81d7aa296d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c6adadf8-569a-4943-817b-44bf1418e07e",
+      "octgnid": "c6adadf8-569a-4943-817b-44bf1418e07e",
+      "name": "Snaga",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "Peril. Archery 1.\nWhen Revealed: Discard 1 random card from your hand. Snaga gets +X [threat] until the end of the round, where X is the discarded card's cost.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 66,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 3,
+      "defense": 1,
+      "health": 3,
+      "engagement": 44,
+      "encounter_set": "Snaga Orcs",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "3",
+        "defense": "1",
+        "health": "3",
+        "engagement": "44"
+      },
+      "imagesrc": "/cards/c6adadf8-569a-4943-817b-44bf1418e07e.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 66,
+          "quantity": 3,
+          "octgnid": "c6adadf8-569a-4943-817b-44bf1418e07e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c6adadf8-569a-4943-817b-44bf1418e07e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d1cc0af9-7ab3-449b-baa2-da0bfdf6c987",
+      "octgnid": "d1cc0af9-7ab3-449b-baa2-da0bfdf6c987",
+      "name": "Open Pit",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Isengard.",
+      "text": "While Open Pit is in the staging area, it gains: \"Forced: After a player draws any number of cards from a player card effect, he raises his threat by 2.\"  Wizardry: Each player raises his threat by 2.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 59,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 3,
+      "encounter_set": "The Road to Isengard",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/d1cc0af9-7ab3-449b-baa2-da0bfdf6c987.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 59,
+          "quantity": 2,
+          "octgnid": "d1cc0af9-7ab3-449b-baa2-da0bfdf6c987",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d1cc0af9-7ab3-449b-baa2-da0bfdf6c987.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d30fcccc-2f1a-43bb-8bc4-ce0fccdd4a0f",
+      "octgnid": "d30fcccc-2f1a-43bb-8bc4-ce0fccdd4a0f",
+      "name": "Plain of Isengard",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Isengard.",
+      "text": "X is the number of players in the game.\nWhile Plain of Isengard is in the staging area, archery damage must be assigned to allies, if able.   Wizardry: Each player discards 1 ally he controls.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 58,
+      "quantity": 2,
+      "quest": 3,
+      "encounter_set": "The Road to Isengard",
+      "printed_stats": {
+        "threat": "X",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/d30fcccc-2f1a-43bb-8bc4-ce0fccdd4a0f.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 58,
+          "quantity": 2,
+          "octgnid": "d30fcccc-2f1a-43bb-8bc4-ce0fccdd4a0f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d30fcccc-2f1a-43bb-8bc4-ce0fccdd4a0f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:dfd0e951-2ba4-45c5-bed9-24caf8ae868f",
+      "octgnid": "dfd0e951-2ba4-45c5-bed9-24caf8ae868f",
+      "name": "Poisoned Vapour",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nWhen Revealed: Exhaust each damaged character. Until the end of the combat phase, treat each damaged character's text box as if was blank.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 61,
+      "quantity": 2,
+      "shadow": "Shadow: Discard a non-objective attachment you control.",
+      "encounter_set": "The Road to Isengard",
+      "printed_stats": {},
+      "imagesrc": "/cards/dfd0e951-2ba4-45c5-bed9-24caf8ae868f.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 61,
+          "quantity": 2,
+          "octgnid": "dfd0e951-2ba4-45c5-bed9-24caf8ae868f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dfd0e951-2ba4-45c5-bed9-24caf8ae868f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e22fc95d-9729-40ea-b81c-1432a4a57e41",
+      "octgnid": "e22fc95d-9729-40ea-b81c-1432a4a57e41",
+      "name": "Saruman",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Istari. Traitor.",
+      "text": "Indestructible. Immune to player card effects. Cannot leave the staging area.\nForced: When Saruman is dealt a shadow card with the Wizardry keyword, the defending player resolves its effect as if he is the only player in the game.",
+      "is_unique": true,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 47,
+      "quantity": 1,
+      "threat": 4,
+      "attack": 6,
+      "defense": 4,
+      "health": 6,
+      "engagement": 50,
+      "encounter_set": "The Road to Isengard",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "6",
+        "defense": "4",
+        "health": "6",
+        "engagement": "50"
+      },
+      "imagesrc": "/cards/e22fc95d-9729-40ea-b81c-1432a4a57e41.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 47,
+          "quantity": 1,
+          "octgnid": "e22fc95d-9729-40ea-b81c-1432a4a57e41",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e22fc95d-9729-40ea-b81c-1432a4a57e41.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ef990329-db00-441a-8c7d-8b464321f093",
+      "octgnid": "ef990329-db00-441a-8c7d-8b464321f093",
+      "name": "Underground Armoury",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Isengard.",
+      "text": "While Underground Armoury is in the staging area, it gains: \"Forced: After an enemy engages a player, deal it a shadow card.\"   Wizardry: Each player exhausts a character he controls.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 56,
+      "quantity": 2,
+      "threat": 4,
+      "quest": 3,
+      "encounter_set": "The Road to Isengard",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/ef990329-db00-441a-8c7d-8b464321f093.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 56,
+          "quantity": 2,
+          "octgnid": "ef990329-db00-441a-8c7d-8b464321f093",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ef990329-db00-441a-8c7d-8b464321f093.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f810a9d2-b2c2-49fd-966a-7bf9f0827030",
+      "octgnid": "f810a9d2-b2c2-49fd-966a-7bf9f0827030",
+      "name": "Ring-wall of Isengard",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Isengard.",
+      "text": "While Ring-wall of Isengard is in the staging area, it gains: \"Forced: After any amount of damage is healed from a character, its owner discards 1 card from his hand.\"   Wizardry: Each player discards 1 random card from his hand.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 55,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 2,
+      "encounter_set": "The Road to Isengard",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/f810a9d2-b2c2-49fd-966a-7bf9f0827030.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 55,
+          "quantity": 3,
+          "octgnid": "f810a9d2-b2c2-49fd-966a-7bf9f0827030",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f810a9d2-b2c2-49fd-966a-7bf9f0827030.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fc2ed0de-aba1-49ad-94b3-94024116eeeb",
+      "octgnid": "fc2ed0de-aba1-49ad-94b3-94024116eeeb",
+      "name": "Wolf of Isengard",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Forced: When Wolf of Isengard is dealt a shadow card with the Wizardry keyword, either discard 1 card from your hand, or Wolf of Isengard makes an additional attack against you after this one.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 52,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 3,
+      "defense": 1,
+      "health": 4,
+      "engagement": 25,
+      "shadow": "Shadow: Deal 1 damage to defending character.",
+      "encounter_set": "The Road to Isengard",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "1",
+        "health": "4",
+        "engagement": "25"
+      },
+      "imagesrc": "/cards/fc2ed0de-aba1-49ad-94b3-94024116eeeb.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 52,
+          "quantity": 2,
+          "octgnid": "fc2ed0de-aba1-49ad-94b3-94024116eeeb",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fc2ed0de-aba1-49ad-94b3-94024116eeeb.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E0B.09",
+      "name": "The Road to Isengard (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "ToS"
+      ],
+      "card_codes": [
+        "octgn:7cae1eb0-8693-4eb8-b5f0-86a35a271410",
+        "octgn:9cb47ff2-5dff-404f-8fed-6ec0b6478ded",
+        "octgn:196d6c69-845a-494d-a49d-54d3dc6c1b4b",
+        "octgn:44ca3879-246e-43c7-aa97-798be8dd193f",
+        "octgn:0c6923ad-efbd-46b0-b5fc-93f90334ecf5",
+        "octgn:fc2ed0de-aba1-49ad-94b3-94024116eeeb",
+        "octgn:f810a9d2-b2c2-49fd-966a-7bf9f0827030",
+        "octgn:ef990329-db00-441a-8c7d-8b464321f093",
+        "octgn:8ab1b53d-df75-487e-9351-60690fba1df5",
+        "octgn:d30fcccc-2f1a-43bb-8bc4-ce0fccdd4a0f",
+        "octgn:d1cc0af9-7ab3-449b-baa2-da0bfdf6c987",
+        "octgn:59c6b564-b927-481f-b505-ca9b1fe4f524",
+        "octgn:a44d6ee9-79a6-4e55-ab8a-a165c4dbb882",
+        "octgn:c6adadf8-569a-4943-817b-44bf1418e07e",
+        "octgn:c5d9d3c6-9321-4909-918d-2b81d7aa296d",
+        "octgn:27299002-f9b0-4f9d-a87b-012a6a6993ca",
+        "octgn:9eb0298a-cb92-426d-87c6-37749aaae44b",
+        "octgn:e22fc95d-9729-40ea-b81c-1432a4a57e41",
+        "octgn:7275de5f-3f2f-47e0-a90a-58fc45c3bdcf",
+        "octgn:bb38c7cf-8c76-4b87-b218-5516bc366470",
+        "143001"
+      ],
+      "cards": [
+        {
+          "code": "octgn:7cae1eb0-8693-4eb8-b5f0-86a35a271410",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:9cb47ff2-5dff-404f-8fed-6ec0b6478ded",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:196d6c69-845a-494d-a49d-54d3dc6c1b4b",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:44ca3879-246e-43c7-aa97-798be8dd193f",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:0c6923ad-efbd-46b0-b5fc-93f90334ecf5",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fc2ed0de-aba1-49ad-94b3-94024116eeeb",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f810a9d2-b2c2-49fd-966a-7bf9f0827030",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ef990329-db00-441a-8c7d-8b464321f093",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8ab1b53d-df75-487e-9351-60690fba1df5",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d30fcccc-2f1a-43bb-8bc4-ce0fccdd4a0f",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d1cc0af9-7ab3-449b-baa2-da0bfdf6c987",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:59c6b564-b927-481f-b505-ca9b1fe4f524",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a44d6ee9-79a6-4e55-ab8a-a165c4dbb882",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c6adadf8-569a-4943-817b-44bf1418e07e",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c5d9d3c6-9321-4909-918d-2b81d7aa296d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:27299002-f9b0-4f9d-a87b-012a6a6993ca",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:9eb0298a-cb92-426d-87c6-37749aaae44b",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:e22fc95d-9729-40ea-b81c-1432a4a57e41",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:7275de5f-3f2f-47e0-a90a-58fc45c3bdcf",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:bb38c7cf-8c76-4b87-b218-5516bc366470",
+          "quantity": 4,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "143001",
+          "quantity": 1,
+          "section": "player1Play1"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:7cae1eb0-8693-4eb8-b5f0-86a35a271410": 1,
+          "octgn:9cb47ff2-5dff-404f-8fed-6ec0b6478ded": 1,
+          "octgn:196d6c69-845a-494d-a49d-54d3dc6c1b4b": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:44ca3879-246e-43c7-aa97-798be8dd193f": 2,
+          "octgn:0c6923ad-efbd-46b0-b5fc-93f90334ecf5": 2,
+          "octgn:fc2ed0de-aba1-49ad-94b3-94024116eeeb": 1,
+          "octgn:f810a9d2-b2c2-49fd-966a-7bf9f0827030": 3,
+          "octgn:ef990329-db00-441a-8c7d-8b464321f093": 1,
+          "octgn:8ab1b53d-df75-487e-9351-60690fba1df5": 1,
+          "octgn:d30fcccc-2f1a-43bb-8bc4-ce0fccdd4a0f": 1,
+          "octgn:d1cc0af9-7ab3-449b-baa2-da0bfdf6c987": 2,
+          "octgn:59c6b564-b927-481f-b505-ca9b1fe4f524": 3,
+          "octgn:a44d6ee9-79a6-4e55-ab8a-a165c4dbb882": 3,
+          "octgn:c6adadf8-569a-4943-817b-44bf1418e07e": 2,
+          "octgn:c5d9d3c6-9321-4909-918d-2b81d7aa296d": 1
+        },
+        "sharedSetAside": {
+          "octgn:27299002-f9b0-4f9d-a87b-012a6a6993ca": 1,
+          "octgn:9eb0298a-cb92-426d-87c6-37749aaae44b": 1,
+          "octgn:e22fc95d-9729-40ea-b81c-1432a4a57e41": 1,
+          "octgn:7275de5f-3f2f-47e0-a90a-58fc45c3bdcf": 1
+        },
+        "sharedStagingArea": {
+          "octgn:bb38c7cf-8c76-4b87-b218-5516bc366470": 4
+        },
+        "player1Play1": {
+          "143001": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q0B.09",
+      "name": "The Road to Isengard",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "ToS"
+      ],
+      "card_codes": [
+        "octgn:7cae1eb0-8693-4eb8-b5f0-86a35a271410",
+        "octgn:9cb47ff2-5dff-404f-8fed-6ec0b6478ded",
+        "octgn:196d6c69-845a-494d-a49d-54d3dc6c1b4b",
+        "octgn:0fc7db5e-c389-4636-8c34-3d1dee3508ce",
+        "octgn:44ca3879-246e-43c7-aa97-798be8dd193f",
+        "octgn:0c6923ad-efbd-46b0-b5fc-93f90334ecf5",
+        "octgn:fc2ed0de-aba1-49ad-94b3-94024116eeeb",
+        "octgn:f810a9d2-b2c2-49fd-966a-7bf9f0827030",
+        "octgn:ef990329-db00-441a-8c7d-8b464321f093",
+        "octgn:8ab1b53d-df75-487e-9351-60690fba1df5",
+        "octgn:d30fcccc-2f1a-43bb-8bc4-ce0fccdd4a0f",
+        "octgn:d1cc0af9-7ab3-449b-baa2-da0bfdf6c987",
+        "octgn:59c6b564-b927-481f-b505-ca9b1fe4f524",
+        "octgn:dfd0e951-2ba4-45c5-bed9-24caf8ae868f",
+        "octgn:a44d6ee9-79a6-4e55-ab8a-a165c4dbb882",
+        "octgn:c6adadf8-569a-4943-817b-44bf1418e07e",
+        "octgn:c5d9d3c6-9321-4909-918d-2b81d7aa296d",
+        "octgn:27299002-f9b0-4f9d-a87b-012a6a6993ca",
+        "octgn:9eb0298a-cb92-426d-87c6-37749aaae44b",
+        "octgn:e22fc95d-9729-40ea-b81c-1432a4a57e41",
+        "octgn:7275de5f-3f2f-47e0-a90a-58fc45c3bdcf",
+        "octgn:bb38c7cf-8c76-4b87-b218-5516bc366470",
+        "143001"
+      ],
+      "cards": [
+        {
+          "code": "octgn:7cae1eb0-8693-4eb8-b5f0-86a35a271410",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:9cb47ff2-5dff-404f-8fed-6ec0b6478ded",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:196d6c69-845a-494d-a49d-54d3dc6c1b4b",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:0fc7db5e-c389-4636-8c34-3d1dee3508ce",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:44ca3879-246e-43c7-aa97-798be8dd193f",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:0c6923ad-efbd-46b0-b5fc-93f90334ecf5",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fc2ed0de-aba1-49ad-94b3-94024116eeeb",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f810a9d2-b2c2-49fd-966a-7bf9f0827030",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ef990329-db00-441a-8c7d-8b464321f093",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8ab1b53d-df75-487e-9351-60690fba1df5",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d30fcccc-2f1a-43bb-8bc4-ce0fccdd4a0f",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d1cc0af9-7ab3-449b-baa2-da0bfdf6c987",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:59c6b564-b927-481f-b505-ca9b1fe4f524",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:dfd0e951-2ba4-45c5-bed9-24caf8ae868f",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a44d6ee9-79a6-4e55-ab8a-a165c4dbb882",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c6adadf8-569a-4943-817b-44bf1418e07e",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c5d9d3c6-9321-4909-918d-2b81d7aa296d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:27299002-f9b0-4f9d-a87b-012a6a6993ca",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:9eb0298a-cb92-426d-87c6-37749aaae44b",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:e22fc95d-9729-40ea-b81c-1432a4a57e41",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:7275de5f-3f2f-47e0-a90a-58fc45c3bdcf",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:bb38c7cf-8c76-4b87-b218-5516bc366470",
+          "quantity": 4,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "143001",
+          "quantity": 1,
+          "section": "player1Play1"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:7cae1eb0-8693-4eb8-b5f0-86a35a271410": 1,
+          "octgn:9cb47ff2-5dff-404f-8fed-6ec0b6478ded": 1,
+          "octgn:196d6c69-845a-494d-a49d-54d3dc6c1b4b": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:0fc7db5e-c389-4636-8c34-3d1dee3508ce": 1,
+          "octgn:44ca3879-246e-43c7-aa97-798be8dd193f": 2,
+          "octgn:0c6923ad-efbd-46b0-b5fc-93f90334ecf5": 2,
+          "octgn:fc2ed0de-aba1-49ad-94b3-94024116eeeb": 2,
+          "octgn:f810a9d2-b2c2-49fd-966a-7bf9f0827030": 3,
+          "octgn:ef990329-db00-441a-8c7d-8b464321f093": 2,
+          "octgn:8ab1b53d-df75-487e-9351-60690fba1df5": 3,
+          "octgn:d30fcccc-2f1a-43bb-8bc4-ce0fccdd4a0f": 2,
+          "octgn:d1cc0af9-7ab3-449b-baa2-da0bfdf6c987": 2,
+          "octgn:59c6b564-b927-481f-b505-ca9b1fe4f524": 3,
+          "octgn:dfd0e951-2ba4-45c5-bed9-24caf8ae868f": 2,
+          "octgn:a44d6ee9-79a6-4e55-ab8a-a165c4dbb882": 3,
+          "octgn:c6adadf8-569a-4943-817b-44bf1418e07e": 3,
+          "octgn:c5d9d3c6-9321-4909-918d-2b81d7aa296d": 2
+        },
+        "sharedSetAside": {
+          "octgn:27299002-f9b0-4f9d-a87b-012a6a6993ca": 1,
+          "octgn:9eb0298a-cb92-426d-87c6-37749aaae44b": 1,
+          "octgn:e22fc95d-9729-40ea-b81c-1432a4a57e41": 1,
+          "octgn:7275de5f-3f2f-47e0-a90a-58fc45c3bdcf": 1
+        },
+        "sharedStagingArea": {
+          "octgn:bb38c7cf-8c76-4b87-b218-5516bc366470": 4
+        },
+        "player1Play1": {
+          "143001": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "143001",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/143001.png",
+      "localPath": "/cards/143001.png",
+      "bytes": 156938,
+      "sha256": "a905f695bd4133a93c62d2a6d2fd826be637c3f4af1dab3186b7381c8ccfc005"
+    },
+    {
+      "code": "octgn:0c6923ad-efbd-46b0-b5fc-93f90334ecf5",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0c6923ad-efbd-46b0-b5fc-93f90334ecf5.jpg",
+      "localPath": "/cards/0c6923ad-efbd-46b0-b5fc-93f90334ecf5.jpg",
+      "bytes": 151406,
+      "sha256": "f79050005e29c722ef6b16c2a8498f173620331e6b21b418d8c972d062aad7bf"
+    },
+    {
+      "code": "octgn:0fc7db5e-c389-4636-8c34-3d1dee3508ce",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0fc7db5e-c389-4636-8c34-3d1dee3508ce.jpg",
+      "localPath": "/cards/0fc7db5e-c389-4636-8c34-3d1dee3508ce.jpg",
+      "bytes": 150109,
+      "sha256": "40bedac0ce9c78d777d3aee7e2fd789c3bd2d9289e851920688f6401eee78595"
+    },
+    {
+      "code": "octgn:196d6c69-845a-494d-a49d-54d3dc6c1b4b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/196d6c69-845a-494d-a49d-54d3dc6c1b4b.jpg",
+      "localPath": "/cards/196d6c69-845a-494d-a49d-54d3dc6c1b4b.jpg",
+      "bytes": 156743,
+      "sha256": "a56b06c84928ecea21c6c113aba4b51564aade6f7147f460a3cbc130122ffcad"
+    },
+    {
+      "code": "octgn:196d6c69-845a-494d-a49d-54d3dc6c1b4b",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/196d6c69-845a-494d-a49d-54d3dc6c1b4b.B.jpg",
+      "localPath": "/cards/196d6c69-845a-494d-a49d-54d3dc6c1b4b.B.jpg",
+      "bytes": 151029,
+      "sha256": "41c7dc512a5de0220a69902b9fbef0e7b23860fd4fd5f9b5cf28f8fc66272150"
+    },
+    {
+      "code": "octgn:27299002-f9b0-4f9d-a87b-012a6a6993ca",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/27299002-f9b0-4f9d-a87b-012a6a6993ca.jpg",
+      "localPath": "/cards/27299002-f9b0-4f9d-a87b-012a6a6993ca.jpg",
+      "bytes": 163963,
+      "sha256": "d998d0847271c6450fe6b7e63329d746a765b726a907c28f0f490cd3702a0424"
+    },
+    {
+      "code": "octgn:44ca3879-246e-43c7-aa97-798be8dd193f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/44ca3879-246e-43c7-aa97-798be8dd193f.jpg",
+      "localPath": "/cards/44ca3879-246e-43c7-aa97-798be8dd193f.jpg",
+      "bytes": 149132,
+      "sha256": "4a4d99b968ca1de8d6a2fee84ddb3c066423950f4bfbc255db43b73cbd474fd9"
+    },
+    {
+      "code": "octgn:59c6b564-b927-481f-b505-ca9b1fe4f524",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/59c6b564-b927-481f-b505-ca9b1fe4f524.jpg",
+      "localPath": "/cards/59c6b564-b927-481f-b505-ca9b1fe4f524.jpg",
+      "bytes": 157348,
+      "sha256": "c914c1cf51aabbc7166a1b55d55059fe96ee17f4a1f8fb5cb870aec6652c3b91"
+    },
+    {
+      "code": "octgn:7275de5f-3f2f-47e0-a90a-58fc45c3bdcf",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7275de5f-3f2f-47e0-a90a-58fc45c3bdcf.jpg",
+      "localPath": "/cards/7275de5f-3f2f-47e0-a90a-58fc45c3bdcf.jpg",
+      "bytes": 145129,
+      "sha256": "69a0b397d079cc7b78dab9cfe933110662f7f8db126d5b728e7fdeffc3d61420"
+    },
+    {
+      "code": "octgn:7cae1eb0-8693-4eb8-b5f0-86a35a271410",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7cae1eb0-8693-4eb8-b5f0-86a35a271410.jpg",
+      "localPath": "/cards/7cae1eb0-8693-4eb8-b5f0-86a35a271410.jpg",
+      "bytes": 160018,
+      "sha256": "feca4ef50b1feccca012891a4b6ab6c3580526ccb194dc47c0a1e9c5f71e0b11"
+    },
+    {
+      "code": "octgn:7cae1eb0-8693-4eb8-b5f0-86a35a271410",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7cae1eb0-8693-4eb8-b5f0-86a35a271410.B.jpg",
+      "localPath": "/cards/7cae1eb0-8693-4eb8-b5f0-86a35a271410.B.jpg",
+      "bytes": 163496,
+      "sha256": "f9dc9594ad846558d1f6cbdeadbe190b3c644f22fc8080250cef4ed62baa5cfb"
+    },
+    {
+      "code": "octgn:8ab1b53d-df75-487e-9351-60690fba1df5",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8ab1b53d-df75-487e-9351-60690fba1df5.jpg",
+      "localPath": "/cards/8ab1b53d-df75-487e-9351-60690fba1df5.jpg",
+      "bytes": 156634,
+      "sha256": "cbb024c40cdaf23b60b67c0aa8062542ce50a6f1bd339f659cd1f1ea64c0228a"
+    },
+    {
+      "code": "octgn:9cb47ff2-5dff-404f-8fed-6ec0b6478ded",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9cb47ff2-5dff-404f-8fed-6ec0b6478ded.jpg",
+      "localPath": "/cards/9cb47ff2-5dff-404f-8fed-6ec0b6478ded.jpg",
+      "bytes": 161525,
+      "sha256": "2738f052e0b799856e014b0654b39e87650ad273d9f151769eb0034f79de9e59"
+    },
+    {
+      "code": "octgn:9cb47ff2-5dff-404f-8fed-6ec0b6478ded",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9cb47ff2-5dff-404f-8fed-6ec0b6478ded.B.jpg",
+      "localPath": "/cards/9cb47ff2-5dff-404f-8fed-6ec0b6478ded.B.jpg",
+      "bytes": 153776,
+      "sha256": "7219e28168e23644fa8497ba8f73801790b65fff2d9c0519d1e14a2978356fa2"
+    },
+    {
+      "code": "octgn:9eb0298a-cb92-426d-87c6-37749aaae44b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9eb0298a-cb92-426d-87c6-37749aaae44b.jpg",
+      "localPath": "/cards/9eb0298a-cb92-426d-87c6-37749aaae44b.jpg",
+      "bytes": 153245,
+      "sha256": "07682c634d3e47d3e0968699b70ee39dc666f84fabf4ee3169c5b3ab21a0d7fd"
+    },
+    {
+      "code": "octgn:a44d6ee9-79a6-4e55-ab8a-a165c4dbb882",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a44d6ee9-79a6-4e55-ab8a-a165c4dbb882.jpg",
+      "localPath": "/cards/a44d6ee9-79a6-4e55-ab8a-a165c4dbb882.jpg",
+      "bytes": 150930,
+      "sha256": "5d03e8ba5a308f3a74645519d967cae052a024193548a9863241db545054d5ef"
+    },
+    {
+      "code": "octgn:bb38c7cf-8c76-4b87-b218-5516bc366470",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bb38c7cf-8c76-4b87-b218-5516bc366470.jpg",
+      "localPath": "/cards/bb38c7cf-8c76-4b87-b218-5516bc366470.jpg",
+      "bytes": 157497,
+      "sha256": "b46eda2e77ceffacc87548c55bc1fee9b9a3cfa82f165558f42447ef6c5b0c97"
+    },
+    {
+      "code": "octgn:c5d9d3c6-9321-4909-918d-2b81d7aa296d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c5d9d3c6-9321-4909-918d-2b81d7aa296d.jpg",
+      "localPath": "/cards/c5d9d3c6-9321-4909-918d-2b81d7aa296d.jpg",
+      "bytes": 160854,
+      "sha256": "1ac26fe546b3c3a3b4e9f81ce8635ffdf0440703806794cc9dbcbffbfff1ce43"
+    },
+    {
+      "code": "octgn:c6adadf8-569a-4943-817b-44bf1418e07e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c6adadf8-569a-4943-817b-44bf1418e07e.jpg",
+      "localPath": "/cards/c6adadf8-569a-4943-817b-44bf1418e07e.jpg",
+      "bytes": 147223,
+      "sha256": "a7d1cfbb9ea3256d0e36f517f2248a09975e3305896652085991ea88e09d1098"
+    },
+    {
+      "code": "octgn:d1cc0af9-7ab3-449b-baa2-da0bfdf6c987",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d1cc0af9-7ab3-449b-baa2-da0bfdf6c987.jpg",
+      "localPath": "/cards/d1cc0af9-7ab3-449b-baa2-da0bfdf6c987.jpg",
+      "bytes": 155084,
+      "sha256": "afcda55a60ba2433fb4610f488e6143b57b0a1288c6deb1bf78f475d5b530889"
+    },
+    {
+      "code": "octgn:d30fcccc-2f1a-43bb-8bc4-ce0fccdd4a0f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d30fcccc-2f1a-43bb-8bc4-ce0fccdd4a0f.jpg",
+      "localPath": "/cards/d30fcccc-2f1a-43bb-8bc4-ce0fccdd4a0f.jpg",
+      "bytes": 143254,
+      "sha256": "2f3a5e55f8548b2060a90a67a8d2a170e28d001cab253a3f92ed2d3f4c2f1d9c"
+    },
+    {
+      "code": "octgn:dfd0e951-2ba4-45c5-bed9-24caf8ae868f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dfd0e951-2ba4-45c5-bed9-24caf8ae868f.jpg",
+      "localPath": "/cards/dfd0e951-2ba4-45c5-bed9-24caf8ae868f.jpg",
+      "bytes": 148438,
+      "sha256": "c42ab23c0d92f496a174511b7fec5a5e587fe6aab9ea99e51082d08d632298fe"
+    },
+    {
+      "code": "octgn:e22fc95d-9729-40ea-b81c-1432a4a57e41",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e22fc95d-9729-40ea-b81c-1432a4a57e41.jpg",
+      "localPath": "/cards/e22fc95d-9729-40ea-b81c-1432a4a57e41.jpg",
+      "bytes": 154754,
+      "sha256": "fee2ad9129636639ef8964bcbe84cfe75dcadee900ab41696c264980f114d153"
+    },
+    {
+      "code": "octgn:ef990329-db00-441a-8c7d-8b464321f093",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ef990329-db00-441a-8c7d-8b464321f093.jpg",
+      "localPath": "/cards/ef990329-db00-441a-8c7d-8b464321f093.jpg",
+      "bytes": 166349,
+      "sha256": "eb1a14125a50ddd20fb1f0d15a389e3112ff58d889d53a9759b2ab0b223cd2c7"
+    },
+    {
+      "code": "octgn:f810a9d2-b2c2-49fd-966a-7bf9f0827030",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f810a9d2-b2c2-49fd-966a-7bf9f0827030.jpg",
+      "localPath": "/cards/f810a9d2-b2c2-49fd-966a-7bf9f0827030.jpg",
+      "bytes": 149946,
+      "sha256": "6452e5e85332ffdd03be4929ca2e7142465b482b0541925802033f760214ad00"
+    },
+    {
+      "code": "octgn:fc2ed0de-aba1-49ad-94b3-94024116eeeb",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fc2ed0de-aba1-49ad-94b3-94024116eeeb.jpg",
+      "localPath": "/cards/fc2ed0de-aba1-49ad-94b3-94024116eeeb.jpg",
+      "bytes": 159960,
+      "sha256": "beaae459e5dd0acaca039fa2b73cf3f6ccd5dae9795dca732c0d7c7faad01fca"
+    }
+  ]
+}

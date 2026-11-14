@@ -717,6 +717,24 @@ jobs:
           path: output/helms-deep-release/failures
           retention-days: 7
 
+  road-isengard-simulation:
+    name: The Road to Isengard complete games (26 games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:road-isengard-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: road-isengard-simulation
+          path: output/road-isengard-release/failures
+          retention-days: 7
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -880,6 +898,8 @@ jobs:
             suite: test:browser-uruk-hai
           - group: helms-deep
             suite: test:browser-helms-deep
+          - group: road-isengard
+            suite: test:browser-road-isengard
           - group: hobbit-players
             suite: test:browser-hobbit-players
           - group: otd-players

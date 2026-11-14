@@ -284,6 +284,7 @@ export type ScenarioId =
   | "fog-on-the-barrow-downs"
   | "the-uruk-hai"
   | "helms-deep"
+  | "the-road-to-isengard"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -463,6 +464,7 @@ export interface GameState {
   fogBarrow?: import("./fog-barrow-types").FogBarrowState;
   urukHai?: import("./uruk-hai-types").UrukHaiState;
   helmsDeep?: import("./helms-deep-types").HelmsDeepState;
+  roadIsengard?: import("./road-isengard-types").RoadIsengardState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -854,6 +856,8 @@ export interface GameState {
     hdKilled?: boolean;
     /** Helm's Deep: Scaling Ladders' progress if this attack destroys a character. */
     hdKillProgress?: number;
+    /** The Road to Isengard: the players who discard a random card if this attack destroys a character. */
+    riKillDiscard?: number[];
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

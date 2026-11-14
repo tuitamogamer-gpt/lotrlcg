@@ -79,6 +79,10 @@ export const PLAYMATS = {
     name: "Helm's Deep",
     detail: "The night assault · The King rides out at dawn",
   },
+  "the-road-to-isengard": {
+    name: "The Ring of Isengard",
+    detail: "The Ents of Fangorn · The Voice of Saruman",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -492,6 +496,7 @@ export const PLAYMAT_CHOICES = [
   "fog-on-the-barrow-downs",
   "the-uruk-hai",
   "helms-deep",
+  "the-road-to-isengard",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

@@ -228,6 +228,7 @@ export function rhosgobelHeal(
   )
     removeHealer(s, source);
   shadowFlamePlayerHealed(s, target, amount, source);
+  batch4Scenario(s).healed?.(s, target, amount);
   return amount;
 }
 function removeHealer(s: GameState, source: HealSource) {

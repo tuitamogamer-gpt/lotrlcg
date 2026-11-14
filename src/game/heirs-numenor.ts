@@ -8,6 +8,7 @@ import { isengardShadowDealt } from "./voice-isengard";
 import { bloodGondorArchery } from "./blood-gondor";
 import { morgulShadowDealt } from "./morgul-vale";
 import { druadanForestArcheryTargets } from "./druadan-forest";
+import { batch4Scenario } from "./batch4-scenarios";
 import { assaultOsgiliathArcheryBonus } from "./assault-osgiliath";
 // Heirs of Númenor: physical objectives, branching quests and explicit encounter decisions.
 import type { Attachment, Effect, GameState, Unit } from "./types";
@@ -1218,10 +1219,12 @@ export function handleHeirsEffect(s: GameState, e: Effect): boolean {
     case "heirsArchery": {
       const remaining = e.value ?? 0;
       if (remaining <= 0) break;
-      const characters = druadanForestArcheryTargets(
+      const eligible = druadanForestArcheryTargets(
         s,
         liveCharacters(s).filter((u) => u.damage < stats(s, u).health),
       );
+      const characters =
+        batch4Scenario(s).archeryTargets?.(s, eligible) ?? eligible;
       if (characters.length)
         choose(
           s,

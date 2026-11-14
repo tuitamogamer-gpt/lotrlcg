@@ -200,7 +200,9 @@
     "test:uruk-hai-simulation": "node --import tsx --test tests/uruk-hai-simulation.test.ts",
     "test:browser-uruk-hai": "node --import tsx scripts/browser-uruk-hai.mjs",
     "test:helms-deep-simulation": "node --import tsx --test tests/helms-deep-simulation.test.ts",
-    "test:browser-helms-deep": "node --import tsx scripts/browser-helms-deep.mjs"
+    "test:browser-helms-deep": "node --import tsx scripts/browser-helms-deep.mjs",
+    "test:road-isengard-simulation": "node --import tsx --test tests/road-isengard-simulation.test.ts",
+    "test:browser-road-isengard": "node --import tsx scripts/browser-road-isengard.mjs"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

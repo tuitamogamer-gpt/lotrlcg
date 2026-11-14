@@ -54,6 +54,10 @@ import {
   HELMS_DEEP_ENCOUNTERS,
   HELMS_DEEP_QUESTS,
 } from "./helms-deep-scenario-data";
+import {
+  ROAD_ISENGARD_ENCOUNTERS,
+  ROAD_ISENGARD_QUESTS,
+} from "./road-isengard-scenario-data";
 import hobbitPlayers from "../data/hobbit-player-cards.json";
 import blackRidersPlayers from "../data/black-riders-player-cards.json";
 import roadDarkensPlayers from "../data/road-darkens-player-cards.json";
@@ -546,6 +550,7 @@ export const encounterCards = [
       ...FOG_BARROW_ENCOUNTERS,
       ...URUK_HAI_ENCOUNTERS,
       ...HELMS_DEEP_ENCOUNTERS,
+      ...ROAD_ISENGARD_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -637,6 +642,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...FOG_BARROW_QUESTS,
     ...URUK_HAI_QUESTS,
     ...HELMS_DEEP_QUESTS,
+    ...ROAD_ISENGARD_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -769,6 +775,7 @@ export const SCRIPTED = new Set(
     ...FOG_BARROW_QUESTS,
     ...URUK_HAI_QUESTS,
     ...HELMS_DEEP_QUESTS,
+    ...ROAD_ISENGARD_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

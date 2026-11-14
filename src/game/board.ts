@@ -2866,13 +2866,15 @@ export function beginResources(s: GameState) {
 export function collectResources(s: GameState) {
   EredSupport.eredMithrinPlayerRefresh(s);
   const draws: Effect[] = [];
+  let collected = false;
   globalEachSeat(s, (player) => {
     for (const h of s.heroes)
       if (
         !carrockSacked(h) &&
         khazadResourcePhase(s) &&
         !Etten.ettenCannotCollectResources(s, h) &&
-        !batch4Scenario(s).cannotCollectResources?.(s, h)
+        !batch4Scenario(s).cannotCollectResources?.(s, h) &&
+        (collected = true)
       )
         h.resources +=
           1 +
@@ -2921,7 +2923,13 @@ export function collectResources(s: GameState) {
   )
     draws.push(fx("raidResourcesCollected"));
   prepend(s, ...draws);
-  log(s, `Round ${s.round} · Each hero gains 1 resource.`, "chapter");
+  log(
+    s,
+    collected
+      ? `Round ${s.round} · Each hero gains 1 resource.`
+      : `Round ${s.round} · No hero gains a resource.`,
+    "chapter",
+  );
 }
 
 export function engage(s: GameState, u: Unit, optional = false) {

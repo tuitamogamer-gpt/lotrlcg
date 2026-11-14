@@ -115,6 +115,10 @@ const HEADLINES: Partial<
     lead: "Hold the Deeping Wall",
     em: "until the King rides out.",
   },
+  "the-road-to-isengard": {
+    lead: "Rouse the Ents",
+    em: "and break the power of Saruman.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",
