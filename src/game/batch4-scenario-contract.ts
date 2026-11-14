@@ -198,6 +198,10 @@ export interface Batch4ScenarioHooks {
   travelNext?(s: GameState): boolean;
   /** The first player token does not pass in the refresh phase. */
   keepFirstPlayer?(s: GameState): boolean;
+  /** The first player token passed, in the refresh phase or after an elimination. */
+  firstPlayerChanged?(s: GameState, refresh: boolean): void;
+  /** At the end of the staging step, before the quest is resolved. */
+  stagingEnd?(s: GameState): void;
   /** A hero actually spent resources from its pool. */
   resourcesSpent?(s: GameState, hero: Unit, amount: number): void;
   /** Effects at the beginning of the round, before resources are collected. */
@@ -268,7 +272,8 @@ export interface Batch4ScenarioHooks {
   ): boolean;
   handDiscardDestination?(s: GameState, u: Unit): boolean;
   effect?(s: GameState, e: Effect): boolean;
-  enemyDestination?(s: GameState, u: Unit): boolean;
+  /** Where a leaving enemy goes instead of the discard pile; destruction is a defeat. */
+  enemyDestination?(s: GameState, u: Unit, destruction?: boolean): boolean;
   cannotAttach?(s: GameState, u: Unit, code: string): boolean;
   doesNotExhaustToQuest?(s: GameState, u: Unit): boolean;
   mustTravel?(s: GameState): boolean;

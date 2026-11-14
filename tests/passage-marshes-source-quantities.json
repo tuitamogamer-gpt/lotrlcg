@@ -1,0 +1,122 @@
+[
+  {
+    "name": "\"Don't Look at the Lights!\"",
+    "code": "octgn:e40770a1-7b1b-4257-afca-443c55701850",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "A Fell Light",
+    "code": "octgn:694650d0-9ba6-4573-bf13-10ca8eb7995d",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Across the Marshes",
+    "code": "octgn:d63f87da-45b4-4c5c-b3b5-970a4277c263",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Bitter Reek",
+    "code": "octgn:fcc8ad22-ca1f-4fd1-8f84-4955bb683f50",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "name": "Call of the Ring",
+    "code": "octgn:5e8714e3-0581-4b6f-bf45-414098819626",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Candle-bearer",
+    "code": "octgn:c1554b49-597c-4d1b-8871-dfbe867253d5",
+    "normal": 3,
+    "easy": 1
+  },
+  {
+    "name": "Creeping Marshes",
+    "code": "octgn:f214f533-374b-423c-86b5-dca1ab5d048f",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Dead Things",
+    "code": "octgn:73752e58-5dc1-40ea-b294-3c8f1998142d",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Evil-smelling Fens",
+    "code": "octgn:e25328c2-1a6b-4dda-866e-02685eff4a88",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "name": "Frodo Baggins",
+    "code": "144001",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Gollum",
+    "code": "octgn:32993141-956c-4426-98d9-8705de6fee00",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Groping Dead",
+    "code": "octgn:0e3ce28a-df4b-461e-b47a-299e4c730cc2",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Haunted Mere",
+    "code": "octgn:1c765fa8-9cb8-4cf4-8e93-daac5bae4fce",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "name": "Morgul Wraith",
+    "code": "octgn:74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Shifting Quagmire",
+    "code": "octgn:8893eba4-1f9c-4661-bfc2-bb485e023066",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Soft Mires",
+    "code": "octgn:3254a776-09e5-4576-9b3c-164cc93e1e26",
+    "normal": 4,
+    "easy": 3
+  },
+  {
+    "name": "Stagnant Pools",
+    "code": "octgn:39262ffc-6819-422c-a72a-9baed00f648a",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "The One Ring",
+    "code": "octgn:32267333-091c-4bbf-bb29-5f21c8b79188",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The Taming of Sméagol",
+    "code": "octgn:7fdde250-5b13-4c94-a9b8-4a3a0029928a",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "We Hates Them!",
+    "code": "octgn:42e22482-0281-4811-aa65-2b342319ee07",
+    "normal": 2,
+    "easy": 1
+  }
+]

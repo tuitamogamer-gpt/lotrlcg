@@ -13,8 +13,18 @@ export const ONE_RING = sagaCards.find(
 export const ROAD_DARKENS_ONE_RING = sagaCards.find(
   (c) => c.name === "The One Ring" && c.pack_code === "TRD",
 )!.code;
+/** The Land of Shadow's Fellowship-sphere Frodo Baggins. */
+export const LAND_SHADOW_FRODO = "144001";
+/** The One Ring objective of The Land of Shadow. */
+export const LAND_SHADOW_ONE_RING = sagaCards.find(
+  (c) => c.name === "The One Ring" && c.pack_code === "LoS",
+)!.code;
 /** Every One Ring objective a Saga scenario may place. */
-export const ONE_RINGS: readonly string[] = [ONE_RING, ROAD_DARKENS_ONE_RING];
+export const ONE_RINGS: readonly string[] = [
+  ONE_RING,
+  ROAD_DARKENS_ONE_RING,
+  LAND_SHADOW_ONE_RING,
+];
 export const isOneRing = (code: string) => ONE_RINGS.includes(code);
 /** The Lord of the Rings Saga scenarios of The Black Riders. */
 export const BLACK_RIDERS_SCENARIO_IDS: readonly string[] = [
@@ -38,6 +48,12 @@ export const TREASON_SARUMAN_SCENARIO_IDS: readonly string[] = [
 ];
 export const isTreasonSarumanScenarioId = (id: string | undefined) =>
   !!id && TREASON_SARUMAN_SCENARIO_IDS.includes(id);
+/** The Lord of the Rings Saga scenarios of The Land of Shadow. */
+export const LAND_SHADOW_SCENARIO_IDS: readonly string[] = [
+  "the-passage-of-the-marshes",
+];
+export const isLandShadowScenarioId = (id: string | undefined) =>
+  !!id && LAND_SHADOW_SCENARIO_IDS.includes(id);
 /** Standalone scenarios played with the Saga's Ring-bearer rules. */
 export const LOTR_SAGA_STANDALONE_IDS: readonly string[] = [
   "the-old-forest",
@@ -48,6 +64,7 @@ export const LOTR_SAGA_SCENARIO_IDS: readonly string[] = [
   ...LOTR_SAGA_STANDALONE_IDS,
   ...ROAD_DARKENS_SCENARIO_IDS,
   ...TREASON_SARUMAN_SCENARIO_IDS,
+  ...LAND_SHADOW_SCENARIO_IDS,
 ];
 export const isLotrSagaScenarioId = (id: string | undefined) =>
   !!id && LOTR_SAGA_SCENARIO_IDS.includes(id);
@@ -60,9 +77,15 @@ export const sagaRingCards = (
 ): { frodo: string; ring?: string } =>
   isTreasonSarumanScenarioId(id)
     ? { frodo: TOS_ARAGORN }
-    : !!id && ROAD_DARKENS_SCENARIO_IDS.includes(id)
-      ? { frodo: ROAD_DARKENS_FRODO, ring: ROAD_DARKENS_ONE_RING }
-      : { frodo: SAGA_FRODO, ring: ONE_RING };
+    : isLandShadowScenarioId(id)
+      ? { frodo: LAND_SHADOW_FRODO, ring: LAND_SHADOW_ONE_RING }
+      : !!id && ROAD_DARKENS_SCENARIO_IDS.includes(id)
+        ? { frodo: ROAD_DARKENS_FRODO, ring: ROAD_DARKENS_ONE_RING }
+        : { frodo: SAGA_FRODO, ring: ONE_RING };
 /** Every Fellowship-sphere Ring-bearer a Saga scenario may place. */
-export const RING_BEARERS: readonly string[] = [SAGA_FRODO, ROAD_DARKENS_FRODO];
+export const RING_BEARERS: readonly string[] = [
+  SAGA_FRODO,
+  ROAD_DARKENS_FRODO,
+  LAND_SHADOW_FRODO,
+];
 export const isRingBearerCode = (code: string) => RING_BEARERS.includes(code);

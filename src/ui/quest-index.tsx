@@ -119,6 +119,10 @@ const HEADLINES: Partial<
     lead: "Rouse the Ents",
     em: "and break the power of Saruman.",
   },
+  "the-passage-of-the-marshes": {
+    lead: "Tame Sméagol",
+    em: "and cross the Dead Marshes.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

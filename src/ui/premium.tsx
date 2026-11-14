@@ -83,6 +83,10 @@ export const PLAYMATS = {
     name: "The Ring of Isengard",
     detail: "The Ents of Fangorn · The Voice of Saruman",
   },
+  "the-passage-of-the-marshes": {
+    name: "The Mere of Dead Faces",
+    detail: "The taming of Sméagol · The mire and the candles of the dead",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -497,6 +501,7 @@ export const PLAYMAT_CHOICES = [
   "the-uruk-hai",
   "helms-deep",
   "the-road-to-isengard",
+  "the-passage-of-the-marshes",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

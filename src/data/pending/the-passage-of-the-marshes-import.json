@@ -1,0 +1,1369 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The Passage of the Marshes",
+  "slug": "the-passage-of-the-marshes",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "144001",
+      "name": "Frodo Baggins",
+      "type_code": "hero",
+      "type_name": "Hero",
+      "sphere_code": "fellowship",
+      "sphere_name": "Fellowship",
+      "threat": 0,
+      "willpower": 2,
+      "attack": 1,
+      "defense": 2,
+      "health": 2,
+      "traits": "Hobbit. Ring-bearer.",
+      "text": "<b>Action:</b> Spend 1 [fellowship] resource and exhaust The One Ring to give Frodo Baggins +2 [willpower] and +2 [attack] until the end of the round.",
+      "flavor": "\"It's my doom, I think, to go to that Shadow yonder, so that a way will be found.\" <cite>The Two Towers</cite>",
+      "is_unique": true,
+      "deck_limit": 1,
+      "pack_name": "The Land of Shadow",
+      "pack_code": "LoS",
+      "position": 1,
+      "illustrator": "Melanie Maier",
+      "imagesrc": "/cards/144001.png",
+      "url": "https://ringsdb.com/card/144001",
+      "quantity": 1,
+      "octgnid": "fe58a6d3-7028-41c1-ab00-5e33e7d77b5f",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 1,
+          "quantity": 1,
+          "image_code": "144001",
+          "illustrator": "Melanie Maier",
+          "octgnid": "fe58a6d3-7028-41c1-ab00-5e33e7d77b5f",
+          "imagesrc": "/bundles/cards/144001.png",
+          "date_release": "2015-11-19"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/144001",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:0e3ce28a-df4b-461e-b47a-299e4c730cc2",
+      "octgnid": "0e3ce28a-df4b-461e-b47a-299e4c730cc2",
+      "name": "Groping Dead",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead.",
+      "text": "The engaged player cannot reduce his threat.  Forced: After Groping Dead destroys a character, place 1 mire token on the active location.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 16,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 3,
+      "defense": 1,
+      "health": 4,
+      "engagement": 24,
+      "shadow": "Shadow: If this attack destroys a character, place 1 mire token on the active location.",
+      "encounter_set": "The Passage of the Marshes",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "1",
+        "health": "4",
+        "engagement": "24"
+      },
+      "imagesrc": "/cards/0e3ce28a-df4b-461e-b47a-299e4c730cc2.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 16,
+          "quantity": 3,
+          "octgnid": "0e3ce28a-df4b-461e-b47a-299e4c730cc2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0e3ce28a-df4b-461e-b47a-299e4c730cc2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:1c765fa8-9cb8-4cf4-8e93-daac5bae4fce",
+      "octgnid": "1c765fa8-9cb8-4cf4-8e93-daac5bae4fce",
+      "name": "Haunted Mere",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Marsh.",
+      "text": "Mire 2. Forced: When Haunted Mere is discarded by the Mire keyword, search the encounter deck and discard pile for an Undead enemy, reveal it, and add it to the staging area. Shuffle the encounter deck.\nTravel: Exhaust Smeagol to travel here.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 21,
+      "quantity": 3,
+      "threat": 4,
+      "quest": 5,
+      "victory": 4,
+      "encounter_set": "The Passage of the Marshes",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "5",
+        "victory": "4"
+      },
+      "imagesrc": "/cards/1c765fa8-9cb8-4cf4-8e93-daac5bae4fce.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 21,
+          "quantity": 3,
+          "octgnid": "1c765fa8-9cb8-4cf4-8e93-daac5bae4fce",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1c765fa8-9cb8-4cf4-8e93-daac5bae4fce.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:32267333-091c-4bbf-bb29-5f21c8b79188",
+      "octgnid": "32267333-091c-4bbf-bb29-5f21c8b79188",
+      "name": "The One Ring",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Artifact. Item. Ring.",
+      "text": "Setup: The first player claims The One Ring and attaches it to the Ring-bearer. Attached hero does not count against the hero limit. The first player gains control of attached hero. If The One Ring leaves play, the players lose the game.",
+      "is_unique": true,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 63,
+      "quantity": 1,
+      "printed_stats": {},
+      "imagesrc": "/cards/32267333-091c-4bbf-bb29-5f21c8b79188.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 63,
+          "quantity": 1,
+          "octgnid": "32267333-091c-4bbf-bb29-5f21c8b79188",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32267333-091c-4bbf-bb29-5f21c8b79188.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3254a776-09e5-4576-9b3c-164cc93e1e26",
+      "octgnid": "3254a776-09e5-4576-9b3c-164cc93e1e26",
+      "name": "Soft Mires",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Marsh.",
+      "text": "Mire 1. Forced: When Soft Mires is discarded by the Mire keyword, the first player reveals the top card of the encounter deck.\nTravel: Each player must raise his threat by 1 to travel here.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 23,
+      "quantity": 4,
+      "threat": 2,
+      "quest": 4,
+      "victory": 2,
+      "encounter_set": "The Passage of the Marshes",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4",
+        "victory": "2"
+      },
+      "imagesrc": "/cards/3254a776-09e5-4576-9b3c-164cc93e1e26.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 23,
+          "quantity": 4,
+          "octgnid": "3254a776-09e5-4576-9b3c-164cc93e1e26",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3254a776-09e5-4576-9b3c-164cc93e1e26.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:32993141-956c-4426-98d9-8705de6fee00",
+      "octgnid": "32993141-956c-4426-98d9-8705de6fee00",
+      "name": "Gollum",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Gollum.",
+      "text": "Immune to non-[fellowship] player card effects. Gollum engages the first player.\nForced: After Gollum engages the first player during the refresh phase, he makes an immediate attack. Forced: When Gollum is defeated, flip him to Smeagol and exhaust Smeagol.",
+      "is_unique": true,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 75,
+      "quantity": 1,
+      "threat": 2,
+      "attack": 2,
+      "defense": 2,
+      "health": 5,
+      "engagement": 30,
+      "encounter_set": "Gollum",
+      "back_name": "Smeagol",
+      "back_text": "Immune to player card effects. The first player gains control of Smeagol.\nForced: After the players quest unsuccessfully, flip Smeagol to Gollum.  If Smeagol is destroyed, the players lose the game.",
+      "back_type_code": "objective-ally",
+      "back_imagesrc": "/cards/32993141-956c-4426-98d9-8705de6fee00.B.jpg",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "2",
+        "health": "5",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/32993141-956c-4426-98d9-8705de6fee00.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 75,
+          "quantity": 1,
+          "octgnid": "32993141-956c-4426-98d9-8705de6fee00",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32993141-956c-4426-98d9-8705de6fee00.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:39262ffc-6819-422c-a72a-9baed00f648a",
+      "octgnid": "39262ffc-6819-422c-a72a-9baed00f648a",
+      "name": "Stagnant Pools",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Marsh.",
+      "text": "Mire 5. Forced: When Stagnant Pools is discarded by the Mire keyword, raise each player's threat by 5. \nStagnant Pools gets +1 [threat] for each mire token on it.   Travel: Exhaust Smeagol to travel here.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 22,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 7,
+      "victory": 3,
+      "encounter_set": "The Passage of the Marshes",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "7",
+        "victory": "3"
+      },
+      "imagesrc": "/cards/39262ffc-6819-422c-a72a-9baed00f648a.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 22,
+          "quantity": 2,
+          "octgnid": "39262ffc-6819-422c-a72a-9baed00f648a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/39262ffc-6819-422c-a72a-9baed00f648a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:42e22482-0281-4811-aa65-2b342319ee07",
+      "octgnid": "42e22482-0281-4811-aa65-2b342319ee07",
+      "name": "We Hates Them",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nWhen Revealed: Either flip Smeagol to Gollum, or Gollum makes an immediate attack. The first player may spend 1 [fellowship] resource and exhaust The One Ring to cancel this effect.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 55,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+3 [attack] instead if the attacking enemy is Gollum).",
+      "encounter_set": "Gollum",
+      "printed_stats": {},
+      "imagesrc": "/cards/42e22482-0281-4811-aa65-2b342319ee07.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 55,
+          "quantity": 2,
+          "octgnid": "42e22482-0281-4811-aa65-2b342319ee07",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/42e22482-0281-4811-aa65-2b342319ee07.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5e8714e3-0581-4b6f-bf45-414098819626",
+      "octgnid": "5e8714e3-0581-4b6f-bf45-414098819626",
+      "name": "Call of the Ring",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The first player must choose: either search the encounter deck, discard pile, and victory display for a Nazgûl enemy and add it to the staging area, or exhaust The One Ring and reveal the top card of the encounter deck.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 54,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy makes an additional attack against you after this one.",
+      "encounter_set": "Nazgûl",
+      "printed_stats": {},
+      "imagesrc": "/cards/5e8714e3-0581-4b6f-bf45-414098819626.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 54,
+          "quantity": 2,
+          "octgnid": "5e8714e3-0581-4b6f-bf45-414098819626",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5e8714e3-0581-4b6f-bf45-414098819626.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:694650d0-9ba6-4573-bf13-10ca8eb7995d",
+      "octgnid": "694650d0-9ba6-4573-bf13-10ca8eb7995d",
+      "name": "A Fell Light",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Peril. When Revealed: Put the topmost Undead enemy in the encounter discard pile into play engaged with you. Each Undead enemy engaged with you makes an immediate attack.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 26,
+      "quantity": 2,
+      "shadow": "Shadow: Return the topmost Undead enemy in the encounter discard pile to the staging area.",
+      "encounter_set": "The Passage of the Marshes",
+      "printed_stats": {},
+      "imagesrc": "/cards/694650d0-9ba6-4573-bf13-10ca8eb7995d.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 26,
+          "quantity": 2,
+          "octgnid": "694650d0-9ba6-4573-bf13-10ca8eb7995d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/694650d0-9ba6-4573-bf13-10ca8eb7995d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:73752e58-5dc1-40ea-b294-3c8f1998142d",
+      "octgnid": "73752e58-5dc1-40ea-b294-3c8f1998142d",
+      "name": "Dead Things",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead.",
+      "text": "The engaged player cannot reduce his threat. Forced: After Dead Things destroys a character, the defending player must raise his threat by 3.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 17,
+      "quantity": 3,
+      "threat": 3,
+      "attack": 4,
+      "defense": 2,
+      "health": 5,
+      "engagement": 32,
+      "shadow": "Shadow: Raise your threat by 1 for each Undead enemy engaged with you.",
+      "encounter_set": "The Passage of the Marshes",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "4",
+        "defense": "2",
+        "health": "5",
+        "engagement": "32"
+      },
+      "imagesrc": "/cards/73752e58-5dc1-40ea-b294-3c8f1998142d.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 17,
+          "quantity": 3,
+          "octgnid": "73752e58-5dc1-40ea-b294-3c8f1998142d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/73752e58-5dc1-40ea-b294-3c8f1998142d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc",
+      "octgnid": "74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc",
+      "name": "Morgul Wraith",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Nazgûl.",
+      "text": "Cannot have non-Morgul attachments.\nWhile The One Ring is exhausted, Morgul Wraith gets -30 engagement cost and gains \"Immune to player card effects.\"",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 53,
+      "quantity": 2,
+      "threat": 4,
+      "attack": 5,
+      "defense": 4,
+      "health": 9,
+      "engagement": 45,
+      "encounter_set": "Nazgûl",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "5",
+        "defense": "4",
+        "health": "9",
+        "engagement": "45"
+      },
+      "imagesrc": "/cards/74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 53,
+          "quantity": 2,
+          "octgnid": "74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7fdde250-5b13-4c94-a9b8-4a3a0029928a",
+      "octgnid": "7fdde250-5b13-4c94-a9b8-4a3a0029928a",
+      "name": "The Taming of Smeagol",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Put Gollum into play engaged with the first player. Each player searches the encounter deck for 1 location, reveals it, and adds it to the staging area. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 64,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The Passage of the Marshes",
+      "side": "A",
+      "back_name": "The Taming of Smeagol",
+      "back_text": "The players cannot advance unless the first player controls Smeagol.  Forced: After a player declares any number of attackers against Gollum, discard the top card of the encounter deck. Gollum gets +X [defense] for this attack, where X is the discarded card's [threat].",
+      "back_type_code": "quest",
+      "back_quest": 6,
+      "back_imagesrc": "/cards/7fdde250-5b13-4c94-a9b8-4a3a0029928a.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/7fdde250-5b13-4c94-a9b8-4a3a0029928a.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 64,
+          "quantity": 1,
+          "octgnid": "7fdde250-5b13-4c94-a9b8-4a3a0029928a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7fdde250-5b13-4c94-a9b8-4a3a0029928a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8893eba4-1f9c-4661-bfc2-bb485e023066",
+      "octgnid": "8893eba4-1f9c-4661-bfc2-bb485e023066",
+      "name": "Shifting Quagmire",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Marsh.",
+      "text": "Surge. Mire 1. Forced: When Shifting Quagmire is discarded by the Mire keyword, either return a random location from the victory display to the staging area, or raise each player's threat by 1 for each location in the victory display.\nTravel: Spend 1 [fellowship] resource to travel here.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 20,
+      "quantity": 2,
+      "threat": 1,
+      "quest": 3,
+      "victory": 1,
+      "encounter_set": "The Passage of the Marshes",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "3",
+        "victory": "1"
+      },
+      "imagesrc": "/cards/8893eba4-1f9c-4661-bfc2-bb485e023066.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 20,
+          "quantity": 2,
+          "octgnid": "8893eba4-1f9c-4661-bfc2-bb485e023066",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8893eba4-1f9c-4661-bfc2-bb485e023066.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ba62a8f1-1857-4449-8f49-7b584b9aaa7d",
+      "octgnid": "ba62a8f1-1857-4449-8f49-7b584b9aaa7d",
+      "name": "The Passage of the Marshes",
+      "type_code": "rules",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Rules Card",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 999,
+      "quantity": 0,
+      "encounter_set": "The Passage of the Marshes",
+      "back_name": "The Passage of the Marshes",
+      "back_type_code": "rules",
+      "back_imagesrc": "/cards/ba62a8f1-1857-4449-8f49-7b584b9aaa7d.B.jpg",
+      "printed_stats": {},
+      "imagesrc": "/cards/ba62a8f1-1857-4449-8f49-7b584b9aaa7d.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 999,
+          "quantity": 0,
+          "octgnid": "ba62a8f1-1857-4449-8f49-7b584b9aaa7d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ba62a8f1-1857-4449-8f49-7b584b9aaa7d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c1554b49-597c-4d1b-8871-dfbe867253d5",
+      "octgnid": "c1554b49-597c-4d1b-8871-dfbe867253d5",
+      "name": "Candle-bearer",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead.",
+      "text": "The engaged player cannot reduce his threat.\nForced: After Candle-bearer destroys a character, it cannot take damage until the end of the round.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 18,
+      "quantity": 3,
+      "threat": 3,
+      "attack": 5,
+      "defense": 2,
+      "health": 6,
+      "engagement": 36,
+      "shadow": "Shadow: Until the end of the round, attacking enemy cannot take damage.",
+      "encounter_set": "The Passage of the Marshes",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "2",
+        "health": "6",
+        "engagement": "36"
+      },
+      "imagesrc": "/cards/c1554b49-597c-4d1b-8871-dfbe867253d5.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 18,
+          "quantity": 3,
+          "octgnid": "c1554b49-597c-4d1b-8871-dfbe867253d5",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c1554b49-597c-4d1b-8871-dfbe867253d5.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d63f87da-45b4-4c5c-b3b5-970a4277c263",
+      "octgnid": "d63f87da-45b4-4c5c-b3b5-970a4277c263",
+      "name": "Across the Marshes",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: If the number of locations in the staging area is less than the number of players in the game, discard cards from the encounter deck until a location is discarded. Then, add the discarded location to the staging area.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 65,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Passage of the Marshes",
+      "side": "A",
+      "back_name": "Across the Dead Marshes",
+      "back_text": "Progress cannot be placed on locations in the staging area.  The players cannot advance unless the first player controls Smeagol and there are at least 4 locations in the victory display.  Forced: At the end of the staging step, if the number of locations in the staging area is less than the number of players in the game, reveal the top card of the encounter deck.",
+      "back_type_code": "quest",
+      "back_quest": 12,
+      "back_imagesrc": "/cards/d63f87da-45b4-4c5c-b3b5-970a4277c263.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/d63f87da-45b4-4c5c-b3b5-970a4277c263.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 65,
+          "quantity": 1,
+          "octgnid": "d63f87da-45b4-4c5c-b3b5-970a4277c263",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d63f87da-45b4-4c5c-b3b5-970a4277c263.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e25328c2-1a6b-4dda-866e-02685eff4a88",
+      "octgnid": "e25328c2-1a6b-4dda-866e-02685eff4a88",
+      "name": "Evil-smelling Fens",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Marsh.",
+      "text": "Mire 3. Forced: When Evilsmelling Fens is discarded by the Mire keyword, deal 1 damage to each character.\nTravel: Raise each player's threat by 1 to travel here.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 19,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 4,
+      "victory": 3,
+      "shadow": "Shadow: Deal 1 damage to defending character.",
+      "encounter_set": "The Passage of the Marshes",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "4",
+        "victory": "3"
+      },
+      "imagesrc": "/cards/e25328c2-1a6b-4dda-866e-02685eff4a88.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 19,
+          "quantity": 3,
+          "octgnid": "e25328c2-1a6b-4dda-866e-02685eff4a88",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e25328c2-1a6b-4dda-866e-02685eff4a88.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e40770a1-7b1b-4257-afca-443c55701850",
+      "octgnid": "e40770a1-7b1b-4257-afca-443c55701850",
+      "name": "\"Don't Look at the Lights!\"",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player searches the encounter deck and discard pile for an Undead enemy and puts it into play engaged with him. Shuffle all locations in the victory display into the encounter deck.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 66,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "The Passage of the Marshes",
+      "side": "A",
+      "back_name": "\"Don't Look at the Lights!\"",
+      "back_text": "While any player is engaged with an Undead enemy, progress cannot be placed on this stage.  The players cannot defeat this stage unless the first player controls Smeagol. If the players defeat this stage, they win the game.",
+      "back_type_code": "quest",
+      "back_quest": 24,
+      "back_imagesrc": "/cards/e40770a1-7b1b-4257-afca-443c55701850.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/e40770a1-7b1b-4257-afca-443c55701850.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 66,
+          "quantity": 1,
+          "octgnid": "e40770a1-7b1b-4257-afca-443c55701850",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e40770a1-7b1b-4257-afca-443c55701850.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f214f533-374b-423c-86b5-dca1ab5d048f",
+      "octgnid": "f214f533-374b-423c-86b5-dca1ab5d048f",
+      "name": "Creeping Marshes",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge. Doomed 1.\nWhen Revealed: Attach to the current quest. (Counts as a Condition attachment with the text: \"Forced: At the end of the refresh phase, place 1 mire token on each location in the staging area. Then, discard Creeping Marshes.\")",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 24,
+      "quantity": 2,
+      "encounter_set": "The Passage of the Marshes",
+      "printed_stats": {},
+      "imagesrc": "/cards/f214f533-374b-423c-86b5-dca1ab5d048f.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 24,
+          "quantity": 2,
+          "octgnid": "f214f533-374b-423c-86b5-dca1ab5d048f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f214f533-374b-423c-86b5-dca1ab5d048f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fcc8ad22-ca1f-4fd1-8f84-4955bb683f50",
+      "octgnid": "fcc8ad22-ca1f-4fd1-8f84-4955bb683f50",
+      "name": "Bitter Reek",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Peril. When Revealed: Either raise your threat by 1 for each character you control that is committed to the quest, or deal 1 damage to each character committed to the quest.",
+      "is_unique": false,
+      "pack_code": "LoS",
+      "pack_name": "The Land of Shadow",
+      "position": 25,
+      "quantity": 3,
+      "shadow": "Shadow: Raise your threat by the attacking enemy's [threat].",
+      "encounter_set": "The Passage of the Marshes",
+      "printed_stats": {},
+      "imagesrc": "/cards/fcc8ad22-ca1f-4fd1-8f84-4955bb683f50.jpg",
+      "packs": [
+        {
+          "pack_code": "LoS",
+          "pack_name": "The Land of Shadow",
+          "position": 25,
+          "quantity": 3,
+          "octgnid": "fcc8ad22-ca1f-4fd1-8f84-4955bb683f50",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fcc8ad22-ca1f-4fd1-8f84-4955bb683f50.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E0B.10",
+      "name": "The Passage of the Marshes (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "LoS"
+      ],
+      "card_codes": [
+        "octgn:7fdde250-5b13-4c94-a9b8-4a3a0029928a",
+        "octgn:d63f87da-45b4-4c5c-b3b5-970a4277c263",
+        "octgn:e40770a1-7b1b-4257-afca-443c55701850",
+        "octgn:0e3ce28a-df4b-461e-b47a-299e4c730cc2",
+        "octgn:73752e58-5dc1-40ea-b294-3c8f1998142d",
+        "octgn:c1554b49-597c-4d1b-8871-dfbe867253d5",
+        "octgn:e25328c2-1a6b-4dda-866e-02685eff4a88",
+        "octgn:8893eba4-1f9c-4661-bfc2-bb485e023066",
+        "octgn:1c765fa8-9cb8-4cf4-8e93-daac5bae4fce",
+        "octgn:39262ffc-6819-422c-a72a-9baed00f648a",
+        "octgn:3254a776-09e5-4576-9b3c-164cc93e1e26",
+        "octgn:f214f533-374b-423c-86b5-dca1ab5d048f",
+        "octgn:fcc8ad22-ca1f-4fd1-8f84-4955bb683f50",
+        "octgn:694650d0-9ba6-4573-bf13-10ca8eb7995d",
+        "octgn:74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc",
+        "octgn:5e8714e3-0581-4b6f-bf45-414098819626",
+        "octgn:42e22482-0281-4811-aa65-2b342319ee07",
+        "octgn:ba62a8f1-1857-4449-8f49-7b584b9aaa7d",
+        "octgn:32993141-956c-4426-98d9-8705de6fee00",
+        "144001",
+        "octgn:32267333-091c-4bbf-bb29-5f21c8b79188"
+      ],
+      "cards": [
+        {
+          "code": "octgn:7fdde250-5b13-4c94-a9b8-4a3a0029928a",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:d63f87da-45b4-4c5c-b3b5-970a4277c263",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:e40770a1-7b1b-4257-afca-443c55701850",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:0e3ce28a-df4b-461e-b47a-299e4c730cc2",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:73752e58-5dc1-40ea-b294-3c8f1998142d",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c1554b49-597c-4d1b-8871-dfbe867253d5",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e25328c2-1a6b-4dda-866e-02685eff4a88",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8893eba4-1f9c-4661-bfc2-bb485e023066",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1c765fa8-9cb8-4cf4-8e93-daac5bae4fce",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:39262ffc-6819-422c-a72a-9baed00f648a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3254a776-09e5-4576-9b3c-164cc93e1e26",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f214f533-374b-423c-86b5-dca1ab5d048f",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fcc8ad22-ca1f-4fd1-8f84-4955bb683f50",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:694650d0-9ba6-4573-bf13-10ca8eb7995d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5e8714e3-0581-4b6f-bf45-414098819626",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:42e22482-0281-4811-aa65-2b342319ee07",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ba62a8f1-1857-4449-8f49-7b584b9aaa7d",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:32993141-956c-4426-98d9-8705de6fee00",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "144001",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:32267333-091c-4bbf-bb29-5f21c8b79188",
+          "quantity": 1,
+          "section": "player1Play1"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:7fdde250-5b13-4c94-a9b8-4a3a0029928a": 1,
+          "octgn:d63f87da-45b4-4c5c-b3b5-970a4277c263": 1,
+          "octgn:e40770a1-7b1b-4257-afca-443c55701850": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:0e3ce28a-df4b-461e-b47a-299e4c730cc2": 3,
+          "octgn:73752e58-5dc1-40ea-b294-3c8f1998142d": 3,
+          "octgn:c1554b49-597c-4d1b-8871-dfbe867253d5": 1,
+          "octgn:e25328c2-1a6b-4dda-866e-02685eff4a88": 2,
+          "octgn:8893eba4-1f9c-4661-bfc2-bb485e023066": 2,
+          "octgn:1c765fa8-9cb8-4cf4-8e93-daac5bae4fce": 2,
+          "octgn:39262ffc-6819-422c-a72a-9baed00f648a": 2,
+          "octgn:3254a776-09e5-4576-9b3c-164cc93e1e26": 3,
+          "octgn:f214f533-374b-423c-86b5-dca1ab5d048f": 1,
+          "octgn:fcc8ad22-ca1f-4fd1-8f84-4955bb683f50": 2,
+          "octgn:694650d0-9ba6-4573-bf13-10ca8eb7995d": 1,
+          "octgn:74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc": 1,
+          "octgn:5e8714e3-0581-4b6f-bf45-414098819626": 1,
+          "octgn:42e22482-0281-4811-aa65-2b342319ee07": 1
+        },
+        "sharedSetAside": {
+          "octgn:ba62a8f1-1857-4449-8f49-7b584b9aaa7d": 1
+        },
+        "sharedStagingArea": {
+          "octgn:32993141-956c-4426-98d9-8705de6fee00": 1
+        },
+        "player1Play1": {
+          "144001": 1,
+          "octgn:32267333-091c-4bbf-bb29-5f21c8b79188": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q0B.10",
+      "name": "The Passage of the Marshes",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "LoS"
+      ],
+      "card_codes": [
+        "octgn:7fdde250-5b13-4c94-a9b8-4a3a0029928a",
+        "octgn:d63f87da-45b4-4c5c-b3b5-970a4277c263",
+        "octgn:e40770a1-7b1b-4257-afca-443c55701850",
+        "octgn:0e3ce28a-df4b-461e-b47a-299e4c730cc2",
+        "octgn:73752e58-5dc1-40ea-b294-3c8f1998142d",
+        "octgn:c1554b49-597c-4d1b-8871-dfbe867253d5",
+        "octgn:e25328c2-1a6b-4dda-866e-02685eff4a88",
+        "octgn:8893eba4-1f9c-4661-bfc2-bb485e023066",
+        "octgn:1c765fa8-9cb8-4cf4-8e93-daac5bae4fce",
+        "octgn:39262ffc-6819-422c-a72a-9baed00f648a",
+        "octgn:3254a776-09e5-4576-9b3c-164cc93e1e26",
+        "octgn:f214f533-374b-423c-86b5-dca1ab5d048f",
+        "octgn:fcc8ad22-ca1f-4fd1-8f84-4955bb683f50",
+        "octgn:694650d0-9ba6-4573-bf13-10ca8eb7995d",
+        "octgn:74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc",
+        "octgn:5e8714e3-0581-4b6f-bf45-414098819626",
+        "octgn:42e22482-0281-4811-aa65-2b342319ee07",
+        "octgn:ba62a8f1-1857-4449-8f49-7b584b9aaa7d",
+        "octgn:32993141-956c-4426-98d9-8705de6fee00",
+        "144001",
+        "octgn:32267333-091c-4bbf-bb29-5f21c8b79188"
+      ],
+      "cards": [
+        {
+          "code": "octgn:7fdde250-5b13-4c94-a9b8-4a3a0029928a",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:d63f87da-45b4-4c5c-b3b5-970a4277c263",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:e40770a1-7b1b-4257-afca-443c55701850",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:0e3ce28a-df4b-461e-b47a-299e4c730cc2",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:73752e58-5dc1-40ea-b294-3c8f1998142d",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c1554b49-597c-4d1b-8871-dfbe867253d5",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e25328c2-1a6b-4dda-866e-02685eff4a88",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8893eba4-1f9c-4661-bfc2-bb485e023066",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1c765fa8-9cb8-4cf4-8e93-daac5bae4fce",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:39262ffc-6819-422c-a72a-9baed00f648a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3254a776-09e5-4576-9b3c-164cc93e1e26",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f214f533-374b-423c-86b5-dca1ab5d048f",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fcc8ad22-ca1f-4fd1-8f84-4955bb683f50",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:694650d0-9ba6-4573-bf13-10ca8eb7995d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5e8714e3-0581-4b6f-bf45-414098819626",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:42e22482-0281-4811-aa65-2b342319ee07",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ba62a8f1-1857-4449-8f49-7b584b9aaa7d",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:32993141-956c-4426-98d9-8705de6fee00",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "144001",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:32267333-091c-4bbf-bb29-5f21c8b79188",
+          "quantity": 1,
+          "section": "player1Play1"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:7fdde250-5b13-4c94-a9b8-4a3a0029928a": 1,
+          "octgn:d63f87da-45b4-4c5c-b3b5-970a4277c263": 1,
+          "octgn:e40770a1-7b1b-4257-afca-443c55701850": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:0e3ce28a-df4b-461e-b47a-299e4c730cc2": 3,
+          "octgn:73752e58-5dc1-40ea-b294-3c8f1998142d": 3,
+          "octgn:c1554b49-597c-4d1b-8871-dfbe867253d5": 3,
+          "octgn:e25328c2-1a6b-4dda-866e-02685eff4a88": 3,
+          "octgn:8893eba4-1f9c-4661-bfc2-bb485e023066": 2,
+          "octgn:1c765fa8-9cb8-4cf4-8e93-daac5bae4fce": 3,
+          "octgn:39262ffc-6819-422c-a72a-9baed00f648a": 2,
+          "octgn:3254a776-09e5-4576-9b3c-164cc93e1e26": 4,
+          "octgn:f214f533-374b-423c-86b5-dca1ab5d048f": 2,
+          "octgn:fcc8ad22-ca1f-4fd1-8f84-4955bb683f50": 3,
+          "octgn:694650d0-9ba6-4573-bf13-10ca8eb7995d": 2,
+          "octgn:74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc": 2,
+          "octgn:5e8714e3-0581-4b6f-bf45-414098819626": 2,
+          "octgn:42e22482-0281-4811-aa65-2b342319ee07": 2
+        },
+        "sharedSetAside": {
+          "octgn:ba62a8f1-1857-4449-8f49-7b584b9aaa7d": 1
+        },
+        "sharedStagingArea": {
+          "octgn:32993141-956c-4426-98d9-8705de6fee00": 1
+        },
+        "player1Play1": {
+          "144001": 1,
+          "octgn:32267333-091c-4bbf-bb29-5f21c8b79188": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "144001",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/144001.png",
+      "localPath": "/cards/144001.png",
+      "bytes": 155746,
+      "sha256": "20b64143efbc18e5687b3f9534b780a44a0f941421147cd9bfc070ca0a0f61a1"
+    },
+    {
+      "code": "octgn:0e3ce28a-df4b-461e-b47a-299e4c730cc2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0e3ce28a-df4b-461e-b47a-299e4c730cc2.jpg",
+      "localPath": "/cards/0e3ce28a-df4b-461e-b47a-299e4c730cc2.jpg",
+      "bytes": 156582,
+      "sha256": "136662ec35f38b1a6d0490014791279fba2aeba157630b2979b2086201c20fb5"
+    },
+    {
+      "code": "octgn:1c765fa8-9cb8-4cf4-8e93-daac5bae4fce",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1c765fa8-9cb8-4cf4-8e93-daac5bae4fce.jpg",
+      "localPath": "/cards/1c765fa8-9cb8-4cf4-8e93-daac5bae4fce.jpg",
+      "bytes": 157061,
+      "sha256": "4a79bb619f0d0c87345ffff96e88c3a37c9abf7958e9b61f5abfbbeb6d9ef194"
+    },
+    {
+      "code": "octgn:32267333-091c-4bbf-bb29-5f21c8b79188",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32267333-091c-4bbf-bb29-5f21c8b79188.jpg",
+      "localPath": "/cards/32267333-091c-4bbf-bb29-5f21c8b79188.jpg",
+      "bytes": 142861,
+      "sha256": "c956495e3def53b5c44878d3ddb3e43d943e83f68a691e9d2e78b5954700c7ed"
+    },
+    {
+      "code": "octgn:3254a776-09e5-4576-9b3c-164cc93e1e26",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3254a776-09e5-4576-9b3c-164cc93e1e26.jpg",
+      "localPath": "/cards/3254a776-09e5-4576-9b3c-164cc93e1e26.jpg",
+      "bytes": 150577,
+      "sha256": "51c00624d5cd8df76ade6242f8b63c4d23746ae989163b3f9220686fd83ddae0"
+    },
+    {
+      "code": "octgn:32993141-956c-4426-98d9-8705de6fee00",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32993141-956c-4426-98d9-8705de6fee00.jpg",
+      "localPath": "/cards/32993141-956c-4426-98d9-8705de6fee00.jpg",
+      "bytes": 143154,
+      "sha256": "aa8ba5fc4ec000190926bd26faf566fb332cd9b8fcc65147fc5196239f87e3bf"
+    },
+    {
+      "code": "octgn:32993141-956c-4426-98d9-8705de6fee00",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32993141-956c-4426-98d9-8705de6fee00.B.jpg",
+      "localPath": "/cards/32993141-956c-4426-98d9-8705de6fee00.B.jpg",
+      "bytes": 144348,
+      "sha256": "1d8d21014264a018676edcd400f84ef02039c9a5ed1a6eefd577b0888f57cd77"
+    },
+    {
+      "code": "octgn:39262ffc-6819-422c-a72a-9baed00f648a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/39262ffc-6819-422c-a72a-9baed00f648a.jpg",
+      "localPath": "/cards/39262ffc-6819-422c-a72a-9baed00f648a.jpg",
+      "bytes": 150406,
+      "sha256": "10df6408aad201d31574f1c9a6a70dd0f67e60b67b29413899488d9e9a2f9a26"
+    },
+    {
+      "code": "octgn:42e22482-0281-4811-aa65-2b342319ee07",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/42e22482-0281-4811-aa65-2b342319ee07.jpg",
+      "localPath": "/cards/42e22482-0281-4811-aa65-2b342319ee07.jpg",
+      "bytes": 148308,
+      "sha256": "d2336989666795b26fc2550e4209dacd077d569219366f0cd8f5cfcc89c3dea6"
+    },
+    {
+      "code": "octgn:5e8714e3-0581-4b6f-bf45-414098819626",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5e8714e3-0581-4b6f-bf45-414098819626.jpg",
+      "localPath": "/cards/5e8714e3-0581-4b6f-bf45-414098819626.jpg",
+      "bytes": 149166,
+      "sha256": "f381b8eaff0ebd25e17fde65c4c514f03d7115048c98521e19d50ec77973bf53"
+    },
+    {
+      "code": "octgn:694650d0-9ba6-4573-bf13-10ca8eb7995d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/694650d0-9ba6-4573-bf13-10ca8eb7995d.jpg",
+      "localPath": "/cards/694650d0-9ba6-4573-bf13-10ca8eb7995d.jpg",
+      "bytes": 140677,
+      "sha256": "a07bd11e57c4db9cfa1473fe31d7bc3f827d22b2b366137b8c8f8883b1f0e66e"
+    },
+    {
+      "code": "octgn:73752e58-5dc1-40ea-b294-3c8f1998142d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/73752e58-5dc1-40ea-b294-3c8f1998142d.jpg",
+      "localPath": "/cards/73752e58-5dc1-40ea-b294-3c8f1998142d.jpg",
+      "bytes": 159927,
+      "sha256": "402be8b17b84ce6d790aeec521a2e9fbd9a1d19848799222e33c9a9f5d4361ca"
+    },
+    {
+      "code": "octgn:74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc.jpg",
+      "localPath": "/cards/74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc.jpg",
+      "bytes": 142177,
+      "sha256": "ec78e32d9cb5aed4ebc7f1134dbed7a665ef7d4f75e86d1a7211f0624c9a8cdc"
+    },
+    {
+      "code": "octgn:7fdde250-5b13-4c94-a9b8-4a3a0029928a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7fdde250-5b13-4c94-a9b8-4a3a0029928a.jpg",
+      "localPath": "/cards/7fdde250-5b13-4c94-a9b8-4a3a0029928a.jpg",
+      "bytes": 148715,
+      "sha256": "00c0e30496dd44252c77689cb5de55cf2a9dc6bbdc442d4850805f8784cb4698"
+    },
+    {
+      "code": "octgn:7fdde250-5b13-4c94-a9b8-4a3a0029928a",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7fdde250-5b13-4c94-a9b8-4a3a0029928a.B.jpg",
+      "localPath": "/cards/7fdde250-5b13-4c94-a9b8-4a3a0029928a.B.jpg",
+      "bytes": 147267,
+      "sha256": "28dc50f77a603e4d83523c1e5e56cd8f0a158cbe3e13db507c9a2a696c4a3365"
+    },
+    {
+      "code": "octgn:8893eba4-1f9c-4661-bfc2-bb485e023066",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8893eba4-1f9c-4661-bfc2-bb485e023066.jpg",
+      "localPath": "/cards/8893eba4-1f9c-4661-bfc2-bb485e023066.jpg",
+      "bytes": 148197,
+      "sha256": "15c2ee37e3bcc3c3a2b37cadfec6149b6ee2bf1e109a221ed8c9a9417eeb4ce2"
+    },
+    {
+      "code": "octgn:ba62a8f1-1857-4449-8f49-7b584b9aaa7d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ba62a8f1-1857-4449-8f49-7b584b9aaa7d.jpg",
+      "localPath": "/cards/ba62a8f1-1857-4449-8f49-7b584b9aaa7d.jpg",
+      "bytes": 178309,
+      "sha256": "96b18f51811f06e9f687880248417ca5f090db102d5ea8508e9b04ed276ea84a"
+    },
+    {
+      "code": "octgn:ba62a8f1-1857-4449-8f49-7b584b9aaa7d",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ba62a8f1-1857-4449-8f49-7b584b9aaa7d.B.jpg",
+      "localPath": "/cards/ba62a8f1-1857-4449-8f49-7b584b9aaa7d.B.jpg",
+      "bytes": 103450,
+      "sha256": "16dbc0dd44a3f44155d39187aa40fb690958c13a91e95e6cc11e5a2a7d7fec8a"
+    },
+    {
+      "code": "octgn:c1554b49-597c-4d1b-8871-dfbe867253d5",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c1554b49-597c-4d1b-8871-dfbe867253d5.jpg",
+      "localPath": "/cards/c1554b49-597c-4d1b-8871-dfbe867253d5.jpg",
+      "bytes": 145280,
+      "sha256": "224bfa551e332afdc83e345e7e85958bdcd575f231ff7c498f1de45e59bf6b94"
+    },
+    {
+      "code": "octgn:d63f87da-45b4-4c5c-b3b5-970a4277c263",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d63f87da-45b4-4c5c-b3b5-970a4277c263.jpg",
+      "localPath": "/cards/d63f87da-45b4-4c5c-b3b5-970a4277c263.jpg",
+      "bytes": 150106,
+      "sha256": "77fdbf909191dd3d4a1191b2b6a5e91e2c1486ac5347c37e680c6d84fcc8b2a0"
+    },
+    {
+      "code": "octgn:d63f87da-45b4-4c5c-b3b5-970a4277c263",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d63f87da-45b4-4c5c-b3b5-970a4277c263.B.jpg",
+      "localPath": "/cards/d63f87da-45b4-4c5c-b3b5-970a4277c263.B.jpg",
+      "bytes": 140482,
+      "sha256": "0c2259c140f3651a2fbfcaa773698afef61aff431f4779c841bbd88f9126e569"
+    },
+    {
+      "code": "octgn:e25328c2-1a6b-4dda-866e-02685eff4a88",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e25328c2-1a6b-4dda-866e-02685eff4a88.jpg",
+      "localPath": "/cards/e25328c2-1a6b-4dda-866e-02685eff4a88.jpg",
+      "bytes": 154040,
+      "sha256": "b3dfbdb55165af586a7209630fc82951a13556bacdb50938ea3b22b20a355b13"
+    },
+    {
+      "code": "octgn:e40770a1-7b1b-4257-afca-443c55701850",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e40770a1-7b1b-4257-afca-443c55701850.jpg",
+      "localPath": "/cards/e40770a1-7b1b-4257-afca-443c55701850.jpg",
+      "bytes": 145603,
+      "sha256": "515b002933eeda35e84adb9967dc6aa7fbf91ba18af3a1566a54e13399ce4c8e"
+    },
+    {
+      "code": "octgn:e40770a1-7b1b-4257-afca-443c55701850",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e40770a1-7b1b-4257-afca-443c55701850.B.jpg",
+      "localPath": "/cards/e40770a1-7b1b-4257-afca-443c55701850.B.jpg",
+      "bytes": 137179,
+      "sha256": "0e94730b393195814bbe1a94f912ae1a0a5f723e32198158a92bc8b018b92839"
+    },
+    {
+      "code": "octgn:f214f533-374b-423c-86b5-dca1ab5d048f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f214f533-374b-423c-86b5-dca1ab5d048f.jpg",
+      "localPath": "/cards/f214f533-374b-423c-86b5-dca1ab5d048f.jpg",
+      "bytes": 144708,
+      "sha256": "228fcabc569597360540730a13bced99b0ab344b9186f15f861d9a73bcde7ac1"
+    },
+    {
+      "code": "octgn:fcc8ad22-ca1f-4fd1-8f84-4955bb683f50",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fcc8ad22-ca1f-4fd1-8f84-4955bb683f50.jpg",
+      "localPath": "/cards/fcc8ad22-ca1f-4fd1-8f84-4955bb683f50.jpg",
+      "bytes": 142695,
+      "sha256": "2cb5b9668ca3af4a571712b81cc53bf112813ca75131117ccf70230bcad7a247"
+    }
+  ]
+}

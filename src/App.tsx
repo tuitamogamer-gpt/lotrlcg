@@ -41,7 +41,9 @@ import { URUK_HAI_QUESTS } from "./game/uruk-hai-support";
 import { HelmsDeepState } from "./ui/helms-deep-state";
 import { HELMS_DEEP_QUESTS } from "./game/helms-deep-support";
 import { RoadIsengardState } from "./ui/road-isengard-state";
+import { PassageMarshesState } from "./ui/passage-marshes-state";
 import { ROAD_ISENGARD_QUESTS } from "./game/road-isengard-support";
+import { PASSAGE_MARSHES_QUESTS } from "./game/passage-marshes-support";
 import { DDCD_QUESTS } from "./game/dungeons-deep-support";
 import {
   discoveredTreasures,
@@ -3307,6 +3309,7 @@ export default function App() {
             <UrukHaiState s={game} inspect={setDetail} />
             <HelmsDeepState s={game} inspect={setDetail} />
             <RoadIsengardState s={game} inspect={setDetail} />
+            <PassageMarshesState s={game} inspect={setDetail} />
             <AshMountainsState s={game} inspect={setDetail} />
             <CouncilOfTheWiseState s={game} inspect={setDetail} />
             <WainridersScenarioState s={game} inspect={setDetail} />
@@ -4067,6 +4070,7 @@ export default function App() {
                       ...URUK_HAI_QUESTS,
                       ...HELMS_DEEP_QUESTS,
                       ...ROAD_ISENGARD_QUESTS,
+                      ...PASSAGE_MARSHES_QUESTS,
                       ...(carrockQuestCards as Card[]),
                       ...EMYN_MUIL_QUESTS,
                       ...CITY_QUESTS,

@@ -916,6 +916,7 @@ export function depositInFlightEncounterCards(s: GameState) {
 
 export function check(s: GameState) {
   if (s.status !== "playing") return;
+  const firstBefore = s.table?.first;
   Cobas.cobasCheck(s);
   City.cityCheck(s);
   Sands.beneathSandsCheck(s);
@@ -1271,6 +1272,8 @@ export function check(s: GameState) {
     Depths.depthsFirstPlayerChanged(s);
     TempleEncounters.templeFirstPlayerChanged(s);
     DrownedCompanions.drownedFirstPlayerChanged(s);
+    if (s.table && s.table.first !== firstBefore)
+      batch4Scenario(s).firstPlayerChanged?.(s, false);
     redhornFollowFirstPlayer(s);
     roadRivendellFollowFirstPlayer(s);
     longDarkCheck(s);
@@ -1929,7 +1932,7 @@ export function destroy(
     } else if (
       ShadowEastPlayers.shadowEastPlayerEnemyDestination(s, u, destruction)
     ) {
-    } else if (batch4Scenario(s).enemyDestination?.(s, u)) {
+    } else if (batch4Scenario(s).enemyDestination?.(s, u, destruction)) {
     } else if (Dread.dreadEnemyLeaves(s, u)) {
     } else if (destruction && u.code === "01115") {
       s.encounterDeck.push(u.code);

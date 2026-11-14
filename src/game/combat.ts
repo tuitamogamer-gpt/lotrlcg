@@ -1,4 +1,5 @@
 import { wainridersPlayerAttackKilled } from "./wainriders-player";
+import { POM } from "./passage-marshes-support";
 import { hobbitPlayerNoDefenseExhaust } from "./hobbit-player-cards";
 import * as BlackRidersPlayers from "./black-riders-player-cards";
 import * as TreasonPlayers from "./treason-saruman-player-cards";
@@ -490,7 +491,9 @@ export function resolvePlayerAttack(
     lethal &&
     assigned &&
     (!get(s, enemy.id) ||
-      (enemy.code === "21072.B" && get(s, enemy.id)?.code === "21072"));
+      (enemy.code === "21072.B" && get(s, enemy.id)?.code === "21072") ||
+      // The Passage of the Marshes: a defeated Gollum flips to Sméagol.
+      (enemy.code === POM.gollum && get(s, enemy.id)?.code === POM.smeagol));
   if (killed && s.status === "playing")
     playerAttackKilled(s, enemy, ids, engagedPlayer, lastKnownTraits);
   playerAttackResolved(s, enemy, ids, assigned ? amount : 0, remainingHealth);
