@@ -293,6 +293,7 @@ export type ScenarioId =
   | "the-passing-of-the-grey-company"
   | "the-siege-of-gondor"
   | "the-battle-of-the-pelennor-fields"
+  | "the-tower-of-cirith-ungol"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -479,6 +480,7 @@ export interface GameState {
   greyCompany?: import("./grey-company-types").GreyCompanyState;
   siegeGondor?: import("./siege-gondor-types").SiegeGondorState;
   pelennorFields?: import("./pelennor-fields-types").PelennorFieldsState;
+  cirithUngol?: import("./cirith-ungol-types").CirithUngolState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -900,6 +902,10 @@ export interface GameState {
     pfDart?: boolean;
     /** The Battle of the Pelennor Fields: Spells of Ruin's shadow, 2 damage to Minas Tirith if it destroys a character. */
     pfRuin?: boolean;
+    /** The Tower of Cirith Ungol: Uruk Soldier's shadow, return the attacker if it destroys a character. */
+    cuReturnOnKill?: boolean;
+    /** The Tower of Cirith Ungol: Evil Vigilance's shadow, reveal an encounter card if it destroys a character. */
+    cuRevealOnKill?: boolean;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

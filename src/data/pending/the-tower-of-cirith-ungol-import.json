@@ -1,0 +1,1418 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The Tower of Cirith Ungol",
+  "slug": "the-tower-of-cirith-ungol",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "146001",
+      "name": "Frodo Baggins",
+      "type_code": "hero",
+      "type_name": "Hero",
+      "sphere_code": "fellowship",
+      "sphere_name": "Fellowship",
+      "threat": 0,
+      "willpower": 2,
+      "attack": 1,
+      "defense": 2,
+      "health": 2,
+      "traits": "Hobbit. Ring-bearer.",
+      "text": "<b>Planning Action:</b> Exhaust The One Ring to add 1 resource to a hero's pool. ",
+      "flavor": "\"I must carry the burden to the end.\" <cite>The Return of the King</cite>",
+      "is_unique": true,
+      "deck_limit": 1,
+      "pack_name": "The Mountain of Fire",
+      "pack_code": "MoF",
+      "position": 1,
+      "illustrator": "Aleksander Karcz",
+      "imagesrc": "/cards/146001.png",
+      "url": "https://ringsdb.com/card/146001",
+      "quantity": 1,
+      "octgnid": "b937644c-ccbb-4a39-ae3c-24857d1d4d57",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 1,
+          "quantity": 1,
+          "image_code": "146001",
+          "illustrator": "Aleksander Karcz",
+          "octgnid": "b937644c-ccbb-4a39-ae3c-24857d1d4d57",
+          "imagesrc": "/bundles/cards/146001.png",
+          "date_release": "2017-08-16"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/146001",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:03abe728-0062-49bb-9a04-e78bff777e83",
+      "octgnid": "03abe728-0062-49bb-9a04-e78bff777e83",
+      "name": "Wounded Uruk",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Uruk.",
+      "text": "Wounded Uruk enters play with 2 damage on it. Forced: After Wounded Uruk engages you, it gets +2 [attack] until the end of the round.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 22,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 3,
+      "defense": 2,
+      "health": 4,
+      "engagement": 34,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] for each damage on it.",
+      "encounter_set": "The Tower of Cirith Ungol",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "2",
+        "health": "4",
+        "engagement": "34"
+      },
+      "imagesrc": "/cards/03abe728-0062-49bb-9a04-e78bff777e83.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 22,
+          "quantity": 3,
+          "octgnid": "03abe728-0062-49bb-9a04-e78bff777e83",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/03abe728-0062-49bb-9a04-e78bff777e83.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:06b1e27e-6493-4f05-9203-1835058073df",
+      "octgnid": "06b1e27e-6493-4f05-9203-1835058073df",
+      "name": "The One Ring",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Encounter Set:  Artifact. Item. Ring.  Setup: The first player claims The One Ring and attaches it to the Ring-bearer. Attached hero does not count against the hero limit. The first player gains control of attached hero. If The One Ring leaves play, the players lose the game.",
+      "is_unique": true,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 65,
+      "quantity": 1,
+      "printed_stats": {},
+      "imagesrc": "/cards/06b1e27e-6493-4f05-9203-1835058073df.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 65,
+          "quantity": 1,
+          "octgnid": "06b1e27e-6493-4f05-9203-1835058073df",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/06b1e27e-6493-4f05-9203-1835058073df.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:15f9c6b7-2bb0-48ea-9a5d-b8ec3b1a7e2d",
+      "octgnid": "15f9c6b7-2bb0-48ea-9a5d-b8ec3b1a7e2d",
+      "name": "Evil Vigilance",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player must choose: Either discard a questing character you control, or raise your threat by 1 for each questing character you control.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 63,
+      "quantity": 3,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, reveal the top card of the encounter deck.",
+      "encounter_set": "Deep Shadows",
+      "printed_stats": {},
+      "imagesrc": "/cards/15f9c6b7-2bb0-48ea-9a5d-b8ec3b1a7e2d.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 63,
+          "quantity": 3,
+          "octgnid": "15f9c6b7-2bb0-48ea-9a5d-b8ec3b1a7e2d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/15f9c6b7-2bb0-48ea-9a5d-b8ec3b1a7e2d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:194ceae6-a5e2-4a52-ba07-76e6c2611e8e",
+      "octgnid": "194ceae6-a5e2-4a52-ba07-76e6c2611e8e",
+      "name": "Snaga Archer",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Snaga.",
+      "text": "Archery 2. Forced: After Snaga Archer engages you, deal 2 damage to a character you control.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 59,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 4,
+      "defense": 2,
+      "health": 3,
+      "engagement": 44,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if the defending character is damaged).",
+      "encounter_set": "Orcs of Mordor",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "2",
+        "health": "3",
+        "engagement": "44"
+      },
+      "imagesrc": "/cards/194ceae6-a5e2-4a52-ba07-76e6c2611e8e.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 59,
+          "quantity": 3,
+          "octgnid": "194ceae6-a5e2-4a52-ba07-76e6c2611e8e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/194ceae6-a5e2-4a52-ba07-76e6c2611e8e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:196dd43b-1df2-4eae-9dcf-2e8d2723af67",
+      "octgnid": "196dd43b-1df2-4eae-9dcf-2e8d2723af67",
+      "name": "Escape from Cirith Ungol",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Add Last of the Company to the victory display. Attach The One Ring to the Ring-bearer and exhaust the Ring-bearer. The first player moves The Two Watchers from the victory display to the staging area (location side faceup). Each other player reveals an encounter card.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 68,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "The Tower of Cirith Ungol",
+      "side": "A",
+      "back_name": "Escape from Cirith Ungol",
+      "back_text": "The players cannot travel to The Two Watchers unless there is at least 12 progress on this stage. While The Two Watchers is in the staging area (enemy side faceup), it gets +3 [Threat] and +3 [Defense] and is considered to be engaged with each player. This stage cannot be defeated while The Two Watchers is in play. If this stage is defeated, the players win the game. ",
+      "back_type_code": "quest",
+      "back_quest": 12,
+      "back_imagesrc": "/cards/196dd43b-1df2-4eae-9dcf-2e8d2723af67.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/196dd43b-1df2-4eae-9dcf-2e8d2723af67.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 68,
+          "quantity": 1,
+          "octgnid": "196dd43b-1df2-4eae-9dcf-2e8d2723af67",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/196dd43b-1df2-4eae-9dcf-2e8d2723af67.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:22e79f71-9496-4f1a-bf7e-36834378d68c",
+      "octgnid": "22e79f71-9496-4f1a-bf7e-36834378d68c",
+      "name": "Pass the Two Watchers",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Set Shagrat aside, out of play. Add The Two Watchers (location side faceup) and Topmost Chamber to the staging area. The first player loses control of the Ring-bearer, places it faceup under Topmost Chamber as a guarded objective. Then, the first player attaches Last of the Company to a hero he controls and attaches The One Ring to that hero.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 66,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The Tower of Cirith Ungol",
+      "side": "A",
+      "back_name": "Pass the Two Watchers",
+      "back_text": "Each non-unique location gets -1 [threat] and cannot leave the staging area. While The Two Watchers is in the staging area (enemy side faceup), it is considered to be engaged with each player. This stage cannot be defeated while The Two Watchers is in play. ",
+      "back_type_code": "quest",
+      "back_quest": 0,
+      "back_imagesrc": "/cards/22e79f71-9496-4f1a-bf7e-36834378d68c.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/22e79f71-9496-4f1a-bf7e-36834378d68c.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 66,
+          "quantity": 1,
+          "octgnid": "22e79f71-9496-4f1a-bf7e-36834378d68c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/22e79f71-9496-4f1a-bf7e-36834378d68c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:26eb433a-01e2-4b0e-83c4-680b0e0c4854",
+      "octgnid": "26eb433a-01e2-4b0e-83c4-680b0e0c4854",
+      "name": "Fighting in the Tower",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck and discard cards until X enemies are discarded, where X is the number of players in the game. Add each enemy discarded by this effect to the staging area.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 67,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Tower of Cirith Ungol",
+      "side": "A",
+      "back_name": "Fighting in the Tower",
+      "back_text": "Forced: At the beginning of the quest phase, discard cards from the top of the encounter deck until an enemy is discarded. If there is a copy of that enemy in the staging area, discard that copy as well. If there is not, add the discarded enemy to the staging area. This stage cannot be defeated unless Topmost Chamber is in the victory display. When the Ring-bearer is free of encounters, the first player gains control of it. ",
+      "back_type_code": "quest",
+      "back_quest": 18,
+      "back_imagesrc": "/cards/26eb433a-01e2-4b0e-83c4-680b0e0c4854.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/26eb433a-01e2-4b0e-83c4-680b0e0c4854.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 67,
+          "quantity": 1,
+          "octgnid": "26eb433a-01e2-4b0e-83c4-680b0e0c4854",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/26eb433a-01e2-4b0e-83c4-680b0e0c4854.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:32706788-e37c-47b1-831b-40c7f711cb10",
+      "octgnid": "32706788-e37c-47b1-831b-40c7f711cb10",
+      "name": "Torch-lit Hall",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Cirith Ungol.",
+      "text": "Forced: After the players travel to Torch-lit Hall, discard cards from the top of the encounter deck until an enemy is discarded. If there is a copy of that enemy in the staging area, discard that copy as well. If there is not, add the discarded enemy to the staging area.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 19,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 3,
+      "encounter_set": "The Tower of Cirith Ungol",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/32706788-e37c-47b1-831b-40c7f711cb10.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 19,
+          "quantity": 3,
+          "octgnid": "32706788-e37c-47b1-831b-40c7f711cb10",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32706788-e37c-47b1-831b-40c7f711cb10.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:46c6afb3-9a68-4f1a-acfa-e421c84da528",
+      "octgnid": "46c6afb3-9a68-4f1a-acfa-e421c84da528",
+      "name": "Bloodied Courtyard",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Cirith Ungol.",
+      "text": "While Bloodied Courtyard is the active location, it gains: \"Forced: After an enemy enters the staging area, deal 1 damage to it.\" Travel: Raise each player's threat by 1 to travel here.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 17,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 4,
+      "encounter_set": "The Tower of Cirith Ungol",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/46c6afb3-9a68-4f1a-acfa-e421c84da528.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 17,
+          "quantity": 3,
+          "octgnid": "46c6afb3-9a68-4f1a-acfa-e421c84da528",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/46c6afb3-9a68-4f1a-acfa-e421c84da528.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:490a363e-2f00-4c66-9c6f-5bdfb83f6b08",
+      "octgnid": "490a363e-2f00-4c66-9c6f-5bdfb83f6b08",
+      "name": "Topmost Chamber",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Cirith Ungol.",
+      "text": "Immune to player card effects.  The players cannot travel here unless there is at least 18 progress on stage 2B. Travel: Add Shagrat to the staging area to travel here.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 15,
+      "quantity": 1,
+      "threat": 1,
+      "quest": 1,
+      "victory": 2,
+      "encounter_set": "The Tower of Cirith Ungol",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "1",
+        "victory": "2"
+      },
+      "imagesrc": "/cards/490a363e-2f00-4c66-9c6f-5bdfb83f6b08.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 15,
+          "quantity": 1,
+          "octgnid": "490a363e-2f00-4c66-9c6f-5bdfb83f6b08",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/490a363e-2f00-4c66-9c6f-5bdfb83f6b08.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:50f294ff-ee4b-4685-b7e1-86cd7f2e0a59",
+      "octgnid": "50f294ff-ee4b-4685-b7e1-86cd7f2e0a59",
+      "name": "Uruk Soldier",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Uruk.",
+      "text": "Forced: After Uruk Soldier engages you, raise your threat by 2.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 60,
+      "quantity": 3,
+      "threat": 3,
+      "attack": 5,
+      "defense": 2,
+      "health": 5,
+      "engagement": 38,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, return attacking enemy to the staging area.",
+      "encounter_set": "Orcs of Mordor",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "2",
+        "health": "5",
+        "engagement": "38"
+      },
+      "imagesrc": "/cards/50f294ff-ee4b-4685-b7e1-86cd7f2e0a59.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 60,
+          "quantity": 3,
+          "octgnid": "50f294ff-ee4b-4685-b7e1-86cd7f2e0a59",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/50f294ff-ee4b-4685-b7e1-86cd7f2e0a59.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:66489fc6-7074-4cbb-8a60-37acd641f7a6",
+      "octgnid": "66489fc6-7074-4cbb-8a60-37acd641f7a6",
+      "name": "Orcish Howls",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Deal 1 damage to each in the staging area. Until the end of the phase, each enemy gets +1 [threat] for each damage on it. If there are no enemies in the staging area, Orcish Howls gains surge.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 23,
+      "quantity": 3,
+      "shadow": "Shadow: If you are engaged with another enemy, resolve this attack against that enemy.",
+      "encounter_set": "The Tower of Cirith Ungol",
+      "printed_stats": {},
+      "imagesrc": "/cards/66489fc6-7074-4cbb-8a60-37acd641f7a6.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 23,
+          "quantity": 3,
+          "octgnid": "66489fc6-7074-4cbb-8a60-37acd641f7a6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/66489fc6-7074-4cbb-8a60-37acd641f7a6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:74f40d23-068a-40ea-9965-81df44294490",
+      "octgnid": "74f40d23-068a-40ea-9965-81df44294490",
+      "name": "Gorbag",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Uruk.",
+      "text": "Cannot have attachments. Forced: After Gorbag engages you, it makes an immediate attack against you.",
+      "is_unique": true,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 21,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 4,
+      "defense": 3,
+      "health": 5,
+      "engagement": 36,
+      "victory": 3,
+      "shadow": "Shadow: Attacking enemy makes an additional attack against you after this one.",
+      "encounter_set": "The Tower of Cirith Ungol",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "4",
+        "defense": "3",
+        "health": "5",
+        "engagement": "36",
+        "victory": "3"
+      },
+      "imagesrc": "/cards/74f40d23-068a-40ea-9965-81df44294490.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 21,
+          "quantity": 1,
+          "octgnid": "74f40d23-068a-40ea-9965-81df44294490",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74f40d23-068a-40ea-9965-81df44294490.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:78f780fd-fcc0-495e-b132-772ce71dbfa9",
+      "octgnid": "78f780fd-fcc0-495e-b132-772ce71dbfa9",
+      "name": "The Two Watchers",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Mordor.",
+      "text": "Immune to player card effects.  X is twice the stage number of the main quest. Forced: After the players travel here, flip The Two Watchers to its enemy side and move it to the staging area.",
+      "is_unique": true,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 70,
+      "quantity": 1,
+      "threat": 0,
+      "quest": 0,
+      "encounter_set": "The Tower of Cirith Ungol",
+      "back_name": "The Two Watchers",
+      "back_text": "Immune to player card effects. Cannot be optionally engaged. Forced: When The Two Watchers deals any amount of damage, cancel the damage and raise the defending player's threat by X instead. X is the amount of damage just canceled.",
+      "back_type_code": "enemy",
+      "back_victory": 5,
+      "back_imagesrc": "/cards/78f780fd-fcc0-495e-b132-772ce71dbfa9.B.jpg",
+      "printed_stats": {
+        "threat": "0",
+        "quest": "0"
+      },
+      "imagesrc": "/cards/78f780fd-fcc0-495e-b132-772ce71dbfa9.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 70,
+          "quantity": 1,
+          "octgnid": "78f780fd-fcc0-495e-b132-772ce71dbfa9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/78f780fd-fcc0-495e-b132-772ce71dbfa9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7d9a3914-bc46-40d6-b489-3157d7430382",
+      "octgnid": "7d9a3914-bc46-40d6-b489-3157d7430382",
+      "name": "Orc of Mordor",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "Surge.\nForced: After Orc of Mordor engages you, exhaust a character you control.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 58,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 3,
+      "defense": 1,
+      "health": 3,
+      "engagement": 28,
+      "shadow": "Shadow: Exhaust a character you control.",
+      "encounter_set": "Orcs of Mordor",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "3",
+        "defense": "1",
+        "health": "3",
+        "engagement": "28"
+      },
+      "imagesrc": "/cards/7d9a3914-bc46-40d6-b489-3157d7430382.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 58,
+          "quantity": 3,
+          "octgnid": "7d9a3914-bc46-40d6-b489-3157d7430382",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7d9a3914-bc46-40d6-b489-3157d7430382.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a246d29f-f370-4308-828d-c1ff09029b4a",
+      "octgnid": "a246d29f-f370-4308-828d-c1ff09029b4a",
+      "name": "Shagrat",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Uruk.",
+      "text": "Cannot have non-boon attachments. Cannot take non-combat damage.  Allies cannot attack or defend against Shagrat. Forced: After progress is placed on the quest, Shagrat gets -X engagement cost until the end of the round. X is the amount of progress just placed.",
+      "is_unique": true,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 20,
+      "quantity": 1,
+      "threat": 4,
+      "attack": 5,
+      "defense": 4,
+      "health": 6,
+      "engagement": 46,
+      "victory": 4,
+      "encounter_set": "The Tower of Cirith Ungol",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "5",
+        "defense": "4",
+        "health": "6",
+        "engagement": "46",
+        "victory": "4"
+      },
+      "imagesrc": "/cards/a246d29f-f370-4308-828d-c1ff09029b4a.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 20,
+          "quantity": 1,
+          "octgnid": "a246d29f-f370-4308-828d-c1ff09029b4a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a246d29f-f370-4308-828d-c1ff09029b4a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a442dbd4-ec18-44e6-b762-b0ebf94a8897",
+      "octgnid": "a442dbd4-ec18-44e6-b762-b0ebf94a8897",
+      "name": "Drawn to the Ring",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The first player must choose: Either exhaust The One Ring and reveal an encounter card, or discard cards from the top of the encounter deck until an enemy is discarded and put it into play engaged with him.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 61,
+      "quantity": 3,
+      "shadow": "Shadow: Discard a non-objective attachment you control.",
+      "encounter_set": "Deep Shadows",
+      "printed_stats": {},
+      "imagesrc": "/cards/a442dbd4-ec18-44e6-b762-b0ebf94a8897.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 61,
+          "quantity": 3,
+          "octgnid": "a442dbd4-ec18-44e6-b762-b0ebf94a8897",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a442dbd4-ec18-44e6-b762-b0ebf94a8897.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ad4739ac-fd18-4add-9b83-860c1fcc2b54",
+      "octgnid": "ad4739ac-fd18-4add-9b83-860c1fcc2b54",
+      "name": "Last of the Company",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Fellowship.",
+      "text": "Attached hero gains the Ring-bearer trait and the [fellowship] sphere. You cannot lose control of the first player token. Action: Exhaust The One Ring and raise your threat by 1 to choose an Orc enemy. Until the end of the phase, that enemy gets -X [threat], where X is the attached hero's [willpower].",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 14,
+      "quantity": 1,
+      "encounter_set": "The Tower of Cirith Ungol",
+      "printed_stats": {},
+      "imagesrc": "/cards/ad4739ac-fd18-4add-9b83-860c1fcc2b54.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 14,
+          "quantity": 1,
+          "octgnid": "ad4739ac-fd18-4add-9b83-860c1fcc2b54",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ad4739ac-fd18-4add-9b83-860c1fcc2b54.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:cf74c777-dfe4-4cea-8b7f-4b09fc1aa5b2",
+      "octgnid": "cf74c777-dfe4-4cea-8b7f-4b09fc1aa5b2",
+      "name": "Winding Stairs",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Cirith Ungol.",
+      "text": "While Winding Stairs is the active location, each enemy in the staging area gets +10 engagement cost. Travel: Each player exhausts a character he controls to travel here.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 18,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 4,
+      "encounter_set": "The Tower of Cirith Ungol",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/cf74c777-dfe4-4cea-8b7f-4b09fc1aa5b2.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 18,
+          "quantity": 3,
+          "octgnid": "cf74c777-dfe4-4cea-8b7f-4b09fc1aa5b2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cf74c777-dfe4-4cea-8b7f-4b09fc1aa5b2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e53df85c-f6e6-41df-9fd1-03dd2d2a1c65",
+      "octgnid": "e53df85c-f6e6-41df-9fd1-03dd2d2a1c65",
+      "name": "Echoing Passage",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Cirith Ungol.",
+      "text": "Echoing Passage gets +1 [threat] for each enemy in the staging area. While Echoing Passage is the active location, each enemy gets +2 [defense].",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 16,
+      "quantity": 3,
+      "threat": 1,
+      "quest": 5,
+      "encounter_set": "The Tower of Cirith Ungol",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/e53df85c-f6e6-41df-9fd1-03dd2d2a1c65.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 16,
+          "quantity": 3,
+          "octgnid": "e53df85c-f6e6-41df-9fd1-03dd2d2a1c65",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e53df85c-f6e6-41df-9fd1-03dd2d2a1c65.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ef94d441-715f-42e8-bb3a-764592cdf44c",
+      "octgnid": "ef94d441-715f-42e8-bb3a-764592cdf44c",
+      "name": "Deep Shadows",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 2. When Revealed: Each player must choose: either discard your hand (with at least 3 cards in it), or he reveals an encounter card.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 62,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy makes an additional attack after this one.",
+      "encounter_set": "Deep Shadows",
+      "printed_stats": {},
+      "imagesrc": "/cards/ef94d441-715f-42e8-bb3a-764592cdf44c.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 62,
+          "quantity": 2,
+          "octgnid": "ef94d441-715f-42e8-bb3a-764592cdf44c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ef94d441-715f-42e8-bb3a-764592cdf44c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E0B.16",
+      "name": "The Tower of Cirith Ungol (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "MoF"
+      ],
+      "card_codes": [
+        "octgn:22e79f71-9496-4f1a-bf7e-36834378d68c",
+        "octgn:26eb433a-01e2-4b0e-83c4-680b0e0c4854",
+        "octgn:196dd43b-1df2-4eae-9dcf-2e8d2723af67",
+        "octgn:e53df85c-f6e6-41df-9fd1-03dd2d2a1c65",
+        "octgn:46c6afb3-9a68-4f1a-acfa-e421c84da528",
+        "octgn:cf74c777-dfe4-4cea-8b7f-4b09fc1aa5b2",
+        "octgn:32706788-e37c-47b1-831b-40c7f711cb10",
+        "octgn:03abe728-0062-49bb-9a04-e78bff777e83",
+        "octgn:66489fc6-7074-4cbb-8a60-37acd641f7a6",
+        "octgn:7d9a3914-bc46-40d6-b489-3157d7430382",
+        "octgn:194ceae6-a5e2-4a52-ba07-76e6c2611e8e",
+        "octgn:50f294ff-ee4b-4685-b7e1-86cd7f2e0a59",
+        "octgn:a442dbd4-ec18-44e6-b762-b0ebf94a8897",
+        "octgn:ef94d441-715f-42e8-bb3a-764592cdf44c",
+        "octgn:15f9c6b7-2bb0-48ea-9a5d-b8ec3b1a7e2d",
+        "octgn:a246d29f-f370-4308-828d-c1ff09029b4a",
+        "octgn:78f780fd-fcc0-495e-b132-772ce71dbfa9",
+        "octgn:490a363e-2f00-4c66-9c6f-5bdfb83f6b08",
+        "146001",
+        "octgn:ad4739ac-fd18-4add-9b83-860c1fcc2b54",
+        "octgn:06b1e27e-6493-4f05-9203-1835058073df"
+      ],
+      "cards": [
+        {
+          "code": "octgn:22e79f71-9496-4f1a-bf7e-36834378d68c",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:26eb433a-01e2-4b0e-83c4-680b0e0c4854",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:196dd43b-1df2-4eae-9dcf-2e8d2723af67",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:e53df85c-f6e6-41df-9fd1-03dd2d2a1c65",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:46c6afb3-9a68-4f1a-acfa-e421c84da528",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cf74c777-dfe4-4cea-8b7f-4b09fc1aa5b2",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:32706788-e37c-47b1-831b-40c7f711cb10",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:03abe728-0062-49bb-9a04-e78bff777e83",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:66489fc6-7074-4cbb-8a60-37acd641f7a6",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7d9a3914-bc46-40d6-b489-3157d7430382",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:194ceae6-a5e2-4a52-ba07-76e6c2611e8e",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:50f294ff-ee4b-4685-b7e1-86cd7f2e0a59",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a442dbd4-ec18-44e6-b762-b0ebf94a8897",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ef94d441-715f-42e8-bb3a-764592cdf44c",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:15f9c6b7-2bb0-48ea-9a5d-b8ec3b1a7e2d",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a246d29f-f370-4308-828d-c1ff09029b4a",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:78f780fd-fcc0-495e-b132-772ce71dbfa9",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:490a363e-2f00-4c66-9c6f-5bdfb83f6b08",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "146001",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:ad4739ac-fd18-4add-9b83-860c1fcc2b54",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:06b1e27e-6493-4f05-9203-1835058073df",
+          "quantity": 1,
+          "section": "player1Play1"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:22e79f71-9496-4f1a-bf7e-36834378d68c": 1,
+          "octgn:26eb433a-01e2-4b0e-83c4-680b0e0c4854": 1,
+          "octgn:196dd43b-1df2-4eae-9dcf-2e8d2723af67": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:e53df85c-f6e6-41df-9fd1-03dd2d2a1c65": 1,
+          "octgn:46c6afb3-9a68-4f1a-acfa-e421c84da528": 3,
+          "octgn:cf74c777-dfe4-4cea-8b7f-4b09fc1aa5b2": 3,
+          "octgn:32706788-e37c-47b1-831b-40c7f711cb10": 3,
+          "octgn:03abe728-0062-49bb-9a04-e78bff777e83": 3,
+          "octgn:66489fc6-7074-4cbb-8a60-37acd641f7a6": 3,
+          "octgn:7d9a3914-bc46-40d6-b489-3157d7430382": 2,
+          "octgn:194ceae6-a5e2-4a52-ba07-76e6c2611e8e": 3,
+          "octgn:50f294ff-ee4b-4685-b7e1-86cd7f2e0a59": 3,
+          "octgn:a442dbd4-ec18-44e6-b762-b0ebf94a8897": 2,
+          "octgn:ef94d441-715f-42e8-bb3a-764592cdf44c": 1,
+          "octgn:15f9c6b7-2bb0-48ea-9a5d-b8ec3b1a7e2d": 3
+        },
+        "sharedSetAside": {
+          "octgn:a246d29f-f370-4308-828d-c1ff09029b4a": 1
+        },
+        "sharedStagingArea": {
+          "octgn:78f780fd-fcc0-495e-b132-772ce71dbfa9": 1,
+          "octgn:490a363e-2f00-4c66-9c6f-5bdfb83f6b08": 1,
+          "octgn:ad4739ac-fd18-4add-9b83-860c1fcc2b54": 1
+        },
+        "player1Play1": {
+          "146001": 1,
+          "octgn:06b1e27e-6493-4f05-9203-1835058073df": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q0B.16",
+      "name": "The Tower of Cirith Ungol",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "MoF"
+      ],
+      "card_codes": [
+        "octgn:22e79f71-9496-4f1a-bf7e-36834378d68c",
+        "octgn:26eb433a-01e2-4b0e-83c4-680b0e0c4854",
+        "octgn:196dd43b-1df2-4eae-9dcf-2e8d2723af67",
+        "octgn:e53df85c-f6e6-41df-9fd1-03dd2d2a1c65",
+        "octgn:46c6afb3-9a68-4f1a-acfa-e421c84da528",
+        "octgn:cf74c777-dfe4-4cea-8b7f-4b09fc1aa5b2",
+        "octgn:32706788-e37c-47b1-831b-40c7f711cb10",
+        "octgn:74f40d23-068a-40ea-9965-81df44294490",
+        "octgn:03abe728-0062-49bb-9a04-e78bff777e83",
+        "octgn:66489fc6-7074-4cbb-8a60-37acd641f7a6",
+        "octgn:7d9a3914-bc46-40d6-b489-3157d7430382",
+        "octgn:194ceae6-a5e2-4a52-ba07-76e6c2611e8e",
+        "octgn:50f294ff-ee4b-4685-b7e1-86cd7f2e0a59",
+        "octgn:a442dbd4-ec18-44e6-b762-b0ebf94a8897",
+        "octgn:ef94d441-715f-42e8-bb3a-764592cdf44c",
+        "octgn:15f9c6b7-2bb0-48ea-9a5d-b8ec3b1a7e2d",
+        "octgn:a246d29f-f370-4308-828d-c1ff09029b4a",
+        "octgn:78f780fd-fcc0-495e-b132-772ce71dbfa9",
+        "octgn:490a363e-2f00-4c66-9c6f-5bdfb83f6b08",
+        "146001",
+        "octgn:ad4739ac-fd18-4add-9b83-860c1fcc2b54",
+        "octgn:06b1e27e-6493-4f05-9203-1835058073df"
+      ],
+      "cards": [
+        {
+          "code": "octgn:22e79f71-9496-4f1a-bf7e-36834378d68c",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:26eb433a-01e2-4b0e-83c4-680b0e0c4854",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:196dd43b-1df2-4eae-9dcf-2e8d2723af67",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:e53df85c-f6e6-41df-9fd1-03dd2d2a1c65",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:46c6afb3-9a68-4f1a-acfa-e421c84da528",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cf74c777-dfe4-4cea-8b7f-4b09fc1aa5b2",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:32706788-e37c-47b1-831b-40c7f711cb10",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:74f40d23-068a-40ea-9965-81df44294490",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:03abe728-0062-49bb-9a04-e78bff777e83",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:66489fc6-7074-4cbb-8a60-37acd641f7a6",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7d9a3914-bc46-40d6-b489-3157d7430382",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:194ceae6-a5e2-4a52-ba07-76e6c2611e8e",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:50f294ff-ee4b-4685-b7e1-86cd7f2e0a59",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a442dbd4-ec18-44e6-b762-b0ebf94a8897",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ef94d441-715f-42e8-bb3a-764592cdf44c",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:15f9c6b7-2bb0-48ea-9a5d-b8ec3b1a7e2d",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a246d29f-f370-4308-828d-c1ff09029b4a",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:78f780fd-fcc0-495e-b132-772ce71dbfa9",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:490a363e-2f00-4c66-9c6f-5bdfb83f6b08",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "146001",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:ad4739ac-fd18-4add-9b83-860c1fcc2b54",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:06b1e27e-6493-4f05-9203-1835058073df",
+          "quantity": 1,
+          "section": "player1Play1"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:22e79f71-9496-4f1a-bf7e-36834378d68c": 1,
+          "octgn:26eb433a-01e2-4b0e-83c4-680b0e0c4854": 1,
+          "octgn:196dd43b-1df2-4eae-9dcf-2e8d2723af67": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:e53df85c-f6e6-41df-9fd1-03dd2d2a1c65": 3,
+          "octgn:46c6afb3-9a68-4f1a-acfa-e421c84da528": 3,
+          "octgn:cf74c777-dfe4-4cea-8b7f-4b09fc1aa5b2": 3,
+          "octgn:32706788-e37c-47b1-831b-40c7f711cb10": 3,
+          "octgn:74f40d23-068a-40ea-9965-81df44294490": 1,
+          "octgn:03abe728-0062-49bb-9a04-e78bff777e83": 3,
+          "octgn:66489fc6-7074-4cbb-8a60-37acd641f7a6": 3,
+          "octgn:7d9a3914-bc46-40d6-b489-3157d7430382": 3,
+          "octgn:194ceae6-a5e2-4a52-ba07-76e6c2611e8e": 3,
+          "octgn:50f294ff-ee4b-4685-b7e1-86cd7f2e0a59": 3,
+          "octgn:a442dbd4-ec18-44e6-b762-b0ebf94a8897": 3,
+          "octgn:ef94d441-715f-42e8-bb3a-764592cdf44c": 2,
+          "octgn:15f9c6b7-2bb0-48ea-9a5d-b8ec3b1a7e2d": 3
+        },
+        "sharedSetAside": {
+          "octgn:a246d29f-f370-4308-828d-c1ff09029b4a": 1
+        },
+        "sharedStagingArea": {
+          "octgn:78f780fd-fcc0-495e-b132-772ce71dbfa9": 1,
+          "octgn:490a363e-2f00-4c66-9c6f-5bdfb83f6b08": 1,
+          "octgn:ad4739ac-fd18-4add-9b83-860c1fcc2b54": 1
+        },
+        "player1Play1": {
+          "146001": 1,
+          "octgn:06b1e27e-6493-4f05-9203-1835058073df": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "146001",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/146001.png",
+      "localPath": "/cards/146001.png",
+      "bytes": 62838,
+      "sha256": "3683a1a692de08aac3dfcc6783f53022c7ff6103d6d287e00e42f1815d54eeb2"
+    },
+    {
+      "code": "octgn:03abe728-0062-49bb-9a04-e78bff777e83",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/03abe728-0062-49bb-9a04-e78bff777e83.jpg",
+      "localPath": "/cards/03abe728-0062-49bb-9a04-e78bff777e83.jpg",
+      "bytes": 83262,
+      "sha256": "fdbe7485ef766053f6c32d8d473a72fba0cd7784697da20c69b1f40457a19188"
+    },
+    {
+      "code": "octgn:06b1e27e-6493-4f05-9203-1835058073df",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/06b1e27e-6493-4f05-9203-1835058073df.jpg",
+      "localPath": "/cards/06b1e27e-6493-4f05-9203-1835058073df.jpg",
+      "bytes": 70691,
+      "sha256": "8bb39dec7d0395c641f62eddb7cd93f4be9307e2e6d0d4d8c08a706824884420"
+    },
+    {
+      "code": "octgn:15f9c6b7-2bb0-48ea-9a5d-b8ec3b1a7e2d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/15f9c6b7-2bb0-48ea-9a5d-b8ec3b1a7e2d.jpg",
+      "localPath": "/cards/15f9c6b7-2bb0-48ea-9a5d-b8ec3b1a7e2d.jpg",
+      "bytes": 76226,
+      "sha256": "0a4953e00e15d20cacf0515763252d8d97fa905163d9e5f0f4100028953c97a7"
+    },
+    {
+      "code": "octgn:194ceae6-a5e2-4a52-ba07-76e6c2611e8e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/194ceae6-a5e2-4a52-ba07-76e6c2611e8e.jpg",
+      "localPath": "/cards/194ceae6-a5e2-4a52-ba07-76e6c2611e8e.jpg",
+      "bytes": 83973,
+      "sha256": "75be9b827e965d8ffb6c0e202520b271672036fc1bbd8cd068a27916f9f14e2e"
+    },
+    {
+      "code": "octgn:196dd43b-1df2-4eae-9dcf-2e8d2723af67",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/196dd43b-1df2-4eae-9dcf-2e8d2723af67.jpg",
+      "localPath": "/cards/196dd43b-1df2-4eae-9dcf-2e8d2723af67.jpg",
+      "bytes": 129711,
+      "sha256": "487c7d0483e6515ead16229377e6068254947775949b8464b1d6258cf14bfad5"
+    },
+    {
+      "code": "octgn:196dd43b-1df2-4eae-9dcf-2e8d2723af67",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/196dd43b-1df2-4eae-9dcf-2e8d2723af67.B.jpg",
+      "localPath": "/cards/196dd43b-1df2-4eae-9dcf-2e8d2723af67.B.jpg",
+      "bytes": 126580,
+      "sha256": "584edb2c9f9dd61b8e316d035ce992824bc19a33d490e47eb4e9f75d3f3dc974"
+    },
+    {
+      "code": "octgn:22e79f71-9496-4f1a-bf7e-36834378d68c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/22e79f71-9496-4f1a-bf7e-36834378d68c.jpg",
+      "localPath": "/cards/22e79f71-9496-4f1a-bf7e-36834378d68c.jpg",
+      "bytes": 131138,
+      "sha256": "7f4845a794f3431a9a4acbdec7e00fdad0633f48129c063f52ed4690e308e86a"
+    },
+    {
+      "code": "octgn:22e79f71-9496-4f1a-bf7e-36834378d68c",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/22e79f71-9496-4f1a-bf7e-36834378d68c.B.jpg",
+      "localPath": "/cards/22e79f71-9496-4f1a-bf7e-36834378d68c.B.jpg",
+      "bytes": 122659,
+      "sha256": "54a7a9da338d686a2f8c273fa4e3ff7cdfd2b4bb8ea2dd56546207793137008d"
+    },
+    {
+      "code": "octgn:26eb433a-01e2-4b0e-83c4-680b0e0c4854",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/26eb433a-01e2-4b0e-83c4-680b0e0c4854.jpg",
+      "localPath": "/cards/26eb433a-01e2-4b0e-83c4-680b0e0c4854.jpg",
+      "bytes": 127617,
+      "sha256": "64cdff9aec3d82dead7ad16aa8c35a73aa1f1648973c7d7c935e9a56c1acacb3"
+    },
+    {
+      "code": "octgn:26eb433a-01e2-4b0e-83c4-680b0e0c4854",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/26eb433a-01e2-4b0e-83c4-680b0e0c4854.B.jpg",
+      "localPath": "/cards/26eb433a-01e2-4b0e-83c4-680b0e0c4854.B.jpg",
+      "bytes": 128012,
+      "sha256": "787df7704b2167fb8f26417bf23402765682411a35ad615ba9cd7eb4cbe64644"
+    },
+    {
+      "code": "octgn:32706788-e37c-47b1-831b-40c7f711cb10",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32706788-e37c-47b1-831b-40c7f711cb10.jpg",
+      "localPath": "/cards/32706788-e37c-47b1-831b-40c7f711cb10.jpg",
+      "bytes": 89959,
+      "sha256": "fbec63a3941c3c1bc849e0316df48cd9ac5213dd27966b89c53d9855815bb29c"
+    },
+    {
+      "code": "octgn:46c6afb3-9a68-4f1a-acfa-e421c84da528",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/46c6afb3-9a68-4f1a-acfa-e421c84da528.jpg",
+      "localPath": "/cards/46c6afb3-9a68-4f1a-acfa-e421c84da528.jpg",
+      "bytes": 93044,
+      "sha256": "19af6a6a0439d31d64639e933201b69588ca74e08b67a5d79ef3e2579a0df949"
+    },
+    {
+      "code": "octgn:490a363e-2f00-4c66-9c6f-5bdfb83f6b08",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/490a363e-2f00-4c66-9c6f-5bdfb83f6b08.jpg",
+      "localPath": "/cards/490a363e-2f00-4c66-9c6f-5bdfb83f6b08.jpg",
+      "bytes": 88909,
+      "sha256": "27328db36f45cce5f34a1a90dd0cea88f2de5c94d25c1557a50989063537e9aa"
+    },
+    {
+      "code": "octgn:50f294ff-ee4b-4685-b7e1-86cd7f2e0a59",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/50f294ff-ee4b-4685-b7e1-86cd7f2e0a59.jpg",
+      "localPath": "/cards/50f294ff-ee4b-4685-b7e1-86cd7f2e0a59.jpg",
+      "bytes": 84150,
+      "sha256": "23e21aed6a6ced6cdc5b1f959449de5dda4d502247e24b33e3735618ff97d336"
+    },
+    {
+      "code": "octgn:66489fc6-7074-4cbb-8a60-37acd641f7a6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/66489fc6-7074-4cbb-8a60-37acd641f7a6.jpg",
+      "localPath": "/cards/66489fc6-7074-4cbb-8a60-37acd641f7a6.jpg",
+      "bytes": 82264,
+      "sha256": "533970c63fa032b836c859a0ae70a783b92a03ba96b997b5975bff22ebe127fa"
+    },
+    {
+      "code": "octgn:74f40d23-068a-40ea-9965-81df44294490",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74f40d23-068a-40ea-9965-81df44294490.jpg",
+      "localPath": "/cards/74f40d23-068a-40ea-9965-81df44294490.jpg",
+      "bytes": 83430,
+      "sha256": "6e7f0827d926d8f1282ad38e2dc13d2c08cce874cf4156eb3b8b73a52d70d517"
+    },
+    {
+      "code": "octgn:78f780fd-fcc0-495e-b132-772ce71dbfa9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/78f780fd-fcc0-495e-b132-772ce71dbfa9.jpg",
+      "localPath": "/cards/78f780fd-fcc0-495e-b132-772ce71dbfa9.jpg",
+      "bytes": 90505,
+      "sha256": "849532a5fe06c65c1ab05788ab215bcad69e9111703743818d58bc12613f5309"
+    },
+    {
+      "code": "octgn:78f780fd-fcc0-495e-b132-772ce71dbfa9",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/78f780fd-fcc0-495e-b132-772ce71dbfa9.B.jpg",
+      "localPath": "/cards/78f780fd-fcc0-495e-b132-772ce71dbfa9.B.jpg",
+      "bytes": 89352,
+      "sha256": "9a185a55b4974daef2d4e0c3b47f201d812010e557354221abee4d92ca3d67be"
+    },
+    {
+      "code": "octgn:7d9a3914-bc46-40d6-b489-3157d7430382",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7d9a3914-bc46-40d6-b489-3157d7430382.jpg",
+      "localPath": "/cards/7d9a3914-bc46-40d6-b489-3157d7430382.jpg",
+      "bytes": 79873,
+      "sha256": "3ef7f271e1c8e49409e16a4cbbfdf9eb1f92056cd01bbc34d8e70e0ce7b4f569"
+    },
+    {
+      "code": "octgn:a246d29f-f370-4308-828d-c1ff09029b4a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a246d29f-f370-4308-828d-c1ff09029b4a.jpg",
+      "localPath": "/cards/a246d29f-f370-4308-828d-c1ff09029b4a.jpg",
+      "bytes": 87026,
+      "sha256": "0088c9fd978df14b8fcae52aad34bdf9856140e0a059e43011bb4afc6a0c2e27"
+    },
+    {
+      "code": "octgn:a442dbd4-ec18-44e6-b762-b0ebf94a8897",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a442dbd4-ec18-44e6-b762-b0ebf94a8897.jpg",
+      "localPath": "/cards/a442dbd4-ec18-44e6-b762-b0ebf94a8897.jpg",
+      "bytes": 77861,
+      "sha256": "a64fd5e42652113f7826e408f8d166fcd5e8b0a15d3357dbdbcd55cf0ff85de4"
+    },
+    {
+      "code": "octgn:ad4739ac-fd18-4add-9b83-860c1fcc2b54",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ad4739ac-fd18-4add-9b83-860c1fcc2b54.jpg",
+      "localPath": "/cards/ad4739ac-fd18-4add-9b83-860c1fcc2b54.jpg",
+      "bytes": 80977,
+      "sha256": "85521c4e6312ae7f153805143011b55c8de279aa125837f781ba3211c730a76d"
+    },
+    {
+      "code": "octgn:cf74c777-dfe4-4cea-8b7f-4b09fc1aa5b2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cf74c777-dfe4-4cea-8b7f-4b09fc1aa5b2.jpg",
+      "localPath": "/cards/cf74c777-dfe4-4cea-8b7f-4b09fc1aa5b2.jpg",
+      "bytes": 83960,
+      "sha256": "d96ce0e7fb8fedada0d9bfce22696b83f48cb6399f3d575f6e9d2232fb62148d"
+    },
+    {
+      "code": "octgn:e53df85c-f6e6-41df-9fd1-03dd2d2a1c65",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e53df85c-f6e6-41df-9fd1-03dd2d2a1c65.jpg",
+      "localPath": "/cards/e53df85c-f6e6-41df-9fd1-03dd2d2a1c65.jpg",
+      "bytes": 86263,
+      "sha256": "b042880c49b1e7cb90c772875f506afabf940b545571c8252ed5b53ed25cc3bf"
+    },
+    {
+      "code": "octgn:ef94d441-715f-42e8-bb3a-764592cdf44c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ef94d441-715f-42e8-bb3a-764592cdf44c.jpg",
+      "localPath": "/cards/ef94d441-715f-42e8-bb3a-764592cdf44c.jpg",
+      "bytes": 74876,
+      "sha256": "55bf7b69d785d955d6760ffc2e2f0ac61411493d237daa47e2d2f25e578bdfa2"
+    }
+  ]
+}

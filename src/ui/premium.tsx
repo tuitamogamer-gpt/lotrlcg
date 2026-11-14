@@ -107,6 +107,10 @@ export const PLAYMATS = {
     name: "The Pelennor Fields",
     detail: "The White City besieged · Grond at the Gate · The horns of Rohan",
   },
+  "the-tower-of-cirith-ungol": {
+    name: "The Tower of Cirith Ungol",
+    detail: "The Two Watchers at the gate · The Topmost Chamber",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -527,6 +531,7 @@ export const PLAYMAT_CHOICES = [
   "the-passing-of-the-grey-company",
   "the-siege-of-gondor",
   "the-battle-of-the-pelennor-fields",
+  "the-tower-of-cirith-ungol",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

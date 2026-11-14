@@ -1,0 +1,122 @@
+[
+  {
+    "code": "octgn:22e79f71-9496-4f1a-bf7e-36834378d68c",
+    "octgnid": "22e79f71-9496-4f1a-bf7e-36834378d68c",
+    "name": "Pass the Two Watchers",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set Shagrat aside, out of play. Add The Two Watchers (location side faceup) and Topmost Chamber to the staging area. The first player loses control of the Ring-bearer, places it faceup under Topmost Chamber as a guarded objective. Then, the first player attaches Last of the Company to a hero he controls and attaches The One Ring to that hero.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 66,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Tower of Cirith Ungol",
+    "side": "A",
+    "back_name": "Pass the Two Watchers",
+    "back_text": "Each non-unique location gets -1 [threat] and cannot leave the staging area. While The Two Watchers is in the staging area (enemy side faceup), it is considered to be engaged with each player. This stage cannot be defeated while The Two Watchers is in play.",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "/cards/22e79f71-9496-4f1a-bf7e-36834378d68c.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/22e79f71-9496-4f1a-bf7e-36834378d68c.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 66,
+        "quantity": 1,
+        "octgnid": "22e79f71-9496-4f1a-bf7e-36834378d68c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/22e79f71-9496-4f1a-bf7e-36834378d68c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:26eb433a-01e2-4b0e-83c4-680b0e0c4854",
+    "octgnid": "26eb433a-01e2-4b0e-83c4-680b0e0c4854",
+    "name": "Fighting in the Tower",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck and discard cards until X enemies are discarded, where X is the number of players in the game. Add each enemy discarded by this effect to the staging area.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 67,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Tower of Cirith Ungol",
+    "side": "A",
+    "back_name": "Fighting in the Tower",
+    "back_text": "Forced: At the beginning of the quest phase, discard cards from the top of the encounter deck until an enemy is discarded. If there is a copy of that enemy in the staging area, discard that copy as well. If there is not, add the discarded enemy to the staging area. This stage cannot be defeated unless Topmost Chamber is in the victory display. When the Ring-bearer is free of encounters, the first player gains control of it.",
+    "back_type_code": "quest",
+    "back_quest": 18,
+    "back_imagesrc": "/cards/26eb433a-01e2-4b0e-83c4-680b0e0c4854.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/26eb433a-01e2-4b0e-83c4-680b0e0c4854.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 67,
+        "quantity": 1,
+        "octgnid": "26eb433a-01e2-4b0e-83c4-680b0e0c4854",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/26eb433a-01e2-4b0e-83c4-680b0e0c4854.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:196dd43b-1df2-4eae-9dcf-2e8d2723af67",
+    "octgnid": "196dd43b-1df2-4eae-9dcf-2e8d2723af67",
+    "name": "Escape from Cirith Ungol",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add Last of the Company to the victory display. Attach The One Ring to the Ring-bearer and exhaust the Ring-bearer. The first player moves The Two Watchers from the victory display to the staging area (location side faceup). Each other player reveals an encounter card.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 68,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Tower of Cirith Ungol",
+    "side": "A",
+    "back_name": "Escape from Cirith Ungol",
+    "back_text": "The players cannot travel to The Two Watchers unless there is at least 12 progress on this stage. While The Two Watchers is in the staging area (enemy side faceup), it gets +3 [Threat] and +3 [Defense] and is considered to be engaged with each player. This stage cannot be defeated while The Two Watchers is in play. If this stage is defeated, the players win the game.",
+    "back_type_code": "quest",
+    "back_quest": 12,
+    "back_imagesrc": "/cards/196dd43b-1df2-4eae-9dcf-2e8d2723af67.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/196dd43b-1df2-4eae-9dcf-2e8d2723af67.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 68,
+        "quantity": 1,
+        "octgnid": "196dd43b-1df2-4eae-9dcf-2e8d2723af67",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/196dd43b-1df2-4eae-9dcf-2e8d2723af67.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

@@ -1,0 +1,46 @@
+[
+  {
+    "code": "146001",
+    "name": "Frodo Baggins",
+    "type_code": "hero",
+    "type_name": "Hero",
+    "sphere_code": "fellowship",
+    "sphere_name": "Fellowship",
+    "threat": 0,
+    "willpower": 2,
+    "attack": 1,
+    "defense": 2,
+    "health": 2,
+    "traits": "Hobbit. Ring-bearer.",
+    "text": "Planning Action: Exhaust The One Ring to add 1 resource to a hero's pool.",
+    "flavor": "\"I must carry the burden to the end.\" <cite>The Return of the King</cite>",
+    "is_unique": true,
+    "deck_limit": 1,
+    "pack_name": "The Mountain of Fire",
+    "pack_code": "MoF",
+    "position": 1,
+    "illustrator": "Aleksander Karcz",
+    "imagesrc": "/cards/146001.png",
+    "url": "https://ringsdb.com/card/146001",
+    "quantity": 1,
+    "octgnid": "b937644c-ccbb-4a39-ae3c-24857d1d4d57",
+    "has_errata": false,
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 1,
+        "quantity": 1,
+        "image_code": "146001",
+        "illustrator": "Aleksander Karcz",
+        "octgnid": "b937644c-ccbb-4a39-ae3c-24857d1d4d57",
+        "imagesrc": "/bundles/cards/146001.png",
+        "date_release": "2017-08-16"
+      }
+    ],
+    "source": "ringsdb",
+    "source_url": "https://ringsdb.com/card/146001",
+    "official": true,
+    "nightmare": false
+  }
+]

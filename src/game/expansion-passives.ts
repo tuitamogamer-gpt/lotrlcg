@@ -147,6 +147,12 @@ const rules: Record<string, AttachmentRule> = {
   "145011": { type: "hero", traits: ["Gondor"], restricted: 1 },
   "145012": { type: "hero", traits: ["Dúnedain"] },
   "145013": { names: ["Aragorn"] },
+  // The Tower of Cirith Ungol: Last of the Company (the Ring-bearer trait;
+  // the Fellowship sphere is in hasResourceIcon).
+  "octgn:ad4739ac-fd18-4add-9b83-860c1fcc2b54": {
+    type: "hero",
+    grantsTraits: ["Ring-bearer"],
+  },
   "02002": { type: "hero", attack: 1 },
   "02026": { type: "hero", defense: 1 },
   "02051": { type: "hero", will: 1 },
@@ -374,6 +380,9 @@ export function hasResourceIcon(u: Unit, sphere: string) {
           (a.code === "01027" &&
             card(u.code).name === "Aragorn" &&
             sphere === "spirit") ||
+          // Last of the Company: the attached hero gains the Fellowship sphere.
+          (a.code === "octgn:ad4739ac-fd18-4add-9b83-860c1fcc2b54" &&
+            sphere === "fellowship") ||
           // Roheryn: if attached hero is Aragorn, he gains the Tactics icon.
           (a.code === "145012" &&
             !a.facedown &&

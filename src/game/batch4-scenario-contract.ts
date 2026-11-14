@@ -132,6 +132,8 @@ export interface Batch4ScenarioHooks {
   ): boolean;
   /** Capture an explored location without discarding it or its attachments. */
   locationDestination?(s: GameState, u: Unit): boolean;
+  /** A location with enough progress stays where it is: it cannot leave play yet. */
+  cannotExplore?(s: GameState, u: Unit): boolean;
   /** Schedule simultaneous When-explored effects ahead of queued After responses. */
   explorationWhen?(
     s: GameState,

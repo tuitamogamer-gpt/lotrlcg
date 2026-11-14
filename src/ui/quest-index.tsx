@@ -143,6 +143,10 @@ const HEADLINES: Partial<
     lead: "Defend the White City",
     em: "on the Pelennor Fields.",
   },
+  "the-tower-of-cirith-ungol": {
+    lead: "Bring the Ring-bearer out",
+    em: "of Cirith Ungol.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

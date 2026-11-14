@@ -13,6 +13,7 @@ import { roadDarkensPlayerEffect } from "./road-darkens-player-cards";
 import { treasonPlayerEffect } from "./treason-saruman-player-cards";
 import * as LandShadowPlayers from "./land-shadow-player-cards";
 import * as FlameWestPlayers from "./flame-west-player-cards";
+import * as MountainFirePlayers from "./mountain-fire-player-cards";
 import {
   hobbitPlayerEffect,
   hobbitPlayerRefreshEnd,
@@ -637,6 +638,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (treasonPlayerEffect(s, e)) return;
   if (LandShadowPlayers.landShadowPlayerEffect(s, e)) return;
   if (FlameWestPlayers.flameWestPlayerEffect(s, e)) return;
+  if (MountainFirePlayers.mountainFirePlayerEffect(s, e)) return;
   if (wainridersPlayerEffect(s, e)) return;
   if (ulfastPlayerEffect(s, e)) return;
   if (HaradPlayers.handleHaradPlayerEffect(s, e)) return;

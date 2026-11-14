@@ -83,6 +83,11 @@ import {
   PELENNOR_FIELDS_ENCOUNTERS,
   PELENNOR_FIELDS_QUESTS,
 } from "./pelennor-fields-scenario-data";
+import {
+  CIRITH_UNGOL_ENCOUNTERS,
+  CIRITH_UNGOL_QUESTS,
+} from "./cirith-ungol-scenario-data";
+import mountainFirePlayers from "../data/mountain-fire-player-cards.json";
 import hobbitPlayers from "../data/hobbit-player-cards.json";
 import blackRidersPlayers from "../data/black-riders-player-cards.json";
 import roadDarkensPlayers from "../data/road-darkens-player-cards.json";
@@ -402,6 +407,7 @@ export const playerCards = [
           ...treasonSarumanPlayers,
           ...landShadowPlayers,
           ...flameWestPlayers,
+          ...mountainFirePlayers,
         ] as Card[]
       ).map((c) => {
         if (c.code === "19146")
@@ -587,6 +593,7 @@ export const encounterCards = [
       ...SIEGE_GONDOR_ENCOUNTERS,
       ...PELENNOR_FIELDS_ENCOUNTERS,
       ...PELENNOR_FIELDS_BOONS,
+      ...CIRITH_UNGOL_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -685,6 +692,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...GREY_COMPANY_QUESTS,
     ...SIEGE_GONDOR_QUESTS,
     ...PELENNOR_FIELDS_QUESTS,
+    ...CIRITH_UNGOL_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -824,6 +832,7 @@ export const SCRIPTED = new Set(
     ...GREY_COMPANY_QUESTS,
     ...SIEGE_GONDOR_QUESTS,
     ...PELENNOR_FIELDS_QUESTS,
+    ...CIRITH_UNGOL_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

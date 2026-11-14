@@ -2183,7 +2183,11 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   roadRivendellProgressPlaced(s, u, value);
   Celebrimbor.celebrimborProgressPlaced(s, u, value);
   if (u.progress < locationQuest(s, u)) return;
-  if (Storm.stormcallerAreaCannotLeave(s, u) || Race.raceHaradCannotLeave(s, u))
+  if (
+    Storm.stormcallerAreaCannotLeave(s, u) ||
+    Race.raceHaradCannotLeave(s, u) ||
+    batch4Scenario(s).cannotExplore?.(s, u)
+  )
     return;
   const wasActive = allActiveLocations(s).some((l) => l.id === u.id);
   // Last known text: Thrór's Key blanks the location's own effects.

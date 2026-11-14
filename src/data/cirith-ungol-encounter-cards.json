@@ -1,0 +1,690 @@
+[
+  {
+    "code": "octgn:ad4739ac-fd18-4add-9b83-860c1fcc2b54",
+    "octgnid": "ad4739ac-fd18-4add-9b83-860c1fcc2b54",
+    "name": "Last of the Company",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Fellowship.",
+    "text": "Attached hero gains the Ring-bearer trait and the [fellowship] sphere.\nYou cannot lose control of the first player token.\nAction: Exhaust The One Ring and raise your threat by 1 to choose an enemy. Until the end of the phase, that enemy gets -X [threat], where X is the attached hero's [willpower].",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 14,
+    "quantity": 1,
+    "encounter_set": "The Tower of Cirith Ungol",
+    "printed_stats": {},
+    "imagesrc": "/cards/ad4739ac-fd18-4add-9b83-860c1fcc2b54.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 14,
+        "quantity": 1,
+        "octgnid": "ad4739ac-fd18-4add-9b83-860c1fcc2b54",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ad4739ac-fd18-4add-9b83-860c1fcc2b54.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:490a363e-2f00-4c66-9c6f-5bdfb83f6b08",
+    "octgnid": "490a363e-2f00-4c66-9c6f-5bdfb83f6b08",
+    "name": "Topmost Chamber",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Cirith Ungol.",
+    "text": "Immune to player card effects.\nThe players cannot travel here unless there is at least 18 progress on stage 2B.\nTravel: Add Shagrat to the staging area to travel here.",
+    "is_unique": true,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 15,
+    "quantity": 1,
+    "threat": 1,
+    "quest": 1,
+    "victory": 2,
+    "encounter_set": "The Tower of Cirith Ungol",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "1",
+      "victory": "2"
+    },
+    "imagesrc": "/cards/490a363e-2f00-4c66-9c6f-5bdfb83f6b08.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 15,
+        "quantity": 1,
+        "octgnid": "490a363e-2f00-4c66-9c6f-5bdfb83f6b08",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/490a363e-2f00-4c66-9c6f-5bdfb83f6b08.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e53df85c-f6e6-41df-9fd1-03dd2d2a1c65",
+    "octgnid": "e53df85c-f6e6-41df-9fd1-03dd2d2a1c65",
+    "name": "Echoing Passage",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Cirith Ungol.",
+    "text": "Echoing Passage gets +1 [threat] for each enemy in the staging area.\nWhile Echoing Passage is the active location, each enemy gets +2 [defense].",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 16,
+    "quantity": 3,
+    "threat": 1,
+    "quest": 5,
+    "encounter_set": "The Tower of Cirith Ungol",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/e53df85c-f6e6-41df-9fd1-03dd2d2a1c65.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 16,
+        "quantity": 3,
+        "octgnid": "e53df85c-f6e6-41df-9fd1-03dd2d2a1c65",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e53df85c-f6e6-41df-9fd1-03dd2d2a1c65.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:46c6afb3-9a68-4f1a-acfa-e421c84da528",
+    "octgnid": "46c6afb3-9a68-4f1a-acfa-e421c84da528",
+    "name": "Bloodied Courtyard",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Cirith Ungol.",
+    "text": "While Bloodied Courtyard is the active location, it gains: \"Forced: After an enemy enters the staging area, deal 1 damage to it.\"\nTravel: Raise each player's threat by 1 to travel here.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 17,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 4,
+    "encounter_set": "The Tower of Cirith Ungol",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/46c6afb3-9a68-4f1a-acfa-e421c84da528.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 17,
+        "quantity": 3,
+        "octgnid": "46c6afb3-9a68-4f1a-acfa-e421c84da528",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/46c6afb3-9a68-4f1a-acfa-e421c84da528.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:cf74c777-dfe4-4cea-8b7f-4b09fc1aa5b2",
+    "octgnid": "cf74c777-dfe4-4cea-8b7f-4b09fc1aa5b2",
+    "name": "Winding Stairs",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Cirith Ungol.",
+    "text": "While Winding Stairs is the active location, each enemy in the staging area gets +10 engagement cost.\nTravel: Each player must exhaust a character he controls to travel here.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 18,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 4,
+    "encounter_set": "The Tower of Cirith Ungol",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/cf74c777-dfe4-4cea-8b7f-4b09fc1aa5b2.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 18,
+        "quantity": 3,
+        "octgnid": "cf74c777-dfe4-4cea-8b7f-4b09fc1aa5b2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cf74c777-dfe4-4cea-8b7f-4b09fc1aa5b2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:32706788-e37c-47b1-831b-40c7f711cb10",
+    "octgnid": "32706788-e37c-47b1-831b-40c7f711cb10",
+    "name": "Torch-lit Hall",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Cirith Ungol.",
+    "text": "Forced: After the players travel to Torch-lit Hall, discard cards from the top of the encounter deck until an enemy is discarded. If there is a copy of that enemy in the staging area, discard that copy as well. If there is not, add the just discarded enemy to the staging area.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 19,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 3,
+    "encounter_set": "The Tower of Cirith Ungol",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/32706788-e37c-47b1-831b-40c7f711cb10.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 19,
+        "quantity": 3,
+        "octgnid": "32706788-e37c-47b1-831b-40c7f711cb10",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32706788-e37c-47b1-831b-40c7f711cb10.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:a246d29f-f370-4308-828d-c1ff09029b4a",
+    "octgnid": "a246d29f-f370-4308-828d-c1ff09029b4a",
+    "name": "Shagrat",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Uruk.",
+    "text": "Cannot have non-boon attachments. Cannot take non-combat damage.\nAllies cannot attack or defend against Shagrat.\nForced: After progress is placed on the quest, Shagrat gets -X engagement cost until the end of the round. X is the amount of progress just placed.",
+    "is_unique": true,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 20,
+    "quantity": 1,
+    "threat": 4,
+    "attack": 5,
+    "defense": 4,
+    "health": 6,
+    "engagement": 46,
+    "victory": 4,
+    "encounter_set": "The Tower of Cirith Ungol",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "5",
+      "defense": "4",
+      "health": "6",
+      "engagement": "46",
+      "victory": "4"
+    },
+    "imagesrc": "/cards/a246d29f-f370-4308-828d-c1ff09029b4a.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 20,
+        "quantity": 1,
+        "octgnid": "a246d29f-f370-4308-828d-c1ff09029b4a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a246d29f-f370-4308-828d-c1ff09029b4a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:74f40d23-068a-40ea-9965-81df44294490",
+    "octgnid": "74f40d23-068a-40ea-9965-81df44294490",
+    "name": "Gorbag",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Uruk.",
+    "text": "Cannot have attachments.\nForced: After Gorbag engages you, it makes an immediate attack.",
+    "is_unique": true,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 21,
+    "quantity": 1,
+    "threat": 3,
+    "attack": 4,
+    "defense": 3,
+    "health": 5,
+    "engagement": 36,
+    "victory": 3,
+    "shadow": "Shadow: Attacking enemy makes an additional attack against you after this one.",
+    "encounter_set": "The Tower of Cirith Ungol",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "4",
+      "defense": "3",
+      "health": "5",
+      "engagement": "36",
+      "victory": "3"
+    },
+    "imagesrc": "/cards/74f40d23-068a-40ea-9965-81df44294490.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 21,
+        "quantity": 1,
+        "octgnid": "74f40d23-068a-40ea-9965-81df44294490",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74f40d23-068a-40ea-9965-81df44294490.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:03abe728-0062-49bb-9a04-e78bff777e83",
+    "octgnid": "03abe728-0062-49bb-9a04-e78bff777e83",
+    "name": "Wounded Uruk",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Uruk.",
+    "text": "Wounded Uruk enters play with 2 damage on it.\nForced: After Wounded Uruk engages you, it gets +2 [attack] until the end of the round.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 22,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 3,
+    "defense": 2,
+    "health": 4,
+    "engagement": 34,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] for each damage on it.",
+    "encounter_set": "The Tower of Cirith Ungol",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "2",
+      "health": "4",
+      "engagement": "34"
+    },
+    "imagesrc": "/cards/03abe728-0062-49bb-9a04-e78bff777e83.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 22,
+        "quantity": 3,
+        "octgnid": "03abe728-0062-49bb-9a04-e78bff777e83",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/03abe728-0062-49bb-9a04-e78bff777e83.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:66489fc6-7074-4cbb-8a60-37acd641f7a6",
+    "octgnid": "66489fc6-7074-4cbb-8a60-37acd641f7a6",
+    "name": "Orcish Howls",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Deal 1 damage to each enemy in the staging area. Until the end of the phase, each enemy gets +1 [threat] for each damage on it. If there are no enemies in the staging area, Orcish Howls gains surge.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 23,
+    "quantity": 3,
+    "shadow": "Shadow: If you are engaged with another enemy, resolve this attack against that enemy.",
+    "encounter_set": "The Tower of Cirith Ungol",
+    "printed_stats": {},
+    "imagesrc": "/cards/66489fc6-7074-4cbb-8a60-37acd641f7a6.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 23,
+        "quantity": 3,
+        "octgnid": "66489fc6-7074-4cbb-8a60-37acd641f7a6",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/66489fc6-7074-4cbb-8a60-37acd641f7a6.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:7d9a3914-bc46-40d6-b489-3157d7430382",
+    "octgnid": "7d9a3914-bc46-40d6-b489-3157d7430382",
+    "name": "Orc of Mordor",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc.",
+    "text": "Surge.\nForced: After Orc of Mordor engages you, exhaust a character you control.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 58,
+    "quantity": 3,
+    "threat": 1,
+    "attack": 3,
+    "defense": 1,
+    "health": 3,
+    "engagement": 28,
+    "shadow": "Shadow: Exhaust a character you control.",
+    "encounter_set": "Orcs of Mordor",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "3",
+      "defense": "1",
+      "health": "3",
+      "engagement": "28"
+    },
+    "imagesrc": "/cards/7d9a3914-bc46-40d6-b489-3157d7430382.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 58,
+        "quantity": 3,
+        "octgnid": "7d9a3914-bc46-40d6-b489-3157d7430382",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7d9a3914-bc46-40d6-b489-3157d7430382.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:194ceae6-a5e2-4a52-ba07-76e6c2611e8e",
+    "octgnid": "194ceae6-a5e2-4a52-ba07-76e6c2611e8e",
+    "name": "Snaga Archer",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Snaga.",
+    "text": "Archery 2.\nForced: After Snaga Archer engages you, deal 2 damage to a character you control.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 59,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 4,
+    "defense": 2,
+    "health": 3,
+    "engagement": 44,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if the defending character is damaged).",
+    "encounter_set": "Orcs of Mordor",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "4",
+      "defense": "2",
+      "health": "3",
+      "engagement": "44"
+    },
+    "imagesrc": "/cards/194ceae6-a5e2-4a52-ba07-76e6c2611e8e.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 59,
+        "quantity": 3,
+        "octgnid": "194ceae6-a5e2-4a52-ba07-76e6c2611e8e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/194ceae6-a5e2-4a52-ba07-76e6c2611e8e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:50f294ff-ee4b-4685-b7e1-86cd7f2e0a59",
+    "octgnid": "50f294ff-ee4b-4685-b7e1-86cd7f2e0a59",
+    "name": "Uruk Soldier",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Uruk.",
+    "text": "Forced: After Uruk Soldier engages you, raise your threat by 2.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 60,
+    "quantity": 3,
+    "threat": 3,
+    "attack": 5,
+    "defense": 2,
+    "health": 5,
+    "engagement": 38,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, return attacking enemy to the staging area.",
+    "encounter_set": "Orcs of Mordor",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "5",
+      "defense": "2",
+      "health": "5",
+      "engagement": "38"
+    },
+    "imagesrc": "/cards/50f294ff-ee4b-4685-b7e1-86cd7f2e0a59.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 60,
+        "quantity": 3,
+        "octgnid": "50f294ff-ee4b-4685-b7e1-86cd7f2e0a59",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/50f294ff-ee4b-4685-b7e1-86cd7f2e0a59.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:a442dbd4-ec18-44e6-b762-b0ebf94a8897",
+    "octgnid": "a442dbd4-ec18-44e6-b762-b0ebf94a8897",
+    "name": "Drawn to the Ring",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player must choose: either exhaust The One Ring and reveal an encounter card, or discard cards from the top of the encounter deck until an enemy is discarded and put it into play engaged with him.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 61,
+    "quantity": 3,
+    "shadow": "Shadow: Discard a non-objective attachment you control.",
+    "encounter_set": "Deep Shadows",
+    "printed_stats": {},
+    "imagesrc": "/cards/a442dbd4-ec18-44e6-b762-b0ebf94a8897.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 61,
+        "quantity": 3,
+        "octgnid": "a442dbd4-ec18-44e6-b762-b0ebf94a8897",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a442dbd4-ec18-44e6-b762-b0ebf94a8897.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ef94d441-715f-42e8-bb3a-764592cdf44c",
+    "octgnid": "ef94d441-715f-42e8-bb3a-764592cdf44c",
+    "name": "Deep Shadows",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Doomed 2.\nWhen Revealed: Each player must choose: either discard your hand (with at least 3 cards in it), or reveal an encounter card.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 62,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy makes an additional attack after this one.",
+    "encounter_set": "Deep Shadows",
+    "printed_stats": {},
+    "imagesrc": "/cards/ef94d441-715f-42e8-bb3a-764592cdf44c.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 62,
+        "quantity": 2,
+        "octgnid": "ef94d441-715f-42e8-bb3a-764592cdf44c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ef94d441-715f-42e8-bb3a-764592cdf44c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:15f9c6b7-2bb0-48ea-9a5d-b8ec3b1a7e2d",
+    "octgnid": "15f9c6b7-2bb0-48ea-9a5d-b8ec3b1a7e2d",
+    "name": "Evil Vigilance",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player must choose: either discard a questing character you control, or raise your threat by 1 for each questing character you control.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 63,
+    "quantity": 3,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, reveal the top card of the encounter deck.",
+    "encounter_set": "Deep Shadows",
+    "printed_stats": {},
+    "imagesrc": "/cards/15f9c6b7-2bb0-48ea-9a5d-b8ec3b1a7e2d.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 63,
+        "quantity": 3,
+        "octgnid": "15f9c6b7-2bb0-48ea-9a5d-b8ec3b1a7e2d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/15f9c6b7-2bb0-48ea-9a5d-b8ec3b1a7e2d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:78f780fd-fcc0-495e-b132-772ce71dbfa9",
+    "octgnid": "78f780fd-fcc0-495e-b132-772ce71dbfa9",
+    "name": "The Two Watchers",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Mordor.",
+    "text": "Immune to player card effects.\nX is twice the stage number of the main quest.\nForced: After the players travel here, flip The Two Watchers to its enemy side and move it to the staging area.",
+    "is_unique": true,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 70,
+    "quantity": 1,
+    "threat": 0,
+    "quest": null,
+    "encounter_set": "The Tower of Cirith Ungol",
+    "back_name": "The Two Watchers",
+    "back_text": "Immune to player card effects. Cannot be optionally engaged.\nForced: When The Two Watchers deals any amount of damage, cancel that damage and raise the defending player's threat by X instead. X is the amount of damage just canceled.",
+    "back_type_code": "enemy",
+    "back_victory": 5,
+    "back_imagesrc": "/cards/78f780fd-fcc0-495e-b132-772ce71dbfa9.B.jpg",
+    "printed_stats": {
+      "threat": "X",
+      "quest": "—"
+    },
+    "imagesrc": "/cards/78f780fd-fcc0-495e-b132-772ce71dbfa9.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 70,
+        "quantity": 1,
+        "octgnid": "78f780fd-fcc0-495e-b132-772ce71dbfa9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/78f780fd-fcc0-495e-b132-772ce71dbfa9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:78f780fd-fcc0-495e-b132-772ce71dbfa9:B",
+    "octgnid": "78f780fd-fcc0-495e-b132-772ce71dbfa9",
+    "name": "The Two Watchers",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Mordor.",
+    "text": "Immune to player card effects. Cannot be optionally engaged.\nForced: When The Two Watchers deals any amount of damage, cancel that damage and raise the defending player's threat by X instead. X is the amount of damage just canceled.",
+    "is_unique": true,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 70,
+    "quantity": 1,
+    "threat": 2,
+    "encounter_set": "The Tower of Cirith Ungol",
+    "printed_stats": {
+      "threat": "2",
+      "engagement": "50",
+      "attack": "5",
+      "defense": "2",
+      "health": "4",
+      "victory": "5"
+    },
+    "imagesrc": "/cards/78f780fd-fcc0-495e-b132-772ce71dbfa9.B.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 70,
+        "quantity": 1,
+        "octgnid": "78f780fd-fcc0-495e-b132-772ce71dbfa9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/78f780fd-fcc0-495e-b132-772ce71dbfa9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "type_name": "Enemy",
+    "engagement": 50,
+    "attack": 5,
+    "defense": 2,
+    "health": 4,
+    "victory": 5
+  }
+]

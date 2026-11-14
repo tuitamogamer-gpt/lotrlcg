@@ -1,0 +1,155 @@
+[
+  {
+    "name": "The Two Watchers",
+    "code": "octgn:78f780fd-fcc0-495e-b132-772ce71dbfa9",
+    "encounterSet": "The Tower of Cirith Ungol",
+    "set": "1-2/24",
+    "scan": "1/24",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Last of the Company",
+    "code": "octgn:ad4739ac-fd18-4add-9b83-860c1fcc2b54",
+    "encounterSet": "The Tower of Cirith Ungol",
+    "set": "3/24",
+    "scan": "3/24",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Topmost Chamber",
+    "code": "octgn:490a363e-2f00-4c66-9c6f-5bdfb83f6b08",
+    "encounterSet": "The Tower of Cirith Ungol",
+    "set": "4/24",
+    "scan": "4/24",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Echoing Passage",
+    "code": "octgn:e53df85c-f6e6-41df-9fd1-03dd2d2a1c65",
+    "encounterSet": "The Tower of Cirith Ungol",
+    "set": "5-7/24",
+    "scan": "5/24",
+    "normal": 3,
+    "easy": 1
+  },
+  {
+    "name": "Bloodied Courtyard",
+    "code": "octgn:46c6afb3-9a68-4f1a-acfa-e421c84da528",
+    "encounterSet": "The Tower of Cirith Ungol",
+    "set": "8-10/24",
+    "scan": "8/24",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Winding Stairs",
+    "code": "octgn:cf74c777-dfe4-4cea-8b7f-4b09fc1aa5b2",
+    "encounterSet": "The Tower of Cirith Ungol",
+    "set": "11-13/24",
+    "scan": "11/24",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Torch-lit Hall",
+    "code": "octgn:32706788-e37c-47b1-831b-40c7f711cb10",
+    "encounterSet": "The Tower of Cirith Ungol",
+    "set": "14-16/24",
+    "scan": "14/24",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Shagrat",
+    "code": "octgn:a246d29f-f370-4308-828d-c1ff09029b4a",
+    "encounterSet": "The Tower of Cirith Ungol",
+    "set": "17/24",
+    "scan": "17/24",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Gorbag",
+    "code": "octgn:74f40d23-068a-40ea-9965-81df44294490",
+    "encounterSet": "The Tower of Cirith Ungol",
+    "set": "18/24",
+    "scan": "18/24",
+    "normal": 1,
+    "easy": 0
+  },
+  {
+    "name": "Wounded Uruk",
+    "code": "octgn:03abe728-0062-49bb-9a04-e78bff777e83",
+    "encounterSet": "The Tower of Cirith Ungol",
+    "set": "19-21/24",
+    "scan": "19/24",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Orcish Howls",
+    "code": "octgn:66489fc6-7074-4cbb-8a60-37acd641f7a6",
+    "encounterSet": "The Tower of Cirith Ungol",
+    "set": "22-24/24",
+    "scan": "22/24",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Orc of Mordor",
+    "code": "octgn:7d9a3914-bc46-40d6-b489-3157d7430382",
+    "encounterSet": "Orcs of Mordor",
+    "set": "1-3/9",
+    "scan": "1/9",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "name": "Snaga Archer",
+    "code": "octgn:194ceae6-a5e2-4a52-ba07-76e6c2611e8e",
+    "encounterSet": "Orcs of Mordor",
+    "set": "4-6/9",
+    "scan": "4/9",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Uruk Soldier",
+    "code": "octgn:50f294ff-ee4b-4685-b7e1-86cd7f2e0a59",
+    "encounterSet": "Orcs of Mordor",
+    "set": "7-9/9",
+    "scan": "8/9",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Drawn to the Ring",
+    "code": "octgn:a442dbd4-ec18-44e6-b762-b0ebf94a8897",
+    "encounterSet": "Deep Shadows",
+    "set": "1-3/8",
+    "scan": "1/8",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "name": "Deep Shadows",
+    "code": "octgn:ef94d441-715f-42e8-bb3a-764592cdf44c",
+    "encounterSet": "Deep Shadows",
+    "set": "4-5/8",
+    "scan": "5/8",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Evil Vigilance",
+    "code": "octgn:15f9c6b7-2bb0-48ea-9a5d-b8ec3b1a7e2d",
+    "encounterSet": "Deep Shadows",
+    "set": "6-8/8",
+    "scan": "6/8",
+    "normal": 3,
+    "easy": 3
+  }
+]

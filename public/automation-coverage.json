@@ -2,11 +2,11 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 848,
-    "heroes": 108,
+    "playerCards": 849,
+    "heroes": 109,
     "deckCards": 736,
-    "encounterCards": 1627,
-    "scenarios": 107,
+    "encounterCards": 1646,
+    "scenarios": 108,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -114,17 +114,18 @@
       "shelobs-lair",
       "the-passing-of-the-grey-company",
       "the-siege-of-gondor",
-      "the-battle-of-the-pelennor-fields"
+      "the-battle-of-the-pelennor-fields",
+      "the-tower-of-cirith-ungol"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2815,
-    "pending": 1368
+    "scripted": 2837,
+    "pending": 1346
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 224
+    "scripted": 227
   },
   "registeredCodes": [
     "01001",
@@ -815,6 +816,7 @@
     "145015",
     "145016",
     "145062",
+    "146001",
     "146012",
     "16001",
     "16002",
@@ -1072,6 +1074,7 @@
     "octgn:0323e852-a05c-4c2d-a038-3f2596af7a85",
     "octgn:03587572-2760-48b5-9b08-e01ccdc9788f",
     "octgn:039a688f-8bef-4a77-97c4-84b942f3d91a",
+    "octgn:03abe728-0062-49bb-9a04-e78bff777e83",
     "octgn:03b6d303-7722-4319-9623-e182b50c90b2",
     "octgn:041e412b-4d21-421a-a029-e1fdcb62e76d",
     "octgn:044a7b39-8ef6-41c7-bb99-ce209f700b09",
@@ -1085,6 +1088,7 @@
     "octgn:05a0e539-e140-4dfc-a151-21cd8aaef094",
     "octgn:05bf91b3-8e8e-4a45-a6cf-ac8b936b032d",
     "octgn:0676e5a8-1637-42f8-95fa-37aa6e189070",
+    "octgn:06b1e27e-6493-4f05-9203-1835058073df",
     "octgn:06badf71-8e85-479e-8ddf-1dec7a40e325",
     "octgn:06c4f297-b2a4-43a6-8d56-aa3385da3b69",
     "octgn:06ff6757-f80c-499b-8450-1e85e793d02c",
@@ -1168,6 +1172,7 @@
     "octgn:1589883f-87ae-4f4d-a92b-e5e23c25c8e0",
     "octgn:159f5a8f-1e1f-4282-9936-94b10e348176",
     "octgn:15ebc613-43fc-4c9b-ac71-91840d853e60",
+    "octgn:15f9c6b7-2bb0-48ea-9a5d-b8ec3b1a7e2d",
     "octgn:1600dd03-7b19-4dd2-924c-30c30b09cb9d",
     "octgn:160c8dcb-baa1-4176-9308-7328e500d62e",
     "octgn:16361c0e-f422-44d4-8f25-bc32b7a9aadd",
@@ -1179,8 +1184,10 @@
     "octgn:1866ce74-8552-4ac5-8b0a-1e7a6f3b4338",
     "octgn:1877b069-7015-4172-b5df-bbfd235b976f",
     "octgn:18d6f0aa-a62e-4ce5-b169-cae8836d8442",
+    "octgn:194ceae6-a5e2-4a52-ba07-76e6c2611e8e",
     "octgn:19675b16-16ee-4477-a753-bd1cf7b51b7a",
     "octgn:196d6c69-845a-494d-a49d-54d3dc6c1b4b",
+    "octgn:196dd43b-1df2-4eae-9dcf-2e8d2723af67",
     "octgn:19b732b9-a26a-4535-a438-7dd83cd4ecf2",
     "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1",
     "octgn:19e2470a-94c6-4f14-b824-7d2f952b60fd",
@@ -1246,6 +1253,7 @@
     "octgn:228a03b8-ec05-4562-90f5-0c7d969490b0",
     "octgn:22c55625-210c-4843-81ee-d8d6430885b0",
     "octgn:22d6a151-ee2a-4ad0-9d97-5eddd5cc0391",
+    "octgn:22e79f71-9496-4f1a-bf7e-36834378d68c",
     "octgn:22f6fc49-6a00-4104-a9fa-4823435175a1",
     "octgn:2301fc93-a05e-4dd4-b06e-40d659783d8b",
     "octgn:231bf335-bf9b-44d9-a919-e59aa1d46473",
@@ -1284,6 +1292,7 @@
     "octgn:264adf61-31e1-46db-a655-7fee1d4282ae",
     "octgn:26642db7-c3a2-47f3-989d-27396e586d06",
     "octgn:26bb74c2-3c66-4828-8188-404bc42e713e",
+    "octgn:26eb433a-01e2-4b0e-83c4-680b0e0c4854",
     "octgn:27299002-f9b0-4f9d-a87b-012a6a6993ca",
     "octgn:2744032b-21e4-4b52-a66e-f4c1926f451b",
     "octgn:275c7232-3671-4092-bb9a-9a62f9538225",
@@ -1360,6 +1369,7 @@
     "octgn:32416ec8-b50d-4cd2-a62f-10f97c87be73",
     "octgn:3254a776-09e5-4576-9b3c-164cc93e1e26",
     "octgn:32621d0f-16a3-4ab9-a553-657834cb6691",
+    "octgn:32706788-e37c-47b1-831b-40c7f711cb10",
     "octgn:32873634-3a91-4d6f-988a-fb8bb5c16ef3",
     "octgn:32993141-956c-4426-98d9-8705de6fee00",
     "octgn:32993141-956c-4426-98d9-8705de6fee00:B",
@@ -1465,6 +1475,7 @@
     "octgn:460a1e18-8a57-44a5-bd06-f0c1b13c86b5",
     "octgn:463d0c53-2275-410f-b311-139f19561b46",
     "octgn:46affe37-a561-4c15-bc0e-7c36d78ba056",
+    "octgn:46c6afb3-9a68-4f1a-acfa-e421c84da528",
     "octgn:46c7bfd7-96b7-4fe4-a110-3464ba6c0023",
     "octgn:46e10da4-a188-4502-b53f-6644495a1319",
     "octgn:4732976c-a400-498f-9f97-108995fcd99f",
@@ -1541,6 +1552,7 @@
     "octgn:4893d105-fada-4bee-a4bb-d26463b97b63",
     "octgn:48c82a72-ad2f-4452-9906-b5505caf27e1",
     "octgn:48d2ea1f-449b-4af9-9f43-c70fffd66991",
+    "octgn:490a363e-2f00-4c66-9c6f-5bdfb83f6b08",
     "octgn:49304bf6-63f3-4fd1-b3ec-072a034e4eb0",
     "octgn:499195c5-389f-4a56-b67e-b6e5b8f2fb91",
     "octgn:49aa4e88-3774-43f7-ab8d-05268ed3fb7e",
@@ -1588,6 +1600,7 @@
     "octgn:50950a5b-0002-432a-b6d6-4ac2ca12e501",
     "octgn:509f3e41-385c-4b84-ad28-7cc2eed8028c",
     "octgn:50e62ade-1958-439d-9314-383d8621ecf5",
+    "octgn:50f294ff-ee4b-4685-b7e1-86cd7f2e0a59",
     "octgn:5100f009-8c78-4f2a-b77e-1bd9ccbfef77",
     "octgn:51124d05-205c-49e6-ad19-aa67185c8bdc",
     "octgn:51223bd0-ffd1-11df-a976-0801202c9002",
@@ -2013,6 +2026,7 @@
     "octgn:65f48337-cec0-41a1-84ff-490c4f563ce4",
     "octgn:6603b3a5-b955-4109-a63d-b8405c86d0b7",
     "octgn:663a47fc-e264-485b-832d-2c327aa1a493",
+    "octgn:66489fc6-7074-4cbb-8a60-37acd641f7a6",
     "octgn:6651f8a6-e442-4eba-a8b5-13fab4c1e93c",
     "octgn:66812347-fac2-4a76-aa69-ac0861071c0d",
     "octgn:6709bafa-87b5-483e-9895-0f2edea7e47a",
@@ -2093,6 +2107,7 @@
     "octgn:74ceb68a-a1c9-41bc-aeb8-41738b34a3bb",
     "octgn:74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc",
     "octgn:74f297ed-3cb6-4c2d-83d8-c27b447a9250",
+    "octgn:74f40d23-068a-40ea-9965-81df44294490",
     "octgn:74f47fcd-31fb-4034-924c-034e1615a3c4",
     "octgn:74fc62c2-b1b6-4338-819a-1f00f871312c",
     "octgn:7562e662-3b3e-4378-9a3f-c45908bc05cf",
@@ -2110,6 +2125,8 @@
     "octgn:77dd117d-b2b6-4324-aa59-09fd1343fde9",
     "octgn:783ecb94-e005-4ff7-8bc3-76196bba9249",
     "octgn:78520dc7-5891-47f3-8782-ca930c434374",
+    "octgn:78f780fd-fcc0-495e-b132-772ce71dbfa9",
+    "octgn:78f780fd-fcc0-495e-b132-772ce71dbfa9:B",
     "octgn:78fd9e40-f68d-46c9-b6bf-8fec3b77bfcf",
     "octgn:795579db-249d-4c9d-850f-6f39bc96c063",
     "octgn:797a1805-f347-4eb3-9f77-5c9e6b6a850f",
@@ -2145,6 +2162,7 @@
     "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
     "octgn:7d55e738-cc23-4e78-9a88-2a25fa4f3ca4",
     "octgn:7d71aa09-badb-4ba8-9d08-597a8d814020",
+    "octgn:7d9a3914-bc46-40d6-b489-3157d7430382",
     "octgn:7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00",
     "octgn:7e20690f-d1bb-4ac3-b2bf-da55f1f95bcc",
     "octgn:7e470346-1828-49c0-b241-58d0dbf27b4b",
@@ -2366,6 +2384,7 @@
     "octgn:a11f08ac-541b-46ba-9528-467dcbdc90c6",
     "octgn:a1827b45-42bd-44b3-a86d-d773e60ac1b5",
     "octgn:a1a8bd6e-4cd1-4641-9cb1-f693f053f62e",
+    "octgn:a246d29f-f370-4308-828d-c1ff09029b4a",
     "octgn:a25b4139-f1d0-4466-83f2-f06fa3e0c30b",
     "octgn:a264930c-e083-484a-bbe8-9b615942e83a",
     "octgn:a2b6cb8b-dacf-4c82-9097-2206610192ac",
@@ -2373,6 +2392,7 @@
     "octgn:a312e181-9209-4460-b6ba-c90c99e011fe",
     "octgn:a3173fc4-1ddb-470d-ae12-a35e24ea63a3",
     "octgn:a34ffb4e-c821-42aa-8dab-2914d274b3b1",
+    "octgn:a442dbd4-ec18-44e6-b762-b0ebf94a8897",
     "octgn:a44d6ee9-79a6-4e55-ab8a-a165c4dbb882",
     "octgn:a46578d6-303e-4f35-9a11-8b9f807427ba",
     "octgn:a4cd5ce9-fc29-44b6-9bee-eafbbd431c49",
@@ -2432,6 +2452,7 @@
     "octgn:acbf7fd1-9f93-4d0b-b18a-8f0854e028f5",
     "octgn:ad09f848-9430-41c8-8723-671f08b79078",
     "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc",
+    "octgn:ad4739ac-fd18-4add-9b83-860c1fcc2b54",
     "octgn:ad7fc95f-4a8d-4a15-b170-b0db3c3002f0",
     "octgn:adf2480a-644a-47ee-8deb-bd08ff32bf31",
     "octgn:ae16b39f-ed64-4aa9-b6b8-1fbfbda70e6f",
@@ -2636,6 +2657,7 @@
     "octgn:cf33276f-22e5-467d-9543-6b345d17e7bc",
     "octgn:cf435143-655b-4a7c-ac6b-f9f61b4cba72",
     "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
+    "octgn:cf74c777-dfe4-4cea-8b7f-4b09fc1aa5b2",
     "octgn:cfa94470-c25c-4af3-ba71-941d1fa48a9c",
     "octgn:cfaa761e-c273-451f-bb1e-84d25c4bedbb",
     "octgn:cfcee6c8-9eee-4623-afd1-a49ea77e2322",
@@ -2756,6 +2778,7 @@
     "octgn:e4ad5220-6251-4c65-8206-ab656540cc3b",
     "octgn:e4af5d7f-9af5-41bb-b22a-cce8b91ac791",
     "octgn:e4f6c61b-afb1-4f12-81d5-4edd14a90d32",
+    "octgn:e53df85c-f6e6-41df-9fd1-03dd2d2a1c65",
     "octgn:e542f4f9-420f-40eb-8c95-d648f2589511",
     "octgn:e6721e44-5706-4a0f-a895-ced75f9c6219",
     "octgn:e6808a55-528f-444e-bf61-67748e7261e9",
@@ -2806,6 +2829,7 @@
     "octgn:ef6ebaef-6b53-4aa0-b03b-9929bd2bc492",
     "octgn:ef7c6601-a62d-440a-89b1-5a9d6208481b",
     "octgn:ef815939-8e88-4a70-a4f4-bdf36a84ea77",
+    "octgn:ef94d441-715f-42e8-bb3a-764592cdf44c",
     "octgn:ef975c81-544a-4f1b-a3c4-d0bc42ef636c",
     "octgn:ef990329-db00-441a-8c7d-8b464321f093",
     "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
@@ -3671,9 +3695,9 @@
     {
       "product": "the-mountain-of-fire",
       "total": 81,
-      "scripted": 1,
+      "scripted": 23,
       "player": 13,
-      "playerScripted": 1
+      "playerScripted": 2
     },
     {
       "product": "the-mumakil",
@@ -10638,7 +10662,7 @@
       "name": "Frodo Baggins",
       "type": "hero",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -12958,7 +12982,7 @@
       "name": "Wounded Uruk",
       "type": "enemy",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -13190,7 +13214,7 @@
       "name": "The One Ring",
       "type": "objective",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -14334,7 +14358,7 @@
       "name": "Evil Vigilance",
       "type": "treachery",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -14558,7 +14582,7 @@
       "name": "Snaga Archer",
       "type": "enemy",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -14582,7 +14606,7 @@
       "name": "Escape from Cirith Ungol",
       "type": "quest",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -15390,7 +15414,7 @@
       "name": "Pass the Two Watchers",
       "type": "quest",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -15814,7 +15838,7 @@
       "name": "Fighting in the Tower",
       "type": "quest",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -16854,7 +16878,7 @@
       "name": "Torch-lit Hall",
       "type": "location",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -18422,7 +18446,7 @@
       "name": "Bloodied Courtyard",
       "type": "location",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -19126,7 +19150,7 @@
       "name": "Topmost Chamber",
       "type": "location",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -19774,7 +19798,7 @@
       "name": "Uruk Soldier",
       "type": "enemy",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -23870,7 +23894,7 @@
       "name": "Orcish Howls",
       "type": "treachery",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -25070,7 +25094,7 @@
       "name": "Gorbag",
       "type": "enemy",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -25390,7 +25414,7 @@
       "name": "The Two Watchers",
       "type": "location",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -25830,7 +25854,7 @@
       "name": "Orc of Mordor",
       "type": "enemy",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -28934,7 +28958,7 @@
       "name": "Shagrat",
       "type": "enemy",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -29062,7 +29086,7 @@
       "name": "Drawn to the Ring",
       "type": "treachery",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -29878,7 +29902,7 @@
       "name": "Last of the Company",
       "type": "objective",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -33086,7 +33110,7 @@
       "name": "Winding Stairs",
       "type": "location",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -34678,7 +34702,7 @@
       "name": "Echoing Passage",
       "type": "location",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -35694,7 +35718,7 @@
       "name": "Deep Shadows",
       "type": "treachery",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -38127,8 +38151,8 @@
       "id": "E0B.16",
       "name": "The Tower of Cirith Ungol (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-tower-of-cirith-ungol",
+      "state": "scripted"
     },
     {
       "id": "E0B.17",
@@ -38253,8 +38277,8 @@
       "id": "E0C.16",
       "name": "The Tower of Cirith Ungol (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-tower-of-cirith-ungol",
+      "state": "scripted"
     },
     {
       "id": "E0C.17",
@@ -39618,8 +39642,8 @@
       "id": "Q0B.16",
       "name": "The Tower of Cirith Ungol",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-tower-of-cirith-ungol",
+      "state": "scripted"
     },
     {
       "id": "Q0B.17",

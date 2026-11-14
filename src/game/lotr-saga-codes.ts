@@ -19,11 +19,18 @@ export const LAND_SHADOW_FRODO = "144001";
 export const LAND_SHADOW_ONE_RING = sagaCards.find(
   (c) => c.name === "The One Ring" && c.pack_code === "LoS",
 )!.code;
+/** The Mountain of Fire's Fellowship-sphere Frodo Baggins. */
+export const MOUNTAIN_FIRE_FRODO = "146001";
+/** The One Ring objective of The Mountain of Fire. */
+export const MOUNTAIN_FIRE_ONE_RING = sagaCards.find(
+  (c) => c.name === "The One Ring" && c.pack_code === "MoF",
+)!.code;
 /** Every One Ring objective a Saga scenario may place. */
 export const ONE_RINGS: readonly string[] = [
   ONE_RING,
   ROAD_DARKENS_ONE_RING,
   LAND_SHADOW_ONE_RING,
+  MOUNTAIN_FIRE_ONE_RING,
 ];
 export const isOneRing = (code: string) => ONE_RINGS.includes(code);
 /** The Lord of the Rings Saga scenarios of The Black Riders. */
@@ -66,6 +73,12 @@ export const FLAME_WEST_SCENARIO_IDS: readonly string[] = [
 ];
 export const isFlameWestScenarioId = (id: string | undefined) =>
   !!id && FLAME_WEST_SCENARIO_IDS.includes(id);
+/** The Lord of the Rings Saga scenarios of The Mountain of Fire. */
+export const MOUNTAIN_FIRE_SCENARIO_IDS: readonly string[] = [
+  "the-tower-of-cirith-ungol",
+];
+export const isMountainFireScenarioId = (id: string | undefined) =>
+  !!id && MOUNTAIN_FIRE_SCENARIO_IDS.includes(id);
 /** The Fellowship Aragorn of a Saga box, if its scenarios place him. */
 export const fellowshipAragornCode = (id: string | undefined) =>
   isTreasonSarumanScenarioId(id)
@@ -85,6 +98,7 @@ export const LOTR_SAGA_SCENARIO_IDS: readonly string[] = [
   ...TREASON_SARUMAN_SCENARIO_IDS,
   ...LAND_SHADOW_SCENARIO_IDS,
   ...FLAME_WEST_SCENARIO_IDS,
+  ...MOUNTAIN_FIRE_SCENARIO_IDS,
 ];
 export const isLotrSagaScenarioId = (id: string | undefined) =>
   !!id && LOTR_SAGA_SCENARIO_IDS.includes(id);
@@ -97,15 +111,18 @@ export const sagaRingCards = (
 ): { frodo: string; ring?: string } =>
   fellowshipAragornCode(id)
     ? { frodo: fellowshipAragornCode(id)! }
-    : isLandShadowScenarioId(id)
-      ? { frodo: LAND_SHADOW_FRODO, ring: LAND_SHADOW_ONE_RING }
-      : !!id && ROAD_DARKENS_SCENARIO_IDS.includes(id)
-        ? { frodo: ROAD_DARKENS_FRODO, ring: ROAD_DARKENS_ONE_RING }
-        : { frodo: SAGA_FRODO, ring: ONE_RING };
+    : isMountainFireScenarioId(id)
+      ? { frodo: MOUNTAIN_FIRE_FRODO, ring: MOUNTAIN_FIRE_ONE_RING }
+      : isLandShadowScenarioId(id)
+        ? { frodo: LAND_SHADOW_FRODO, ring: LAND_SHADOW_ONE_RING }
+        : !!id && ROAD_DARKENS_SCENARIO_IDS.includes(id)
+          ? { frodo: ROAD_DARKENS_FRODO, ring: ROAD_DARKENS_ONE_RING }
+          : { frodo: SAGA_FRODO, ring: ONE_RING };
 /** Every Fellowship-sphere Ring-bearer a Saga scenario may place. */
 export const RING_BEARERS: readonly string[] = [
   SAGA_FRODO,
   ROAD_DARKENS_FRODO,
   LAND_SHADOW_FRODO,
+  MOUNTAIN_FIRE_FRODO,
 ];
 export const isRingBearerCode = (code: string) => RING_BEARERS.includes(code);

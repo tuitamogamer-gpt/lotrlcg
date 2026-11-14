@@ -21,6 +21,7 @@ import { SHELOB_LAIR_HOOKS } from "./shelob-lair";
 import { GREY_COMPANY_HOOKS } from "./grey-company";
 import { SIEGE_GONDOR_HOOKS } from "./siege-gondor";
 import { PELENNOR_FIELDS_HOOKS } from "./pelennor-fields";
+import { CIRITH_UNGOL_HOOKS } from "./cirith-ungol";
 import { HELMS_DEEP_HOOKS } from "./helms-deep";
 import { ROAD_ISENGARD_HOOKS } from "./road-isengard";
 import { PASSAGE_MARSHES_HOOKS } from "./passage-marshes";
@@ -103,6 +104,8 @@ export function batch4Scenario(s: GameState): Batch4ScenarioHooks {
       return SIEGE_GONDOR_HOOKS;
     case "the-battle-of-the-pelennor-fields":
       return PELENNOR_FIELDS_HOOKS;
+    case "the-tower-of-cirith-ungol":
+      return CIRITH_UNGOL_HOOKS;
     case "the-land-of-sorrow":
       return LAND_SORROW_HOOKS;
     case "under-the-ash-mountains":
@@ -192,4 +195,5 @@ export const batch4SharedEffect = (effect: Effect) =>
     GREY_COMPANY_HOOKS,
     SIEGE_GONDOR_HOOKS,
     PELENNOR_FIELDS_HOOKS,
+    CIRITH_UNGOL_HOOKS,
   ].some((hooks) => hooks.sharedEffect?.(effect));

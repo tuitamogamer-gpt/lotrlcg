@@ -27,12 +27,14 @@ import { shelobLairPublicState } from "./shelob-lair-support";
 import { greyCompanyPublicState } from "./grey-company-support";
 import { siegeGondorPublicState } from "./siege-gondor-support";
 import { pelennorFieldsPublicState } from "./pelennor-fields-support";
+import { cirithUngolPublicState } from "./cirith-ungol-support";
 import { helmsDeepPublicState } from "./helms-deep-support";
 import { roadIsengardPublicState } from "./road-isengard-support";
 import { passageMarshesPublicState } from "./passage-marshes-support";
 import { crossRoadsPublicState } from "./cross-roads-support";
 import * as LandShadowPlayers from "./land-shadow-player-cards";
 import * as FlameWestPlayers from "./flame-west-player-cards";
+import * as MountainFirePlayers from "./mountain-fire-player-cards";
 import { ereborAllyPlayed } from "./erebor-treasures";
 import * as LandSorrowPlayers from "./land-sorrow-player";
 import { sorrowPublicState } from "./land-sorrow-support";
@@ -2271,6 +2273,10 @@ function printedAbilities(s: GameState, u: Unit) {
       FlameWestPlayers.flameWestPlayerAbilityProblem(s, u),
     ],
     [
+      MountainFirePlayers.mountainFirePlayerAbilityLabel(u.code),
+      MountainFirePlayers.mountainFirePlayerAbilityProblem(s, u),
+    ],
+    [
       EredFinalPlayers.eredFinalPlayerAbilityLabel(u.code),
       EredFinalPlayers.eredFinalPlayerAbilityProblem(s, u),
     ],
@@ -3392,6 +3398,11 @@ export function applyAction(input: GameState, action: Action): GameState {
             ) &&
             (!!action.attachmentId ||
               !FlameWestPlayers.useFlameWestPlayerAbility(s, u)) &&
+            !MountainFirePlayers.useMountainFirePlayerAbility(
+              s,
+              u,
+              action.attachmentId,
+            ) &&
             !WildsPlayers.useWildsPlayerAbility(s, u, action.attachmentId) &&
             !MumakPlayers.useMumakilPlayerAbility(s, u, action.attachmentId) &&
             !RacePlayers.useRaceHaradPlayerAbility(s, u, action.attachmentId) &&
@@ -3799,6 +3810,7 @@ export function publicState(s: GameState) {
     greyCompany: greyCompanyPublicState(s),
     siegeGondor: siegeGondorPublicState(s),
     pelennorFields: pelennorFieldsPublicState(s),
+    cirithUngol: cirithUngolPublicState(s),
     fortressNurnPlayers: FortressPlayers.fortressNurnPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),
