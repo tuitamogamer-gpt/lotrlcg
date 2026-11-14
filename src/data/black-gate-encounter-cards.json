@@ -1,0 +1,676 @@
+[
+  {
+    "code": "octgn:c6b0a8d2-32fe-4750-9270-7270cd5f062b",
+    "octgnid": "c6b0a8d2-32fe-4750-9270-7270cd5f062b",
+    "name": "The Black Gate",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Mordor.",
+    "text": "Immune to player card effects. The players cannot travel here.\nThe Black Gate gets +1 [threat] for each resource on it.\nForced: At the beginning of the quest phase, place 1 resource here and raise each player's threat by 1.",
+    "is_unique": true,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 24,
+    "quantity": 1,
+    "threat": 0,
+    "quest": null,
+    "encounter_set": "The Black Gate Opens",
+    "printed_stats": {
+      "threat": "0",
+      "quest": "—"
+    },
+    "imagesrc": "/cards/c6b0a8d2-32fe-4750-9270-7270cd5f062b.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 24,
+        "quantity": 1,
+        "octgnid": "c6b0a8d2-32fe-4750-9270-7270cd5f062b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c6b0a8d2-32fe-4750-9270-7270cd5f062b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e5b56e5a-3286-4ea6-bbdd-da7e47750125",
+    "octgnid": "e5b56e5a-3286-4ea6-bbdd-da7e47750125",
+    "name": "Towers of the Teeth",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Plains.",
+    "text": "Immune to player card effects.\nX is the number of characters controlled by the player with the most characters.\nWhile Towers of the Teeth is the active location, players cannot play allies.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 25,
+    "quantity": 2,
+    "threat": 0,
+    "quest": 8,
+    "encounter_set": "The Black Gate Opens",
+    "printed_stats": {
+      "threat": "X",
+      "quest": "8"
+    },
+    "imagesrc": "/cards/e5b56e5a-3286-4ea6-bbdd-da7e47750125.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 25,
+        "quantity": 2,
+        "octgnid": "e5b56e5a-3286-4ea6-bbdd-da7e47750125",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e5b56e5a-3286-4ea6-bbdd-da7e47750125.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:1eab8808-f8ee-4935-b456-7dd940afbc28",
+    "octgnid": "1eab8808-f8ee-4935-b456-7dd940afbc28",
+    "name": "Beleaguered Hills",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Hills.",
+    "text": "While Beleaguered Hills is the active location, reduce the total [threat] in the staging area by X, where X is the total [threat] of each engaged enemy.\nForced: After Beleaguered Hills becomes the active location, each player engages a non-unique enemy in the staging area.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 26,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 3,
+    "encounter_set": "The Black Gate Opens",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/1eab8808-f8ee-4935-b456-7dd940afbc28.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 26,
+        "quantity": 2,
+        "octgnid": "1eab8808-f8ee-4935-b456-7dd940afbc28",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1eab8808-f8ee-4935-b456-7dd940afbc28.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:77bcda70-5126-4e58-919e-447c03d7ab02",
+    "octgnid": "77bcda70-5126-4e58-919e-447c03d7ab02",
+    "name": "Waste of Dagorlad",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Plains.",
+    "text": "While Waste of Dagorlad is the active location, treat the printed text box of each ally as if it were blank (except for Traits).",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 27,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 6,
+    "encounter_set": "The Black Gate Opens",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "6"
+    },
+    "imagesrc": "/cards/77bcda70-5126-4e58-919e-447c03d7ab02.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 27,
+        "quantity": 3,
+        "octgnid": "77bcda70-5126-4e58-919e-447c03d7ab02",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/77bcda70-5126-4e58-919e-447c03d7ab02.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:3551cf11-1670-46de-b404-7b8fd20d3aff",
+    "octgnid": "3551cf11-1670-46de-b404-7b8fd20d3aff",
+    "name": "Slopes of Cirith Gorgor",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Hills.",
+    "text": "Forced: When Slopes of Cirith Gorgor leaves play, the first player shuffles the encounter discard pile into the encounter deck and discards cards from the top until an enemy is discarded. Then, he puts that enemy into play engaged with him.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 28,
+    "quantity": 2,
+    "threat": 4,
+    "quest": 1,
+    "encounter_set": "The Black Gate Opens",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "1"
+    },
+    "imagesrc": "/cards/3551cf11-1670-46de-b404-7b8fd20d3aff.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 28,
+        "quantity": 2,
+        "octgnid": "3551cf11-1670-46de-b404-7b8fd20d3aff",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3551cf11-1670-46de-b404-7b8fd20d3aff.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f13a2e94-0ece-45c3-a7ce-0248f9ff92b3",
+    "octgnid": "f13a2e94-0ece-45c3-a7ce-0248f9ff92b3",
+    "name": "Reeking Moat",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Plains.",
+    "text": "Forced: After Reeking Moat becomes the active location, choose a non-unique, non-Nazgûl enemy in the staging area and place it facedown under Reeking Moat.\nForced: When Reeking Moat leaves play, put each enemy under it into play engaged with the first player.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 29,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 4,
+    "encounter_set": "The Black Gate Opens",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/f13a2e94-0ece-45c3-a7ce-0248f9ff92b3.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 29,
+        "quantity": 2,
+        "octgnid": "f13a2e94-0ece-45c3-a7ce-0248f9ff92b3",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f13a2e94-0ece-45c3-a7ce-0248f9ff92b3.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:6aaf94eb-c656-4589-acf1-c6637a755946",
+    "octgnid": "6aaf94eb-c656-4589-acf1-c6637a755946",
+    "name": "Wall of Morannon",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Plains.",
+    "text": "While Wall of Morannon is the active location, each enemy and location in the staging area is immune to player card effects.\nForced: After Wall of Morannon becomes the active location, return each engaged enemy to the staging area.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 30,
+    "quantity": 2,
+    "threat": 5,
+    "quest": 5,
+    "encounter_set": "The Black Gate Opens",
+    "printed_stats": {
+      "threat": "5",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/6aaf94eb-c656-4589-acf1-c6637a755946.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 30,
+        "quantity": 2,
+        "octgnid": "6aaf94eb-c656-4589-acf1-c6637a755946",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6aaf94eb-c656-4589-acf1-c6637a755946.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:a3a28453-4292-49b3-9b78-fc958310a800",
+    "octgnid": "a3a28453-4292-49b3-9b78-fc958310a800",
+    "name": "The Mouth of Sauron",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Mordor.",
+    "text": "Immune to player card effects. Cannot leave the staging area.\nForced: After a player cancels a 'when revealed' effect, The Mouth of Sauron makes an immediate attack against that player.",
+    "is_unique": true,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 31,
+    "quantity": 1,
+    "threat": 4,
+    "attack": 6,
+    "defense": 5,
+    "health": 11,
+    "engagement": 99,
+    "encounter_set": "The Black Gate Opens",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "6",
+      "defense": "5",
+      "health": "11",
+      "engagement": "99"
+    },
+    "imagesrc": "/cards/a3a28453-4292-49b3-9b78-fc958310a800.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 31,
+        "quantity": 1,
+        "octgnid": "a3a28453-4292-49b3-9b78-fc958310a800",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a3a28453-4292-49b3-9b78-fc958310a800.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e62cec6d-6b96-4662-9a86-bcc0f5aee453",
+    "octgnid": "e62cec6d-6b96-4662-9a86-bcc0f5aee453",
+    "name": "Nazgûl of Mordor",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Nazgûl.",
+    "text": "Cannot have non-Morgul attachments.\nForced: After Nazgûl of Mordor attacks, either raise your threat by 4, or return Nazgûl of Mordor to the staging area.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 32,
+    "quantity": 3,
+    "threat": 4,
+    "attack": 6,
+    "defense": 4,
+    "health": 9,
+    "engagement": 66,
+    "encounter_set": "The Black Gate Opens",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "6",
+      "defense": "4",
+      "health": "9",
+      "engagement": "66"
+    },
+    "imagesrc": "/cards/e62cec6d-6b96-4662-9a86-bcc0f5aee453.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 32,
+        "quantity": 3,
+        "octgnid": "e62cec6d-6b96-4662-9a86-bcc0f5aee453",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e62cec6d-6b96-4662-9a86-bcc0f5aee453.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:fafbd12c-b97e-41d8-a696-5c89566927ba",
+    "octgnid": "fafbd12c-b97e-41d8-a696-5c89566927ba",
+    "name": "Gorgoroth Hill-troll",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Troll.",
+    "text": "Cannot have attachments.\nForced: After Gorgoroth Hill-troll attacks and destroys a character, the defending player discards a random card from his hand and raises his threat by that card's printed cost.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 33,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 7,
+    "defense": 3,
+    "health": 8,
+    "engagement": 56,
+    "encounter_set": "The Black Gate Opens",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "7",
+      "defense": "3",
+      "health": "8",
+      "engagement": "56"
+    },
+    "imagesrc": "/cards/fafbd12c-b97e-41d8-a696-5c89566927ba.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 33,
+        "quantity": 2,
+        "octgnid": "fafbd12c-b97e-41d8-a696-5c89566927ba",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fafbd12c-b97e-41d8-a696-5c89566927ba.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ce23920a-4b87-4015-88bf-8687a6d3f180",
+    "octgnid": "ce23920a-4b87-4015-88bf-8687a6d3f180",
+    "name": "Easterling Bowman",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Easterling.",
+    "text": "Peril. Archery 1.\nWhen Revealed: Deal 1 damage to a questing character you control.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 34,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 3,
+    "defense": 1,
+    "health": 4,
+    "engagement": 54,
+    "shadow": "Shadow: After this attack, attacking enemy engages the next player then makes an attack.",
+    "encounter_set": "The Black Gate Opens",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "1",
+      "health": "4",
+      "engagement": "54"
+    },
+    "imagesrc": "/cards/ce23920a-4b87-4015-88bf-8687a6d3f180.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 34,
+        "quantity": 3,
+        "octgnid": "ce23920a-4b87-4015-88bf-8687a6d3f180",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ce23920a-4b87-4015-88bf-8687a6d3f180.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:7108bf9e-3e91-4cbd-977a-fbab0a464512",
+    "octgnid": "7108bf9e-3e91-4cbd-977a-fbab0a464512",
+    "name": "Warrior of Rhûn",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Easterling.",
+    "text": "Peril.\nWhen Revealed: Choose a questing character you control and remove it from the quest.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 35,
+    "quantity": 3,
+    "threat": 1,
+    "attack": 4,
+    "defense": 3,
+    "health": 4,
+    "engagement": 34,
+    "shadow": "Shadow: Defending character cannot ready until the end of the round.",
+    "encounter_set": "The Black Gate Opens",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "4",
+      "defense": "3",
+      "health": "4",
+      "engagement": "34"
+    },
+    "imagesrc": "/cards/7108bf9e-3e91-4cbd-977a-fbab0a464512.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 35,
+        "quantity": 3,
+        "octgnid": "7108bf9e-3e91-4cbd-977a-fbab0a464512",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7108bf9e-3e91-4cbd-977a-fbab0a464512.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:5003227b-ebc3-454a-88b4-2d6e20cc48f7",
+    "octgnid": "5003227b-ebc3-454a-88b4-2d6e20cc48f7",
+    "name": "Hell-hawk",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Morgul.",
+    "text": "Peril.\nWhen Revealed: Either search the encounter deck, discard pile, and victory display for a Nazgûl enemy and add it to the staging area, or attach Hell-hawk to a Nazgûl enemy in play. (Counts as a Mount attachment with the text: \"Limit 1 per enemy. Attached enemy gets +2 [threat], +2 [attack], +2 [defense] and is immune to player card effects.\")",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 36,
+    "quantity": 2,
+    "encounter_set": "The Black Gate Opens",
+    "printed_stats": {},
+    "imagesrc": "/cards/5003227b-ebc3-454a-88b4-2d6e20cc48f7.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 36,
+        "quantity": 2,
+        "octgnid": "5003227b-ebc3-454a-88b4-2d6e20cc48f7",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5003227b-ebc3-454a-88b4-2d6e20cc48f7.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:3f736d45-c2b3-429e-9a21-3f8073cdbd48",
+    "octgnid": "3f736d45-c2b3-429e-9a21-3f8073cdbd48",
+    "name": "The Hour of Doom",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Doomed 1.\nWhen Revealed: Each player must choose: either raise your threat by 1 for each character you control, or discard the highest cost ally you control.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 37,
+    "quantity": 3,
+    "shadow": "Shadow: Discard a non-objective attachment you control.",
+    "encounter_set": "The Black Gate Opens",
+    "printed_stats": {},
+    "imagesrc": "/cards/3f736d45-c2b3-429e-9a21-3f8073cdbd48.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 37,
+        "quantity": 3,
+        "octgnid": "3f736d45-c2b3-429e-9a21-3f8073cdbd48",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3f736d45-c2b3-429e-9a21-3f8073cdbd48.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:d5286130-d03a-49f3-bd70-d40e9320c292",
+    "octgnid": "d5286130-d03a-49f3-bd70-d40e9320c292",
+    "name": "Jaws of Steel",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player assigns X damage among characters he controls, where X is the number of resources on The Black Gate.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 38,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] for each resource on The Black Gate.",
+    "encounter_set": "The Black Gate Opens",
+    "printed_stats": {},
+    "imagesrc": "/cards/d5286130-d03a-49f3-bd70-d40e9320c292.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 38,
+        "quantity": 2,
+        "octgnid": "d5286130-d03a-49f3-bd70-d40e9320c292",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d5286130-d03a-49f3-bd70-d40e9320c292.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:218b6d77-2c40-4967-8487-2a383b4170ce",
+    "octgnid": "218b6d77-2c40-4967-8487-2a383b4170ce",
+    "name": "Rage Filled Him",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Peril.\nWhen Revealed: The Mouth of Sauron makes an immediate attack against you. If this attack destroys a character, raise your threat by 4.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 39,
+    "quantity": 3,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+3 [attack] instead if it is The Mouth of Sauron).",
+    "encounter_set": "The Black Gate Opens",
+    "printed_stats": {},
+    "imagesrc": "/cards/218b6d77-2c40-4967-8487-2a383b4170ce.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 39,
+        "quantity": 3,
+        "octgnid": "218b6d77-2c40-4967-8487-2a383b4170ce",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/218b6d77-2c40-4967-8487-2a383b4170ce.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:60ac6ce9-7aad-415d-a4af-61f67db59454",
+    "octgnid": "60ac6ce9-7aad-415d-a4af-61f67db59454",
+    "name": "Onslaught of Mordor",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player deals 1 damage to a questing character he controls. Until the end of the phase, each damaged character gets -1 [willpower] and cannot be healed.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 40,
+    "quantity": 3,
+    "shadow": "Shadow: Choose a non-unique enemy in the staging area. Engage it and deal it a shadow card.",
+    "encounter_set": "The Black Gate Opens",
+    "printed_stats": {},
+    "imagesrc": "/cards/60ac6ce9-7aad-415d-a4af-61f67db59454.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 40,
+        "quantity": 3,
+        "octgnid": "60ac6ce9-7aad-415d-a4af-61f67db59454",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/60ac6ce9-7aad-415d-a4af-61f67db59454.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "146041",
+    "name": "Gwaihir",
+    "type_code": "objective-ally",
+    "type_name": "Campaign",
+    "sphere_code": "boon",
+    "sphere_name": "Neutral",
+    "willpower": 3,
+    "attack": 3,
+    "defense": 3,
+    "health": 5,
+    "traits": "Creature. Eagle.",
+    "text": "Ranged. Sentinel.\nWhen Revealed: The first player must choose: either take control of Gwaihir, or spend 1 [fellowship] resource and discard Gwaihir to discard a non-unique enemy in the staging area.",
+    "is_unique": true,
+    "deck_limit": 3,
+    "pack_name": "The Mountain of Fire",
+    "pack_code": "MoF",
+    "position": 41,
+    "illustrator": "Dmitry Prosvirnin",
+    "imagesrc": "/cards/146041.png",
+    "url": "https://ringsdb.com/card/146041",
+    "quantity": 1,
+    "octgnid": "5c1973bf-c331-4b8f-8872-4ead564476d3",
+    "has_errata": false,
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 41,
+        "quantity": 1,
+        "image_code": "146041",
+        "illustrator": "Dmitry Prosvirnin",
+        "octgnid": "5c1973bf-c331-4b8f-8872-4ead564476d3",
+        "imagesrc": "/bundles/cards/146041.png",
+        "date_release": "2017-08-16"
+      }
+    ],
+    "source": "ringsdb",
+    "source_url": "https://ringsdb.com/card/146041",
+    "official": true,
+    "nightmare": false,
+    "ringsdb_type_code": "treasure",
+    "encounter_set": "The Black Gate Opens",
+    "shadow": "Shadow: This attack deals no damage.",
+    "printed_stats": {
+      "willpower": "3",
+      "attack": "3",
+      "defense": "3",
+      "health": "5"
+    }
+  }
+]

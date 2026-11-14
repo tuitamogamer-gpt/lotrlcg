@@ -1,3 +1,4 @@
+import { valourThreat } from "./dire";
 import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import { isEnemy as playerUnitIsEnemy } from "./ships";
 import { isAlly as playerUnitIsAlly } from "./card-types";
@@ -393,7 +394,8 @@ export function rohanQuestSucceeded(s: GameState) {
       (a) => a.code === rohanCode.arrow && !a.blanked && !a.facedown,
     ))
       if (
-        effectiveThreat(s, attachmentController(s, u, a) ?? ownerOf(s, u)) >= 40
+        effectiveThreat(s, attachmentController(s, u, a) ?? ownerOf(s, u)) >=
+        valourThreat(s)
       )
         prepend(
           s,

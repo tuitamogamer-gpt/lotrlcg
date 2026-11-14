@@ -1,0 +1,182 @@
+[
+  {
+    "name": "The Black Gate",
+    "code": "octgn:c6b0a8d2-32fe-4750-9270-7270cd5f062b",
+    "encounterSet": "The Black Gate Opens",
+    "set": "1/40",
+    "scan": "1/40",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Towers of the Teeth",
+    "code": "octgn:e5b56e5a-3286-4ea6-bbdd-da7e47750125",
+    "encounterSet": "The Black Gate Opens",
+    "set": "2-3/40",
+    "scan": "2/40",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Beleaguered Hills",
+    "code": "octgn:1eab8808-f8ee-4935-b456-7dd940afbc28",
+    "encounterSet": "The Black Gate Opens",
+    "set": "4-5/40",
+    "scan": "4/40",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Waste of Dagorlad",
+    "code": "octgn:77bcda70-5126-4e58-919e-447c03d7ab02",
+    "encounterSet": "The Black Gate Opens",
+    "set": "6-8/40",
+    "scan": "6/40",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Slopes of Cirith Gorgor",
+    "code": "octgn:3551cf11-1670-46de-b404-7b8fd20d3aff",
+    "encounterSet": "The Black Gate Opens",
+    "set": "9-10/40",
+    "scan": "10/40",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Reeking Moat",
+    "code": "octgn:f13a2e94-0ece-45c3-a7ce-0248f9ff92b3",
+    "encounterSet": "The Black Gate Opens",
+    "set": "11-12/40",
+    "scan": "12/40",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Wall of Morannon",
+    "code": "octgn:6aaf94eb-c656-4589-acf1-c6637a755946",
+    "encounterSet": "The Black Gate Opens",
+    "set": "13-14/40",
+    "scan": "14/40",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "The Mouth of Sauron",
+    "code": "octgn:a3a28453-4292-49b3-9b78-fc958310a800",
+    "encounterSet": "The Black Gate Opens",
+    "set": "16/40",
+    "scan": "16/40",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Nazgûl of Mordor",
+    "code": "octgn:e62cec6d-6b96-4662-9a86-bcc0f5aee453",
+    "encounterSet": "The Black Gate Opens",
+    "set": "17-19/40",
+    "scan": "17/40",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "name": "Gorgoroth Hill-troll",
+    "code": "octgn:fafbd12c-b97e-41d8-a696-5c89566927ba",
+    "encounterSet": "The Black Gate Opens",
+    "set": "20-21/40",
+    "scan": "20/40",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Easterling Bowman",
+    "code": "octgn:ce23920a-4b87-4015-88bf-8687a6d3f180",
+    "encounterSet": "The Black Gate Opens",
+    "set": "22-24/40",
+    "scan": "22/40",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Warrior of Rhûn",
+    "code": "octgn:7108bf9e-3e91-4cbd-977a-fbab0a464512",
+    "encounterSet": "The Black Gate Opens",
+    "set": "25-27/40",
+    "scan": "25/40",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Hell-hawk",
+    "code": "octgn:5003227b-ebc3-454a-88b4-2d6e20cc48f7",
+    "encounterSet": "The Black Gate Opens",
+    "set": "28-29/40",
+    "scan": "28/40",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "The Hour of Doom",
+    "code": "octgn:3f736d45-c2b3-429e-9a21-3f8073cdbd48",
+    "encounterSet": "The Black Gate Opens",
+    "set": "30-32/40",
+    "scan": "30/40",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Jaws of Steel",
+    "code": "octgn:d5286130-d03a-49f3-bd70-d40e9320c292",
+    "encounterSet": "The Black Gate Opens",
+    "set": "33-34/40",
+    "scan": "33/40",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Rage Filled Him",
+    "code": "octgn:218b6d77-2c40-4967-8487-2a383b4170ce",
+    "encounterSet": "The Black Gate Opens",
+    "set": "35-37/40",
+    "scan": "35/40",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Onslaught of Mordor",
+    "code": "octgn:60ac6ce9-7aad-415d-a4af-61f67db59454",
+    "encounterSet": "The Black Gate Opens",
+    "set": "38-40/40",
+    "scan": "38/40",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "name": "Orc of Mordor",
+    "code": "octgn:7d9a3914-bc46-40d6-b489-3157d7430382",
+    "encounterSet": "Orcs of Mordor",
+    "set": "1-3/9",
+    "scan": "1/9",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "name": "Snaga Archer",
+    "code": "octgn:194ceae6-a5e2-4a52-ba07-76e6c2611e8e",
+    "encounterSet": "Orcs of Mordor",
+    "set": "4-6/9",
+    "scan": "4/9",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Uruk Soldier",
+    "code": "octgn:50f294ff-ee4b-4685-b7e1-86cd7f2e0a59",
+    "encounterSet": "Orcs of Mordor",
+    "set": "7-9/9",
+    "scan": "8/9",
+    "normal": 3,
+    "easy": 3
+  }
+]

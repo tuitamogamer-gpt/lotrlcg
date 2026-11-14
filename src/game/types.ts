@@ -294,6 +294,7 @@ export type ScenarioId =
   | "the-siege-of-gondor"
   | "the-battle-of-the-pelennor-fields"
   | "the-tower-of-cirith-ungol"
+  | "the-black-gate-opens"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -481,6 +482,7 @@ export interface GameState {
   siegeGondor?: import("./siege-gondor-types").SiegeGondorState;
   pelennorFields?: import("./pelennor-fields-types").PelennorFieldsState;
   cirithUngol?: import("./cirith-ungol-types").CirithUngolState;
+  blackGate?: import("./black-gate-types").BlackGateState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -906,6 +908,10 @@ export interface GameState {
     cuReturnOnKill?: boolean;
     /** The Tower of Cirith Ungol: Evil Vigilance's shadow, reveal an encounter card if it destroys a character. */
     cuRevealOnKill?: boolean;
+    /** The Black Gate Opens: Easterling Bowman's shadow, the attacker engages the next player and attacks. */
+    bgNextPlayer?: boolean;
+    /** The Black Gate Opens: Gorgoroth Hill-troll destroyed a character with this attack. */
+    bgTrollKill?: boolean;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

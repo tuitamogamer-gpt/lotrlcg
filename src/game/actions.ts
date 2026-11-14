@@ -28,6 +28,7 @@ import { greyCompanyPublicState } from "./grey-company-support";
 import { siegeGondorPublicState } from "./siege-gondor-support";
 import { pelennorFieldsPublicState } from "./pelennor-fields-support";
 import { cirithUngolPublicState } from "./cirith-ungol-support";
+import { blackGatePublicState } from "./black-gate-support";
 import { helmsDeepPublicState } from "./helms-deep-support";
 import { roadIsengardPublicState } from "./road-isengard-support";
 import { passageMarshesPublicState } from "./passage-marshes-support";
@@ -851,7 +852,11 @@ export function canPlay(
     return "This fellowship has been eliminated.";
   if (s.sailing?.test)
     return "Player Actions are unavailable during a Sailing test.";
-  if (s.phase === "setup" && !s.escapeTest)
+  if (
+    s.phase === "setup" &&
+    !s.escapeTest &&
+    !(options.resolvingEffect && batch4Scenario(s).setupPlays?.(s))
+  )
     return "Continue to the next action window.";
   if (s.escapeTest && c.type_code !== "event")
     return "Only events and abilities can be used during an escape test.";
@@ -3811,6 +3816,7 @@ export function publicState(s: GameState) {
     siegeGondor: siegeGondorPublicState(s),
     pelennorFields: pelennorFieldsPublicState(s),
     cirithUngol: cirithUngolPublicState(s),
+    blackGate: blackGatePublicState(s),
     fortressNurnPlayers: FortressPlayers.fortressNurnPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),

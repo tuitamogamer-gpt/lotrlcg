@@ -940,8 +940,10 @@ export function check(s: GameState) {
   Drowned.drownedCheck(s);
   DrownedCompanions.drownedCompanionCheck(s);
   TempleEncounters.templeEncounterCheck(s);
-  if (s.status !== "playing") return;
+  // A game that ends here keeps the text of the final board, as its restored
+  // save does (a location that blanked allies may just have left play).
   eachArea(s, () => syncAttachmentText(s));
+  if (s.status !== "playing") return;
   EredSupport.eredMithrinPlayerRefresh(s);
   FlameWestPlayers.flameWestPlayerRefresh(s);
   ShadowEastPlayers.shadowEastPlayerCheck(s);
@@ -1237,6 +1239,7 @@ export function check(s: GameState) {
     delete s.escapeTest;
     delete s.hideTest;
     if (s.sailing) delete s.sailing.test;
+    s.reason = batch4Scenario(s).lossReason?.(s, s.reason) ?? s.reason;
     log(s, s.reason, "danger");
     syncAttachmentText(s);
   } else {
@@ -2087,13 +2090,18 @@ export function destroy(
 export const discardCharacter = (s: GameState, u: Unit) => destroy(s, u, false);
 
 /** Discard a physical location without exploring it or claiming its victory points. */
-export function discardLocation(s: GameState, u: Unit) {
+/** Discard a location; an encounter card effect ignores immunity to player cards. */
+export function discardLocation(
+  s: GameState,
+  u: Unit,
+  encounterEffect = false,
+) {
   requireRule(
     !Temple.templeCannotLeave(s, u) && !Drowned.drownedIsDoubleSided(s, u),
     "Island Map locations cannot be discarded or moved.",
   );
   requireRule(
-    !playerCardImmune(u),
+    encounterEffect || !playerCardImmune(u),
     "This location is immune to player card effects.",
   );
   if (batch4Scenario(s).cannotLeave?.(s, u)) return;

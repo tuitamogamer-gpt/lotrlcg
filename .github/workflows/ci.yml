@@ -843,6 +843,24 @@ jobs:
           path: output/cirith-ungol-release/failures
           retention-days: 7
 
+  black-gate-simulation:
+    name: The Black Gate Opens complete games (14 games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:black-gate-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: black-gate-simulation
+          path: output/black-gate-release/failures
+          retention-days: 7
+
   shelob-lair-simulation:
     name: Shelob's Lair complete games (26 games)
     runs-on: ubuntu-latest
@@ -1040,6 +1058,8 @@ jobs:
             suite: test:browser-pelennor-fields
           - group: cirith-ungol
             suite: test:browser-cirith-ungol
+          - group: black-gate
+            suite: test:browser-black-gate
           - group: treason-saruman-players
             suite: test:browser-treason-saruman-players
           - group: land-shadow-players

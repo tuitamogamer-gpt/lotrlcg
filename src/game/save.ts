@@ -55,6 +55,7 @@ import {
   validatePelennorFields,
 } from "./pelennor-fields-support";
 import { cirithUngolUnits, validateCirithUngol } from "./cirith-ungol-support";
+import { blackGateUnits, validateBlackGate } from "./black-gate-support";
 import { validateHideTest } from "./hide-test";
 import { validateAsh, ashExtraUnits } from "./ash-mountains-support";
 import { validateAshPlayers } from "./ash-mountains-player";
@@ -438,6 +439,8 @@ export function validateSave(
         c.pfRuin,
         c.cuReturnOnKill,
         c.cuRevealOnKill,
+        c.bgNextPlayer,
+        c.bgTrollKill,
       ].every((flag) => flag === undefined || typeof flag === "boolean") &&
       (c.fbVictims === undefined ||
         (Array.isArray(c.fbVictims) &&
@@ -1032,6 +1035,7 @@ export function validateSave(
         !validateSiegeGondor(s, validUnit as (v: unknown) => boolean) ||
         !validatePelennorFields(s, validUnit as (v: unknown) => boolean) ||
         !validateCirithUngol(s, validUnit as (v: unknown) => boolean) ||
+        !validateBlackGate(s, validUnit as (v: unknown) => boolean) ||
         !validateLandSorrow(s, validUnit as (v: unknown) => boolean) ||
         !validateAsh(s, validUnit as (v: unknown) => boolean) ||
         !validateWainriders(s, validUnit as (v: unknown) => boolean, (c) =>
@@ -1767,6 +1771,7 @@ export function validateSave(
       ...siegeGondorUnits(s),
       ...pelennorFieldsUnits(s),
       ...cirithUngolUnits(s),
+      ...blackGateUnits(s),
       ...(s.fortressNurnPlayers?.contracts.map((c) => c.unit) ?? []),
       ...(s.landSorrowPlayers?.contracts.flatMap((c) =>
         c.unit ? [c.unit] : [],

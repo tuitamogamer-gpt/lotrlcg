@@ -107,7 +107,12 @@ export interface Batch4ScenarioHooks {
   cannotDraw?(s: GameState): boolean;
   /** The player cannot trigger Action or Response effects. */
   abilitiesBlocked?(s: GameState, player: number): boolean;
-  threatReduction?(s: GameState, amount: number, reason?: string): number;
+  threatReduction?(
+    s: GameState,
+    amount: number,
+    reason?: string,
+    source?: { id?: string; code?: string } | string,
+  ): number;
   allyCost?(s: GameState): number;
   planningEnd?(s: GameState): void;
   skipQuestPhase?(s: GameState): boolean;
@@ -134,6 +139,12 @@ export interface Batch4ScenarioHooks {
   locationDestination?(s: GameState, u: Unit): boolean;
   /** A location with enough progress stays where it is: it cannot leave play yet. */
   cannotExplore?(s: GameState, u: Unit): boolean;
+  /** The reason shown when the players lose, completed by the scenario (a score). */
+  lossReason?(s: GameState, reason: string): string;
+  /** During the staging step, the first player reveals each encounter card. */
+  stagingRevealsByFirstPlayer?(s: GameState): boolean;
+  /** A card effect may play player cards before the first round (a 1B When Revealed). */
+  setupPlays?(s: GameState): boolean;
   /** Schedule simultaneous When-explored effects ahead of queued After responses. */
   explorationWhen?(
     s: GameState,

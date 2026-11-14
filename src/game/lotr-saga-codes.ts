@@ -73,9 +73,12 @@ export const FLAME_WEST_SCENARIO_IDS: readonly string[] = [
 ];
 export const isFlameWestScenarioId = (id: string | undefined) =>
   !!id && FLAME_WEST_SCENARIO_IDS.includes(id);
+/** The Mountain of Fire's Fellowship-sphere Aragorn, placed in The Black Gate Opens. */
+export const MOUNTAIN_FIRE_ARAGORN = "146002";
 /** The Lord of the Rings Saga scenarios of The Mountain of Fire. */
 export const MOUNTAIN_FIRE_SCENARIO_IDS: readonly string[] = [
   "the-tower-of-cirith-ungol",
+  "the-black-gate-opens",
 ];
 export const isMountainFireScenarioId = (id: string | undefined) =>
   !!id && MOUNTAIN_FIRE_SCENARIO_IDS.includes(id);
@@ -85,7 +88,9 @@ export const fellowshipAragornCode = (id: string | undefined) =>
     ? TOS_ARAGORN
     : isFlameWestScenarioId(id)
       ? FLAME_WEST_ARAGORN
-      : undefined;
+      : id === "the-black-gate-opens"
+        ? MOUNTAIN_FIRE_ARAGORN
+        : undefined;
 /** Standalone scenarios played with the Saga's Ring-bearer rules. */
 export const LOTR_SAGA_STANDALONE_IDS: readonly string[] = [
   "the-old-forest",

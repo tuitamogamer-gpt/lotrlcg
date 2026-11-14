@@ -1,3 +1,4 @@
+import { valourThreat } from "./dire";
 import type { Attachment, Effect, GameState, Unit } from "./types";
 import { card, name } from "./cards";
 import {
@@ -241,7 +242,7 @@ export function batch4PlayerEvent(s: GameState, code: string, target?: string) {
         label: `Deal 3 damage to ${name(u)}`,
         effects: [fx("batch4PlayerFierceDamage", { target: u.id })],
       });
-    if (s.threat >= 40 && removable(s, u, code))
+    if (s.threat >= valourThreat(s) && removable(s, u, code))
       options.push({
         id: "discard",
         label: `Valour · Discard ${name(u)}`,
@@ -278,7 +279,7 @@ export function batch4PlayerEvent(s: GameState, code: string, target?: string) {
     return true;
   }
   if (code === P.armory) {
-    if (s.threat >= 40)
+    if (s.threat >= valourThreat(s))
       choose(s, "Open the Armory · Choose an action", [
         {
           id: "hand",
@@ -349,7 +350,8 @@ export function batch4PlayerAbilityProblem(s: GameState, u: Unit, id?: string) {
   if (code === P.daleKnight) {
     if (!canReady(s, u, code))
       return "Knight of Dale must be exhausted and able to ready.";
-    if (s.threat >= 40 && !used(s, mark(u, "round") + ":valour")) return null;
+    if (s.threat >= valourThreat(s) && !used(s, mark(u, "round") + ":valour"))
+      return null;
     if (
       used(s, mark(u, "round") + ":paid") ||
       !s.heroes.some((h) => h.resources > 0 && hasResourceIcon(h, "leadership"))
@@ -420,7 +422,7 @@ export function useBatch4PlayerAbility(s: GameState, u: Unit, id?: string) {
   }
   if (code === P.daleKnight) {
     const options = [];
-    if (s.threat >= 40 && !used(s, mark(u, "round") + ":valour"))
+    if (s.threat >= valourThreat(s) && !used(s, mark(u, "round") + ":valour"))
       options.push({
         id: "valour",
         label: "Valour · Ready without a resource",
@@ -537,7 +539,7 @@ export function batch4PlayerDefendersDeclared(
       (u) =>
         u.code === P.defender &&
         live(u) &&
-        seatView(s, ownerOf(s, u)).threat >= 40 &&
+        seatView(s, ownerOf(s, u)).threat >= valourThreat(s) &&
         !playerEffectImmune(s, enemy, P.defender),
     )
     .map((u) =>
@@ -702,8 +704,8 @@ export function handleBatch4PlayerEffect(s: GameState, e: Effect): boolean {
       );
       if (e.flag)
         requireRule(
-          s.threat >= 40,
-          "The Valour action requires at least 40 threat.",
+          s.threat >= valourThreat(s),
+          `The Valour action requires at least ${valourThreat(s)} threat.`,
         );
       else {
         requireRule(
@@ -851,7 +853,7 @@ export function handleBatch4PlayerEffect(s: GameState, e: Effect): boolean {
         source?.code === P.defender &&
         live(source) &&
         target &&
-        s.threat >= 40 &&
+        s.threat >= valourThreat(s) &&
         !playerEffectImmune(s, target, P.defender)
       )
         choosePlayerResponse(

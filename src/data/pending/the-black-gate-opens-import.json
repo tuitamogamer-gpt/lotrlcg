@@ -1,0 +1,1536 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The Black Gate Opens",
+  "slug": "the-black-gate-opens",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "146002",
+      "name": "Aragorn",
+      "type_code": "hero",
+      "type_name": "Hero",
+      "sphere_code": "fellowship",
+      "sphere_name": "Fellowship",
+      "threat": 0,
+      "willpower": 2,
+      "attack": 3,
+      "defense": 2,
+      "health": 5,
+      "traits": "Dunedain. Gondor. Noble. Warrior.",
+      "text": "Sentinel. The first player gains control of Aragorn.\n<b>Action:</b> Spend 1 resource from Aragorn's pool to ready him. (Limit once per phase.)\n<b>If Aragorn leaves play, the players lose the game.</b>",
+      "flavor": "\"As I have begun, so I will go on..\" <cite>The Return of the King</cite>",
+      "is_unique": true,
+      "deck_limit": 1,
+      "pack_name": "The Mountain of Fire",
+      "pack_code": "MoF",
+      "position": 2,
+      "illustrator": "David A. Nash",
+      "imagesrc": "/cards/146002.png",
+      "url": "https://ringsdb.com/card/146002",
+      "quantity": 1,
+      "octgnid": "f1cc6057-ced3-4105-9172-869d26a54af5",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 2,
+          "quantity": 1,
+          "image_code": "146002",
+          "illustrator": "David A. Nash",
+          "octgnid": "f1cc6057-ced3-4105-9172-869d26a54af5",
+          "imagesrc": "/bundles/cards/146002.png",
+          "date_release": "2017-08-16"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/146002",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "146041",
+      "name": "Gwaihir",
+      "type_code": "objective-ally",
+      "type_name": "Campaign",
+      "sphere_code": "boon",
+      "sphere_name": "Neutral",
+      "willpower": 3,
+      "attack": 3,
+      "defense": 3,
+      "health": 5,
+      "traits": "Creature. Eagle.",
+      "text": "Ranged. Sentinel.\r\n<b>When Revealed</b>: The first player must choose: either take control of Gwaihir, or spend 1 [fellowship] resource and discard Gwaihir to discard a non-unique enemy in the staging area.\r\n<i><b>Shadow:</b> This attack deals no damage.</i>",
+      "is_unique": true,
+      "deck_limit": 3,
+      "pack_name": "The Mountain of Fire",
+      "pack_code": "MoF",
+      "position": 41,
+      "illustrator": "Dmitry Prosvirnin",
+      "imagesrc": "/cards/146041.png",
+      "url": "https://ringsdb.com/card/146041",
+      "quantity": 1,
+      "octgnid": "5c1973bf-c331-4b8f-8872-4ead564476d3",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 41,
+          "quantity": 1,
+          "image_code": "146041",
+          "illustrator": "Dmitry Prosvirnin",
+          "octgnid": "5c1973bf-c331-4b8f-8872-4ead564476d3",
+          "imagesrc": "/bundles/cards/146041.png",
+          "date_release": "2017-08-16"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/146041",
+      "official": true,
+      "nightmare": false,
+      "ringsdb_type_code": "treasure",
+      "encounter_set": "The Black Gate Opens",
+      "shadow": "Shadow: This attack deals no damage."
+    },
+    {
+      "code": "octgn:0f31d397-55d8-4988-b6bb-3d4101977515",
+      "octgnid": "0f31d397-55d8-4988-b6bb-3d4101977515",
+      "name": "Embassy from The Dark Tower",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Add The Black Gate and The Mouth of Sauron to the staging area. Set Gwaihir aside, out of play. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 72,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The Black Gate Opens",
+      "side": "A",
+      "back_name": "Embassy from The Dark Tower",
+      "back_text": "Dire. When Revealed: In player order, each player places the top card of his deck faceup in front of him until there are a total of 4 faceup player cards between the players. Place the top 4 cards of the encounter deck faceup. Starting with the highest cost player card, pair each player card with the highest threat encounter card remaining until there are 4 pairs. For each pair, the first player must choose: either discard both cards in that pair, or reveal the encounter card to play the player card at no cost. ",
+      "back_type_code": "quest",
+      "back_quest": 0,
+      "back_imagesrc": "/cards/0f31d397-55d8-4988-b6bb-3d4101977515.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/0f31d397-55d8-4988-b6bb-3d4101977515.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 72,
+          "quantity": 1,
+          "octgnid": "0f31d397-55d8-4988-b6bb-3d4101977515",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0f31d397-55d8-4988-b6bb-3d4101977515.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:194ceae6-a5e2-4a52-ba07-76e6c2611e8e",
+      "octgnid": "194ceae6-a5e2-4a52-ba07-76e6c2611e8e",
+      "name": "Snaga Archer",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Snaga.",
+      "text": "Archery 2. Forced: After Snaga Archer engages you, deal 2 damage to a character you control.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 59,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 4,
+      "defense": 2,
+      "health": 3,
+      "engagement": 44,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if the defending character is damaged).",
+      "encounter_set": "Orcs of Mordor",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "2",
+        "health": "3",
+        "engagement": "44"
+      },
+      "imagesrc": "/cards/194ceae6-a5e2-4a52-ba07-76e6c2611e8e.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 59,
+          "quantity": 3,
+          "octgnid": "194ceae6-a5e2-4a52-ba07-76e6c2611e8e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/194ceae6-a5e2-4a52-ba07-76e6c2611e8e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:1eab8808-f8ee-4935-b456-7dd940afbc28",
+      "octgnid": "1eab8808-f8ee-4935-b456-7dd940afbc28",
+      "name": "Beleaguered Hills",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Hills.",
+      "text": "While Beleaguered Hills is the active location, reduce the total [threat] in the staging area by X, where X is the total [threat] of each engaged enemy. Forced: After Beleaguered Hills becomes the active location, each player engages a non-unique enemy in the staging area.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 26,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 3,
+      "encounter_set": "The Black Gate Opens",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/1eab8808-f8ee-4935-b456-7dd940afbc28.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 26,
+          "quantity": 2,
+          "octgnid": "1eab8808-f8ee-4935-b456-7dd940afbc28",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1eab8808-f8ee-4935-b456-7dd940afbc28.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:218b6d77-2c40-4967-8487-2a383b4170ce",
+      "octgnid": "218b6d77-2c40-4967-8487-2a383b4170ce",
+      "name": "Rage Filled Him",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Peril.",
+      "text": "When Revealed: The Mouth of Sauron makes an immediate attack against you. If this attack destroys a character, raise your threat by 4.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 39,
+      "quantity": 3,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+3 [attack] instead if it is The Mouth of Sauron).",
+      "encounter_set": "The Black Gate Opens",
+      "printed_stats": {},
+      "imagesrc": "/cards/218b6d77-2c40-4967-8487-2a383b4170ce.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 39,
+          "quantity": 3,
+          "octgnid": "218b6d77-2c40-4967-8487-2a383b4170ce",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/218b6d77-2c40-4967-8487-2a383b4170ce.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3551cf11-1670-46de-b404-7b8fd20d3aff",
+      "octgnid": "3551cf11-1670-46de-b404-7b8fd20d3aff",
+      "name": "Slopes of Cirith Gorgor",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Hills.",
+      "text": "Forced: When Slopes of Cirith Gorgor leaves play, the first player shuffles the encounter discard pile into the encounter deck and discards cards from the top until an enemy is discarded. Then, he puts that enemy into play engaged with him.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 28,
+      "quantity": 2,
+      "threat": 4,
+      "quest": 1,
+      "encounter_set": "The Black Gate Opens",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "1"
+      },
+      "imagesrc": "/cards/3551cf11-1670-46de-b404-7b8fd20d3aff.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 28,
+          "quantity": 2,
+          "octgnid": "3551cf11-1670-46de-b404-7b8fd20d3aff",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3551cf11-1670-46de-b404-7b8fd20d3aff.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3f736d45-c2b3-429e-9a21-3f8073cdbd48",
+      "octgnid": "3f736d45-c2b3-429e-9a21-3f8073cdbd48",
+      "name": "The Hour of Doom",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 1.\nWhen Revealed: Each player must choose: either raise your threat by 1 for each character you control, or discard the highest cost ally you control.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 37,
+      "quantity": 3,
+      "shadow": "Shadow: Discard a non-objective attachment you control.",
+      "encounter_set": "The Black Gate Opens",
+      "printed_stats": {},
+      "imagesrc": "/cards/3f736d45-c2b3-429e-9a21-3f8073cdbd48.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 37,
+          "quantity": 3,
+          "octgnid": "3f736d45-c2b3-429e-9a21-3f8073cdbd48",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3f736d45-c2b3-429e-9a21-3f8073cdbd48.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:48c071bf-b00f-4677-b43f-aa119f736428",
+      "octgnid": "48c071bf-b00f-4677-b43f-aa119f736428",
+      "name": "The Battle of Morannon",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Dire When Revealed: Each player searches the encounter deck and discard pile for a different Orc, Troll, or Nazgûl enemy to the staging area. Shuffle Gwaihir into the encounter deck.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 73,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Black Gate Opens",
+      "side": "A",
+      "back_name": "The Battle of the Morannon",
+      "back_text": "Dire. During the staging step, the first player does not reveal an encounter card as normal. Instead, he reveals 1 encounter card for each resource on The Black Gate. Forced: After the players quest unsuccessfully, discard the active location.  This stage cannot be defeated. Each round the players survive gives the Ring-bearer more time to fulfill the quest to Mount Doom. ",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/48c071bf-b00f-4677-b43f-aa119f736428.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/48c071bf-b00f-4677-b43f-aa119f736428.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 73,
+          "quantity": 1,
+          "octgnid": "48c071bf-b00f-4677-b43f-aa119f736428",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/48c071bf-b00f-4677-b43f-aa119f736428.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5003227b-ebc3-454a-88b4-2d6e20cc48f7",
+      "octgnid": "5003227b-ebc3-454a-88b4-2d6e20cc48f7",
+      "name": "Hell-hawk",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Morgul.",
+      "text": "Peril.\nWhen Revealed: Either search the encounter deck, discard pile, and victory display for a Nazgûl enemy and add it to the staging area, or attach Hell-hawk to a Nazgûl enemy in play. (Counts as a Mount attachment with the text: \"Limit 1 per enemy. Attached enemy gets +2 [threat], +2 [attack], +2 [defense] and is immune to player card effects.\")",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 36,
+      "quantity": 2,
+      "encounter_set": "The Black Gate Opens",
+      "printed_stats": {},
+      "imagesrc": "/cards/5003227b-ebc3-454a-88b4-2d6e20cc48f7.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 36,
+          "quantity": 2,
+          "octgnid": "5003227b-ebc3-454a-88b4-2d6e20cc48f7",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5003227b-ebc3-454a-88b4-2d6e20cc48f7.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:50f294ff-ee4b-4685-b7e1-86cd7f2e0a59",
+      "octgnid": "50f294ff-ee4b-4685-b7e1-86cd7f2e0a59",
+      "name": "Uruk Soldier",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Uruk.",
+      "text": "Forced: After Uruk Soldier engages you, raise your threat by 2.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 60,
+      "quantity": 3,
+      "threat": 3,
+      "attack": 5,
+      "defense": 2,
+      "health": 5,
+      "engagement": 38,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, return attacking enemy to the staging area.",
+      "encounter_set": "Orcs of Mordor",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "2",
+        "health": "5",
+        "engagement": "38"
+      },
+      "imagesrc": "/cards/50f294ff-ee4b-4685-b7e1-86cd7f2e0a59.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 60,
+          "quantity": 3,
+          "octgnid": "50f294ff-ee4b-4685-b7e1-86cd7f2e0a59",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/50f294ff-ee4b-4685-b7e1-86cd7f2e0a59.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:60ac6ce9-7aad-415d-a4af-61f67db59454",
+      "octgnid": "60ac6ce9-7aad-415d-a4af-61f67db59454",
+      "name": "Onslaught of Mordor",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player deals 1 damage to a questing character he controls. Until the end of the phase, each damaged character gets -1 [willpower] and cannot be healed.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 40,
+      "quantity": 3,
+      "shadow": "Shadow: Choose a non-unique enemy in the staging area. Engage it and deal it a shadow card.",
+      "encounter_set": "The Black Gate Opens",
+      "printed_stats": {},
+      "imagesrc": "/cards/60ac6ce9-7aad-415d-a4af-61f67db59454.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 40,
+          "quantity": 3,
+          "octgnid": "60ac6ce9-7aad-415d-a4af-61f67db59454",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/60ac6ce9-7aad-415d-a4af-61f67db59454.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6aaf94eb-c656-4589-acf1-c6637a755946",
+      "octgnid": "6aaf94eb-c656-4589-acf1-c6637a755946",
+      "name": "Wall of Morannon",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Plains.",
+      "text": "While Wall of Morannon is the active location, each enemy and location in the staging area is immune to player card effects. Forced: After Wall of Morannon becomes the active location, return each engaged enemy to the staging area.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 30,
+      "quantity": 2,
+      "threat": 5,
+      "quest": 5,
+      "encounter_set": "The Black Gate Opens",
+      "printed_stats": {
+        "threat": "5",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/6aaf94eb-c656-4589-acf1-c6637a755946.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 30,
+          "quantity": 2,
+          "octgnid": "6aaf94eb-c656-4589-acf1-c6637a755946",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6aaf94eb-c656-4589-acf1-c6637a755946.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7108bf9e-3e91-4cbd-977a-fbab0a464512",
+      "octgnid": "7108bf9e-3e91-4cbd-977a-fbab0a464512",
+      "name": "Warrior of Rhun",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "Peril.\nWhen Revealed: Choose a questing character you control and remove it from the quest.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 35,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 4,
+      "defense": 3,
+      "health": 4,
+      "engagement": 34,
+      "shadow": "Shadow: Defending character cannot ready until the end of the round.",
+      "encounter_set": "The Black Gate Opens",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "4",
+        "defense": "3",
+        "health": "4",
+        "engagement": "34"
+      },
+      "imagesrc": "/cards/7108bf9e-3e91-4cbd-977a-fbab0a464512.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 35,
+          "quantity": 3,
+          "octgnid": "7108bf9e-3e91-4cbd-977a-fbab0a464512",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7108bf9e-3e91-4cbd-977a-fbab0a464512.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:77bcda70-5126-4e58-919e-447c03d7ab02",
+      "octgnid": "77bcda70-5126-4e58-919e-447c03d7ab02",
+      "name": "Waste of Dagorlad",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Plains.",
+      "text": "While Waste of Dagorlad is the active location, treat the text box of each ally as if it were blank (except for Traits).",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 27,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 6,
+      "encounter_set": "The Black Gate Opens",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "6"
+      },
+      "imagesrc": "/cards/77bcda70-5126-4e58-919e-447c03d7ab02.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 27,
+          "quantity": 3,
+          "octgnid": "77bcda70-5126-4e58-919e-447c03d7ab02",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/77bcda70-5126-4e58-919e-447c03d7ab02.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7d9a3914-bc46-40d6-b489-3157d7430382",
+      "octgnid": "7d9a3914-bc46-40d6-b489-3157d7430382",
+      "name": "Orc of Mordor",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "Surge.\nForced: After Orc of Mordor engages you, exhaust a character you control.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 58,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 3,
+      "defense": 1,
+      "health": 3,
+      "engagement": 28,
+      "shadow": "Shadow: Exhaust a character you control.",
+      "encounter_set": "Orcs of Mordor",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "3",
+        "defense": "1",
+        "health": "3",
+        "engagement": "28"
+      },
+      "imagesrc": "/cards/7d9a3914-bc46-40d6-b489-3157d7430382.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 58,
+          "quantity": 3,
+          "octgnid": "7d9a3914-bc46-40d6-b489-3157d7430382",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7d9a3914-bc46-40d6-b489-3157d7430382.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a3a28453-4292-49b3-9b78-fc958310a800",
+      "octgnid": "a3a28453-4292-49b3-9b78-fc958310a800",
+      "name": "The Mouth of Sauron",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Mordor.",
+      "text": "Immune to player card effects. Cannot leave the staging area. Forced: After a player cancels a 'when revealed' effect, The Mouth of Sauron makes an immediate attack against that player.",
+      "is_unique": true,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 31,
+      "quantity": 1,
+      "threat": 4,
+      "attack": 6,
+      "defense": 4,
+      "health": 11,
+      "engagement": 99,
+      "encounter_set": "The Black Gate Opens",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "6",
+        "defense": "4",
+        "health": "11",
+        "engagement": "99"
+      },
+      "imagesrc": "/cards/a3a28453-4292-49b3-9b78-fc958310a800.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 31,
+          "quantity": 1,
+          "octgnid": "a3a28453-4292-49b3-9b78-fc958310a800",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a3a28453-4292-49b3-9b78-fc958310a800.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c6b0a8d2-32fe-4750-9270-7270cd5f062b",
+      "octgnid": "c6b0a8d2-32fe-4750-9270-7270cd5f062b",
+      "name": "The Black Gate",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Mordor.",
+      "text": "Immune to player card effects. The players cannot travel here. The Black Gate gets +1 [threat] for each resource on it. Forced: At the beginning of the quest phase, place 1 resource here and raise each player's threat by 1.",
+      "is_unique": true,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 24,
+      "quantity": 1,
+      "threat": 0,
+      "quest": 0,
+      "encounter_set": "The Black Gate Opens",
+      "printed_stats": {
+        "threat": "0",
+        "quest": "0"
+      },
+      "imagesrc": "/cards/c6b0a8d2-32fe-4750-9270-7270cd5f062b.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 24,
+          "quantity": 1,
+          "octgnid": "c6b0a8d2-32fe-4750-9270-7270cd5f062b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c6b0a8d2-32fe-4750-9270-7270cd5f062b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ce23920a-4b87-4015-88bf-8687a6d3f180",
+      "octgnid": "ce23920a-4b87-4015-88bf-8687a6d3f180",
+      "name": "Easterling Bowman",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "Peril. Archery 1.\nWhen Revealed: Deal 1 damage to a questing character you control.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 34,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 3,
+      "defense": 1,
+      "health": 4,
+      "engagement": 54,
+      "shadow": "Shadow: After this attack, attacking enemy engages the next player then makes an attack.",
+      "encounter_set": "The Black Gate Opens",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "1",
+        "health": "4",
+        "engagement": "54"
+      },
+      "imagesrc": "/cards/ce23920a-4b87-4015-88bf-8687a6d3f180.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 34,
+          "quantity": 3,
+          "octgnid": "ce23920a-4b87-4015-88bf-8687a6d3f180",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ce23920a-4b87-4015-88bf-8687a6d3f180.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d5286130-d03a-49f3-bd70-d40e9320c292",
+      "octgnid": "d5286130-d03a-49f3-bd70-d40e9320c292",
+      "name": "Jaws of Steel",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each players assigns X damage among characters he controls, where X is the number of resources on The Black Gate.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 38,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] for each resource on The Black Gate.",
+      "encounter_set": "The Black Gate Opens",
+      "printed_stats": {},
+      "imagesrc": "/cards/d5286130-d03a-49f3-bd70-d40e9320c292.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 38,
+          "quantity": 2,
+          "octgnid": "d5286130-d03a-49f3-bd70-d40e9320c292",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d5286130-d03a-49f3-bd70-d40e9320c292.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e5b56e5a-3286-4ea6-bbdd-da7e47750125",
+      "octgnid": "e5b56e5a-3286-4ea6-bbdd-da7e47750125",
+      "name": "Towers of the Teeth",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Plains.",
+      "text": "Immune to player card effects.  X is the number of characters controlled by the player with the most characters. While Towers of the Teeth is the active location, players cannot play allies.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 25,
+      "quantity": 2,
+      "threat": 0,
+      "quest": 8,
+      "encounter_set": "The Black Gate Opens",
+      "printed_stats": {
+        "threat": "0",
+        "quest": "8"
+      },
+      "imagesrc": "/cards/e5b56e5a-3286-4ea6-bbdd-da7e47750125.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 25,
+          "quantity": 2,
+          "octgnid": "e5b56e5a-3286-4ea6-bbdd-da7e47750125",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e5b56e5a-3286-4ea6-bbdd-da7e47750125.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e62cec6d-6b96-4662-9a86-bcc0f5aee453",
+      "octgnid": "e62cec6d-6b96-4662-9a86-bcc0f5aee453",
+      "name": "Nazgûl of Mordor",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Nazgûl.",
+      "text": "Cannot have non-Morgul attachments. Forced: After Nazgûl of Mordor attacks, either raise your threat by 4, or return Nazgûl of Mordor to the staging area.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 32,
+      "quantity": 3,
+      "threat": 4,
+      "attack": 6,
+      "defense": 4,
+      "health": 9,
+      "engagement": 66,
+      "encounter_set": "The Black Gate Opens",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "6",
+        "defense": "4",
+        "health": "9",
+        "engagement": "66"
+      },
+      "imagesrc": "/cards/e62cec6d-6b96-4662-9a86-bcc0f5aee453.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 32,
+          "quantity": 3,
+          "octgnid": "e62cec6d-6b96-4662-9a86-bcc0f5aee453",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e62cec6d-6b96-4662-9a86-bcc0f5aee453.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f13a2e94-0ece-45c3-a7ce-0248f9ff92b3",
+      "octgnid": "f13a2e94-0ece-45c3-a7ce-0248f9ff92b3",
+      "name": "Reeking Moat",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Plains.",
+      "text": "Forced: After Reeking Moat becomes the active location, choose a non-unique, non-Nazgûl enemy in the staging area and place it facedown under Reeking Moat. Forced: When Reeking Moat leaves play, put each enemy under it into play engaged with the first player.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 29,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 4,
+      "encounter_set": "The Black Gate Opens",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/f13a2e94-0ece-45c3-a7ce-0248f9ff92b3.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 29,
+          "quantity": 2,
+          "octgnid": "f13a2e94-0ece-45c3-a7ce-0248f9ff92b3",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f13a2e94-0ece-45c3-a7ce-0248f9ff92b3.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fafbd12c-b97e-41d8-a696-5c89566927ba",
+      "octgnid": "fafbd12c-b97e-41d8-a696-5c89566927ba",
+      "name": "Gorgoroth Hill-troll",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Troll.",
+      "text": "Cannot have attachments. Forced: After Gorgoroth Hill-troll attacks and destroys a character, the defending player discards a random card from his hand and raises his threat by that card's printed cost.",
+      "is_unique": false,
+      "pack_code": "MoF",
+      "pack_name": "The Mountain of Fire",
+      "position": 33,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 7,
+      "defense": 3,
+      "health": 8,
+      "engagement": 56,
+      "encounter_set": "The Black Gate Opens",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "7",
+        "defense": "3",
+        "health": "8",
+        "engagement": "56"
+      },
+      "imagesrc": "/cards/fafbd12c-b97e-41d8-a696-5c89566927ba.jpg",
+      "packs": [
+        {
+          "pack_code": "MoF",
+          "pack_name": "The Mountain of Fire",
+          "position": 33,
+          "quantity": 2,
+          "octgnid": "fafbd12c-b97e-41d8-a696-5c89566927ba",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fafbd12c-b97e-41d8-a696-5c89566927ba.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E0B.17",
+      "name": "The Black Gate Opens (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "MoF"
+      ],
+      "card_codes": [
+        "octgn:0f31d397-55d8-4988-b6bb-3d4101977515",
+        "octgn:48c071bf-b00f-4677-b43f-aa119f736428",
+        "octgn:e5b56e5a-3286-4ea6-bbdd-da7e47750125",
+        "octgn:1eab8808-f8ee-4935-b456-7dd940afbc28",
+        "octgn:77bcda70-5126-4e58-919e-447c03d7ab02",
+        "octgn:3551cf11-1670-46de-b404-7b8fd20d3aff",
+        "octgn:f13a2e94-0ece-45c3-a7ce-0248f9ff92b3",
+        "octgn:6aaf94eb-c656-4589-acf1-c6637a755946",
+        "octgn:e62cec6d-6b96-4662-9a86-bcc0f5aee453",
+        "octgn:fafbd12c-b97e-41d8-a696-5c89566927ba",
+        "octgn:ce23920a-4b87-4015-88bf-8687a6d3f180",
+        "octgn:7108bf9e-3e91-4cbd-977a-fbab0a464512",
+        "octgn:5003227b-ebc3-454a-88b4-2d6e20cc48f7",
+        "octgn:3f736d45-c2b3-429e-9a21-3f8073cdbd48",
+        "octgn:d5286130-d03a-49f3-bd70-d40e9320c292",
+        "octgn:218b6d77-2c40-4967-8487-2a383b4170ce",
+        "octgn:60ac6ce9-7aad-415d-a4af-61f67db59454",
+        "octgn:7d9a3914-bc46-40d6-b489-3157d7430382",
+        "octgn:194ceae6-a5e2-4a52-ba07-76e6c2611e8e",
+        "octgn:50f294ff-ee4b-4685-b7e1-86cd7f2e0a59",
+        "146041",
+        "146002",
+        "octgn:c6b0a8d2-32fe-4750-9270-7270cd5f062b",
+        "octgn:a3a28453-4292-49b3-9b78-fc958310a800"
+      ],
+      "cards": [
+        {
+          "code": "octgn:0f31d397-55d8-4988-b6bb-3d4101977515",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:48c071bf-b00f-4677-b43f-aa119f736428",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:e5b56e5a-3286-4ea6-bbdd-da7e47750125",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1eab8808-f8ee-4935-b456-7dd940afbc28",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:77bcda70-5126-4e58-919e-447c03d7ab02",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3551cf11-1670-46de-b404-7b8fd20d3aff",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f13a2e94-0ece-45c3-a7ce-0248f9ff92b3",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6aaf94eb-c656-4589-acf1-c6637a755946",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e62cec6d-6b96-4662-9a86-bcc0f5aee453",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fafbd12c-b97e-41d8-a696-5c89566927ba",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ce23920a-4b87-4015-88bf-8687a6d3f180",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7108bf9e-3e91-4cbd-977a-fbab0a464512",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5003227b-ebc3-454a-88b4-2d6e20cc48f7",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3f736d45-c2b3-429e-9a21-3f8073cdbd48",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d5286130-d03a-49f3-bd70-d40e9320c292",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:218b6d77-2c40-4967-8487-2a383b4170ce",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:60ac6ce9-7aad-415d-a4af-61f67db59454",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7d9a3914-bc46-40d6-b489-3157d7430382",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:194ceae6-a5e2-4a52-ba07-76e6c2611e8e",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:50f294ff-ee4b-4685-b7e1-86cd7f2e0a59",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "146041",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "146002",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:c6b0a8d2-32fe-4750-9270-7270cd5f062b",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:a3a28453-4292-49b3-9b78-fc958310a800",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:0f31d397-55d8-4988-b6bb-3d4101977515": 1,
+          "octgn:48c071bf-b00f-4677-b43f-aa119f736428": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:e5b56e5a-3286-4ea6-bbdd-da7e47750125": 1,
+          "octgn:1eab8808-f8ee-4935-b456-7dd940afbc28": 2,
+          "octgn:77bcda70-5126-4e58-919e-447c03d7ab02": 3,
+          "octgn:3551cf11-1670-46de-b404-7b8fd20d3aff": 1,
+          "octgn:f13a2e94-0ece-45c3-a7ce-0248f9ff92b3": 2,
+          "octgn:6aaf94eb-c656-4589-acf1-c6637a755946": 1,
+          "octgn:e62cec6d-6b96-4662-9a86-bcc0f5aee453": 2,
+          "octgn:fafbd12c-b97e-41d8-a696-5c89566927ba": 1,
+          "octgn:ce23920a-4b87-4015-88bf-8687a6d3f180": 3,
+          "octgn:7108bf9e-3e91-4cbd-977a-fbab0a464512": 3,
+          "octgn:5003227b-ebc3-454a-88b4-2d6e20cc48f7": 1,
+          "octgn:3f736d45-c2b3-429e-9a21-3f8073cdbd48": 3,
+          "octgn:d5286130-d03a-49f3-bd70-d40e9320c292": 1,
+          "octgn:218b6d77-2c40-4967-8487-2a383b4170ce": 3,
+          "octgn:60ac6ce9-7aad-415d-a4af-61f67db59454": 2,
+          "octgn:7d9a3914-bc46-40d6-b489-3157d7430382": 2,
+          "octgn:194ceae6-a5e2-4a52-ba07-76e6c2611e8e": 3,
+          "octgn:50f294ff-ee4b-4685-b7e1-86cd7f2e0a59": 3
+        },
+        "sharedSetAside": {
+          "146041": 1
+        },
+        "player1Play1": {
+          "146002": 1
+        },
+        "sharedStagingArea": {
+          "octgn:c6b0a8d2-32fe-4750-9270-7270cd5f062b": 1,
+          "octgn:a3a28453-4292-49b3-9b78-fc958310a800": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q0B.17",
+      "name": "The Black Gate Opens",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "MoF"
+      ],
+      "card_codes": [
+        "octgn:0f31d397-55d8-4988-b6bb-3d4101977515",
+        "octgn:48c071bf-b00f-4677-b43f-aa119f736428",
+        "octgn:e5b56e5a-3286-4ea6-bbdd-da7e47750125",
+        "octgn:1eab8808-f8ee-4935-b456-7dd940afbc28",
+        "octgn:77bcda70-5126-4e58-919e-447c03d7ab02",
+        "octgn:3551cf11-1670-46de-b404-7b8fd20d3aff",
+        "octgn:f13a2e94-0ece-45c3-a7ce-0248f9ff92b3",
+        "octgn:6aaf94eb-c656-4589-acf1-c6637a755946",
+        "octgn:e62cec6d-6b96-4662-9a86-bcc0f5aee453",
+        "octgn:fafbd12c-b97e-41d8-a696-5c89566927ba",
+        "octgn:ce23920a-4b87-4015-88bf-8687a6d3f180",
+        "octgn:7108bf9e-3e91-4cbd-977a-fbab0a464512",
+        "octgn:5003227b-ebc3-454a-88b4-2d6e20cc48f7",
+        "octgn:3f736d45-c2b3-429e-9a21-3f8073cdbd48",
+        "octgn:d5286130-d03a-49f3-bd70-d40e9320c292",
+        "octgn:218b6d77-2c40-4967-8487-2a383b4170ce",
+        "octgn:60ac6ce9-7aad-415d-a4af-61f67db59454",
+        "octgn:7d9a3914-bc46-40d6-b489-3157d7430382",
+        "octgn:194ceae6-a5e2-4a52-ba07-76e6c2611e8e",
+        "octgn:50f294ff-ee4b-4685-b7e1-86cd7f2e0a59",
+        "146041",
+        "146002",
+        "octgn:c6b0a8d2-32fe-4750-9270-7270cd5f062b",
+        "octgn:a3a28453-4292-49b3-9b78-fc958310a800"
+      ],
+      "cards": [
+        {
+          "code": "octgn:0f31d397-55d8-4988-b6bb-3d4101977515",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:48c071bf-b00f-4677-b43f-aa119f736428",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:e5b56e5a-3286-4ea6-bbdd-da7e47750125",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1eab8808-f8ee-4935-b456-7dd940afbc28",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:77bcda70-5126-4e58-919e-447c03d7ab02",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3551cf11-1670-46de-b404-7b8fd20d3aff",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f13a2e94-0ece-45c3-a7ce-0248f9ff92b3",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6aaf94eb-c656-4589-acf1-c6637a755946",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e62cec6d-6b96-4662-9a86-bcc0f5aee453",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fafbd12c-b97e-41d8-a696-5c89566927ba",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ce23920a-4b87-4015-88bf-8687a6d3f180",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7108bf9e-3e91-4cbd-977a-fbab0a464512",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5003227b-ebc3-454a-88b4-2d6e20cc48f7",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3f736d45-c2b3-429e-9a21-3f8073cdbd48",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d5286130-d03a-49f3-bd70-d40e9320c292",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:218b6d77-2c40-4967-8487-2a383b4170ce",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:60ac6ce9-7aad-415d-a4af-61f67db59454",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7d9a3914-bc46-40d6-b489-3157d7430382",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:194ceae6-a5e2-4a52-ba07-76e6c2611e8e",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:50f294ff-ee4b-4685-b7e1-86cd7f2e0a59",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "146041",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "146002",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:c6b0a8d2-32fe-4750-9270-7270cd5f062b",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:a3a28453-4292-49b3-9b78-fc958310a800",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:0f31d397-55d8-4988-b6bb-3d4101977515": 1,
+          "octgn:48c071bf-b00f-4677-b43f-aa119f736428": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:e5b56e5a-3286-4ea6-bbdd-da7e47750125": 2,
+          "octgn:1eab8808-f8ee-4935-b456-7dd940afbc28": 2,
+          "octgn:77bcda70-5126-4e58-919e-447c03d7ab02": 3,
+          "octgn:3551cf11-1670-46de-b404-7b8fd20d3aff": 2,
+          "octgn:f13a2e94-0ece-45c3-a7ce-0248f9ff92b3": 2,
+          "octgn:6aaf94eb-c656-4589-acf1-c6637a755946": 2,
+          "octgn:e62cec6d-6b96-4662-9a86-bcc0f5aee453": 3,
+          "octgn:fafbd12c-b97e-41d8-a696-5c89566927ba": 2,
+          "octgn:ce23920a-4b87-4015-88bf-8687a6d3f180": 3,
+          "octgn:7108bf9e-3e91-4cbd-977a-fbab0a464512": 3,
+          "octgn:5003227b-ebc3-454a-88b4-2d6e20cc48f7": 2,
+          "octgn:3f736d45-c2b3-429e-9a21-3f8073cdbd48": 3,
+          "octgn:d5286130-d03a-49f3-bd70-d40e9320c292": 2,
+          "octgn:218b6d77-2c40-4967-8487-2a383b4170ce": 3,
+          "octgn:60ac6ce9-7aad-415d-a4af-61f67db59454": 3,
+          "octgn:7d9a3914-bc46-40d6-b489-3157d7430382": 3,
+          "octgn:194ceae6-a5e2-4a52-ba07-76e6c2611e8e": 3,
+          "octgn:50f294ff-ee4b-4685-b7e1-86cd7f2e0a59": 3
+        },
+        "sharedSetAside": {
+          "146041": 1
+        },
+        "player1Play1": {
+          "146002": 1
+        },
+        "sharedStagingArea": {
+          "octgn:c6b0a8d2-32fe-4750-9270-7270cd5f062b": 1,
+          "octgn:a3a28453-4292-49b3-9b78-fc958310a800": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "146002",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/146002.png",
+      "localPath": "/cards/146002.png",
+      "bytes": 69527,
+      "sha256": "2e878e0bc3601820894c6ae98f37ee4251e0759ab08f2cba21aa77f80c1cd16b"
+    },
+    {
+      "code": "146041",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/146041.png",
+      "localPath": "/cards/146041.png",
+      "bytes": 522946,
+      "sha256": "b50d10f3dc7b422f942a5b9e31a69269bcdf8d88115dd96a38d9a193873e4eea"
+    },
+    {
+      "code": "octgn:0f31d397-55d8-4988-b6bb-3d4101977515",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0f31d397-55d8-4988-b6bb-3d4101977515.jpg",
+      "localPath": "/cards/0f31d397-55d8-4988-b6bb-3d4101977515.jpg",
+      "bytes": 124402,
+      "sha256": "af32b3e87aa4a4e88002462d30edb482f36f957b5c564e50df597a0e83b6303a"
+    },
+    {
+      "code": "octgn:0f31d397-55d8-4988-b6bb-3d4101977515",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0f31d397-55d8-4988-b6bb-3d4101977515.B.jpg",
+      "localPath": "/cards/0f31d397-55d8-4988-b6bb-3d4101977515.B.jpg",
+      "bytes": 127875,
+      "sha256": "60b07665301975fd8a8d2cbfa7c3a0f414113f67afd3b1397514d99ff3d5d159"
+    },
+    {
+      "code": "octgn:194ceae6-a5e2-4a52-ba07-76e6c2611e8e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/194ceae6-a5e2-4a52-ba07-76e6c2611e8e.jpg",
+      "localPath": "/cards/194ceae6-a5e2-4a52-ba07-76e6c2611e8e.jpg",
+      "bytes": 83973,
+      "sha256": "75be9b827e965d8ffb6c0e202520b271672036fc1bbd8cd068a27916f9f14e2e"
+    },
+    {
+      "code": "octgn:1eab8808-f8ee-4935-b456-7dd940afbc28",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1eab8808-f8ee-4935-b456-7dd940afbc28.jpg",
+      "localPath": "/cards/1eab8808-f8ee-4935-b456-7dd940afbc28.jpg",
+      "bytes": 96510,
+      "sha256": "ecc2fec26f7516f41d890d925d3c8a01116bae75bd41552ab302b790ff9cdf84"
+    },
+    {
+      "code": "octgn:218b6d77-2c40-4967-8487-2a383b4170ce",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/218b6d77-2c40-4967-8487-2a383b4170ce.jpg",
+      "localPath": "/cards/218b6d77-2c40-4967-8487-2a383b4170ce.jpg",
+      "bytes": 80470,
+      "sha256": "1bd52a9b5a4fc78a73361dc547686095ed417016a5bcf70bd853774de8e3eb15"
+    },
+    {
+      "code": "octgn:3551cf11-1670-46de-b404-7b8fd20d3aff",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3551cf11-1670-46de-b404-7b8fd20d3aff.jpg",
+      "localPath": "/cards/3551cf11-1670-46de-b404-7b8fd20d3aff.jpg",
+      "bytes": 84363,
+      "sha256": "a5bf6e6316c5424d959c6b7d926e227ccb34ed307ead5501e26267208c824135"
+    },
+    {
+      "code": "octgn:3f736d45-c2b3-429e-9a21-3f8073cdbd48",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3f736d45-c2b3-429e-9a21-3f8073cdbd48.jpg",
+      "localPath": "/cards/3f736d45-c2b3-429e-9a21-3f8073cdbd48.jpg",
+      "bytes": 76061,
+      "sha256": "17b5f91f95abc0e50428af8c12e573f2ee330183c3fd62e4afb3651a380f00a6"
+    },
+    {
+      "code": "octgn:48c071bf-b00f-4677-b43f-aa119f736428",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/48c071bf-b00f-4677-b43f-aa119f736428.jpg",
+      "localPath": "/cards/48c071bf-b00f-4677-b43f-aa119f736428.jpg",
+      "bytes": 128909,
+      "sha256": "c46471fc8063b52f9eeabe72fdc6f1b479dfb9969f2bb83c077c33ca8833d412"
+    },
+    {
+      "code": "octgn:48c071bf-b00f-4677-b43f-aa119f736428",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/48c071bf-b00f-4677-b43f-aa119f736428.B.jpg",
+      "localPath": "/cards/48c071bf-b00f-4677-b43f-aa119f736428.B.jpg",
+      "bytes": 125533,
+      "sha256": "fda9d9522a44bd15ebe633b10d7c6c50c589223d2ba5bcdce628bceebaefd1fa"
+    },
+    {
+      "code": "octgn:5003227b-ebc3-454a-88b4-2d6e20cc48f7",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5003227b-ebc3-454a-88b4-2d6e20cc48f7.jpg",
+      "localPath": "/cards/5003227b-ebc3-454a-88b4-2d6e20cc48f7.jpg",
+      "bytes": 78968,
+      "sha256": "c3c23fbae03cb95e2b2d23130223466e695a70fe84effcf7f6be378c99e89a7f"
+    },
+    {
+      "code": "octgn:50f294ff-ee4b-4685-b7e1-86cd7f2e0a59",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/50f294ff-ee4b-4685-b7e1-86cd7f2e0a59.jpg",
+      "localPath": "/cards/50f294ff-ee4b-4685-b7e1-86cd7f2e0a59.jpg",
+      "bytes": 84150,
+      "sha256": "23e21aed6a6ced6cdc5b1f959449de5dda4d502247e24b33e3735618ff97d336"
+    },
+    {
+      "code": "octgn:60ac6ce9-7aad-415d-a4af-61f67db59454",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/60ac6ce9-7aad-415d-a4af-61f67db59454.jpg",
+      "localPath": "/cards/60ac6ce9-7aad-415d-a4af-61f67db59454.jpg",
+      "bytes": 83402,
+      "sha256": "da1a86097bc6f8984ad447c9964129ae471cc03494040a0ab1ed3b08940bfef8"
+    },
+    {
+      "code": "octgn:6aaf94eb-c656-4589-acf1-c6637a755946",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6aaf94eb-c656-4589-acf1-c6637a755946.jpg",
+      "localPath": "/cards/6aaf94eb-c656-4589-acf1-c6637a755946.jpg",
+      "bytes": 85572,
+      "sha256": "f0c07ba09fc3481ac2ef782c82159e7f2e9a23081550db0a1c46b97251a3ab54"
+    },
+    {
+      "code": "octgn:7108bf9e-3e91-4cbd-977a-fbab0a464512",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7108bf9e-3e91-4cbd-977a-fbab0a464512.jpg",
+      "localPath": "/cards/7108bf9e-3e91-4cbd-977a-fbab0a464512.jpg",
+      "bytes": 87970,
+      "sha256": "11c508f7098ea44ea2c9f2730f29bb168318710af85aa873d029a0f2447011df"
+    },
+    {
+      "code": "octgn:77bcda70-5126-4e58-919e-447c03d7ab02",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/77bcda70-5126-4e58-919e-447c03d7ab02.jpg",
+      "localPath": "/cards/77bcda70-5126-4e58-919e-447c03d7ab02.jpg",
+      "bytes": 80129,
+      "sha256": "2189f849b77b21bc82fa433ebb7088a0fbf374b4bc89e9afcda51a3d57ff7ac6"
+    },
+    {
+      "code": "octgn:7d9a3914-bc46-40d6-b489-3157d7430382",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7d9a3914-bc46-40d6-b489-3157d7430382.jpg",
+      "localPath": "/cards/7d9a3914-bc46-40d6-b489-3157d7430382.jpg",
+      "bytes": 79873,
+      "sha256": "3ef7f271e1c8e49409e16a4cbbfdf9eb1f92056cd01bbc34d8e70e0ce7b4f569"
+    },
+    {
+      "code": "octgn:a3a28453-4292-49b3-9b78-fc958310a800",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a3a28453-4292-49b3-9b78-fc958310a800.jpg",
+      "localPath": "/cards/a3a28453-4292-49b3-9b78-fc958310a800.jpg",
+      "bytes": 85953,
+      "sha256": "c8ecda95953a99985f3dd5d0e06e58160557a1062a539a9fb95e67640880b759"
+    },
+    {
+      "code": "octgn:c6b0a8d2-32fe-4750-9270-7270cd5f062b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c6b0a8d2-32fe-4750-9270-7270cd5f062b.jpg",
+      "localPath": "/cards/c6b0a8d2-32fe-4750-9270-7270cd5f062b.jpg",
+      "bytes": 87500,
+      "sha256": "bf1a168ee65354a83fa3a577bf156959c684f6c639d600cb819f46092a59979d"
+    },
+    {
+      "code": "octgn:ce23920a-4b87-4015-88bf-8687a6d3f180",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ce23920a-4b87-4015-88bf-8687a6d3f180.jpg",
+      "localPath": "/cards/ce23920a-4b87-4015-88bf-8687a6d3f180.jpg",
+      "bytes": 84714,
+      "sha256": "0b1826eff24a61ef804d55d4fa378481e91a775985fbabad8586217c65204c76"
+    },
+    {
+      "code": "octgn:d5286130-d03a-49f3-bd70-d40e9320c292",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d5286130-d03a-49f3-bd70-d40e9320c292.jpg",
+      "localPath": "/cards/d5286130-d03a-49f3-bd70-d40e9320c292.jpg",
+      "bytes": 84692,
+      "sha256": "c9282d48380d1b090b00529488dcfe38e3fe0ebe5e145f1266c646392cf63afb"
+    },
+    {
+      "code": "octgn:e5b56e5a-3286-4ea6-bbdd-da7e47750125",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e5b56e5a-3286-4ea6-bbdd-da7e47750125.jpg",
+      "localPath": "/cards/e5b56e5a-3286-4ea6-bbdd-da7e47750125.jpg",
+      "bytes": 86257,
+      "sha256": "3cc70bea60da5c6e0c57f3e86b61c84d20c66ce782e4cba5572afd409de7a09e"
+    },
+    {
+      "code": "octgn:e62cec6d-6b96-4662-9a86-bcc0f5aee453",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e62cec6d-6b96-4662-9a86-bcc0f5aee453.jpg",
+      "localPath": "/cards/e62cec6d-6b96-4662-9a86-bcc0f5aee453.jpg",
+      "bytes": 85995,
+      "sha256": "943eb48ca456d309e91d4d2a97413d4cdadffe44c5d4857cdde8dce6f99c0a6a"
+    },
+    {
+      "code": "octgn:f13a2e94-0ece-45c3-a7ce-0248f9ff92b3",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f13a2e94-0ece-45c3-a7ce-0248f9ff92b3.jpg",
+      "localPath": "/cards/f13a2e94-0ece-45c3-a7ce-0248f9ff92b3.jpg",
+      "bytes": 89093,
+      "sha256": "e3406059e960bcd9350da44576eab8940d3ad8739d10511dddd59a30bcc72777"
+    },
+    {
+      "code": "octgn:fafbd12c-b97e-41d8-a696-5c89566927ba",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fafbd12c-b97e-41d8-a696-5c89566927ba.jpg",
+      "localPath": "/cards/fafbd12c-b97e-41d8-a696-5c89566927ba.jpg",
+      "bytes": 86972,
+      "sha256": "e3fa4a71695189997b14614d6229c95712b66c2ff636caa13b50c36f1a08f489"
+    }
+  ]
+}

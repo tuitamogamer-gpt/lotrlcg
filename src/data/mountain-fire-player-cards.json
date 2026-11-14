@@ -42,5 +42,49 @@
     "source_url": "https://ringsdb.com/card/146001",
     "official": true,
     "nightmare": false
+  },
+  {
+    "code": "146002",
+    "name": "Aragorn",
+    "type_code": "hero",
+    "type_name": "Hero",
+    "sphere_code": "fellowship",
+    "sphere_name": "Fellowship",
+    "threat": 0,
+    "willpower": 2,
+    "attack": 3,
+    "defense": 2,
+    "health": 5,
+    "traits": "Dúnedain. Gondor. Noble. Warrior.",
+    "text": "Sentinel. The first player gains control of Aragorn.\nAction: Spend 1 resource from Aragorn's pool to ready him. (Limit once per phase.)\nIf Aragorn leaves play, the players lose the game.",
+    "flavor": "\"As I have begun, so I will go on..\" <cite>The Return of the King</cite>",
+    "is_unique": true,
+    "deck_limit": 1,
+    "pack_name": "The Mountain of Fire",
+    "pack_code": "MoF",
+    "position": 2,
+    "illustrator": "David A. Nash",
+    "imagesrc": "/cards/146002.png",
+    "url": "https://ringsdb.com/card/146002",
+    "quantity": 1,
+    "octgnid": "f1cc6057-ced3-4105-9172-869d26a54af5",
+    "has_errata": false,
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 2,
+        "quantity": 1,
+        "image_code": "146002",
+        "illustrator": "David A. Nash",
+        "octgnid": "f1cc6057-ced3-4105-9172-869d26a54af5",
+        "imagesrc": "/bundles/cards/146002.png",
+        "date_release": "2017-08-16"
+      }
+    ],
+    "source": "ringsdb",
+    "source_url": "https://ringsdb.com/card/146002",
+    "official": true,
+    "nightmare": false
   }
 ]

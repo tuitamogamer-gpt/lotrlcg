@@ -49,7 +49,8 @@ export function reduceThreat(
       );
     return 0;
   }
-  amount = batch4Scenario(s).threatReduction?.(s, amount, reason) ?? amount;
+  amount =
+    batch4Scenario(s).threatReduction?.(s, amount, reason, source) ?? amount;
   amount = sarumanThreatReduction(s, amount, reason);
   const reduction = Math.min(s.threat, amount);
   s.threat -= reduction;

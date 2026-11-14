@@ -1,6 +1,7 @@
 import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import definitions from "../data/angmar-player-cards.json";
 import type { Card, GameState } from "./types";
+import { valourThreat } from "./dire";
 
 export const ANGMAR_PLAYER_CARDS = definitions as Card[];
 export const ANGMAR_PLAYER_CODES = [
@@ -72,7 +73,8 @@ export const ANGMAR = {
 } as const;
 
 /** Valour checks the initiating player's current threat, including a remote response. */
-export const angmarValour = (s: GameState) => effectiveThreat(s) >= 40;
+export const angmarValour = (s: GameState) =>
+  effectiveThreat(s) >= valourThreat(s);
 export { isHero as angmarIsHero } from "./card-types";
 export const angmarDiscardEvents = [ANGMAR.light, ANGMAR.lords] as string[];
 export const angmarResponseEvents = [

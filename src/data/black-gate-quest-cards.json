@@ -1,0 +1,82 @@
+[
+  {
+    "code": "octgn:0f31d397-55d8-4988-b6bb-3d4101977515",
+    "octgnid": "0f31d397-55d8-4988-b6bb-3d4101977515",
+    "name": "Embassy from The Dark Tower",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Add The Black Gate and The Mouth of Sauron to the staging area. Set Gwaihir aside, out of play. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 72,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Black Gate Opens",
+    "side": "A",
+    "back_name": "Embassy from The Dark Tower",
+    "back_text": "Dire. When Revealed: In player order, each player places the top card of his deck faceup in front of him until there are a total of 4 faceup player cards between the players. Place the top 4 cards of the encounter deck faceup. Starting with the highest cost player card, pair each player card with the highest threat encounter card remaining until there are 4 pairs. For each pair, the first player must choose: either discard both cards in that pair, or reveal the encounter card to play the player card at no cost.",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "/cards/0f31d397-55d8-4988-b6bb-3d4101977515.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/0f31d397-55d8-4988-b6bb-3d4101977515.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 72,
+        "quantity": 1,
+        "octgnid": "0f31d397-55d8-4988-b6bb-3d4101977515",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0f31d397-55d8-4988-b6bb-3d4101977515.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:48c071bf-b00f-4677-b43f-aa119f736428",
+    "octgnid": "48c071bf-b00f-4677-b43f-aa119f736428",
+    "name": "The Battle of the Morannon",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Dire. When Revealed: Each player searches the encounter deck and discard pile for a different Orc, Troll, or Nazgûl enemy and adds it to the staging area. Shuffle Gwaihir into the encounter deck.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 73,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Black Gate Opens",
+    "side": "A",
+    "back_name": "The Battle of the Morannon",
+    "back_text": "Dire. During the staging step, the first player does not reveal an encounter card as normal. Instead, he reveals 1 encounter card for each resource on The Black Gate.\nForced: After the players quest unsuccessfully, discard the active location.\nThis stage cannot be defeated. Each round the players survive gives the Ring-bearer more time to fulfill the quest to Mount Doom.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/48c071bf-b00f-4677-b43f-aa119f736428.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/48c071bf-b00f-4677-b43f-aa119f736428.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 73,
+        "quantity": 1,
+        "octgnid": "48c071bf-b00f-4677-b43f-aa119f736428",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/48c071bf-b00f-4677-b43f-aa119f736428.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "back_quest": null
+  }
+]

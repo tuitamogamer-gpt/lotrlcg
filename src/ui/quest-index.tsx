@@ -147,6 +147,10 @@ const HEADLINES: Partial<
     lead: "Bring the Ring-bearer out",
     em: "of Cirith Ungol.",
   },
+  "the-black-gate-opens": {
+    lead: "Hold the Black Gate",
+    em: "for the Ring-bearer.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

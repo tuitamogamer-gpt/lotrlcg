@@ -138,9 +138,10 @@ export function ringBearerFollowsFirstPlayer(s: GameState) {
 export function loseOneRing(s: GameState) {
   if (s.status !== "playing") return;
   s.status = "lost";
-  s.reason = aragornSaga(s)
+  const reason = aragornSaga(s)
     ? "Aragorn has left play. The players lose the game."
     : "The One Ring has left play. The players lose the game.";
+  s.reason = batch4Scenario(s).lossReason?.(s, reason) ?? reason;
   depositInFlightEncounterCards(s);
   s.choice = null;
   s.queue = [];
@@ -155,7 +156,8 @@ export function lotrSagaCheck(s: GameState) {
 }
 /** Saga staging: each player reveals their own encounter card in player order. */
 export function sagaRevealPlayer(s: GameState, index: number, first: number) {
-  if (!lotrSaga(s)) return first;
+  if (!lotrSaga(s) || batch4Scenario(s).stagingRevealsByFirstPlayer?.(s))
+    return first;
   return playerOrder(s)[index] ?? first;
 }
 /** Fellowship heroes are placed by the Saga; players never choose them. */

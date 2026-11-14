@@ -1,4 +1,5 @@
 import type { GameState } from "./types";
+import { DIRE_ELIMINATION, direQuest } from "./dire";
 
 // Kept independent of the card registry: scenario definitions import this module
 // before the runtime card collection is initialized.
@@ -26,7 +27,10 @@ export function threatElimination(
       : 0;
   return Math.max(
     0,
-    (s.tharbad?.elimination ?? 50) - (ring ? 5 : 0) - worship - tower,
+    (s.tharbad?.elimination ?? (direQuest(s) ? DIRE_ELIMINATION : 50)) -
+      (ring ? 5 : 0) -
+      worship -
+      tower,
   );
 }
 export const threatEliminationLevel = threatElimination;

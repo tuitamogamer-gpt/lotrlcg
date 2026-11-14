@@ -56,6 +56,8 @@ import { PelennorFieldsState } from "./ui/pelennor-fields-state";
 import { PELENNOR_FIELDS_QUESTS } from "./game/pelennor-fields-support";
 import { CirithUngolState } from "./ui/cirith-ungol-state";
 import { CIRITH_UNGOL_QUESTS } from "./game/cirith-ungol-support";
+import { BlackGateState } from "./ui/black-gate-state";
+import { BLACK_GATE_QUESTS } from "./game/black-gate-support";
 import { DDCD_QUESTS } from "./game/dungeons-deep-support";
 import {
   discoveredTreasures,
@@ -3328,6 +3330,7 @@ export default function App() {
             <SiegeGondorState s={game} inspect={setDetail} />
             <PelennorFieldsState s={game} inspect={setDetail} />
             <CirithUngolState s={game} inspect={setDetail} />
+            <BlackGateState s={game} inspect={setDetail} />
             <AshMountainsState s={game} inspect={setDetail} />
             <CouncilOfTheWiseState s={game} inspect={setDetail} />
             <WainridersScenarioState s={game} inspect={setDetail} />
@@ -4096,6 +4099,7 @@ export default function App() {
                       ...SIEGE_GONDOR_QUESTS,
                       ...PELENNOR_FIELDS_QUESTS,
                       ...CIRITH_UNGOL_QUESTS,
+                      ...BLACK_GATE_QUESTS,
                       ...(carrockQuestCards as Card[]),
                       ...EMYN_MUIL_QUESTS,
                       ...CITY_QUESTS,

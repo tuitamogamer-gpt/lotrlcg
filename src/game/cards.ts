@@ -87,6 +87,10 @@ import {
   CIRITH_UNGOL_ENCOUNTERS,
   CIRITH_UNGOL_QUESTS,
 } from "./cirith-ungol-scenario-data";
+import {
+  BLACK_GATE_ENCOUNTERS,
+  BLACK_GATE_QUESTS,
+} from "./black-gate-scenario-data";
 import mountainFirePlayers from "../data/mountain-fire-player-cards.json";
 import hobbitPlayers from "../data/hobbit-player-cards.json";
 import blackRidersPlayers from "../data/black-riders-player-cards.json";
@@ -594,6 +598,7 @@ export const encounterCards = [
       ...PELENNOR_FIELDS_ENCOUNTERS,
       ...PELENNOR_FIELDS_BOONS,
       ...CIRITH_UNGOL_ENCOUNTERS,
+      ...BLACK_GATE_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -693,6 +698,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...SIEGE_GONDOR_QUESTS,
     ...PELENNOR_FIELDS_QUESTS,
     ...CIRITH_UNGOL_QUESTS,
+    ...BLACK_GATE_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -833,6 +839,7 @@ export const SCRIPTED = new Set(
     ...SIEGE_GONDOR_QUESTS,
     ...PELENNOR_FIELDS_QUESTS,
     ...CIRITH_UNGOL_QUESTS,
+    ...BLACK_GATE_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

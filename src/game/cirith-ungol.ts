@@ -8,7 +8,6 @@ import {
   discardAttachment,
   enemyAddedToStaging,
   enterEnemyEngaged,
-  exhaustCharacter,
   questDefeated,
   raiseThreat,
   win,
@@ -32,7 +31,13 @@ import { isEnemy } from "./ships";
 import { mainQuestUnit } from "./quest-state";
 import { lotrSagaCheck, oneRing, ringBearer } from "./lotr-saga";
 import { isOneRing } from "./lotr-saga-codes";
-import { whiteHandArchery } from "./white-hand";
+import {
+  mordorOrcCharacterDestroyed,
+  mordorOrcEngaged,
+  mordorOrcShadow,
+  mordorOrcsEffect,
+  stagingArchery,
+} from "./mordor-orcs";
 import {
   CIRITH_UNGOL_RECIPES,
   CU,
@@ -92,13 +97,6 @@ const company = (s: GameState) => {
     if (a) return { host, a };
   }
   return undefined;
-};
-const defendersOf = (s: GameState) => {
-  const c = s.combat;
-  if (!c) return [];
-  return (c.defenderIds ?? (c.defenderId ? [c.defenderId] : []))
-    .map((id) => get(s, id))
-    .filter((u): u is Unit => !!u);
 };
 
 // ---------------------------------------------------------------------------
@@ -310,6 +308,7 @@ function treachery(s: GameState, held: Unit) {
 function shadow(s: GameState, code: string) {
   const c = s.combat;
   if (!s.cirithUngol || !c) return false;
+  if (mordorOrcShadow(s, code)) return true;
   const attacker = get(s, c.enemyId);
   const p = c.attackPlayer ?? activeSeat(s);
   switch (code) {
@@ -361,28 +360,6 @@ function shadow(s: GameState, code: string) {
       );
       return true;
     }
-    case CU.orc:
-      prepend(s, fx("cuExhaustOne", { text: "Orc of Mordor", player: p }));
-      return true;
-    case CU.archer: {
-      const damaged = defendersOf(s).some((d) => d.damage > 0);
-      c.attackBonus += damaged ? 2 : 1;
-      log(
-        s,
-        `Snaga Archer: the attacking enemy gets +${damaged ? 2 : 1} attack.`,
-        "danger",
-      );
-      return true;
-    }
-    case CU.soldier:
-      c.attackBonus += 1;
-      c.cuReturnOnKill = true;
-      log(
-        s,
-        "Uruk Soldier: +1 attack; if this attack destroys a character, the attacking enemy returns to the staging area.",
-        "danger",
-      );
-      return true;
     case CU.vigilance:
       c.attackBonus += 1;
       c.cuRevealOnKill = true;
@@ -768,7 +745,7 @@ export function cirithUngolEffect(s: GameState, e: Effect): boolean {
                   id: "threat",
                   label: `Raise your threat by ${questing.length}`,
                   effects: [
-                    fx("cuThreat", {
+                    fx("moThreat", {
                       value: questing.length,
                       text: "Evil Vigilance",
                       player: p,
@@ -788,64 +765,6 @@ export function cirithUngolEffect(s: GameState, e: Effect): boolean {
         forOwner(s, ownerOf(s, u), () => destroy(s, u, false));
       }
       return true;
-    case "cuThreat":
-      forOwner(s, p, () => raiseThreat(s, e.value ?? 0, "encounter"));
-      log(
-        s,
-        `${e.text}: ${who(s, p)} raise${s.table ? "s" : ""} ${s.table ? "his" : "your"} threat by ${e.value}.`,
-        "danger",
-      );
-      return true;
-    // Orc of Mordor: exhaust a character you control.
-    case "cuExhaustOne": {
-      const ready = [...seatView(s, p).heroes, ...seatView(s, p).allies].filter(
-        (c) => !c.exhausted,
-      );
-      if (!ready.length) {
-        log(
-          s,
-          `${e.text}: ${who(s, p)} control${s.table ? "s" : ""} no ready character.`,
-        );
-        return true;
-      }
-      forOwner(s, p, () =>
-        choose(
-          s,
-          `${e.text} · Exhaust a character you control${seatLabel(s, p)}`,
-          ready.map((c) => ({
-            id: c.id,
-            code: c.code,
-            label: name(c),
-            effects: [
-              fx("cuExhaust", { target: c.id, text: e.text, player: p }),
-            ],
-          })),
-        ),
-      );
-      return true;
-    }
-    case "cuExhaust":
-      if (u && exhaustCharacter(s, u))
-        log(s, `${e.text}: ${name(u)} is exhausted.`, "danger");
-      return true;
-    // Snaga Archer: deal 2 damage to a character you control.
-    case "cuArcherDamage": {
-      const targets = [...seatView(s, p).heroes, ...seatView(s, p).allies];
-      if (!targets.length) return true;
-      forOwner(s, p, () =>
-        choose(
-          s,
-          `Snaga Archer · Deal 2 damage to a character you control${seatLabel(s, p)}`,
-          targets.map((c) => ({
-            id: c.id,
-            code: c.code,
-            label: `${name(c)} · ${c.damage} damage`,
-            effects: [fx("damage", { target: c.id, value: 2, player: p })],
-          })),
-        ),
-      );
-      return true;
-    }
     case "cuWoundedRage": {
       if (!u) return true;
       const ids =
@@ -1019,26 +938,13 @@ export const CIRITH_UNGOL_HOOKS: Batch4ScenarioHooks = {
       prepend(s, fx("immediateAttack", { target: u.id, player: p }));
     if (u.code === CU.wounded)
       prepend(s, fx("cuWoundedRage", { target: u.id, player: p }));
-    if (u.code === CU.orc)
-      prepend(s, fx("cuExhaustOne", { text: "Orc of Mordor", player: p }));
-    if (u.code === CU.archer) prepend(s, fx("cuArcherDamage", { player: p }));
-    if (u.code === CU.soldier)
-      prepend(s, fx("cuThreat", { value: 2, text: "Uruk Soldier", player: p }));
+    mordorOrcEngaged(s, u, p);
   },
   revealedSurge: (s, code) =>
     !!s.cirithUngol && code === CU.howls && !s.staging.some((u) => isEnemy(u)),
   // Snaga Archer's Archery 2 from the staging area.
   combatBegin: (s) => {
-    if (!s.cirithUngol) return;
-    const archery = s.staging.reduce(
-      (n, x) => n + (x.blanked || !isEnemy(x) ? 0 : whiteHandArchery(x.code)),
-      0,
-    );
-    if (archery > 0)
-      prepend(
-        s,
-        fx("heirsArchery", { value: archery, player: firstPlayer(s) }),
-      );
+    if (s.cirithUngol) stagingArchery(s, firstPlayer(s));
   },
   consideredEngaged: (s, u, player) =>
     watchersEngaged(s) &&
@@ -1088,11 +994,11 @@ export const CIRITH_UNGOL_HOOKS: Batch4ScenarioHooks = {
       return [fx("cuShagrat", { player: firstPlayer(s) })];
     if (u.code === CU.courtyard)
       return playerOrder(s).map((player) =>
-        fx("cuThreat", { value: 1, text: "Bloodied Courtyard", player }),
+        fx("moThreat", { value: 1, text: "Bloodied Courtyard", player }),
       );
     if (u.code === CU.stairs)
       return playerOrder(s).map((player) =>
-        fx("cuExhaustOne", { text: "Winding Stairs", player }),
+        fx("moExhaustOne", { text: "Winding Stairs", player }),
       );
     return undefined;
   },
@@ -1215,10 +1121,7 @@ export const CIRITH_UNGOL_HOOKS: Batch4ScenarioHooks = {
     if (!s.cirithUngol || !isCharacter(u) || !context.combatDamage || !c)
       return;
     if (context.enemyId !== c.enemyId) return;
-    if (c.cuReturnOnKill) {
-      c.cuReturnOnKill = false;
-      c.returnToStaging = true;
-    }
+    mordorOrcCharacterDestroyed(s, context);
     if (c.cuRevealOnKill) {
       c.cuRevealOnKill = false;
       prepend(s, fx("reveal", { player: c.attackPlayer ?? activeSeat(s) }));
@@ -1227,7 +1130,8 @@ export const CIRITH_UNGOL_HOOKS: Batch4ScenarioHooks = {
   abilityLabel: (code) => (code === CU.company ? COMPANY_LABEL : undefined),
   abilityProblem: (s, u, attachmentId) => companyProblem(s, u, attachmentId),
   ability: (s, u, attachmentId) => useCompany(s, u, attachmentId),
-  effect: cirithUngolEffect,
+  effect: (s, e) =>
+    (!!s.cirithUngol && mordorOrcsEffect(s, e)) || cirithUngolEffect(s, e),
   sharedEffect: (e) =>
     [
       "cuTreacheryDone",
