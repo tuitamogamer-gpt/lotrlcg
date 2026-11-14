@@ -28,6 +28,12 @@ export const ROAD_DARKENS_SCENARIO_IDS: readonly string[] = [
   "journey-in-the-dark",
   "breaking-of-the-fellowship",
 ];
+/** The Treason of Saruman's Fellowship-sphere Aragorn, who stands in for the Ring-bearer. */
+export const TOS_ARAGORN = "143001";
+/** The Lord of the Rings Saga scenarios of The Treason of Saruman. */
+export const TREASON_SARUMAN_SCENARIO_IDS: readonly string[] = ["the-uruk-hai"];
+export const isTreasonSarumanScenarioId = (id: string | undefined) =>
+  !!id && TREASON_SARUMAN_SCENARIO_IDS.includes(id);
 /** Standalone scenarios played with the Saga's Ring-bearer rules. */
 export const LOTR_SAGA_STANDALONE_IDS: readonly string[] = [
   "the-old-forest",
@@ -37,14 +43,22 @@ export const LOTR_SAGA_SCENARIO_IDS: readonly string[] = [
   ...BLACK_RIDERS_SCENARIO_IDS,
   ...LOTR_SAGA_STANDALONE_IDS,
   ...ROAD_DARKENS_SCENARIO_IDS,
+  ...TREASON_SARUMAN_SCENARIO_IDS,
 ];
 export const isLotrSagaScenarioId = (id: string | undefined) =>
   !!id && LOTR_SAGA_SCENARIO_IDS.includes(id);
-/** The Ring-bearer and The One Ring that a Saga scenario places at setup. */
-export const sagaRingCards = (id: string | undefined) =>
-  !!id && ROAD_DARKENS_SCENARIO_IDS.includes(id)
-    ? { frodo: ROAD_DARKENS_FRODO, ring: ROAD_DARKENS_ONE_RING }
-    : { frodo: SAGA_FRODO, ring: ONE_RING };
+/**
+ * The Fellowship hero a Saga scenario places at setup, and The One Ring he
+ * carries: The Treason of Saruman places Aragorn without The One Ring.
+ */
+export const sagaRingCards = (
+  id: string | undefined,
+): { frodo: string; ring?: string } =>
+  isTreasonSarumanScenarioId(id)
+    ? { frodo: TOS_ARAGORN }
+    : !!id && ROAD_DARKENS_SCENARIO_IDS.includes(id)
+      ? { frodo: ROAD_DARKENS_FRODO, ring: ROAD_DARKENS_ONE_RING }
+      : { frodo: SAGA_FRODO, ring: ONE_RING };
 /** Every Fellowship-sphere Ring-bearer a Saga scenario may place. */
 export const RING_BEARERS: readonly string[] = [SAGA_FRODO, ROAD_DARKENS_FRODO];
 export const isRingBearerCode = (code: string) => RING_BEARERS.includes(code);

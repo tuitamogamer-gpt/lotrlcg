@@ -282,6 +282,7 @@ export type ScenarioId =
   | "journey-in-the-dark"
   | "breaking-of-the-fellowship"
   | "fog-on-the-barrow-downs"
+  | "the-uruk-hai"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -459,6 +460,7 @@ export interface GameState {
   journeyDark?: import("./journey-dark-types").JourneyDarkState;
   breakingFellowship?: import("./breaking-fellowship-types").BreakingFellowshipState;
   fogBarrow?: import("./fog-barrow-types").FogBarrowState;
+  urukHai?: import("./uruk-hai-types").UrukHaiState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -840,6 +842,12 @@ export interface GameState {
     fbNorth?: boolean;
     /** Fog on the Barrow-downs: the controllers of the characters this attack destroyed. */
     fbVictims?: number[];
+    /** The Uruk-hai: shadow effects that raise the pursuit value if this attack destroys a character. */
+    uhKillPursuit?: number;
+    /** The Uruk-hai: Saruman's Orders returns the attacker after a kill. */
+    uhOrders?: boolean;
+    /** The Uruk-hai: this attack destroyed a character. */
+    uhKilled?: boolean;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

@@ -29,7 +29,7 @@ test("four CI simulation shards cover every registered complete-game case exactl
   assert.equal(baseline.selectedCases.length, baseline.registeredCases);
   assert.equal(new Set(baseline.selectedCases).size, baseline.registeredCases);
   assert.equal(priorSimulationCases.cases.length, 259);
-  assert.equal(baseline.registeredCases, 499);
+  assert.equal(baseline.registeredCases, 504);
   assert.deepEqual(
     baseline.selectedCases
       .filter(
@@ -77,6 +77,7 @@ test("four CI simulation shards cover every registered complete-game case exactl
             "Journey in the Dark",
             "Breaking of the Fellowship",
             "Fog on the Barrow-downs",
+            "The Uruk-hai",
             "The Black Serpent",
             "The Dungeons of Cirith Gurat",
             "The Crossings of Poros",

@@ -1,0 +1,80 @@
+[
+  {
+    "code": "octgn:769838b7-51c6-4a7e-8f10-c39524b3a9c5",
+    "octgnid": "769838b7-51c6-4a7e-8f10-c39524b3a9c5",
+    "name": "Follow the Orcs",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Make Eastemnet the active location. Add Uglúk and To Isengard! to the staging area. Each player chooses 1 non-[fellowship] hero he controls to be a Captive and places it faceup underneath To Isengard! (If playing campaign mode, choose each \"captive\" from the Campaign Log instead.) Set the pursuit value to 10.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 69,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Uruk-hai",
+    "side": "A",
+    "back_name": "Follow the Orcs",
+    "back_text": "X is the pursuit value.\nUglúk cannot leave the staging area or take damage.\nForced: At the end of the combat phase, increase the pursuit value by 1 for each enemy in the staging area.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/769838b7-51c6-4a7e-8f10-c39524b3a9c5.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/769838b7-51c6-4a7e-8f10-c39524b3a9c5.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 69,
+        "quantity": 1,
+        "octgnid": "769838b7-51c6-4a7e-8f10-c39524b3a9c5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/769838b7-51c6-4a7e-8f10-c39524b3a9c5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:080f86b2-8cea-4134-8e79-de6312b51ed6",
+    "octgnid": "080f86b2-8cea-4134-8e79-de6312b51ed6",
+    "name": "Rescue the Captives",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player searches the encounter deck and discard pile for an Uruk-hai enemy, reveals it, and adds it to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "ToS",
+    "pack_name": "The Treason of Saruman",
+    "position": 70,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Uruk-hai",
+    "side": "A",
+    "back_name": "Rescue the Captives",
+    "back_text": "X is the pursuit value.\nResponse: After an enemy is defeated, reduce the pursuit value by 1.\nThe players cannot defeat this stage while Uglúk is in play. If the players defeat this stage, they have rescued each Captive hero and won the game.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/080f86b2-8cea-4134-8e79-de6312b51ed6.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/080f86b2-8cea-4134-8e79-de6312b51ed6.jpg",
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 70,
+        "quantity": 1,
+        "octgnid": "080f86b2-8cea-4134-8e79-de6312b51ed6",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/080f86b2-8cea-4134-8e79-de6312b51ed6.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

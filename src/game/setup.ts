@@ -7,6 +7,8 @@ import {
 import { messengerSetup } from "./land-sorrow-player";
 import {
   isFellowshipHero,
+  isTreasonSarumanScenarioId,
+  sagaLineUp,
   isLotrSagaScenarioId,
   placeRingBearer,
 } from "./lotr-saga";
@@ -223,8 +225,33 @@ export function createGame(
   );
   requireRule(
     !isLotrSagaScenarioId(scenarioId) ||
+      isTreasonSarumanScenarioId(scenarioId) ||
       !chosenHeroes.some((c) => card(c).name === "Frodo Baggins"),
     "Frodo Baggins is the Ring-bearer in The Lord of the Rings Saga; choose another hero.",
+  );
+  // The Treason of Saruman: no ally or hero titled "Saruman" or "Gríma".
+  requireRule(
+    !isTreasonSarumanScenarioId(scenarioId) ||
+      ![
+        ...chosenHeroes,
+        ...Object.keys(deck),
+        ...(options.seats ?? []).flatMap((p) => Object.keys(p.cards ?? {})),
+      ].some(
+        (c) =>
+          ["Saruman", "Gríma"].includes(card(c).name) &&
+          ["hero", "ally"].includes(card(c).type_code),
+      ),
+    "The Treason of Saruman forbids any ally or hero titled Saruman or Gríma; choose another card.",
+  );
+  // A player's other Aragorn is set aside: the Fellowship Aragorn is unique.
+  const chosenLineUps = options.seats?.map((p) => p.heroes) ?? [heroCodes];
+  heroCodes = sagaLineUp(scenarioId, heroCodes);
+  requireRule(
+    heroCodes.length >= 1 &&
+      (options.seats ?? []).every(
+        (p) => sagaLineUp(scenarioId, p.heroes).length >= 1,
+      ),
+    "The Fellowship Aragorn is unique in The Treason of Saruman; choose another hero besides Aragorn.",
   );
   requireRule(
     !chosenHeroes.some((c) => isBagginsBilbo(c)),
@@ -379,12 +406,13 @@ export function createGame(
       s.deckId = config.cards ? "custom" : d!.id;
       if (config.cards) s.customDeck = { ...config.cards };
       else delete s.customDeck;
-      s.startingHeroes = [...config.heroes];
+      const heroes = sagaLineUp(scenarioId, config.heroes);
+      s.startingHeroes = [...heroes];
       s.deck = Object.entries(cards).flatMap(([code, n]) =>
         Array<string>(n).fill(code),
       );
-      s.heroes = config.heroes.map((h) => make(s, h));
-      s.threat = startingThreat(config.heroes) + (campaign?.threatPenalty ?? 0);
+      s.heroes = heroes.map((h) => make(s, h));
+      s.threat = startingThreat(heroes) + (campaign?.threatPenalty ?? 0);
       s.startingThreat = s.threat;
       syncSeat(s);
     });
@@ -420,6 +448,16 @@ export function createGame(
   placeBagginsBilbo(s);
   // The Lord of the Rings: the first player claims The One Ring and the Ring-bearer.
   placeRingBearer(s);
+  chosenLineUps.forEach((heroes, player) => {
+    const aside = heroes.filter(
+      (h) => !sagaLineUp(scenarioId, heroes).includes(h),
+    );
+    if (aside.length)
+      log(
+        s,
+        `${s.table ? `Player ${player + 1}'s` : "Your"} ${aside.map((h) => card(h).name).join(", ")} is set aside: the Fellowship hero Aragorn is unique in The Treason of Saruman.`,
+      );
+  });
   addHobbitTreasures(s, options.hobbitTreasures);
   huntersSetup(s);
   burglarContractSetup(s, options.burglarLoot);

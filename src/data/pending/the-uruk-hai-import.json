@@ -1,0 +1,1224 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The Uruk-hai",
+  "slug": "the-uruk-hai",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "143001",
+      "name": "Aragorn",
+      "type_code": "hero",
+      "type_name": "Hero",
+      "sphere_code": "fellowship",
+      "sphere_name": "Fellowship",
+      "threat": 0,
+      "willpower": 2,
+      "attack": 3,
+      "defense": 2,
+      "health": 5,
+      "traits": "Dúnedain. Noble. Ranger.",
+      "text": "The first player gains control of Aragorn. If Aragorn leaves play, the players lose the game.\n<b>Action:</b> Spend 2 resources from Aragorn's resource pool to ready a hero.",
+      "flavor": "\"I am Aragorn son of Arathorn and am called Elessar, the Elfstone, Dunadan, the heir of Isildur Elendil’s son of Gondor.\"\n<cite>The Two Towers</cite>",
+      "is_unique": true,
+      "deck_limit": 1,
+      "pack_name": "The Treason of Saruman",
+      "pack_code": "ToS",
+      "position": 1,
+      "illustrator": "Mark Behm",
+      "imagesrc": "/cards/143001.png",
+      "url": "https://ringsdb.com/card/143001",
+      "quantity": 1,
+      "octgnid": "f5178135-1485-43c5-9660-99232a4cdca8",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 1,
+          "quantity": 1,
+          "image_code": "143001",
+          "illustrator": "Mark Behm",
+          "octgnid": "f5178135-1485-43c5-9660-99232a4cdca8",
+          "imagesrc": "/bundles/cards/143001.png",
+          "date_release": "2015-04-23"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/143001",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:080f86b2-8cea-4134-8e79-de6312b51ed6",
+      "octgnid": "080f86b2-8cea-4134-8e79-de6312b51ed6",
+      "name": "Rescue the Captives",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player searches the encounter deck and discard pile for an Uruk-hai enemy, reveals it, and adds it to the staging area. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 70,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Uruk-hai",
+      "side": "A",
+      "back_name": "Rescue the Captives",
+      "back_text": "X is the pursuit value.  Response: After an enemy is defeated, reduce the pursuit value by 1.  The players cannot defeat this stage while Ugluk is in play. If the players defeat this stage, they have rescued each Captive hero and won the game.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/080f86b2-8cea-4134-8e79-de6312b51ed6.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/080f86b2-8cea-4134-8e79-de6312b51ed6.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 70,
+          "quantity": 1,
+          "octgnid": "080f86b2-8cea-4134-8e79-de6312b51ed6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/080f86b2-8cea-4134-8e79-de6312b51ed6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:0bd34136-ae3d-44aa-b48f-7190c14f4b3b",
+      "octgnid": "0bd34136-ae3d-44aa-b48f-7190c14f4b3b",
+      "name": "Plains of Rohan",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Plains.",
+      "text": "X is the number of locations in the staging area.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 28,
+      "quantity": 4,
+      "quest": 4,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, increase the pursuit value by 1.",
+      "encounter_set": "The Uruk-hai",
+      "printed_stats": {
+        "threat": "X",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/0bd34136-ae3d-44aa-b48f-7190c14f4b3b.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 28,
+          "quantity": 4,
+          "octgnid": "0bd34136-ae3d-44aa-b48f-7190c14f4b3b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0bd34136-ae3d-44aa-b48f-7190c14f4b3b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:0cb6d866-50dd-4eb0-a86a-8ed84bfeae0e",
+      "octgnid": "0cb6d866-50dd-4eb0-a86a-8ed84bfeae0e",
+      "name": "Grishnákh",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Mordor.",
+      "text": "Forced: After Grishnakh enters play, the first player attaches 1 of the Captives to him. If Grishnakh is defeated, place the attached Captive faceup underneath To Isengard!   Forced: At the end of the quest phase, deal 1 damage to the attached Captive.",
+      "is_unique": true,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 24,
+      "quantity": 1,
+      "threat": 4,
+      "attack": 3,
+      "defense": 4,
+      "health": 5,
+      "engagement": 40,
+      "victory": 3,
+      "encounter_set": "The Uruk-hai",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "3",
+        "defense": "4",
+        "health": "5",
+        "engagement": "40",
+        "victory": "3"
+      },
+      "imagesrc": "/cards/0cb6d866-50dd-4eb0-a86a-8ed84bfeae0e.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 24,
+          "quantity": 1,
+          "octgnid": "0cb6d866-50dd-4eb0-a86a-8ed84bfeae0e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0cb6d866-50dd-4eb0-a86a-8ed84bfeae0e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:0f02460f-4ab8-4060-b520-0f82cbb8ce37",
+      "octgnid": "0f02460f-4ab8-4060-b520-0f82cbb8ce37",
+      "name": "Rest by Night?",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Either immediately end the quest phase and increase the pursuit value by 3, or deal 1 damage to each character committed to the quest. This effect cannot be canceled.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 30,
+      "quantity": 2,
+      "encounter_set": "The Uruk-hai",
+      "printed_stats": {},
+      "imagesrc": "/cards/0f02460f-4ab8-4060-b520-0f82cbb8ce37.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 30,
+          "quantity": 2,
+          "octgnid": "0f02460f-4ab8-4060-b520-0f82cbb8ce37",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0f02460f-4ab8-4060-b520-0f82cbb8ce37.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:1371a0af-e085-42e4-8cd7-a2007da158e1",
+      "octgnid": "1371a0af-e085-42e4-8cd7-a2007da158e1",
+      "name": "To Isengard!",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Treat each Captive's text box as blank. Captive heroes are in play but are not under any player's control. If there are no Captives in play, the players lose the game.  Forced: At the end of the refresh phase, increase the pursuit value by 1. Then, if the pursuit value is 30 or greater, the players lose the game.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 22,
+      "quantity": 1,
+      "encounter_set": "The Uruk-hai",
+      "printed_stats": {},
+      "imagesrc": "/cards/1371a0af-e085-42e4-8cd7-a2007da158e1.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 22,
+          "quantity": 1,
+          "octgnid": "1371a0af-e085-42e4-8cd7-a2007da158e1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1371a0af-e085-42e4-8cd7-a2007da158e1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:1fbeb20b-0018-4d18-ab53-66982543b04b",
+      "octgnid": "1fbeb20b-0018-4d18-ab53-66982543b04b",
+      "name": "Unseen Barrier",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Enchantment.",
+      "text": "When Revealed: The players cannot place more than 3 progress on the current quest this round. (This does not count progress placed on any active location.)",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 32,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, increase the pursuit value by 1.",
+      "encounter_set": "The Uruk-hai",
+      "printed_stats": {},
+      "imagesrc": "/cards/1fbeb20b-0018-4d18-ab53-66982543b04b.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 32,
+          "quantity": 2,
+          "octgnid": "1fbeb20b-0018-4d18-ab53-66982543b04b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1fbeb20b-0018-4d18-ab53-66982543b04b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4530258b-c362-4efe-a0c0-92a4f74c75b3",
+      "octgnid": "4530258b-c362-4efe-a0c0-92a4f74c75b3",
+      "name": "Strange Weariness",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Enchantment.",
+      "text": "When Revealed: Each character committed to the quest gets -1 [willpower] until the end of the round.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 31,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy makes an additional attack against you after this one.",
+      "encounter_set": "The Uruk-hai",
+      "printed_stats": {},
+      "imagesrc": "/cards/4530258b-c362-4efe-a0c0-92a4f74c75b3.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 31,
+          "quantity": 2,
+          "octgnid": "4530258b-c362-4efe-a0c0-92a4f74c75b3",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4530258b-c362-4efe-a0c0-92a4f74c75b3.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:769838b7-51c6-4a7e-8f10-c39524b3a9c5",
+      "octgnid": "769838b7-51c6-4a7e-8f10-c39524b3a9c5",
+      "name": "Follow the Orcs",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Make Eastemnet the active location. Add Ugluk and To Isengard! to the staging area. Each player chooses 1 non-[fellowship] hero he controls to be a Captive and places it faceup underneath To Isengard! Set the pursuit value to 10.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 69,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The Uruk-hai",
+      "side": "A",
+      "back_name": "Follow the Orcs",
+      "back_text": "X is the pursuit value.  Ugluk cannot leave the staging area or take damage.  Forced: At the end of the combat phase, increase the pursuit value by 1 for each enemy in the staging area.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/769838b7-51c6-4a7e-8f10-c39524b3a9c5.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/769838b7-51c6-4a7e-8f10-c39524b3a9c5.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 69,
+          "quantity": 1,
+          "octgnid": "769838b7-51c6-4a7e-8f10-c39524b3a9c5",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/769838b7-51c6-4a7e-8f10-c39524b3a9c5.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8042f7de-6fed-49cf-95be-450f0fae1601",
+      "octgnid": "8042f7de-6fed-49cf-95be-450f0fae1601",
+      "name": "Banks of Entwash",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Plains. River.",
+      "text": "Forced: After any amount of progress is placed on Banks of Entwash, increase the pursuit value by 1.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 29,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 5,
+      "shadow": "Shadow: Either increase the pursuit value by 1, or this attack is considered undefended.",
+      "encounter_set": "The Uruk-hai",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/8042f7de-6fed-49cf-95be-450f0fae1601.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 29,
+          "quantity": 2,
+          "octgnid": "8042f7de-6fed-49cf-95be-450f0fae1601",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8042f7de-6fed-49cf-95be-450f0fae1601.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8345c4ad-4c5e-484d-bc6f-d1e4bc27805f",
+      "octgnid": "8345c4ad-4c5e-484d-bc6f-d1e4bc27805f",
+      "name": "Uruk-hai Fighter",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Uruk-hai.",
+      "text": "Toughness 2.\nForced: After Uruk-hai Fighter attacks and destroys a character, return it to the staging area.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 64,
+      "quantity": 3,
+      "threat": 3,
+      "attack": 3,
+      "defense": 2,
+      "health": 3,
+      "engagement": 29,
+      "shadow": "Shadow: Discard a non-objective attachment you control.",
+      "encounter_set": "Orcs of the White Hand",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "2",
+        "health": "3",
+        "engagement": "29"
+      },
+      "imagesrc": "/cards/8345c4ad-4c5e-484d-bc6f-d1e4bc27805f.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 64,
+          "quantity": 3,
+          "octgnid": "8345c4ad-4c5e-484d-bc6f-d1e4bc27805f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8345c4ad-4c5e-484d-bc6f-d1e4bc27805f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8bfc0f18-87f6-410b-b3b1-8486ca3627c7",
+      "octgnid": "8bfc0f18-87f6-410b-b3b1-8486ca3627c7",
+      "name": "Eastemnet",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Plains.",
+      "text": "While Eastemnet is the active location, it gains: \"Response: After Eastemnet is explored, add 1 resource to each hero's resource pool.\"   Travel: Increase the pursuit value by 1.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 27,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 3,
+      "encounter_set": "The Uruk-hai",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/8bfc0f18-87f6-410b-b3b1-8486ca3627c7.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 27,
+          "quantity": 3,
+          "octgnid": "8bfc0f18-87f6-410b-b3b1-8486ca3627c7",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8bfc0f18-87f6-410b-b3b1-8486ca3627c7.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c0fd82d5-1d87-4120-9b4b-37f81c1b2c9c",
+      "octgnid": "c0fd82d5-1d87-4120-9b4b-37f81c1b2c9c",
+      "name": "Uglúk",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Uruk-hai.",
+      "text": "Toughness 3. Cannot have attachments.\nAllies cannot be declared as attackers or defenders against Ugluk.",
+      "is_unique": true,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 23,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 5,
+      "defense": 1,
+      "health": 6,
+      "engagement": 10,
+      "victory": 5,
+      "encounter_set": "The Uruk-hai",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "1",
+        "health": "6",
+        "engagement": "10",
+        "victory": "5"
+      },
+      "imagesrc": "/cards/c0fd82d5-1d87-4120-9b4b-37f81c1b2c9c.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 23,
+          "quantity": 1,
+          "octgnid": "c0fd82d5-1d87-4120-9b4b-37f81c1b2c9c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c0fd82d5-1d87-4120-9b4b-37f81c1b2c9c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c5d9d3c6-9321-4909-918d-2b81d7aa296d",
+      "octgnid": "c5d9d3c6-9321-4909-918d-2b81d7aa296d",
+      "name": "Saruman's Orders",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player must choose: either return an enemy engaged with him to the staging area, or reveal an encounter card.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 67,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, return attacking enemy to the staging area.",
+      "encounter_set": "Snaga Orcs",
+      "printed_stats": {},
+      "imagesrc": "/cards/c5d9d3c6-9321-4909-918d-2b81d7aa296d.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 67,
+          "quantity": 2,
+          "octgnid": "c5d9d3c6-9321-4909-918d-2b81d7aa296d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c5d9d3c6-9321-4909-918d-2b81d7aa296d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c6adadf8-569a-4943-817b-44bf1418e07e",
+      "octgnid": "c6adadf8-569a-4943-817b-44bf1418e07e",
+      "name": "Snaga",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "Peril. Archery 1.\nWhen Revealed: Discard 1 random card from your hand. Snaga gets +X [threat] until the end of the round, where X is the discarded card's cost.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 66,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 3,
+      "defense": 1,
+      "health": 3,
+      "engagement": 44,
+      "encounter_set": "Snaga Orcs",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "3",
+        "defense": "1",
+        "health": "3",
+        "engagement": "44"
+      },
+      "imagesrc": "/cards/c6adadf8-569a-4943-817b-44bf1418e07e.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 66,
+          "quantity": 3,
+          "octgnid": "c6adadf8-569a-4943-817b-44bf1418e07e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c6adadf8-569a-4943-817b-44bf1418e07e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:eb3b5fc0-02a5-4e28-8744-c1e1b4553763",
+      "octgnid": "eb3b5fc0-02a5-4e28-8744-c1e1b4553763",
+      "name": "The Wold",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Plains. Hills.",
+      "text": "While The Wold is the active location, it gains: \"Response: After The Wold is explored, each player draws 1 card.\"   Travel: Increase the pursuit value by 1.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 26,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 2,
+      "encounter_set": "The Uruk-hai",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/eb3b5fc0-02a5-4e28-8744-c1e1b4553763.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 26,
+          "quantity": 3,
+          "octgnid": "eb3b5fc0-02a5-4e28-8744-c1e1b4553763",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/eb3b5fc0-02a5-4e28-8744-c1e1b4553763.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:eff34048-3186-4613-b841-0cc29cfd357b",
+      "octgnid": "eff34048-3186-4613-b841-0cc29cfd357b",
+      "name": "Uglúk's Uruk-hai",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Uruk-hai.",
+      "text": "Peril. Toughness 1. Archery 1.\nWhen Revealed: Either increase the pursuit value by 3, or reveal an additional encounter card.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 25,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 4,
+      "defense": 2,
+      "health": 5,
+      "engagement": 38,
+      "encounter_set": "The Uruk-hai",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "2",
+        "health": "5",
+        "engagement": "38"
+      },
+      "imagesrc": "/cards/eff34048-3186-4613-b841-0cc29cfd357b.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 25,
+          "quantity": 3,
+          "octgnid": "eff34048-3186-4613-b841-0cc29cfd357b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/eff34048-3186-4613-b841-0cc29cfd357b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f28dc579-14b5-4623-848a-0a9383162b4c",
+      "octgnid": "f28dc579-14b5-4623-848a-0a9383162b4c",
+      "name": "Fighting Uruk-hai",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Peril.\nWhen Revealed: Search the encounter deck and discard pile for an Uruk-hai enemy, reveal it, and put it into play engaged with you. Shuffle the encounter deck. Until the end of the round, each enemy engaged with you adds its [threat] to the total [threat] in the staging area.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 65,
+      "quantity": 2,
+      "encounter_set": "Orcs of the White Hand",
+      "printed_stats": {},
+      "imagesrc": "/cards/f28dc579-14b5-4623-848a-0a9383162b4c.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 65,
+          "quantity": 2,
+          "octgnid": "f28dc579-14b5-4623-848a-0a9383162b4c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f28dc579-14b5-4623-848a-0a9383162b4c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fed61900-b526-41e6-b072-9c5eae29bc77",
+      "octgnid": "fed61900-b526-41e6-b072-9c5eae29bc77",
+      "name": "Isengard Uruk",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Uruk-hai.",
+      "text": "Peril. Toughness 1. Archery 2.\nWhen Revealed: Either assign 3 damage among characters you control, or reveal an additional encounter card.",
+      "is_unique": false,
+      "pack_code": "ToS",
+      "pack_name": "The Treason of Saruman",
+      "position": 63,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 3,
+      "defense": 1,
+      "health": 4,
+      "engagement": 34,
+      "encounter_set": "Orcs of the White Hand",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "1",
+        "health": "4",
+        "engagement": "34"
+      },
+      "imagesrc": "/cards/fed61900-b526-41e6-b072-9c5eae29bc77.jpg",
+      "packs": [
+        {
+          "pack_code": "ToS",
+          "pack_name": "The Treason of Saruman",
+          "position": 63,
+          "quantity": 3,
+          "octgnid": "fed61900-b526-41e6-b072-9c5eae29bc77",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fed61900-b526-41e6-b072-9c5eae29bc77.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E0B.07",
+      "name": "The Uruk-hai (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "ToS"
+      ],
+      "card_codes": [
+        "octgn:769838b7-51c6-4a7e-8f10-c39524b3a9c5",
+        "octgn:080f86b2-8cea-4134-8e79-de6312b51ed6",
+        "octgn:eff34048-3186-4613-b841-0cc29cfd357b",
+        "octgn:eb3b5fc0-02a5-4e28-8744-c1e1b4553763",
+        "octgn:8bfc0f18-87f6-410b-b3b1-8486ca3627c7",
+        "octgn:0bd34136-ae3d-44aa-b48f-7190c14f4b3b",
+        "octgn:8042f7de-6fed-49cf-95be-450f0fae1601",
+        "octgn:0f02460f-4ab8-4060-b520-0f82cbb8ce37",
+        "octgn:4530258b-c362-4efe-a0c0-92a4f74c75b3",
+        "octgn:1fbeb20b-0018-4d18-ab53-66982543b04b",
+        "octgn:fed61900-b526-41e6-b072-9c5eae29bc77",
+        "octgn:8345c4ad-4c5e-484d-bc6f-d1e4bc27805f",
+        "octgn:f28dc579-14b5-4623-848a-0a9383162b4c",
+        "octgn:c6adadf8-569a-4943-817b-44bf1418e07e",
+        "octgn:c5d9d3c6-9321-4909-918d-2b81d7aa296d",
+        "octgn:1371a0af-e085-42e4-8cd7-a2007da158e1",
+        "octgn:c0fd82d5-1d87-4120-9b4b-37f81c1b2c9c",
+        "143001"
+      ],
+      "cards": [
+        {
+          "code": "octgn:769838b7-51c6-4a7e-8f10-c39524b3a9c5",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:080f86b2-8cea-4134-8e79-de6312b51ed6",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:eff34048-3186-4613-b841-0cc29cfd357b",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:eb3b5fc0-02a5-4e28-8744-c1e1b4553763",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8bfc0f18-87f6-410b-b3b1-8486ca3627c7",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:0bd34136-ae3d-44aa-b48f-7190c14f4b3b",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8042f7de-6fed-49cf-95be-450f0fae1601",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:0f02460f-4ab8-4060-b520-0f82cbb8ce37",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4530258b-c362-4efe-a0c0-92a4f74c75b3",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1fbeb20b-0018-4d18-ab53-66982543b04b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fed61900-b526-41e6-b072-9c5eae29bc77",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8345c4ad-4c5e-484d-bc6f-d1e4bc27805f",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f28dc579-14b5-4623-848a-0a9383162b4c",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c6adadf8-569a-4943-817b-44bf1418e07e",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c5d9d3c6-9321-4909-918d-2b81d7aa296d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1371a0af-e085-42e4-8cd7-a2007da158e1",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:c0fd82d5-1d87-4120-9b4b-37f81c1b2c9c",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "143001",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:8bfc0f18-87f6-410b-b3b1-8486ca3627c7",
+          "quantity": 1,
+          "section": "sharedActiveLocation"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:769838b7-51c6-4a7e-8f10-c39524b3a9c5": 1,
+          "octgn:080f86b2-8cea-4134-8e79-de6312b51ed6": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:eff34048-3186-4613-b841-0cc29cfd357b": 1,
+          "octgn:eb3b5fc0-02a5-4e28-8744-c1e1b4553763": 3,
+          "octgn:8bfc0f18-87f6-410b-b3b1-8486ca3627c7": 2,
+          "octgn:0bd34136-ae3d-44aa-b48f-7190c14f4b3b": 3,
+          "octgn:8042f7de-6fed-49cf-95be-450f0fae1601": 2,
+          "octgn:0f02460f-4ab8-4060-b520-0f82cbb8ce37": 2,
+          "octgn:4530258b-c362-4efe-a0c0-92a4f74c75b3": 1,
+          "octgn:1fbeb20b-0018-4d18-ab53-66982543b04b": 2,
+          "octgn:fed61900-b526-41e6-b072-9c5eae29bc77": 2,
+          "octgn:8345c4ad-4c5e-484d-bc6f-d1e4bc27805f": 3,
+          "octgn:f28dc579-14b5-4623-848a-0a9383162b4c": 1,
+          "octgn:c6adadf8-569a-4943-817b-44bf1418e07e": 2,
+          "octgn:c5d9d3c6-9321-4909-918d-2b81d7aa296d": 1
+        },
+        "sharedStagingArea": {
+          "octgn:1371a0af-e085-42e4-8cd7-a2007da158e1": 1,
+          "octgn:c0fd82d5-1d87-4120-9b4b-37f81c1b2c9c": 1
+        },
+        "player1Play1": {
+          "143001": 1
+        },
+        "sharedActiveLocation": {
+          "octgn:8bfc0f18-87f6-410b-b3b1-8486ca3627c7": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q0B.07",
+      "name": "The Uruk-hai",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "ToS"
+      ],
+      "card_codes": [
+        "octgn:769838b7-51c6-4a7e-8f10-c39524b3a9c5",
+        "octgn:080f86b2-8cea-4134-8e79-de6312b51ed6",
+        "octgn:0cb6d866-50dd-4eb0-a86a-8ed84bfeae0e",
+        "octgn:eff34048-3186-4613-b841-0cc29cfd357b",
+        "octgn:eb3b5fc0-02a5-4e28-8744-c1e1b4553763",
+        "octgn:8bfc0f18-87f6-410b-b3b1-8486ca3627c7",
+        "octgn:0bd34136-ae3d-44aa-b48f-7190c14f4b3b",
+        "octgn:8042f7de-6fed-49cf-95be-450f0fae1601",
+        "octgn:0f02460f-4ab8-4060-b520-0f82cbb8ce37",
+        "octgn:4530258b-c362-4efe-a0c0-92a4f74c75b3",
+        "octgn:1fbeb20b-0018-4d18-ab53-66982543b04b",
+        "octgn:fed61900-b526-41e6-b072-9c5eae29bc77",
+        "octgn:8345c4ad-4c5e-484d-bc6f-d1e4bc27805f",
+        "octgn:f28dc579-14b5-4623-848a-0a9383162b4c",
+        "octgn:c6adadf8-569a-4943-817b-44bf1418e07e",
+        "octgn:c5d9d3c6-9321-4909-918d-2b81d7aa296d",
+        "octgn:1371a0af-e085-42e4-8cd7-a2007da158e1",
+        "octgn:c0fd82d5-1d87-4120-9b4b-37f81c1b2c9c",
+        "143001"
+      ],
+      "cards": [
+        {
+          "code": "octgn:769838b7-51c6-4a7e-8f10-c39524b3a9c5",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:080f86b2-8cea-4134-8e79-de6312b51ed6",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:0cb6d866-50dd-4eb0-a86a-8ed84bfeae0e",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:eff34048-3186-4613-b841-0cc29cfd357b",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:eb3b5fc0-02a5-4e28-8744-c1e1b4553763",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8bfc0f18-87f6-410b-b3b1-8486ca3627c7",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:0bd34136-ae3d-44aa-b48f-7190c14f4b3b",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8042f7de-6fed-49cf-95be-450f0fae1601",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:0f02460f-4ab8-4060-b520-0f82cbb8ce37",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4530258b-c362-4efe-a0c0-92a4f74c75b3",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1fbeb20b-0018-4d18-ab53-66982543b04b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fed61900-b526-41e6-b072-9c5eae29bc77",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8345c4ad-4c5e-484d-bc6f-d1e4bc27805f",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f28dc579-14b5-4623-848a-0a9383162b4c",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c6adadf8-569a-4943-817b-44bf1418e07e",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c5d9d3c6-9321-4909-918d-2b81d7aa296d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1371a0af-e085-42e4-8cd7-a2007da158e1",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:c0fd82d5-1d87-4120-9b4b-37f81c1b2c9c",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "143001",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:8bfc0f18-87f6-410b-b3b1-8486ca3627c7",
+          "quantity": 1,
+          "section": "sharedActiveLocation"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:769838b7-51c6-4a7e-8f10-c39524b3a9c5": 1,
+          "octgn:080f86b2-8cea-4134-8e79-de6312b51ed6": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:0cb6d866-50dd-4eb0-a86a-8ed84bfeae0e": 1,
+          "octgn:eff34048-3186-4613-b841-0cc29cfd357b": 3,
+          "octgn:eb3b5fc0-02a5-4e28-8744-c1e1b4553763": 3,
+          "octgn:8bfc0f18-87f6-410b-b3b1-8486ca3627c7": 2,
+          "octgn:0bd34136-ae3d-44aa-b48f-7190c14f4b3b": 4,
+          "octgn:8042f7de-6fed-49cf-95be-450f0fae1601": 2,
+          "octgn:0f02460f-4ab8-4060-b520-0f82cbb8ce37": 2,
+          "octgn:4530258b-c362-4efe-a0c0-92a4f74c75b3": 2,
+          "octgn:1fbeb20b-0018-4d18-ab53-66982543b04b": 2,
+          "octgn:fed61900-b526-41e6-b072-9c5eae29bc77": 3,
+          "octgn:8345c4ad-4c5e-484d-bc6f-d1e4bc27805f": 3,
+          "octgn:f28dc579-14b5-4623-848a-0a9383162b4c": 2,
+          "octgn:c6adadf8-569a-4943-817b-44bf1418e07e": 3,
+          "octgn:c5d9d3c6-9321-4909-918d-2b81d7aa296d": 2
+        },
+        "sharedStagingArea": {
+          "octgn:1371a0af-e085-42e4-8cd7-a2007da158e1": 1,
+          "octgn:c0fd82d5-1d87-4120-9b4b-37f81c1b2c9c": 1
+        },
+        "player1Play1": {
+          "143001": 1
+        },
+        "sharedActiveLocation": {
+          "octgn:8bfc0f18-87f6-410b-b3b1-8486ca3627c7": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "143001",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/143001.png",
+      "localPath": "/cards/143001.png",
+      "bytes": 156938,
+      "sha256": "a905f695bd4133a93c62d2a6d2fd826be637c3f4af1dab3186b7381c8ccfc005"
+    },
+    {
+      "code": "octgn:080f86b2-8cea-4134-8e79-de6312b51ed6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/080f86b2-8cea-4134-8e79-de6312b51ed6.jpg",
+      "localPath": "/cards/080f86b2-8cea-4134-8e79-de6312b51ed6.jpg",
+      "bytes": 153460,
+      "sha256": "7940b294010c9e52e8e19e28949c086f455d7b58d3a6e612ff0b53d70cf42065"
+    },
+    {
+      "code": "octgn:080f86b2-8cea-4134-8e79-de6312b51ed6",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/080f86b2-8cea-4134-8e79-de6312b51ed6.B.jpg",
+      "localPath": "/cards/080f86b2-8cea-4134-8e79-de6312b51ed6.B.jpg",
+      "bytes": 152526,
+      "sha256": "5ce57077898217129cd7306df9f46d613a621b36fd50712546bb984900ddfaf0"
+    },
+    {
+      "code": "octgn:0bd34136-ae3d-44aa-b48f-7190c14f4b3b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0bd34136-ae3d-44aa-b48f-7190c14f4b3b.jpg",
+      "localPath": "/cards/0bd34136-ae3d-44aa-b48f-7190c14f4b3b.jpg",
+      "bytes": 145662,
+      "sha256": "bda10b56a29dacb1e19caa51711129a805d9630fba0398d9b0d972c326ff29a6"
+    },
+    {
+      "code": "octgn:0cb6d866-50dd-4eb0-a86a-8ed84bfeae0e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0cb6d866-50dd-4eb0-a86a-8ed84bfeae0e.jpg",
+      "localPath": "/cards/0cb6d866-50dd-4eb0-a86a-8ed84bfeae0e.jpg",
+      "bytes": 156378,
+      "sha256": "3d402be2686c14528698350ecce4cd7b574f62bf54ef90662945d28c6e4891d8"
+    },
+    {
+      "code": "octgn:0f02460f-4ab8-4060-b520-0f82cbb8ce37",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0f02460f-4ab8-4060-b520-0f82cbb8ce37.jpg",
+      "localPath": "/cards/0f02460f-4ab8-4060-b520-0f82cbb8ce37.jpg",
+      "bytes": 151204,
+      "sha256": "a0700916fbaf1d15fafa9df6805b1e61bf0b767a33b2f28a350dc750032e52f5"
+    },
+    {
+      "code": "octgn:1371a0af-e085-42e4-8cd7-a2007da158e1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1371a0af-e085-42e4-8cd7-a2007da158e1.jpg",
+      "localPath": "/cards/1371a0af-e085-42e4-8cd7-a2007da158e1.jpg",
+      "bytes": 157061,
+      "sha256": "a78cfbc8044c4cbbeefc9f3083bb42957cca9e16f489e43a6952bab646c3649f"
+    },
+    {
+      "code": "octgn:1fbeb20b-0018-4d18-ab53-66982543b04b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1fbeb20b-0018-4d18-ab53-66982543b04b.jpg",
+      "localPath": "/cards/1fbeb20b-0018-4d18-ab53-66982543b04b.jpg",
+      "bytes": 153529,
+      "sha256": "ab8e9f6056c1fddaf31e0cbce18e76b067cb02766b182efd82ee8d40fa5de30d"
+    },
+    {
+      "code": "octgn:4530258b-c362-4efe-a0c0-92a4f74c75b3",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4530258b-c362-4efe-a0c0-92a4f74c75b3.jpg",
+      "localPath": "/cards/4530258b-c362-4efe-a0c0-92a4f74c75b3.jpg",
+      "bytes": 149824,
+      "sha256": "29c84c71ba730b36b459b22543c490c7066f70a3329ac05a1e9ccc0f2d9309bf"
+    },
+    {
+      "code": "octgn:769838b7-51c6-4a7e-8f10-c39524b3a9c5",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/769838b7-51c6-4a7e-8f10-c39524b3a9c5.jpg",
+      "localPath": "/cards/769838b7-51c6-4a7e-8f10-c39524b3a9c5.jpg",
+      "bytes": 167152,
+      "sha256": "1b70f323d9715637c36d89dd4e49b7a02c17fbfa02ed532238a0783526e38166"
+    },
+    {
+      "code": "octgn:769838b7-51c6-4a7e-8f10-c39524b3a9c5",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/769838b7-51c6-4a7e-8f10-c39524b3a9c5.B.jpg",
+      "localPath": "/cards/769838b7-51c6-4a7e-8f10-c39524b3a9c5.B.jpg",
+      "bytes": 158532,
+      "sha256": "920ed92abdbea71724ab5c818bae2fe54e0aca126e369997ac1dd2870d3359e9"
+    },
+    {
+      "code": "octgn:8042f7de-6fed-49cf-95be-450f0fae1601",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8042f7de-6fed-49cf-95be-450f0fae1601.jpg",
+      "localPath": "/cards/8042f7de-6fed-49cf-95be-450f0fae1601.jpg",
+      "bytes": 147394,
+      "sha256": "6d9594b593c61b485b59b11ef946a0f35ede080d6ce5265384766d22e7528fdf"
+    },
+    {
+      "code": "octgn:8345c4ad-4c5e-484d-bc6f-d1e4bc27805f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8345c4ad-4c5e-484d-bc6f-d1e4bc27805f.jpg",
+      "localPath": "/cards/8345c4ad-4c5e-484d-bc6f-d1e4bc27805f.jpg",
+      "bytes": 159134,
+      "sha256": "4c482a3b8a3b10c21acbff58655d6be5cdde401682118c20d1f4c4b9d8117e34"
+    },
+    {
+      "code": "octgn:8bfc0f18-87f6-410b-b3b1-8486ca3627c7",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8bfc0f18-87f6-410b-b3b1-8486ca3627c7.jpg",
+      "localPath": "/cards/8bfc0f18-87f6-410b-b3b1-8486ca3627c7.jpg",
+      "bytes": 150435,
+      "sha256": "a7bf13c341215f5cfc6a111b1963bb038ac57165188006fa9562ff62a1b668be"
+    },
+    {
+      "code": "octgn:c0fd82d5-1d87-4120-9b4b-37f81c1b2c9c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c0fd82d5-1d87-4120-9b4b-37f81c1b2c9c.jpg",
+      "localPath": "/cards/c0fd82d5-1d87-4120-9b4b-37f81c1b2c9c.jpg",
+      "bytes": 142277,
+      "sha256": "c02d1b9cf2ffb0ad5ef4f26c97805634bc9d666a40a0851a808c6224f05dbeea"
+    },
+    {
+      "code": "octgn:c5d9d3c6-9321-4909-918d-2b81d7aa296d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c5d9d3c6-9321-4909-918d-2b81d7aa296d.jpg",
+      "localPath": "/cards/c5d9d3c6-9321-4909-918d-2b81d7aa296d.jpg",
+      "bytes": 160854,
+      "sha256": "1ac26fe546b3c3a3b4e9f81ce8635ffdf0440703806794cc9dbcbffbfff1ce43"
+    },
+    {
+      "code": "octgn:c6adadf8-569a-4943-817b-44bf1418e07e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c6adadf8-569a-4943-817b-44bf1418e07e.jpg",
+      "localPath": "/cards/c6adadf8-569a-4943-817b-44bf1418e07e.jpg",
+      "bytes": 147223,
+      "sha256": "a7d1cfbb9ea3256d0e36f517f2248a09975e3305896652085991ea88e09d1098"
+    },
+    {
+      "code": "octgn:eb3b5fc0-02a5-4e28-8744-c1e1b4553763",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/eb3b5fc0-02a5-4e28-8744-c1e1b4553763.jpg",
+      "localPath": "/cards/eb3b5fc0-02a5-4e28-8744-c1e1b4553763.jpg",
+      "bytes": 151163,
+      "sha256": "f3088677940fa032c746c9590de632e30e0a6578c52bcc817daec3740cc1e68f"
+    },
+    {
+      "code": "octgn:eff34048-3186-4613-b841-0cc29cfd357b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/eff34048-3186-4613-b841-0cc29cfd357b.jpg",
+      "localPath": "/cards/eff34048-3186-4613-b841-0cc29cfd357b.jpg",
+      "bytes": 153686,
+      "sha256": "ce5335569a7622622418c4c4b84802fcc87e5e5d03847be2c5784cc548a2b589"
+    },
+    {
+      "code": "octgn:f28dc579-14b5-4623-848a-0a9383162b4c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f28dc579-14b5-4623-848a-0a9383162b4c.jpg",
+      "localPath": "/cards/f28dc579-14b5-4623-848a-0a9383162b4c.jpg",
+      "bytes": 152782,
+      "sha256": "f474f469d0f18e5bd80b6442b71681d797dd3a121dfde8fe76f73bcb0c1e3564"
+    },
+    {
+      "code": "octgn:fed61900-b526-41e6-b072-9c5eae29bc77",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fed61900-b526-41e6-b072-9c5eae29bc77.jpg",
+      "localPath": "/cards/fed61900-b526-41e6-b072-9c5eae29bc77.jpg",
+      "bytes": 150496,
+      "sha256": "f8476ee063077b7ddac7241392e3231186e88d605513edf9e1b62d04d7de9845"
+    }
+  ]
+}

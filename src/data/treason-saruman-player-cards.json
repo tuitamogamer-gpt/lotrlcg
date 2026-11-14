@@ -1,0 +1,46 @@
+[
+  {
+    "code": "143001",
+    "name": "Aragorn",
+    "type_code": "hero",
+    "type_name": "Hero",
+    "sphere_code": "fellowship",
+    "sphere_name": "Fellowship",
+    "threat": 0,
+    "willpower": 2,
+    "attack": 3,
+    "defense": 2,
+    "health": 5,
+    "traits": "Dúnedain. Noble. Ranger.",
+    "text": "The first player gains control of Aragorn. If Aragorn leaves play, the players lose the game.\nAction: Spend 2 resources from Aragorn's resource pool to ready a hero.",
+    "flavor": "\"I am Aragorn son of Arathorn and am called Elessar, the Elfstone, Dunadan, the heir of Isildur Elendil’s son of Gondor.\"\n<cite>The Two Towers</cite>",
+    "is_unique": true,
+    "deck_limit": 1,
+    "pack_name": "The Treason of Saruman",
+    "pack_code": "ToS",
+    "position": 1,
+    "illustrator": "Mark Behm",
+    "imagesrc": "/cards/143001.png",
+    "url": "https://ringsdb.com/card/143001",
+    "quantity": 1,
+    "octgnid": "f5178135-1485-43c5-9660-99232a4cdca8",
+    "has_errata": false,
+    "packs": [
+      {
+        "pack_code": "ToS",
+        "pack_name": "The Treason of Saruman",
+        "position": 1,
+        "quantity": 1,
+        "image_code": "143001",
+        "illustrator": "Mark Behm",
+        "octgnid": "f5178135-1485-43c5-9660-99232a4cdca8",
+        "imagesrc": "/bundles/cards/143001.png",
+        "date_release": "2015-04-23"
+      }
+    ],
+    "source": "ringsdb",
+    "source_url": "https://ringsdb.com/card/143001",
+    "official": true,
+    "nightmare": false
+  }
+]

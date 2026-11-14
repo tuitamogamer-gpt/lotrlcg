@@ -107,6 +107,10 @@ const HEADLINES: Partial<
     lead: "Find the way north",
     em: "through the fog and the barrows.",
   },
+  "the-uruk-hai": {
+    lead: "Run down the Uruk-hai",
+    em: "before they reach Isengard.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

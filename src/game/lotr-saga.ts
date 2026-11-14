@@ -24,9 +24,11 @@ import {
 import {
   ROAD_DARKENS_FRODO,
   SAGA_FRODO,
+  TOS_ARAGORN,
   isLotrSagaScenarioId,
   isOneRing,
   isRingBearerCode,
+  isTreasonSarumanScenarioId,
   sagaRingCards,
 } from "./lotr-saga-codes";
 import { playerEffectImmune } from "./player-effect-immunity";
@@ -49,28 +51,60 @@ export const ringBearer = (s: GameState): Unit | undefined =>
 export const oneRing = (s: GameState) =>
   ringBearer(s)?.attachments.find((a) => isOneRing(a.code));
 export const oneRingExhausted = (s: GameState) => !!oneRing(s)?.exhausted;
+/** The Treason of Saruman: the Fellowship Aragorn stands in for the Ring-bearer. */
+export const treasonSaruman = (s: GameState) =>
+  isTreasonSarumanScenarioId(s.scenarioId);
+export const tosAragorn = (s: GameState): Unit | undefined =>
+  treasonSaruman(s)
+    ? globalCharacters(s).find((u) => u.code === TOS_ARAGORN)
+    : undefined;
+/**
+ * The Fellowship hero the first player controls: the Ring-bearer with The One
+ * Ring, or The Treason of Saruman's Aragorn.
+ */
+export const sagaHero = (s: GameState): Unit | undefined =>
+  treasonSaruman(s) ? tosAragorn(s) : ringBearer(s);
 /** Setup: the first player gains control of Frodo Baggins and attaches The One Ring. */
 export function placeRingBearer(s: GameState) {
-  if (!lotrSaga(s) || ringBearer(s)) return;
+  if (!lotrSaga(s) || sagaHero(s)) return;
   const first = s.table?.first ?? 0;
   const codes = sagaRingCards(s.scenarioId);
   forOwner(s, first, () => {
     const frodo = make(s, codes.frodo);
     frodo.owner = first;
     frodo.controller = first;
-    const ring = make(s, codes.ring);
-    frodo.attachments.push({ id: ring.id, code: codes.ring, exhausted: false });
+    if (codes.ring) {
+      const ring = make(s, codes.ring);
+      frodo.attachments.push({
+        id: ring.id,
+        code: codes.ring,
+        exhausted: false,
+      });
+    }
     s.heroes.push(frodo);
   });
   log(
     s,
-    `${s.table ? `Player ${first + 1}` : "The first player"} claims The One Ring and gains control of the Ring-bearer, Frodo Baggins.`,
+    codes.ring
+      ? `${s.table ? `Player ${first + 1}` : "The first player"} claims The One Ring and gains control of the Ring-bearer, Frodo Baggins.`
+      : `${s.table ? `Player ${first + 1}` : "The first player"} gains control of the Fellowship hero Aragorn.`,
     "good",
+  );
+}
+/**
+ * The Treason of Saruman: the Fellowship Aragorn is unique, so a player's
+ * other Aragorn is set aside at setup, as the insert's campaign rule has a
+ * player lose that version of Aragorn.
+ */
+export function sagaLineUp(scenarioId: string | undefined, heroes: string[]) {
+  if (!isTreasonSarumanScenarioId(scenarioId)) return heroes;
+  return heroes.filter(
+    (h) => h === TOS_ARAGORN || card(h).name !== card(TOS_ARAGORN).name,
   );
 }
 /** Control of the Ring-bearer passes with the first player token. */
 export function ringBearerFollowsFirstPlayer(s: GameState) {
-  const bearer = ringBearer(s);
+  const bearer = sagaHero(s);
   if (!bearer || !s.table || !lotrSaga(s)) return;
   const from = ownerOf(s, bearer),
     to = firstPlayer(s);
@@ -84,21 +118,28 @@ export function ringBearerFollowsFirstPlayer(s: GameState) {
   forOwner(s, to, () => s.heroes.push(bearer));
   log(
     s,
-    `Player ${to + 1} gains control of the Ring-bearer, ${name(bearer)}, with The One Ring, resources and attachments.`,
+    treasonSaruman(s)
+      ? `Player ${to + 1} gains control of the Fellowship hero ${name(bearer)}, with his resources and attachments.`
+      : `Player ${to + 1} gains control of the Ring-bearer, ${name(bearer)}, with The One Ring, resources and attachments.`,
   );
 }
 export function loseOneRing(s: GameState) {
   if (s.status !== "playing") return;
   s.status = "lost";
-  s.reason = "The One Ring has left play. The players lose the game.";
+  s.reason = treasonSaruman(s)
+    ? "Aragorn has left play. The players lose the game."
+    : "The One Ring has left play. The players lose the game.";
   depositInFlightEncounterCards(s);
   s.choice = null;
   s.queue = [];
   log(s, s.reason, "danger");
 }
-/** The players lose as soon as The One Ring is no longer in play. */
+/**
+ * The players lose as soon as The One Ring is no longer in play; in The
+ * Treason of Saruman, as soon as Aragorn leaves play.
+ */
 export function lotrSagaCheck(s: GameState) {
-  if (lotrSaga(s) && s.status === "playing" && !ringBearer(s)) loseOneRing(s);
+  if (lotrSaga(s) && s.status === "playing" && !sagaHero(s)) loseOneRing(s);
 }
 /** Saga staging: each player reveals their own encounter card in player order. */
 export function sagaRevealPlayer(s: GameState, index: number, first: number) {

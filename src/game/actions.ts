@@ -2,6 +2,7 @@ import * as FortressPlayers from "./fortress-nurn-player";
 import * as HobbitPlayers from "./hobbit-player-cards";
 import * as BlackRidersPlayers from "./black-riders-player-cards";
 import * as RoadDarkensPlayers from "./road-darkens-player-cards";
+import * as TreasonPlayers from "./treason-saruman-player-cards";
 import { fortressNurnPublicState } from "./fortress-nurn-support";
 import { massingPublicState } from "./massing-osgiliath-support";
 import { wmaPublicState } from "./we-must-away-support";
@@ -21,6 +22,7 @@ import { ringSouthPublicState } from "./ring-south-support";
 import { journeyDarkPublicState } from "./journey-dark-support";
 import { breakingFellowshipPublicState } from "./breaking-fellowship-support";
 import { fogBarrowPublicState } from "./fog-barrow-support";
+import { urukHaiPublicState } from "./uruk-hai-support";
 import { ereborAllyPlayed } from "./erebor-treasures";
 import * as LandSorrowPlayers from "./land-sorrow-player";
 import { sorrowPublicState } from "./land-sorrow-support";
@@ -2231,6 +2233,10 @@ function printedAbilities(s: GameState, u: Unit) {
       BlackRidersPlayers.blackRidersPlayerAbilityProblem(s, u),
     ],
     [
+      TreasonPlayers.treasonPlayerAbilityLabel(u.code),
+      TreasonPlayers.treasonPlayerAbilityProblem(s, u),
+    ],
+    [
       EredFinalPlayers.eredFinalPlayerAbilityLabel(u.code),
       EredFinalPlayers.eredFinalPlayerAbilityProblem(s, u),
     ],
@@ -3324,6 +3330,11 @@ export function applyAction(input: GameState, action: Action): GameState {
               u,
               action.attachmentId,
             ) &&
+            !TreasonPlayers.useTreasonPlayerAbility(
+              s,
+              u,
+              action.attachmentId,
+            ) &&
             !WildsPlayers.useWildsPlayerAbility(s, u, action.attachmentId) &&
             !MumakPlayers.useMumakilPlayerAbility(s, u, action.attachmentId) &&
             !RacePlayers.useRaceHaradPlayerAbility(s, u, action.attachmentId) &&
@@ -3722,6 +3733,7 @@ export function publicState(s: GameState) {
     journeyDark: journeyDarkPublicState(s),
     breakingFellowship: breakingFellowshipPublicState(s),
     fogBarrow: fogBarrowPublicState(s),
+    urukHai: urukHaiPublicState(s),
     fortressNurnPlayers: FortressPlayers.fortressNurnPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),

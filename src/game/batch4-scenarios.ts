@@ -16,6 +16,7 @@ import { RING_SOUTH_HOOKS } from "./ring-south";
 import { JOURNEY_DARK_HOOKS } from "./journey-dark";
 import { BREAKING_FELLOWSHIP_HOOKS } from "./breaking-fellowship";
 import { FOG_BARROW_HOOKS } from "./fog-barrow";
+import { URUK_HAI_HOOKS } from "./uruk-hai";
 import { LAND_SORROW_HOOKS } from "./land-sorrow";
 import { ASH_HOOKS } from "./ash-mountains";
 import { WAINRIDERS_HOOKS } from "./wainriders";
@@ -76,6 +77,8 @@ export function batch4Scenario(s: GameState): Batch4ScenarioHooks {
       return BREAKING_FELLOWSHIP_HOOKS;
     case "fog-on-the-barrow-downs":
       return FOG_BARROW_HOOKS;
+    case "the-uruk-hai":
+      return URUK_HAI_HOOKS;
     case "the-land-of-sorrow":
       return LAND_SORROW_HOOKS;
     case "under-the-ash-mountains":
@@ -156,4 +159,5 @@ export const batch4SharedEffect = (effect: Effect) =>
     JOURNEY_DARK_HOOKS,
     BREAKING_FELLOWSHIP_HOOKS,
     FOG_BARROW_HOOKS,
+    URUK_HAI_HOOKS,
   ].some((hooks) => hooks.sharedEffect?.(effect));

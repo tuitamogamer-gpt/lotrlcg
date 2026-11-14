@@ -49,9 +49,11 @@ import {
   FOG_BARROW_ENCOUNTERS,
   FOG_BARROW_QUESTS,
 } from "./fog-barrow-scenario-data";
+import { URUK_HAI_ENCOUNTERS, URUK_HAI_QUESTS } from "./uruk-hai-scenario-data";
 import hobbitPlayers from "../data/hobbit-player-cards.json";
 import blackRidersPlayers from "../data/black-riders-player-cards.json";
 import roadDarkensPlayers from "../data/road-darkens-player-cards.json";
+import treasonSarumanPlayers from "../data/treason-saruman-player-cards.json";
 import lotrSagaCards from "../data/lotr-saga-cards.json";
 import {
   FORTRESS_NURN_ENCOUNTERS,
@@ -362,6 +364,7 @@ export const playerCards = [
           ...hobbitPlayers,
           ...blackRidersPlayers,
           ...roadDarkensPlayers,
+          ...treasonSarumanPlayers,
         ] as Card[]
       ).map((c) => {
         if (c.code === "19146")
@@ -537,6 +540,7 @@ export const encounterCards = [
       ...JOURNEY_DARK_ENCOUNTERS,
       ...BREAKING_FELLOWSHIP_ENCOUNTERS,
       ...FOG_BARROW_ENCOUNTERS,
+      ...URUK_HAI_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -626,6 +630,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...JOURNEY_DARK_QUESTS,
     ...BREAKING_FELLOWSHIP_QUESTS,
     ...FOG_BARROW_QUESTS,
+    ...URUK_HAI_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -756,6 +761,7 @@ export const SCRIPTED = new Set(
     ...JOURNEY_DARK_QUESTS,
     ...BREAKING_FELLOWSHIP_QUESTS,
     ...FOG_BARROW_QUESTS,
+    ...URUK_HAI_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

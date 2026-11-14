@@ -16,6 +16,7 @@ import { RING_SOUTH_ADVENTURES } from "./ring-south-scenario-data";
 import { JOURNEY_DARK_ADVENTURES } from "./journey-dark-scenario-data";
 import { BREAKING_FELLOWSHIP_ADVENTURES } from "./breaking-fellowship-scenario-data";
 import { FOG_BARROW_ADVENTURES } from "./fog-barrow-scenario-data";
+import { URUK_HAI_ADVENTURES } from "./uruk-hai-scenario-data";
 import { LAND_SORROW_ADVENTURES } from "./land-sorrow-scenario-data";
 import { ASH_ADVENTURES } from "./ash-mountains-scenario-data";
 import { WAINRIDERS_ADVENTURES } from "./wainriders-scenario-data";
@@ -1199,6 +1200,7 @@ export const SCENARIOS = [
   ...JOURNEY_DARK_ADVENTURES,
   ...BREAKING_FELLOWSHIP_ADVENTURES,
   ...FOG_BARROW_ADVENTURES,
+  ...URUK_HAI_ADVENTURES,
 ] as const;
 /** The Mirkwood Paths campaign covers the three Core Set quests in order. */
 export const CAMPAIGN_CHAPTERS: readonly ScenarioId[] = [
