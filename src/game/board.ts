@@ -34,6 +34,7 @@ import type { DamageContext } from "./damage-context";
 import * as BatchPlayers from "./batch4-player";
 import * as BlackRidersPlayers from "./black-riders-player-cards";
 import * as TreasonPlayers from "./treason-saruman-player-cards";
+import * as LandShadowPlayers from "./land-shadow-player-cards";
 import * as RoadDarkensPlayers from "./road-darkens-player-cards";
 import * as WildsPlayers from "./wilds-player";
 import { batch4Scenario } from "./batch4-scenarios";
@@ -538,6 +539,7 @@ export function exhaustCharacter(s: GameState, u: Unit): boolean {
 }
 /** Every addition to staging shares the response timing, including a return from engagement. */
 export function enemyAddedToStaging(s: GameState, u: Unit) {
+  const attachedBefore = new Set(u.attachments.map((a) => a.id));
   batch4Scenario(s).enemyEntered?.(s, u);
   TemplePlayers.templePlayerEnemyEntered(s, u);
   Weather.weatherOrcAdded(s, u);
@@ -546,6 +548,7 @@ export function enemyAddedToStaging(s: GameState, u: Unit) {
   heirsPlayerEnemyAddedToStaging(s, u);
   bloodPlayerEnemyAddedToStaging(s, u);
   longDarkPlayerEnemyAddedToStaging(s, u);
+  LandShadowPlayers.landShadowPlayerEnemyAddedToStaging(s, u, attachedBefore);
 }
 
 /** Put a new enemy directly into play engaged, without staging-only Trap triggers. */
@@ -1732,6 +1735,13 @@ export function characterLeftPlay(
   emynPlayerLeavesPlay(s, u, controller);
   elfCharactersLeft(s, [u], controller);
   mirkwoodPlayerLeavesPlay(s, u, controller, destination);
+  LandShadowPlayers.landShadowPlayerCharacterLeft(
+    s,
+    u,
+    controller,
+    destination,
+    lastKnownType,
+  );
   prepend(s, ...shadowFlameCharactersLeft(s));
   druadanPlayerLeavesPlay(s, u);
   heirsCharacterLeaves(s, u);
@@ -2984,6 +2994,7 @@ export function engage(s: GameState, u: Unit, optional = false) {
   EredPlayers.eredMithrinPlayerEnemyEngaged(s, u, activeSeat(s));
   BatchPlayers.batch4PlayerEnemyEngaged(s, u, activeSeat(s));
   BlackRidersPlayers.blackRidersPlayerEnemyEngaged(s, u);
+  LandShadowPlayers.landShadowPlayerEnemyEngaged(s, u);
   ShadowEastPlayers.shadowEastPlayerEngaged(s, u);
   Umbar.umbarEngaged(s, u);
   batch4Scenario(s).engaged?.(s, u, optional);
@@ -3919,6 +3930,7 @@ export function allyEntryResponses(
   BlackRidersPlayers.blackRidersPlayerAllyEntered(s, u);
   RoadDarkensPlayers.roadDarkensPlayerAllyEntered(s, u);
   TreasonPlayers.treasonPlayerAllyEntered(s, u);
+  LandShadowPlayers.landShadowPlayerAllyEntered(s, u);
   EredFinalPlayers.eredFinalPlayerAllyEntered(s, u, played, fromHand);
   EredPlayers.eredMithrinPlayerAllyEntered(s, u, played);
   BatchPlayers.batch4PlayerAllyEntered(s, u, played);

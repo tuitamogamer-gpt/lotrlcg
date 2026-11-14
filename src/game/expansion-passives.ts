@@ -82,6 +82,11 @@ const rules: Record<string, AttachmentRule> = {
   "143008": {},
   "143010": { type: "hero", traits: ["Rohan"], restricted: 1 },
   "143014": { names: ["Gandalf"], keywords: ["Ranged", "Sentinel"] },
+  // The Lord of the Rings: The Land of Shadow. The Responses of the Staff of
+  // Lebethron and Snowmane are in land-shadow-player-cards.ts; Snowmane loses
+  // Restricted while attached to Théoden (restrictedOn below).
+  "144008": { type: "hero", traits: ["Gondor", "Hobbit"], restricted: 1 },
+  "144010": { type: "hero", traits: ["Rohan"], restricted: 1 },
   "22110": { type: "hero", traits: ["Hobbit"], restricted: 1 },
   "22112": { type: "hero", limit: 1 },
   "22115": { health: 1 },
@@ -428,14 +433,15 @@ export function expansionPlayProblem(s: GameState, c: Card): string | null {
 }
 export const restrictedSlots = (u: Unit) =>
   u.attachments.reduce(
-    (total, a) =>
-      total +
-      (a.blanked
-        ? 0
-        : (rules[a.code]?.restricted ??
-          (/\bRestricted\b/.test(card(a.code).text ?? "") ? 1 : 0))),
+    (total, a) => total + (a.blanked ? 0 : restrictedOn(u, a.code)),
     0,
   );
+/** The Restricted slots an attachment takes on this host. */
+export const restrictedOn = (u: Unit, code: string) =>
+  code === "144010" && card(u.code).name === "Théoden"
+    ? 0
+    : (rules[code]?.restricted ??
+      (/\bRestricted\b/.test(card(code).text ?? "") ? 1 : 0));
 export const restrictedLimit = (u: Unit, s?: GameState) =>
   2 +
   huntersRestrictedBonus(s, u) +
@@ -545,7 +551,7 @@ export function expansionStats(s: GameState, u: Unit) {
     if (a.code === "19089") result.attack += Math.min(3, p.engaged.length);
     if (a.code === "22032")
       result.attack += u.attachments.filter(
-        (x) => !x.blanked && restrictedAttachment(x.code),
+        (x) => !x.blanked && restrictedOn(u, x.code) > 0,
       ).length;
     if (a.code === "22083")
       result.attack += effectiveThreat(s, ownerOf(s, u)) >= 40 ? 2 : 1;

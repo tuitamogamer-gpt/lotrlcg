@@ -962,6 +962,8 @@ jobs:
             suite: test:browser-shelob-lair
           - group: treason-saruman-players
             suite: test:browser-treason-saruman-players
+          - group: land-shadow-players
+            suite: test:browser-land-shadow-players
           - group: hobbit-players
             suite: test:browser-hobbit-players
           - group: otd-players

@@ -209,7 +209,8 @@
     "test:browser-cross-roads": "node --import tsx scripts/browser-cross-roads.mjs",
     "test:shelob-lair-simulation": "node --import tsx --test tests/shelob-lair-simulation.test.ts",
     "test:browser-shelob-lair": "node --import tsx scripts/browser-shelob-lair.mjs",
-    "test:browser-treason-saruman-players": "node --import tsx scripts/browser-treason-saruman-players.mjs"
+    "test:browser-treason-saruman-players": "node --import tsx scripts/browser-treason-saruman-players.mjs",
+    "test:browser-land-shadow-players": "node --import tsx scripts/browser-land-shadow-players.mjs"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

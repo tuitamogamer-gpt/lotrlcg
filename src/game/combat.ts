@@ -3,6 +3,7 @@ import { POM } from "./passage-marshes-support";
 import { hobbitPlayerNoDefenseExhaust } from "./hobbit-player-cards";
 import * as BlackRidersPlayers from "./black-riders-player-cards";
 import * as TreasonPlayers from "./treason-saruman-player-cards";
+import * as LandShadowPlayers from "./land-shadow-player-cards";
 import * as RoadDarkensPlayers from "./road-darkens-player-cards";
 import { roadDarkensFrodoDefended } from "./lotr-saga";
 import {
@@ -366,6 +367,11 @@ export function playerAttack(
       enemy,
       attackers as Unit[],
     ),
+    ...LandShadowPlayers.landShadowPlayerAttackersDeclared(
+      s,
+      enemy,
+      attackers as Unit[],
+    ),
     fx("resolvePlayerAttack", {
       target: enemy.id,
       ids,
@@ -455,7 +461,9 @@ export function resolvePlayerAttack(
     ]),
   );
   const power = Object.values(contributions).reduce((total, n) => total + n, 0);
-  const defense = mirkwoodPlayerAttackDefense(s, enemy, ids);
+  const defense =
+    LandShadowPlayers.landShadowPlayerAttackDefense(s, enemy, ids) ??
+    mirkwoodPlayerAttackDefense(s, enemy, ids);
   const unreplaced = heirsDamageAmount(s, enemy, Math.max(0, power - defense));
   if (
     MorgulQuest.morgulRedirectDamage(
@@ -511,6 +519,7 @@ export function playerAttackResolved(
   SandsPlayers.beneathSandsPlayerAttackResolved(s, ids);
   otdPlayerAttackResolved(s, ids);
   TreasonPlayers.treasonPlayerAttackResolved(s, ids);
+  LandShadowPlayers.landShadowPlayerAttackResolved(s, ids);
   WildsPlayers.wildsPlayerAttackResolved(s, ids);
   EredPlayers.eredMithrinPlayerAttackResolved(s, ids);
   Raid.raidPlayerAttackFinished(s, enemy);
@@ -897,6 +906,12 @@ export function beginEnemyAttack(
       defenders.filter((d): d is Unit => !!d),
     ) ?? []),
     ...roadDarkensFrodoDefended(
+      s,
+      enemy,
+      defenders.filter((d): d is Unit => !!d),
+      actuallyExhausted,
+    ),
+    ...LandShadowPlayers.landShadowPlayerDefendersDeclared(
       s,
       enemy,
       defenders.filter((d): d is Unit => !!d),

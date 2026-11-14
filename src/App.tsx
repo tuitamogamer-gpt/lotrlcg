@@ -3460,6 +3460,7 @@ export default function App() {
                             key={u.id}
                             s={game}
                             u={u}
+                            dispatch={dispatch}
                             inspect={() => setDetail(card(u.code))}
                             inspectCard={setDetail}
                             action={

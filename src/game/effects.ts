@@ -11,6 +11,7 @@ import {
 } from "./black-riders-player-cards";
 import { roadDarkensPlayerEffect } from "./road-darkens-player-cards";
 import { treasonPlayerEffect } from "./treason-saruman-player-cards";
+import * as LandShadowPlayers from "./land-shadow-player-cards";
 import {
   hobbitPlayerEffect,
   hobbitPlayerRefreshEnd,
@@ -633,6 +634,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (blackRidersPlayerEffect(s, e)) return;
   if (roadDarkensPlayerEffect(s, e)) return;
   if (treasonPlayerEffect(s, e)) return;
+  if (LandShadowPlayers.landShadowPlayerEffect(s, e)) return;
   if (wainridersPlayerEffect(s, e)) return;
   if (ulfastPlayerEffect(s, e)) return;
   if (HaradPlayers.handleHaradPlayerEffect(s, e)) return;
@@ -1027,6 +1029,7 @@ function handleEffect(s: GameState, e: Effect) {
       landSorrowPlayerQuestSucceeded(s);
       fortressNurnPlayerQuestSucceeded(s);
       otdPlayerQuestSucceeded(s);
+      LandShadowPlayers.landShadowPlayerQuestSucceeded(s);
       break;
     case "successfulQuestProgress": {
       const before = s.progress,
@@ -2702,7 +2705,7 @@ function handleEffect(s: GameState, e: Effect) {
       }
       if (completed) {
         TempleEncounters.templeAttackFinished(s, completed);
-        if (!completed.redirectedToEnemy)
+        if (!completed.redirectedToEnemy) {
           TemplePlayers.templePlayerAfterDefense(
             s,
             completed.enemyId,
@@ -2710,6 +2713,13 @@ function handleEffect(s: GameState, e: Effect) {
               (completed.defenderId ? [completed.defenderId] : []),
             attackPlayer,
           );
+          LandShadowPlayers.landShadowPlayerAfterDefense(
+            s,
+            completed.enemyId,
+            completed.defenderIds ??
+              (completed.defenderId ? [completed.defenderId] : []),
+          );
+        }
       }
       finalRingDefenseFinished(s);
       for (const id of s.combat?.defenderIds ??

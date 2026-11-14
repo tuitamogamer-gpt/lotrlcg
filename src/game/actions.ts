@@ -932,6 +932,8 @@ export function canPlay(
   if (roadDarkensProblem) return roadDarkensProblem;
   const treasonProblem = TreasonPlayers.treasonPlayerPlayProblem(s, u);
   if (treasonProblem) return treasonProblem;
+  const landShadowProblem = LandShadowPlayers.landShadowPlayerPlayProblem(s, u);
+  if (landShadowProblem) return landShadowProblem;
   const wainProblem = WainPlayers.wainridersPlayerEventProblem(s, c.code);
   if (wainProblem) return wainProblem;
   const isengardProblem = Isengard.isengardEventProblem(s, c.code);
@@ -1559,7 +1561,8 @@ export function resolvePlayerCard(
       heirsPlayerSpecialAttachmentEntry(s, u) ||
       amonPlayerSpecialAttachmentEntry(s, u) ||
       bloodPlayerSpecialAttachmentEntry(s, u) ||
-      TemplePlayers.templePlayerSpecialAttachmentEntry(s, u))
+      TemplePlayers.templePlayerSpecialAttachmentEntry(s, u) ||
+      LandShadowPlayers.landShadowPlayerSpecialAttachmentEntry(s, u))
   ) {
   } else if (c.type_code === "attachment") {
     const host = get(s, target)!;
@@ -1590,6 +1593,8 @@ export function resolvePlayerCard(
       attachment,
       played,
     );
+    if (played)
+      LandShadowPlayers.landShadowPlayerAttachmentPlayed(s, host, attachment);
     if (played)
       redhornPlayerAttachmentPlayed(s, host, attachment, activeSeat(s));
     BatchPlayers.batch4PlayerAttachmentPlayed(
@@ -1639,6 +1644,7 @@ export function resolvePlayerCard(
         DrownedPlayers.drownedPlayerEventCost(s, u.code, target);
         HobbitPlayers.hobbitPlayerEventCost(s, u, target);
         TreasonPlayers.treasonPlayerEventCost(s, u, target);
+        LandShadowPlayers.landShadowPlayerEventCost(s, u);
         const abilityCost =
           finalRingEventCost(s, u.code, target) ??
           RoadDarkensPlayers.roadDarkensPlayerEventCost(s, u);
@@ -1677,6 +1683,7 @@ export function resolvePlayerCard(
     EredFinalPlayers.eredFinalPlayerCardPlayed(s, c, u, fromHand);
     WildsPlayers.wildsPlayerCardPlayed(s, c);
     TreasonPlayers.treasonPlayerCardPlayed(s, c, u, fromHand);
+    LandShadowPlayers.landShadowPlayerCardPlayed(s, c);
     batch4Scenario(s).playerCardPlayed?.(s, u, fromHand);
   }
   if (played && c.type_code !== "ally") heirsPlayerCardPlayed(s, c);
@@ -1709,6 +1716,7 @@ export function handlePlayerEventAbilityEffect(
     ) &&
     !WainPlayers.wainridersPlayerEvent(s, physical.code) &&
     !TreasonPlayers.treasonPlayerEvent(s, physical.code) &&
+    !LandShadowPlayers.landShadowPlayerEvent(s, physical.code) &&
     !WrathPlayers.wrathRuinPlayerEvent(
       s,
       physical.code,
@@ -2062,6 +2070,7 @@ export const needsTarget = (u: Unit) =>
     "06064",
     "06115",
     "12064",
+    "144009",
   ].includes(u.code) &&
     (card(u.code).type_code === "attachment" ||
       [
@@ -2525,6 +2534,10 @@ function printedAbilities(s: GameState, u: Unit) {
       [
         LandSorrowPlayers.landSorrowPlayerAbilityLabel(a.code),
         LandSorrowPlayers.landSorrowPlayerAbilityProblem(s, u, a.id),
+      ],
+      [
+        LandShadowPlayers.landShadowPlayerAbilityLabel(a.code),
+        LandShadowPlayers.landShadowPlayerAbilityProblem(s, u, a.id),
       ],
     ])
       if (label) results.push({ id: a.id, label, disabled: !!problem });

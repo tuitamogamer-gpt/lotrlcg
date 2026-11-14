@@ -9,6 +9,7 @@ import { fortressNurnPlayerUnit } from "./fortress-nurn-player";
 import { hobbitPlayerExtraPayers } from "./hobbit-player-cards";
 import * as BlackRidersPlayers from "./black-riders-player-cards";
 import * as TreasonPlayers from "./treason-saruman-player-cards";
+import * as LandShadowPlayers from "./land-shadow-player-cards";
 import * as RoadDarkensPlayers from "./road-darkens-player-cards";
 import { ereborCostReduction } from "./erebor-treasures";
 import { wandererNoMatch, sarumanPays } from "./wainriders-player-support";
@@ -232,7 +233,7 @@ import {
   hasResourceIcon,
   restrictedSlots,
   restrictedLimit,
-  restrictedAttachment,
+  restrictedOn,
   secrecyDiscount,
   singlePoolCard,
 } from "./expansion-passives";
@@ -583,7 +584,7 @@ export const has = (u: Unit, code: string) =>
   u.attachments.some((a) => !a.blanked && a.code === code);
 
 export const restricted = (u: Unit) =>
-  u.attachments.filter((a) => !a.blanked && restrictedAttachment(a.code));
+  u.attachments.filter((a) => !a.blanked && restrictedOn(u, a.code) > 0);
 
 export function restrictAttachments(s: GameState, u: Unit) {
   syncAttachmentText(s, u);
@@ -957,6 +958,7 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
                 landSorrowPlayerCostReduction(s, c) -
                 BlackRidersPlayers.blackRidersPlayerCostReduction(s, c) -
                 TreasonPlayers.treasonPlayerCostReduction(s, c, target) -
+                LandShadowPlayers.landShadowPlayerCostReduction(s, c) -
                 EredFinalSupport.eredFinalPlayerCostReduction(s, c) -
                 ShadowEastSupport.shadowEastPlayerCostReduction(s, c) -
                 huntersCostReduction(s, c, target) -

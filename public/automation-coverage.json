@@ -2,9 +2,9 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 825,
-    "heroes": 103,
-    "deckCards": 718,
+    "playerCards": 836,
+    "heroes": 105,
+    "deckCards": 727,
     "encounterCards": 1572,
     "scenarios": 104,
     "scenarioIds": [
@@ -116,8 +116,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2728,
-    "pending": 1455
+    "scripted": 2739,
+    "pending": 1444
   },
   "scenarioRecipes": {
     "total": 355,
@@ -783,7 +783,18 @@
     "143014",
     "143021",
     "144001",
+    "144002",
+    "144003",
+    "144004",
     "144005",
+    "144006",
+    "144007",
+    "144008",
+    "144009",
+    "144010",
+    "144011",
+    "144012",
+    "144013",
     "145009",
     "146012",
     "16001",
@@ -3504,9 +3515,9 @@
     {
       "product": "the-land-of-shadow",
       "total": 75,
-      "scripted": 57,
+      "scripted": 68,
       "player": 14,
-      "playerScripted": 2
+      "playerScripted": 13
     },
     {
       "product": "the-land-of-shadow-nightmare",
@@ -10284,7 +10295,7 @@
       "name": "Faramir",
       "type": "hero",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -10292,7 +10303,7 @@
       "name": "Damrod",
       "type": "hero",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -10300,7 +10311,7 @@
       "name": "Anborn",
       "type": "ally",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -10316,7 +10327,7 @@
       "name": "Skinbark",
       "type": "ally",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -10324,7 +10335,7 @@
       "name": "Gamling",
       "type": "ally",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -10332,7 +10343,7 @@
       "name": "Staff of Lebethron",
       "type": "attachment",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -10340,7 +10351,7 @@
       "name": "Ambush",
       "type": "attachment",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -10348,7 +10359,7 @@
       "name": "Snowmane",
       "type": "attachment",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -10356,7 +10367,7 @@
       "name": "Taste it Again!",
       "type": "event",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -10364,7 +10375,7 @@
       "name": "In the Shadows",
       "type": "event",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -10372,7 +10383,7 @@
       "name": "Speak Your Promise!",
       "type": "event",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
