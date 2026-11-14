@@ -241,7 +241,7 @@ test("Core fixtures remain unchanged and reference imports do not enable unscrip
   assert.equal(byCode.get("01135")?.type_code, "objective-ally");
   assert.equal(byCode.get("01135")?.engine_code, "rc135");
   assert.ok(SCRIPTED.has("05001"));
-  assert.ok(!SCRIPTED.has("143002"));
+  assert.ok(!SCRIPTED.has("146004"));
   assert.ok(!SCRIPTED.has("01132"));
   for (const c of catalogue.filter((c) => c.nightmare))
     assert.ok(!SCRIPTED.has(c.code));

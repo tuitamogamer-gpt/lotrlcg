@@ -33,6 +33,7 @@ import * as EredSupport from "./ered-mithrin-player-support";
 import type { DamageContext } from "./damage-context";
 import * as BatchPlayers from "./batch4-player";
 import * as BlackRidersPlayers from "./black-riders-player-cards";
+import * as TreasonPlayers from "./treason-saruman-player-cards";
 import * as RoadDarkensPlayers from "./road-darkens-player-cards";
 import * as WildsPlayers from "./wilds-player";
 import { batch4Scenario } from "./batch4-scenarios";
@@ -2629,6 +2630,10 @@ export function phaseEnd(s: GameState) {
   const bloodEffects: Effect[] = [];
   eachArea(s, () => bloodEffects.push(...bloodPlayerPhaseEndEffects(s)));
   const otdEffects = otdPlayerPhaseEnd(s);
+  const treasonEffects: Effect[] = [];
+  globalEachSeat(s, () =>
+    treasonEffects.push(...TreasonPlayers.treasonPlayerPhaseEnd(s)),
+  );
   const departures = globalCharacters(s)
     .filter((u) => u.temporary || u.beornReturn)
     .map((u) => fx("allyDeparture", { target: u.id, player: ownerOf(s, u) }));
@@ -2639,6 +2644,7 @@ export function phaseEnd(s: GameState) {
     ...bloodEffects,
     ...departures,
     ...otdEffects,
+    ...treasonEffects,
     ...cityDepartures,
     ...wainDepartures,
   );
@@ -3907,6 +3913,7 @@ export function allyEntryResponses(
   landSorrowPlayerAllyEntered(s, u);
   BlackRidersPlayers.blackRidersPlayerAllyEntered(s, u);
   RoadDarkensPlayers.roadDarkensPlayerAllyEntered(s, u);
+  TreasonPlayers.treasonPlayerAllyEntered(s, u);
   EredFinalPlayers.eredFinalPlayerAllyEntered(s, u, played, fromHand);
   EredPlayers.eredMithrinPlayerAllyEntered(s, u, played);
   BatchPlayers.batch4PlayerAllyEntered(s, u, played);

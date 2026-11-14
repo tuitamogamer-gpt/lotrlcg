@@ -926,6 +926,8 @@ export function canPlay(
     u,
   );
   if (roadDarkensProblem) return roadDarkensProblem;
+  const treasonProblem = TreasonPlayers.treasonPlayerPlayProblem(s, u);
+  if (treasonProblem) return treasonProblem;
   const wainProblem = WainPlayers.wainridersPlayerEventProblem(s, c.code);
   if (wainProblem) return wainProblem;
   const isengardProblem = Isengard.isengardEventProblem(s, c.code);
@@ -1632,6 +1634,7 @@ export function resolvePlayerCard(
         DepthsPlayers.depthsPlayerEventCost(s, u.code, target);
         DrownedPlayers.drownedPlayerEventCost(s, u.code, target);
         HobbitPlayers.hobbitPlayerEventCost(s, u, target);
+        TreasonPlayers.treasonPlayerEventCost(s, u, target);
         const abilityCost =
           finalRingEventCost(s, u.code, target) ??
           RoadDarkensPlayers.roadDarkensPlayerEventCost(s, u);
@@ -1669,6 +1672,7 @@ export function resolvePlayerCard(
     ShadowEastPlayers.shadowEastPlayerCardPlayed(s, c, u, fromHand);
     EredFinalPlayers.eredFinalPlayerCardPlayed(s, c, u, fromHand);
     WildsPlayers.wildsPlayerCardPlayed(s, c);
+    TreasonPlayers.treasonPlayerCardPlayed(s, c, u, fromHand);
     batch4Scenario(s).playerCardPlayed?.(s, u, fromHand);
   }
   if (played && c.type_code !== "ally") heirsPlayerCardPlayed(s, c);
@@ -1700,6 +1704,7 @@ export function handlePlayerEventAbilityEffect(
       e.count,
     ) &&
     !WainPlayers.wainridersPlayerEvent(s, physical.code) &&
+    !TreasonPlayers.treasonPlayerEvent(s, physical.code) &&
     !WrathPlayers.wrathRuinPlayerEvent(
       s,
       physical.code,
@@ -1837,6 +1842,7 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
     HobbitPlayers.hobbitPlayerTargets(s, c.code) ??
     BlackRidersPlayers.blackRidersPlayerTargets(s, c.code) ??
     RoadDarkensPlayers.roadDarkensPlayerTargets(s, c.code) ??
+    TreasonPlayers.treasonPlayerTargets(s, c.code) ??
     WainPlayers.wainridersPlayerTargets(s, c.code) ??
     UlfastPlayers.ulfastPlayerTargets(s, c.code) ??
     WrathPlayers.wrathRuinPlayerPlayTargets(s, c.code) ??
@@ -2011,6 +2017,7 @@ export const needsTarget = (u: Unit) =>
   [
     "141009",
     "142007",
+    "143012",
     "131016",
     "131017",
     "132009",
@@ -2529,6 +2536,18 @@ function printedAbilities(s: GameState, u: Unit) {
           u,
           a.id,
         ),
+      });
+    const treasonLabel = TreasonPlayers.treasonPlayerAbilityLabel(a.code);
+    if (
+      treasonLabel &&
+      a.code === TreasonPlayers.TREASON_PLAYER.shadowfax &&
+      !a.blanked &&
+      attachmentController(s, u, a) === activeSeat(s)
+    )
+      results.push({
+        id: a.id,
+        label: treasonLabel,
+        disabled: !!TreasonPlayers.treasonPlayerAbilityProblem(s, u, a.id),
       });
     if (a.blanked) continue;
     const hobbitLabel = HobbitPlayers.hobbitPlayerAbilityLabel(a.code);

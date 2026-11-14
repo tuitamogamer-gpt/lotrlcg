@@ -8,6 +8,7 @@ import {
 import { fortressNurnPlayerUnit } from "./fortress-nurn-player";
 import { hobbitPlayerExtraPayers } from "./hobbit-player-cards";
 import * as BlackRidersPlayers from "./black-riders-player-cards";
+import * as TreasonPlayers from "./treason-saruman-player-cards";
 import * as RoadDarkensPlayers from "./road-darkens-player-cards";
 import { ereborCostReduction } from "./erebor-treasures";
 import { wandererNoMatch, sarumanPays } from "./wainriders-player-support";
@@ -955,6 +956,7 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
                 dwarfCostReduction(s, c) -
                 landSorrowPlayerCostReduction(s, c) -
                 BlackRidersPlayers.blackRidersPlayerCostReduction(s, c) -
+                TreasonPlayers.treasonPlayerCostReduction(s, c, target) -
                 EredFinalSupport.eredFinalPlayerCostReduction(s, c) -
                 ShadowEastSupport.shadowEastPlayerCostReduction(s, c) -
                 huntersCostReduction(s, c, target) -

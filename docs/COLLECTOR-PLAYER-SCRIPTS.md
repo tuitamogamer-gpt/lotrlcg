@@ -51,7 +51,10 @@ and Elrond discard at the actual end of the round. Since The Road Darkens player
 import, both show the reviewed RingsDB scans pinned in
 `tests/road-darkens-player-art.json`, and Elrond's text follows the printed card
 ("heal all damage from a hero"); see
-[The Road Darkens player scripts](ROAD-DARKENS-PLAYER-SCRIPTS.md). Mablung's engagement bonus lasts
+[The Road Darkens player scripts](ROAD-DARKENS-PLAYER-SCRIPTS.md). Gimli and Legolas,
+from The Treason of Saruman, likewise show the reviewed RingsDB scans pinned in
+`tests/treason-saruman-player-art.json` since that box's player import; see
+[The Treason of Saruman player scripts](TREASON-SARUMAN-PLAYER-SCRIPTS.md). Mablung's engagement bonus lasts
 through phase changes and clears at round end; the client and coach display the
 current engagement cost. Elf-stone uses the explored location attachment snapshot
 and the current first player's hand, including with multiple active locations.

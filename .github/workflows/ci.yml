@@ -900,6 +900,8 @@ jobs:
             suite: test:browser-helms-deep
           - group: road-isengard
             suite: test:browser-road-isengard
+          - group: treason-saruman-players
+            suite: test:browser-treason-saruman-players
           - group: hobbit-players
             suite: test:browser-hobbit-players
           - group: otd-players

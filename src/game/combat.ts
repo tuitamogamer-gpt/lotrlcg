@@ -1,6 +1,7 @@
 import { wainridersPlayerAttackKilled } from "./wainriders-player";
 import { hobbitPlayerNoDefenseExhaust } from "./hobbit-player-cards";
 import * as BlackRidersPlayers from "./black-riders-player-cards";
+import * as TreasonPlayers from "./treason-saruman-player-cards";
 import * as RoadDarkensPlayers from "./road-darkens-player-cards";
 import { roadDarkensFrodoDefended } from "./lotr-saga";
 import {
@@ -359,6 +360,11 @@ export function playerAttack(
       attackers as Unit[],
     ),
     ...otdPlayerAttackersDeclared(s, enemy, attackers as Unit[], abilityMode),
+    ...TreasonPlayers.treasonPlayerAttackersDeclared(
+      s,
+      enemy,
+      attackers as Unit[],
+    ),
     fx("resolvePlayerAttack", {
       target: enemy.id,
       ids,
@@ -501,6 +507,7 @@ export function playerAttackResolved(
 ) {
   SandsPlayers.beneathSandsPlayerAttackResolved(s, ids);
   otdPlayerAttackResolved(s, ids);
+  TreasonPlayers.treasonPlayerAttackResolved(s, ids);
   WildsPlayers.wildsPlayerAttackResolved(s, ids);
   EredPlayers.eredMithrinPlayerAttackResolved(s, ids);
   Raid.raidPlayerAttackFinished(s, enemy);
@@ -548,6 +555,7 @@ export function playerAttackKilled(
   WrathPlayers.wrathRuinPlayerAttackKilled(s, enemy, ids, engagedPlayer);
   landSorrowPlayerAttackKilled(s, enemy, ids);
   BlackRidersPlayers.blackRidersPlayerAttackKilled(s, enemy, ids);
+  TreasonPlayers.treasonPlayerAttackKilled(s, enemy, ids);
   EredPlayers.eredMithrinPlayerAttackKilled(s, enemy, ids);
   BatchPlayers.batch4PlayerAttackKilled(s, enemy, ids);
   Realm.realmAttackKilled(s, ids);

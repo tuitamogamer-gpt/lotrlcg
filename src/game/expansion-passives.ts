@@ -77,6 +77,11 @@ const rules: Record<string, AttachmentRule> = {
   "142008": { names: ["Gandalf"], restricted: 1 },
   "142009": { traits: ["Istari"], limit: 1 },
   "142010": { traits: ["Ring-bearer"] },
+  // The Lord of the Rings: The Treason of Saruman. Arod's targets (a hero or
+  // Legolas) and the abilities are in treason-saruman-player-cards.ts.
+  "143008": {},
+  "143010": { type: "hero", traits: ["Rohan"], restricted: 1 },
+  "143014": { names: ["Gandalf"], keywords: ["Ranged", "Sentinel"] },
   "22110": { type: "hero", traits: ["Hobbit"], restricted: 1 },
   "22112": { type: "hero", limit: 1 },
   "22115": { health: 1 },

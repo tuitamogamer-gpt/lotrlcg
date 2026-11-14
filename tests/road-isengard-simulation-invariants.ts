@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { publicState, restoreSave } from "../src/game/engine";
+import { gandalfFaceupCard } from "../src/game/road-darkens-player-cards";
 import { card } from "../src/game/cards";
 
 import { shadowEastPlayerUnits } from "../src/game/shadow-east-player-support";
@@ -154,16 +155,24 @@ export function riSimulationObserver() {
 
     const alternate = structuredClone(s);
     let changed = false;
-    const swap = <T>(pile: T[], key: (value: T) => string) => {
-      const index = pile.findIndex((x) => key(x) !== key(pile[0]));
-      if (index > 0) {
-        [pile[0], pile[index]] = [pile[index], pile[0]];
+    // Only concealed cards are swapped: Gandalf (The Road Darkens) keeps the
+    // top card of his controller's deck faceup.
+    const swap = <T>(pile: T[], key: (value: T) => string, from = 0) => {
+      const index = pile.findIndex(
+        (x, i) => i > from && key(x) !== key(pile[from]),
+      );
+      if (index > from) {
+        [pile[from], pile[index]] = [pile[index], pile[from]];
         changed = true;
       }
     };
     swap(alternate.encounterDeck, (x) => x);
     for (const p of seatIndices(alternate))
-      swap(seatView(alternate, p).deck, (x) => x);
+      swap(
+        seatView(alternate, p).deck,
+        (x) => x,
+        gandalfFaceupCard(alternate, p) ? 1 : 0,
+      );
     for (const contract of alternate.burglarContract?.contracts ?? [])
       swap(contract.loot, (x) => x.code);
     for (const viewer of seatIndices(s)) {

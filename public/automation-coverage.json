@@ -2,9 +2,9 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 814,
-    "heroes": 100,
-    "deckCards": 710,
+    "playerCards": 824,
+    "heroes": 102,
+    "deckCards": 718,
     "encounterCards": 1523,
     "scenarios": 101,
     "scenarioIds": [
@@ -113,8 +113,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2662,
-    "pending": 1521
+    "scripted": 2672,
+    "pending": 1511
   },
   "scenarioRecipes": {
     "total": 355,
@@ -765,9 +765,19 @@
     "142010",
     "142084",
     "143001",
+    "143002",
+    "143003",
     "143004",
     "143005",
+    "143006",
+    "143007",
+    "143008",
     "143009",
+    "143010",
+    "143011",
+    "143012",
+    "143013",
+    "143014",
     "143021",
     "144005",
     "145009",
@@ -3658,9 +3668,9 @@
     {
       "product": "the-treason-of-saruman",
       "total": 81,
-      "scripted": 61,
+      "scripted": 71,
       "player": 20,
-      "playerScripted": 4
+      "playerScripted": 14
     },
     {
       "product": "the-treason-of-saruman-nightmare",
@@ -10038,7 +10048,7 @@
       "name": "Théoden",
       "type": "hero",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -10046,7 +10056,7 @@
       "name": "Treebeard",
       "type": "hero",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -10070,7 +10080,7 @@
       "name": "Quickbeam",
       "type": "ally",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -10078,7 +10088,7 @@
       "name": "Háma",
       "type": "ally",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -10086,7 +10096,7 @@
       "name": "Arod",
       "type": "attachment",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -10102,7 +10112,7 @@
       "name": "Herugrim",
       "type": "attachment",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -10110,7 +10120,7 @@
       "name": "Entmoot",
       "type": "event",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -10118,7 +10128,7 @@
       "name": "Helm! Helm!",
       "type": "event",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -10126,7 +10136,7 @@
       "name": "The Three Hunters",
       "type": "event",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -10134,7 +10144,7 @@
       "name": "Shadowfax",
       "type": "attachment",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
