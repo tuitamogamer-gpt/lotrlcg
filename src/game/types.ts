@@ -285,6 +285,7 @@ export type ScenarioId =
   | "the-uruk-hai"
   | "helms-deep"
   | "the-road-to-isengard"
+  | "the-passage-of-the-marshes"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -465,6 +466,7 @@ export interface GameState {
   urukHai?: import("./uruk-hai-types").UrukHaiState;
   helmsDeep?: import("./helms-deep-types").HelmsDeepState;
   roadIsengard?: import("./road-isengard-types").RoadIsengardState;
+  passageMarshes?: import("./passage-marshes-types").PassageMarshesState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -858,6 +860,8 @@ export interface GameState {
     hdKillProgress?: number;
     /** The Road to Isengard: the players who discard a random card if this attack destroys a character. */
     riKillDiscard?: number[];
+    /** The Passage of the Marshes: Groping Dead's shadow places a mire token if this attack destroys a character. */
+    pomMireOnKill?: boolean;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

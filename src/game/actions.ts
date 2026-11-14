@@ -25,6 +25,8 @@ import { fogBarrowPublicState } from "./fog-barrow-support";
 import { urukHaiPublicState } from "./uruk-hai-support";
 import { helmsDeepPublicState } from "./helms-deep-support";
 import { roadIsengardPublicState } from "./road-isengard-support";
+import { passageMarshesPublicState } from "./passage-marshes-support";
+import * as LandShadowPlayers from "./land-shadow-player-cards";
 import { ereborAllyPlayed } from "./erebor-treasures";
 import * as LandSorrowPlayers from "./land-sorrow-player";
 import { sorrowPublicState } from "./land-sorrow-support";
@@ -2246,6 +2248,10 @@ function printedAbilities(s: GameState, u: Unit) {
       TreasonPlayers.treasonPlayerAbilityProblem(s, u),
     ],
     [
+      LandShadowPlayers.landShadowPlayerAbilityLabel(u.code),
+      LandShadowPlayers.landShadowPlayerAbilityProblem(s, u),
+    ],
+    [
       EredFinalPlayers.eredFinalPlayerAbilityLabel(u.code),
       EredFinalPlayers.eredFinalPlayerAbilityProblem(s, u),
     ],
@@ -3356,6 +3362,11 @@ export function applyAction(input: GameState, action: Action): GameState {
               u,
               action.attachmentId,
             ) &&
+            !LandShadowPlayers.useLandShadowPlayerAbility(
+              s,
+              u,
+              action.attachmentId,
+            ) &&
             !WildsPlayers.useWildsPlayerAbility(s, u, action.attachmentId) &&
             !MumakPlayers.useMumakilPlayerAbility(s, u, action.attachmentId) &&
             !RacePlayers.useRaceHaradPlayerAbility(s, u, action.attachmentId) &&
@@ -3757,6 +3768,7 @@ export function publicState(s: GameState) {
     urukHai: urukHaiPublicState(s),
     helmsDeep: helmsDeepPublicState(s),
     roadIsengard: roadIsengardPublicState(s),
+    passageMarshes: passageMarshesPublicState(s),
     fortressNurnPlayers: FortressPlayers.fortressNurnPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),

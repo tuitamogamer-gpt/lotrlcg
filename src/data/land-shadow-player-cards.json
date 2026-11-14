@@ -1,0 +1,46 @@
+[
+  {
+    "code": "144001",
+    "name": "Frodo Baggins",
+    "type_code": "hero",
+    "type_name": "Hero",
+    "sphere_code": "fellowship",
+    "sphere_name": "Fellowship",
+    "threat": 0,
+    "willpower": 2,
+    "attack": 1,
+    "defense": 2,
+    "health": 2,
+    "traits": "Hobbit. Ring-bearer.",
+    "text": "Action: Spend 1 [fellowship] resource and exhaust The One Ring to give Frodo Baggins +2 [willpower] and +2 [attack] until the end of the round.",
+    "flavor": "\"It's my doom, I think, to go to that Shadow yonder, so that a way will be found.\" <cite>The Two Towers</cite>",
+    "is_unique": true,
+    "deck_limit": 1,
+    "pack_name": "The Land of Shadow",
+    "pack_code": "LoS",
+    "position": 1,
+    "illustrator": "Melanie Maier",
+    "imagesrc": "/cards/144001.png",
+    "url": "https://ringsdb.com/card/144001",
+    "quantity": 1,
+    "octgnid": "fe58a6d3-7028-41c1-ab00-5e33e7d77b5f",
+    "has_errata": false,
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 1,
+        "quantity": 1,
+        "image_code": "144001",
+        "illustrator": "Melanie Maier",
+        "octgnid": "fe58a6d3-7028-41c1-ab00-5e33e7d77b5f",
+        "imagesrc": "/bundles/cards/144001.png",
+        "date_release": "2015-11-19"
+      }
+    ],
+    "source": "ringsdb",
+    "source_url": "https://ringsdb.com/card/144001",
+    "official": true,
+    "nightmare": false
+  }
+]

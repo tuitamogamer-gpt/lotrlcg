@@ -203,6 +203,8 @@
     "test:browser-helms-deep": "node --import tsx scripts/browser-helms-deep.mjs",
     "test:road-isengard-simulation": "node --import tsx --test tests/road-isengard-simulation.test.ts",
     "test:browser-road-isengard": "node --import tsx scripts/browser-road-isengard.mjs",
+    "test:passage-marshes-simulation": "node --import tsx --test tests/passage-marshes-simulation.test.ts",
+    "test:browser-passage-marshes": "node --import tsx scripts/browser-passage-marshes.mjs",
     "test:browser-treason-saruman-players": "node --import tsx scripts/browser-treason-saruman-players.mjs"
   },
   "dependencies": {

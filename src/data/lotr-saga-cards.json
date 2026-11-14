@@ -58,5 +58,35 @@
     "source_url": "https://dragncards.com/plugin/1",
     "official": true,
     "nightmare": false
+  },
+  {
+    "code": "octgn:32267333-091c-4bbf-bb29-5f21c8b79188",
+    "octgnid": "32267333-091c-4bbf-bb29-5f21c8b79188",
+    "name": "The One Ring",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Artifact. Item. Ring.",
+    "text": "Setup: The first player claims The One Ring and attaches it to the Ring-bearer.\nAttached hero does not count against the hero limit. The first player gains control of attached hero.\nIf The One Ring leaves play, the players lose the game.",
+    "is_unique": true,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 63,
+    "quantity": 1,
+    "printed_stats": {},
+    "imagesrc": "/cards/32267333-091c-4bbf-bb29-5f21c8b79188.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 63,
+        "quantity": 1,
+        "octgnid": "32267333-091c-4bbf-bb29-5f21c8b79188",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32267333-091c-4bbf-bb29-5f21c8b79188.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
   }
 ]

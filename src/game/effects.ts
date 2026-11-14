@@ -1848,6 +1848,7 @@ function handleEffect(s: GameState, e: Effect) {
     }
     case "khazadStagingEnd":
       khazadStagingEnd(s);
+      batch4Scenario(s).stagingEnd?.(s);
       break;
     case "resolveQuestResult":
       resolveQuestResult(s);
@@ -2851,6 +2852,7 @@ function handleEffect(s: GameState, e: Effect) {
         ringBearerFollowsFirstPlayer(s);
         Depths.depthsFirstPlayerChanged(s);
         DrownedCompanions.drownedFirstPlayerChanged(s);
+        batch4Scenario(s).firstPlayerChanged?.(s, true);
       }
       watcherWaterRefresh(s);
       check(s);

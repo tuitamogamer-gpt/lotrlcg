@@ -1,6 +1,6 @@
 import { shadowEastPlayerImmune } from "./shadow-east-player-support";
 import { card, playerCards } from "./cards";
-import { playerCardImmune } from "./card-immunity";
+import { fellowshipCardsAffect, playerCardImmune } from "./card-immunity";
 import { hasTrait } from "./expansion-passives";
 import { activePlayerAbilityCode } from "./player-ability-triggers";
 import { isEnemy } from "./ships";
@@ -30,6 +30,11 @@ export function playerEffectImmune(
   // printed action can affect enemies immune only to player card effects.
   if (sourceCode) {
     if (!isPlayerCardSource(sourceCode)) return false;
+    if (
+      card(sourceCode).sphere_code === "fellowship" &&
+      fellowshipCardsAffect(u)
+    )
+      return false;
   }
   if (playerCardImmune(u)) return true;
   if (

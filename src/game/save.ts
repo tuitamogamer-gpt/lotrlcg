@@ -37,6 +37,10 @@ import {
   roadIsengardUnits,
   validateRoadIsengard,
 } from "./road-isengard-support";
+import {
+  passageMarshesUnits,
+  validatePassageMarshes,
+} from "./passage-marshes-support";
 import { validateHideTest } from "./hide-test";
 import { validateAsh, ashExtraUnits } from "./ash-mountains-support";
 import { validateAshPlayers } from "./ash-mountains-player";
@@ -404,6 +408,7 @@ export function validateSave(
       (c.riKillDiscard === undefined ||
         (Array.isArray(c.riKillDiscard) &&
           c.riKillDiscard.every((n) => Number.isInteger(n) && n >= 0))) &&
+      (c.pomMireOnKill === undefined || typeof c.pomMireOnKill === "boolean") &&
       (c.fbVictims === undefined ||
         (Array.isArray(c.fbVictims) &&
           c.fbVictims.every((n) => Number.isInteger(n) && n >= 0))) &&
@@ -982,6 +987,7 @@ export function validateSave(
         !validateUrukHai(s, validUnit as (v: unknown) => boolean) ||
         !validateHelmsDeep(s, validUnit as (v: unknown) => boolean) ||
         !validateRoadIsengard(s, validUnit as (v: unknown) => boolean) ||
+        !validatePassageMarshes(s, validUnit as (v: unknown) => boolean) ||
         !validateLandSorrow(s, validUnit as (v: unknown) => boolean) ||
         !validateAsh(s, validUnit as (v: unknown) => boolean) ||
         !validateWainriders(s, validUnit as (v: unknown) => boolean, (c) =>
@@ -1710,6 +1716,7 @@ export function validateSave(
       ...urukHaiUnits(s),
       ...helmsDeepUnits(s),
       ...roadIsengardUnits(s),
+      ...passageMarshesUnits(s),
       ...(s.fortressNurnPlayers?.contracts.map((c) => c.unit) ?? []),
       ...(s.landSorrowPlayers?.contracts.flatMap((c) =>
         c.unit ? [c.unit] : [],

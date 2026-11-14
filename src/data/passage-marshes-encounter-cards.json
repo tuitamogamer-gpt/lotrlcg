@@ -1,0 +1,611 @@
+[
+  {
+    "code": "octgn:0e3ce28a-df4b-461e-b47a-299e4c730cc2",
+    "octgnid": "0e3ce28a-df4b-461e-b47a-299e4c730cc2",
+    "name": "Groping Dead",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Undead.",
+    "text": "The engaged player cannot reduce his threat.\nForced: After Groping Dead destroys a character, place 1 mire token on the active location.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 16,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 3,
+    "defense": 1,
+    "health": 4,
+    "engagement": 24,
+    "shadow": "Shadow: If this attack destroys a character, place 1 mire token on the active location.",
+    "encounter_set": "The Passage of the Marshes",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "1",
+      "health": "4",
+      "engagement": "24"
+    },
+    "imagesrc": "/cards/0e3ce28a-df4b-461e-b47a-299e4c730cc2.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 16,
+        "quantity": 3,
+        "octgnid": "0e3ce28a-df4b-461e-b47a-299e4c730cc2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0e3ce28a-df4b-461e-b47a-299e4c730cc2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:1c765fa8-9cb8-4cf4-8e93-daac5bae4fce",
+    "octgnid": "1c765fa8-9cb8-4cf4-8e93-daac5bae4fce",
+    "name": "Haunted Mere",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Marsh.",
+    "text": "Mire 2. Forced: When Haunted Mere is discarded by the Mire keyword, search the encounter deck and discard pile for an Undead enemy, reveal it, and add it to the staging area. Shuffle the encounter deck.\nTravel: Exhaust Sméagol to travel here.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 21,
+    "quantity": 3,
+    "threat": 4,
+    "quest": 5,
+    "victory": 4,
+    "encounter_set": "The Passage of the Marshes",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "5",
+      "victory": "4"
+    },
+    "imagesrc": "/cards/1c765fa8-9cb8-4cf4-8e93-daac5bae4fce.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 21,
+        "quantity": 3,
+        "octgnid": "1c765fa8-9cb8-4cf4-8e93-daac5bae4fce",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1c765fa8-9cb8-4cf4-8e93-daac5bae4fce.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:3254a776-09e5-4576-9b3c-164cc93e1e26",
+    "octgnid": "3254a776-09e5-4576-9b3c-164cc93e1e26",
+    "name": "Soft Mires",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Marsh.",
+    "text": "Mire 1. Forced: When Soft Mires is discarded by the Mire keyword, the first player reveals the top card of the encounter deck.\nTravel: Each player must raise his threat by 1 to travel here.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 23,
+    "quantity": 4,
+    "threat": 2,
+    "quest": 4,
+    "victory": 2,
+    "encounter_set": "The Passage of the Marshes",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "4",
+      "victory": "2"
+    },
+    "imagesrc": "/cards/3254a776-09e5-4576-9b3c-164cc93e1e26.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 23,
+        "quantity": 4,
+        "octgnid": "3254a776-09e5-4576-9b3c-164cc93e1e26",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3254a776-09e5-4576-9b3c-164cc93e1e26.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:32993141-956c-4426-98d9-8705de6fee00",
+    "octgnid": "32993141-956c-4426-98d9-8705de6fee00",
+    "name": "Gollum",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Gollum.",
+    "text": "Immune to non-[fellowship] player card effects. Gollum engages the first player.\nForced: After Gollum engages the first player during the refresh phase, he makes an immediate attack.\nForced: When Gollum is defeated, flip him to Sméagol and exhaust Sméagol.",
+    "is_unique": true,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 75,
+    "quantity": 1,
+    "threat": 2,
+    "attack": 2,
+    "defense": 2,
+    "health": 5,
+    "engagement": 30,
+    "encounter_set": "Gollum",
+    "back_name": "Sméagol",
+    "back_text": "Immune to player card effects. The first player gains control of Sméagol.\nForced: After the players quest unsuccessfully, flip Sméagol to Gollum.\nIf Sméagol is destroyed, the players lose the game.",
+    "back_type_code": "objective-ally",
+    "back_imagesrc": "/cards/32993141-956c-4426-98d9-8705de6fee00.B.jpg",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "2",
+      "defense": "2",
+      "health": "5",
+      "engagement": "30"
+    },
+    "imagesrc": "/cards/32993141-956c-4426-98d9-8705de6fee00.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 75,
+        "quantity": 1,
+        "octgnid": "32993141-956c-4426-98d9-8705de6fee00",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32993141-956c-4426-98d9-8705de6fee00.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:39262ffc-6819-422c-a72a-9baed00f648a",
+    "octgnid": "39262ffc-6819-422c-a72a-9baed00f648a",
+    "name": "Stagnant Pools",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Marsh.",
+    "text": "Mire 5. Forced: When Stagnant Pools is discarded by the Mire keyword, each player must raise his threat by 5.\nStagnant Pools gets +1 [threat] for each mire token on it.\nTravel: Exhaust Sméagol to travel here.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 22,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 7,
+    "victory": 3,
+    "encounter_set": "The Passage of the Marshes",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "7",
+      "victory": "3"
+    },
+    "imagesrc": "/cards/39262ffc-6819-422c-a72a-9baed00f648a.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 22,
+        "quantity": 2,
+        "octgnid": "39262ffc-6819-422c-a72a-9baed00f648a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/39262ffc-6819-422c-a72a-9baed00f648a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:42e22482-0281-4811-aa65-2b342319ee07",
+    "octgnid": "42e22482-0281-4811-aa65-2b342319ee07",
+    "name": "We Hates Them!",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge.\nWhen Revealed: Either flip Sméagol to Gollum, or Gollum makes an immediate attack. The first player may spend 1 [fellowship] resource and exhaust The One Ring to cancel this effect.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 55,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+3 [attack] instead if the attacking enemy is Gollum).",
+    "encounter_set": "Gollum",
+    "printed_stats": {},
+    "imagesrc": "/cards/42e22482-0281-4811-aa65-2b342319ee07.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 55,
+        "quantity": 2,
+        "octgnid": "42e22482-0281-4811-aa65-2b342319ee07",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/42e22482-0281-4811-aa65-2b342319ee07.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:5e8714e3-0581-4b6f-bf45-414098819626",
+    "octgnid": "5e8714e3-0581-4b6f-bf45-414098819626",
+    "name": "Call of the Ring",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player must choose: either search the encounter deck, discard pile, and victory display for a Nazgûl enemy and add it to the staging area, or exhaust The One Ring and reveal the top card of the encounter deck.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 54,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy makes an additional attack against you after this one.",
+    "encounter_set": "Nazgûl",
+    "printed_stats": {},
+    "imagesrc": "/cards/5e8714e3-0581-4b6f-bf45-414098819626.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 54,
+        "quantity": 2,
+        "octgnid": "5e8714e3-0581-4b6f-bf45-414098819626",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5e8714e3-0581-4b6f-bf45-414098819626.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:694650d0-9ba6-4573-bf13-10ca8eb7995d",
+    "octgnid": "694650d0-9ba6-4573-bf13-10ca8eb7995d",
+    "name": "A Fell Light",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Peril. When Revealed: Put the topmost Undead enemy in the encounter discard pile into play engaged with you. Each Undead enemy engaged with you makes an immediate attack.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 26,
+    "quantity": 2,
+    "shadow": "Shadow: Return the topmost Undead enemy in the encounter discard pile to the staging area.",
+    "encounter_set": "The Passage of the Marshes",
+    "printed_stats": {},
+    "imagesrc": "/cards/694650d0-9ba6-4573-bf13-10ca8eb7995d.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 26,
+        "quantity": 2,
+        "octgnid": "694650d0-9ba6-4573-bf13-10ca8eb7995d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/694650d0-9ba6-4573-bf13-10ca8eb7995d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:73752e58-5dc1-40ea-b294-3c8f1998142d",
+    "octgnid": "73752e58-5dc1-40ea-b294-3c8f1998142d",
+    "name": "Dead Things",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Undead.",
+    "text": "The engaged player cannot reduce his threat.\nForced: After Dead Things destroys a character, the defending player must raise his threat by 3.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 17,
+    "quantity": 3,
+    "threat": 3,
+    "attack": 4,
+    "defense": 2,
+    "health": 5,
+    "engagement": 32,
+    "shadow": "Shadow: Raise your threat by 1 for each Undead enemy engaged with you.",
+    "encounter_set": "The Passage of the Marshes",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "4",
+      "defense": "2",
+      "health": "5",
+      "engagement": "32"
+    },
+    "imagesrc": "/cards/73752e58-5dc1-40ea-b294-3c8f1998142d.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 17,
+        "quantity": 3,
+        "octgnid": "73752e58-5dc1-40ea-b294-3c8f1998142d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/73752e58-5dc1-40ea-b294-3c8f1998142d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc",
+    "octgnid": "74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc",
+    "name": "Morgul Wraith",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Nazgûl.",
+    "text": "Cannot have non-Morgul attachments.\nWhile The One Ring is exhausted, Morgul Wraith gets -30 engagement cost and gains: \"Immune to player card effects.\"",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 53,
+    "quantity": 2,
+    "threat": 4,
+    "attack": 5,
+    "defense": 4,
+    "health": 9,
+    "engagement": 45,
+    "encounter_set": "Nazgûl",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "5",
+      "defense": "4",
+      "health": "9",
+      "engagement": "45"
+    },
+    "imagesrc": "/cards/74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 53,
+        "quantity": 2,
+        "octgnid": "74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8893eba4-1f9c-4661-bfc2-bb485e023066",
+    "octgnid": "8893eba4-1f9c-4661-bfc2-bb485e023066",
+    "name": "Shifting Quagmire",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Marsh.",
+    "text": "Surge.\nMire 1. Forced: When Shifting Quagmire is discarded by the Mire keyword, either return a random location from the victory display to the staging area, or raise each player's threat by 1 for each location in the victory display.\nTravel: Spend 1 [fellowship] resource to travel here.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 20,
+    "quantity": 2,
+    "threat": 1,
+    "quest": 3,
+    "victory": 1,
+    "encounter_set": "The Passage of the Marshes",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "3",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/8893eba4-1f9c-4661-bfc2-bb485e023066.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 20,
+        "quantity": 2,
+        "octgnid": "8893eba4-1f9c-4661-bfc2-bb485e023066",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8893eba4-1f9c-4661-bfc2-bb485e023066.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:c1554b49-597c-4d1b-8871-dfbe867253d5",
+    "octgnid": "c1554b49-597c-4d1b-8871-dfbe867253d5",
+    "name": "Candle-bearer",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Undead.",
+    "text": "The engaged player cannot reduce his threat.\nForced: After Candle-bearer destroys a character, it cannot take damage until the end of the round.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 18,
+    "quantity": 3,
+    "threat": 3,
+    "attack": 5,
+    "defense": 2,
+    "health": 6,
+    "engagement": 36,
+    "shadow": "Shadow: Until the end of the round, attacking enemy cannot take damage.",
+    "encounter_set": "The Passage of the Marshes",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "5",
+      "defense": "2",
+      "health": "6",
+      "engagement": "36"
+    },
+    "imagesrc": "/cards/c1554b49-597c-4d1b-8871-dfbe867253d5.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 18,
+        "quantity": 3,
+        "octgnid": "c1554b49-597c-4d1b-8871-dfbe867253d5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c1554b49-597c-4d1b-8871-dfbe867253d5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e25328c2-1a6b-4dda-866e-02685eff4a88",
+    "octgnid": "e25328c2-1a6b-4dda-866e-02685eff4a88",
+    "name": "Evil-smelling Fens",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Marsh.",
+    "text": "Mire 3. Forced: When Evil-smelling Fens is discarded by the Mire keyword, deal 1 damage to each character.\nTravel: Each player must raise his threat by 1 to travel here.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 19,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 4,
+    "victory": 3,
+    "shadow": "Shadow: Deal 1 damage to defending character.",
+    "encounter_set": "The Passage of the Marshes",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "4",
+      "victory": "3"
+    },
+    "imagesrc": "/cards/e25328c2-1a6b-4dda-866e-02685eff4a88.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 19,
+        "quantity": 3,
+        "octgnid": "e25328c2-1a6b-4dda-866e-02685eff4a88",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e25328c2-1a6b-4dda-866e-02685eff4a88.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f214f533-374b-423c-86b5-dca1ab5d048f",
+    "octgnid": "f214f533-374b-423c-86b5-dca1ab5d048f",
+    "name": "Creeping Marshes",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge. Doomed 1.\nWhen Revealed: Attach to the current quest. (Counts as a Condition attachment with the text: \"Forced: At the end of the refresh phase, place 1 mire token on each location in the staging area. Then, discard Creeping Marshes.\")",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 24,
+    "quantity": 2,
+    "encounter_set": "The Passage of the Marshes",
+    "printed_stats": {},
+    "imagesrc": "/cards/f214f533-374b-423c-86b5-dca1ab5d048f.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 24,
+        "quantity": 2,
+        "octgnid": "f214f533-374b-423c-86b5-dca1ab5d048f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f214f533-374b-423c-86b5-dca1ab5d048f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:fcc8ad22-ca1f-4fd1-8f84-4955bb683f50",
+    "octgnid": "fcc8ad22-ca1f-4fd1-8f84-4955bb683f50",
+    "name": "Bitter Reek",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Peril. When Revealed: Either raise your threat by 1 for each character you control that is committed to the quest, or deal 1 damage to each character committed to the quest.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 25,
+    "quantity": 3,
+    "shadow": "Shadow: Raise your threat by the attacking enemy's [threat].",
+    "encounter_set": "The Passage of the Marshes",
+    "printed_stats": {},
+    "imagesrc": "/cards/fcc8ad22-ca1f-4fd1-8f84-4955bb683f50.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 25,
+        "quantity": 3,
+        "octgnid": "fcc8ad22-ca1f-4fd1-8f84-4955bb683f50",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fcc8ad22-ca1f-4fd1-8f84-4955bb683f50.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:32993141-956c-4426-98d9-8705de6fee00:B",
+    "octgnid": "32993141-956c-4426-98d9-8705de6fee00",
+    "name": "Sméagol",
+    "type_code": "objective-ally",
+    "sphere_code": "encounter",
+    "traits": "Gollum.",
+    "text": "Immune to player card effects. The first player gains control of Sméagol.\nForced: After the players quest unsuccessfully, flip Sméagol to Gollum.\nIf Sméagol is destroyed, the players lose the game.",
+    "is_unique": true,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 76,
+    "quantity": 1,
+    "encounter_set": "Gollum",
+    "imagesrc": "/cards/32993141-956c-4426-98d9-8705de6fee00.B.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 75,
+        "quantity": 1,
+        "octgnid": "32993141-956c-4426-98d9-8705de6fee00",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32993141-956c-4426-98d9-8705de6fee00.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "willpower": 2,
+    "attack": 2,
+    "defense": 2,
+    "health": 5,
+    "printed_stats": {
+      "willpower": "2",
+      "attack": "2",
+      "defense": "2",
+      "health": "5"
+    },
+    "source_face": "back",
+    "physical_code": "octgn:32993141-956c-4426-98d9-8705de6fee00"
+  }
+]

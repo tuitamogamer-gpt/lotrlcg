@@ -1,0 +1,122 @@
+[
+  {
+    "code": "octgn:7fdde250-5b13-4c94-a9b8-4a3a0029928a",
+    "octgnid": "7fdde250-5b13-4c94-a9b8-4a3a0029928a",
+    "name": "The Taming of Sméagol",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Put Gollum into play engaged with the first player. Each player searches the encounter deck for 1 location, reveals it, and adds it to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 64,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Passage of the Marshes",
+    "side": "A",
+    "back_name": "The Taming of Sméagol",
+    "back_text": "The players cannot advance unless the first player controls Sméagol.\nForced: After a player declares any number of attackers against Gollum, discard the top card of the encounter deck. Gollum gets +X [defense] for this attack, where X is the discarded card's [threat].",
+    "back_type_code": "quest",
+    "back_quest": 6,
+    "back_imagesrc": "/cards/7fdde250-5b13-4c94-a9b8-4a3a0029928a.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/7fdde250-5b13-4c94-a9b8-4a3a0029928a.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 64,
+        "quantity": 1,
+        "octgnid": "7fdde250-5b13-4c94-a9b8-4a3a0029928a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7fdde250-5b13-4c94-a9b8-4a3a0029928a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:d63f87da-45b4-4c5c-b3b5-970a4277c263",
+    "octgnid": "d63f87da-45b4-4c5c-b3b5-970a4277c263",
+    "name": "Across the Marshes",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: If the number of locations in the staging area is less than the number of players in the game, discard cards from the encounter deck until a location is discarded. Then, add the discarded location to the staging area.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 65,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Passage of the Marshes",
+    "side": "A",
+    "back_name": "Across the Marshes",
+    "back_text": "Progress cannot be placed on locations in the staging area.\nThe players cannot advance unless the first player controls Sméagol and there are at least 4 locations in the victory display.\nForced: At the end of the staging step, if the number of locations in the staging area is less than the number of players in the game, reveal the top card of the encounter deck.",
+    "back_type_code": "quest",
+    "back_quest": 12,
+    "back_imagesrc": "/cards/d63f87da-45b4-4c5c-b3b5-970a4277c263.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/d63f87da-45b4-4c5c-b3b5-970a4277c263.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 65,
+        "quantity": 1,
+        "octgnid": "d63f87da-45b4-4c5c-b3b5-970a4277c263",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d63f87da-45b4-4c5c-b3b5-970a4277c263.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e40770a1-7b1b-4257-afca-443c55701850",
+    "octgnid": "e40770a1-7b1b-4257-afca-443c55701850",
+    "name": "\"Don't Look at the Lights!\"",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player searches the encounter deck and discard pile for an Undead enemy and puts it into play engaged with him. Shuffle all locations in the victory display into the encounter deck.",
+    "is_unique": false,
+    "pack_code": "LoS",
+    "pack_name": "The Land of Shadow",
+    "position": 66,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Passage of the Marshes",
+    "side": "A",
+    "back_name": "\"Don't Look at the Lights!\"",
+    "back_text": "While any player is engaged with an Undead enemy, progress cannot be placed on this stage.\nThe players cannot defeat this stage unless the first player controls Sméagol. If the players defeat this stage, they win the game.",
+    "back_type_code": "quest",
+    "back_quest": 24,
+    "back_imagesrc": "/cards/e40770a1-7b1b-4257-afca-443c55701850.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/e40770a1-7b1b-4257-afca-443c55701850.jpg",
+    "packs": [
+      {
+        "pack_code": "LoS",
+        "pack_name": "The Land of Shadow",
+        "position": 66,
+        "quantity": 1,
+        "octgnid": "e40770a1-7b1b-4257-afca-443c55701850",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e40770a1-7b1b-4257-afca-443c55701850.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

@@ -41,7 +41,11 @@ export function reduceThreat(
         s,
         s.staging.some((u) => u.code === CHETWOOD.homestead && !u.blanked)
           ? "Outlying Homestead prevents threat reduction."
-          : "The Empty Mug prevents threat reduction.",
+          : [...s.staging, ...allActiveLocations(s)].some(
+                (u) => u.code === T.mug && !u.blanked,
+              )
+            ? "The Empty Mug prevents threat reduction."
+            : "This threat cannot be reduced.",
       );
     return 0;
   }

@@ -58,10 +58,15 @@ import {
   ROAD_ISENGARD_ENCOUNTERS,
   ROAD_ISENGARD_QUESTS,
 } from "./road-isengard-scenario-data";
+import {
+  PASSAGE_MARSHES_ENCOUNTERS,
+  PASSAGE_MARSHES_QUESTS,
+} from "./passage-marshes-scenario-data";
 import hobbitPlayers from "../data/hobbit-player-cards.json";
 import blackRidersPlayers from "../data/black-riders-player-cards.json";
 import roadDarkensPlayers from "../data/road-darkens-player-cards.json";
 import treasonSarumanPlayers from "../data/treason-saruman-player-cards.json";
+import landShadowPlayers from "../data/land-shadow-player-cards.json";
 import lotrSagaCards from "../data/lotr-saga-cards.json";
 import {
   FORTRESS_NURN_ENCOUNTERS,
@@ -373,6 +378,7 @@ export const playerCards = [
           ...blackRidersPlayers,
           ...roadDarkensPlayers,
           ...treasonSarumanPlayers,
+          ...landShadowPlayers,
         ] as Card[]
       ).map((c) => {
         if (c.code === "19146")
@@ -551,6 +557,7 @@ export const encounterCards = [
       ...URUK_HAI_ENCOUNTERS,
       ...HELMS_DEEP_ENCOUNTERS,
       ...ROAD_ISENGARD_ENCOUNTERS,
+      ...PASSAGE_MARSHES_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -643,6 +650,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...URUK_HAI_QUESTS,
     ...HELMS_DEEP_QUESTS,
     ...ROAD_ISENGARD_QUESTS,
+    ...PASSAGE_MARSHES_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -776,6 +784,7 @@ export const SCRIPTED = new Set(
     ...URUK_HAI_QUESTS,
     ...HELMS_DEEP_QUESTS,
     ...ROAD_ISENGARD_QUESTS,
+    ...PASSAGE_MARSHES_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,
