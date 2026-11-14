@@ -32,6 +32,7 @@ import { roadIsengardPublicState } from "./road-isengard-support";
 import { passageMarshesPublicState } from "./passage-marshes-support";
 import { crossRoadsPublicState } from "./cross-roads-support";
 import * as LandShadowPlayers from "./land-shadow-player-cards";
+import * as FlameWestPlayers from "./flame-west-player-cards";
 import { ereborAllyPlayed } from "./erebor-treasures";
 import * as LandSorrowPlayers from "./land-sorrow-player";
 import { sorrowPublicState } from "./land-sorrow-support";
@@ -2266,6 +2267,10 @@ function printedAbilities(s: GameState, u: Unit) {
       LandShadowPlayers.landShadowPlayerAbilityProblem(s, u),
     ],
     [
+      FlameWestPlayers.flameWestPlayerAbilityLabel(u.code),
+      FlameWestPlayers.flameWestPlayerAbilityProblem(s, u),
+    ],
+    [
       EredFinalPlayers.eredFinalPlayerAbilityLabel(u.code),
       EredFinalPlayers.eredFinalPlayerAbilityProblem(s, u),
     ],
@@ -3385,6 +3390,8 @@ export function applyAction(input: GameState, action: Action): GameState {
               u,
               action.attachmentId,
             ) &&
+            (!!action.attachmentId ||
+              !FlameWestPlayers.useFlameWestPlayerAbility(s, u)) &&
             !WildsPlayers.useWildsPlayerAbility(s, u, action.attachmentId) &&
             !MumakPlayers.useMumakilPlayerAbility(s, u, action.attachmentId) &&
             !RacePlayers.useRaceHaradPlayerAbility(s, u, action.attachmentId) &&

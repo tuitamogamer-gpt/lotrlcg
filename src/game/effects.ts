@@ -12,6 +12,7 @@ import {
 import { roadDarkensPlayerEffect } from "./road-darkens-player-cards";
 import { treasonPlayerEffect } from "./treason-saruman-player-cards";
 import * as LandShadowPlayers from "./land-shadow-player-cards";
+import * as FlameWestPlayers from "./flame-west-player-cards";
 import {
   hobbitPlayerEffect,
   hobbitPlayerRefreshEnd,
@@ -635,6 +636,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (roadDarkensPlayerEffect(s, e)) return;
   if (treasonPlayerEffect(s, e)) return;
   if (LandShadowPlayers.landShadowPlayerEffect(s, e)) return;
+  if (FlameWestPlayers.flameWestPlayerEffect(s, e)) return;
   if (wainridersPlayerEffect(s, e)) return;
   if (ulfastPlayerEffect(s, e)) return;
   if (HaradPlayers.handleHaradPlayerEffect(s, e)) return;
@@ -2733,6 +2735,11 @@ function handleEffect(s: GameState, e: Effect) {
             completed.defenderIds ??
               (completed.defenderId ? [completed.defenderId] : []),
           );
+          FlameWestPlayers.flameWestPlayerAfterDefense(
+            s,
+            completed,
+            attackPlayer,
+          );
         }
       }
       finalRingDefenseFinished(s);
@@ -2956,7 +2963,13 @@ export function shadowResponse(s: GameState, code: string) {
     allActiveLocations(s).some((l) => l.code === "02016")
       ? []
       : otdPlayerShadowOptions(s, code, !!shadowText);
+  const sternerOptions =
+    roadRivendellCannotCancel(s) ||
+    allActiveLocations(s).some((l) => l.code === "02016")
+      ? []
+      : FlameWestPlayers.flameWestPlayerShadowOptions(s, code, !!shadowText);
   if (
+    sternerOptions.length ||
     balinOptions.length ||
     wrathOptions.length ||
     eredOptions.length ||
@@ -2974,6 +2987,7 @@ export function shadowResponse(s: GameState, code: string) {
         ...wrathOptions,
         ...templeOptions,
         ...balinOptions,
+        ...sternerOptions,
         ...brand,
         ...erkenbrand,
         ...watcher,

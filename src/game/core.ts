@@ -10,6 +10,7 @@ import { hobbitPlayerExtraPayers } from "./hobbit-player-cards";
 import * as BlackRidersPlayers from "./black-riders-player-cards";
 import * as TreasonPlayers from "./treason-saruman-player-cards";
 import * as LandShadowPlayers from "./land-shadow-player-cards";
+import * as FlameWestPlayers from "./flame-west-player-cards";
 import * as RoadDarkensPlayers from "./road-darkens-player-cards";
 import { ereborCostReduction } from "./erebor-treasures";
 import { wandererNoMatch, sarumanPays } from "./wainriders-player-support";
@@ -712,6 +713,7 @@ export function stats(s: GameState, u: Unit) {
           shadowFlameBonus.will,
           Realm.realmWillBonus(s, u),
           RoadDarkensPlayers.roadDarkensPlayerWillBonus(s, u),
+          FlameWestPlayers.flameWestPlayerWillBonus(s, u),
           u.code === "rc135" && s.mendorBoost ? 2 : 0,
           u.attachments.filter((a) => !a.blanked && a.code === "01027").length *
             2,
@@ -959,6 +961,7 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
                 BlackRidersPlayers.blackRidersPlayerCostReduction(s, c) -
                 TreasonPlayers.treasonPlayerCostReduction(s, c, target) -
                 LandShadowPlayers.landShadowPlayerCostReduction(s, c) -
+                FlameWestPlayers.flameWestPlayerCostReduction(s, c) -
                 EredFinalSupport.eredFinalPlayerCostReduction(s, c) -
                 ShadowEastSupport.shadowEastPlayerCostReduction(s, c) -
                 huntersCostReduction(s, c, target) -
@@ -1186,7 +1189,8 @@ export const engagementCost = (s: GameState, u: Unit) =>
       Cobas.cobasEngagementModifier(s, u) +
       Mordor.mordorEngagementModifier(s, u) +
       TempleEncounters.templeEncounterEngagement(s, u) +
-      BlackRidersPlayers.blackRidersPlayerEngagementBonus(s, u),
+      BlackRidersPlayers.blackRidersPlayerEngagementBonus(s, u) +
+      FlameWestPlayers.flameWestPlayerEngagementBonus(s, u),
   );
 
 export const mainStageInfo = (s: GameState) => {

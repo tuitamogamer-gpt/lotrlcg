@@ -144,9 +144,12 @@ export function deckWarnings(deck: Pick<CustomDeck, "heroes" | "cards">) {
         : card(code).sphere_code === "fellowship" &&
             card(code).pack_code === "ToS"
           ? `${card(code).name} is paid with the Fellowship Aragorn's resources, so it can only be played in The Treason of Saruman scenarios.`
-          : card(code).sphere_code === "fellowship"
-            ? `${card(code).name} is paid with the Ring-bearer's Fellowship resources, so it can only be played in The Lord of the Rings scenarios.`
-            : `${card(code).name} has no matching hero sphere; plan an effect that lets you play it.`,
+          : card(code).sphere_code === "fellowship" &&
+              card(code).pack_code === "FotW"
+            ? `${card(code).name} is paid with the Fellowship Aragorn's resources, so it can only be played in The Flame of the West scenarios.`
+            : card(code).sphere_code === "fellowship"
+              ? `${card(code).name} is paid with the Ring-bearer's Fellowship resources, so it can only be played in The Lord of the Rings scenarios.`
+              : `${card(code).name} has no matching hero sphere; plan an effect that lets you play it.`,
     );
 }
 

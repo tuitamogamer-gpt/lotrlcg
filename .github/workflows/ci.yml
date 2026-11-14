@@ -1024,6 +1024,8 @@ jobs:
             suite: test:browser-treason-saruman-players
           - group: land-shadow-players
             suite: test:browser-land-shadow-players
+          - group: flame-west-players
+            suite: test:browser-flame-west-players
           - group: hobbit-players
             suite: test:browser-hobbit-players
           - group: otd-players

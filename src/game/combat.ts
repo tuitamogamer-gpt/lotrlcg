@@ -4,6 +4,7 @@ import { hobbitPlayerNoDefenseExhaust } from "./hobbit-player-cards";
 import * as BlackRidersPlayers from "./black-riders-player-cards";
 import * as TreasonPlayers from "./treason-saruman-player-cards";
 import * as LandShadowPlayers from "./land-shadow-player-cards";
+import * as FlameWestPlayers from "./flame-west-player-cards";
 import * as RoadDarkensPlayers from "./road-darkens-player-cards";
 import { roadDarkensFrodoDefended } from "./lotr-saga";
 import {
@@ -170,7 +171,8 @@ export function playerAttack(
     | "knight"
     | "battle-fury"
     | "charge-into-battle"
-    | "great-yew-bow",
+    | "great-yew-bow"
+    | "roheryn",
 ) {
   ids = [...new Set(ids)];
   requireRule(
@@ -222,12 +224,19 @@ export function playerAttack(
                 canFight(u) &&
                 greatYewBowCanAttack(s, enemy, u),
             )
-          : attackersFor(
-              s,
-              enemy,
-              abilityMode === "battle-fury" ? ids[0] : undefined,
-              abilityMode === "charge-into-battle",
-            )
+          : abilityMode === "roheryn"
+            ? allCharacters(s).filter(
+                (u) =>
+                  ownerOf(s, u) === activeSeat(s) &&
+                  u.attachments.some((a) => a.code === "145012") &&
+                  rhosgobelCanFight(enemy, u),
+              )
+            : attackersFor(
+                s,
+                enemy,
+                abilityMode === "battle-fury" ? ids[0] : undefined,
+                abilityMode === "charge-into-battle",
+              )
     ).find((u) => u.id === id),
   );
   if (abilityMode === "haldir")
@@ -245,6 +254,11 @@ export function playerAttack(
         s.staging.some((u) => u.id === enemy.id) &&
         !playerEffectImmune(s, enemy, "04131"),
       "Hands Upon the Bow declares its single paid Ranged attacker against an eligible staging enemy.",
+    );
+  if (abilityMode === "roheryn")
+    requireRule(
+      ids.length === 1 && s.engaged.some((u) => u.id === enemy.id),
+      "Roheryn declares only its hero against the enemy engaged with you.",
     );
   if (abilityMode === "great-yew-bow")
     requireRule(
@@ -298,6 +312,7 @@ export function playerAttack(
     if (
       abilityMode !== "hands-upon-bow" &&
       abilityMode !== "great-yew-bow" &&
+      abilityMode !== "roheryn" &&
       abilityMode !== "battle-fury" &&
       !Angmar.angmarNoCombatExhaust(s, u!) &&
       (abilityMode === "knight" ||
@@ -454,6 +469,7 @@ export function resolvePlayerAttack(
           watcherPlayerAttackBonus(s, u, enemy) +
           Rhudaur.rhudaurAttackBonus(s, enemy, u) +
           (batch4Scenario(s).playerAttackBonus?.(s, u, enemy, attackers) ?? 0) +
+          FlameWestPlayers.flameWestPlayerAttackBonus(s, u, attackers) +
           (card(enemy.code).traits?.includes("Orc")
             ? u.attachments.filter((a) => !a.blanked && a.code === "01039")
                 .length
@@ -917,6 +933,11 @@ export function beginEnemyAttack(
       enemy,
       defenders.filter((d): d is Unit => !!d),
       actuallyExhausted,
+    ),
+    ...FlameWestPlayers.flameWestPlayerDefendersDeclared(
+      s,
+      enemy,
+      defenders.filter((d): d is Unit => !!d),
     ),
     ...MumakPlayers.mumakilDefendersDeclared(
       s,

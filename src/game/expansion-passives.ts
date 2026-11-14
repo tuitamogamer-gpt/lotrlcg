@@ -141,6 +141,12 @@ const rules: Record<string, AttachmentRule> = {
   // The Battle of the Pelennor Fields' boons (Esquire of Rohan, Esquire of Gondor).
   "145014": { type: "hero", grantsTraits: ["Rohan"] },
   "145015": { type: "hero", grantsTraits: ["Gondor"] },
+  // The Flame of the West player attachments: their Responses and bonuses
+  // are in flame-west-player-cards.ts.
+  "145010": { type: "hero", traits: ["Rohan"], restricted: 1 },
+  "145011": { type: "hero", traits: ["Gondor"], restricted: 1 },
+  "145012": { type: "hero", traits: ["Dúnedain"] },
+  "145013": { names: ["Aragorn"] },
   "02002": { type: "hero", attack: 1 },
   "02026": { type: "hero", defense: 1 },
   "02051": { type: "hero", will: 1 },
@@ -367,7 +373,12 @@ export function hasResourceIcon(u: Unit, sphere: string) {
           (a.code === "08121" && sphere === "lore") ||
           (a.code === "01027" &&
             card(u.code).name === "Aragorn" &&
-            sphere === "spirit")),
+            sphere === "spirit") ||
+          // Roheryn: if attached hero is Aragorn, he gains the Tactics icon.
+          (a.code === "145012" &&
+            !a.facedown &&
+            card(u.code).name === "Aragorn" &&
+            sphere === "tactics")),
     )
   );
 }

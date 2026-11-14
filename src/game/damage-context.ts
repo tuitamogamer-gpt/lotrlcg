@@ -21,6 +21,7 @@ export interface DamageContext {
   bypassAngmar?: boolean;
   bypassEredFinal?: boolean;
   bypassWainriders?: boolean;
+  bypassLivery?: boolean;
   /** Physical prevention sources already offered for this damage assignment. */
   eredFinalPrevented?: string[];
   mockingVisited?: string[];
@@ -69,6 +70,7 @@ export function readDamageContext(effect: {
       "bypassAngmar",
       "bypassEredFinal",
       "bypassWainriders",
+      "bypassLivery",
     ] as const)
       if (key in raw && typeof values[key] === "boolean")
         context[key] = values[key] as boolean;

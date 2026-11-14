@@ -654,8 +654,15 @@ export function validateSave(
         (Array.isArray(c.desperateDefenderIds) &&
           c.desperateDefenderIds.every((id) => typeof id === "string") &&
           new Set(c.desperateDefenderIds).size ===
-            c.desperateDefenderIds.length));
+            c.desperateDefenderIds.length)) &&
+      (c.fwpBeregond === undefined ||
+        (!!c.fwpBeregond &&
+          typeof c.fwpBeregond === "object" &&
+          !Array.isArray(c.fwpBeregond) &&
+          Object.values(c.fwpBeregond).every((n) => integer(n) && n >= 0)));
     const validUnit = (u: Unit) =>
+      (u?.fwpImrahilHero === undefined ||
+        (u.fwpImrahilHero === true && u.code === "145005")) &&
       (u?.eredThalionHero === undefined ||
         (typeof u.eredThalionHero === "boolean" &&
           u.code === "19065" &&

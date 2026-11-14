@@ -108,6 +108,8 @@ export interface Attachment {
 export interface Unit {
   /** Thalion becomes a hero while three side quests are in the victory display. */
   eredThalionHero?: boolean;
+  /** Prince Imrahil is a hero while a hero card is in his owner's discard pile. */
+  fwpImrahilHero?: boolean;
   /** Captured Corsair Skirmishers retain their physical card as Ship objectives. */
   cobasShipObjective?: boolean;
   cobasGuarding?: string[];
@@ -760,6 +762,8 @@ export interface GameState {
     damageDealt?: number;
     defenseBonuses?: Record<string, number>;
     desperateDefenderIds?: string[];
+    /** Each defending Beregond's damage as defenders were declared. */
+    fwpBeregond?: Record<string, number>;
     enemyId: string;
     /** Original player attacked, independent of Sentinel defense or damage replacement. */
     attackPlayer?: number;

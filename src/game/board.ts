@@ -35,6 +35,7 @@ import * as BatchPlayers from "./batch4-player";
 import * as BlackRidersPlayers from "./black-riders-player-cards";
 import * as TreasonPlayers from "./treason-saruman-player-cards";
 import * as LandShadowPlayers from "./land-shadow-player-cards";
+import * as FlameWestPlayers from "./flame-west-player-cards";
 import * as RoadDarkensPlayers from "./road-darkens-player-cards";
 import * as WildsPlayers from "./wilds-player";
 import { batch4Scenario } from "./batch4-scenarios";
@@ -942,6 +943,7 @@ export function check(s: GameState) {
   if (s.status !== "playing") return;
   eachArea(s, () => syncAttachmentText(s));
   EredSupport.eredMithrinPlayerRefresh(s);
+  FlameWestPlayers.flameWestPlayerRefresh(s);
   ShadowEastPlayers.shadowEastPlayerCheck(s);
   BlackRidersPlayers.blackRidersPlayerCheck(s);
   if (s.status !== "playing") return;
@@ -1488,6 +1490,8 @@ export function damage(
   if (!context.cost && offerGondorianDiscipline(s, u, value, context))
     return false;
   if (!context.cost && offerCloseCall(s, u, value, context)) return false;
+  if (!context.cost && FlameWestPlayers.offerLiveryDamage(s, u, value, context))
+    return false;
   if (!context.cost && offerMarshDamageRedirect(s, u, value, context))
     return false;
   if (
@@ -2890,6 +2894,7 @@ export function beginResources(s: GameState) {
 
 export function collectResources(s: GameState) {
   EredSupport.eredMithrinPlayerRefresh(s);
+  FlameWestPlayers.flameWestPlayerRefresh(s);
   const draws: Effect[] = [];
   let collected = false;
   globalEachSeat(s, (player) => {
@@ -3001,6 +3006,7 @@ export function engage(s: GameState, u: Unit, optional = false) {
   BatchPlayers.batch4PlayerEnemyEngaged(s, u, activeSeat(s));
   BlackRidersPlayers.blackRidersPlayerEnemyEngaged(s, u);
   LandShadowPlayers.landShadowPlayerEnemyEngaged(s, u);
+  FlameWestPlayers.flameWestPlayerEnemyEngaged(s, u, optional);
   ShadowEastPlayers.shadowEastPlayerEngaged(s, u);
   Umbar.umbarEngaged(s, u);
   batch4Scenario(s).engaged?.(s, u, optional);

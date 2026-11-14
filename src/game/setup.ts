@@ -41,6 +41,7 @@ import { setupStormcaller } from "./stormcaller";
 import { setupDepths } from "./depths";
 import { setupTemple } from "./temple";
 import { stormcallerSetup as stormcallerPlayerSetup } from "./stormcaller-player";
+import { flameWestPlayerSetup } from "./flame-west-player-cards";
 import { greyHavensSetup } from "./grey-havens-player";
 import * as Wastes from "./wastes-eriador";
 import * as Gram from "./mount-gram";
@@ -509,6 +510,7 @@ export function finishGameSetup(s: GameState) {
   });
   greyHavensSetup(s);
   stormcallerPlayerSetup(s);
+  flameWestPlayerSetup(s);
   if (scenarioId === "mirkwood") {
     for (const code of ["01096", "01099"]) {
       s.encounterDeck.splice(s.encounterDeck.indexOf(code), 1);

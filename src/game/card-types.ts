@@ -8,6 +8,8 @@ export function unitType(u: Unit): string {
   if (hasEnemyCondition(u)) return "enemy";
   if (printed === "objective-hero") return "hero";
   if (u.code === "19065" && u.eredThalionHero) return "hero";
+  // Prince Imrahil: a hero card in his owner's discard pile.
+  if (u.code === "145005" && u.fwpImrahilHero) return "hero";
   if (u.cobasShipObjective) return "ship-objective";
   // Messenger of the King: the attached ally loses the ally type and gains the hero type.
   if (printed === "ally" && u.attachments.some((a) => a.code === "22134"))

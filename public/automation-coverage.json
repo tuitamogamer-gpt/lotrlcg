@@ -2,9 +2,9 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 837,
-    "heroes": 106,
-    "deckCards": 727,
+    "playerCards": 848,
+    "heroes": 108,
+    "deckCards": 736,
     "encounterCards": 1627,
     "scenarios": 107,
     "scenarioIds": [
@@ -119,8 +119,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2804,
-    "pending": 1379
+    "scripted": 2815,
+    "pending": 1368
   },
   "scenarioRecipes": {
     "total": 355,
@@ -799,7 +799,18 @@
     "144012",
     "144013",
     "145001",
+    "145002",
+    "145003",
+    "145004",
+    "145005",
+    "145006",
+    "145007",
+    "145008",
     "145009",
+    "145010",
+    "145011",
+    "145012",
+    "145013",
     "145014",
     "145015",
     "145016",
@@ -3513,9 +3524,9 @@
     {
       "product": "the-flame-of-the-west",
       "total": 82,
-      "scripted": 66,
+      "scripted": 77,
       "player": 15,
-      "playerScripted": 4
+      "playerScripted": 15
     },
     {
       "product": "the-fortress-of-nurn",
@@ -10491,7 +10502,7 @@
       "name": "Éowyn",
       "type": "hero",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -10499,7 +10510,7 @@
       "name": "Beregond",
       "type": "hero",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -10507,7 +10518,7 @@
       "name": "Grimbold",
       "type": "ally",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -10515,7 +10526,7 @@
       "name": "Prince Imrahil",
       "type": "ally",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -10523,7 +10534,7 @@
       "name": "Halbarad",
       "type": "ally",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -10531,7 +10542,7 @@
       "name": "Ghân-buri-Ghân",
       "type": "ally",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -10539,7 +10550,7 @@
       "name": "Sterner than Steel",
       "type": "event",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -10555,7 +10566,7 @@
       "name": "Golden Shield",
       "type": "attachment",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -10563,7 +10574,7 @@
       "name": "Livery of the Tower",
       "type": "attachment",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -10571,7 +10582,7 @@
       "name": "Roheryn",
       "type": "attachment",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -10579,7 +10590,7 @@
       "name": "Banner of Elendil",
       "type": "attachment",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
