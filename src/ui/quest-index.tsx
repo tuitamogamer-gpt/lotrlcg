@@ -131,6 +131,10 @@ const HEADLINES: Partial<
     lead: "Climb the stairs of Cirith Ungol",
     em: "and escape Shelob's Lair.",
   },
+  "the-passing-of-the-grey-company": {
+    lead: "Take the Paths of the Dead",
+    em: "to the Stone of Erech.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

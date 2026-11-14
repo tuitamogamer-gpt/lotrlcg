@@ -8,6 +8,7 @@ import { messengerSetup } from "./land-sorrow-player";
 import {
   isFellowshipHero,
   isTreasonSarumanScenarioId,
+  fellowshipAragornCode,
   sagaLineUp,
   isLotrSagaScenarioId,
   placeRingBearer,
@@ -225,7 +226,7 @@ export function createGame(
   );
   requireRule(
     !isLotrSagaScenarioId(scenarioId) ||
-      isTreasonSarumanScenarioId(scenarioId) ||
+      !!fellowshipAragornCode(scenarioId) ||
       !chosenHeroes.some((c) => card(c).name === "Frodo Baggins"),
     "Frodo Baggins is the Ring-bearer in The Lord of the Rings Saga; choose another hero.",
   );
@@ -251,7 +252,7 @@ export function createGame(
       (options.seats ?? []).every(
         (p) => sagaLineUp(scenarioId, p.heroes).length >= 1,
       ),
-    "The Fellowship Aragorn is unique in The Treason of Saruman; choose another hero besides Aragorn.",
+    "The Fellowship Aragorn is unique in this Saga scenario; choose another hero besides Aragorn.",
   );
   requireRule(
     !chosenHeroes.some((c) => isBagginsBilbo(c)),
@@ -455,7 +456,7 @@ export function createGame(
     if (aside.length)
       log(
         s,
-        `${s.table ? `Player ${player + 1}'s` : "Your"} ${aside.map((h) => card(h).name).join(", ")} is set aside: the Fellowship hero Aragorn is unique in The Treason of Saruman.`,
+        `${s.table ? `Player ${player + 1}'s` : "Your"} ${aside.map((h) => card(h).name).join(", ")} is set aside: the Fellowship hero Aragorn is unique in this Saga scenario.`,
       );
   });
   addHobbitTreasures(s, options.hobbitTreasures);

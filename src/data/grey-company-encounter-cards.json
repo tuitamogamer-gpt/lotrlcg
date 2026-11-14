@@ -1,0 +1,596 @@
+[
+  {
+    "code": "145016",
+    "name": "Overcome by Fear",
+    "type_code": "objective",
+    "type_name": "Objective",
+    "sphere_code": "encounter",
+    "sphere_name": "Neutral",
+    "traits": "Fear.",
+    "text": "Setup: Attach to your threat dial. Limit 1 per threat dial.\nYour threat cannot be reduced.\nForced: At the end of the round, raise your threat by 1. Then, you may spend 1 [fellowship] resource to detach Overcome by Fear and set it aside, out of play.",
+    "is_unique": false,
+    "pack_name": "The Flame of the West",
+    "pack_code": "FotW",
+    "position": 16,
+    "illustrator": "Micah Epstein",
+    "imagesrc": "/cards/145016.png",
+    "quantity": 4,
+    "octgnid": "926d92fd-b7b8-4f13-8018-3f632c84a3d7",
+    "has_errata": false,
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 16,
+        "quantity": 4,
+        "image_code": "145016",
+        "illustrator": "Micah Epstein",
+        "octgnid": "926d92fd-b7b8-4f13-8018-3f632c84a3d7",
+        "imagesrc": "/bundles/cards/145016.png",
+        "date_release": "2016-08-03"
+      }
+    ],
+    "source": "ringsdb",
+    "source_url": "https://ringsdb.com/card/145016",
+    "official": true,
+    "nightmare": false,
+    "encounter_set": "The Passing of the Grey Company"
+  },
+  {
+    "code": "octgn:4d904ec3-1c74-4091-861d-c543412b5443",
+    "octgnid": "4d904ec3-1c74-4091-861d-c543412b5443",
+    "name": "The Stone of Erech",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Hill.",
+    "text": "Immune to player card effects. Forced: After The Stone of Erech becomes the active location, each player searches the encounter deck and discard pile for an Oathbreaker enemy and adds it to the staging area. Shuffle the encounter deck. Travel: Remove 5 progress from stage 3B to travel here.",
+    "is_unique": true,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 17,
+    "quantity": 1,
+    "threat": 5,
+    "quest": 5,
+    "encounter_set": "The Passing of the Grey Company",
+    "printed_stats": {
+      "threat": "5",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/4d904ec3-1c74-4091-861d-c543412b5443.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 17,
+        "quantity": 1,
+        "octgnid": "4d904ec3-1c74-4091-861d-c543412b5443",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4d904ec3-1c74-4091-861d-c543412b5443.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:d4e4ab9d-d5ea-4d33-89f1-d8d24d166002",
+    "octgnid": "d4e4ab9d-d5ea-4d33-89f1-d8d24d166002",
+    "name": "Dark Door",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "While Dark Door is in the staging area, progress cannot be placed on locations in the staging area. Travel: The first player reveals an encounter card to travel here.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 18,
+    "quantity": 2,
+    "threat": 4,
+    "quest": 4,
+    "encounter_set": "The Passing of the Grey Company",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/d4e4ab9d-d5ea-4d33-89f1-d8d24d166002.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 18,
+        "quantity": 2,
+        "octgnid": "d4e4ab9d-d5ea-4d33-89f1-d8d24d166002",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d4e4ab9d-d5ea-4d33-89f1-d8d24d166002.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:87ca18e7-934a-4da9-bbb0-3a66f3d1b4c3",
+    "octgnid": "87ca18e7-934a-4da9-bbb0-3a66f3d1b4c3",
+    "name": "Trysting Place",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "While Trysting Place is in the staging area, each enemy in the staging area cannot take damage. Travel: The first player searches the encounter deck and discard pile for an Oathbreaker enemy and puts it into play engaged with him. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 19,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 3,
+    "encounter_set": "The Passing of the Grey Company",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/87ca18e7-934a-4da9-bbb0-3a66f3d1b4c3.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 19,
+        "quantity": 3,
+        "octgnid": "87ca18e7-934a-4da9-bbb0-3a66f3d1b4c3",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/87ca18e7-934a-4da9-bbb0-3a66f3d1b4c3.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:70fc56ec-dca4-485a-8c5e-7d0cf4e17038",
+    "octgnid": "70fc56ec-dca4-485a-8c5e-7d0cf4e17038",
+    "name": "Deadly Road",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "While Deadly Road is in the staging area, it gains: \"Forced: After a 'when revealed' effect is canceled, raise each player's threat by 1.\" Travel: Spend 1 [fellowship] resource to travel here.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 20,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 3,
+    "encounter_set": "The Passing of the Grey Company",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/70fc56ec-dca4-485a-8c5e-7d0cf4e17038.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 20,
+        "quantity": 3,
+        "octgnid": "70fc56ec-dca4-485a-8c5e-7d0cf4e17038",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/70fc56ec-dca4-485a-8c5e-7d0cf4e17038.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:46e10da4-a188-4502-b53f-6644495a1319",
+    "octgnid": "46e10da4-a188-4502-b53f-6644495a1319",
+    "name": "Haunted Path",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "Haunted Path gets +1 [threat] for each player with a threat of 35 or higher. Travel: Raise each player's threat by 1 to travel here.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 21,
+    "quantity": 3,
+    "threat": 1,
+    "quest": 4,
+    "shadow": "Shadow: Either raise your threat by 2, or return attacking enemy to the staging area after this attack.",
+    "encounter_set": "The Passing of the Grey Company",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/46e10da4-a188-4502-b53f-6644495a1319.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 21,
+        "quantity": 3,
+        "octgnid": "46e10da4-a188-4502-b53f-6644495a1319",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/46e10da4-a188-4502-b53f-6644495a1319.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:78520dc7-5891-47f3-8782-ca930c434374",
+    "octgnid": "78520dc7-5891-47f3-8782-ca930c434374",
+    "name": "Dead Man of Dunharrow",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Undead. Oathbreaker.",
+    "text": "Phantom.\nForced: After Dead Man of Dunharrow engages you, either attach a set aside Overcome by Fear to your threat dial, or raise your threat by 2.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 22,
+    "quantity": 4,
+    "threat": 2,
+    "attack": 2,
+    "defense": 1,
+    "health": 3,
+    "engagement": 30,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack].",
+    "encounter_set": "The Passing of the Grey Company",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "2",
+      "defense": "1",
+      "health": "3",
+      "engagement": "30"
+    },
+    "imagesrc": "/cards/78520dc7-5891-47f3-8782-ca930c434374.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 22,
+        "quantity": 4,
+        "octgnid": "78520dc7-5891-47f3-8782-ca930c434374",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/78520dc7-5891-47f3-8782-ca930c434374.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:abfe3930-7bca-4ce8-9594-038ad4846205",
+    "octgnid": "abfe3930-7bca-4ce8-9594-038ad4846205",
+    "name": "Faithless Dead",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Undead. Oathbreaker.",
+    "text": "Peril. Phantom.\nWhen Revealed: Either raise each player's threat by 2, or reveal an additional encounter card.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 23,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 3,
+    "defense": 1,
+    "health": 4,
+    "engagement": 35,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] and loses the Phantom keyword for this attack.",
+    "encounter_set": "The Passing of the Grey Company",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "1",
+      "health": "4",
+      "engagement": "35"
+    },
+    "imagesrc": "/cards/abfe3930-7bca-4ce8-9594-038ad4846205.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 23,
+        "quantity": 3,
+        "octgnid": "abfe3930-7bca-4ce8-9594-038ad4846205",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/abfe3930-7bca-4ce8-9594-038ad4846205.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:28b27afb-c966-4960-a4e7-5e5364e45c05",
+    "octgnid": "28b27afb-c966-4960-a4e7-5e5364e45c05",
+    "name": "Ghosts of Men",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Undead. Oathbreaker.",
+    "text": "Peril. Phantom.\nWhen Revealed: Either attach a set aside Overcome by Fear to your threat dial, or Ghosts of Men makes an immediate attack against you.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 24,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 3,
+    "defense": 1,
+    "health": 5,
+    "engagement": 40,
+    "encounter_set": "The Passing of the Grey Company",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "3",
+      "defense": "1",
+      "health": "5",
+      "engagement": "40"
+    },
+    "imagesrc": "/cards/28b27afb-c966-4960-a4e7-5e5364e45c05.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 24,
+        "quantity": 2,
+        "octgnid": "28b27afb-c966-4960-a4e7-5e5364e45c05",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/28b27afb-c966-4960-a4e7-5e5364e45c05.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8a5f4d2e-9558-413f-9913-376ec6a0c184",
+    "octgnid": "8a5f4d2e-9558-413f-9913-376ec6a0c184",
+    "name": "Shadow Host",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Undead. Oathbreaker.",
+    "text": "Phantom.\nForced: When Shadow Host engages you, either attach a set aside Overcome by Fear to your threat dial, or it makes an immediate attack.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 25,
+    "quantity": 2,
+    "threat": 4,
+    "attack": 4,
+    "defense": 2,
+    "health": 6,
+    "engagement": 45,
+    "encounter_set": "The Passing of the Grey Company",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "4",
+      "defense": "2",
+      "health": "6",
+      "engagement": "45"
+    },
+    "imagesrc": "/cards/8a5f4d2e-9558-413f-9913-376ec6a0c184.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 25,
+        "quantity": 2,
+        "octgnid": "8a5f4d2e-9558-413f-9913-376ec6a0c184",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8a5f4d2e-9558-413f-9913-376ec6a0c184.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:7cf91fea-06b4-43f3-ae5d-96f00884fd71",
+    "octgnid": "7cf91fea-06b4-43f3-ae5d-96f00884fd71",
+    "name": "Blood Runs Chill",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Doomed 1.\nWhen Revealed: Each player with a threat of 35 or higher deals 1 damage to each exhausted character he controls.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 26,
+    "quantity": 3,
+    "shadow": "Shadow: If your threat is 35 or higher, defending character cannot ready until the end of the round.",
+    "encounter_set": "The Passing of the Grey Company",
+    "printed_stats": {},
+    "imagesrc": "/cards/7cf91fea-06b4-43f3-ae5d-96f00884fd71.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 26,
+        "quantity": 3,
+        "octgnid": "7cf91fea-06b4-43f3-ae5d-96f00884fd71",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7cf91fea-06b4-43f3-ae5d-96f00884fd71.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:faacffc1-0c11-42ea-aca9-96982cc80e7a",
+    "octgnid": "faacffc1-0c11-42ea-aca9-96982cc80e7a",
+    "name": "The Way is Shut",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Peril. Surge.\nWhen Revealed: Either attach a set aside Overcome by Fear to your threat dial, or progress cannot be placed on the current quest until the end of the round.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 27,
+    "quantity": 2,
+    "encounter_set": "The Passing of the Grey Company",
+    "printed_stats": {},
+    "imagesrc": "/cards/faacffc1-0c11-42ea-aca9-96982cc80e7a.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 27,
+        "quantity": 2,
+        "octgnid": "faacffc1-0c11-42ea-aca9-96982cc80e7a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/faacffc1-0c11-42ea-aca9-96982cc80e7a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:474616b8-11f2-44fe-bad3-a9d3e2bdd208",
+    "octgnid": "474616b8-11f2-44fe-bad3-a9d3e2bdd208",
+    "name": "Whispers in the Dark",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Peril.\nWhen Revealed: Either attach a set aside Overcome by Fear to your threat dial, or each character you control gets -1 [willpower], -1 [attack], and -1 [defense] until the end of the round.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 28,
+    "quantity": 3,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if undefended).",
+    "encounter_set": "The Passing of the Grey Company",
+    "printed_stats": {},
+    "imagesrc": "/cards/474616b8-11f2-44fe-bad3-a9d3e2bdd208.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 28,
+        "quantity": 3,
+        "octgnid": "474616b8-11f2-44fe-bad3-a9d3e2bdd208",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/474616b8-11f2-44fe-bad3-a9d3e2bdd208.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:06ff6757-f80c-499b-8450-1e85e793d02c",
+    "octgnid": "06ff6757-f80c-499b-8450-1e85e793d02c",
+    "name": "No Turning Back",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player must choose: either attach a set aside Overcome by Fear to your threat dial, or discard an ally you control.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 29,
+    "quantity": 2,
+    "shadow": "Shadow: Either attach a set aside Overcome by Fear to your threat dial, or attacking enemy makes an additional attack after this one.",
+    "encounter_set": "The Passing of the Grey Company",
+    "printed_stats": {},
+    "imagesrc": "/cards/06ff6757-f80c-499b-8450-1e85e793d02c.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 29,
+        "quantity": 2,
+        "octgnid": "06ff6757-f80c-499b-8450-1e85e793d02c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/06ff6757-f80c-499b-8450-1e85e793d02c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:a25b4139-f1d0-4466-83f2-f06fa3e0c30b",
+    "octgnid": "a25b4139-f1d0-4466-83f2-f06fa3e0c30b",
+    "name": "Army of the Dead",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Undead. Oathbreaker.",
+    "text": "Phantom.\nImmune to player card effects. X is twice the number of players in the game. Forced: When Army of the Dead attacks, you must either attach a set aside Overcome by Fear to your threat dial, or discard an ally you control.",
+    "is_unique": true,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 67,
+    "quantity": 1,
+    "threat": 0,
+    "attack": 6,
+    "defense": 2,
+    "health": 8,
+    "engagement": 50,
+    "victory": 6,
+    "encounter_set": "The Passing of the Grey Company",
+    "printed_stats": {
+      "threat": "X",
+      "attack": "6",
+      "defense": "2",
+      "health": "8",
+      "engagement": "50",
+      "victory": "6"
+    },
+    "imagesrc": "/cards/a25b4139-f1d0-4466-83f2-f06fa3e0c30b.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 67,
+        "quantity": 1,
+        "octgnid": "a25b4139-f1d0-4466-83f2-f06fa3e0c30b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a25b4139-f1d0-4466-83f2-f06fa3e0c30b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:c7ef7b6e-4346-4b4c-a9fa-2b42e3c2ab5c",
+    "octgnid": "c7ef7b6e-4346-4b4c-a9fa-2b42e3c2ab5c",
+    "name": "The Passing of the Grey Company",
+    "type_code": "rules",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Frodo: When playing the scenarios in The Flame of the West in campaign mode, players cannot use any card with the title \"Frodo Baggins.\"\nPhantom Keyword: Phantom is a new keyword that appears on the Undead enemies in The Passing of the Grey Company. During the 'determine combat damage' step of an attack made by an enemy with Phantom, if any damage would be dealt by the attack it is canceled and the defending player raises his threat by an equal amount instead.\nArmy of the Dead: Army of the Dead is a double-sided card with an enemy version on one side and an objective-ally version on the other side. When playing The Passing of the Grey Company, the Army of the Dead enemy is added to the staging area when the players advance to stage 3A. The Army of the Dead objective-ally is a boon card that can only be earned by defeating the Army of the Dead while playing in campaign mode.",
+    "is_unique": false,
+    "pack_code": "FotW",
+    "pack_name": "The Flame of the West",
+    "position": 999,
+    "quantity": 0,
+    "encounter_set": "The Passing of the Grey Company",
+    "back_name": "The Passing of the Grey Company",
+    "back_text": "",
+    "back_type_code": "rules",
+    "back_imagesrc": "/cards/c7ef7b6e-4346-4b4c-a9fa-2b42e3c2ab5c.B.jpg",
+    "printed_stats": {},
+    "imagesrc": "/cards/c7ef7b6e-4346-4b4c-a9fa-2b42e3c2ab5c.jpg",
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 999,
+        "quantity": 0,
+        "octgnid": "c7ef7b6e-4346-4b4c-a9fa-2b42e3c2ab5c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c7ef7b6e-4346-4b4c-a9fa-2b42e3c2ab5c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

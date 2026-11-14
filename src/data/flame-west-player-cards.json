@@ -1,0 +1,46 @@
+[
+  {
+    "code": "145001",
+    "name": "Aragorn",
+    "type_code": "hero",
+    "type_name": "Hero",
+    "sphere_code": "fellowship",
+    "sphere_name": "Fellowship",
+    "threat": 0,
+    "willpower": 2,
+    "attack": 3,
+    "defense": 2,
+    "health": 5,
+    "traits": "Dúnedain. Noble. Ranger.",
+    "text": "The first player gains control of Aragorn. If Aragorn leaves play, the players lose the game.\nWhile Aragorn has an Artifact attached, he gains sentinel and does not exhaust to quest.",
+    "flavor": "\"I have no help to send, therefore I must go myself...\"\n<cite>The Return of the King</cite>",
+    "is_unique": true,
+    "deck_limit": 1,
+    "pack_name": "The Flame of the West",
+    "pack_code": "FotW",
+    "position": 1,
+    "illustrator": "Javier Charro Martinez",
+    "imagesrc": "/cards/145001.png",
+    "url": "https://ringsdb.com/card/145001",
+    "quantity": 1,
+    "octgnid": "2e778689-9e3f-4da8-a473-781c777f6473",
+    "has_errata": false,
+    "packs": [
+      {
+        "pack_code": "FotW",
+        "pack_name": "The Flame of the West",
+        "position": 1,
+        "quantity": 1,
+        "image_code": "145001",
+        "illustrator": "Javier Charro Martinez",
+        "octgnid": "2e778689-9e3f-4da8-a473-781c777f6473",
+        "imagesrc": "/bundles/cards/145001.png",
+        "date_release": "2016-08-03"
+      }
+    ],
+    "source": "ringsdb",
+    "source_url": "https://ringsdb.com/card/145001",
+    "official": true,
+    "nightmare": false
+  }
+]

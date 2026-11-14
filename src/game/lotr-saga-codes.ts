@@ -56,6 +56,21 @@ export const LAND_SHADOW_SCENARIO_IDS: readonly string[] = [
 ];
 export const isLandShadowScenarioId = (id: string | undefined) =>
   !!id && LAND_SHADOW_SCENARIO_IDS.includes(id);
+/** The Flame of the West's Fellowship-sphere Aragorn, who stands in for the Ring-bearer. */
+export const FLAME_WEST_ARAGORN = "145001";
+/** The Lord of the Rings Saga scenarios of The Flame of the West. */
+export const FLAME_WEST_SCENARIO_IDS: readonly string[] = [
+  "the-passing-of-the-grey-company",
+];
+export const isFlameWestScenarioId = (id: string | undefined) =>
+  !!id && FLAME_WEST_SCENARIO_IDS.includes(id);
+/** The Fellowship Aragorn of a Saga box, if its scenarios place him. */
+export const fellowshipAragornCode = (id: string | undefined) =>
+  isTreasonSarumanScenarioId(id)
+    ? TOS_ARAGORN
+    : isFlameWestScenarioId(id)
+      ? FLAME_WEST_ARAGORN
+      : undefined;
 /** Standalone scenarios played with the Saga's Ring-bearer rules. */
 export const LOTR_SAGA_STANDALONE_IDS: readonly string[] = [
   "the-old-forest",
@@ -67,6 +82,7 @@ export const LOTR_SAGA_SCENARIO_IDS: readonly string[] = [
   ...ROAD_DARKENS_SCENARIO_IDS,
   ...TREASON_SARUMAN_SCENARIO_IDS,
   ...LAND_SHADOW_SCENARIO_IDS,
+  ...FLAME_WEST_SCENARIO_IDS,
 ];
 export const isLotrSagaScenarioId = (id: string | undefined) =>
   !!id && LOTR_SAGA_SCENARIO_IDS.includes(id);
@@ -77,8 +93,8 @@ export const isLotrSagaScenarioId = (id: string | undefined) =>
 export const sagaRingCards = (
   id: string | undefined,
 ): { frodo: string; ring?: string } =>
-  isTreasonSarumanScenarioId(id)
-    ? { frodo: TOS_ARAGORN }
+  fellowshipAragornCode(id)
+    ? { frodo: fellowshipAragornCode(id)! }
     : isLandShadowScenarioId(id)
       ? { frodo: LAND_SHADOW_FRODO, ring: LAND_SHADOW_ONE_RING }
       : !!id && ROAD_DARKENS_SCENARIO_IDS.includes(id)

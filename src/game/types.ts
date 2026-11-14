@@ -288,6 +288,7 @@ export type ScenarioId =
   | "the-passage-of-the-marshes"
   | "journey-to-the-cross-roads"
   | "shelobs-lair"
+  | "the-passing-of-the-grey-company"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -471,6 +472,7 @@ export interface GameState {
   passageMarshes?: import("./passage-marshes-types").PassageMarshesState;
   crossRoads?: import("./cross-roads-types").CrossRoadsState;
   shelobLair?: import("./shelob-lair-types").ShelobLairState;
+  greyCompany?: import("./grey-company-types").GreyCompanyState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -876,6 +878,8 @@ export interface GameState {
     jtcGateAfter?: boolean;
     /** Shelob's Lair: Morgul Orc's shadow discards a random card if this attack destroys a character. */
     slDiscardOnKill?: boolean;
+    /** The Passing of the Grey Company: Faithless Dead's shadow, the attacking enemy loses Phantom for this attack. */
+    gcNoPhantom?: boolean;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

@@ -13,6 +13,7 @@ import definitions from "../data/passive-player-cards.json";
 import type { Attachment, Card, GameState, Unit } from "./types";
 import { cobasEconomyNoQuestExhaust } from "./cobas-economy";
 import { card } from "./cards";
+import { FLAME_WEST_ARAGORN } from "./lotr-saga-codes";
 import { isHero, isAlly, unitType } from "./card-types";
 import { allActiveLocations, allCharacters, ownerOf, seatView } from "./table";
 import { marshPlayerNoQuestExhaust } from "./marsh-player-cards";
@@ -305,6 +306,21 @@ export function printedKeyword(u: Unit, keyword: string): boolean {
     printed,
   );
 }
+/**
+ * The Flame of the West's Aragorn: while he has an Artifact attached, he
+ * gains sentinel and does not exhaust to quest.
+ */
+export const flameWestAragornArmed = (u: Unit) =>
+  u.code === FLAME_WEST_ARAGORN &&
+  !u.blanked &&
+  u.attachments.some(
+    (a) =>
+      !a.blanked &&
+      !a.facedown &&
+      (card(a.code).traits ?? "")
+        .split(".")
+        .some((t) => t.trim() === "Artifact"),
+  );
 export function effectiveKeyword(u: Unit, keyword: string): boolean {
   const c = card(u.code);
   const printed = (
@@ -313,6 +329,7 @@ export function effectiveKeyword(u: Unit, keyword: string): boolean {
   const exact = new RegExp(`(?:^|[.\\n]\\s*)${keyword}(?:[.\\s]|$)`, "i");
   return (
     WildsSupport.wildsPlayerKeyword(u, keyword) ||
+    (keyword.toLowerCase() === "sentinel" && flameWestAragornArmed(u)) ||
     !!u.dynamicKeywords?.some(
       (k) => k.toLowerCase() === keyword.toLowerCase(),
     ) ||
@@ -451,6 +468,7 @@ export const restrictedAttachment = (code: string) =>
     (/\bRestricted\b/.test(card(code).text ?? "") ? 1 : 0)) > 0;
 export function questExhausts(s: GameState, u: Unit) {
   if (
+    flameWestAragornArmed(u) ||
     batch4Scenario(s).doesNotExhaustToQuest?.(s, u) ||
     !WildsSupport.wildsPlayerQuestExhausts(s, u) ||
     !EredSupport.eredMithrinPlayerQuestExhausts(s, u) ||

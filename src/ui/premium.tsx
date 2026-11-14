@@ -95,6 +95,10 @@ export const PLAYMATS = {
     name: "Torech Ungol",
     detail: "The stairs of Cirith Ungol · Shelob's webs in the dark",
   },
+  "the-passing-of-the-grey-company": {
+    name: "The Paths of the Dead",
+    detail: "The Dark Door under the Dwimorberg · The Stone of Erech",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -512,6 +516,7 @@ export const PLAYMAT_CHOICES = [
   "the-passage-of-the-marshes",
   "journey-to-the-cross-roads",
   "shelobs-lair",
+  "the-passing-of-the-grey-company",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

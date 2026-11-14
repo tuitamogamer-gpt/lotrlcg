@@ -70,11 +70,16 @@ import {
   SHELOB_LAIR_ENCOUNTERS,
   SHELOB_LAIR_QUESTS,
 } from "./shelob-lair-scenario-data";
+import {
+  GREY_COMPANY_ENCOUNTERS,
+  GREY_COMPANY_QUESTS,
+} from "./grey-company-scenario-data";
 import hobbitPlayers from "../data/hobbit-player-cards.json";
 import blackRidersPlayers from "../data/black-riders-player-cards.json";
 import roadDarkensPlayers from "../data/road-darkens-player-cards.json";
 import treasonSarumanPlayers from "../data/treason-saruman-player-cards.json";
 import landShadowPlayers from "../data/land-shadow-player-cards.json";
+import flameWestPlayers from "../data/flame-west-player-cards.json";
 import lotrSagaCards from "../data/lotr-saga-cards.json";
 import {
   FORTRESS_NURN_ENCOUNTERS,
@@ -387,6 +392,7 @@ export const playerCards = [
           ...roadDarkensPlayers,
           ...treasonSarumanPlayers,
           ...landShadowPlayers,
+          ...flameWestPlayers,
         ] as Card[]
       ).map((c) => {
         if (c.code === "19146")
@@ -568,6 +574,7 @@ export const encounterCards = [
       ...PASSAGE_MARSHES_ENCOUNTERS,
       ...CROSS_ROADS_ENCOUNTERS,
       ...SHELOB_LAIR_ENCOUNTERS,
+      ...GREY_COMPANY_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -663,6 +670,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...PASSAGE_MARSHES_QUESTS,
     ...CROSS_ROADS_QUESTS,
     ...SHELOB_LAIR_QUESTS,
+    ...GREY_COMPANY_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -799,6 +807,7 @@ export const SCRIPTED = new Set(
     ...PASSAGE_MARSHES_QUESTS,
     ...CROSS_ROADS_QUESTS,
     ...SHELOB_LAIR_QUESTS,
+    ...GREY_COMPANY_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

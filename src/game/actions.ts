@@ -24,6 +24,7 @@ import { breakingFellowshipPublicState } from "./breaking-fellowship-support";
 import { fogBarrowPublicState } from "./fog-barrow-support";
 import { urukHaiPublicState } from "./uruk-hai-support";
 import { shelobLairPublicState } from "./shelob-lair-support";
+import { greyCompanyPublicState } from "./grey-company-support";
 import { helmsDeepPublicState } from "./helms-deep-support";
 import { roadIsengardPublicState } from "./road-isengard-support";
 import { passageMarshesPublicState } from "./passage-marshes-support";
@@ -3786,6 +3787,7 @@ export function publicState(s: GameState) {
     passageMarshes: passageMarshesPublicState(s),
     crossRoads: crossRoadsPublicState(s),
     shelobLair: shelobLairPublicState(s),
+    greyCompany: greyCompanyPublicState(s),
     fortressNurnPlayers: FortressPlayers.fortressNurnPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),

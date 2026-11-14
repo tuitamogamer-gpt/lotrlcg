@@ -50,6 +50,7 @@ export function mainQuestCode(s: GameState): string | undefined {
   if (s.passageMarshes) return s.passageMarshes.currentQuest;
   if (s.crossRoads) return s.crossRoads.currentQuest;
   if (s.shelobLair) return s.shelobLair.currentQuest;
+  if (s.greyCompany) return s.greyCompany.currentQuest;
   if (s.landSorrow) return s.landSorrow.currentQuest;
   if (s.ashMountains) return s.ashMountains.currentQuest;
   if (s.wainriders) return s.wainriders.currentQuest;

@@ -29,6 +29,7 @@ import {
   isOneRing,
   isRingBearerCode,
   isTreasonSarumanScenarioId,
+  fellowshipAragornCode,
   sagaRingCards,
 } from "./lotr-saga-codes";
 import { playerEffectImmune } from "./player-effect-immunity";
@@ -59,11 +60,21 @@ export const tosAragorn = (s: GameState): Unit | undefined =>
     ? globalCharacters(s).find((u) => u.code === TOS_ARAGORN)
     : undefined;
 /**
+ * The Treason of Saruman and The Flame of the West place a Fellowship Aragorn
+ * instead of the Ring-bearer.
+ */
+export const aragornSaga = (s: GameState) =>
+  !!fellowshipAragornCode(s.scenarioId);
+export const fellowshipAragorn = (s: GameState): Unit | undefined => {
+  const code = fellowshipAragornCode(s.scenarioId);
+  return code ? globalCharacters(s).find((u) => u.code === code) : undefined;
+};
+/**
  * The Fellowship hero the first player controls: the Ring-bearer with The One
- * Ring, or The Treason of Saruman's Aragorn.
+ * Ring, or the Fellowship Aragorn.
  */
 export const sagaHero = (s: GameState): Unit | undefined =>
-  treasonSaruman(s) ? tosAragorn(s) : ringBearer(s);
+  aragornSaga(s) ? fellowshipAragorn(s) : ringBearer(s);
 /** Setup: the first player gains control of Frodo Baggins and attaches The One Ring. */
 export function placeRingBearer(s: GameState) {
   if (!lotrSaga(s) || sagaHero(s)) return;
@@ -92,14 +103,15 @@ export function placeRingBearer(s: GameState) {
   );
 }
 /**
- * The Treason of Saruman: the Fellowship Aragorn is unique, so a player's
- * other Aragorn is set aside at setup, as the insert's campaign rule has a
- * player lose that version of Aragorn.
+ * The Treason of Saruman and The Flame of the West: the Fellowship Aragorn is
+ * unique, so a player's other Aragorn is set aside at setup, as the insert's
+ * campaign rule has a player lose that version of Aragorn.
  */
 export function sagaLineUp(scenarioId: string | undefined, heroes: string[]) {
-  if (!isTreasonSarumanScenarioId(scenarioId)) return heroes;
+  const aragorn = fellowshipAragornCode(scenarioId);
+  if (!aragorn) return heroes;
   return heroes.filter(
-    (h) => h === TOS_ARAGORN || card(h).name !== card(TOS_ARAGORN).name,
+    (h) => h === aragorn || card(h).name !== card(aragorn).name,
   );
 }
 /** Control of the Ring-bearer passes with the first player token. */
@@ -118,7 +130,7 @@ export function ringBearerFollowsFirstPlayer(s: GameState) {
   forOwner(s, to, () => s.heroes.push(bearer));
   log(
     s,
-    treasonSaruman(s)
+    aragornSaga(s)
       ? `Player ${to + 1} gains control of the Fellowship hero ${name(bearer)}, with his resources and attachments.`
       : `Player ${to + 1} gains control of the Ring-bearer, ${name(bearer)}, with The One Ring, resources and attachments.`,
   );
@@ -126,7 +138,7 @@ export function ringBearerFollowsFirstPlayer(s: GameState) {
 export function loseOneRing(s: GameState) {
   if (s.status !== "playing") return;
   s.status = "lost";
-  s.reason = treasonSaruman(s)
+  s.reason = aragornSaga(s)
     ? "Aragorn has left play. The players lose the game."
     : "The One Ring has left play. The players lose the game.";
   depositInFlightEncounterCards(s);

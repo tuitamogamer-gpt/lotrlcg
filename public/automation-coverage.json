@@ -2,11 +2,11 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 836,
-    "heroes": 105,
+    "playerCards": 837,
+    "heroes": 106,
     "deckCards": 727,
-    "encounterCards": 1572,
-    "scenarios": 104,
+    "encounterCards": 1588,
+    "scenarios": 105,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -111,17 +111,18 @@
       "the-road-to-isengard",
       "the-passage-of-the-marshes",
       "journey-to-the-cross-roads",
-      "shelobs-lair"
+      "shelobs-lair",
+      "the-passing-of-the-grey-company"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2739,
-    "pending": 1444
+    "scripted": 2759,
+    "pending": 1424
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 215
+    "scripted": 218
   },
   "registeredCodes": [
     "01001",
@@ -795,7 +796,9 @@
     "144011",
     "144012",
     "144013",
+    "145001",
     "145009",
+    "145016",
     "146012",
     "16001",
     "16002",
@@ -1065,6 +1068,7 @@
     "octgn:0676e5a8-1637-42f8-95fa-37aa6e189070",
     "octgn:06badf71-8e85-479e-8ddf-1dec7a40e325",
     "octgn:06c4f297-b2a4-43a6-8d56-aa3385da3b69",
+    "octgn:06ff6757-f80c-499b-8450-1e85e793d02c",
     "octgn:0700c66d-3fe6-4619-9512-edb0241e6203",
     "octgn:07067901-5306-47f0-8863-3c9cb194e1c6",
     "octgn:07690f5d-cc91-437e-bcdf-5010bc69d712",
@@ -1266,7 +1270,9 @@
     "octgn:2809f147-b000-419c-bbb2-39e6221d72de",
     "octgn:282bca71-ff04-4447-a4e9-a7e5f70e0083",
     "octgn:286a5206-9ebb-4ec4-a349-2960ccb2f669",
+    "octgn:2878bd63-b20b-419a-85a2-dff419864e08",
     "octgn:28a4721b-3696-4fae-9eea-01b5a250c892",
+    "octgn:28b27afb-c966-4960-a4e7-5e5364e45c05",
     "octgn:28ba7c20-b660-40cb-9e2c-bf6ebaec723e",
     "octgn:29005ca1-107a-4473-8769-ce7d944e9844",
     "octgn:2935fd55-6945-4c20-8586-c435ceec52f3",
@@ -1431,7 +1437,9 @@
     "octgn:463d0c53-2275-410f-b311-139f19561b46",
     "octgn:46affe37-a561-4c15-bc0e-7c36d78ba056",
     "octgn:46c7bfd7-96b7-4fe4-a110-3464ba6c0023",
+    "octgn:46e10da4-a188-4502-b53f-6644495a1319",
     "octgn:4732976c-a400-498f-9f97-108995fcd99f",
+    "octgn:474616b8-11f2-44fe-bad3-a9d3e2bdd208",
     "octgn:475d31c0-45d5-4a9f-aaac-c23b93c73f03",
     "octgn:4765cbea-5ae8-4e39-a811-a67f1f6ca2a0",
     "octgn:47aada3f-9ee6-455d-8c2d-786962633f34",
@@ -1533,6 +1541,7 @@
     "octgn:4d423c39-09c1-4c0b-b46f-6983fae4c07b",
     "octgn:4d85bbe6-1bc7-4890-8974-e42e2d0f9431",
     "octgn:4d85eda6-14e2-4dee-b912-31056fc6a2cc",
+    "octgn:4d904ec3-1c74-4091-861d-c543412b5443",
     "octgn:4d925556-3a39-4e49-aafa-0adac6cacc52",
     "octgn:4daa4ff5-625a-4949-aef5-fb1349e249fd",
     "octgn:4e12f20f-aec3-4311-a656-10a517fd97fe",
@@ -2015,6 +2024,7 @@
     "octgn:702e659f-949c-491d-84ab-e1d5b4166f46",
     "octgn:70cc4fe9-8e97-4d83-8f48-06dc6a43c43e",
     "octgn:70decac2-b07f-4c96-9684-4c008f19610b",
+    "octgn:70fc56ec-dca4-485a-8c5e-7d0cf4e17038",
     "octgn:71060c15-34c0-44ad-885b-4b6c18d2962a",
     "octgn:71079813-3afe-41b7-8746-92dcc1f91084",
     "octgn:715625a1-320e-478c-afd3-bec7111105f2",
@@ -2060,6 +2070,7 @@
     "octgn:77833ba7-253c-4d4b-9c45-1764ce014dce",
     "octgn:77dd117d-b2b6-4324-aa59-09fd1343fde9",
     "octgn:783ecb94-e005-4ff7-8bc3-76196bba9249",
+    "octgn:78520dc7-5891-47f3-8782-ca930c434374",
     "octgn:78fd9e40-f68d-46c9-b6bf-8fec3b77bfcf",
     "octgn:795579db-249d-4c9d-850f-6f39bc96c063",
     "octgn:797a1805-f347-4eb3-9f77-5c9e6b6a850f",
@@ -2089,6 +2100,7 @@
     "octgn:7cae1eb0-8693-4eb8-b5f0-86a35a271410",
     "octgn:7cbf23fd-28c4-494c-97aa-b7fed050ad8b",
     "octgn:7ce50ea4-2496-414f-8fd5-5b076b58c9ee",
+    "octgn:7cf91fea-06b4-43f3-ae5d-96f00884fd71",
     "octgn:7d0387db-eba6-44e0-8602-b031a2927ca4",
     "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
     "octgn:7d55e738-cc23-4e78-9a88-2a25fa4f3ca4",
@@ -2119,6 +2131,7 @@
     "octgn:81b31016-bcc3-4445-8f4d-64187e99aff3",
     "octgn:81de0a94-a871-42af-8497-d66b900c9620",
     "octgn:81e81787-13b1-4bbf-a9ef-b8516deebbbc",
+    "octgn:820e2015-fc9c-4547-8e93-d4eb7cd79691",
     "octgn:82141d38-fb53-472c-a5e8-6a495447c9ad",
     "octgn:821a078b-ae42-4b69-bd49-cc235916be77",
     "octgn:822ca699-4763-4b8c-baff-d8d828c002a9",
@@ -2151,6 +2164,7 @@
     "octgn:877a0217-9708-4139-b305-14c1b83c1d14",
     "octgn:87c33692-599d-4914-a513-4353906fc6d4",
     "octgn:87c80644-57bb-4c66-8df6-c60cadc32d32",
+    "octgn:87ca18e7-934a-4da9-bbb0-3a66f3d1b4c3",
     "octgn:87d2f0c4-8874-4910-9bb4-4f2d06c64168",
     "octgn:8815a340-fc16-41c5-ac2c-d647876c2bbd",
     "octgn:882952c5-c3a7-43aa-91d2-8a130b300d5f",
@@ -2166,6 +2180,7 @@
     "octgn:8a0c8aef-d820-495f-b8f6-f2148f0786ba",
     "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
     "octgn:8a4aebc3-32db-4b2f-965c-548058440a7c",
+    "octgn:8a5f4d2e-9558-413f-9913-376ec6a0c184",
     "octgn:8a703700-ca1b-46fa-b5fc-67544c5ad254",
     "octgn:8a7a0942-0bd2-44b1-9a9b-057f38b225e9",
     "octgn:8ab1b53d-df75-487e-9351-60690fba1df5",
@@ -2205,6 +2220,7 @@
     "octgn:8f6254c0-a723-4e66-bdc7-4c92eed415f8",
     "octgn:8f6e5d67-81c7-4db8-9cb0-ef45b71490c6",
     "octgn:8fa4b202-cb8e-470d-ae2b-aa945ac652c5",
+    "octgn:90203b8d-a359-4f18-8314-12815090a9d0",
     "octgn:9031b458-f7e0-4c55-9266-f30aaaf718c1",
     "octgn:9042242b-054d-413e-83c7-bb9f42551a8a",
     "octgn:90b5e33a-3708-40ab-8d20-5a997237e536",
@@ -2301,6 +2317,7 @@
     "octgn:a11f08ac-541b-46ba-9528-467dcbdc90c6",
     "octgn:a1827b45-42bd-44b3-a86d-d773e60ac1b5",
     "octgn:a1a8bd6e-4cd1-4641-9cb1-f693f053f62e",
+    "octgn:a25b4139-f1d0-4466-83f2-f06fa3e0c30b",
     "octgn:a264930c-e083-484a-bbe8-9b615942e83a",
     "octgn:a2b6cb8b-dacf-4c82-9097-2206610192ac",
     "octgn:a305f78f-0d26-4a56-9d5b-7fb0210e6bd4",
@@ -2356,6 +2373,7 @@
     "octgn:abd56f0e-0238-432b-84b2-7c715d96477b",
     "octgn:abd919a4-de0d-4f7f-8cc1-787ab31980c9",
     "octgn:abeec7e9-ccf6-4145-ae1a-d7179c5a4b4d",
+    "octgn:abfe3930-7bca-4ce8-9594-038ad4846205",
     "octgn:ac4724db-a3cc-4984-bef5-f51b0f4421f8",
     "octgn:ac9fe707-143f-492e-89e3-bdd02973a0f2",
     "octgn:aca1ee7f-ad29-4218-8dd5-f7f7a8e617fe",
@@ -2522,6 +2540,7 @@
     "octgn:c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da",
     "octgn:c7bcb6fc-dde8-4df0-bd0e-3791b0fef4d0",
     "octgn:c7e3bde9-8348-41d6-8272-aa733f60a108",
+    "octgn:c7ef7b6e-4346-4b4c-a9fa-2b42e3c2ab5c",
     "octgn:c88d317b-d8b9-43ef-b41d-427ae4337f8d",
     "octgn:c898c9f0-d4a7-4821-b075-1e412cde86a7",
     "octgn:c8decb35-cb3e-4dc9-ad15-d0cc80c157cb",
@@ -2584,6 +2603,7 @@
     "octgn:d3c68791-c3f9-4e8d-9515-2496f9ca1895",
     "octgn:d4686e4d-2d50-4ffd-9b95-7bcdf9b2a494",
     "octgn:d47ece86-2645-4d35-8ab7-c439d12abe65",
+    "octgn:d4e4ab9d-d5ea-4d33-89f1-d8d24d166002",
     "octgn:d5134ddf-8c78-4e68-a603-7df5d48f5016",
     "octgn:d63f87da-45b4-4c5c-b3b5-970a4277c263",
     "octgn:d658967b-662e-4dfb-afb6-4b3444074b79",
@@ -2806,6 +2826,7 @@
     "octgn:fa85988c-4530-414e-95a6-066002e0ef7a",
     "octgn:fa8e0538-d920-4f0e-9810-103c5186531f",
     "octgn:fa9df618-126b-4ea9-95d7-22cd5dad6d2f",
+    "octgn:faacffc1-0c11-42ea-aca9-96982cc80e7a",
     "octgn:fab58a26-eaa6-4e6b-aa59-575bab8a2599",
     "octgn:fac30859-0ad6-4d07-8b73-b5e2af044a52",
     "octgn:fb301d7d-7936-49b6-a938-40ff0ca549cb",
@@ -3445,9 +3466,9 @@
     {
       "product": "the-flame-of-the-west",
       "total": 82,
-      "scripted": 1,
+      "scripted": 21,
       "player": 15,
-      "playerScripted": 1
+      "playerScripted": 2
     },
     {
       "product": "the-fortress-of-nurn",
@@ -10415,7 +10436,7 @@
       "name": "Aragorn",
       "type": "hero",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -10535,7 +10556,7 @@
       "name": "Overcome by Fear",
       "type": "objective",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -13143,7 +13164,7 @@
       "name": "No Turning Back",
       "type": "treachery",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -15887,7 +15908,7 @@
       "name": "The Forbidden Door",
       "type": "quest",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -15919,7 +15940,7 @@
       "name": "Ghosts of Men",
       "type": "enemy",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -18359,7 +18380,7 @@
       "name": "Haunted Path",
       "type": "location",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -18399,7 +18420,7 @@
       "name": "Whispers in the Dark",
       "type": "treachery",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -19471,7 +19492,7 @@
       "name": "The Stone of Erech",
       "type": "location",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -24583,7 +24604,7 @@
       "name": "Deadly Road",
       "type": "location",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -25263,7 +25284,7 @@
       "name": "Dead Man of Dunharrow",
       "type": "enemy",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -25679,7 +25700,7 @@
       "name": "Blood Runs Chill",
       "type": "treachery",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -26191,7 +26212,7 @@
       "name": "The Paths of the Dead",
       "type": "quest",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -26703,7 +26724,7 @@
       "name": "Trysting Place",
       "type": "location",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -26919,7 +26940,7 @@
       "name": "Shadow Host",
       "type": "enemy",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -27455,7 +27476,7 @@
       "name": "The Dead are Following",
       "type": "quest",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -28871,7 +28892,7 @@
       "name": "Army of the Dead",
       "type": "enemy",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -29655,7 +29676,7 @@
       "name": "Faithless Dead",
       "type": "enemy",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -32423,7 +32444,7 @@
       "name": "The Passing of the Grey Company",
       "type": "rules",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -33431,7 +33452,7 @@
       "name": "Dark Door",
       "type": "location",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -36631,7 +36652,7 @@
       "name": "The Way is Shut",
       "type": "treachery",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -38027,8 +38048,8 @@
       "id": "E0B.13",
       "name": "The Passing of the Grey Company (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-passing-of-the-grey-company",
+      "state": "scripted"
     },
     {
       "id": "E0B.14",
@@ -38153,8 +38174,8 @@
       "id": "E0C.13",
       "name": "The Passing of the Grey Company (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-passing-of-the-grey-company",
+      "state": "scripted"
     },
     {
       "id": "E0C.14",
@@ -39518,8 +39539,8 @@
       "id": "Q0B.13",
       "name": "The Passing of the Grey Company",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-passing-of-the-grey-company",
+      "state": "scripted"
     },
     {
       "id": "Q0B.14",
