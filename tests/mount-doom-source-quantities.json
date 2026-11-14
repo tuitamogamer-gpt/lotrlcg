@@ -1,0 +1,173 @@
+[
+  {
+    "name": "The Tower of Barad-dûr",
+    "code": "octgn:bb6dd4a6-a72c-400a-9cc6-903d7260ea1b",
+    "encounterSet": "Mount Doom",
+    "set": "1/36",
+    "scan": "1/36",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Mount Doom",
+    "code": "octgn:2dc216a5-af92-44e5-b225-9cdc7bf47e73",
+    "encounterSet": "Mount Doom",
+    "set": "2/36",
+    "scan": "2/36",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Orc-hold",
+    "code": "octgn:1a0189ae-b9ad-49c2-a217-a9c975536384",
+    "encounterSet": "Mount Doom",
+    "set": "3-5/36",
+    "scan": "3/36",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "name": "Mordor Road",
+    "code": "octgn:e9bdfb84-2f96-4288-bbed-31f52cc10b86",
+    "encounterSet": "Mount Doom",
+    "set": "6-7/36",
+    "scan": "6/36",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Plain of Gorgoroth",
+    "code": "octgn:c88f14e5-1bd3-4829-ab70-02479df6cdfd",
+    "encounterSet": "Mount Doom",
+    "set": "8-11/36",
+    "scan": "8/36",
+    "normal": 4,
+    "easy": 4
+  },
+  {
+    "name": "Brake of Thorns",
+    "code": "octgn:cfe25792-3c08-4154-8770-821eee3c9e3f",
+    "encounterSet": "Mount Doom",
+    "set": "12-14/36",
+    "scan": "12/36",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "name": "Old Water-course",
+    "code": "octgn:13543061-b855-4e58-9190-e2f56c17cd32",
+    "encounterSet": "Mount Doom",
+    "set": "15/36",
+    "scan": "15/36",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Gollum",
+    "code": "octgn:eb232287-e39e-4358-b37f-23b2c45ca6a8",
+    "encounterSet": "Mount Doom",
+    "set": "16/36",
+    "scan": "16/36",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Ringwraith of Sauron",
+    "code": "octgn:c39c83bf-ee9e-4e4d-9689-b8f7559292bd",
+    "encounterSet": "Mount Doom",
+    "set": "17-18/36",
+    "scan": "17/36",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Orc Captain",
+    "code": "octgn:ae4a4129-ed5d-4902-92e3-ae89e2795fb1",
+    "encounterSet": "Mount Doom",
+    "set": "19-20/36",
+    "scan": "19/36",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Big Uruk",
+    "code": "octgn:6036efda-3456-45d2-817a-4ef8b310db5a",
+    "encounterSet": "Mount Doom",
+    "set": "21-23/36",
+    "scan": "21/36",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Little Snuffler",
+    "code": "octgn:ad3509b5-b4b4-4fe5-bfdc-e655cc2470d3",
+    "encounterSet": "Mount Doom",
+    "set": "24-27/36",
+    "scan": "24/36",
+    "normal": 4,
+    "easy": 2
+  },
+  {
+    "name": "“Wicked Master!”",
+    "code": "octgn:2ab79807-7f6b-4b8b-8295-fb8645cdee8a",
+    "encounterSet": "Mount Doom",
+    "set": "28/36",
+    "scan": "28/36",
+    "normal": 1,
+    "easy": 0
+  },
+  {
+    "name": "The Lidless Eye",
+    "code": "octgn:d71de165-8632-4628-94ea-793a1c20e6f8",
+    "encounterSet": "Mount Doom",
+    "set": "29-32/36",
+    "scan": "29/36",
+    "normal": 4,
+    "easy": 3
+  },
+  {
+    "name": "Foul Fumes",
+    "code": "octgn:01a03d74-06d9-4fc8-afd7-2739fa900c32",
+    "encounterSet": "Mount Doom",
+    "set": "33-34/36",
+    "scan": "33/36",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Heavy and Tired",
+    "code": "octgn:cdf7a6c5-23f6-4314-a122-3b7df1b97501",
+    "encounterSet": "Mount Doom",
+    "set": "35-36/36",
+    "scan": "35/36",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Drawn to the Ring",
+    "code": "octgn:a442dbd4-ec18-44e6-b762-b0ebf94a8897",
+    "encounterSet": "Deep Shadows",
+    "set": "1-3/8",
+    "scan": "1/8",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "name": "Deep Shadows",
+    "code": "octgn:ef94d441-715f-42e8-bb3a-764592cdf44c",
+    "encounterSet": "Deep Shadows",
+    "set": "4-5/8",
+    "scan": "5/8",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Evil Vigilance",
+    "code": "octgn:15f9c6b7-2bb0-48ea-9a5d-b8ec3b1a7e2d",
+    "encounterSet": "Deep Shadows",
+    "set": "6-8/8",
+    "scan": "6/8",
+    "normal": 3,
+    "easy": 3
+  }
+]

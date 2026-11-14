@@ -1,6 +1,6 @@
 import type { Effect, GameState, Option, Unit } from "./types";
 import type { Batch4ScenarioHooks } from "./batch4-scenario-contract";
-import { card, cards, name } from "./cards";
+import { card, name } from "./cards";
 import {
   choose,
   fx,
@@ -60,7 +60,7 @@ import {
   mordorOrcsEffect,
   stagingArchery,
 } from "./mordor-orcs";
-import { DIRE_REDUCED } from "./dire";
+import { direThreatReduction } from "./dire-rules";
 import {
   BG,
   BG_EMBASSY_PAIRS,
@@ -415,20 +415,6 @@ function toStaging(s: GameState, u: Unit) {
   s.staging.push(u);
   enemyAddedToStaging(s, u);
 }
-/** A source of threat reduction that is a boon card. */
-function boonSource(
-  s: GameState,
-  source?: { id?: string; code?: string } | string,
-) {
-  const code =
-    typeof source === "string"
-      ? cards[source]
-        ? source
-        : get(s, source)?.code
-      : (source?.code ?? get(s, source?.id)?.code);
-  return !!code && card(code).sphere_code === "boon";
-}
-
 // ---------------------------------------------------------------------------
 // Effects.
 
@@ -1552,19 +1538,8 @@ export const BLACK_GATE_HOOKS: Batch4ScenarioHooks = {
     s.blackGate.noReady.round === s.round &&
     s.blackGate.noReady.ids.includes(u.id),
   // Dire: no more than 1 threat reduction each round from non-boon player cards.
-  threatReduction: (s, amount, reason, source) => {
-    if (!s.blackGate || reason !== "player-card" || amount <= 0) return amount;
-    if (boonSource(s, source)) return amount;
-    const done = s.used.filter((k) => k === DIRE_REDUCED).length;
-    const actual = Math.min(amount, Math.max(0, 1 - done));
-    for (let i = 0; i < actual; i++) s.used.push(DIRE_REDUCED);
-    if (actual < amount)
-      log(
-        s,
-        `Dire: ${who(s, activeSeat(s))} cannot reduce ${his(s)} threat by more than 1 this round.`,
-      );
-    return actual;
-  },
+  threatReduction: (s, amount, reason, source) =>
+    s.blackGate ? direThreatReduction(s, amount, reason, source) : amount,
   // The players cannot win: their result is the resources on The Black Gate.
   lossReason: (s, reason) => {
     if (!s.blackGate) return reason;

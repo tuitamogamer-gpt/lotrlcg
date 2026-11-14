@@ -919,7 +919,11 @@ export function depositInFlightEncounterCards(s: GameState) {
 }
 
 export function check(s: GameState) {
-  if (s.status !== "playing") return;
+  if (s.status !== "playing") {
+    // A finished game keeps the text of its final board, as its restored save does.
+    eachArea(s, () => syncAttachmentText(s));
+    return;
+  }
   const firstBefore = s.table?.first;
   Cobas.cobasCheck(s);
   City.cityCheck(s);

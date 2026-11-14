@@ -79,6 +79,7 @@ export const MOUNTAIN_FIRE_ARAGORN = "146002";
 export const MOUNTAIN_FIRE_SCENARIO_IDS: readonly string[] = [
   "the-tower-of-cirith-ungol",
   "the-black-gate-opens",
+  "mount-doom",
 ];
 export const isMountainFireScenarioId = (id: string | undefined) =>
   !!id && MOUNTAIN_FIRE_SCENARIO_IDS.includes(id);

@@ -5,8 +5,8 @@
     "playerCards": 850,
     "heroes": 110,
     "deckCards": 736,
-    "encounterCards": 1664,
-    "scenarios": 109,
+    "encounterCards": 1680,
+    "scenarios": 110,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -116,17 +116,18 @@
       "the-siege-of-gondor",
       "the-battle-of-the-pelennor-fields",
       "the-tower-of-cirith-ungol",
-      "the-black-gate-opens"
+      "the-black-gate-opens",
+      "mount-doom"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2858,
-    "pending": 1325
+    "scripted": 2878,
+    "pending": 1305
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 230
+    "scripted": 233
   },
   "registeredCodes": [
     "01001",
@@ -1066,6 +1067,7 @@
     "octgn:015c235b-877b-4433-b979-99c4097ef784",
     "octgn:0198aa68-aced-42d0-8816-719ce166ef15",
     "octgn:019ebbd1-9632-4c0a-bd98-4ecef29afb1a",
+    "octgn:01a03d74-06d9-4fc8-afd7-2739fa900c32",
     "octgn:01a43351-0e36-4175-9a94-693ff91404ad",
     "octgn:01b1d42b-11a4-4030-988d-064673169fec",
     "octgn:021affba-a51d-48f1-ac86-354f3e82d38d",
@@ -1161,6 +1163,7 @@
     "octgn:125e7884-7f75-42cd-80ba-065cf88eef9a",
     "octgn:12a9c24d-c09d-4fd8-a746-4d75d30b7548",
     "octgn:1339dfb5-49c1-46ce-a4c9-970d0e118cfa",
+    "octgn:13543061-b855-4e58-9190-e2f56c17cd32",
     "octgn:1371a0af-e085-42e4-8cd7-a2007da158e1",
     "octgn:138ee2a3-0982-48ab-945e-60fab6f06586",
     "octgn:13a4b435-fa14-42b8-975e-804d3b8b929d",
@@ -1196,6 +1199,7 @@
     "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1",
     "octgn:19e2470a-94c6-4f14-b824-7d2f952b60fd",
     "octgn:19f36ec5-7ad4-4dab-80a7-4a7a6c716941",
+    "octgn:1a0189ae-b9ad-49c2-a217-a9c975536384",
     "octgn:1a06164a-8f54-49b7-a067-52680893f69d",
     "octgn:1a3d3725-9451-4c97-a8c7-5d2fa8e35c4c",
     "octgn:1a55452f-9e4c-4cdc-8ce1-549c862bf96e",
@@ -1323,6 +1327,7 @@
     "octgn:29f8a182-2e69-47d7-a742-296836371f41",
     "octgn:29fd0721-10ed-4315-b415-5fadeb010051",
     "octgn:2a7b5607-d7ed-4580-b27b-39cf12879297",
+    "octgn:2ab79807-7f6b-4b8b-8295-fb8645cdee8a",
     "octgn:2af71d2e-0b70-43a2-b94e-89770992ef9c",
     "octgn:2b158c89-59d6-40a2-af56-6db21dc62e73",
     "octgn:2b38254c-e992-4fb5-89e8-e7f636658ce0",
@@ -1344,6 +1349,7 @@
     "octgn:2d4b1381-467e-4bb4-9265-d26dec6125ea",
     "octgn:2d819f76-77dd-47a2-9a3f-ac8b8018f0df",
     "octgn:2dbe66bc-a6bf-42d7-92a5-d186dfe954c6",
+    "octgn:2dc216a5-af92-44e5-b225-9cdc7bf47e73",
     "octgn:2e1bb6cc-2f05-47f1-8ea5-78955cd0cbf2",
     "octgn:2e441298-dafc-41bc-a46f-a0f483ac18bd",
     "octgn:2e5e6e97-003b-4500-8372-495f5ee86051",
@@ -1419,6 +1425,7 @@
     "octgn:39262ffc-6819-422c-a72a-9baed00f648a",
     "octgn:39773513-ff69-4918-9323-6f04b7109b2f",
     "octgn:397ef92c-981b-4495-a2a0-681ea886d30c",
+    "octgn:39a64a5a-7074-46a5-aacc-a42537fe0ddd",
     "octgn:39df5c92-f79e-4d39-b8a3-f93631e183db",
     "octgn:3a8869dc-077e-4b8c-b3d5-474e4f9c14ba",
     "octgn:3b26d048-24cb-4978-86f9-d255048426d8",
@@ -2008,6 +2015,7 @@
     "octgn:5f1ef9c5-ccb2-4f1e-bc5b-9a1de708d2ba",
     "octgn:5fd6638a-3135-460f-bf5e-b3cb0128f939",
     "octgn:5fefdbc7-05e2-4c1b-96fd-46121f87d6b3",
+    "octgn:6036efda-3456-45d2-817a-4ef8b310db5a",
     "octgn:60546e25-329e-4846-852d-65c1a6ee6c5c",
     "octgn:607c3e44-5add-4c80-bb3b-55b016b6cd0e",
     "octgn:60ac6ce9-7aad-415d-a4af-61f67db59454",
@@ -2056,6 +2064,7 @@
     "octgn:6950e7ae-27be-4def-954c-8dabe8dd612b",
     "octgn:6987d363-bcba-4f34-97b1-d26f080c843e",
     "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
+    "octgn:6a24a5e8-80e9-4bba-af55-64be11742dde",
     "octgn:6a3ae84d-6c74-4fbf-9254-b8c1d17c8384",
     "octgn:6a3ae84d-6c74-4fbf-9254-b8c1d17c8384:B",
     "octgn:6a3e1c91-accd-476b-9ecc-ace35274a052",
@@ -2467,13 +2476,16 @@
     "octgn:acbf7fd1-9f93-4d0b-b18a-8f0854e028f5",
     "octgn:ad09f848-9430-41c8-8723-671f08b79078",
     "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc",
+    "octgn:ad3509b5-b4b4-4fe5-bfdc-e655cc2470d3",
     "octgn:ad4739ac-fd18-4add-9b83-860c1fcc2b54",
+    "octgn:ad73bb42-f0fb-4732-956d-e921140e99bb",
     "octgn:ad7fc95f-4a8d-4a15-b170-b0db3c3002f0",
     "octgn:adf2480a-644a-47ee-8deb-bd08ff32bf31",
     "octgn:ae16b39f-ed64-4aa9-b6b8-1fbfbda70e6f",
     "octgn:ae20c7c6-9950-4799-a88e-d0b394879af2",
     "octgn:ae435070-552a-43a9-816f-9f23f1a6dbba",
     "octgn:ae49e8e5-98f1-4562-935f-5e1ab64631e0",
+    "octgn:ae4a4129-ed5d-4902-92e3-ae89e2795fb1",
     "octgn:ae5727cb-4d88-4a28-99be-84a565292b67",
     "octgn:aeb2f711-4597-42c1-af8c-eb7d6f4fa79a",
     "octgn:aeba0e59-8dde-4422-bfb5-911ae8de42a1",
@@ -2554,6 +2566,7 @@
     "octgn:bb38c7cf-8c76-4b87-b218-5516bc366470",
     "octgn:bb58f446-da73-47e3-98e8-70f69ee77d34",
     "octgn:bb5d1d76-663f-4261-94ec-7a9bfc025acf",
+    "octgn:bb6dd4a6-a72c-400a-9cc6-903d7260ea1b",
     "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
     "octgn:bc041e0b-dd7f-4b82-8eb0-d155b1b08398",
     "octgn:bc43ae57-6010-4924-919c-b37d1e33b958",
@@ -2598,6 +2611,7 @@
     "octgn:c354e410-e15a-4999-bb14-696b5e89cee9",
     "octgn:c35f2635-fa68-44be-9ce9-80446831f0e0",
     "octgn:c3907d39-6fd7-4b33-8fe2-215fd9f90be2",
+    "octgn:c39c83bf-ee9e-4e4d-9689-b8f7559292bd",
     "octgn:c3aff9c9-640f-4e90-85f3-6e245c2156fe",
     "octgn:c3c34a86-6089-4a3f-b1b6-f81d8cbc2caa",
     "octgn:c3e07d8f-3af3-4f21-8951-d3300ca376fa",
@@ -2635,6 +2649,7 @@
     "octgn:c7e3bde9-8348-41d6-8272-aa733f60a108",
     "octgn:c7ef7b6e-4346-4b4c-a9fa-2b42e3c2ab5c",
     "octgn:c88d317b-d8b9-43ef-b41d-427ae4337f8d",
+    "octgn:c88f14e5-1bd3-4829-ab70-02479df6cdfd",
     "octgn:c898c9f0-d4a7-4821-b075-1e412cde86a7",
     "octgn:c8decb35-cb3e-4dc9-ad15-d0cc80c157cb",
     "octgn:c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc",
@@ -2662,6 +2677,7 @@
     "octgn:cd628acc-acdf-48c5-a9cc-136eb9bc3095",
     "octgn:cd883a3f-65b8-473e-97f7-b8ac12f91194",
     "octgn:cd974fa4-7f3a-4b46-b2d0-b99d086fe98a",
+    "octgn:cdf7a6c5-23f6-4314-a122-3b7df1b97501",
     "octgn:cdf8dee9-b2ac-4e5f-bf4c-0b9c15cac142",
     "octgn:ce14480c-dfc0-4b30-8f8d-e878e003f4cd",
     "octgn:ce1cf93c-68d9-4613-af3a-a08671152358",
@@ -2680,6 +2696,7 @@
     "octgn:cfcee6c8-9eee-4623-afd1-a49ea77e2322",
     "octgn:cfddac0a-3055-46bd-af9a-8bdda8c9abb6",
     "octgn:cfe00736-4ac0-4f51-b698-705b04eca9a4",
+    "octgn:cfe25792-3c08-4154-8770-821eee3c9e3f",
     "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958",
     "octgn:d0b6992d-9dc4-41fa-a483-b4ad0a3d60b3",
     "octgn:d0bf9c82-d626-4602-a383-4a5660a08c5f",
@@ -2706,6 +2723,7 @@
     "octgn:d664e3bd-3f0d-47d8-91bb-d61b27a13c22",
     "octgn:d69092af-f96b-4885-a194-5d5f31d90e6d",
     "octgn:d6d4ea3a-402c-413b-9732-a07a21dd15b0",
+    "octgn:d71de165-8632-4628-94ea-793a1c20e6f8",
     "octgn:d760ba6c-e377-4d22-ac46-04bfb2b3c65f",
     "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
     "octgn:d7885efa-3af6-48e6-8eb1-5750892fdb34",
@@ -2815,6 +2833,7 @@
     "octgn:e8d205e0-5951-403b-b36e-f992e1b9de7e",
     "octgn:e920ecab-29dc-48a6-908d-f4919d5b468d",
     "octgn:e9217231-de12-48ef-9351-f7d992643c2f",
+    "octgn:e9bdfb84-2f96-4288-bbed-31f52cc10b86",
     "octgn:ea225b12-75e1-4253-9458-c71c1c304a8f",
     "octgn:ea4bc222-6fb5-494e-8f1f-de30974694db",
     "octgn:ea5faa85-5a47-4ab3-a623-3f88df71f7fd",
@@ -2822,12 +2841,14 @@
     "octgn:eaad2b4a-3ac0-4672-ad43-036152d81322",
     "octgn:eaaececf-9322-43b5-a190-bdfadd7a695e",
     "octgn:ead7703f-43e0-464e-ac09-304b86a54b50",
+    "octgn:eb232287-e39e-4358-b37f-23b2c45ca6a8",
     "octgn:eb2b56e7-d669-405b-b2d3-5d3c30cb3f4e",
     "octgn:eb353293-1a80-445c-b4a9-422c83dadfd5",
     "octgn:eb3b5fc0-02a5-4e28-8744-c1e1b4553763",
     "octgn:eb9f723d-0f74-4d10-89e7-b046313a1e91",
     "octgn:ebd1944a-928c-40ff-88de-dfebdfcf633c",
     "octgn:ebde9bba-fd89-4098-ad60-9d1d4e746d23",
+    "octgn:ec2049ab-c950-46f7-9f1b-30ada69db857",
     "octgn:ec2f100d-22c8-4cc6-82d9-fb4f07446b0f",
     "octgn:ec97b3a4-4904-42ac-beb0-9d4d935241fb",
     "octgn:ec9d7726-89fa-41ee-a6ad-30761a6b79d3",
@@ -3717,7 +3738,7 @@
     {
       "product": "the-mountain-of-fire",
       "total": 81,
-      "scripted": 44,
+      "scripted": 64,
       "player": 13,
       "playerScripted": 3
     },
@@ -12844,7 +12865,7 @@
       "name": "Foul Fumes",
       "type": "treachery",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -14172,7 +14193,7 @@
       "name": "Old Water-course",
       "type": "location",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -14684,7 +14705,7 @@
       "name": "Orc-hold",
       "type": "location",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -16188,7 +16209,7 @@
       "name": "“Wicked Master!”",
       "type": "treachery",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -16468,7 +16489,7 @@
       "name": "Mount Doom",
       "type": "location",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -17580,7 +17601,7 @@
       "name": "The Land of Mordor",
       "type": "quest",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -23556,7 +23577,7 @@
       "name": "Big Uruk",
       "type": "enemy",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -24212,7 +24233,7 @@
       "name": "The Road to Isenmouthe",
       "type": "quest",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -29908,7 +29929,7 @@
       "name": "Little Snuffler",
       "type": "enemy",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -29940,7 +29961,7 @@
       "name": "The Crack of Doom",
       "type": "quest",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -30020,7 +30041,7 @@
       "name": "Orc Captain",
       "type": "enemy",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -31508,7 +31529,7 @@
       "name": "The Tower of Barad-dur",
       "type": "objective",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -32068,7 +32089,7 @@
       "name": "Ringwraith of Sauron",
       "type": "enemy",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -32612,7 +32633,7 @@
       "name": "Plain of Gorgoroth",
       "type": "location",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -32972,7 +32993,7 @@
       "name": "Heavy and Tired",
       "type": "treachery",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -33196,7 +33217,7 @@
       "name": "Brake of Thorns",
       "type": "location",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -33668,7 +33689,7 @@
       "name": "The Lidless Eye",
       "type": "treachery",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -35252,7 +35273,7 @@
       "name": "Mordor Road",
       "type": "location",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -35356,7 +35377,7 @@
       "name": "Gollum",
       "type": "enemy",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -35468,7 +35489,7 @@
       "name": "The Last Gasp",
       "type": "quest",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -38187,8 +38208,8 @@
       "id": "E0B.18",
       "name": "Mount Doom (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "mount-doom",
+      "state": "scripted"
     },
     {
       "id": "E0C.01",
@@ -38313,8 +38334,8 @@
       "id": "E0C.18",
       "name": "Mount Doom (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "mount-doom",
+      "state": "scripted"
     },
     {
       "id": "E99.06",
@@ -39678,8 +39699,8 @@
       "id": "Q0B.18",
       "name": "Mount Doom",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "mount-doom",
+      "state": "scripted"
     },
     {
       "id": "Q0C.01",

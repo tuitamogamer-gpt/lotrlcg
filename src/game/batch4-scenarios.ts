@@ -23,6 +23,7 @@ import { SIEGE_GONDOR_HOOKS } from "./siege-gondor";
 import { PELENNOR_FIELDS_HOOKS } from "./pelennor-fields";
 import { CIRITH_UNGOL_HOOKS } from "./cirith-ungol";
 import { BLACK_GATE_HOOKS } from "./black-gate";
+import { MOUNT_DOOM_HOOKS } from "./mount-doom";
 import { HELMS_DEEP_HOOKS } from "./helms-deep";
 import { ROAD_ISENGARD_HOOKS } from "./road-isengard";
 import { PASSAGE_MARSHES_HOOKS } from "./passage-marshes";
@@ -109,6 +110,8 @@ export function batch4Scenario(s: GameState): Batch4ScenarioHooks {
       return CIRITH_UNGOL_HOOKS;
     case "the-black-gate-opens":
       return BLACK_GATE_HOOKS;
+    case "mount-doom":
+      return MOUNT_DOOM_HOOKS;
     case "the-land-of-sorrow":
       return LAND_SORROW_HOOKS;
     case "under-the-ash-mountains":
@@ -200,4 +203,5 @@ export const batch4SharedEffect = (effect: Effect) =>
     PELENNOR_FIELDS_HOOKS,
     CIRITH_UNGOL_HOOKS,
     BLACK_GATE_HOOKS,
+    MOUNT_DOOM_HOOKS,
   ].some((hooks) => hooks.sharedEffect?.(effect));

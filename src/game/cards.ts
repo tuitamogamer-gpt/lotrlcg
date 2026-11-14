@@ -91,6 +91,10 @@ import {
   BLACK_GATE_ENCOUNTERS,
   BLACK_GATE_QUESTS,
 } from "./black-gate-scenario-data";
+import {
+  MOUNT_DOOM_ENCOUNTERS,
+  MOUNT_DOOM_QUESTS,
+} from "./mount-doom-scenario-data";
 import mountainFirePlayers from "../data/mountain-fire-player-cards.json";
 import hobbitPlayers from "../data/hobbit-player-cards.json";
 import blackRidersPlayers from "../data/black-riders-player-cards.json";
@@ -599,6 +603,7 @@ export const encounterCards = [
       ...PELENNOR_FIELDS_BOONS,
       ...CIRITH_UNGOL_ENCOUNTERS,
       ...BLACK_GATE_ENCOUNTERS,
+      ...MOUNT_DOOM_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -699,6 +704,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...PELENNOR_FIELDS_QUESTS,
     ...CIRITH_UNGOL_QUESTS,
     ...BLACK_GATE_QUESTS,
+    ...MOUNT_DOOM_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -840,6 +846,7 @@ export const SCRIPTED = new Set(
     ...PELENNOR_FIELDS_QUESTS,
     ...CIRITH_UNGOL_QUESTS,
     ...BLACK_GATE_QUESTS,
+    ...MOUNT_DOOM_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,
@@ -902,7 +909,14 @@ export const plain = (s = "") =>
     .replace(/\[threat\]/g, "threat")
     .replace(/\[spirit\]/g, "Spirit")
     .replace(/\[leadership\]/g, "Leadership")
-    .replace(/\[baggins\]/g, "Baggins");
+    .replace(/\[baggins\]/g, "Baggins")
+    // Sauron's Eye icons (The Mountain of Fire's Fortitude tests).
+    .replace(/\[sauron\] icons/g, "Sauron's Eye icons")
+    .replace(/(?:\[sauron\])+/g, (m) =>
+      m.length === 8
+        ? "1 Sauron's Eye icon"
+        : `${m.length / 8} Sauron's Eye icons`,
+    );
 export const STAGES = [
   {
     name: "Flies and Spiders",

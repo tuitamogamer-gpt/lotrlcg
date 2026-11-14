@@ -7,7 +7,7 @@ import type { GameState } from "./types";
  * effects trigger at 80 threat instead of 40. Kept free of runtime
  * dependencies, like the elimination level it changes.
  */
-export const direQuest = (s: GameState) => !!s.blackGate;
+export const direQuest = (s: GameState) => !!s.blackGate || !!s.mountDoom;
 export const DIRE_ELIMINATION = 99;
 /** The threat at which Valour effects trigger. */
 export const valourThreat = (s: GameState) => (direQuest(s) ? 80 : 40);

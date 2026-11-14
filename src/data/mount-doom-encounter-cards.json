@@ -1,0 +1,604 @@
+[
+  {
+    "code": "octgn:bb6dd4a6-a72c-400a-9cc6-903d7260ea1b",
+    "octgnid": "bb6dd4a6-a72c-400a-9cc6-903d7260ea1b",
+    "name": "The Tower of Barad-dûr",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Mordor.",
+    "text": "Players do not raise their threat at the end of the refresh phase.\nForced: At the end of the round, each player raises his threat by 1 for each non-[fellowship] character he controls.",
+    "is_unique": true,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 42,
+    "quantity": 1,
+    "encounter_set": "Mount Doom",
+    "printed_stats": {},
+    "imagesrc": "/cards/bb6dd4a6-a72c-400a-9cc6-903d7260ea1b.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 42,
+        "quantity": 1,
+        "octgnid": "bb6dd4a6-a72c-400a-9cc6-903d7260ea1b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bb6dd4a6-a72c-400a-9cc6-903d7260ea1b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:2dc216a5-af92-44e5-b225-9cdc7bf47e73",
+    "octgnid": "2dc216a5-af92-44e5-b225-9cdc7bf47e73",
+    "name": "Mount Doom",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Mordor.",
+    "text": "Immune to player card effects. X is the tens digit of the first player's threat dial.\nThe players cannot travel here unless there is at least 20 progress on stage 3B.\nTravel: Each player makes a Fortitude test. If a player fails this test, he raises his threat by 9.",
+    "is_unique": true,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 43,
+    "quantity": 1,
+    "threat": 0,
+    "quest": 9,
+    "victory": 9,
+    "encounter_set": "Mount Doom",
+    "printed_stats": {
+      "threat": "X",
+      "quest": "9",
+      "victory": "9"
+    },
+    "imagesrc": "/cards/2dc216a5-af92-44e5-b225-9cdc7bf47e73.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 43,
+        "quantity": 1,
+        "octgnid": "2dc216a5-af92-44e5-b225-9cdc7bf47e73",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2dc216a5-af92-44e5-b225-9cdc7bf47e73.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:1a0189ae-b9ad-49c2-a217-a9c975536384",
+    "octgnid": "1a0189ae-b9ad-49c2-a217-a9c975536384",
+    "name": "Orc-hold",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Mordor.",
+    "text": "While Orc-hold is in the staging area, progress cannot be placed on other locations in the staging area.\nForced: After Orc-hold becomes the active location, shuffle the encounter discard pile into the encounter deck. Discard cards from the top until an Orc enemy is discarded. Put that enemy into play engaged with the first player.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 44,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 4,
+    "encounter_set": "Mount Doom",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/1a0189ae-b9ad-49c2-a217-a9c975536384.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 44,
+        "quantity": 3,
+        "octgnid": "1a0189ae-b9ad-49c2-a217-a9c975536384",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1a0189ae-b9ad-49c2-a217-a9c975536384.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "sauron_eyes": 1
+  },
+  {
+    "code": "octgn:e9bdfb84-2f96-4288-bbed-31f52cc10b86",
+    "octgnid": "e9bdfb84-2f96-4288-bbed-31f52cc10b86",
+    "name": "Mordor Road",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Mordor.",
+    "text": "Mordor Road gets +1 [threat] for each ally controlled by the player who controls the most allies.\nForced: After Mordor Road becomes the active location, each player discards the top card of the encounter deck. Add each enemy discarded this way to the staging area.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 45,
+    "quantity": 2,
+    "threat": 1,
+    "quest": 5,
+    "encounter_set": "Mount Doom",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/e9bdfb84-2f96-4288-bbed-31f52cc10b86.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 45,
+        "quantity": 2,
+        "octgnid": "e9bdfb84-2f96-4288-bbed-31f52cc10b86",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e9bdfb84-2f96-4288-bbed-31f52cc10b86.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "sauron_eyes": 1
+  },
+  {
+    "code": "octgn:c88f14e5-1bd3-4829-ab70-02479df6cdfd",
+    "octgnid": "c88f14e5-1bd3-4829-ab70-02479df6cdfd",
+    "name": "Plain of Gorgoroth",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Mordor.",
+    "text": "If a player has failed a Fortitude test this round, Plain of Gorgoroth gets +2 [threat].\nTravel: The first player makes a Fortitude test to travel here. If this test is unsuccessful, raise each player's threat by 4.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 46,
+    "quantity": 4,
+    "threat": 2,
+    "quest": 4,
+    "encounter_set": "Mount Doom",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/c88f14e5-1bd3-4829-ab70-02479df6cdfd.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 46,
+        "quantity": 4,
+        "octgnid": "c88f14e5-1bd3-4829-ab70-02479df6cdfd",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c88f14e5-1bd3-4829-ab70-02479df6cdfd.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:cfe25792-3c08-4154-8770-821eee3c9e3f",
+    "octgnid": "cfe25792-3c08-4154-8770-821eee3c9e3f",
+    "name": "Brake of Thorns",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Mordor.",
+    "text": "While Brake of Thorns is in the staging area, add [sauron] to each Fortitude test.\nForced: After Brake of Thorns becomes the active location, each player assigns X damage among characters he controls, where X is the tens digit of his threat dial.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 47,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 3,
+    "encounter_set": "Mount Doom",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/cfe25792-3c08-4154-8770-821eee3c9e3f.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 47,
+        "quantity": 3,
+        "octgnid": "cfe25792-3c08-4154-8770-821eee3c9e3f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cfe25792-3c08-4154-8770-821eee3c9e3f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "sauron_eyes": 1
+  },
+  {
+    "code": "octgn:13543061-b855-4e58-9190-e2f56c17cd32",
+    "octgnid": "13543061-b855-4e58-9190-e2f56c17cd32",
+    "name": "Old Water-course",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Mordor.",
+    "text": "While Old Water-course is the active location, it gains: \"Response: When Old Water-course is explored, reduce each player's threat by 5.\"\nTravel: Each player must exhaust a hero he controls to travel here.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 48,
+    "quantity": 1,
+    "threat": 2,
+    "quest": 5,
+    "victory": 2,
+    "encounter_set": "Mount Doom",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "5",
+      "victory": "2"
+    },
+    "imagesrc": "/cards/13543061-b855-4e58-9190-e2f56c17cd32.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 48,
+        "quantity": 1,
+        "octgnid": "13543061-b855-4e58-9190-e2f56c17cd32",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/13543061-b855-4e58-9190-e2f56c17cd32.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:eb232287-e39e-4358-b37f-23b2c45ca6a8",
+    "octgnid": "eb232287-e39e-4358-b37f-23b2c45ca6a8",
+    "name": "Gollum",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Gollum.",
+    "text": "Surge. Immune to non-[fellowship] player card effects.\nGollum engages the first player.\n*Forced: After Gollum is discarded during a Fortitude test, put him into play engaged with the first player. Then, choose an encounter card discarded for this test and ignore its [sauron] icons.",
+    "is_unique": true,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 49,
+    "quantity": 1,
+    "threat": 2,
+    "attack": 2,
+    "defense": 2,
+    "health": 5,
+    "engagement": 99,
+    "encounter_set": "Mount Doom",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "2",
+      "defense": "2",
+      "health": "5",
+      "engagement": "99"
+    },
+    "imagesrc": "/cards/eb232287-e39e-4358-b37f-23b2c45ca6a8.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 49,
+        "quantity": 1,
+        "octgnid": "eb232287-e39e-4358-b37f-23b2c45ca6a8",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/eb232287-e39e-4358-b37f-23b2c45ca6a8.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:c39c83bf-ee9e-4e4d-9689-b8f7559292bd",
+    "octgnid": "c39c83bf-ee9e-4e4d-9689-b8f7559292bd",
+    "name": "Ringwraith of Sauron",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Nazgûl.",
+    "text": "Cannot have non-Morgul attachments.\nWhile Ringwraith of Sauron is in the staging area, it gains: \"Forced: After a player fails a Fortitude test, Ringwraith of Sauron engages that player and makes an immediate attack.\"",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 50,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 6,
+    "defense": 3,
+    "health": 10,
+    "engagement": 88,
+    "encounter_set": "Mount Doom",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "6",
+      "defense": "3",
+      "health": "10",
+      "engagement": "88"
+    },
+    "imagesrc": "/cards/c39c83bf-ee9e-4e4d-9689-b8f7559292bd.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 50,
+        "quantity": 2,
+        "octgnid": "c39c83bf-ee9e-4e4d-9689-b8f7559292bd",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c39c83bf-ee9e-4e4d-9689-b8f7559292bd.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "sauron_eyes": 2
+  },
+  {
+    "code": "octgn:ae4a4129-ed5d-4902-92e3-ae89e2795fb1",
+    "octgnid": "ae4a4129-ed5d-4902-92e3-ae89e2795fb1",
+    "name": "Orc Captain",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Uruk.",
+    "text": "Forced: After Orc Captain engages you, make a Fortitude test. If you fail this test, reveal the top card of the encounter deck.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 51,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 5,
+    "defense": 4,
+    "health": 6,
+    "engagement": 55,
+    "shadow": "Shadow: If this attack destroys a character, return attacking enemy to the staging area.",
+    "encounter_set": "Mount Doom",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "5",
+      "defense": "4",
+      "health": "6",
+      "engagement": "55"
+    },
+    "imagesrc": "/cards/ae4a4129-ed5d-4902-92e3-ae89e2795fb1.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 51,
+        "quantity": 2,
+        "octgnid": "ae4a4129-ed5d-4902-92e3-ae89e2795fb1",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ae4a4129-ed5d-4902-92e3-ae89e2795fb1.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "sauron_eyes": 2
+  },
+  {
+    "code": "octgn:6036efda-3456-45d2-817a-4ef8b310db5a",
+    "octgnid": "6036efda-3456-45d2-817a-4ef8b310db5a",
+    "name": "Big Uruk",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Uruk.",
+    "text": "Forced: After Big Uruk engages you, either raise your threat by 4, or Big Uruk makes an immediate attack against you.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 52,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 4,
+    "defense": 3,
+    "health": 5,
+    "engagement": 44,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] for each ally you control.",
+    "encounter_set": "Mount Doom",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "4",
+      "defense": "3",
+      "health": "5",
+      "engagement": "44"
+    },
+    "imagesrc": "/cards/6036efda-3456-45d2-817a-4ef8b310db5a.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 52,
+        "quantity": 3,
+        "octgnid": "6036efda-3456-45d2-817a-4ef8b310db5a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6036efda-3456-45d2-817a-4ef8b310db5a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "sauron_eyes": 1
+  },
+  {
+    "code": "octgn:ad3509b5-b4b4-4fe5-bfdc-e655cc2470d3",
+    "octgnid": "ad3509b5-b4b4-4fe5-bfdc-e655cc2470d3",
+    "name": "Little Snuffler",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Snaga.",
+    "text": "Peril. Surge.\nWhen Revealed: Either raise your threat by 1 for each ally you control, or discard an ally you control.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 53,
+    "quantity": 4,
+    "threat": 1,
+    "attack": 3,
+    "defense": 2,
+    "health": 3,
+    "engagement": 33,
+    "shadow": "Shadow: Exhaust a character you control.",
+    "encounter_set": "Mount Doom",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "3",
+      "defense": "2",
+      "health": "3",
+      "engagement": "33"
+    },
+    "imagesrc": "/cards/ad3509b5-b4b4-4fe5-bfdc-e655cc2470d3.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 53,
+        "quantity": 4,
+        "octgnid": "ad3509b5-b4b4-4fe5-bfdc-e655cc2470d3",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ad3509b5-b4b4-4fe5-bfdc-e655cc2470d3.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "sauron_eyes": 1
+  },
+  {
+    "code": "octgn:2ab79807-7f6b-4b8b-8295-fb8645cdee8a",
+    "octgnid": "2ab79807-7f6b-4b8b-8295-fb8645cdee8a",
+    "name": "“Wicked Master!”",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Gollum.",
+    "text": "When Revealed: Gollum makes an immediate attack against the first player. If Gollum is not in play, search the encounter deck and discard pile for Gollum and put him into play engaged with the first player.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 54,
+    "quantity": 1,
+    "shadow": "Shadow: If attacking enemy is Gollum, he makes an additional attack after this one.",
+    "encounter_set": "Mount Doom",
+    "printed_stats": {},
+    "imagesrc": "/cards/2ab79807-7f6b-4b8b-8295-fb8645cdee8a.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 54,
+        "quantity": 1,
+        "octgnid": "2ab79807-7f6b-4b8b-8295-fb8645cdee8a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2ab79807-7f6b-4b8b-8295-fb8645cdee8a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "sauron_eyes": 3
+  },
+  {
+    "code": "octgn:d71de165-8632-4628-94ea-793a1c20e6f8",
+    "octgnid": "d71de165-8632-4628-94ea-793a1c20e6f8",
+    "name": "The Lidless Eye",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Peril.\nWhen Revealed: Make a Fortitude test. If The One Ring is exhausted, add [sauron][sauron] to the test. If you fail this test, raise your threat by 10.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 55,
+    "quantity": 4,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if you failed a Fortitude test this round).",
+    "encounter_set": "Mount Doom",
+    "printed_stats": {},
+    "imagesrc": "/cards/d71de165-8632-4628-94ea-793a1c20e6f8.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 55,
+        "quantity": 4,
+        "octgnid": "d71de165-8632-4628-94ea-793a1c20e6f8",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d71de165-8632-4628-94ea-793a1c20e6f8.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "sauron_eyes": 2
+  },
+  {
+    "code": "octgn:01a03d74-06d9-4fc8-afd7-2739fa900c32",
+    "octgnid": "01a03d74-06d9-4fc8-afd7-2739fa900c32",
+    "name": "Foul Fumes",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player makes a Fortitude test. If you fail this test, deal 1 damage to each character you control. Until the end of the round, treat the printed text box of each damaged character as if it were blank (except for Traits).",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 56,
+    "quantity": 2,
+    "shadow": "Shadow: If you failed a Fortitude test this round, this attack is considered undefended.",
+    "encounter_set": "Mount Doom",
+    "printed_stats": {},
+    "imagesrc": "/cards/01a03d74-06d9-4fc8-afd7-2739fa900c32.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 56,
+        "quantity": 2,
+        "octgnid": "01a03d74-06d9-4fc8-afd7-2739fa900c32",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/01a03d74-06d9-4fc8-afd7-2739fa900c32.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "sauron_eyes": 2
+  },
+  {
+    "code": "octgn:cdf7a6c5-23f6-4314-a122-3b7df1b97501",
+    "octgnid": "cdf7a6c5-23f6-4314-a122-3b7df1b97501",
+    "name": "Heavy and Tired",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Attach Heavy and Tired to the hero with the most attachments and exhaust that hero. (Counts as a Condition attachment with the text: \"Limit 1 per hero. Attached hero cannot commit to Fortitude tests. Forced: After you fail a Fortitude test, exhaust attached hero and discard each non-objective attachment on it.\")",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 57,
+    "quantity": 2,
+    "encounter_set": "Mount Doom",
+    "printed_stats": {},
+    "imagesrc": "/cards/cdf7a6c5-23f6-4314-a122-3b7df1b97501.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 57,
+        "quantity": 2,
+        "octgnid": "cdf7a6c5-23f6-4314-a122-3b7df1b97501",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cdf7a6c5-23f6-4314-a122-3b7df1b97501.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "sauron_eyes": 1
+  }
+]

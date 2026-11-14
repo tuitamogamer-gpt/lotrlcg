@@ -2885,7 +2885,19 @@ function handleEffect(s: GameState, e: Effect) {
         );
       });
       s.phase = "refresh";
-      log(s, "Refresh · Threat increases by 1.");
+      {
+        // The Tower of Barad-dûr (Mount Doom) cancels the raise; The Lawn adds to it.
+        const raise = Math.max(
+          0,
+          1 + (batch4Scenario(s).refreshThreatBonus?.(s) ?? 0),
+        );
+        log(
+          s,
+          raise
+            ? `Refresh · Threat increases by ${raise}.`
+            : "Refresh · Threat does not increase.",
+        );
+      }
       check(s);
       if (s.status !== "playing") break;
       if (s.table && !batch4Scenario(s).keepFirstPlayer?.(s)) {

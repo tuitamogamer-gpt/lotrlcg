@@ -861,6 +861,24 @@ jobs:
           path: output/black-gate-release/failures
           retention-days: 7
 
+  mount-doom-simulation:
+    name: Mount Doom complete games (44 games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:mount-doom-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: mount-doom-simulation
+          path: output/mount-doom-release/failures
+          retention-days: 7
+
   shelob-lair-simulation:
     name: Shelob's Lair complete games (26 games)
     runs-on: ubuntu-latest
@@ -1060,6 +1078,8 @@ jobs:
             suite: test:browser-cirith-ungol
           - group: black-gate
             suite: test:browser-black-gate
+          - group: mount-doom
+            suite: test:browser-mount-doom
           - group: treason-saruman-players
             suite: test:browser-treason-saruman-players
           - group: land-shadow-players

@@ -39,6 +39,8 @@ export interface Card {
   easy_quantity?: number;
   /** Printed wheel symbols used only when looking at cards during Sailing tests. */
   sailing?: number;
+  /** Printed Sauron's Eye icons counted in Fortitude tests (The Mountain of Fire). */
+  sauron_eyes?: number;
   /** Printed mark in the lower right corner of Beneath the Sands encounter cards. */
   on_track?: boolean;
   /** Printed Track keyword value used after travel while Search is Off Track. */
@@ -295,6 +297,7 @@ export type ScenarioId =
   | "the-battle-of-the-pelennor-fields"
   | "the-tower-of-cirith-ungol"
   | "the-black-gate-opens"
+  | "mount-doom"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -483,6 +486,7 @@ export interface GameState {
   pelennorFields?: import("./pelennor-fields-types").PelennorFieldsState;
   cirithUngol?: import("./cirith-ungol-types").CirithUngolState;
   blackGate?: import("./black-gate-types").BlackGateState;
+  mountDoom?: import("./mount-doom-types").MountDoomState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;

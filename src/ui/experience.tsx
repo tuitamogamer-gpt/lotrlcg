@@ -28,7 +28,7 @@ import { TRIALS } from "../game/three-trials-support";
 import { fangornCarrier } from "../game/fangorn";
 import { fordsMandatoryTravel } from "../game/fords-isen";
 import { voyageMandatoryTravel } from "../game/voyage-belegaer";
-import { hideTestPublic } from "../game/hide-test";
+import { hideTestPublic, isFortitude, sauronEyes } from "../game/hide-test";
 import { druadanPlayerQuestStat } from "../game/druadan-player-cards";
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
@@ -188,8 +188,10 @@ export const nextLabel = (s: GameState) =>
               : "Choose escape characters"
           : s.hideTest
             ? s.hideTest.phase === "actions"
-              ? "Resolve Hide test"
-              : "Choose Hide test characters"
+              ? `Resolve ${isFortitude(s.hideTest) ? "Fortitude" : "Hide"} test`
+              : isFortitude(s.hideTest)
+                ? "Choose Fortitude test heroes"
+                : "Choose Hide test characters"
             : offTurn(s)
               ? `Continue as Player ${s.table!.turn + 1}`
               : s.phase === "attack" && s.earlyAttackPlayers?.length
@@ -280,8 +282,10 @@ export function TurnActions({
       <div className="turn-actions escape-turn-actions">
         <p>
           {s.hideTest.phase === "actions"
-            ? "An action window is open. Play events or use abilities, then resolve the Hide test."
-            : "Finish choosing ready characters in the Hide test dialog."}
+            ? `An action window is open. Play events or use abilities, then resolve the ${isFortitude(s.hideTest) ? "Fortitude" : "Hide"} test.`
+            : isFortitude(s.hideTest)
+              ? "Finish choosing ready heroes in the Fortitude test dialog."
+              : "Finish choosing ready characters in the Hide test dialog."}
         </p>
         <button
           className="primary"
@@ -399,23 +403,27 @@ export function HideTestSummary({ s }: { s: GameState }) {
   const committed = allCharacters(s).filter((u) =>
     test.committedIds.includes(u.id),
   );
+  const fortitude = test.kind === "fortitude";
   return (
     <section
       className="escape-test-summary"
-      aria-label="Hide test"
+      aria-label={fortitude ? "Fortitude test" : "Hide test"}
       aria-live="polite"
       data-hide-test={test.phase}
+      data-test-kind={test.kind}
       data-hide-threat={test.threat}
       data-hide-willpower={test.willpower}
     >
       <div>
         <strong>
-          {card(test.source).name} · Hide {test.value} test
+          {card(test.source).name} · {test.name}
         </strong>
         <span>
           {test.willpower} committed willpower ·{" "}
           {test.phase === "actions"
-            ? `${test.threat} threat discarded`
+            ? fortitude
+              ? `${test.threat} Sauron's Eye icon${test.threat === 1 ? "" : "s"}`
+              : `${test.threat} threat discarded`
             : `${test.count} encounter ${test.count === 1 ? "card" : "cards"} to discard`}
         </span>
       </div>
@@ -426,25 +434,37 @@ export function HideTestSummary({ s }: { s: GameState }) {
           </strong>
           {committed.length
             ? committed.map((u) => card(u.code).name).join(", ")
-            : "No characters committed"}
+            : fortitude
+              ? "No heroes committed"
+              : "No characters committed"}
         </span>
         {test.phase === "actions" && (
           <span>
             <strong>Discarded</strong>
             {test.discarded.length
               ? test.discarded
-                  .map((c) => `${card(c).name} (${card(c).threat ?? 0})`)
+                  .map((c, i) =>
+                    fortitude
+                      ? `${card(c).name} (${i === test.ignored ? "icons ignored" : `${sauronEyes(c)} icon${sauronEyes(c) === 1 ? "" : "s"}`})`
+                      : `${card(c).name} (${card(c).threat ?? 0})`,
+                  )
                   .join(", ")
               : "No cards"}
           </span>
         )}
       </div>
       <p>
-        {test.phase === "actions"
-          ? test.willpower >= test.threat
-            ? "The test succeeds if willpower stays equal to or above the threat. Use actions, then resolve."
-            : "The test fails if the threat stays above the committed willpower. Use actions to raise willpower, then resolve."
-          : "Exhaust ready characters to commit their willpower, then discard the encounter cards."}
+        {fortitude
+          ? test.phase === "actions"
+            ? test.willpower > test.threat
+              ? "The test succeeds while the committed willpower stays greater than the Sauron's Eye icons. Use actions, then resolve."
+              : "The test fails unless the committed willpower is greater than the Sauron's Eye icons. Use actions to raise willpower, then resolve."
+            : "Exhaust ready heroes to commit their willpower, then discard the encounter cards: X is the tens digit of your threat dial."
+          : test.phase === "actions"
+            ? test.willpower >= test.threat
+              ? "The test succeeds if willpower stays equal to or above the threat. Use actions, then resolve."
+              : "The test fails if the threat stays above the committed willpower. Use actions to raise willpower, then resolve."
+            : "Exhaust ready characters to commit their willpower, then discard the encounter cards."}
       </p>
     </section>
   );

@@ -342,10 +342,17 @@ export interface Batch4ScenarioHooks {
   hideWillpower?(s: GameState, u: Unit): number;
   /** Hide tests: added to the Hide X value of a player's test. */
   hideValueBonus?(s: GameState, player: number): number;
-  /** Hide tests: added to the total threat of the discarded cards. */
+  /**
+   * Hide tests: added to the total threat of the discarded cards; Fortitude
+   * tests: added to their Sauron's Eye icons.
+   */
   hideThreatBonus?(s: GameState, player: number): number;
-  /** Effects after a player passes a Hide test. */
+  /** Effects after a player passes a Hide or Fortitude test. */
   hidePassed?(s: GameState, player: number, source: string): Effect[];
-  /** Effects after a player fails a Hide test. */
+  /** Effects after a player fails a Hide or Fortitude test. */
   hideFailed?(s: GameState, player: number, source: string): Effect[];
+  /** Fortitude tests: a hero that cannot commit (Heavy and Tired). */
+  fortitudeCommitBlocked?(s: GameState, u: Unit): boolean;
+  /** Fortitude tests: after the encounter cards are discarded (Gollum). */
+  fortitudeDiscarded?(s: GameState): void;
 }

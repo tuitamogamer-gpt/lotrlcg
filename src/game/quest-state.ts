@@ -55,6 +55,7 @@ export function mainQuestCode(s: GameState): string | undefined {
   if (s.pelennorFields) return s.pelennorFields.currentQuest;
   if (s.cirithUngol) return s.cirithUngol.currentQuest;
   if (s.blackGate) return s.blackGate.currentQuest;
+  if (s.mountDoom) return s.mountDoom.currentQuest;
   if (s.landSorrow) return s.landSorrow.currentQuest;
   if (s.ashMountains) return s.ashMountains.currentQuest;
   if (s.wainriders) return s.wainriders.currentQuest;

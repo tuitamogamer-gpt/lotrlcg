@@ -12,7 +12,7 @@ import { fasPublicState } from "./flies-spiders-support";
 import { tlmPublicState } from "./lonely-mountain-support";
 import { bofaPublicState } from "./battle-five-armies-support";
 import { lakeTownPublicState } from "./lake-town-support";
-import { hideTestPublic, resolveHideTest } from "./hide-test";
+import { hideTestPublic, isFortitude, resolveHideTest } from "./hide-test";
 import { shadowPastPublicState } from "./shadow-past-support";
 import { knifeDarkPublicState } from "./knife-dark-support";
 import { flightFordPublicState } from "./flight-ford-support";
@@ -29,6 +29,7 @@ import { siegeGondorPublicState } from "./siege-gondor-support";
 import { pelennorFieldsPublicState } from "./pelennor-fields-support";
 import { cirithUngolPublicState } from "./cirith-ungol-support";
 import { blackGatePublicState } from "./black-gate-support";
+import { mountDoomPublicState } from "./mount-doom-support";
 import { helmsDeepPublicState } from "./helms-deep-support";
 import { roadIsengardPublicState } from "./road-isengard-support";
 import { passageMarshesPublicState } from "./passage-marshes-support";
@@ -519,7 +520,10 @@ export function commitCharacters(s: GameState) {
     !s.sailing?.test,
     "Resolve the Sailing test before committing to the quest.",
   );
-  requireRule(!s.hideTest, "Resolve the Hide test before committing.");
+  requireRule(
+    !s.hideTest,
+    `Resolve the ${isFortitude(s.hideTest) ? "Fortitude" : "Hide"} test before committing.`,
+  );
   requireRule(s.phase === "quest", "Not at the commit step.");
   const foundationsProblem = foundationsCommitProblem(s);
   requireRule(!foundationsProblem, foundationsProblem ?? "");
@@ -3020,13 +3024,13 @@ export function applyAction(input: GameState, action: Action): GameState {
   if (s.hideTest) {
     requireRule(
       ["PLAY", "ABILITY", "RESOLVE_HIDE"].includes(action.type),
-      "Resolve the Hide test before continuing the adventure.",
+      `Resolve the ${isFortitude(s.hideTest) ? "Fortitude" : "Hide"} test before continuing the adventure.`,
     );
     if (action.type === "PLAY")
       requireRule(
         card(s.hand.find((u) => u.id === action.id)?.code ?? "").type_code ===
           "event",
-        "Only events and abilities can be used during a Hide test.",
+        `Only events and abilities can be used during a ${isFortitude(s.hideTest) ? "Fortitude" : "Hide"} test.`,
       );
   }
   if (s.escapeTest) {
@@ -3817,6 +3821,7 @@ export function publicState(s: GameState) {
     pelennorFields: pelennorFieldsPublicState(s),
     cirithUngol: cirithUngolPublicState(s),
     blackGate: blackGatePublicState(s),
+    mountDoom: mountDoomPublicState(s),
     fortressNurnPlayers: FortressPlayers.fortressNurnPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),

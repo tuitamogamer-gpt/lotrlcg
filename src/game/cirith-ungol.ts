@@ -1,13 +1,11 @@
-import type { Effect, GameState, Option, Unit } from "./types";
+import type { Effect, GameState, Unit } from "./types";
 import type { Batch4ScenarioHooks } from "./batch4-scenario-contract";
 import { card, name } from "./cards";
 import { choose, fx, get, log, make, prepend, shuffle, stats } from "./core";
 import {
   addVictoryCard,
   destroy,
-  discardAttachment,
   enemyAddedToStaging,
-  enterEnemyEngaged,
   questDefeated,
   raiseThreat,
   win,
@@ -39,6 +37,13 @@ import {
   stagingArchery,
 } from "./mordor-orcs";
 import {
+  deepShadowsCharacterDestroyed,
+  deepShadowsEffect,
+  deepShadowsShadow,
+  deepShadowsTreachery,
+  discardUntilEnemy,
+} from "./deep-shadows";
+import {
   CIRITH_UNGOL_RECIPES,
   CU,
   CU_CHAMBER_PROGRESS,
@@ -66,7 +71,6 @@ const live = (u: Unit, code: string) => u.code === code && !u.blanked;
 const isCharacter = (u: Unit) => isHero(u) || isAlly(u);
 const seatLabel = (s: GameState, p: number) =>
   s.table ? ` · ${seatName(s, p)}` : "";
-const who = (s: GameState, p: number) => (s.table ? seatName(s, p) : "you");
 const players = (s: GameState) => globalPlayerOrder(s).length;
 /** The game phase, its steps included. */
 const phaseOf = (s: GameState) =>
@@ -213,107 +217,29 @@ function encounter(
   );
   return true;
 }
-/**
- * An "either … or …" choice: an option is offered only when it can change the
- * game; with one left it resolves alone.
- */
-function either(
-  s: GameState,
-  p: number,
-  title: string,
-  options: Option[],
-  description: string,
-) {
-  if (!options.length) {
-    log(s, `${title}: nothing can be resolved.`);
-    return;
-  }
-  if (options.length === 1) {
-    prepend(s, ...options[0].effects);
-    return;
-  }
-  forOwner(s, p, () =>
-    choose(s, `${title} · Choose one${seatLabel(s, p)}`, options, description),
-  );
-}
-const questingOf = (s: GameState, p: number) =>
-  [...seatView(s, p).heroes, ...seatView(s, p).allies].filter(
-    (u) => u.committed,
-  );
 function treachery(s: GameState, held: Unit) {
-  const p = activeSeat(s);
-  switch (held.code) {
-    case CU.howls: {
-      const targets = s.staging.filter((u) => isEnemy(u));
-      for (const u of targets) prepend(s, fx("cuHowl", { target: u.id }));
-      const q = s.cirithUngol!;
-      q.howls = { round: s.round, phase: phaseOf(s) };
-      log(
-        s,
-        targets.length
-          ? "Orcish Howls: 1 damage to each enemy in the staging area; until the end of the phase each enemy gets +1 threat for each damage on it."
-          : "Orcish Howls: no enemy is in the staging area.",
-        "danger",
-      );
-      return;
-    }
-    case CU.drawn: {
-      const first = firstPlayer(s);
-      const ring = oneRing(s);
-      either(
-        s,
-        first,
-        "Drawn to the Ring",
-        [
-          ...(ring && !ring.exhausted
-            ? [
-                {
-                  id: "ring",
-                  label: "Exhaust The One Ring and reveal an encounter card",
-                  effects: [
-                    fx("cuDrawnRing", { player: first }),
-                    fx("reveal", { player: first }),
-                  ],
-                },
-              ]
-            : []),
-          ...(s.encounterDeck.some((c) => card(c).type_code === "enemy") ||
-          s.encounterDiscard.some((c) => card(c).type_code === "enemy")
-            ? [
-                {
-                  id: "enemy",
-                  label:
-                    "Discard until an enemy and put it into play engaged with you",
-                  effects: [fx("cuDrawnEnemy", { player: first })],
-                },
-              ]
-            : []),
-        ],
-        "When Revealed: the first player must choose: either exhaust The One Ring and reveal an encounter card, or discard cards from the top of the encounter deck until an enemy is discarded and put it into play engaged with him.",
-      );
-      return;
-    }
-    case CU.deep:
-      prepend(s, ...playerOrder(s).map((player) => fx("cuDeep", { player })));
-      return;
-    case CU.vigilance:
-      prepend(
-        s,
-        ...playerOrder(s).map((player) => fx("cuVigilance", { player })),
-      );
-      return;
-  }
-  void p;
+  // Drawn to the Ring, Deep Shadows and Evil Vigilance.
+  if (deepShadowsTreachery(s, held.code) || held.code !== CU.howls) return;
+  const targets = s.staging.filter((u) => isEnemy(u));
+  for (const u of targets) prepend(s, fx("cuHowl", { target: u.id }));
+  const q = s.cirithUngol!;
+  q.howls = { round: s.round, phase: phaseOf(s) };
+  log(
+    s,
+    targets.length
+      ? "Orcish Howls: 1 damage to each enemy in the staging area; until the end of the phase each enemy gets +1 threat for each damage on it."
+      : "Orcish Howls: no enemy is in the staging area.",
+    "danger",
+  );
 }
 function shadow(s: GameState, code: string) {
   const c = s.combat;
   if (!s.cirithUngol || !c) return false;
-  if (mordorOrcShadow(s, code)) return true;
+  if (mordorOrcShadow(s, code) || deepShadowsShadow(s, code)) return true;
   const attacker = get(s, c.enemyId);
   const p = c.attackPlayer ?? activeSeat(s);
   switch (code) {
     case CU.gorbag:
-    case CU.deep:
       c.extraAttacks = (c.extraAttacks ?? 0) + 1;
       log(
         s,
@@ -360,18 +286,6 @@ function shadow(s: GameState, code: string) {
       );
       return true;
     }
-    case CU.vigilance:
-      c.attackBonus += 1;
-      c.cuRevealOnKill = true;
-      log(
-        s,
-        "Evil Vigilance: +1 attack; if this attack destroys a character, the top card of the encounter deck is revealed.",
-        "danger",
-      );
-      return true;
-    case CU.drawn:
-      prepend(s, fx("cuDiscardAttachment", { player: p }));
-      return true;
   }
   return false;
 }
@@ -379,27 +293,6 @@ function shadow(s: GameState, code: string) {
 // ---------------------------------------------------------------------------
 // Searches and helpers.
 
-/** Discard from the top of the encounter deck until an enemy, reshuffling once. */
-function discardUntilEnemy(s: GameState, text: string): string | undefined {
-  for (let shuffled = false; ;) {
-    if (!s.encounterDeck.length) {
-      if (
-        shuffled ||
-        !s.encounterDiscard.some((c) => card(c).type_code === "enemy")
-      )
-        break;
-      s.encounterDeck = shuffle(s, s.encounterDiscard.splice(0));
-      shuffled = true;
-      log(s, "The encounter discard pile is shuffled back into its deck.");
-    }
-    const code = s.encounterDeck.shift()!;
-    if (card(code).type_code === "enemy") return code;
-    s.encounterDiscard.push(code);
-    log(s, `${text}: ${card(code).name} is discarded.`);
-  }
-  log(s, `${text}: no enemy is discarded.`);
-  return undefined;
-}
 /** An enemy enters play: Wounded Uruk with 2 damage on it. */
 function entering(s: GameState, u: Unit) {
   if (live(u, CU.wounded) && u.damage < 2) {
@@ -664,107 +557,6 @@ export function cirithUngolEffect(s: GameState, e: Effect): boolean {
       );
       return true;
     }
-    // Drawn to the Ring.
-    case "cuDrawnRing": {
-      const ring = oneRing(s);
-      if (ring) {
-        ring.exhausted = true;
-        log(s, "Drawn to the Ring: The One Ring is exhausted.", "danger");
-      }
-      return true;
-    }
-    case "cuDrawnEnemy": {
-      const code = discardUntilEnemy(s, "Drawn to the Ring");
-      if (!code) return true;
-      const enemy = make(s, code);
-      entering(s, enemy);
-      log(
-        s,
-        `Drawn to the Ring: ${card(code).name} is put into play engaged with ${who(s, p)}.`,
-        "danger",
-      );
-      enterEnemyEngaged(s, enemy, p);
-      return true;
-    }
-    // Deep Shadows: discard your hand (at least 3 cards) or reveal an encounter card.
-    case "cuDeep": {
-      const hand = seatView(s, p).hand;
-      either(
-        s,
-        p,
-        "Deep Shadows",
-        [
-          ...(hand.length >= 3
-            ? [
-                {
-                  id: "hand",
-                  label: `Discard your hand (${hand.length} cards)`,
-                  effects: [fx("cuDiscardHand", { player: p })],
-                },
-              ]
-            : []),
-          {
-            id: "reveal",
-            label: "Reveal an encounter card",
-            effects: [fx("reveal", { player: p })],
-          },
-        ],
-        "When Revealed: each player must choose: either discard your hand (with at least 3 cards in it), or reveal an encounter card.",
-      );
-      return true;
-    }
-    case "cuDiscardHand":
-      forOwner(s, p, () => {
-        const n = s.hand.length;
-        s.discard.push(...s.hand.map((c) => c.code));
-        s.hand = [];
-        log(
-          s,
-          `Deep Shadows: ${who(s, p)} discard${s.table ? "s" : ""} ${n} cards from hand.`,
-          "danger",
-        );
-      });
-      return true;
-    // Evil Vigilance: discard a questing character or raise threat by the questers.
-    case "cuVigilance": {
-      const questing = questingOf(s, p);
-      either(
-        s,
-        p,
-        "Evil Vigilance",
-        [
-          ...questing.map((c) => ({
-            id: `discard-${c.id}`,
-            code: c.code,
-            label: `Discard ${name(c)}`,
-            effects: [fx("cuVigilanceDiscard", { target: c.id, player: p })],
-          })),
-          ...(questing.length
-            ? [
-                {
-                  id: "threat",
-                  label: `Raise your threat by ${questing.length}`,
-                  effects: [
-                    fx("moThreat", {
-                      value: questing.length,
-                      text: "Evil Vigilance",
-                      player: p,
-                    }),
-                  ],
-                },
-              ]
-            : []),
-        ],
-        "When Revealed: each player must choose: either discard a questing character you control, or raise your threat by 1 for each questing character you control.",
-      );
-      return true;
-    }
-    case "cuVigilanceDiscard":
-      if (u && isCharacter(u)) {
-        log(s, `Evil Vigilance: ${name(u)} is discarded.`, "danger");
-        forOwner(s, ownerOf(s, u), () => destroy(s, u, false));
-      }
-      return true;
     case "cuWoundedRage": {
       if (!u) return true;
       const ids =
@@ -775,54 +567,6 @@ export function cirithUngolEffect(s: GameState, e: Effect): boolean {
         "Wounded Uruk gets +2 attack until the end of the round.",
         "danger",
       );
-      return true;
-    }
-    // Drawn to the Ring's shadow: discard a non-objective attachment you control.
-    case "cuDiscardAttachment": {
-      const owned = [
-        ...globalCharacters(s),
-        ...s.staging,
-        ...globalEngaged(s),
-        ...allActiveLocations(s),
-      ].flatMap((host) =>
-        host.attachments
-          .filter(
-            (a) =>
-              attachmentController(s, host, a) === p &&
-              card(a.code).type_code !== "objective",
-          )
-          .map((a) => ({ host, a })),
-      );
-      if (!owned.length) {
-        log(s, "Drawn to the Ring: you control no non-objective attachment.");
-        return true;
-      }
-      forOwner(s, p, () =>
-        choose(
-          s,
-          `Drawn to the Ring · Discard a non-objective attachment you control${seatLabel(s, p)}`,
-          owned.map(({ host, a }) => ({
-            id: a.id,
-            code: a.code,
-            label: `${card(a.code).name} on ${name(host)}`,
-            effects: [
-              fx("cuDiscardThat", { target: host.id, source: a.id, player: p }),
-            ],
-          })),
-        ),
-      );
-      return true;
-    }
-    case "cuDiscardThat": {
-      const a = u?.attachments.find((x) => x.id === e.source);
-      if (u && a) {
-        log(
-          s,
-          `Drawn to the Ring: ${card(a.code).name} is discarded.`,
-          "danger",
-        );
-        discardAttachment(s, u, a);
-      }
       return true;
     }
     // Last of the Company's Action: -X threat until the end of the phase.
@@ -1122,16 +866,15 @@ export const CIRITH_UNGOL_HOOKS: Batch4ScenarioHooks = {
       return;
     if (context.enemyId !== c.enemyId) return;
     mordorOrcCharacterDestroyed(s, context);
-    if (c.cuRevealOnKill) {
-      c.cuRevealOnKill = false;
-      prepend(s, fx("reveal", { player: c.attackPlayer ?? activeSeat(s) }));
-    }
+    deepShadowsCharacterDestroyed(s, context);
   },
   abilityLabel: (code) => (code === CU.company ? COMPANY_LABEL : undefined),
   abilityProblem: (s, u, attachmentId) => companyProblem(s, u, attachmentId),
   ability: (s, u, attachmentId) => useCompany(s, u, attachmentId),
   effect: (s, e) =>
-    (!!s.cirithUngol && mordorOrcsEffect(s, e)) || cirithUngolEffect(s, e),
+    (!!s.cirithUngol &&
+      (mordorOrcsEffect(s, e) || deepShadowsEffect(s, e, entering))) ||
+    cirithUngolEffect(s, e),
   sharedEffect: (e) =>
     [
       "cuTreacheryDone",

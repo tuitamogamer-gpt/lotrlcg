@@ -115,6 +115,10 @@ export const PLAYMATS = {
     name: "The Black Gate",
     detail: "The Mouth of Sauron · The armies of Mordor",
   },
+  "mount-doom": {
+    name: "Mount Doom",
+    detail: "The Plain of Gorgoroth · The Crack of Doom",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -537,6 +541,7 @@ export const PLAYMAT_CHOICES = [
   "the-battle-of-the-pelennor-fields",
   "the-tower-of-cirith-ungol",
   "the-black-gate-opens",
+  "mount-doom",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

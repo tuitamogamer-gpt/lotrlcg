@@ -1,0 +1,162 @@
+[
+  {
+    "code": "octgn:39a64a5a-7074-46a5-aacc-a42537fe0ddd",
+    "octgnid": "39a64a5a-7074-46a5-aacc-a42537fe0ddd",
+    "name": "The Land of Mordor",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Add Mount Doom and The Tower of Barad-dûr to the staging area. Make Brake of Thorns the active location. Each player searches the encounter deck for a different location and adds it to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 75,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Mount Doom",
+    "side": "A",
+    "back_name": "The Land of Mordor",
+    "back_text": "Dire. This stage gets +4 quest points for each player.\nThe first treachery revealed each quest phase is immune to player card effects and gains surge.",
+    "back_type_code": "quest",
+    "back_quest": 4,
+    "back_imagesrc": "/cards/39a64a5a-7074-46a5-aacc-a42537fe0ddd.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/39a64a5a-7074-46a5-aacc-a42537fe0ddd.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 75,
+        "quantity": 1,
+        "octgnid": "39a64a5a-7074-46a5-aacc-a42537fe0ddd",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/39a64a5a-7074-46a5-aacc-a42537fe0ddd.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:6a24a5e8-80e9-4bba-af55-64be11742dde",
+    "octgnid": "6a24a5e8-80e9-4bba-af55-64be11742dde",
+    "name": "The Road to Isenmouthe",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Dire. When Revealed: Search the encounter deck, discard pile, and victory display for Mordor Road and add it to the staging area. Shuffle the encounter discard pile into the encounter deck and travel to Mordor Road.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 76,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Mount Doom",
+    "side": "A",
+    "back_name": "The Road to Isenmouthe",
+    "back_text": "Dire. Forced: After placing progress here from questing successfully, each player makes a Fortitude test. If a player passes this test, he places a resource here. If a player fails this test, he discards cards from the top of the encounter deck until an enemy is discarded and puts that enemy into play engaged with him.\nAt the end of the quest phase, if the number of resources here is equal to or greater than the number of players, advance to stage 3A.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/6a24a5e8-80e9-4bba-af55-64be11742dde.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/6a24a5e8-80e9-4bba-af55-64be11742dde.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 76,
+        "quantity": 1,
+        "octgnid": "6a24a5e8-80e9-4bba-af55-64be11742dde",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6a24a5e8-80e9-4bba-af55-64be11742dde.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "back_quest": null
+  },
+  {
+    "code": "octgn:ec2049ab-c950-46f7-9f1b-30ada69db857",
+    "octgnid": "ec2049ab-c950-46f7-9f1b-30ada69db857",
+    "name": "The Last Gasp",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Dire. When Revealed: Shuffle the encounter discard pile into the encounter deck and discard cards from the top until X locations are discarded, where X is the number of players in the game. Add each location discarded this way to the staging area.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 77,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Mount Doom",
+    "side": "A",
+    "back_name": "The Last Gasp",
+    "back_text": "Dire. The first treachery revealed each quest phase is immune to player card effects and gains surge.\nForced: At the beginning of the quest phase, the first player makes a Fortitude test. If the first player fails this test, no more than 5 progress can be placed here this round.\nThis stage cannot be defeated unless Mount Doom is the active location.",
+    "back_type_code": "quest",
+    "back_quest": 20,
+    "back_imagesrc": "/cards/ec2049ab-c950-46f7-9f1b-30ada69db857.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/ec2049ab-c950-46f7-9f1b-30ada69db857.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 77,
+        "quantity": 1,
+        "octgnid": "ec2049ab-c950-46f7-9f1b-30ada69db857",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ec2049ab-c950-46f7-9f1b-30ada69db857.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ad73bb42-f0fb-4732-956d-e921140e99bb",
+    "octgnid": "ad73bb42-f0fb-4732-956d-e921140e99bb",
+    "name": "The Crack of Doom",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Dire. When Revealed: Shuffle the encounter discard pile into the encounter deck and discard cards from the top until X enemies are discarded, where X is the number of players. Add each enemy discarded this way to the staging area.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 78,
+    "quantity": 1,
+    "cost": 4,
+    "encounter_set": "Mount Doom",
+    "side": "A",
+    "back_name": "The Crack of Doom",
+    "back_text": "Dire. Allies cannot enter play and 'when revealed' effects cannot be canceled.\nForced: When Mount Doom is explored, the first player makes a Fortitude test. Discard 1 extra encounter card for each player. If the first player fails this test, the Ring-bearer claims The One Ring and the players lose the game. If the test is successful, the Ring-bearer completes the quest and the players win the game.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/ad73bb42-f0fb-4732-956d-e921140e99bb.B.jpg",
+    "printed_stats": {
+      "cost": "4"
+    },
+    "imagesrc": "/cards/ad73bb42-f0fb-4732-956d-e921140e99bb.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 78,
+        "quantity": 1,
+        "octgnid": "ad73bb42-f0fb-4732-956d-e921140e99bb",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ad73bb42-f0fb-4732-956d-e921140e99bb.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "back_quest": null
+  }
+]

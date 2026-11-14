@@ -58,6 +58,9 @@ import { CirithUngolState } from "./ui/cirith-ungol-state";
 import { CIRITH_UNGOL_QUESTS } from "./game/cirith-ungol-support";
 import { BlackGateState } from "./ui/black-gate-state";
 import { BLACK_GATE_QUESTS } from "./game/black-gate-support";
+import { MountDoomState } from "./ui/mount-doom-state";
+import { isFortitude } from "./game/hide-test";
+import { MOUNT_DOOM_QUESTS } from "./game/mount-doom-support";
 import { DDCD_QUESTS } from "./game/dungeons-deep-support";
 import {
   discoveredTreasures,
@@ -493,7 +496,9 @@ const phaseTitle = (s: GameState) =>
     : s.escapeTest
       ? "Escape test"
       : s.hideTest
-        ? "Hide test"
+        ? isFortitude(s.hideTest)
+          ? "Fortitude test"
+          : "Hide test"
         : s.phase === "attack" && s.earlyAttackPlayers?.length
           ? "Oath of Eorl · Player attacks"
           : phaseNames[s.phase];
@@ -3331,6 +3336,7 @@ export default function App() {
             <PelennorFieldsState s={game} inspect={setDetail} />
             <CirithUngolState s={game} inspect={setDetail} />
             <BlackGateState s={game} inspect={setDetail} />
+            <MountDoomState s={game} inspect={setDetail} />
             <AshMountainsState s={game} inspect={setDetail} />
             <CouncilOfTheWiseState s={game} inspect={setDetail} />
             <WainridersScenarioState s={game} inspect={setDetail} />
@@ -4100,6 +4106,7 @@ export default function App() {
                       ...PELENNOR_FIELDS_QUESTS,
                       ...CIRITH_UNGOL_QUESTS,
                       ...BLACK_GATE_QUESTS,
+                      ...MOUNT_DOOM_QUESTS,
                       ...(carrockQuestCards as Card[]),
                       ...EMYN_MUIL_QUESTS,
                       ...CITY_QUESTS,
@@ -5076,8 +5083,10 @@ function phaseHelp(s: GameState) {
       : "Choose ready characters and resolve the fleet’s heading in the Sailing dialog. Player actions resume after the test.";
   if (s.hideTest)
     return s.hideTest.phase === "actions"
-      ? "An action window is open after the Hide test's cards were discarded. Play events or use abilities, then resolve the test."
-      : "Exhaust ready characters to commit their willpower to the Hide test; then the encounter cards are discarded.";
+      ? `An action window is open after the ${isFortitude(s.hideTest) ? "Fortitude" : "Hide"} test's cards were discarded. Play events or use abilities, then resolve the test.`
+      : isFortitude(s.hideTest)
+        ? "Exhaust ready heroes to commit their willpower to the Fortitude test; then the encounter cards are discarded."
+        : "Exhaust ready characters to commit their willpower to the Hide test; then the encounter cards are discarded.";
   if (s.escapeTest)
     return s.escapeTest.phase === "preparing"
       ? "Use end-of-quest actions, then choose ready characters for the escape test."

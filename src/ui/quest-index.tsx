@@ -151,6 +151,10 @@ const HEADLINES: Partial<
     lead: "Hold the Black Gate",
     em: "for the Ring-bearer.",
   },
+  "mount-doom": {
+    lead: "Carry the Ring",
+    em: "to the Crack of Doom.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",
