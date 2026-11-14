@@ -155,6 +155,14 @@ const HEADLINES: Partial<
     lead: "Carry the Ring",
     em: "to the Crack of Doom.",
   },
+  "the-oath-2018": {
+    lead: "Keep your oath",
+    em: "to the woodmen.",
+  },
+  "the-oath": {
+    lead: "Keep your oath",
+    em: "to the woodmen.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

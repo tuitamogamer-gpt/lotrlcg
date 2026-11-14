@@ -298,6 +298,8 @@ export type ScenarioId =
   | "the-tower-of-cirith-ungol"
   | "the-black-gate-opens"
   | "mount-doom"
+  | "the-oath-2018"
+  | "the-oath"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -487,6 +489,7 @@ export interface GameState {
   cirithUngol?: import("./cirith-ungol-types").CirithUngolState;
   blackGate?: import("./black-gate-types").BlackGateState;
   mountDoom?: import("./mount-doom-types").MountDoomState;
+  oath?: import("./the-oath-types").OathState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;

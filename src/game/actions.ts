@@ -30,6 +30,7 @@ import { pelennorFieldsPublicState } from "./pelennor-fields-support";
 import { cirithUngolPublicState } from "./cirith-ungol-support";
 import { blackGatePublicState } from "./black-gate-support";
 import { mountDoomPublicState } from "./mount-doom-support";
+import { oathPublicState } from "./the-oath-support";
 import { helmsDeepPublicState } from "./helms-deep-support";
 import { roadIsengardPublicState } from "./road-isengard-support";
 import { passageMarshesPublicState } from "./passage-marshes-support";
@@ -37,6 +38,7 @@ import { crossRoadsPublicState } from "./cross-roads-support";
 import * as LandShadowPlayers from "./land-shadow-player-cards";
 import * as FlameWestPlayers from "./flame-west-player-cards";
 import * as MountainFirePlayers from "./mountain-fire-player-cards";
+import { coreReprint } from "./core-reprints";
 import { ereborAllyPlayed } from "./erebor-treasures";
 import * as LandSorrowPlayers from "./land-sorrow-player";
 import { sorrowPublicState } from "./land-sorrow-support";
@@ -766,7 +768,7 @@ export function optionalEngagementProblem(
   if (!Wastes.wastesOptionalEngagementAllowed(s, u))
     return "This enemy cannot be optionally engaged during the day.";
   if (
-    u.code === "01083" &&
+    coreReprint(u.code) === "01083" &&
     s.staging.some(
       (enemy) =>
         enemy.id !== u.id && ["enemy", "ship-enemy"].includes(unitType(enemy)),
@@ -3838,6 +3840,7 @@ export function publicState(s: GameState) {
     cirithUngol: cirithUngolPublicState(s),
     blackGate: blackGatePublicState(s),
     mountDoom: mountDoomPublicState(s),
+    oath: oathPublicState(s),
     fortressNurnPlayers: FortressPlayers.fortressNurnPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),

@@ -879,6 +879,30 @@ jobs:
           path: output/mount-doom-release/failures
           retention-days: 7
 
+  the-oath-simulation:
+    name: The Oath complete games (${{ matrix.scenario }}, 30 games)
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        scenario: [the-oath-2018, the-oath]
+    env:
+      OATH_SIMULATION_SCENARIO: ${{ matrix.scenario }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:the-oath-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: the-oath-simulation-${{ matrix.scenario }}
+          path: output/the-oath-release/failures
+          retention-days: 7
+
   shelob-lair-simulation:
     name: Shelob's Lair complete games (26 games)
     runs-on: ubuntu-latest
@@ -1080,6 +1104,8 @@ jobs:
             suite: test:browser-black-gate
           - group: mount-doom
             suite: test:browser-mount-doom
+          - group: the-oath
+            suite: test:browser-the-oath
           - group: treason-saruman-players
             suite: test:browser-treason-saruman-players
           - group: land-shadow-players

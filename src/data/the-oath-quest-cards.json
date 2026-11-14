@@ -1,0 +1,122 @@
+[
+  {
+    "code": "octgn:4a6fe2e8-899b-4d4b-9b02-61516044fdc4",
+    "octgnid": "4a6fe2e8-899b-4d4b-9b02-61516044fdc4",
+    "name": "After the Raid",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Search the encounter deck for 1 copy of The Eaves of Mirkwood and Goblin Troop. Add The Eaves of Mirkwood to the staging area and set Goblin Troop aside, out of play. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "Starter",
+    "pack_name": "Two-Player Limited Edition Starter",
+    "position": 95,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Oath",
+    "side": "A",
+    "back_name": "After the Raid",
+    "back_text": "",
+    "back_type_code": "quest",
+    "back_quest": 9,
+    "back_imagesrc": "/cards/4a6fe2e8-899b-4d4b-9b02-61516044fdc4.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/4a6fe2e8-899b-4d4b-9b02-61516044fdc4.jpg",
+    "packs": [
+      {
+        "pack_code": "Starter",
+        "pack_name": "Two-Player Limited Edition Starter",
+        "position": 95,
+        "quantity": 1,
+        "octgnid": "4a6fe2e8-899b-4d4b-9b02-61516044fdc4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4a6fe2e8-899b-4d4b-9b02-61516044fdc4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef",
+    "octgnid": "ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef",
+    "name": "Mirkwood Forest",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "Starter",
+    "pack_name": "Two-Player Limited Edition Starter",
+    "position": 96,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Oath",
+    "side": "A",
+    "back_name": "Mirkwood Forest",
+    "back_text": "When Revealed: Each player searches the encounter deck and discard pile for a Forest location and adds it to the staging area. Shuffle the encounter deck.\nThis stage cannot be defeated unless at least 1 copy of Goblin Trail is in the victory display.",
+    "back_type_code": "quest",
+    "back_quest": 12,
+    "back_imagesrc": "/cards/ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef.jpg",
+    "packs": [
+      {
+        "pack_code": "Starter",
+        "pack_name": "Two-Player Limited Edition Starter",
+        "position": 96,
+        "quantity": 1,
+        "octgnid": "ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:9bb6a890-b9d3-4528-8049-8017d9a01c4c",
+    "octgnid": "9bb6a890-b9d3-4528-8049-8017d9a01c4c",
+    "name": "The Rearguard",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player adds the set-aside Goblin Troop to the staging area. Each other player searches the encounter deck and discard pile for a Goblin enemy and adds it to the staging area.",
+    "is_unique": false,
+    "pack_code": "Starter",
+    "pack_name": "Two-Player Limited Edition Starter",
+    "position": 97,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Oath",
+    "side": "A",
+    "back_name": "The Rearguard",
+    "back_text": "This stage cannot be defeated while Goblin Troop is in play. When this stage is defeated, the heroes discover the trail to the Goblins' secret lair and the players win the game.",
+    "back_type_code": "quest",
+    "back_quest": 6,
+    "back_imagesrc": "/cards/9bb6a890-b9d3-4528-8049-8017d9a01c4c.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/9bb6a890-b9d3-4528-8049-8017d9a01c4c.jpg",
+    "packs": [
+      {
+        "pack_code": "Starter",
+        "pack_name": "Two-Player Limited Edition Starter",
+        "position": 97,
+        "quantity": 1,
+        "octgnid": "9bb6a890-b9d3-4528-8049-8017d9a01c4c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9bb6a890-b9d3-4528-8049-8017d9a01c4c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

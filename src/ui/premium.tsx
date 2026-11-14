@@ -119,6 +119,14 @@ export const PLAYMATS = {
     name: "Mount Doom",
     detail: "The Plain of Gorgoroth · The Crack of Doom",
   },
+  "the-oath-2018": {
+    name: "The Eaves of Mirkwood",
+    detail: "The Goblins' trail · The Rearguard",
+  },
+  "the-oath": {
+    name: "The Eaves of Mirkwood",
+    detail: "The Goblins' trail · The Rearguard",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -542,6 +550,8 @@ export const PLAYMAT_CHOICES = [
   "the-tower-of-cirith-ungol",
   "the-black-gate-opens",
   "mount-doom",
+  "the-oath-2018",
+  "the-oath",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

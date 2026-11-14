@@ -37,6 +37,7 @@ import * as TreasonPlayers from "./treason-saruman-player-cards";
 import * as LandShadowPlayers from "./land-shadow-player-cards";
 import * as FlameWestPlayers from "./flame-west-player-cards";
 import * as MountainFirePlayers from "./mountain-fire-player-cards";
+import { coreReprint } from "./core-reprints";
 import * as RoadDarkensPlayers from "./road-darkens-player-cards";
 import * as WildsPlayers from "./wilds-player";
 import { batch4Scenario } from "./batch4-scenarios";
@@ -3674,7 +3675,8 @@ export function placeEncounter(
   if (rhosgobelEncounter(s, code)) return;
   if (returnMirkwoodEncounter(s, code)) return;
   if (deadMarshesEncounter(s, code)) return;
-  switch (code) {
+  // Reprints with the Core Set text follow its rules under their own identity.
+  switch (coreReprint(code)) {
     case "01086":
       removeCurrentQuestProgress(s, 4);
       break;
@@ -3746,7 +3748,7 @@ export function placeEncounter(
               effectiveThreat(s, ownerOf(s, h)) ===
               Math.max(...livingSeats(s).map((i) => effectiveThreat(s, i))),
           ),
-          (u) => [fx("web", { target: u.id })],
+          (u) => [fx("web", { target: u.id, code })],
         ),
         "The player with the highest threat chooses one of their heroes. The web prevents normal refreshing unless that hero pays 2 resources.",
       );
@@ -4286,7 +4288,7 @@ export function shadow(s: GameState, code: string) {
   const undefended = !(
     c.defenderIds ?? (c.defenderId ? [c.defenderId] : [])
   ).some((id) => !!get(s, id));
-  switch (code) {
+  switch (coreReprint(code)) {
     case "01081":
       prepend(s, fx("wolfAttack"));
       break;

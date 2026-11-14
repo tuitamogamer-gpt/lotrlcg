@@ -1,0 +1,178 @@
+[
+  {
+    "name": "After the Raid",
+    "code": "octgn:4a6fe2e8-899b-4d4b-9b02-61516044fdc4",
+    "starter": 1,
+    "starterEasy": 1,
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Mirkwood Forest",
+    "code": "octgn:ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef",
+    "starter": 1,
+    "starterEasy": 1,
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The Rearguard",
+    "code": "octgn:9bb6a890-b9d3-4528-8049-8017d9a01c4c",
+    "starter": 1,
+    "starterEasy": 1,
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Spiders of Mirkwood",
+    "code": "octgn:d80da0f8-430e-4a67-91ca-35cc9d3afe8b",
+    "starter": 2,
+    "starterEasy": 0,
+    "normal": 2,
+    "easy": 0
+  },
+  {
+    "name": "Great Spider",
+    "code": "octgn:84efd59f-f6f2-44c4-b995-8ad809dd25d1",
+    "starter": 2,
+    "starterEasy": 2,
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "The Eaves of Mirkwood",
+    "code": "octgn:21b339e8-a5e9-4491-96cc-1a4b0f1b18cb",
+    "starter": 2,
+    "starterEasy": 2,
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Tangled Grove",
+    "code": "octgn:650522ec-c2e3-4e42-be7a-e87cceccc545",
+    "starter": 2,
+    "starterEasy": 0,
+    "normal": 2,
+    "easy": 0
+  },
+  {
+    "name": "Forest Gate",
+    "code": "octgn:96b72fe4-c42d-469d-9741-294c4da73278",
+    "starter": 2,
+    "starterEasy": 2,
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Spider Den",
+    "code": "octgn:52e70f35-b859-494e-81d0-8be66f519a2a",
+    "starter": 2,
+    "starterEasy": 2,
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Goblin Trail",
+    "code": "octgn:251c0ba0-a466-401e-b762-b2fef09ea96a",
+    "starter": 2,
+    "starterEasy": 2,
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Driven by Shadow",
+    "code": "octgn:64813258-1533-420c-9fce-4d4c1f13c99d",
+    "starter": 2,
+    "starterEasy": 2,
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Surprising Speed",
+    "code": "octgn:4af27413-5674-4352-b54a-7f12c4fa0afc",
+    "starter": 2,
+    "starterEasy": 2,
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Caught in a Web",
+    "code": "octgn:460b83ed-986a-496b-9b38-627c77a836e9",
+    "starter": 1,
+    "starterEasy": 0,
+    "normal": 1,
+    "easy": 0
+  },
+  {
+    "name": "Goblin Troop",
+    "code": "octgn:998f6e45-b0d3-42c4-b5ba-fdf301401d90",
+    "starter": 1,
+    "starterEasy": 1,
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Goblin Sniper",
+    "code": "octgn:e8db9cc7-d53f-4ce9-991d-31078b2d507a",
+    "starter": 2,
+    "starterEasy": 2,
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Goblin Runners",
+    "code": "octgn:acd10bf3-4af4-41f0-888f-55eb777be3d8",
+    "starter": 2,
+    "starterEasy": 0,
+    "normal": 2,
+    "easy": 0
+  },
+  {
+    "name": "Goblintown Scavengers",
+    "code": "octgn:b18b3bfa-4620-4c15-960f-5a3642ca9d5a",
+    "starter": 2,
+    "starterEasy": 2,
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Goblins are Upon You!",
+    "code": "octgn:26e6135d-df1b-4221-ba45-a501858bafdf",
+    "starter": 1,
+    "starterEasy": 0,
+    "normal": 1,
+    "easy": 0
+  },
+  {
+    "name": "Eyes in the Dark",
+    "code": "octgn:7b3e0874-fa4e-4ffb-8614-2bb088896d42",
+    "starter": 2,
+    "starterEasy": 2,
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Abandoned Camp",
+    "code": "octgn:4d976fdd-1a4b-429a-98ef-28c4695fa20d",
+    "starter": 0,
+    "starterEasy": 0,
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Wild Wargs",
+    "code": "octgn:e62c0943-c58d-4dc7-8948-adef14de0e9a",
+    "starter": 0,
+    "starterEasy": 0,
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Obsidian Arrows",
+    "code": "octgn:5eb195bb-390f-48be-97fa-0ec09d6c807b",
+    "starter": 0,
+    "starterEasy": 0,
+    "normal": 2,
+    "easy": 2
+  }
+]

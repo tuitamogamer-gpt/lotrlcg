@@ -5,8 +5,8 @@
     "playerCards": 860,
     "heroes": 112,
     "deckCards": 744,
-    "encounterCards": 1680,
-    "scenarios": 110,
+    "encounterCards": 1699,
+    "scenarios": 112,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -117,17 +117,19 @@
       "the-battle-of-the-pelennor-fields",
       "the-tower-of-cirith-ungol",
       "the-black-gate-opens",
-      "mount-doom"
+      "mount-doom",
+      "the-oath-2018",
+      "the-oath"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2888,
-    "pending": 1295
+    "scripted": 2910,
+    "pending": 1273
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 233
+    "scripted": 235
   },
   "registeredCodes": [
     "01001",
@@ -1264,6 +1266,7 @@
     "octgn:218b6d77-2c40-4967-8487-2a383b4170ce",
     "octgn:21a5e7e1-013b-478e-a1c3-ab0300541f39",
     "octgn:21b27ec8-a778-4bac-8228-aa013043b8ed",
+    "octgn:21b339e8-a5e9-4491-96cc-1a4b0f1b18cb",
     "octgn:21eb71b5-6b96-4388-bd95-e2576483a95a",
     "octgn:21ee317d-9aca-43be-9782-521539827cb8",
     "octgn:21f520fd-5efe-41f9-9f02-7a65e36eb31f",
@@ -1294,6 +1297,7 @@
     "octgn:24a841df-854e-444b-9b2f-0214f0e26002",
     "octgn:24e431be-cde9-4f93-943a-de5e5ca9108b",
     "octgn:24ffba46-0c66-4559-ae13-d0980180f537",
+    "octgn:251c0ba0-a466-401e-b762-b2fef09ea96a",
     "octgn:2522fc59-6617-4c74-9723-4a120431aa3f",
     "octgn:254444df-3e65-4531-b6db-2fdacd0788b4",
     "octgn:2573b8e3-d3a1-47c0-acc8-e6151f223383",
@@ -1312,6 +1316,7 @@
     "octgn:264adf61-31e1-46db-a655-7fee1d4282ae",
     "octgn:26642db7-c3a2-47f3-989d-27396e586d06",
     "octgn:26bb74c2-3c66-4828-8188-404bc42e713e",
+    "octgn:26e6135d-df1b-4221-ba45-a501858bafdf",
     "octgn:26eb433a-01e2-4b0e-83c4-680b0e0c4854",
     "octgn:27299002-f9b0-4f9d-a87b-012a6a6993ca",
     "octgn:2744032b-21e4-4b52-a66e-f4c1926f451b",
@@ -1498,6 +1503,7 @@
     "octgn:456329e9-c7c4-42ac-9edd-e769aea198ea",
     "octgn:4576db5c-fdc2-45f2-ac8b-d1edb8150678",
     "octgn:460a1e18-8a57-44a5-bd06-f0c1b13c86b5",
+    "octgn:460b83ed-986a-496b-9b38-627c77a836e9",
     "octgn:463d0c53-2275-410f-b311-139f19561b46",
     "octgn:46affe37-a561-4c15-bc0e-7c36d78ba056",
     "octgn:46c6afb3-9a68-4f1a-acfa-e421c84da528",
@@ -1588,8 +1594,10 @@
     "octgn:4a28b128-1f89-4ad0-b27b-4cb1755c2d23",
     "octgn:4a5c11eb-44b8-4c6e-a9fa-83112dbd57c0",
     "octgn:4a6539aa-2404-430f-94ab-0f674d965adc",
+    "octgn:4a6fe2e8-899b-4d4b-9b02-61516044fdc4",
     "octgn:4abe9f52-1e56-479a-a59f-c3f7075ec493",
     "octgn:4ae7d13b-4b73-477b-ab71-5bd6bfc7b912",
+    "octgn:4af27413-5674-4352-b54a-7f12c4fa0afc",
     "octgn:4b36df3f-d75b-4b3a-9324-9ab31c10d7b9",
     "octgn:4b3a4229-eb85-49b0-9f34-78cb17301b34",
     "octgn:4b678143-ec9f-4727-998a-85dfef48d47a",
@@ -1612,6 +1620,7 @@
     "octgn:4d85eda6-14e2-4dee-b912-31056fc6a2cc",
     "octgn:4d904ec3-1c74-4091-861d-c543412b5443",
     "octgn:4d925556-3a39-4e49-aafa-0adac6cacc52",
+    "octgn:4d976fdd-1a4b-429a-98ef-28c4695fa20d",
     "octgn:4daa4ff5-625a-4949-aef5-fb1349e249fd",
     "octgn:4e12f20f-aec3-4311-a656-10a517fd97fe",
     "octgn:4ebd8ec5-79fe-4305-9c33-e06d37b1c8d5",
@@ -1951,6 +1960,7 @@
     "octgn:529bb9e4-36c3-45bd-bac0-1ce5de6a581d",
     "octgn:52b0bc28-37bb-4097-b96a-cc7dc4af8721",
     "octgn:52b5e077-36f2-4c13-89fb-4f7b3d73463b",
+    "octgn:52e70f35-b859-494e-81d0-8be66f519a2a",
     "octgn:530e7365-0a5a-46e5-9720-5377dfa1a01b",
     "octgn:5388683d-3240-433a-9602-a7367e428406",
     "octgn:53ac8ba6-0487-4b1f-91e9-cf7ca9e7c1d0",
@@ -2020,6 +2030,7 @@
     "octgn:5e39ebfc-287a-49d5-9369-49dbfb0fd665",
     "octgn:5e7c36de-a2bb-44e3-951b-80123788d571",
     "octgn:5e8714e3-0581-4b6f-bf45-414098819626",
+    "octgn:5eb195bb-390f-48be-97fa-0ec09d6c807b",
     "octgn:5edbdc1f-e177-4a8b-b4f1-8475fe297a4b",
     "octgn:5f18c4ca-fcda-46d2-874b-3a1a73ef7c53",
     "octgn:5f1ef9c5-ccb2-4f1e-bc5b-9a1de708d2ba",
@@ -2047,7 +2058,9 @@
     "octgn:63b0498f-9180-4e62-83c1-b9aa29f24712",
     "octgn:63f46289-b5ef-44d1-b6cb-ce382031a768",
     "octgn:63f46289-b5ef-44d1-b6cb-ce382031a768:B",
+    "octgn:64813258-1533-420c-9fce-4d4c1f13c99d",
     "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+    "octgn:650522ec-c2e3-4e42-be7a-e87cceccc545",
     "octgn:6566587d-e2ac-46e6-adbd-fe667b077136",
     "octgn:65ad784f-d82e-4659-8d1c-53d2e4d19336",
     "octgn:65c93e63-0284-4449-8158-717d763b3023",
@@ -2179,6 +2192,7 @@
     "octgn:7ac077eb-0879-4230-8e27-97549f46eb4b",
     "octgn:7b0eb4e5-962c-4041-baea-3a09a83fb996",
     "octgn:7b261ec7-bc90-4bd3-884d-d14a44e88942",
+    "octgn:7b3e0874-fa4e-4ffb-8614-2bb088896d42",
     "octgn:7b491dcc-668a-431f-b0a1-ec2bf34840a7",
     "octgn:7b8369b4-cca1-4076-8985-1c7be238ccb0",
     "octgn:7b9dd852-ed19-4a00-b09e-f6c2cee549fa",
@@ -2242,6 +2256,7 @@
     "octgn:8472068c-fdd7-4197-8046-b9da12c29135",
     "octgn:84877af6-0720-4ef8-802b-69b792c32e15",
     "octgn:84b7e934-3d4d-4966-accf-c257c4413035",
+    "octgn:84efd59f-f6f2-44c4-b995-8ad809dd25d1",
     "octgn:85045e14-3abc-4d58-824f-249b1fb3643d",
     "octgn:8527856a-e0eb-4799-9985-e73f1ee5281a",
     "octgn:855580e2-87b1-444c-b37a-1062c050d9ee",
@@ -2347,6 +2362,7 @@
     "octgn:962991f0-44af-47ba-9ff0-0f7ed302a543",
     "octgn:9656a1c9-dd90-4096-b2ba-eb2491d08403",
     "octgn:96580016-f869-4375-8937-3fb14dc0e264",
+    "octgn:96b72fe4-c42d-469d-9741-294c4da73278",
     "octgn:96f8534a-2683-4c8f-981d-daa470b792b7",
     "octgn:97584fc2-835e-411c-aae3-eb841c90fc43",
     "octgn:976d7409-0e67-43f1-b1bd-56cdeac073ef",
@@ -2365,6 +2381,7 @@
     "octgn:98dff367-a068-4aac-a46b-7dc201aff42d",
     "octgn:990e60bb-a627-4758-8230-81b40a57a382",
     "octgn:9945fdee-b56e-488d-a5bf-33d5a82afdad",
+    "octgn:998f6e45-b0d3-42c4-b5ba-fdf301401d90",
     "octgn:99ab7a92-0e3e-4ec2-9a40-0f467920879d",
     "octgn:99b98ca0-1320-4630-8791-984a578685d2",
     "octgn:99bdb330-27f2-4534-a355-0bb9f1682a8d",
@@ -2381,6 +2398,7 @@
     "octgn:9b5e1acd-c396-464d-ab54-df86833aad07",
     "octgn:9b75695b-8431-40ea-8041-afaaa34dc3f4",
     "octgn:9b75cef3-e5a3-4284-aff6-9a0b473fa37d",
+    "octgn:9bb6a890-b9d3-4528-8049-8017d9a01c4c",
     "octgn:9bba91a8-d375-4935-9956-9cb4cc4716c5",
     "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664",
     "octgn:9be86dec-0c44-4468-ac29-260dedaca54b",
@@ -2484,6 +2502,7 @@
     "octgn:ac9fe707-143f-492e-89e3-bdd02973a0f2",
     "octgn:aca1ee7f-ad29-4218-8dd5-f7f7a8e617fe",
     "octgn:acbf7fd1-9f93-4d0b-b18a-8f0854e028f5",
+    "octgn:acd10bf3-4af4-41f0-888f-55eb777be3d8",
     "octgn:ad09f848-9430-41c8-8723-671f08b79078",
     "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc",
     "octgn:ad3509b5-b4b4-4fe5-bfdc-e655cc2470d3",
@@ -2517,6 +2536,7 @@
     "octgn:b1662195-6d46-474c-9ee9-ccbf14c7b70e",
     "octgn:b171f1fa-a603-43ab-97c9-f950ee3b3599",
     "octgn:b1898a55-730c-493e-9fcd-24a51d817b64",
+    "octgn:b18b3bfa-4620-4c15-960f-5a3642ca9d5a",
     "octgn:b194fe1c-18c8-47d2-a674-8e209339c7e2",
     "octgn:b1f8c611-99a3-4bab-9805-832853d52d4d",
     "octgn:b21850eb-ca62-47d8-b7aa-6d6c5ff29867",
@@ -2742,6 +2762,7 @@
     "octgn:d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41",
     "octgn:d7fd973b-6b4e-4f4b-9fc5-4886dcf80996",
     "octgn:d80a5ca5-20d8-4c4b-814c-0c91bba40d43",
+    "octgn:d80da0f8-430e-4a67-91ca-35cc9d3afe8b",
     "octgn:d8c6d8df-9856-4fad-ba85-a96d17b67cfd",
     "octgn:d8cfafbd-7976-4a87-bdb3-a12c87503cd3",
     "octgn:d90a8977-78e1-445d-b57d-a13e0e98f450",
@@ -2827,6 +2848,7 @@
     "octgn:e53df85c-f6e6-41df-9fd1-03dd2d2a1c65",
     "octgn:e542f4f9-420f-40eb-8c95-d648f2589511",
     "octgn:e5b56e5a-3286-4ea6-bbdd-da7e47750125",
+    "octgn:e62c0943-c58d-4dc7-8948-adef14de0e9a",
     "octgn:e62cec6d-6b96-4662-9a86-bcc0f5aee453",
     "octgn:e6721e44-5706-4a0f-a895-ced75f9c6219",
     "octgn:e6808a55-528f-444e-bf61-67748e7261e9",
@@ -2841,6 +2863,7 @@
     "octgn:e83f33da-6723-4730-8691-8d1a48b1f8e0",
     "octgn:e8c78f25-00d0-4b3b-8cac-03e533edfe41",
     "octgn:e8d205e0-5951-403b-b36e-f992e1b9de7e",
+    "octgn:e8db9cc7-d53f-4ce9-991d-31078b2d507a",
     "octgn:e920ecab-29dc-48a6-908d-f4919d5b468d",
     "octgn:e9217231-de12-48ef-9351-f7d992643c2f",
     "octgn:e9bdfb84-2f96-4288-bbed-31f52cc10b86",
@@ -2858,6 +2881,7 @@
     "octgn:eb9f723d-0f74-4d10-89e7-b046313a1e91",
     "octgn:ebd1944a-928c-40ff-88de-dfebdfcf633c",
     "octgn:ebde9bba-fd89-4098-ad60-9d1d4e746d23",
+    "octgn:ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef",
     "octgn:ec2049ab-c950-46f7-9f1b-30ada69db857",
     "octgn:ec2f100d-22c8-4cc6-82d9-fb4f07446b0f",
     "octgn:ec97b3a4-4904-42ac-beb0-9d4d935241fb",
@@ -3286,7 +3310,7 @@
     {
       "product": "limited-starter",
       "total": 38,
-      "scripted": 2,
+      "scripted": 21,
       "player": 2,
       "playerScripted": 2
     },
@@ -3510,7 +3534,7 @@
     {
       "product": "the-dark-of-mirkwood",
       "total": 15,
-      "scripted": 0,
+      "scripted": 3,
       "player": 6,
       "playerScripted": 0
     },
@@ -15355,7 +15379,7 @@
       "name": "The Eaves of Mirkwood",
       "type": "location",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -15699,7 +15723,7 @@
       "name": "Goblin Trail",
       "type": "location",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -15883,7 +15907,7 @@
       "name": "Goblins are Upon You!",
       "type": "treachery",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -18467,7 +18491,7 @@
       "name": "Caught in a Web",
       "type": "treachery",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -19315,7 +19339,7 @@
       "name": "After the Raid",
       "type": "quest",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -19363,7 +19387,7 @@
       "name": "Surprising Speed",
       "type": "treachery",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -19643,7 +19667,7 @@
       "name": "Abandoned Camp",
       "type": "location",
       "pack": "The Dark of Mirkwood",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dark-of-mirkwood"
     },
     {
@@ -22547,7 +22571,7 @@
       "name": "Spider Den",
       "type": "location",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -23475,7 +23499,7 @@
       "name": "Obsidian Arrows",
       "type": "treachery",
       "pack": "The Dark of Mirkwood",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dark-of-mirkwood"
     },
     {
@@ -23851,7 +23875,7 @@
       "name": "Driven by Shadow",
       "type": "treachery",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -23875,7 +23899,7 @@
       "name": "Tangled Grove",
       "type": "location",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -25691,7 +25715,7 @@
       "name": "Eyes in the Dark",
       "type": "treachery",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -26579,7 +26603,7 @@
       "name": "Great Spider",
       "type": "enemy",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -28059,7 +28083,7 @@
       "name": "Forest Gate",
       "type": "location",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -28291,7 +28315,7 @@
       "name": "Goblin Troop",
       "type": "enemy",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -28491,7 +28515,7 @@
       "name": "The Rearguard",
       "type": "quest",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -29899,7 +29923,7 @@
       "name": "Goblin Runners",
       "type": "enemy",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -30307,7 +30331,7 @@
       "name": "Goblintown Scavengers",
       "type": "enemy",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -33819,7 +33843,7 @@
       "name": "Spiders of Mirkwood",
       "type": "enemy",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -34795,7 +34819,7 @@
       "name": "Wild Wargs",
       "type": "enemy",
       "pack": "The Dark of Mirkwood",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dark-of-mirkwood"
     },
     {
@@ -35251,7 +35275,7 @@
       "name": "Goblin Sniper",
       "type": "enemy",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -35475,7 +35499,7 @@
       "name": "Mirkwood Forest",
       "type": "quest",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -37476,8 +37500,8 @@
       "id": "E00.01B",
       "name": "The Oath (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-oath",
+      "state": "scripted"
     },
     {
       "id": "E00.02B",
@@ -38960,8 +38984,8 @@
       "id": "Q00.01B",
       "name": "The Oath",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-oath",
+      "state": "scripted"
     },
     {
       "id": "Q00.02A",

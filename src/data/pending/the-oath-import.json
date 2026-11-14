@@ -1,0 +1,1373 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The Oath",
+  "slug": "the-oath",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "octgn:21b339e8-a5e9-4491-96cc-1a4b0f1b18cb",
+      "octgnid": "21b339e8-a5e9-4491-96cc-1a4b0f1b18cb",
+      "name": "The Eaves of Mirkwood",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "While The Eaves of Mirkwood is the active location, encounter card effects cannot be canceled.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 68,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 2,
+      "encounter_set": "The Oath",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/21b339e8-a5e9-4491-96cc-1a4b0f1b18cb.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 68,
+          "quantity": 2,
+          "octgnid": "21b339e8-a5e9-4491-96cc-1a4b0f1b18cb",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/21b339e8-a5e9-4491-96cc-1a4b0f1b18cb.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:251c0ba0-a466-401e-b762-b2fef09ea96a",
+      "octgnid": "251c0ba0-a466-401e-b762-b2fef09ea96a",
+      "name": "Goblin Trail",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "Travel: Reveal the top card of the encounter deck to travel here.Response: When Goblin Trail leaves play as an explored location, place 6 progress on the current quest.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 72,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 6,
+      "victory": 3,
+      "encounter_set": "The Oath",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "6",
+        "victory": "3"
+      },
+      "imagesrc": "/cards/251c0ba0-a466-401e-b762-b2fef09ea96a.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 72,
+          "quantity": 2,
+          "octgnid": "251c0ba0-a466-401e-b762-b2fef09ea96a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/251c0ba0-a466-401e-b762-b2fef09ea96a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:26e6135d-df1b-4221-ba45-a501858bafdf",
+      "octgnid": "26e6135d-df1b-4221-ba45-a501858bafdf",
+      "name": "Goblins are Upon You!",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player must search the encounter deck and discard pile for a Goblin enemy and put it into play, engaged with him. Then, shuffle the encounter deck. (This effect cannot be canceled.)",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 80,
+      "quantity": 1,
+      "encounter_set": "The Goblins",
+      "printed_stats": {},
+      "imagesrc": "/cards/26e6135d-df1b-4221-ba45-a501858bafdf.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 80,
+          "quantity": 1,
+          "octgnid": "26e6135d-df1b-4221-ba45-a501858bafdf",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/26e6135d-df1b-4221-ba45-a501858bafdf.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:460b83ed-986a-496b-9b38-627c77a836e9",
+      "octgnid": "460b83ed-986a-496b-9b38-627c77a836e9",
+      "name": "Caught in a Web",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The player with the highest threat level attached this card to one of his heroes. (Counts as a Condition attachment with the text: `Attached hero does not ready during the refresh phase unless you pay 2 resources from that hero`s pool.`)",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 75,
+      "quantity": 1,
+      "encounter_set": "The Oath",
+      "printed_stats": {},
+      "imagesrc": "/cards/460b83ed-986a-496b-9b38-627c77a836e9.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 75,
+          "quantity": 1,
+          "octgnid": "460b83ed-986a-496b-9b38-627c77a836e9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/460b83ed-986a-496b-9b38-627c77a836e9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4a6fe2e8-899b-4d4b-9b02-61516044fdc4",
+      "octgnid": "4a6fe2e8-899b-4d4b-9b02-61516044fdc4",
+      "name": "After the Raid",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Search the encounter deck for 1 copy of The Eaves of Mirkwood and Goblin Troop. Add The Eaves of Mirkwood to the staging area and set Goblin Troop aside, out of play. Shuffle of the encounter deck.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 95,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The Oath",
+      "side": "A",
+      "back_name": "After the Raid",
+      "back_text": "Setup: Search the encounter deck for 1 copy of The Eaves of Mirkwood and Goblin Troop. Add The Eaves of Mirkwood to the staging area and set Goblin Troop aside, out of play. Shuffle of the encounter deck.",
+      "back_type_code": "quest",
+      "back_quest": 9,
+      "back_imagesrc": "/cards/4a6fe2e8-899b-4d4b-9b02-61516044fdc4.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/4a6fe2e8-899b-4d4b-9b02-61516044fdc4.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 95,
+          "quantity": 1,
+          "octgnid": "4a6fe2e8-899b-4d4b-9b02-61516044fdc4",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4a6fe2e8-899b-4d4b-9b02-61516044fdc4.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4af27413-5674-4352-b54a-7f12c4fa0afc",
+      "octgnid": "4af27413-5674-4352-b54a-7f12c4fa0afc",
+      "name": "Surprising Speed",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player returns 1 enemy engaged with him to the staging area. If no enemy was returned to the staging area this way, Surprising Speed gains surge and doomed 1.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 74,
+      "quantity": 2,
+      "encounter_set": "The Oath",
+      "printed_stats": {},
+      "imagesrc": "/cards/4af27413-5674-4352-b54a-7f12c4fa0afc.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 74,
+          "quantity": 2,
+          "octgnid": "4af27413-5674-4352-b54a-7f12c4fa0afc",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4af27413-5674-4352-b54a-7f12c4fa0afc.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4d976fdd-1a4b-429a-98ef-28c4695fa20d",
+      "octgnid": "4d976fdd-1a4b-429a-98ef-28c4695fa20d",
+      "name": "Abandoned Camp",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "Response: After the players travel to Abandoned Camp, the first player discards the top card of their deck, If that card is any ally, put it into play under their control.Travel: Discard the top card of the encounter deck. If that card is an enemy, add it to the staging area.",
+      "is_unique": false,
+      "pack_code": "TDoM",
+      "pack_name": "The Dark of Mirkwood",
+      "position": 15,
+      "quantity": 1,
+      "threat": 2,
+      "quest": 3,
+      "encounter_set": "The Oath",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/4d976fdd-1a4b-429a-98ef-28c4695fa20d.jpg",
+      "packs": [
+        {
+          "pack_code": "TDoM",
+          "pack_name": "The Dark of Mirkwood",
+          "position": 15,
+          "quantity": 1,
+          "octgnid": "4d976fdd-1a4b-429a-98ef-28c4695fa20d",
+          "imagesrc": "https://s3.amazonaws.com/hallofbeorn-resources/Images/Cards/The-Dark-of-Mirkwood/Abandoned-Camp.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:52e70f35-b859-494e-81d0-8be66f519a2a",
+      "octgnid": "52e70f35-b859-494e-81d0-8be66f519a2a",
+      "name": "Spider Den",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "Quest Action: Search the encounter deck and discard pile for a Spider enemy and put it into play engaged with you to discard Spider Den. (Any player may trigger this effect.)",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 71,
+      "quantity": 2,
+      "threat": 4,
+      "quest": 4,
+      "encounter_set": "The Oath",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/52e70f35-b859-494e-81d0-8be66f519a2a.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 71,
+          "quantity": 2,
+          "octgnid": "52e70f35-b859-494e-81d0-8be66f519a2a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/52e70f35-b859-494e-81d0-8be66f519a2a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5eb195bb-390f-48be-97fa-0ec09d6c807b",
+      "octgnid": "5eb195bb-390f-48be-97fa-0ec09d6c807b",
+      "name": "Obsidian Arrows",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Deal 2 damage to a character you control.",
+      "is_unique": false,
+      "pack_code": "TDoM",
+      "pack_name": "The Dark of Mirkwood",
+      "position": 26,
+      "quantity": 2,
+      "shadow": "Shadow: Deal 1 damage to a character you control.",
+      "encounter_set": "The Goblins",
+      "printed_stats": {},
+      "imagesrc": "/cards/5eb195bb-390f-48be-97fa-0ec09d6c807b.jpg",
+      "packs": [
+        {
+          "pack_code": "TDoM",
+          "pack_name": "The Dark of Mirkwood",
+          "position": 26,
+          "quantity": 2,
+          "octgnid": "5eb195bb-390f-48be-97fa-0ec09d6c807b",
+          "imagesrc": "https://s3.amazonaws.com/hallofbeorn-resources/Images/Cards/The-Dark-of-Mirkwood/Obsidian-Arrows.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:64813258-1533-420c-9fce-4d4c1f13c99d",
+      "octgnid": "64813258-1533-420c-9fce-4d4c1f13c99d",
+      "name": "Driven by Shadow",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each enemy and each location currently in the staging area gets +1 [threat] until the end of the phase. If there are no cards in the staging area, Driven by Shadow gains surge.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 73,
+      "quantity": 2,
+      "encounter_set": "The Oath",
+      "printed_stats": {},
+      "imagesrc": "/cards/64813258-1533-420c-9fce-4d4c1f13c99d.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 73,
+          "quantity": 2,
+          "octgnid": "64813258-1533-420c-9fce-4d4c1f13c99d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/64813258-1533-420c-9fce-4d4c1f13c99d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:650522ec-c2e3-4e42-be7a-e87cceccc545",
+      "octgnid": "650522ec-c2e3-4e42-be7a-e87cceccc545",
+      "name": "Tangled Grove",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "X is the number of locations in the staging area.Travel: Each player must discard 1 random card from his hand to travel here.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 69,
+      "quantity": 2,
+      "quest": 3,
+      "encounter_set": "The Oath",
+      "printed_stats": {
+        "threat": "X",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/650522ec-c2e3-4e42-be7a-e87cceccc545.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 69,
+          "quantity": 2,
+          "octgnid": "650522ec-c2e3-4e42-be7a-e87cceccc545",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/650522ec-c2e3-4e42-be7a-e87cceccc545.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7b3e0874-fa4e-4ffb-8614-2bb088896d42",
+      "octgnid": "7b3e0874-fa4e-4ffb-8614-2bb088896d42",
+      "name": "Eyes in the Dark",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 1.\nWhen Revealed: Each player must choose: Either raise your threat by 1 for each questing character you control, or discard a questing character you control.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 81,
+      "quantity": 2,
+      "encounter_set": "The Goblins",
+      "printed_stats": {},
+      "imagesrc": "/cards/7b3e0874-fa4e-4ffb-8614-2bb088896d42.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 81,
+          "quantity": 2,
+          "octgnid": "7b3e0874-fa4e-4ffb-8614-2bb088896d42",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7b3e0874-fa4e-4ffb-8614-2bb088896d42.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:84efd59f-f6f2-44c4-b995-8ad809dd25d1",
+      "octgnid": "84efd59f-f6f2-44c4-b995-8ad809dd25d1",
+      "name": "Great Spider",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Spider.",
+      "text": "Forced: After Gret Spider engages you, exhaust a character you control.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 67,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 3,
+      "defense": 1,
+      "health": 3,
+      "engagement": 34,
+      "encounter_set": "The Oath",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "1",
+        "health": "3",
+        "engagement": "34"
+      },
+      "imagesrc": "/cards/84efd59f-f6f2-44c4-b995-8ad809dd25d1.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 67,
+          "quantity": 2,
+          "octgnid": "84efd59f-f6f2-44c4-b995-8ad809dd25d1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/84efd59f-f6f2-44c4-b995-8ad809dd25d1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:96b72fe4-c42d-469d-9741-294c4da73278",
+      "octgnid": "96b72fe4-c42d-469d-9741-294c4da73278",
+      "name": "Forest Gate",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "Response: After you travel to Forest Gate, the first player draws 2 cards.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 70,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 4,
+      "encounter_set": "The Oath",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/96b72fe4-c42d-469d-9741-294c4da73278.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 70,
+          "quantity": 2,
+          "octgnid": "96b72fe4-c42d-469d-9741-294c4da73278",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/96b72fe4-c42d-469d-9741-294c4da73278.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:998f6e45-b0d3-42c4-b5ba-fdf301401d90",
+      "octgnid": "998f6e45-b0d3-42c4-b5ba-fdf301401d90",
+      "name": "Goblin Troop",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Goblin. Orc.",
+      "text": "Cannot have attachments.While Goblin Troop is engaged with you, each other Goblin enemy engaged with you gets +1 [attack] and +1 [defense].",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 76,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 5,
+      "defense": 3,
+      "health": 6,
+      "engagement": 35,
+      "encounter_set": "The Goblins",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "3",
+        "health": "6",
+        "engagement": "35"
+      },
+      "imagesrc": "/cards/998f6e45-b0d3-42c4-b5ba-fdf301401d90.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 76,
+          "quantity": 1,
+          "octgnid": "998f6e45-b0d3-42c4-b5ba-fdf301401d90",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/998f6e45-b0d3-42c4-b5ba-fdf301401d90.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9bb6a890-b9d3-4528-8049-8017d9a01c4c",
+      "octgnid": "9bb6a890-b9d3-4528-8049-8017d9a01c4c",
+      "name": "The Rearguard",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The first player adds the set-aside Goblin Troop to the staging area. Each other player searches the encounter deck and discard pile for a Goblin enemy and adds it to the staging area.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 97,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "The Oath",
+      "side": "A",
+      "back_name": "The Rearguard",
+      "back_text": "When Revealed: The first player adds the set-aside Goblin Troop to the staging area. Each other player searches the encounter deck and discard pile for a Goblin enemy and adds it to the staging area.This stage cannot be defeated while Goblin Troop is in play. When this stage is defeated, the heroes discover the trail to the Goblins` secret lair and the players win the game.",
+      "back_type_code": "quest",
+      "back_quest": 6,
+      "back_imagesrc": "/cards/9bb6a890-b9d3-4528-8049-8017d9a01c4c.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/9bb6a890-b9d3-4528-8049-8017d9a01c4c.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 97,
+          "quantity": 1,
+          "octgnid": "9bb6a890-b9d3-4528-8049-8017d9a01c4c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9bb6a890-b9d3-4528-8049-8017d9a01c4c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:acd10bf3-4af4-41f0-888f-55eb777be3d8",
+      "octgnid": "acd10bf3-4af4-41f0-888f-55eb777be3d8",
+      "name": "Goblin Runners",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Goblin. Orc.",
+      "text": "Surge.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 78,
+      "quantity": 2,
+      "threat": 1,
+      "attack": 3,
+      "defense": 1,
+      "health": 2,
+      "engagement": 20,
+      "encounter_set": "The Goblins",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "3",
+        "defense": "1",
+        "health": "2",
+        "engagement": "20"
+      },
+      "imagesrc": "/cards/acd10bf3-4af4-41f0-888f-55eb777be3d8.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 78,
+          "quantity": 2,
+          "octgnid": "acd10bf3-4af4-41f0-888f-55eb777be3d8",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/acd10bf3-4af4-41f0-888f-55eb777be3d8.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b18b3bfa-4620-4c15-960f-5a3642ca9d5a",
+      "octgnid": "b18b3bfa-4620-4c15-960f-5a3642ca9d5a",
+      "name": "Goblintown Scavengers",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Goblin. Orc.",
+      "text": "When Revealed: Discard the top card of each player`s deck. Until the end of the phase, increase Goblintown Savengers` [threat] by the total printed cost of all cards discarded in this way.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 79,
+      "quantity": 2,
+      "threat": 1,
+      "attack": 1,
+      "defense": 0,
+      "health": 3,
+      "engagement": 12,
+      "encounter_set": "The Goblins",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "1",
+        "defense": "0",
+        "health": "3",
+        "engagement": "12"
+      },
+      "imagesrc": "/cards/b18b3bfa-4620-4c15-960f-5a3642ca9d5a.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 79,
+          "quantity": 2,
+          "octgnid": "b18b3bfa-4620-4c15-960f-5a3642ca9d5a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b18b3bfa-4620-4c15-960f-5a3642ca9d5a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d80da0f8-430e-4a67-91ca-35cc9d3afe8b",
+      "octgnid": "d80da0f8-430e-4a67-91ca-35cc9d3afe8b",
+      "name": "Spiders of Mirkwood",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Spider.",
+      "text": "While it is engaged with you, Spiders of Mirkwood gets +1 [attack] for each exhausted character you control.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 66,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 2,
+      "defense": 2,
+      "health": 4,
+      "engagement": 18,
+      "encounter_set": "The Oath",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "2",
+        "defense": "2",
+        "health": "4",
+        "engagement": "18"
+      },
+      "imagesrc": "/cards/d80da0f8-430e-4a67-91ca-35cc9d3afe8b.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 66,
+          "quantity": 2,
+          "octgnid": "d80da0f8-430e-4a67-91ca-35cc9d3afe8b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d80da0f8-430e-4a67-91ca-35cc9d3afe8b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e62c0943-c58d-4dc7-8948-adef14de0e9a",
+      "octgnid": "e62c0943-c58d-4dc7-8948-adef14de0e9a",
+      "name": "Wild Wargs",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Warg.",
+      "text": "Forced: After Wild Wargs engages you, discrad the top card of the encounter deck. If that card is a Goblin enemy, put it into play engaged with you.",
+      "is_unique": false,
+      "pack_code": "TDoM",
+      "pack_name": "The Dark of Mirkwood",
+      "position": 23,
+      "quantity": 1,
+      "threat": 2,
+      "attack": 2,
+      "defense": 1,
+      "health": 3,
+      "engagement": 28,
+      "encounter_set": "The Goblins",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "1",
+        "health": "3",
+        "engagement": "28"
+      },
+      "imagesrc": "/cards/e62c0943-c58d-4dc7-8948-adef14de0e9a.jpg",
+      "packs": [
+        {
+          "pack_code": "TDoM",
+          "pack_name": "The Dark of Mirkwood",
+          "position": 23,
+          "quantity": 1,
+          "octgnid": "e62c0943-c58d-4dc7-8948-adef14de0e9a",
+          "imagesrc": "https://s3.amazonaws.com/hallofbeorn-resources/Images/Cards/The-Dark-of-Mirkwood/Wild-Wargs.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e8db9cc7-d53f-4ce9-991d-31078b2d507a",
+      "octgnid": "e8db9cc7-d53f-4ce9-991d-31078b2d507a",
+      "name": "Goblin Sniper",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Goblin. Orc.",
+      "text": "During the encounter phase, players cannot optionally engage Goblin Sniper if there are other enemies in the staging area.Forced: If Goblin Sniper is in the staging area at the end of the combat phase, each player deals 1 point of damage to 1 character he controls.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 77,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 2,
+      "defense": 0,
+      "health": 2,
+      "engagement": 48,
+      "encounter_set": "The Goblins",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "0",
+        "health": "2",
+        "engagement": "48"
+      },
+      "imagesrc": "/cards/e8db9cc7-d53f-4ce9-991d-31078b2d507a.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 77,
+          "quantity": 2,
+          "octgnid": "e8db9cc7-d53f-4ce9-991d-31078b2d507a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e8db9cc7-d53f-4ce9-991d-31078b2d507a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef",
+      "octgnid": "ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef",
+      "name": "Mirkwood Forest",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 96,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Oath",
+      "side": "A",
+      "back_name": "Mirkwood Forest",
+      "back_text": "When Revealed: Each player searches the encounter deck and discard pile for a Forest location and adds it to the staging area. Shuffle the encounter deck. This stage cannot be defeated unless at least 1 copy of Goblin Trail is in the vitory display.",
+      "back_type_code": "quest",
+      "back_quest": 12,
+      "back_imagesrc": "/cards/ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 96,
+          "quantity": 1,
+          "octgnid": "ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E00.01B",
+      "name": "The Oath (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "Starter",
+        "TDoM"
+      ],
+      "card_codes": [
+        "octgn:4a6fe2e8-899b-4d4b-9b02-61516044fdc4",
+        "octgn:ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef",
+        "octgn:9bb6a890-b9d3-4528-8049-8017d9a01c4c",
+        "octgn:e8db9cc7-d53f-4ce9-991d-31078b2d507a",
+        "octgn:b18b3bfa-4620-4c15-960f-5a3642ca9d5a",
+        "octgn:7b3e0874-fa4e-4ffb-8614-2bb088896d42",
+        "octgn:84efd59f-f6f2-44c4-b995-8ad809dd25d1",
+        "octgn:21b339e8-a5e9-4491-96cc-1a4b0f1b18cb",
+        "octgn:96b72fe4-c42d-469d-9741-294c4da73278",
+        "octgn:52e70f35-b859-494e-81d0-8be66f519a2a",
+        "octgn:251c0ba0-a466-401e-b762-b2fef09ea96a",
+        "octgn:64813258-1533-420c-9fce-4d4c1f13c99d",
+        "octgn:4af27413-5674-4352-b54a-7f12c4fa0afc",
+        "octgn:998f6e45-b0d3-42c4-b5ba-fdf301401d90",
+        "octgn:e62c0943-c58d-4dc7-8948-adef14de0e9a",
+        "octgn:5eb195bb-390f-48be-97fa-0ec09d6c807b",
+        "octgn:4d976fdd-1a4b-429a-98ef-28c4695fa20d"
+      ],
+      "cards": [
+        {
+          "code": "octgn:4a6fe2e8-899b-4d4b-9b02-61516044fdc4",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:9bb6a890-b9d3-4528-8049-8017d9a01c4c",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:e8db9cc7-d53f-4ce9-991d-31078b2d507a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b18b3bfa-4620-4c15-960f-5a3642ca9d5a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7b3e0874-fa4e-4ffb-8614-2bb088896d42",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:84efd59f-f6f2-44c4-b995-8ad809dd25d1",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:21b339e8-a5e9-4491-96cc-1a4b0f1b18cb",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:96b72fe4-c42d-469d-9741-294c4da73278",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:52e70f35-b859-494e-81d0-8be66f519a2a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:251c0ba0-a466-401e-b762-b2fef09ea96a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:64813258-1533-420c-9fce-4d4c1f13c99d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4af27413-5674-4352-b54a-7f12c4fa0afc",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:998f6e45-b0d3-42c4-b5ba-fdf301401d90",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:21b339e8-a5e9-4491-96cc-1a4b0f1b18cb",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:e62c0943-c58d-4dc7-8948-adef14de0e9a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5eb195bb-390f-48be-97fa-0ec09d6c807b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4d976fdd-1a4b-429a-98ef-28c4695fa20d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:4a6fe2e8-899b-4d4b-9b02-61516044fdc4": 1,
+          "octgn:ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef": 1,
+          "octgn:9bb6a890-b9d3-4528-8049-8017d9a01c4c": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:e8db9cc7-d53f-4ce9-991d-31078b2d507a": 2,
+          "octgn:b18b3bfa-4620-4c15-960f-5a3642ca9d5a": 2,
+          "octgn:7b3e0874-fa4e-4ffb-8614-2bb088896d42": 2,
+          "octgn:84efd59f-f6f2-44c4-b995-8ad809dd25d1": 2,
+          "octgn:21b339e8-a5e9-4491-96cc-1a4b0f1b18cb": 1,
+          "octgn:96b72fe4-c42d-469d-9741-294c4da73278": 2,
+          "octgn:52e70f35-b859-494e-81d0-8be66f519a2a": 2,
+          "octgn:251c0ba0-a466-401e-b762-b2fef09ea96a": 2,
+          "octgn:64813258-1533-420c-9fce-4d4c1f13c99d": 2,
+          "octgn:4af27413-5674-4352-b54a-7f12c4fa0afc": 2,
+          "octgn:e62c0943-c58d-4dc7-8948-adef14de0e9a": 1,
+          "octgn:5eb195bb-390f-48be-97fa-0ec09d6c807b": 2,
+          "octgn:4d976fdd-1a4b-429a-98ef-28c4695fa20d": 1
+        },
+        "sharedSetAside": {
+          "octgn:998f6e45-b0d3-42c4-b5ba-fdf301401d90": 1
+        },
+        "sharedStagingArea": {
+          "octgn:21b339e8-a5e9-4491-96cc-1a4b0f1b18cb": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q00.01B",
+      "name": "The Oath",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "Starter",
+        "TDoM"
+      ],
+      "card_codes": [
+        "octgn:4a6fe2e8-899b-4d4b-9b02-61516044fdc4",
+        "octgn:ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef",
+        "octgn:9bb6a890-b9d3-4528-8049-8017d9a01c4c",
+        "octgn:e8db9cc7-d53f-4ce9-991d-31078b2d507a",
+        "octgn:acd10bf3-4af4-41f0-888f-55eb777be3d8",
+        "octgn:b18b3bfa-4620-4c15-960f-5a3642ca9d5a",
+        "octgn:26e6135d-df1b-4221-ba45-a501858bafdf",
+        "octgn:7b3e0874-fa4e-4ffb-8614-2bb088896d42",
+        "octgn:d80da0f8-430e-4a67-91ca-35cc9d3afe8b",
+        "octgn:84efd59f-f6f2-44c4-b995-8ad809dd25d1",
+        "octgn:21b339e8-a5e9-4491-96cc-1a4b0f1b18cb",
+        "octgn:650522ec-c2e3-4e42-be7a-e87cceccc545",
+        "octgn:96b72fe4-c42d-469d-9741-294c4da73278",
+        "octgn:52e70f35-b859-494e-81d0-8be66f519a2a",
+        "octgn:251c0ba0-a466-401e-b762-b2fef09ea96a",
+        "octgn:64813258-1533-420c-9fce-4d4c1f13c99d",
+        "octgn:4af27413-5674-4352-b54a-7f12c4fa0afc",
+        "octgn:460b83ed-986a-496b-9b38-627c77a836e9",
+        "octgn:998f6e45-b0d3-42c4-b5ba-fdf301401d90",
+        "octgn:e62c0943-c58d-4dc7-8948-adef14de0e9a",
+        "octgn:5eb195bb-390f-48be-97fa-0ec09d6c807b",
+        "octgn:4d976fdd-1a4b-429a-98ef-28c4695fa20d"
+      ],
+      "cards": [
+        {
+          "code": "octgn:4a6fe2e8-899b-4d4b-9b02-61516044fdc4",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:9bb6a890-b9d3-4528-8049-8017d9a01c4c",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:e8db9cc7-d53f-4ce9-991d-31078b2d507a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:acd10bf3-4af4-41f0-888f-55eb777be3d8",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b18b3bfa-4620-4c15-960f-5a3642ca9d5a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:26e6135d-df1b-4221-ba45-a501858bafdf",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7b3e0874-fa4e-4ffb-8614-2bb088896d42",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d80da0f8-430e-4a67-91ca-35cc9d3afe8b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:84efd59f-f6f2-44c4-b995-8ad809dd25d1",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:21b339e8-a5e9-4491-96cc-1a4b0f1b18cb",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:650522ec-c2e3-4e42-be7a-e87cceccc545",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:96b72fe4-c42d-469d-9741-294c4da73278",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:52e70f35-b859-494e-81d0-8be66f519a2a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:251c0ba0-a466-401e-b762-b2fef09ea96a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:64813258-1533-420c-9fce-4d4c1f13c99d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4af27413-5674-4352-b54a-7f12c4fa0afc",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:460b83ed-986a-496b-9b38-627c77a836e9",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:998f6e45-b0d3-42c4-b5ba-fdf301401d90",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:21b339e8-a5e9-4491-96cc-1a4b0f1b18cb",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:e62c0943-c58d-4dc7-8948-adef14de0e9a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5eb195bb-390f-48be-97fa-0ec09d6c807b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4d976fdd-1a4b-429a-98ef-28c4695fa20d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:4a6fe2e8-899b-4d4b-9b02-61516044fdc4": 1,
+          "octgn:ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef": 1,
+          "octgn:9bb6a890-b9d3-4528-8049-8017d9a01c4c": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:e8db9cc7-d53f-4ce9-991d-31078b2d507a": 2,
+          "octgn:acd10bf3-4af4-41f0-888f-55eb777be3d8": 2,
+          "octgn:b18b3bfa-4620-4c15-960f-5a3642ca9d5a": 2,
+          "octgn:26e6135d-df1b-4221-ba45-a501858bafdf": 1,
+          "octgn:7b3e0874-fa4e-4ffb-8614-2bb088896d42": 2,
+          "octgn:d80da0f8-430e-4a67-91ca-35cc9d3afe8b": 2,
+          "octgn:84efd59f-f6f2-44c4-b995-8ad809dd25d1": 2,
+          "octgn:21b339e8-a5e9-4491-96cc-1a4b0f1b18cb": 1,
+          "octgn:650522ec-c2e3-4e42-be7a-e87cceccc545": 2,
+          "octgn:96b72fe4-c42d-469d-9741-294c4da73278": 2,
+          "octgn:52e70f35-b859-494e-81d0-8be66f519a2a": 2,
+          "octgn:251c0ba0-a466-401e-b762-b2fef09ea96a": 2,
+          "octgn:64813258-1533-420c-9fce-4d4c1f13c99d": 2,
+          "octgn:4af27413-5674-4352-b54a-7f12c4fa0afc": 2,
+          "octgn:460b83ed-986a-496b-9b38-627c77a836e9": 1,
+          "octgn:e62c0943-c58d-4dc7-8948-adef14de0e9a": 1,
+          "octgn:5eb195bb-390f-48be-97fa-0ec09d6c807b": 2,
+          "octgn:4d976fdd-1a4b-429a-98ef-28c4695fa20d": 1
+        },
+        "sharedSetAside": {
+          "octgn:998f6e45-b0d3-42c4-b5ba-fdf301401d90": 1
+        },
+        "sharedStagingArea": {
+          "octgn:21b339e8-a5e9-4491-96cc-1a4b0f1b18cb": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:21b339e8-a5e9-4491-96cc-1a4b0f1b18cb",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/21b339e8-a5e9-4491-96cc-1a4b0f1b18cb.jpg",
+      "localPath": "/cards/21b339e8-a5e9-4491-96cc-1a4b0f1b18cb.jpg",
+      "bytes": 139282,
+      "sha256": "f0a3e37ff9f460655c14c82c2646146bb8acdbc5e2803c2fa810d613b735c71d"
+    },
+    {
+      "code": "octgn:251c0ba0-a466-401e-b762-b2fef09ea96a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/251c0ba0-a466-401e-b762-b2fef09ea96a.jpg",
+      "localPath": "/cards/251c0ba0-a466-401e-b762-b2fef09ea96a.jpg",
+      "bytes": 134518,
+      "sha256": "bbfed7f8498ea8c4c7d0c0fac30a14767ecfddadce7b8d45592cb5f8481fa172"
+    },
+    {
+      "code": "octgn:26e6135d-df1b-4221-ba45-a501858bafdf",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/26e6135d-df1b-4221-ba45-a501858bafdf.jpg",
+      "localPath": "/cards/26e6135d-df1b-4221-ba45-a501858bafdf.jpg",
+      "bytes": 164792,
+      "sha256": "a8345248a06ff93e237ff014ad284ed5d2ee7db11da5bc346a9cafa5f7c01bca"
+    },
+    {
+      "code": "octgn:460b83ed-986a-496b-9b38-627c77a836e9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/460b83ed-986a-496b-9b38-627c77a836e9.jpg",
+      "localPath": "/cards/460b83ed-986a-496b-9b38-627c77a836e9.jpg",
+      "bytes": 158875,
+      "sha256": "340e837530d40b482330d0e89ec1e9cd06446cad776af54fa2dd3cede68d5c8a"
+    },
+    {
+      "code": "octgn:4a6fe2e8-899b-4d4b-9b02-61516044fdc4",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4a6fe2e8-899b-4d4b-9b02-61516044fdc4.jpg",
+      "localPath": "/cards/4a6fe2e8-899b-4d4b-9b02-61516044fdc4.jpg",
+      "bytes": 143210,
+      "sha256": "58af1b6ab0ce035cc685d3daed58cdcc0748cf0edd9f8d9b0e60ae5424657fb4"
+    },
+    {
+      "code": "octgn:4a6fe2e8-899b-4d4b-9b02-61516044fdc4",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4a6fe2e8-899b-4d4b-9b02-61516044fdc4.B.jpg",
+      "localPath": "/cards/4a6fe2e8-899b-4d4b-9b02-61516044fdc4.B.jpg",
+      "bytes": 132638,
+      "sha256": "bd6ddaa563d95c878dc4f470f43922d925ce8ffe9450a54d58997b527030f7a0"
+    },
+    {
+      "code": "octgn:4af27413-5674-4352-b54a-7f12c4fa0afc",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4af27413-5674-4352-b54a-7f12c4fa0afc.jpg",
+      "localPath": "/cards/4af27413-5674-4352-b54a-7f12c4fa0afc.jpg",
+      "bytes": 147237,
+      "sha256": "98851a82346ee41d3ebe5fb5d7ed18d2c8fe58294d0855609ea82b881590838d"
+    },
+    {
+      "code": "octgn:4d976fdd-1a4b-429a-98ef-28c4695fa20d",
+      "face": "front",
+      "source": "https://s3.amazonaws.com/hallofbeorn-resources/Images/Cards/The-Dark-of-Mirkwood/Abandoned-Camp.jpg",
+      "localPath": "/cards/4d976fdd-1a4b-429a-98ef-28c4695fa20d.jpg",
+      "bytes": 67226,
+      "sha256": "b2a031365fa5747c42d87003b794246745996415ad37a8ba30eb1232135d8363"
+    },
+    {
+      "code": "octgn:52e70f35-b859-494e-81d0-8be66f519a2a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/52e70f35-b859-494e-81d0-8be66f519a2a.jpg",
+      "localPath": "/cards/52e70f35-b859-494e-81d0-8be66f519a2a.jpg",
+      "bytes": 151996,
+      "sha256": "4586c1010c3cb3ca14432f2e3024f01f17cf2cb6d60151123344962529dec9c5"
+    },
+    {
+      "code": "octgn:5eb195bb-390f-48be-97fa-0ec09d6c807b",
+      "face": "front",
+      "source": "https://s3.amazonaws.com/hallofbeorn-resources/Images/Cards/The-Dark-of-Mirkwood/Obsidian-Arrows.jpg",
+      "localPath": "/cards/5eb195bb-390f-48be-97fa-0ec09d6c807b.jpg",
+      "bytes": 61829,
+      "sha256": "924a0ea77bf720b92d2f466583253a91df1a893e0cf0ad7e0af0b34cde0f6e9e"
+    },
+    {
+      "code": "octgn:64813258-1533-420c-9fce-4d4c1f13c99d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/64813258-1533-420c-9fce-4d4c1f13c99d.jpg",
+      "localPath": "/cards/64813258-1533-420c-9fce-4d4c1f13c99d.jpg",
+      "bytes": 162248,
+      "sha256": "4a964ebff620381699893d7571be40509d9af631348a0b87d049a79172945a0a"
+    },
+    {
+      "code": "octgn:650522ec-c2e3-4e42-be7a-e87cceccc545",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/650522ec-c2e3-4e42-be7a-e87cceccc545.jpg",
+      "localPath": "/cards/650522ec-c2e3-4e42-be7a-e87cceccc545.jpg",
+      "bytes": 144110,
+      "sha256": "d2deb0ca9f5d2918f790e88c93178d10464e745c54d0f3fce6b58c4c88c5937d"
+    },
+    {
+      "code": "octgn:7b3e0874-fa4e-4ffb-8614-2bb088896d42",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7b3e0874-fa4e-4ffb-8614-2bb088896d42.jpg",
+      "localPath": "/cards/7b3e0874-fa4e-4ffb-8614-2bb088896d42.jpg",
+      "bytes": 122583,
+      "sha256": "1d43f5d06446c7d57aa9b488febe4211f577415d8c1f5b6fd0a024c0a72726cf"
+    },
+    {
+      "code": "octgn:84efd59f-f6f2-44c4-b995-8ad809dd25d1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/84efd59f-f6f2-44c4-b995-8ad809dd25d1.jpg",
+      "localPath": "/cards/84efd59f-f6f2-44c4-b995-8ad809dd25d1.jpg",
+      "bytes": 173595,
+      "sha256": "4ab13b90bd98ae7fdb1a43fc5f9e378e99e2f78e8702c3244182a13fb1dfdb57"
+    },
+    {
+      "code": "octgn:96b72fe4-c42d-469d-9741-294c4da73278",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/96b72fe4-c42d-469d-9741-294c4da73278.jpg",
+      "localPath": "/cards/96b72fe4-c42d-469d-9741-294c4da73278.jpg",
+      "bytes": 157366,
+      "sha256": "aa1d191b742d54059394de50a6cb8d4939db5d2bd339b63ef2ddc3466b889a35"
+    },
+    {
+      "code": "octgn:998f6e45-b0d3-42c4-b5ba-fdf301401d90",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/998f6e45-b0d3-42c4-b5ba-fdf301401d90.jpg",
+      "localPath": "/cards/998f6e45-b0d3-42c4-b5ba-fdf301401d90.jpg",
+      "bytes": 146422,
+      "sha256": "cd4417f9dbad99ff6a9ae8291a5ce958143cecb6c34651d77b51cfa0f73532e7"
+    },
+    {
+      "code": "octgn:9bb6a890-b9d3-4528-8049-8017d9a01c4c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9bb6a890-b9d3-4528-8049-8017d9a01c4c.jpg",
+      "localPath": "/cards/9bb6a890-b9d3-4528-8049-8017d9a01c4c.jpg",
+      "bytes": 134035,
+      "sha256": "2dcaa17a64b58c4f45021a28bae8f688e6ed64c42f3c5e32e877b6ce695837b5"
+    },
+    {
+      "code": "octgn:9bb6a890-b9d3-4528-8049-8017d9a01c4c",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9bb6a890-b9d3-4528-8049-8017d9a01c4c.B.jpg",
+      "localPath": "/cards/9bb6a890-b9d3-4528-8049-8017d9a01c4c.B.jpg",
+      "bytes": 141538,
+      "sha256": "b83b95681f3552b177ceda17cdc385ea6823c7db7067e34da32b83e0d1a568e9"
+    },
+    {
+      "code": "octgn:acd10bf3-4af4-41f0-888f-55eb777be3d8",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/acd10bf3-4af4-41f0-888f-55eb777be3d8.jpg",
+      "localPath": "/cards/acd10bf3-4af4-41f0-888f-55eb777be3d8.jpg",
+      "bytes": 154798,
+      "sha256": "27f002536c8d3fc73b6c776b723d4948ff6dcbcad6c12531bc39b91e798342ab"
+    },
+    {
+      "code": "octgn:b18b3bfa-4620-4c15-960f-5a3642ca9d5a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b18b3bfa-4620-4c15-960f-5a3642ca9d5a.jpg",
+      "localPath": "/cards/b18b3bfa-4620-4c15-960f-5a3642ca9d5a.jpg",
+      "bytes": 152889,
+      "sha256": "7ff7fad4a5bad2ab9f0c45a2675c61dcbfc5e8a3d1e1abd1a603ff0a6ded12af"
+    },
+    {
+      "code": "octgn:d80da0f8-430e-4a67-91ca-35cc9d3afe8b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d80da0f8-430e-4a67-91ca-35cc9d3afe8b.jpg",
+      "localPath": "/cards/d80da0f8-430e-4a67-91ca-35cc9d3afe8b.jpg",
+      "bytes": 152598,
+      "sha256": "fbc761e380d3816f56c20ff1b4e245103cddabc7989576914a8a421281bb460e"
+    },
+    {
+      "code": "octgn:e62c0943-c58d-4dc7-8948-adef14de0e9a",
+      "face": "front",
+      "source": "https://s3.amazonaws.com/hallofbeorn-resources/Images/Cards/The-Dark-of-Mirkwood/Wild-Wargs.jpg",
+      "localPath": "/cards/e62c0943-c58d-4dc7-8948-adef14de0e9a.jpg",
+      "bytes": 64949,
+      "sha256": "55077879511f66c42df083b39096297ce59685e1808ae25d871aea06888d1a9f"
+    },
+    {
+      "code": "octgn:e8db9cc7-d53f-4ce9-991d-31078b2d507a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e8db9cc7-d53f-4ce9-991d-31078b2d507a.jpg",
+      "localPath": "/cards/e8db9cc7-d53f-4ce9-991d-31078b2d507a.jpg",
+      "bytes": 154530,
+      "sha256": "76a3907afbeacf5692fcb1e3280593a891cb0fb864ad4e5c2158c8765b486a9a"
+    },
+    {
+      "code": "octgn:ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef.jpg",
+      "localPath": "/cards/ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef.jpg",
+      "bytes": 134276,
+      "sha256": "8d06af78bb25fea7943ad21c5e1945f23fe6673e2d432067da12466a51783d2e"
+    },
+    {
+      "code": "octgn:ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef.B.jpg",
+      "localPath": "/cards/ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef.B.jpg",
+      "bytes": 132721,
+      "sha256": "5787a784cfbf15beb30b7a2835eaa0e3ca9d1a3ca905eca793e1d6688904cf08"
+    }
+  ]
+}

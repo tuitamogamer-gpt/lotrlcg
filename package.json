@@ -224,7 +224,9 @@
     "test:black-gate-simulation": "node --import tsx --test tests/black-gate-simulation.test.ts",
     "test:browser-black-gate": "node --import tsx scripts/browser-black-gate.mjs",
     "test:mount-doom-simulation": "node --import tsx --test tests/mount-doom-simulation.test.ts",
-    "test:browser-mount-doom": "node --import tsx scripts/browser-mount-doom.mjs"
+    "test:browser-mount-doom": "node --import tsx scripts/browser-mount-doom.mjs",
+    "test:the-oath-simulation": "node --import tsx --test tests/the-oath-simulation.test.ts",
+    "test:browser-the-oath": "node --import tsx scripts/browser-the-oath.mjs"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

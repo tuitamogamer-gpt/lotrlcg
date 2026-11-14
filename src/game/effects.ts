@@ -14,6 +14,7 @@ import { treasonPlayerEffect } from "./treason-saruman-player-cards";
 import * as LandShadowPlayers from "./land-shadow-player-cards";
 import * as FlameWestPlayers from "./flame-west-player-cards";
 import * as MountainFirePlayers from "./mountain-fire-player-cards";
+import { coreReprint, webAttachments } from "./core-reprints";
 import {
   hobbitPlayerEffect,
   hobbitPlayerRefreshEnd,
@@ -1406,7 +1407,7 @@ function handleEffect(s: GameState, e: Effect) {
           ...(u.code === "01099" && !u.blanked
             ? [fx("travelReady", { player: firstPlayer(s) })]
             : []),
-          ...(u.code === "01100" && !u.blanked
+          ...(coreReprint(u.code) === "01100" && !u.blanked
             ? [fx("draw", { value: 2, player: firstPlayer(s) })]
             : []),
           ...playerOrder(s).map((player) =>
@@ -1523,11 +1524,12 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     case "web":
       if (u) {
-        const discarded = s.encounterDiscard.lastIndexOf("01080");
+        const web = e.code ?? "01080";
+        const discarded = s.encounterDiscard.lastIndexOf(web);
         if (discarded >= 0) s.encounterDiscard.splice(discarded, 1);
         u.attachments.push({
           id: `a${s.nextId++}`,
-          code: "01080",
+          code: web,
           exhausted: false,
         });
       }
@@ -2078,7 +2080,7 @@ function handleEffect(s: GameState, e: Effect) {
         s,
         ...playerOrder(s).flatMap((player) =>
           s.staging
-            .filter((u) => u.code === "01083")
+            .filter((u) => coreReprint(u.code) === "01083")
             .map((u) => fx("chooseDamage", { value: 1, source: u.id, player })),
         ),
         ...DunlandQuest.dunlandCombatEndEffects(s),
@@ -2121,7 +2123,8 @@ function handleEffect(s: GameState, e: Effect) {
           u.boost = 0;
           for (const a of u.attachments) a.exhausted = false;
           if (!fangornReady && !landSorrowPlayerSkipsRefresh(u)) {
-            if (!has(u, "01080")) readyCharacter(s, u, false);
+            if (!webAttachments(u.attachments).length)
+              readyCharacter(s, u, false);
             else enqueue(s, fx("webRefresh", { target: u.id, player }));
           }
         }
@@ -2867,9 +2870,7 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     }
     case "webRefresh": {
-      const cost =
-        (u?.attachments.filter((a) => !a.blanked && a.code === "01080")
-          .length ?? 0) * 2;
+      const cost = (u ? webAttachments(u.attachments).length : 0) * 2;
       if (
         u?.exhausted &&
         !Fangorn.fangornCannotReady(s, u) &&

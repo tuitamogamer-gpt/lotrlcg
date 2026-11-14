@@ -61,6 +61,8 @@ import { BLACK_GATE_QUESTS } from "./game/black-gate-support";
 import { MountDoomState } from "./ui/mount-doom-state";
 import { isFortitude } from "./game/hide-test";
 import { MOUNT_DOOM_QUESTS } from "./game/mount-doom-support";
+import { OATH_QUESTS } from "./game/the-oath-support";
+import { OathState } from "./ui/the-oath-state";
 import { DDCD_QUESTS } from "./game/dungeons-deep-support";
 import {
   discoveredTreasures,
@@ -3337,6 +3339,7 @@ export default function App() {
             <CirithUngolState s={game} inspect={setDetail} />
             <BlackGateState s={game} inspect={setDetail} />
             <MountDoomState s={game} inspect={setDetail} />
+            <OathState s={game} inspect={setDetail} />
             <AshMountainsState s={game} inspect={setDetail} />
             <CouncilOfTheWiseState s={game} inspect={setDetail} />
             <WainridersScenarioState s={game} inspect={setDetail} />
@@ -4107,6 +4110,7 @@ export default function App() {
                       ...CIRITH_UNGOL_QUESTS,
                       ...BLACK_GATE_QUESTS,
                       ...MOUNT_DOOM_QUESTS,
+                      ...OATH_QUESTS,
                       ...(carrockQuestCards as Card[]),
                       ...EMYN_MUIL_QUESTS,
                       ...CITY_QUESTS,

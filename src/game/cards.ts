@@ -95,6 +95,7 @@ import {
   MOUNT_DOOM_ENCOUNTERS,
   MOUNT_DOOM_QUESTS,
 } from "./mount-doom-scenario-data";
+import { OATH_ENCOUNTERS, OATH_QUESTS } from "./the-oath-scenario-data";
 import mountainFirePlayers from "../data/mountain-fire-player-cards.json";
 import hobbitPlayers from "../data/hobbit-player-cards.json";
 import blackRidersPlayers from "../data/black-riders-player-cards.json";
@@ -604,6 +605,7 @@ export const encounterCards = [
       ...CIRITH_UNGOL_ENCOUNTERS,
       ...BLACK_GATE_ENCOUNTERS,
       ...MOUNT_DOOM_ENCOUNTERS,
+      ...OATH_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -705,6 +707,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...CIRITH_UNGOL_QUESTS,
     ...BLACK_GATE_QUESTS,
     ...MOUNT_DOOM_QUESTS,
+    ...OATH_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -847,6 +850,7 @@ export const SCRIPTED = new Set(
     ...CIRITH_UNGOL_QUESTS,
     ...BLACK_GATE_QUESTS,
     ...MOUNT_DOOM_QUESTS,
+    ...OATH_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

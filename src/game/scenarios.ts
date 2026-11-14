@@ -28,6 +28,7 @@ import { PELENNOR_FIELDS_ADVENTURES } from "./pelennor-fields-scenario-data";
 import { CIRITH_UNGOL_ADVENTURES } from "./cirith-ungol-scenario-data";
 import { BLACK_GATE_ADVENTURES } from "./black-gate-scenario-data";
 import { MOUNT_DOOM_ADVENTURES } from "./mount-doom-scenario-data";
+import { OATH_ADVENTURES } from "./the-oath-scenario-data";
 import { LAND_SORROW_ADVENTURES } from "./land-sorrow-scenario-data";
 import { ASH_ADVENTURES } from "./ash-mountains-scenario-data";
 import { WAINRIDERS_ADVENTURES } from "./wainriders-scenario-data";
@@ -1223,6 +1224,7 @@ export const SCENARIOS = [
   ...CIRITH_UNGOL_ADVENTURES,
   ...BLACK_GATE_ADVENTURES,
   ...MOUNT_DOOM_ADVENTURES,
+  ...OATH_ADVENTURES,
 ] as const;
 /** The Mirkwood Paths campaign covers the three Core Set quests in order. */
 export const CAMPAIGN_CHAPTERS: readonly ScenarioId[] = [
