@@ -5,8 +5,8 @@
     "playerCards": 860,
     "heroes": 112,
     "deckCards": 744,
-    "encounterCards": 1777,
-    "scenarios": 115,
+    "encounterCards": 1803,
+    "scenarios": 116,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -122,17 +122,18 @@
       "the-oath",
       "the-ruins-of-belegost",
       "murder-at-the-prancing-pony",
-      "the-siege-of-annuminas"
+      "the-siege-of-annuminas",
+      "attack-on-dol-guldur"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3001,
-    "pending": 1182
+    "scripted": 3033,
+    "pending": 1150
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 240
+    "scripted": 241
   },
   "registeredCodes": [
     "01001",
@@ -1090,6 +1091,7 @@
     "octgn:022c654e-9d4d-40ff-9d67-8e465fda0e78",
     "octgn:026a36ed-0979-4422-a581-a4decdc3c102",
     "octgn:02a5e04c-d08f-49f4-a7b5-ba6a1cb86de7",
+    "octgn:02a79046-aaa1-4b12-9e74-467f0b566889",
     "octgn:02cae27a-3b0c-4396-aea3-8fc2bdd4ffe8",
     "octgn:02d8e441-0c70-4ecb-886f-9ba6f673ac9d",
     "octgn:0323e852-a05c-4c2d-a038-3f2596af7a85",
@@ -1123,6 +1125,7 @@
     "octgn:07a8f60f-926c-4342-bf04-e3af9a24df10",
     "octgn:080f86b2-8cea-4134-8e79-de6312b51ed6",
     "octgn:0856a4b4-ec02-4586-8147-93fbadf544cd",
+    "octgn:08a094d3-de00-4ea3-9dc3-141da9944763",
     "octgn:08af0240-fb38-4a33-a1f0-af07fd496b42",
     "octgn:08b55b0b-93e5-42d3-a746-703c7ce9146f",
     "octgn:0909409e-d2d3-4304-b239-76bb6da0dceb",
@@ -1132,8 +1135,10 @@
     "octgn:0a0e6044-c5ab-43ed-832a-71516c7d035a",
     "octgn:0a1166fb-fb90-4651-a8ae-7d532e41c2b6",
     "octgn:0a6774e7-f110-4917-84b5-1f81a7aefbf8",
+    "octgn:0aa98b35-6958-4680-a4ed-b9fc16089126",
     "octgn:0ae0d2d5-b082-4cc7-b227-9b60c60de8b4",
     "octgn:0ae9f4f9-eec9-404f-ae93-7a54287d1bc2",
+    "octgn:0b3a7155-be2d-4fed-9674-bc696662372f",
     "octgn:0bb77cd5-0340-4411-9e1f-997b1d6cb35a",
     "octgn:0bd34136-ae3d-44aa-b48f-7190c14f4b3b",
     "octgn:0c0fdef7-f55a-4bcf-91f9-317cd7a00777",
@@ -1166,6 +1171,7 @@
     "octgn:0f5ffc36-fe0f-4097-ad67-dafda700d96f",
     "octgn:0f7ce386-9510-4fd5-93aa-145190f8d1de",
     "octgn:0fc7db5e-c389-4636-8c34-3d1dee3508ce",
+    "octgn:0fd5a1d7-0791-4ab4-a50b-c5b2634ed94b",
     "octgn:0fffdddc-d9f9-498a-9669-e840304ebb9b",
     "octgn:1062dfa2-d821-474d-9a8f-9eda79753222",
     "octgn:107805c4-6abf-4eb1-87fd-0ad7ffcfbf42",
@@ -1205,6 +1211,7 @@
     "octgn:1600dd03-7b19-4dd2-924c-30c30b09cb9d",
     "octgn:160c8dcb-baa1-4176-9308-7328e500d62e",
     "octgn:16361c0e-f422-44d4-8f25-bc32b7a9aadd",
+    "octgn:16436b20-60b2-4f40-9a20-72e86cc35d37",
     "octgn:16b71211-85c1-4ad4-8879-831bc7b50ac4",
     "octgn:1733be6c-2101-4f83-816b-f730b4afc183",
     "octgn:174507ac-5617-4e3c-998b-75eeceb9db33",
@@ -1366,6 +1373,8 @@
     "octgn:2b38254c-e992-4fb5-89e8-e7f636658ce0",
     "octgn:2b3939a5-7ee7-4b6a-a889-84487815a1a5",
     "octgn:2b3973f5-e6f6-4611-87b7-b6e3dc33eb66",
+    "octgn:2b4188d2-7910-431f-8c8d-fbd358fc782d",
+    "octgn:2b56edac-f289-4b76-ae90-f6f3e5fc9b58",
     "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1",
     "octgn:2b9c8fa1-a5c3-441e-95c1-c10c85948dc1",
     "octgn:2ba77eca-870d-41d9-84cb-f0f33b6d9f15",
@@ -1493,6 +1502,7 @@
     "octgn:3f78ed57-49cc-4886-b84f-3fe886203794",
     "octgn:3f8273a2-f64c-407c-97fb-4a4ef0bddb0b",
     "octgn:3f8e889e-db35-4044-ac19-43fd146bffd1",
+    "octgn:3f9feb64-e4bd-4da5-b00a-05f58dce5fbf",
     "octgn:3ff62e7f-fc09-4569-a45c-1be7e2ba6747",
     "octgn:408148e1-3391-4734-aeac-3e3a7b69c1c1",
     "octgn:408752c0-cee3-41ba-86c2-d01085546cef",
@@ -1508,6 +1518,7 @@
     "octgn:4297aa1e-8d53-4bd4-a750-ae5490fbb82b",
     "octgn:42a5a608-0699-4cd5-b69d-f7c3413cd5cd",
     "octgn:42e22482-0281-4811-aa65-2b342319ee07",
+    "octgn:4315467f-210f-40c8-aec2-76c09d4bb8c1",
     "octgn:432c306a-7a68-45f9-8621-d7ea2126ae0b",
     "octgn:434cf78e-2e8e-4d79-9662-eb50e33bc3f9",
     "octgn:43509bf0-3250-420f-b743-e56c3ad5cd90",
@@ -1535,6 +1546,7 @@
     "octgn:46c6afb3-9a68-4f1a-acfa-e421c84da528",
     "octgn:46c7bfd7-96b7-4fe4-a110-3464ba6c0023",
     "octgn:46e10da4-a188-4502-b53f-6644495a1319",
+    "octgn:47186728-67bf-40b2-9b8d-d5012f0fd1a6",
     "octgn:4732976c-a400-498f-9f97-108995fcd99f",
     "octgn:47360b1a-2428-4795-aec5-30f0a8805d76",
     "octgn:474616b8-11f2-44fe-bad3-a9d3e2bdd208",
@@ -1616,6 +1628,7 @@
     "octgn:49304bf6-63f3-4fd1-b3ec-072a034e4eb0",
     "octgn:499195c5-389f-4a56-b67e-b6e5b8f2fb91",
     "octgn:49aa4e88-3774-43f7-ab8d-05268ed3fb7e",
+    "octgn:49c77ce2-7305-4209-ad6a-f1ed983a556e",
     "octgn:49e857d2-b78f-4b5f-8c07-604af73fd616",
     "octgn:4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a",
     "octgn:4a2696f1-65e1-41d5-8828-38ece23167df",
@@ -2087,6 +2100,7 @@
     "octgn:60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b",
     "octgn:610f3112-1123-4956-a955-df9d42b937bf",
     "octgn:611c0811-1810-4b3e-a00e-4d34f1f986b1",
+    "octgn:617952b3-1ac2-47a2-866f-302c3f0d8fd7",
     "octgn:617bc2e6-05a9-4c99-b3ff-8304ecb6ef32",
     "octgn:617ce2f8-f33e-4898-9fa4-38787ee9c2b6",
     "octgn:6220ef6b-f314-4cf9-92df-f9551d6cfde0",
@@ -2132,6 +2146,7 @@
     "octgn:6987d363-bcba-4f34-97b1-d26f080c843e",
     "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
     "octgn:6a24a5e8-80e9-4bba-af55-64be11742dde",
+    "octgn:6a24bcba-e069-4951-9cb1-59b48d291c74",
     "octgn:6a3ae84d-6c74-4fbf-9254-b8c1d17c8384",
     "octgn:6a3ae84d-6c74-4fbf-9254-b8c1d17c8384:B",
     "octgn:6a3e1c91-accd-476b-9ecc-ace35274a052",
@@ -2172,6 +2187,7 @@
     "octgn:71079813-3afe-41b7-8746-92dcc1f91084",
     "octgn:7108bf9e-3e91-4cbd-977a-fbab0a464512",
     "octgn:715625a1-320e-478c-afd3-bec7111105f2",
+    "octgn:7178f6f6-c2da-4f74-9c9a-9ec43c79232d",
     "octgn:718d940a-2b58-4986-af10-06a81546bc9f",
     "octgn:71a2ca21-ff50-4a8a-b30b-7c8eaf6bf6b6",
     "octgn:71d7dd78-a967-43dd-ab73-e46a5d4d4519",
@@ -2282,6 +2298,7 @@
     "octgn:7fe0f143-9d3b-461a-b6bd-bc86e1491311",
     "octgn:801078c6-56a9-45f2-b5a4-7e38cb5bc507",
     "octgn:8042f7de-6fed-49cf-95be-450f0fae1601",
+    "octgn:807175bd-1d09-41ff-a3ab-560a935eb259",
     "octgn:80764232-a3c9-47f1-9034-9c9ac82002e4",
     "octgn:808f60ad-a63f-4504-9b67-4fd45d630add",
     "octgn:809ff5de-8273-4491-adfb-3a27d4b316f3",
@@ -2350,6 +2367,7 @@
     "octgn:89fba072-2af9-460c-8556-3bf3a8f0091e",
     "octgn:8a0a834b-d10c-43b1-a43c-75b459c18374",
     "octgn:8a0c8aef-d820-495f-b8f6-f2148f0786ba",
+    "octgn:8a1e8a49-0af8-4990-9c47-955927ff09b7",
     "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
     "octgn:8a4aebc3-32db-4b2f-965c-548058440a7c",
     "octgn:8a5f4d2e-9558-413f-9913-376ec6a0c184",
@@ -2397,6 +2415,7 @@
     "octgn:8f6254c0-a723-4e66-bdc7-4c92eed415f8",
     "octgn:8f6e5d67-81c7-4db8-9cb0-ef45b71490c6",
     "octgn:8fa4b202-cb8e-470d-ae2b-aa945ac652c5",
+    "octgn:8ff4cf43-75dd-4030-86ae-d256562bc885",
     "octgn:90203b8d-a359-4f18-8314-12815090a9d0",
     "octgn:9031b458-f7e0-4c55-9266-f30aaaf718c1",
     "octgn:9042242b-054d-413e-83c7-bb9f42551a8a",
@@ -2446,6 +2465,7 @@
     "octgn:98cc592d-6e3e-494a-bddf-ef5e0908c279",
     "octgn:98dff367-a068-4aac-a46b-7dc201aff42d",
     "octgn:990e60bb-a627-4758-8230-81b40a57a382",
+    "octgn:9944cbab-1c77-4cb4-87cc-36709f3143b5",
     "octgn:9945fdee-b56e-488d-a5bf-33d5a82afdad",
     "octgn:998f6e45-b0d3-42c4-b5ba-fdf301401d90",
     "octgn:99ab7a92-0e3e-4ec2-9a40-0f467920879d",
@@ -2465,6 +2485,7 @@
     "octgn:9b5e1acd-c396-464d-ab54-df86833aad07",
     "octgn:9b75695b-8431-40ea-8041-afaaa34dc3f4",
     "octgn:9b75cef3-e5a3-4284-aff6-9a0b473fa37d",
+    "octgn:9babab54-9494-4619-8666-f2299bb37632",
     "octgn:9bb6a890-b9d3-4528-8049-8017d9a01c4c",
     "octgn:9bba91a8-d375-4935-9956-9cb4cc4716c5",
     "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664",
@@ -2493,6 +2514,7 @@
     "octgn:9eac32f5-dd08-4d1e-99bd-0722984cd32f",
     "octgn:9eb0298a-cb92-426d-87c6-37749aaae44b",
     "octgn:9f1f5ce8-2fa6-40e3-ba7c-34fb94db014b",
+    "octgn:9fa12306-d6ed-4fb8-89ce-8145bb81a58a",
     "octgn:9feef7b4-4ca7-4adc-aeb7-56947254588a",
     "octgn:9ff94935-ae08-4d86-859f-f4d0776a66e5",
     "octgn:a0417d08-1905-46f9-bd65-067c1c59f0a3",
@@ -2570,6 +2592,7 @@
     "octgn:abeec7e9-ccf6-4145-ae1a-d7179c5a4b4d",
     "octgn:abfe3930-7bca-4ce8-9594-038ad4846205",
     "octgn:ac4724db-a3cc-4984-bef5-f51b0f4421f8",
+    "octgn:ac5a17df-dcd0-4bfb-91fe-a444910f30ec",
     "octgn:ac9fe707-143f-492e-89e3-bdd02973a0f2",
     "octgn:aca1ee7f-ad29-4218-8dd5-f7f7a8e617fe",
     "octgn:acbf7fd1-9f93-4d0b-b18a-8f0854e028f5",
@@ -2666,6 +2689,7 @@
     "octgn:ba630f98-6ad5-4c4a-adfd-aeeac5485722",
     "octgn:ba77505a-1def-4537-a194-0b7482433a72",
     "octgn:babeedb8-f7cd-4e8a-a5c4-fbfdd57238fb",
+    "octgn:baf3e642-1f90-4db5-ac10-c8f4c5300f25",
     "octgn:bb1652ba-37e4-4a59-a7c7-39f398c0ab19",
     "octgn:bb38c7cf-8c76-4b87-b218-5516bc366470",
     "octgn:bb58f446-da73-47e3-98e8-70f69ee77d34",
@@ -2678,6 +2702,7 @@
     "octgn:bcd41784-d260-4165-ae0f-74cb844d10b3",
     "octgn:bd30f509-04f8-4135-a5e9-20d3cbbe7cd8",
     "octgn:bd837efe-9358-4fe9-8770-69b9b1fefb48",
+    "octgn:bdbf8bed-f63f-4797-abb4-79054a9dbcad",
     "octgn:be3ca12f-2550-48b4-9384-e71a1b401d4e",
     "octgn:be43a52a-370a-4481-bc84-8e004ecbfdca",
     "octgn:be6cf29d-bb8b-494a-9635-85ee9322a690",
@@ -2727,6 +2752,7 @@
     "octgn:c460b9c0-0239-4a74-99cb-3c302429db44",
     "octgn:c46688bb-24ac-4ee9-a23e-2bd481e8e56c",
     "octgn:c46c37c3-b2e7-4e28-9466-e3a371417c8b",
+    "octgn:c472af20-d956-4aec-af6e-319cdea35230",
     "octgn:c49ec585-e306-4fda-a55b-497cb0fd1174",
     "octgn:c5215a42-f064-46cc-a9a2-75ef4d57fcd2",
     "octgn:c5657436-d6c8-400d-ba1f-a723799ac685",
@@ -2793,6 +2819,7 @@
     "octgn:ceb5ede8-0acc-40b6-ac43-b9f1ff006d9e",
     "octgn:cedfcb4c-9f28-46c6-b6ec-7986be79f7b1",
     "octgn:cefd0596-2e3b-4496-95e0-57899ab83b04",
+    "octgn:cefe5af1-a3d3-43fb-8b82-7ea9b4d2c861",
     "octgn:cf070c26-dd32-4ee8-bd6c-ffe9c011bd64",
     "octgn:cf33276f-22e5-467d-9543-6b345d17e7bc",
     "octgn:cf435143-655b-4a7c-ac6b-f9f61b4cba72",
@@ -2843,6 +2870,7 @@
     "octgn:d7fd973b-6b4e-4f4b-9fc5-4886dcf80996",
     "octgn:d80a5ca5-20d8-4c4b-814c-0c91bba40d43",
     "octgn:d80da0f8-430e-4a67-91ca-35cc9d3afe8b",
+    "octgn:d8694dea-3406-4199-96d5-cd8d0a97f152",
     "octgn:d8c6d8df-9856-4fad-ba85-a96d17b67cfd",
     "octgn:d8cfafbd-7976-4a87-bdb3-a12c87503cd3",
     "octgn:d90a8977-78e1-445d-b57d-a13e0e98f450",
@@ -2886,6 +2914,7 @@
     "octgn:df9ba79f-91a3-4fc7-a2af-6bddcc795f29",
     "octgn:dfd05c9f-1dc1-4af6-a22f-fe39969c6371",
     "octgn:dfd0e951-2ba4-45c5-bed9-24caf8ae868f",
+    "octgn:dff2fcb1-1231-4cda-9d10-029db96ef9e8",
     "octgn:e0841275-753f-47bd-8d6d-807e4fb747ac",
     "octgn:e0fd5147-e1aa-42c3-972f-5cf0c93a6716",
     "octgn:e1001736-68fc-4e7b-a7df-23230876eb92",
@@ -2964,6 +2993,7 @@
     "octgn:eb353293-1a80-445c-b4a9-422c83dadfd5",
     "octgn:eb3b5fc0-02a5-4e28-8744-c1e1b4553763",
     "octgn:eb9f723d-0f74-4d10-89e7-b046313a1e91",
+    "octgn:ebbb49f0-4466-44e5-b157-968cd5e80b06",
     "octgn:ebd1944a-928c-40ff-88de-dfebdfcf633c",
     "octgn:ebde9bba-fd89-4098-ad60-9d1d4e746d23",
     "octgn:ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef",
@@ -3038,6 +3068,7 @@
     "octgn:f5a08708-ed75-45a0-91a1-59e10eeebfc9",
     "octgn:f5a65abc-e3df-4d26-aeed-2a3b1effb005",
     "octgn:f5ba58db-76fc-497e-b0d7-0382c0b9c0c0",
+    "octgn:f5c7c8e0-3616-4919-9761-85ab5440956d",
     "octgn:f5d539b2-0b65-493d-8493-5122a0761eed",
     "octgn:f60662b4-ebfe-4b89-9d1e-124976e6c5b7",
     "octgn:f607e8d7-ca95-4f83-80b9-a07726d38f65",
@@ -3071,6 +3102,7 @@
     "octgn:f9e9bc93-8044-474c-8f80-d3787edbca5f",
     "octgn:fa3a740d-36b7-4fa9-b5d5-6d70aa50f078",
     "octgn:fa4aaa97-c06d-42d5-b796-2f6200d9a404",
+    "octgn:fa4ccbb8-76d4-4293-aa94-d117b14f042e",
     "octgn:fa85988c-4530-414e-95a6-066002e0ef7a",
     "octgn:fa8e0538-d920-4f0e-9810-103c5186531f",
     "octgn:fa9df618-126b-4ea9-95d7-22cd5dad6d2f",
@@ -3125,6 +3157,7 @@
     "octgn:fdfc404e-67b0-44d6-a1e7-a5e568ac0265",
     "octgn:fe2c30ae-dd35-48de-a2c2-4886a0c0783e",
     "octgn:fe419fec-bc64-493c-aa23-fa3e62c57768",
+    "octgn:fe580179-8f51-463e-a235-bde0f7b783d7",
     "octgn:fe7448a2-e2e2-4e81-95f4-2ac585160433",
     "octgn:fed61900-b526-41e6-b072-9c5eae29bc77",
     "octgn:ff4c59d7-6ad7-4fa7-80da-97fd5f8f3169",
@@ -3222,7 +3255,7 @@
     {
       "product": "attack-on-dol-guldur",
       "total": 32,
-      "scripted": 0,
+      "scripted": 32,
       "player": 0,
       "playerScripted": 0
     },
@@ -13081,7 +13114,7 @@
       "name": "Dol Guldur Marauder",
       "type": "enemy",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -13521,7 +13554,7 @@
       "name": "Battle Warg",
       "type": "enemy",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -13649,7 +13682,7 @@
       "name": "The Siege of Dol Guldur",
       "type": "quest",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -13705,7 +13738,7 @@
       "name": "Assault on the Golden Wood",
       "type": "quest",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -14097,7 +14130,7 @@
       "name": "Fear and Despair",
       "type": "treachery",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -14561,7 +14594,7 @@
       "name": "Forest Battleground",
       "type": "location",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -16393,7 +16426,7 @@
       "name": "The Sorcerer's Tower",
       "type": "location",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -16401,7 +16434,7 @@
       "name": "Dol Guldur",
       "type": "objective",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -18113,7 +18146,7 @@
       "name": "Amon Lanc Archer",
       "type": "enemy",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -18353,7 +18386,7 @@
       "name": "Battle Under the Trees",
       "type": "quest",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -18641,7 +18674,7 @@
       "name": "Bane of Amon Lanc",
       "type": "enemy",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -19361,7 +19394,7 @@
       "name": "Sorcerer of Dol Guldur",
       "type": "enemy",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -23809,7 +23842,7 @@
       "name": "The Shadow Road",
       "type": "location",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -24369,7 +24402,7 @@
       "name": "The Necromancer's Rage",
       "type": "treachery",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -24905,7 +24938,7 @@
       "name": "Dungeons of the Necromancer",
       "type": "quest",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -26273,7 +26306,7 @@
       "name": "Fastness of Mirkwood",
       "type": "treachery",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -27153,7 +27186,7 @@
       "name": "Gate of Dol Guldur",
       "type": "location",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -27713,7 +27746,7 @@
       "name": "Crossing the Anduin",
       "type": "quest",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -28385,7 +28418,7 @@
       "name": "Host of Dol Guldur",
       "type": "enemy",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -28601,7 +28634,7 @@
       "name": "Beast of Taur-nu-Fuin",
       "type": "enemy",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -28905,7 +28938,7 @@
       "name": "Dungeon Dweller",
       "type": "enemy",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -29961,7 +29994,7 @@
       "name": "Epic Multiplayer Mode",
       "type": "campaign",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -31601,7 +31634,7 @@
       "name": "Dungeon Door",
       "type": "location",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -31785,7 +31818,7 @@
       "name": "Standard Game Mode",
       "type": "campaign",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -32345,7 +32378,7 @@
       "name": "Power Sevenfold",
       "type": "treachery",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -33209,7 +33242,7 @@
       "name": "Chieftain Morlug",
       "type": "enemy",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -33953,7 +33986,7 @@
       "name": "Host of Lórien",
       "type": "objective-ally",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -34457,7 +34490,7 @@
       "name": "The Tower of Sorcery",
       "type": "quest",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -35561,7 +35594,7 @@
       "name": "Servant of Sauron",
       "type": "treachery",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -36457,7 +36490,7 @@
       "name": "Mirkwood Olog-hai",
       "type": "enemy",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -36857,7 +36890,7 @@
       "name": "Blackened Woods",
       "type": "location",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -37425,7 +37458,7 @@
       "name": "Power of Lórien",
       "type": "objective",
       "pack": "Attack on Dol Guldur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "attack-on-dol-guldur"
     },
     {
@@ -40037,8 +40070,8 @@
       "id": "Q99.10",
       "name": "Attack on Dol Guldur",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "attack-on-dol-guldur",
+      "state": "scripted"
     },
     {
       "id": "Q99.11",

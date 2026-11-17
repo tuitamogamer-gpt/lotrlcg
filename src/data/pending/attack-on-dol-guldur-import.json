@@ -1,0 +1,1797 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "Attack on Dol Guldur",
+  "slug": "attack-on-dol-guldur",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "octgn:02a79046-aaa1-4b12-9e74-467f0b566889",
+      "octgnid": "02a79046-aaa1-4b12-9e74-467f0b566889",
+      "name": "Dol Guldur Marauder",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "Dol Guldur Marauder gets +1 [attack] and +1 [defense] for each resource on it. Forced: When Dol Guldur Marauder attacks, either remove 1 progress from the main quest or place 1 resource on Dol Guldur Marauder.",
+      "is_unique": false,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 18,
+      "quantity": 4,
+      "threat": 2,
+      "attack": 3,
+      "defense": 1,
+      "health": 3,
+      "engagement": 24,
+      "encounter_set": "Attack on Dol Guldur",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "1",
+        "health": "3",
+        "engagement": "24"
+      },
+      "imagesrc": "/cards/02a79046-aaa1-4b12-9e74-467f0b566889.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 18,
+          "quantity": 4,
+          "octgnid": "02a79046-aaa1-4b12-9e74-467f0b566889",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/02a79046-aaa1-4b12-9e74-467f0b566889.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:08a094d3-de00-4ea3-9dc3-141da9944763",
+      "octgnid": "08a094d3-de00-4ea3-9dc3-141da9944763",
+      "name": "Battle Warg",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Warg.",
+      "text": "Surge.\nForced: After Battle Warg engages you, either remove 1 progress from the main quest or discard an attachment you control.",
+      "is_unique": false,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 19,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 3,
+      "defense": 2,
+      "health": 2,
+      "engagement": 18,
+      "encounter_set": "Attack on Dol Guldur",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "3",
+        "defense": "2",
+        "health": "2",
+        "engagement": "18"
+      },
+      "imagesrc": "/cards/08a094d3-de00-4ea3-9dc3-141da9944763.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 19,
+          "quantity": 3,
+          "octgnid": "08a094d3-de00-4ea3-9dc3-141da9944763",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/08a094d3-de00-4ea3-9dc3-141da9944763.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:0aa98b35-6958-4680-a4ed-b9fc16089126",
+      "octgnid": "0aa98b35-6958-4680-a4ed-b9fc16089126",
+      "name": "The Siege of Dol Guldur",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Remove all tokens from the Lieutenant enemy at this stage and set it aside, out of play. Add the set aside Bane of Amon Lanc to the staging area, unless it is in a victory display. If Dol Guldur's city strength is 5 or lower (10 or lower if playing epic multiplayer mode), Bane of Amon Lanc makes an immediate attack against each player in turn order.",
+      "is_unique": false,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 3,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "Attack on Dol Guldur",
+      "side": "A",
+      "back_name": "The Siege of Dol Guldur",
+      "back_text": "When Revealed: Remove all tokens from the Lieutenant enemy at this stage and set it aside, out of play. Add the set aside Bane of Amon Lanc to the staging area, unless it is in a victory display. If Dol Guldur's city strength is 5 or lower (10 or lower if playing epic multiplayer mode), Bane of Amon Lanc makes an immediate attack against each player in turn order.Bane of Amon Lanc gets -1 engagement cost for each progress token on this stage. Forced: At the end of the round, remove 5 progress from this stage or increase Dol Guldur's city strength by 3. The first player may remove an additional 5 progress to reduce Dol Guldur's city strength by 3.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/0aa98b35-6958-4680-a4ed-b9fc16089126.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/0aa98b35-6958-4680-a4ed-b9fc16089126.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 3,
+          "quantity": 1,
+          "octgnid": "0aa98b35-6958-4680-a4ed-b9fc16089126",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0aa98b35-6958-4680-a4ed-b9fc16089126.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:0b3a7155-be2d-4fed-9674-bc696662372f",
+      "octgnid": "0b3a7155-be2d-4fed-9674-bc696662372f",
+      "name": "Assault on the Golden Wood",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Set Host of Lorien and all 4 Lieutenant enemies aside, out of play. Add Power of Lorien and 1 copy of Dol Guldur Marauder per player to the staging area. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 1,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "Attack on Dol Guldur",
+      "side": "A",
+      "back_name": "Assault on the Golden Wood",
+      "back_text": "Setup: Set Host of Lorien and all 4 Lieutenant enemies aside, out of play. Add Power of Lorien and 1 copy of Dol Guldur Marauder per player to the staging area. Shuffle the encounter deck. Forced: At the end of the round, place 1 resource here and move all progress from this stage to Power of Lorien. If there are 3 resources here, advance to stage 2A.Response: At the end of the round, raise each player's threat by 1 to choose a stage. Each player at that stage draws 1 card and adds 1 resource to a hero's resource pool.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/0b3a7155-be2d-4fed-9674-bc696662372f.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/0b3a7155-be2d-4fed-9674-bc696662372f.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 1,
+          "quantity": 1,
+          "octgnid": "0b3a7155-be2d-4fed-9674-bc696662372f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0b3a7155-be2d-4fed-9674-bc696662372f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:0fd5a1d7-0791-4ab4-a50b-c5b2634ed94b",
+      "octgnid": "0fd5a1d7-0791-4ab4-a50b-c5b2634ed94b",
+      "name": "Fear and Despair",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 1.\nWhen Revealed: Each player exhausts a character he controls. Until the end of the round, characters cannot be readied by player card effects.",
+      "is_unique": false,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 29,
+      "quantity": 2,
+      "shadow": "Shadow: Defending character cannot ready until the end of the round.",
+      "encounter_set": "Attack on Dol Guldur",
+      "printed_stats": {},
+      "imagesrc": "/cards/0fd5a1d7-0791-4ab4-a50b-c5b2634ed94b.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 29,
+          "quantity": 2,
+          "octgnid": "0fd5a1d7-0791-4ab4-a50b-c5b2634ed94b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0fd5a1d7-0791-4ab4-a50b-c5b2634ed94b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:16436b20-60b2-4f40-9a20-72e86cc35d37",
+      "octgnid": "16436b20-60b2-4f40-9a20-72e86cc35d37",
+      "name": "Forest Battleground",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "Forest Battleground gets +1 [threat] for each ally controlled by the player with the most allies. Forced: When Forest Battleground is explored, each player searches the encounter deck and discard pile for an Orc enemy and adds it to the staging area. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 24,
+      "quantity": 2,
+      "threat": 1,
+      "quest": 5,
+      "encounter_set": "Attack on Dol Guldur",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/16436b20-60b2-4f40-9a20-72e86cc35d37.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 24,
+          "quantity": 2,
+          "octgnid": "16436b20-60b2-4f40-9a20-72e86cc35d37",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/16436b20-60b2-4f40-9a20-72e86cc35d37.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2b4188d2-7910-431f-8c8d-fbd358fc782d",
+      "octgnid": "2b4188d2-7910-431f-8c8d-fbd358fc782d",
+      "name": "The Sorcerer's Tower",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Dol Guldur.",
+      "text": "While The Sorcerer's Tower is in the staging area, it gains: \"The players cannot travel or place progress here unless they are at stage 3D. Forced: After a 'when revealed' effect is canceled, reveal the top card of the encounter deck.\"",
+      "is_unique": false,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 21,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 4,
+      "encounter_set": "Attack on Dol Guldur",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/2b4188d2-7910-431f-8c8d-fbd358fc782d.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 21,
+          "quantity": 2,
+          "octgnid": "2b4188d2-7910-431f-8c8d-fbd358fc782d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2b4188d2-7910-431f-8c8d-fbd358fc782d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2b56edac-f289-4b76-ae90-f6f3e5fc9b58",
+      "octgnid": "2b56edac-f289-4b76-ae90-f6f3e5fc9b58",
+      "name": "Dol Guldur",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "City. Stronghold.",
+      "text": "While the players are at stage 3, Dol Guldur gains: \"Forced: At the end of the round, after resolving the Forced effect on each stage 3 in play, reduce Dol Guldur's city strength by X, where X is the total siege value of each location explored and each enemy destroyed at each stage this round.\"",
+      "is_unique": true,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 7,
+      "quantity": 1,
+      "encounter_set": "Attack on Dol Guldur",
+      "printed_stats": {},
+      "imagesrc": "/cards/2b56edac-f289-4b76-ae90-f6f3e5fc9b58.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 7,
+          "quantity": 1,
+          "octgnid": "2b56edac-f289-4b76-ae90-f6f3e5fc9b58",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2b56edac-f289-4b76-ae90-f6f3e5fc9b58.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3f9feb64-e4bd-4da5-b00a-05f58dce5fbf",
+      "octgnid": "3f9feb64-e4bd-4da5-b00a-05f58dce5fbf",
+      "name": "Amon Lanc Archer",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "Archery 2.\nForced: After Amon Lanc Archer engages you, either remove 2 progress from the main quest, or deal 2 damage to an ally you control.",
+      "is_unique": false,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 17,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 4,
+      "defense": 1,
+      "health": 4,
+      "engagement": 36,
+      "shadow": "Shadow: Exhaust a character you control.",
+      "encounter_set": "Attack on Dol Guldur",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "1",
+        "health": "4",
+        "engagement": "36"
+      },
+      "imagesrc": "/cards/3f9feb64-e4bd-4da5-b00a-05f58dce5fbf.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 17,
+          "quantity": 3,
+          "octgnid": "3f9feb64-e4bd-4da5-b00a-05f58dce5fbf",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3f9feb64-e4bd-4da5-b00a-05f58dce5fbf.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4315467f-210f-40c8-aec2-76c09d4bb8c1",
+      "octgnid": "4315467f-210f-40c8-aec2-76c09d4bb8c1",
+      "name": "Battle Under the Trees",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Remove all tokens from the Lieutenant enemy at this stage and set it aside, out of play. Add the set aside Chieftain Morlug to the staging area, unless it is in a victory display. If Dol Guldur's city strength is 5 or lower (10 or lower if playing epic multiplayer mode), Chieftain Morlug makes an immediate attack against each player in turn order.",
+      "is_unique": false,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 5,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "Attack on Dol Guldur",
+      "side": "E",
+      "back_name": "Battle Under the Trees",
+      "back_text": "When Revealed: Remove all tokens from the Lieutenant enemy at this stage and set it aside, out of play. Add the set aside Chieftain Morlug to the staging area, unless it is in a victory display. If Dol Guldur's city strength is 5 or lower (10 or lower if playing epic multiplayer mode), Chieftain Morlug makes an immediate attack against each player in turn order.Chieftain Morlug gets -1 engagement cost for each progress token on this stage. Forced: At the end of the round, remove 5 progress from this stage or each player at each stage discards cards from the top of the encounter deck until an enemy is discarded and puts it into play engaged with him. (If the last card of the encounter deck is discarded resolving this effect, shuffle the discard pile back into the encounter deck.) The first player may remove an additional 5 progress from this stage to choose a non-unique enemy at any stage and destroy it.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/4315467f-210f-40c8-aec2-76c09d4bb8c1.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/4315467f-210f-40c8-aec2-76c09d4bb8c1.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 5,
+          "quantity": 1,
+          "octgnid": "4315467f-210f-40c8-aec2-76c09d4bb8c1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4315467f-210f-40c8-aec2-76c09d4bb8c1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:47186728-67bf-40b2-9b8d-d5012f0fd1a6",
+      "octgnid": "47186728-67bf-40b2-9b8d-d5012f0fd1a6",
+      "name": "Bane of Amon Lanc",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Lieutenant. Troll. Olog-hai.",
+      "text": "Indestructible.\nImmune to player card effects. Forced: When Bane of Amon Lanc attacks you, discard a random card from your hand. Bane of Amon Lanc gets +X [attack] for this attack, where X is that card's printed cost.",
+      "is_unique": true,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 10,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 5,
+      "defense": 3,
+      "health": 9,
+      "engagement": 45,
+      "victory": 5,
+      "encounter_set": "Attack on Dol Guldur",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "3",
+        "health": "9",
+        "engagement": "45",
+        "victory": "5"
+      },
+      "imagesrc": "/cards/47186728-67bf-40b2-9b8d-d5012f0fd1a6.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 10,
+          "quantity": 1,
+          "octgnid": "47186728-67bf-40b2-9b8d-d5012f0fd1a6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/47186728-67bf-40b2-9b8d-d5012f0fd1a6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:49c77ce2-7305-4209-ad6a-f1ed983a556e",
+      "octgnid": "49c77ce2-7305-4209-ad6a-f1ed983a556e",
+      "name": "Sorcerer of Dol Guldur",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Lieutenant. Sorcerer.",
+      "text": "Indestructible.\nImmune to player card effects. Forced: When Sorcerer of Dol Guldur attacks you, discard the top card of your deck. Then, discard each copy of that card from play.",
+      "is_unique": true,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 11,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 6,
+      "defense": 2,
+      "health": 9,
+      "engagement": 45,
+      "victory": 5,
+      "encounter_set": "Attack on Dol Guldur",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "6",
+        "defense": "2",
+        "health": "9",
+        "engagement": "45",
+        "victory": "5"
+      },
+      "imagesrc": "/cards/49c77ce2-7305-4209-ad6a-f1ed983a556e.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 11,
+          "quantity": 1,
+          "octgnid": "49c77ce2-7305-4209-ad6a-f1ed983a556e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/49c77ce2-7305-4209-ad6a-f1ed983a556e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:617952b3-1ac2-47a2-866f-302c3f0d8fd7",
+      "octgnid": "617952b3-1ac2-47a2-866f-302c3f0d8fd7",
+      "name": "The Shadow Road",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Dol Guldur.",
+      "text": "The Shadow Road gets +2 [threat] for each facedown card attached to it.While The Shadow Road is in the staging area, it gains: \"The players cannot travel or place progress here unless they are at stage 3F. Forced: After an event is played during the quest phase, attach it facedown to The Shadow Road.\"",
+      "is_unique": false,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 22,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 4,
+      "encounter_set": "Attack on Dol Guldur",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/617952b3-1ac2-47a2-866f-302c3f0d8fd7.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 22,
+          "quantity": 2,
+          "octgnid": "617952b3-1ac2-47a2-866f-302c3f0d8fd7",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/617952b3-1ac2-47a2-866f-302c3f0d8fd7.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6a24bcba-e069-4951-9cb1-59b48d291c74",
+      "octgnid": "6a24bcba-e069-4951-9cb1-59b48d291c74",
+      "name": "The Necromancer's Rage",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Deal 1 damage to each exhausted character. Until the end of the phase, each damaged character gets -1 [willpower].",
+      "is_unique": false,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 28,
+      "quantity": 2,
+      "shadow": "Shadow: Deal 1 damage to the defending character. Until the end of the phase, the defending character gets -1 [defense] for each damage on it.",
+      "encounter_set": "Attack on Dol Guldur",
+      "printed_stats": {},
+      "imagesrc": "/cards/6a24bcba-e069-4951-9cb1-59b48d291c74.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 28,
+          "quantity": 2,
+          "octgnid": "6a24bcba-e069-4951-9cb1-59b48d291c74",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6a24bcba-e069-4951-9cb1-59b48d291c74.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7178f6f6-c2da-4f74-9c9a-9ec43c79232d",
+      "octgnid": "7178f6f6-c2da-4f74-9c9a-9ec43c79232d",
+      "name": "Dungeons of the Necromancer",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Remove all tokens from the Lieutenant enemy at this stage and set it aside, out of play. Add the set aside Dungeon Dweller to the staging area, unless it is in a victory display. If Dol Guldur's city strength is 5 or lower (10 or lower if playing epic multiplayer mode), Dungeon Dweller makes an immediate attack against each player in turn order.",
+      "is_unique": false,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 6,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "Attack on Dol Guldur",
+      "side": "G",
+      "back_name": "Dungeons of the Necromancer",
+      "back_text": "When Revealed: Remove all tokens from the Lieutenant enemy at this stage and set it aside, out of play. Add the set aside Dungeon Dweller to the staging area, unless it is in a victory display. If Dol Guldur's city strength is 5 or lower (10 or lower if playing epic multiplayer mode), Dungeon Dweller makes an immediate attack against each player in turn order.Dungeon Dweller gets -1 engagement cost for each progress token on this stage. Forced: At the end of the round, remove 5 progress from this stage or each player at each stage discards an ally he controls. The first player may remove an additional 5 progress from this stage to choose a player at any stage. That player searches the top 10 cards of his deck for an ally an puts it into play.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/7178f6f6-c2da-4f74-9c9a-9ec43c79232d.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/7178f6f6-c2da-4f74-9c9a-9ec43c79232d.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 6,
+          "quantity": 1,
+          "octgnid": "7178f6f6-c2da-4f74-9c9a-9ec43c79232d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7178f6f6-c2da-4f74-9c9a-9ec43c79232d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:807175bd-1d09-41ff-a3ab-560a935eb259",
+      "octgnid": "807175bd-1d09-41ff-a3ab-560a935eb259",
+      "name": "Fastness of Mirkwood",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: No more than 5 progress can be placed on the current quest this round. If Dol Guldur's city strength is 5 or lower, Fastness of Mirkwood gains surge.",
+      "is_unique": false,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 30,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +1 Attack and +1 Defense until the end of the phase (+2 Attack and +2 Defense instead if at least 5 progress is on the quest).",
+      "encounter_set": "Attack on Dol Guldur",
+      "printed_stats": {},
+      "imagesrc": "/cards/807175bd-1d09-41ff-a3ab-560a935eb259.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 30,
+          "quantity": 2,
+          "octgnid": "807175bd-1d09-41ff-a3ab-560a935eb259",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/807175bd-1d09-41ff-a3ab-560a935eb259.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8a1e8a49-0af8-4990-9c47-955927ff09b7",
+      "octgnid": "8a1e8a49-0af8-4990-9c47-955927ff09b7",
+      "name": "Gate of Dol Guldur",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Dol Guldur.",
+      "text": "While Gate of Dol Guldur is in the staging area, it gains: \"The player cannot travel or place progress here unless they are at stage 3B. Each player's threat cannot be reduced by more than 1 each round by player card effects.\"",
+      "is_unique": false,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 20,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 4,
+      "encounter_set": "Attack on Dol Guldur",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/8a1e8a49-0af8-4990-9c47-955927ff09b7.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 20,
+          "quantity": 2,
+          "octgnid": "8a1e8a49-0af8-4990-9c47-955927ff09b7",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8a1e8a49-0af8-4990-9c47-955927ff09b7.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8ff4cf43-75dd-4030-86ae-d256562bc885",
+      "octgnid": "8ff4cf43-75dd-4030-86ae-d256562bc885",
+      "name": "Crossing the Anduin",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The first player may remove 10 progress from Power of Lorien to take control of the set-aside Host of Lorien. Then, he may remove an additional 20 progress from Power of Lorien to place it in his play area under his control, otherwise discard it.",
+      "is_unique": false,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 2,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "Attack on Dol Guldur",
+      "side": "A",
+      "back_name": "Crossing the Anduin",
+      "back_text": "When Revealed: The first player may remove 10 progress from Power of Lorien to take control of the set-aside Host of Lorien. Then, he may remove an additional 20 progress from Power of Lorien to place it in his play area under his control, otherwise discard it.When Revealed: Each player searches the encounter deck and discard pile for a Dol Guldur location and adds it to the staging area. Shuffle the encounter deck. Advance to a stage 3 of your choice. If you are playing epic multiplayer mode, each team must choose a different stage.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/8ff4cf43-75dd-4030-86ae-d256562bc885.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/8ff4cf43-75dd-4030-86ae-d256562bc885.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 2,
+          "quantity": 1,
+          "octgnid": "8ff4cf43-75dd-4030-86ae-d256562bc885",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8ff4cf43-75dd-4030-86ae-d256562bc885.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9944cbab-1c77-4cb4-87cc-36709f3143b5",
+      "octgnid": "9944cbab-1c77-4cb4-87cc-36709f3143b5",
+      "name": "Host of Dol Guldur",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "Archery X.\nX is the number of players.Cannot have attachments. Forced: At the end of the encounter phase, if Host of Dol Guldur is in the staging area, remove X progress from the main quest.",
+      "is_unique": false,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 14,
+      "quantity": 2,
+      "attack": 8,
+      "defense": 4,
+      "health": 12,
+      "engagement": 40,
+      "encounter_set": "Attack on Dol Guldur",
+      "printed_stats": {
+        "threat": "X",
+        "attack": "8",
+        "defense": "4",
+        "health": "12",
+        "engagement": "40"
+      },
+      "imagesrc": "/cards/9944cbab-1c77-4cb4-87cc-36709f3143b5.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 14,
+          "quantity": 2,
+          "octgnid": "9944cbab-1c77-4cb4-87cc-36709f3143b5",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9944cbab-1c77-4cb4-87cc-36709f3143b5.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9babab54-9494-4619-8666-f2299bb37632",
+      "octgnid": "9babab54-9494-4619-8666-f2299bb37632",
+      "name": "Beast of Taur-nu-Fuin",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Werewolf.",
+      "text": "Beast of Taur-nu-Fuin cannot have attachments and its shadow cards cannot be canceled. Forced: When Beast of Taur-nu-Fuin attacks, either remove 2 progress from the main quest or deal it an additional shadow card.",
+      "is_unique": false,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 16,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 5,
+      "defense": 3,
+      "health": 5,
+      "engagement": 31,
+      "encounter_set": "Attack on Dol Guldur",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "3",
+        "health": "5",
+        "engagement": "31"
+      },
+      "imagesrc": "/cards/9babab54-9494-4619-8666-f2299bb37632.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 16,
+          "quantity": 2,
+          "octgnid": "9babab54-9494-4619-8666-f2299bb37632",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9babab54-9494-4619-8666-f2299bb37632.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9fa12306-d6ed-4fb8-89ce-8145bb81a58a",
+      "octgnid": "9fa12306-d6ed-4fb8-89ce-8145bb81a58a",
+      "name": "Dungeon Dweller",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Lieutenant. Spider.",
+      "text": "Indestructible.\nForced: When Dungeon Dweller attacks you, discard an ally you control.",
+      "is_unique": true,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 13,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 4,
+      "defense": 3,
+      "health": 8,
+      "engagement": 45,
+      "victory": 5,
+      "encounter_set": "Attack on Dol Guldur",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "4",
+        "defense": "3",
+        "health": "8",
+        "engagement": "45",
+        "victory": "5"
+      },
+      "imagesrc": "/cards/9fa12306-d6ed-4fb8-89ce-8145bb81a58a.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 13,
+          "quantity": 1,
+          "octgnid": "9fa12306-d6ed-4fb8-89ce-8145bb81a58a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9fa12306-d6ed-4fb8-89ce-8145bb81a58a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ac5a17df-dcd0-4bfb-91fe-a444910f30ec",
+      "octgnid": "ac5a17df-dcd0-4bfb-91fe-a444910f30ec",
+      "name": "Epic Multiplayer Mode",
+      "type_code": "campaign",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Create 3 separate staging area, each with its own quest deck and encounter deck. Divide the players into 3 teams, one for each staging area. One team puts Dol Guldur into play in their staging area, attaches a threat dial to it, and sets its value to 5. Then, increase its value by 5 for each player at each stage. For the rest of the game, that threat dial is the siege tracker and it displays the city strength of Dol Guldur. Each other team removes their copy of Dol Guldur. Each other team removes their copy of Dol Guldur from the game. Flip this card over.",
+      "is_unique": false,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 32,
+      "quantity": 1,
+      "encounter_set": "Attack on Dol Guldur",
+      "back_name": "Epic Multiplayer Mode",
+      "back_text": "While Dol Guldur's city strength is 0, each Lieutenant enemy loses indestructible. While the players are at stage 3, this card gains: \"Forced: After resolving the Forced effect on Dol Guldur, the team with Dol Guldur in their staging area resolves the forced effect on the stage 3 that was not in play at any stage this round. Then, each team discards all progress from their stage 3 and advances to a new stage 3 of their choice. Each team must choose a different stage.\" Response: At the end of the round, a player who controls Host of Lorien or Power of Lorien may give control of that card to another player at any stage. If the last player at a stage is eliminated, the siege falls and the entire group loses the game. At the end of the round, if Dol Guldur's city strength is 0 and there are no Lieutenant enemies in play at each stage, Dol Guldur is captured and the players win the game.",
+      "back_type_code": "campaign",
+      "back_imagesrc": "/cards/ac5a17df-dcd0-4bfb-91fe-a444910f30ec.B.jpg",
+      "printed_stats": {},
+      "imagesrc": "/cards/ac5a17df-dcd0-4bfb-91fe-a444910f30ec.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 32,
+          "quantity": 1,
+          "octgnid": "ac5a17df-dcd0-4bfb-91fe-a444910f30ec",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ac5a17df-dcd0-4bfb-91fe-a444910f30ec.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:baf3e642-1f90-4db5-ac10-c8f4c5300f25",
+      "octgnid": "baf3e642-1f90-4db5-ac10-c8f4c5300f25",
+      "name": "Dungeon Door",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Dol Guldur.",
+      "text": "While Dungeon Door is in the staging area, it gains: \"The players cannot travel or place progress here unless they are at stage 3H. No more than 1 damage can be healed from each character each round.\"",
+      "is_unique": false,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 23,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 4,
+      "encounter_set": "Attack on Dol Guldur",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/baf3e642-1f90-4db5-ac10-c8f4c5300f25.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 23,
+          "quantity": 2,
+          "octgnid": "baf3e642-1f90-4db5-ac10-c8f4c5300f25",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/baf3e642-1f90-4db5-ac10-c8f4c5300f25.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:bdbf8bed-f63f-4797-abb4-79054a9dbcad",
+      "octgnid": "bdbf8bed-f63f-4797-abb4-79054a9dbcad",
+      "name": "Standard Game Mode",
+      "type_code": "campaign",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Add Dol Guldur to the staging area, attach a threat dial to it, and set its value to 5. Then, increase it's value by 5 for each player. For the rest of the game, that threat dial is the siege tracker and it displays the city strength of Dol Guldur. Flip this card over.",
+      "is_unique": false,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 31,
+      "quantity": 1,
+      "encounter_set": "Attack on Dol Guldur",
+      "back_name": "Standard Game Mode",
+      "back_text": "While Dol Guldur's city strength is 0, each Lieutenant enemy loses indestructible. While the players are at stage 3, this card gains: \"Forced: After resolving the Forced effect on Dol Guldur, randomly select a stage 3 that was not in play this round and resolve its Forced effect. Then, discard all progress from the current stage 3 and advance to a new stage 3 of your choice.\" At the end of the round, if Dol Guldur's city strength is 0 and there are no Lieutenant enemies in play, Dol Guldur is captured and the players win the game.",
+      "back_type_code": "campaign",
+      "back_imagesrc": "/cards/bdbf8bed-f63f-4797-abb4-79054a9dbcad.B.jpg",
+      "printed_stats": {},
+      "imagesrc": "/cards/bdbf8bed-f63f-4797-abb4-79054a9dbcad.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 31,
+          "quantity": 1,
+          "octgnid": "bdbf8bed-f63f-4797-abb4-79054a9dbcad",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bdbf8bed-f63f-4797-abb4-79054a9dbcad.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c472af20-d956-4aec-af6e-319cdea35230",
+      "octgnid": "c472af20-d956-4aec-af6e-319cdea35230",
+      "name": "Power Sevenfold",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 1.\nWhen Revealed: Each player must choose: either search the encounter deck and discard pile for a Dol Guldur location and add it to the staging area, or search the encounter deck and discard pile for an Orc enemy and put it into play engaged with him.",
+      "is_unique": false,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 27,
+      "quantity": 2,
+      "encounter_set": "Attack on Dol Guldur",
+      "printed_stats": {},
+      "imagesrc": "/cards/c472af20-d956-4aec-af6e-319cdea35230.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 27,
+          "quantity": 2,
+          "octgnid": "c472af20-d956-4aec-af6e-319cdea35230",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c472af20-d956-4aec-af6e-319cdea35230.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:cefe5af1-a3d3-43fb-8b82-7ea9b4d2c861",
+      "octgnid": "cefe5af1-a3d3-43fb-8b82-7ea9b4d2c861",
+      "name": "Chieftain Morlug",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Lieutenant. Orc. Uruk.",
+      "text": "Indestructible.\nImmune to player card effects. Forced: When Chieftain Morlug attacks you, discard cards from the top of the encounter deck until an enemy is discarded and put it into play engaged with you.",
+      "is_unique": true,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 12,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 3,
+      "defense": 4,
+      "health": 8,
+      "engagement": 45,
+      "victory": 5,
+      "encounter_set": "Attack on Dol Guldur",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "4",
+        "health": "8",
+        "engagement": "45",
+        "victory": "5"
+      },
+      "imagesrc": "/cards/cefe5af1-a3d3-43fb-8b82-7ea9b4d2c861.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 12,
+          "quantity": 1,
+          "octgnid": "cefe5af1-a3d3-43fb-8b82-7ea9b4d2c861",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cefe5af1-a3d3-43fb-8b82-7ea9b4d2c861.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d8694dea-3406-4199-96d5-cd8d0a97f152",
+      "octgnid": "d8694dea-3406-4199-96d5-cd8d0a97f152",
+      "name": "Host of Lórien",
+      "type_code": "objective-ally",
+      "sphere_code": "encounter",
+      "traits": "Silvan.",
+      "text": "Ranged. Sentinel.\nImmune to player card effects.Does not exhaust to quest.If Host of Lorien leaves play, remove it from the game.",
+      "is_unique": false,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 9,
+      "quantity": 1,
+      "willpower": 3,
+      "attack": 3,
+      "defense": 3,
+      "health": 6,
+      "encounter_set": "Attack on Dol Guldur",
+      "printed_stats": {
+        "willpower": "3",
+        "attack": "3",
+        "defense": "3",
+        "health": "6"
+      },
+      "imagesrc": "/cards/d8694dea-3406-4199-96d5-cd8d0a97f152.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 9,
+          "quantity": 1,
+          "octgnid": "d8694dea-3406-4199-96d5-cd8d0a97f152",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d8694dea-3406-4199-96d5-cd8d0a97f152.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:dff2fcb1-1231-4cda-9d10-029db96ef9e8",
+      "octgnid": "dff2fcb1-1231-4cda-9d10-029db96ef9e8",
+      "name": "The Tower of Sorcery",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Remove all tokens from the Lieutenant enemy at this stage and set it aside, out of play. Add the set aside Sorcerer of Dol Guldur to the staging area, unless it is in a victory display. If Dol Guldur's city strength is 5 or lower (10 or lower if playing epic multiplayer mode), Sorcerer of Dol Guldur makes an immediate attack against each player in turn order.",
+      "is_unique": false,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 4,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "Attack on Dol Guldur",
+      "side": "C",
+      "back_name": "The Tower of Sorcery",
+      "back_text": "When Revealed: Remove all tokens from the Lieutenant enemy at this stage and set it aside, out of play. Add the set aside Sorcerer of Dol Guldur to the staging area, unless it is in a victory display. If Dol Guldur's city strength is 5 or lower (10 or lower if playing epic multiplayer mode), Sorcerer of Dol Guldur makes an immediate attack against each player in turn order.Sorcerer of Dol Guldur gets -1 engagement cost for each progress token on this stage. Forced: At the end of the round, remove 5 progress from this stage or each player at each stage discards all but 1 card from his hand. The first player may remove an additional 5 progress from this stage to choose a player at any stage. That player searches his deck for a card, adds it to his hand, and shuffles his deck.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/dff2fcb1-1231-4cda-9d10-029db96ef9e8.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/dff2fcb1-1231-4cda-9d10-029db96ef9e8.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 4,
+          "quantity": 1,
+          "octgnid": "dff2fcb1-1231-4cda-9d10-029db96ef9e8",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dff2fcb1-1231-4cda-9d10-029db96ef9e8.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ebbb49f0-4466-44e5-b157-968cd5e80b06",
+      "octgnid": "ebbb49f0-4466-44e5-b157-968cd5e80b06",
+      "name": "Servant of Sauron",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nWhen Revealed: The enemy in the staging area with the highest engagement cost makes an immediate attack against the first player.",
+      "is_unique": false,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 26,
+      "quantity": 3,
+      "shadow": "Shadow: Attacking enemy makes an additional attack against you after this one.",
+      "encounter_set": "Attack on Dol Guldur",
+      "printed_stats": {},
+      "imagesrc": "/cards/ebbb49f0-4466-44e5-b157-968cd5e80b06.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 26,
+          "quantity": 3,
+          "octgnid": "ebbb49f0-4466-44e5-b157-968cd5e80b06",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ebbb49f0-4466-44e5-b157-968cd5e80b06.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f5c7c8e0-3616-4919-9761-85ab5440956d",
+      "octgnid": "f5c7c8e0-3616-4919-9761-85ab5440956d",
+      "name": "Mirkwood Olog-hai",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Troll. Olog-hai.",
+      "text": "Forced: After Mirkwood Olog-hai attacks and destroys a character, remove 1 progress from the main quest for each excess point of damage.",
+      "is_unique": false,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 15,
+      "quantity": 2,
+      "threat": 4,
+      "attack": 6,
+      "defense": 4,
+      "health": 9,
+      "engagement": 34,
+      "shadow": "Shadow: Either remove 2 progress from the main quest, or return attacking enemy to the staging area.",
+      "encounter_set": "Attack on Dol Guldur",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "6",
+        "defense": "4",
+        "health": "9",
+        "engagement": "34"
+      },
+      "imagesrc": "/cards/f5c7c8e0-3616-4919-9761-85ab5440956d.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 15,
+          "quantity": 2,
+          "octgnid": "f5c7c8e0-3616-4919-9761-85ab5440956d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f5c7c8e0-3616-4919-9761-85ab5440956d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fa4ccbb8-76d4-4293-aa94-d117b14f042e",
+      "octgnid": "fa4ccbb8-76d4-4293-aa94-d117b14f042e",
+      "name": "Blackened Woods",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "Forced: When Blackened Woods is explored, discard the top card of the encounter deck and raise each player's threat by X, where X is that card's printed [threat].",
+      "is_unique": false,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 25,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 3,
+      "shadow": "Shadow: Attacking enemy gets +1 Attack. If this attack destroys a character, remove 3 progress from the main quest.",
+      "encounter_set": "Attack on Dol Guldur",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/fa4ccbb8-76d4-4293-aa94-d117b14f042e.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 25,
+          "quantity": 3,
+          "octgnid": "fa4ccbb8-76d4-4293-aa94-d117b14f042e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fa4ccbb8-76d4-4293-aa94-d117b14f042e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fe580179-8f51-463e-a235-bde0f7b783d7",
+      "octgnid": "fe580179-8f51-463e-a235-bde0f7b783d7",
+      "name": "Power of Lórien",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Lorien.",
+      "text": "While you control Power of Lorien, it gains: \"Response: Add Power of Lorien to the victory display to cancel and discard an encounter card just revealed from the encounter deck.\"",
+      "is_unique": false,
+      "pack_code": "AoDG",
+      "pack_name": "Attack on Dol Guldur",
+      "position": 8,
+      "quantity": 1,
+      "encounter_set": "Attack on Dol Guldur",
+      "printed_stats": {},
+      "imagesrc": "/cards/fe580179-8f51-463e-a235-bde0f7b783d7.jpg",
+      "packs": [
+        {
+          "pack_code": "AoDG",
+          "pack_name": "Attack on Dol Guldur",
+          "position": 8,
+          "quantity": 1,
+          "octgnid": "fe580179-8f51-463e-a235-bde0f7b783d7",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fe580179-8f51-463e-a235-bde0f7b783d7.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "Q99.10",
+      "name": "Attack on Dol Guldur",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "AoDG"
+      ],
+      "card_codes": [
+        "octgn:0b3a7155-be2d-4fed-9674-bc696662372f",
+        "octgn:8ff4cf43-75dd-4030-86ae-d256562bc885",
+        "octgn:0aa98b35-6958-4680-a4ed-b9fc16089126",
+        "octgn:dff2fcb1-1231-4cda-9d10-029db96ef9e8",
+        "octgn:4315467f-210f-40c8-aec2-76c09d4bb8c1",
+        "octgn:7178f6f6-c2da-4f74-9c9a-9ec43c79232d",
+        "octgn:9944cbab-1c77-4cb4-87cc-36709f3143b5",
+        "octgn:f5c7c8e0-3616-4919-9761-85ab5440956d",
+        "octgn:9babab54-9494-4619-8666-f2299bb37632",
+        "octgn:3f9feb64-e4bd-4da5-b00a-05f58dce5fbf",
+        "octgn:08a094d3-de00-4ea3-9dc3-141da9944763",
+        "octgn:8a1e8a49-0af8-4990-9c47-955927ff09b7",
+        "octgn:2b4188d2-7910-431f-8c8d-fbd358fc782d",
+        "octgn:617952b3-1ac2-47a2-866f-302c3f0d8fd7",
+        "octgn:baf3e642-1f90-4db5-ac10-c8f4c5300f25",
+        "octgn:16436b20-60b2-4f40-9a20-72e86cc35d37",
+        "octgn:fa4ccbb8-76d4-4293-aa94-d117b14f042e",
+        "octgn:ebbb49f0-4466-44e5-b157-968cd5e80b06",
+        "octgn:c472af20-d956-4aec-af6e-319cdea35230",
+        "octgn:6a24bcba-e069-4951-9cb1-59b48d291c74",
+        "octgn:0fd5a1d7-0791-4ab4-a50b-c5b2634ed94b",
+        "octgn:807175bd-1d09-41ff-a3ab-560a935eb259",
+        "octgn:bdbf8bed-f63f-4797-abb4-79054a9dbcad",
+        "octgn:ac5a17df-dcd0-4bfb-91fe-a444910f30ec",
+        "octgn:d8694dea-3406-4199-96d5-cd8d0a97f152",
+        "octgn:47186728-67bf-40b2-9b8d-d5012f0fd1a6",
+        "octgn:49c77ce2-7305-4209-ad6a-f1ed983a556e",
+        "octgn:cefe5af1-a3d3-43fb-8b82-7ea9b4d2c861",
+        "octgn:9fa12306-d6ed-4fb8-89ce-8145bb81a58a",
+        "octgn:2b56edac-f289-4b76-ae90-f6f3e5fc9b58",
+        "octgn:fe580179-8f51-463e-a235-bde0f7b783d7",
+        "octgn:02a79046-aaa1-4b12-9e74-467f0b566889"
+      ],
+      "cards": [
+        {
+          "code": "octgn:0b3a7155-be2d-4fed-9674-bc696662372f",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:8ff4cf43-75dd-4030-86ae-d256562bc885",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:0aa98b35-6958-4680-a4ed-b9fc16089126",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:dff2fcb1-1231-4cda-9d10-029db96ef9e8",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:4315467f-210f-40c8-aec2-76c09d4bb8c1",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:7178f6f6-c2da-4f74-9c9a-9ec43c79232d",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:9944cbab-1c77-4cb4-87cc-36709f3143b5",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f5c7c8e0-3616-4919-9761-85ab5440956d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9babab54-9494-4619-8666-f2299bb37632",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3f9feb64-e4bd-4da5-b00a-05f58dce5fbf",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:08a094d3-de00-4ea3-9dc3-141da9944763",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8a1e8a49-0af8-4990-9c47-955927ff09b7",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2b4188d2-7910-431f-8c8d-fbd358fc782d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:617952b3-1ac2-47a2-866f-302c3f0d8fd7",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:baf3e642-1f90-4db5-ac10-c8f4c5300f25",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:16436b20-60b2-4f40-9a20-72e86cc35d37",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fa4ccbb8-76d4-4293-aa94-d117b14f042e",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ebbb49f0-4466-44e5-b157-968cd5e80b06",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c472af20-d956-4aec-af6e-319cdea35230",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6a24bcba-e069-4951-9cb1-59b48d291c74",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:0fd5a1d7-0791-4ab4-a50b-c5b2634ed94b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:807175bd-1d09-41ff-a3ab-560a935eb259",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:bdbf8bed-f63f-4797-abb4-79054a9dbcad",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:ac5a17df-dcd0-4bfb-91fe-a444910f30ec",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:d8694dea-3406-4199-96d5-cd8d0a97f152",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:47186728-67bf-40b2-9b8d-d5012f0fd1a6",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:49c77ce2-7305-4209-ad6a-f1ed983a556e",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:cefe5af1-a3d3-43fb-8b82-7ea9b4d2c861",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:9fa12306-d6ed-4fb8-89ce-8145bb81a58a",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:2b56edac-f289-4b76-ae90-f6f3e5fc9b58",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:fe580179-8f51-463e-a235-bde0f7b783d7",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:02a79046-aaa1-4b12-9e74-467f0b566889",
+          "quantity": 4,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:0b3a7155-be2d-4fed-9674-bc696662372f": 1,
+          "octgn:8ff4cf43-75dd-4030-86ae-d256562bc885": 1,
+          "octgn:0aa98b35-6958-4680-a4ed-b9fc16089126": 1,
+          "octgn:dff2fcb1-1231-4cda-9d10-029db96ef9e8": 1,
+          "octgn:4315467f-210f-40c8-aec2-76c09d4bb8c1": 1,
+          "octgn:7178f6f6-c2da-4f74-9c9a-9ec43c79232d": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:9944cbab-1c77-4cb4-87cc-36709f3143b5": 2,
+          "octgn:f5c7c8e0-3616-4919-9761-85ab5440956d": 2,
+          "octgn:9babab54-9494-4619-8666-f2299bb37632": 2,
+          "octgn:3f9feb64-e4bd-4da5-b00a-05f58dce5fbf": 3,
+          "octgn:08a094d3-de00-4ea3-9dc3-141da9944763": 3,
+          "octgn:8a1e8a49-0af8-4990-9c47-955927ff09b7": 2,
+          "octgn:2b4188d2-7910-431f-8c8d-fbd358fc782d": 2,
+          "octgn:617952b3-1ac2-47a2-866f-302c3f0d8fd7": 2,
+          "octgn:baf3e642-1f90-4db5-ac10-c8f4c5300f25": 2,
+          "octgn:16436b20-60b2-4f40-9a20-72e86cc35d37": 2,
+          "octgn:fa4ccbb8-76d4-4293-aa94-d117b14f042e": 3,
+          "octgn:ebbb49f0-4466-44e5-b157-968cd5e80b06": 3,
+          "octgn:c472af20-d956-4aec-af6e-319cdea35230": 2,
+          "octgn:6a24bcba-e069-4951-9cb1-59b48d291c74": 2,
+          "octgn:0fd5a1d7-0791-4ab4-a50b-c5b2634ed94b": 2,
+          "octgn:807175bd-1d09-41ff-a3ab-560a935eb259": 2
+        },
+        "sharedSetAside": {
+          "octgn:bdbf8bed-f63f-4797-abb4-79054a9dbcad": 1,
+          "octgn:ac5a17df-dcd0-4bfb-91fe-a444910f30ec": 1,
+          "octgn:d8694dea-3406-4199-96d5-cd8d0a97f152": 1,
+          "octgn:47186728-67bf-40b2-9b8d-d5012f0fd1a6": 1,
+          "octgn:49c77ce2-7305-4209-ad6a-f1ed983a556e": 1,
+          "octgn:cefe5af1-a3d3-43fb-8b82-7ea9b4d2c861": 1,
+          "octgn:9fa12306-d6ed-4fb8-89ce-8145bb81a58a": 1
+        },
+        "sharedStagingArea": {
+          "octgn:2b56edac-f289-4b76-ae90-f6f3e5fc9b58": 1,
+          "octgn:fe580179-8f51-463e-a235-bde0f7b783d7": 1,
+          "octgn:02a79046-aaa1-4b12-9e74-467f0b566889": 4
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:02a79046-aaa1-4b12-9e74-467f0b566889",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/02a79046-aaa1-4b12-9e74-467f0b566889.jpg",
+      "localPath": "/cards/02a79046-aaa1-4b12-9e74-467f0b566889.jpg",
+      "bytes": 141036,
+      "sha256": "005ea3af0d99290265516d34e5574bc7ae34ec5cf65b20d2c8d1e74d91bfdb64"
+    },
+    {
+      "code": "octgn:08a094d3-de00-4ea3-9dc3-141da9944763",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/08a094d3-de00-4ea3-9dc3-141da9944763.jpg",
+      "localPath": "/cards/08a094d3-de00-4ea3-9dc3-141da9944763.jpg",
+      "bytes": 144245,
+      "sha256": "5f6d34e371271501ed61af366849f9500267d4fecdaf1ffbfc1459efc16a4643"
+    },
+    {
+      "code": "octgn:0aa98b35-6958-4680-a4ed-b9fc16089126",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0aa98b35-6958-4680-a4ed-b9fc16089126.jpg",
+      "localPath": "/cards/0aa98b35-6958-4680-a4ed-b9fc16089126.jpg",
+      "bytes": 155962,
+      "sha256": "77078650852c1407848b181bb38898b2619bc6b99791d3d97d84749c9fc743b3"
+    },
+    {
+      "code": "octgn:0aa98b35-6958-4680-a4ed-b9fc16089126",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0aa98b35-6958-4680-a4ed-b9fc16089126.B.jpg",
+      "localPath": "/cards/0aa98b35-6958-4680-a4ed-b9fc16089126.B.jpg",
+      "bytes": 152451,
+      "sha256": "acfbedf8da12eaf7ec1fcffbc62cbc67556a6a9f219a71a694178042aff148eb"
+    },
+    {
+      "code": "octgn:0b3a7155-be2d-4fed-9674-bc696662372f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0b3a7155-be2d-4fed-9674-bc696662372f.jpg",
+      "localPath": "/cards/0b3a7155-be2d-4fed-9674-bc696662372f.jpg",
+      "bytes": 146993,
+      "sha256": "5955a2a6249b8f641e0ef3c7700a14254d78ce05eff99f08c25a0c66f33ed5c8"
+    },
+    {
+      "code": "octgn:0b3a7155-be2d-4fed-9674-bc696662372f",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0b3a7155-be2d-4fed-9674-bc696662372f.B.jpg",
+      "localPath": "/cards/0b3a7155-be2d-4fed-9674-bc696662372f.B.jpg",
+      "bytes": 149932,
+      "sha256": "84a9a7ef63624f2f227733eb5f6d827419897b6a9a24a7d8502c5a47ce664a84"
+    },
+    {
+      "code": "octgn:0fd5a1d7-0791-4ab4-a50b-c5b2634ed94b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0fd5a1d7-0791-4ab4-a50b-c5b2634ed94b.jpg",
+      "localPath": "/cards/0fd5a1d7-0791-4ab4-a50b-c5b2634ed94b.jpg",
+      "bytes": 127832,
+      "sha256": "8ffa0cc13d39e8dd77b9213743c1ee77fc70be89d32ddb41358c095127e9a248"
+    },
+    {
+      "code": "octgn:16436b20-60b2-4f40-9a20-72e86cc35d37",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/16436b20-60b2-4f40-9a20-72e86cc35d37.jpg",
+      "localPath": "/cards/16436b20-60b2-4f40-9a20-72e86cc35d37.jpg",
+      "bytes": 142968,
+      "sha256": "7a6d035be93346671d420bec5a8f04e99ad6327aeb06900967f2a4f1385b1d9a"
+    },
+    {
+      "code": "octgn:2b4188d2-7910-431f-8c8d-fbd358fc782d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2b4188d2-7910-431f-8c8d-fbd358fc782d.jpg",
+      "localPath": "/cards/2b4188d2-7910-431f-8c8d-fbd358fc782d.jpg",
+      "bytes": 137421,
+      "sha256": "dfe1bb99d52d709d4415908b1c44b501a5e4355bfcd327264ec9da8a61b0d314"
+    },
+    {
+      "code": "octgn:2b56edac-f289-4b76-ae90-f6f3e5fc9b58",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2b56edac-f289-4b76-ae90-f6f3e5fc9b58.jpg",
+      "localPath": "/cards/2b56edac-f289-4b76-ae90-f6f3e5fc9b58.jpg",
+      "bytes": 143300,
+      "sha256": "2ca5ee85be377f0ad5c84ee11b8d3b1a9f62cad8a0ce899bb5247730ef2c3b71"
+    },
+    {
+      "code": "octgn:3f9feb64-e4bd-4da5-b00a-05f58dce5fbf",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3f9feb64-e4bd-4da5-b00a-05f58dce5fbf.jpg",
+      "localPath": "/cards/3f9feb64-e4bd-4da5-b00a-05f58dce5fbf.jpg",
+      "bytes": 141690,
+      "sha256": "b5d6df9fab34dcfeafb0ce704874291f1b62fc5650cae66ab19bfbd071ecf847"
+    },
+    {
+      "code": "octgn:4315467f-210f-40c8-aec2-76c09d4bb8c1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4315467f-210f-40c8-aec2-76c09d4bb8c1.jpg",
+      "localPath": "/cards/4315467f-210f-40c8-aec2-76c09d4bb8c1.jpg",
+      "bytes": 160659,
+      "sha256": "b32363c00dad8b890f397888ffb8c866f3c4b3f478f00c61d9c6115be3314175"
+    },
+    {
+      "code": "octgn:4315467f-210f-40c8-aec2-76c09d4bb8c1",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4315467f-210f-40c8-aec2-76c09d4bb8c1.B.jpg",
+      "localPath": "/cards/4315467f-210f-40c8-aec2-76c09d4bb8c1.B.jpg",
+      "bytes": 170119,
+      "sha256": "dfb106fd6caf9212d7bd5c21d6a8dd0f2a79a2c52e5e73f59f341ed1c3b7bb83"
+    },
+    {
+      "code": "octgn:47186728-67bf-40b2-9b8d-d5012f0fd1a6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/47186728-67bf-40b2-9b8d-d5012f0fd1a6.jpg",
+      "localPath": "/cards/47186728-67bf-40b2-9b8d-d5012f0fd1a6.jpg",
+      "bytes": 145211,
+      "sha256": "a44a003d1a5e70921d910b24b0f4a14e49849c0d8949ff4f2f7879c5ccbb5663"
+    },
+    {
+      "code": "octgn:49c77ce2-7305-4209-ad6a-f1ed983a556e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/49c77ce2-7305-4209-ad6a-f1ed983a556e.jpg",
+      "localPath": "/cards/49c77ce2-7305-4209-ad6a-f1ed983a556e.jpg",
+      "bytes": 140628,
+      "sha256": "b1d040ddf31d068e414dae9596fec53462ab3545bc4a89c608bf4a1f35b564b3"
+    },
+    {
+      "code": "octgn:617952b3-1ac2-47a2-866f-302c3f0d8fd7",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/617952b3-1ac2-47a2-866f-302c3f0d8fd7.jpg",
+      "localPath": "/cards/617952b3-1ac2-47a2-866f-302c3f0d8fd7.jpg",
+      "bytes": 151817,
+      "sha256": "6a45f2a666a40a2243e3eb34a4c0ccce7e4410ad6bfe84e2453d0fbf8c4fc6df"
+    },
+    {
+      "code": "octgn:6a24bcba-e069-4951-9cb1-59b48d291c74",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6a24bcba-e069-4951-9cb1-59b48d291c74.jpg",
+      "localPath": "/cards/6a24bcba-e069-4951-9cb1-59b48d291c74.jpg",
+      "bytes": 137773,
+      "sha256": "bfeb3e8244c94f88b72af6de8ed00b568355e97246b285f8259f9b5a76858285"
+    },
+    {
+      "code": "octgn:7178f6f6-c2da-4f74-9c9a-9ec43c79232d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7178f6f6-c2da-4f74-9c9a-9ec43c79232d.jpg",
+      "localPath": "/cards/7178f6f6-c2da-4f74-9c9a-9ec43c79232d.jpg",
+      "bytes": 156567,
+      "sha256": "8a0d7e9175ad6afc4b017a1cc84adf111c7c0035dcce93f23aba2ee87ad9d077"
+    },
+    {
+      "code": "octgn:7178f6f6-c2da-4f74-9c9a-9ec43c79232d",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7178f6f6-c2da-4f74-9c9a-9ec43c79232d.B.jpg",
+      "localPath": "/cards/7178f6f6-c2da-4f74-9c9a-9ec43c79232d.B.jpg",
+      "bytes": 150613,
+      "sha256": "20915d87714d0e0c47a028e15c377e4f7ce15470dff888094a803de0cec6a602"
+    },
+    {
+      "code": "octgn:807175bd-1d09-41ff-a3ab-560a935eb259",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/807175bd-1d09-41ff-a3ab-560a935eb259.jpg",
+      "localPath": "/cards/807175bd-1d09-41ff-a3ab-560a935eb259.jpg",
+      "bytes": 136613,
+      "sha256": "1ec6428dd6b0863035b6ecf6119d296acca2d5f5642c2081d909348ab93c8285"
+    },
+    {
+      "code": "octgn:8a1e8a49-0af8-4990-9c47-955927ff09b7",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8a1e8a49-0af8-4990-9c47-955927ff09b7.jpg",
+      "localPath": "/cards/8a1e8a49-0af8-4990-9c47-955927ff09b7.jpg",
+      "bytes": 144263,
+      "sha256": "24c82257f2ab31acb7c57c637dca78f6c6be31305521ffb9b16253f5ad8cc7eb"
+    },
+    {
+      "code": "octgn:8ff4cf43-75dd-4030-86ae-d256562bc885",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8ff4cf43-75dd-4030-86ae-d256562bc885.jpg",
+      "localPath": "/cards/8ff4cf43-75dd-4030-86ae-d256562bc885.jpg",
+      "bytes": 152670,
+      "sha256": "722697b219339740d9412916b2ac5bc78fc101cd743b1229da4317f7628181b6"
+    },
+    {
+      "code": "octgn:8ff4cf43-75dd-4030-86ae-d256562bc885",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8ff4cf43-75dd-4030-86ae-d256562bc885.B.jpg",
+      "localPath": "/cards/8ff4cf43-75dd-4030-86ae-d256562bc885.B.jpg",
+      "bytes": 158147,
+      "sha256": "f3d5b3fdd3140df6c49fa96ed30e016da2c65c1477ff6bd1669aae0ca1561e9b"
+    },
+    {
+      "code": "octgn:9944cbab-1c77-4cb4-87cc-36709f3143b5",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9944cbab-1c77-4cb4-87cc-36709f3143b5.jpg",
+      "localPath": "/cards/9944cbab-1c77-4cb4-87cc-36709f3143b5.jpg",
+      "bytes": 139934,
+      "sha256": "0d6eb4bc8421321f1f862b90993b5bed21cd7dbcbb07122f00a42494e3cf70c2"
+    },
+    {
+      "code": "octgn:9babab54-9494-4619-8666-f2299bb37632",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9babab54-9494-4619-8666-f2299bb37632.jpg",
+      "localPath": "/cards/9babab54-9494-4619-8666-f2299bb37632.jpg",
+      "bytes": 143259,
+      "sha256": "9f64a410abeef657fa742992bf527c78766c0ca640894454d2d1c8a34ee115ef"
+    },
+    {
+      "code": "octgn:9fa12306-d6ed-4fb8-89ce-8145bb81a58a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9fa12306-d6ed-4fb8-89ce-8145bb81a58a.jpg",
+      "localPath": "/cards/9fa12306-d6ed-4fb8-89ce-8145bb81a58a.jpg",
+      "bytes": 152342,
+      "sha256": "35b7e3435dd1fa7fdb8f37dacf910d00dbee8f3cd733f4898e98bcebb945afa6"
+    },
+    {
+      "code": "octgn:ac5a17df-dcd0-4bfb-91fe-a444910f30ec",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ac5a17df-dcd0-4bfb-91fe-a444910f30ec.jpg",
+      "localPath": "/cards/ac5a17df-dcd0-4bfb-91fe-a444910f30ec.jpg",
+      "bytes": 154523,
+      "sha256": "371851f76ff8f2589c96be6b9bd9e594b21555df60f0db68b66e32a0edec3295"
+    },
+    {
+      "code": "octgn:ac5a17df-dcd0-4bfb-91fe-a444910f30ec",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ac5a17df-dcd0-4bfb-91fe-a444910f30ec.B.jpg",
+      "localPath": "/cards/ac5a17df-dcd0-4bfb-91fe-a444910f30ec.B.jpg",
+      "bytes": 159131,
+      "sha256": "fe3c68d5d0de441937a4f59c5a95900dd2a5d30ed65fee5c9973d60e79e63927"
+    },
+    {
+      "code": "octgn:baf3e642-1f90-4db5-ac10-c8f4c5300f25",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/baf3e642-1f90-4db5-ac10-c8f4c5300f25.jpg",
+      "localPath": "/cards/baf3e642-1f90-4db5-ac10-c8f4c5300f25.jpg",
+      "bytes": 135380,
+      "sha256": "11a4227fc06cee8799bbf941c2f30b5ac4dca7ae157791faa29398cd218063a6"
+    },
+    {
+      "code": "octgn:bdbf8bed-f63f-4797-abb4-79054a9dbcad",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bdbf8bed-f63f-4797-abb4-79054a9dbcad.jpg",
+      "localPath": "/cards/bdbf8bed-f63f-4797-abb4-79054a9dbcad.jpg",
+      "bytes": 140894,
+      "sha256": "7f2822ea438ce4511d9f4b559f7eb2c56c97ee7346fbb197a5bdb872a927cdf1"
+    },
+    {
+      "code": "octgn:bdbf8bed-f63f-4797-abb4-79054a9dbcad",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bdbf8bed-f63f-4797-abb4-79054a9dbcad.B.jpg",
+      "localPath": "/cards/bdbf8bed-f63f-4797-abb4-79054a9dbcad.B.jpg",
+      "bytes": 147431,
+      "sha256": "dbdc389dc392c7037589358418eeed6955627ea17d291fbb69393784eaae4b05"
+    },
+    {
+      "code": "octgn:c472af20-d956-4aec-af6e-319cdea35230",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c472af20-d956-4aec-af6e-319cdea35230.jpg",
+      "localPath": "/cards/c472af20-d956-4aec-af6e-319cdea35230.jpg",
+      "bytes": 150421,
+      "sha256": "c74c1f59742f18a9b23e345a9feb69619459c74f57e1c7fd146d3aa897955f64"
+    },
+    {
+      "code": "octgn:cefe5af1-a3d3-43fb-8b82-7ea9b4d2c861",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cefe5af1-a3d3-43fb-8b82-7ea9b4d2c861.jpg",
+      "localPath": "/cards/cefe5af1-a3d3-43fb-8b82-7ea9b4d2c861.jpg",
+      "bytes": 144664,
+      "sha256": "1fd0d2137a80462396244f09fabdcb2d6cce72ad6b0f665eed3da09b447ded68"
+    },
+    {
+      "code": "octgn:d8694dea-3406-4199-96d5-cd8d0a97f152",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d8694dea-3406-4199-96d5-cd8d0a97f152.jpg",
+      "localPath": "/cards/d8694dea-3406-4199-96d5-cd8d0a97f152.jpg",
+      "bytes": 132385,
+      "sha256": "c789c9c2bc2929882799802f89e8f86663299c4b1f92b6be5d028de01195ba72"
+    },
+    {
+      "code": "octgn:dff2fcb1-1231-4cda-9d10-029db96ef9e8",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dff2fcb1-1231-4cda-9d10-029db96ef9e8.jpg",
+      "localPath": "/cards/dff2fcb1-1231-4cda-9d10-029db96ef9e8.jpg",
+      "bytes": 153686,
+      "sha256": "6b47734f586cc511de645fcb76673e459918b684c1e2baf8c33f8e76d4eda718"
+    },
+    {
+      "code": "octgn:dff2fcb1-1231-4cda-9d10-029db96ef9e8",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dff2fcb1-1231-4cda-9d10-029db96ef9e8.B.jpg",
+      "localPath": "/cards/dff2fcb1-1231-4cda-9d10-029db96ef9e8.B.jpg",
+      "bytes": 151918,
+      "sha256": "d5311191333373a9f7435ec3886bbb14bc33599d6467ffd972ef5f80ab641632"
+    },
+    {
+      "code": "octgn:ebbb49f0-4466-44e5-b157-968cd5e80b06",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ebbb49f0-4466-44e5-b157-968cd5e80b06.jpg",
+      "localPath": "/cards/ebbb49f0-4466-44e5-b157-968cd5e80b06.jpg",
+      "bytes": 142800,
+      "sha256": "cf60859df836d5f7761d546ca1d62175c266cf5f68a66e417791aacf1fba4cbe"
+    },
+    {
+      "code": "octgn:f5c7c8e0-3616-4919-9761-85ab5440956d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f5c7c8e0-3616-4919-9761-85ab5440956d.jpg",
+      "localPath": "/cards/f5c7c8e0-3616-4919-9761-85ab5440956d.jpg",
+      "bytes": 146867,
+      "sha256": "8044d6c93180054e58fdbd061875f5f51d05efe7d1760c5b18c1ef28dc476ca2"
+    },
+    {
+      "code": "octgn:fa4ccbb8-76d4-4293-aa94-d117b14f042e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fa4ccbb8-76d4-4293-aa94-d117b14f042e.jpg",
+      "localPath": "/cards/fa4ccbb8-76d4-4293-aa94-d117b14f042e.jpg",
+      "bytes": 140594,
+      "sha256": "09848652a2d5c30e77ddc723dc9bb55b4c70d8d9865fee7556434dd66a6d0396"
+    },
+    {
+      "code": "octgn:fe580179-8f51-463e-a235-bde0f7b783d7",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fe580179-8f51-463e-a235-bde0f7b783d7.jpg",
+      "localPath": "/cards/fe580179-8f51-463e-a235-bde0f7b783d7.jpg",
+      "bytes": 135955,
+      "sha256": "4e89d4121d8943b141b54a4555a0499ec7a236ea7f8ef0e288fac42e017d9b8e"
+    }
+  ]
+}

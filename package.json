@@ -232,7 +232,9 @@
     "test:prancing-pony-simulation": "node --import tsx --test tests/prancing-pony-simulation.test.ts",
     "test:browser-prancing-pony": "node --import tsx scripts/browser-prancing-pony.mjs",
     "test:annuminas-simulation": "node --import tsx --test tests/annuminas-simulation.test.ts",
-    "test:browser-annuminas": "node --import tsx scripts/browser-annuminas.mjs"
+    "test:browser-annuminas": "node --import tsx scripts/browser-annuminas.mjs",
+    "test:attack-dol-guldur-simulation": "node --import tsx --test tests/attack-dol-guldur-simulation.test.ts",
+    "test:browser-attack-dol-guldur": "node --import tsx scripts/browser-attack-dol-guldur.mjs"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

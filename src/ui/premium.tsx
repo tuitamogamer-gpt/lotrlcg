@@ -139,6 +139,10 @@ export const PLAYMATS = {
     name: "Annúminas",
     detail: "The Dúnedain capital · the host of Angmar",
   },
+  "attack-on-dol-guldur": {
+    name: "Dol Guldur",
+    detail: "The Golden Wood · the Necromancer's fortress",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -567,6 +571,7 @@ export const PLAYMAT_CHOICES = [
   "the-ruins-of-belegost",
   "murder-at-the-prancing-pony",
   "the-siege-of-annuminas",
+  "attack-on-dol-guldur",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

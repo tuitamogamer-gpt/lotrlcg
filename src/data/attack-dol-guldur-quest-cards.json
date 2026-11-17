@@ -1,0 +1,236 @@
+[
+  {
+    "code": "octgn:0aa98b35-6958-4680-a4ed-b9fc16089126",
+    "octgnid": "0aa98b35-6958-4680-a4ed-b9fc16089126",
+    "name": "The Siege of Dol Guldur",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Remove all tokens from the Lieutenant enemy at this stage and set it aside, out of play. Add the set aside Bane of Amon Lanc to the staging area, unless it is in a victory display. If Dol Guldur's city strength is 5 or lower (10 or lower if playing epic multiplayer mode), Bane of Amon Lanc makes an immediate attack against each player in turn order.",
+    "is_unique": false,
+    "pack_code": "AoDG",
+    "pack_name": "Attack on Dol Guldur",
+    "position": 3,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Attack on Dol Guldur",
+    "side": "A",
+    "back_name": "The Siege of Dol Guldur",
+    "back_text": "Bane of Amon Lanc gets -1 engagement cost for each progress token on this stage.\nForced: At the end of the round, remove 5 progress from this stage or increase Dol Guldur's city strength by 3. The first player may remove an additional 5 progress to reduce Dol Guldur's city strength by 3.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/0aa98b35-6958-4680-a4ed-b9fc16089126.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/0aa98b35-6958-4680-a4ed-b9fc16089126.jpg",
+    "packs": [
+      {
+        "pack_code": "AoDG",
+        "pack_name": "Attack on Dol Guldur",
+        "position": 3,
+        "quantity": 1,
+        "octgnid": "0aa98b35-6958-4680-a4ed-b9fc16089126",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0aa98b35-6958-4680-a4ed-b9fc16089126.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:0b3a7155-be2d-4fed-9674-bc696662372f",
+    "octgnid": "0b3a7155-be2d-4fed-9674-bc696662372f",
+    "name": "Assault on the Golden Wood",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set Host of Lórien and all 4 Lieutenant enemies aside, out of play. Add Power of Lórien and 1 copy of Dol Guldur Marauder per player to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "AoDG",
+    "pack_name": "Attack on Dol Guldur",
+    "position": 1,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Attack on Dol Guldur",
+    "side": "A",
+    "back_name": "Assault on the Golden Wood",
+    "back_text": "Forced: At the end of the round, place 1 resource here and move all progress from this stage to Power of Lórien. If there are 3 resources here, advance to stage 2A.\nResponse: At the end of the round, raise each player's threat by 1 to choose a stage. Each player at that stage draws 1 card and adds 1 resource to a hero's resource pool.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/0b3a7155-be2d-4fed-9674-bc696662372f.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/0b3a7155-be2d-4fed-9674-bc696662372f.jpg",
+    "packs": [
+      {
+        "pack_code": "AoDG",
+        "pack_name": "Attack on Dol Guldur",
+        "position": 1,
+        "quantity": 1,
+        "octgnid": "0b3a7155-be2d-4fed-9674-bc696662372f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0b3a7155-be2d-4fed-9674-bc696662372f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:4315467f-210f-40c8-aec2-76c09d4bb8c1",
+    "octgnid": "4315467f-210f-40c8-aec2-76c09d4bb8c1",
+    "name": "Battle Under the Trees",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Remove all tokens from the Lieutenant enemy at this stage and set it aside, out of play. Add the set aside Chieftain Morlug to the staging area, unless it is in a victory display. If Dol Guldur's city strength is 5 or lower (10 or lower if playing epic multiplayer mode), Chieftain Morlug makes an immediate attack against each player in turn order.",
+    "is_unique": false,
+    "pack_code": "AoDG",
+    "pack_name": "Attack on Dol Guldur",
+    "position": 5,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Attack on Dol Guldur",
+    "side": "E",
+    "back_name": "Battle Under the Trees",
+    "back_text": "Chieftain Morlug gets -1 engagement cost for each progress token on this stage.\nForced: At the end of the round, remove 5 progress from this stage or each player at each stage discards cards from the top of the encounter deck until an enemy is discarded and puts it into play engaged with him. (If the last card of the encounter deck is discarded resolving this effect, shuffle the discard pile back into the encounter deck.) The first player may remove an additional 5 progress to choose a non-unique enemy at any stage and destroy it.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/4315467f-210f-40c8-aec2-76c09d4bb8c1.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/4315467f-210f-40c8-aec2-76c09d4bb8c1.jpg",
+    "packs": [
+      {
+        "pack_code": "AoDG",
+        "pack_name": "Attack on Dol Guldur",
+        "position": 5,
+        "quantity": 1,
+        "octgnid": "4315467f-210f-40c8-aec2-76c09d4bb8c1",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4315467f-210f-40c8-aec2-76c09d4bb8c1.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:7178f6f6-c2da-4f74-9c9a-9ec43c79232d",
+    "octgnid": "7178f6f6-c2da-4f74-9c9a-9ec43c79232d",
+    "name": "Dungeons of the Necromancer",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Remove all tokens from the Lieutenant enemy at this stage and set it aside, out of play. Add the set aside Dungeon Dweller to the staging area, unless it is in a victory display. If Dol Guldur's city strength is 5 or lower (10 or lower if playing epic multiplayer mode), Dungeon Dweller makes an immediate attack against each player in turn order.",
+    "is_unique": false,
+    "pack_code": "AoDG",
+    "pack_name": "Attack on Dol Guldur",
+    "position": 6,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Attack on Dol Guldur",
+    "side": "G",
+    "back_name": "Dungeons of the Necromancer",
+    "back_text": "Dungeon Dweller gets -1 engagement cost for each progress token on this stage.\nForced: At the end of the round, remove 5 progress from this stage or each player at each stage discards an ally he controls. The first player may remove an additional 5 progress to choose a player at any stage. That player searches the top 10 cards of his deck for an ally and puts it into play.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/7178f6f6-c2da-4f74-9c9a-9ec43c79232d.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/7178f6f6-c2da-4f74-9c9a-9ec43c79232d.jpg",
+    "packs": [
+      {
+        "pack_code": "AoDG",
+        "pack_name": "Attack on Dol Guldur",
+        "position": 6,
+        "quantity": 1,
+        "octgnid": "7178f6f6-c2da-4f74-9c9a-9ec43c79232d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7178f6f6-c2da-4f74-9c9a-9ec43c79232d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8ff4cf43-75dd-4030-86ae-d256562bc885",
+    "octgnid": "8ff4cf43-75dd-4030-86ae-d256562bc885",
+    "name": "Crossing the Anduin",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player may remove 10 progress from Power of Lórien to take control of the set-aside Host of Lórien. Then, he may remove an additional 20 progress from Power of Lórien to place it in his play area under his control, otherwise discard it.",
+    "is_unique": false,
+    "pack_code": "AoDG",
+    "pack_name": "Attack on Dol Guldur",
+    "position": 2,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Attack on Dol Guldur",
+    "side": "A",
+    "back_name": "Crossing the Anduin",
+    "back_text": "When Revealed: Each player searches the encounter deck and discard pile for a Dol Guldur location and adds it to the staging area. Shuffle the encounter deck. Advance to a stage 3 of your choice. If you are playing epic multiplayer mode, each team must choose a different stage.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/8ff4cf43-75dd-4030-86ae-d256562bc885.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/8ff4cf43-75dd-4030-86ae-d256562bc885.jpg",
+    "packs": [
+      {
+        "pack_code": "AoDG",
+        "pack_name": "Attack on Dol Guldur",
+        "position": 2,
+        "quantity": 1,
+        "octgnid": "8ff4cf43-75dd-4030-86ae-d256562bc885",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8ff4cf43-75dd-4030-86ae-d256562bc885.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:dff2fcb1-1231-4cda-9d10-029db96ef9e8",
+    "octgnid": "dff2fcb1-1231-4cda-9d10-029db96ef9e8",
+    "name": "The Tower of Sorcery",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Remove all tokens from the Lieutenant enemy at this stage and set it aside, out of play. Add the set aside Sorcerer of Dol Guldur to the staging area, unless it is in a victory display. If Dol Guldur's city strength is 5 or lower (10 or lower if playing epic multiplayer mode), Sorcerer of Dol Guldur makes an immediate attack against each player in turn order.",
+    "is_unique": false,
+    "pack_code": "AoDG",
+    "pack_name": "Attack on Dol Guldur",
+    "position": 4,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Attack on Dol Guldur",
+    "side": "C",
+    "back_name": "The Tower of Sorcery",
+    "back_text": "Sorcerer of Dol Guldur gets -1 engagement cost for each progress token on this stage.\nForced: At the end of the round, remove 5 progress from this stage or each player at each stage discards all but 1 card from his hand. The first player may remove an additional 5 progress from this stage to choose a player at any stage. That player searches his deck for a card, adds it to his hand, and shuffles his deck.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/dff2fcb1-1231-4cda-9d10-029db96ef9e8.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/dff2fcb1-1231-4cda-9d10-029db96ef9e8.jpg",
+    "packs": [
+      {
+        "pack_code": "AoDG",
+        "pack_name": "Attack on Dol Guldur",
+        "position": 4,
+        "quantity": 1,
+        "octgnid": "dff2fcb1-1231-4cda-9d10-029db96ef9e8",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dff2fcb1-1231-4cda-9d10-029db96ef9e8.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

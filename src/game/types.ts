@@ -303,6 +303,7 @@ export type ScenarioId =
   | "the-ruins-of-belegost"
   | "murder-at-the-prancing-pony"
   | "the-siege-of-annuminas"
+  | "attack-on-dol-guldur"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -496,6 +497,7 @@ export interface GameState {
   ruinsBelegost?: import("./ruins-belegost-types").RuinsBelegostState;
   prancingPony?: import("./prancing-pony-types").PrancingPonyState;
   annuminas?: import("./annuminas-types").AnnuminasState;
+  attackDolGuldur?: import("./attack-dol-guldur-types").AttackDolGuldurState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -933,6 +935,8 @@ export interface GameState {
     saDefense?: number;
     /** The Siege of Annúminas: The Hordes of Angmar's shadow waits for a destroyed character. */
     saRevealOnKill?: boolean;
+    /** Attack on Dol Guldur: Blackened Woods' shadow waits for a destroyed character. */
+    adgWoods?: boolean;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

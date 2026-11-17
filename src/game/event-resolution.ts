@@ -6,6 +6,7 @@ import { activeSeat, forOwner } from "./table";
 import { fx, prepend, putPlayerDeck } from "./core";
 import { foundationsPlayerCardDiscarded } from "./foundations-player-cards";
 import { addVictoryCard, takePlayerDiscard } from "./board";
+import { batch4Scenario } from "./batch4-scenarios";
 import { ringMakerCharacterLeft } from "./ring-maker-player";
 
 /** Events remain outside hand/discard while their entire ability resolves (RR p8). */
@@ -47,6 +48,12 @@ export function finishPlayedEvent(s: GameState, id: string) {
     : (pending.unit.owner ?? pending.player);
   if (pending.destination !== "hand")
     ringMakerCharacterLeft(s, pending.unit.id);
+  // A scenario can take a finished event instead of its owner's discard pile.
+  if (
+    pending.destination === "discard" &&
+    batch4Scenario(s).eventDestination?.(s, pending.unit, pending.player)
+  )
+    return;
   forOwner(s, destinationPlayer, () => {
     if (pending.destination === "removed") s.removed.push(pending.unit.code);
     else if (pending.destination === "victory")

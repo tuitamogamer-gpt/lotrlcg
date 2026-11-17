@@ -28,6 +28,7 @@ import { OATH_HOOKS } from "./the-oath";
 import { RUINS_BELEGOST_HOOKS } from "./ruins-belegost";
 import { PRANCING_PONY_HOOKS } from "./prancing-pony";
 import { ANNUMINAS_HOOKS } from "./annuminas";
+import { ATTACK_DOL_GULDUR_HOOKS } from "./attack-dol-guldur";
 import { HELMS_DEEP_HOOKS } from "./helms-deep";
 import { ROAD_ISENGARD_HOOKS } from "./road-isengard";
 import { PASSAGE_MARSHES_HOOKS } from "./passage-marshes";
@@ -125,6 +126,8 @@ export function batch4Scenario(s: GameState): Batch4ScenarioHooks {
       return PRANCING_PONY_HOOKS;
     case "the-siege-of-annuminas":
       return ANNUMINAS_HOOKS;
+    case "attack-on-dol-guldur":
+      return ATTACK_DOL_GULDUR_HOOKS;
     case "the-land-of-sorrow":
       return LAND_SORROW_HOOKS;
     case "under-the-ash-mountains":
@@ -221,4 +224,5 @@ export const batch4SharedEffect = (effect: Effect) =>
     RUINS_BELEGOST_HOOKS,
     PRANCING_PONY_HOOKS,
     ANNUMINAS_HOOKS,
+    ATTACK_DOL_GULDUR_HOOKS,
   ].some((hooks) => hooks.sharedEffect?.(effect));

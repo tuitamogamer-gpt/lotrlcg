@@ -3121,6 +3121,8 @@ export function revealed(
         ? ShadowEastPlayers.shadowEastPlayerRevealOptions(s, code, resume)
         : []),
       ...ringBearerRevealOptions(s, code, revealOrigin, resume),
+      ...(batch4Scenario(s).revealOptions?.(s, code, revealOrigin, resume) ??
+        []),
     ];
     if (options.length) {
       choose(

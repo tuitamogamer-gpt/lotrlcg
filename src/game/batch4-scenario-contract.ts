@@ -1,4 +1,4 @@
-import type { Attachment, Effect, GameState, Unit } from "./types";
+import type { Attachment, Effect, GameState, Option, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
 
 type Combat = NonNullable<GameState["combat"]>;
@@ -194,6 +194,8 @@ export interface Batch4ScenarioHooks {
     fromHand: boolean,
   ): boolean;
   eventPlayed?(s: GameState, u: Unit): void;
+  /** A finished event goes elsewhere than its owner's discard pile (true when moved). */
+  eventDestination?(s: GameState, u: Unit, player: number): boolean;
   eventCancelled?(s: GameState, id: string): boolean;
   playerCardPlayed?(s: GameState, u: Unit, fromHand?: boolean): void;
   /** Allies cannot be put into play from a player's hand right now. */
@@ -291,6 +293,13 @@ export interface Batch4ScenarioHooks {
     code: string,
     revealOrigin: Effect["revealOrigin"],
   ): void;
+  /** Responses that cancel an encounter card just revealed, before it resolves. */
+  revealOptions?(
+    s: GameState,
+    code: string,
+    revealOrigin: Effect["revealOrigin"],
+    resume: Effect,
+  ): Option[];
   encounter?(
     s: GameState,
     code: string,

@@ -175,6 +175,10 @@ const HEADLINES: Partial<
     lead: "Hold the walls",
     em: "of Annúminas.",
   },
+  "attack-on-dol-guldur": {
+    lead: "Storm the fortress",
+    em: "of Dol Guldur.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

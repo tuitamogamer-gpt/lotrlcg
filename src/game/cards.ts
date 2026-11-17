@@ -99,6 +99,7 @@ import { OATH_ENCOUNTERS, OATH_QUESTS } from "./the-oath-scenario-data";
 import { RB_ENCOUNTERS, RB_QUESTS } from "./ruins-belegost-scenario-data";
 import { PP_ENCOUNTERS, PP_QUESTS } from "./prancing-pony-scenario-data";
 import { SA_ENCOUNTERS, SA_QUESTS } from "./annuminas-scenario-data";
+import { ADG_ENCOUNTERS, ADG_QUESTS } from "./attack-dol-guldur-scenario-data";
 import mountainFirePlayers from "../data/mountain-fire-player-cards.json";
 import hobbitPlayers from "../data/hobbit-player-cards.json";
 import blackRidersPlayers from "../data/black-riders-player-cards.json";
@@ -612,6 +613,7 @@ export const encounterCards = [
       ...RB_ENCOUNTERS,
       ...PP_ENCOUNTERS,
       ...SA_ENCOUNTERS,
+      ...ADG_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -717,6 +719,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...RB_QUESTS,
     ...PP_QUESTS,
     ...SA_QUESTS,
+    ...ADG_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -863,6 +866,7 @@ export const SCRIPTED = new Set(
     ...RB_QUESTS,
     ...PP_QUESTS,
     ...SA_QUESTS,
+    ...ADG_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

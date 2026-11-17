@@ -65,10 +65,12 @@ import { OATH_QUESTS } from "./game/the-oath-support";
 import { RB_QUESTS } from "./game/ruins-belegost-support";
 import { PP_QUESTS } from "./game/prancing-pony-support";
 import { SA_QUESTS } from "./game/annuminas-support";
+import { ADG_QUESTS } from "./game/attack-dol-guldur-support";
 import { OathState } from "./ui/the-oath-state";
 import { RuinsBelegostState } from "./ui/ruins-belegost-state";
 import { PrancingPonyState } from "./ui/prancing-pony-state";
 import { AnnuminasState } from "./ui/annuminas-state";
+import { AttackDolGuldurState } from "./ui/attack-dol-guldur-state";
 import { DDCD_QUESTS } from "./game/dungeons-deep-support";
 import {
   discoveredTreasures,
@@ -3349,6 +3351,7 @@ export default function App() {
             <RuinsBelegostState s={game} inspect={setDetail} />
             <PrancingPonyState s={game} inspect={setDetail} />
             <AnnuminasState s={game} inspect={setDetail} />
+            <AttackDolGuldurState s={game} inspect={setDetail} />
             <AshMountainsState s={game} inspect={setDetail} />
             <CouncilOfTheWiseState s={game} inspect={setDetail} />
             <WainridersScenarioState s={game} inspect={setDetail} />
@@ -4123,6 +4126,7 @@ export default function App() {
                       ...RB_QUESTS,
                       ...PP_QUESTS,
                       ...SA_QUESTS,
+                      ...ADG_QUESTS,
                       ...(carrockQuestCards as Card[]),
                       ...EMYN_MUIL_QUESTS,
                       ...CITY_QUESTS,
