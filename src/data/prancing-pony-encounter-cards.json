@@ -1,0 +1,1073 @@
+[
+  {
+    "code": "octgn:054189b9-c165-4561-9b62-f0384145da97",
+    "octgnid": "054189b9-c165-4561-9b62-f0384145da97",
+    "name": "Todd the Troll",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Suspect. Brigand.",
+    "text": "Cannot have attachments.\nExcess combat damage dealt by Todd the Troll (damage dealt beyond the remaining hit points of the character damaged by this attack) must be assigned as an increase to your threat.",
+    "is_unique": true,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 9,
+    "quantity": 1,
+    "threat": 2,
+    "attack": 7,
+    "defense": 2,
+    "health": 10,
+    "engagement": 45,
+    "encounter_set": "Murder at the Prancing Pony",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "7",
+      "defense": "2",
+      "health": "10",
+      "engagement": "45",
+      "victory": "5"
+    },
+    "imagesrc": "/cards/054189b9-c165-4561-9b62-f0384145da97.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 9,
+        "quantity": 1,
+        "octgnid": "054189b9-c165-4561-9b62-f0384145da97",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/054189b9-c165-4561-9b62-f0384145da97.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 5
+  },
+  {
+    "code": "octgn:0f201650-6d15-4909-9d06-0a87ab94f327",
+    "octgnid": "0f201650-6d15-4909-9d06-0a87ab94f327",
+    "name": "Hired Muscle",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge.\nWhen Revealed: Attach to a Brigand enemy without a copy of Hired Muscle attached and return that enemy to the staging area. (Counts as a Condition attachment with the text: \"Attached enemy gets +1 [threat], +1 [attack], +1 [defense] and gains: 'Forced: When attached enemy is defeated, look at the bottom card of the Investigation deck.'\")",
+    "is_unique": false,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 26,
+    "quantity": 2,
+    "encounter_set": "Murder at the Prancing Pony",
+    "printed_stats": {},
+    "imagesrc": "/cards/0f201650-6d15-4909-9d06-0a87ab94f327.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 26,
+        "quantity": 2,
+        "octgnid": "0f201650-6d15-4909-9d06-0a87ab94f327",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0f201650-6d15-4909-9d06-0a87ab94f327.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:11e8544f-fe65-4365-8f51-10a3ef267dc8",
+    "octgnid": "11e8544f-fe65-4365-8f51-10a3ef267dc8",
+    "name": "Staddle Hiding Hole",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Hideout.",
+    "text": "Immune to player card effects.\nWhile Staddle Hiding Hole is in the victory display, each player not engaged with a Suspect cannot declare attackers against that Suspect.\nTravel: Search the encounter deck and discard pile for a Greenway Footpad, reveal it, and add it to the staging area. Shuffle the encounter deck.",
+    "is_unique": true,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 5,
+    "quantity": 1,
+    "threat": 5,
+    "quest": 5,
+    "encounter_set": "Murder at the Prancing Pony",
+    "printed_stats": {
+      "threat": "5",
+      "quest": "5",
+      "victory": "5"
+    },
+    "imagesrc": "/cards/11e8544f-fe65-4365-8f51-10a3ef267dc8.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 5,
+        "quantity": 1,
+        "octgnid": "11e8544f-fe65-4365-8f51-10a3ef267dc8",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/11e8544f-fe65-4365-8f51-10a3ef267dc8.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 5
+  },
+  {
+    "code": "octgn:1c028523-9f37-4e16-83cf-c9ea1cfbc9d3",
+    "octgnid": "1c028523-9f37-4e16-83cf-c9ea1cfbc9d3",
+    "name": "Susie the Spider",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Suspect. Brigand.",
+    "text": "Cannot have attachments.\nX is the number of Brigand enemies in play.\nWhile at least 1 other Brigand enemy is in play, Susie the Spider cannot take damage.",
+    "is_unique": true,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 10,
+    "quantity": 1,
+    "attack": 5,
+    "defense": 3,
+    "health": 8,
+    "engagement": 45,
+    "encounter_set": "Murder at the Prancing Pony",
+    "printed_stats": {
+      "threat": "X",
+      "attack": "5",
+      "defense": "3",
+      "health": "8",
+      "engagement": "45",
+      "victory": "5"
+    },
+    "imagesrc": "/cards/1c028523-9f37-4e16-83cf-c9ea1cfbc9d3.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 10,
+        "quantity": 1,
+        "octgnid": "1c028523-9f37-4e16-83cf-c9ea1cfbc9d3",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1c028523-9f37-4e16-83cf-c9ea1cfbc9d3.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 5
+  },
+  {
+    "code": "octgn:1de51c4f-659d-465f-bf45-4d6c00c6bdf1",
+    "octgnid": "1de51c4f-659d-465f-bf45-4d6c00c6bdf1",
+    "name": "Chetwood Outlaw",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Brigand.",
+    "text": "Forced: After you optionally engage Chetwood Outlaw, raise your threat by 4.",
+    "is_unique": false,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 25,
+    "quantity": 3,
+    "threat": 4,
+    "attack": 4,
+    "defense": 3,
+    "health": 5,
+    "engagement": 40,
+    "shadow": "Shadow: Either raise your threat by 2, or return attacking enemy to the staging area after this attack.",
+    "encounter_set": "Murder at the Prancing Pony",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "4",
+      "defense": "3",
+      "health": "5",
+      "engagement": "40"
+    },
+    "imagesrc": "/cards/1de51c4f-659d-465f-bf45-4d6c00c6bdf1.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 25,
+        "quantity": 3,
+        "octgnid": "1de51c4f-659d-465f-bf45-4d6c00c6bdf1",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1de51c4f-659d-465f-bf45-4d6c00c6bdf1.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:2608ba25-8375-4093-9d93-3c8cfa7b697c",
+    "octgnid": "2608ba25-8375-4093-9d93-3c8cfa7b697c",
+    "name": "Lawless Ruffian",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Brigand.",
+    "text": "While engaged with a player with threat 35 or higher, Lawless Ruffian gets +2 [attack].",
+    "is_unique": false,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 23,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 3,
+    "defense": 2,
+    "health": 3,
+    "engagement": 35,
+    "shadow": "Shadow: Attacking enemy makes an additional attack against you after this one.",
+    "encounter_set": "Murder at the Prancing Pony",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "2",
+      "health": "3",
+      "engagement": "35"
+    },
+    "imagesrc": "/cards/2608ba25-8375-4093-9d93-3c8cfa7b697c.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 23,
+        "quantity": 3,
+        "octgnid": "2608ba25-8375-4093-9d93-3c8cfa7b697c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2608ba25-8375-4093-9d93-3c8cfa7b697c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:3574e1dd-d730-485e-8c2b-16fb7d52f78b",
+    "octgnid": "3574e1dd-d730-485e-8c2b-16fb7d52f78b",
+    "name": "Bill Ferny",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Bree.",
+    "text": "Cannot be optionally engaged.\nThe first treachery revealed each round gains doomed 1 and its effects cannot be canceled.",
+    "is_unique": true,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 21,
+    "quantity": 1,
+    "threat": 3,
+    "attack": 2,
+    "defense": 3,
+    "health": 5,
+    "engagement": 42,
+    "shadow": "Shadow: Either raise your threat by 4, or this attack is considered undefended.",
+    "encounter_set": "Murder at the Prancing Pony",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "2",
+      "defense": "3",
+      "health": "5",
+      "engagement": "42",
+      "victory": "3"
+    },
+    "imagesrc": "/cards/3574e1dd-d730-485e-8c2b-16fb7d52f78b.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 21,
+        "quantity": 1,
+        "octgnid": "3574e1dd-d730-485e-8c2b-16fb7d52f78b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3574e1dd-d730-485e-8c2b-16fb7d52f78b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 3
+  },
+  {
+    "code": "octgn:518f546e-a3ce-4af8-b89d-2e1a6b765857",
+    "octgnid": "518f546e-a3ce-4af8-b89d-2e1a6b765857",
+    "name": "Wolf-pelt Jake",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Suspect. Brigand.",
+    "text": "Cannot have attachments.\nForced: After Wolf-pelt Jake attacks and destroys an ally, return him to the staging area.",
+    "is_unique": true,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 11,
+    "quantity": 1,
+    "threat": 4,
+    "attack": 5,
+    "defense": 3,
+    "health": 7,
+    "engagement": 45,
+    "encounter_set": "Murder at the Prancing Pony",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "5",
+      "defense": "3",
+      "health": "7",
+      "engagement": "45",
+      "victory": "5"
+    },
+    "imagesrc": "/cards/518f546e-a3ce-4af8-b89d-2e1a6b765857.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 11,
+        "quantity": 1,
+        "octgnid": "518f546e-a3ce-4af8-b89d-2e1a6b765857",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/518f546e-a3ce-4af8-b89d-2e1a6b765857.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 5
+  },
+  {
+    "code": "octgn:526faef8-5db5-48ab-ab22-109916e9fda7",
+    "octgnid": "526faef8-5db5-48ab-ab22-109916e9fda7",
+    "name": "Murder at the Prancing Pony",
+    "type_code": "rules",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "The Investigation Deck\nBegin the game by following the Setup instructions on stage 1A. When the players are instructed to \"build the Investigation deck,\" do the following: Take the 4 remaining Suspect enemies and the 4 remaining Hideout locations, plus each copy of Taken by Surprise, and shuffle them together without looking at them. This is the Investigation deck.\nThe players are not allowed to look at cards in the Investigation deck except when resolving the Investigate keyword or instructed by a card effect.\nThe Investigation List\nThe Investigation List on page 5 of the rules has the name of all 5 Suspect enemies and all 5 Hideout locations. During the game, players should check enemies and locations off of their Investigation list in order to help them determine the correct Suspect and Hideout by process of elimination.",
+    "is_unique": false,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 999,
+    "quantity": 0,
+    "encounter_set": "Murder at the Prancing Pony",
+    "back_name": "Murder at the Prancing Pony",
+    "back_text": "Investigate X\nInvestigate is a new keyword that represents the heroes' efforts to solve the crime. When an active location with the Investigate keyword is explored, the first player shuffles the Investigation deck and looks at the top X cards. Then, he places those cards back on top of the Investigation deck in the same order.\nWhile the players are at stage 2B, the Investigate keyword on the active location is resolved before the second Forced effect on that stage.\nImmune to Player Card Effects\nCards with the text \"Immune to player card effects\" ignore the effects of all player cards. Additionally, cards that are immune to player card effects cannot be chosen as targets of player card effects.",
+    "back_type_code": "rules",
+    "back_imagesrc": "/cards/526faef8-5db5-48ab-ab22-109916e9fda7.B.jpg",
+    "printed_stats": {},
+    "imagesrc": "/cards/526faef8-5db5-48ab-ab22-109916e9fda7.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 999,
+        "quantity": 0,
+        "octgnid": "526faef8-5db5-48ab-ab22-109916e9fda7",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/526faef8-5db5-48ab-ab22-109916e9fda7.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:54c734a4-b6a9-4c51-a69d-aaa0b7fc2147",
+    "octgnid": "54c734a4-b6a9-4c51-a69d-aaa0b7fc2147",
+    "name": "Ramshackle Manor",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Bree.",
+    "text": "Investigate 2.\nWhen a player card effect reduces a player's threat by any amount, reduce that amount to 1.\nTravel: Raise each player's threat by 1 to travel here.",
+    "is_unique": false,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 16,
+    "quantity": 4,
+    "threat": 2,
+    "quest": 3,
+    "encounter_set": "Murder at the Prancing Pony",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/54c734a4-b6a9-4c51-a69d-aaa0b7fc2147.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 16,
+        "quantity": 4,
+        "octgnid": "54c734a4-b6a9-4c51-a69d-aaa0b7fc2147",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/54c734a4-b6a9-4c51-a69d-aaa0b7fc2147.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:60de774d-eafb-4faa-851e-c28ce6d62f9f",
+    "octgnid": "60de774d-eafb-4faa-851e-c28ce6d62f9f",
+    "name": "The Prancing Pony",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Bree.",
+    "text": "Forced: When The Prancing Pony is explored, the first player must choose: either look at the top 2 cards of the Investigation deck, or each player draws 2 cards.",
+    "is_unique": true,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 15,
+    "quantity": 1,
+    "threat": 2,
+    "quest": 2,
+    "encounter_set": "Murder at the Prancing Pony",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2",
+      "victory": "2"
+    },
+    "imagesrc": "/cards/60de774d-eafb-4faa-851e-c28ce6d62f9f.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 15,
+        "quantity": 1,
+        "octgnid": "60de774d-eafb-4faa-851e-c28ce6d62f9f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/60de774d-eafb-4faa-851e-c28ce6d62f9f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 2
+  },
+  {
+    "code": "octgn:63284aea-d814-4ceb-bb8e-57f402edc54d",
+    "octgnid": "63284aea-d814-4ceb-bb8e-57f402edc54d",
+    "name": "Greenway Footpad",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Brigand.",
+    "text": "When Revealed: Either raise each player's threat by 2, or Greenway Footpad makes an immediate attack against the first player.",
+    "is_unique": false,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 24,
+    "quantity": 4,
+    "threat": 2,
+    "attack": 4,
+    "defense": 2,
+    "health": 4,
+    "engagement": 25,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if your threat is 35 or higher).",
+    "encounter_set": "Murder at the Prancing Pony",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "4",
+      "defense": "2",
+      "health": "4",
+      "engagement": "25"
+    },
+    "imagesrc": "/cards/63284aea-d814-4ceb-bb8e-57f402edc54d.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 24,
+        "quantity": 4,
+        "octgnid": "63284aea-d814-4ceb-bb8e-57f402edc54d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/63284aea-d814-4ceb-bb8e-57f402edc54d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:79a32e57-7973-43bb-92d2-a0da9c13c5c6",
+    "octgnid": "79a32e57-7973-43bb-92d2-a0da9c13c5c6",
+    "name": "Old Warehouse",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Bree.",
+    "text": "Investigate 1.\nForced: When triggering the Investigate keyword on Old Warehouse, the first player must choose: either look at 2 additional cards, or reduce each player's threat by 3.\nTravel: Reveal the top card of the encounter deck to travel here.",
+    "is_unique": false,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 19,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 4,
+    "encounter_set": "Murder at the Prancing Pony",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/79a32e57-7973-43bb-92d2-a0da9c13c5c6.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 19,
+        "quantity": 3,
+        "octgnid": "79a32e57-7973-43bb-92d2-a0da9c13c5c6",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/79a32e57-7973-43bb-92d2-a0da9c13c5c6.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:7e99e1de-9c4f-4dec-9703-359426ba6463",
+    "octgnid": "7e99e1de-9c4f-4dec-9703-359426ba6463",
+    "name": "Rising Body Count",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Either raise each player's threat by 2, or shuffle Rising Body Count into the Investigation deck.",
+    "is_unique": false,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 28,
+    "quantity": 2,
+    "shadow": "Shadow: If this attack destroys a character, either raise your threat by 2, or shuffle Rising Body Count into the Investigation deck.",
+    "encounter_set": "Murder at the Prancing Pony",
+    "printed_stats": {},
+    "imagesrc": "/cards/7e99e1de-9c4f-4dec-9703-359426ba6463.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 28,
+        "quantity": 2,
+        "octgnid": "7e99e1de-9c4f-4dec-9703-359426ba6463",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7e99e1de-9c4f-4dec-9703-359426ba6463.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:80af82a2-4377-4049-bb9d-2d79ad66d1db",
+    "octgnid": "80af82a2-4377-4049-bb9d-2d79ad66d1db",
+    "name": "Dark Alley",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Bree.",
+    "text": "Investigate 3.\nEnemies in the staging area cannot take damage.\nTravel: Shuffle the encounter discard pile into the encounter deck and discard cards until an enemy is discarded. Add the discarded enemy to the staging area.",
+    "is_unique": false,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 17,
+    "quantity": 3,
+    "threat": 4,
+    "quest": 3,
+    "encounter_set": "Murder at the Prancing Pony",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/80af82a2-4377-4049-bb9d-2d79ad66d1db.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 17,
+        "quantity": 3,
+        "octgnid": "80af82a2-4377-4049-bb9d-2d79ad66d1db",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/80af82a2-4377-4049-bb9d-2d79ad66d1db.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8103129a-77e7-47a2-a039-b0eddf305184",
+    "octgnid": "8103129a-77e7-47a2-a039-b0eddf305184",
+    "name": "Chetwood Campsite",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Hideout.",
+    "text": "Immune to player card effects.\nWhile Chetwood Campsite is in the victory display, each Suspect gets +1 [threat], +1 [attack], and +1 [defense].\nTravel: Search the encounter deck and discard pile for a Chetwood Outlaw and add it to the staging area. Shuffle the encounter deck.",
+    "is_unique": true,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 8,
+    "quantity": 1,
+    "threat": 5,
+    "quest": 5,
+    "encounter_set": "Murder at the Prancing Pony",
+    "printed_stats": {
+      "threat": "5",
+      "quest": "5",
+      "victory": "5"
+    },
+    "imagesrc": "/cards/8103129a-77e7-47a2-a039-b0eddf305184.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 8,
+        "quantity": 1,
+        "octgnid": "8103129a-77e7-47a2-a039-b0eddf305184",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8103129a-77e7-47a2-a039-b0eddf305184.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 5
+  },
+  {
+    "code": "octgn:8304616a-8990-4d45-855e-3c106e5c76a7",
+    "octgnid": "8304616a-8990-4d45-855e-3c106e5c76a7",
+    "name": "Taken by Surprise",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Forced: When a player looks at any number of cards from the Investigation deck, if Taken by Surprise is among the looked at cards, shuffle the encounter discard pile into the encounter deck and discard cards until an enemy is discarded. Put the discarded enemy into play engaged with the first player. Then remove Taken by Surprise from the game.",
+    "is_unique": false,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 14,
+    "quantity": 2,
+    "encounter_set": "Murder at the Prancing Pony",
+    "printed_stats": {},
+    "imagesrc": "/cards/8304616a-8990-4d45-855e-3c106e5c76a7.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 14,
+        "quantity": 2,
+        "octgnid": "8304616a-8990-4d45-855e-3c106e5c76a7",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8304616a-8990-4d45-855e-3c106e5c76a7.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:847e6b9c-f795-4625-86d3-4ab6460ccdfe",
+    "octgnid": "847e6b9c-f795-4625-86d3-4ab6460ccdfe",
+    "name": "Old Orc-eyes",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Suspect. Brigand.",
+    "text": "Cannot have attachments.\nForced: After an attack resolves in which Old Orc-eyes was dealt a shadow card with no shadow effect, he makes an additional attack against you. Do not deal Old Orc-eyes a shadow card for this attack.",
+    "is_unique": true,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 13,
+    "quantity": 1,
+    "threat": 3,
+    "attack": 4,
+    "defense": 3,
+    "health": 9,
+    "engagement": 45,
+    "encounter_set": "Murder at the Prancing Pony",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "4",
+      "defense": "3",
+      "health": "9",
+      "engagement": "45",
+      "victory": "5"
+    },
+    "imagesrc": "/cards/847e6b9c-f795-4625-86d3-4ab6460ccdfe.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 13,
+        "quantity": 1,
+        "octgnid": "847e6b9c-f795-4625-86d3-4ab6460ccdfe",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/847e6b9c-f795-4625-86d3-4ab6460ccdfe.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 5
+  },
+  {
+    "code": "octgn:8534990f-7384-4667-b7fc-c22dcfdd6bba",
+    "octgnid": "8534990f-7384-4667-b7fc-c22dcfdd6bba",
+    "name": "Village Stable",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Bree.",
+    "text": "Investigate 1.\nResponse: After triggering the Investigate keyword on Village Stable, if the looked at card is a Suspect or a Hideout, add Village Stable to the victory display to add that card to the staging area.\nTravel: Each player discards 1 random card from his hand to travel here.",
+    "is_unique": false,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 20,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 3,
+    "encounter_set": "Murder at the Prancing Pony",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/8534990f-7384-4667-b7fc-c22dcfdd6bba.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 20,
+        "quantity": 2,
+        "octgnid": "8534990f-7384-4667-b7fc-c22dcfdd6bba",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8534990f-7384-4667-b7fc-c22dcfdd6bba.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:abcc9a29-c485-4f0b-ac1e-c3fb452e0478",
+    "octgnid": "abcc9a29-c485-4f0b-ac1e-c3fb452e0478",
+    "name": "Market Square",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Bree.",
+    "text": "Investigate 2.\nForced: After a player places any amount of progress on a location in the staging area, he raises his threat by 1.\nTravel: Each player spends 1 resource to travel here.",
+    "is_unique": false,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 18,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 4,
+    "encounter_set": "Murder at the Prancing Pony",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/abcc9a29-c485-4f0b-ac1e-c3fb452e0478.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 18,
+        "quantity": 3,
+        "octgnid": "abcc9a29-c485-4f0b-ac1e-c3fb452e0478",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/abcc9a29-c485-4f0b-ac1e-c3fb452e0478.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ba3a1d31-578e-49ee-a309-e16fa5f18df8",
+    "octgnid": "ba3a1d31-578e-49ee-a309-e16fa5f18df8",
+    "name": "Murder at the Prancing Pony",
+    "type_code": "rules",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Making The Accusation\nIn order to advance from stage 2B to stage 3A, the players must \"make the accusation.\" To make the accusation, the first player names 1 Suspect and 1 Hideout. Then, he reveals the facedown, out of play Suspect and Hideout cards and adds them to the staging area.\nIf the revealed Suspect and Hideout are the same as those named by the first player, the accusation is correct and the players have successfully identified the killer and the outlaw's secret hideout.\nIf the out of play cards are not the same as the ones named by the first player, then the accusation is not correct, and the heroes have embroiled themselves in a deeper plot by pursuing the wrong Suspect or investigating the wrong Hideout. If the accusation is not correct, search the Investigation deck for each just named card that is not already in play and add it to the staging area. Then, raise each player's threat by 3.",
+    "is_unique": false,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 999,
+    "quantity": 0,
+    "encounter_set": "Murder at the Prancing Pony",
+    "back_name": "Murder at the Prancing Pony",
+    "back_text": "The Investigation List\nSuspects: Todd the Troll, Susie the Spider, Wolf-pelt Jake, Johnny Goblin-fingers, Old Orc-eyes.\nHideouts: Bill Ferny's House, Staddle Hiding Hole, Combe Storehouse, Archet Trading Post, Chetwood Campsite.",
+    "back_type_code": "rules",
+    "back_imagesrc": "/cards/ba3a1d31-578e-49ee-a309-e16fa5f18df8.B.jpg",
+    "printed_stats": {},
+    "imagesrc": "/cards/ba3a1d31-578e-49ee-a309-e16fa5f18df8.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 999,
+        "quantity": 0,
+        "octgnid": "ba3a1d31-578e-49ee-a309-e16fa5f18df8",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ba3a1d31-578e-49ee-a309-e16fa5f18df8.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:d51db5d2-cd6d-4e28-9c46-c5f0a1c242d9",
+    "octgnid": "d51db5d2-cd6d-4e28-9c46-c5f0a1c242d9",
+    "name": "Archet Trading Post",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Hideout.",
+    "text": "Immune to player card effects.\nWhile Archet Trading Post is in the victory display, each Suspect cannot take more than 5 damage each round.\nTravel: Search the encounter deck and discard pile for a Bree-land Informant and add it to the staging area. Shuffle the encounter deck.",
+    "is_unique": true,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 7,
+    "quantity": 1,
+    "threat": 5,
+    "quest": 5,
+    "encounter_set": "Murder at the Prancing Pony",
+    "printed_stats": {
+      "threat": "5",
+      "quest": "5",
+      "victory": "5"
+    },
+    "imagesrc": "/cards/d51db5d2-cd6d-4e28-9c46-c5f0a1c242d9.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 7,
+        "quantity": 1,
+        "octgnid": "d51db5d2-cd6d-4e28-9c46-c5f0a1c242d9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d51db5d2-cd6d-4e28-9c46-c5f0a1c242d9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 5
+  },
+  {
+    "code": "octgn:e3219c93-d920-43a5-ae8f-743745c3b949",
+    "octgnid": "e3219c93-d920-43a5-ae8f-743745c3b949",
+    "name": "Bree-land Informant",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Bree.",
+    "text": "Response: After Bree-land Informant makes an attack against you, if it was dealt a shadow card with no shadow effect, raise your threat by 1 and spend 1 resource to look at the bottom card of the Investigation deck. Then, discard Bree-land Informant.",
+    "is_unique": false,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 22,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 2,
+    "defense": 1,
+    "health": 3,
+    "engagement": 30,
+    "encounter_set": "Murder at the Prancing Pony",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "2",
+      "defense": "1",
+      "health": "3",
+      "engagement": "30"
+    },
+    "imagesrc": "/cards/e3219c93-d920-43a5-ae8f-743745c3b949.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 22,
+        "quantity": 2,
+        "octgnid": "e3219c93-d920-43a5-ae8f-743745c3b949",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e3219c93-d920-43a5-ae8f-743745c3b949.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e679dcf1-ac02-46f1-b07f-b66e540df9d5",
+    "octgnid": "e679dcf1-ac02-46f1-b07f-b66e540df9d5",
+    "name": "Bill Ferny's House",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Hideout.",
+    "text": "Immune to player card effects.\nWhile Bill Ferny's House is in the victory display, each Suspect, and each shadow card dealt to a Suspect, is immune to player card effects.\nTravel: Search the encounter deck, discard pile and victory display for Bill Ferny and add him to the staging area. Shuffle the encounter deck.",
+    "is_unique": true,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 4,
+    "quantity": 1,
+    "threat": 5,
+    "quest": 5,
+    "encounter_set": "Murder at the Prancing Pony",
+    "printed_stats": {
+      "threat": "5",
+      "quest": "5",
+      "victory": "5"
+    },
+    "imagesrc": "/cards/e679dcf1-ac02-46f1-b07f-b66e540df9d5.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 4,
+        "quantity": 1,
+        "octgnid": "e679dcf1-ac02-46f1-b07f-b66e540df9d5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e679dcf1-ac02-46f1-b07f-b66e540df9d5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 5
+  },
+  {
+    "code": "octgn:e70dc756-86c4-460a-97cd-1d2c65b1e874",
+    "octgnid": "e70dc756-86c4-460a-97cd-1d2c65b1e874",
+    "name": "Johnny Goblin-fingers",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Suspect. Brigand.",
+    "text": "Cannot have attachments.\nForced: When Johnny Goblin-fingers attacks, the defending player discards 1 random card from his hand and raises his threat by X, where X is the printed cost of the discarded card.",
+    "is_unique": true,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 12,
+    "quantity": 1,
+    "threat": 3,
+    "attack": 4,
+    "defense": 4,
+    "health": 6,
+    "engagement": 45,
+    "encounter_set": "Murder at the Prancing Pony",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "4",
+      "defense": "4",
+      "health": "6",
+      "engagement": "45",
+      "victory": "5"
+    },
+    "imagesrc": "/cards/e70dc756-86c4-460a-97cd-1d2c65b1e874.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 12,
+        "quantity": 1,
+        "octgnid": "e70dc756-86c4-460a-97cd-1d2c65b1e874",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e70dc756-86c4-460a-97cd-1d2c65b1e874.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 5
+  },
+  {
+    "code": "octgn:e7f523e1-c898-42f8-93c2-889038de230f",
+    "octgnid": "e7f523e1-c898-42f8-93c2-889038de230f",
+    "name": "Combe Storehouse",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Hideout.",
+    "text": "Immune to player card effects.\nWhile Combe Storehouse is in the victory display, each Suspect gains: \"Forced: After this enemy engages a player, it makes an immediate attack.\"\nTravel: Search the encounter deck and discard pile for a Lawless Ruffian and add it to the staging area. Shuffle the encounter deck.",
+    "is_unique": true,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 6,
+    "quantity": 1,
+    "threat": 5,
+    "quest": 5,
+    "encounter_set": "Murder at the Prancing Pony",
+    "printed_stats": {
+      "threat": "5",
+      "quest": "5",
+      "victory": "5"
+    },
+    "imagesrc": "/cards/e7f523e1-c898-42f8-93c2-889038de230f.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 6,
+        "quantity": 1,
+        "octgnid": "e7f523e1-c898-42f8-93c2-889038de230f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e7f523e1-c898-42f8-93c2-889038de230f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 5
+  },
+  {
+    "code": "octgn:ea6e8450-215c-4a7c-86a3-fe1b8da3791e",
+    "octgnid": "ea6e8450-215c-4a7c-86a3-fe1b8da3791e",
+    "name": "Smoke and Mirrors",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Discard the top X cards of the encounter deck, where X is 1 more than the Investigate value of the active location. Until the end of the phase, add the [threat] of each card discarded by this effect to the total [threat] in the staging area.",
+    "is_unique": false,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 27,
+    "quantity": 3,
+    "shadow": "Shadow: Discard an attachment you control.",
+    "encounter_set": "Murder at the Prancing Pony",
+    "printed_stats": {},
+    "imagesrc": "/cards/ea6e8450-215c-4a7c-86a3-fe1b8da3791e.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 27,
+        "quantity": 3,
+        "octgnid": "ea6e8450-215c-4a7c-86a3-fe1b8da3791e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ea6e8450-215c-4a7c-86a3-fe1b8da3791e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f60662b4-ebfe-4b89-9d1e-124976e6c5b7",
+    "octgnid": "f60662b4-ebfe-4b89-9d1e-124976e6c5b7",
+    "name": "Deadly Accusations",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Raise each player's threat by X, where X is 1 more than the Investigate value of the active location.",
+    "is_unique": false,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 29,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy gets +X [attack], where X is the Investigate value of the active location.",
+    "encounter_set": "Murder at the Prancing Pony",
+    "printed_stats": {},
+    "imagesrc": "/cards/f60662b4-ebfe-4b89-9d1e-124976e6c5b7.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 29,
+        "quantity": 2,
+        "octgnid": "f60662b4-ebfe-4b89-9d1e-124976e6c5b7",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f60662b4-ebfe-4b89-9d1e-124976e6c5b7.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

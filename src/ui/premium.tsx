@@ -131,6 +131,10 @@ export const PLAYMATS = {
     name: "Belegost",
     detail: "The drowned Dwarf city · Naurlhûg's lair",
   },
+  "murder-at-the-prancing-pony": {
+    name: "Bree",
+    detail: "The Prancing Pony · Bree-land's brigands",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -557,6 +561,7 @@ export const PLAYMAT_CHOICES = [
   "the-oath-2018",
   "the-oath",
   "the-ruins-of-belegost",
+  "murder-at-the-prancing-pony",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

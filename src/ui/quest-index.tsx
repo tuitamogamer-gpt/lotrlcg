@@ -167,6 +167,10 @@ const HEADLINES: Partial<
     lead: "Plunder the ruins",
     em: "of Belegost.",
   },
+  "murder-at-the-prancing-pony": {
+    lead: "Find the killer",
+    em: "in Bree.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

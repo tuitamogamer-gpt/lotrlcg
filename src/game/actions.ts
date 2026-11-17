@@ -32,6 +32,7 @@ import { blackGatePublicState } from "./black-gate-support";
 import { mountDoomPublicState } from "./mount-doom-support";
 import { oathPublicState } from "./the-oath-support";
 import { ruinsBelegostPublicState } from "./ruins-belegost-support";
+import { prancingPonyPublicState } from "./prancing-pony-support";
 import { helmsDeepPublicState } from "./helms-deep-support";
 import { roadIsengardPublicState } from "./road-isengard-support";
 import { passageMarshesPublicState } from "./passage-marshes-support";
@@ -3843,6 +3844,7 @@ export function publicState(s: GameState) {
     mountDoom: mountDoomPublicState(s),
     oath: oathPublicState(s),
     ruinsBelegost: ruinsBelegostPublicState(s),
+    prancingPony: prancingPonyPublicState(s),
     fortressNurnPlayers: FortressPlayers.fortressNurnPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),

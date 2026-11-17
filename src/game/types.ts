@@ -301,6 +301,7 @@ export type ScenarioId =
   | "the-oath-2018"
   | "the-oath"
   | "the-ruins-of-belegost"
+  | "murder-at-the-prancing-pony"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -492,6 +493,7 @@ export interface GameState {
   mountDoom?: import("./mount-doom-types").MountDoomState;
   oath?: import("./the-oath-types").OathState;
   ruinsBelegost?: import("./ruins-belegost-types").RuinsBelegostState;
+  prancingPony?: import("./prancing-pony-types").PrancingPonyState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -923,6 +925,8 @@ export interface GameState {
     bgTrollKill?: boolean;
     /** The Ruins of Belegost: Orc of Ered Luin's shadow, the attacker engages the next player and attacks. */
     rbNextPlayer?: boolean;
+    /** Murder at the Prancing Pony: Rising Body Count's shadow waits for a destroyed character. */
+    ppBodyCount?: boolean;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

@@ -1,0 +1,1968 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "Murder at the Prancing Pony",
+  "slug": "murder-at-the-prancing-pony",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "octgn:054189b9-c165-4561-9b62-f0384145da97",
+      "octgnid": "054189b9-c165-4561-9b62-f0384145da97",
+      "name": "Todd the Troll",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Suspect. Brigand.",
+      "text": "Cannot have attachments. Excess combat damage dealt by Todd the Troll (damage dealt beyond the remaining hit points of the character damaged by this attack) must be assigned as an increase to your threat.",
+      "is_unique": true,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 9,
+      "quantity": 1,
+      "threat": 2,
+      "attack": 7,
+      "defense": 2,
+      "health": 10,
+      "engagement": 45,
+      "encounter_set": "Murder at the Prancing Pony",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "7",
+        "defense": "2",
+        "health": "10",
+        "engagement": "45"
+      },
+      "imagesrc": "/cards/054189b9-c165-4561-9b62-f0384145da97.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 9,
+          "quantity": 1,
+          "octgnid": "054189b9-c165-4561-9b62-f0384145da97",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/054189b9-c165-4561-9b62-f0384145da97.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:0c320479-0992-4d16-9ce1-3aeeca8be57c",
+      "octgnid": "0c320479-0992-4d16-9ce1-3aeeca8be57c",
+      "name": "Running out of Time",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "",
+      "is_unique": false,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 2,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "Murder at the Prancing Pony",
+      "side": "A",
+      "back_name": "Running out of Time",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/0c320479-0992-4d16-9ce1-3aeeca8be57c.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/0c320479-0992-4d16-9ce1-3aeeca8be57c.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 2,
+          "quantity": 1,
+          "octgnid": "0c320479-0992-4d16-9ce1-3aeeca8be57c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0c320479-0992-4d16-9ce1-3aeeca8be57c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:0f201650-6d15-4909-9d06-0a87ab94f327",
+      "octgnid": "0f201650-6d15-4909-9d06-0a87ab94f327",
+      "name": "Hired Muscle",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nWhen Revealed: Attach to a Brigand enemy without a copy of Hired Muscle attacked and return that enemy to the staging area. (Counts as a Condition attachment with the text: 'Attached enemy gets +1 [threat], +1 [attack], and +1 [defense] and gains: 'Forced: When attached enemy is defeated, look at the bottom of the Investigation deck.)'",
+      "is_unique": false,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 26,
+      "quantity": 2,
+      "encounter_set": "Murder at the Prancing Pony",
+      "printed_stats": {},
+      "imagesrc": "/cards/0f201650-6d15-4909-9d06-0a87ab94f327.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 26,
+          "quantity": 2,
+          "octgnid": "0f201650-6d15-4909-9d06-0a87ab94f327",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0f201650-6d15-4909-9d06-0a87ab94f327.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:11e8544f-fe65-4365-8f51-10a3ef267dc8",
+      "octgnid": "11e8544f-fe65-4365-8f51-10a3ef267dc8",
+      "name": "Staddle Hiding Hole",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Hideout.",
+      "text": "Immune to player card effects. While Staddle Hiding Hole is in the victory display, each player not engaged with a Suspect cannot declare attackers against that Suspect. Travel: Search the encounter deck and discard pile for a Greenway Footpad, reveal it, and add it to the staging area. Shuffle the encounter deck.",
+      "is_unique": true,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 5,
+      "quantity": 1,
+      "threat": 5,
+      "quest": 5,
+      "encounter_set": "Murder at the Prancing Pony",
+      "printed_stats": {
+        "threat": "5",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/11e8544f-fe65-4365-8f51-10a3ef267dc8.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 5,
+          "quantity": 1,
+          "octgnid": "11e8544f-fe65-4365-8f51-10a3ef267dc8",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/11e8544f-fe65-4365-8f51-10a3ef267dc8.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:1c028523-9f37-4e16-83cf-c9ea1cfbc9d3",
+      "octgnid": "1c028523-9f37-4e16-83cf-c9ea1cfbc9d3",
+      "name": "Susie the Spider",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Suspect. Brigand.",
+      "text": "Cannot have attachments. X is the number of Brigand enemies in play. While at least 1 other Brigand is in play, Susie the Spider cannot take damage.",
+      "is_unique": true,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 10,
+      "quantity": 1,
+      "attack": 5,
+      "defense": 3,
+      "health": 8,
+      "engagement": 45,
+      "encounter_set": "Murder at the Prancing Pony",
+      "printed_stats": {
+        "threat": "X",
+        "attack": "5",
+        "defense": "3",
+        "health": "8",
+        "engagement": "45"
+      },
+      "imagesrc": "/cards/1c028523-9f37-4e16-83cf-c9ea1cfbc9d3.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 10,
+          "quantity": 1,
+          "octgnid": "1c028523-9f37-4e16-83cf-c9ea1cfbc9d3",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1c028523-9f37-4e16-83cf-c9ea1cfbc9d3.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:1de51c4f-659d-465f-bf45-4d6c00c6bdf1",
+      "octgnid": "1de51c4f-659d-465f-bf45-4d6c00c6bdf1",
+      "name": "Chetwood Outlaw",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Brigand.",
+      "text": "Forced: After you optionally engaged Chetwood Outlaw, raise your threat by 4.",
+      "is_unique": false,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 25,
+      "quantity": 3,
+      "threat": 4,
+      "attack": 4,
+      "defense": 3,
+      "health": 5,
+      "engagement": 40,
+      "shadow": "Shadow: Either raise your threat by 2, or return attacking enemy to the staging area after this attack.",
+      "encounter_set": "Murder at the Prancing Pony",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "4",
+        "defense": "3",
+        "health": "5",
+        "engagement": "40"
+      },
+      "imagesrc": "/cards/1de51c4f-659d-465f-bf45-4d6c00c6bdf1.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 25,
+          "quantity": 3,
+          "octgnid": "1de51c4f-659d-465f-bf45-4d6c00c6bdf1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1de51c4f-659d-465f-bf45-4d6c00c6bdf1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2608ba25-8375-4093-9d93-3c8cfa7b697c",
+      "octgnid": "2608ba25-8375-4093-9d93-3c8cfa7b697c",
+      "name": "Lawless Ruffian",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Brigand.",
+      "text": "While engaged with a player with threat 35 or higher, Lawless Ruffian gets +2 [attack].",
+      "is_unique": false,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 23,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 3,
+      "defense": 2,
+      "health": 3,
+      "engagement": 35,
+      "shadow": "Shadow: Attacking enemy makes an additional attack against you after this one.",
+      "encounter_set": "Murder at the Prancing Pony",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "2",
+        "health": "3",
+        "engagement": "35"
+      },
+      "imagesrc": "/cards/2608ba25-8375-4093-9d93-3c8cfa7b697c.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 23,
+          "quantity": 3,
+          "octgnid": "2608ba25-8375-4093-9d93-3c8cfa7b697c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2608ba25-8375-4093-9d93-3c8cfa7b697c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3574e1dd-d730-485e-8c2b-16fb7d52f78b",
+      "octgnid": "3574e1dd-d730-485e-8c2b-16fb7d52f78b",
+      "name": "Bill Ferny",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Bree.",
+      "text": "Cannot be optionally engaged. The first treachery revealed each round gains doomed 1 and its effects cannot be canceled.",
+      "is_unique": true,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 21,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 2,
+      "defense": 3,
+      "health": 5,
+      "engagement": 42,
+      "shadow": "Shadow: Either raise your threat by 4, or this attack is considered undefended.",
+      "encounter_set": "Murder at the Prancing Pony",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "2",
+        "defense": "3",
+        "health": "5",
+        "engagement": "42"
+      },
+      "imagesrc": "/cards/3574e1dd-d730-485e-8c2b-16fb7d52f78b.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 21,
+          "quantity": 1,
+          "octgnid": "3574e1dd-d730-485e-8c2b-16fb7d52f78b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3574e1dd-d730-485e-8c2b-16fb7d52f78b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:518f546e-a3ce-4af8-b89d-2e1a6b765857",
+      "octgnid": "518f546e-a3ce-4af8-b89d-2e1a6b765857",
+      "name": "Wolf-pelt Jake",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Suspect. Brigand.",
+      "text": "Cannot have attachments. Forced: After Wolf-pelt Jake attacks and destroys an ally, return him to the staging area.",
+      "is_unique": true,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 11,
+      "quantity": 1,
+      "threat": 4,
+      "attack": 5,
+      "defense": 3,
+      "health": 7,
+      "engagement": 45,
+      "encounter_set": "Murder at the Prancing Pony",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "5",
+        "defense": "3",
+        "health": "7",
+        "engagement": "45"
+      },
+      "imagesrc": "/cards/518f546e-a3ce-4af8-b89d-2e1a6b765857.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 11,
+          "quantity": 1,
+          "octgnid": "518f546e-a3ce-4af8-b89d-2e1a6b765857",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/518f546e-a3ce-4af8-b89d-2e1a6b765857.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:526faef8-5db5-48ab-ab22-109916e9fda7",
+      "octgnid": "526faef8-5db5-48ab-ab22-109916e9fda7",
+      "name": "Murder at the Prancing Pony",
+      "type_code": "rules",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Rulesheet Card 1",
+      "is_unique": false,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 999,
+      "quantity": 0,
+      "encounter_set": "Murder at the Prancing Pony",
+      "back_name": "Murder at the Prancing Pony",
+      "back_text": "Rulesheet Card 2",
+      "back_type_code": "rules",
+      "back_imagesrc": "/cards/526faef8-5db5-48ab-ab22-109916e9fda7.B.jpg",
+      "printed_stats": {},
+      "imagesrc": "/cards/526faef8-5db5-48ab-ab22-109916e9fda7.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 999,
+          "quantity": 0,
+          "octgnid": "526faef8-5db5-48ab-ab22-109916e9fda7",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/526faef8-5db5-48ab-ab22-109916e9fda7.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:54c734a4-b6a9-4c51-a69d-aaa0b7fc2147",
+      "octgnid": "54c734a4-b6a9-4c51-a69d-aaa0b7fc2147",
+      "name": "Ramshackle Manor",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Bree.",
+      "text": "Investigate 2.\nWhen a player card effect reduces a player's threat by any amount, reducd that amount to 1. Travel: Raise each player's threat by 1 to travel here.",
+      "is_unique": false,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 16,
+      "quantity": 4,
+      "threat": 2,
+      "quest": 3,
+      "encounter_set": "Murder at the Prancing Pony",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/54c734a4-b6a9-4c51-a69d-aaa0b7fc2147.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 16,
+          "quantity": 4,
+          "octgnid": "54c734a4-b6a9-4c51-a69d-aaa0b7fc2147",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/54c734a4-b6a9-4c51-a69d-aaa0b7fc2147.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:576f96a4-fb04-43d6-9786-a0884668a08f",
+      "octgnid": "576f96a4-fb04-43d6-9786-a0884668a08f",
+      "name": "Investigating the Crime",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "",
+      "is_unique": false,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 1,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "Murder at the Prancing Pony",
+      "side": "A",
+      "back_name": "Investigating the Crime",
+      "back_type_code": "quest",
+      "back_quest": 12,
+      "back_imagesrc": "/cards/576f96a4-fb04-43d6-9786-a0884668a08f.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/576f96a4-fb04-43d6-9786-a0884668a08f.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 1,
+          "quantity": 1,
+          "octgnid": "576f96a4-fb04-43d6-9786-a0884668a08f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/576f96a4-fb04-43d6-9786-a0884668a08f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:60de774d-eafb-4faa-851e-c28ce6d62f9f",
+      "octgnid": "60de774d-eafb-4faa-851e-c28ce6d62f9f",
+      "name": "The Prancing Pony",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Bree.",
+      "text": "Forced: When the Prancing Pony is explored, the first player must choose: either look at the top 2 cards of the Investigation deck, or each player draws 2 cards.",
+      "is_unique": true,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 15,
+      "quantity": 1,
+      "threat": 2,
+      "quest": 2,
+      "encounter_set": "Murder at the Prancing Pony",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/60de774d-eafb-4faa-851e-c28ce6d62f9f.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 15,
+          "quantity": 1,
+          "octgnid": "60de774d-eafb-4faa-851e-c28ce6d62f9f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/60de774d-eafb-4faa-851e-c28ce6d62f9f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:63284aea-d814-4ceb-bb8e-57f402edc54d",
+      "octgnid": "63284aea-d814-4ceb-bb8e-57f402edc54d",
+      "name": "Greenway Footpad",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Brigand.",
+      "text": "When Revealed: Either raise each player's threat by 2 or Greenway Footpad makes an immediate attack against the first player.",
+      "is_unique": false,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 24,
+      "quantity": 4,
+      "threat": 2,
+      "attack": 4,
+      "defense": 2,
+      "health": 4,
+      "engagement": 25,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if your threat is 35 or higher).",
+      "encounter_set": "Murder at the Prancing Pony",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "2",
+        "health": "4",
+        "engagement": "25"
+      },
+      "imagesrc": "/cards/63284aea-d814-4ceb-bb8e-57f402edc54d.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 24,
+          "quantity": 4,
+          "octgnid": "63284aea-d814-4ceb-bb8e-57f402edc54d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/63284aea-d814-4ceb-bb8e-57f402edc54d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:79a32e57-7973-43bb-92d2-a0da9c13c5c6",
+      "octgnid": "79a32e57-7973-43bb-92d2-a0da9c13c5c6",
+      "name": "Old Warehouse",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Bree.",
+      "text": "Investigate 1.\nForced: When triggering the Investigate keyword on Old Warehouse, the first player must choose: either look at 2 additional card, or reduce each player's threat by 3. Travel: Reveal the top card of the encounter deck to travel here.",
+      "is_unique": false,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 19,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 4,
+      "encounter_set": "Murder at the Prancing Pony",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/79a32e57-7973-43bb-92d2-a0da9c13c5c6.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 19,
+          "quantity": 3,
+          "octgnid": "79a32e57-7973-43bb-92d2-a0da9c13c5c6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/79a32e57-7973-43bb-92d2-a0da9c13c5c6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7e99e1de-9c4f-4dec-9703-359426ba6463",
+      "octgnid": "7e99e1de-9c4f-4dec-9703-359426ba6463",
+      "name": "Rising Body Count",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Either raise each player's threat by 2, or shuffle Rising Body Count into the Investigation deck.",
+      "is_unique": false,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 28,
+      "quantity": 2,
+      "shadow": "Shadow: If this attack destroys a character, either raise your threat by 2, or shuffle Rising Body Count into the Investigation deck.",
+      "encounter_set": "Murder at the Prancing Pony",
+      "printed_stats": {},
+      "imagesrc": "/cards/7e99e1de-9c4f-4dec-9703-359426ba6463.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 28,
+          "quantity": 2,
+          "octgnid": "7e99e1de-9c4f-4dec-9703-359426ba6463",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7e99e1de-9c4f-4dec-9703-359426ba6463.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:80af82a2-4377-4049-bb9d-2d79ad66d1db",
+      "octgnid": "80af82a2-4377-4049-bb9d-2d79ad66d1db",
+      "name": "Dark Alley",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Bree.",
+      "text": "Investigate 3.\nEnemies in the staging area cannot take damage. Travel: Shuffle the encounter discard pile into the encounter deck and discard cards until an enemy is discarded. Add the discarded enemy to the staging area.",
+      "is_unique": false,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 17,
+      "quantity": 3,
+      "threat": 4,
+      "quest": 3,
+      "encounter_set": "Murder at the Prancing Pony",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/80af82a2-4377-4049-bb9d-2d79ad66d1db.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 17,
+          "quantity": 3,
+          "octgnid": "80af82a2-4377-4049-bb9d-2d79ad66d1db",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/80af82a2-4377-4049-bb9d-2d79ad66d1db.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8103129a-77e7-47a2-a039-b0eddf305184",
+      "octgnid": "8103129a-77e7-47a2-a039-b0eddf305184",
+      "name": "Chetwood Campsite",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Hideout.",
+      "text": "Immune to player card effects. While Chetwood Campsite is in the victory display, each Suspect gets +1 [threat], +1 [attack], and +1 [defense]. Travel: Search the encounter deck and discard pile for a Chetwood Outlaw and add it to the staging area. Shuffle the encounter deck.",
+      "is_unique": true,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 8,
+      "quantity": 1,
+      "threat": 5,
+      "quest": 5,
+      "encounter_set": "Murder at the Prancing Pony",
+      "printed_stats": {
+        "threat": "5",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/8103129a-77e7-47a2-a039-b0eddf305184.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 8,
+          "quantity": 1,
+          "octgnid": "8103129a-77e7-47a2-a039-b0eddf305184",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8103129a-77e7-47a2-a039-b0eddf305184.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8304616a-8990-4d45-855e-3c106e5c76a7",
+      "octgnid": "8304616a-8990-4d45-855e-3c106e5c76a7",
+      "name": "Taken by Surprise",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Forced: When a player looks at any number of cards from the Investigation deck, if Taken by Surprise is among the looked at cards, shuffle the encounter discard pile into the encounter deck and discard cards until an enemy is discarded. Put the discarded enemy into play engaged with the first player. Then remove Taken by Surprise from the game.",
+      "is_unique": false,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 14,
+      "quantity": 2,
+      "encounter_set": "Murder at the Prancing Pony",
+      "printed_stats": {},
+      "imagesrc": "/cards/8304616a-8990-4d45-855e-3c106e5c76a7.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 14,
+          "quantity": 2,
+          "octgnid": "8304616a-8990-4d45-855e-3c106e5c76a7",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8304616a-8990-4d45-855e-3c106e5c76a7.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:847e6b9c-f795-4625-86d3-4ab6460ccdfe",
+      "octgnid": "847e6b9c-f795-4625-86d3-4ab6460ccdfe",
+      "name": "Old Orc-eyes",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Suspect. Brigand.",
+      "text": "Cannot have attachments. Forced: After an attack resolves in which Old Orc-eyes was dealt a shadow card with no shadow effect, he makes an additional attack against you. Do not deal Old Orc-eyes a shadow cad for this attack.",
+      "is_unique": true,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 13,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 4,
+      "defense": 3,
+      "health": 9,
+      "engagement": 45,
+      "encounter_set": "Murder at the Prancing Pony",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "4",
+        "defense": "3",
+        "health": "9",
+        "engagement": "45"
+      },
+      "imagesrc": "/cards/847e6b9c-f795-4625-86d3-4ab6460ccdfe.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 13,
+          "quantity": 1,
+          "octgnid": "847e6b9c-f795-4625-86d3-4ab6460ccdfe",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/847e6b9c-f795-4625-86d3-4ab6460ccdfe.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8534990f-7384-4667-b7fc-c22dcfdd6bba",
+      "octgnid": "8534990f-7384-4667-b7fc-c22dcfdd6bba",
+      "name": "Village Stable",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Bree.",
+      "text": "Investigate 1.\nResponse: After triggering the Investigate keyword on Village Stable, if the looked at card is a Suspect or a Hideout, add Village Stable to the victory display to add that card to the staging area. Travel: Each player discards 1 random card from his hand to travel here.",
+      "is_unique": false,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 20,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 3,
+      "encounter_set": "Murder at the Prancing Pony",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/8534990f-7384-4667-b7fc-c22dcfdd6bba.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 20,
+          "quantity": 2,
+          "octgnid": "8534990f-7384-4667-b7fc-c22dcfdd6bba",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8534990f-7384-4667-b7fc-c22dcfdd6bba.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:abcc9a29-c485-4f0b-ac1e-c3fb452e0478",
+      "octgnid": "abcc9a29-c485-4f0b-ac1e-c3fb452e0478",
+      "name": "Market Square",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Bree.",
+      "text": "Investigate 2.\nForced: After a player places any amount of progress on a location in the staging area, he raises his threat by 1. Travel: Each player spends 1 resource to travel here.",
+      "is_unique": false,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 18,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 4,
+      "encounter_set": "Murder at the Prancing Pony",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/abcc9a29-c485-4f0b-ac1e-c3fb452e0478.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 18,
+          "quantity": 3,
+          "octgnid": "abcc9a29-c485-4f0b-ac1e-c3fb452e0478",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/abcc9a29-c485-4f0b-ac1e-c3fb452e0478.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ba3a1d31-578e-49ee-a309-e16fa5f18df8",
+      "octgnid": "ba3a1d31-578e-49ee-a309-e16fa5f18df8",
+      "name": "Murder at the Prancing Pony",
+      "type_code": "rules",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Rulesheet Card 3",
+      "is_unique": false,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 999,
+      "quantity": 0,
+      "encounter_set": "Murder at the Prancing Pony",
+      "back_name": "Murder at the Prancing Pony",
+      "back_text": "Rulesheet Card 4",
+      "back_type_code": "rules",
+      "back_imagesrc": "/cards/ba3a1d31-578e-49ee-a309-e16fa5f18df8.B.jpg",
+      "printed_stats": {},
+      "imagesrc": "/cards/ba3a1d31-578e-49ee-a309-e16fa5f18df8.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 999,
+          "quantity": 0,
+          "octgnid": "ba3a1d31-578e-49ee-a309-e16fa5f18df8",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ba3a1d31-578e-49ee-a309-e16fa5f18df8.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d51db5d2-cd6d-4e28-9c46-c5f0a1c242d9",
+      "octgnid": "d51db5d2-cd6d-4e28-9c46-c5f0a1c242d9",
+      "name": "Archet Trading Post",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Hideout.",
+      "text": "Immune to player card effects. While Archet Trading Post is in the victory display, each Suspect cannot take more than 5 damage each round. Travel: Search the encounter deck and discard pile for a Bree-land Informant and add it to the staging area. Shuffle the encounter deck.",
+      "is_unique": true,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 7,
+      "quantity": 1,
+      "threat": 5,
+      "quest": 5,
+      "encounter_set": "Murder at the Prancing Pony",
+      "printed_stats": {
+        "threat": "5",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/d51db5d2-cd6d-4e28-9c46-c5f0a1c242d9.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 7,
+          "quantity": 1,
+          "octgnid": "d51db5d2-cd6d-4e28-9c46-c5f0a1c242d9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d51db5d2-cd6d-4e28-9c46-c5f0a1c242d9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e3219c93-d920-43a5-ae8f-743745c3b949",
+      "octgnid": "e3219c93-d920-43a5-ae8f-743745c3b949",
+      "name": "Bree-land Informant",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Bree.",
+      "text": "Response: After Bree-land Information makes an attack against you, if it was dealt a shadow card with no shadow effect, raise your threat by 1 and spend 1 resource to look at the bottom card of the Investigation deck. Then, discard Bree-land Informant.",
+      "is_unique": false,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 22,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 2,
+      "defense": 1,
+      "health": 3,
+      "engagement": 30,
+      "encounter_set": "Murder at the Prancing Pony",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "2",
+        "defense": "1",
+        "health": "3",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/e3219c93-d920-43a5-ae8f-743745c3b949.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 22,
+          "quantity": 2,
+          "octgnid": "e3219c93-d920-43a5-ae8f-743745c3b949",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e3219c93-d920-43a5-ae8f-743745c3b949.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e679dcf1-ac02-46f1-b07f-b66e540df9d5",
+      "octgnid": "e679dcf1-ac02-46f1-b07f-b66e540df9d5",
+      "name": "Bill Ferny's House",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Hideout.",
+      "text": "Immune to player card effects. While Bill Ferny's House is in the victory display, each Suspect, and each shadow card dealt to a Suspect, is immune to player card effects. Travel: Search the encounter deck, discard pile and victory display for Bill Ferny and add him to the staging area. Shuffle the encounter deck.",
+      "is_unique": true,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 4,
+      "quantity": 1,
+      "threat": 5,
+      "quest": 5,
+      "encounter_set": "Murder at the Prancing Pony",
+      "printed_stats": {
+        "threat": "5",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/e679dcf1-ac02-46f1-b07f-b66e540df9d5.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 4,
+          "quantity": 1,
+          "octgnid": "e679dcf1-ac02-46f1-b07f-b66e540df9d5",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e679dcf1-ac02-46f1-b07f-b66e540df9d5.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e70dc756-86c4-460a-97cd-1d2c65b1e874",
+      "octgnid": "e70dc756-86c4-460a-97cd-1d2c65b1e874",
+      "name": "Johnny Goblin-fingers",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Suspect. Brigand.",
+      "text": "Cannot have attachments. Forced: When Johnny Goblin-finders attacks, the defending player discards 1 random card from his hand and raises his threat by X, where X is the printed cost of the discarded card.",
+      "is_unique": true,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 12,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 4,
+      "defense": 4,
+      "health": 6,
+      "engagement": 45,
+      "encounter_set": "Murder at the Prancing Pony",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "4",
+        "defense": "4",
+        "health": "6",
+        "engagement": "45"
+      },
+      "imagesrc": "/cards/e70dc756-86c4-460a-97cd-1d2c65b1e874.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 12,
+          "quantity": 1,
+          "octgnid": "e70dc756-86c4-460a-97cd-1d2c65b1e874",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e70dc756-86c4-460a-97cd-1d2c65b1e874.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e7f523e1-c898-42f8-93c2-889038de230f",
+      "octgnid": "e7f523e1-c898-42f8-93c2-889038de230f",
+      "name": "Combe Storehouse",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Hideout.",
+      "text": "Immune to player card effects. While Combe Storehouse is in the victory display, each Suspect gains: 'Forced: After this enemy engages a player, it makes an immediate attack.' Travel: Search the encounter deck and discard pile for a Lawless Ruffian and add it to the staging area. Shuffle the encounter deck.",
+      "is_unique": true,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 6,
+      "quantity": 1,
+      "threat": 5,
+      "quest": 5,
+      "encounter_set": "Murder at the Prancing Pony",
+      "printed_stats": {
+        "threat": "5",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/e7f523e1-c898-42f8-93c2-889038de230f.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 6,
+          "quantity": 1,
+          "octgnid": "e7f523e1-c898-42f8-93c2-889038de230f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e7f523e1-c898-42f8-93c2-889038de230f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ea6e8450-215c-4a7c-86a3-fe1b8da3791e",
+      "octgnid": "ea6e8450-215c-4a7c-86a3-fe1b8da3791e",
+      "name": "Smoke and Mirrors",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nWhen Revealed: Discard the top X cards of the encounter deck, where X is 1 more than the Investigate value of the active location. Until the end of the phase, add the Threat of each card discarded by this effect to the total Threat in the staging area.",
+      "is_unique": false,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 27,
+      "quantity": 3,
+      "shadow": "Shadow: Discard an attachment you control.",
+      "encounter_set": "Murder at the Prancing Pony",
+      "printed_stats": {},
+      "imagesrc": "/cards/ea6e8450-215c-4a7c-86a3-fe1b8da3791e.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 27,
+          "quantity": 3,
+          "octgnid": "ea6e8450-215c-4a7c-86a3-fe1b8da3791e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ea6e8450-215c-4a7c-86a3-fe1b8da3791e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f2319b29-4236-4a66-87dd-36a4ed8e2880",
+      "octgnid": "f2319b29-4236-4a66-87dd-36a4ed8e2880",
+      "name": "Apprehending the Killer",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "",
+      "is_unique": false,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 3,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "Murder at the Prancing Pony",
+      "side": "A",
+      "back_name": "Apprehending the Killer",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/f2319b29-4236-4a66-87dd-36a4ed8e2880.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/f2319b29-4236-4a66-87dd-36a4ed8e2880.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 3,
+          "quantity": 1,
+          "octgnid": "f2319b29-4236-4a66-87dd-36a4ed8e2880",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f2319b29-4236-4a66-87dd-36a4ed8e2880.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f60662b4-ebfe-4b89-9d1e-124976e6c5b7",
+      "octgnid": "f60662b4-ebfe-4b89-9d1e-124976e6c5b7",
+      "name": "Deadly Accusations",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Raise each player's threat by X, where X is 1 more than the Investigate value of the active location.",
+      "is_unique": false,
+      "pack_code": "MatPP",
+      "pack_name": "Murder at the Prancing Pony",
+      "position": 29,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +X [attack], where X is the Investigate value of the active location.",
+      "encounter_set": "Murder at the Prancing Pony",
+      "printed_stats": {},
+      "imagesrc": "/cards/f60662b4-ebfe-4b89-9d1e-124976e6c5b7.jpg",
+      "packs": [
+        {
+          "pack_code": "MatPP",
+          "pack_name": "Murder at the Prancing Pony",
+          "position": 29,
+          "quantity": 2,
+          "octgnid": "f60662b4-ebfe-4b89-9d1e-124976e6c5b7",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f60662b4-ebfe-4b89-9d1e-124976e6c5b7.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E99.07",
+      "name": "Murder at the Prancing Pony (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "MatPP"
+      ],
+      "card_codes": [
+        "octgn:576f96a4-fb04-43d6-9786-a0884668a08f",
+        "octgn:0c320479-0992-4d16-9ce1-3aeeca8be57c",
+        "octgn:f2319b29-4236-4a66-87dd-36a4ed8e2880",
+        "octgn:e3219c93-d920-43a5-ae8f-743745c3b949",
+        "octgn:2608ba25-8375-4093-9d93-3c8cfa7b697c",
+        "octgn:63284aea-d814-4ceb-bb8e-57f402edc54d",
+        "octgn:1de51c4f-659d-465f-bf45-4d6c00c6bdf1",
+        "octgn:54c734a4-b6a9-4c51-a69d-aaa0b7fc2147",
+        "octgn:80af82a2-4377-4049-bb9d-2d79ad66d1db",
+        "octgn:79a32e57-7973-43bb-92d2-a0da9c13c5c6",
+        "octgn:8534990f-7384-4667-b7fc-c22dcfdd6bba",
+        "octgn:0f201650-6d15-4909-9d06-0a87ab94f327",
+        "octgn:ea6e8450-215c-4a7c-86a3-fe1b8da3791e",
+        "octgn:7e99e1de-9c4f-4dec-9703-359426ba6463",
+        "octgn:f60662b4-ebfe-4b89-9d1e-124976e6c5b7",
+        "octgn:3574e1dd-d730-485e-8c2b-16fb7d52f78b",
+        "octgn:abcc9a29-c485-4f0b-ac1e-c3fb452e0478",
+        "octgn:526faef8-5db5-48ab-ab22-109916e9fda7",
+        "octgn:ba3a1d31-578e-49ee-a309-e16fa5f18df8",
+        "octgn:054189b9-c165-4561-9b62-f0384145da97",
+        "octgn:1c028523-9f37-4e16-83cf-c9ea1cfbc9d3",
+        "octgn:518f546e-a3ce-4af8-b89d-2e1a6b765857",
+        "octgn:e70dc756-86c4-460a-97cd-1d2c65b1e874",
+        "octgn:847e6b9c-f795-4625-86d3-4ab6460ccdfe",
+        "octgn:e679dcf1-ac02-46f1-b07f-b66e540df9d5",
+        "octgn:11e8544f-fe65-4365-8f51-10a3ef267dc8",
+        "octgn:e7f523e1-c898-42f8-93c2-889038de230f",
+        "octgn:d51db5d2-cd6d-4e28-9c46-c5f0a1c242d9",
+        "octgn:8103129a-77e7-47a2-a039-b0eddf305184",
+        "octgn:8304616a-8990-4d45-855e-3c106e5c76a7",
+        "octgn:60de774d-eafb-4faa-851e-c28ce6d62f9f"
+      ],
+      "cards": [
+        {
+          "code": "octgn:576f96a4-fb04-43d6-9786-a0884668a08f",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:0c320479-0992-4d16-9ce1-3aeeca8be57c",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:f2319b29-4236-4a66-87dd-36a4ed8e2880",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:e3219c93-d920-43a5-ae8f-743745c3b949",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2608ba25-8375-4093-9d93-3c8cfa7b697c",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:63284aea-d814-4ceb-bb8e-57f402edc54d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1de51c4f-659d-465f-bf45-4d6c00c6bdf1",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:54c734a4-b6a9-4c51-a69d-aaa0b7fc2147",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:80af82a2-4377-4049-bb9d-2d79ad66d1db",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:79a32e57-7973-43bb-92d2-a0da9c13c5c6",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8534990f-7384-4667-b7fc-c22dcfdd6bba",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:0f201650-6d15-4909-9d06-0a87ab94f327",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ea6e8450-215c-4a7c-86a3-fe1b8da3791e",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7e99e1de-9c4f-4dec-9703-359426ba6463",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f60662b4-ebfe-4b89-9d1e-124976e6c5b7",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3574e1dd-d730-485e-8c2b-16fb7d52f78b",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:abcc9a29-c485-4f0b-ac1e-c3fb452e0478",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:526faef8-5db5-48ab-ab22-109916e9fda7",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:ba3a1d31-578e-49ee-a309-e16fa5f18df8",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:054189b9-c165-4561-9b62-f0384145da97",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:1c028523-9f37-4e16-83cf-c9ea1cfbc9d3",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:518f546e-a3ce-4af8-b89d-2e1a6b765857",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:e70dc756-86c4-460a-97cd-1d2c65b1e874",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:847e6b9c-f795-4625-86d3-4ab6460ccdfe",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:e679dcf1-ac02-46f1-b07f-b66e540df9d5",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:11e8544f-fe65-4365-8f51-10a3ef267dc8",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:e7f523e1-c898-42f8-93c2-889038de230f",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:d51db5d2-cd6d-4e28-9c46-c5f0a1c242d9",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:8103129a-77e7-47a2-a039-b0eddf305184",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:8304616a-8990-4d45-855e-3c106e5c76a7",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:60de774d-eafb-4faa-851e-c28ce6d62f9f",
+          "quantity": 1,
+          "section": "sharedActiveLocation"
+        },
+        {
+          "code": "octgn:54c734a4-b6a9-4c51-a69d-aaa0b7fc2147",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:576f96a4-fb04-43d6-9786-a0884668a08f": 1,
+          "octgn:0c320479-0992-4d16-9ce1-3aeeca8be57c": 1,
+          "octgn:f2319b29-4236-4a66-87dd-36a4ed8e2880": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:e3219c93-d920-43a5-ae8f-743745c3b949": 2,
+          "octgn:2608ba25-8375-4093-9d93-3c8cfa7b697c": 3,
+          "octgn:63284aea-d814-4ceb-bb8e-57f402edc54d": 2,
+          "octgn:1de51c4f-659d-465f-bf45-4d6c00c6bdf1": 2,
+          "octgn:54c734a4-b6a9-4c51-a69d-aaa0b7fc2147": 3,
+          "octgn:80af82a2-4377-4049-bb9d-2d79ad66d1db": 1,
+          "octgn:79a32e57-7973-43bb-92d2-a0da9c13c5c6": 3,
+          "octgn:8534990f-7384-4667-b7fc-c22dcfdd6bba": 2,
+          "octgn:0f201650-6d15-4909-9d06-0a87ab94f327": 2,
+          "octgn:ea6e8450-215c-4a7c-86a3-fe1b8da3791e": 1,
+          "octgn:7e99e1de-9c4f-4dec-9703-359426ba6463": 2,
+          "octgn:f60662b4-ebfe-4b89-9d1e-124976e6c5b7": 1,
+          "octgn:3574e1dd-d730-485e-8c2b-16fb7d52f78b": 1,
+          "octgn:abcc9a29-c485-4f0b-ac1e-c3fb452e0478": 2
+        },
+        "sharedSetAside": {
+          "octgn:526faef8-5db5-48ab-ab22-109916e9fda7": 1,
+          "octgn:ba3a1d31-578e-49ee-a309-e16fa5f18df8": 1,
+          "octgn:054189b9-c165-4561-9b62-f0384145da97": 1,
+          "octgn:1c028523-9f37-4e16-83cf-c9ea1cfbc9d3": 1,
+          "octgn:518f546e-a3ce-4af8-b89d-2e1a6b765857": 1,
+          "octgn:e70dc756-86c4-460a-97cd-1d2c65b1e874": 1,
+          "octgn:847e6b9c-f795-4625-86d3-4ab6460ccdfe": 1,
+          "octgn:e679dcf1-ac02-46f1-b07f-b66e540df9d5": 1,
+          "octgn:11e8544f-fe65-4365-8f51-10a3ef267dc8": 1,
+          "octgn:e7f523e1-c898-42f8-93c2-889038de230f": 1,
+          "octgn:d51db5d2-cd6d-4e28-9c46-c5f0a1c242d9": 1,
+          "octgn:8103129a-77e7-47a2-a039-b0eddf305184": 1,
+          "octgn:8304616a-8990-4d45-855e-3c106e5c76a7": 1
+        },
+        "sharedActiveLocation": {
+          "octgn:60de774d-eafb-4faa-851e-c28ce6d62f9f": 1
+        },
+        "sharedStagingArea": {
+          "octgn:54c734a4-b6a9-4c51-a69d-aaa0b7fc2147": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q99.07",
+      "name": "Murder at the Prancing Pony",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "MatPP"
+      ],
+      "card_codes": [
+        "octgn:576f96a4-fb04-43d6-9786-a0884668a08f",
+        "octgn:0c320479-0992-4d16-9ce1-3aeeca8be57c",
+        "octgn:f2319b29-4236-4a66-87dd-36a4ed8e2880",
+        "octgn:e3219c93-d920-43a5-ae8f-743745c3b949",
+        "octgn:2608ba25-8375-4093-9d93-3c8cfa7b697c",
+        "octgn:63284aea-d814-4ceb-bb8e-57f402edc54d",
+        "octgn:1de51c4f-659d-465f-bf45-4d6c00c6bdf1",
+        "octgn:54c734a4-b6a9-4c51-a69d-aaa0b7fc2147",
+        "octgn:80af82a2-4377-4049-bb9d-2d79ad66d1db",
+        "octgn:79a32e57-7973-43bb-92d2-a0da9c13c5c6",
+        "octgn:8534990f-7384-4667-b7fc-c22dcfdd6bba",
+        "octgn:0f201650-6d15-4909-9d06-0a87ab94f327",
+        "octgn:ea6e8450-215c-4a7c-86a3-fe1b8da3791e",
+        "octgn:7e99e1de-9c4f-4dec-9703-359426ba6463",
+        "octgn:f60662b4-ebfe-4b89-9d1e-124976e6c5b7",
+        "octgn:3574e1dd-d730-485e-8c2b-16fb7d52f78b",
+        "octgn:abcc9a29-c485-4f0b-ac1e-c3fb452e0478",
+        "octgn:526faef8-5db5-48ab-ab22-109916e9fda7",
+        "octgn:ba3a1d31-578e-49ee-a309-e16fa5f18df8",
+        "octgn:054189b9-c165-4561-9b62-f0384145da97",
+        "octgn:1c028523-9f37-4e16-83cf-c9ea1cfbc9d3",
+        "octgn:518f546e-a3ce-4af8-b89d-2e1a6b765857",
+        "octgn:e70dc756-86c4-460a-97cd-1d2c65b1e874",
+        "octgn:847e6b9c-f795-4625-86d3-4ab6460ccdfe",
+        "octgn:e679dcf1-ac02-46f1-b07f-b66e540df9d5",
+        "octgn:11e8544f-fe65-4365-8f51-10a3ef267dc8",
+        "octgn:e7f523e1-c898-42f8-93c2-889038de230f",
+        "octgn:d51db5d2-cd6d-4e28-9c46-c5f0a1c242d9",
+        "octgn:8103129a-77e7-47a2-a039-b0eddf305184",
+        "octgn:8304616a-8990-4d45-855e-3c106e5c76a7",
+        "octgn:60de774d-eafb-4faa-851e-c28ce6d62f9f"
+      ],
+      "cards": [
+        {
+          "code": "octgn:576f96a4-fb04-43d6-9786-a0884668a08f",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:0c320479-0992-4d16-9ce1-3aeeca8be57c",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:f2319b29-4236-4a66-87dd-36a4ed8e2880",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:e3219c93-d920-43a5-ae8f-743745c3b949",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2608ba25-8375-4093-9d93-3c8cfa7b697c",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:63284aea-d814-4ceb-bb8e-57f402edc54d",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1de51c4f-659d-465f-bf45-4d6c00c6bdf1",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:54c734a4-b6a9-4c51-a69d-aaa0b7fc2147",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:80af82a2-4377-4049-bb9d-2d79ad66d1db",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:79a32e57-7973-43bb-92d2-a0da9c13c5c6",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8534990f-7384-4667-b7fc-c22dcfdd6bba",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:0f201650-6d15-4909-9d06-0a87ab94f327",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ea6e8450-215c-4a7c-86a3-fe1b8da3791e",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7e99e1de-9c4f-4dec-9703-359426ba6463",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f60662b4-ebfe-4b89-9d1e-124976e6c5b7",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3574e1dd-d730-485e-8c2b-16fb7d52f78b",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:abcc9a29-c485-4f0b-ac1e-c3fb452e0478",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:526faef8-5db5-48ab-ab22-109916e9fda7",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:ba3a1d31-578e-49ee-a309-e16fa5f18df8",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:054189b9-c165-4561-9b62-f0384145da97",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:1c028523-9f37-4e16-83cf-c9ea1cfbc9d3",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:518f546e-a3ce-4af8-b89d-2e1a6b765857",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:e70dc756-86c4-460a-97cd-1d2c65b1e874",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:847e6b9c-f795-4625-86d3-4ab6460ccdfe",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:e679dcf1-ac02-46f1-b07f-b66e540df9d5",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:11e8544f-fe65-4365-8f51-10a3ef267dc8",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:e7f523e1-c898-42f8-93c2-889038de230f",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:d51db5d2-cd6d-4e28-9c46-c5f0a1c242d9",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:8103129a-77e7-47a2-a039-b0eddf305184",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:8304616a-8990-4d45-855e-3c106e5c76a7",
+          "quantity": 2,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:54c734a4-b6a9-4c51-a69d-aaa0b7fc2147",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:60de774d-eafb-4faa-851e-c28ce6d62f9f",
+          "quantity": 1,
+          "section": "sharedActiveLocation"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:576f96a4-fb04-43d6-9786-a0884668a08f": 1,
+          "octgn:0c320479-0992-4d16-9ce1-3aeeca8be57c": 1,
+          "octgn:f2319b29-4236-4a66-87dd-36a4ed8e2880": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:e3219c93-d920-43a5-ae8f-743745c3b949": 2,
+          "octgn:2608ba25-8375-4093-9d93-3c8cfa7b697c": 3,
+          "octgn:63284aea-d814-4ceb-bb8e-57f402edc54d": 4,
+          "octgn:1de51c4f-659d-465f-bf45-4d6c00c6bdf1": 3,
+          "octgn:54c734a4-b6a9-4c51-a69d-aaa0b7fc2147": 3,
+          "octgn:80af82a2-4377-4049-bb9d-2d79ad66d1db": 3,
+          "octgn:79a32e57-7973-43bb-92d2-a0da9c13c5c6": 3,
+          "octgn:8534990f-7384-4667-b7fc-c22dcfdd6bba": 2,
+          "octgn:0f201650-6d15-4909-9d06-0a87ab94f327": 2,
+          "octgn:ea6e8450-215c-4a7c-86a3-fe1b8da3791e": 3,
+          "octgn:7e99e1de-9c4f-4dec-9703-359426ba6463": 2,
+          "octgn:f60662b4-ebfe-4b89-9d1e-124976e6c5b7": 2,
+          "octgn:3574e1dd-d730-485e-8c2b-16fb7d52f78b": 1,
+          "octgn:abcc9a29-c485-4f0b-ac1e-c3fb452e0478": 3
+        },
+        "sharedSetAside": {
+          "octgn:526faef8-5db5-48ab-ab22-109916e9fda7": 1,
+          "octgn:ba3a1d31-578e-49ee-a309-e16fa5f18df8": 1,
+          "octgn:054189b9-c165-4561-9b62-f0384145da97": 1,
+          "octgn:1c028523-9f37-4e16-83cf-c9ea1cfbc9d3": 1,
+          "octgn:518f546e-a3ce-4af8-b89d-2e1a6b765857": 1,
+          "octgn:e70dc756-86c4-460a-97cd-1d2c65b1e874": 1,
+          "octgn:847e6b9c-f795-4625-86d3-4ab6460ccdfe": 1,
+          "octgn:e679dcf1-ac02-46f1-b07f-b66e540df9d5": 1,
+          "octgn:11e8544f-fe65-4365-8f51-10a3ef267dc8": 1,
+          "octgn:e7f523e1-c898-42f8-93c2-889038de230f": 1,
+          "octgn:d51db5d2-cd6d-4e28-9c46-c5f0a1c242d9": 1,
+          "octgn:8103129a-77e7-47a2-a039-b0eddf305184": 1,
+          "octgn:8304616a-8990-4d45-855e-3c106e5c76a7": 2
+        },
+        "sharedStagingArea": {
+          "octgn:54c734a4-b6a9-4c51-a69d-aaa0b7fc2147": 1
+        },
+        "sharedActiveLocation": {
+          "octgn:60de774d-eafb-4faa-851e-c28ce6d62f9f": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:054189b9-c165-4561-9b62-f0384145da97",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/054189b9-c165-4561-9b62-f0384145da97.jpg",
+      "localPath": "/cards/054189b9-c165-4561-9b62-f0384145da97.jpg",
+      "bytes": 122740,
+      "sha256": "7fe62e4cdc4de2d5e0998c21a0d53168dd86cb7a042af8c8b2a6301d21f64ee3"
+    },
+    {
+      "code": "octgn:0c320479-0992-4d16-9ce1-3aeeca8be57c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0c320479-0992-4d16-9ce1-3aeeca8be57c.jpg",
+      "localPath": "/cards/0c320479-0992-4d16-9ce1-3aeeca8be57c.jpg",
+      "bytes": 123909,
+      "sha256": "2faf8c4991b41afa994247e8f2a90c194619609358c67cc44f129b62d46d463e"
+    },
+    {
+      "code": "octgn:0c320479-0992-4d16-9ce1-3aeeca8be57c",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0c320479-0992-4d16-9ce1-3aeeca8be57c.B.jpg",
+      "localPath": "/cards/0c320479-0992-4d16-9ce1-3aeeca8be57c.B.jpg",
+      "bytes": 122112,
+      "sha256": "4ffa7967ebe5095d6878206f9b196a5bb4a00b3bff2edacc43610bda988977ee"
+    },
+    {
+      "code": "octgn:0f201650-6d15-4909-9d06-0a87ab94f327",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0f201650-6d15-4909-9d06-0a87ab94f327.jpg",
+      "localPath": "/cards/0f201650-6d15-4909-9d06-0a87ab94f327.jpg",
+      "bytes": 121647,
+      "sha256": "bd55944744d4c49b57eeda985a180f73366416db2691a9a6041ed79a74886c1f"
+    },
+    {
+      "code": "octgn:11e8544f-fe65-4365-8f51-10a3ef267dc8",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/11e8544f-fe65-4365-8f51-10a3ef267dc8.jpg",
+      "localPath": "/cards/11e8544f-fe65-4365-8f51-10a3ef267dc8.jpg",
+      "bytes": 120366,
+      "sha256": "c26331df727e070b92fd1d0ac3c926362309bfa3b1b9246637015fc9e8ec72b2"
+    },
+    {
+      "code": "octgn:1c028523-9f37-4e16-83cf-c9ea1cfbc9d3",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1c028523-9f37-4e16-83cf-c9ea1cfbc9d3.jpg",
+      "localPath": "/cards/1c028523-9f37-4e16-83cf-c9ea1cfbc9d3.jpg",
+      "bytes": 119100,
+      "sha256": "3685b5621afcfbbef96cb92bcfa403cca829de12ec94a86dbc944f5b685b73e2"
+    },
+    {
+      "code": "octgn:1de51c4f-659d-465f-bf45-4d6c00c6bdf1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1de51c4f-659d-465f-bf45-4d6c00c6bdf1.jpg",
+      "localPath": "/cards/1de51c4f-659d-465f-bf45-4d6c00c6bdf1.jpg",
+      "bytes": 121166,
+      "sha256": "f7ac630a258e4f71dfee54dd185abb59598662f6fa5f34d06b0607681cc044a6"
+    },
+    {
+      "code": "octgn:2608ba25-8375-4093-9d93-3c8cfa7b697c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2608ba25-8375-4093-9d93-3c8cfa7b697c.jpg",
+      "localPath": "/cards/2608ba25-8375-4093-9d93-3c8cfa7b697c.jpg",
+      "bytes": 117740,
+      "sha256": "4a7f134449774d4cc4b9ab9d02d7a741f6915f0bc979c6a0261d1daad5610e07"
+    },
+    {
+      "code": "octgn:3574e1dd-d730-485e-8c2b-16fb7d52f78b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3574e1dd-d730-485e-8c2b-16fb7d52f78b.jpg",
+      "localPath": "/cards/3574e1dd-d730-485e-8c2b-16fb7d52f78b.jpg",
+      "bytes": 114650,
+      "sha256": "7245400a42795e86b5d7a513a4fe9fdc8af30373750dbdde7cab97d79cd84e47"
+    },
+    {
+      "code": "octgn:518f546e-a3ce-4af8-b89d-2e1a6b765857",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/518f546e-a3ce-4af8-b89d-2e1a6b765857.jpg",
+      "localPath": "/cards/518f546e-a3ce-4af8-b89d-2e1a6b765857.jpg",
+      "bytes": 125352,
+      "sha256": "fadf9f915984c755c77e9e89c994934cce5081e8f8c73ef0de054490c42af9da"
+    },
+    {
+      "code": "octgn:526faef8-5db5-48ab-ab22-109916e9fda7",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/526faef8-5db5-48ab-ab22-109916e9fda7.jpg",
+      "localPath": "/cards/526faef8-5db5-48ab-ab22-109916e9fda7.jpg",
+      "bytes": 131364,
+      "sha256": "ae77ceb6cd3407c05d892b050e3032c3b8e4b23b0857d6e4f06fc65b94025e08"
+    },
+    {
+      "code": "octgn:526faef8-5db5-48ab-ab22-109916e9fda7",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/526faef8-5db5-48ab-ab22-109916e9fda7.B.jpg",
+      "localPath": "/cards/526faef8-5db5-48ab-ab22-109916e9fda7.B.jpg",
+      "bytes": 119066,
+      "sha256": "1da2a14095055afe6463c83ad21ba297622c469b82cd4a7bcfd896cf25e90642"
+    },
+    {
+      "code": "octgn:54c734a4-b6a9-4c51-a69d-aaa0b7fc2147",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/54c734a4-b6a9-4c51-a69d-aaa0b7fc2147.jpg",
+      "localPath": "/cards/54c734a4-b6a9-4c51-a69d-aaa0b7fc2147.jpg",
+      "bytes": 112752,
+      "sha256": "ef899f270057c006d7506c1c422a3027d28f92233597c0369c63ec6fded69dea"
+    },
+    {
+      "code": "octgn:576f96a4-fb04-43d6-9786-a0884668a08f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/576f96a4-fb04-43d6-9786-a0884668a08f.jpg",
+      "localPath": "/cards/576f96a4-fb04-43d6-9786-a0884668a08f.jpg",
+      "bytes": 125505,
+      "sha256": "9ba83d53b4a208b4c67863a558a2cccfd26fbefab91fa1c8475a4d962781ed83"
+    },
+    {
+      "code": "octgn:576f96a4-fb04-43d6-9786-a0884668a08f",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/576f96a4-fb04-43d6-9786-a0884668a08f.B.jpg",
+      "localPath": "/cards/576f96a4-fb04-43d6-9786-a0884668a08f.B.jpg",
+      "bytes": 119789,
+      "sha256": "c521e54eb6025cf59969f17ed1d43e237170d2e87e466b0bd4b3b3c972c8c124"
+    },
+    {
+      "code": "octgn:60de774d-eafb-4faa-851e-c28ce6d62f9f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/60de774d-eafb-4faa-851e-c28ce6d62f9f.jpg",
+      "localPath": "/cards/60de774d-eafb-4faa-851e-c28ce6d62f9f.jpg",
+      "bytes": 120226,
+      "sha256": "382a7e1b20b30a261ef71a0173de9d05834f524862404ef72541bf25686f8046"
+    },
+    {
+      "code": "octgn:63284aea-d814-4ceb-bb8e-57f402edc54d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/63284aea-d814-4ceb-bb8e-57f402edc54d.jpg",
+      "localPath": "/cards/63284aea-d814-4ceb-bb8e-57f402edc54d.jpg",
+      "bytes": 119218,
+      "sha256": "cf0cb4101e44660c9c3f52b571e6219116b94b017e07d544e225278bae330679"
+    },
+    {
+      "code": "octgn:79a32e57-7973-43bb-92d2-a0da9c13c5c6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/79a32e57-7973-43bb-92d2-a0da9c13c5c6.jpg",
+      "localPath": "/cards/79a32e57-7973-43bb-92d2-a0da9c13c5c6.jpg",
+      "bytes": 113031,
+      "sha256": "1811945af925757f5acd746c39b46b2b6fa2edf0071feaf6f98a8e4a75b2da17"
+    },
+    {
+      "code": "octgn:7e99e1de-9c4f-4dec-9703-359426ba6463",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7e99e1de-9c4f-4dec-9703-359426ba6463.jpg",
+      "localPath": "/cards/7e99e1de-9c4f-4dec-9703-359426ba6463.jpg",
+      "bytes": 117732,
+      "sha256": "95aa826d54fbe0616fadb67d711053036a3e4e9f3402bfe706f2988156956373"
+    },
+    {
+      "code": "octgn:80af82a2-4377-4049-bb9d-2d79ad66d1db",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/80af82a2-4377-4049-bb9d-2d79ad66d1db.jpg",
+      "localPath": "/cards/80af82a2-4377-4049-bb9d-2d79ad66d1db.jpg",
+      "bytes": 111180,
+      "sha256": "d858a642a564d73b03eb7401f97aa5f186b6228986c9be90f117f3129222af45"
+    },
+    {
+      "code": "octgn:8103129a-77e7-47a2-a039-b0eddf305184",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8103129a-77e7-47a2-a039-b0eddf305184.jpg",
+      "localPath": "/cards/8103129a-77e7-47a2-a039-b0eddf305184.jpg",
+      "bytes": 117802,
+      "sha256": "e766d8e9966a7e1be93381e34938c6a768bea89581794a18c12f8eccd3e8e20d"
+    },
+    {
+      "code": "octgn:8304616a-8990-4d45-855e-3c106e5c76a7",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8304616a-8990-4d45-855e-3c106e5c76a7.jpg",
+      "localPath": "/cards/8304616a-8990-4d45-855e-3c106e5c76a7.jpg",
+      "bytes": 129242,
+      "sha256": "a4a8dd3078e9bd697a1d8916959c559ae6dc986eb7317e0c23ce307d528c5caf"
+    },
+    {
+      "code": "octgn:847e6b9c-f795-4625-86d3-4ab6460ccdfe",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/847e6b9c-f795-4625-86d3-4ab6460ccdfe.jpg",
+      "localPath": "/cards/847e6b9c-f795-4625-86d3-4ab6460ccdfe.jpg",
+      "bytes": 125628,
+      "sha256": "cdaa1ce3544a7e05ffc177c314dd10ea516d8f5182f30c829cf731e801d65212"
+    },
+    {
+      "code": "octgn:8534990f-7384-4667-b7fc-c22dcfdd6bba",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8534990f-7384-4667-b7fc-c22dcfdd6bba.jpg",
+      "localPath": "/cards/8534990f-7384-4667-b7fc-c22dcfdd6bba.jpg",
+      "bytes": 120624,
+      "sha256": "84e36df7fcfa0510706a486c0b0791edba54b2efc08decf87dee172a11fea974"
+    },
+    {
+      "code": "octgn:abcc9a29-c485-4f0b-ac1e-c3fb452e0478",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/abcc9a29-c485-4f0b-ac1e-c3fb452e0478.jpg",
+      "localPath": "/cards/abcc9a29-c485-4f0b-ac1e-c3fb452e0478.jpg",
+      "bytes": 119296,
+      "sha256": "ef40dc22f9c89f6c639cc4dcaf59c7f1354b965ffc92408132e54ff9046ab2be"
+    },
+    {
+      "code": "octgn:ba3a1d31-578e-49ee-a309-e16fa5f18df8",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ba3a1d31-578e-49ee-a309-e16fa5f18df8.jpg",
+      "localPath": "/cards/ba3a1d31-578e-49ee-a309-e16fa5f18df8.jpg",
+      "bytes": 133398,
+      "sha256": "c7293f8a6ce4f639388af034bacee296cd986492ea258e8b9346e58c75271e23"
+    },
+    {
+      "code": "octgn:ba3a1d31-578e-49ee-a309-e16fa5f18df8",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ba3a1d31-578e-49ee-a309-e16fa5f18df8.B.jpg",
+      "localPath": "/cards/ba3a1d31-578e-49ee-a309-e16fa5f18df8.B.jpg",
+      "bytes": 100685,
+      "sha256": "faf2294fb8fce37d734657b15687ffe17a8ef349abf5e3e9bbeaa323d901afc1"
+    },
+    {
+      "code": "octgn:d51db5d2-cd6d-4e28-9c46-c5f0a1c242d9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d51db5d2-cd6d-4e28-9c46-c5f0a1c242d9.jpg",
+      "localPath": "/cards/d51db5d2-cd6d-4e28-9c46-c5f0a1c242d9.jpg",
+      "bytes": 120392,
+      "sha256": "e389219aaa2482cb3e39852180aaac7e068e9b993e1ea0a56a68b7c9a35c3ab5"
+    },
+    {
+      "code": "octgn:e3219c93-d920-43a5-ae8f-743745c3b949",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e3219c93-d920-43a5-ae8f-743745c3b949.jpg",
+      "localPath": "/cards/e3219c93-d920-43a5-ae8f-743745c3b949.jpg",
+      "bytes": 119046,
+      "sha256": "4df5dd58fecc39ca73cca102608e25854341fe48b9f028b15b8360477eed7a34"
+    },
+    {
+      "code": "octgn:e679dcf1-ac02-46f1-b07f-b66e540df9d5",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e679dcf1-ac02-46f1-b07f-b66e540df9d5.jpg",
+      "localPath": "/cards/e679dcf1-ac02-46f1-b07f-b66e540df9d5.jpg",
+      "bytes": 116113,
+      "sha256": "94765f482a1940dfa746e0bb42ee32d0d366910dcc8840d0f1289f9faad25209"
+    },
+    {
+      "code": "octgn:e70dc756-86c4-460a-97cd-1d2c65b1e874",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e70dc756-86c4-460a-97cd-1d2c65b1e874.jpg",
+      "localPath": "/cards/e70dc756-86c4-460a-97cd-1d2c65b1e874.jpg",
+      "bytes": 120347,
+      "sha256": "141d05039d52605ae122d7a4e9247ec6f43ea50da94a2c85d176fa79135e0e47"
+    },
+    {
+      "code": "octgn:e7f523e1-c898-42f8-93c2-889038de230f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e7f523e1-c898-42f8-93c2-889038de230f.jpg",
+      "localPath": "/cards/e7f523e1-c898-42f8-93c2-889038de230f.jpg",
+      "bytes": 123499,
+      "sha256": "73c84252d1b9b82d06f992be0c788315a588cd24139fc46fe20cb7b63a2038fd"
+    },
+    {
+      "code": "octgn:ea6e8450-215c-4a7c-86a3-fe1b8da3791e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ea6e8450-215c-4a7c-86a3-fe1b8da3791e.jpg",
+      "localPath": "/cards/ea6e8450-215c-4a7c-86a3-fe1b8da3791e.jpg",
+      "bytes": 124451,
+      "sha256": "891ce6213e127e26c604cbe9a1296e9ef383361fc45d6c48a5b761deb19a4663"
+    },
+    {
+      "code": "octgn:f2319b29-4236-4a66-87dd-36a4ed8e2880",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f2319b29-4236-4a66-87dd-36a4ed8e2880.jpg",
+      "localPath": "/cards/f2319b29-4236-4a66-87dd-36a4ed8e2880.jpg",
+      "bytes": 116107,
+      "sha256": "939c69963fa960f3612e8a02bc4f6da9462a9b1ecd03e4f439029df0a5a50f5a"
+    },
+    {
+      "code": "octgn:f2319b29-4236-4a66-87dd-36a4ed8e2880",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f2319b29-4236-4a66-87dd-36a4ed8e2880.B.jpg",
+      "localPath": "/cards/f2319b29-4236-4a66-87dd-36a4ed8e2880.B.jpg",
+      "bytes": 118781,
+      "sha256": "2e9e88b32a928d4ea5a38c3fc1d093b0ec97622b50b519aa823363251653d7e3"
+    },
+    {
+      "code": "octgn:f60662b4-ebfe-4b89-9d1e-124976e6c5b7",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f60662b4-ebfe-4b89-9d1e-124976e6c5b7.jpg",
+      "localPath": "/cards/f60662b4-ebfe-4b89-9d1e-124976e6c5b7.jpg",
+      "bytes": 130300,
+      "sha256": "81a7cdd27f9157bce22f09619fd63c3fbebda120de311679c8439de87f8e157f"
+    }
+  ]
+}

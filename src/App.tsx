@@ -63,8 +63,10 @@ import { isFortitude } from "./game/hide-test";
 import { MOUNT_DOOM_QUESTS } from "./game/mount-doom-support";
 import { OATH_QUESTS } from "./game/the-oath-support";
 import { RB_QUESTS } from "./game/ruins-belegost-support";
+import { PP_QUESTS } from "./game/prancing-pony-support";
 import { OathState } from "./ui/the-oath-state";
 import { RuinsBelegostState } from "./ui/ruins-belegost-state";
+import { PrancingPonyState } from "./ui/prancing-pony-state";
 import { DDCD_QUESTS } from "./game/dungeons-deep-support";
 import {
   discoveredTreasures,
@@ -3343,6 +3345,7 @@ export default function App() {
             <MountDoomState s={game} inspect={setDetail} />
             <OathState s={game} inspect={setDetail} />
             <RuinsBelegostState s={game} inspect={setDetail} />
+            <PrancingPonyState s={game} inspect={setDetail} />
             <AshMountainsState s={game} inspect={setDetail} />
             <CouncilOfTheWiseState s={game} inspect={setDetail} />
             <WainridersScenarioState s={game} inspect={setDetail} />
@@ -4115,6 +4118,7 @@ export default function App() {
                       ...MOUNT_DOOM_QUESTS,
                       ...OATH_QUESTS,
                       ...RB_QUESTS,
+                      ...PP_QUESTS,
                       ...(carrockQuestCards as Card[]),
                       ...EMYN_MUIL_QUESTS,
                       ...CITY_QUESTS,

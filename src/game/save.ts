@@ -59,6 +59,7 @@ import { blackGateUnits, validateBlackGate } from "./black-gate-support";
 import { mountDoomUnits, validateMountDoom } from "./mount-doom-support";
 import { oathUnits, validateOath } from "./the-oath-support";
 import { rbUnits, validateRuinsBelegost } from "./ruins-belegost-support";
+import { ppUnits, validatePrancingPony } from "./prancing-pony-support";
 import { validateHideTest } from "./hide-test";
 import { validateAsh, ashExtraUnits } from "./ash-mountains-support";
 import { validateAshPlayers } from "./ash-mountains-player";
@@ -1042,6 +1043,7 @@ export function validateSave(
         !validateMountDoom(s, validUnit as (v: unknown) => boolean) ||
         !validateOath(s, validUnit as (v: unknown) => boolean) ||
         !validateRuinsBelegost(s, validUnit as (v: unknown) => boolean) ||
+        !validatePrancingPony(s, validUnit as (v: unknown) => boolean) ||
         !validateLandSorrow(s, validUnit as (v: unknown) => boolean) ||
         !validateAsh(s, validUnit as (v: unknown) => boolean) ||
         !validateWainriders(s, validUnit as (v: unknown) => boolean, (c) =>
@@ -1781,6 +1783,7 @@ export function validateSave(
       ...mountDoomUnits(s),
       ...oathUnits(s),
       ...rbUnits(s),
+      ...ppUnits(s),
       ...(s.fortressNurnPlayers?.contracts.map((c) => c.unit) ?? []),
       ...(s.landSorrowPlayers?.contracts.flatMap((c) =>
         c.unit ? [c.unit] : [],

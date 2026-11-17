@@ -228,7 +228,9 @@
     "test:the-oath-simulation": "node --import tsx --test tests/the-oath-simulation.test.ts",
     "test:browser-the-oath": "node --import tsx scripts/browser-the-oath.mjs",
     "test:ruins-belegost-simulation": "node --import tsx --test tests/ruins-belegost-simulation.test.ts",
-    "test:browser-ruins-belegost": "node --import tsx scripts/browser-ruins-belegost.mjs"
+    "test:browser-ruins-belegost": "node --import tsx scripts/browser-ruins-belegost.mjs",
+    "test:prancing-pony-simulation": "node --import tsx --test tests/prancing-pony-simulation.test.ts",
+    "test:browser-prancing-pony": "node --import tsx scripts/browser-prancing-pony.mjs"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

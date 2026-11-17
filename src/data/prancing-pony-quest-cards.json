@@ -1,0 +1,120 @@
+[
+  {
+    "code": "octgn:0c320479-0992-4d16-9ce1-3aeeca8be57c",
+    "octgnid": "0c320479-0992-4d16-9ce1-3aeeca8be57c",
+    "name": "Running out of Time",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck and discard cards from the top until X locations are discarded. X is the number of players in the game. Add each discarded location to the staging area.",
+    "is_unique": false,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 2,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Murder at the Prancing Pony",
+    "side": "A",
+    "back_name": "Running out of Time",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/0c320479-0992-4d16-9ce1-3aeeca8be57c.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/0c320479-0992-4d16-9ce1-3aeeca8be57c.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 2,
+        "quantity": 1,
+        "octgnid": "0c320479-0992-4d16-9ce1-3aeeca8be57c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0c320479-0992-4d16-9ce1-3aeeca8be57c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "back_text": "Forced: After the players quest unsuccessfully, choose 1 random card from the Investigation deck and remove it from the game (without looking at it).\nForced: After the players place progress on this stage from questing successfully, the first player must choose: either reveal an encounter card and remain at this stage, or make the accusation (see rules) and advance to stage 3A."
+  },
+  {
+    "code": "octgn:576f96a4-fb04-43d6-9786-a0884668a08f",
+    "octgnid": "576f96a4-fb04-43d6-9786-a0884668a08f",
+    "name": "Investigating the Crime",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Search the encounter deck for the 5 Suspect enemies and 5 Hideout locations. Randomly select 1 Suspect and 1 Hideout and set them aside, out of play, facedown (without looking at them). Build the Investigation deck (see rules) and place it next to the quest deck. Make The Prancing Pony the active location and add 1 Ramshackle Manor to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 1,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Murder at the Prancing Pony",
+    "side": "A",
+    "back_name": "Investigating the Crime",
+    "back_type_code": "quest",
+    "back_quest": 12,
+    "back_imagesrc": "/cards/576f96a4-fb04-43d6-9786-a0884668a08f.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/576f96a4-fb04-43d6-9786-a0884668a08f.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 1,
+        "quantity": 1,
+        "octgnid": "576f96a4-fb04-43d6-9786-a0884668a08f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/576f96a4-fb04-43d6-9786-a0884668a08f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "back_text": "No more than 4 progress can be placed on this stage each round.\nForced: At the beginning of the quest phase, each player must choose: either raise his threat by 2, or reveal an additional encounter card this phase."
+  },
+  {
+    "code": "octgn:f2319b29-4236-4a66-87dd-36a4ed8e2880",
+    "octgnid": "f2319b29-4236-4a66-87dd-36a4ed8e2880",
+    "name": "Apprehending the Killer",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player besides the first player searches the encounter deck and discard pile for a Brigand enemy and adds it to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "MatPP",
+    "pack_name": "Murder at the Prancing Pony",
+    "position": 3,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Murder at the Prancing Pony",
+    "side": "A",
+    "back_name": "Apprehending the Killer",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/f2319b29-4236-4a66-87dd-36a4ed8e2880.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/f2319b29-4236-4a66-87dd-36a4ed8e2880.jpg",
+    "packs": [
+      {
+        "pack_code": "MatPP",
+        "pack_name": "Murder at the Prancing Pony",
+        "position": 3,
+        "quantity": 1,
+        "octgnid": "f2319b29-4236-4a66-87dd-36a4ed8e2880",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f2319b29-4236-4a66-87dd-36a4ed8e2880.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "back_text": "Ignore the Investigate keyword when the active location is explored.\nForced: At the beginning of the encounter phase, each Suspect enemy in play engages the first player.\nWhile at least 1 Hideout location is in play, Suspect enemies cannot take damage. If there are no Suspect enemies in play, the players win the game."
+  }
+]

@@ -927,6 +927,30 @@ jobs:
           path: output/ruins-belegost-release/failures
           retention-days: 7
 
+  prancing-pony-simulation:
+    name: Murder at the Prancing Pony complete games (${{ matrix.part }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [full, late]
+    env:
+      PP_SIMULATION_PART: ${{ matrix.part }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:prancing-pony-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: prancing-pony-simulation-${{ matrix.part }}
+          path: output/prancing-pony-release/failures
+          retention-days: 7
+
   shelob-lair-simulation:
     name: Shelob's Lair complete games (26 games)
     runs-on: ubuntu-latest
@@ -1132,6 +1156,8 @@ jobs:
             suite: test:browser-the-oath
           - group: ruins-belegost
             suite: test:browser-ruins-belegost
+          - group: prancing-pony
+            suite: test:browser-prancing-pony
           - group: treason-saruman-players
             suite: test:browser-treason-saruman-players
           - group: land-shadow-players

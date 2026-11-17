@@ -5,8 +5,8 @@
     "playerCards": 860,
     "heroes": 112,
     "deckCards": 744,
-    "encounterCards": 1724,
-    "scenarios": 113,
+    "encounterCards": 1752,
+    "scenarios": 114,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -120,17 +120,18 @@
       "mount-doom",
       "the-oath-2018",
       "the-oath",
-      "the-ruins-of-belegost"
+      "the-ruins-of-belegost",
+      "murder-at-the-prancing-pony"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2942,
-    "pending": 1241
+    "scripted": 2973,
+    "pending": 1210
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 237
+    "scripted": 239
   },
   "registeredCodes": [
     "01001",
@@ -1100,6 +1101,7 @@
     "octgn:04a23a2e-a14f-4c54-b54f-eeef36d3a92b",
     "octgn:04f24d17-9764-4385-b22c-0e45f6fa5654",
     "octgn:0507932f-0030-4763-8478-29bb407103d4",
+    "octgn:054189b9-c165-4561-9b62-f0384145da97",
     "octgn:0554f2f9-c578-4644-9c28-b617e846b787",
     "octgn:05738935-2cd4-4ce3-a977-9e4f59689a32",
     "octgn:058a5508-6b20-4305-94ea-53d5d2f33595",
@@ -1134,6 +1136,7 @@
     "octgn:0bd34136-ae3d-44aa-b48f-7190c14f4b3b",
     "octgn:0c0fdef7-f55a-4bcf-91f9-317cd7a00777",
     "octgn:0c15f99d-9066-4e7c-b364-104a0083d997",
+    "octgn:0c320479-0992-4d16-9ce1-3aeeca8be57c",
     "octgn:0c44ed2b-976a-4b17-b7e7-e64b20f74fd7",
     "octgn:0c6923ad-efbd-46b0-b5fc-93f90334ecf5",
     "octgn:0cb6d866-50dd-4eb0-a86a-8ed84bfeae0e",
@@ -1154,6 +1157,7 @@
     "octgn:0ebedc5b-fd8b-46b8-a2a1-1a6f739e8819",
     "octgn:0ec5f691-e5b3-41b5-bcec-2f963786ef4d",
     "octgn:0f02460f-4ab8-4060-b520-0f82cbb8ce37",
+    "octgn:0f201650-6d15-4909-9d06-0a87ab94f327",
     "octgn:0f2929de-bef9-40b8-b0ed-de69e136188f",
     "octgn:0f31d397-55d8-4988-b6bb-3d4101977515",
     "octgn:0f3c746e-2d23-4cb9-a481-f919ffc8cdee",
@@ -1173,6 +1177,7 @@
     "octgn:11a29b18-0e86-4383-a463-e020f8b1d0f6",
     "octgn:11c67697-29da-4c76-bf89-985c2c036940",
     "octgn:11cb3eda-b7fa-493f-a9fd-cd31e5ae41f2",
+    "octgn:11e8544f-fe65-4365-8f51-10a3ef267dc8",
     "octgn:1208f735-6984-4c4d-ab8c-429664e4e060",
     "octgn:123bc772-2c27-4f26-a7f2-a3c4928a9dc4",
     "octgn:125e7884-7f75-42cd-80ba-065cf88eef9a",
@@ -1227,6 +1232,7 @@
     "octgn:1b5b129a-0c2c-4750-b1d6-dd3ea82acb84",
     "octgn:1b9e02cc-d46e-4816-bdbd-9daa05590173",
     "octgn:1ba09574-9d2a-4687-bd58-ca37ceadb023",
+    "octgn:1c028523-9f37-4e16-83cf-c9ea1cfbc9d3",
     "octgn:1c240b63-841f-4b76-9808-13c0ee0f986e",
     "octgn:1c65b78b-6b68-458f-9510-a00a9576a042",
     "octgn:1c765fa8-9cb8-4cf4-8e93-daac5bae4fce",
@@ -1241,6 +1247,7 @@
     "octgn:1dab3395-7a34-4b66-aa7f-7834045a7eba",
     "octgn:1db13c26-879b-49cd-9f94-8ba1a0c4f5a4",
     "octgn:1dcf16e8-8882-4b61-93ac-a7da643c52bd",
+    "octgn:1de51c4f-659d-465f-bf45-4d6c00c6bdf1",
     "octgn:1e2560ab-00ce-45c3-a374-f7bb6a3e6889",
     "octgn:1e54fa6e-c2a1-4456-ac48-8912ecc4722a",
     "octgn:1e5d3385-4362-4e76-91fc-30e5aebab5e2",
@@ -1315,6 +1322,7 @@
     "octgn:25cf58f2-9d92-4971-8817-a7e335d9ac5d",
     "octgn:25e58441-df9d-4935-a3c7-0a5b210538c5",
     "octgn:25eb1da3-b559-4e47-ae20-e6096a8cbc96",
+    "octgn:2608ba25-8375-4093-9d93-3c8cfa7b697c",
     "octgn:2629ae83-bfb8-4be1-84a5-fa9e8b1fc20b",
     "octgn:262d615b-5b5d-4f16-975e-335d34e6c733",
     "octgn:264adf61-31e1-46db-a655-7fee1d4282ae",
@@ -1421,6 +1429,7 @@
     "octgn:3551cf11-1670-46de-b404-7b8fd20d3aff",
     "octgn:3566b6df-a1cd-4417-b202-27e0ecc0a966",
     "octgn:356f37d9-34c9-4fae-864d-c34dff7eaaa4",
+    "octgn:3574e1dd-d730-485e-8c2b-16fb7d52f78b",
     "octgn:35787b76-d4d5-4bff-bc05-a270b6e4d98e",
     "octgn:35b3cfde-9964-4173-88c5-e5e5cb8f84ac",
     "octgn:35ea4640-1019-409c-b6a4-8a9906def475",
@@ -1961,6 +1970,7 @@
     "octgn:51681809-60af-4819-bfa0-3f568987f4ea",
     "octgn:516b75d8-9abe-423e-9ef1-a92f1c87c86f",
     "octgn:516f4454-d448-4bc3-8af3-665a0d50256d",
+    "octgn:518f546e-a3ce-4af8-b89d-2e1a6b765857",
     "octgn:51a1050d-f8d5-48aa-8f96-ef96e1e836da",
     "octgn:51a5e288-cf6e-430d-bc66-715ad2be1a16",
     "octgn:51b186ac-ddf5-4909-a484-20d273be27c9",
@@ -1969,6 +1979,7 @@
     "octgn:51e187ea-691c-46bc-b74f-c03d110d02cd",
     "octgn:52248807-32d1-422b-b4b2-01097405e49f",
     "octgn:522c612d-5f3c-4a02-a1a7-7d87191922e0",
+    "octgn:526faef8-5db5-48ab-ab22-109916e9fda7",
     "octgn:52754c5f-30b8-4d55-b9c2-5dfa8020ead3",
     "octgn:528afc17-e78f-4b02-8080-e936955a77b9",
     "octgn:529bb9e4-36c3-45bd-bac0-1ce5de6a581d",
@@ -1986,6 +1997,7 @@
     "octgn:5497d938-1549-498c-abeb-2ed617222b76",
     "octgn:54981b6b-c247-40f9-9321-fd7913b897dd",
     "octgn:54a26608-eebd-4bd6-855a-ceccb4507bab",
+    "octgn:54c734a4-b6a9-4c51-a69d-aaa0b7fc2147",
     "octgn:54c8ecae-73b1-4c42-84ed-0411551c363a",
     "octgn:54ed3453-1df4-458d-bc7d-e1f7c10de237",
     "octgn:550e9f11-14bb-4fac-806a-3f43035b30c9",
@@ -2003,6 +2015,7 @@
     "octgn:57107fd1-0092-41d3-ae9d-8ff6c06933eb",
     "octgn:572ba251-0abb-4a81-b38b-d695123b7219",
     "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
+    "octgn:576f96a4-fb04-43d6-9786-a0884668a08f",
     "octgn:5775b97c-4047-4dc2-b148-b852bad4f9bb",
     "octgn:577c3577-78e4-4cf3-a638-fe15162eca31",
     "octgn:57b1cf62-1841-4f65-b9eb-fc82b1eac918",
@@ -2058,6 +2071,7 @@
     "octgn:60ac6ce9-7aad-415d-a4af-61f67db59454",
     "octgn:60b96a86-77b5-4184-9703-f55b8c857eb9",
     "octgn:60ba0781-d051-46f0-97b1-e02fb637b94e",
+    "octgn:60de774d-eafb-4faa-851e-c28ce6d62f9f",
     "octgn:60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b",
     "octgn:610f3112-1123-4956-a955-df9d42b937bf",
     "octgn:611c0811-1810-4b3e-a00e-4d34f1f986b1",
@@ -2071,6 +2085,7 @@
     "octgn:62d814e4-e0cf-437b-8ee7-b26478beb721",
     "octgn:62dea330-3ec7-4db0-bea7-382cb3454f83",
     "octgn:6302e603-fade-43b3-a6b3-235af412fdfa",
+    "octgn:63284aea-d814-4ceb-bb8e-57f402edc54d",
     "octgn:63b0498f-9180-4e62-83c1-b9aa29f24712",
     "octgn:63f46289-b5ef-44d1-b6cb-ce382031a768",
     "octgn:63f46289-b5ef-44d1-b6cb-ce382031a768:B",
@@ -2198,6 +2213,7 @@
     "octgn:796c0aee-2aea-4999-931d-253fafe7fb26",
     "octgn:797a1805-f347-4eb3-9f77-5c9e6b6a850f",
     "octgn:7991d705-7e2d-4303-abbc-f9999b2d2502",
+    "octgn:79a32e57-7973-43bb-92d2-a0da9c13c5c6",
     "octgn:79a9dd7a-48c9-4f29-9090-5edde6b5f038",
     "octgn:79b5dd16-2427-4950-94e9-46905eebe56d",
     "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
@@ -2235,6 +2251,7 @@
     "octgn:7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00",
     "octgn:7e20690f-d1bb-4ac3-b2bf-da55f1f95bcc",
     "octgn:7e470346-1828-49c0-b241-58d0dbf27b4b",
+    "octgn:7e99e1de-9c4f-4dec-9703-359426ba6463",
     "octgn:7ea102d6-77de-431f-9475-c9be874a5195",
     "octgn:7edae662-fc3f-40b3-868b-e5a43dbd0670",
     "octgn:7f0e7969-bca4-48a3-99b5-ba055bd376af",
@@ -2250,7 +2267,9 @@
     "octgn:80764232-a3c9-47f1-9034-9c9ac82002e4",
     "octgn:808f60ad-a63f-4504-9b67-4fd45d630add",
     "octgn:809ff5de-8273-4491-adfb-3a27d4b316f3",
+    "octgn:80af82a2-4377-4049-bb9d-2d79ad66d1db",
     "octgn:80e25c61-e49c-40cb-b8e7-b4c45620163c",
+    "octgn:8103129a-77e7-47a2-a039-b0eddf305184",
     "octgn:81632d10-625e-42f0-9e6b-09574a9ffbc3",
     "octgn:8165f1ef-d9df-464e-bd56-5baf4e43325f",
     "octgn:8174f1b9-6fd0-4eeb-971d-98b2d7a4eaf4",
@@ -2268,6 +2287,7 @@
     "octgn:8275a439-ebcd-4cc3-907b-1e217d222806",
     "octgn:82c68020-eb2e-4853-9919-df3066d13721",
     "octgn:82ca7902-f8fa-4352-8f54-f5f6a8875c51",
+    "octgn:8304616a-8990-4d45-855e-3c106e5c76a7",
     "octgn:8345c4ad-4c5e-484d-bc6f-d1e4bc27805f",
     "octgn:8351cce0-b16e-4eba-93f2-24015bbc54c1",
     "octgn:836a759d-d768-4119-929f-cfe874ba944a",
@@ -2276,11 +2296,13 @@
     "octgn:83d7214f-d8ae-47f8-bd0a-c48f9a187568",
     "octgn:83dd1a59-118c-468d-a47e-e472b066ff3e",
     "octgn:8472068c-fdd7-4197-8046-b9da12c29135",
+    "octgn:847e6b9c-f795-4625-86d3-4ab6460ccdfe",
     "octgn:84877af6-0720-4ef8-802b-69b792c32e15",
     "octgn:84b7e934-3d4d-4966-accf-c257c4413035",
     "octgn:84efd59f-f6f2-44c4-b995-8ad809dd25d1",
     "octgn:85045e14-3abc-4d58-824f-249b1fb3643d",
     "octgn:8527856a-e0eb-4799-9985-e73f1ee5281a",
+    "octgn:8534990f-7384-4667-b7fc-c22dcfdd6bba",
     "octgn:855580e2-87b1-444c-b37a-1062c050d9ee",
     "octgn:857da3db-7159-4dfa-a925-8547fb6df455",
     "octgn:85d48eb0-3339-4db6-976f-a800213e7eea",
@@ -2520,6 +2542,7 @@
     "octgn:aba39503-0700-40c9-9c06-729e82bf67fe",
     "octgn:aba5ebdb-81d8-4e41-bddd-568f9ab2bd13",
     "octgn:abc54411-1805-4ef4-8c47-517ffe72312e",
+    "octgn:abcc9a29-c485-4f0b-ac1e-c3fb452e0478",
     "octgn:abd56f0e-0238-432b-84b2-7c715d96477b",
     "octgn:abd919a4-de0d-4f7f-8cc1-787ab31980c9",
     "octgn:abeec7e9-ccf6-4145-ae1a-d7179c5a4b4d",
@@ -2616,6 +2639,7 @@
     "octgn:b9b2c1fc-2954-46f3-8b6c-71300a35eb5d",
     "octgn:ba090102-5f80-4dbc-aefd-2f965685e954",
     "octgn:ba2e4a33-edc6-4638-a3f5-b818b080aea8",
+    "octgn:ba3a1d31-578e-49ee-a309-e16fa5f18df8",
     "octgn:ba630f98-6ad5-4c4a-adfd-aeeac5485722",
     "octgn:ba77505a-1def-4537-a194-0b7482433a72",
     "octgn:babeedb8-f7cd-4e8a-a5c4-fbfdd57238fb",
@@ -2775,6 +2799,7 @@
     "octgn:d47ece86-2645-4d35-8ab7-c439d12abe65",
     "octgn:d4e4ab9d-d5ea-4d33-89f1-d8d24d166002",
     "octgn:d5134ddf-8c78-4e68-a603-7df5d48f5016",
+    "octgn:d51db5d2-cd6d-4e28-9c46-c5f0a1c242d9",
     "octgn:d5286130-d03a-49f3-bd70-d40e9320c292",
     "octgn:d63f87da-45b4-4c5c-b3b5-970a4277c263",
     "octgn:d658967b-662e-4dfb-afb6-4b3444074b79",
@@ -2850,6 +2875,7 @@
     "octgn:e2c02f11-fdfb-402b-89de-1729d1364e4c",
     "octgn:e2e8fe14-f019-4fd9-af2c-81f1a4282660",
     "octgn:e2f901ad-f5bc-4d29-b6c3-50c261e5668a",
+    "octgn:e3219c93-d920-43a5-ae8f-743745c3b949",
     "octgn:e33fbbde-d10b-4392-bc2e-bd4a39b5188e",
     "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
     "octgn:e35e9d1e-48bb-41f3-95c9-402f84e46ef8",
@@ -2879,14 +2905,17 @@
     "octgn:e62c0943-c58d-4dc7-8948-adef14de0e9a",
     "octgn:e62cec6d-6b96-4662-9a86-bcc0f5aee453",
     "octgn:e6721e44-5706-4a0f-a895-ced75f9c6219",
+    "octgn:e679dcf1-ac02-46f1-b07f-b66e540df9d5",
     "octgn:e6808a55-528f-444e-bf61-67748e7261e9",
     "octgn:e6995a7d-46af-4c90-86dc-9ef9c8e3a666",
     "octgn:e6b1a8ef-b595-4bca-9afb-3afbbd52d16e",
     "octgn:e6d7da0a-eb6d-429b-b9f9-e32027866d1b",
     "octgn:e6e7d9de-4b7d-422c-b367-8f2c65982468",
     "octgn:e6fea7ff-7fdf-4938-a57b-6be82af1c152",
+    "octgn:e70dc756-86c4-460a-97cd-1d2c65b1e874",
     "octgn:e70fa96c-f4c7-4d6c-ab14-41831a6eb8c8",
     "octgn:e7413cb0-3443-40d4-88f4-06d7cfa1ab1d",
+    "octgn:e7f523e1-c898-42f8-93c2-889038de230f",
     "octgn:e839fa89-15b4-451f-9fac-6a8f38e31d65",
     "octgn:e83f33da-6723-4730-8691-8d1a48b1f8e0",
     "octgn:e8c78f25-00d0-4b3b-8cac-03e533edfe41",
@@ -2898,6 +2927,7 @@
     "octgn:ea225b12-75e1-4253-9458-c71c1c304a8f",
     "octgn:ea4bc222-6fb5-494e-8f1f-de30974694db",
     "octgn:ea5faa85-5a47-4ab3-a623-3f88df71f7fd",
+    "octgn:ea6e8450-215c-4a7c-86a3-fe1b8da3791e",
     "octgn:ea80809a-c719-41a9-8729-5f58cdec149b",
     "octgn:eaad2b4a-3ac0-4672-ad43-036152d81322",
     "octgn:eaaececf-9322-43b5-a190-bdfadd7a695e",
@@ -2951,6 +2981,7 @@
     "octgn:f18b362f-1669-4743-8802-daf58e638198",
     "octgn:f1d2d99e-27e6-44d3-ad3d-ef727fa9ddc2",
     "octgn:f214f533-374b-423c-86b5-dca1ab5d048f",
+    "octgn:f2319b29-4236-4a66-87dd-36a4ed8e2880",
     "octgn:f24f8d3e-3193-4111-9fea-ecdbbafd921a",
     "octgn:f250a697-b5aa-4041-9bad-a66b2ab8ccba",
     "octgn:f28dc579-14b5-4623-848a-0a9383162b4c",
@@ -2981,6 +3012,7 @@
     "octgn:f5a65abc-e3df-4d26-aeed-2a3b1effb005",
     "octgn:f5ba58db-76fc-497e-b0d7-0382c0b9c0c0",
     "octgn:f5d539b2-0b65-493d-8493-5122a0761eed",
+    "octgn:f60662b4-ebfe-4b89-9d1e-124976e6c5b7",
     "octgn:f607e8d7-ca95-4f83-80b9-a07726d38f65",
     "octgn:f63c9a8e-23dc-4c3a-bbff-00bd585e27bc",
     "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd",
@@ -3357,7 +3389,7 @@
     {
       "product": "murder-at-the-prancing-pony",
       "total": 31,
-      "scripted": 0,
+      "scripted": 31,
       "player": 0,
       "playerScripted": 0
     },
@@ -13220,7 +13252,7 @@
       "name": "Todd the Troll",
       "type": "enemy",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -13708,7 +13740,7 @@
       "name": "Running out of Time",
       "type": "quest",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -13956,7 +13988,7 @@
       "name": "Hired Muscle",
       "type": "treachery",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -14188,7 +14220,7 @@
       "name": "Staddle Hiding Hole",
       "type": "location",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -14924,7 +14956,7 @@
       "name": "Susie the Spider",
       "type": "enemy",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -15076,7 +15108,7 @@
       "name": "Chetwood Outlaw",
       "type": "enemy",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -15876,7 +15908,7 @@
       "name": "Lawless Ruffian",
       "type": "enemy",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -17308,7 +17340,7 @@
       "name": "Bill Ferny",
       "type": "enemy",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -22444,7 +22476,7 @@
       "name": "Wolf-pelt Jake",
       "type": "enemy",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -22540,7 +22572,7 @@
       "name": "Murder at the Prancing Pony",
       "type": "rules",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -22748,7 +22780,7 @@
       "name": "Ramshackle Manor",
       "type": "location",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -22996,7 +23028,7 @@
       "name": "Investigating the Crime",
       "type": "quest",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -23700,7 +23732,7 @@
       "name": "The Prancing Pony",
       "type": "location",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -23860,7 +23892,7 @@
       "name": "Greenway Footpad",
       "type": "enemy",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -25604,7 +25636,7 @@
       "name": "Old Warehouse",
       "type": "location",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -26036,7 +26068,7 @@
       "name": "Rising Body Count",
       "type": "treachery",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -26268,7 +26300,7 @@
       "name": "Dark Alley",
       "type": "location",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -26284,7 +26316,7 @@
       "name": "Chetwood Campsite",
       "type": "location",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -26500,7 +26532,7 @@
       "name": "Taken by Surprise",
       "type": "treachery",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -26612,7 +26644,7 @@
       "name": "Old Orc-eyes",
       "type": "enemy",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -26660,7 +26692,7 @@
       "name": "Village Stable",
       "type": "location",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -29820,7 +29852,7 @@
       "name": "Market Square",
       "type": "location",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -31492,7 +31524,7 @@
       "name": "Murder at the Prancing Pony",
       "type": "rules",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -33660,7 +33692,7 @@
       "name": "Archet Trading Post",
       "type": "location",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -34604,7 +34636,7 @@
       "name": "Bree-land Informant",
       "type": "enemy",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -34876,7 +34908,7 @@
       "name": "Bill Ferny's House",
       "type": "location",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -34940,7 +34972,7 @@
       "name": "Johnny Goblin-fingers",
       "type": "enemy",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -35012,7 +35044,7 @@
       "name": "Combe Storehouse",
       "type": "location",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -35380,7 +35412,7 @@
       "name": "Smoke and Mirrors",
       "type": "treachery",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -36092,7 +36124,7 @@
       "name": "Apprehending the Killer",
       "type": "quest",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -36420,7 +36452,7 @@
       "name": "Deadly Accusations",
       "type": "treachery",
       "pack": "Murder at the Prancing Pony",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "murder-at-the-prancing-pony"
     },
     {
@@ -38415,8 +38447,8 @@
       "id": "E99.07",
       "name": "Murder at the Prancing Pony (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "murder-at-the-prancing-pony",
+      "state": "scripted"
     },
     {
       "id": "N01.1",
@@ -39955,8 +39987,8 @@
       "id": "Q99.07",
       "name": "Murder at the Prancing Pony",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "murder-at-the-prancing-pony",
+      "state": "scripted"
     },
     {
       "id": "Q99.08",
