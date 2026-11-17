@@ -59,6 +59,7 @@ export function mainQuestCode(s: GameState): string | undefined {
   if (s.oath) return s.oath.currentQuest;
   if (s.ruinsBelegost) return s.ruinsBelegost.currentQuest;
   if (s.prancingPony) return s.prancingPony.currentQuest;
+  if (s.annuminas) return s.annuminas.currentQuest;
   if (s.landSorrow) return s.landSorrow.currentQuest;
   if (s.ashMountains) return s.ashMountains.currentQuest;
   if (s.wainriders) return s.wainriders.currentQuest;

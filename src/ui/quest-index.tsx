@@ -171,6 +171,10 @@ const HEADLINES: Partial<
     lead: "Find the killer",
     em: "in Bree.",
   },
+  "the-siege-of-annuminas": {
+    lead: "Hold the walls",
+    em: "of Annúminas.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

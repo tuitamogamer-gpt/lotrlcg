@@ -302,6 +302,7 @@ export type ScenarioId =
   | "the-oath"
   | "the-ruins-of-belegost"
   | "murder-at-the-prancing-pony"
+  | "the-siege-of-annuminas"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -494,6 +495,7 @@ export interface GameState {
   oath?: import("./the-oath-types").OathState;
   ruinsBelegost?: import("./ruins-belegost-types").RuinsBelegostState;
   prancingPony?: import("./prancing-pony-types").PrancingPonyState;
+  annuminas?: import("./annuminas-types").AnnuminasState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -927,6 +929,10 @@ export interface GameState {
     rbNextPlayer?: boolean;
     /** Murder at the Prancing Pony: Rising Body Count's shadow waits for a destroyed character. */
     ppBodyCount?: boolean;
+    /** The Siege of Annúminas: Dúnedain of Annúminas' shadow defense bonus for this attack. */
+    saDefense?: number;
+    /** The Siege of Annúminas: The Hordes of Angmar's shadow waits for a destroyed character. */
+    saRevealOnKill?: boolean;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

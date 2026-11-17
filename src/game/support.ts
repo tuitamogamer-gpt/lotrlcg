@@ -51,11 +51,16 @@ export function automatedScenarioId(reference: { name: string; mode: string }) {
   const name = reference.name
     .replace(/\s*\((?:Easy|Campaign)\)\s*$/i, "")
     .trim();
-  // The frozen source recipe drops the article printed in the MEC77 title.
+  // The frozen source recipe drops the article printed in the MEC77 title,
+  // and names The Siege of Annúminas' standard game mode after its setup card
+  // (the epic multiplayer mode recipe stays unsupported).
+  const lower = name.toLocaleLowerCase("en");
   const canonicalName =
-    name.toLocaleLowerCase("en") === "temple of doom"
+    lower === "temple of doom"
       ? "The Temple of Doom"
-      : name;
+      : lower === "standard the siege of annúminas"
+        ? "The Siege of Annúminas"
+        : name;
   const match = SCENARIOS.find(
     (s) =>
       s.name.toLocaleLowerCase("en") === canonicalName.toLocaleLowerCase("en"),
