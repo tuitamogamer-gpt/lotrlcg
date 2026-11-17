@@ -226,7 +226,9 @@
     "test:mount-doom-simulation": "node --import tsx --test tests/mount-doom-simulation.test.ts",
     "test:browser-mount-doom": "node --import tsx scripts/browser-mount-doom.mjs",
     "test:the-oath-simulation": "node --import tsx --test tests/the-oath-simulation.test.ts",
-    "test:browser-the-oath": "node --import tsx scripts/browser-the-oath.mjs"
+    "test:browser-the-oath": "node --import tsx scripts/browser-the-oath.mjs",
+    "test:ruins-belegost-simulation": "node --import tsx --test tests/ruins-belegost-simulation.test.ts",
+    "test:browser-ruins-belegost": "node --import tsx scripts/browser-ruins-belegost.mjs"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

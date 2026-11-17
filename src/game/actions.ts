@@ -31,6 +31,7 @@ import { cirithUngolPublicState } from "./cirith-ungol-support";
 import { blackGatePublicState } from "./black-gate-support";
 import { mountDoomPublicState } from "./mount-doom-support";
 import { oathPublicState } from "./the-oath-support";
+import { ruinsBelegostPublicState } from "./ruins-belegost-support";
 import { helmsDeepPublicState } from "./helms-deep-support";
 import { roadIsengardPublicState } from "./road-isengard-support";
 import { passageMarshesPublicState } from "./passage-marshes-support";
@@ -3841,6 +3842,7 @@ export function publicState(s: GameState) {
     blackGate: blackGatePublicState(s),
     mountDoom: mountDoomPublicState(s),
     oath: oathPublicState(s),
+    ruinsBelegost: ruinsBelegostPublicState(s),
     fortressNurnPlayers: FortressPlayers.fortressNurnPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),

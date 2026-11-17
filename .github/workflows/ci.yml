@@ -903,6 +903,30 @@ jobs:
           path: output/the-oath-release/failures
           retention-days: 7
 
+  ruins-belegost-simulation:
+    name: The Ruins of Belegost complete games (${{ matrix.part }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [full, late]
+    env:
+      RB_SIMULATION_PART: ${{ matrix.part }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:ruins-belegost-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: ruins-belegost-simulation-${{ matrix.part }}
+          path: output/ruins-belegost-release/failures
+          retention-days: 7
+
   shelob-lair-simulation:
     name: Shelob's Lair complete games (26 games)
     runs-on: ubuntu-latest
@@ -1106,6 +1130,8 @@ jobs:
             suite: test:browser-mount-doom
           - group: the-oath
             suite: test:browser-the-oath
+          - group: ruins-belegost
+            suite: test:browser-ruins-belegost
           - group: treason-saruman-players
             suite: test:browser-treason-saruman-players
           - group: land-shadow-players

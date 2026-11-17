@@ -127,6 +127,10 @@ export const PLAYMATS = {
     name: "The Eaves of Mirkwood",
     detail: "The Goblins' trail · The Rearguard",
   },
+  "the-ruins-of-belegost": {
+    name: "Belegost",
+    detail: "The drowned Dwarf city · Naurlhûg's lair",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -552,6 +556,7 @@ export const PLAYMAT_CHOICES = [
   "mount-doom",
   "the-oath-2018",
   "the-oath",
+  "the-ruins-of-belegost",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

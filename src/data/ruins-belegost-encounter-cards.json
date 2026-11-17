@@ -1,0 +1,887 @@
+[
+  {
+    "code": "octgn:10dc0c5d-a434-4d77-a06f-5ed0c1d4ac46",
+    "octgnid": "10dc0c5d-a434-4d77-a06f-5ed0c1d4ac46",
+    "name": "Naurlhûg's Lair",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "Discover 5. Immune to player card effects.\nForced: When Naurlhûg's Lair is explored, add the Loot objective from underneath Stalking the Ruins to the staging area faceup.\nTravel: Place X resources on Stalking the Ruins, where X is the number of players.",
+    "is_unique": true,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 21,
+    "quantity": 1,
+    "threat": 4,
+    "quest": 6,
+    "victory": 4,
+    "encounter_set": "The Ruins of Belegost",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "6",
+      "victory": "4"
+    },
+    "imagesrc": "/cards/10dc0c5d-a434-4d77-a06f-5ed0c1d4ac46.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 21,
+        "quantity": 1,
+        "octgnid": "10dc0c5d-a434-4d77-a06f-5ed0c1d4ac46",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/10dc0c5d-a434-4d77-a06f-5ed0c1d4ac46.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:19c23cd8-5935-4278-a5e1-943967004e0a",
+    "octgnid": "19c23cd8-5935-4278-a5e1-943967004e0a",
+    "name": "Scenario Rules 1",
+    "type_code": "rules",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Discover X. Discover is a new keyword in The Ruins of Belegost. The Discover keyword represents the heroes' search for lost treasure, as well as the unexpected dangers they encounter as they travel to the different locations in Belegost. When a location with the Discover keyword becomes the active location, the first player resolves the following steps in order: 1. Look at the top X cards of the encounter deck, where X is the active locations Discover value. 2. Choose 1 looked at objective with the Loot keyword and attach it to the active location as a guarded objective. 3. Randomly select 1 looked at card with the Hazard trait, reveal it and add it to the staging area. 4. Place any remaining looked at cards in the encounter discard pile.",
+    "is_unique": false,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 0,
+    "quantity": 0,
+    "encounter_set": "The Ruins of Belegost",
+    "back_name": "Scenario Rules 1",
+    "back_text": "Discover X (continued) If there are less than X cards remaining in the encounter deck when resolving the Discover keyword, shuffle the encounter discard pile into the encounter deck and continue resolving the Discover keyword. Loot Loot is a new keyword that appears on some objective cards in The Ruins of Belegost. Objectives with the Loot keyword are valuable treasures that can only be discovered by exploring the different locations in Belegost. A Loot card can only enter play by resolving the Discover keyword on a location. If a card with the Loot keyword is revealed from the encounter deck, discard it and reveal another card from the top of the encounter deck.",
+    "back_type_code": "rules",
+    "back_imagesrc": "/cards/19c23cd8-5935-4278-a5e1-943967004e0a.B.jpg",
+    "printed_stats": {},
+    "imagesrc": "/cards/19c23cd8-5935-4278-a5e1-943967004e0a.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 0,
+        "quantity": 0,
+        "octgnid": "19c23cd8-5935-4278-a5e1-943967004e0a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/19c23cd8-5935-4278-a5e1-943967004e0a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:3c1bea1f-80b7-4857-9d0b-489376d4abab",
+    "octgnid": "3c1bea1f-80b7-4857-9d0b-489376d4abab",
+    "name": "Book of Aulë's Children",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Artifact. Item.",
+    "text": "Loot.\nIf unattached, the first player claims Book of Aulë's Children and attaches it to a hero he controls.\nAction: Exhaust Book of Aulë's Children to choose a player. That player draws 1 card.",
+    "is_unique": true,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 12,
+    "quantity": 1,
+    "encounter_set": "The Ruins of Belegost",
+    "printed_stats": {},
+    "imagesrc": "/cards/3c1bea1f-80b7-4857-9d0b-489376d4abab.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 12,
+        "quantity": 1,
+        "octgnid": "3c1bea1f-80b7-4857-9d0b-489376d4abab",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3c1bea1f-80b7-4857-9d0b-489376d4abab.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:3d7adc18-c9cb-4e93-8b1e-1574747ba8ce",
+    "octgnid": "3d7adc18-c9cb-4e93-8b1e-1574747ba8ce",
+    "name": "Concealed Spikes",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Hazard.",
+    "text": "When Revealed: Each player assigns X damage among characters he controls. X is 1 more than the Discover value on the active location.",
+    "is_unique": false,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 29,
+    "quantity": 2,
+    "shadow": "Shadow: Assign X damage among characters you control. X is the number of attachments you control. You may discard the highest cost attachment you control to cancel this effect.",
+    "encounter_set": "The Ruins of Belegost",
+    "printed_stats": {},
+    "imagesrc": "/cards/3d7adc18-c9cb-4e93-8b1e-1574747ba8ce.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 29,
+        "quantity": 2,
+        "octgnid": "3d7adc18-c9cb-4e93-8b1e-1574747ba8ce",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3d7adc18-c9cb-4e93-8b1e-1574747ba8ce.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:3d948840-8118-4d63-b782-ba017e1cf5d5",
+    "octgnid": "3d948840-8118-4d63-b782-ba017e1cf5d5",
+    "name": "Darkened Tunnel",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "Discover 2.\nWhile Darkened Tunnel is in the staging area, it gains: \"Forced: After a 'when revealed' effect is canceled, discard the top card of the encounter deck. If the discarded card has the Hazard trait, resolve its staging as if it was just revealed from the encounter deck.\"\nTravel: Place 1 resource on Stalking the Ruins.",
+    "is_unique": false,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 24,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 3,
+    "encounter_set": "The Ruins of Belegost",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/3d948840-8118-4d63-b782-ba017e1cf5d5.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 24,
+        "quantity": 2,
+        "octgnid": "3d948840-8118-4d63-b782-ba017e1cf5d5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3d948840-8118-4d63-b782-ba017e1cf5d5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:415e5671-e9fa-458e-bc46-e9f869bee87f",
+    "octgnid": "415e5671-e9fa-458e-bc46-e9f869bee87f",
+    "name": "Lurker of the Depths",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Cannot have attachments.\nLurker of the Depths cannot be engaged or take more than 4 damage each round.\nWhile Lurker of the Depths is in the staging area, it is considered to be engaged with each player.",
+    "is_unique": true,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 16,
+    "quantity": 1,
+    "threat": 4,
+    "attack": 5,
+    "defense": 2,
+    "health": 12,
+    "engagement": 50,
+    "victory": 5,
+    "encounter_set": "The Ruins of Belegost",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "5",
+      "defense": "2",
+      "health": "12",
+      "engagement": "50",
+      "victory": "5"
+    },
+    "imagesrc": "/cards/415e5671-e9fa-458e-bc46-e9f869bee87f.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 16,
+        "quantity": 1,
+        "octgnid": "415e5671-e9fa-458e-bc46-e9f869bee87f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/415e5671-e9fa-458e-bc46-e9f869bee87f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:4c9ac5bd-1653-400c-9cd0-4da685da5c15",
+    "octgnid": "4c9ac5bd-1653-400c-9cd0-4da685da5c15",
+    "name": "Orc of Ered Luin",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc.",
+    "text": "When Revealed: Orc of Ered Luin makes an immediate attack against each player that controls at least 1 Loot objective (in turn order).",
+    "is_unique": false,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 19,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 4,
+    "defense": 2,
+    "health": 4,
+    "engagement": 30,
+    "shadow": "Shadow: After this attack, attacking enemy engages the next player, then makes an immediate attack.",
+    "encounter_set": "The Ruins of Belegost",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "4",
+      "defense": "2",
+      "health": "4",
+      "engagement": "30"
+    },
+    "imagesrc": "/cards/4c9ac5bd-1653-400c-9cd0-4da685da5c15.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 19,
+        "quantity": 3,
+        "octgnid": "4c9ac5bd-1653-400c-9cd0-4da685da5c15",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4c9ac5bd-1653-400c-9cd0-4da685da5c15.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:4d67feae-9070-4ed6-8b1a-3ddc3569e73a",
+    "octgnid": "4d67feae-9070-4ed6-8b1a-3ddc3569e73a",
+    "name": "Sunken Treasury",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "Discover 3.\nSunken Treasury gets +1 [threat] for each Loot objective attached to a hero.\nTravel: Each player discards 1 random card from his hand.",
+    "is_unique": false,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 25,
+    "quantity": 3,
+    "threat": 1,
+    "quest": 4,
+    "shadow": "Shadow: Exhaust a character you control.",
+    "encounter_set": "The Ruins of Belegost",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/4d67feae-9070-4ed6-8b1a-3ddc3569e73a.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 25,
+        "quantity": 3,
+        "octgnid": "4d67feae-9070-4ed6-8b1a-3ddc3569e73a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4d67feae-9070-4ed6-8b1a-3ddc3569e73a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:4d7f2039-9e65-4c64-b21e-08e1433ff445",
+    "octgnid": "4d7f2039-9e65-4c64-b21e-08e1433ff445",
+    "name": "Scenario Rules 2",
+    "type_code": "rules",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Taking control of Loot",
+    "is_unique": false,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 0,
+    "quantity": 0,
+    "encounter_set": "The Ruins of Belegost",
+    "printed_stats": {},
+    "imagesrc": "/cards/4d7f2039-9e65-4c64-b21e-08e1433ff445.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 0,
+        "quantity": 0,
+        "octgnid": "4d7f2039-9e65-4c64-b21e-08e1433ff445",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4d7f2039-9e65-4c64-b21e-08e1433ff445.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51a1050d-f8d5-48aa-8f96-ef96e1e836da",
+    "octgnid": "51a1050d-f8d5-48aa-8f96-ef96e1e836da",
+    "name": "Abandoned Mine",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "Discover 2.\nWhile Abandoned Mine is in the staging area, progress cannot be placed on locations in the staging area not named Abandoned Mine.\nForced: When resolving the Discover keyword on Abandoned Mine, look at X additional cards where X is the number of players in the game.",
+    "is_unique": false,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 22,
+    "quantity": 4,
+    "threat": 2,
+    "quest": 3,
+    "encounter_set": "The Ruins of Belegost",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/51a1050d-f8d5-48aa-8f96-ef96e1e836da.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 22,
+        "quantity": 4,
+        "octgnid": "51a1050d-f8d5-48aa-8f96-ef96e1e836da",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51a1050d-f8d5-48aa-8f96-ef96e1e836da.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:52248807-32d1-422b-b4b2-01097405e49f",
+    "octgnid": "52248807-32d1-422b-b4b2-01097405e49f",
+    "name": "Secret Chamber",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground. Hazard.",
+    "text": "Discover 3.\nResponse: After the players travel to Secret Chamber, if no Loot objective is attached to Secret Chamber, search the encounter discard pile for a Loot objective and attach it to Secret Chamber as a guarded objective.\nTravel: Raise each player's threat by 2.",
+    "is_unique": false,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 26,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 2,
+    "encounter_set": "The Ruins of Belegost",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "2"
+    },
+    "imagesrc": "/cards/52248807-32d1-422b-b4b2-01097405e49f.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 26,
+        "quantity": 3,
+        "octgnid": "52248807-32d1-422b-b4b2-01097405e49f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/52248807-32d1-422b-b4b2-01097405e49f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:536cee93-e3d5-42fd-8182-0a939fd19f46",
+    "octgnid": "536cee93-e3d5-42fd-8182-0a939fd19f46",
+    "name": "Stalking the Ruins",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Dragon.",
+    "text": "Forced: At the beginning of the quest phase, place 1 resource on Stalking the Ruins. Then, if there are at least 3 resources here, add or return Naurlhûg to the staging area.\nForced: When the players advance to a new quest stage, discard all tokens from Stalking the Ruins. Then, set Naurlhûg aside, out of play.",
+    "is_unique": false,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 8,
+    "quantity": 1,
+    "encounter_set": "The Ruins of Belegost",
+    "printed_stats": {},
+    "imagesrc": "/cards/536cee93-e3d5-42fd-8182-0a939fd19f46.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 8,
+        "quantity": 1,
+        "octgnid": "536cee93-e3d5-42fd-8182-0a939fd19f46",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/536cee93-e3d5-42fd-8182-0a939fd19f46.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:54665391-02fa-4402-b7ea-2f8b5aa95a57",
+    "octgnid": "54665391-02fa-4402-b7ea-2f8b5aa95a57",
+    "name": "Blue Mountain Gem",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Artifact. Item.",
+    "text": "Loot.\nIf unattached, the first player claims Blue Mountain Gem and attaches it to a hero he controls.\nAction: Exhaust Blue Mountain Gem to choose a player. Reduce that player's threat by 1.",
+    "is_unique": true,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 14,
+    "quantity": 1,
+    "encounter_set": "The Ruins of Belegost",
+    "printed_stats": {},
+    "imagesrc": "/cards/54665391-02fa-4402-b7ea-2f8b5aa95a57.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 14,
+        "quantity": 1,
+        "octgnid": "54665391-02fa-4402-b7ea-2f8b5aa95a57",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/54665391-02fa-4402-b7ea-2f8b5aa95a57.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:687ca930-b64c-4a5c-b6a3-bc3b12d8641d",
+    "octgnid": "687ca930-b64c-4a5c-b6a3-bc3b12d8641d",
+    "name": "Flooded Hall",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "Discover 4.\nWhile Flooded Hall is in the staging area, increase the cost to play each ally by 1.\nForced: When resolving the Discover keyword on Flooded Hall, the first player reveals an additional looked at Hazard card for each other player in the game.",
+    "is_unique": false,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 23,
+    "quantity": 2,
+    "threat": 4,
+    "quest": 4,
+    "encounter_set": "The Ruins of Belegost",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/687ca930-b64c-4a5c-b6a3-bc3b12d8641d.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 23,
+        "quantity": 2,
+        "octgnid": "687ca930-b64c-4a5c-b6a3-bc3b12d8641d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/687ca930-b64c-4a5c-b6a3-bc3b12d8641d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:6e42b5b8-c708-4f2e-a483-4984db0d1084",
+    "octgnid": "6e42b5b8-c708-4f2e-a483-4984db0d1084",
+    "name": "Old Stone Troll",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Troll. Hazard.",
+    "text": "Cannot have player card attachments.\nOld Stone Troll gets -10 engagement cost for each Loot objective attached to a hero.\nOnly the engaged player can declare attackers against Old Stone Troll.",
+    "is_unique": false,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 18,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 6,
+    "defense": 3,
+    "health": 8,
+    "engagement": 50,
+    "encounter_set": "The Ruins of Belegost",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "6",
+      "defense": "3",
+      "health": "8",
+      "engagement": "50"
+    },
+    "imagesrc": "/cards/6e42b5b8-c708-4f2e-a483-4984db0d1084.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 18,
+        "quantity": 2,
+        "octgnid": "6e42b5b8-c708-4f2e-a483-4984db0d1084",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6e42b5b8-c708-4f2e-a483-4984db0d1084.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:796c0aee-2aea-4999-931d-253fafe7fb26",
+    "octgnid": "796c0aee-2aea-4999-931d-253fafe7fb26",
+    "name": "Blue Mountain Goblin",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Goblin.",
+    "text": "While a Loot objective is attached to a hero, Blue Mountain Goblin gains surge.",
+    "is_unique": false,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 20,
+    "quantity": 3,
+    "threat": 1,
+    "attack": 3,
+    "defense": 2,
+    "health": 3,
+    "engagement": 25,
+    "shadow": "Shadow: If you control a Loot objective, put Blue Mountain Goblin into play engaged with you and deal it a shadow card.",
+    "encounter_set": "The Ruins of Belegost",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "3",
+      "defense": "2",
+      "health": "3",
+      "engagement": "25"
+    },
+    "imagesrc": "/cards/796c0aee-2aea-4999-931d-253fafe7fb26.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 20,
+        "quantity": 3,
+        "octgnid": "796c0aee-2aea-4999-931d-253fafe7fb26",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/796c0aee-2aea-4999-931d-253fafe7fb26.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:7bae4f1a-42b7-46ab-bfbb-0078ed0842a4",
+    "octgnid": "7bae4f1a-42b7-46ab-bfbb-0078ed0842a4",
+    "name": "Sword of Belegost",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Artifact. Item. Weapon.",
+    "text": "Loot. Restricted.\nIf unattached, the first player claims Sword of Belegost and attaches it to a hero he controls.\nAttached hero gets +4 [attack].\nResponse: Exhaust Sword of Belegost to cancel a shadow effect just triggered.",
+    "is_unique": true,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 9,
+    "quantity": 1,
+    "encounter_set": "The Ruins of Belegost",
+    "printed_stats": {},
+    "imagesrc": "/cards/7bae4f1a-42b7-46ab-bfbb-0078ed0842a4.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 9,
+        "quantity": 1,
+        "octgnid": "7bae4f1a-42b7-46ab-bfbb-0078ed0842a4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7bae4f1a-42b7-46ab-bfbb-0078ed0842a4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8e15ba46-125f-44fc-b67b-6006b96b20ea",
+    "octgnid": "8e15ba46-125f-44fc-b67b-6006b96b20ea",
+    "name": "Dwarven Torch",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Artifact. Item.",
+    "text": "Loot.\nIf unattached, the first player claims Dwarven Torch and attaches it to a hero he controls.\nAction: Exhaust Dwarven Torch to choose a non-unique enemy. That enemy gets -1 [attack] and -1 [defense] until the end of the phase.",
+    "is_unique": true,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 13,
+    "quantity": 1,
+    "encounter_set": "The Ruins of Belegost",
+    "printed_stats": {},
+    "imagesrc": "/cards/8e15ba46-125f-44fc-b67b-6006b96b20ea.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 13,
+        "quantity": 1,
+        "octgnid": "8e15ba46-125f-44fc-b67b-6006b96b20ea",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8e15ba46-125f-44fc-b67b-6006b96b20ea.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:9d65d755-9d41-47d8-84f5-ea725fba1d2f",
+    "octgnid": "9d65d755-9d41-47d8-84f5-ea725fba1d2f",
+    "name": "Naurlhûg",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Dragon.",
+    "text": "Immune to player card effects. Cannot take damage.\nX is the number of resources on Stalking the Ruins.\nForced: When Naurlhûg makes an attack, the defending player assigns X damage among characters he controls.",
+    "is_unique": true,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 15,
+    "quantity": 1,
+    "attack": 7,
+    "defense": 5,
+    "health": 20,
+    "engagement": 20,
+    "victory": 7,
+    "encounter_set": "The Ruins of Belegost",
+    "printed_stats": {
+      "threat": "X",
+      "attack": "7",
+      "defense": "5",
+      "health": "20",
+      "engagement": "20",
+      "victory": "7"
+    },
+    "imagesrc": "/cards/9d65d755-9d41-47d8-84f5-ea725fba1d2f.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 15,
+        "quantity": 1,
+        "octgnid": "9d65d755-9d41-47d8-84f5-ea725fba1d2f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9d65d755-9d41-47d8-84f5-ea725fba1d2f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:a9502ae6-2df9-419a-b562-43550926cd73",
+    "octgnid": "a9502ae6-2df9-419a-b562-43550926cd73",
+    "name": "Spawn of Thangorodrim",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: If Naurlhûg is in play, it makes an immediate attack against the first player. If Naurlhûg is not in play, place 1 resource on Stalking the Ruins. Then, if there are at least 3 resources on Stalking the Ruins, add Naurlhûg to the staging area.",
+    "is_unique": false,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 28,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy makes an additional attack against you after this one.",
+    "encounter_set": "The Ruins of Belegost",
+    "printed_stats": {},
+    "imagesrc": "/cards/a9502ae6-2df9-419a-b562-43550926cd73.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 28,
+        "quantity": 2,
+        "octgnid": "a9502ae6-2df9-419a-b562-43550926cd73",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a9502ae6-2df9-419a-b562-43550926cd73.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:adeb3985-c342-4d9e-acd6-2c7cf35dafe6",
+    "octgnid": "adeb3985-c342-4d9e-acd6-2c7cf35dafe6",
+    "name": "Keys of Belegost",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Artifact. Item.",
+    "text": "Loot.\nIf unattached, the first player claims Keys of Belegost and attaches it to a hero he controls.\nAction: Exhaust Keys of Belegost to choose a hero. Add 1 resource to that hero's pool.",
+    "is_unique": true,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 11,
+    "quantity": 1,
+    "encounter_set": "The Ruins of Belegost",
+    "printed_stats": {},
+    "imagesrc": "/cards/adeb3985-c342-4d9e-acd6-2c7cf35dafe6.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 11,
+        "quantity": 1,
+        "octgnid": "adeb3985-c342-4d9e-acd6-2c7cf35dafe6",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/adeb3985-c342-4d9e-acd6-2c7cf35dafe6.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:cf6114ac-f795-4085-b135-4cca76fb8608",
+    "octgnid": "cf6114ac-f795-4085-b135-4cca76fb8608",
+    "name": "Echoes in the Dark",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Doomed 1.\nWhen Revealed: Add 1 to the total [threat] in the staging area for each character controlled by the first player until the end of the phase.",
+    "is_unique": false,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 27,
+    "quantity": 3,
+    "shadow": "Shadow: Discard 1 random card from your hand. If the discarded card is an event, attacking enemy gets +2 [attack].",
+    "encounter_set": "The Ruins of Belegost",
+    "printed_stats": {},
+    "imagesrc": "/cards/cf6114ac-f795-4085-b135-4cca76fb8608.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 27,
+        "quantity": 3,
+        "octgnid": "cf6114ac-f795-4085-b135-4cca76fb8608",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cf6114ac-f795-4085-b135-4cca76fb8608.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f3efc356-9e7d-40e3-a8ff-0ad47d8b9d67",
+    "octgnid": "f3efc356-9e7d-40e3-a8ff-0ad47d8b9d67",
+    "name": "Nameless Cave Dweller",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Nameless. Hazard.",
+    "text": "Cannot have player card attachments.\nX is 1 more than the Discover value on the active location.",
+    "is_unique": false,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 17,
+    "quantity": 4,
+    "health": 5,
+    "engagement": 35,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if you control a Loot objective).",
+    "encounter_set": "The Ruins of Belegost",
+    "printed_stats": {
+      "threat": "X",
+      "attack": "X",
+      "defense": "X",
+      "health": "5",
+      "engagement": "35"
+    },
+    "imagesrc": "/cards/f3efc356-9e7d-40e3-a8ff-0ad47d8b9d67.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 17,
+        "quantity": 4,
+        "octgnid": "f3efc356-9e7d-40e3-a8ff-0ad47d8b9d67",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f3efc356-9e7d-40e3-a8ff-0ad47d8b9d67.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:fba9d635-eeba-4cc1-b9fb-d6666a3a1cdf",
+    "octgnid": "fba9d635-eeba-4cc1-b9fb-d6666a3a1cdf",
+    "name": "Covered Pit",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Hazard.",
+    "text": "When Revealed: Each player discards an ally he controls.",
+    "is_unique": false,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 30,
+    "quantity": 2,
+    "shadow": "Shadow: If attacking enemy is non-unique, attach a Loot objective you control to it as a guarded objective. If this attack destroys a character, return attacking enemy to the staging area.",
+    "encounter_set": "The Ruins of Belegost",
+    "printed_stats": {},
+    "imagesrc": "/cards/fba9d635-eeba-4cc1-b9fb-d6666a3a1cdf.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 30,
+        "quantity": 2,
+        "octgnid": "fba9d635-eeba-4cc1-b9fb-d6666a3a1cdf",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fba9d635-eeba-4cc1-b9fb-d6666a3a1cdf.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:fd1ed69d-287a-49bc-973c-93216ab4d674",
+    "octgnid": "fd1ed69d-287a-49bc-973c-93216ab4d674",
+    "name": "Map of Ered Luin",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Artifact. Item.",
+    "text": "Loot.\nIf unattached, the first player claims Map of Ered Luin and attaches it to a hero he controls.\nAction: Exhaust Map of Ered Luin to choose a non-unique location. That location gets -2 [threat] until the end of the phase.",
+    "is_unique": true,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 10,
+    "quantity": 1,
+    "encounter_set": "The Ruins of Belegost",
+    "printed_stats": {},
+    "imagesrc": "/cards/fd1ed69d-287a-49bc-973c-93216ab4d674.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 10,
+        "quantity": 1,
+        "octgnid": "fd1ed69d-287a-49bc-973c-93216ab4d674",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fd1ed69d-287a-49bc-973c-93216ab4d674.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

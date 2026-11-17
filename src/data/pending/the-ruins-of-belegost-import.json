@@ -1,0 +1,1979 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The Ruins of Belegost",
+  "slug": "the-ruins-of-belegost",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "octgn:0eb36ad6-db76-4e69-b77c-77ff7da8661d",
+      "octgnid": "0eb36ad6-db76-4e69-b77c-77ff7da8661d",
+      "name": "The Mines of Belegost",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck and reveal 1 encounter card per player.",
+      "is_unique": false,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 6,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "The Ruins of Belegost",
+      "side": "E",
+      "back_name": "The Mines of Belegost",
+      "back_text": "During the travel phase, the players must travel to a location, if able.  Forced: After resolving the Discover keyword, if no Hazard card was revealed by that effect, reveal the top card of the encounter deck.  Forced: When this stage is defeated, if Blue Mountain Gem is attached to a hero advance to stage 4A. Otherwise, advance to stage 3A.",
+      "back_type_code": "quest",
+      "back_quest": 6,
+      "back_imagesrc": "/cards/0eb36ad6-db76-4e69-b77c-77ff7da8661d.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/0eb36ad6-db76-4e69-b77c-77ff7da8661d.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 6,
+          "quantity": 1,
+          "octgnid": "0eb36ad6-db76-4e69-b77c-77ff7da8661d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0eb36ad6-db76-4e69-b77c-77ff7da8661d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:10dc0c5d-a434-4d77-a06f-5ed0c1d4ac46",
+      "octgnid": "10dc0c5d-a434-4d77-a06f-5ed0c1d4ac46",
+      "name": "Naurlhûg's Lair",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "Discover 5. Immune to player card effects.\nForced: When Naurlhug's Lair is explored, add the Loot objective from underneath Stalking the Ruins to the staging area faceup. Travel: Place X resources on Stalking the Ruins, where X is the number of players.",
+      "is_unique": true,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 21,
+      "quantity": 1,
+      "threat": 4,
+      "quest": 6,
+      "victory": 4,
+      "encounter_set": "The Ruins of Belegost",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "6",
+        "victory": "4"
+      },
+      "imagesrc": "/cards/10dc0c5d-a434-4d77-a06f-5ed0c1d4ac46.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 21,
+          "quantity": 1,
+          "octgnid": "10dc0c5d-a434-4d77-a06f-5ed0c1d4ac46",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/10dc0c5d-a434-4d77-a06f-5ed0c1d4ac46.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:19c23cd8-5935-4278-a5e1-943967004e0a",
+      "octgnid": "19c23cd8-5935-4278-a5e1-943967004e0a",
+      "name": "Scenario Rules 1",
+      "type_code": "rules",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Discover X. Discover is a new keyword in The Ruins of Belegost. The Discover keyword represents the heroes' search for lost treasure, as well as the unexpected dangers they encounter as they travel to the different locations in Belegost. When a location with the Discover keyword becomes the active location, the first player resolves the following steps in order: 1. Look at the top X cards of the encounter deck, where X is the active locations Discover value. 2. Choose 1 looked at objective with the Loot keyword and attach it to the active location as a guarded objective. 3. Randomly select 1 looked at card with the Hazard trait, reveal it and add it to the staging area. 4. Place any remaining looked at cards in the encounter discard pile.",
+      "is_unique": false,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 0,
+      "quantity": 0,
+      "encounter_set": "The Ruins of Belegost",
+      "back_name": "Scenario Rules 1",
+      "back_text": "Discover X (continued) If there are less than X cards remaining in the encounter deck when resolving the Discover keyword, shuffle the encounter discard pile into the encounter deck and continue resolving the Discover keyword. Loot Loot is a new keyword that appears on some objective cards in The Ruins of Belegost. Objectives with the Loot keyword are valuable treasures that can only be discovered by exploring the different locations in Belegost. A Loot card can only enter play by resolving the Discover keyword on a location. If a card with the Loot keyword is revealed from the encounter deck, discard it and reveal another card from the top of the encounter deck.",
+      "back_type_code": "rules",
+      "back_imagesrc": "/cards/19c23cd8-5935-4278-a5e1-943967004e0a.B.jpg",
+      "printed_stats": {},
+      "imagesrc": "/cards/19c23cd8-5935-4278-a5e1-943967004e0a.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 0,
+          "quantity": 0,
+          "octgnid": "19c23cd8-5935-4278-a5e1-943967004e0a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/19c23cd8-5935-4278-a5e1-943967004e0a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3c1bea1f-80b7-4857-9d0b-489376d4abab",
+      "octgnid": "3c1bea1f-80b7-4857-9d0b-489376d4abab",
+      "name": "Book of Aulë's Children",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Artifact. Item.",
+      "text": "Loot.\nIf unattached, the fist player claims Book of Aule's Children and attaches it to a hero he controls. Action: Exhaust Book of Aule's Children to choose a player. That player draws 1 card.",
+      "is_unique": true,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 12,
+      "quantity": 1,
+      "encounter_set": "The Ruins of Belegost",
+      "printed_stats": {},
+      "imagesrc": "/cards/3c1bea1f-80b7-4857-9d0b-489376d4abab.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 12,
+          "quantity": 1,
+          "octgnid": "3c1bea1f-80b7-4857-9d0b-489376d4abab",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3c1bea1f-80b7-4857-9d0b-489376d4abab.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3d7adc18-c9cb-4e93-8b1e-1574747ba8ce",
+      "octgnid": "3d7adc18-c9cb-4e93-8b1e-1574747ba8ce",
+      "name": "Concealed Spikes",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Hazard.",
+      "text": "When Revealed: Each player assigns X damage among characters he controls. X is 1 more than the Discover value on the active location.",
+      "is_unique": false,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 29,
+      "quantity": 2,
+      "shadow": "Shadow: Assign X damage among characters you control. X is the number of attachments you control. You may discard the highest cost attachment you control to cancel this effect.",
+      "encounter_set": "The Ruins of Belegost",
+      "printed_stats": {},
+      "imagesrc": "/cards/3d7adc18-c9cb-4e93-8b1e-1574747ba8ce.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 29,
+          "quantity": 2,
+          "octgnid": "3d7adc18-c9cb-4e93-8b1e-1574747ba8ce",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3d7adc18-c9cb-4e93-8b1e-1574747ba8ce.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3d948840-8118-4d63-b782-ba017e1cf5d5",
+      "octgnid": "3d948840-8118-4d63-b782-ba017e1cf5d5",
+      "name": "Darkened Tunnel",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "Discover 2.\nWhile Darkened Tunnel is in the staging area, it gains: \"Forced: After a 'when revealed' effect is canceled, discard the top card of the encounter deck. If the discarded card has the Hazard trait, resolve its staging as if it was just revealed from the encounter deck.\" Travel: Place 1 resource on Stalking the Ruins.",
+      "is_unique": false,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 24,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 3,
+      "encounter_set": "The Ruins of Belegost",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/3d948840-8118-4d63-b782-ba017e1cf5d5.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 24,
+          "quantity": 2,
+          "octgnid": "3d948840-8118-4d63-b782-ba017e1cf5d5",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3d948840-8118-4d63-b782-ba017e1cf5d5.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:415e5671-e9fa-458e-bc46-e9f869bee87f",
+      "octgnid": "415e5671-e9fa-458e-bc46-e9f869bee87f",
+      "name": "Lurker of the Depths",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Cannot have attachments.\nLurker of the Depths cannot be engaged or take more than 4 damage each round.  While Lurker of the Depths is in the staging area, it is considered to be engaged with each player.",
+      "is_unique": true,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 16,
+      "quantity": 1,
+      "threat": 4,
+      "attack": 5,
+      "defense": 2,
+      "health": 12,
+      "engagement": 50,
+      "victory": 5,
+      "encounter_set": "The Ruins of Belegost",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "5",
+        "defense": "2",
+        "health": "12",
+        "engagement": "50",
+        "victory": "5"
+      },
+      "imagesrc": "/cards/415e5671-e9fa-458e-bc46-e9f869bee87f.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 16,
+          "quantity": 1,
+          "octgnid": "415e5671-e9fa-458e-bc46-e9f869bee87f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/415e5671-e9fa-458e-bc46-e9f869bee87f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4c9ac5bd-1653-400c-9cd0-4da685da5c15",
+      "octgnid": "4c9ac5bd-1653-400c-9cd0-4da685da5c15",
+      "name": "Orc of Ered Luin",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "When Revealed: Orc of Ered Luin makes an immediate attack against each player that controls at least 1 Loot objective (in turn order).",
+      "is_unique": false,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 19,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 4,
+      "defense": 2,
+      "health": 4,
+      "engagement": 30,
+      "shadow": "Shadow: After this attack, attacking enemy engages the next player, then makes an immediate attack.",
+      "encounter_set": "The Ruins of Belegost",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "2",
+        "health": "4",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/4c9ac5bd-1653-400c-9cd0-4da685da5c15.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 19,
+          "quantity": 3,
+          "octgnid": "4c9ac5bd-1653-400c-9cd0-4da685da5c15",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4c9ac5bd-1653-400c-9cd0-4da685da5c15.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4d67feae-9070-4ed6-8b1a-3ddc3569e73a",
+      "octgnid": "4d67feae-9070-4ed6-8b1a-3ddc3569e73a",
+      "name": "Sunken Treasury",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "Discover 3.\nSunken Treasury gets +1 [threat] for each Loot objective attached to a hero.  Travel: Each player discards 1 random card from his hand.",
+      "is_unique": false,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 25,
+      "quantity": 3,
+      "threat": 1,
+      "quest": 4,
+      "shadow": "Shadow: Exhaust a character you control.",
+      "encounter_set": "The Ruins of Belegost",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/4d67feae-9070-4ed6-8b1a-3ddc3569e73a.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 25,
+          "quantity": 3,
+          "octgnid": "4d67feae-9070-4ed6-8b1a-3ddc3569e73a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4d67feae-9070-4ed6-8b1a-3ddc3569e73a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4d7f2039-9e65-4c64-b21e-08e1433ff445",
+      "octgnid": "4d7f2039-9e65-4c64-b21e-08e1433ff445",
+      "name": "Scenario Rules 2",
+      "type_code": "rules",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Taking control of Loot",
+      "is_unique": false,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 0,
+      "quantity": 0,
+      "encounter_set": "The Ruins of Belegost",
+      "printed_stats": {},
+      "imagesrc": "/cards/4d7f2039-9e65-4c64-b21e-08e1433ff445.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 0,
+          "quantity": 0,
+          "octgnid": "4d7f2039-9e65-4c64-b21e-08e1433ff445",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4d7f2039-9e65-4c64-b21e-08e1433ff445.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4f03a84f-6665-435f-aa3a-5002c835d13b",
+      "octgnid": "4f03a84f-6665-435f-aa3a-5002c835d13b",
+      "name": "Deeper into the Past",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Shuffle Lurker of the Depths and the encounter discard pile into the encounter deck. Discard cards from the top of the encounter deck until a location is discarded. Add the discarded location to the staging area.",
+      "is_unique": false,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 3,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Ruins of Belegost",
+      "side": "C",
+      "back_name": "Deeper into the Past",
+      "back_text": "The player cannot advance unless they control at least 2 Loot objectives and there are at least 3 resources here.  Forced: After the active location is explored, place 1 resource here.  Forced: When this stage is defeated, if Book of Aule's Children is attached to a hero, advance to stage 3E. Otherwise, advance to stage 3C.",
+      "back_type_code": "quest",
+      "back_quest": 9,
+      "back_imagesrc": "/cards/4f03a84f-6665-435f-aa3a-5002c835d13b.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/4f03a84f-6665-435f-aa3a-5002c835d13b.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 3,
+          "quantity": 1,
+          "octgnid": "4f03a84f-6665-435f-aa3a-5002c835d13b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4f03a84f-6665-435f-aa3a-5002c835d13b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51a1050d-f8d5-48aa-8f96-ef96e1e836da",
+      "octgnid": "51a1050d-f8d5-48aa-8f96-ef96e1e836da",
+      "name": "Abandoned Mine",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "Discover 2.\nWhile Abandoned Mine is in the staging area, progress cannot be placed on locations in the staging area not named Abandoned Mine. Forced: When resolving the Discover keyword on Abandoned Mine, look at X additional cards where X is the number of players in the game.",
+      "is_unique": false,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 22,
+      "quantity": 4,
+      "threat": 2,
+      "quest": 3,
+      "encounter_set": "The Ruins of Belegost",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/51a1050d-f8d5-48aa-8f96-ef96e1e836da.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 22,
+          "quantity": 4,
+          "octgnid": "51a1050d-f8d5-48aa-8f96-ef96e1e836da",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51a1050d-f8d5-48aa-8f96-ef96e1e836da.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:52248807-32d1-422b-b4b2-01097405e49f",
+      "octgnid": "52248807-32d1-422b-b4b2-01097405e49f",
+      "name": "Secret Chamber",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground. Hazard.",
+      "text": "Discover 3.\nResponse: After the players travel to Secret Chamber, if no Loot objective is attached to Secret Chamber, search the encounter discard pile for a Loot objective and attach it to Secret Chamber as a guarded objective.  Travel: Raise each player's threat by 2.",
+      "is_unique": false,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 26,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 2,
+      "encounter_set": "The Ruins of Belegost",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/52248807-32d1-422b-b4b2-01097405e49f.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 26,
+          "quantity": 3,
+          "octgnid": "52248807-32d1-422b-b4b2-01097405e49f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/52248807-32d1-422b-b4b2-01097405e49f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:536cee93-e3d5-42fd-8182-0a939fd19f46",
+      "octgnid": "536cee93-e3d5-42fd-8182-0a939fd19f46",
+      "name": "Stalking the Ruins",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Dragon.",
+      "text": "Forced: At the beginning of the quest phase, place 1 progress token on Stalking the Ruins. Then, if there are at least 3 resources here, add or return Naurlhug to the staging area.  Forced: When the players advance to a new quest stage, discard all tokens from Stalking the Ruins. Then, set Naurlhug aside, out of play.",
+      "is_unique": false,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 8,
+      "quantity": 1,
+      "encounter_set": "The Ruins of Belegost",
+      "printed_stats": {},
+      "imagesrc": "/cards/536cee93-e3d5-42fd-8182-0a939fd19f46.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 8,
+          "quantity": 1,
+          "octgnid": "536cee93-e3d5-42fd-8182-0a939fd19f46",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/536cee93-e3d5-42fd-8182-0a939fd19f46.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:54665391-02fa-4402-b7ea-2f8b5aa95a57",
+      "octgnid": "54665391-02fa-4402-b7ea-2f8b5aa95a57",
+      "name": "Blue Mountain Gem",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Artifact. Item.",
+      "text": "Loot.\nIf unattached, the fist player claims Blue Mountain Gem and attaches it to a hero he controls.  Action: Exhaust Blue Mountain Gem to choose a player. Reduce that player's threat by 1.",
+      "is_unique": true,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 14,
+      "quantity": 1,
+      "encounter_set": "The Ruins of Belegost",
+      "printed_stats": {},
+      "imagesrc": "/cards/54665391-02fa-4402-b7ea-2f8b5aa95a57.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 14,
+          "quantity": 1,
+          "octgnid": "54665391-02fa-4402-b7ea-2f8b5aa95a57",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/54665391-02fa-4402-b7ea-2f8b5aa95a57.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:687ca930-b64c-4a5c-b6a3-bc3b12d8641d",
+      "octgnid": "687ca930-b64c-4a5c-b6a3-bc3b12d8641d",
+      "name": "Flooded Hall",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "Discover 4.\nWhile Flooded Hall is in the staging area, increase the cost to play each ally by 1.  Forced: When resolving the Discover keyword on Flooded Hall, the first player reveals an additional looked at Hazard card for each other player in the game.",
+      "is_unique": false,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 23,
+      "quantity": 2,
+      "threat": 4,
+      "quest": 4,
+      "encounter_set": "The Ruins of Belegost",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/687ca930-b64c-4a5c-b6a3-bc3b12d8641d.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 23,
+          "quantity": 2,
+          "octgnid": "687ca930-b64c-4a5c-b6a3-bc3b12d8641d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/687ca930-b64c-4a5c-b6a3-bc3b12d8641d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6d6d2d0f-7672-4f92-bb07-6a764f655306",
+      "octgnid": "6d6d2d0f-7672-4f92-bb07-6a764f655306",
+      "name": "The Roots of Ered Luin",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck and reveal 1 encounter card per player.",
+      "is_unique": false,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 5,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "The Ruins of Belegost",
+      "side": "C",
+      "back_name": "The Roots of Ered Luin",
+      "back_text": "The Discover value on the active location is increased by 1. During the travel phase, the players must travel to a location, if able.  Forced: When this stage is defeated, if Map of Ered Luin is attached to a hero advance to stage 4A. Otherwise, advance to stage 3E.",
+      "back_type_code": "quest",
+      "back_quest": 6,
+      "back_imagesrc": "/cards/6d6d2d0f-7672-4f92-bb07-6a764f655306.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/6d6d2d0f-7672-4f92-bb07-6a764f655306.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 5,
+          "quantity": 1,
+          "octgnid": "6d6d2d0f-7672-4f92-bb07-6a764f655306",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6d6d2d0f-7672-4f92-bb07-6a764f655306.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6e42b5b8-c708-4f2e-a483-4984db0d1084",
+      "octgnid": "6e42b5b8-c708-4f2e-a483-4984db0d1084",
+      "name": "Old Stone Troll",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Troll. Hazard.",
+      "text": "Cannot have player card attachments.\nOld Stone Troll gets -10 engagement cost for each Loot objective attached to a hero. Only the engaged player can declare attackers against Old Stone Troll.",
+      "is_unique": false,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 18,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 6,
+      "defense": 3,
+      "health": 8,
+      "engagement": 50,
+      "encounter_set": "The Ruins of Belegost",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "6",
+        "defense": "3",
+        "health": "8",
+        "engagement": "50"
+      },
+      "imagesrc": "/cards/6e42b5b8-c708-4f2e-a483-4984db0d1084.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 18,
+          "quantity": 2,
+          "octgnid": "6e42b5b8-c708-4f2e-a483-4984db0d1084",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6e42b5b8-c708-4f2e-a483-4984db0d1084.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:70494c1c-405f-481a-b330-12643c80587e",
+      "octgnid": "70494c1c-405f-481a-b330-12643c80587e",
+      "name": "The Servants of Morgoth",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck and reveal 1 encounter card per player.",
+      "is_unique": false,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 4,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "The Ruins of Belegost",
+      "side": "A",
+      "back_name": "The Servants of Morgoth",
+      "back_text": "The first Hazard card revealed each round gains surge. During the travel phase, the players must travel to a location, if able. Forced: When this stage is defeated, if Dwarven Torch is attached to a hero, advance to stage 4A. Otherwise advance to stage 3C.",
+      "back_type_code": "quest",
+      "back_quest": 6,
+      "back_imagesrc": "/cards/70494c1c-405f-481a-b330-12643c80587e.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/70494c1c-405f-481a-b330-12643c80587e.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 4,
+          "quantity": 1,
+          "octgnid": "70494c1c-405f-481a-b330-12643c80587e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/70494c1c-405f-481a-b330-12643c80587e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:796c0aee-2aea-4999-931d-253fafe7fb26",
+      "octgnid": "796c0aee-2aea-4999-931d-253fafe7fb26",
+      "name": "Blue Mountain Goblin",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Goblin.",
+      "text": "While a Loot objective is attached to a hero, Blue Mountain Goblin gains surge.",
+      "is_unique": false,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 20,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 3,
+      "defense": 2,
+      "health": 3,
+      "engagement": 25,
+      "shadow": "Shadow: If you control a Loot objective, put Blue Mountain Goblin into play engaged with you and deal it a shadow card.",
+      "encounter_set": "The Ruins of Belegost",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "3",
+        "defense": "2",
+        "health": "3",
+        "engagement": "25"
+      },
+      "imagesrc": "/cards/796c0aee-2aea-4999-931d-253fafe7fb26.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 20,
+          "quantity": 3,
+          "octgnid": "796c0aee-2aea-4999-931d-253fafe7fb26",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/796c0aee-2aea-4999-931d-253fafe7fb26.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7bae4f1a-42b7-46ab-bfbb-0078ed0842a4",
+      "octgnid": "7bae4f1a-42b7-46ab-bfbb-0078ed0842a4",
+      "name": "Sword of Belegost",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Artifact. Item. Weapon.",
+      "text": "Loot. Restricted.\nIf unattached, the first player claims Sword of Belegost and attaches it to a hero he controls.  Attached hero gets +4 [attack].  Response: Exhaust Sword of Belegost to cancel a shadow effect just triggered.",
+      "is_unique": true,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 9,
+      "quantity": 1,
+      "encounter_set": "The Ruins of Belegost",
+      "printed_stats": {},
+      "imagesrc": "/cards/7bae4f1a-42b7-46ab-bfbb-0078ed0842a4.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 9,
+          "quantity": 1,
+          "octgnid": "7bae4f1a-42b7-46ab-bfbb-0078ed0842a4",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7bae4f1a-42b7-46ab-bfbb-0078ed0842a4.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8e15ba46-125f-44fc-b67b-6006b96b20ea",
+      "octgnid": "8e15ba46-125f-44fc-b67b-6006b96b20ea",
+      "name": "Dwarven Torch",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Artifact. Item.",
+      "text": "Loot.\nIf unattached, the fist player claims Dwarven Torch and attaches it to a hero he controls.  Action: Exhaust Dwarven Torch to choose a non-unique enemy. That enemy gets -1 [attack] and -1 [defense] until the end of the phase.",
+      "is_unique": true,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 13,
+      "quantity": 1,
+      "encounter_set": "The Ruins of Belegost",
+      "printed_stats": {},
+      "imagesrc": "/cards/8e15ba46-125f-44fc-b67b-6006b96b20ea.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 13,
+          "quantity": 1,
+          "octgnid": "8e15ba46-125f-44fc-b67b-6006b96b20ea",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8e15ba46-125f-44fc-b67b-6006b96b20ea.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8f449385-efbb-4f99-b0c6-984e7b522674",
+      "octgnid": "8f449385-efbb-4f99-b0c6-984e7b522674",
+      "name": "Ancient Evils Disturbed",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Add Lurker of the Depths to the staging area.",
+      "is_unique": false,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 2,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Ruins of Belegost",
+      "side": "A",
+      "back_name": "Ancient Evils Disturbed",
+      "back_text": "The players cannot advance unless they control at least 2 Loot objectives and Lurker of the Depths is in the victory display.  Forced: When this stage is defeated, if Book of Aule's Children is attached to a hero, advance to stage 3C. Otherwise, advance to stage 3A.",
+      "back_type_code": "quest",
+      "back_quest": 9,
+      "back_imagesrc": "/cards/8f449385-efbb-4f99-b0c6-984e7b522674.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/8f449385-efbb-4f99-b0c6-984e7b522674.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 2,
+          "quantity": 1,
+          "octgnid": "8f449385-efbb-4f99-b0c6-984e7b522674",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8f449385-efbb-4f99-b0c6-984e7b522674.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9d65d755-9d41-47d8-84f5-ea725fba1d2f",
+      "octgnid": "9d65d755-9d41-47d8-84f5-ea725fba1d2f",
+      "name": "Naurlhûg",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Dragon.",
+      "text": "Immune to player card effects, Cannot take damage.\nX is the number of resources on Stalking the Ruins.  Forced: When Naurlhug makes an attack, the defending player assigns X damage among characters he controls.",
+      "is_unique": true,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 15,
+      "quantity": 1,
+      "attack": 7,
+      "defense": 5,
+      "health": 20,
+      "engagement": 20,
+      "victory": 7,
+      "encounter_set": "The Ruins of Belegost",
+      "printed_stats": {
+        "threat": "X",
+        "attack": "7",
+        "defense": "5",
+        "health": "20",
+        "engagement": "20",
+        "victory": "7"
+      },
+      "imagesrc": "/cards/9d65d755-9d41-47d8-84f5-ea725fba1d2f.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 15,
+          "quantity": 1,
+          "octgnid": "9d65d755-9d41-47d8-84f5-ea725fba1d2f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9d65d755-9d41-47d8-84f5-ea725fba1d2f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a9502ae6-2df9-419a-b562-43550926cd73",
+      "octgnid": "a9502ae6-2df9-419a-b562-43550926cd73",
+      "name": "Spawn of Thangorodrim",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: If Naurlhug is in play, it makes an immediate attack against the first player. If Naurlhug is not in play, place 1 resource on Stalking the Ruins. Then, if there are at least 3 resources on Stalking the Ruins, add Naurlhug to the staging area.",
+      "is_unique": false,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 28,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy makes an additional attack against you after this one.",
+      "encounter_set": "The Ruins of Belegost",
+      "printed_stats": {},
+      "imagesrc": "/cards/a9502ae6-2df9-419a-b562-43550926cd73.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 28,
+          "quantity": 2,
+          "octgnid": "a9502ae6-2df9-419a-b562-43550926cd73",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a9502ae6-2df9-419a-b562-43550926cd73.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:adeb3985-c342-4d9e-acd6-2c7cf35dafe6",
+      "octgnid": "adeb3985-c342-4d9e-acd6-2c7cf35dafe6",
+      "name": "Keys of Belegost",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Artifact. Item.",
+      "text": "Loot.\nIf unattached, the fist player claims Keys of Belegost and attaches it to a hero he controls. Action: Exhaust Keys of Belegost to choose a hero. Add 1 resource to that hero's resource pool.",
+      "is_unique": true,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 11,
+      "quantity": 1,
+      "encounter_set": "The Ruins of Belegost",
+      "printed_stats": {},
+      "imagesrc": "/cards/adeb3985-c342-4d9e-acd6-2c7cf35dafe6.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 11,
+          "quantity": 1,
+          "octgnid": "adeb3985-c342-4d9e-acd6-2c7cf35dafe6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/adeb3985-c342-4d9e-acd6-2c7cf35dafe6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:cf6114ac-f795-4085-b135-4cca76fb8608",
+      "octgnid": "cf6114ac-f795-4085-b135-4cca76fb8608",
+      "name": "Echoes in the Dark",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 1.\nWhen Revealed: Add 1 to the total [threat] in the staging area for each character controlled by the first player until the end of the phase.",
+      "is_unique": false,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 27,
+      "quantity": 3,
+      "shadow": "Shadow: Discard 1 random card from your hand. If the discarded card is an event, attacking enemy gets +2 [attack]",
+      "encounter_set": "The Ruins of Belegost",
+      "printed_stats": {},
+      "imagesrc": "/cards/cf6114ac-f795-4085-b135-4cca76fb8608.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 27,
+          "quantity": 3,
+          "octgnid": "cf6114ac-f795-4085-b135-4cca76fb8608",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cf6114ac-f795-4085-b135-4cca76fb8608.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f3efc356-9e7d-40e3-a8ff-0ad47d8b9d67",
+      "octgnid": "f3efc356-9e7d-40e3-a8ff-0ad47d8b9d67",
+      "name": "Nameless Cave Dweller",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Nameless. Hazard.",
+      "text": "Cannot have player card attachments.\nX is 1 more than the Discover value on the active location.",
+      "is_unique": false,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 17,
+      "quantity": 4,
+      "health": 5,
+      "engagement": 35,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if you control a Loot objective).",
+      "encounter_set": "The Ruins of Belegost",
+      "printed_stats": {
+        "threat": "X",
+        "attack": "X",
+        "defense": "X",
+        "health": "5",
+        "engagement": "35"
+      },
+      "imagesrc": "/cards/f3efc356-9e7d-40e3-a8ff-0ad47d8b9d67.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 17,
+          "quantity": 4,
+          "octgnid": "f3efc356-9e7d-40e3-a8ff-0ad47d8b9d67",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f3efc356-9e7d-40e3-a8ff-0ad47d8b9d67.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f5a08708-ed75-45a0-91a1-59e10eeebfc9",
+      "octgnid": "f5a08708-ed75-45a0-91a1-59e10eeebfc9",
+      "name": "The Beast of Belegost",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Add Naurlhug and Naurlhug's Lair to the staging area. Shuffle the Sword of Belegost, and the encounter discard pile into the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 7,
+      "quantity": 1,
+      "cost": 4,
+      "encounter_set": "The Ruins of Belegost",
+      "side": "A",
+      "back_name": "The Beast of Belegost",
+      "back_text": "While Naurlhug's Lair is in the victory display, Naurlhug loses the text: \"Cannot take damage.\"  Forced: After Naurlhug attacks, if it was dealt a shadow card with no shadow effect, it engages the next player. Then, it makes an immediate attack. Do not deal it a shadow card for this attack.  When Naurlhug is defeated, the players win the game.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/f5a08708-ed75-45a0-91a1-59e10eeebfc9.B.jpg",
+      "printed_stats": {
+        "cost": "4"
+      },
+      "imagesrc": "/cards/f5a08708-ed75-45a0-91a1-59e10eeebfc9.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 7,
+          "quantity": 1,
+          "octgnid": "f5a08708-ed75-45a0-91a1-59e10eeebfc9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f5a08708-ed75-45a0-91a1-59e10eeebfc9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f8a95ed4-415f-41a2-90db-ce8de7071883",
+      "octgnid": "f8a95ed4-415f-41a2-90db-ce8de7071883",
+      "name": "Ruins of the First Age",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Add Stalking the Ruins and 1 copy of Abandoned Mine per player to the staging area. Set Lurker of the Depths, Naurlhug, Naurlhug's Lair, and Sword of Belegost aside, out of play. Randomly select 1 of the 5 remaining Loot objectives and place it facedown underneath Stalking the Ruins (without looking). Shuffle the others into the encounter deck (without looking at them).",
+      "is_unique": false,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 1,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The Ruins of Belegost",
+      "side": "A",
+      "back_name": "Ruins of the First Age",
+      "back_text": "The player cannot advance unless they control at least 1 Loot objective.   Forced: At the beginning of the travel phase, if there are no locations in play, return the topmost location in the encounter discard pile to the staging area.   Forced: When this stage is defeated, if Keys of Belegost is attached to a hero, advace to stage 2C. Otherwise, advance to Stage 2A.",
+      "back_type_code": "quest",
+      "back_quest": 6,
+      "back_imagesrc": "/cards/f8a95ed4-415f-41a2-90db-ce8de7071883.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/f8a95ed4-415f-41a2-90db-ce8de7071883.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 1,
+          "quantity": 1,
+          "octgnid": "f8a95ed4-415f-41a2-90db-ce8de7071883",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f8a95ed4-415f-41a2-90db-ce8de7071883.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fba9d635-eeba-4cc1-b9fb-d6666a3a1cdf",
+      "octgnid": "fba9d635-eeba-4cc1-b9fb-d6666a3a1cdf",
+      "name": "Covered Pit",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Hazard.",
+      "text": "When Revealed: Each player discards an ally he controls.",
+      "is_unique": false,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 30,
+      "quantity": 2,
+      "shadow": "Shadow: If attacking enemy is non-unique, attach a Loot objective you control to it as a guarded objective. If this attack destroys a character, return attacking enemy to the staging area.",
+      "encounter_set": "The Ruins of Belegost",
+      "printed_stats": {},
+      "imagesrc": "/cards/fba9d635-eeba-4cc1-b9fb-d6666a3a1cdf.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 30,
+          "quantity": 2,
+          "octgnid": "fba9d635-eeba-4cc1-b9fb-d6666a3a1cdf",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fba9d635-eeba-4cc1-b9fb-d6666a3a1cdf.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fd1ed69d-287a-49bc-973c-93216ab4d674",
+      "octgnid": "fd1ed69d-287a-49bc-973c-93216ab4d674",
+      "name": "Map of Ered Luin",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Artifact. Item.",
+      "text": "Loot.\nIf unattached, the fist player claims Map of Ered Luin and attaches it to a hero he controls.  Action: Exhaust Map of Ered Luin to choose a non-unique location. That location gets -2 [threat] until the end of the phase.",
+      "is_unique": true,
+      "pack_code": "TRoB",
+      "pack_name": "The Ruins of Belegost",
+      "position": 10,
+      "quantity": 1,
+      "encounter_set": "The Ruins of Belegost",
+      "printed_stats": {},
+      "imagesrc": "/cards/fd1ed69d-287a-49bc-973c-93216ab4d674.jpg",
+      "packs": [
+        {
+          "pack_code": "TRoB",
+          "pack_name": "The Ruins of Belegost",
+          "position": 10,
+          "quantity": 1,
+          "octgnid": "fd1ed69d-287a-49bc-973c-93216ab4d674",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fd1ed69d-287a-49bc-973c-93216ab4d674.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E99.06",
+      "name": "The Ruins of Belegost (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "TRoB"
+      ],
+      "card_codes": [
+        "octgn:f8a95ed4-415f-41a2-90db-ce8de7071883",
+        "octgn:8f449385-efbb-4f99-b0c6-984e7b522674",
+        "octgn:4f03a84f-6665-435f-aa3a-5002c835d13b",
+        "octgn:70494c1c-405f-481a-b330-12643c80587e",
+        "octgn:6d6d2d0f-7672-4f92-bb07-6a764f655306",
+        "octgn:0eb36ad6-db76-4e69-b77c-77ff7da8661d",
+        "octgn:f5a08708-ed75-45a0-91a1-59e10eeebfc9",
+        "octgn:f3efc356-9e7d-40e3-a8ff-0ad47d8b9d67",
+        "octgn:4c9ac5bd-1653-400c-9cd0-4da685da5c15",
+        "octgn:796c0aee-2aea-4999-931d-253fafe7fb26",
+        "octgn:3d948840-8118-4d63-b782-ba017e1cf5d5",
+        "octgn:4d67feae-9070-4ed6-8b1a-3ddc3569e73a",
+        "octgn:52248807-32d1-422b-b4b2-01097405e49f",
+        "octgn:cf6114ac-f795-4085-b135-4cca76fb8608",
+        "octgn:3d7adc18-c9cb-4e93-8b1e-1574747ba8ce",
+        "octgn:fba9d635-eeba-4cc1-b9fb-d6666a3a1cdf",
+        "octgn:19c23cd8-5935-4278-a5e1-943967004e0a",
+        "octgn:4d7f2039-9e65-4c64-b21e-08e1433ff445",
+        "octgn:536cee93-e3d5-42fd-8182-0a939fd19f46",
+        "octgn:51a1050d-f8d5-48aa-8f96-ef96e1e836da",
+        "octgn:415e5671-e9fa-458e-bc46-e9f869bee87f",
+        "octgn:9d65d755-9d41-47d8-84f5-ea725fba1d2f",
+        "octgn:10dc0c5d-a434-4d77-a06f-5ed0c1d4ac46",
+        "octgn:7bae4f1a-42b7-46ab-bfbb-0078ed0842a4",
+        "octgn:fd1ed69d-287a-49bc-973c-93216ab4d674",
+        "octgn:adeb3985-c342-4d9e-acd6-2c7cf35dafe6",
+        "octgn:3c1bea1f-80b7-4857-9d0b-489376d4abab",
+        "octgn:8e15ba46-125f-44fc-b67b-6006b96b20ea",
+        "octgn:54665391-02fa-4402-b7ea-2f8b5aa95a57"
+      ],
+      "cards": [
+        {
+          "code": "octgn:f8a95ed4-415f-41a2-90db-ce8de7071883",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:8f449385-efbb-4f99-b0c6-984e7b522674",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:4f03a84f-6665-435f-aa3a-5002c835d13b",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:70494c1c-405f-481a-b330-12643c80587e",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:6d6d2d0f-7672-4f92-bb07-6a764f655306",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:0eb36ad6-db76-4e69-b77c-77ff7da8661d",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:f5a08708-ed75-45a0-91a1-59e10eeebfc9",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:f3efc356-9e7d-40e3-a8ff-0ad47d8b9d67",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4c9ac5bd-1653-400c-9cd0-4da685da5c15",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:796c0aee-2aea-4999-931d-253fafe7fb26",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3d948840-8118-4d63-b782-ba017e1cf5d5",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4d67feae-9070-4ed6-8b1a-3ddc3569e73a",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:52248807-32d1-422b-b4b2-01097405e49f",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cf6114ac-f795-4085-b135-4cca76fb8608",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3d7adc18-c9cb-4e93-8b1e-1574747ba8ce",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fba9d635-eeba-4cc1-b9fb-d6666a3a1cdf",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:19c23cd8-5935-4278-a5e1-943967004e0a",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:4d7f2039-9e65-4c64-b21e-08e1433ff445",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:536cee93-e3d5-42fd-8182-0a939fd19f46",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:51a1050d-f8d5-48aa-8f96-ef96e1e836da",
+          "quantity": 4,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:415e5671-e9fa-458e-bc46-e9f869bee87f",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:9d65d755-9d41-47d8-84f5-ea725fba1d2f",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:10dc0c5d-a434-4d77-a06f-5ed0c1d4ac46",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:7bae4f1a-42b7-46ab-bfbb-0078ed0842a4",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:fd1ed69d-287a-49bc-973c-93216ab4d674",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:adeb3985-c342-4d9e-acd6-2c7cf35dafe6",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:3c1bea1f-80b7-4857-9d0b-489376d4abab",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:8e15ba46-125f-44fc-b67b-6006b96b20ea",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:54665391-02fa-4402-b7ea-2f8b5aa95a57",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:f8a95ed4-415f-41a2-90db-ce8de7071883": 1,
+          "octgn:8f449385-efbb-4f99-b0c6-984e7b522674": 1,
+          "octgn:4f03a84f-6665-435f-aa3a-5002c835d13b": 1,
+          "octgn:70494c1c-405f-481a-b330-12643c80587e": 1,
+          "octgn:6d6d2d0f-7672-4f92-bb07-6a764f655306": 1,
+          "octgn:0eb36ad6-db76-4e69-b77c-77ff7da8661d": 1,
+          "octgn:f5a08708-ed75-45a0-91a1-59e10eeebfc9": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:f3efc356-9e7d-40e3-a8ff-0ad47d8b9d67": 4,
+          "octgn:4c9ac5bd-1653-400c-9cd0-4da685da5c15": 3,
+          "octgn:796c0aee-2aea-4999-931d-253fafe7fb26": 3,
+          "octgn:3d948840-8118-4d63-b782-ba017e1cf5d5": 2,
+          "octgn:4d67feae-9070-4ed6-8b1a-3ddc3569e73a": 3,
+          "octgn:52248807-32d1-422b-b4b2-01097405e49f": 3,
+          "octgn:cf6114ac-f795-4085-b135-4cca76fb8608": 3,
+          "octgn:3d7adc18-c9cb-4e93-8b1e-1574747ba8ce": 2,
+          "octgn:fba9d635-eeba-4cc1-b9fb-d6666a3a1cdf": 2
+        },
+        "sharedSetAside": {
+          "octgn:19c23cd8-5935-4278-a5e1-943967004e0a": 1,
+          "octgn:4d7f2039-9e65-4c64-b21e-08e1433ff445": 1,
+          "octgn:415e5671-e9fa-458e-bc46-e9f869bee87f": 1,
+          "octgn:9d65d755-9d41-47d8-84f5-ea725fba1d2f": 1,
+          "octgn:10dc0c5d-a434-4d77-a06f-5ed0c1d4ac46": 1,
+          "octgn:7bae4f1a-42b7-46ab-bfbb-0078ed0842a4": 1,
+          "octgn:fd1ed69d-287a-49bc-973c-93216ab4d674": 1,
+          "octgn:adeb3985-c342-4d9e-acd6-2c7cf35dafe6": 1,
+          "octgn:3c1bea1f-80b7-4857-9d0b-489376d4abab": 1,
+          "octgn:8e15ba46-125f-44fc-b67b-6006b96b20ea": 1,
+          "octgn:54665391-02fa-4402-b7ea-2f8b5aa95a57": 1
+        },
+        "sharedStagingArea": {
+          "octgn:536cee93-e3d5-42fd-8182-0a939fd19f46": 1,
+          "octgn:51a1050d-f8d5-48aa-8f96-ef96e1e836da": 4
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q99.06",
+      "name": "The Ruins of Belegost",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "TRoB"
+      ],
+      "card_codes": [
+        "octgn:f8a95ed4-415f-41a2-90db-ce8de7071883",
+        "octgn:8f449385-efbb-4f99-b0c6-984e7b522674",
+        "octgn:4f03a84f-6665-435f-aa3a-5002c835d13b",
+        "octgn:70494c1c-405f-481a-b330-12643c80587e",
+        "octgn:6d6d2d0f-7672-4f92-bb07-6a764f655306",
+        "octgn:0eb36ad6-db76-4e69-b77c-77ff7da8661d",
+        "octgn:f5a08708-ed75-45a0-91a1-59e10eeebfc9",
+        "octgn:f3efc356-9e7d-40e3-a8ff-0ad47d8b9d67",
+        "octgn:6e42b5b8-c708-4f2e-a483-4984db0d1084",
+        "octgn:4c9ac5bd-1653-400c-9cd0-4da685da5c15",
+        "octgn:796c0aee-2aea-4999-931d-253fafe7fb26",
+        "octgn:687ca930-b64c-4a5c-b6a3-bc3b12d8641d",
+        "octgn:3d948840-8118-4d63-b782-ba017e1cf5d5",
+        "octgn:4d67feae-9070-4ed6-8b1a-3ddc3569e73a",
+        "octgn:52248807-32d1-422b-b4b2-01097405e49f",
+        "octgn:cf6114ac-f795-4085-b135-4cca76fb8608",
+        "octgn:a9502ae6-2df9-419a-b562-43550926cd73",
+        "octgn:3d7adc18-c9cb-4e93-8b1e-1574747ba8ce",
+        "octgn:fba9d635-eeba-4cc1-b9fb-d6666a3a1cdf",
+        "octgn:19c23cd8-5935-4278-a5e1-943967004e0a",
+        "octgn:4d7f2039-9e65-4c64-b21e-08e1433ff445",
+        "octgn:536cee93-e3d5-42fd-8182-0a939fd19f46",
+        "octgn:51a1050d-f8d5-48aa-8f96-ef96e1e836da",
+        "octgn:415e5671-e9fa-458e-bc46-e9f869bee87f",
+        "octgn:9d65d755-9d41-47d8-84f5-ea725fba1d2f",
+        "octgn:10dc0c5d-a434-4d77-a06f-5ed0c1d4ac46",
+        "octgn:7bae4f1a-42b7-46ab-bfbb-0078ed0842a4",
+        "octgn:fd1ed69d-287a-49bc-973c-93216ab4d674",
+        "octgn:adeb3985-c342-4d9e-acd6-2c7cf35dafe6",
+        "octgn:3c1bea1f-80b7-4857-9d0b-489376d4abab",
+        "octgn:8e15ba46-125f-44fc-b67b-6006b96b20ea",
+        "octgn:54665391-02fa-4402-b7ea-2f8b5aa95a57"
+      ],
+      "cards": [
+        {
+          "code": "octgn:f8a95ed4-415f-41a2-90db-ce8de7071883",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:8f449385-efbb-4f99-b0c6-984e7b522674",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:4f03a84f-6665-435f-aa3a-5002c835d13b",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:70494c1c-405f-481a-b330-12643c80587e",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:6d6d2d0f-7672-4f92-bb07-6a764f655306",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:0eb36ad6-db76-4e69-b77c-77ff7da8661d",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:f5a08708-ed75-45a0-91a1-59e10eeebfc9",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:f3efc356-9e7d-40e3-a8ff-0ad47d8b9d67",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6e42b5b8-c708-4f2e-a483-4984db0d1084",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4c9ac5bd-1653-400c-9cd0-4da685da5c15",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:796c0aee-2aea-4999-931d-253fafe7fb26",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:687ca930-b64c-4a5c-b6a3-bc3b12d8641d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3d948840-8118-4d63-b782-ba017e1cf5d5",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4d67feae-9070-4ed6-8b1a-3ddc3569e73a",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:52248807-32d1-422b-b4b2-01097405e49f",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cf6114ac-f795-4085-b135-4cca76fb8608",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a9502ae6-2df9-419a-b562-43550926cd73",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3d7adc18-c9cb-4e93-8b1e-1574747ba8ce",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fba9d635-eeba-4cc1-b9fb-d6666a3a1cdf",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:19c23cd8-5935-4278-a5e1-943967004e0a",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:4d7f2039-9e65-4c64-b21e-08e1433ff445",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:536cee93-e3d5-42fd-8182-0a939fd19f46",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:51a1050d-f8d5-48aa-8f96-ef96e1e836da",
+          "quantity": 4,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:415e5671-e9fa-458e-bc46-e9f869bee87f",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:9d65d755-9d41-47d8-84f5-ea725fba1d2f",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:10dc0c5d-a434-4d77-a06f-5ed0c1d4ac46",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:7bae4f1a-42b7-46ab-bfbb-0078ed0842a4",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:fd1ed69d-287a-49bc-973c-93216ab4d674",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:adeb3985-c342-4d9e-acd6-2c7cf35dafe6",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:3c1bea1f-80b7-4857-9d0b-489376d4abab",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:8e15ba46-125f-44fc-b67b-6006b96b20ea",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:54665391-02fa-4402-b7ea-2f8b5aa95a57",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:f8a95ed4-415f-41a2-90db-ce8de7071883": 1,
+          "octgn:8f449385-efbb-4f99-b0c6-984e7b522674": 1,
+          "octgn:4f03a84f-6665-435f-aa3a-5002c835d13b": 1,
+          "octgn:70494c1c-405f-481a-b330-12643c80587e": 1,
+          "octgn:6d6d2d0f-7672-4f92-bb07-6a764f655306": 1,
+          "octgn:0eb36ad6-db76-4e69-b77c-77ff7da8661d": 1,
+          "octgn:f5a08708-ed75-45a0-91a1-59e10eeebfc9": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:f3efc356-9e7d-40e3-a8ff-0ad47d8b9d67": 4,
+          "octgn:6e42b5b8-c708-4f2e-a483-4984db0d1084": 2,
+          "octgn:4c9ac5bd-1653-400c-9cd0-4da685da5c15": 3,
+          "octgn:796c0aee-2aea-4999-931d-253fafe7fb26": 3,
+          "octgn:687ca930-b64c-4a5c-b6a3-bc3b12d8641d": 2,
+          "octgn:3d948840-8118-4d63-b782-ba017e1cf5d5": 2,
+          "octgn:4d67feae-9070-4ed6-8b1a-3ddc3569e73a": 3,
+          "octgn:52248807-32d1-422b-b4b2-01097405e49f": 3,
+          "octgn:cf6114ac-f795-4085-b135-4cca76fb8608": 3,
+          "octgn:a9502ae6-2df9-419a-b562-43550926cd73": 2,
+          "octgn:3d7adc18-c9cb-4e93-8b1e-1574747ba8ce": 2,
+          "octgn:fba9d635-eeba-4cc1-b9fb-d6666a3a1cdf": 2
+        },
+        "sharedSetAside": {
+          "octgn:19c23cd8-5935-4278-a5e1-943967004e0a": 1,
+          "octgn:4d7f2039-9e65-4c64-b21e-08e1433ff445": 1,
+          "octgn:415e5671-e9fa-458e-bc46-e9f869bee87f": 1,
+          "octgn:9d65d755-9d41-47d8-84f5-ea725fba1d2f": 1,
+          "octgn:10dc0c5d-a434-4d77-a06f-5ed0c1d4ac46": 1,
+          "octgn:7bae4f1a-42b7-46ab-bfbb-0078ed0842a4": 1,
+          "octgn:fd1ed69d-287a-49bc-973c-93216ab4d674": 1,
+          "octgn:adeb3985-c342-4d9e-acd6-2c7cf35dafe6": 1,
+          "octgn:3c1bea1f-80b7-4857-9d0b-489376d4abab": 1,
+          "octgn:8e15ba46-125f-44fc-b67b-6006b96b20ea": 1,
+          "octgn:54665391-02fa-4402-b7ea-2f8b5aa95a57": 1
+        },
+        "sharedStagingArea": {
+          "octgn:536cee93-e3d5-42fd-8182-0a939fd19f46": 1,
+          "octgn:51a1050d-f8d5-48aa-8f96-ef96e1e836da": 4
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:0eb36ad6-db76-4e69-b77c-77ff7da8661d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0eb36ad6-db76-4e69-b77c-77ff7da8661d.jpg",
+      "localPath": "/cards/0eb36ad6-db76-4e69-b77c-77ff7da8661d.jpg",
+      "bytes": 146356,
+      "sha256": "a3e066b3736e2173b97fb30d07fd0ec895210aee46653af865c7e22298c621a5"
+    },
+    {
+      "code": "octgn:0eb36ad6-db76-4e69-b77c-77ff7da8661d",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0eb36ad6-db76-4e69-b77c-77ff7da8661d.B.jpg",
+      "localPath": "/cards/0eb36ad6-db76-4e69-b77c-77ff7da8661d.B.jpg",
+      "bytes": 139391,
+      "sha256": "482aeb4191428da6cefb697772c88818d577def0c4c1af5471d2cd2050e99879"
+    },
+    {
+      "code": "octgn:10dc0c5d-a434-4d77-a06f-5ed0c1d4ac46",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/10dc0c5d-a434-4d77-a06f-5ed0c1d4ac46.jpg",
+      "localPath": "/cards/10dc0c5d-a434-4d77-a06f-5ed0c1d4ac46.jpg",
+      "bytes": 131841,
+      "sha256": "1c0ff9e3d44462ab38dda5c466c778da1dda50088e0d318d2b406ea379f55bdf"
+    },
+    {
+      "code": "octgn:19c23cd8-5935-4278-a5e1-943967004e0a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/19c23cd8-5935-4278-a5e1-943967004e0a.jpg",
+      "localPath": "/cards/19c23cd8-5935-4278-a5e1-943967004e0a.jpg",
+      "bytes": 140600,
+      "sha256": "7784dc287ca8ace74c74f88fc7a8458019f0c95cd34a5f7d88a13aab0cbc43b9"
+    },
+    {
+      "code": "octgn:19c23cd8-5935-4278-a5e1-943967004e0a",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/19c23cd8-5935-4278-a5e1-943967004e0a.B.jpg",
+      "localPath": "/cards/19c23cd8-5935-4278-a5e1-943967004e0a.B.jpg",
+      "bytes": 137053,
+      "sha256": "9551c3dde0090c3ac4962c102c36a9d8c6c14c032b40debcc7552822f223d0cd"
+    },
+    {
+      "code": "octgn:3c1bea1f-80b7-4857-9d0b-489376d4abab",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3c1bea1f-80b7-4857-9d0b-489376d4abab.jpg",
+      "localPath": "/cards/3c1bea1f-80b7-4857-9d0b-489376d4abab.jpg",
+      "bytes": 136473,
+      "sha256": "ee8e78e4690f4c6dcc106e4a2aac3493314f1710b565c07effef26062d87c9dc"
+    },
+    {
+      "code": "octgn:3d7adc18-c9cb-4e93-8b1e-1574747ba8ce",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3d7adc18-c9cb-4e93-8b1e-1574747ba8ce.jpg",
+      "localPath": "/cards/3d7adc18-c9cb-4e93-8b1e-1574747ba8ce.jpg",
+      "bytes": 141549,
+      "sha256": "cb8ac7d099962d8b4c9cd7b694dcaa6adc15722894a20c9089f04e680a63951b"
+    },
+    {
+      "code": "octgn:3d948840-8118-4d63-b782-ba017e1cf5d5",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3d948840-8118-4d63-b782-ba017e1cf5d5.jpg",
+      "localPath": "/cards/3d948840-8118-4d63-b782-ba017e1cf5d5.jpg",
+      "bytes": 142434,
+      "sha256": "4e053fed366921459302e07cb5f3d09100871823ffcfb63238802887e8105ca9"
+    },
+    {
+      "code": "octgn:415e5671-e9fa-458e-bc46-e9f869bee87f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/415e5671-e9fa-458e-bc46-e9f869bee87f.jpg",
+      "localPath": "/cards/415e5671-e9fa-458e-bc46-e9f869bee87f.jpg",
+      "bytes": 146179,
+      "sha256": "0962d92c3f41387fa88eb1cea6ce2baa9096e92282e3bc96648e41a673c179f9"
+    },
+    {
+      "code": "octgn:4c9ac5bd-1653-400c-9cd0-4da685da5c15",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4c9ac5bd-1653-400c-9cd0-4da685da5c15.jpg",
+      "localPath": "/cards/4c9ac5bd-1653-400c-9cd0-4da685da5c15.jpg",
+      "bytes": 136956,
+      "sha256": "58734f6fac2289e6dc0a21a7d8a9e267d4cc765bc0862fcf34ea88011c7c5666"
+    },
+    {
+      "code": "octgn:4d67feae-9070-4ed6-8b1a-3ddc3569e73a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4d67feae-9070-4ed6-8b1a-3ddc3569e73a.jpg",
+      "localPath": "/cards/4d67feae-9070-4ed6-8b1a-3ddc3569e73a.jpg",
+      "bytes": 133137,
+      "sha256": "e98489683155b57cdd47db74bf67f81129f1b4e322e6cd3779f2ffab5f5aec8b"
+    },
+    {
+      "code": "octgn:4d7f2039-9e65-4c64-b21e-08e1433ff445",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4d7f2039-9e65-4c64-b21e-08e1433ff445.jpg",
+      "localPath": "/cards/4d7f2039-9e65-4c64-b21e-08e1433ff445.jpg",
+      "bytes": 130591,
+      "sha256": "3c71338481d103d2a196ea61e3bc71d2c407c7630a467ae22a170ccb69387e84"
+    },
+    {
+      "code": "octgn:4f03a84f-6665-435f-aa3a-5002c835d13b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4f03a84f-6665-435f-aa3a-5002c835d13b.jpg",
+      "localPath": "/cards/4f03a84f-6665-435f-aa3a-5002c835d13b.jpg",
+      "bytes": 150898,
+      "sha256": "8760efb417cb45af58ac1e540cfde21acf88d942b78d82e47b0997db40191e92"
+    },
+    {
+      "code": "octgn:4f03a84f-6665-435f-aa3a-5002c835d13b",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4f03a84f-6665-435f-aa3a-5002c835d13b.B.jpg",
+      "localPath": "/cards/4f03a84f-6665-435f-aa3a-5002c835d13b.B.jpg",
+      "bytes": 151909,
+      "sha256": "106eef00c0468ab5eb45c7c9bbe97dfdc914ca2646142d2fc2ea362beae926b8"
+    },
+    {
+      "code": "octgn:51a1050d-f8d5-48aa-8f96-ef96e1e836da",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51a1050d-f8d5-48aa-8f96-ef96e1e836da.jpg",
+      "localPath": "/cards/51a1050d-f8d5-48aa-8f96-ef96e1e836da.jpg",
+      "bytes": 141402,
+      "sha256": "53aee5e01eb082fe8f982d1b394dbad95c03f0df8573b204f74c4b908f21ee89"
+    },
+    {
+      "code": "octgn:52248807-32d1-422b-b4b2-01097405e49f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/52248807-32d1-422b-b4b2-01097405e49f.jpg",
+      "localPath": "/cards/52248807-32d1-422b-b4b2-01097405e49f.jpg",
+      "bytes": 136531,
+      "sha256": "d3d6e7fec2f730af15384cdc573e4cf2b12a0b004a3055d08a71c3b5af969023"
+    },
+    {
+      "code": "octgn:536cee93-e3d5-42fd-8182-0a939fd19f46",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/536cee93-e3d5-42fd-8182-0a939fd19f46.jpg",
+      "localPath": "/cards/536cee93-e3d5-42fd-8182-0a939fd19f46.jpg",
+      "bytes": 136872,
+      "sha256": "8a21fd6efa42066bb65fd109d4814142cd221f10f28376bc5f528676240def9d"
+    },
+    {
+      "code": "octgn:54665391-02fa-4402-b7ea-2f8b5aa95a57",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/54665391-02fa-4402-b7ea-2f8b5aa95a57.jpg",
+      "localPath": "/cards/54665391-02fa-4402-b7ea-2f8b5aa95a57.jpg",
+      "bytes": 148207,
+      "sha256": "f8efdb99d38994ca9e438769511016fdc31941a2702dc5d581219f0d9c7b3d0a"
+    },
+    {
+      "code": "octgn:687ca930-b64c-4a5c-b6a3-bc3b12d8641d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/687ca930-b64c-4a5c-b6a3-bc3b12d8641d.jpg",
+      "localPath": "/cards/687ca930-b64c-4a5c-b6a3-bc3b12d8641d.jpg",
+      "bytes": 133932,
+      "sha256": "fd833a055bd89b159ee54af77a304db37b36e4bfe2bbd2069701eedd633636ed"
+    },
+    {
+      "code": "octgn:6d6d2d0f-7672-4f92-bb07-6a764f655306",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6d6d2d0f-7672-4f92-bb07-6a764f655306.jpg",
+      "localPath": "/cards/6d6d2d0f-7672-4f92-bb07-6a764f655306.jpg",
+      "bytes": 132405,
+      "sha256": "e15be2e1f045eaa10e30d3451420544da53fd8ae1daa4e2096e4ea38d9e4328b"
+    },
+    {
+      "code": "octgn:6d6d2d0f-7672-4f92-bb07-6a764f655306",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6d6d2d0f-7672-4f92-bb07-6a764f655306.B.jpg",
+      "localPath": "/cards/6d6d2d0f-7672-4f92-bb07-6a764f655306.B.jpg",
+      "bytes": 134088,
+      "sha256": "4a4728cc4e835abd9632cc07711ee6f10bddc7c9f8b7d5640071f96b5d39b325"
+    },
+    {
+      "code": "octgn:6e42b5b8-c708-4f2e-a483-4984db0d1084",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6e42b5b8-c708-4f2e-a483-4984db0d1084.jpg",
+      "localPath": "/cards/6e42b5b8-c708-4f2e-a483-4984db0d1084.jpg",
+      "bytes": 137502,
+      "sha256": "b0611f6a11948622839d8e847d2acabc4dcdcf73763b5d7c61313377266fe673"
+    },
+    {
+      "code": "octgn:70494c1c-405f-481a-b330-12643c80587e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/70494c1c-405f-481a-b330-12643c80587e.jpg",
+      "localPath": "/cards/70494c1c-405f-481a-b330-12643c80587e.jpg",
+      "bytes": 125628,
+      "sha256": "f9fb0958a447f837c0c9959c7206e93929e568f613f9b0ff44c46012cdc81597"
+    },
+    {
+      "code": "octgn:70494c1c-405f-481a-b330-12643c80587e",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/70494c1c-405f-481a-b330-12643c80587e.B.jpg",
+      "localPath": "/cards/70494c1c-405f-481a-b330-12643c80587e.B.jpg",
+      "bytes": 120841,
+      "sha256": "d59d850df22bb34326dbf8d160e82944372ac65f1cad774299d71a7f26f642cf"
+    },
+    {
+      "code": "octgn:796c0aee-2aea-4999-931d-253fafe7fb26",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/796c0aee-2aea-4999-931d-253fafe7fb26.jpg",
+      "localPath": "/cards/796c0aee-2aea-4999-931d-253fafe7fb26.jpg",
+      "bytes": 133607,
+      "sha256": "75bdb48a0b6f0692135a3e1f9fcc85b53e0b21ca85ef9bbcd686656d41a3ce44"
+    },
+    {
+      "code": "octgn:7bae4f1a-42b7-46ab-bfbb-0078ed0842a4",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7bae4f1a-42b7-46ab-bfbb-0078ed0842a4.jpg",
+      "localPath": "/cards/7bae4f1a-42b7-46ab-bfbb-0078ed0842a4.jpg",
+      "bytes": 140948,
+      "sha256": "ad5b8cc9ba545dc5d964274d0846a43c8557de89ea8dd5b458fc76af250f5f89"
+    },
+    {
+      "code": "octgn:8e15ba46-125f-44fc-b67b-6006b96b20ea",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8e15ba46-125f-44fc-b67b-6006b96b20ea.jpg",
+      "localPath": "/cards/8e15ba46-125f-44fc-b67b-6006b96b20ea.jpg",
+      "bytes": 144773,
+      "sha256": "f5f1e8d4ab46894a1170ea270032e52ae8aefbb47a9e413e81a4945d799e1ac1"
+    },
+    {
+      "code": "octgn:8f449385-efbb-4f99-b0c6-984e7b522674",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8f449385-efbb-4f99-b0c6-984e7b522674.jpg",
+      "localPath": "/cards/8f449385-efbb-4f99-b0c6-984e7b522674.jpg",
+      "bytes": 139648,
+      "sha256": "acaa56c991642415ea03c235f6bd69aadd29cfee2d83dacc42811cc6f9c068cd"
+    },
+    {
+      "code": "octgn:8f449385-efbb-4f99-b0c6-984e7b522674",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8f449385-efbb-4f99-b0c6-984e7b522674.B.jpg",
+      "localPath": "/cards/8f449385-efbb-4f99-b0c6-984e7b522674.B.jpg",
+      "bytes": 140273,
+      "sha256": "696f65cf0e218285a13ca757fcfc88708ad49ed22f53765059e1f8dc805d7336"
+    },
+    {
+      "code": "octgn:9d65d755-9d41-47d8-84f5-ea725fba1d2f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9d65d755-9d41-47d8-84f5-ea725fba1d2f.jpg",
+      "localPath": "/cards/9d65d755-9d41-47d8-84f5-ea725fba1d2f.jpg",
+      "bytes": 141074,
+      "sha256": "65859ead422da3ad90d6d3579829b1e6a1aa0c2395489d9c4ffb87863cbd28b8"
+    },
+    {
+      "code": "octgn:a9502ae6-2df9-419a-b562-43550926cd73",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a9502ae6-2df9-419a-b562-43550926cd73.jpg",
+      "localPath": "/cards/a9502ae6-2df9-419a-b562-43550926cd73.jpg",
+      "bytes": 146080,
+      "sha256": "01a2468be35896dfbf235573a0b0111dfa2c4da86db7904f9a3057cd091a8526"
+    },
+    {
+      "code": "octgn:adeb3985-c342-4d9e-acd6-2c7cf35dafe6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/adeb3985-c342-4d9e-acd6-2c7cf35dafe6.jpg",
+      "localPath": "/cards/adeb3985-c342-4d9e-acd6-2c7cf35dafe6.jpg",
+      "bytes": 151053,
+      "sha256": "544e387dceb844f481385970a31d25d713386bedc766f9a27ce750691a15aafa"
+    },
+    {
+      "code": "octgn:cf6114ac-f795-4085-b135-4cca76fb8608",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cf6114ac-f795-4085-b135-4cca76fb8608.jpg",
+      "localPath": "/cards/cf6114ac-f795-4085-b135-4cca76fb8608.jpg",
+      "bytes": 133535,
+      "sha256": "4100c3ff3ff936a7a80df402d1116f147a8aab7c2a30f3e3dd6e579691e8eb88"
+    },
+    {
+      "code": "octgn:f3efc356-9e7d-40e3-a8ff-0ad47d8b9d67",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f3efc356-9e7d-40e3-a8ff-0ad47d8b9d67.jpg",
+      "localPath": "/cards/f3efc356-9e7d-40e3-a8ff-0ad47d8b9d67.jpg",
+      "bytes": 127751,
+      "sha256": "b6e0faa577413441e7f198cc7ef7c36efd901ad549732d3b543230f393630e2b"
+    },
+    {
+      "code": "octgn:f5a08708-ed75-45a0-91a1-59e10eeebfc9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f5a08708-ed75-45a0-91a1-59e10eeebfc9.jpg",
+      "localPath": "/cards/f5a08708-ed75-45a0-91a1-59e10eeebfc9.jpg",
+      "bytes": 147874,
+      "sha256": "cde0e79bbf1f5c6988dcf00a94439c13301feb7e9f5fcd11dc9031d39df1a00e"
+    },
+    {
+      "code": "octgn:f5a08708-ed75-45a0-91a1-59e10eeebfc9",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f5a08708-ed75-45a0-91a1-59e10eeebfc9.B.jpg",
+      "localPath": "/cards/f5a08708-ed75-45a0-91a1-59e10eeebfc9.B.jpg",
+      "bytes": 143738,
+      "sha256": "eca07627a0773a0de7a272c8f7e3af076e674b7dbde6fa838a3b598fd8cc1e29"
+    },
+    {
+      "code": "octgn:f8a95ed4-415f-41a2-90db-ce8de7071883",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f8a95ed4-415f-41a2-90db-ce8de7071883.jpg",
+      "localPath": "/cards/f8a95ed4-415f-41a2-90db-ce8de7071883.jpg",
+      "bytes": 137991,
+      "sha256": "bf881a16a193894121660d6f82e7539ce0c6bcc4e5add9539d7f57657d2f9d50"
+    },
+    {
+      "code": "octgn:f8a95ed4-415f-41a2-90db-ce8de7071883",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f8a95ed4-415f-41a2-90db-ce8de7071883.B.jpg",
+      "localPath": "/cards/f8a95ed4-415f-41a2-90db-ce8de7071883.B.jpg",
+      "bytes": 131274,
+      "sha256": "c0fb08a6142080ee72d6c1b32a99f8238ac5d6974198bd462b1b692020767311"
+    },
+    {
+      "code": "octgn:fba9d635-eeba-4cc1-b9fb-d6666a3a1cdf",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fba9d635-eeba-4cc1-b9fb-d6666a3a1cdf.jpg",
+      "localPath": "/cards/fba9d635-eeba-4cc1-b9fb-d6666a3a1cdf.jpg",
+      "bytes": 137948,
+      "sha256": "9830b3912374d64802a59e6c02f322821bff3642c8105720f56642b1475cc002"
+    },
+    {
+      "code": "octgn:fd1ed69d-287a-49bc-973c-93216ab4d674",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fd1ed69d-287a-49bc-973c-93216ab4d674.jpg",
+      "localPath": "/cards/fd1ed69d-287a-49bc-973c-93216ab4d674.jpg",
+      "bytes": 137589,
+      "sha256": "6f21c68c2af33d28e9ccfd8d08d2b3617cdc9d26fa220acf4a3e6cf9d4a12448"
+    }
+  ]
+}

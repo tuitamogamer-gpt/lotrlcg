@@ -15,6 +15,7 @@ import * as LandShadowPlayers from "./land-shadow-player-cards";
 import * as FlameWestPlayers from "./flame-west-player-cards";
 import * as MountainFirePlayers from "./mountain-fire-player-cards";
 import { coreReprint, webAttachments } from "./core-reprints";
+import { ruinsBelegostShadowOptions } from "./ruins-belegost";
 import {
   hobbitPlayerEffect,
   hobbitPlayerRefreshEnd,
@@ -3002,7 +3003,14 @@ export function shadowResponse(s: GameState, code: string) {
     allActiveLocations(s).some((l) => l.code === "02016")
       ? []
       : FlameWestPlayers.flameWestPlayerShadowOptions(s, code, !!shadowText);
+  const swordOptions =
+    roadRivendellCannotCancel(s) ||
+    allActiveLocations(s).some((l) => l.code === "02016") ||
+    batch4Scenario(s).cannotCancel?.(s, true, code)
+      ? []
+      : ruinsBelegostShadowOptions(s, code, !!shadowText);
   if (
+    swordOptions.length ||
     sternerOptions.length ||
     balinOptions.length ||
     wrathOptions.length ||
@@ -3022,6 +3030,7 @@ export function shadowResponse(s: GameState, code: string) {
         ...templeOptions,
         ...balinOptions,
         ...sternerOptions,
+        ...swordOptions,
         ...brand,
         ...erkenbrand,
         ...watcher,

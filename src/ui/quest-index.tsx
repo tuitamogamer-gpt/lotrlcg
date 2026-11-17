@@ -163,6 +163,10 @@ const HEADLINES: Partial<
     lead: "Keep your oath",
     em: "to the woodmen.",
   },
+  "the-ruins-of-belegost": {
+    lead: "Plunder the ruins",
+    em: "of Belegost.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

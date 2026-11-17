@@ -1,0 +1,281 @@
+[
+  {
+    "code": "octgn:0eb36ad6-db76-4e69-b77c-77ff7da8661d",
+    "octgnid": "0eb36ad6-db76-4e69-b77c-77ff7da8661d",
+    "name": "The Mines of Belegost",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck and reveal 1 encounter card per player.",
+    "is_unique": false,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 6,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Ruins of Belegost",
+    "side": "E",
+    "back_name": "The Mines of Belegost",
+    "back_text": "During the travel phase, the players must travel to a location, if able.\nForced: After resolving the Discover keyword, if no Hazard card was revealed by that effect, reveal the top card of the encounter deck.\nForced: When this stage is defeated, if Blue Mountain Gem is attached to a hero advance to stage 4A. Otherwise, advance to stage 3A.",
+    "back_type_code": "quest",
+    "back_quest": 6,
+    "back_imagesrc": "/cards/0eb36ad6-db76-4e69-b77c-77ff7da8661d.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/0eb36ad6-db76-4e69-b77c-77ff7da8661d.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 6,
+        "quantity": 1,
+        "octgnid": "0eb36ad6-db76-4e69-b77c-77ff7da8661d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0eb36ad6-db76-4e69-b77c-77ff7da8661d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:4f03a84f-6665-435f-aa3a-5002c835d13b",
+    "octgnid": "4f03a84f-6665-435f-aa3a-5002c835d13b",
+    "name": "Deeper into the Past",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shuffle Lurker of the Depths and the encounter discard pile into the encounter deck. Discard cards from the top of the encounter deck until a location is discarded. Add the discarded location to the staging area.",
+    "is_unique": false,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 3,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Ruins of Belegost",
+    "side": "C",
+    "back_name": "Deeper into the Past",
+    "back_text": "The players cannot advance unless they control at least 2 Loot objectives and there are at least 3 resources here.\nForced: After the active location is explored, place 1 resource here.\nForced: When this stage is defeated, if Book of Aulë's Children is attached to a hero, advance to stage 3E. Otherwise, advance to stage 3C.",
+    "back_type_code": "quest",
+    "back_quest": 9,
+    "back_imagesrc": "/cards/4f03a84f-6665-435f-aa3a-5002c835d13b.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/4f03a84f-6665-435f-aa3a-5002c835d13b.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 3,
+        "quantity": 1,
+        "octgnid": "4f03a84f-6665-435f-aa3a-5002c835d13b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4f03a84f-6665-435f-aa3a-5002c835d13b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:6d6d2d0f-7672-4f92-bb07-6a764f655306",
+    "octgnid": "6d6d2d0f-7672-4f92-bb07-6a764f655306",
+    "name": "The Roots of Ered Luin",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck and reveal 1 encounter card per player.",
+    "is_unique": false,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 5,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Ruins of Belegost",
+    "side": "C",
+    "back_name": "The Roots of Ered Luin",
+    "back_text": "The Discover value of the active location is increased by 1.\nDuring the travel phase, the players must travel to a location, if able.\nForced: When this stage is defeated, if Map of Ered Luin is attached to a hero advance to stage 4A. Otherwise, advance to stage 3E.",
+    "back_type_code": "quest",
+    "back_quest": 6,
+    "back_imagesrc": "/cards/6d6d2d0f-7672-4f92-bb07-6a764f655306.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/6d6d2d0f-7672-4f92-bb07-6a764f655306.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 5,
+        "quantity": 1,
+        "octgnid": "6d6d2d0f-7672-4f92-bb07-6a764f655306",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6d6d2d0f-7672-4f92-bb07-6a764f655306.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:70494c1c-405f-481a-b330-12643c80587e",
+    "octgnid": "70494c1c-405f-481a-b330-12643c80587e",
+    "name": "The Servants of Morgoth",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck and reveal 1 encounter card per player.",
+    "is_unique": false,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 4,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Ruins of Belegost",
+    "side": "A",
+    "back_name": "The Servants of Morgoth",
+    "back_text": "The first Hazard card revealed each round gains surge.\nDuring the travel phase, the players must travel to a location, if able.\nForced: When this stage is defeated, if Dwarven Torch is attached to a hero, advance to stage 4A. Otherwise, advance to stage 3C.",
+    "back_type_code": "quest",
+    "back_quest": 6,
+    "back_imagesrc": "/cards/70494c1c-405f-481a-b330-12643c80587e.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/70494c1c-405f-481a-b330-12643c80587e.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 4,
+        "quantity": 1,
+        "octgnid": "70494c1c-405f-481a-b330-12643c80587e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/70494c1c-405f-481a-b330-12643c80587e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8f449385-efbb-4f99-b0c6-984e7b522674",
+    "octgnid": "8f449385-efbb-4f99-b0c6-984e7b522674",
+    "name": "Ancient Evils Disturbed",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add Lurker of the Depths to the staging area.",
+    "is_unique": false,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 2,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Ruins of Belegost",
+    "side": "A",
+    "back_name": "Ancient Evils Disturbed",
+    "back_text": "The players cannot advance unless they control at least 2 Loot objectives and Lurker of the Depths is in the victory display.\nForced: When this stage is defeated, if Book of Aulë's Children is attached to a hero, advance to stage 3C. Otherwise, advance to stage 3A.",
+    "back_type_code": "quest",
+    "back_quest": 9,
+    "back_imagesrc": "/cards/8f449385-efbb-4f99-b0c6-984e7b522674.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/8f449385-efbb-4f99-b0c6-984e7b522674.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 2,
+        "quantity": 1,
+        "octgnid": "8f449385-efbb-4f99-b0c6-984e7b522674",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8f449385-efbb-4f99-b0c6-984e7b522674.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f5a08708-ed75-45a0-91a1-59e10eeebfc9",
+    "octgnid": "f5a08708-ed75-45a0-91a1-59e10eeebfc9",
+    "name": "The Beast of Belegost",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add Naurlhûg and Naurlhûg's Lair to the staging area. Shuffle Sword of Belegost, and the encounter discard pile into the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 7,
+    "quantity": 1,
+    "cost": 4,
+    "encounter_set": "The Ruins of Belegost",
+    "side": "A",
+    "back_name": "The Beast of Belegost",
+    "back_text": "While Naurlhûg's Lair is in the victory display, Naurlhûg loses the text: \"Cannot take damage.\"\nForced: After Naurlhûg attacks, if it was dealt a shadow card with no shadow effect, it engages the next player. Then, it makes an immediate attack. Do not deal it a shadow card for this attack.\nWhen Naurlhûg is defeated, the players win the game.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/f5a08708-ed75-45a0-91a1-59e10eeebfc9.B.jpg",
+    "printed_stats": {
+      "cost": "4"
+    },
+    "imagesrc": "/cards/f5a08708-ed75-45a0-91a1-59e10eeebfc9.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 7,
+        "quantity": 1,
+        "octgnid": "f5a08708-ed75-45a0-91a1-59e10eeebfc9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f5a08708-ed75-45a0-91a1-59e10eeebfc9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f8a95ed4-415f-41a2-90db-ce8de7071883",
+    "octgnid": "f8a95ed4-415f-41a2-90db-ce8de7071883",
+    "name": "Ruins of the First Age",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Add Stalking the Ruins and 1 copy of Abandoned Mine per player to the staging area. Set Lurker of the Depths, Naurlhûg, Naurlhûg's Lair, and Sword of Belegost aside, out of play. Randomly select 1 of the 5 remaining Loot objectives and place it facedown underneath Stalking the Ruins (without looking). Shuffle the others into the encounter deck (without looking at them).",
+    "is_unique": false,
+    "pack_code": "TRoB",
+    "pack_name": "The Ruins of Belegost",
+    "position": 1,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Ruins of Belegost",
+    "side": "A",
+    "back_name": "Ruins of the First Age",
+    "back_text": "The players cannot advance unless they control at least 1 Loot objective.\nForced: At the beginning of the travel phase, if there are no locations in play, return the topmost location in the encounter discard pile to the staging area.\nForced: When this stage is defeated, if Keys of Belegost is attached to a hero, advance to stage 2C. Otherwise, advance to stage 2A.",
+    "back_type_code": "quest",
+    "back_quest": 6,
+    "back_imagesrc": "/cards/f8a95ed4-415f-41a2-90db-ce8de7071883.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/f8a95ed4-415f-41a2-90db-ce8de7071883.jpg",
+    "packs": [
+      {
+        "pack_code": "TRoB",
+        "pack_name": "The Ruins of Belegost",
+        "position": 1,
+        "quantity": 1,
+        "octgnid": "f8a95ed4-415f-41a2-90db-ce8de7071883",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f8a95ed4-415f-41a2-90db-ce8de7071883.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

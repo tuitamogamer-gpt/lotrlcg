@@ -1,0 +1,226 @@
+[
+  {
+    "code": "octgn:f8a95ed4-415f-41a2-90db-ce8de7071883",
+    "name": "Ruins of the First Age",
+    "type": "quest",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:8f449385-efbb-4f99-b0c6-984e7b522674",
+    "name": "Ancient Evils Disturbed",
+    "type": "quest",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:4f03a84f-6665-435f-aa3a-5002c835d13b",
+    "name": "Deeper into the Past",
+    "type": "quest",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:70494c1c-405f-481a-b330-12643c80587e",
+    "name": "The Servants of Morgoth",
+    "type": "quest",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:6d6d2d0f-7672-4f92-bb07-6a764f655306",
+    "name": "The Roots of Ered Luin",
+    "type": "quest",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:0eb36ad6-db76-4e69-b77c-77ff7da8661d",
+    "name": "The Mines of Belegost",
+    "type": "quest",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:f5a08708-ed75-45a0-91a1-59e10eeebfc9",
+    "name": "The Beast of Belegost",
+    "type": "quest",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:19c23cd8-5935-4278-a5e1-943967004e0a",
+    "name": "Scenario Rules 1",
+    "type": "rules",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:4d7f2039-9e65-4c64-b21e-08e1433ff445",
+    "name": "Scenario Rules 2",
+    "type": "rules",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:536cee93-e3d5-42fd-8182-0a939fd19f46",
+    "name": "Stalking the Ruins",
+    "type": "objective",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:7bae4f1a-42b7-46ab-bfbb-0078ed0842a4",
+    "name": "Sword of Belegost",
+    "type": "objective",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:fd1ed69d-287a-49bc-973c-93216ab4d674",
+    "name": "Map of Ered Luin",
+    "type": "objective",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:adeb3985-c342-4d9e-acd6-2c7cf35dafe6",
+    "name": "Keys of Belegost",
+    "type": "objective",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:3c1bea1f-80b7-4857-9d0b-489376d4abab",
+    "name": "Book of Aulë's Children",
+    "type": "objective",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:8e15ba46-125f-44fc-b67b-6006b96b20ea",
+    "name": "Dwarven Torch",
+    "type": "objective",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:54665391-02fa-4402-b7ea-2f8b5aa95a57",
+    "name": "Blue Mountain Gem",
+    "type": "objective",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:9d65d755-9d41-47d8-84f5-ea725fba1d2f",
+    "name": "Naurlhûg",
+    "type": "enemy",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:415e5671-e9fa-458e-bc46-e9f869bee87f",
+    "name": "Lurker of the Depths",
+    "type": "enemy",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:f3efc356-9e7d-40e3-a8ff-0ad47d8b9d67",
+    "name": "Nameless Cave Dweller",
+    "type": "enemy",
+    "normal": 4,
+    "easy": 4
+  },
+  {
+    "code": "octgn:6e42b5b8-c708-4f2e-a483-4984db0d1084",
+    "name": "Old Stone Troll",
+    "type": "enemy",
+    "normal": 2,
+    "easy": 0
+  },
+  {
+    "code": "octgn:4c9ac5bd-1653-400c-9cd0-4da685da5c15",
+    "name": "Orc of Ered Luin",
+    "type": "enemy",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "code": "octgn:796c0aee-2aea-4999-931d-253fafe7fb26",
+    "name": "Blue Mountain Goblin",
+    "type": "enemy",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "code": "octgn:10dc0c5d-a434-4d77-a06f-5ed0c1d4ac46",
+    "name": "Naurlhûg's Lair",
+    "type": "location",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:51a1050d-f8d5-48aa-8f96-ef96e1e836da",
+    "name": "Abandoned Mine",
+    "type": "location",
+    "normal": 4,
+    "easy": 4
+  },
+  {
+    "code": "octgn:687ca930-b64c-4a5c-b6a3-bc3b12d8641d",
+    "name": "Flooded Hall",
+    "type": "location",
+    "normal": 2,
+    "easy": 0
+  },
+  {
+    "code": "octgn:3d948840-8118-4d63-b782-ba017e1cf5d5",
+    "name": "Darkened Tunnel",
+    "type": "location",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "code": "octgn:4d67feae-9070-4ed6-8b1a-3ddc3569e73a",
+    "name": "Sunken Treasury",
+    "type": "location",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "code": "octgn:52248807-32d1-422b-b4b2-01097405e49f",
+    "name": "Secret Chamber",
+    "type": "location",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "code": "octgn:cf6114ac-f795-4085-b135-4cca76fb8608",
+    "name": "Echoes in the Dark",
+    "type": "treachery",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "code": "octgn:a9502ae6-2df9-419a-b562-43550926cd73",
+    "name": "Spawn of Thangorodrim",
+    "type": "treachery",
+    "normal": 2,
+    "easy": 0
+  },
+  {
+    "code": "octgn:3d7adc18-c9cb-4e93-8b1e-1574747ba8ce",
+    "name": "Concealed Spikes",
+    "type": "treachery",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "code": "octgn:fba9d635-eeba-4cc1-b9fb-d6666a3a1cdf",
+    "name": "Covered Pit",
+    "type": "treachery",
+    "normal": 2,
+    "easy": 2
+  }
+]

@@ -5,8 +5,8 @@
     "playerCards": 860,
     "heroes": 112,
     "deckCards": 744,
-    "encounterCards": 1699,
-    "scenarios": 112,
+    "encounterCards": 1724,
+    "scenarios": 113,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -119,17 +119,18 @@
       "the-black-gate-opens",
       "mount-doom",
       "the-oath-2018",
-      "the-oath"
+      "the-oath",
+      "the-ruins-of-belegost"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2910,
-    "pending": 1273
+    "scripted": 2942,
+    "pending": 1241
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 235
+    "scripted": 237
   },
   "registeredCodes": [
     "01001",
@@ -1149,6 +1150,7 @@
     "octgn:0e58ae5a-0670-4c00-836a-3bef017bf279",
     "octgn:0e90a1fb-b498-4b6e-a6c8-de3e3ed38aa4",
     "octgn:0e9fb174-59a2-4e7b-8eab-1f9185f75ea7",
+    "octgn:0eb36ad6-db76-4e69-b77c-77ff7da8661d",
     "octgn:0ebedc5b-fd8b-46b8-a2a1-1a6f739e8819",
     "octgn:0ec5f691-e5b3-41b5-bcec-2f963786ef4d",
     "octgn:0f02460f-4ab8-4060-b520-0f82cbb8ce37",
@@ -1163,6 +1165,7 @@
     "octgn:107805c4-6abf-4eb1-87fd-0ad7ffcfbf42",
     "octgn:107805c4-6abf-4eb1-87fd-0ad7ffcfbf42:B",
     "octgn:10c41b09-adf9-4a78-a67a-a9a1e04d7e8d",
+    "octgn:10dc0c5d-a434-4d77-a06f-5ed0c1d4ac46",
     "octgn:10e7e890-727f-49ae-bd5d-d769812d9dce",
     "octgn:112fc5f3-9d26-4711-8a97-e4a83bb23663",
     "octgn:1156ac5f-09cf-418b-9486-030b397a5514",
@@ -1209,6 +1212,7 @@
     "octgn:196dd43b-1df2-4eae-9dcf-2e8d2723af67",
     "octgn:19b732b9-a26a-4535-a438-7dd83cd4ecf2",
     "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1",
+    "octgn:19c23cd8-5935-4278-a5e1-943967004e0a",
     "octgn:19e2470a-94c6-4f14-b824-7d2f952b60fd",
     "octgn:19f36ec5-7ad4-4dab-80a7-4a7a6c716941",
     "octgn:1a0189ae-b9ad-49c2-a217-a9c975536384",
@@ -1446,12 +1450,15 @@
     "octgn:3b26d048-24cb-4978-86f9-d255048426d8",
     "octgn:3b7c4f67-7de4-4b77-be50-0fd86e4ef2bc",
     "octgn:3bc03452-6c37-45e2-9241-e626ea51f382",
+    "octgn:3c1bea1f-80b7-4857-9d0b-489376d4abab",
     "octgn:3c53610e-0126-424f-a4cc-9e7710ebcffe",
     "octgn:3cbe2fe1-e7ab-4213-85dd-fd9b6244479f",
     "octgn:3cd4bb66-1621-4534-aa25-421d0d8b7189",
     "octgn:3d19de02-b3a9-4612-a90a-30b37bd1e9b1",
     "octgn:3d1a7e6f-382a-49cb-9873-e6e5e86d12d2",
     "octgn:3d25a41e-6a10-4fd7-a159-2b25bfc54454",
+    "octgn:3d7adc18-c9cb-4e93-8b1e-1574747ba8ce",
+    "octgn:3d948840-8118-4d63-b782-ba017e1cf5d5",
     "octgn:3d9db37c-4b51-4da8-be2b-25cd2d48e28b",
     "octgn:3de80480-6316-4c43-824c-44d3ad424a7b",
     "octgn:3dfaab4d-04b1-49a6-bd17-63c184784985",
@@ -1474,6 +1481,7 @@
     "octgn:409bc89e-b5af-4626-ade6-60bcfcb290b7",
     "octgn:40c7a675-d48f-4e71-8818-5f0ffb9fa0dd",
     "octgn:414353af-e004-4e7c-b288-e168e2acfee7",
+    "octgn:415e5671-e9fa-458e-bc46-e9f869bee87f",
     "octgn:418e1e02-52fe-4aef-b543-3875837dd38a",
     "octgn:41b47c87-94c4-47ff-b8c6-3f25dba0ca49",
     "octgn:41c3779a-a28a-44db-8b9b-bc5e81d1111a",
@@ -1613,9 +1621,12 @@
     "octgn:4c653b80-0b0e-4383-b0bb-aa31f12b3e74",
     "octgn:4c68d3ef-2309-47db-ba21-08bf2f7336b9",
     "octgn:4c7d7a31-250d-4e48-a97a-2aebb3b2b47d",
+    "octgn:4c9ac5bd-1653-400c-9cd0-4da685da5c15",
     "octgn:4cd62a82-6bc9-4e38-8561-49b5fa2aba7e",
     "octgn:4d31f077-9f08-435b-ad3c-95d5b7967fa4",
     "octgn:4d423c39-09c1-4c0b-b46f-6983fae4c07b",
+    "octgn:4d67feae-9070-4ed6-8b1a-3ddc3569e73a",
+    "octgn:4d7f2039-9e65-4c64-b21e-08e1433ff445",
     "octgn:4d85bbe6-1bc7-4890-8974-e42e2d0f9431",
     "octgn:4d85eda6-14e2-4dee-b912-31056fc6a2cc",
     "octgn:4d904ec3-1c74-4091-861d-c543412b5443",
@@ -1625,6 +1636,7 @@
     "octgn:4e12f20f-aec3-4311-a656-10a517fd97fe",
     "octgn:4ebd8ec5-79fe-4305-9c33-e06d37b1c8d5",
     "octgn:4ee0293f-5c0c-4f7a-bc10-680d84eb9214",
+    "octgn:4f03a84f-6665-435f-aa3a-5002c835d13b",
     "octgn:4f47ef56-46c8-4a6b-85dd-656eb71c5828",
     "octgn:4f4df8ea-7f18-4a76-85b0-7ece828bb837",
     "octgn:4fc6111a-93c3-4407-b067-1b82396b802f",
@@ -1949,11 +1961,13 @@
     "octgn:51681809-60af-4819-bfa0-3f568987f4ea",
     "octgn:516b75d8-9abe-423e-9ef1-a92f1c87c86f",
     "octgn:516f4454-d448-4bc3-8af3-665a0d50256d",
+    "octgn:51a1050d-f8d5-48aa-8f96-ef96e1e836da",
     "octgn:51a5e288-cf6e-430d-bc66-715ad2be1a16",
     "octgn:51b186ac-ddf5-4909-a484-20d273be27c9",
     "octgn:51b45e84-3f63-46ea-aa08-b83dd89244ff",
     "octgn:51b6030d-3ce7-4139-b3bc-a408949533e2",
     "octgn:51e187ea-691c-46bc-b74f-c03d110d02cd",
+    "octgn:52248807-32d1-422b-b4b2-01097405e49f",
     "octgn:522c612d-5f3c-4a02-a1a7-7d87191922e0",
     "octgn:52754c5f-30b8-4d55-b9c2-5dfa8020ead3",
     "octgn:528afc17-e78f-4b02-8080-e936955a77b9",
@@ -1962,11 +1976,13 @@
     "octgn:52b5e077-36f2-4c13-89fb-4f7b3d73463b",
     "octgn:52e70f35-b859-494e-81d0-8be66f519a2a",
     "octgn:530e7365-0a5a-46e5-9720-5377dfa1a01b",
+    "octgn:536cee93-e3d5-42fd-8182-0a939fd19f46",
     "octgn:5388683d-3240-433a-9602-a7367e428406",
     "octgn:53ac8ba6-0487-4b1f-91e9-cf7ca9e7c1d0",
     "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376",
     "octgn:54014fda-7adc-49b0-96ac-656e849eaf7b",
     "octgn:540e3fbc-a066-4dc6-a156-598f1b2751c0",
+    "octgn:54665391-02fa-4402-b7ea-2f8b5aa95a57",
     "octgn:5497d938-1549-498c-abeb-2ed617222b76",
     "octgn:54981b6b-c247-40f9-9321-fd7913b897dd",
     "octgn:54a26608-eebd-4bd6-855a-ceccb4507bab",
@@ -2079,6 +2095,7 @@
     "octgn:680e0591-23db-402e-829d-bc2c15ec026f",
     "octgn:6860f9ad-0f09-450a-adf9-6ebe9b872a49",
     "octgn:6860f9ad-0f09-450a-adf9-6ebe9b872a49:B",
+    "octgn:687ca930-b64c-4a5c-b6a3-bc3b12d8641d",
     "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d",
     "octgn:688d04e8-80d8-4ea8-9274-0712f26fac9b",
     "octgn:68e3c34a-1af7-410f-ad57-85386181c6d7",
@@ -2104,11 +2121,13 @@
     "octgn:6d2cbe18-4504-46df-821c-d3ce588bcb3f",
     "octgn:6d485bbc-6876-4160-8111-77f3935123c9",
     "octgn:6d4c7a3b-e0e7-4267-8f53-6ba99054892c",
+    "octgn:6d6d2d0f-7672-4f92-bb07-6a764f655306",
     "octgn:6da65b9b-39a7-425d-baa1-00b406bcae36",
     "octgn:6da909d1-c3e0-4c13-8986-4b3a066e67b5",
     "octgn:6def55a1-ee80-4570-831b-d591e6effc11",
     "octgn:6df2979e-ad8d-4c3b-a27c-5ed4b9b2f948",
     "octgn:6e193811-584d-4888-a1b8-5296522b5cd1",
+    "octgn:6e42b5b8-c708-4f2e-a483-4984db0d1084",
     "octgn:6e449166-50ab-4ec5-875f-3cc8adcbb64e",
     "octgn:6e85113d-a2a6-44a7-895c-ca5115f7b7d2",
     "octgn:6f7cdfa5-f61f-44b1-8b6c-2b3f477f7557",
@@ -2116,6 +2135,7 @@
     "octgn:6f999889-bd70-42c9-ad2a-b159a5e2f73c",
     "octgn:6fe8d036-9b7a-4ca4-bab4-272d2a6a8949",
     "octgn:702e659f-949c-491d-84ab-e1d5b4166f46",
+    "octgn:70494c1c-405f-481a-b330-12643c80587e",
     "octgn:70cc4fe9-8e97-4d83-8f48-06dc6a43c43e",
     "octgn:70decac2-b07f-4c96-9684-4c008f19610b",
     "octgn:70e85866-2f0a-4f4b-b39d-34d36adfc7ab",
@@ -2175,6 +2195,7 @@
     "octgn:78f780fd-fcc0-495e-b132-772ce71dbfa9:B",
     "octgn:78fd9e40-f68d-46c9-b6bf-8fec3b77bfcf",
     "octgn:795579db-249d-4c9d-850f-6f39bc96c063",
+    "octgn:796c0aee-2aea-4999-931d-253fafe7fb26",
     "octgn:797a1805-f347-4eb3-9f77-5c9e6b6a850f",
     "octgn:7991d705-7e2d-4303-abbc-f9999b2d2502",
     "octgn:79a9dd7a-48c9-4f29-9090-5edde6b5f038",
@@ -2196,6 +2217,7 @@
     "octgn:7b491dcc-668a-431f-b0a1-ec2bf34840a7",
     "octgn:7b8369b4-cca1-4076-8985-1c7be238ccb0",
     "octgn:7b9dd852-ed19-4a00-b09e-f6c2cee549fa",
+    "octgn:7bae4f1a-42b7-46ab-bfbb-0078ed0842a4",
     "octgn:7c069b32-99b8-42b7-a310-893d925c8ca7",
     "octgn:7c463bf7-9a1a-4d8a-879b-f966f19d0695",
     "octgn:7c5f503a-61aa-4f12-acdf-e52fc51e295f",
@@ -2317,6 +2339,7 @@
     "octgn:8d61982f-acf9-4b03-969f-6e75688ee1fd",
     "octgn:8dad9a85-eae9-4a39-a823-1c58d8c0f86b",
     "octgn:8df24501-bfd8-4602-92e1-61f5d5cf7035",
+    "octgn:8e15ba46-125f-44fc-b67b-6006b96b20ea",
     "octgn:8e16a07f-d6c1-4040-b05c-bb2bc1ab92c8",
     "octgn:8e6fe06e-36a6-491d-ae17-6580ddfd8014",
     "octgn:8eae3ce5-c37e-4092-b91d-02c0721ffc0d",
@@ -2327,6 +2350,7 @@
     "octgn:8f133b99-75d7-43b8-acec-3e298724134a",
     "octgn:8f3395ff-bccf-4620-beec-581c585682f2",
     "octgn:8f38ca4f-5893-4bd4-854d-6788a3ada41f",
+    "octgn:8f449385-efbb-4f99-b0c6-984e7b522674",
     "octgn:8f5cdb72-aeae-49f7-bcc8-a2288b6bfb95",
     "octgn:8f6254c0-a723-4e66-bdc7-4c92eed415f8",
     "octgn:8f6e5d67-81c7-4db8-9cb0-ef45b71490c6",
@@ -2414,6 +2438,7 @@
     "octgn:9d451960-2db3-43df-9cd8-d525ef58cf55",
     "octgn:9d58de28-c518-4888-8e91-a52bb5c3e663",
     "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+    "octgn:9d65d755-9d41-47d8-84f5-ea725fba1d2f",
     "octgn:9dae9a06-1a90-4a9f-be69-b6451e4a1883",
     "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7",
     "octgn:9dda3cf1-e5bd-4cab-8c3b-b29db1220249",
@@ -2481,6 +2506,7 @@
     "octgn:a917100d-1b9b-4335-a55f-75291e0cab6e",
     "octgn:a9321cbd-897f-4a77-a548-85ad00112273",
     "octgn:a944e2e1-56e4-461d-b703-db991b673b9b",
+    "octgn:a9502ae6-2df9-419a-b562-43550926cd73",
     "octgn:a961751d-414b-4a53-9da4-5708f8b7bb1f",
     "octgn:a9e14405-1ac0-4db8-8357-1ac2e9d59624",
     "octgn:aa3355cb-57e1-4d8b-8a1b-9be22581a9f3",
@@ -2509,6 +2535,7 @@
     "octgn:ad4739ac-fd18-4add-9b83-860c1fcc2b54",
     "octgn:ad73bb42-f0fb-4732-956d-e921140e99bb",
     "octgn:ad7fc95f-4a8d-4a15-b170-b0db3c3002f0",
+    "octgn:adeb3985-c342-4d9e-acd6-2c7cf35dafe6",
     "octgn:adf2480a-644a-47ee-8deb-bd08ff32bf31",
     "octgn:ae16b39f-ed64-4aa9-b6b8-1fbfbda70e6f",
     "octgn:ae20c7c6-9950-4799-a88e-d0b394879af2",
@@ -2720,6 +2747,7 @@
     "octgn:cf33276f-22e5-467d-9543-6b345d17e7bc",
     "octgn:cf435143-655b-4a7c-ac6b-f9f61b4cba72",
     "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
+    "octgn:cf6114ac-f795-4085-b135-4cca76fb8608",
     "octgn:cf74c777-dfe4-4cea-8b7f-4b09fc1aa5b2",
     "octgn:cfa94470-c25c-4af3-ba71-941d1fa48a9c",
     "octgn:cfaa761e-c273-451f-bb1e-84d25c4bedbb",
@@ -2938,6 +2966,7 @@
     "octgn:f38caab3-61dc-45e2-9b31-533ba3b9fbd9",
     "octgn:f3bc3759-1f94-4983-bebb-66c7d9e3e0b3",
     "octgn:f3d71c42-c368-45c1-9228-b58cf9c54ff5",
+    "octgn:f3efc356-9e7d-40e3-a8ff-0ad47d8b9d67",
     "octgn:f3ffbb95-5024-41d4-b783-d5fbff5bfa32",
     "octgn:f410480c-ac41-431a-8db1-693746a7570e",
     "octgn:f41fb428-d21c-47b2-9bd7-cc97202c2a7e",
@@ -2948,6 +2977,7 @@
     "octgn:f4e81861-8cf6-41e7-b347-af7879fa8b06",
     "octgn:f542bca1-68d1-4975-aea9-3ff3e7801be5",
     "octgn:f57aeb37-4f19-4e5f-ae34-326c3b8b62f2",
+    "octgn:f5a08708-ed75-45a0-91a1-59e10eeebfc9",
     "octgn:f5a65abc-e3df-4d26-aeed-2a3b1effb005",
     "octgn:f5ba58db-76fc-497e-b0d7-0382c0b9c0c0",
     "octgn:f5d539b2-0b65-493d-8493-5122a0761eed",
@@ -2970,6 +3000,7 @@
     "octgn:f86ef645-bc8b-41a0-b288-80118f5433cc",
     "octgn:f8716c9e-b35a-474d-8800-cc0256f38b36",
     "octgn:f89b8962-1081-4f61-bc08-b2ca4eb08ba8",
+    "octgn:f8a95ed4-415f-41a2-90db-ce8de7071883",
     "octgn:f8d69554-7cc1-4adc-b021-b6d3601e777d",
     "octgn:f8edfe48-aeda-41ea-bef9-db49d4781e7b",
     "octgn:f92ddbe7-0db6-494f-bdab-b5bd20439c18",
@@ -2993,6 +3024,7 @@
     "octgn:fb40f70e-0d36-4d18-ae51-23be5f1a3260",
     "octgn:fb5e0cb9-914f-49ee-8e21-534e89bc5533",
     "octgn:fb7d55c5-7198-45c5-97d7-be4c6a26fa68",
+    "octgn:fba9d635-eeba-4cc1-b9fb-d6666a3a1cdf",
     "octgn:fbc99604-7183-41fe-b37c-d5a8f54bea0e",
     "octgn:fbfee53c-fec3-4b55-a8b4-c7329f8f973e",
     "octgn:fc145eae-9671-4697-8d28-473f3b138295",
@@ -3008,6 +3040,7 @@
     "octgn:fcb54294-8a36-4a51-bf1b-7d75ac1598e2",
     "octgn:fcc8ad22-ca1f-4fd1-8f84-4955bb683f50",
     "octgn:fd06cd6e-5741-4bd2-b50c-52052f973208",
+    "octgn:fd1ed69d-287a-49bc-973c-93216ab4d674",
     "octgn:fd2014e3-43df-4378-9c67-61f99353f87f",
     "octgn:fd3e323b-0fea-49ce-90d2-cbfea27be8cd",
     "octgn:fd726884-459b-4c66-a046-6fa86402ce6a",
@@ -3835,7 +3868,7 @@
     {
       "product": "the-ruins-of-belegost",
       "total": 32,
-      "scripted": 0,
+      "scripted": 32,
       "player": 0,
       "playerScripted": 0
     },
@@ -13875,7 +13908,7 @@
       "name": "The Mines of Belegost",
       "type": "quest",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -14051,7 +14084,7 @@
       "name": "Naurlhûg's Lair",
       "type": "location",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -14715,7 +14748,7 @@
       "name": "Scenario Rules 1",
       "type": "rules",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -17747,7 +17780,7 @@
       "name": "Book of Aulë's Children",
       "type": "objective",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -17819,7 +17852,7 @@
       "name": "Concealed Spikes",
       "type": "treachery",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -17827,7 +17860,7 @@
       "name": "Darkened Tunnel",
       "type": "location",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -18147,7 +18180,7 @@
       "name": "Lurker of the Depths",
       "type": "enemy",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -19547,7 +19580,7 @@
       "name": "Orc of Ered Luin",
       "type": "enemy",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -19619,7 +19652,7 @@
       "name": "Sunken Treasury",
       "type": "location",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -19627,7 +19660,7 @@
       "name": "Scenario Rules 2",
       "type": "rules",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -19739,7 +19772,7 @@
       "name": "Deeper into the Past",
       "type": "quest",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -22419,7 +22452,7 @@
       "name": "Abandoned Mine",
       "type": "location",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -22491,7 +22524,7 @@
       "name": "Secret Chamber",
       "type": "location",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -22595,7 +22628,7 @@
       "name": "Stalking the Ruins",
       "type": "objective",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -22675,7 +22708,7 @@
       "name": "Blue Mountain Gem",
       "type": "objective",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -24131,7 +24164,7 @@
       "name": "Flooded Hall",
       "type": "location",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -24539,7 +24572,7 @@
       "name": "The Roots of Ered Luin",
       "type": "quest",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -24611,7 +24644,7 @@
       "name": "Old Stone Troll",
       "type": "enemy",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -24723,7 +24756,7 @@
       "name": "The Servants of Morgoth",
       "type": "quest",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -25531,7 +25564,7 @@
       "name": "Blue Mountain Goblin",
       "type": "enemy",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -25763,7 +25796,7 @@
       "name": "Sword of Belegost",
       "type": "objective",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -27475,7 +27508,7 @@
       "name": "Dwarven Torch",
       "type": "objective",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -27579,7 +27612,7 @@
       "name": "Ancient Evils Disturbed",
       "type": "quest",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -28683,7 +28716,7 @@
       "name": "Naurlhûg",
       "type": "enemy",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -29619,7 +29652,7 @@
       "name": "Spawn of Thangorodrim",
       "type": "treachery",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -30019,7 +30052,7 @@
       "name": "Keys of Belegost",
       "type": "objective",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -33179,7 +33212,7 @@
       "name": "Echoes in the Dark",
       "type": "treachery",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -36227,7 +36260,7 @@
       "name": "Nameless Cave Dweller",
       "type": "enemy",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -36339,7 +36372,7 @@
       "name": "The Beast of Belegost",
       "type": "quest",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -36619,7 +36652,7 @@
       "name": "Ruins of the First Age",
       "type": "quest",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -36931,7 +36964,7 @@
       "name": "Covered Pit",
       "type": "treachery",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -37115,7 +37148,7 @@
       "name": "Map of Ered Luin",
       "type": "objective",
       "pack": "The Ruins of Belegost",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ruins-of-belegost"
     },
     {
@@ -38375,8 +38408,8 @@
       "id": "E99.06",
       "name": "The Ruins of Belegost (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-ruins-of-belegost",
+      "state": "scripted"
     },
     {
       "id": "E99.07",
@@ -39915,8 +39948,8 @@
       "id": "Q99.06",
       "name": "The Ruins of Belegost",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-ruins-of-belegost",
+      "state": "scripted"
     },
     {
       "id": "Q99.07",
