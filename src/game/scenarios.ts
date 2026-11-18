@@ -36,6 +36,7 @@ import { ATTACK_DOL_GULDUR_ADVENTURES } from "./attack-dol-guldur-scenario-data"
 import { CAVES_ADVENTURES } from "./caves-nibin-dum-scenario-data";
 import { WIZARDS_QUEST_ADVENTURES } from "./wizards-quest-scenario-data";
 import { WOODLAND_REALM_ADVENTURES } from "./woodland-realm-scenario-data";
+import { MINES_MORIA_ADVENTURES } from "./mines-moria-scenario-data";
 import { LAND_SORROW_ADVENTURES } from "./land-sorrow-scenario-data";
 import { ASH_ADVENTURES } from "./ash-mountains-scenario-data";
 import { WAINRIDERS_ADVENTURES } from "./wainriders-scenario-data";
@@ -1239,6 +1240,7 @@ export const SCENARIOS = [
   ...ATTACK_DOL_GULDUR_ADVENTURES,
   ...WIZARDS_QUEST_ADVENTURES,
   ...WOODLAND_REALM_ADVENTURES,
+  ...MINES_MORIA_ADVENTURES,
 ] as const;
 /** The Mirkwood Paths campaign covers the three Core Set quests in order. */
 export const CAMPAIGN_CHAPTERS: readonly ScenarioId[] = [
@@ -1250,9 +1252,8 @@ export const CAMPAIGN_CHAPTERS: readonly ScenarioId[] = [
 export const CLUE = "02014";
 export const scenario = (id: ScenarioId) => SCENARIOS.find((s) => s.id === id)!;
 /**
- * The number of quest stages a game goes through: The Wizard's Quest and The
- * Woodland Realm list their 7 quest cards, of which the players use one per
- * stage.
+ * The number of quest stages a game goes through: the Fellowship event
+ * scenarios list their 7 quest cards, of which the players use one per stage.
  */
 export const scenarioStageCount = (id: ScenarioId) => {
   const s = scenario(id);

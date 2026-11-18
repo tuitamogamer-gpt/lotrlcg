@@ -195,6 +195,10 @@ const HEADLINES: Partial<
     lead: "Follow Mendor to",
     em: "the Elvenking's halls.",
   },
+  "the-mines-of-moria": {
+    lead: "Seek the Chamber",
+    em: "of Mazarbul.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

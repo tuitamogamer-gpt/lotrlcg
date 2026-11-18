@@ -106,6 +106,7 @@ import {
 } from "./caves-nibin-dum-scenario-data";
 import { WQ_ENCOUNTERS, WQ_QUESTS } from "./wizards-quest-scenario-data";
 import { WR_ENCOUNTERS, WR_QUESTS } from "./woodland-realm-scenario-data";
+import { MM_ENCOUNTERS, MM_QUESTS } from "./mines-moria-scenario-data";
 import mountainFirePlayers from "../data/mountain-fire-player-cards.json";
 import hobbitPlayers from "../data/hobbit-player-cards.json";
 import blackRidersPlayers from "../data/black-riders-player-cards.json";
@@ -623,6 +624,7 @@ export const encounterCards = [
       ...CAVES_ENCOUNTERS,
       ...WQ_ENCOUNTERS,
       ...WR_ENCOUNTERS,
+      ...MM_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -732,6 +734,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...CAVES_QUESTS,
     ...WQ_QUESTS,
     ...WR_QUESTS,
+    ...MM_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -882,6 +885,7 @@ export const SCRIPTED = new Set(
     ...CAVES_QUESTS,
     ...WQ_QUESTS,
     ...WR_QUESTS,
+    ...MM_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

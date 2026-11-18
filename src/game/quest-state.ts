@@ -64,6 +64,7 @@ export function mainQuestCode(s: GameState): string | undefined {
   if (s.caves) return s.caves.currentQuest;
   if (s.wizardsQuest) return s.wizardsQuest.currentQuest;
   if (s.woodlandRealm) return s.woodlandRealm.currentQuest;
+  if (s.minesMoria) return s.minesMoria.currentQuest;
   if (s.landSorrow) return s.landSorrow.currentQuest;
   if (s.ashMountains) return s.ashMountains.currentQuest;
   if (s.wainriders) return s.wainriders.currentQuest;

@@ -5,8 +5,8 @@
     "playerCards": 860,
     "heroes": 112,
     "deckCards": 744,
-    "encounterCards": 1906,
-    "scenarios": 120,
+    "encounterCards": 1950,
+    "scenarios": 121,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -127,17 +127,18 @@
       "the-siege-of-annuminas",
       "attack-on-dol-guldur",
       "the-wizards-quest",
-      "the-woodland-realm"
+      "the-woodland-realm",
+      "the-mines-of-moria"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3152,
-    "pending": 1031
+    "scripted": 3202,
+    "pending": 981
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 247
+    "scripted": 248
   },
   "registeredCodes": [
     "01001",
@@ -1095,6 +1096,7 @@
     "octgn:021d423c-d9e4-4b7f-bca3-ee1ec4361a23",
     "octgn:022c654e-9d4d-40ff-9d67-8e465fda0e78",
     "octgn:026a36ed-0979-4422-a581-a4decdc3c102",
+    "octgn:027c61dd-3d54-4e11-af5f-19d4a63dd38e",
     "octgn:02a5e04c-d08f-49f4-a7b5-ba6a1cb86de7",
     "octgn:02a79046-aaa1-4b12-9e74-467f0b566889",
     "octgn:02cae27a-3b0c-4396-aea3-8fc2bdd4ffe8",
@@ -1103,6 +1105,7 @@
     "octgn:03587572-2760-48b5-9b08-e01ccdc9788f",
     "octgn:039a688f-8bef-4a77-97c4-84b942f3d91a",
     "octgn:03abe728-0062-49bb-9a04-e78bff777e83",
+    "octgn:03b041ad-049a-44bb-9079-12b666e1afbc",
     "octgn:03b6d303-7722-4319-9623-e182b50c90b2",
     "octgn:041e412b-4d21-421a-a029-e1fdcb62e76d",
     "octgn:044a7b39-8ef6-41c7-bb99-ce209f700b09",
@@ -1147,6 +1150,7 @@
     "octgn:0aa98b35-6958-4680-a4ed-b9fc16089126",
     "octgn:0ae0d2d5-b082-4cc7-b227-9b60c60de8b4",
     "octgn:0ae9f4f9-eec9-404f-ae93-7a54287d1bc2",
+    "octgn:0b0ab8a2-f531-4a68-96f8-408cc0b87924",
     "octgn:0b215acb-56e1-4653-9cbf-38171c4af9c9",
     "octgn:0b3a7155-be2d-4fed-9674-bc696662372f",
     "octgn:0bb77cd5-0340-4411-9e1f-997b1d6cb35a",
@@ -1156,6 +1160,7 @@
     "octgn:0c320479-0992-4d16-9ce1-3aeeca8be57c",
     "octgn:0c44ed2b-976a-4b17-b7e7-e64b20f74fd7",
     "octgn:0c6923ad-efbd-46b0-b5fc-93f90334ecf5",
+    "octgn:0c7a9790-0c68-47c0-bcf8-ed4e04b14a25",
     "octgn:0cb6d866-50dd-4eb0-a86a-8ed84bfeae0e",
     "octgn:0cdc4034-738d-487d-9a8c-8ef364772076",
     "octgn:0d30fbf1-6e8f-480f-9f2f-3196777f6e11",
@@ -1169,6 +1174,7 @@
     "octgn:0e205159-5e62-4d24-b0df-635853aea9c0",
     "octgn:0e3ce28a-df4b-461e-b47a-299e4c730cc2",
     "octgn:0e58ae5a-0670-4c00-836a-3bef017bf279",
+    "octgn:0e6b6b6b-a58b-4e9d-8e9b-9e2ddb4592d9",
     "octgn:0e90a1fb-b498-4b6e-a6c8-de3e3ed38aa4",
     "octgn:0e9fb174-59a2-4e7b-8eab-1f9185f75ea7",
     "octgn:0eb36ad6-db76-4e69-b77c-77ff7da8661d",
@@ -1238,6 +1244,7 @@
     "octgn:1866ce74-8552-4ac5-8b0a-1e7a6f3b4338",
     "octgn:1877b069-7015-4172-b5df-bbfd235b976f",
     "octgn:18d6f0aa-a62e-4ce5-b169-cae8836d8442",
+    "octgn:1920b1cc-8392-4fb6-9c9c-22b8bfd8d539",
     "octgn:194ceae6-a5e2-4a52-ba07-76e6c2611e8e",
     "octgn:19675b16-16ee-4477-a753-bd1cf7b51b7a",
     "octgn:196d6c69-845a-494d-a49d-54d3dc6c1b4b",
@@ -1282,6 +1289,7 @@
     "octgn:1e2560ab-00ce-45c3-a374-f7bb6a3e6889",
     "octgn:1e54fa6e-c2a1-4456-ac48-8912ecc4722a",
     "octgn:1e5d3385-4362-4e76-91fc-30e5aebab5e2",
+    "octgn:1e6bff06-79b2-4571-b584-c5b837176ded",
     "octgn:1e7ccc5d-2f76-4295-add4-c06da3da1516",
     "octgn:1e96a8e3-ad11-48d5-8554-7cb1a90937a7",
     "octgn:1eab8808-f8ee-4935-b456-7dd940afbc28",
@@ -1304,6 +1312,7 @@
     "octgn:20e1ee03-f6c4-4b63-a816-4c9660e51eb0",
     "octgn:2108c366-c09a-4952-9920-398f8d84b5a9",
     "octgn:21165a65-1296-4664-a880-d85eea19a4ae",
+    "octgn:2122c049-2c7d-470a-970c-f5a2a26ac66f",
     "octgn:215881a3-df0a-4163-a19d-33b444e7aa95",
     "octgn:2163f5ef-63a3-4afc-8084-fe730774d216",
     "octgn:21786f6e-9f9c-4850-9277-9ee77b6e0912",
@@ -1323,6 +1332,7 @@
     "octgn:22d6a151-ee2a-4ad0-9d97-5eddd5cc0391",
     "octgn:22e79f71-9496-4f1a-bf7e-36834378d68c",
     "octgn:22f6fc49-6a00-4104-a9fa-4823435175a1",
+    "octgn:23008103-17e0-4108-ac5c-966f4ddd3469",
     "octgn:2301fc93-a05e-4dd4-b06e-40d659783d8b",
     "octgn:231bf335-bf9b-44d9-a919-e59aa1d46473",
     "octgn:232256cb-40ee-4cec-84ac-995b3ba43eb2",
@@ -1359,6 +1369,7 @@
     "octgn:2608ba25-8375-4093-9d93-3c8cfa7b697c",
     "octgn:2629ae83-bfb8-4be1-84a5-fa9e8b1fc20b",
     "octgn:262d615b-5b5d-4f16-975e-335d34e6c733",
+    "octgn:262f58ac-0e34-4d1c-b61b-1cae8358b2c7",
     "octgn:264adf61-31e1-46db-a655-7fee1d4282ae",
     "octgn:26642db7-c3a2-47f3-989d-27396e586d06",
     "octgn:26bb74c2-3c66-4828-8188-404bc42e713e",
@@ -1377,6 +1388,7 @@
     "octgn:282bca71-ff04-4447-a4e9-a7e5f70e0083",
     "octgn:286a5206-9ebb-4ec4-a349-2960ccb2f669",
     "octgn:2878bd63-b20b-419a-85a2-dff419864e08",
+    "octgn:287fb255-d104-450c-8159-4fa36e37ca93",
     "octgn:2899ad24-ba7e-4c24-9d20-dabe8f4fce71",
     "octgn:28a4721b-3696-4fae-9eea-01b5a250c892",
     "octgn:28b27afb-c966-4960-a4e7-5e5364e45c05",
@@ -1457,6 +1469,7 @@
     "octgn:32873634-3a91-4d6f-988a-fb8bb5c16ef3",
     "octgn:32993141-956c-4426-98d9-8705de6fee00",
     "octgn:32993141-956c-4426-98d9-8705de6fee00:B",
+    "octgn:32ac489f-7e40-47a0-acba-f199f3f5d8f7",
     "octgn:32ac7351-b154-4e94-8348-ed31385fb3a4",
     "octgn:32db1af6-e214-4958-9ca4-bdf3a73758b5",
     "octgn:3309e01a-db7f-4754-bd41-21a0b4316415",
@@ -1482,6 +1495,7 @@
     "octgn:35787b76-d4d5-4bff-bc05-a270b6e4d98e",
     "octgn:35924e07-9473-4701-855a-11f69dc83185",
     "octgn:35b3cfde-9964-4173-88c5-e5e5cb8f84ac",
+    "octgn:35caf8b5-dc14-4b56-827c-d2d85a1d13df",
     "octgn:35d72889-370e-4ee3-99c0-b7d0a605ec49",
     "octgn:35ea4640-1019-409c-b6a4-8a9906def475",
     "octgn:35ed8128-584c-43cc-ae7c-a4430e78940c",
@@ -1511,6 +1525,7 @@
     "octgn:39a64a5a-7074-46a5-aacc-a42537fe0ddd",
     "octgn:39df5c92-f79e-4d39-b8a3-f93631e183db",
     "octgn:3a8869dc-077e-4b8c-b3d5-474e4f9c14ba",
+    "octgn:3ad34bfd-3f2b-4b23-b09d-232f4640ddeb",
     "octgn:3b26d048-24cb-4978-86f9-d255048426d8",
     "octgn:3b7c4f67-7de4-4b77-be50-0fd86e4ef2bc",
     "octgn:3b855783-5b90-4788-802e-e7c1e81461d8",
@@ -1566,6 +1581,7 @@
     "octgn:4355352b-307e-407b-98f9-3d4fb2a14a49",
     "octgn:435e12a1-d479-42f6-a40d-8067615ec9e1",
     "octgn:4362ef23-0ade-4eea-974b-2959803f8528",
+    "octgn:43777005-d391-48bc-b84d-d40932ffc66b",
     "octgn:43867521-f76f-48be-9911-a90ac0f539f6",
     "octgn:43bb02ff-9fcc-47e8-822c-ffcd620c9fc4",
     "octgn:43db612f-6c3c-4a3c-a4ba-816a85f47d16",
@@ -1681,6 +1697,7 @@
     "octgn:4abe9f52-1e56-479a-a59f-c3f7075ec493",
     "octgn:4ae7d13b-4b73-477b-ab71-5bd6bfc7b912",
     "octgn:4af27413-5674-4352-b54a-7f12c4fa0afc",
+    "octgn:4b339e45-503d-4eb9-b7a5-fb7dbe887c03",
     "octgn:4b36df3f-d75b-4b3a-9324-9ab31c10d7b9",
     "octgn:4b3a4229-eb85-49b0-9f34-78cb17301b34",
     "octgn:4b678143-ec9f-4727-998a-85dfef48d47a",
@@ -2059,6 +2076,7 @@
     "octgn:52b5e077-36f2-4c13-89fb-4f7b3d73463b",
     "octgn:52e70f35-b859-494e-81d0-8be66f519a2a",
     "octgn:530e7365-0a5a-46e5-9720-5377dfa1a01b",
+    "octgn:533a076a-be76-4528-9684-483d765bb2a3",
     "octgn:536cee93-e3d5-42fd-8182-0a939fd19f46",
     "octgn:5388683d-3240-433a-9602-a7367e428406",
     "octgn:53ac8ba6-0487-4b1f-91e9-cf7ca9e7c1d0",
@@ -2081,6 +2099,7 @@
     "octgn:55d8f78d-2dd7-4b44-80db-fb539ff05f00",
     "octgn:56634de4-2ef2-4739-b549-fa591e7032eb",
     "octgn:566898f1-9e85-4463-b220-6924d5106447",
+    "octgn:569c0cc8-58e0-46ef-97b3-6d3aef65ed8b",
     "octgn:56b24d25-a04a-418b-add0-7b1971dae38e",
     "octgn:56da2e72-9580-4537-95e9-c138b4d9480e",
     "octgn:56e98bd5-c952-436e-b552-832031d4bb20",
@@ -2127,6 +2146,7 @@
     "octgn:5ce0a255-9914-4a4f-9630-d1fe8e00bbc0",
     "octgn:5d0085bd-ebb9-46a7-ae28-698da3d11ae6",
     "octgn:5d811a82-3729-4b54-8748-e0abffd96e90",
+    "octgn:5d8db3c0-31da-4981-af11-1da3c6585bd8",
     "octgn:5d991933-f49d-4ece-a288-7484ebc75d14",
     "octgn:5dbc4cec-84c9-420b-809f-088296eb4a62",
     "octgn:5ddb243e-ee43-45fd-b4c2-2b197fdf70a9",
@@ -2183,6 +2203,7 @@
     "octgn:6651f8a6-e442-4eba-a8b5-13fab4c1e93c",
     "octgn:66812347-fac2-4a76-aa69-ac0861071c0d",
     "octgn:6709bafa-87b5-483e-9895-0f2edea7e47a",
+    "octgn:67221212-2af6-4729-a8d7-3ea575befcbb",
     "octgn:67251171-ee5f-46d5-b3c8-10523350c60c",
     "octgn:67455bf8-25ea-453e-9066-58e66fdf0528",
     "octgn:678fe922-7c1f-4270-aaec-002d916fc52a",
@@ -2215,6 +2236,7 @@
     "octgn:6b34adb4-b510-4db9-aaba-9a1876626dce",
     "octgn:6b828300-4558-4a8b-a591-a9865202a630",
     "octgn:6b8ca34a-1f6f-4eed-841c-a5d0db80619a",
+    "octgn:6bd6a282-9f43-4b12-a4bb-501f554daf2b",
     "octgn:6c456def-a38c-409c-a085-37f027e9c7b0",
     "octgn:6c89f835-68f8-4882-90ea-83f84953fabf",
     "octgn:6cb224c2-d164-484e-b20d-fede3dd640d5",
@@ -2263,6 +2285,7 @@
     "octgn:734fd50d-e708-4cc7-82e1-53809f6e7867",
     "octgn:73515869-890b-4169-9104-b2e882d921ae",
     "octgn:7367d16a-2b23-4a95-9050-266e93d8ab50",
+    "octgn:736cf1d8-54bd-4bb1-8901-8b6f348a0355",
     "octgn:7371cfea-03d0-4bc0-98a1-d99e0acdbf88",
     "octgn:73752e58-5dc1-40ea-b294-3c8f1998142d",
     "octgn:737724a5-2603-40b0-8a0b-4e72dbb3775e",
@@ -2416,6 +2439,7 @@
     "octgn:85d48eb0-3339-4db6-976f-a800213e7eea",
     "octgn:85eb724c-a258-4d94-83ba-5e9f21d82491",
     "octgn:8615beb7-a9f7-4852-bc0a-3d1a5f2c9532",
+    "octgn:86180e01-76fb-4103-977c-0d55bbfc2250",
     "octgn:867b61a1-4e23-4426-ad94-b912e89055b8",
     "octgn:86e8724b-32cb-4d63-b918-5754d39d2249",
     "octgn:86fe0f99-d978-40be-8f39-136bec2a3d58",
@@ -2434,6 +2458,7 @@
     "octgn:888e1fe6-2fc4-407d-8bb3-df2c020e1e24",
     "octgn:8893eba4-1f9c-4661-bfc2-bb485e023066",
     "octgn:88df7c56-ee11-48f0-b6a0-0486e0a8ce92",
+    "octgn:88e75969-9e5d-4b83-a535-d58409a473b2",
     "octgn:88efb537-cea8-4c20-8b73-e51f0742f769",
     "octgn:8948aa81-f7fb-4979-9add-555598df529a",
     "octgn:89baec7c-4e60-4b12-9d7d-80b11e786d89",
@@ -2451,6 +2476,7 @@
     "octgn:8ab1b53d-df75-487e-9351-60690fba1df5",
     "octgn:8ab3701c-7814-403c-be93-21cdff4283ed",
     "octgn:8ac2d3ea-7e6d-4e9e-9cc5-70b65b24b835",
+    "octgn:8ad1ecf9-3c76-46d6-b65f-9dad403c0960",
     "octgn:8affd994-f7f5-4341-8437-899f9a31b094",
     "octgn:8b083bb8-0ada-484a-9f83-6c8f431170b5",
     "octgn:8b1a3e3e-903f-4c4d-acf4-c216c2116339",
@@ -2505,6 +2531,7 @@
     "octgn:91735f73-7dc8-48ee-8a61-b7c9648f5def",
     "octgn:918c4387-bf40-48f1-bf65-5ad5acb91784",
     "octgn:91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8",
+    "octgn:92058ab4-7e65-4c78-9124-7338bca432fd",
     "octgn:9221e69b-0649-4585-9ee2-2dd2890531ea",
     "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
     "octgn:929a0f96-a029-4327-b8e5-03cb78293bdf",
@@ -2517,12 +2544,14 @@
     "octgn:93ece501-fae4-46e8-9720-316383b86688",
     "octgn:944aaafa-17e2-4352-9a04-384673089ee6",
     "octgn:947f8b80-5d96-43eb-89ac-95b7738f2d55",
+    "octgn:948774da-a350-40cc-bb09-aca2c3ad8dcd",
     "octgn:9497ef98-8f38-4647-bf77-28d8007a911a",
     "octgn:94befa92-9e5f-4838-b1e1-0b54d698bcb3",
     "octgn:94ef148f-62f7-4659-8a49-9c42b9ed7cef",
     "octgn:9511bcf2-9c06-413e-bf09-3bc076eb76d4",
     "octgn:9550172a-c624-40fd-b654-f2430ed93df1",
     "octgn:95d26956-eda3-43b2-b68b-6f8010d076bd",
+    "octgn:95f27b98-6375-48ff-bf2b-3f625b3d1b0d",
     "octgn:95f2f7ac-5d85-43e5-930d-d866b00bef26",
     "octgn:962991f0-44af-47ba-9ff0-0f7ed302a543",
     "octgn:9656a1c9-dd90-4096-b2ba-eb2491d08403",
@@ -2540,6 +2569,7 @@
     "octgn:98358a49-2fba-45e3-8a26-5500bc7f04dd",
     "octgn:98461b3e-54c4-4eb9-9172-616c9bebb0f6",
     "octgn:984d2a01-f12a-4e8b-800c-6a04b1904049",
+    "octgn:986225d5-6fbb-4860-9fce-af74dd4eb551",
     "octgn:98a2fb10-f2fc-462c-9f2e-8945419d9c4f",
     "octgn:98a48eec-841f-48da-83e7-fa148a03de8b",
     "octgn:98bf5fdc-ff74-48e2-88c8-0e4134fd6984",
@@ -2602,6 +2632,7 @@
     "octgn:9f1f5ce8-2fa6-40e3-ba7c-34fb94db014b",
     "octgn:9f29199a-f40a-4198-b355-4d5e75d910e2",
     "octgn:9fa12306-d6ed-4fb8-89ce-8145bb81a58a",
+    "octgn:9fdacc4b-5de7-4b03-af30-cee4d09769d7",
     "octgn:9feef7b4-4ca7-4adc-aeb7-56947254588a",
     "octgn:9ff94935-ae08-4d86-859f-f4d0776a66e5",
     "octgn:a0417d08-1905-46f9-bd65-067c1c59f0a3",
@@ -2639,6 +2670,7 @@
     "octgn:a5aef3fe-7bb9-4165-ba0f-91127d8f21e3",
     "octgn:a5e60892-b524-43cf-a501-372a624e785e",
     "octgn:a62b42dc-ab4a-4573-a281-53742e2739f5",
+    "octgn:a643c446-15e1-4dc0-95f7-9146a59991b3",
     "octgn:a652a7ef-25ad-4e43-94b4-f18c68e34e83",
     "octgn:a662bccc-025c-48dd-9c13-0eb47a91236c",
     "octgn:a6b39458-b0f1-4b5d-a915-d3921eb35658",
@@ -2672,6 +2704,7 @@
     "octgn:aa3355cb-57e1-4d8b-8a1b-9be22581a9f3",
     "octgn:aa632825-0b60-4dc7-9733-8aa554631d6e",
     "octgn:aa6914e2-4b79-4a95-ab3e-386d6a924bee",
+    "octgn:aaa16a82-e6b6-4563-a523-b8d61e40e273",
     "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
     "octgn:ab2ac791-b266-43b2-b6ee-0d412a1100bc",
     "octgn:ab5fec4c-b353-47e5-ae47-db7daf7f9088",
@@ -2712,6 +2745,7 @@
     "octgn:aeb2f711-4597-42c1-af8c-eb7d6f4fa79a",
     "octgn:aeba0e59-8dde-4422-bfb5-911ae8de42a1",
     "octgn:aede410a-9d4c-4abd-9f55-143f5027f9c4",
+    "octgn:aee4d9fb-2ef9-43b0-8459-1a390421052b",
     "octgn:aefb838f-b748-4249-8f24-8dce9e838880",
     "octgn:af3543c4-f30f-4522-bbb7-5ef039344fdf",
     "octgn:af53407e-c51f-4b41-bd25-312f681149e1",
@@ -2752,6 +2786,7 @@
     "octgn:b546c9b7-7721-4275-ba8b-ba28364aeb95",
     "octgn:b56f7d39-ca8d-4979-baa6-8a2f875d6463",
     "octgn:b585f28e-7612-4f07-83f7-0fed8d391e3d",
+    "octgn:b58d7e13-ee6b-4986-91f8-f4583490d364",
     "octgn:b59afed1-a224-4793-b149-0a6aadc9ba7e",
     "octgn:b5afe22c-f57f-4e26-993f-ef40fba8e105",
     "octgn:b5c08c5b-dd05-4139-b262-e9d5c0f29016",
@@ -2794,6 +2829,7 @@
     "octgn:bb1652ba-37e4-4a59-a7c7-39f398c0ab19",
     "octgn:bb38c7cf-8c76-4b87-b218-5516bc366470",
     "octgn:bb58f446-da73-47e3-98e8-70f69ee77d34",
+    "octgn:bb5afc96-9b41-4a8d-933d-1906e550243b",
     "octgn:bb5d1d76-663f-4261-94ec-7a9bfc025acf",
     "octgn:bb6dd4a6-a72c-400a-9cc6-903d7260ea1b",
     "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
@@ -2804,6 +2840,7 @@
     "octgn:bd30f509-04f8-4135-a5e9-20d3cbbe7cd8",
     "octgn:bd837efe-9358-4fe9-8770-69b9b1fefb48",
     "octgn:bdbf8bed-f63f-4797-abb4-79054a9dbcad",
+    "octgn:bdfa990f-381b-4df3-bce6-71c46380223f",
     "octgn:be3ca12f-2550-48b4-9384-e71a1b401d4e",
     "octgn:be43a52a-370a-4481-bc84-8e004ecbfdca",
     "octgn:be6cf29d-bb8b-494a-9635-85ee9322a690",
@@ -2818,6 +2855,7 @@
     "octgn:c03a693c-4fcf-4df5-868b-88e1df8531d9",
     "octgn:c04f4018-e001-4a31-a003-9914e3f585ee",
     "octgn:c057b0ef-eb85-4afc-9ca8-60a0cca92bcc",
+    "octgn:c07b0737-1a39-45b9-a08a-879e741e2526",
     "octgn:c08310b6-5201-4c70-975e-61a2e7ff329b",
     "octgn:c084e998-a5c8-4efd-a6ed-441f9f912c99",
     "octgn:c0c522b2-5f5c-45a0-b6fc-e05c8bb835d8",
@@ -2867,6 +2905,7 @@
     "octgn:c60642b2-4ce3-42e8-8cb5-41c9ac9251fb",
     "octgn:c616d30d-9242-401b-b386-4fe0660dc97b",
     "octgn:c6204e5d-7020-4360-b2ad-7db4edcc7303",
+    "octgn:c67cae2c-941e-40ad-8c14-3cfc50267359",
     "octgn:c69c1fe9-076a-4a5b-8388-9f653015d84d",
     "octgn:c6adadf8-569a-4943-817b-44bf1418e07e",
     "octgn:c6b0a8d2-32fe-4750-9270-7270cd5f062b",
@@ -2957,6 +2996,7 @@
     "octgn:d3a3d024-2321-4707-b319-eb62537e6d92",
     "octgn:d3bd47e5-cf59-4097-9cec-92a15fe56bf4",
     "octgn:d3c68791-c3f9-4e8d-9515-2496f9ca1895",
+    "octgn:d3eee887-e9fd-40f9-bd09-47a7b0732ee2",
     "octgn:d4686e4d-2d50-4ffd-9b95-7bcdf9b2a494",
     "octgn:d47ece86-2645-4d35-8ab7-c439d12abe65",
     "octgn:d4a5f505-6cc6-4669-b9b9-8f5ad2a6e5df",
@@ -2996,6 +3036,7 @@
     "octgn:da6d1bd2-575b-4292-9757-3792b79a4b78",
     "octgn:da95d039-0f3f-452b-9ff5-60c03432facc",
     "octgn:daa67624-18ba-43a3-92c6-6e5586166bb0",
+    "octgn:dab3229d-aadc-4c6d-a8a6-32a65d4e743b",
     "octgn:dae6e913-3b2e-4e53-aad4-69946d3386ca",
     "octgn:db1ee7dd-d43c-40a0-9e89-89a5b233af70",
     "octgn:db512bcc-1bc7-4008-ba2b-18d56abc3b67",
@@ -3025,6 +3066,7 @@
     "octgn:df24263d-f2f9-436c-a62f-4db50e09d283",
     "octgn:df3f0718-7558-48c5-b680-2c2fc38d3de2",
     "octgn:df69b078-0073-44b6-9f18-1fed38f9711c",
+    "octgn:df7789f2-e7fd-45bd-a64f-fbd98a9ee146",
     "octgn:df908f24-8927-42cf-a6dd-9dfc41de74c1",
     "octgn:df9ba79f-91a3-4fc7-a2af-6bddcc795f29",
     "octgn:dfd05c9f-1dc1-4af6-a22f-fe39969c6371",
@@ -3087,6 +3129,7 @@
     "octgn:e70dc756-86c4-460a-97cd-1d2c65b1e874",
     "octgn:e70fa96c-f4c7-4d6c-ab14-41831a6eb8c8",
     "octgn:e7100f6a-bdbd-4605-86e2-67d4479d227d",
+    "octgn:e723be8b-ba65-4aaa-ba56-825ee9311a0e",
     "octgn:e7413cb0-3443-40d4-88f4-06d7cfa1ab1d",
     "octgn:e763a539-7fc8-49ab-8f8f-879070aa0e03",
     "octgn:e7a6c9c3-9d45-478c-81e5-7811d43deb0e",
@@ -3098,6 +3141,7 @@
     "octgn:e8db9cc7-d53f-4ce9-991d-31078b2d507a",
     "octgn:e920ecab-29dc-48a6-908d-f4919d5b468d",
     "octgn:e9217231-de12-48ef-9351-f7d992643c2f",
+    "octgn:e99d2892-b6c4-422f-b630-4bf156a3f776",
     "octgn:e9bdfb84-2f96-4288-bbed-31f52cc10b86",
     "octgn:ea225b12-75e1-4253-9458-c71c1c304a8f",
     "octgn:ea4bc222-6fb5-494e-8f1f-de30974694db",
@@ -3121,9 +3165,12 @@
     "octgn:ec97b3a4-4904-42ac-beb0-9d4d935241fb",
     "octgn:ec9d7726-89fa-41ee-a6ad-30761a6b79d3",
     "octgn:ec9f4d54-a419-4b3e-a6b9-605119950d07",
+    "octgn:ecb91fb3-6ae6-4a96-9bb7-71abeb0a7ec5",
+    "octgn:ecb91fb3-6ae6-4a96-9bb7-71abeb0a7ec5.B",
     "octgn:ecc8fd11-b2b9-4adc-91eb-6fcc1212e7ce",
     "octgn:eccef05c-0f43-4cfa-91c6-e9eaf0eff7c9",
     "octgn:ed3c4835-2741-406c-b43e-0ad72f6b2496",
+    "octgn:ed68974c-45ea-4378-9fe3-818cae03f9ea",
     "octgn:ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d",
     "octgn:edae55ef-8025-4553-9ff8-e81526effd59",
     "octgn:ede538df-8c8e-44b6-bab2-3a60e8a50449",
@@ -3156,6 +3203,8 @@
     "octgn:f13a2e94-0ece-45c3-a7ce-0248f9ff92b3",
     "octgn:f16aabcd-6a98-4e4a-89ca-0f0d69407d85",
     "octgn:f18b362f-1669-4743-8802-daf58e638198",
+    "octgn:f1a07644-9fe2-4764-9999-091fb8fc05b7",
+    "octgn:f1b632df-ecaa-410a-b2c2-e037adc0ef2c",
     "octgn:f1d2d99e-27e6-44d3-ad3d-ef727fa9ddc2",
     "octgn:f214f533-374b-423c-86b5-dca1ab5d048f",
     "octgn:f2319b29-4236-4a66-87dd-36a4ed8e2880",
@@ -3239,6 +3288,7 @@
     "octgn:fb40f70e-0d36-4d18-ae51-23be5f1a3260",
     "octgn:fb5e0cb9-914f-49ee-8e21-534e89bc5533",
     "octgn:fb7d55c5-7198-45c5-97d7-be4c6a26fa68",
+    "octgn:fb897d38-fce6-4061-aaa5-9311eaadd8e5",
     "octgn:fba9d635-eeba-4cc1-b9fb-d6666a3a1cdf",
     "octgn:fbc99604-7183-41fe-b37c-d5a8f54bea0e",
     "octgn:fbfee53c-fec3-4b55-a8b4-c7329f8f973e",
@@ -3284,8 +3334,10 @@
     "octgn:fe580179-8f51-463e-a235-bde0f7b783d7",
     "octgn:fe7448a2-e2e2-4e81-95f4-2ac585160433",
     "octgn:fed61900-b526-41e6-b072-9c5eae29bc77",
+    "octgn:ff23f4ed-4fc9-4835-91f1-16e8ab0870f0",
     "octgn:ff4c59d7-6ad7-4fa7-80da-97fd5f8f3169",
     "octgn:ff597a85-6a02-4301-a9dc-4dcb4cf9b626",
+    "octgn:ff5c0c83-0791-48ad-b4c4-e3437470263c",
     "octgn:ff79510f-a6c3-4357-a582-853e5bb3e2bc",
     "octgn:ff815834-bf79-4914-8057-903f834190f1",
     "octgn:ffb334eb-991d-4615-93ce-b2215a02d74f",
@@ -4003,7 +4055,7 @@
     {
       "product": "the-mines-of-moria",
       "total": 50,
-      "scripted": 0,
+      "scripted": 50,
       "player": 0,
       "playerScripted": 0
     },
@@ -13223,7 +13275,7 @@
       "name": "Hidden Threat",
       "type": "treachery",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -13319,7 +13371,7 @@
       "name": "Cobwebbed Cavern",
       "type": "location",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -13847,7 +13899,7 @@
       "name": "Denizen of the Deep",
       "type": "treachery",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -13951,7 +14003,7 @@
       "name": "Great Cave-troll",
       "type": "enemy",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -14103,7 +14155,7 @@
       "name": "Goblin Warlord",
       "type": "enemy",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -14903,7 +14955,7 @@
       "name": "Journey in the Black Pit",
       "type": "quest",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -15343,7 +15395,7 @@
       "name": "Plundered Armoury",
       "type": "location",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -15575,7 +15627,7 @@
       "name": "Swarming Goblins",
       "type": "enemy",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -15759,7 +15811,7 @@
       "name": "Cave In",
       "type": "treachery",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -16119,7 +16171,7 @@
       "name": "Goblin Sneak",
       "type": "enemy",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -16327,7 +16379,7 @@
       "name": "Search for the Chamber",
       "type": "quest",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -17231,7 +17283,7 @@
       "name": "Narrow Fissure",
       "type": "location",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -17575,7 +17627,7 @@
       "name": "Journey in the Black Pit",
       "type": "quest",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -17927,7 +17979,7 @@
       "name": "Spider Broodling",
       "type": "enemy",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -18575,7 +18627,7 @@
       "name": "Moria Bats",
       "type": "enemy",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -19647,7 +19699,7 @@
       "name": "Search for the Chamber",
       "type": "quest",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -22839,7 +22891,7 @@
       "name": "Goblin Tunnels",
       "type": "location",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -23135,7 +23187,7 @@
       "name": "Goblin Follower",
       "type": "enemy",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -23639,7 +23691,7 @@
       "name": "Web-spinner",
       "type": "enemy",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -24295,7 +24347,7 @@
       "name": "Lightless Passage",
       "type": "location",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -24639,7 +24691,7 @@
       "name": "Dark and Dreadful",
       "type": "treachery",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -25263,7 +25315,7 @@
       "name": "Zigil Mineshaft",
       "type": "location",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -26967,7 +27019,7 @@
       "name": "They Are Coming!",
       "type": "treachery",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -27215,7 +27267,7 @@
       "name": "Savage Werewolf",
       "type": "enemy",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -27415,7 +27467,7 @@
       "name": "Ancient Guardroom",
       "type": "location",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -28023,7 +28075,7 @@
       "name": "To the West-door",
       "type": "quest",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -28167,7 +28219,7 @@
       "name": "Fouled Well",
       "type": "location",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -28279,7 +28331,7 @@
       "name": "Dwarven Forge",
       "type": "location",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -28463,7 +28515,7 @@
       "name": "Lurking Malice",
       "type": "treachery",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -29095,7 +29147,7 @@
       "name": "We Cannot Get Out",
       "type": "treachery",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -29591,7 +29643,7 @@
       "name": "Massing in the Deep",
       "type": "treachery",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -29943,7 +29995,7 @@
       "name": "Grabbed by Spiders",
       "type": "treachery",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -30383,7 +30435,7 @@
       "name": "Search for the Chamber",
       "type": "quest",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -30879,7 +30931,7 @@
       "name": "Crumbling Ruin",
       "type": "treachery",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -31799,7 +31851,7 @@
       "name": "Werewolf",
       "type": "enemy",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -31959,7 +32011,7 @@
       "name": "Deep-dweller",
       "type": "enemy",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -32103,7 +32155,7 @@
       "name": "Stairs of Náin",
       "type": "location",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -32687,7 +32739,7 @@
       "name": "Signs of Conflict",
       "type": "treachery",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -33751,7 +33803,7 @@
       "name": "Goblin Archer",
       "type": "enemy",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -34271,7 +34323,7 @@
       "name": "Abandoned Mines",
       "type": "location",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -34559,7 +34611,7 @@
       "name": "Many-pillared Hall",
       "type": "location",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -35183,7 +35235,7 @@
       "name": "Sudden Pitfall",
       "type": "treachery",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -35551,7 +35603,7 @@
       "name": "Darkened Stairway",
       "type": "location",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -35823,7 +35875,7 @@
       "name": "The Watcher",
       "type": "enemy",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -35879,7 +35931,7 @@
       "name": "Journey in the Black Pit",
       "type": "quest",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -36263,7 +36315,7 @@
       "name": "Brood Mother",
       "type": "enemy",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -36279,7 +36331,7 @@
       "name": "Shadow of Fear",
       "type": "treachery",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -37167,7 +37219,7 @@
       "name": "Foul Air",
       "type": "treachery",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -37647,7 +37699,7 @@
       "name": "Spider Burrow",
       "type": "location",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -37671,7 +37723,7 @@
       "name": "Hive Guardian",
       "type": "enemy",
       "pack": "The Mines of Moria",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mines-of-moria"
     },
     {
@@ -40216,8 +40268,8 @@
       "id": "Q99.13",
       "name": "The Mines of Moria",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-mines-of-moria",
+      "state": "scripted"
     },
     {
       "id": "Q99.14",

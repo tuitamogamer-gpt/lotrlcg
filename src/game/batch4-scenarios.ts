@@ -32,6 +32,7 @@ import { ATTACK_DOL_GULDUR_HOOKS } from "./attack-dol-guldur";
 import { CAVES_HOOKS } from "./caves-nibin-dum";
 import { WIZARDS_QUEST_HOOKS } from "./wizards-quest";
 import { WOODLAND_REALM_HOOKS } from "./woodland-realm";
+import { MINES_MORIA_HOOKS } from "./mines-moria";
 import { HELMS_DEEP_HOOKS } from "./helms-deep";
 import { ROAD_ISENGARD_HOOKS } from "./road-isengard";
 import { PASSAGE_MARSHES_HOOKS } from "./passage-marshes";
@@ -130,6 +131,8 @@ export function batch4Scenario(s: GameState): Batch4ScenarioHooks {
       return WIZARDS_QUEST_HOOKS;
     case "the-woodland-realm":
       return WOODLAND_REALM_HOOKS;
+    case "the-mines-of-moria":
+      return MINES_MORIA_HOOKS;
     case "the-ruins-of-belegost":
       return RUINS_BELEGOST_HOOKS;
     case "murder-at-the-prancing-pony":
@@ -238,4 +241,5 @@ export const batch4SharedEffect = (effect: Effect) =>
     CAVES_HOOKS,
     WIZARDS_QUEST_HOOKS,
     WOODLAND_REALM_HOOKS,
+    MINES_MORIA_HOOKS,
   ].some((hooks) => hooks.sharedEffect?.(effect));

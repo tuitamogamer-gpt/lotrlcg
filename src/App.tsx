@@ -69,6 +69,7 @@ import { ADG_QUESTS } from "./game/attack-dol-guldur-support";
 import { CAVES_QUESTS } from "./game/caves-nibin-dum-support";
 import { WQ_QUESTS } from "./game/wizards-quest-support";
 import { WR_QUESTS } from "./game/woodland-realm-support";
+import { MM_QUESTS } from "./game/mines-moria-support";
 import { OathState } from "./ui/the-oath-state";
 import { RuinsBelegostState } from "./ui/ruins-belegost-state";
 import { PrancingPonyState } from "./ui/prancing-pony-state";
@@ -77,6 +78,7 @@ import { AttackDolGuldurState } from "./ui/attack-dol-guldur-state";
 import { CavesState } from "./ui/caves-nibin-dum-state";
 import { WizardsQuestState } from "./ui/wizards-quest-state";
 import { WoodlandRealmState } from "./ui/woodland-realm-state";
+import { MinesMoriaState } from "./ui/mines-moria-state";
 import { DDCD_QUESTS } from "./game/dungeons-deep-support";
 import {
   discoveredTreasures,
@@ -3367,6 +3369,7 @@ export default function App() {
             <CavesState s={game} inspect={setDetail} />
             <WizardsQuestState s={game} inspect={setDetail} />
             <WoodlandRealmState s={game} inspect={setDetail} />
+            <MinesMoriaState s={game} inspect={setDetail} />
             <AshMountainsState s={game} inspect={setDetail} />
             <CouncilOfTheWiseState s={game} inspect={setDetail} />
             <WainridersScenarioState s={game} inspect={setDetail} />
@@ -4145,6 +4148,7 @@ export default function App() {
                       ...CAVES_QUESTS,
                       ...WQ_QUESTS,
                       ...WR_QUESTS,
+                      ...MM_QUESTS,
                       ...(carrockQuestCards as Card[]),
                       ...EMYN_MUIL_QUESTS,
                       ...CITY_QUESTS,

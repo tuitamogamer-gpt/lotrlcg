@@ -18,14 +18,15 @@ import {
 } from "./fellowship-event-lib";
 
 /**
- * The 2018 Fellowship event scenarios, The Wizard's Quest and The Woodland
- * Realm, share their structure: the players build the quest deck from stage 1
- * and one of three stage 2 and one of three stage 3 cards, and the encounter
- * deck from 7 of the 14 encounter sets (the quick build); 1A stages a
- * set-aside location and one different 0 cost card per player; each A side
- * of stages 2 and 3 reveals a card from the top 5 within a cost; defeating
- * the stage 3 card wins. The first player resolves each 'opposing team'
- * effect, as the cooperative rules ask.
+ * The Fellowship event scenarios (The Wizard's Quest, The Woodland Realm and
+ * The Mines of Moria) share their structure: the players build the quest deck
+ * from stage 1 and one of three stage 2 and one of three stage 3 cards, and
+ * the encounter deck from 7 of the 14 encounter sets (the quick build); 1A
+ * stages a set-aside card and (unless the scenario sets it up otherwise) one
+ * different 0 cost card per player; each A side of stages 2 and 3 reveals a
+ * card from the top 5 within a cost; defeating the stage 3 card wins. The
+ * first player resolves each 'opposing team' effect, as the cooperative rules
+ * ask.
  */
 export interface FellowshipEventConfig extends FellowshipEventCards {
   /** The prefix of the scenario's effect kinds. */
@@ -35,6 +36,11 @@ export interface FellowshipEventConfig extends FellowshipEventCards {
   stageDefeated?: (s: GameState, code: string) => void;
   /** The B side's 'when revealed' effects, after the A side's search. */
   stageRevealed?: (s: GameState, code: string) => Effect[];
+  /**
+   * 1A's setup after the set-aside card is staged; by default the opposing
+   * team adds one different 0 cost enemy or location per player.
+   */
+  requestSetup?: (s: GameState) => Effect[];
 }
 /** The effect kinds the shared rules resolve, without the scenario's prefix. */
 const KINDS = [
@@ -233,7 +239,9 @@ export function fellowshipEventEffect(
       );
       prepend(
         s,
-        fx(k("ZeroSetup"), { ids: [], count: players(s), player: first }),
+        ...(cfg.requestSetup?.(s) ?? [
+          fx(k("ZeroSetup"), { ids: [], count: players(s), player: first }),
+        ]),
       );
       return true;
     }

@@ -143,6 +143,10 @@ export const PLAYMATS = {
     name: "Mirkwood",
     detail: "The Spider Den · The Elvenking's halls",
   },
+  "the-mines-of-moria": {
+    name: "Moria",
+    detail: "The West-door · The Chamber of Mazarbul",
+  },
   "the-ruins-of-belegost": {
     name: "Belegost",
     detail: "The drowned Dwarf city · Naurlhûg's lair",
@@ -592,6 +596,7 @@ export const PLAYMAT_CHOICES = [
   "attack-on-dol-guldur",
   "the-wizards-quest",
   "the-woodland-realm",
+  "the-mines-of-moria",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",
