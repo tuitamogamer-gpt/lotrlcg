@@ -565,6 +565,14 @@ export interface GameState {
   angmarCards?: {
     /** Protect the Innocent's (or Arnor Ravaged's) unit in the staging area. */
     innocent?: string;
+    /** Mysterious Omens was defeated in this game (it leaves the Campaign Pool on a win). */
+    omens?: boolean;
+    /** The Permanent boons Mysterious Omens attached in this game (earned on a win). */
+    skills?: { code: string; hero: string }[];
+    /** Attachments whose once-per-game ability has been used. */
+    spent?: string[];
+    /** Cunning's +2 willpower, attack and defense until the end of the phase. */
+    boosts?: { target: string; phase: string; round: number }[];
   };
   /** The Lord of the Rings campaign: pending The Ring Draws Them engagements and Mr. Underhill marks. */
   sagaCards?: {

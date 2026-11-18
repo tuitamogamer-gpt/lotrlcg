@@ -30,6 +30,8 @@ import {
 } from "./carn-dum";
 import { dreadSideDefeated } from "./dread-realm";
 import {
+  angmarCampaignSideChosen,
+  angmarCampaignSideDefeated,
   angmarInnocentProgress,
   angmarSideDefeatBlocked,
 } from "./angmar-campaign";
@@ -211,6 +213,7 @@ function defeatSideQuest(s: GameState, quest: Unit) {
   carnSideDefeated(s, original);
   dreadSideDefeated(s, original);
   angmarSideDefeated(s, original);
+  angmarCampaignSideDefeated(s, original);
   Umbar.umbarSideDefeated(s, original);
   Desert.desertCrossingSideDefeated(s, original);
   Sands.beneathSandsSideDefeated(s, original);
@@ -290,6 +293,7 @@ export function sideQuestEffect(s: GameState, e: Effect) {
         log(s, `${name(u)} is the current quest until the quest phase ends.`);
         Mumakil.mumakilSideQuestSelected(s, u);
         batch4Scenario(s).sideQuestChosen?.(s, u);
+        angmarCampaignSideChosen(s, u);
       }
       break;
     }

@@ -5,7 +5,7 @@ import { createHash } from "node:crypto";
 import { card, STARTERS } from "../src/game/cards";
 import { damage, win } from "../src/game/board";
 import { flush } from "../src/game/effects";
-import { stats } from "../src/game/core";
+import { fx, make, stats } from "../src/game/core";
 import {
   applyAction,
   createGame,
@@ -28,9 +28,10 @@ import {
   angmarPendantShadowOptions,
   innocentLimit,
   newAngmarCampaign,
+  SKILL_BOONS,
 } from "../src/game/angmar-campaign";
 import { seatView } from "../src/game/table";
-import type { GameState } from "../src/game/types";
+import type { CampaignState, GameState, Unit } from "../src/game/types";
 import art from "./angmar-campaign-art.json";
 
 const d = STARTERS[0];
@@ -70,10 +71,49 @@ const chetwood = (seed = 5, campaign = newAngmarCampaign(HEROES)) =>
     playMode: "campaign",
     campaign,
   });
+/** The Campaign Log after Intruders in Chetwood. */
+const afterChetwood = (
+  innocent = 6,
+  heroes = HEROES,
+  seatHeroes?: number[],
+): CampaignState => ({
+  ...newAngmarCampaign(heroes, seatHeroes),
+  burdens: [ANGMAR.innocent],
+  innocent,
+  completed: [{ scenarioId: "intruders-in-chetwood", score: 0, rounds: 1 }],
+});
+const weather = (seed = 5, campaign = afterChetwood()) =>
+  createGame(seed, d.cards, HEROES, d.id, {
+    scenarioId: "the-weather-hills",
+    playMode: "campaign",
+    campaign,
+  });
+/** Mysterious Omens, revealed into the staging area. */
+function revealOmens(s: GameState) {
+  s.encounterDeck = s.encounterDeck.filter((c) => c !== ANGMAR.omens);
+  const omens = make(s, ANGMAR.omens);
+  s.staging.push(omens);
+  return omens;
+}
+/** An encounter deck's enemy, engaged with the player. */
+function engage(s: GameState, code: string) {
+  s.encounterDeck.splice(s.encounterDeck.indexOf(code), 1);
+  const enemy = make(s, code);
+  s.engaged.push(enemy);
+  return enemy;
+}
+function attach(s: GameState, hero: Unit, code: string) {
+  const id = `a${s.nextId++}`;
+  hero.attachments.push({ id, code, exhausted: false });
+  return id;
+}
 
 test("The Angmar Awakened campaign: Intruders in Chetwood's campaign card, Iârion's Pendant and Protect the Innocent are registered with the scans' texts, every face is pinned, and the campaign follows its nine chapters", () => {
   assert.equal(ANGMAR_CAMPAIGN_ORDER.length, 9);
-  assert.deepEqual(ANGMAR_CAMPAIGN_SUPPORTED, ["intruders-in-chetwood"]);
+  assert.deepEqual(ANGMAR_CAMPAIGN_SUPPORTED, [
+    "intruders-in-chetwood",
+    "the-weather-hills",
+  ]);
   const campaignCard = card(ANGMAR_CAMPAIGN_CARDS["intruders-in-chetwood"]!);
   assert.equal(campaignCard.subtitle, "Angmar Awakened Part 1");
   assert.match(
@@ -101,7 +141,38 @@ test("The Angmar Awakened campaign: Intruders in Chetwood's campaign card, Iâri
     innocent.back_text!,
     /^Setup: Add Arnor Ravaged to the staging area with damage on it equal to the amount of damage marked for it in the Campaign Log\./,
   );
-  assert.equal(art.length, 5);
+  const weatherCard = card(ANGMAR_CAMPAIGN_CARDS["the-weather-hills"]!);
+  assert.equal(weatherCard.subtitle, "Angmar Awakened Part 2");
+  assert.match(
+    weatherCard.text!,
+    /^You are playing campaign mode\.\nSetup: Add the Mysterious Omens side quest to the Campaign Log and shuffle it into the encounter deck\. Add the Protect the Innocent side quest to the staging area and place damage on it equal to the amount of damage noted for it in the Campaign Log\.$/,
+  );
+  assert.match(
+    weatherCard.back_text!,
+    /^Resolution: Note the amount of damage on Protect the Innocent in the Campaign Log \(replacing the previous number\)\.$/,
+  );
+  const omens = card(ANGMAR.omens);
+  assert.deepEqual(
+    [omens.type_code, omens.quest, omens.victory],
+    ["encounter-side-quest", 9, 5],
+  );
+  assert.match(
+    omens.text!,
+    /^Surge\.\nForced: After Mysterious Omens becomes the current quest, each player discards 1 random card from their hand\./,
+  );
+  assert.deepEqual(
+    SKILL_BOONS.map((code) => [card(code).name, card(code).traits]),
+    [
+      ["Cunning", "Condition."],
+      ["Hardy", "Condition."],
+      ["Resolute", "Condition."],
+      ["Ruthless", "Condition."],
+      ["Stalwart", "Condition."],
+    ],
+  );
+  for (const code of SKILL_BOONS)
+    assert.match(card(code).text!, /^Permanent\.\nSetup: Attach to a hero\./);
+  assert.equal(art.length, 13);
   for (const a of art) {
     const bytes = readFileSync(`public${a.localPath}`);
     assert.equal(bytes.length, a.bytes);
@@ -247,7 +318,7 @@ test("Iârion's Pendant: its Response cancels a revealed card's when revealed ef
   assert.ok(valid(t));
 });
 
-test("Intruders in Chetwood's resolution notes Protect the Innocent's damage and adds it to the Campaign Pool; the campaign continues once The Weather Hills is supported", () => {
+test("Intruders in Chetwood's resolution notes Protect the Innocent's damage and adds it to the Campaign Pool; the campaign continues with The Weather Hills", () => {
   const s = calm(reload(opening(chetwood())));
   angmarInnocent(s)!.damage = 6;
   // A hero in its controller's discard pile is fallen.
@@ -269,8 +340,292 @@ test("Intruders in Chetwood's resolution notes Protect the Innocent's damage and
     /have not fallen/,
   );
   const next = HEROES.map((h) => (h === fallen.code ? "01007" : h));
+  const t = continueCampaign(s, next, d.id, true, 9);
+  assert.equal(t.scenarioId, "the-weather-hills");
+  assert.equal(
+    t.campaign!.threatPenalty,
+    1,
+    "replacing a fallen hero adds the +1 threat penalty",
+  );
+  assert.equal(angmarInnocent(t)!.damage, 6);
+  assert.ok(valid(t));
+});
+
+test("The Weather Hills: Protect the Innocent returns with its noted damage, and Mysterious Omens joins the Campaign Log and is shuffled into the encounter deck", () => {
+  const s = weather();
+  const quest = angmarInnocent(s)!;
+  assert.ok(quest, "Protect the Innocent is in the staging area");
+  assert.equal(quest.damage, 6);
+  assert.deepEqual(s.campaign!.burdens, [ANGMAR.innocent, ANGMAR.omens]);
+  assert.equal(
+    s.encounterDeck.filter((c) => c === ANGMAR.omens).length,
+    1,
+    "Mysterious Omens is in the encounter deck",
+  );
+  const t = opening(s);
+  assert.ok(
+    [
+      ...t.encounterDeck,
+      ...t.staging.map((u) => u.code),
+      ...t.encounterDiscard,
+    ].includes(ANGMAR.omens),
+  );
+  assert.deepEqual(angmarCampaignStatus(calm(reload(t))).slice(0, 2), [
+    `Protect the Innocent has ${angmarInnocent(t)!.damage} damage: each attack that damages a character adds 1, progress placed on it removes damage instead, and the players lose at 10.`,
+    "Mysterious Omens is shuffled into the encounter deck: defeating it removes it from the Campaign Pool and lets each player attach Cunning, Hardy, Resolute, Ruthless or Stalwart to a hero.",
+  ]);
+  assert.ok(valid(t));
+  // A replayed chapter keeps a single Mysterious Omens in the log.
+  const replay = weather(6, structuredClone(s.campaign!));
+  assert.deepEqual(replay.campaign!.burdens, [ANGMAR.innocent, ANGMAR.omens]);
+  assert.equal(
+    replay.encounterDeck.filter((c) => c === ANGMAR.omens).length,
+    1,
+  );
+});
+
+test("Mysterious Omens: becoming the current quest discards a random card from each hand; when it is defeated each player may attach a different Permanent boon, earned with the chapter's resolution", () => {
+  let s = calm(reload(opening(weather())));
+  const omens = revealOmens(s);
+  const hand = s.hand.length;
+  const discard = s.discard.length;
+  s.queue.push(fx("sideQuestSelect", { target: omens.id, code: omens.code }));
+  flush(s);
+  assert.equal(s.hand.length, hand - 1);
+  assert.equal(s.discard.length, discard + 1);
+  // Defeating it.
+  addQuestProgress(
+    s,
+    s.staging.find((u) => u.id === omens.id)!,
+    9,
+  );
+  assert.ok(s.victoryCards!.includes(ANGMAR.omens));
+  flush(s);
+  assert.equal(
+    s.choice!.title,
+    "Mysterious Omens · You may attach a boon to a hero",
+  );
+  assert.deepEqual(
+    s.choice!.options.map((o) => o.id),
+    [...SKILL_BOONS, "skip"],
+  );
+  s = choose(s, ANGMAR.hardy);
+  const legolas = s.heroes.find((h) => h.code === "01005")!;
+  s = choose(s, legolas.id);
+  const hero = s.heroes.find((h) => h.code === "01005")!;
+  assert.deepEqual(
+    hero.attachments.map((a) => a.code),
+    [ANGMAR.hardy],
+  );
+  const bare = structuredClone(s);
+  bare.heroes.find((h) => h.code === "01005")!.attachments = [];
+  assert.equal(
+    stats(s, hero).health,
+    stats(
+      bare,
+      bare.heroes.find((h) => h.code === "01005")!,
+    ).health + 2,
+  );
+  assert.ok(
+    angmarCampaignStatus(s).includes(
+      "Earned once this chapter is won (Permanent): Hardy on Legolas.",
+    ),
+  );
+  assert.ok(valid(s));
+  angmarInnocent(s)!.damage = 3;
+  win(s);
+  const c = s.campaign!;
+  assert.deepEqual(c.boons, [ANGMAR.hardy]);
+  assert.deepEqual(c.permanent, { "01005": [ANGMAR.hardy] });
+  assert.deepEqual(
+    c.burdens,
+    [ANGMAR.innocent],
+    "Mysterious Omens leaves the Campaign Pool",
+  );
+  assert.equal(c.innocent, 3);
+  assert.deepEqual(
+    c.completed.map((q) => q.scenarioId),
+    ["intruders-in-chetwood", "the-weather-hills"],
+  );
+  assert.ok(valid(s));
   assert.throws(
-    () => continueCampaign(s, next, d.id, true, 9),
+    () => continueCampaign(s, HEROES, d.id, true, 9),
     /not available in campaign mode yet/,
   );
+  // Hot-seat: each player in turn, and a boon taken is no longer offered.
+  const heroes = ["01005", "01006", "01007", "01008"];
+  const seats = [
+    { heroes: heroes.slice(0, 2), deckId: STARTERS[1].id },
+    { heroes: heroes.slice(2), deckId: STARTERS[2].id },
+  ];
+  let two = calm(
+    reload(
+      opening(
+        createGame(8, STARTERS[1].cards, seats[0].heroes, seats[0].deckId, {
+          scenarioId: "the-weather-hills",
+          playMode: "campaign",
+          seats,
+          campaign: afterChetwood(2, heroes, [2, 2]),
+        }),
+      ),
+    ),
+  );
+  const shared = revealOmens(two);
+  addQuestProgress(two, shared, 9);
+  flush(two);
+  two = choose(two, ANGMAR.cunning);
+  two = choose(two, two.choice!.options[0].id);
+  assert.match(
+    two.choice!.title,
+    /^Mysterious Omens · .+ may attach a boon to a hero$/,
+  );
+  assert.ok(!two.choice!.options.some((o) => o.id === ANGMAR.cunning));
+  two = choose(two, ANGMAR.stalwart);
+  two = choose(two, two.choice!.options[0].id);
+  assert.deepEqual(
+    two.angmarCards!.skills!.map((x) => x.code),
+    [ANGMAR.cunning, ANGMAR.stalwart],
+  );
+  assert.deepEqual(
+    seatView(two, 1).heroes.flatMap((h) => h.attachments.map((a) => a.code)),
+    [ANGMAR.stalwart],
+  );
+  assert.ok(valid(two));
+  // The Campaign Log changes only with a won chapter's resolution.
+  assert.deepEqual(two.campaign!.boons, []);
+  assert.deepEqual(two.campaign!.permanent, {});
+  assert.deepEqual(two.campaign!.burdens, [ANGMAR.innocent, ANGMAR.omens]);
+});
+
+test("The Permanent boons: their bonuses, Cunning's, Hardy's, Ruthless's and Stalwart's once-per-game Actions, Resolute's Response, and their return to their heroes at the next setup", () => {
+  const base = calm(reload(opening(weather())));
+  const hero = (s: GameState) => s.heroes.find((h) => h.code === "01005")!;
+  const ability = (s: GameState, attachmentId: string) =>
+    applyAction(reload(s), { type: "ABILITY", id: hero(s).id, attachmentId });
+  // The bonuses.
+  const bonus = structuredClone(base);
+  for (const code of SKILL_BOONS) attach(bonus, hero(bonus), code);
+  const [plain, boosted] = [stats(base, hero(base)), stats(bonus, hero(bonus))];
+  assert.deepEqual(
+    [
+      boosted.will - plain.will,
+      boosted.attack - plain.attack,
+      boosted.defense - plain.defense,
+      boosted.health - plain.health,
+    ],
+    [1, 1, 1, 2],
+  );
+  // Cunning: +2 willpower, +2 attack and +2 defense until the end of the phase.
+  let s = structuredClone(base);
+  const cunning = attach(s, hero(s), ANGMAR.cunning);
+  const before = stats(s, hero(s));
+  s = ability(s, cunning);
+  const after = stats(s, hero(s));
+  assert.deepEqual(
+    [
+      after.will - before.will,
+      after.attack - before.attack,
+      after.defense - before.defense,
+    ],
+    [2, 2, 2],
+  );
+  assert.throws(() => ability(s, cunning), /Cunning was used this game/);
+  s.phase = "quest";
+  assert.equal(
+    stats(s, hero(s)).will,
+    before.will,
+    "until the end of the phase",
+  );
+  assert.ok(valid(s));
+  // Hardy: ready attached hero.
+  s = structuredClone(base);
+  const hardy = attach(s, hero(s), ANGMAR.hardy);
+  assert.throws(() => ability(s, hardy), /already ready/);
+  hero(s).exhausted = true;
+  s = ability(s, hardy);
+  assert.equal(hero(s).exhausted, false);
+  hero(s).exhausted = true;
+  assert.throws(() => ability(s, hardy), /Hardy was used this game/);
+  // Ruthless: move damage from attached hero to an enemy engaged with you.
+  s = structuredClone(base);
+  const ruthless = attach(s, hero(s), ANGMAR.ruthless);
+  assert.throws(() => ability(s, ruthless), /no damage to move/);
+  hero(s).damage = 2;
+  assert.throws(() => ability(s, ruthless), /No enemy is engaged with you/);
+  // The Weather Hills' Cornered Orc (2 hit points).
+  const code = s.encounterDeck.find((c) => card(c).type_code === "enemy")!;
+  const enemy = engage(s, code);
+  assert.equal(stats(s, enemy).health, 2);
+  let lethal = structuredClone(s);
+  s = ability(s, ruthless);
+  assert.equal(s.choice!.title, "Ruthless · Choose an enemy engaged with you");
+  s = choose(s, enemy.id);
+  assert.deepEqual(
+    s.choice!.options.map((o) => o.id),
+    ["1", "2"],
+  );
+  s = choose(s, "1");
+  assert.equal(hero(s).damage, 1);
+  assert.equal(s.engaged.find((u) => u.id === enemy.id)!.damage, 1);
+  assert.throws(() => ability(s, ruthless), /Ruthless was used this game/);
+  assert.ok(valid(s));
+  // Moved damage can destroy the enemy.
+  lethal = ability(lethal, ruthless);
+  lethal = choose(lethal, enemy.id);
+  lethal = choose(lethal, "2");
+  assert.equal(hero(lethal).damage, 0);
+  assert.ok(!lethal.engaged.some((u) => u.id === enemy.id), "destroyed");
+  assert.ok(valid(lethal));
+  // Stalwart: a Planning Action plays an attachment from the discard pile.
+  s = structuredClone(base);
+  const stalwart = attach(s, hero(s), ANGMAR.stalwart);
+  assert.throws(
+    () => ability(s, stalwart),
+    /No attachment in your discard pile/,
+  );
+  s.discard.push("01039", "01001");
+  hero(s).resources = 1;
+  s.phase = "quest";
+  assert.throws(() => ability(s, stalwart), /This is a Planning Action/);
+  s.phase = "planning";
+  s = ability(s, stalwart);
+  assert.equal(
+    s.choice!.title,
+    "Stalwart · Play an attachment from your discard pile",
+  );
+  assert.deepEqual(
+    s.choice!.options.map((o) => o.id),
+    ["01039"],
+  );
+  s = choose(s, "01039");
+  assert.ok(hero(s).attachments.some((a) => a.code === "01039"));
+  assert.equal(hero(s).resources, 0, "its cost is paid");
+  assert.ok(!s.discard.includes("01039"));
+  assert.ok(valid(s));
+  // Resolute: cancel up to 2 points of damage just dealt (once per game).
+  s = structuredClone(base);
+  attach(s, hero(s), ANGMAR.resolute);
+  damage(s, hero(s).id, 3, {});
+  flush(s);
+  assert.equal(s.choice!.title, "Resolute · 3 damage is dealt to Legolas");
+  s = choose(s, "cancel");
+  assert.equal(hero(s).damage, 1);
+  s = calm(s);
+  damage(s, hero(s).id, 2, {});
+  assert.equal(hero(s).damage, 3, "once per game");
+  assert.equal(s.choice, null);
+  assert.ok(valid(s));
+  // The next setup attaches the Campaign Log's Permanent boons again, and
+  // Cunning adds 2 resources to its hero's pool.
+  const next = weather(7, {
+    ...afterChetwood(1),
+    boons: [ANGMAR.cunning, ANGMAR.hardy],
+    permanent: { "01005": [ANGMAR.cunning, ANGMAR.hardy] },
+  });
+  assert.deepEqual(
+    hero(next).attachments.map((a) => a.code),
+    [ANGMAR.cunning, ANGMAR.hardy],
+  );
+  assert.equal(hero(next).resources, 2);
+  assert.ok(valid(next));
 });

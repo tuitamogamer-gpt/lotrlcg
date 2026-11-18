@@ -168,6 +168,11 @@ const rules: Record<string, AttachmentRule> = {
   "141021": { type: "hero", will: 1, grantsTraits: ["Noble"] },
   // The Angmar Awakened campaign's Iârion's Pendant.
   "10157": { will: 1 },
+  // The Angmar Awakened campaign's Permanent boons (Hardy, Resolute, Ruthless, Stalwart).
+  "10162": { type: "hero", health: 2 },
+  "10163": { type: "hero", will: 1 },
+  "10164": { type: "hero", attack: 1 },
+  "10165": { type: "hero", defense: 1 },
   // The Battle of the Pelennor Fields' boons (Esquire of Rohan, Esquire of Gondor).
   "145014": { type: "hero", grantsTraits: ["Rohan"] },
   "145015": { type: "hero", grantsTraits: ["Gondor"] },

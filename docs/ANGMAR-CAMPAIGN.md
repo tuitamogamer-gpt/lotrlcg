@@ -4,10 +4,10 @@ Campaign mode for the nine scenarios of the Angmar Awakened cycle, with the
 Angmar Awakened Campaign Expansion's campaign cards, boons and burdens (the
 campaign pool CCC.3, 38 cards). The lobby's campaign mode offers it as the
 third campaign, next to Mirkwood Paths and The Lord of the Rings, for one
-fellowship of one to four local players. Its first chapter, Intruders in
-Chetwood, is supported; the campaign log is kept after it, and the end of the
-game says that the next chapter, The Weather Hills, is not available in
-campaign mode yet.
+fellowship of one to four local players. Its first two chapters, Intruders in
+Chetwood and The Weather Hills, are supported; the campaign log is kept after
+them, and the end of the game says that the next chapter, Deadmen's Dike, is
+not available in campaign mode yet.
 
 ## Sources
 
@@ -47,6 +47,14 @@ campaign mode yet.
 - **The campaign card** of each chapter lies next to the quest deck (the quest
   inspector opens it and shows its state); its Setup resolves with the
   scenario's setup and its Resolution after a win.
+- **The Campaign Pool** keeps the earned boons and burdens. A side quest in it
+  (Mysterious Omens) is shuffled into each later encounter deck. A Permanent
+  boon is recorded with the hero it is attached to and is attached to that hero
+  again at the start of each later chapter (its Setup text resolves then:
+  Cunning adds 2 resources); a fallen hero's Permanent boons leave the pool,
+  and a hero changed between chapters keeps them in the log for when it
+  returns, as in The Lord of the Rings campaign. Changes made during a lost
+  chapter are not recorded: it is replayed with the same log.
 
 ## Intruders in Chetwood (Part 1)
 
@@ -56,14 +64,26 @@ campaign mode yet.
 | Protect the Innocent (side quest)             | After an attack damages a character, 1 damage is placed on it. Progress that would be placed on it removes that much damage instead, so it is never defeated. With 10 or more damage (20 or more with three or four players), the players lose.                                                                                                                    |
 | Iârion's Pendant (boon attachment, Victory 1) | +1 willpower. Response: add it to the victory display to cancel the "when revealed" effects of a card just revealed from the encounter deck, or a shadow effect just triggered.                                                                                                                                                                                    |
 
+## The Weather Hills (Part 2)
+
+| Card                                                     | Behaviour                                                                                                                                                                                                                                                                                                                         |
+| -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Campaign card                                            | Setup: Mysterious Omens is added to the Campaign Log and shuffled into the encounter deck; Protect the Innocent enters the staging area with the damage noted in the log. Resolution: Protect the Innocent's damage replaces the noted number.                                                                                    |
+| Mysterious Omens (side quest, 9 quest points, Victory 5) | Surge. After it becomes the current quest, each player discards 1 random card from their hand. When it is defeated it leaves the Campaign Pool (with the chapter's resolution), and each player in turn may attach one of Cunning, Hardy, Resolute, Ruthless and Stalwart, not already taken, to a hero they control (Permanent). |
+| Cunning (boon, Permanent Condition)                      | Setup: +2 resources to its hero's pool. Action: its hero gets +2 willpower, +2 attack and +2 defense until the end of the phase (once per game).                                                                                                                                                                                  |
+| Hardy (boon, Permanent Condition)                        | +2 hit points. Action: ready its hero (once per game).                                                                                                                                                                                                                                                                            |
+| Resolute (boon, Permanent Condition)                     | +1 willpower. Response: cancel up to 2 points of damage just dealt to its hero (once per game); the window opens before the damage is placed, after every other prevention effect.                                                                                                                                                |
+| Ruthless (boon, Permanent Condition)                     | +1 attack. Action: move any amount of damage from its hero to an enemy engaged with you (once per game); moved damage is not dealt, and an enemy with damage equal to its hit points is destroyed unless it is indestructible.                                                                                                    |
+| Stalwart (boon, Permanent Condition)                     | +1 defense. Planning Action: play an attachment from your discard pile on its hero, paying its cost (once per game); the choice lists only attachments that can be played there, and Deadmen's Dike's discard pile rule forbids it.                                                                                               |
+
 ## Not supported yet
 
-The Weather Hills, Deadmen's Dike, The Wastes of Eriador, Escape from Mount
-Gram, Across the Ettenmoors, The Treachery of Rhudaur, The Battle of Carn Dûm
-and The Dread Realm follow, with their boons and burdens (Mysterious Omens and
-the five Permanent boons, Thaurdir's three burdens, Amarthiúl's Courage,
-Arnor Ravaged, Determination, Fend off Despair, Loot the Dungeons and its six
-boons, Losing Time, the three Clue boons and the four Carn Dûm boons).
+Deadmen's Dike, The Wastes of Eriador, Escape from Mount Gram, Across the
+Ettenmoors, The Treachery of Rhudaur, The Battle of Carn Dûm and The Dread
+Realm follow, with their boons and burdens (Thaurdir's three burdens,
+Amarthiúl's Courage, Arnor Ravaged, Determination, Fend off Despair, Loot the
+Dungeons and its six boons, Losing Time, the three Clue boons and the four
+Carn Dûm boons).
 
 ## Verification
 
@@ -73,12 +93,17 @@ npm run build
 npm run test:browser-angmar-campaign
 ```
 
-`tests/angmar-campaign.test.ts` (5 tests) covers the registered cards' texts
+`tests/angmar-campaign.test.ts` (8 tests) covers the registered cards' texts
 and faces, the chapter order and the Amarthiúl rule, Intruders in Chetwood's
 setup (one or two players), Iârion's Pendant on Iârion and its bonus,
 Protect the Innocent's damage, progress and loss, the Pendant's two
-cancellations, the resolution, fallen heroes, saves and the continuation's
-checks. The browser suite starts a new Angmar Awakened campaign through the
-lobby, plays Intruders in Chetwood's setup choice, opens the campaign card's
-state in the quest inspector and records the resolution at 1280, 390 and 320
-pixels (12 checkpoints), and checks the 5 pinned faces.
+cancellations, the resolution, fallen heroes, saves and the continuation into
+The Weather Hills; The Weather Hills' setup (also when replayed), Mysterious
+Omens' discard and its boon choices (one player, and two players taking
+different boons), its resolution, and the five boons' bonuses, Actions and
+Response, their once-per-game limits and their return at the next setup. The
+browser suite starts a new Angmar Awakened campaign through the lobby, plays
+Intruders in Chetwood's setup choice, records its resolution, continues into
+The Weather Hills, attaches Hardy through Mysterious Omens' choice, opens the
+campaign card's state in the quest inspector and records the resolution at
+1280, 390 and 320 pixels (21 checkpoints), and checks the 13 pinned faces.

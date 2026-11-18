@@ -142,6 +142,7 @@ import {
 } from "./saga-campaign-cards";
 import {
   angmarCampaignDamageDealt,
+  angmarOfferResolute,
   angmarPendantRevealOptions,
 } from "./angmar-campaign";
 import { threatElimination } from "./tharbad-support";
@@ -1548,6 +1549,8 @@ export function damage(
     offerFrodoDamage(s, u, value, context)
   )
     return false;
+  // The Angmar Awakened campaign's Resolute: cancel up to 2 of this damage.
+  if (angmarOfferResolute(s, u, value, context)) return false;
   u.damage += value;
   CityHoldLine.cityHoldLineDamageDealt(s, u, value, context);
   Cobas.cobasDamageDealt(s, u, value, context);

@@ -3,6 +3,9 @@ import fs from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { chromium } from "playwright";
 import { win } from "../src/game/board.ts";
+import { make } from "../src/game/core.ts";
+import { flush } from "../src/game/effects.ts";
+import { addQuestProgress } from "../src/game/side-quests.ts";
 import { validateSave } from "../src/game/engine.ts";
 import { syncSeat } from "../src/game/table.ts";
 import { ANGMAR, angmarInnocent } from "../src/game/angmar-campaign.ts";
@@ -232,8 +235,66 @@ try {
       .getByText(/Notes · Protect the Innocent: 6 damage/)
       .first()
       .waitFor();
-    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await page.getByRole("button", { name: /^Continue campaign/ }).waitFor();
     await checkpoint("chetwood-complete", width);
+    // The Weather Hills: Protect the Innocent returns with its noted damage,
+    // and Mysterious Omens is shuffled into the encounter deck.
+    s = await continueCampaign(undefined, width);
+    assert.equal(s.scenarioId, "the-weather-hills");
+    assert.deepEqual(s.campaign.burdens, [ANGMAR.innocent, ANGMAR.omens]);
+    assert.equal(angmarInnocent(s).damage, 6);
+    assert.equal(s.encounterDeck.filter((c) => c === ANGMAR.omens).length, 1);
+    await campaignCard(
+      /^Mysterious Omens is shuffled into the encounter deck/,
+      "weather-setup",
+      width,
+    );
+    // Mysterious Omens is defeated: each player may attach a Permanent boon.
+    const omensTable = calmState(s);
+    omensTable.encounterDeck = omensTable.encounterDeck.filter(
+      (c) => c !== ANGMAR.omens,
+    );
+    const omens = make(omensTable, ANGMAR.omens);
+    omensTable.staging.push(omens);
+    addQuestProgress(omensTable, omens, 9);
+    flush(omensTable);
+    s = await load(omensTable);
+    assert.equal(
+      s.choice.title,
+      "Mysterious Omens · You may attach a boon to a hero",
+    );
+    s = await choose(ANGMAR.hardy);
+    const hardyHero = s.heroes[0];
+    s = await choose(hardyHero.id);
+    assert.ok(
+      s.heroes
+        .find((h) => h.id === hardyHero.id)
+        .attachments.some((a) => a.code === ANGMAR.hardy),
+    );
+    await campaignCard(
+      /^Earned once this chapter is won \(Permanent\): Hardy on /,
+      "weather-omens",
+      width,
+    );
+    s = await victory(s, (t) => {
+      angmarInnocent(t).damage = 3;
+    });
+    assert.deepEqual(s.campaign.boons, [ANGMAR.hardy]);
+    assert.deepEqual(s.campaign.permanent, {
+      [hardyHero.code]: [ANGMAR.hardy],
+    });
+    assert.deepEqual(s.campaign.burdens, [ANGMAR.innocent]);
+    assert.equal(s.campaign.innocent, 3);
+    await page
+      .getByText(/Notes · Protect the Innocent: 3 damage/)
+      .first()
+      .waitFor();
+    await page
+      .getByText(/: Hardy$/)
+      .first()
+      .waitFor();
+    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await checkpoint("weather-complete", width);
     await view.c.close();
   }
   const p = await browser.newPage();

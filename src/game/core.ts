@@ -1,4 +1,5 @@
 import { wainridersQuestUnits } from "./wainriders-support";
+import { angmarCampaignBoost } from "./angmar-campaign-boost";
 import {
   sagaCampaignCannotReady,
   sagaCampaignCardsDrawn,
@@ -684,6 +685,7 @@ export function stats(s: GameState, u: Unit) {
         [
           batch4Scenario(s).stats?.(s, u).will ?? 0,
           sagaCampaignWillBonus(s, u),
+          angmarCampaignBoost(s, u),
           BatchSupport.batch4PlayerStats(s, u).will,
           landSorrowPlayerStats(s, u).will,
           eredFinalBonus.will + shadowEastBonus.will,
@@ -747,6 +749,7 @@ export function stats(s: GameState, u: Unit) {
       ? 0
       : (namelessX ?? c.attack ?? 0) +
         chetwoodBonus.attack +
+        angmarCampaignBoost(s, u) +
         GreyPlayers.greyHavensStats(s, u).attack +
         templePlayerBonus.attack +
         templeEncounterBonus.attack +
@@ -829,6 +832,7 @@ export function stats(s: GameState, u: Unit) {
           (c.defense ?? 0) +
             (u.roundDefense ?? 0) +
             chetwoodBonus.defense +
+            angmarCampaignBoost(s, u) +
             cobasBonus.defense +
             GreyPlayers.greyHavensStats(s, u).defense +
             templePlayerBonus.defense +

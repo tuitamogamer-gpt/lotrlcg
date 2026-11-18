@@ -22,6 +22,8 @@ export interface DamageContext {
   bypassEredFinal?: boolean;
   bypassWainriders?: boolean;
   bypassLivery?: boolean;
+  /** The Angmar Awakened campaign's Resolute was already offered. */
+  bypassResolute?: boolean;
   /** Physical prevention sources already offered for this damage assignment. */
   eredFinalPrevented?: string[];
   mockingVisited?: string[];
@@ -71,6 +73,7 @@ export function readDamageContext(effect: {
       "bypassEredFinal",
       "bypassWainriders",
       "bypassLivery",
+      "bypassResolute",
     ] as const)
       if (key in raw && typeof values[key] === "boolean")
         context[key] = values[key] as boolean;

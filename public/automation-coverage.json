@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2110,
+    "encounterCards": 2117,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3362,
-    "pending": 821
+    "scripted": 3369,
+    "pending": 814
   },
   "scenarioRecipes": {
     "total": 355,
@@ -635,6 +635,12 @@
     "10149",
     "10157",
     "10158",
+    "10160",
+    "10161",
+    "10162",
+    "10163",
+    "10164",
+    "10165",
     "11001",
     "11002",
     "11003",
@@ -2949,6 +2955,7 @@
     "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
     "octgn:b899f859-3c09-4cb3-9adf-7fb57e46e7ad",
     "octgn:b89a5a01-88c0-434a-a061-1654c6f84477",
+    "octgn:b8c49f35-4f52-48eb-ae3f-456b7daea4a7",
     "octgn:b8d832c5-e9f8-4690-a60c-07c09980ea27",
     "octgn:b922eedf-eea0-471d-bc52-90becc2a0769",
     "octgn:b93c5b70-0655-4577-9f5e-68ca00d4bfc8",
@@ -3583,9 +3590,9 @@
     {
       "product": "angmar-awakened-campaign-expansion",
       "total": 38,
-      "scripted": 3,
+      "scripted": 10,
       "player": 21,
-      "playerScripted": 1
+      "playerScripted": 6
     },
     {
       "product": "assault-on-osgiliath",
@@ -8607,7 +8614,7 @@
       "name": "Mysterious Omens",
       "type": "encounter-side-quest",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -8615,7 +8622,7 @@
       "name": "Cunning",
       "type": "attachment",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -8623,7 +8630,7 @@
       "name": "Hardy",
       "type": "attachment",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -8631,7 +8638,7 @@
       "name": "Resolute",
       "type": "attachment",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -8639,7 +8646,7 @@
       "name": "Ruthless",
       "type": "attachment",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -8647,7 +8654,7 @@
       "name": "Stalwart",
       "type": "attachment",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -31623,7 +31630,7 @@
       "name": "The Weather Hills",
       "type": "campaign",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {

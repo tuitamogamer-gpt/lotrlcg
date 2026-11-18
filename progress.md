@@ -1218,3 +1218,14 @@ Validation on Node 22: the engine suite passes all 6,763 tests (the one count th
 Coverage is now 861 player definitions (112 heroes), 2,110 encounters and 123 scenarios. This resolves 3,362 of 4,183 identities and 270 of 355 recipes; 821 identities remain pending.
 
 Validation on Node 22: the engine suite passes all 6,768 tests, including 5 new for the Angmar Awakened campaign. The new Angmar browser suite passes 12 checkpoints at 1280, 390 and 320 pixels and checks the 5 pinned faces; the Lord of the Rings campaign browser suite still passes its 174 checkpoints with the new lobby row; the production build passes.
+
+2026-11-18 The Angmar Awakened campaign, The Weather Hills: continued the user's “Nastavi” after b633654. The campaign's second chapter is supported; the end of the game now reaches Deadmen's Dike's note. See docs/ANGMAR-CAMPAIGN.md.
+
+- The Weather Hills' campaign card, Mysterious Omens and the five Permanent boons are registered with the scans' texts (13 faces pinned in all). The campaign card adds Mysterious Omens to the Campaign Log and shuffles it into the encounter deck (each later chapter shuffles it in while it stays in the pool), and Protect the Innocent returns to the staging area with its noted damage; the resolution replaces the note.
+- Mysterious Omens: after it becomes the current quest (also through The Treachery of Rhudaur's quest change) each player discards 1 random card; when it is defeated it leaves the pool with the chapter's resolution, and each player in turn may attach a different one of Cunning, Hardy, Resolute, Ruthless and Stalwart to a hero they control. A won chapter records the boons with their heroes; the next setup attaches them again (Cunning's Setup adds 2 resources).
+- The boons: their +2 hit points, +1 willpower, +1 attack and +1 defense; Cunning's +2/+2/+2 until the end of the phase, Hardy's ready, Ruthless's damage move (moved damage is not dealt; a destroyed enemy leaves play through the usual check, so indestructible enemies stay), Stalwart's Planning Action (it lists only attachments that can be played on its hero and pays their cost; Deadmen's Dike's discard rule forbids it) and Resolute's Response, a window that cancels up to 2 damage before it is placed, after the other prevention effects; each once per game.
+- Choice titles of the campaign say "You" with one seat at the table.
+
+Coverage is now 861 player definitions (112 heroes), 2,117 encounters and 123 scenarios. This resolves 3,369 of 4,183 identities and 270 of 355 recipes; 814 identities remain pending.
+
+Validation on Node 22: the engine suite passes all 6,771 tests, including 8 for the Angmar Awakened campaign; the Angmar browser suite passes 21 checkpoints at 1280, 390 and 320 pixels, through The Weather Hills, and checks the 13 pinned faces; the production build passes.

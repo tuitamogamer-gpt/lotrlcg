@@ -1,3 +1,4 @@
+import { angmarCampaignSideChosen } from "./angmar-campaign";
 import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import type { Attachment, Effect, GameState, Option, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
@@ -985,12 +986,14 @@ export function rhudaurEffect(s: GameState, e: Effect) {
         if (u.id.startsWith("quest:")) {
           if (s.sideQuestSelections)
             delete s.sideQuestSelections[sideQuestArea(s)];
-        } else
+        } else {
           (s.sideQuestSelections ??= {})[sideQuestArea(s)] = {
             id: u.id,
             code: u.code,
             phase: s.phase,
           };
+          angmarCampaignSideChosen(s, u);
+        }
       }
       break;
     case "rhudaurAttachFog": {

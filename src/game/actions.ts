@@ -10,6 +10,11 @@ import {
   sagaCampaignPlayProblem,
 } from "./saga-campaign-cards";
 import {
+  angmarCampaignAbility,
+  angmarCampaignAbilityLabel,
+  angmarCampaignAbilityProblem,
+} from "./angmar-campaign";
+import {
   sagaCampaignLossCompletion,
   sagaHoldLateDeck,
   sagaReturnLateDeck,
@@ -2612,6 +2617,10 @@ function printedAbilities(s: GameState, u: Unit) {
         sagaCampaignAbilityProblem(s, u, a.id),
       ],
       [
+        angmarCampaignAbilityLabel(a.code),
+        angmarCampaignAbilityProblem(s, u, a.id),
+      ],
+      [
         LandSorrowPlayers.landSorrowPlayerAbilityLabel(a.code),
         LandSorrowPlayers.landSorrowPlayerAbilityProblem(s, u, a.id),
       ],
@@ -2903,7 +2912,7 @@ export function finishOpeningHands(s: GameState) {
  * the deck the same way, as if it was in the hand, and can pay for it with
  * any of the four sphere icons.
  */
-function playHandCard(
+export function playHandCard(
   s: GameState,
   action: Extract<Action, { type: "PLAY" }>,
   gandalfDeckPlay = false,
@@ -3360,6 +3369,12 @@ function applyActionCore(input: GameState, action: Action): GameState {
             return;
           if (u && Cobas.cobasAbility(s, u, action.attachmentId)) return;
           if (u && sagaCampaignAbility(s, u, action.attachmentId)) return;
+          if (
+            u &&
+            action.attachmentId &&
+            angmarCampaignAbility(s, u, action.attachmentId)
+          )
+            return;
           if (
             u &&
             batch4Scenario(s).abilityLabel?.(
