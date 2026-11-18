@@ -3,8 +3,10 @@
 The second scenario of **The Lord of the Rings: The Flame of the West**
 (August 2016). It is playable in classic solo and with one to four local
 players, in normal and easy mode, with the box's Fellowship-sphere Aragorn,
-whom the first player controls. Campaign mode (its campaign card and the rule
-that forbids Frodo Baggins) is not part of this import.
+whom the first player controls. Its campaign mode (recipe Q0C.14) is part of
+[The Lord of the Rings campaign](SAGA-CAMPAIGN.md): the Andúril search, the
+earned Army of the Dead and Overcome by Fear, and a resolution that records
+The Corsair Fleet's resources.
 
 ## Sources and corrections
 

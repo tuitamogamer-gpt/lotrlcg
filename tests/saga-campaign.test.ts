@@ -68,8 +68,8 @@ function finish(s: GameState, answers: Record<string, string> = {}) {
 
 test("The Lord of the Rings campaign: its campaign cards, boons and burdens are registered with every face pinned; the three Black Riders chapters and the two campaign inserts are supported", () => {
   // The Black Riders, the two campaign inserts, The Road Darkens, The
-  // Treason of Saruman and The Land of Shadow.
-  assert.equal(art.length, 62);
+  // Treason of Saruman, The Land of Shadow and The Flame of the West.
+  assert.equal(art.length, 70);
   for (const a of art) {
     const bytes = readFileSync(`public${a.localPath}`);
     assert.equal(bytes.length, a.bytes);
@@ -121,7 +121,7 @@ test("The Lord of the Rings campaign: its campaign cards, boons and burdens are 
       ["Fog on the Barrow-downs", "fog-on-the-barrow-downs"],
       ["A Knife in the Dark", "a-knife-in-the-dark"],
       ["Flight to the Ford", "flight-to-the-ford"],
-      ["The Passing of the Grey Company", null],
+      ["The Tower of Cirith Ungol", null],
     ].map(([name]) => automatedScenarioId({ name: name!, mode: "campaign" })),
     [
       "a-shadow-of-the-past",

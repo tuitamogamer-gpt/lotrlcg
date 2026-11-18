@@ -153,7 +153,15 @@ export function loseOneRing(s: GameState) {
  * Treason of Saruman, as soon as Aragorn leaves play.
  */
 export function lotrSagaCheck(s: GameState) {
-  if (lotrSaga(s) && s.status === "playing" && !sagaHero(s)) loseOneRing(s);
+  // The Battle of the Pelennor Fields in campaign mode: Aragorn is set aside
+  // until The Corsair Fleet brings him.
+  if (
+    lotrSaga(s) &&
+    s.status === "playing" &&
+    !sagaHero(s) &&
+    !s.sagaCards?.aragornAside
+  )
+    loseOneRing(s);
 }
 /** Saga staging: each player reveals their own encounter card in player order. */
 export function sagaRevealPlayer(s: GameState, index: number, first: number) {

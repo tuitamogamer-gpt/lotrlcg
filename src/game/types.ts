@@ -357,6 +357,12 @@ export interface CampaignState {
   boonCopies?: Record<string, (number | null)[]>;
   /** Saga (Notes): the enemies under The Black Gate after Journey to the Cross-roads, one code per copy. */
   blackGateEnemies?: string[];
+  /** Saga: the players whose threat dial carried Overcome by Fear at the end of The Passing of the Grey Company. */
+  threatDials?: number[];
+  /** Saga (Notes): the resources on The Corsair Fleet at the end of The Siege of Gondor. */
+  corsairFleet?: number;
+  /** Saga: burdens earned in several copies (Wraith on Wings, one per player): the number of copies. */
+  burdenCopies?: Record<string, number>;
 }
 export type Phase =
   | "setup"
@@ -573,6 +579,15 @@ export interface GameState {
      * starting hands (seat order): held out of a mulligan.
      */
     lateDeck?: string[][];
+    /** The Battle of the Pelennor Fields: the recorded Harad enemies set aside until stage 5B. */
+    haradAside?: string[];
+    /** The Battle of the Pelennor Fields: Aragorn, set aside with Andúril and Banner of Elendil. */
+    aragornAside?: Unit;
+    /** The Harad enemies of Journey to the Cross-roads in a later chapter: Captain of Harad's and Oliphaunt's round counters. */
+    harad?: {
+      captain?: { round: number; count: number };
+      oliphaunt?: { round: number; damage: Record<string, number> };
+    };
   };
   wrathRuin?: import("./wrath-ruin-types").WrathRuinState;
   burglarContract?: import("./burglar-contract-types").BurglarContractState;

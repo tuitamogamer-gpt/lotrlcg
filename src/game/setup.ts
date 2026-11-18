@@ -113,12 +113,12 @@ import { flush } from "./effects";
 import { newCampaign } from "./campaign";
 import {
   isSagaCampaign,
-  LOS_CHAPTERS,
   newSagaCampaign,
   sagaChapterOptions,
   sagaCampaignDeckSetup,
   sagaCampaignSetup,
   sagaChapterSupported,
+  sagaForbiddenTitle,
   sagaPlayerPenalty,
   sagaStartingHandPenalty,
 } from "./saga-campaign";
@@ -314,12 +314,13 @@ export function createGame(
         )),
     "The Lord of the Rings campaign follows its chapters in order, beginning with A Shadow of the Past.",
   );
-  // The Land of Shadow in campaign mode: no card titled "Aragorn".
+  // The campaign's box rules: no card titled "Frodo Baggins" in The Treason
+  // of Saruman and The Flame of the West, none titled "Aragorn" in The Land of
+  // Shadow.
+  const forbidden = sagaCampaign ? sagaForbiddenTitle(scenarioId) : undefined;
   requireRule(
-    !sagaCampaign ||
-      !LOS_CHAPTERS.includes(scenarioId) ||
-      !chosenHeroes.some((c) => card(c).name === "Aragorn"),
-    "No card titled Aragorn can be used in The Land of Shadow's chapters of the campaign.",
+    !forbidden || !chosenHeroes.some((c) => card(c).name === forbidden),
+    `No card titled ${forbidden} can be used in this chapter of the campaign.`,
   );
   const chosenLine = options.seats?.flatMap((p) => p.heroes) ?? heroCodes;
   const campaign =

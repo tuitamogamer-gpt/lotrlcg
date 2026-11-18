@@ -4,9 +4,11 @@ The third scenario of **The Lord of the Rings: The Flame of the West**
 (August 2016). It is playable in classic solo and with one to four local
 players, in normal and easy mode, with the box's Fellowship-sphere Aragorn,
 whom the first player controls, and the box's two boons, Esquire of Rohan and
-Esquire of Gondor. Campaign mode (its campaign card, the Corsair Fleet's
-Gondor side, the burdens other than Wraith on Wings and the rule that forbids
-Frodo Baggins) is not part of this import.
+Esquire of Gondor. Its campaign mode (recipe Q0C.15) is part of
+[The Lord of the Rings campaign](SAGA-CAMPAIGN.md): the recorded Harad enemies
+arrive at stage 5B, Aragorn waits with Andúril and Banner of Elendil until The
+Corsair Fleet (Gondor side) runs out of resources, and the resolution earns
+the Wraiths and the Esquires.
 
 ## Sources and corrections
 

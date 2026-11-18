@@ -494,5 +494,69 @@
     "localPath": "/cards/144052.jpg",
     "bytes": 155346,
     "sha256": "f19b35be3ad87811e520044f58dc3c79b91f9122988305c30a52374893bdd909"
+  },
+  {
+    "code": "octgn:c444788b-73ea-4729-a07a-593220479639",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c444788b-73ea-4729-a07a-593220479639.jpg",
+    "localPath": "/cards/c444788b-73ea-4729-a07a-593220479639.jpg",
+    "bytes": 156422,
+    "sha256": "a46d57b10de4d806e7715c48a84b6f017291b2dd6abafe4791d456bc93c48586"
+  },
+  {
+    "code": "octgn:c444788b-73ea-4729-a07a-593220479639",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c444788b-73ea-4729-a07a-593220479639.B.jpg",
+    "localPath": "/cards/c444788b-73ea-4729-a07a-593220479639.B.jpg",
+    "bytes": 124479,
+    "sha256": "5516a7b39ef48cd9e84182716b4a50c4a6f16d8f9c2b84aefd5e43e19cf248cc"
+  },
+  {
+    "code": "octgn:949e2607-cbb5-4ae3-af26-f9d7e00e09d2",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/949e2607-cbb5-4ae3-af26-f9d7e00e09d2.jpg",
+    "localPath": "/cards/949e2607-cbb5-4ae3-af26-f9d7e00e09d2.jpg",
+    "bytes": 148969,
+    "sha256": "ba523b02bdff7522add83046596671604cfefa06d1254a6361e2d4a56ad322ed"
+  },
+  {
+    "code": "octgn:949e2607-cbb5-4ae3-af26-f9d7e00e09d2",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/949e2607-cbb5-4ae3-af26-f9d7e00e09d2.B.jpg",
+    "localPath": "/cards/949e2607-cbb5-4ae3-af26-f9d7e00e09d2.B.jpg",
+    "bytes": 111935,
+    "sha256": "05fef5a0e6831565ef52ab48e25e0e8264e6f0217e6f4a8a5ad57426c60502b9"
+  },
+  {
+    "code": "octgn:10557685-71b2-4f2e-b831-4b19d023ee46",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/10557685-71b2-4f2e-b831-4b19d023ee46.jpg",
+    "localPath": "/cards/10557685-71b2-4f2e-b831-4b19d023ee46.jpg",
+    "bytes": 155832,
+    "sha256": "75368d9bb74433ecf741df47f576750e3f65e73fa688bfdf51f2bac5c1343444"
+  },
+  {
+    "code": "octgn:10557685-71b2-4f2e-b831-4b19d023ee46",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/10557685-71b2-4f2e-b831-4b19d023ee46.B.jpg",
+    "localPath": "/cards/10557685-71b2-4f2e-b831-4b19d023ee46.B.jpg",
+    "bytes": 123641,
+    "sha256": "f00b5ddf95179520e83daec5dc61bb60062a63139ebe5388e683ee1d944921a6"
+  },
+  {
+    "code": "145068",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ca60c111-b903-4859-9825-0958cfd7b7a5.jpg",
+    "localPath": "/cards/145068.jpg",
+    "bytes": 158139,
+    "sha256": "c51db7b685fd1238cc14015a127ebd41b8f77062a407293cd053fb83f07e70f1"
+  },
+  {
+    "code": "pelennor-corsair-fleet",
+    "face": "front",
+    "source": "https://s3.amazonaws.com/hallofbeorn-resources/Images/Cards/The-Flame-of-the-West/The-Corsair-Fleet-Gondor.jpg",
+    "localPath": "/cards/pelennor-corsair-fleet.jpg",
+    "bytes": 1212811,
+    "sha256": "d519b972cf4a1b1f05a4c3003c8e5c6f69043c950ef825d431d101f821063afb"
   }
 ]

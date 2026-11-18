@@ -333,6 +333,7 @@ import type {
 } from "./game/types";
 import {
   applySagaResolution,
+  ARAGORN_KEY,
   blackGateNote,
   COPY_BOONS,
   DECK_BURDENS,
@@ -5470,7 +5471,8 @@ function CampaignJournal({
             [...new Set(c.burdens)].map((code) => {
               const copies = DECK_BURDENS.includes(code)
                 ? (c.deckBurdens?.[code]?.length ?? 1)
-                : c.burdens.filter((x) => x === code).length;
+                : (c.burdenCopies?.[code] ??
+                  c.burdens.filter((x) => x === code).length);
               return (
                 <button key={code} onClick={() => inspect(card(code))}>
                   <Eye size={13} />
@@ -5488,6 +5490,22 @@ function CampaignJournal({
         <p className="campaign-note">
           Notes · captives:{" "}
           {c.captives.map((code) => card(code).name).join(", ")}
+        </p>
+      ) : null}
+      {c.threatDials?.length ? (
+        <p className="campaign-note">
+          Notes · Overcome by Fear:{" "}
+          {c.threatDials
+            .map((seat) =>
+              (c.seatHeroes?.length ?? 1) > 1 ? `Player ${seat + 1}` : "you",
+            )
+            .join(", ")}
+        </p>
+      ) : null}
+      {c.corsairFleet !== undefined ? (
+        <p className="campaign-note">
+          Notes · The Corsair Fleet: {c.corsairFleet}{" "}
+          {c.corsairFleet === 1 ? "resource" : "resources"}
         </p>
       ) : null}
       {c.blackGateEnemies ? (
@@ -5511,8 +5529,12 @@ function CampaignJournal({
       ) : null}
       {Object.entries(c.permanent).map(([hero, boons]) => (
         <p className="campaign-note" key={hero}>
-          {hero === RING_BEARER_KEY ? "The Ring-bearer" : card(hero).name}:{" "}
-          {boons.map((code) => card(code).name).join(", ")}
+          {hero === RING_BEARER_KEY
+            ? "The Ring-bearer"
+            : hero === ARAGORN_KEY
+              ? "Aragorn (the Fellowship hero)"
+              : card(hero).name}
+          : {boons.map((code) => card(code).name).join(", ")}
         </p>
       ))}
       {c.kind === "saga" && (c.fallen.length > 0 || c.threatPenalty > 0) && (

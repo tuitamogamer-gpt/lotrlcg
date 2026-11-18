@@ -3,9 +3,10 @@
 The first scenario of **The Lord of the Rings: The Flame of the West**
 (August 2016). It is playable in classic solo and with one to four local
 players, in normal and easy mode, with the box's Fellowship-sphere Aragorn,
-whom the first player controls. Campaign mode (its campaign card, the Army of
-the Dead boon and the rule that forbids Frodo Baggins) is not part of this
-import.
+whom the first player controls. Its campaign mode (recipe Q0C.13) is part of
+[The Lord of the Rings campaign](SAGA-CAMPAIGN.md): free hero changes without
+Frodo Baggins, the Andúril search, and a resolution that earns each Overcome
+by Fear on a threat dial and the Army of the Dead boon.
 
 ## Sources and corrections
 

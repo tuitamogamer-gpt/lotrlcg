@@ -7,7 +7,7 @@ import { isOneRing, isRingBearerCode } from "./lotr-saga-codes";
 import { jdBalrog } from "./journey-dark-support";
 import { BF } from "./breaking-fellowship-support";
 import { effectiveTraits as effectiveTraitsOf } from "./expansion-passives";
-import { ringBearer } from "./lotr-saga";
+import { fellowshipAragorn, ringBearer } from "./lotr-saga";
 import {
   activeSeat,
   forOwner,
@@ -73,6 +73,9 @@ export const SAGA_CAMPAIGN_SUPPORTED: readonly ScenarioId[] = [
   "the-passage-of-the-marshes",
   "journey-to-the-cross-roads",
   "shelobs-lair",
+  "the-passing-of-the-grey-company",
+  "the-siege-of-gondor",
+  "the-battle-of-the-pelennor-fields",
 ];
 /**
  * Chapters whose campaign cards let each player change hero cards without the
@@ -83,6 +86,7 @@ export const SAGA_FREE_CHANGES: readonly ScenarioId[] = [
   "the-ring-goes-south",
   "helms-deep",
   "the-passage-of-the-marshes",
+  "the-passing-of-the-grey-company",
 ];
 /** The Treason of Saruman's chapters: Aragorn leads, without Frodo or his burdens. */
 export const TOS_CHAPTERS: readonly ScenarioId[] = [
@@ -98,6 +102,17 @@ export const LOS_CHAPTERS: readonly ScenarioId[] = [
   "the-passage-of-the-marshes",
   "journey-to-the-cross-roads",
   "shelobs-lair",
+];
+/**
+ * The Flame of the West's chapters: Aragorn leads, no card titled "Frodo
+ * Baggins" can be used, and the burden sets of A Shadow of the Past, Flight to
+ * the Ford, The Ring Goes South, The Passage of the Marshes and Shelob's Lair
+ * are left out.
+ */
+export const FOTW_CHAPTERS: readonly ScenarioId[] = [
+  "the-passing-of-the-grey-company",
+  "the-siege-of-gondor",
+  "the-battle-of-the-pelennor-fields",
 ];
 export const SAGA = {
   underhill: "141017",
@@ -136,6 +151,18 @@ export const SAGA = {
   coneys: "144014",
   searchingEye: "144015",
   heavy: "144052",
+  esquireRohan: "145014",
+  esquireGondor: "145015",
+  fear: "145016",
+  wraith: "145062",
+  army: "145068",
+  banner: "145013",
+  /** The Passing of the Grey Company's Army of the Dead enemy. */
+  armyEnemy: "octgn:a25b4139-f1d0-4466-83f2-f06fa3e0c30b",
+  /** The Siege of Gondor's Corsair Fleet (Corsair side). */
+  corsairFleet: "octgn:0140d146-771e-4f19-9de8-d7cf0b4d8268",
+  /** The Battle of the Pelennor Fields' Corsair Fleet (Gondor side, campaign mode only). */
+  gondorFleet: "pelennor-corsair-fleet",
   shadowCard: "octgn:307411f3-4a45-44ae-bc64-4e16deb97d10",
   forestCard: "octgn:088b62be-0f26-4a87-805a-277edd463c8c",
   fogCard: "octgn:d34c9025-6380-4294-be3f-01c992922830",
@@ -150,6 +177,9 @@ export const SAGA = {
   marshesCard: "octgn:61963ddc-1260-471f-afdf-96581602a444",
   crossroadsCard: "octgn:2b93afb6-38fd-4ded-bf92-ed86bc03635d",
   shelobCard: "octgn:cc77ab8d-1968-4607-b18d-7db3c3c186c7",
+  greyCard: "octgn:c444788b-73ea-4729-a07a-593220479639",
+  siegeCard: "octgn:949e2607-cbb5-4ae3-af26-f9d7e00e09d2",
+  pelennorCard: "octgn:10557685-71b2-4f2e-b831-4b19d023ee46",
 } as const;
 /** Each scenario's campaign card. */
 export const SAGA_CAMPAIGN_CARDS: Partial<Record<ScenarioId, string>> = {
@@ -167,6 +197,9 @@ export const SAGA_CAMPAIGN_CARDS: Partial<Record<ScenarioId, string>> = {
   "the-passage-of-the-marshes": SAGA.marshesCard,
   "journey-to-the-cross-roads": SAGA.crossroadsCard,
   "shelobs-lair": SAGA.shelobCard,
+  "the-passing-of-the-grey-company": SAGA.greyCard,
+  "the-siege-of-gondor": SAGA.siegeCard,
+  "the-battle-of-the-pelennor-fields": SAGA.pelennorCard,
 };
 /** Old Man Willow's code (The Old Forest). */
 const OLD_FOREST_WILLOW = OF.willow;
@@ -198,6 +231,9 @@ export const SAGA_BOONS: readonly string[] = [
   SAGA.hope,
   SAGA.palantir,
   SAGA.coneys,
+  SAGA.army,
+  SAGA.esquireRohan,
+  SAGA.esquireGondor,
 ];
 export const SAGA_BURDENS: readonly string[] = [
   SAGA.delay,
@@ -214,6 +250,8 @@ export const SAGA_BURDENS: readonly string[] = [
   SAGA.voice,
   SAGA.searchingEye,
   SAGA.heavy,
+  SAGA.fear,
+  SAGA.wraith,
 ];
 /** The burden sets of A Shadow of the Past, Flight to the Ford and The Ring Goes South. */
 export const FRODO_BURDENS: readonly string[] = [
@@ -255,6 +293,23 @@ export const DECK_BURDENS: readonly string[] = [
 ];
 /** The burden sets of Helm's Deep and The Road to Isengard. */
 export const HD_RTI_BURDENS: readonly string[] = [SAGA.counsels, SAGA.voice];
+/**
+ * The burden sets The Flame of the West's campaign cards remove: A Shadow of
+ * the Past, Flight to the Ford, The Ring Goes South, The Passage of the
+ * Marshes and Shelob's Lair. The cards say "from the encounter deck", but The
+ * Searching Eye and A Heavy Burden are never there: listing their sets leaves
+ * them out of the chapters as well.
+ */
+export const FOTW_LEFT_BURDENS: readonly string[] = [
+  ...FRODO_BURDENS,
+  SAGA.searchingEye,
+  SAGA.heavy,
+];
+/** Is a burden left out of a chapter by its campaign card? */
+export const sagaBurdenLeftOut = (id: ScenarioId, code: string) =>
+  (TOS_CHAPTERS.includes(id) && FRODO_BURDENS.includes(code)) ||
+  (LOS_CHAPTERS.includes(id) && HD_RTI_BURDENS.includes(code)) ||
+  (FOTW_CHAPTERS.includes(id) && FOTW_LEFT_BURDENS.includes(code));
 /** Boons the players earn copy by copy, each joining a player's deck (Brace of Coneys). */
 export const COPY_BOONS: readonly string[] = [SAGA.coneys];
 /** Burden objectives whose Setup adds them to the staging area (besides Gandalf's Delay). */
@@ -271,11 +326,19 @@ export const SAGA_PERMANENT: readonly string[] = [
   SAGA.forewarned,
   SAGA.leader,
   SAGA.hope,
+  SAGA.esquireRohan,
+  SAGA.esquireGondor,
 ];
 /** A Knife in the Dark's resolution: each player may choose one of these. */
 export const KNIFE_BOONS = [SAGA.ranger, SAGA.healer, SAGA.warrior, SAGA.noble];
 /** The Campaign Log records Permanent cards attached to the Ring-bearer under this key. */
 export const RING_BEARER_KEY = "ring-bearer";
+/**
+ * The Campaign Log records Permanent cards attached to the Fellowship Aragorn
+ * under this key: they follow him from box to box, and a recorded Aragorn's
+ * Permanent cards are transferred to him.
+ */
+export const ARAGORN_KEY = "aragorn";
 
 export const isSagaCampaign = (c?: CampaignState | null) => c?.kind === "saga";
 export const sagaCampaignGame = (s: GameState) => isSagaCampaign(s.campaign);
@@ -342,7 +405,7 @@ export const sagaStartingHandPenalty = (s: GameState) =>
   sagaCampaignGame(s) &&
   (s.scenarioId === "a-shadow-of-the-past" ||
     (s.campaign!.burdens.includes(SAGA.delay) &&
-      !TOS_CHAPTERS.includes(s.scenarioId)))
+      !sagaBurdenLeftOut(s.scenarioId, SAGA.delay)))
     ? 1
     : 0;
 
@@ -386,7 +449,7 @@ export function sagaCampaignDeckSetup(s: GameState) {
           s.deck = s.deck.filter((code) => card(code).name !== title);
           log(
             s,
-            `${TOS_CHAPTERS.includes(s.scenarioId) ? "The Treason of Saruman" : "The Land of Shadow"}: no card titled ${title} can be used in its chapters.`,
+            `${TOS_CHAPTERS.includes(s.scenarioId) ? "The Treason of Saruman" : LOS_CHAPTERS.includes(s.scenarioId) ? "The Land of Shadow" : "The Flame of the West"}: no card titled ${title} can be used in its chapters.`,
           );
         }
       });
@@ -427,7 +490,7 @@ export function sagaReturnLateDeck(s: GameState, held: readonly string[]) {
 }
 /** The card title a chapter's campaign rules forbid. */
 export const sagaForbiddenTitle = (id: ScenarioId) =>
-  TOS_CHAPTERS.includes(id)
+  TOS_CHAPTERS.includes(id) || FOTW_CHAPTERS.includes(id)
     ? "Frodo Baggins"
     : LOS_CHAPTERS.includes(id)
       ? "Aragorn"
@@ -456,6 +519,55 @@ function attachBoon(s: GameState, hero: Unit, code: string) {
     owner: hero.owner,
   });
 }
+/** Take a player card out of the players' hands, decks and discard piles (the first player's first). */
+function takePlayerCard(s: GameState, code: string, first: number) {
+  for (const p of [first, ...playerOrder(s).filter((x) => x !== first)]) {
+    let found = false;
+    forOwner(s, p, () => {
+      const h = s.hand.findIndex((u) => u.code === code);
+      const d = s.deck.indexOf(code);
+      const x = s.discard.indexOf(code);
+      if (h >= 0) s.hand.splice(h, 1);
+      else if (d >= 0) s.deck.splice(d, 1);
+      else if (x >= 0) s.discard.splice(x, 1);
+      found = h >= 0 || d >= 0 || x >= 0;
+    });
+    if (found) return;
+  }
+}
+/**
+ * The Battle of the Pelennor Fields: the recorded Harad enemies are set
+ * aside, Aragorn is set aside with Andúril and Banner of Elendil, and The
+ * Corsair Fleet (Gondor side) enters the staging area with the resources the
+ * log records.
+ */
+function pelennorSetup(s: GameState, c: CampaignState, first: number) {
+  const q = (s.sagaCards ??= { ringDraws: 0, underhill: [] });
+  q.haradAside = (c.blackGateEnemies ?? []).filter((code) =>
+    (card(code).traits ?? "").includes("Harad"),
+  );
+  const aragorn = fellowshipAragorn(s);
+  if (aragorn) {
+    for (const code of [SAGA.anduril, SAGA.banner]) {
+      takePlayerCard(s, code, first);
+      if (!aragorn.attachments.some((a) => a.code === code))
+        aragorn.attachments.push({
+          id: `a${s.nextId++}`,
+          code,
+          exhausted: false,
+          owner: first,
+        });
+    }
+    for (const p of playerOrder(s))
+      forOwner(s, p, () => {
+        s.heroes = s.heroes.filter((u) => u.id !== aragorn.id);
+      });
+    q.aragornAside = aragorn;
+  }
+  const fleet = make(s, SAGA.gondorFleet);
+  fleet.resources = c.corsairFleet ?? 0;
+  s.staging.push(fleet);
+}
 /**
  * The campaign setup, after the scenario's own setup: Permanent boons are
  * attached to their recorded heroes, the Campaign Pool's encounter-backed
@@ -465,15 +577,13 @@ function attachBoon(s: GameState, hero: Unit, code: string) {
 export function sagaCampaignSetup(s: GameState) {
   const c = s.campaign;
   if (!isSagaCampaign(c)) return;
-  const tos = TOS_CHAPTERS.includes(s.scenarioId);
   const los = LOS_CHAPTERS.includes(s.scenarioId);
+  const first = s.table?.first ?? 0;
   // The burden sets a chapter's campaign card removes: The Treason of Saruman
   // leaves out those of A Shadow of the Past, Flight to the Ford and The Ring
   // Goes South; The Land of Shadow those of Helm's Deep and The Road to
-  // Isengard.
-  const left = (code: string) =>
-    (tos && FRODO_BURDENS.includes(code)) ||
-    (los && HD_RTI_BURDENS.includes(code));
+  // Isengard; The Flame of the West Frodo's and the Land of Shadow's.
+  const left = (code: string) => sagaBurdenLeftOut(s.scenarioId, code);
   // The Uruk-hai's campaign card: "Remove Gildor Inglorion and Mr. Underhill
   // from the Campaign Pool."
   if (s.scenarioId === "the-uruk-hai") {
@@ -496,6 +606,11 @@ export function sagaCampaignSetup(s: GameState) {
   if (bearer)
     for (const code of c!.permanent[RING_BEARER_KEY] ?? [])
       attachBoon(s, bearer, code);
+  // The Fellowship Aragorn carries the Permanent cards recorded for him.
+  const aragorn = fellowshipAragorn(s);
+  if (aragorn)
+    for (const code of c!.permanent[ARAGORN_KEY] ?? [])
+      attachBoon(s, aragorn, code);
   const encounter = [
     ...c!.boons.filter((code) => code === SAGA.gildor),
     ...c!.burdens.filter(
@@ -508,7 +623,9 @@ export function sagaCampaignSetup(s: GameState) {
     ),
   ];
   if (s.scenarioId === "the-road-to-isengard") encounter.push(SAGA.voice);
-  const staged = c!.burdens.filter((code) => STAGED_BURDENS.includes(code));
+  const staged = c!.burdens.filter(
+    (code) => STAGED_BURDENS.includes(code) && !left(code),
+  );
   // Journey in the Dark's campaign card.
   if (s.scenarioId === "journey-in-the-dark") {
     encounter.push(SAGA.pursued, SAGA.shadowFear);
@@ -520,6 +637,7 @@ export function sagaCampaignSetup(s: GameState) {
   // campaign card, then its own Setup once earned.)
   if (
     bearer &&
+    !left(SAGA.heavy) &&
     (s.scenarioId === "shelobs-lair" || c!.burdens.includes(SAGA.heavy)) &&
     !bearer.attachments.some((a) => a.code === SAGA.heavy)
   )
@@ -528,6 +646,46 @@ export function sagaCampaignSetup(s: GameState) {
       code: SAGA.heavy,
       exhausted: false,
     });
+  // Overcome by Fear: "Setup: Attach to your threat dial." It returns to the
+  // threat dial of each player The Passing of the Grey Company recorded.
+  if (
+    c!.burdens.includes(SAGA.fear) &&
+    !left(SAGA.fear) &&
+    s.scenarioId !== "the-passing-of-the-grey-company"
+  )
+    for (const seat of (c!.threatDials ?? []).filter((x) =>
+      playerOrder(s).includes(x),
+    ))
+      forOwner(s, seat, () => {
+        if (!(s.threatAttachments ?? []).some((a) => a.code === SAGA.fear))
+          (s.threatAttachments ??= []).push({
+            id: `a${s.nextId++}`,
+            code: SAGA.fear,
+            exhausted: false,
+          });
+      });
+  // Army of the Dead: "Setup: The first player takes control of Army of the
+  // Dead."
+  if (c!.boons.includes(SAGA.army))
+    forOwner(s, first, () => {
+      if (s.allies.some((u) => u.code === SAGA.army)) return;
+      const army = make(s, SAGA.army);
+      army.owner = first;
+      army.controller = first;
+      s.allies.push(army);
+    });
+  // The Passing of the Grey Company and The Siege of Gondor: "The first player
+  // may raise each player's threat by 1 to search his deck for Andúril."
+  if (
+    ["the-passing-of-the-grey-company", "the-siege-of-gondor"].includes(
+      s.scenarioId,
+    ) &&
+    seatView(s, first).deck.includes(SAGA.anduril)
+  )
+    enqueue(s, fx("sagaAndurilSearch", { player: first }));
+  // The Battle of the Pelennor Fields' campaign card.
+  if (s.scenarioId === "the-battle-of-the-pelennor-fields")
+    pelennorSetup(s, c!, first);
   // Journey to the Cross-roads' campaign card: each player chooses resources
   // for their heroes or a copy of Brace of Coneys for their deck.
   if (s.scenarioId === "journey-to-the-cross-roads")
@@ -543,7 +701,7 @@ export function sagaCampaignSetup(s: GameState) {
     // An earned Gift: "Setup: Attach to a hero in play."
     for (const code of GIFT_BOONS.filter((g) => c!.boons.includes(g)))
       enqueue(s, fx("sagaGiftSetup", { code, player: s.table?.first ?? 0 }));
-  let delay = c!.burdens.includes(SAGA.delay) && !tos;
+  let delay = c!.burdens.includes(SAGA.delay) && !left(SAGA.delay);
   if (s.scenarioId === "a-shadow-of-the-past") {
     // A Shadow of the Past's campaign card.
     if (bearer) attachBoon(s, bearer, SAGA.underhill);
@@ -615,6 +773,16 @@ export function sagaCampaignSetup(s: GameState) {
       ...(los
         ? [
             "the burdens of Helm's Deep and The Road to Isengard are left out, and no card titled Aragorn can be used",
+          ]
+        : []),
+      ...(FOTW_CHAPTERS.includes(s.scenarioId)
+        ? [
+            "the burdens of A Shadow of the Past, Flight to the Ford, The Ring Goes South, The Passage of the Marshes and Shelob's Lair are left out, and no card titled Frodo Baggins can be used",
+          ]
+        : []),
+      ...(s.scenarioId === "the-battle-of-the-pelennor-fields"
+        ? [
+            `Aragorn is set aside with Andúril and Banner of Elendil, The Corsair Fleet enters the staging area with ${c!.corsairFleet ?? 0} resources${s.sagaCards?.haradAside?.length ? `, and ${blackGateNote(s.sagaCards.haradAside)} ${s.sagaCards.haradAside.length === 1 ? "waits" : "wait"} for stage 5B` : ""}`,
           ]
         : []),
       ...(c!.boons.length || c!.burdens.some((code) => !left(code))
@@ -830,6 +998,68 @@ export function resolveSagaCampaign(s: GameState) {
       }; the Campaign Log records ${blackGateNote(c.blackGateEnemies) || "no enemy"} under The Black Gate.`,
       "good",
     );
+  } else if (s.scenarioId === "the-passing-of-the-grey-company") {
+    // "Add each copy of Overcome by Fear attached to a player's threat dial to
+    // the campaign pool and record the name of each player it was attached
+    // to. If Army of the Dead is in the victory display, add the Army of the
+    // Dead boon to the campaign pool."
+    const seats = playerOrder(s).filter((p) =>
+      (seatView(s, p).threatAttachments ?? []).some(
+        (a) => a.code === SAGA.fear,
+      ),
+    );
+    if (seats.length) {
+      if (!c.burdens.includes(SAGA.fear)) c.burdens.push(SAGA.fear);
+      c.threatDials = [...new Set([...(c.threatDials ?? []), ...seats])];
+    }
+    const army = (s.victoryCards ?? []).includes(SAGA.armyEnemy);
+    if (army && !c.boons.includes(SAGA.army)) c.boons.push(SAGA.army);
+    log(
+      s,
+      `The Passing of the Grey Company · Resolution: ${
+        seats.length
+          ? `Overcome by Fear is earned for ${seats.map((p) => (s.table ? `Player ${p + 1}` : "you")).join(", ")}`
+          : "no threat dial carries Overcome by Fear"
+      }${army ? "; the players earn the Army of the Dead boon" : ""}.`,
+      "good",
+    );
+  } else if (s.scenarioId === "the-siege-of-gondor") {
+    // "Count the number of resources on The Corsair Fleet and record that
+    // number ... Remove Army of the Dead from the campaign pool."
+    c.corsairFleet =
+      s.staging.find((u) => u.code === SAGA.corsairFleet)?.resources ?? 0;
+    c.boons = c.boons.filter((code) => code !== SAGA.army);
+    log(
+      s,
+      `The Siege of Gondor · Resolution: The Corsair Fleet has ${c.corsairFleet} resources, recorded in the Notes; Army of the Dead leaves the Campaign Pool.`,
+      "good",
+    );
+  } else if (s.scenarioId === "the-battle-of-the-pelennor-fields") {
+    // "Add 1 copy, per player, of Wraith on Wings to the campaign pool. ... If
+    // Esquire of Gondor, or Esquire of Rohan, is attached to a hero, that
+    // hero's controller has earned that boon."
+    const copies = playerOrder(s).length;
+    if (!c.burdens.includes(SAGA.wraith)) c.burdens.push(SAGA.wraith);
+    c.burdenCopies = {
+      ...(c.burdenCopies ?? {}),
+      [SAGA.wraith]: (c.burdenCopies?.[SAGA.wraith] ?? 0) + copies,
+    };
+    const earned: string[] = [];
+    for (const p of playerOrder(s))
+      for (const h of seatView(s, p).heroes)
+        for (const code of [SAGA.esquireRohan, SAGA.esquireGondor])
+          if (h.attachments.some((a) => a.code === code)) {
+            if (!c.boons.includes(code)) c.boons.push(code);
+            const key = heroKey(s, h);
+            if (!(c.permanent[key] ?? []).includes(code))
+              c.permanent[key] = [...(c.permanent[key] ?? []), code];
+            earned.push(`${card(code).name} (${heroLabel(s, key)})`);
+          }
+    log(
+      s,
+      `The Battle of the Pelennor Fields · Resolution: ${copies} ${copies === 1 ? "copy" : "copies"} of Wraith on Wings ${copies === 1 ? "is" : "are"} earned${earned.length ? `; ${earned.join(", ")} ${earned.length === 1 ? "is" : "are"} earned` : ""}.`,
+      "good",
+    );
   } else if (s.scenarioId === "shelobs-lair") {
     if (!c.burdens.includes(SAGA.heavy)) c.burdens.push(SAGA.heavy);
     log(
@@ -864,11 +1094,18 @@ export type SagaQuestion = {
   options: { id: string; label: string; code?: string }[];
 };
 const heroKey = (s: GameState, u: Unit) =>
-  ringBearer(s)?.id === u.id ? RING_BEARER_KEY : u.code;
+  ringBearer(s)?.id === u.id
+    ? RING_BEARER_KEY
+    : card(u.code).sphere_code === "fellowship" &&
+        card(u.code).name === "Aragorn"
+      ? ARAGORN_KEY
+      : u.code;
 const heroLabel = (s: GameState, key: string) =>
   key === RING_BEARER_KEY
     ? `${ringBearer(s) ? name(ringBearer(s)!) : "Frodo Baggins"} (the Ring-bearer)`
-    : card(key).name;
+    : key === ARAGORN_KEY
+      ? "Aragorn (the Fellowship hero)"
+      : card(key).name;
 /** The Uruk-hai: the pursuit value at which the players earn a reward. */
 export const URUK_PURSUIT = 25;
 /** A player's segment of the Campaign Log's heroes. */
@@ -1259,7 +1496,7 @@ export function validateSagaCampaign(s: GameState): boolean {
     !Array.isArray(c.permanent) &&
     Object.entries(c.permanent).every(
       ([h, cs]) =>
-        (h === RING_BEARER_KEY || hero(h)) &&
+        (h === RING_BEARER_KEY || h === ARAGORN_KEY || hero(h)) &&
         codes(cs) &&
         cs.every((x) => SAGA_PERMANENT.includes(x) && c.boons.includes(x)),
     ) &&
@@ -1294,6 +1531,29 @@ export function validateSagaCampaign(s: GameState): boolean {
                   seat >= 0 &&
                   seat < (s.table?.seats.length ?? 1)),
             ),
+        ))) &&
+    (c.threatDials === undefined ||
+      (Array.isArray(c.threatDials) &&
+        new Set(c.threatDials).size === c.threatDials.length &&
+        c.burdens.includes(SAGA.fear) &&
+        c.threatDials.every(
+          (seat) =>
+            Number.isSafeInteger(seat) &&
+            seat >= 0 &&
+            seat < (s.table?.seats.length ?? 1),
+        ))) &&
+    (c.corsairFleet === undefined || integer(c.corsairFleet)) &&
+    (c.burdenCopies === undefined ||
+      (!!c.burdenCopies &&
+        typeof c.burdenCopies === "object" &&
+        !Array.isArray(c.burdenCopies) &&
+        Object.entries(c.burdenCopies).every(
+          ([code, n]) =>
+            code === SAGA.wraith &&
+            c.burdens.includes(code) &&
+            Number.isSafeInteger(n) &&
+            n >= 1 &&
+            n <= 8,
         ))) &&
     (c.blackGateEnemies === undefined ||
       (codes(c.blackGateEnemies) &&

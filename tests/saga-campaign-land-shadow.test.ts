@@ -176,7 +176,7 @@ test("The Land of Shadow campaign cards, Brace of Coneys, The Searching Eye and 
       "The Passage of the Marshes",
       "Journey to the Cross-roads",
       "Shelob's Lair",
-      "The Passing of the Grey Company",
+      "The Tower of Cirith Ungol",
     ].map((name) => automatedScenarioId({ name, mode: "campaign" })),
     [
       "the-passage-of-the-marshes",
@@ -480,9 +480,11 @@ test("Shelob's Lair: A Heavy Burden is attached to the Ring-bearer, each earned 
   const done = finish(reload(sl));
   assert.ok(done.campaign!.burdens.includes(SAGA.heavy));
   assert.ok(valid(done));
-  assert.throws(
-    () => continueCampaign(done, HEROES, d.id, true, 96),
-    /not available yet/,
+  // The Flame of the West follows: A Heavy Burden stays out of its chapters.
+  const next = continueCampaign(done, HEROES, d.id, true, 96);
+  assert.equal(next.scenarioId, "the-passing-of-the-grey-company");
+  assert.ok(
+    !next.heroes.some((h) => h.attachments.some((a) => a.code === SAGA.heavy)),
   );
 });
 

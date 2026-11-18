@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2096,
+    "encounterCards": 2101,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3348,
-    "pending": 835
+    "scripted": 3352,
+    "pending": 831
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 264
+    "scripted": 267
   },
   "registeredCodes": [
     "01001",
@@ -863,6 +863,7 @@
     "145015",
     "145016",
     "145062",
+    "145068",
     "146001",
     "146002",
     "146003",
@@ -1238,6 +1239,7 @@
     "octgn:0fc7db5e-c389-4636-8c34-3d1dee3508ce",
     "octgn:0fd5a1d7-0791-4ab4-a50b-c5b2634ed94b",
     "octgn:0fffdddc-d9f9-498a-9669-e840304ebb9b",
+    "octgn:10557685-71b2-4f2e-b831-4b19d023ee46",
     "octgn:1062dfa2-d821-474d-9a8f-9eda79753222",
     "octgn:107805c4-6abf-4eb1-87fd-0ad7ffcfbf42",
     "octgn:107805c4-6abf-4eb1-87fd-0ad7ffcfbf42:B",
@@ -2650,6 +2652,7 @@
     "octgn:947f8b80-5d96-43eb-89ac-95b7738f2d55",
     "octgn:948774da-a350-40cc-bb09-aca2c3ad8dcd",
     "octgn:9497ef98-8f38-4647-bf77-28d8007a911a",
+    "octgn:949e2607-cbb5-4ae3-af26-f9d7e00e09d2",
     "octgn:94befa92-9e5f-4838-b1e1-0b54d698bcb3",
     "octgn:94ef148f-62f7-4659-8a49-9c42b9ed7cef",
     "octgn:9511bcf2-9c06-413e-bf09-3bc076eb76d4",
@@ -3013,6 +3016,7 @@
     "octgn:c3f9965f-711d-4c51-b9aa-a0b5d5953b49",
     "octgn:c402e437-4d0c-41ed-8e82-c2923cd6984e",
     "octgn:c4218a3e-6a6b-47a0-88c5-cdbcda3fb5eb",
+    "octgn:c444788b-73ea-4729-a07a-593220479639",
     "octgn:c459cbdb-9831-4803-91b0-e791e349ace8",
     "octgn:c45dc401-bb07-42ec-ba4c-ee9105a3f349",
     "octgn:c460b9c0-0239-4a74-99cb-3c302429db44",
@@ -3503,6 +3507,7 @@
     "octgn:ffe307bf-dd8e-4df3-9355-55564137d311",
     "octgn:ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e",
     "orc-guard",
+    "pelennor-corsair-fleet",
     "rc132",
     "rc133",
     "rc134",
@@ -4087,7 +4092,7 @@
     {
       "product": "the-flame-of-the-west",
       "total": 82,
-      "scripted": 77,
+      "scripted": 81,
       "player": 15,
       "playerScripted": 15
     },
@@ -11193,7 +11198,7 @@
       "name": "Army of the Dead",
       "type": "objective-ally",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -14481,7 +14486,7 @@
       "name": "The Battle of the Pelennor Fields",
       "type": "campaign",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -28401,7 +28406,7 @@
       "name": "The Siege of Gondor",
       "type": "campaign",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -32665,7 +32670,7 @@
       "name": "The Passing of the Grey Company",
       "type": "campaign",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {
@@ -40300,22 +40305,22 @@
       "id": "Q0C.13",
       "name": "The Passing of the Grey Company",
       "mode": "campaign",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-passing-of-the-grey-company",
+      "state": "scripted"
     },
     {
       "id": "Q0C.14",
       "name": "The Siege of Gondor",
       "mode": "campaign",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-siege-of-gondor",
+      "state": "scripted"
     },
     {
       "id": "Q0C.15",
       "name": "The Battle of the Pelennor Fields",
       "mode": "campaign",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-battle-of-the-pelennor-fields",
+      "state": "scripted"
     },
     {
       "id": "Q0C.16",

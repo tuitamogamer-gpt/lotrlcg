@@ -868,7 +868,14 @@ export function validateSave(
           (a) =>
             validAttachment(a) &&
             (a.code === ANGMAR.favor ||
-              (a.code === GC.fear && s.scenarioId === GREY_COMPANY_SCENARIO)) &&
+              (a.code === GC.fear &&
+                // Overcome by Fear stays on the threat dials the Lord of the
+                // Rings campaign records after The Passing of the Grey Company
+                // (a seat is checked without the campaign; the table's check
+                // below covers every seat).
+                (s.scenarioId === GREY_COMPANY_SCENARIO ||
+                  s.campaign?.kind === "saga" ||
+                  inheritedSeatCount !== undefined))) &&
             !a.facedown &&
             (a.controller === undefined ||
               inheritedSeatCount !== undefined ||
@@ -1659,6 +1666,12 @@ export function validateSave(
       )
         return false;
       for (const p of t.seats) {
+        if (
+          (p.threatAttachments ?? []).some((a) => a?.code === GC.fear) &&
+          s.scenarioId !== GREY_COMPANY_SCENARIO &&
+          s.campaign?.kind !== "saga"
+        )
+          return false;
         const player = { ...s, ...p };
         for (const key of PLAYER_FIELDS)
           if (p[key] === undefined) delete player[key];

@@ -10,7 +10,9 @@ import { log, random, requireRule } from "./core";
 
 import { createGame } from "./setup";
 import { score } from "./actions";
+import { fellowshipAragornCode } from "./lotr-saga-codes";
 import {
+  ARAGORN_KEY,
   COPY_BOONS,
   isSagaCampaign,
   LOS_CHAPTERS,
@@ -18,6 +20,7 @@ import {
   resolveSagaCampaign,
   SAGA_FREE_CHANGES,
   sagaChapterOptions,
+  sagaForbiddenTitle,
   sagaChapterSupported,
   TOS_CHAPTERS,
 } from "./saga-campaign";
@@ -117,6 +120,36 @@ export function continueCampaign(
     "Record the campaign card's resolution before continuing.",
   );
   const c = structuredClone(s.campaign);
+  const next = saga
+    ? (nextScenario ?? nextSagaChapter(c)!)
+    : SCENARIOS[c.completed.length].id;
+  // The Treason of Saruman and The Flame of the West: a fallen Aragorn leaves
+  // the list of fallen heroes (each player takes a permanent +1 threat
+  // penalty), and the Permanent cards of a recorded Aragorn are transferred to
+  // the Fellowship Aragorn.
+  if (saga && fellowshipAragornCode(next)) {
+    const fallenAragorn = c.fallen.filter((h) => card(h).name === "Aragorn");
+    if (fallenAragorn.length) {
+      c.fallen = c.fallen.filter((h) => !fallenAragorn.includes(h));
+      c.threatPenalty += 1;
+      log(
+        s,
+        "The Fellowship Aragorn: Aragorn leaves the list of fallen heroes, and each player takes a permanent +1 threat penalty.",
+      );
+    }
+    for (const h of c.heroes.filter(
+      (code) =>
+        card(code).name === "Aragorn" &&
+        card(code).sphere_code !== "fellowship",
+    )) {
+      const moved = c.permanent[h] ?? [];
+      if (!moved.length) continue;
+      c.permanent[ARAGORN_KEY] = [
+        ...new Set([...(c.permanent[ARAGORN_KEY] ?? []), ...moved]),
+      ];
+      delete c.permanent[h];
+    }
+  }
   // The Campaign Log keeps each player's hero count (a recorded Aragorn set
   // aside for the Fellowship Aragorn still counts).
   const counts =
@@ -135,27 +168,21 @@ export function continueCampaign(
       ),
     "Choose different heroes who have not fallen, keeping each player's hero count.",
   );
-  const next = saga
-    ? (nextScenario ?? nextSagaChapter(c)!)
-    : SCENARIOS[c.completed.length].id;
   // The Ring Goes South's campaign card: "Each player may change hero cards he
   // controls without incurring the +1 threat penalty." Helm's Deep's and The
   // Passage of the Marshes' campaign cards say the same.
   const free = saga && SAGA_FREE_CHANGES.includes(next);
-  // The Treason of Saruman: no card titled "Frodo Baggins" can be used, and a
-  // recorded Aragorn gives way to the Fellowship Aragorn without the penalty.
-  const tos = saga && TOS_CHAPTERS.includes(next);
+  // The Treason of Saruman and The Flame of the West: no card titled "Frodo
+  // Baggins" can be used, and a recorded Aragorn gives way to the Fellowship
+  // Aragorn without the penalty. The Land of Shadow: no card titled
+  // "Aragorn", and a recorded Aragorn is replaced without the penalty.
+  const title = saga ? sagaForbiddenTitle(next) : undefined;
   requireRule(
-    !tos || !heroes.some((h) => card(h).name === "Frodo Baggins"),
-    "No card titled Frodo Baggins can be used in The Treason of Saruman's chapters.",
+    !title || !heroes.some((h) => card(h).name === title),
+    `No card titled ${title} can be used in ${TOS_CHAPTERS.includes(next) ? "The Treason of Saruman" : LOS_CHAPTERS.includes(next) ? "The Land of Shadow" : "The Flame of the West"}'s chapters.`,
   );
-  // The Land of Shadow: no card titled "Aragorn" can be used; a recorded
-  // Aragorn is replaced without the penalty.
-  const los = saga && LOS_CHAPTERS.includes(next);
-  requireRule(
-    !los || !heroes.some((h) => card(h).name === "Aragorn"),
-    "No card titled Aragorn can be used in The Land of Shadow's chapters.",
-  );
+  const aragornFree =
+    saga && (!!fellowshipAragornCode(next) || LOS_CHAPTERS.includes(next));
   let offset = 0;
   const seats = s.table?.seats.map((p, i) => {
     const next = heroes.slice(offset, offset + counts![i]);
@@ -197,7 +224,8 @@ export function continueCampaign(
         return false;
       });
     }
-    if (tos || los) removed = removed.filter((h) => card(h).name !== "Aragorn");
+    if (aragornFree)
+      removed = removed.filter((h) => card(h).name !== "Aragorn");
     requireRule(
       free || removed.filter((h) => !c.fallen.includes(h)).length <= 1,
       "Between quests, each player may replace fallen heroes and voluntarily change one other hero.",

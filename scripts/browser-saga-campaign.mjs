@@ -7,7 +7,7 @@ import { flush } from "../src/game/effects.ts";
 import { draw, fx, make } from "../src/game/core.ts";
 import { validateSave } from "../src/game/engine.ts";
 import { syncSeat } from "../src/game/table.ts";
-import { ringBearer } from "../src/game/lotr-saga.ts";
+import { fellowshipAragorn, ringBearer } from "../src/game/lotr-saga.ts";
 import {
   GIFT_BOONS,
   OLD_MAN_WILLOW_DAMAGE,
@@ -549,8 +549,91 @@ try {
     assert.ok(ringBearer(s).exhausted);
     s = await victory(s);
     assert.ok(s.campaign.burdens.includes(SAGA.heavy));
-    await page.getByText(/is not available in campaign mode yet/).waitFor();
     await checkpoint("shelob-complete", width);
+    // The Flame of the West. The Passing of the Grey Company: free hero
+    // changes, Aragorn leads and Frodo's burdens stay out.
+    s = await continueCampaign(undefined, width, async () => {
+      await page
+        .getByText(/lets each player change heroes without the \+1 threat/)
+        .waitFor();
+      await checkpoint("grey-interlude", width);
+    });
+    assert.equal(s.scenarioId, "the-passing-of-the-grey-company");
+    assert.ok(fellowshipAragorn(s), "the Fellowship Aragorn leads");
+    assert.ok(!s.staging.some((u) => u.code === SAGA.delay));
+    assert.ok(!s.deck.includes(SAGA.searchingEye));
+    await checkpoint("grey-setup", width);
+    // The resolution: Overcome by Fear on the dial, the Army of the Dead in
+    // the victory display.
+    s = await victory(s, (t) => {
+      t.threatAttachments = [
+        { id: `a${t.nextId++}`, code: SAGA.fear, exhausted: false },
+      ];
+      t.victoryCards = [...(t.victoryCards ?? []), SAGA.armyEnemy];
+    });
+    assert.deepEqual(s.campaign.threatDials, [0]);
+    assert.ok(s.campaign.boons.includes(SAGA.army));
+    await page
+      .getByText(/Notes · Overcome by Fear/)
+      .first()
+      .waitFor();
+    await checkpoint("grey-complete", width);
+    // The Siege of Gondor: the Army of the Dead and Overcome by Fear return.
+    s = await continueCampaign();
+    assert.equal(s.scenarioId, "the-siege-of-gondor");
+    assert.ok(s.allies.some((u) => u.code === SAGA.army));
+    assert.ok((s.threatAttachments ?? []).some((a) => a.code === SAGA.fear));
+    await checkpoint("siege-setup", width);
+    const fear = calmState(s);
+    fellowshipAragorn(fear).resources = 1;
+    fear.queue.push(fx("sagaFearRound", { player: 0 }));
+    flush(fear);
+    assert.match(fear.choice.title, /^Overcome by Fear/);
+    s = await load(fear);
+    await checkpoint("siege-fear", width);
+    s = await choose("detach");
+    assert.ok(!(s.threatAttachments ?? []).some((a) => a.code === SAGA.fear));
+    s = await victory(s, (t) => {
+      t.staging.find((u) => u.code === SAGA.corsairFleet).resources = 1;
+    });
+    assert.equal(s.campaign.corsairFleet, 1);
+    assert.ok(!s.campaign.boons.includes(SAGA.army));
+    await page
+      .getByText(/Notes · The Corsair Fleet/)
+      .first()
+      .waitFor();
+    await checkpoint("siege-complete", width);
+    // The Battle of the Pelennor Fields: Aragorn waits for The Corsair Fleet.
+    s = await continueCampaign();
+    assert.equal(s.scenarioId, "the-battle-of-the-pelennor-fields");
+    assert.ok(!fellowshipAragorn(s), "Aragorn is set aside");
+    assert.ok(s.sagaCards.aragornAside);
+    await checkpoint("pelennor-setup", width);
+    const fleet = calmState(s);
+    const gondor = fleet.staging.find((u) => u.code === SAGA.gondorFleet);
+    fleet.queue.push(fx("sagaGondorFleet", { target: gondor.id, player: 0 }));
+    flush(fleet);
+    assert.ok(
+      fellowshipAragorn(fleet),
+      "the first player takes control of Aragorn",
+    );
+    s = await load(fleet);
+    await checkpoint("pelennor-aragorn", width);
+    s = await victory(s, (t) => {
+      const hero = t.heroes.find(
+        (h) => card(h.code).sphere_code !== "fellowship",
+      );
+      if (!hero.attachments.some((a) => a.code === SAGA.esquireRohan))
+        hero.attachments.push({
+          id: `a${t.nextId++}`,
+          code: SAGA.esquireRohan,
+          exhausted: false,
+        });
+    });
+    assert.deepEqual(s.campaign.burdenCopies, { [SAGA.wraith]: 1 });
+    assert.ok(s.campaign.boons.includes(SAGA.esquireRohan));
+    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await checkpoint("pelennor-complete", width);
     assert.ok(ringBearer);
     await view.c.close();
   }

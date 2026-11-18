@@ -8,6 +8,8 @@ import {
   canGainResources,
   choose,
   draw,
+  random,
+  spendResources,
   fx,
   get,
   log,
@@ -44,10 +46,12 @@ import { reduceThreat } from "./threat-reduction";
 import { oneRingExhausted, ringBearer } from "./lotr-saga";
 import { hasResourceIcon } from "./expansion-passives";
 import {
+  blackGateNote,
   isSagaCampaign,
   SAGA,
   SAGA_BOONS,
   SAGA_BURDENS,
+  SAGA_CAMPAIGN_CARDS,
   sagaLateDeckCard,
   SOUTH_BOONS,
 } from "./saga-campaign";
@@ -402,10 +406,57 @@ export function sagaCampaignPhaseEnd(s: GameState): Effect[] {
 }
 /** Gildor Inglorion's Forced at the end of the round. */
 export function sagaCampaignRoundEnd(s: GameState): Effect[] {
-  return globalCharacters(s)
-    .filter((u) => u.code === SAGA.gildor && !u.blanked)
-    .map((u) => fx("sagaGildorEnd", { target: u.id, player: first(s) }));
+  return [
+    ...globalCharacters(s)
+      .filter((u) => u.code === SAGA.gildor && !u.blanked)
+      .map((u) => fx("sagaGildorEnd", { target: u.id, player: first(s) })),
+    // Overcome by Fear in the chapters after The Passing of the Grey Company
+    // (that scenario resolves its own copies).
+    ...(s.greyCompany
+      ? []
+      : playerOrder(s)
+          .filter((p) => !!fearOn(s, p))
+          .map((player) => fx("sagaFearRound", { player }))),
+  ];
 }
+/** The Overcome by Fear on a player's threat dial. */
+const fearOn = (s: GameState, p: number) =>
+  seatView(s, p).threatAttachments?.find(
+    (a) => a.code === SAGA.fear && !a.blanked,
+  );
+/** The Corsair Fleet (Gondor side): its Forced effect at the beginning of the quest phase. */
+export function sagaCampaignQuestBegin(s: GameState): Effect[] {
+  return s.staging
+    .filter((u) => u.code === SAGA.gondorFleet && !u.blanked)
+    .map((u) => fx("sagaGondorFleet", { target: u.id, player: first(s) }));
+}
+/** Army of the Dead: "The first player gains control of Army of the Dead." */
+export function sagaCampaignFirstPlayerChanged(s: GameState) {
+  if (!s.table) return;
+  const to = first(s);
+  for (const p of playerOrder(s)) {
+    if (p === to) continue;
+    const army = seatView(s, p).allies.find((u) => u.code === SAGA.army);
+    if (!army) continue;
+    forOwner(s, p, () => {
+      s.allies = s.allies.filter((u) => u.id !== army.id);
+      s.committedIds = s.committedIds.filter((id) => id !== army.id);
+    });
+    army.controller = to;
+    forOwner(s, to, () => s.allies.push(army));
+    log(
+      s,
+      `Army of the Dead: ${seatName(s, to)}, the first player, gains control of it.`,
+    );
+  }
+}
+/** Army of the Dead: "If Army of the Dead leaves play, remove it from the game." */
+export function sagaCampaignRemoveCharacter(s: GameState, u: Unit) {
+  if (u.code !== SAGA.army) return false;
+  seatView(s, u.owner ?? first(s)).removed.push(u.code);
+  return true;
+}
+export const sagaCampaignRemovedOnLeave = (code: string) => code === SAGA.army;
 /** Brace of Coneys: "Play only if you control the Ring-bearer." A Planning Action. */
 export function sagaCampaignPlayProblem(s: GameState, u: Unit): string | null {
   if (u.code !== SAGA.coneys) return null;
@@ -974,6 +1025,217 @@ export const sagaCampaignEnemyCannotAttack = (
 
 export function sagaCampaignEffect(s: GameState, e: Effect): boolean {
   switch (e.kind) {
+    case "sagaFearRound": {
+      // Overcome by Fear: "Forced: At the end of the round, raise your threat
+      // by 1. Then you may spend 1 [fellowship] resource to detach Overcome by
+      // Fear and set it aside, out of play."
+      const p = e.player ?? first(s);
+      if (!fearOn(s, p)) return true;
+      forOwner(s, p, () => raiseThreat(s, 1, "encounter"));
+      log(
+        s,
+        `Overcome by Fear: ${who(s, p)} ${s.table ? "raises their" : "raise your"} threat by 1.`,
+        "danger",
+      );
+      const payer = seatView(s, p).heroes.find(
+        (u) => card(u.code).sphere_code === "fellowship" && u.resources > 0,
+      );
+      if (!payer) return true;
+      forOwner(s, p, () =>
+        choose(
+          s,
+          `Overcome by Fear · Spend 1 Fellowship resource${s.table ? ` · ${seatName(s, p)}` : ""}`,
+          [
+            {
+              id: "detach",
+              label: `Spend 1 resource from ${name(payer)} to detach Overcome by Fear and set it aside`,
+              effects: [fx("sagaFearSpend", { source: payer.id, player: p })],
+            },
+            { id: "skip", label: "Keep Overcome by Fear", effects: [] },
+          ],
+          card(SAGA.fear).text,
+        ),
+      );
+      return true;
+    }
+    case "sagaFearSpend": {
+      const p = e.player ?? first(s);
+      const payer = e.source ? get(s, e.source) : undefined;
+      if (!payer || payer.resources < 1 || !fearOn(s, p)) return true;
+      forOwner(s, ownerOf(s, payer), () => spendResources(s, payer, 1));
+      forOwner(s, p, () => {
+        s.threatAttachments = (s.threatAttachments ?? []).filter(
+          (a) => a.code !== SAGA.fear,
+        );
+        if (!s.threatAttachments.length) delete s.threatAttachments;
+      });
+      log(
+        s,
+        `Overcome by Fear (${name(payer)} spends 1 Fellowship resource) is detached from ${s.table ? `${seatName(s, p)}'s` : "your"} threat dial and set aside, out of play.`,
+        "good",
+      );
+      return true;
+    }
+    case "sagaAndurilSearch": {
+      // The Passing of the Grey Company and The Siege of Gondor: "The first
+      // player may raise each player's threat by 1 to search his deck for
+      // Andúril and add it to his hand."
+      const p = e.player ?? first(s);
+      if (!seatView(s, p).deck.includes(SAGA.anduril)) return true;
+      choose(
+        s,
+        `${card(SAGA_CAMPAIGN_CARDS[s.scenarioId] ?? SAGA.greyCard).name} · ${s.table ? `${seatName(s, p)} may` : "You may"} search for Andúril`,
+        [
+          {
+            id: "search",
+            label: `Raise each player's threat by 1 to search ${s.table ? "their" : "your"} deck for Andúril`,
+            code: SAGA.anduril,
+            effects: [fx("sagaAndurilTake", { player: p })],
+          },
+          { id: "skip", label: "Do not search", effects: [] },
+        ],
+        card(SAGA_CAMPAIGN_CARDS[s.scenarioId] ?? SAGA.greyCard).text,
+      );
+      return true;
+    }
+    case "sagaAndurilTake": {
+      const p = e.player ?? first(s);
+      for (const player of playerOrder(s))
+        forOwner(s, player, () => raiseThreat(s, 1, "encounter"));
+      forOwner(s, p, () => {
+        const i = s.deck.indexOf(SAGA.anduril);
+        if (i < 0) return;
+        s.deck.splice(i, 1);
+        const anduril = make(s, SAGA.anduril);
+        anduril.owner = p;
+        s.hand.push(anduril);
+        (state(s).setupHand ??= []).push(anduril.id);
+        shuffle(s, s.deck);
+      });
+      log(
+        s,
+        `Each player raises their threat by 1; ${who(s, p)} ${s.table ? "finds" : "find"} Andúril and ${s.table ? "adds" : "add"} it to ${s.table ? "their" : "your"} hand, and the deck is shuffled.`,
+        "good",
+      );
+      return true;
+    }
+    case "sagaGondorFleet": {
+      // The Corsair Fleet (Gondor side): "Forced: At the beginning of the
+      // quest phase, remove 1 resource from The Corsair Fleet. Then, if there
+      // are no resources here, the first player takes control of Aragorn and
+      // adds The Corsair Fleet to the victory display."
+      const fleet = s.staging.find((u) => u.id === e.target);
+      if (!fleet) return true;
+      if (fleet.resources > 0) fleet.resources -= 1;
+      if (fleet.resources > 0) {
+        log(
+          s,
+          `The Corsair Fleet: 1 resource is removed (${fleet.resources} left).`,
+        );
+        return true;
+      }
+      const to = first(s);
+      const aragorn = s.sagaCards?.aragornAside;
+      if (aragorn) {
+        delete s.sagaCards!.aragornAside;
+        aragorn.owner = to;
+        aragorn.controller = to;
+        forOwner(s, to, () => s.heroes.push(aragorn));
+      }
+      s.staging = s.staging.filter((u) => u.id !== fleet.id);
+      addVictoryCard(s, fleet.code);
+      log(
+        s,
+        `The Corsair Fleet has no resources: ${s.table ? `${seatName(s, to)}, the first player,` : "the first player"} takes control of Aragorn, and The Corsair Fleet is added to the victory display.`,
+        "good",
+      );
+      return true;
+    }
+    case "sagaHaradArrive": {
+      // The Battle of the Pelennor Fields' campaign card: "When the players
+      // advance to stage 5B, add each set aside Harad enemy to the staging
+      // area."
+      const codes = s.sagaCards?.haradAside ?? [];
+      if (!codes.length) return true;
+      delete s.sagaCards!.haradAside;
+      const units = codes.map((code) => make(s, code));
+      s.staging.push(...units);
+      log(
+        s,
+        `The Battle of the Pelennor Fields · Campaign: ${blackGateNote(codes)} ${codes.length === 1 ? "is" : "are"} added to the staging area.`,
+        "danger",
+      );
+      for (const u of units) enemyAddedToStaging(s, u);
+      return true;
+    }
+    case "sagaHaradDiscard": {
+      // Man of Harad: "Forced: After Man of Harad engages you, discard 1
+      // random card from your hand."
+      const p = e.player ?? activeSeat(s);
+      forOwner(s, p, () => {
+        if (!s.hand.length) {
+          log(
+            s,
+            `Man of Harad: ${who(s, p)} ${s.table ? "has" : "have"} no card in hand.`,
+          );
+          return;
+        }
+        const [discarded] = s.hand.splice(
+          Math.floor(random(s) * s.hand.length),
+          1,
+        );
+        s.discard.push(discarded.code);
+        log(
+          s,
+          `Man of Harad: ${who(s, p)} ${s.table ? "discards" : "discard"} a random card (${name(discarded)}).`,
+          "danger",
+        );
+      });
+      return true;
+    }
+    case "sagaHaradExhaustAllies": {
+      // Oliphaunt: "Forced: After Oliphaunt engages you, exhaust each ally you
+      // control."
+      const p = e.player ?? activeSeat(s);
+      forOwner(s, p, () => {
+        const allies = s.allies.filter((x) => !x.exhausted);
+        for (const x of allies) exhaustCharacter(s, x);
+        log(
+          s,
+          allies.length
+            ? `Oliphaunt: ${allies.map((x) => name(x)).join(", ")} ${allies.length === 1 ? "is" : "are"} exhausted.`
+            : `Oliphaunt: ${who(s, p)} ${s.table ? "controls" : "control"} no ready ally.`,
+          "danger",
+        );
+      });
+      return true;
+    }
+    case "sagaHaradAssign": {
+      // Haradrim Archer: "Forced: After Haradrim Archer engages you, assign X
+      // damage among characters you control."
+      const p = e.player ?? activeSeat(s);
+      const remaining = e.value ?? 0;
+      const targets = [
+        ...seatView(s, p).heroes,
+        ...seatView(s, p).allies,
+      ].filter((x) => x.damage < stats(s, x).health);
+      if (remaining <= 0 || !targets.length) return true;
+      choose(
+        s,
+        `Haradrim Archer · Assign damage · ${remaining} remaining${s.table ? ` · ${seatName(s, p)}` : ""}`,
+        targets.map((x) => ({
+          id: x.id,
+          code: x.code,
+          label: `${name(x)} · ${x.damage} damage`,
+          effects: [
+            fx("damage", { target: x.id, value: 1, player: p }),
+            fx("sagaHaradAssign", { value: remaining - 1, player: p }),
+          ],
+        })),
+        "Forced: after Haradrim Archer engages you, assign X damage among characters you control, X being the number of players.",
+      );
+      return true;
+    }
     case "sagaCrossroadsChoice": {
       // Journey to the Cross-roads' Setup: "Each player must choose: either
       // add 1 resource to each of his heroes' pools, or shuffle 1 copy of
@@ -2098,6 +2360,24 @@ export function validateSagaCards(s: GameState) {
             p >= 0 &&
             p < (s.table?.seats.length ?? 1),
         ))) &&
+    (q.haradAside === undefined ||
+      (Array.isArray(q.haradAside) &&
+        q.haradAside.every((code) => typeof code === "string" && !!code))) &&
+    (q.aragornAside === undefined ||
+      (!!q.aragornAside &&
+        typeof q.aragornAside.id === "string" &&
+        typeof q.aragornAside.code === "string" &&
+        Array.isArray(q.aragornAside.attachments))) &&
+    (q.harad === undefined ||
+      (!!q.harad &&
+        (q.harad.captain === undefined ||
+          (Number.isSafeInteger(q.harad.captain.round) &&
+            Number.isSafeInteger(q.harad.captain.count) &&
+            q.harad.captain.count >= 0)) &&
+        (q.harad.oliphaunt === undefined ||
+          (Number.isSafeInteger(q.harad.oliphaunt.round) &&
+            !!q.harad.oliphaunt.damage &&
+            typeof q.harad.oliphaunt.damage === "object")))) &&
     (q.lateDeck === undefined ||
       (Array.isArray(q.lateDeck) &&
         q.lateDeck.length <= (s.table?.seats.length ?? 1) &&
@@ -2114,6 +2394,8 @@ export function validateSagaCards(s: GameState) {
         !q.cleared?.length &&
         !q.lustZero?.length &&
         !q.coneys?.length &&
-        !q.lateDeck?.length))
+        !q.lateDeck?.length &&
+        !q.haradAside?.length &&
+        !q.aragornAside))
   );
 }

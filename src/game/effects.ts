@@ -49,6 +49,8 @@ import {
   sagaCampaignQuestSucceeded,
   sagaCampaignRevealPlayers,
   sagaCampaignRoundEnd,
+  sagaCampaignQuestBegin,
+  sagaCampaignFirstPlayerChanged,
 } from "./saga-campaign-cards";
 import { finishGameSetup } from "./setup";
 import * as WrathPlayers from "./wrath-ruin-player";
@@ -1967,6 +1969,7 @@ function handleEffect(s: GameState, e: Effect) {
       Tharbad.tharbadQuestStart(s);
       prepend(s, ...Mumakil.mumakilQuestBegin(s));
       prepend(s, ...(batch4Scenario(s).questBegin?.(s) ?? []));
+      prepend(s, ...sagaCampaignQuestBegin(s));
       Drowned.drownedQuestStart(s);
       s.lastQuest = null;
       log(s, "Quest phase · Choose characters to commit.");
@@ -2946,6 +2949,7 @@ function handleEffect(s: GameState, e: Effect) {
         followFirstPlayer(s);
         bagginsBilboFollowsFirstPlayer(s);
         ringBearerFollowsFirstPlayer(s);
+        sagaCampaignFirstPlayerChanged(s);
         Depths.depthsFirstPlayerChanged(s);
         DrownedCompanions.drownedFirstPlayerChanged(s);
         batch4Scenario(s).firstPlayerChanged?.(s, true);

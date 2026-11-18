@@ -132,6 +132,8 @@ import {
   sagaCampaignDamageDealt,
   sagaCampaignEncounter,
   sagaCampaignEventPlayed,
+  sagaCampaignRemoveCharacter,
+  sagaCampaignRemovedOnLeave,
   sagaCampaignPhaseEnd,
   sagaCampaignShadow,
   sagaTomBombadilOptions,
@@ -1142,7 +1144,7 @@ export function check(s: GameState) {
           seatView(s, u.owner ?? i).removed.push(u.code);
           continue;
         }
-        (hasEncounterKeyword(card(u.code))
+        (hasEncounterKeyword(card(u.code)) || sagaCampaignRemovedOnLeave(u.code)
           ? seatView(s, u.owner ?? i).removed
           : ["objective-ally", "ship-objective"].includes(unitType(u))
             ? s.encounterDiscard
@@ -2061,7 +2063,8 @@ export function destroy(
   } else {
     const removedByScenario =
       Cobas.cobasRemoveCharacter(s, u, destruction, lastKnownBlanked) ||
-      heirsRemoveCharacter(s, u);
+      heirsRemoveCharacter(s, u) ||
+      sagaCampaignRemoveCharacter(s, u);
     s.heroes = s.heroes.filter((x) => x.id !== u.id);
     s.allies = s.allies.filter((x) => x.id !== u.id);
     if (destination === "removed")

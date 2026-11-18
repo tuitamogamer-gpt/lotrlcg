@@ -3,6 +3,7 @@ import { voyageThreatReduction } from "./perilous-voyage-support";
 import { blackRidersPlayerThreatReduced } from "./black-riders-player-cards";
 import { batch4Scenario } from "./batch4-scenarios";
 import { CHETWOOD } from "./chetwood-support";
+import { GC } from "./grey-company-support";
 import type { GameState } from "./types";
 import { THARBAD as T } from "./tharbad-support";
 import { card, cards } from "./cards";
@@ -23,8 +24,12 @@ export interface ThreatSource {
   zone?: "discard" | "victory";
   index?: number;
 }
+/** Overcome by Fear on the threat dial, in any chapter of the campaign: "Your threat cannot be reduced." */
+const fearOnDial = (s: GameState) =>
+  !!s.threatAttachments?.some((a) => a.code === GC.fear && !a.blanked);
 export const threatReductionBlocked = (s: GameState) =>
   batch4Scenario(s).cannotReduceThreat?.(s) ||
+  fearOnDial(s) ||
   s.staging.some((u) => u.code === CHETWOOD.homestead && !u.blanked) ||
   [...s.staging, ...allActiveLocations(s)].some(
     (u) => u.code === T.mug && !u.blanked,
@@ -46,7 +51,9 @@ export function reduceThreat(
                 (u) => u.code === T.mug && !u.blanked,
               )
             ? "The Empty Mug prevents threat reduction."
-            : "This threat cannot be reduced.",
+            : fearOnDial(s)
+              ? "Overcome by Fear: this threat cannot be reduced."
+              : "This threat cannot be reduced.",
       );
     return 0;
   }

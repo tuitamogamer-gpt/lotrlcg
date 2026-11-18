@@ -119,7 +119,7 @@ test("The Road Darkens campaign cards, boons and burdens are registered with the
       "The Ring Goes South",
       "Journey in the Dark",
       "Breaking of the Fellowship",
-      "The Passing of the Grey Company",
+      "The Tower of Cirith Ungol",
     ].map((name) => automatedScenarioId({ name, mode: "campaign" })),
     [
       "the-ring-goes-south",

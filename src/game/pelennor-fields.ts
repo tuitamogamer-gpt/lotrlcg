@@ -49,6 +49,7 @@ import { returnToStaging } from "./black-riders-hunted";
 import { dealEnemyShadows } from "./considered-engagement";
 import { reduceThreat } from "./threat-reduction";
 import { whiteHandArchery } from "./white-hand";
+import { JTC } from "./cross-roads-support";
 import {
   PF,
   PF_MUMAK_CAP,
@@ -93,6 +94,27 @@ const players = (s: GameState) => globalPlayerOrder(s).length;
 const phaseOf = (s: GameState) =>
   s.phase === "staging" ? "quest" : s.phase === "attack" ? "defense" : s.phase;
 /** The current quest's text is in effect. */
+/**
+ * The Harad enemies of Journey to the Cross-roads that the Lord of the Rings
+ * campaign records under The Black Gate join this scenario at stage 5B; their
+ * printed text is scripted here, outside their own scenario.
+ */
+const JTC_HARAD: readonly string[] = [
+  JTC.oliphaunt,
+  JTC.soldier,
+  JTC.man,
+  JTC.archer,
+  JTC.captain,
+];
+const jtcHarad = (u: Unit, code?: string) =>
+  !u.blanked && (code ? u.code === code : JTC_HARAD.includes(u.code));
+/** Captain of Harad: +1 attack and -10 engagement cost per engagement this round. */
+const haradCaptains = (s: GameState) => {
+  const m = s.sagaCards?.harad?.captain;
+  return m && m.round === s.round ? m.count : 0;
+};
+/** Oliphaunt (Journey to the Cross-roads): at most 3 damage each round. */
+const JTC_OLIPHAUNT_CAP = 3;
 const stageLive = (s: GameState) =>
   !s.stageRevealing &&
   !mainQuestUnit(s)?.blanked &&
@@ -1069,6 +1091,11 @@ export function pelennorFieldsEffect(s: GameState, e: Effect): boolean {
           .filter((player) => player !== first)
           .map((player) => fx("reveal", { player })),
         fx("stageRevealed"),
+        // The campaign card: "When the players advance to stage 5B, add each
+        // set aside Harad enemy to the staging area."
+        ...(s.sagaCards?.haradAside?.length
+          ? [fx("sagaHaradArrive", { player: first })]
+          : []),
       );
       return true;
     }
@@ -1703,7 +1730,8 @@ export const PELENNOR_FIELDS_HOOKS: Batch4ScenarioHooks = {
     if (!s.pelennorFields) return {};
     if (isEnemy(u)) {
       const n = beasts(u);
-      return n ? { attack: n, defense: n } : {};
+      const captains = hasTrait(u, "Harad") ? haradCaptains(s) : 0;
+      return n || captains ? { attack: n + captains, defense: n } : {};
     }
     // Esquire of Gondor: +1 willpower while committed with another Gondor character.
     if (
@@ -1733,6 +1761,8 @@ export const PELENNOR_FIELDS_HOOKS: Batch4ScenarioHooks = {
   threatBonus: (s, u) => {
     if (!s.pelennorFields || u.blanked) return 0;
     let bonus = beasts(u);
+    // Haradrim Archer: X is the number of players in the game.
+    if (jtcHarad(u, JTC.archer)) bonus += playerOrder(s).length;
     if (u.code === PF.wraith) bonus += u.resources;
     if (u.code === PF.grond) bonus += u.resources;
     return bonus;
@@ -1746,7 +1776,8 @@ export const PELENNOR_FIELDS_HOOKS: Batch4ScenarioHooks = {
     return (
       (activeIs(s, PF.gate) ? -30 : 0) -
       10 * beasts(u) -
-      (live(u, PF.wraith) ? u.resources : 0)
+      (live(u, PF.wraith) ? u.resources : 0) -
+      (hasTrait(u, "Harad") ? 10 * haradCaptains(s) : 0)
     );
   },
   cannotOptionallyEngage: (s, u) =>
@@ -1762,11 +1793,27 @@ export const PELENNOR_FIELDS_HOOKS: Batch4ScenarioHooks = {
         q.mumak?.round === s.round ? (q.mumak.damage[u.id] ?? 0) : 0;
       return Math.min(amount, Math.max(0, PF_MUMAK_CAP - taken));
     }
+    // Oliphaunt (Journey to the Cross-roads): no more than 3 each round.
+    if (jtcHarad(u, JTC.oliphaunt)) {
+      const m = s.sagaCards?.harad?.oliphaunt;
+      const taken = m?.round === s.round ? (m.damage[u.id] ?? 0) : 0;
+      return Math.min(amount, Math.max(0, JTC_OLIPHAUNT_CAP - taken));
+    }
     return amount;
   },
   damageDealt: (s, u, amount, context) => {
     const q = s.pelennorFields;
     if (!q || amount <= 0) return;
+    if (jtcHarad(u, JTC.oliphaunt)) {
+      const harad = ((s.sagaCards ??= { ringDraws: 0, underhill: [] }).harad ??=
+        {});
+      const damage =
+        harad.oliphaunt?.round === s.round ? harad.oliphaunt.damage : {};
+      harad.oliphaunt = {
+        round: s.round,
+        damage: { ...damage, [u.id]: (damage[u.id] ?? 0) + amount },
+      };
+    }
     if (live(u, PF.mumak)) {
       const damage = q.mumak?.round === s.round ? q.mumak.damage : {};
       q.mumak = {
@@ -1798,6 +1845,7 @@ export const PELENNOR_FIELDS_HOOKS: Batch4ScenarioHooks = {
   cannotAttach: (s, u, code) => {
     if (!s.pelennorFields) return false;
     if (live(u, PF.serpent) || live(u, PF.mumak)) return true;
+    if (jtcHarad(u, JTC.oliphaunt)) return true;
     // Wraith on Wings cannot have non-Morgul attachments.
     return live(u, PF.wraith) && !hasTraitCode(code, "Morgul");
   },
@@ -1899,6 +1947,43 @@ export const PELENNOR_FIELDS_HOOKS: Batch4ScenarioHooks = {
     inPlayLive(s, PF.field) &&
     inStaging(s, u) &&
     s.staging.some((x) => isEnemy(x)),
+  // The recorded Harad enemies of Journey to the Cross-roads: their Forced
+  // effects after they engage a player.
+  engaged: (s, u) => {
+    if (!s.pelennorFields || !jtcHarad(u)) return;
+    const p = activeSeat(s);
+    switch (u.code) {
+      case JTC.man:
+        prepend(s, fx("sagaHaradDiscard", { player: p }));
+        return;
+      case JTC.captain: {
+        const harad = ((s.sagaCards ??= {
+          ringDraws: 0,
+          underhill: [],
+        }).harad ??= {});
+        harad.captain = { round: s.round, count: haradCaptains(s) + 1 };
+        log(
+          s,
+          "Captain of Harad: each Harad enemy gets +1 attack and -10 engagement cost until the end of the round.",
+          "danger",
+        );
+        return;
+      }
+      case JTC.oliphaunt:
+        prepend(s, fx("sagaHaradExhaustAllies", { player: p }));
+        return;
+      case JTC.soldier:
+        log(s, "Haradrim Soldier makes an immediate attack.", "danger");
+        prepend(s, fx("immediateAttack", { target: u.id, player: p }));
+        return;
+      case JTC.archer:
+        prepend(
+          s,
+          fx("sagaHaradAssign", { value: playerOrder(s).length, player: p }),
+        );
+        return;
+    }
+  },
   // Archery from the staging area: War Mûmak, Orc of the Eye and Siege Tower (3).
   combatBegin: (s) => {
     if (!s.pelennorFields) return;
@@ -1908,7 +1993,8 @@ export const PELENNOR_FIELDS_HOOKS: Batch4ScenarioHooks = {
         (x.blanked
           ? 0
           : isEnemy(x)
-            ? whiteHandArchery(x.code)
+            ? whiteHandArchery(x.code) +
+              (jtcHarad(x, JTC.archer) ? playerOrder(s).length : 0)
             : x.code === PF.tower
               ? 3
               : 0),

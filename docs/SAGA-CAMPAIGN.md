@@ -9,11 +9,13 @@ The Black Riders are supported (A Shadow of the Past, A Knife in the Dark and
 Flight to the Ford), the optional Parts 1.1 and 1.2 (The Old Forest and Fog
 on the Barrow-downs), The Road Darkens' three chapters (The Ring Goes South,
 Journey in the Dark and Breaking of the Fellowship), The Treason of
-Saruman's (The Uruk-hai, Helm's Deep and The Road to Isengard) and The Land
-of Shadow's (The Passage of the Marshes, Journey to the Cross-roads and
-Shelob's Lair). The campaign log is kept after Shelob's Lair, and the end of
-the game says that the next chapter, The Passing of the Grey Company, is not
-available in campaign mode yet.
+Saruman's (The Uruk-hai, Helm's Deep and The Road to Isengard), The Land of
+Shadow's (The Passage of the Marshes, Journey to the Cross-roads and Shelob's
+Lair) and The Flame of the West's (The Passing of the Grey Company, The Siege
+of Gondor and The Battle of the Pelennor Fields). The campaign log is kept
+after The Battle of the Pelennor Fields, and the end of the game says that
+the next chapter, The Tower of Cirith Ungol, is not available in campaign
+mode yet.
 
 ## Sources
 
@@ -73,6 +75,21 @@ available in campaign mode yet.
   [RulesPal](https://rulespal.com/the-lord-of-the-rings-the-card-game-the-land-of-shadow/rulebook),
   adds that no card titled Aragorn can be used in its chapters in campaign
   mode.
+- The Flame of the West's three campaign cards (both faces) and the Army of
+  the Dead boon were checked by eye against the scans; the campaign-only Corsair
+  Fleet of The Battle of the Pelennor Fields (Gondor, the box's card 72, which
+  neither the catalog nor DragnCards has) comes from Hall of Beorn's scan. With
+  them, all 70 faces are pinned. The five burden set icons on the three cards
+  are those of A Shadow of the Past, Flight to the Ford and The Ring Goes South
+  (the same shapes as on The Treason of Saruman's cards), The Passage of the
+  Marshes and Shelob's Lair. Esquire of Rohan, Esquire of Gondor, Overcome by
+  Fear and Wraith on Wings were already pinned with their scenarios. The Flame
+  of the West's rulebook, as transcribed by
+  [RulesPal](https://rulespal.com/the-lord-of-the-rings-the-card-game-the-flame-of-the-west/rulebook),
+  forbids cards titled Frodo Baggins and repeats The Treason of Saruman's
+  Aragorn rules: a recorded Aragorn is replaced without the penalty, his
+  Permanent cards are transferred to the Fellowship Aragorn, and a fallen
+  Aragorn leaves the list of fallen heroes with a +1 penalty for each player.
 - The two campaign cards are numbered Parts 1.1 and 1.2 of The Lord of the
   Rings: the chapters are played after A Shadow of the Past (Part 1) and
   before A Knife in the Dark (Part 2). Each is optional, and when both are
@@ -96,8 +113,8 @@ available in campaign mode yet.
   +1 starting threat penalty; another version of the same hero (the same
   title) is not a replacement, and no version of a fallen hero can be chosen
   (an ally version of it is taken out of the decks at setup). The Ring Goes
-  South, Helm's Deep and The Passage of the Marshes let each player change
-  heroes freely, without the penalty. The Passage of the Marshes may also give
+  South, Helm's Deep, The Passage of the Marshes and The Passing of the Grey
+  Company let each player change heroes freely, without the penalty. The Passage of the Marshes may also give
   a player a **personal** permanent +2 starting threat penalty, recorded in
   the log for that player alone.
 - **The campaign card** of each scenario lies next to the quest deck; its Setup
@@ -140,6 +157,23 @@ available in campaign mode yet.
   Aragorn is set aside for the Fellowship Aragorn (replacing him costs no
   penalty). In hot-seat games the log keeps each player's hero count, so a
   set-aside Aragorn still counts.
+- **The Fellowship Aragorn** (The Treason of Saruman and The Flame of the
+  West): the Permanent cards of a recorded Aragorn are transferred to him (the
+  log keeps them under "Aragorn (the Fellowship hero)"), Permanent boons earned
+  on him follow him into later boxes, and a fallen Aragorn leaves the list of
+  fallen heroes when one of these chapters begins, each player taking a
+  permanent +1 threat penalty.
+- **The Flame of the West**: its chapters forbid cards titled Frodo Baggins
+  and leave out the burden sets of A Shadow of the Past, Flight to the Ford,
+  The Ring Goes South, The Passage of the Marshes and Shelob's Lair. The cards
+  say "from the encounter deck", but the only burdens with the last two icons,
+  The Searching Eye and A Heavy Burden, are never there: they stay out of the
+  players' decks and off the Ring-bearer as well. Overcome by Fear returns to
+  the threat dial of each player the log records (its threat cannot be
+  reduced; at the end of each round it raises that player's threat by 1 and
+  may be set aside for 1 [fellowship] resource), and an earned Army of the
+  Dead enters play under the first player's control (it follows the first
+  player token and leaves the game when it leaves play).
 - **The Land of Shadow**: its chapters leave out the burden sets of Helm's
   Deep and The Road to Isengard (Poisoned Counsels and Saruman's Voice), from
   the encounter deck and from each player's deck, and no card titled Aragorn
@@ -189,6 +223,21 @@ available in campaign mode yet.
 | Journey to the Cross-roads | Setup: each player must choose: 1 resource on each of their heroes, or 1 copy of Brace of Coneys shuffled into their deck. Resolution: each player who shuffled Brace of Coneys earns that copy; the name and quantity of each enemy under The Black Gate are recorded in the Notes.                                                                      |
 | Shelob's Lair              | Setup: A Heavy Burden is attached to the Ring-bearer. Resolution: the players earn A Heavy Burden.                                                                                                                                                                                                                                                        |
 
+## The Flame of the West chapters
+
+| Chapter                           | Campaign card                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| The Passing of the Grey Company   | Setup: each player may change heroes without the penalty; the first player may raise each player's threat by 1 to search their deck for Andúril (kept through a mulligan); the five burden sets stay out. Resolution: each Overcome by Fear on a player's threat dial is earned for that player; the Army of the Dead boon is earned if the Army of the Dead enemy is in the victory display.                                                                                                                                                                                                                                                                                                      |
+| The Siege of Gondor               | Setup: the Andúril search; the five burden sets stay out. Resolution: the resources on The Corsair Fleet are recorded in the Notes, and Army of the Dead leaves the Campaign Pool.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| The Battle of the Pelennor Fields | Setup: the Harad enemies recorded under The Black Gate are set aside; the first player attaches Andúril and Banner of Elendil (taken from the players' cards) to Aragorn and sets him aside; The Corsair Fleet (Gondor side) enters the staging area with the recorded resources; at the beginning of each quest phase it loses 1 resource, and without any the first player takes control of Aragorn and it goes to the victory display. Forced: when the players advance to stage 5B, the set-aside Harad enemies are added to the staging area. Resolution: 1 copy of Wraith on Wings per player is earned, and an Esquire attached to a hero is earned for that hero's controller (Permanent). |
+
+The Harad enemies of Journey to the Cross-roads keep their printed text in
+The Battle of the Pelennor Fields: Man of Harad's random discard and Archery 1,
+Haradrim Soldier's immediate attack, Haradrim Archer's X threat, Archery X and
+damage, Captain of Harad's +1 attack and -10 engagement cost for each Harad
+enemy, and Oliphaunt's exhausted allies, no attachments and at most 3 damage
+each round.
+
 Seat of Seeing's campaign response is scripted too: when it is explored, the
 first player may remove a burden card in play, in the encounter deck or in the
 discard pile from the game (and, once the scenario is won, from the Campaign
@@ -222,13 +271,17 @@ Pool), and the encounter deck is shuffled.
 | Brace of Coneys (boon, event, Gift)                                                 | Play only if you control the Ring-bearer. Planning Action: add it to the victory display (Victory 2; it stays in the Campaign Pool) to choose 2 different effects: heal up to 2 damage from a hero, add 2 resources to a hero's pool, a player draws 2 cards, or a player reduces their threat by 2.                                                                                                                                                             |
 | The Searching Eye (burden, treachery)                                               | Works like a player card in its earner's deck. Forced: after its player draws it, they exhaust each hero they control or reveal the top card of the encounter deck; as FAQ 1.44 rules for such choices, an option that cannot be performed in full (an exhausted hero, an empty encounter deck) is offered only when the other cannot be either. The treachery then goes to its owner's discard pile.                                                            |
 | A Heavy Burden (burden, objective, Permanent)                                       | Setup: attached to the Ring-bearer. Forced: at the end of the planning phase, the first player chooses: each player raises their threat by 1, or the Ring-bearer exhausts (only while he is ready).                                                                                                                                                                                                                                                              |
+| Overcome by Fear (burden, objective)                                                | Earned for each player whose threat dial carries it after The Passing of the Grey Company; attached to that dial in later chapters: the threat cannot be reduced, and at the end of each round it raises the threat by 1 and may be set aside for 1 [fellowship] resource.                                                                                                                                                                                       |
+| Army of the Dead (boon, objective-ally)                                             | 4 willpower, 6 attack, 2 defense, 8 hit points; immune to player card effects. Setup: the first player takes control of it (it follows the first player token); it leaves the game when it leaves play. The Siege of Gondor's resolution removes it from the pool.                                                                                                                                                                                               |
+| Esquire of Rohan, Esquire of Gondor (boons, Permanent)                              | Earned on the hero they are attached to at the end of The Battle of the Pelennor Fields (that scenario attaches them at its own setup): the Rohan or Gondor trait and +1 attack or willpower alongside another Rohan or Gondor character.                                                                                                                                                                                                                        |
+| Wraith on Wings (burden, enemy)                                                     | 1 copy per player is earned at The Battle of the Pelennor Fields; the log counts the copies for The Mountain of Fire.                                                                                                                                                                                                                                                                                                                                            |
 | Followed by Night, Ill Fate (burdens, treacheries)                                  | Peril. Surge. Followed by Night puts the topmost enemy of the encounter discard pile into play engaged with you (in the staging area where enemies cannot engage). Ill Fate attaches to a hero you control; after a character you control is destroyed, raise your threat by 2.                                                                                                                                                                                  |
 
 ## Not supported yet
 
-The campaign cards, boons and burdens of The Flame of the West and The
-Mountain of Fire follow in publication order (they read the Black Gate's
-Notes and A Heavy Burden again). Saruman's Voice
+The campaign cards, boons and burdens of The Mountain of Fire follow (they
+read the Notes, A Heavy Burden, Wraith on Wings and the Esquires again; the
+Esquires' bonuses are scripted with The Battle of the Pelennor Fields so far). Saruman's Voice
 does not yet react to its hero's own abilities, and Beyond All Hope does not
 yet stop the other scenarios' treachery attachments. One campaign is saved at a time: starting a new
 campaign replaces the saved one.
@@ -236,7 +289,7 @@ campaign replaces the saved one.
 ## Verification
 
 ```sh
-node --import tsx --test tests/saga-campaign.test.ts tests/saga-campaign-road-darkens.test.ts tests/saga-campaign-treason.test.ts tests/saga-campaign-land-shadow.test.ts
+node --import tsx --test tests/saga-campaign.test.ts tests/saga-campaign-road-darkens.test.ts tests/saga-campaign-treason.test.ts tests/saga-campaign-land-shadow.test.ts tests/saga-campaign-flame-west.test.ts
 npm run build
 npm run test:browser-saga-campaign
 ```
@@ -270,13 +323,23 @@ resolutions, Journey to the Cross-roads' choice, Brace of Coneys' timing,
 cost and effects and the Black Gate's Notes, Shelob's Lair's Heavy Burden
 (Permanent, its Forced effect, the resolution), and a hot-seat log with a
 personal penalty, a per-player Searching Eye and a copy of Brace of Coneys
-moved to another player's deck. The browser suite starts a new Lord of the
-Rings campaign through the lobby and plays its log through A Shadow of the
-Past, both optional chapters (chosen in the interlude), A Knife in the Dark,
-Flight to the Ford, The Road Darkens' three chapters, The Treason of
-Saruman's three and The Land of Shadow's three at 1280, 390 and 320 pixels
-(114 checkpoints: each chapter's setup, both interlude choices and the deck
-assignments, the resolution dialogs and journals, Ho! Tom Bombadil!'s
-Response, the Flight to the Ford Response, The Searching Eye, Brace of Coneys
-played from hand, A Heavy Burden and the recorded end of Shelob's Lair) and
-checks all 62 original faces.
+moved to another player's deck. `tests/saga-campaign-flame-west.test.ts` (6
+tests) covers The Flame of the West: its data and scans, The Passing of the
+Grey Company's free changes, Frodo rule, burden sets left out, Andúril search
+and resolution, Overcome by Fear in a later chapter (no reduction, the round's
+threat, the Fellowship resource), the Army of the Dead (in play, immune,
+removed from the game, passed to a new first player), The Siege of Gondor's
+resolution, The Battle of the Pelennor Fields' set-aside Aragorn and Harad
+enemies, The Corsair Fleet, the Harad enemies' text, its resolution, and the
+Fellowship Aragorn's rules (a fallen Aragorn, the Permanent transfer). The
+browser suite starts a new Lord of the Rings campaign through the lobby and
+plays its log through A Shadow of the Past, both optional chapters (chosen in
+the interlude), A Knife in the Dark, Flight to the Ford, The Road Darkens'
+three chapters, The Treason of Saruman's three, The Land of Shadow's three and
+The Flame of the West's three at 1280, 390 and 320 pixels (144 checkpoints:
+each chapter's setup, both interlude choices and the deck assignments, the
+resolution dialogs and journals, Ho! Tom Bombadil!'s Response, the Flight to
+the Ford Response, The Searching Eye, Brace of Coneys played from hand, A
+Heavy Burden, Overcome by Fear's Fellowship resource, The Corsair Fleet
+bringing Aragorn and the recorded end of The Battle of the Pelennor Fields)
+and checks all 70 original faces.
