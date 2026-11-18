@@ -1,3 +1,4 @@
+import { angmarBroochWill } from "./angmar-campaign-loot";
 import { wainridersQuestUnits } from "./wainriders-support";
 import { angmarCampaignBoost } from "./angmar-campaign-boost";
 import {
@@ -686,6 +687,7 @@ export function stats(s: GameState, u: Unit) {
           batch4Scenario(s).stats?.(s, u).will ?? 0,
           sagaCampaignWillBonus(s, u),
           angmarCampaignBoost(s, u),
+          angmarBroochWill(s, u),
           BatchSupport.batch4PlayerStats(s, u).will,
           landSorrowPlayerStats(s, u).will,
           eredFinalBonus.will + shadowEastBonus.will,

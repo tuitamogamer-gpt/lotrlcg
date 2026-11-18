@@ -103,10 +103,39 @@ export function gramAreaView(s: GameState, player: number) {
     lastQuest: a.lastQuest ?? null,
   };
 }
+/**
+ * The Angmar Awakened campaign's Loot the Dungeons ("considered to be in each
+ * player's staging area") and Arnor Ravaged follow the staging area being
+ * resolved, so each area sees them; they survive the split into areas.
+ */
+const FOLLOWERS = ["10175", "10158.B"];
+function campaignCardsFollow(
+  s: GameState,
+  q: GramState["mountGram"],
+  a: GramArea,
+) {
+  if (!q) return;
+  for (const code of FOLLOWERS) {
+    if (a.staging.some((u) => u.code === code)) continue;
+    const i = s.staging.findIndex((u) => u.code === code);
+    if (i >= 0) {
+      a.staging.push(...s.staging.splice(i, 1));
+      continue;
+    }
+    for (const other of q.areas) {
+      const j = other.staging.findIndex((u) => u.code === code);
+      if (j >= 0) {
+        a.staging.push(...other.staging.splice(j, 1));
+        break;
+      }
+    }
+  }
+}
 export function gramSelectArea(s: GameState, player: number) {
   const q = gramState(s),
     a = gramArea(s, player);
   if (!q?.split || !a) return;
+  campaignCardsFollow(s, q, a);
   q.activeArea = a.id;
   Object.assign(s, gramAreaView(s, player));
 }

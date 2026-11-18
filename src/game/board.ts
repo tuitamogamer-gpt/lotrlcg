@@ -1,3 +1,4 @@
+import { angmarLootCommitted } from "./angmar-campaign-loot";
 import {
   landSorrowPlayerAllyEntered,
   landSorrowPlayerAttachmentLeaves,
@@ -613,6 +614,7 @@ export function charactersCommitted(
   );
   shadowFlameCharactersCommitted(s, actual);
   sagaCampaignCommitted(s, actual);
+  angmarLootCommitted(s, actual);
   HaradResponses.haradCharactersCommitted(
     s,
     actual.map((u) => u.id),

@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2126,
+    "encounterCards": 2134,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3377,
-    "pending": 806
+    "scripted": 3385,
+    "pending": 798
   },
   "scenarioRecipes": {
     "total": 355,
@@ -648,6 +648,13 @@
     "10170",
     "10172",
     "10173",
+    "10175",
+    "10176",
+    "10177",
+    "10178",
+    "10179",
+    "10180",
+    "10181",
     "11001",
     "11002",
     "11003",
@@ -2553,6 +2560,7 @@
     "octgn:85409c38-e188-46f7-b844-42716266ea83",
     "octgn:855580e2-87b1-444c-b37a-1062c050d9ee",
     "octgn:857da3db-7159-4dfa-a925-8547fb6df455",
+    "octgn:85afcf03-9776-4f05-b9c0-346e6e39b1b1",
     "octgn:85cf554d-25c5-47f4-96bb-c11f4e764155",
     "octgn:85d48eb0-3339-4db6-976f-a800213e7eea",
     "octgn:85eb724c-a258-4d94-83ba-5e9f21d82491",
@@ -3599,9 +3607,9 @@
     {
       "product": "angmar-awakened-campaign-expansion",
       "total": 38,
-      "scripted": 18,
+      "scripted": 26,
       "player": 21,
-      "playerScripted": 8
+      "playerScripted": 14
     },
     {
       "product": "assault-on-osgiliath",
@@ -8719,7 +8727,7 @@
       "name": "Loot the Dungeons",
       "type": "encounter-side-quest",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -8727,7 +8735,7 @@
       "name": "Berelind",
       "type": "ally",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -8735,7 +8743,7 @@
       "name": "Chieftain's Brooch",
       "type": "attachment",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -8743,7 +8751,7 @@
       "name": "Coruhaer",
       "type": "ally",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -8751,7 +8759,7 @@
       "name": "Laermuin",
       "type": "ally",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -8759,7 +8767,7 @@
       "name": "Mail of Eärnur",
       "type": "attachment",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -8767,7 +8775,7 @@
       "name": "Silverthorn",
       "type": "attachment",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -27151,7 +27159,7 @@
       "name": "Escape From Mount Gram",
       "type": "campaign",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {

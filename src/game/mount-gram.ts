@@ -1,3 +1,4 @@
+import { angmarGramSetupEffects, angmarHeroEntered } from "./angmar-campaign";
 import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 // Original Escape from Mount Gram: physical prisoners and independent dungeon areas.
 import type { Effect, GameState, Option, Unit } from "./types";
@@ -203,8 +204,11 @@ function rescue(
       continue;
     }
     forOwner(s, owner, () => {
-      if (card(u.code).type_code === "hero") s.heroes.push(clean(u, owner));
-      else s.hand.push(clean(u, owner));
+      if (card(u.code).type_code === "hero") {
+        const hero = clean(u, owner);
+        s.heroes.push(hero);
+        angmarHeroEntered(s, hero);
+      } else s.hand.push(clean(u, owner));
     });
     rescued.push(u);
     log(s, `${card(u.code).name} is rescued by ${seatName(s, owner)}.`, "good");
@@ -262,6 +266,8 @@ export function gramOpeningHandsKept(s: GameState) {
   prepend(
     s,
     ...globalPlayerOrder(s).map((player) => fx("gramChooseHero", { player })),
+    // The Angmar Awakened campaign: Loot the Dungeons, after the captured decks.
+    ...angmarGramSetupEffects(s),
     fx("gramCreateAreas", { player: globalPlayerOrder(s)[0] }),
     fx("nextRound", { player: globalPlayerOrder(s)[0] }),
   );

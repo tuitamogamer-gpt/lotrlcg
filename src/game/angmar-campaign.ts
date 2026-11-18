@@ -25,7 +25,9 @@ import {
 } from "./core";
 import {
   activeSeat,
+  allCharacters,
   forOwner,
+  globalPlayerOrder,
   ownerOf,
   playerOrder,
   seatIndices,
@@ -45,6 +47,8 @@ import {
   dikeCannotLeaveDiscard,
 } from "./deadmens-discard";
 import { angmarPhase } from "./angmar-campaign-boost";
+import { gramState } from "./mount-gram-support";
+import { gramCardLeaves } from "./mount-gram";
 
 /** The campaign's cards. */
 export const ANGMAR = {
@@ -81,7 +85,24 @@ export const ANGMAR = {
   despair: "10173",
   /** Arnor Ravaged: Protect the Innocent's other side, a burden objective. */
   ravaged: "10158.B",
+  /** Loot the Dungeons (side quest) and the six boons it offers. */
+  loot: "10175",
+  berelind: "10176",
+  brooch: "10177",
+  coruhaer: "10178",
+  laermuin: "10179",
+  mail: "10180",
+  silverthorn: "10181",
 } as const;
+/** Berelind, Chieftain's Brooch, Coruhaer, Laermuin, Mail of Eärnur and Silverthorn. */
+export const LOOT_BOONS: readonly string[] = [
+  "10176",
+  "10177",
+  "10178",
+  "10179",
+  "10180",
+  "10181",
+];
 /** Thaurdir's Legacy, Majesty and Spite (the support module's list, kept local to avoid an import cycle at load). */
 const THAURDIR_BURDENS: readonly string[] = [
   ANGMAR.legacy,
@@ -114,6 +135,7 @@ export const ANGMAR_CAMPAIGN_SUPPORTED: readonly ScenarioId[] = [
   "the-weather-hills",
   "deadmens-dike",
   "wastes-of-eriador",
+  "escape-from-mount-gram",
 ];
 /** The chapters whose campaign card lets each player change heroes without the +1 threat penalty. */
 export const ANGMAR_FREE_CHANGES: readonly ScenarioId[] = [
@@ -121,7 +143,7 @@ export const ANGMAR_FREE_CHANGES: readonly ScenarioId[] = [
   "the-battle-of-carn-dum",
 ];
 /** The Angmar Awakened boons that join a player's deck (Iârion's Pendant, once chosen). */
-export const ANGMAR_DECK_BOONS: readonly string[] = ["10157"];
+export const ANGMAR_DECK_BOONS: readonly string[] = ["10157", ...LOOT_BOONS];
 /** Fend off Despair: each player's starting threat is lowered by the Campaign Log's reduction. */
 export const angmarThreatReduction = (c?: CampaignState | null) =>
   isAngmarCampaign(c) ? (c!.threatReduction ?? 0) : 0;
@@ -213,6 +235,21 @@ export function angmarCampaignDeckSetup(s: GameState) {
   const c = s.campaign;
   if (!isAngmarCampaign(c)) return;
   const seats = seatIndices(s);
+  // Escape from Mount Gram's resolution: the cards left captured cannot be
+  // included in that player's deck for the rest of the campaign.
+  for (const seat of seats) {
+    const banned = c!.banned?.[seat] ?? [];
+    if (!banned.length) continue;
+    forOwner(s, seat, () => {
+      const before = s.deck.length;
+      s.deck = s.deck.filter((code) => !banned.includes(code));
+      if (s.deck.length < before)
+        log(
+          s,
+          `Escape from Mount Gram: ${banned.map((code) => card(code).name).join(", ")} ${banned.length === 1 ? "is" : "are"} left out of ${several(s) ? `${seatName(s, seat)}'s` : "your"} deck.`,
+        );
+    });
+  }
   for (const [code, seat] of Object.entries(c!.deckBoons ?? {}))
     if (
       c!.boons.includes(code) &&
@@ -348,6 +385,26 @@ export function angmarCampaignSideDefeated(s: GameState, quest: Unit) {
       s,
       "Fend off Despair is defeated: each player's starting threat will be 2 lower in later chapters once this chapter is won.",
       "good",
+    );
+    return;
+  }
+  // Loot the Dungeons: its captured cards are rescued as it leaves play, and
+  // "each player (at every staging area) may choose one of the following
+  // boons and add it to their hand: Berelind, Chieftain's Brooch, Coruhaer,
+  // Laermuin, Mail of Eärnur, or Silverthorn. Add the chosen cards to the
+  // Campaign Pool."
+  if (quest.code === ANGMAR.loot) {
+    if (gramState(s)) gramCardLeaves(s, quest);
+    log(
+      s,
+      "Loot the Dungeons is defeated: each player may take one of its boons.",
+      "good",
+    );
+    prepend(
+      s,
+      ...globalPlayerOrder(s).map((player) =>
+        fx("angmarLootChoice", { player }),
+      ),
     );
     return;
   }
@@ -657,6 +714,59 @@ export function angmarCampaignAttachmentLeaves(
   log(s, `${card(a.code).name} is removed from the game.`);
   return true;
 }
+const isGramCampaign = (s: GameState) =>
+  isAngmarCampaign(s.campaign) &&
+  s.scenarioId === "escape-from-mount-gram" &&
+  !!gramState(s);
+/** Escape from Mount Gram's Setup: Loot the Dungeons, once each captured deck is formed. */
+export const angmarGramSetupEffects = (s: GameState) =>
+  isGramCampaign(s)
+    ? [fx("angmarLootSetup", { player: globalPlayerOrder(s)[0] })]
+    : [];
+/**
+ * Escape from Mount Gram (its campaign card's other side): "Forced: After a
+ * hero enters play, attach to that hero each set-aside permanent boon
+ * attachment assigned to that character in the Campaign Log."
+ */
+export function angmarHeroEntered(s: GameState, hero: Unit) {
+  if (!isGramCampaign(s)) return;
+  const boons = (s.campaign!.permanent[hero.code] ?? []).filter(
+    (code) => !hero.attachments.some((a) => a.code === code),
+  );
+  for (const code of boons)
+    hero.attachments.push({
+      id: `a${s.nextId++}`,
+      code,
+      exhausted: false,
+      owner: hero.owner ?? ownerOf(s, hero),
+    });
+  if (boons.length)
+    log(
+      s,
+      `${boons.map((code) => card(code).name).join(", ")} ${boons.length === 1 ? "is" : "are"} attached to ${name(hero)} again.`,
+      "good",
+    );
+  angmarAmarthiulEntered(s, hero);
+}
+/** Loot the Dungeons "gets +4 quest points for each player in the game at every staging area". */
+export const angmarSideQuestBonus = (s: GameState, quest: Unit) =>
+  quest.code === ANGMAR.loot && isAngmarCampaign(s.campaign) && !quest.blanked
+    ? 4 * globalPlayerOrder(s).length
+    : 0;
+/**
+ * Escape from Mount Gram: "Forced: Instead of raising their threat by 1
+ * during the refresh phase, each player raises their threat by the number of
+ * completed quest cards plus the number of side quests in the victory display."
+ */
+export function angmarRefreshBase(s: GameState) {
+  const q = gramState(s);
+  if (!isGramCampaign(s) || !q) return 1;
+  const completed = (s.stage >= 2 ? 1 : 0) + q.removedQuests.length;
+  const sides = (s.victoryCards ?? []).filter((code) =>
+    card(code).type_code.endsWith("side-quest"),
+  ).length;
+  return completed + sides;
+}
 /** Iârion enters play: the campaign card attaches Iârion's Pendant to him. */
 export function angmarIarionEntered(s: GameState, iarion: Unit) {
   if (
@@ -838,6 +948,47 @@ export function resolveAngmarCampaign(s: GameState) {
       "good",
     );
   }
+  if (s.scenarioId === "escape-from-mount-gram") {
+    // Loot the Dungeons' boons join the pool (and their chooser's deck).
+    for (const { code, seat } of q?.loot ?? []) {
+      if (!c.boons.includes(code)) c.boons.push(code);
+      c.deckBoons = { ...(c.deckBoons ?? {}), [code]: seat };
+    }
+    // "Each player must make note of which unique cards are still in their
+    // captured deck and not in play at the end of the game. Those cards
+    // cannot be included in that player's deck for the rest of the campaign."
+    const g = gramState(s);
+    const inPlay = new Set(
+      allCharacters(s).flatMap((u) => [
+        u.code,
+        ...u.attachments.map((a) => a.code),
+      ]),
+    );
+    for (const seat of seatIndices(s)) {
+      const banned = [
+        ...new Set(
+          (g?.capturedDecks[seat] ?? [])
+            .map((u) => u.code)
+            .filter(
+              (code) =>
+                card(code).is_unique &&
+                card(code).type_code !== "hero" &&
+                !inPlay.has(code),
+            ),
+        ),
+      ];
+      if (!banned.length) continue;
+      c.banned = {
+        ...(c.banned ?? {}),
+        [seat]: [...new Set([...(c.banned?.[seat] ?? []), ...banned])],
+      };
+      log(
+        s,
+        `Escape from Mount Gram · Resolution: ${banned.map((code) => card(code).name).join(", ")} cannot be included in ${several(s) ? `${seatName(s, seat)}'s` : "your"} deck for the rest of the campaign.`,
+        "danger",
+      );
+    }
+  }
   if (s.scenarioId === "wastes-of-eriador") {
     // "Add each of those events [Determination] to the Campaign Pool." and
     // the Resolution: "Add Fend Off Despair to the Campaign Pool."
@@ -974,6 +1125,15 @@ export function angmarCampaignStatus(s: GameState): string[] {
       card(host.code).type_code === "hero"
         ? `${card(a.code).name} is attached to ${name(host)} (${a.code === ANGMAR.legacy ? "-2 willpower, its printed text box is blank" : a.code === ANGMAR.majesty ? "-2 attack, it cannot commit to the quest" : "-2 defense, it cannot be healed"}); after a Sorcery treachery is revealed it moves to ${BURDEN_RULE[a.code]}.`
         : `${card(a.code).name} is attached to Thaurdir: after a Sorcery treachery is revealed it moves to ${BURDEN_RULE[a.code]}.`,
+    );
+  const loot = s.staging.find((u) => u.code === ANGMAR.loot);
+  if (loot)
+    out.push(
+      `Loot the Dungeons is in each player's staging area (${loot.progress}/${(card(ANGMAR.loot).quest ?? 0) + angmarSideQuestBonus(s, loot)} progress): defeating it rescues the cards captured beneath it and lets each player add Berelind, Chieftain's Brooch, Coruhaer, Laermuin, Mail of Eärnur or Silverthorn to their hand.`,
+    );
+  if (isGramCampaign(s))
+    out.push(
+      `Each refresh phase, each player raises their threat by the number of completed quest cards plus the side quests in the victory display (now ${angmarRefreshBase(s)}) instead of 1.`,
     );
   const ravaged = angmarRavaged(s);
   if (ravaged)
@@ -1308,6 +1468,66 @@ export function angmarCampaignEffect(s: GameState, e: Effect): boolean {
       );
       return true;
     }
+    case "angmarLootSetup": {
+      const q = gramState(s);
+      if (!q || s.staging.some((u) => u.code === ANGMAR.loot)) return true;
+      const loot = make(s, ANGMAR.loot);
+      delete loot.owner;
+      s.staging.push(loot);
+      // "capturing the bottom 5 cards of each player's captured deck underneath it."
+      const cards = globalPlayerOrder(s).flatMap((p) =>
+        (q.capturedDecks[p] ?? []).splice(-5),
+      );
+      if (cards.length) (q.captured[loot.id] ??= []).push(...cards);
+      log(
+        s,
+        `Escape from Mount Gram: Loot the Dungeons enters the staging area and captures ${cards.length} card${cards.length === 1 ? "" : "s"}.`,
+        "danger",
+      );
+      return true;
+    }
+    case "angmarLootChoice": {
+      const p = e.player ?? first(s);
+      const taken = (s.angmarCards?.loot ?? []).map((x) => x.code);
+      const free = LOOT_BOONS.filter(
+        (code) => !taken.includes(code) && !s.campaign!.boons.includes(code),
+      );
+      if (!free.length || s.table?.seats[p]?.eliminated) return true;
+      forOwner(s, p, () =>
+        choose(
+          s,
+          `Loot the Dungeons · ${several(s) ? `${seatName(s, p)} may` : "You may"} add a boon to ${several(s) ? "their" : "your"} hand`,
+          [
+            ...free.map((code) => ({
+              id: code,
+              code,
+              label: card(code).name,
+              effects: [fx("angmarLootTake", { code, player: p })],
+            })),
+            { id: "skip", label: "Do not take a boon", effects: [] },
+          ],
+          card(ANGMAR.loot).text,
+        ),
+      );
+      return true;
+    }
+    case "angmarLootTake": {
+      const p = e.player ?? first(s);
+      const taken = (s.angmarCards?.loot ?? []).map((x) => x.code);
+      if (!LOOT_BOONS.includes(e.code!) || taken.includes(e.code!)) return true;
+      forOwner(s, p, () => {
+        const u = make(s, e.code!);
+        u.owner = p;
+        s.hand.push(u);
+      });
+      (state(s).loot ??= []).push({ code: e.code!, seat: p });
+      log(
+        s,
+        `Loot the Dungeons: ${card(e.code!).name} is added to ${several(s) ? `${seatName(s, p)}'s` : "your"} hand.`,
+        "good",
+      );
+      return true;
+    }
     case "angmarDetermination": {
       const p = e.player ?? first(s);
       const targets = uniqueCharacters(s);
@@ -1387,6 +1607,7 @@ export const ANGMAR_BOONS: readonly string[] = [
   ANGMAR.pendant,
   ANGMAR.courage,
   ANGMAR.determination,
+  ...LOOT_BOONS,
 ];
 export const ANGMAR_BURDENS: readonly string[] = [
   ANGMAR.innocent,
@@ -1448,6 +1669,16 @@ export function validateAngmarCampaign(s: GameState): boolean {
     (c.ravaged === undefined || typeof c.ravaged === "boolean") &&
     (c.threatReduction === undefined ||
       (integer(c.threatReduction) && c.threatReduction % 2 === 0)) &&
+    (c.banned === undefined ||
+      (!!c.banned &&
+        typeof c.banned === "object" &&
+        !Array.isArray(c.banned) &&
+        Object.entries(c.banned).every(
+          ([seat, list]) =>
+            /^\d+$/.test(seat) &&
+            +seat < (s.table?.seats.length ?? 1) &&
+            codes(list),
+        ))) &&
     (c.determined === undefined ||
       (codes(c.determined) &&
         new Set(c.determined).size === c.determined.length)) &&
@@ -1482,7 +1713,8 @@ export function validateAngmarCampaign(s: GameState): boolean {
     c.completed.every(
       (r, i) =>
         ANGMAR_CAMPAIGN_ORDER[i] === r.scenarioId &&
-        integer(r.score) &&
+        // Victory points can take a score below 0.
+        Number.isSafeInteger(r.score) &&
         integer(r.rounds),
     ) &&
     (c.completed.at(-1)?.scenarioId === s.scenarioId ||
@@ -1494,6 +1726,16 @@ export function validateAngmarCampaign(s: GameState): boolean {
         (q.thaurdir === undefined || THAURDIR_BURDENS.includes(q.thaurdir)) &&
         (q.despair === undefined || (integer(q.despair) && q.despair > 0)) &&
         (q.setupHand === undefined || codes(q.setupHand)) &&
+        (q.loot === undefined ||
+          (Array.isArray(q.loot) &&
+            q.loot.every(
+              (x) =>
+                !!x &&
+                LOOT_BOONS.includes(x.code) &&
+                integer(x.seat) &&
+                x.seat < (s.table?.seats.length ?? 1),
+            ) &&
+            new Set(q.loot.map((x) => x.code)).size === q.loot.length)) &&
         (q.omens === undefined || typeof q.omens === "boolean") &&
         (q.skills === undefined ||
           (Array.isArray(q.skills) &&

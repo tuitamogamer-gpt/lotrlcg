@@ -5651,6 +5651,18 @@ function CampaignJournal({
           {c.determined.map((code) => card(code).name).join(", ")}
         </p>
       ) : null}
+      {c.banned && Object.values(c.banned).some((list) => list.length) ? (
+        <p className="campaign-note">
+          Notes · left captured, out of the deck:{" "}
+          {Object.entries(c.banned)
+            .filter(([, list]) => list.length)
+            .map(
+              ([seat, list]) =>
+                `${(c.seatHeroes?.length ?? 1) > 1 ? `Player ${Number(seat) + 1}: ` : ""}${list.map((code) => card(code).name).join(", ")}`,
+            )
+            .join("; ")}
+        </p>
+      ) : null}
       {c.threatReduction ? (
         <p className="campaign-note">
           Notes · Fend off Despair: each player's starting threat −

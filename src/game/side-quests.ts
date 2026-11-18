@@ -34,6 +34,7 @@ import {
   angmarCampaignSideDefeated,
   angmarInnocentProgress,
   angmarSideDefeatBlocked,
+  angmarSideQuestBonus,
 } from "./angmar-campaign";
 import { gramProgress } from "./mount-gram";
 import { wastesProgress } from "./wastes-eriador";
@@ -101,6 +102,7 @@ export const sideQuestGoal = (s: GameState, quest: Unit) =>
     0,
     (card(quest.code).quest ?? 0) +
       rhudaurQuestPoints(s, quest) +
+      angmarSideQuestBonus(s, quest) +
       (batch4Scenario(s).sideQuestGoalBonus?.(s, quest) ?? 0),
   );
 

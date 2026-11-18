@@ -1,4 +1,11 @@
-import { angmarCampaignAfterReveal } from "./angmar-campaign";
+import {
+  angmarLootEffect,
+  angmarLootEnemyAttackResolved,
+} from "./angmar-campaign-loot";
+import {
+  angmarCampaignAfterReveal,
+  angmarRefreshBase,
+} from "./angmar-campaign";
 import { bagginsBilboFollowsFirstPlayer } from "./hobbit-saga";
 import {
   lotrSagaEffect,
@@ -674,6 +681,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (perilousVoyageEffect(s, e)) return;
   if (sagaCampaignEffect(s, e)) return;
   if (angmarCampaignEffect(s, e)) return;
+  if (angmarLootEffect(s, e)) return;
   if (HaradPlayers.handleHaradPlayerEffect(s, e)) return;
   if (MumakPlayers.handleMumakilPlayerEffect(s, e)) return;
   if (RacePlayers.handleRaceHaradPlayerEffect(s, e)) return;
@@ -2856,6 +2864,7 @@ function handleEffect(s: GameState, e: Effect) {
           BatchPlayers.batch4PlayerEnemyAttackResolved(s, enemy, defenders);
         if (enemy)
           EredPlayers.eredMithrinPlayerEnemyAttackResolved(s, enemy, defenders);
+        if (enemy) angmarLootEnemyAttackResolved(s, enemy, defenders);
       }
       if (completed) prepend(s, ...Mordor.mordorAttackFinished(s, completed));
       if (completed) prepend(s, ...Mumakil.mumakilAttackFinished(s, completed));
@@ -2924,7 +2933,8 @@ function handleEffect(s: GameState, e: Effect) {
       globalEachSeat(s, () => {
         raiseThreat(
           s,
-          1 + (batch4Scenario(s).refreshThreatBonus?.(s) ?? 0),
+          angmarRefreshBase(s) +
+            (batch4Scenario(s).refreshThreatBonus?.(s) ?? 0),
           "framework",
         );
         raiseThreat(
@@ -2939,7 +2949,8 @@ function handleEffect(s: GameState, e: Effect) {
         // The Tower of Barad-dûr (Mount Doom) cancels the raise; The Lawn adds to it.
         const raise = Math.max(
           0,
-          1 + (batch4Scenario(s).refreshThreatBonus?.(s) ?? 0),
+          angmarRefreshBase(s) +
+            (batch4Scenario(s).refreshThreatBonus?.(s) ?? 0),
         );
         log(
           s,

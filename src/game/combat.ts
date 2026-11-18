@@ -1,4 +1,8 @@
 import {
+  angmarLootAttackKilled,
+  angmarSilverthornBonus,
+} from "./angmar-campaign-loot";
+import {
   sagaCampaignAttackBonus,
   sagaCampaignAttackDefensePenalty,
   sagaCampaignAttackersDeclared,
@@ -547,6 +551,7 @@ export function resolvePlayerAttack(
           Rhudaur.rhudaurAttackBonus(s, enemy, u) +
           (batch4Scenario(s).playerAttackBonus?.(s, u, enemy, attackers) ?? 0) +
           sagaCampaignAttackBonus(s, u, attackers) +
+          angmarSilverthornBonus(s, u, enemy) +
           FlameWestPlayers.flameWestPlayerAttackBonus(s, u, attackers) +
           (card(enemy.code).traits?.includes("Orc")
             ? u.attachments.filter((a) => !a.blanked && a.code === "01039")
@@ -674,6 +679,7 @@ export function playerAttackKilled(
   Realm.realmAttackKilled(s, ids);
   CobasPlayers.cobasPlayerAttackKilled(s);
   Angmar.angmarAttackKilled(s, enemy, ids);
+  angmarLootAttackKilled(s, enemy, ids);
   Isengard.isengardAttackKilled(s, ids);
   wainridersPlayerAttackKilled(s, ids);
   RacePlayers.raceHaradPlayerAttackKilled(s, enemy, ids);
@@ -722,7 +728,8 @@ export function combatDefenderDefense(
       Angmar.angmarDefenseBonus(s, defender, enemy) +
       Rhudaur.rhudaurDefenseBonus(s, enemy, defender) +
       BlackRidersPlayers.blackRidersPlayerDefenseBonus(s, defender, enemy) +
-      RoadDarkensPlayers.roadDarkensPlayerDefenseBonus(s, defender, enemy) -
+      RoadDarkensPlayers.roadDarkensPlayerDefenseBonus(s, defender, enemy) +
+      angmarSilverthornBonus(s, defender, enemy) -
       (combat.defensePenalty ?? 0),
   );
 }

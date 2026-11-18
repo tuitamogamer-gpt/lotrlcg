@@ -1,3 +1,4 @@
+import { angmarLootThreatReduced } from "./angmar-campaign-loot";
 import { sarumanThreatReduction } from "./wainriders-player-support";
 import { voyageThreatReduction } from "./perilous-voyage-support";
 import { blackRidersPlayerThreatReduced } from "./black-riders-player-cards";
@@ -70,6 +71,7 @@ export function reduceThreat(
   const reduction = Math.min(s.threat, amount);
   s.threat -= reduction;
   if (reduction) blackRidersPlayerThreatReduced(s, source, reason);
+  if (reduction) angmarLootThreatReduced(s);
   if (
     !reduction ||
     reason !== "player-card" ||

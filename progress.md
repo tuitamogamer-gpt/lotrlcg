@@ -1255,3 +1255,16 @@ Validation on Node 22: the engine suite passes all 6,775 tests, including 12 for
 Coverage is now 861 player definitions (112 heroes), 2,126 encounters and 123 scenarios. This resolves 3,377 of 4,183 identities and 270 of 355 recipes; 806 identities remain pending.
 
 Validation on Node 22: the engine suite passes all 6,779 tests, including 16 for the Angmar Awakened campaign; the Angmar browser suite passes 42 checkpoints at 1280, 390 and 320 pixels, through The Wastes of Eriador's interlude and resolution, and checks the 23 pinned faces; the production build passes.
+
+2026-11-18 The Angmar Awakened campaign, Escape from Mount Gram: continued the user's “Nastavi” after 29e7eb5. The campaign's fifth chapter is supported; the end of the game now reaches Across the Ettenmoors' note. See docs/ANGMAR-CAMPAIGN.md.
+
+- Escape from Mount Gram's campaign card, Loot the Dungeons and its six boons are registered with the scans' texts (32 faces pinned in all).
+- Setup: the Permanent boons of the heroes added to a captured deck leave play with them, and a rescued hero takes them back (the campaign card's other side). Once each player has formed their captured deck, Loot the Dungeons enters the staging area and captures the bottom 5 cards of each captured deck.
+- Loot the Dungeons "is considered to be in each player's staging area": when the staging areas split, it follows the area being resolved (Arnor Ravaged too; both used to vanish at the split), so every area sees and can quest against the one card; it gets +4 quest points per player. Its defeat rescues the cards beneath it and lets each player take a different boon into their hand.
+- The refresh phase raises each player's threat by the completed quest cards plus the side quests in the victory display instead of 1. The resolution pools the boons taken (each joins its chooser's deck; the interlude can reassign it) and bans the unique cards left in each captured deck from that player's later decks; the journal lists them.
+- Berelind, Chieftain's Brooch, Coruhaer, Laermuin, Mail of Eärnur and Silverthorn are scripted as player cards: progress, willpower, damage, healing, the conditional +1/+1 and the once-per-game victory display Response.
+- A chapter's score below 0 (victory points can take it there) failed the campaign's save check; any whole number is accepted now.
+
+Coverage is now 861 player definitions (112 heroes), 2,134 encounters and 123 scenarios. This resolves 3,385 of 4,183 identities and 270 of 355 recipes; 798 identities remain pending.
+
+Validation on Node 22: the engine suite passes all 6,782 tests, including 19 for the Angmar Awakened campaign; the Angmar browser suite passes 48 checkpoints at 1280, 390 and 320 pixels, through Escape from Mount Gram's resolution, and checks the 32 pinned faces; the production build passes.

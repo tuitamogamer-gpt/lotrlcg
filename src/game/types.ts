@@ -336,6 +336,8 @@ export interface CampaignState {
   threatReduction?: number;
   /** Angmar Awakened: the characters Determination marked "determined". */
   determined?: string[];
+  /** Angmar Awakened: the unique cards each seat cannot include in its deck (Escape from Mount Gram). */
+  banned?: Record<number, string[]>;
   /** Saga: the scenario whose campaign card resolution awaits the players' choices. */
   resolution?: ScenarioId | null;
   seatPenalties?: number[];
@@ -583,6 +585,8 @@ export interface GameState {
     despair?: number;
     /** Cards a campaign Setup added to the starting hand (kept through a mulligan). */
     setupHand?: string[];
+    /** Loot the Dungeons: the boons each player took (pooled on a win). */
+    loot?: { code: string; seat: number }[];
   };
   /** The Lord of the Rings campaign: pending The Ring Draws Them engagements and Mr. Underhill marks. */
   sagaCards?: {

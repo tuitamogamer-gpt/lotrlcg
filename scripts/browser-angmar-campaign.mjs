@@ -433,8 +433,32 @@ try {
       .getByText(/Notes · Fend off Despair: each player's starting threat −2/)
       .first()
       .waitFor();
-    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await page.getByRole("button", { name: /^Continue campaign/ }).waitFor();
     await checkpoint("wastes-complete", width);
+    // Escape from Mount Gram: Loot the Dungeons captures cards in the staging area.
+    s = await continueCampaign(undefined, width);
+    assert.equal(s.scenarioId, "escape-from-mount-gram");
+    assert.ok(s.staging.some((u) => u.code === ANGMAR.loot));
+    await campaignCard(
+      /^Loot the Dungeons is in each player's staging area/,
+      "gram-setup",
+      width,
+    );
+    // The resolution: a Loot boon joins the pool, and the unique cards left
+    // captured are out of the deck for the rest of the campaign.
+    s = await victory(s, (t) => {
+      (t.angmarCards ??= {}).loot = [{ code: ANGMAR.silverthorn, seat: 0 }];
+    });
+    assert.ok(s.campaign.boons.includes(ANGMAR.silverthorn));
+    assert.equal(s.campaign.deckBoons[ANGMAR.silverthorn], 0);
+    await page.getByText("Silverthorn", { exact: true }).first().waitFor();
+    if (s.campaign.banned?.[0]?.length)
+      await page
+        .getByText(/Notes · left captured, out of the deck: /)
+        .first()
+        .waitFor();
+    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await checkpoint("gram-complete", width);
     await view.c.close();
   }
   const p = await browser.newPage();

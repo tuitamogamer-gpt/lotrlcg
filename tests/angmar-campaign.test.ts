@@ -22,6 +22,7 @@ import { continueCampaign } from "../src/game/campaign";
 import {
   addQuestProgress,
   checkSideQuestDefeats,
+  sideQuestGoal,
 } from "../src/game/side-quests";
 import { CHETWOOD } from "../src/game/chetwood-support";
 import {
@@ -34,15 +35,26 @@ import {
   angmarCampaignStatus,
   angmarInnocent,
   angmarRavaged,
+  angmarRefreshBase,
   angmarResolutionQuestions,
   angmarThreatReduction,
   applyAngmarResolution,
   angmarPendantShadowOptions,
   innocentLimit,
+  LOOT_BOONS,
   newAngmarCampaign,
   SKILL_BOONS,
 } from "../src/game/angmar-campaign";
-import { seatView } from "../src/game/table";
+import { gramState } from "../src/game/mount-gram-support";
+import { reduceThreat } from "../src/game/threat-reduction";
+import {
+  angmarBroochWill,
+  angmarLootAttackKilled,
+  angmarLootCommitted,
+  angmarLootEnemyAttackResolved,
+  angmarSilverthornBonus,
+} from "../src/game/angmar-campaign-loot";
+import { seatView, selectSeat } from "../src/game/table";
 import type { CampaignState, GameState, Unit } from "../src/game/types";
 import art from "./angmar-campaign-art.json";
 
@@ -127,6 +139,7 @@ test("The Angmar Awakened campaign: Intruders in Chetwood's campaign card, Iâri
     "the-weather-hills",
     "deadmens-dike",
     "wastes-of-eriador",
+    "escape-from-mount-gram",
   ]);
   const campaignCard = card(ANGMAR_CAMPAIGN_CARDS["intruders-in-chetwood"]!);
   assert.equal(campaignCard.subtitle, "Angmar Awakened Part 1");
@@ -239,7 +252,28 @@ test("The Angmar Awakened campaign: Intruders in Chetwood's campaign card, Iâri
     ],
     ["Arnor Ravaged", "objective", card(ANGMAR.innocent).back_imagesrc],
   );
-  assert.equal(art.length, 23);
+  const gramCard = card(ANGMAR_CAMPAIGN_CARDS["escape-from-mount-gram"]!);
+  assert.equal(gramCard.subtitle, "Angmar Awakened Part 5");
+  assert.match(
+    gramCard.back_text!,
+    /^Forced: Instead of raising their threat by 1 during the refresh phase, each player raises their threat by the number of completed quest cards plus the number of side quests in the victory display\./,
+  );
+  assert.deepEqual(
+    [card(ANGMAR.loot).quest, card(ANGMAR.loot).victory],
+    [4, 10],
+  );
+  assert.deepEqual(
+    LOOT_BOONS.map((code) => [card(code).name, card(code).type_code]),
+    [
+      ["Berelind", "ally"],
+      ["Chieftain's Brooch", "attachment"],
+      ["Coruhaer", "ally"],
+      ["Laermuin", "ally"],
+      ["Mail of Eärnur", "attachment"],
+      ["Silverthorn", "attachment"],
+    ],
+  );
+  assert.equal(art.length, 32);
   for (const a of art) {
     const bytes = readFileSync(`public${a.localPath}`);
     assert.equal(bytes.length, a.bytes);
@@ -1100,9 +1134,14 @@ test("Determination: attached to a unique character, it readies each character w
   assert.deepEqual(c.boonCopies, { [ANGMAR.determination]: [0] });
   assert.ok(c.burdens.includes(ANGMAR.despair));
   assert.ok(valid(s));
-  assert.throws(
-    () => continueCampaign(s, HEROES, d.id, true, 9),
-    /not available in campaign mode yet/,
+  // The campaign continues with Escape from Mount Gram; Determination joins
+  // its player's deck.
+  const gram = continueCampaign(s, HEROES, d.id, true, 9);
+  assert.equal(gram.scenarioId, "escape-from-mount-gram");
+  assert.ok(
+    [...gram.deck, ...gram.hand.map((u) => u.code)].includes(
+      ANGMAR.determination,
+    ),
   );
 });
 
@@ -1169,4 +1208,305 @@ test("Arnor Ravaged: after an attack damages a character without destroying it, 
   angmarRavaged(s)!.damage = 0;
   damage(s, s.heroes[2].id, 1, { combatDamage: true, enemyId: "enemy" });
   assert.equal(s.heroes[2].damage, 1);
+});
+
+/** The Campaign Log after The Wastes of Eriador (Hardy on Thalin). */
+const afterWastes = (
+  heroes = HEROES,
+  seatHeroes?: number[],
+): CampaignState => ({
+  ...newAngmarCampaign(heroes, seatHeroes),
+  boons: [ANGMAR.hardy],
+  permanent: { "01006": [ANGMAR.hardy] },
+  burdens: [ANGMAR.innocent, ANGMAR.despair],
+  ravaged: true,
+  innocent: 3,
+  completed: ANGMAR_CAMPAIGN_ORDER.slice(0, 4).map((scenarioId) => ({
+    scenarioId,
+    score: 0,
+    rounds: 1,
+  })),
+});
+const gram = (seed = 5, campaign = afterWastes()) =>
+  createGame(seed, d.cards, HEROES, d.id, {
+    scenarioId: "escape-from-mount-gram",
+    playMode: "campaign",
+    campaign,
+  });
+const lootOf = (s: GameState) => s.staging.find((u) => u.code === ANGMAR.loot)!;
+/** Every seat keeps its hand and the setup choices resolve. */
+function openingAll(s: GameState) {
+  for (let i = 0; i < 160; i++) {
+    if (s.choice)
+      s = choose(
+        s,
+        (s.choice.options.find((o) => o.id === "skip") ?? s.choice.options[0])
+          .id,
+      );
+    else if (s.flow?.pending)
+      s = applyAction(reload(s), {
+        type: "CONTINUE",
+        stepId: s.flow.pending.id,
+      });
+    else if (s.phase === "setup") s = applyAction(reload(s), { type: "KEEP" });
+    else break;
+  }
+  return s;
+}
+
+test("Escape from Mount Gram: the captured heroes' Permanent boons are set aside, Loot the Dungeons captures the bottom 5 cards of each captured deck, and it follows each staging area", () => {
+  const s = calm(reload(opening(gram())));
+  const q = gramState(s)!;
+  assert.deepEqual(
+    s.heroes.map((h) => h.code),
+    ["01005"],
+    "Legolas escapes the first cell",
+  );
+  assert.ok(
+    q.capturedDecks[0].some(
+      (u) => u.code === "01006" && !u.attachments.length,
+    ) ||
+      Object.values(q.captured)
+        .flat()
+        .some((u) => u.code === "01006"),
+    "Thalin is captured without his boons",
+  );
+  const loot = lootOf(s);
+  assert.ok(loot, "Loot the Dungeons is in the staging area");
+  assert.equal(q.captured[loot.id].length, 5);
+  assert.ok(angmarRavaged(s), "Arnor Ravaged survives the split");
+  assert.ok(
+    angmarCampaignStatus(s).includes(
+      "Loot the Dungeons is in each player's staging area (0/8 progress): defeating it rescues the cards captured beneath it and lets each player add Berelind, Chieftain's Brooch, Coruhaer, Laermuin, Mail of Eärnur or Silverthorn to their hand.",
+    ),
+  );
+  assert.ok(valid(s));
+  // Two players: each staging area sees it as it is resolved (12 quest points).
+  const heroes = ["01005", "01006", "01007", "01008"];
+  const seats = [
+    { heroes: heroes.slice(0, 2), deckId: STARTERS[1].id },
+    { heroes: heroes.slice(2), deckId: STARTERS[2].id },
+  ];
+  const two = calm(
+    reload(
+      openingAll(
+        createGame(8, STARTERS[1].cards, seats[0].heroes, seats[0].deckId, {
+          scenarioId: "escape-from-mount-gram",
+          playMode: "campaign",
+          seats,
+          campaign: afterWastes(heroes, [2, 2]),
+        }),
+      ),
+    ),
+  );
+  const shared = gramState(two)!;
+  assert.equal(shared.areas.length, 2);
+  selectSeat(two, 0);
+  assert.equal(two.staging.filter((u) => u.code === ANGMAR.loot).length, 1);
+  assert.equal(sideQuestGoal(two, lootOf(two)), 12);
+  selectSeat(two, 1);
+  assert.equal(two.staging.filter((u) => u.code === ANGMAR.loot).length, 1);
+  assert.equal(
+    shared.areas.flatMap((a) => a.staging).filter((u) => u.code === ANGMAR.loot)
+      .length,
+    1,
+    "one physical card",
+  );
+  assert.ok(valid(two));
+});
+
+test("Loot the Dungeons: its defeat rescues the cards beneath it (a rescued hero takes back its Permanent boons) and lets each player take a different boon; the resolution pools them and bans the unique cards left captured", () => {
+  let s = calm(reload(opening(gram())));
+  const q = gramState(s)!;
+  const loot = lootOf(s);
+  // Thalin, captured, is moved beneath Loot the Dungeons.
+  const deck = q.capturedDecks[0];
+  const i = deck.findIndex((u) => u.code === "01006");
+  if (i >= 0) q.captured[loot.id].push(...deck.splice(i, 1));
+  else
+    for (const [host, cards] of Object.entries(q.captured)) {
+      const j = cards.findIndex((u) => u.code === "01006");
+      if (j >= 0) {
+        q.captured[loot.id].push(...cards.splice(j, 1));
+        if (!cards.length) delete q.captured[host];
+        break;
+      }
+    }
+  assert.ok(valid(s));
+  const goal = sideQuestGoal(s, loot);
+  assert.equal(goal, 8);
+  addQuestProgress(s, loot, goal);
+  assert.ok(s.victoryCards!.includes(ANGMAR.loot));
+  const thalin = s.heroes.find((h) => h.code === "01006")!;
+  assert.ok(thalin, "Thalin is rescued");
+  assert.deepEqual(
+    thalin.attachments.map((a) => a.code),
+    [ANGMAR.hardy],
+    "his Permanent boon is attached again",
+  );
+  flush(s);
+  for (let k = 0; k < 5 && s.choice && !s.choice.title.startsWith("Loot"); k++)
+    s = choose(s, s.choice.options[0].id);
+  assert.equal(
+    s.choice!.title,
+    "Loot the Dungeons · You may add a boon to your hand",
+  );
+  assert.deepEqual(
+    s.choice!.options.map((o) => o.id),
+    [...LOOT_BOONS, "skip"],
+  );
+  s = choose(s, ANGMAR.silverthorn);
+  assert.ok(s.hand.some((u) => u.code === ANGMAR.silverthorn));
+  // The refresh phase raises threat by the completed quest cards plus the
+  // side quests in the victory display.
+  assert.equal(angmarRefreshBase(s), 2);
+  s = calm(s);
+  // A unique card left in the captured deck is banned for the campaign.
+  const unique = s.deck.find(
+    (code) => card(code).is_unique && card(code).type_code !== "hero",
+  )!;
+  assert.ok(unique, "a unique card in the deck");
+  s.deck.splice(s.deck.indexOf(unique), 1);
+  const prisoner = make(s, unique);
+  prisoner.owner = 0;
+  gramState(s)!.capturedDecks[0].push(prisoner);
+  win(s);
+  const c = s.campaign!;
+  assert.ok(c.boons.includes(ANGMAR.silverthorn));
+  assert.equal(c.deckBoons![ANGMAR.silverthorn], 0);
+  assert.ok(c.banned![0].includes(unique), JSON.stringify(c.banned));
+  assert.ok(valid(s));
+  // The next chapter is not available yet; the ban applies to later decks.
+  assert.throws(
+    () => continueCampaign(s, HEROES, d.id, true, 9),
+    /not available in campaign mode yet/,
+  );
+  const replay = gram(6, { ...afterWastes(), banned: { 0: [unique] } });
+  assert.ok(
+    ![...replay.deck, ...replay.hand.map((u) => u.code)].includes(unique),
+    "banned from the deck",
+  );
+});
+
+test("Loot the Dungeons' boons: Chieftain's Brooch, Silverthorn's bonus and Response, Berelind's progress, Coruhaer's damage, Laermuin's and Mail of Eärnur's healing", () => {
+  const base = calm(reload(opening(weather())));
+  const hero = (s: GameState, code: string) =>
+    s.heroes.find((h) => h.code === code)!;
+  // Chieftain's Brooch: each ally sharing a Trait with its hero gets +1 willpower.
+  let s = structuredClone(base);
+  const ally = make(s, ANGMAR.laermuin);
+  s.allies.push(ally);
+  assert.equal(angmarBroochWill(s, ally), 0);
+  hero(s, "01005").attachments.push({
+    id: `a${s.nextId++}`,
+    code: ANGMAR.brooch,
+    exhausted: false,
+  });
+  assert.equal(angmarBroochWill(s, ally), 0, "Legolas shares no Trait");
+  const ranger = make(s, "01005");
+  void ranger;
+  // Mail of Eärnur: +2 hit points, and a heal after a player's threat is reduced.
+  s = structuredClone(base);
+  const mailHero = hero(s, "01003");
+  const health = stats(s, mailHero).health;
+  mailHero.attachments.push({
+    id: `a${s.nextId++}`,
+    code: ANGMAR.mail,
+    exhausted: false,
+  });
+  assert.equal(stats(s, mailHero).health, health + 2);
+  mailHero.damage = 2;
+  s.threat = 30;
+  reduceThreat(s, 2);
+  flush(s);
+  assert.match(
+    s.choice!.title,
+    /^Mail of Eärnur · Heal 1 damage from Glóin\?$/,
+  );
+  s = choose(s, s.choice!.options[0].id);
+  for (let k = 0; k < 3 && s.choice; k++) s = choose(s, s.choice.options[0].id);
+  assert.equal(hero(s, "01003").damage, 1);
+  // Silverthorn: +1 attack and +1 defense against an enemy sharing a Trait
+  // with an enemy in the victory display; its Response adds a destroyed enemy
+  // to the victory display (once per game).
+  s = structuredClone(base);
+  const enemyCode = s.encounterDeck.find((c) => card(c).type_code === "enemy")!;
+  const silverHero = hero(s, "01005");
+  const silver = `a${s.nextId++}`;
+  silverHero.attachments.push({
+    id: silver,
+    code: ANGMAR.silverthorn,
+    exhausted: false,
+  });
+  const enemy = make(s, enemyCode);
+  assert.equal(angmarSilverthornBonus(s, silverHero, enemy), 0);
+  (s.victoryCards ??= []).push(enemyCode);
+  assert.equal(angmarSilverthornBonus(s, silverHero, enemy), 1);
+  s.victoryCards = [];
+  s.encounterDeck.splice(s.encounterDeck.indexOf(enemyCode), 1);
+  s.encounterDiscard.push(enemyCode);
+  angmarLootAttackKilled(s, enemy, [silverHero.id]);
+  flush(s);
+  assert.match(
+    s.choice!.title,
+    /^Silverthorn · Add .+ to the victory display\?$/,
+  );
+  s = choose(s, "victory");
+  for (let k = 0; k < 3 && s.choice; k++) s = choose(s, s.choice.options[0].id);
+  assert.ok(s.victoryCards!.includes(enemyCode));
+  assert.ok(!s.encounterDiscard.includes(enemyCode));
+  s.encounterDiscard.push(enemyCode);
+  angmarLootAttackKilled(s, enemy, [hero(s, "01005").id]);
+  flush(s);
+  assert.equal(s.choice, null, "once per game");
+  // Berelind: 1 progress on a quest card in play.
+  s = structuredClone(base);
+  const berelind = make(s, ANGMAR.berelind);
+  s.allies.push(berelind);
+  const progress = s.progress;
+  angmarLootAttackKilled(s, enemy, [berelind.id]);
+  flush(s);
+  assert.match(
+    s.choice!.title,
+    /^Berelind · Place 1 progress on a quest card in play\?$/,
+  );
+  const main = s.choice!.options[0];
+  s = choose(s, main.id);
+  for (let k = 0; k < 3 && s.choice; k++) s = choose(s, s.choice.options[0].id);
+  assert.equal(s.progress, progress + 1);
+  // Coruhaer: spend 1 resource to deal 2 damage to the attacking enemy.
+  s = structuredClone(base);
+  const coruhaer = make(s, ANGMAR.coruhaer);
+  s.allies.push(coruhaer);
+  const attacker = make(s, enemyCode);
+  s.engaged.push(attacker);
+  s.encounterDeck.splice(s.encounterDeck.indexOf(enemyCode), 1);
+  hero(s, "01005").resources = 1;
+  angmarLootEnemyAttackResolved(s, attacker, [coruhaer.id]);
+  flush(s);
+  assert.match(
+    s.choice!.title,
+    /^Coruhaer · Spend 1 resource to deal 2 damage to /,
+  );
+  s = choose(s, hero(s, "01005").id);
+  for (let k = 0; k < 3 && s.choice; k++) s = choose(s, s.choice.options[0].id);
+  assert.equal(hero(s, "01005").resources, 0);
+  assert.ok(
+    !s.engaged.some((u) => u.id === attacker.id) ||
+      s.engaged.find((u) => u.id === attacker.id)!.damage === 2,
+  );
+  // Laermuin: heal 1 damage from a character after it commits to a quest.
+  s = structuredClone(base);
+  const laermuin = make(s, ANGMAR.laermuin);
+  s.allies.push(laermuin);
+  hero(s, "01006").damage = 2;
+  angmarLootCommitted(s, [laermuin]);
+  flush(s);
+  assert.match(
+    s.choice!.title,
+    /^Laermuin · Heal 1 damage from a character\?$/,
+  );
+  s = choose(s, hero(s, "01006").id);
+  for (let k = 0; k < 3 && s.choice; k++) s = choose(s, s.choice.options[0].id);
+  assert.equal(hero(s, "01006").damage, 1);
 });

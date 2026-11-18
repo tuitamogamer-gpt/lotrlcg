@@ -178,6 +178,8 @@ const rules: Record<string, AttachmentRule> = {
   "10168": { type: "hero", will: -2 },
   "10169": { type: "hero", attack: -2 },
   "10170": { type: "hero", defense: -2 },
+  // Loot the Dungeons' Mail of Eärnur.
+  "10180": { type: "hero", health: 2 },
   // The Battle of the Pelennor Fields' boons (Esquire of Rohan, Esquire of Gondor).
   "145014": { type: "hero", grantsTraits: ["Rohan"] },
   "145015": { type: "hero", grantsTraits: ["Gondor"] },

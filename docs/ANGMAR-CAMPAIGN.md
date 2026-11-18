@@ -4,11 +4,11 @@ Campaign mode for the nine scenarios of the Angmar Awakened cycle, with the
 Angmar Awakened Campaign Expansion's campaign cards, boons and burdens (the
 campaign pool CCC.3, 38 cards). The lobby's campaign mode offers it as the
 third campaign, next to Mirkwood Paths and The Lord of the Rings, for one
-fellowship of one to four local players. Its first four chapters, Intruders
-in Chetwood, The Weather Hills, Deadmen's Dike and The Wastes of Eriador, are
-supported; the campaign log is kept after them, and the end of the game says
-that the next chapter, Escape from Mount Gram, is not available in campaign
-mode yet.
+fellowship of one to four local players. Its first five chapters, Intruders
+in Chetwood, The Weather Hills, Deadmen's Dike, The Wastes of Eriador and
+Escape from Mount Gram, are supported; the campaign log is kept after them,
+and the end of the game says that the next chapter, Across the Ettenmoors, is
+not available in campaign mode yet.
 
 ## Sources
 
@@ -52,7 +52,12 @@ mode yet.
   the interlude before each chapter assigns it (or leaves it out), the log
   keeps the choice, and the card joins that deck before the starting hand.
   Each player's copy of Determination joins that player's deck in every
-  chapter after The Wastes of Eriador.
+  chapter after The Wastes of Eriador. Loot the Dungeons' boons join the deck
+  of the player who took them, and the interlude can reassign them like
+  Iârion's Pendant.
+- **Banned cards**: the unique cards a player left in their captured deck at
+  the end of Escape from Mount Gram are left out of that player's deck in the
+  later chapters; the journal lists them.
 - **Starting threat**: each defeat of Fend off Despair lowers every player's
   starting threat by 2 in the later chapters (cumulatively, never below 0).
 - **The campaign card** of each chapter lies next to the quest deck (the quest
@@ -106,13 +111,25 @@ mode yet.
 | Fend off Despair (side quest, 8 quest points, Victory 10) | While it is in play each event gains doomed 1 (each player raises their threat by 1 as it is played). When it is defeated, every player's starting threat is lowered by 2 in the later chapters (recorded on a win; cumulative). Once in the pool it is shuffled into each later encounter deck.                                                                          |
 | Arnor Ravaged (burden objective, Doom.)                   | Protect the Innocent's other side, a runtime card of its own (10158.B, its scan's back face). Setup: it enters the staging area with the damage noted in the log. Forced: after an attack damages a character but does not destroy it, 1 of its damage moves to that character (and can destroy it).                                                                      |
 
+## Escape from Mount Gram (Part 5)
+
+| Card                                                       | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Campaign card                                              | Setup: the Permanent boons of the heroes added to a captured deck are set aside (they leave play with them); once each player has formed their captured deck, Loot the Dungeons enters the staging area and captures the bottom 5 cards of each captured deck. Other side: each refresh phase, each player raises their threat by the completed quest cards plus the side quests in the victory display instead of 1; a rescued hero takes back the Permanent boons the log assigns to it. Resolution: the unique cards still in a player's captured deck, and not in play, are banned from that player's deck for the rest of the campaign. |
+| Loot the Dungeons (side quest, 4 quest points, Victory 10) | It is in each player's staging area: once the staging areas split, it follows the area being resolved (as Arnor Ravaged does), so each area sees and can quest against the same card. +4 quest points per player in the game. When it is defeated, the cards captured beneath it are rescued, and each player in turn may add a different one of its six boons to their hand; a won chapter pools them.                                                                                                                                                                                                                                      |
+| Berelind (boon ally, cost 1)                               | Response: after Berelind attacks and destroys an enemy, place 1 progress on a quest card in play (the main quest or a side quest).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Chieftain's Brooch (boon attachment, cost 2)               | Attach to a hero. Each ally that shares a Trait with that hero gets +1 willpower.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Coruhaer (boon ally, cost 0)                               | Response: after Coruhaer defends an attack, spend 1 resource from a hero you control to deal 2 damage to the attacking enemy.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Laermuin (boon ally, cost 2)                               | Response: after Laermuin commits to a quest, heal 1 damage from a character.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Mail of Eärnur (boon attachment, cost 1)                   | Attach to a hero: +2 hit points. Response: after a player's threat is reduced, heal 1 damage from that hero.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Silverthorn (boon attachment, cost 0)                      | Attach to a hero: +1 attack and +1 defense while attacking or defending against an enemy that shares a Trait with an enemy in the victory display. Response (once per game): after that hero attacks and destroys an enemy, add it to the victory display from the encounter discard pile.                                                                                                                                                                                                                                                                                                                                                   |
+
 ## Not supported yet
 
-Escape from Mount Gram, Across the Ettenmoors, The Treachery of Rhudaur, The
-Battle of Carn Dûm and The Dread Realm follow, with their boons and burdens
-(Loot the Dungeons and its six boons, Losing Time, the three Clue boons and the
-four Carn Dûm boons). They also bring Thaurdir's burdens' setup in The
-Treachery of Rhudaur and The Battle of Carn Dûm.
+Across the Ettenmoors, The Treachery of Rhudaur, The Battle of Carn Dûm and The
+Dread Realm follow, with their boons and burdens (Losing Time, the three Clue
+boons and the four Carn Dûm boons). They also bring Thaurdir's burdens' setup
+in The Treachery of Rhudaur and The Battle of Carn Dûm.
 
 ## Verification
 
@@ -122,7 +139,7 @@ npm run build
 npm run test:browser-angmar-campaign
 ```
 
-`tests/angmar-campaign.test.ts` (16 tests) covers the registered cards' texts
+`tests/angmar-campaign.test.ts` (19 tests) covers the registered cards' texts
 and faces, the chapter order and the Amarthiúl rule, Intruders in Chetwood's
 setup (one or two players), Iârion's Pendant on Iârion and its bonus,
 Protect the Innocent's damage, progress and loss, the Pendant's two
@@ -137,12 +154,15 @@ and Amarthiúl's Courage; The Wastes of Eriador's free changes, its
 Determination in the starting hand and through a mulligan, Iârion's Pendant
 in its assigned deck, Determination's attachment, readying and "determined"
 log, Fend off Despair's doomed 1 and its starting threat reduction, and Arnor
-Ravaged's damage. The browser suite starts a new Angmar Awakened
+Ravaged's damage; Escape from Mount Gram's captured boons, Loot the Dungeons'
+captures, its place in each staging area (two players), its quest points,
+defeat, rescue and boon choices, the refresh threat, the bans and their later
+decks, and the six boons' scripts. The browser suite starts a new Angmar Awakened
 campaign through the lobby, plays Intruders in Chetwood's setup choice, records
 its resolution, continues into The Weather Hills, attaches Hardy through
 Mysterious Omens' choice, continues into Deadmen's Dike, moves Thaurdir's
 Spite to a hero, answers the resolution's choice in the end-of-game dialog,
 puts Iârion's Pendant in a deck in the interlude, continues into The Wastes
-of Eriador and records its resolution, opens the campaign card's state in the
-quest inspector and checks the journal at 1280, 390 and 320 pixels (42
-checkpoints), and checks the 23 pinned faces.
+of Eriador and Escape from Mount Gram and records their resolutions, opens the
+campaign card's state in the quest inspector and checks the journal at 1280,
+390 and 320 pixels (48 checkpoints), and checks the 32 pinned faces.
