@@ -1,0 +1,2735 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The Woodland Realm",
+  "slug": "the-woodland-realm",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "octgn:057a8676-b610-4806-aa86-edf9b03060e8",
+      "octgnid": "057a8676-b610-4806-aa86-edf9b03060e8",
+      "name": "Mirkwood Path",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "Forced: When Mirkwood Path is explored, discard the top card of the encounter deck. If that card is a location, add it to the staging area.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 52,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 1,
+      "corner_text": "0",
+      "encounter_set": "The Woodland Realm 14",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "1"
+      },
+      "imagesrc": "/cards/057a8676-b610-4806-aa86-edf9b03060e8.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 52,
+          "quantity": 2,
+          "octgnid": "057a8676-b610-4806-aa86-edf9b03060e8",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/057a8676-b610-4806-aa86-edf9b03060e8.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:0daf7bcd-4719-48e6-948a-0230aa96d34c",
+      "octgnid": "0daf7bcd-4719-48e6-948a-0230aa96d34c",
+      "name": "The Goblins' Cave",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Mountain. Cave.",
+      "text": "While The Goblin's Cave is in the staging area, each Orc enemy gets +1 [attack]. Forced: When The Goblin's Cave is explored, the opposing team searches the encounter deck and discard pile for a non-unique Orc enemy and adds it to the staging area.",
+      "is_unique": true,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 25,
+      "quantity": 1,
+      "threat": 3,
+      "quest": 5,
+      "corner_text": "2",
+      "encounter_set": "The Woodland Realm 05",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/0daf7bcd-4719-48e6-948a-0230aa96d34c.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 25,
+          "quantity": 1,
+          "octgnid": "0daf7bcd-4719-48e6-948a-0230aa96d34c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0daf7bcd-4719-48e6-948a-0230aa96d34c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:10e74386-4dad-42c1-8f29-bb9e35e044a2",
+      "octgnid": "10e74386-4dad-42c1-8f29-bb9e35e044a2",
+      "name": "Gathering Gloom",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player raises his threat by X, where X is 1 more than the stage number of the main quest.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 17,
+      "quantity": 2,
+      "corner_text": "0",
+      "encounter_set": "The Woodland Realm 02",
+      "printed_stats": {},
+      "imagesrc": "/cards/10e74386-4dad-42c1-8f29-bb9e35e044a2.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 17,
+          "quantity": 2,
+          "octgnid": "10e74386-4dad-42c1-8f29-bb9e35e044a2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/10e74386-4dad-42c1-8f29-bb9e35e044a2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:13e84f42-66ff-4abb-819d-a4b0ad088bb1",
+      "octgnid": "13e84f42-66ff-4abb-819d-a4b0ad088bb1",
+      "name": "A Chosen Path",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The opposing teach searches the top 5 cards of the encounter deck for a card with cost 1 or less (2 or less if there are two or more players), sets it aside, and shuffles the encounter deck. Reveal the set aside card. Its 'when revealed' effects cannot be canceled.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 5,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Woodland Realm",
+      "side": "A",
+      "back_name": "Ambushed at Night",
+      "back_text": "Each enemy in the staging area gets -10 engagement cost, cannot be optionally engaged and cannot take damage. Forced: After characters are committed to the quest, no more than 5 progress can be placed here this round (10 progress instead if Mendor is committed to the quest).",
+      "back_type_code": "quest",
+      "back_quest": 20,
+      "back_imagesrc": "/cards/13e84f42-66ff-4abb-819d-a4b0ad088bb1.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/13e84f42-66ff-4abb-819d-a4b0ad088bb1.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 5,
+          "quantity": 1,
+          "octgnid": "13e84f42-66ff-4abb-819d-a4b0ad088bb1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/13e84f42-66ff-4abb-819d-a4b0ad088bb1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:14304a2f-f6f8-4f78-adc6-5ee35bc9a08e",
+      "octgnid": "14304a2f-f6f8-4f78-adc6-5ee35bc9a08e",
+      "name": "Wolf Rider",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "When Revealed: If there is another Orc enemy in the staging area, Wolf Rider gains surge.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 24,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 2,
+      "defense": 2,
+      "health": 2,
+      "engagement": 23,
+      "corner_text": "0",
+      "encounter_set": "The Woodland Realm 05",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "2",
+        "health": "2",
+        "engagement": "23"
+      },
+      "imagesrc": "/cards/14304a2f-f6f8-4f78-adc6-5ee35bc9a08e.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 24,
+          "quantity": 3,
+          "octgnid": "14304a2f-f6f8-4f78-adc6-5ee35bc9a08e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/14304a2f-f6f8-4f78-adc6-5ee35bc9a08e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:1e7ccc5d-2f76-4295-add4-c06da3da1516",
+      "octgnid": "1e7ccc5d-2f76-4295-add4-c06da3da1516",
+      "name": "Hatred Rekindled",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each engaged enemy makes an immediate attack. If no attacks were made this way, Hatred Rekindled gains surge.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 35,
+      "quantity": 1,
+      "corner_text": "1",
+      "encounter_set": "The Woodland Realm 08",
+      "printed_stats": {},
+      "imagesrc": "/cards/1e7ccc5d-2f76-4295-add4-c06da3da1516.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 35,
+          "quantity": 1,
+          "octgnid": "1e7ccc5d-2f76-4295-add4-c06da3da1516",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1e7ccc5d-2f76-4295-add4-c06da3da1516.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2b10aa08-31ac-4133-b613-f7fde8a2444c",
+      "octgnid": "2b10aa08-31ac-4133-b613-f7fde8a2444c",
+      "name": "A Frightened Beast",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player must choose: either raise your threat by 1 for each questing character you control, or discard a questing character you control.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 50,
+      "quantity": 2,
+      "corner_text": "0",
+      "encounter_set": "The Woodland Realm 13",
+      "printed_stats": {},
+      "imagesrc": "/cards/2b10aa08-31ac-4133-b613-f7fde8a2444c.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 50,
+          "quantity": 2,
+          "octgnid": "2b10aa08-31ac-4133-b613-f7fde8a2444c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2b10aa08-31ac-4133-b613-f7fde8a2444c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2be47628-65a9-4809-87aa-6251eb68b4bc",
+      "octgnid": "2be47628-65a9-4809-87aa-6251eb68b4bc",
+      "name": "Forest Grove",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "X is 1 more than the stage number of the main quest. Travel: Each player deals X damage to a character he controls.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 13,
+      "quantity": 2,
+      "corner_text": "0",
+      "encounter_set": "The Woodland Realm 01",
+      "printed_stats": {
+        "threat": "X",
+        "quest": "X"
+      },
+      "imagesrc": "/cards/2be47628-65a9-4809-87aa-6251eb68b4bc.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 13,
+          "quantity": 2,
+          "octgnid": "2be47628-65a9-4809-87aa-6251eb68b4bc",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2be47628-65a9-4809-87aa-6251eb68b4bc.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2e4aea1e-abb5-48c6-9f83-abbf9b6bcf72",
+      "octgnid": "2e4aea1e-abb5-48c6-9f83-abbf9b6bcf72",
+      "name": "On the Trail",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The opposing team searches the top 5 cards of the encounter deck for a card with cost 2 or less (3 or less if there are two or more players), sets it aside, and shuffles the encounter deck. Reveal the set aside card. It's 'when revealed' effects cannot be canceled.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 7,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "The Woodland Realm",
+      "side": "A",
+      "back_name": "The Forest of Great Fear",
+      "back_text": "When Revealed: The opposing team searches the encounter deck and discard pile for an enemy, adds it to the staging area, the places a resource on an enemy in play with cost 2 or higher. While this stage is in play, the enemy with a resource gets +2 [attack], +2 [defense], and is immune to player card effects. This stage cannot be defeated while the enemy witha resource is in play. When this stage is defeated, the players win the game.",
+      "back_type_code": "quest",
+      "back_quest": 15,
+      "back_imagesrc": "/cards/2e4aea1e-abb5-48c6-9f83-abbf9b6bcf72.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/2e4aea1e-abb5-48c6-9f83-abbf9b6bcf72.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 7,
+          "quantity": 1,
+          "octgnid": "2e4aea1e-abb5-48c6-9f83-abbf9b6bcf72",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2e4aea1e-abb5-48c6-9f83-abbf9b6bcf72.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3360d53e-e01b-4d22-b2e3-4e1733a4896d",
+      "octgnid": "3360d53e-e01b-4d22-b2e3-4e1733a4896d",
+      "name": "Chieftain Ufthak",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "Cannot have non-objective player card attachments or take non-combat damage. Forced: After Chieftain Ufthak engages you, the opposing team searches the encounter deck and discard pile for an Orc enemy of cost 1 or less and puts it into play engaged with you. Shuffle the encounter deck.",
+      "is_unique": true,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 15,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 6,
+      "defense": 3,
+      "health": 6,
+      "engagement": 36,
+      "corner_text": "3",
+      "encounter_set": "The Woodland Realm 02",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "6",
+        "defense": "3",
+        "health": "6",
+        "engagement": "36"
+      },
+      "imagesrc": "/cards/3360d53e-e01b-4d22-b2e3-4e1733a4896d.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 15,
+          "quantity": 1,
+          "octgnid": "3360d53e-e01b-4d22-b2e3-4e1733a4896d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3360d53e-e01b-4d22-b2e3-4e1733a4896d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:34635348-ab17-4d00-bc6f-7ced07821168",
+      "octgnid": "34635348-ab17-4d00-bc6f-7ced07821168",
+      "name": "Wicked Spider",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Spider.",
+      "text": "Forced: After Wicked Spider engages you, discard an exhausted character you control.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 48,
+      "quantity": 1,
+      "threat": 2,
+      "attack": 4,
+      "defense": 2,
+      "health": 4,
+      "engagement": 34,
+      "corner_text": "1",
+      "encounter_set": "The Woodland Realm 13",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "2",
+        "health": "4",
+        "engagement": "34"
+      },
+      "imagesrc": "/cards/34635348-ab17-4d00-bc6f-7ced07821168.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 48,
+          "quantity": 1,
+          "octgnid": "34635348-ab17-4d00-bc6f-7ced07821168",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/34635348-ab17-4d00-bc6f-7ced07821168.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:34a6c6ed-1dff-4264-815c-367ff47e73a6",
+      "octgnid": "34a6c6ed-1dff-4264-815c-367ff47e73a6",
+      "name": "Pack of Wargs",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Cannot have non-objective player card attachments or take non-combat damage. Forced: After Pack of Wargs is dealt a shadow card with no shadow effect, it makes an additional attack after this one. Do not deal it a shadow card for this attack.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 45,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 4,
+      "defense": 2,
+      "health": 6,
+      "engagement": 36,
+      "corner_text": "1",
+      "encounter_set": "The Woodland Realm 12",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "4",
+        "defense": "2",
+        "health": "6",
+        "engagement": "36"
+      },
+      "imagesrc": "/cards/34a6c6ed-1dff-4264-815c-367ff47e73a6.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 45,
+          "quantity": 1,
+          "octgnid": "34a6c6ed-1dff-4264-815c-367ff47e73a6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/34a6c6ed-1dff-4264-815c-367ff47e73a6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:35924e07-9473-4701-855a-11f69dc83185",
+      "octgnid": "35924e07-9473-4701-855a-11f69dc83185",
+      "name": "On the Trail",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The opposing team searches the top 5 cards of the encounter deck for a card with cost 2 or less (3 or less if there are two or more players), sets it aside, and shuffles the encounter deck. Reveal the set aside card. It's 'when revealed' effects cannot be canceled.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 9,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "The Woodland Realm",
+      "side": "A",
+      "back_name": "Escape from Taur-Nu-Fuin",
+      "back_text": "Forced: At the beginning of the quest phase, discard cards from the top of the encounter deck until a location is discarded. Add that location to the staging area.If the players defeat this stage, they win the game.",
+      "back_type_code": "quest",
+      "back_quest": 20,
+      "back_imagesrc": "/cards/35924e07-9473-4701-855a-11f69dc83185.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/35924e07-9473-4701-855a-11f69dc83185.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 9,
+          "quantity": 1,
+          "octgnid": "35924e07-9473-4701-855a-11f69dc83185",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/35924e07-9473-4701-855a-11f69dc83185.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:35fb5564-b4a1-4730-9e4d-65bd2e6d43c4",
+      "octgnid": "35fb5564-b4a1-4730-9e4d-65bd2e6d43c4",
+      "name": "Spider Den",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "Immune to player card effects. Travel: The opposing team searches the encounter deck and discard pile for a 0 cost enemy and adds it to the staging area, if able (1 cost or less if there are two or more players). Shuffle the encounter deck.",
+      "is_unique": true,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 10,
+      "quantity": 1,
+      "threat": 1,
+      "quest": 1,
+      "encounter_set": "The Woodland Realm",
+      "back_name": "Mendor",
+      "back_text": "Ranged. Sentinel.\nThe first player gains control of Mendor. If Mendor leaves play, the players lose the game.",
+      "back_type_code": "objective-ally",
+      "back_imagesrc": "/cards/35fb5564-b4a1-4730-9e4d-65bd2e6d43c4.B.jpg",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "1"
+      },
+      "imagesrc": "/cards/35fb5564-b4a1-4730-9e4d-65bd2e6d43c4.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 10,
+          "quantity": 1,
+          "octgnid": "35fb5564-b4a1-4730-9e4d-65bd2e6d43c4",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/35fb5564-b4a1-4730-9e4d-65bd2e6d43c4.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:37f0bdca-11d8-40ba-97cd-bbe2b8190cd5",
+      "octgnid": "37f0bdca-11d8-40ba-97cd-bbe2b8190cd5",
+      "name": "Vastness of Mirkwood",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The opposing team searches the top 5 cards of the encounter deck for a card with cost equal to or less than the stage number of the main quest, sets it aside and shuffles the encounter deck. Then, reveal the set aside card.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 38,
+      "quantity": 1,
+      "corner_text": "1",
+      "encounter_set": "The Woodland Realm 09",
+      "printed_stats": {},
+      "imagesrc": "/cards/37f0bdca-11d8-40ba-97cd-bbe2b8190cd5.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 38,
+          "quantity": 1,
+          "octgnid": "37f0bdca-11d8-40ba-97cd-bbe2b8190cd5",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/37f0bdca-11d8-40ba-97cd-bbe2b8190cd5.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3b855783-5b90-4788-802e-e7c1e81461d8",
+      "octgnid": "3b855783-5b90-4788-802e-e7c1e81461d8",
+      "name": "Ungoliant's Spawn",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Spider.",
+      "text": "Cannot have non-objective player card attachments or take non-combat damage.While Ungoliant's Spawn is in the staging area, characters cannot be readied by player card effects.",
+      "is_unique": true,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 12,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 6,
+      "defense": 3,
+      "health": 8,
+      "engagement": 38,
+      "corner_text": "3",
+      "encounter_set": "The Woodland Realm 01",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "6",
+        "defense": "3",
+        "health": "8",
+        "engagement": "38"
+      },
+      "imagesrc": "/cards/3b855783-5b90-4788-802e-e7c1e81461d8.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 12,
+          "quantity": 1,
+          "octgnid": "3b855783-5b90-4788-802e-e7c1e81461d8",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3b855783-5b90-4788-802e-e7c1e81461d8.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:41928f89-4736-42f9-b789-9ea670d26639",
+      "octgnid": "41928f89-4736-42f9-b789-9ea670d26639",
+      "name": "Labyrinthine Woods",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "When Revealed: Until the end of the phase, each location in the staging area gets +1 [threat].",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 37,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 3,
+      "corner_text": "0",
+      "encounter_set": "The Woodland Realm 09",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/41928f89-4736-42f9-b789-9ea670d26639.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 37,
+          "quantity": 2,
+          "octgnid": "41928f89-4736-42f9-b789-9ea670d26639",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/41928f89-4736-42f9-b789-9ea670d26639.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:473e56fe-31b8-4637-acdb-a72a7138237b",
+      "octgnid": "473e56fe-31b8-4637-acdb-a72a7138237b",
+      "name": "Despair",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Until the end of the round, treat each character's printed text box as if it were blank (except for Traits).",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 14,
+      "quantity": 2,
+      "corner_text": "0",
+      "encounter_set": "The Woodland Realm 01",
+      "printed_stats": {},
+      "imagesrc": "/cards/473e56fe-31b8-4637-acdb-a72a7138237b.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 14,
+          "quantity": 2,
+          "octgnid": "473e56fe-31b8-4637-acdb-a72a7138237b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/473e56fe-31b8-4637-acdb-a72a7138237b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4b9d24ad-1ae3-4e49-a675-a27fc84c289b",
+      "octgnid": "4b9d24ad-1ae3-4e49-a675-a27fc84c289b",
+      "name": "Mountains of Mirkwood",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Mountains.",
+      "text": "While Mountains of Mirkwood is in the staging area, it gains: \"Forced: At the end of the round, raise each player's threat by 2.\"",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 34,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 4,
+      "corner_text": "0",
+      "encounter_set": "The Woodland Realm 08",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/4b9d24ad-1ae3-4e49-a675-a27fc84c289b.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 34,
+          "quantity": 2,
+          "octgnid": "4b9d24ad-1ae3-4e49-a675-a27fc84c289b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4b9d24ad-1ae3-4e49-a675-a27fc84c289b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4cf56614-3155-4a84-85dc-74c6cef00ae3",
+      "octgnid": "4cf56614-3155-4a84-85dc-74c6cef00ae3",
+      "name": "Driven by Shadow",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The opposing team attaches Driven by Shadow to an enemy and returns it to the staging area. (Counts as a Condition attachment with the text: \"Limit 1 per enemy. Attached enemy gets +2 [threat], +2 [attack], +2 [defense] and is immune to player card effects.\") If there is no enemy in play, Driven by Shadow gains surge.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 26,
+      "quantity": 1,
+      "corner_text": "1",
+      "encounter_set": "The Woodland Realm 05",
+      "printed_stats": {},
+      "imagesrc": "/cards/4cf56614-3155-4a84-85dc-74c6cef00ae3.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 26,
+          "quantity": 1,
+          "octgnid": "4cf56614-3155-4a84-85dc-74c6cef00ae3",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4cf56614-3155-4a84-85dc-74c6cef00ae3.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4d5a388c-d710-4663-ab96-a3a914da2a24",
+      "octgnid": "4d5a388c-d710-4663-ab96-a3a914da2a24",
+      "name": "Giant Web",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "When Revealed: Make Giant Web the active location. Return any previous location to the staging area.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 31,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 4,
+      "corner_text": "0",
+      "encounter_set": "The Woodland Realm 07",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/4d5a388c-d710-4663-ab96-a3a914da2a24.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 31,
+          "quantity": 2,
+          "octgnid": "4d5a388c-d710-4663-ab96-a3a914da2a24",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4d5a388c-d710-4663-ab96-a3a914da2a24.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4fd47b8b-1132-4e90-967c-b15369215025",
+      "octgnid": "4fd47b8b-1132-4e90-967c-b15369215025",
+      "name": "Captured by Spiders",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Add Spider Den to the staging area. The opposing team searches the encounter deck for one different 0 cost enemy or 0 cost location per player and adds it to the staging area. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 1,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The Woodland Realm",
+      "side": "A",
+      "back_name": "Captured by Spiders",
+      "back_text": "Setup: Add Spider Den to the staging area. The opposing team searches the encounter deck for one different 0 cost enemy or 0 cost location per player and adds it to the staging area. Shuffle the encounter deck. Forced: When Spider Den is explored, flip it over and put Mendor into play under the first player's control, ready. This stage cannot be defeated unless the first player controls Mendor.",
+      "back_type_code": "quest",
+      "back_quest": 10,
+      "back_imagesrc": "/cards/4fd47b8b-1132-4e90-967c-b15369215025.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/4fd47b8b-1132-4e90-967c-b15369215025.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 1,
+          "quantity": 1,
+          "octgnid": "4fd47b8b-1132-4e90-967c-b15369215025",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4fd47b8b-1132-4e90-967c-b15369215025.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:60057e26-14f3-468c-ba70-4b14aea7d49a",
+      "octgnid": "60057e26-14f3-468c-ba70-4b14aea7d49a",
+      "name": "Abandoned Camp",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "Forced: When Abandoned Camp leaves play as an explored location, the opposing team chooses a card in the encounter discard pile and shuffles it into the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 16,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 2,
+      "corner_text": "0",
+      "encounter_set": "The Woodland Realm 02",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/60057e26-14f3-468c-ba70-4b14aea7d49a.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 16,
+          "quantity": 2,
+          "octgnid": "60057e26-14f3-468c-ba70-4b14aea7d49a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/60057e26-14f3-468c-ba70-4b14aea7d49a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:69c3d8f9-750a-4903-be32-588898fd766e",
+      "octgnid": "69c3d8f9-750a-4903-be32-588898fd766e",
+      "name": "Lost and Witless",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player reveals his hand and discards each ally card revealed this way.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 47,
+      "quantity": 2,
+      "corner_text": "0",
+      "encounter_set": "The Woodland Realm 12",
+      "printed_stats": {},
+      "imagesrc": "/cards/69c3d8f9-750a-4903-be32-588898fd766e.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 47,
+          "quantity": 2,
+          "octgnid": "69c3d8f9-750a-4903-be32-588898fd766e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/69c3d8f9-750a-4903-be32-588898fd766e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6d012dfd-07bb-40d5-8da7-2e4d9bad9bcd",
+      "octgnid": "6d012dfd-07bb-40d5-8da7-2e4d9bad9bcd",
+      "name": "Dark-wood Grove",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "While Dark-wood Grove is in the staging area, it gains: \"Forced: After a 'when revealed' effect is canceled, raise each player's threat by 3.\" Travel: Reveal the top card of the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 46,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 4,
+      "corner_text": "1",
+      "encounter_set": "The Woodland Realm 12",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/6d012dfd-07bb-40d5-8da7-2e4d9bad9bcd.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 46,
+          "quantity": 2,
+          "octgnid": "6d012dfd-07bb-40d5-8da7-2e4d9bad9bcd",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6d012dfd-07bb-40d5-8da7-2e4d9bad9bcd.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:76ceda47-fb5e-48de-8a6d-83feda48d197",
+      "octgnid": "76ceda47-fb5e-48de-8a6d-83feda48d197",
+      "name": "Wind-whipped Rain",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Weather.",
+      "text": "When Revealed: Each player must choose: either choose 1 card from his hand and discard the rest, or assign X damage among characters he controls, where X is the number of cards in his hand.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 29,
+      "quantity": 1,
+      "corner_text": "1",
+      "encounter_set": "The Woodland Realm 06",
+      "printed_stats": {},
+      "imagesrc": "/cards/76ceda47-fb5e-48de-8a6d-83feda48d197.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 29,
+          "quantity": 1,
+          "octgnid": "76ceda47-fb5e-48de-8a6d-83feda48d197",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/76ceda47-fb5e-48de-8a6d-83feda48d197.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:78689e20-d52f-4495-accc-b2cc39bb9ddc",
+      "octgnid": "78689e20-d52f-4495-accc-b2cc39bb9ddc",
+      "name": "A Chosen Path",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The opposing teach searches the top 5 cards of the encounter deck for a card with cost 1 or less (2 or less if there are two or more players), sets it aside, and shuffles the encounter deck. Reveal the set aside card. Its 'when revealed' effects cannot be canceled.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 3,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Woodland Realm",
+      "side": "A",
+      "back_name": "Lost in the Dark",
+      "back_text": "The first treachery revealed each round gains Doomed 1 and its 'when revealed' effects cannot be canceled. Forced: After characters are committed to the quest, no more than 5 progress can be placed here this round (10 progress instead if Mendor is committed to the quest).",
+      "back_type_code": "quest",
+      "back_quest": 20,
+      "back_imagesrc": "/cards/78689e20-d52f-4495-accc-b2cc39bb9ddc.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/78689e20-d52f-4495-accc-b2cc39bb9ddc.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 3,
+          "quantity": 1,
+          "octgnid": "78689e20-d52f-4495-accc-b2cc39bb9ddc",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/78689e20-d52f-4495-accc-b2cc39bb9ddc.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7f03acd1-41d0-44db-9903-c6030e1548a1",
+      "octgnid": "7f03acd1-41d0-44db-9903-c6030e1548a1",
+      "name": "Wild Wargs",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Warg.",
+      "text": "Forced: After Wild Wargs is dealt a shadow card with no shadow effect, return it to the staging area.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 42,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 3,
+      "defense": 1,
+      "health": 3,
+      "engagement": 25,
+      "corner_text": "1",
+      "encounter_set": "The Woodland Realm 11",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "1",
+        "health": "3",
+        "engagement": "25"
+      },
+      "imagesrc": "/cards/7f03acd1-41d0-44db-9903-c6030e1548a1.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 42,
+          "quantity": 2,
+          "octgnid": "7f03acd1-41d0-44db-9903-c6030e1548a1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7f03acd1-41d0-44db-9903-c6030e1548a1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:83818038-5291-4d4b-acec-1937c5b787e0",
+      "octgnid": "83818038-5291-4d4b-acec-1937c5b787e0",
+      "name": "Wasted Provisions",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player discards each resource from each of his heroe's resource pools and raises his threat by 1 for each resource he discarded this way. If no resources were discarded this way, Wasted Provisions gains surge.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 53,
+      "quantity": 2,
+      "corner_text": "1",
+      "encounter_set": "The Woodland Realm 14",
+      "printed_stats": {},
+      "imagesrc": "/cards/83818038-5291-4d4b-acec-1937c5b787e0.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 53,
+          "quantity": 2,
+          "octgnid": "83818038-5291-4d4b-acec-1937c5b787e0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/83818038-5291-4d4b-acec-1937c5b787e0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:888e1fe6-2fc4-407d-8bb3-df2c020e1e24",
+      "octgnid": "888e1fe6-2fc4-407d-8bb3-df2c020e1e24",
+      "name": "Mirkwood Patrol",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "While Mirkwood Patrol is in the staging area, enemies cannot be optionally engaged.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 33,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 4,
+      "defense": 3,
+      "health": 5,
+      "engagement": 34,
+      "corner_text": "1",
+      "encounter_set": "The Woodland Realm 08",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "4",
+        "defense": "3",
+        "health": "5",
+        "engagement": "34"
+      },
+      "imagesrc": "/cards/888e1fe6-2fc4-407d-8bb3-df2c020e1e24.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 33,
+          "quantity": 2,
+          "octgnid": "888e1fe6-2fc4-407d-8bb3-df2c020e1e24",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/888e1fe6-2fc4-407d-8bb3-df2c020e1e24.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9221e69b-0649-4585-9ee2-2dd2890531ea",
+      "octgnid": "9221e69b-0649-4585-9ee2-2dd2890531ea",
+      "name": "Eyes of the Forest",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 1.\nWhen Revealed: The opposing team looks at each player's hand and discards 1 card from each.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 32,
+      "quantity": 1,
+      "corner_text": "1",
+      "encounter_set": "The Woodland Realm 07",
+      "printed_stats": {},
+      "imagesrc": "/cards/9221e69b-0649-4585-9ee2-2dd2890531ea.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 32,
+          "quantity": 1,
+          "octgnid": "9221e69b-0649-4585-9ee2-2dd2890531ea",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9221e69b-0649-4585-9ee2-2dd2890531ea.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:97ee3084-5379-47da-aab0-acd5d4a540af",
+      "octgnid": "97ee3084-5379-47da-aab0-acd5d4a540af",
+      "name": "Mirkwood Flock",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 39,
+      "quantity": 2,
+      "threat": 1,
+      "attack": 2,
+      "defense": 1,
+      "health": 2,
+      "engagement": 12,
+      "corner_text": "1",
+      "encounter_set": "The Woodland Realm 10",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "2",
+        "defense": "1",
+        "health": "2",
+        "engagement": "12"
+      },
+      "imagesrc": "/cards/97ee3084-5379-47da-aab0-acd5d4a540af.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 39,
+          "quantity": 2,
+          "octgnid": "97ee3084-5379-47da-aab0-acd5d4a540af",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/97ee3084-5379-47da-aab0-acd5d4a540af.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9adddbd0-458a-4810-b0db-502a5e125704",
+      "octgnid": "9adddbd0-458a-4810-b0db-502a5e125704",
+      "name": "Exhaustion",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player exhausts a character he controls. Until the end of the round, characters cannot be readied by player card effects.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 20,
+      "quantity": 2,
+      "corner_text": "0",
+      "encounter_set": "The Woodland Realm 03",
+      "printed_stats": {},
+      "imagesrc": "/cards/9adddbd0-458a-4810-b0db-502a5e125704.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 20,
+          "quantity": 2,
+          "octgnid": "9adddbd0-458a-4810-b0db-502a5e125704",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9adddbd0-458a-4810-b0db-502a5e125704.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9b01e317-82e5-4f19-9375-917607d54aed",
+      "octgnid": "9b01e317-82e5-4f19-9375-917607d54aed",
+      "name": "Black Forest Bats",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "When Revealed: The opposing team chooses a questing character. Remove that character from the quest.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 18,
+      "quantity": 2,
+      "threat": 1,
+      "attack": 2,
+      "defense": 1,
+      "health": 3,
+      "engagement": 13,
+      "corner_text": "0",
+      "encounter_set": "The Woodland Realm 03",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "2",
+        "defense": "1",
+        "health": "3",
+        "engagement": "13"
+      },
+      "imagesrc": "/cards/9b01e317-82e5-4f19-9375-917607d54aed.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 18,
+          "quantity": 2,
+          "octgnid": "9b01e317-82e5-4f19-9375-917607d54aed",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9b01e317-82e5-4f19-9375-917607d54aed.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a4e02843-7689-484e-8e58-0b869717aeba",
+      "octgnid": "a4e02843-7689-484e-8e58-0b869717aeba",
+      "name": "Ambushing Orcs",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "When Revealed: Ambushing Orcs makes an immediate attack against the first player.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 51,
+      "quantity": 1,
+      "threat": 2,
+      "attack": 3,
+      "defense": 1,
+      "health": 4,
+      "engagement": 30,
+      "corner_text": "1",
+      "encounter_set": "The Woodland Realm 14",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "1",
+        "health": "4",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/a4e02843-7689-484e-8e58-0b869717aeba.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 51,
+          "quantity": 1,
+          "octgnid": "a4e02843-7689-484e-8e58-0b869717aeba",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a4e02843-7689-484e-8e58-0b869717aeba.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a7280ef5-7a73-4c34-bc7e-e7aef7e4f3df",
+      "octgnid": "a7280ef5-7a73-4c34-bc7e-e7aef7e4f3df",
+      "name": "A Chosen Path",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The opposing teach searches the top 5 cards of the encounter deck for a card with cost 1 or less (2 or less if there are two or more players), sets it aside, and shuffles the encounter deck. Reveal the set aside card. Its 'when revealed' effects cannot be canceled.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 4,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Woodland Realm",
+      "side": "A",
+      "back_name": "\"Don't Leave the Path\"",
+      "back_text": "Progress cannot be placed on locations in the staging area.During the travel phase, the players must travel to a location, if able. Forced: After characters are committed to the quest, no more than 5 progress can be placed here this round (10 progress instead if Mendor is committed to the quest).",
+      "back_type_code": "quest",
+      "back_quest": 20,
+      "back_imagesrc": "/cards/a7280ef5-7a73-4c34-bc7e-e7aef7e4f3df.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/a7280ef5-7a73-4c34-bc7e-e7aef7e4f3df.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 4,
+          "quantity": 1,
+          "octgnid": "a7280ef5-7a73-4c34-bc7e-e7aef7e4f3df",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a7280ef5-7a73-4c34-bc7e-e7aef7e4f3df.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a8870930-554e-4e94-9188-b454e2a1158a",
+      "octgnid": "a8870930-554e-4e94-9188-b454e2a1158a",
+      "name": "Massing at Night",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The opposing team searches the encounter deck and discard pile for one different 0 cost enemy per player (limit 2) and adds them to the staging area.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 41,
+      "quantity": 1,
+      "corner_text": "1",
+      "encounter_set": "The Woodland Realm 10",
+      "printed_stats": {},
+      "imagesrc": "/cards/a8870930-554e-4e94-9188-b454e2a1158a.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 41,
+          "quantity": 1,
+          "octgnid": "a8870930-554e-4e94-9188-b454e2a1158a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a8870930-554e-4e94-9188-b454e2a1158a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:abf880a9-117c-4c23-8a29-9a152f36c4e9",
+      "octgnid": "abf880a9-117c-4c23-8a29-9a152f36c4e9",
+      "name": "Beast of Taur-nu-Fuin",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Beast of Taur-nu-Fuin gets +1 [attack] for each damage on it. Forced: When Beast of Taur-nu-Fuin is dealt a shadow card with no shadow effect, deal 1 damage to it and the defending character.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 27,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 3,
+      "defense": 1,
+      "health": 8,
+      "engagement": 28,
+      "corner_text": "2",
+      "encounter_set": "The Woodland Realm 06",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "1",
+        "health": "8",
+        "engagement": "28"
+      },
+      "imagesrc": "/cards/abf880a9-117c-4c23-8a29-9a152f36c4e9.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 27,
+          "quantity": 1,
+          "octgnid": "abf880a9-117c-4c23-8a29-9a152f36c4e9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/abf880a9-117c-4c23-8a29-9a152f36c4e9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ba4f0abd-bd8c-4b25-b045-1599e5c92ce7",
+      "octgnid": "ba4f0abd-bd8c-4b25-b045-1599e5c92ce7",
+      "name": "On the Trail",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The opposing team searches the top 5 cards of the encounter deck for a card with cost 2 or less (3 or less if there are two or more players), sets it aside, and shuffles the encounter deck. Reveal the set aside card. It's 'when revealed' effects cannot be canceled.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 8,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "The Woodland Realm",
+      "side": "A",
+      "back_name": "To the Elvenking's Halls",
+      "back_text": "X is equal to the threat level of the player with the highest threat level.Each player's threat cannot be reduced by more than 1 each round. Forced: After the players quest successfully, if 10 or more progress was placed here this phase, reveal the top card of the encounter deck.If the players defeat this stage, they win the game.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/ba4f0abd-bd8c-4b25-b045-1599e5c92ce7.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/ba4f0abd-bd8c-4b25-b045-1599e5c92ce7.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 8,
+          "quantity": 1,
+          "octgnid": "ba4f0abd-bd8c-4b25-b045-1599e5c92ce7",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ba4f0abd-bd8c-4b25-b045-1599e5c92ce7.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c2237ebe-c98f-49b1-9e6e-1e33d39f815d",
+      "octgnid": "c2237ebe-c98f-49b1-9e6e-1e33d39f815d",
+      "name": "Dark Black Woods",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "Dark Black Woods gets +1 [threat] for each Dark Black Woods in the staging area. Travel: Each player must discard 1 card from his hand for each Dark Black Woods in the staging area.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 28,
+      "quantity": 3,
+      "threat": 1,
+      "quest": 4,
+      "corner_text": "0",
+      "encounter_set": "The Woodland Realm 06",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/c2237ebe-c98f-49b1-9e6e-1e33d39f815d.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 28,
+          "quantity": 3,
+          "octgnid": "c2237ebe-c98f-49b1-9e6e-1e33d39f815d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c2237ebe-c98f-49b1-9e6e-1e33d39f815d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c7f4c92b-e593-4c40-9ecb-64d8ab9c6368",
+      "octgnid": "c7f4c92b-e593-4c40-9ecb-64d8ab9c6368",
+      "name": "Giant Spider",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Spider.",
+      "text": "When Revealed: Each player exhausts a character he controls.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 30,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 3,
+      "defense": 2,
+      "health": 5,
+      "engagement": 30,
+      "corner_text": "1",
+      "encounter_set": "The Woodland Realm 07",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "2",
+        "health": "5",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/c7f4c92b-e593-4c40-9ecb-64d8ab9c6368.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 30,
+          "quantity": 2,
+          "octgnid": "c7f4c92b-e593-4c40-9ecb-64d8ab9c6368",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c7f4c92b-e593-4c40-9ecb-64d8ab9c6368.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:cbf2984f-cfb8-4cc3-9d5c-fdadd4201451",
+      "octgnid": "cbf2984f-cfb8-4cc3-9d5c-fdadd4201451",
+      "name": "The Eaves of Mirkwood",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "While The Eaves of Mirkwood is in the staging area, no more than 1 progress can be placed on each location in the staging area each round. Travel: Each player discards 1 random card from his hand.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 40,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 4,
+      "corner_text": "0",
+      "encounter_set": "The Woodland Realm 10",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/cbf2984f-cfb8-4cc3-9d5c-fdadd4201451.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 40,
+          "quantity": 2,
+          "octgnid": "cbf2984f-cfb8-4cc3-9d5c-fdadd4201451",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cbf2984f-cfb8-4cc3-9d5c-fdadd4201451.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d2d31f2a-4b80-48b5-b92a-e42d254cfd49",
+      "octgnid": "d2d31f2a-4b80-48b5-b92a-e42d254cfd49",
+      "name": "Old Forest Road",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Response: After the players travel to Old Forest Road, the first player discards the top card of his deck. If that card is an ally, he puts it into play. Travel: Discard the top card of the encounter deck, if that card is an enemy, add it to the staging area.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 49,
+      "quantity": 2,
+      "threat": 4,
+      "quest": 4,
+      "corner_text": "1",
+      "encounter_set": "The Woodland Realm 13",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/d2d31f2a-4b80-48b5-b92a-e42d254cfd49.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 49,
+          "quantity": 2,
+          "octgnid": "d2d31f2a-4b80-48b5-b92a-e42d254cfd49",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d2d31f2a-4b80-48b5-b92a-e42d254cfd49.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d97a8405-7c6b-4b27-a705-c165ab2c8977",
+      "octgnid": "d97a8405-7c6b-4b27-a705-c165ab2c8977",
+      "name": "Wild Bear",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "X is 1 more than the stage number of the main quest.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 36,
+      "quantity": 2,
+      "attack": 4,
+      "health": 5,
+      "engagement": 33,
+      "corner_text": "1",
+      "encounter_set": "The Woodland Realm 09",
+      "printed_stats": {
+        "threat": "X",
+        "attack": "4",
+        "defense": "X",
+        "health": "5",
+        "engagement": "33"
+      },
+      "imagesrc": "/cards/d97a8405-7c6b-4b27-a705-c165ab2c8977.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 36,
+          "quantity": 2,
+          "octgnid": "d97a8405-7c6b-4b27-a705-c165ab2c8977",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d97a8405-7c6b-4b27-a705-c165ab2c8977.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:dde0edf6-bc4d-4f21-8681-3e90098218db",
+      "octgnid": "dde0edf6-bc4d-4f21-8681-3e90098218db",
+      "name": "Turned Around",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Remove 5 progress tokens from the main quest and attach Turned Around to it. (Counts as a Condition attachment with the text: \"Attached quest gets +5 quest points.\")",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 44,
+      "quantity": 1,
+      "corner_text": "1",
+      "encounter_set": "The Woodland Realm 11",
+      "printed_stats": {},
+      "imagesrc": "/cards/dde0edf6-bc4d-4f21-8681-3e90098218db.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 44,
+          "quantity": 1,
+          "octgnid": "dde0edf6-bc4d-4f21-8681-3e90098218db",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dde0edf6-bc4d-4f21-8681-3e90098218db.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:df24263d-f2f9-436c-a62f-4db50e09d283",
+      "octgnid": "df24263d-f2f9-436c-a62f-4db50e09d283",
+      "name": "Caught in a Web",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The opposing team attaches Caught in a Web to a hero and exhausts that hero. (Counts as a Condition attachment with the text: \"Limit 1 per hero. Attached hero cannot ready unless its controller first spends 2 resource from its pool.\")",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 23,
+      "quantity": 1,
+      "corner_text": "1",
+      "encounter_set": "The Woodland Realm 04",
+      "printed_stats": {},
+      "imagesrc": "/cards/df24263d-f2f9-436c-a62f-4db50e09d283.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 23,
+          "quantity": 1,
+          "octgnid": "df24263d-f2f9-436c-a62f-4db50e09d283",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/df24263d-f2f9-436c-a62f-4db50e09d283.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e00490c1-cab9-4f99-ad19-04f7b81e4077",
+      "octgnid": "e00490c1-cab9-4f99-ad19-04f7b81e4077",
+      "name": "Enchanted Steam",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "While Enchanted Steam is in the staging area, progress cannot be placed on the main quest. Travel: Each player exhausts a hero he controls. Those heroes cannot ready while Enchanted Stream is the active location.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 19,
+      "quantity": 1,
+      "threat": 2,
+      "quest": 6,
+      "corner_text": "3",
+      "encounter_set": "The Woodland Realm 03",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "6"
+      },
+      "imagesrc": "/cards/e00490c1-cab9-4f99-ad19-04f7b81e4077.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 19,
+          "quantity": 1,
+          "octgnid": "e00490c1-cab9-4f99-ad19-04f7b81e4077",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e00490c1-cab9-4f99-ad19-04f7b81e4077.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ef719fc5-dddd-4455-87de-96fe22e4ff1a",
+      "octgnid": "ef719fc5-dddd-4455-87de-96fe22e4ff1a",
+      "name": "Dry Watercourse",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "While Dry Watercourse in in the staging area, each player cannot reduce his threat by more than 1 each round. Travel: Raise each player's threat by 1.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 43,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 4,
+      "corner_text": "0",
+      "encounter_set": "The Woodland Realm 11",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/ef719fc5-dddd-4455-87de-96fe22e4ff1a.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 43,
+          "quantity": 2,
+          "octgnid": "ef719fc5-dddd-4455-87de-96fe22e4ff1a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ef719fc5-dddd-4455-87de-96fe22e4ff1a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f939f43c-51b5-4d96-9a1e-86f606c7dcc6",
+      "octgnid": "f939f43c-51b5-4d96-9a1e-86f606c7dcc6",
+      "name": "Spiders of Mirkwood",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Spider.",
+      "text": "Forced: After Spiders of Mirkwood engages you, exhaust a character you control.",
+      "is_unique": false,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 21,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 2,
+      "defense": 1,
+      "health": 2,
+      "engagement": 22,
+      "corner_text": "0",
+      "encounter_set": "The Woodland Realm 04",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "1",
+        "health": "2",
+        "engagement": "22"
+      },
+      "imagesrc": "/cards/f939f43c-51b5-4d96-9a1e-86f606c7dcc6.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 21,
+          "quantity": 3,
+          "octgnid": "f939f43c-51b5-4d96-9a1e-86f606c7dcc6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f939f43c-51b5-4d96-9a1e-86f606c7dcc6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fc45fcc9-65b1-4c1f-ac9a-e392d86d93fd",
+      "octgnid": "fc45fcc9-65b1-4c1f-ac9a-e392d86d93fd",
+      "name": "The Spiders' Ring",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "While The Spider's Ring is in the staging area, each Spider enemy gets +1 [threat]. Forced: When The Spider's Ring is explored, the opposing team searches the encounter deck and discard pile for a non-unique Spider enemy and adds it to the staging area.",
+      "is_unique": true,
+      "pack_code": "TWR",
+      "pack_name": "The Woodland Realm",
+      "position": 22,
+      "quantity": 1,
+      "threat": 4,
+      "quest": 4,
+      "corner_text": "2",
+      "encounter_set": "The Woodland Realm 04",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/fc45fcc9-65b1-4c1f-ac9a-e392d86d93fd.jpg",
+      "packs": [
+        {
+          "pack_code": "TWR",
+          "pack_name": "The Woodland Realm",
+          "position": 22,
+          "quantity": 1,
+          "octgnid": "fc45fcc9-65b1-4c1f-ac9a-e392d86d93fd",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fc45fcc9-65b1-4c1f-ac9a-e392d86d93fd.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "Q99.12",
+      "name": "The Woodland Realm",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "TWR"
+      ],
+      "card_codes": [
+        "octgn:3b855783-5b90-4788-802e-e7c1e81461d8",
+        "octgn:2be47628-65a9-4809-87aa-6251eb68b4bc",
+        "octgn:473e56fe-31b8-4637-acdb-a72a7138237b",
+        "octgn:3360d53e-e01b-4d22-b2e3-4e1733a4896d",
+        "octgn:60057e26-14f3-468c-ba70-4b14aea7d49a",
+        "octgn:10e74386-4dad-42c1-8f29-bb9e35e044a2",
+        "octgn:9b01e317-82e5-4f19-9375-917607d54aed",
+        "octgn:e00490c1-cab9-4f99-ad19-04f7b81e4077",
+        "octgn:9adddbd0-458a-4810-b0db-502a5e125704",
+        "octgn:f939f43c-51b5-4d96-9a1e-86f606c7dcc6",
+        "octgn:fc45fcc9-65b1-4c1f-ac9a-e392d86d93fd",
+        "octgn:df24263d-f2f9-436c-a62f-4db50e09d283",
+        "octgn:14304a2f-f6f8-4f78-adc6-5ee35bc9a08e",
+        "octgn:0daf7bcd-4719-48e6-948a-0230aa96d34c",
+        "octgn:4cf56614-3155-4a84-85dc-74c6cef00ae3",
+        "octgn:abf880a9-117c-4c23-8a29-9a152f36c4e9",
+        "octgn:c2237ebe-c98f-49b1-9e6e-1e33d39f815d",
+        "octgn:76ceda47-fb5e-48de-8a6d-83feda48d197",
+        "octgn:c7f4c92b-e593-4c40-9ecb-64d8ab9c6368",
+        "octgn:4d5a388c-d710-4663-ab96-a3a914da2a24",
+        "octgn:9221e69b-0649-4585-9ee2-2dd2890531ea",
+        "octgn:888e1fe6-2fc4-407d-8bb3-df2c020e1e24",
+        "octgn:4b9d24ad-1ae3-4e49-a675-a27fc84c289b",
+        "octgn:1e7ccc5d-2f76-4295-add4-c06da3da1516",
+        "octgn:d97a8405-7c6b-4b27-a705-c165ab2c8977",
+        "octgn:41928f89-4736-42f9-b789-9ea670d26639",
+        "octgn:37f0bdca-11d8-40ba-97cd-bbe2b8190cd5",
+        "octgn:97ee3084-5379-47da-aab0-acd5d4a540af",
+        "octgn:cbf2984f-cfb8-4cc3-9d5c-fdadd4201451",
+        "octgn:a8870930-554e-4e94-9188-b454e2a1158a",
+        "octgn:7f03acd1-41d0-44db-9903-c6030e1548a1",
+        "octgn:ef719fc5-dddd-4455-87de-96fe22e4ff1a",
+        "octgn:dde0edf6-bc4d-4f21-8681-3e90098218db",
+        "octgn:34a6c6ed-1dff-4264-815c-367ff47e73a6",
+        "octgn:6d012dfd-07bb-40d5-8da7-2e4d9bad9bcd",
+        "octgn:69c3d8f9-750a-4903-be32-588898fd766e",
+        "octgn:34635348-ab17-4d00-bc6f-7ced07821168",
+        "octgn:d2d31f2a-4b80-48b5-b92a-e42d254cfd49",
+        "octgn:2b10aa08-31ac-4133-b613-f7fde8a2444c",
+        "octgn:a4e02843-7689-484e-8e58-0b869717aeba",
+        "octgn:057a8676-b610-4806-aa86-edf9b03060e8",
+        "octgn:83818038-5291-4d4b-acec-1937c5b787e0",
+        "octgn:4fd47b8b-1132-4e90-967c-b15369215025",
+        "octgn:78689e20-d52f-4495-accc-b2cc39bb9ddc",
+        "octgn:a7280ef5-7a73-4c34-bc7e-e7aef7e4f3df",
+        "octgn:13e84f42-66ff-4abb-819d-a4b0ad088bb1",
+        "octgn:2e4aea1e-abb5-48c6-9f83-abbf9b6bcf72",
+        "octgn:ba4f0abd-bd8c-4b25-b045-1599e5c92ce7",
+        "octgn:35924e07-9473-4701-855a-11f69dc83185",
+        "octgn:35fb5564-b4a1-4730-9e4d-65bd2e6d43c4"
+      ],
+      "cards": [
+        {
+          "code": "octgn:3b855783-5b90-4788-802e-e7c1e81461d8",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2be47628-65a9-4809-87aa-6251eb68b4bc",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:473e56fe-31b8-4637-acdb-a72a7138237b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3360d53e-e01b-4d22-b2e3-4e1733a4896d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:60057e26-14f3-468c-ba70-4b14aea7d49a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:10e74386-4dad-42c1-8f29-bb9e35e044a2",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9b01e317-82e5-4f19-9375-917607d54aed",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e00490c1-cab9-4f99-ad19-04f7b81e4077",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9adddbd0-458a-4810-b0db-502a5e125704",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f939f43c-51b5-4d96-9a1e-86f606c7dcc6",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fc45fcc9-65b1-4c1f-ac9a-e392d86d93fd",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:df24263d-f2f9-436c-a62f-4db50e09d283",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:14304a2f-f6f8-4f78-adc6-5ee35bc9a08e",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:0daf7bcd-4719-48e6-948a-0230aa96d34c",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4cf56614-3155-4a84-85dc-74c6cef00ae3",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:abf880a9-117c-4c23-8a29-9a152f36c4e9",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c2237ebe-c98f-49b1-9e6e-1e33d39f815d",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:76ceda47-fb5e-48de-8a6d-83feda48d197",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c7f4c92b-e593-4c40-9ecb-64d8ab9c6368",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4d5a388c-d710-4663-ab96-a3a914da2a24",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9221e69b-0649-4585-9ee2-2dd2890531ea",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:888e1fe6-2fc4-407d-8bb3-df2c020e1e24",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4b9d24ad-1ae3-4e49-a675-a27fc84c289b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1e7ccc5d-2f76-4295-add4-c06da3da1516",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d97a8405-7c6b-4b27-a705-c165ab2c8977",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:41928f89-4736-42f9-b789-9ea670d26639",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:37f0bdca-11d8-40ba-97cd-bbe2b8190cd5",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:97ee3084-5379-47da-aab0-acd5d4a540af",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cbf2984f-cfb8-4cc3-9d5c-fdadd4201451",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a8870930-554e-4e94-9188-b454e2a1158a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7f03acd1-41d0-44db-9903-c6030e1548a1",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ef719fc5-dddd-4455-87de-96fe22e4ff1a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:dde0edf6-bc4d-4f21-8681-3e90098218db",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:34a6c6ed-1dff-4264-815c-367ff47e73a6",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6d012dfd-07bb-40d5-8da7-2e4d9bad9bcd",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:69c3d8f9-750a-4903-be32-588898fd766e",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:34635348-ab17-4d00-bc6f-7ced07821168",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d2d31f2a-4b80-48b5-b92a-e42d254cfd49",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2b10aa08-31ac-4133-b613-f7fde8a2444c",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a4e02843-7689-484e-8e58-0b869717aeba",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:057a8676-b610-4806-aa86-edf9b03060e8",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:83818038-5291-4d4b-acec-1937c5b787e0",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4fd47b8b-1132-4e90-967c-b15369215025",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:78689e20-d52f-4495-accc-b2cc39bb9ddc",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:a7280ef5-7a73-4c34-bc7e-e7aef7e4f3df",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:13e84f42-66ff-4abb-819d-a4b0ad088bb1",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:2e4aea1e-abb5-48c6-9f83-abbf9b6bcf72",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:ba4f0abd-bd8c-4b25-b045-1599e5c92ce7",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:35924e07-9473-4701-855a-11f69dc83185",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:35fb5564-b4a1-4730-9e4d-65bd2e6d43c4",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        }
+      ],
+      "sections": {
+        "sharedEncounterDeck": {
+          "octgn:3b855783-5b90-4788-802e-e7c1e81461d8": 1,
+          "octgn:2be47628-65a9-4809-87aa-6251eb68b4bc": 2,
+          "octgn:473e56fe-31b8-4637-acdb-a72a7138237b": 2,
+          "octgn:3360d53e-e01b-4d22-b2e3-4e1733a4896d": 1,
+          "octgn:60057e26-14f3-468c-ba70-4b14aea7d49a": 2,
+          "octgn:10e74386-4dad-42c1-8f29-bb9e35e044a2": 2,
+          "octgn:9b01e317-82e5-4f19-9375-917607d54aed": 2,
+          "octgn:e00490c1-cab9-4f99-ad19-04f7b81e4077": 1,
+          "octgn:9adddbd0-458a-4810-b0db-502a5e125704": 2,
+          "octgn:f939f43c-51b5-4d96-9a1e-86f606c7dcc6": 3,
+          "octgn:fc45fcc9-65b1-4c1f-ac9a-e392d86d93fd": 1,
+          "octgn:df24263d-f2f9-436c-a62f-4db50e09d283": 1,
+          "octgn:14304a2f-f6f8-4f78-adc6-5ee35bc9a08e": 3,
+          "octgn:0daf7bcd-4719-48e6-948a-0230aa96d34c": 1,
+          "octgn:4cf56614-3155-4a84-85dc-74c6cef00ae3": 1,
+          "octgn:abf880a9-117c-4c23-8a29-9a152f36c4e9": 1,
+          "octgn:c2237ebe-c98f-49b1-9e6e-1e33d39f815d": 3,
+          "octgn:76ceda47-fb5e-48de-8a6d-83feda48d197": 1,
+          "octgn:c7f4c92b-e593-4c40-9ecb-64d8ab9c6368": 2,
+          "octgn:4d5a388c-d710-4663-ab96-a3a914da2a24": 2,
+          "octgn:9221e69b-0649-4585-9ee2-2dd2890531ea": 1,
+          "octgn:888e1fe6-2fc4-407d-8bb3-df2c020e1e24": 2,
+          "octgn:4b9d24ad-1ae3-4e49-a675-a27fc84c289b": 2,
+          "octgn:1e7ccc5d-2f76-4295-add4-c06da3da1516": 1,
+          "octgn:d97a8405-7c6b-4b27-a705-c165ab2c8977": 2,
+          "octgn:41928f89-4736-42f9-b789-9ea670d26639": 2,
+          "octgn:37f0bdca-11d8-40ba-97cd-bbe2b8190cd5": 1,
+          "octgn:97ee3084-5379-47da-aab0-acd5d4a540af": 2,
+          "octgn:cbf2984f-cfb8-4cc3-9d5c-fdadd4201451": 2,
+          "octgn:a8870930-554e-4e94-9188-b454e2a1158a": 1,
+          "octgn:7f03acd1-41d0-44db-9903-c6030e1548a1": 2,
+          "octgn:ef719fc5-dddd-4455-87de-96fe22e4ff1a": 2,
+          "octgn:dde0edf6-bc4d-4f21-8681-3e90098218db": 1,
+          "octgn:34a6c6ed-1dff-4264-815c-367ff47e73a6": 1,
+          "octgn:6d012dfd-07bb-40d5-8da7-2e4d9bad9bcd": 2,
+          "octgn:69c3d8f9-750a-4903-be32-588898fd766e": 2,
+          "octgn:34635348-ab17-4d00-bc6f-7ced07821168": 1,
+          "octgn:d2d31f2a-4b80-48b5-b92a-e42d254cfd49": 2,
+          "octgn:2b10aa08-31ac-4133-b613-f7fde8a2444c": 2,
+          "octgn:a4e02843-7689-484e-8e58-0b869717aeba": 1,
+          "octgn:057a8676-b610-4806-aa86-edf9b03060e8": 2,
+          "octgn:83818038-5291-4d4b-acec-1937c5b787e0": 2
+        },
+        "sharedSetAside": {
+          "octgn:4fd47b8b-1132-4e90-967c-b15369215025": 1,
+          "octgn:78689e20-d52f-4495-accc-b2cc39bb9ddc": 1,
+          "octgn:a7280ef5-7a73-4c34-bc7e-e7aef7e4f3df": 1,
+          "octgn:13e84f42-66ff-4abb-819d-a4b0ad088bb1": 1,
+          "octgn:2e4aea1e-abb5-48c6-9f83-abbf9b6bcf72": 1,
+          "octgn:ba4f0abd-bd8c-4b25-b045-1599e5c92ce7": 1,
+          "octgn:35924e07-9473-4701-855a-11f69dc83185": 1,
+          "octgn:35fb5564-b4a1-4730-9e4d-65bd2e6d43c4": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:057a8676-b610-4806-aa86-edf9b03060e8",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/057a8676-b610-4806-aa86-edf9b03060e8.jpg",
+      "localPath": "/cards/057a8676-b610-4806-aa86-edf9b03060e8.jpg",
+      "bytes": 234435,
+      "sha256": "65079163c60a7af65c00d5134ac76b2107b8892a73a71b7690237ffb0c06b1a6"
+    },
+    {
+      "code": "octgn:0daf7bcd-4719-48e6-948a-0230aa96d34c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0daf7bcd-4719-48e6-948a-0230aa96d34c.jpg",
+      "localPath": "/cards/0daf7bcd-4719-48e6-948a-0230aa96d34c.jpg",
+      "bytes": 253354,
+      "sha256": "180c4328bd626c761e41cbbc629c81d6cbab86d0615d5477548be968aadf00b5"
+    },
+    {
+      "code": "octgn:10e74386-4dad-42c1-8f29-bb9e35e044a2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/10e74386-4dad-42c1-8f29-bb9e35e044a2.jpg",
+      "localPath": "/cards/10e74386-4dad-42c1-8f29-bb9e35e044a2.jpg",
+      "bytes": 239608,
+      "sha256": "36505a190ca16fd986d07f3427c0e2c156f50926a3fc7f8fa8c5b93365a88a2d"
+    },
+    {
+      "code": "octgn:13e84f42-66ff-4abb-819d-a4b0ad088bb1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/13e84f42-66ff-4abb-819d-a4b0ad088bb1.jpg",
+      "localPath": "/cards/13e84f42-66ff-4abb-819d-a4b0ad088bb1.jpg",
+      "bytes": 275441,
+      "sha256": "a4a8b3dfaaae5339111c4cdc1389cabd4ca1c54648cf67321ea5ec2a882c3987"
+    },
+    {
+      "code": "octgn:13e84f42-66ff-4abb-819d-a4b0ad088bb1",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/13e84f42-66ff-4abb-819d-a4b0ad088bb1.B.jpg",
+      "localPath": "/cards/13e84f42-66ff-4abb-819d-a4b0ad088bb1.B.jpg",
+      "bytes": 259194,
+      "sha256": "06bfb8e1f00e0cd8555144bc61fc2d2531ad30bf806897bbf0454be666e1bb27"
+    },
+    {
+      "code": "octgn:14304a2f-f6f8-4f78-adc6-5ee35bc9a08e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/14304a2f-f6f8-4f78-adc6-5ee35bc9a08e.jpg",
+      "localPath": "/cards/14304a2f-f6f8-4f78-adc6-5ee35bc9a08e.jpg",
+      "bytes": 256963,
+      "sha256": "daab4f37ce5b921da3e5ff98eb508369326b212274a151f05d5b6b16acebe076"
+    },
+    {
+      "code": "octgn:1e7ccc5d-2f76-4295-add4-c06da3da1516",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1e7ccc5d-2f76-4295-add4-c06da3da1516.jpg",
+      "localPath": "/cards/1e7ccc5d-2f76-4295-add4-c06da3da1516.jpg",
+      "bytes": 257267,
+      "sha256": "e01b44b562e7ace66010ed9be7713f1ba63fd1841dd6811ef646a01e6bb96473"
+    },
+    {
+      "code": "octgn:2b10aa08-31ac-4133-b613-f7fde8a2444c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2b10aa08-31ac-4133-b613-f7fde8a2444c.jpg",
+      "localPath": "/cards/2b10aa08-31ac-4133-b613-f7fde8a2444c.jpg",
+      "bytes": 261833,
+      "sha256": "4de3e4854f0adb5388b566ee5fac26bdff583dccd5a836447e39169dcd318ea2"
+    },
+    {
+      "code": "octgn:2be47628-65a9-4809-87aa-6251eb68b4bc",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2be47628-65a9-4809-87aa-6251eb68b4bc.jpg",
+      "localPath": "/cards/2be47628-65a9-4809-87aa-6251eb68b4bc.jpg",
+      "bytes": 260285,
+      "sha256": "09ee7959abefdf7c0ac1e6ac015d0518f63c773a06098aab41d56b00bdff3ea3"
+    },
+    {
+      "code": "octgn:2e4aea1e-abb5-48c6-9f83-abbf9b6bcf72",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2e4aea1e-abb5-48c6-9f83-abbf9b6bcf72.jpg",
+      "localPath": "/cards/2e4aea1e-abb5-48c6-9f83-abbf9b6bcf72.jpg",
+      "bytes": 269925,
+      "sha256": "52cd252e75e6146e047f97ccbe4865119518f4edbd178163b9dc5a2dea64f223"
+    },
+    {
+      "code": "octgn:2e4aea1e-abb5-48c6-9f83-abbf9b6bcf72",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2e4aea1e-abb5-48c6-9f83-abbf9b6bcf72.B.jpg",
+      "localPath": "/cards/2e4aea1e-abb5-48c6-9f83-abbf9b6bcf72.B.jpg",
+      "bytes": 286887,
+      "sha256": "3d763d82d016beaab41ce4cfa68f58a5fe908fcfc1cf8ba0577a68e32eb7777e"
+    },
+    {
+      "code": "octgn:3360d53e-e01b-4d22-b2e3-4e1733a4896d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3360d53e-e01b-4d22-b2e3-4e1733a4896d.jpg",
+      "localPath": "/cards/3360d53e-e01b-4d22-b2e3-4e1733a4896d.jpg",
+      "bytes": 253644,
+      "sha256": "c93b97a73bd6124b4b7d18204ec09d6bc4f16a2ed7c2964467cdc933739690b8"
+    },
+    {
+      "code": "octgn:34635348-ab17-4d00-bc6f-7ced07821168",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/34635348-ab17-4d00-bc6f-7ced07821168.jpg",
+      "localPath": "/cards/34635348-ab17-4d00-bc6f-7ced07821168.jpg",
+      "bytes": 255335,
+      "sha256": "1b37ea6d5ef17a9e22a5d3c76a9cb41672b25d44012e62af1d1e172f172ab96d"
+    },
+    {
+      "code": "octgn:34a6c6ed-1dff-4264-815c-367ff47e73a6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/34a6c6ed-1dff-4264-815c-367ff47e73a6.jpg",
+      "localPath": "/cards/34a6c6ed-1dff-4264-815c-367ff47e73a6.jpg",
+      "bytes": 262750,
+      "sha256": "7e464fc641156ed51c39f0bca7a6a98b9882a52f5e85aaa86d50f2887d522dc8"
+    },
+    {
+      "code": "octgn:35924e07-9473-4701-855a-11f69dc83185",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/35924e07-9473-4701-855a-11f69dc83185.jpg",
+      "localPath": "/cards/35924e07-9473-4701-855a-11f69dc83185.jpg",
+      "bytes": 269925,
+      "sha256": "7e37a042c93a7eb8ddcd40338dfd4bfd75e8248011eecc03cb30781e45cd0563"
+    },
+    {
+      "code": "octgn:35924e07-9473-4701-855a-11f69dc83185",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/35924e07-9473-4701-855a-11f69dc83185.B.jpg",
+      "localPath": "/cards/35924e07-9473-4701-855a-11f69dc83185.B.jpg",
+      "bytes": 251257,
+      "sha256": "1420a09e73055c4849eeaaca79684e3006017d3baed1554964a1528611d64e06"
+    },
+    {
+      "code": "octgn:35fb5564-b4a1-4730-9e4d-65bd2e6d43c4",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/35fb5564-b4a1-4730-9e4d-65bd2e6d43c4.jpg",
+      "localPath": "/cards/35fb5564-b4a1-4730-9e4d-65bd2e6d43c4.jpg",
+      "bytes": 270305,
+      "sha256": "3a7f2fde40d69e0dbe21e6c944aaca7a75c22ad5b06183f9fc0f984bc3b1fc03"
+    },
+    {
+      "code": "octgn:35fb5564-b4a1-4730-9e4d-65bd2e6d43c4",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/35fb5564-b4a1-4730-9e4d-65bd2e6d43c4.B.jpg",
+      "localPath": "/cards/35fb5564-b4a1-4730-9e4d-65bd2e6d43c4.B.jpg",
+      "bytes": 244679,
+      "sha256": "59934e4b17c9854d169c137421cadff0458d295af26ec6d41a958b436a9c4480"
+    },
+    {
+      "code": "octgn:37f0bdca-11d8-40ba-97cd-bbe2b8190cd5",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/37f0bdca-11d8-40ba-97cd-bbe2b8190cd5.jpg",
+      "localPath": "/cards/37f0bdca-11d8-40ba-97cd-bbe2b8190cd5.jpg",
+      "bytes": 273958,
+      "sha256": "bd18318b0782b257ea0a8de780da261d46e24ea8d36060dfed2d0dc5a599854f"
+    },
+    {
+      "code": "octgn:3b855783-5b90-4788-802e-e7c1e81461d8",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3b855783-5b90-4788-802e-e7c1e81461d8.jpg",
+      "localPath": "/cards/3b855783-5b90-4788-802e-e7c1e81461d8.jpg",
+      "bytes": 253739,
+      "sha256": "6bee330ee19a299f903290ea71391e3282b8b44d21c3fd72d9c5e14be387077d"
+    },
+    {
+      "code": "octgn:41928f89-4736-42f9-b789-9ea670d26639",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/41928f89-4736-42f9-b789-9ea670d26639.jpg",
+      "localPath": "/cards/41928f89-4736-42f9-b789-9ea670d26639.jpg",
+      "bytes": 230817,
+      "sha256": "cb8d60c61fff23c58400f927cf9f3c5d63db64bc0ed9806329794ea168de3c0f"
+    },
+    {
+      "code": "octgn:473e56fe-31b8-4637-acdb-a72a7138237b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/473e56fe-31b8-4637-acdb-a72a7138237b.jpg",
+      "localPath": "/cards/473e56fe-31b8-4637-acdb-a72a7138237b.jpg",
+      "bytes": 234401,
+      "sha256": "8699d60bc762b8e788bacc3e558f1ec90e1e384b805102fbaec17955e7489dd2"
+    },
+    {
+      "code": "octgn:4b9d24ad-1ae3-4e49-a675-a27fc84c289b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4b9d24ad-1ae3-4e49-a675-a27fc84c289b.jpg",
+      "localPath": "/cards/4b9d24ad-1ae3-4e49-a675-a27fc84c289b.jpg",
+      "bytes": 244990,
+      "sha256": "29a731f1e5861c9efa1e68465c9d5ca8aba2d16f6d8b58bebd898d054a220cf3"
+    },
+    {
+      "code": "octgn:4cf56614-3155-4a84-85dc-74c6cef00ae3",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4cf56614-3155-4a84-85dc-74c6cef00ae3.jpg",
+      "localPath": "/cards/4cf56614-3155-4a84-85dc-74c6cef00ae3.jpg",
+      "bytes": 252213,
+      "sha256": "55b9fa13bb4ef846edea1aa8b46d983b9a22681b75f6aaf095a3127f4e2fdb27"
+    },
+    {
+      "code": "octgn:4d5a388c-d710-4663-ab96-a3a914da2a24",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4d5a388c-d710-4663-ab96-a3a914da2a24.jpg",
+      "localPath": "/cards/4d5a388c-d710-4663-ab96-a3a914da2a24.jpg",
+      "bytes": 267655,
+      "sha256": "a0c3e8887a48e835d90abcd03da232b65ad3451850e4c5f20030fed72739b330"
+    },
+    {
+      "code": "octgn:4fd47b8b-1132-4e90-967c-b15369215025",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4fd47b8b-1132-4e90-967c-b15369215025.jpg",
+      "localPath": "/cards/4fd47b8b-1132-4e90-967c-b15369215025.jpg",
+      "bytes": 245713,
+      "sha256": "a60a29d68fb145867c84cd4874ddd261e7841d844439924a53b82b6ac3cfba00"
+    },
+    {
+      "code": "octgn:4fd47b8b-1132-4e90-967c-b15369215025",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4fd47b8b-1132-4e90-967c-b15369215025.B.jpg",
+      "localPath": "/cards/4fd47b8b-1132-4e90-967c-b15369215025.B.jpg",
+      "bytes": 235772,
+      "sha256": "ae88e6125b22a626470ca79ff0a4353e953524553c764d93b58c25b9953da449"
+    },
+    {
+      "code": "octgn:60057e26-14f3-468c-ba70-4b14aea7d49a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/60057e26-14f3-468c-ba70-4b14aea7d49a.jpg",
+      "localPath": "/cards/60057e26-14f3-468c-ba70-4b14aea7d49a.jpg",
+      "bytes": 245347,
+      "sha256": "e8cfcefba51c73fb716c7940e04f76d4b9bfafc7c7d8ff94deaf8e8ec3071218"
+    },
+    {
+      "code": "octgn:69c3d8f9-750a-4903-be32-588898fd766e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/69c3d8f9-750a-4903-be32-588898fd766e.jpg",
+      "localPath": "/cards/69c3d8f9-750a-4903-be32-588898fd766e.jpg",
+      "bytes": 252485,
+      "sha256": "3122cdd6d21b9dd890e61cc1fab80427ef629adff8c680a59b3311d8f00d50cd"
+    },
+    {
+      "code": "octgn:6d012dfd-07bb-40d5-8da7-2e4d9bad9bcd",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6d012dfd-07bb-40d5-8da7-2e4d9bad9bcd.jpg",
+      "localPath": "/cards/6d012dfd-07bb-40d5-8da7-2e4d9bad9bcd.jpg",
+      "bytes": 250922,
+      "sha256": "7b857e7daf90ec04150d78937ca174738a0aa13684aa53439a334cb309f85a98"
+    },
+    {
+      "code": "octgn:76ceda47-fb5e-48de-8a6d-83feda48d197",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/76ceda47-fb5e-48de-8a6d-83feda48d197.jpg",
+      "localPath": "/cards/76ceda47-fb5e-48de-8a6d-83feda48d197.jpg",
+      "bytes": 248700,
+      "sha256": "97a31e25981c5fa779d43c14d854012dd1d2499f02b1892ffbbb873aa40c2b04"
+    },
+    {
+      "code": "octgn:78689e20-d52f-4495-accc-b2cc39bb9ddc",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/78689e20-d52f-4495-accc-b2cc39bb9ddc.jpg",
+      "localPath": "/cards/78689e20-d52f-4495-accc-b2cc39bb9ddc.jpg",
+      "bytes": 275441,
+      "sha256": "cafe85d192374d613b21491de627ee171d9db2e7e8c7dd21421cea41aaf1c12c"
+    },
+    {
+      "code": "octgn:78689e20-d52f-4495-accc-b2cc39bb9ddc",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/78689e20-d52f-4495-accc-b2cc39bb9ddc.B.jpg",
+      "localPath": "/cards/78689e20-d52f-4495-accc-b2cc39bb9ddc.B.jpg",
+      "bytes": 264597,
+      "sha256": "24a0c23568899311c7b24ad965c87291b02d02abdfa028e9a462ff802c67235e"
+    },
+    {
+      "code": "octgn:7f03acd1-41d0-44db-9903-c6030e1548a1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7f03acd1-41d0-44db-9903-c6030e1548a1.jpg",
+      "localPath": "/cards/7f03acd1-41d0-44db-9903-c6030e1548a1.jpg",
+      "bytes": 251576,
+      "sha256": "7918634032e0b79dbb0b3e31a4dc575e325dab179868d572dac4cc09977ecddb"
+    },
+    {
+      "code": "octgn:83818038-5291-4d4b-acec-1937c5b787e0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/83818038-5291-4d4b-acec-1937c5b787e0.jpg",
+      "localPath": "/cards/83818038-5291-4d4b-acec-1937c5b787e0.jpg",
+      "bytes": 275395,
+      "sha256": "6be28529faa9cbe9ac7590bbfa141cef63aeab8e2d0871ade0c0583a834fcce6"
+    },
+    {
+      "code": "octgn:888e1fe6-2fc4-407d-8bb3-df2c020e1e24",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/888e1fe6-2fc4-407d-8bb3-df2c020e1e24.jpg",
+      "localPath": "/cards/888e1fe6-2fc4-407d-8bb3-df2c020e1e24.jpg",
+      "bytes": 270932,
+      "sha256": "95800a45aa3208c6625134db91e1ecd89ae391d07b0bf4ce8241b0f19eabc458"
+    },
+    {
+      "code": "octgn:9221e69b-0649-4585-9ee2-2dd2890531ea",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9221e69b-0649-4585-9ee2-2dd2890531ea.jpg",
+      "localPath": "/cards/9221e69b-0649-4585-9ee2-2dd2890531ea.jpg",
+      "bytes": 245033,
+      "sha256": "93ec22cd625d2f5313fb6dd3bdd31baa821cadb6be29d9d5ca67f30c0ebf3965"
+    },
+    {
+      "code": "octgn:97ee3084-5379-47da-aab0-acd5d4a540af",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/97ee3084-5379-47da-aab0-acd5d4a540af.jpg",
+      "localPath": "/cards/97ee3084-5379-47da-aab0-acd5d4a540af.jpg",
+      "bytes": 231662,
+      "sha256": "fe95ba6e44dbbf605eb8d86105c3f63cb7fa662ab3ac72321b47cdb709aa8487"
+    },
+    {
+      "code": "octgn:9adddbd0-458a-4810-b0db-502a5e125704",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9adddbd0-458a-4810-b0db-502a5e125704.jpg",
+      "localPath": "/cards/9adddbd0-458a-4810-b0db-502a5e125704.jpg",
+      "bytes": 245029,
+      "sha256": "b41785a8dece04eed2610264284afa91362394977ef9bf7b511178996b35857c"
+    },
+    {
+      "code": "octgn:9b01e317-82e5-4f19-9375-917607d54aed",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9b01e317-82e5-4f19-9375-917607d54aed.jpg",
+      "localPath": "/cards/9b01e317-82e5-4f19-9375-917607d54aed.jpg",
+      "bytes": 248216,
+      "sha256": "1a027a6186b3744a0d2f69e899517eec9250f69f8f9a6b62ae977566e8a1852a"
+    },
+    {
+      "code": "octgn:a4e02843-7689-484e-8e58-0b869717aeba",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a4e02843-7689-484e-8e58-0b869717aeba.jpg",
+      "localPath": "/cards/a4e02843-7689-484e-8e58-0b869717aeba.jpg",
+      "bytes": 264249,
+      "sha256": "1107f4e77b3e86f2e273b483ebfbe5015f1c5ff1d75e375356dad5eec95c530f"
+    },
+    {
+      "code": "octgn:a7280ef5-7a73-4c34-bc7e-e7aef7e4f3df",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a7280ef5-7a73-4c34-bc7e-e7aef7e4f3df.jpg",
+      "localPath": "/cards/a7280ef5-7a73-4c34-bc7e-e7aef7e4f3df.jpg",
+      "bytes": 275441,
+      "sha256": "72b53cbecac395504f9a58962012a52bda15b9f88e332de0014292b5a3f9ff91"
+    },
+    {
+      "code": "octgn:a7280ef5-7a73-4c34-bc7e-e7aef7e4f3df",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a7280ef5-7a73-4c34-bc7e-e7aef7e4f3df.B.jpg",
+      "localPath": "/cards/a7280ef5-7a73-4c34-bc7e-e7aef7e4f3df.B.jpg",
+      "bytes": 269456,
+      "sha256": "b034e2bb75b5d3a69ce57be956cbc744d5d10f134c21a048a18d6c0e330fa1f6"
+    },
+    {
+      "code": "octgn:a8870930-554e-4e94-9188-b454e2a1158a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a8870930-554e-4e94-9188-b454e2a1158a.jpg",
+      "localPath": "/cards/a8870930-554e-4e94-9188-b454e2a1158a.jpg",
+      "bytes": 265496,
+      "sha256": "ac9ab90d463fd319d8ae74bfbd0c51fd49fa03a89b5fe9acd77cc43a3aa3aac7"
+    },
+    {
+      "code": "octgn:abf880a9-117c-4c23-8a29-9a152f36c4e9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/abf880a9-117c-4c23-8a29-9a152f36c4e9.jpg",
+      "localPath": "/cards/abf880a9-117c-4c23-8a29-9a152f36c4e9.jpg",
+      "bytes": 256210,
+      "sha256": "23b9d4787f590dda8e691e0c59bcfc282cc7152ff92f8cbd384937cddcaf3f60"
+    },
+    {
+      "code": "octgn:ba4f0abd-bd8c-4b25-b045-1599e5c92ce7",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ba4f0abd-bd8c-4b25-b045-1599e5c92ce7.jpg",
+      "localPath": "/cards/ba4f0abd-bd8c-4b25-b045-1599e5c92ce7.jpg",
+      "bytes": 269925,
+      "sha256": "881236b6523d7da390fd4ba3fb0d7ae0ec1f3ccdbcb0a143f268def67b61128d"
+    },
+    {
+      "code": "octgn:ba4f0abd-bd8c-4b25-b045-1599e5c92ce7",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ba4f0abd-bd8c-4b25-b045-1599e5c92ce7.B.jpg",
+      "localPath": "/cards/ba4f0abd-bd8c-4b25-b045-1599e5c92ce7.B.jpg",
+      "bytes": 244786,
+      "sha256": "862331bc2536784d4e8e936c334db944e1b71ddf5ba58dce581fb893f1d3c6b2"
+    },
+    {
+      "code": "octgn:c2237ebe-c98f-49b1-9e6e-1e33d39f815d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c2237ebe-c98f-49b1-9e6e-1e33d39f815d.jpg",
+      "localPath": "/cards/c2237ebe-c98f-49b1-9e6e-1e33d39f815d.jpg",
+      "bytes": 246668,
+      "sha256": "e2c498ba5637f8905ff3b22cbd53ed1fdb68a6c4ea6506c6c7a27b00716ccb8b"
+    },
+    {
+      "code": "octgn:c7f4c92b-e593-4c40-9ecb-64d8ab9c6368",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c7f4c92b-e593-4c40-9ecb-64d8ab9c6368.jpg",
+      "localPath": "/cards/c7f4c92b-e593-4c40-9ecb-64d8ab9c6368.jpg",
+      "bytes": 234356,
+      "sha256": "37e1005eff010bf3d50d312416e56548f94cdc7e0ff09cb94458c2a3ec40e8e4"
+    },
+    {
+      "code": "octgn:cbf2984f-cfb8-4cc3-9d5c-fdadd4201451",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cbf2984f-cfb8-4cc3-9d5c-fdadd4201451.jpg",
+      "localPath": "/cards/cbf2984f-cfb8-4cc3-9d5c-fdadd4201451.jpg",
+      "bytes": 258432,
+      "sha256": "c57edc4d99a745bf740267e6b962fef59a759ef8fa3988ebea5d9c286f5a1843"
+    },
+    {
+      "code": "octgn:d2d31f2a-4b80-48b5-b92a-e42d254cfd49",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d2d31f2a-4b80-48b5-b92a-e42d254cfd49.jpg",
+      "localPath": "/cards/d2d31f2a-4b80-48b5-b92a-e42d254cfd49.jpg",
+      "bytes": 255407,
+      "sha256": "4c6af0548d4da38924cce226df337177cf7c914c729f113ff5d3fa0ca5869a14"
+    },
+    {
+      "code": "octgn:d97a8405-7c6b-4b27-a705-c165ab2c8977",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d97a8405-7c6b-4b27-a705-c165ab2c8977.jpg",
+      "localPath": "/cards/d97a8405-7c6b-4b27-a705-c165ab2c8977.jpg",
+      "bytes": 236750,
+      "sha256": "14f473b3ed74713d806e2470b450a24887661bd3cc40c521848123b65048b35d"
+    },
+    {
+      "code": "octgn:dde0edf6-bc4d-4f21-8681-3e90098218db",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dde0edf6-bc4d-4f21-8681-3e90098218db.jpg",
+      "localPath": "/cards/dde0edf6-bc4d-4f21-8681-3e90098218db.jpg",
+      "bytes": 279368,
+      "sha256": "6de995ba113f0117d9fd12c5f060957bbe9660f7311d782c06401ed56ad7f07a"
+    },
+    {
+      "code": "octgn:df24263d-f2f9-436c-a62f-4db50e09d283",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/df24263d-f2f9-436c-a62f-4db50e09d283.jpg",
+      "localPath": "/cards/df24263d-f2f9-436c-a62f-4db50e09d283.jpg",
+      "bytes": 271877,
+      "sha256": "35567af59da6fb07b6ff1fc9721c4b6596b57dd977184d67b178439ea47b4d30"
+    },
+    {
+      "code": "octgn:e00490c1-cab9-4f99-ad19-04f7b81e4077",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e00490c1-cab9-4f99-ad19-04f7b81e4077.jpg",
+      "localPath": "/cards/e00490c1-cab9-4f99-ad19-04f7b81e4077.jpg",
+      "bytes": 261590,
+      "sha256": "621b5e7b98338bc0c9b093f1331f53d85ec1e5e45851fe8b4438fd5726f4dc0b"
+    },
+    {
+      "code": "octgn:ef719fc5-dddd-4455-87de-96fe22e4ff1a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ef719fc5-dddd-4455-87de-96fe22e4ff1a.jpg",
+      "localPath": "/cards/ef719fc5-dddd-4455-87de-96fe22e4ff1a.jpg",
+      "bytes": 272786,
+      "sha256": "6804b9230bd50bff63f35d618d2812d78e5cf1d657227baa34d4274739c7532b"
+    },
+    {
+      "code": "octgn:f939f43c-51b5-4d96-9a1e-86f606c7dcc6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f939f43c-51b5-4d96-9a1e-86f606c7dcc6.jpg",
+      "localPath": "/cards/f939f43c-51b5-4d96-9a1e-86f606c7dcc6.jpg",
+      "bytes": 255851,
+      "sha256": "983c278c468c34c5883a3f8c3e76d3ce0f55bc2fbd9493d1088407901c2c13a2"
+    },
+    {
+      "code": "octgn:fc45fcc9-65b1-4c1f-ac9a-e392d86d93fd",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fc45fcc9-65b1-4c1f-ac9a-e392d86d93fd.jpg",
+      "localPath": "/cards/fc45fcc9-65b1-4c1f-ac9a-e392d86d93fd.jpg",
+      "bytes": 256465,
+      "sha256": "fe915b913284054492a80aabf580037d902324ad63ee478206bc8124d676d618"
+    }
+  ]
+}

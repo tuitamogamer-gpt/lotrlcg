@@ -1,0 +1,402 @@
+[
+  {
+    "name": "Captured by Spiders",
+    "code": "octgn:4fd47b8b-1132-4e90-967c-b15369215025",
+    "type": "quest",
+    "set": null,
+    "cost": null,
+    "quantity": 1
+  },
+  {
+    "name": "Lost in the Dark",
+    "code": "octgn:78689e20-d52f-4495-accc-b2cc39bb9ddc",
+    "type": "quest",
+    "set": null,
+    "cost": null,
+    "quantity": 1
+  },
+  {
+    "name": "\"Don't Leave the Path\"",
+    "code": "octgn:a7280ef5-7a73-4c34-bc7e-e7aef7e4f3df",
+    "type": "quest",
+    "set": null,
+    "cost": null,
+    "quantity": 1
+  },
+  {
+    "name": "Ambushed at Night",
+    "code": "octgn:13e84f42-66ff-4abb-819d-a4b0ad088bb1",
+    "type": "quest",
+    "set": null,
+    "cost": null,
+    "quantity": 1
+  },
+  {
+    "name": "The Forest of Great Fear",
+    "code": "octgn:2e4aea1e-abb5-48c6-9f83-abbf9b6bcf72",
+    "type": "quest",
+    "set": null,
+    "cost": null,
+    "quantity": 1
+  },
+  {
+    "name": "To the Elvenking's Halls",
+    "code": "octgn:ba4f0abd-bd8c-4b25-b045-1599e5c92ce7",
+    "type": "quest",
+    "set": null,
+    "cost": null,
+    "quantity": 1
+  },
+  {
+    "name": "Escape from Taur-nu-Fuin",
+    "code": "octgn:35924e07-9473-4701-855a-11f69dc83185",
+    "type": "quest",
+    "set": null,
+    "cost": null,
+    "quantity": 1
+  },
+  {
+    "name": "Spider Den",
+    "code": "octgn:35fb5564-b4a1-4730-9e4d-65bd2e6d43c4",
+    "type": "location",
+    "set": null,
+    "cost": null,
+    "quantity": 1
+  },
+  {
+    "name": "Despair",
+    "code": "octgn:473e56fe-31b8-4637-acdb-a72a7138237b",
+    "type": "treachery",
+    "set": 1,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Forest Grove",
+    "code": "octgn:2be47628-65a9-4809-87aa-6251eb68b4bc",
+    "type": "location",
+    "set": 1,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Ungoliant's Spawn",
+    "code": "octgn:3b855783-5b90-4788-802e-e7c1e81461d8",
+    "type": "enemy",
+    "set": 1,
+    "cost": 3,
+    "quantity": 1
+  },
+  {
+    "name": "Abandoned Camp",
+    "code": "octgn:60057e26-14f3-468c-ba70-4b14aea7d49a",
+    "type": "location",
+    "set": 2,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Chieftain Ufthak",
+    "code": "octgn:3360d53e-e01b-4d22-b2e3-4e1733a4896d",
+    "type": "enemy",
+    "set": 2,
+    "cost": 3,
+    "quantity": 1
+  },
+  {
+    "name": "Gathering Gloom",
+    "code": "octgn:10e74386-4dad-42c1-8f29-bb9e35e044a2",
+    "type": "treachery",
+    "set": 2,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Black Forest Bats",
+    "code": "octgn:9b01e317-82e5-4f19-9375-917607d54aed",
+    "type": "enemy",
+    "set": 3,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Enchanted Stream",
+    "code": "octgn:e00490c1-cab9-4f99-ad19-04f7b81e4077",
+    "type": "location",
+    "set": 3,
+    "cost": 3,
+    "quantity": 1
+  },
+  {
+    "name": "Exhaustion",
+    "code": "octgn:9adddbd0-458a-4810-b0db-502a5e125704",
+    "type": "treachery",
+    "set": 3,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Caught in a Web",
+    "code": "octgn:df24263d-f2f9-436c-a62f-4db50e09d283",
+    "type": "treachery",
+    "set": 4,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "Spiders of Mirkwood",
+    "code": "octgn:f939f43c-51b5-4d96-9a1e-86f606c7dcc6",
+    "type": "enemy",
+    "set": 4,
+    "cost": 0,
+    "quantity": 3
+  },
+  {
+    "name": "The Spiders' Ring",
+    "code": "octgn:fc45fcc9-65b1-4c1f-ac9a-e392d86d93fd",
+    "type": "location",
+    "set": 4,
+    "cost": 2,
+    "quantity": 1
+  },
+  {
+    "name": "Driven by Shadow",
+    "code": "octgn:4cf56614-3155-4a84-85dc-74c6cef00ae3",
+    "type": "treachery",
+    "set": 5,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "The Goblins' Caves",
+    "code": "octgn:0daf7bcd-4719-48e6-948a-0230aa96d34c",
+    "type": "location",
+    "set": 5,
+    "cost": 2,
+    "quantity": 1
+  },
+  {
+    "name": "Wolf Rider",
+    "code": "octgn:14304a2f-f6f8-4f78-adc6-5ee35bc9a08e",
+    "type": "enemy",
+    "set": 5,
+    "cost": 0,
+    "quantity": 3
+  },
+  {
+    "name": "Beast of Taur-nu-Fuin",
+    "code": "octgn:abf880a9-117c-4c23-8a29-9a152f36c4e9",
+    "type": "enemy",
+    "set": 6,
+    "cost": 2,
+    "quantity": 1
+  },
+  {
+    "name": "Dark Black Woods",
+    "code": "octgn:c2237ebe-c98f-49b1-9e6e-1e33d39f815d",
+    "type": "location",
+    "set": 6,
+    "cost": 0,
+    "quantity": 3
+  },
+  {
+    "name": "Wind-whipped Rain",
+    "code": "octgn:76ceda47-fb5e-48de-8a6d-83feda48d197",
+    "type": "treachery",
+    "set": 6,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "Eyes of the Forest",
+    "code": "octgn:9221e69b-0649-4585-9ee2-2dd2890531ea",
+    "type": "treachery",
+    "set": 7,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "Giant Spider",
+    "code": "octgn:c7f4c92b-e593-4c40-9ecb-64d8ab9c6368",
+    "type": "enemy",
+    "set": 7,
+    "cost": 1,
+    "quantity": 2
+  },
+  {
+    "name": "Giant Web",
+    "code": "octgn:4d5a388c-d710-4663-ab96-a3a914da2a24",
+    "type": "location",
+    "set": 7,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Hatred Rekindled",
+    "code": "octgn:1e7ccc5d-2f76-4295-add4-c06da3da1516",
+    "type": "treachery",
+    "set": 8,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "Mirkwood Patrol",
+    "code": "octgn:888e1fe6-2fc4-407d-8bb3-df2c020e1e24",
+    "type": "enemy",
+    "set": 8,
+    "cost": 1,
+    "quantity": 2
+  },
+  {
+    "name": "Mountains of Mirkwood",
+    "code": "octgn:4b9d24ad-1ae3-4e49-a675-a27fc84c289b",
+    "type": "location",
+    "set": 8,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Labyrinthine Woods",
+    "code": "octgn:41928f89-4736-42f9-b789-9ea670d26639",
+    "type": "location",
+    "set": 9,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Vastness of Mirkwood",
+    "code": "octgn:37f0bdca-11d8-40ba-97cd-bbe2b8190cd5",
+    "type": "treachery",
+    "set": 9,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "Wild Bear",
+    "code": "octgn:d97a8405-7c6b-4b27-a705-c165ab2c8977",
+    "type": "enemy",
+    "set": 9,
+    "cost": 1,
+    "quantity": 2
+  },
+  {
+    "name": "Massing at Night",
+    "code": "octgn:a8870930-554e-4e94-9188-b454e2a1158a",
+    "type": "treachery",
+    "set": 10,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "Mirkwood Flock",
+    "code": "octgn:97ee3084-5379-47da-aab0-acd5d4a540af",
+    "type": "enemy",
+    "set": 10,
+    "cost": 1,
+    "quantity": 2
+  },
+  {
+    "name": "The Eaves of Mirkwood",
+    "code": "octgn:cbf2984f-cfb8-4cc3-9d5c-fdadd4201451",
+    "type": "location",
+    "set": 10,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Dry Watercourse",
+    "code": "octgn:ef719fc5-dddd-4455-87de-96fe22e4ff1a",
+    "type": "location",
+    "set": 11,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Turned Around",
+    "code": "octgn:dde0edf6-bc4d-4f21-8681-3e90098218db",
+    "type": "treachery",
+    "set": 11,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "Wild Wargs",
+    "code": "octgn:7f03acd1-41d0-44db-9903-c6030e1548a1",
+    "type": "enemy",
+    "set": 11,
+    "cost": 1,
+    "quantity": 2
+  },
+  {
+    "name": "Dark-wood Grove",
+    "code": "octgn:6d012dfd-07bb-40d5-8da7-2e4d9bad9bcd",
+    "type": "location",
+    "set": 12,
+    "cost": 1,
+    "quantity": 2
+  },
+  {
+    "name": "Lost and Witless",
+    "code": "octgn:69c3d8f9-750a-4903-be32-588898fd766e",
+    "type": "treachery",
+    "set": 12,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Pack of Wargs",
+    "code": "octgn:34a6c6ed-1dff-4264-815c-367ff47e73a6",
+    "type": "enemy",
+    "set": 12,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "A Frightened Beast",
+    "code": "octgn:2b10aa08-31ac-4133-b613-f7fde8a2444c",
+    "type": "treachery",
+    "set": 13,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Old Forest Road",
+    "code": "octgn:d2d31f2a-4b80-48b5-b92a-e42d254cfd49",
+    "type": "location",
+    "set": 13,
+    "cost": 1,
+    "quantity": 2
+  },
+  {
+    "name": "Wicked Spider",
+    "code": "octgn:34635348-ab17-4d00-bc6f-7ced07821168",
+    "type": "enemy",
+    "set": 13,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "Ambushing Orcs",
+    "code": "octgn:a4e02843-7689-484e-8e58-0b869717aeba",
+    "type": "enemy",
+    "set": 14,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "Mirkwood Path",
+    "code": "octgn:057a8676-b610-4806-aa86-edf9b03060e8",
+    "type": "location",
+    "set": 14,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Wasted Provisions",
+    "code": "octgn:83818038-5291-4d4b-acec-1937c5b787e0",
+    "type": "treachery",
+    "set": 14,
+    "cost": 1,
+    "quantity": 2
+  }
+]

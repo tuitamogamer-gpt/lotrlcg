@@ -2,7 +2,7 @@ import type { Effect, GameState } from "./types";
 import type { Batch4ScenarioHooks } from "./batch4-scenario-contract";
 import { card, name } from "./cards";
 import { choose, fx, get, log, prepend, shuffle, stats } from "./core";
-import { discardAttachment, questDefeated, win } from "./board";
+import { discardAttachment } from "./board";
 import {
   activeSeat,
   firstPlayer,
@@ -14,16 +14,21 @@ import {
 import { mainQuestUnit } from "./quest-state";
 import {
   WQ,
-  WQ_SETS,
-  WQ_STAGE2,
-  WQ_STAGE3,
+  WQ_EVENT_CARDS,
   wqCost,
   wqHasTrait,
   wqRecipe,
-  wqSetLabel,
   wqStageInfo,
-  wqStageOf,
 } from "./wizards-quest-support";
+import {
+  fellowshipEventComplete,
+  fellowshipEventDefeat,
+  fellowshipEventEffect,
+  fellowshipEventOpening,
+  fellowshipEventSharedKinds,
+  type FellowshipEventConfig,
+} from "./fellowship-event";
+import { fellowshipEventState } from "./fellowship-event-support";
 import { wqCardEffect, wqEncounter, wqShadow } from "./wizards-quest-cards";
 import {
   charactersOf,
@@ -34,16 +39,14 @@ import {
   isLocation,
   live,
   phaseKey,
-  players,
   removeProgress,
   searchable,
   seatLabel,
   stageNumber,
-  takeFrom,
   takeSearched,
   toStaging,
   who,
-} from "./wizards-quest-lib";
+} from "./fellowship-event-lib";
 export * from "./wizards-quest-support";
 
 /**
@@ -71,23 +74,52 @@ const underShadow = (s: GameState) =>
 // ---------------------------------------------------------------------------
 // Setup and the quick build.
 
+/** The shared quick build, with this scenario's stage effects. */
+const WQ_EVENT: FellowshipEventConfig = {
+  ...WQ_EVENT_CARDS,
+  prefix: "wq",
+  state: (s) => s.wizardsQuest,
+  stageDefeated: (s, code) => {
+    const q = s.wizardsQuest;
+    // Carried Away: each guarded ally returns to its owner's hand.
+    if (!q || code !== WQ.carried || !q.carried.length) return;
+    for (const g of q.carried.splice(0)) {
+      forOwner(s, g.player, () => s.hand.push(g.ally));
+      log(
+        s,
+        `Carried Away: ${name(g.ally)} returns to ${who(s, g.player)}${s.table ? "'s" : "r"} hand.`,
+        "good",
+      );
+    }
+  },
+  stageRevealed: (s, code) => {
+    const first = firstPlayer(s);
+    if (code === WQ.fork) return [fx("wqForkSearch", { player: first })];
+    if (code === WQ.carried)
+      return playerOrder(s).map((owner) => fx("wqCarried", { player: owner }));
+    if (code !== WQ.dungeons) return [];
+    s.encounterDeck = shuffle(s, [
+      ...s.encounterDeck,
+      ...s.encounterDiscard.splice(0),
+    ]);
+    log(
+      s,
+      "Dungeons of the Necromancer: the encounter discard pile is shuffled into the encounter deck.",
+    );
+    return playerOrder(s).map((owner) => fx("wqDungeons", { player: owner }));
+  },
+};
+
 export function setupWizardsQuest(s: GameState) {
   const r = wqRecipe();
   const cards = r.cards.flatMap((c) => Array<string>(c.quantity).fill(c.code));
   s.encounterDeck = [];
   s.wizardsQuest = {
-    currentQuest: WQ.request,
-    questDeck: [],
-    defeated: [],
-    box: cards.filter((c) => c !== WQ.request),
-    sets: [],
-    building: { stage2: null, stage3: null },
-    advancing: false,
+    ...fellowshipEventState(cards, WQ.request),
     forkId: null,
     carried: [],
     passGuards: [],
     guardedHeroes: [],
-    noCancel: null,
     huntingAttack: null,
     nightfall: [],
     plays: [],
@@ -111,17 +143,7 @@ export function setupWizardsQuest(s: GameState) {
 function advance(s: GameState) {
   const q = s.wizardsQuest;
   if (!q) return false;
-  if (
-    q.building ||
-    q.advancing ||
-    s.stageRevealing ||
-    s.status !== "playing" ||
-    s.choice ||
-    s.queue.length
-  )
-    return true;
-  const goal = wqStageInfo(s)?.quest ?? 0;
-  if (goal <= 0 || s.progress < goal) return true;
+  if (!fellowshipEventComplete(s, q, wqStageInfo(s)?.quest ?? 0)) return true;
   // The stages that cannot be defeated yet.
   if (
     q.currentQuest === WQ.request &&
@@ -134,15 +156,11 @@ function advance(s: GameState) {
     return true;
   if (q.currentQuest === WQ.dungeons && q.guardedHeroes.length) return true;
   if (q.currentQuest === WQ.return && rider(s)) return true;
-  if (stageNumber(s) === 3) {
-    win(
-      s,
-      "The players return from Dol Guldur with news for Rhosgobel: they win the game!",
-    );
-    return true;
-  }
-  q.advancing = true;
-  prepend(s, fx("wqDefeatQuest", { player: firstPlayer(s) }));
+  fellowshipEventDefeat(
+    s,
+    WQ_EVENT,
+    "The players return from Dol Guldur with news for Rhosgobel: they win the game!",
+  );
   return true;
 }
 
@@ -152,279 +170,6 @@ function wqStageEffect(s: GameState, e: Effect): boolean {
   const p = e.player ?? activeSeat(s);
   const first = firstPlayer(s);
   switch (e.kind) {
-    case "wqChooseStage": {
-      const stage = e.value ?? 2;
-      const list = stage === 2 ? WQ_STAGE2 : WQ_STAGE3;
-      choose(
-        s,
-        `The Wizard's Quest · Choose the stage ${stage} quest card${seatLabel(s, first)}`,
-        [
-          ...list.map((c) => ({
-            id: c,
-            code: c,
-            label: `${card(c).back_name} (${card(c).name} ${stage}B)`,
-            effects: [
-              fx("wqTakeStage", { code: c, value: stage, player: first }),
-            ],
-          })),
-          {
-            id: "random",
-            label: "Choose at random",
-            effects: [fx("wqTakeStage", { value: stage, player: first })],
-          },
-        ],
-        "Create your quest deck by choosing one stage 2 and one stage 3 and placing them in numerical order under stage 1.",
-      );
-      return true;
-    }
-    case "wqTakeStage": {
-      const stage = e.value ?? 2;
-      const list = [...(stage === 2 ? WQ_STAGE2 : WQ_STAGE3)];
-      const code = e.code ?? shuffle(s, list)[0];
-      if (!q.building || !takeFrom(q.box, code)) return true;
-      if (stage === 2) q.building.stage2 = code;
-      else q.building.stage3 = code;
-      q.questDeck = [q.building.stage2, q.building.stage3].filter(
-        (c): c is string => !!c,
-      );
-      log(
-        s,
-        `The Wizard's Quest: ${card(code).back_name} is the stage ${stage} quest card.`,
-      );
-      return true;
-    }
-    case "wqChooseSet": {
-      if (!q.building) return true;
-      if (q.sets.length >= 7) {
-        prepend(s, fx("wqBuild", { player: first }));
-        return true;
-      }
-      const left = WQ_SETS.filter((x) => !q.sets.includes(x.number));
-      choose(
-        s,
-        `The Wizard's Quest · Choose encounter set ${q.sets.length + 1} of 7${seatLabel(s, first)}`,
-        [
-          ...left.map((x) => ({
-            id: `set:${x.number}`,
-            label: wqSetLabel(x.number),
-            effects: [
-              fx("wqPickSet", { value: x.number, player: first }),
-              fx("wqChooseSet", { player: first }),
-            ],
-          })),
-          {
-            id: "random",
-            label: `Choose the remaining ${7 - q.sets.length} sets at random`,
-            effects: [
-              fx("wqRandomSets", { player: first }),
-              fx("wqChooseSet", { player: first }),
-            ],
-          },
-        ],
-        "Create your encounter deck by choosing 7 different encounter sets and shuffling them together.",
-      );
-      return true;
-    }
-    case "wqPickSet":
-      if (e.value && !q.sets.includes(e.value)) q.sets.push(e.value);
-      return true;
-    case "wqRandomSets": {
-      const left = WQ_SETS.map((x) => x.number).filter(
-        (n) => !q.sets.includes(n),
-      );
-      q.sets.push(...shuffle(s, left).slice(0, 7 - q.sets.length));
-      return true;
-    }
-    case "wqBuild": {
-      if (!q.building) return true;
-      q.sets.sort((a, b) => a - b);
-      const deck = q.sets.flatMap(
-        (n) => WQ_SETS.find((x) => x.number === n)?.cards ?? [],
-      );
-      for (const c of deck) takeFrom(q.box, c);
-      s.encounterDeck = shuffle(s, deck);
-      q.building = null;
-      log(
-        s,
-        `The Wizard's Quest: the encounter deck holds sets ${q.sets.join(", ")} (${deck.length} cards).`,
-        "chapter",
-      );
-      return true;
-    }
-    // 1A's setup: Rhosgobel and one different 0 cost card per player.
-    case "wqRequestSetup": {
-      if (!takeFrom(q.box, WQ.rhosgobel)) return true;
-      toStaging(s, WQ.rhosgobel);
-      log(s, "Radagast's Request: Rhosgobel is added to the staging area.");
-      prepend(
-        s,
-        fx("wqZeroSetup", { ids: [], count: players(s), player: first }),
-      );
-      return true;
-    }
-    case "wqZeroSetup": {
-      const taken = new Set(e.ids ?? []);
-      if ((e.count ?? 0) <= 0) {
-        prepend(s, fx("wqShuffle", { player: first }));
-        return true;
-      }
-      const options = searchable(
-        s,
-        (c) =>
-          ["enemy", "location"].includes(card(c).type_code) &&
-          wqCost(c) === 0 &&
-          !taken.has(card(c).name),
-        false,
-      );
-      if (!options.length) {
-        log(
-          s,
-          "Radagast's Request: there is no different 0 cost enemy or location in the encounter deck.",
-        );
-        prepend(s, fx("wqShuffle", { player: first }));
-        return true;
-      }
-      choose(
-        s,
-        `Radagast's Request · The opposing team adds a different 0 cost enemy or location to the staging area${seatLabel(s, first)}`,
-        options.map((c) => ({
-          id: c,
-          code: c,
-          label: `Add ${card(c).name}`,
-          effects: [
-            fx("wqSearchStage", {
-              code: c,
-              text: "Radagast's Request",
-              player: first,
-            }),
-            fx("wqZeroSetup", {
-              ids: [...taken, card(c).name],
-              count: (e.count ?? 1) - 1,
-              player: first,
-            }),
-          ],
-        })),
-        card(WQ.request).text,
-      );
-      return true;
-    }
-    case "wqDefeatQuest": {
-      const before = s.queue.length;
-      questDefeated(s, q.currentQuest);
-      q.defeated.push(q.currentQuest);
-      const responses = s.queue.splice(0, s.queue.length - before);
-      // Carried Away: each guarded ally returns to its owner's hand.
-      if (q.currentQuest === WQ.carried && q.carried.length) {
-        for (const g of q.carried.splice(0)) {
-          forOwner(s, g.player, () => s.hand.push(g.ally));
-          log(
-            s,
-            `Carried Away: ${name(g.ally)} returns to ${who(s, g.player)}${s.table ? "'s" : "r"} hand.`,
-            "good",
-          );
-        }
-      }
-      prepend(s, ...responses, fx("wqNextStage", { player: first }));
-      return true;
-    }
-    case "wqNextStage": {
-      const next = q.questDeck.shift();
-      if (!next) {
-        q.advancing = false;
-        return true;
-      }
-      q.currentQuest = next;
-      s.stage = wqStageOf(next);
-      s.progress = 0;
-      s.stageRevealing = true;
-      log(s, `${card(next).name} (stage ${s.stage}) begins.`, "chapter");
-      prepend(
-        s,
-        fx("wqTopSearch", { player: first }),
-        fx("wqStageBack", { player: first }),
-      );
-      return true;
-    }
-    // 2A and 3A: a card from the top 5, revealed; its 'when revealed' cannot be canceled.
-    case "wqTopSearch": {
-      const max =
-        stageNumber(s) === 2
-          ? players(s) >= 2
-            ? 2
-            : 1
-          : players(s) >= 2
-            ? 3
-            : 2;
-      const top = s.encounterDeck.slice(0, 5);
-      const eligible = [...new Set(top.filter((c) => wqCost(c) <= max))];
-      if (!eligible.length) {
-        s.encounterDeck = shuffle(s, s.encounterDeck);
-        log(
-          s,
-          `${card(q.currentQuest).name}: no card with cost ${max} or less among the top 5 encounter cards; the deck is shuffled.`,
-        );
-        return true;
-      }
-      choose(
-        s,
-        `${card(q.currentQuest).name} · The opposing team chooses a card with cost ${max} or less from the top 5 encounter cards to reveal${seatLabel(s, first)}`,
-        eligible.map((c) => ({
-          id: c,
-          code: c,
-          label: `Reveal ${card(c).name} (cost ${wqCost(c)})`,
-          effects: [fx("wqTopTake", { code: c, player: first })],
-        })),
-        card(q.currentQuest).text,
-      );
-      return true;
-    }
-    case "wqTopTake": {
-      const i = s.encounterDeck.slice(0, 5).indexOf(e.code ?? "");
-      if (i < 0) return true;
-      const [c] = s.encounterDeck.splice(i, 1);
-      s.encounterDeck = shuffle(s, s.encounterDeck);
-      q.noCancel = c;
-      log(
-        s,
-        `${card(q.currentQuest).name}: ${card(c).name} is set aside, the encounter deck is shuffled and it is revealed.`,
-        "danger",
-      );
-      prepend(
-        s,
-        fx("revealCard", { code: c, player: first }),
-        fx("wqNoCancelDone", { player: first }),
-      );
-      return true;
-    }
-    case "wqNoCancelDone":
-      q.noCancel = null;
-      return true;
-    case "wqStageBack": {
-      s.stageRevealing = false;
-      q.advancing = false;
-      if (q.currentQuest === WQ.fork)
-        prepend(s, fx("wqForkSearch", { player: first }));
-      else if (q.currentQuest === WQ.carried)
-        prepend(
-          s,
-          ...playerOrder(s).map((owner) => fx("wqCarried", { player: owner })),
-        );
-      else if (q.currentQuest === WQ.dungeons) {
-        s.encounterDeck = shuffle(s, [
-          ...s.encounterDeck,
-          ...s.encounterDiscard.splice(0),
-        ]);
-        log(
-          s,
-          "Dungeons of the Necromancer: the encounter discard pile is shuffled into the encounter deck.",
-        );
-        prepend(
-          s,
-          ...playerOrder(s).map((owner) => fx("wqDungeons", { player: owner })),
-        );
-      }
-      return true;
-    }
     // A Fork in the Road: a location with a resource on it.
     case "wqForkSearch": {
       const options = searchable(
@@ -646,25 +391,15 @@ function passCheck(s: GameState) {
 export const WIZARDS_QUEST_HOOKS: Batch4ScenarioHooks = {
   setup: setupWizardsQuest,
   // The quick build, then 1A's setup, before the first round.
-  openingHandsKept: (s) => {
-    const q = s.wizardsQuest;
-    if (!q || !q.building || s.round > 0) return false;
-    const first = firstPlayer(s);
-    prepend(
-      s,
-      fx("wqChooseStage", { value: 2, player: first }),
-      fx("wqChooseStage", { value: 3, player: first }),
-      fx("wqChooseSet", { player: first }),
-      fx("wqRequestSetup", { player: first }),
-      fx("nextRound"),
-    );
-    return true;
-  },
+  openingHandsKept: (s) => fellowshipEventOpening(s, WQ_EVENT),
   advance,
   stageInfo: wqStageInfo,
   encounter: wqEncounter,
   shadow: wqShadow,
-  effect: (s, e) => wqStageEffect(s, e) || wqCardEffect(s, e),
+  effect: (s, e) =>
+    fellowshipEventEffect(s, e, WQ_EVENT) ||
+    wqStageEffect(s, e) ||
+    wqCardEffect(s, e),
   check: (s) => {
     const q = s.wizardsQuest;
     if (!q || s.status !== "playing") return;
@@ -1117,23 +852,8 @@ export const WIZARDS_QUEST_HOOKS: Batch4ScenarioHooks = {
   },
   sharedEffect: (e) =>
     [
-      "wqChooseStage",
-      "wqTakeStage",
-      "wqChooseSet",
-      "wqPickSet",
-      "wqRandomSets",
-      "wqBuild",
-      "wqRequestSetup",
-      "wqZeroSetup",
-      "wqDefeatQuest",
-      "wqNextStage",
-      "wqTopSearch",
-      "wqTopTake",
-      "wqNoCancelDone",
-      "wqStageBack",
+      ...fellowshipEventSharedKinds("wq"),
       "wqTreacheryDone",
-      "wqShuffle",
-      "wqSearchStage",
       "wqFlipRhosgobel",
       "wqPassCheck",
       "wqRemoveProgress",

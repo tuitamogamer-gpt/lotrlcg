@@ -37,7 +37,7 @@ import {
   toStaging,
   verb,
   who,
-} from "./wizards-quest-lib";
+} from "./fellowship-event-lib";
 
 /** The treacheries the scenario resolves itself. */
 export const WQ_TREACHERIES: readonly string[] = [
@@ -352,6 +352,8 @@ export function wqShadow(s: GameState, code: string) {
             : "Dark Bats: the encounter deck is empty.",
           "danger",
         );
+        // The additional card resolves in this attack.
+        prepend(s, ...dealt.map((x) => fx("shadowReveal", { code: x })));
       }
       return true;
     }
@@ -881,16 +883,6 @@ export function wqCardEffect(s: GameState, e: Effect): boolean {
       );
       return true;
     }
-    case "wqSearchStage": {
-      if (!e.code || !takeSearched(s, e.code)) return true;
-      const u = toStaging(s, e.code);
-      log(s, `${e.text}: ${name(u)} is added to the staging area.`, "danger");
-      return true;
-    }
-    case "wqShuffle":
-      s.encounterDeck = shuffle(s, s.encounterDeck);
-      log(s, "The encounter deck is shuffled.");
-      return true;
     case "wqFog":
       q.fog = { key: phaseKey(s) };
       log(

@@ -307,6 +307,7 @@ export type ScenarioId =
   | "the-caves-of-nibin-dum-2018"
   | "the-caves-of-nibin-dum"
   | "the-wizards-quest"
+  | "the-woodland-realm"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -503,6 +504,7 @@ export interface GameState {
   attackDolGuldur?: import("./attack-dol-guldur-types").AttackDolGuldurState;
   caves?: import("./caves-nibin-dum-types").CavesState;
   wizardsQuest?: import("./wizards-quest-types").WizardsQuestState;
+  woodlandRealm?: import("./woodland-realm-types").WoodlandRealmState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -955,6 +957,12 @@ export interface GameState {
     wqActiveOnKill?: boolean;
     wqReturnOnKill?: boolean;
     wqBats?: boolean;
+    /** The Woodland Realm shadows: when the attack destroys a character. */
+    wrRevealOnKill?: boolean;
+    wrThreatOnKill?: boolean;
+    wrExtraOnKill?: boolean;
+    /** Pack of Wargs: an additional attack after this one, with no shadow card. */
+    wrPackAttack?: boolean;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

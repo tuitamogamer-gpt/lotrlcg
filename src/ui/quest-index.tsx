@@ -191,6 +191,10 @@ const HEADLINES: Partial<
     lead: "Answer Radagast's",
     em: "summons.",
   },
+  "the-woodland-realm": {
+    lead: "Follow Mendor to",
+    em: "the Elvenking's halls.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

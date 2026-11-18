@@ -3,6 +3,11 @@ import encounters from "../data/wizards-quest-encounter-cards.json";
 import quests from "../data/wizards-quest-quest-cards.json";
 import recipes from "../data/wizards-quest-recipes.json";
 import type { Card, GameState, Unit } from "./types";
+import {
+  fellowshipEventPublicState,
+  validFellowshipEvent,
+  type FellowshipEventCards,
+} from "./fellowship-event-support";
 export type { WizardsQuestState } from "./wizards-quest-types";
 
 /** The Wizard's Quest set; Rider of Mirkwood is Rhosgobel's enemy side. */
@@ -119,6 +124,18 @@ export const wqSetLabel = (n: number) => {
 };
 /** The stage number of a quest card (its printed cost: 1, 2 or 3). */
 export const wqStageOf = (c: string) => Number(byCode.get(c)?.cost) || 0;
+/** The quest cards, sets and costs the shared quick build uses. */
+export const WQ_EVENT_CARDS: FellowshipEventCards = {
+  title: "The Wizard's Quest",
+  request: WQ.request,
+  special: WQ.rhosgobel,
+  stage2: WQ_STAGE2,
+  stage3: WQ_STAGE3,
+  sets: WQ_SETS,
+  setLabel: wqSetLabel,
+  stageOf: wqStageOf,
+  cost: wqCost,
+};
 const STAGE_QUEST: Record<string, number> = {
   [WQ.request]: 10,
   [WQ.fork]: 5,
@@ -163,7 +180,6 @@ export const wqUnits = (s: GameState): Unit[] => [
 export function wizardsQuestPublicState(s: GameState) {
   const q = s.wizardsQuest;
   if (!q) return undefined;
-  const stage = wqStageOf(q.currentQuest);
   const where = (code: string) => {
     if (s.staging.some((u) => u.code === code)) return "staging" as const;
     if (engagedUnits(s).some((u) => u.code === code)) return "engaged" as const;
@@ -178,19 +194,7 @@ export function wizardsQuestPublicState(s: GameState) {
   const rhosgobel = where(WQ.rhosgobel);
   const rider = where(WQ.rider);
   return {
-    currentQuest: q.currentQuest,
-    stage,
-    side: `${stage}${s.stageRevealing ? "A" : "B"}`,
-    building: !!q.building,
-    stage2:
-      [...q.defeated, ...q.questDeck, q.currentQuest].find((c) =>
-        (WQ_STAGE2 as readonly string[]).includes(c),
-      ) ?? null,
-    stage3:
-      [...q.defeated, ...q.questDeck, q.currentQuest].find((c) =>
-        (WQ_STAGE3 as readonly string[]).includes(c),
-      ) ?? null,
-    sets: [...q.sets],
+    ...fellowshipEventPublicState(s, q, WQ_EVENT_CARDS),
     rhosgobel,
     rider,
     carried: q.carried.length,
@@ -208,8 +212,6 @@ export function validateWizardsQuest(
 ) {
   const q = s.wizardsQuest;
   if (q === undefined) return s.scenarioId !== WQ_SCENARIO;
-  const codes = (v: unknown) =>
-    Array.isArray(v) && v.every((c) => typeof c === "string" && byCode.has(c));
   const player = (p: unknown) => Number.isInteger(p) && (p as number) >= 0;
   const key = (v: unknown) =>
     v === null ||
@@ -217,18 +219,7 @@ export function validateWizardsQuest(
   return (
     !!q &&
     s.scenarioId === WQ_SCENARIO &&
-    byCode.get(q.currentQuest)?.type_code === "quest" &&
-    s.stage === wqStageOf(q.currentQuest) &&
-    codes(q.questDeck) &&
-    codes(q.defeated) &&
-    codes(q.box) &&
-    Array.isArray(q.sets) &&
-    q.sets.every((n) => WQ_SETS.some((x) => x.number === n)) &&
-    (q.building === null ||
-      (typeof q.building === "object" &&
-        (q.building.stage2 === null || byCode.has(q.building.stage2)) &&
-        (q.building.stage3 === null || byCode.has(q.building.stage3)))) &&
-    typeof q.advancing === "boolean" &&
+    validFellowshipEvent(s, q, WQ_EVENT_CARDS, (c) => byCode.has(c)) &&
     (q.forkId === null || typeof q.forkId === "string") &&
     Array.isArray(q.carried) &&
     q.carried.every((x) => player(x?.player) && unit(x.ally)) &&
@@ -241,7 +232,6 @@ export function validateWizardsQuest(
     q.guardedHeroes.every(
       (x) => player(x?.player) && typeof x.guardId === "string" && unit(x.hero),
     ) &&
-    (q.noCancel === null || byCode.has(q.noCancel)) &&
     (q.huntingAttack === null || typeof q.huntingAttack === "string") &&
     Array.isArray(q.nightfall) &&
     q.nightfall.every((x) => player(x?.player) && byCode.has(x.code)) &&

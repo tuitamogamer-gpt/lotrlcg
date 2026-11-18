@@ -139,6 +139,10 @@ export const PLAYMATS = {
     name: "Rhosgobel",
     detail: "Radagast's summons · The Necromancer's Tower",
   },
+  "the-woodland-realm": {
+    name: "Mirkwood",
+    detail: "The Spider Den · The Elvenking's halls",
+  },
   "the-ruins-of-belegost": {
     name: "Belegost",
     detail: "The drowned Dwarf city · Naurlhûg's lair",
@@ -587,6 +591,7 @@ export const PLAYMAT_CHOICES = [
   "the-siege-of-annuminas",
   "attack-on-dol-guldur",
   "the-wizards-quest",
+  "the-woodland-realm",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

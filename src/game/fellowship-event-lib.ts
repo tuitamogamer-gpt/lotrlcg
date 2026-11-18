@@ -3,9 +3,7 @@ import { card, name } from "./cards";
 import { log, make } from "./core";
 import { enemyAddedToStaging } from "./board";
 import { globalEngaged, playerOrder, seatName, seatView } from "./table";
-import { wqStageOf } from "./wizards-quest-support";
-
-/** Shared helpers of The Wizard's Quest's stage and card modules. */
+/** Shared helpers of the 2018 Fellowship event scenarios' stage and card modules. */
 export const live = (u: Unit, code: string) => u.code === code && !u.blanked;
 export const seatLabel = (s: GameState, p: number) =>
   s.table ? ` · ${seatName(s, p)}` : "";
@@ -27,8 +25,8 @@ export const charactersOf = (s: GameState, p: number) => [
   ...seatView(s, p).allies,
 ];
 export const players = (s: GameState) => playerOrder(s).length;
-export const stageNumber = (s: GameState) =>
-  s.wizardsQuest ? wqStageOf(s.wizardsQuest.currentQuest) : 0;
+/** The stage number of the main quest, kept with its quest card. */
+export const stageNumber = (s: GameState) => s.stage;
 export const isEnemy = (u: Unit) => card(u.code).type_code === "enemy";
 export const isLocation = (u: Unit) => card(u.code).type_code === "location";
 export const traitsOf = (c: string) =>
