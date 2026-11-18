@@ -3,8 +3,10 @@
 The first scenario of **The Lord of the Rings: The Land of Shadow** (November
 2015). It is playable in classic solo and with one to four local players, in
 normal and easy mode, with the box's Fellowship-sphere Frodo Baggins as the
-Ring-bearer. Campaign mode, with its campaign card and The Searching Eye
-burdens, is not part of this import.
+Ring-bearer. Its campaign mode (recipe Q0C.10) is part of
+[The Lord of the Rings campaign](SAGA-CAMPAIGN.md): free hero changes without
+an Aragorn, The Searching Eye in each player's deck, and a resolution that
+gives each player a +2 starting threat penalty or a copy of The Searching Eye.
 
 ## Sources and corrections
 

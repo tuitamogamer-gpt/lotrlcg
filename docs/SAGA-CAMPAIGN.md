@@ -8,11 +8,12 @@ local players. The lobby's campaign mode offers two campaigns: Mirkwood Paths
 The Black Riders are supported (A Shadow of the Past, A Knife in the Dark and
 Flight to the Ford), the optional Parts 1.1 and 1.2 (The Old Forest and Fog
 on the Barrow-downs), The Road Darkens' three chapters (The Ring Goes South,
-Journey in the Dark and Breaking of the Fellowship) and The Treason of
-Saruman's (The Uruk-hai, Helm's Deep and The Road to Isengard). The campaign
-log is kept after The Road to Isengard, and the end of the game says that the
-next chapter, The Passage of the Marshes, is not available in campaign mode
-yet.
+Journey in the Dark and Breaking of the Fellowship), The Treason of
+Saruman's (The Uruk-hai, Helm's Deep and The Road to Isengard) and The Land
+of Shadow's (The Passage of the Marshes, Journey to the Cross-roads and
+Shelob's Lair). The campaign log is kept after Shelob's Lair, and the end of
+the game says that the next chapter, The Passing of the Grey Company, is not
+available in campaign mode yet.
 
 ## Sources
 
@@ -59,6 +60,19 @@ yet.
   [RulesPal](https://rulespal.com/the-treason-of-saruman/rulebook), adds that
   no card titled Frodo Baggins can be used in its chapters and that a recorded
   Aragorn gives way to the Fellowship Aragorn without the threat penalty.
+- The Land of Shadow's three campaign cards (both faces), Brace of Coneys,
+  The Searching Eye and A Heavy Burden were checked by eye against the scans;
+  with them, all 62 faces are pinned. The scans correct the catalog: The
+  Passage of the Marshes' Setup begins "Each player may change hero cards
+  without incurring the +1 threat penalty", Shelob's Lair's burden set icons
+  are Helm's Deep's and The Road to Isengard's (the catalog says "RD"),
+  Journey to the Cross-roads' Resolution (missing from the catalog) earns each
+  shuffled Brace of Coneys and records the enemies under The Black Gate,
+  Brace of Coneys is a Gift with Victory 2, and A Heavy Burden is Permanent.
+  The Land of Shadow's rulebook, as transcribed by
+  [RulesPal](https://rulespal.com/the-lord-of-the-rings-the-card-game-the-land-of-shadow/rulebook),
+  adds that no card titled Aragorn can be used in its chapters in campaign
+  mode.
 - The two campaign cards are numbered Parts 1.1 and 1.2 of The Lord of the
   Rings: the chapters are played after A Shadow of the Past (Part 1) and
   before A Knife in the Dark (Part 2). Each is optional, and when both are
@@ -82,7 +96,10 @@ yet.
   +1 starting threat penalty; another version of the same hero (the same
   title) is not a replacement, and no version of a fallen hero can be chosen
   (an ally version of it is taken out of the decks at setup). The Ring Goes
-  South lets each player change heroes freely, without the penalty.
+  South, Helm's Deep and The Passage of the Marshes let each player change
+  heroes freely, without the penalty. The Passage of the Marshes may also give
+  a player a **personal** permanent +2 starting threat penalty, recorded in
+  the log for that player alone.
 - **The campaign card** of each scenario lies next to the quest deck; its Setup
   resolves after the scenario's own setup, and its Resolution is recorded after
   a win. Resolutions that ask for choices are answered in the end-of-game
@@ -98,22 +115,38 @@ yet.
   burden objectives Grievous Wound and Overcome by Grief go to the staging
   area, and an earned Gift of Lórien is attached by the first player to a hero
   in play. A fallen hero's Permanent cards leave the pool.
-- **Boons in decks**: Sting, Mithril Shirt, Glamdring and Andúril are player
-  cards. The interlude before each chapter after The Ring Goes South assigns
-  each of them to a player's deck (or leaves it out); the assignment is kept
-  in the log, and the cards do not count against the deck's size.
+- **Boons in decks**: Sting, Mithril Shirt, Glamdring, Andúril and the
+  Palantír of Orthanc are player cards. The interlude before each chapter
+  after The Ring Goes South assigns each of them to a player's deck (or leaves
+  it out); the assignment is kept in the log, and the cards do not count
+  against the deck's size. Brace of Coneys is earned copy by copy: each copy
+  joins its earner's deck by default, and the interlude lists every copy
+  ("Brace of Coneys (copy 1)") so that it can join another player's deck or
+  stay out.
 - **Notes**: the captives Breaking of the Fellowship takes are recorded in the
   journal; The Uruk-hai takes each player's captive from them, and its win
-  rescues them.
+  rescues them. Journey to the Cross-roads records the name and quantity of
+  each enemy under The Black Gate ("Notes · under The Black Gate").
 - **Burdens in decks**: Poisoned Counsels, earned by each player who holds a
-  copy at the end of Helm's Deep, is shuffled into that player's deck after the
-  starting hand of each later chapter; drawn, it discards the rest of the hand.
+  copy at the end of Helm's Deep, and The Searching Eye, earned at The Passage
+  of the Marshes, are shuffled into their earners' decks after the starting
+  hand of each later chapter. The cards a campaign card shuffles in after the
+  starting hands (these burdens, The Passage of the Marshes' Searching Eye and
+  Journey to the Cross-roads' Brace of Coneys) are held out of a mulligan's
+  new hand, which by the rules is drawn before the campaign card's Setup.
 - **The Treason of Saruman**: its chapters leave out the burden sets of A
   Shadow of the Past, Flight to the Ford and The Ring Goes South (Gandalf's
   Delay included), no card titled Frodo Baggins can be used, and a recorded
   Aragorn is set aside for the Fellowship Aragorn (replacing him costs no
   penalty). In hot-seat games the log keeps each player's hero count, so a
   set-aside Aragorn still counts.
+- **The Land of Shadow**: its chapters leave out the burden sets of Helm's
+  Deep and The Road to Isengard (Poisoned Counsels and Saruman's Voice), from
+  the encounter deck and from each player's deck, and no card titled Aragorn
+  can be used: the interlude fills a recorded Aragorn's slot with another hero
+  (free at The Passage of the Marshes), and an Aragorn card is taken out of a
+  deck at setup. Frodo's burdens (Gandalf's Delay included) return with the
+  Ring-bearer.
 - **Permanent**: a Permanent attachment cannot be discarded from its hero while
   the hero is in play; when the hero leaves play, it is removed from the game.
 
@@ -148,6 +181,14 @@ yet.
 | Helm's Deep          | Setup: each player may change heroes without the penalty; Frodo's burden sets stay out. Resolution: each player with a copy of Poisoned Counsels in hand, deck or discard pile earns it.                                                                                                                                                                                                                                                                 |
 | The Road to Isengard | Setup: Saruman's Voice is shuffled into the encounter deck; Frodo's burden sets stay out. Resolution: if any player has 3 or fewer cards in hand, the players earn Saruman's Voice; if any player has 3 or more, the first player earns the Palantír of Orthanc (a boon card for their deck).                                                                                                                                                            |
 
+## The Land of Shadow chapters
+
+| Chapter                    | Campaign card                                                                                                                                                                                                                                                                                                                                             |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| The Passage of the Marshes | Setup: each player may change heroes without the penalty; each player shuffles 1 copy of The Searching Eye into their deck (after the starting hand); the burdens of Helm's Deep and The Road to Isengard stay out. Resolution: each player must choose a permanent +2 starting threat penalty (their own) or 1 copy of The Searching Eye for their deck. |
+| Journey to the Cross-roads | Setup: each player must choose: 1 resource on each of their heroes, or 1 copy of Brace of Coneys shuffled into their deck. Resolution: each player who shuffled Brace of Coneys earns that copy; the name and quantity of each enemy under The Black Gate are recorded in the Notes.                                                                      |
+| Shelob's Lair              | Setup: A Heavy Burden is attached to the Ring-bearer. Resolution: the players earn A Heavy Burden.                                                                                                                                                                                                                                                        |
+
 Seat of Seeing's campaign response is scripted too: when it is explored, the
 first player may remove a burden card in play, in the encounter deck or in the
 discard pile from the game (and, once the scenario is won, from the Campaign
@@ -178,12 +219,16 @@ Pool), and the encounter deck is shuffled.
 | Beyond All Hope (boon, Permanent)                                                   | +1 willpower, +1 attack and +1 defense; its hero cannot have treachery card attachments (the campaign's own treacheries skip it).                                                                                                                                                                                                                                                                                                                                |
 | Palantír of Orthanc (boon, attachment)                                              | Attach to the Fellowship Aragorn. Quest Action: exhaust it and Aragorn to discard the top encounter card; if his willpower is greater than its threat, add it to the victory display (Victory 5, out of the pool after a win) so that a player reveals 1 fewer encounter card this phase.                                                                                                                                                                        |
 | Poisoned Counsels, Saruman's Voice (burdens)                                        | Poisoned Counsels works like a player card in its earner's deck. Saruman's Voice (Peril, Doomed 2) removes a hero from the quest (a questing one if any) and attaches to it; whenever that hero commits to the quest or is declared as an attacker or defender, its controller discards 1 card.                                                                                                                                                                  |
+| Brace of Coneys (boon, event, Gift)                                                 | Play only if you control the Ring-bearer. Planning Action: add it to the victory display (Victory 2; it stays in the Campaign Pool) to choose 2 different effects: heal up to 2 damage from a hero, add 2 resources to a hero's pool, a player draws 2 cards, or a player reduces their threat by 2.                                                                                                                                                             |
+| The Searching Eye (burden, treachery)                                               | Works like a player card in its earner's deck. Forced: after its player draws it, they exhaust each hero they control or reveal the top card of the encounter deck; as FAQ 1.44 rules for such choices, an option that cannot be performed in full (an exhausted hero, an empty encounter deck) is offered only when the other cannot be either. The treachery then goes to its owner's discard pile.                                                            |
+| A Heavy Burden (burden, objective, Permanent)                                       | Setup: attached to the Ring-bearer. Forced: at the end of the planning phase, the first player chooses: each player raises their threat by 1, or the Ring-bearer exhausts (only while he is ready).                                                                                                                                                                                                                                                              |
 | Followed by Night, Ill Fate (burdens, treacheries)                                  | Peril. Surge. Followed by Night puts the topmost enemy of the encounter discard pile into play engaged with you (in the staging area where enemies cannot engage). Ill Fate attaches to a hero you control; after a character you control is destroyed, raise your threat by 2.                                                                                                                                                                                  |
 
 ## Not supported yet
 
-The campaign cards, boons and burdens of The Land of Shadow, The Flame of the
-West and The Mountain of Fire follow in publication order. Saruman's Voice
+The campaign cards, boons and burdens of The Flame of the West and The
+Mountain of Fire follow in publication order (they read the Black Gate's
+Notes and A Heavy Burden again). Saruman's Voice
 does not yet react to its hero's own abilities, and Beyond All Hope does not
 yet stop the other scenarios' treachery attachments. One campaign is saved at a time: starting a new
 campaign replaces the saved one.
@@ -191,7 +236,7 @@ campaign replaces the saved one.
 ## Verification
 
 ```sh
-node --import tsx --test tests/saga-campaign.test.ts tests/saga-campaign-road-darkens.test.ts tests/saga-campaign-treason.test.ts
+node --import tsx --test tests/saga-campaign.test.ts tests/saga-campaign-road-darkens.test.ts tests/saga-campaign-treason.test.ts tests/saga-campaign-land-shadow.test.ts
 npm run build
 npm run test:browser-saga-campaign
 ```
@@ -217,11 +262,21 @@ Evil and the captives, the deck assignments and the saved log's checks.
 Saruman: its data, The Uruk-hai's setup, captives and both rewards (Beyond All
 Hope included), Helm's Deep's free changes and Poisoned Counsels, Saruman's
 Voice and The Road to Isengard's resolution, the six boons and the chapters'
-restrictions. The browser suite starts a new Lord of the Rings campaign
-through the lobby and plays its log through A Shadow of the Past, both
-optional chapters (chosen in the interlude), A Knife in the Dark, Flight to the
-Ford, The Road Darkens' three chapters and The Treason of Saruman's three at
-1280, 390 and 320 pixels (81 checkpoints: each chapter's setup, both interlude
-choices and the deck assignments, the resolution dialogs and journals, Ho! Tom
-Bombadil!'s Response, the Flight to the Ford Response and the recorded end of
-The Road to Isengard) and checks all 53 original faces.
+restrictions. `tests/saga-campaign-land-shadow.test.ts` (6 tests) covers The
+Land of Shadow: its data and the scans' corrections, The Passage of the
+Marshes' free changes, its Aragorn rule, the burden sets left out and The
+Searching Eye held out of a mulligan, The Searching Eye's choice and both
+resolutions, Journey to the Cross-roads' choice, Brace of Coneys' timing,
+cost and effects and the Black Gate's Notes, Shelob's Lair's Heavy Burden
+(Permanent, its Forced effect, the resolution), and a hot-seat log with a
+personal penalty, a per-player Searching Eye and a copy of Brace of Coneys
+moved to another player's deck. The browser suite starts a new Lord of the
+Rings campaign through the lobby and plays its log through A Shadow of the
+Past, both optional chapters (chosen in the interlude), A Knife in the Dark,
+Flight to the Ford, The Road Darkens' three chapters, The Treason of
+Saruman's three and The Land of Shadow's three at 1280, 390 and 320 pixels
+(114 checkpoints: each chapter's setup, both interlude choices and the deck
+assignments, the resolution dialogs and journals, Ho! Tom Bombadil!'s
+Response, the Flight to the Ford Response, The Searching Eye, Brace of Coneys
+played from hand, A Heavy Burden and the recorded end of Shelob's Lair) and
+checks all 62 original faces.

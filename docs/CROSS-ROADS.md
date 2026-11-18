@@ -3,8 +3,10 @@
 The second scenario of **The Lord of the Rings: The Land of Shadow**
 (November 2015). It is playable in classic solo and with one to four local
 players, in normal and easy mode, with the box's Fellowship-sphere Frodo
-Baggins as the Ring-bearer. Campaign mode, with its campaign card, is not
-part of this import.
+Baggins as the Ring-bearer. Its campaign mode (recipe Q0C.11) is part of
+[The Lord of the Rings campaign](SAGA-CAMPAIGN.md): each player chooses
+resources or Brace of Coneys at setup, and the resolution earns the shuffled
+copies and records the enemies under The Black Gate.
 
 ## Sources and corrections
 

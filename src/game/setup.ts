@@ -113,11 +113,13 @@ import { flush } from "./effects";
 import { newCampaign } from "./campaign";
 import {
   isSagaCampaign,
+  LOS_CHAPTERS,
   newSagaCampaign,
   sagaChapterOptions,
   sagaCampaignDeckSetup,
   sagaCampaignSetup,
   sagaChapterSupported,
+  sagaPlayerPenalty,
   sagaStartingHandPenalty,
 } from "./saga-campaign";
 import { setupCarrock } from "./carrock";
@@ -312,6 +314,13 @@ export function createGame(
         )),
     "The Lord of the Rings campaign follows its chapters in order, beginning with A Shadow of the Past.",
   );
+  // The Land of Shadow in campaign mode: no card titled "Aragorn".
+  requireRule(
+    !sagaCampaign ||
+      !LOS_CHAPTERS.includes(scenarioId) ||
+      !chosenHeroes.some((c) => card(c).name === "Aragorn"),
+    "No card titled Aragorn can be used in The Land of Shadow's chapters of the campaign.",
+  );
   const chosenLine = options.seats?.flatMap((p) => p.heroes) ?? heroCodes;
   const campaign =
     playMode === "campaign"
@@ -452,14 +461,14 @@ export function createGame(
         Array<string>(n).fill(code),
       );
       s.heroes = heroes.map((h) => make(s, h));
-      s.threat = startingThreat(heroes) + (campaign?.threatPenalty ?? 0);
+      s.threat = startingThreat(heroes) + sagaPlayerPenalty(campaign, i);
       s.startingThreat = s.threat;
       syncSeat(s);
     });
     selectSeat(s, 0);
   } else {
     s.heroes = heroCodes.map((code) => make(s, code));
-    s.threat = startingThreat(heroCodes) + (campaign?.threatPenalty ?? 0);
+    s.threat = startingThreat(heroCodes) + sagaPlayerPenalty(campaign, 0);
   }
   s.rangerReserves = {};
   s.batch4WindReserves = {};

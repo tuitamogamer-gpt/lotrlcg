@@ -105,13 +105,16 @@ test("The Land of Shadow player cards are scripted, deckable and pinned to revie
   // Mablung is scripted with the collector cards.
   for (const code of [...codes, P.frodo, "144005"])
     assert.ok(SCRIPTED.has(code), code);
-  assert.ok(!SCRIPTED.has("144014"), "Brace of Coneys needs campaign mode");
+  // Brace of Coneys belongs to The Lord of the Rings campaign mode
+  // (saga-campaign-land-shadow.test.ts): scripted, but never deckable.
   const heroes = HERO_CARDS.map((c) => c.code),
     deckable = DECK_CARDS.map((c) => c.code);
   for (const code of [P.faramir, P.damrod])
     assert.ok(heroes.includes(code), code);
   for (const code of codes.filter((c) => c !== P.faramir && c !== P.damrod))
     assert.ok(deckable.includes(code), code);
+  assert.ok(SCRIPTED.has("144014"));
+  assert.ok(!deckable.includes("144014"));
   assert.equal(art.length, 12);
   for (const a of art) {
     assert.equal(readFileSync(`public${a.localPath}`).length, a.bytes);

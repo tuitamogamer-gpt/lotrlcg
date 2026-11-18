@@ -2703,5 +2703,17 @@
   "/bundles/cards/143018.png": "/cards/143018.jpg",
   "/bundles/cards/143019.png": "/cards/143019.jpg",
   "/bundles/cards/143020.png": "/cards/143020.jpg",
-  "/bundles/cards/143068.png": "/cards/143068.jpg"
+  "/bundles/cards/143068.png": "/cards/143068.jpg",
+  "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/61963ddc-1260-471f-afdf-96581602a444.jpg": "/cards/61963ddc-1260-471f-afdf-96581602a444.jpg",
+  "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/61963ddc-1260-471f-afdf-96581602a444.B.jpg": "/cards/61963ddc-1260-471f-afdf-96581602a444.B.jpg",
+  "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2b93afb6-38fd-4ded-bf92-ed86bc03635d.jpg": "/cards/2b93afb6-38fd-4ded-bf92-ed86bc03635d.jpg",
+  "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2b93afb6-38fd-4ded-bf92-ed86bc03635d.B.jpg": "/cards/2b93afb6-38fd-4ded-bf92-ed86bc03635d.B.jpg",
+  "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cc77ab8d-1968-4607-b18d-7db3c3c186c7.jpg": "/cards/cc77ab8d-1968-4607-b18d-7db3c3c186c7.jpg",
+  "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cc77ab8d-1968-4607-b18d-7db3c3c186c7.B.jpg": "/cards/cc77ab8d-1968-4607-b18d-7db3c3c186c7.B.jpg",
+  "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c759124f-3bf2-4820-a1af-285c740c4a5b.jpg": "/cards/144014.jpg",
+  "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8b9b03e6-0036-473a-bdb7-d2d8e74edc69.jpg": "/cards/144015.jpg",
+  "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a40aef89-ca91-467c-93f3-9afc97bdbc24.jpg": "/cards/144052.jpg",
+  "/bundles/cards/144014.png": "/cards/144014.jpg",
+  "/bundles/cards/144015.png": "/cards/144015.jpg",
+  "/bundles/cards/144052.png": "/cards/144052.jpg"
 }

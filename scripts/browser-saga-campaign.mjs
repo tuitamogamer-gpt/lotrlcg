@@ -4,7 +4,7 @@ import { createHash } from "node:crypto";
 import { chromium } from "playwright";
 import { win } from "../src/game/board.ts";
 import { flush } from "../src/game/effects.ts";
-import { fx, make } from "../src/game/core.ts";
+import { draw, fx, make } from "../src/game/core.ts";
 import { validateSave } from "../src/game/engine.ts";
 import { syncSeat } from "../src/game/table.ts";
 import { ringBearer } from "../src/game/lotr-saga.ts";
@@ -95,14 +95,15 @@ async function choose(id) {
   await reviewedState(page);
   return campaign();
 }
-/** Keep the opening hand and reach the first action window. */
-async function opening() {
+/** Keep the opening hand and reach the first action window (`pick` may answer a choice). */
+async function opening(pick = () => undefined) {
   for (let i = 0; i < 200; i++) {
     await reviewedState(page);
     const s = await campaign();
     if (s?.choice)
       await choose(
-        s.choice.options.find((o) => o.id === "resolve")?.id ??
+        pick(s) ??
+          s.choice.options.find((o) => o.id === "resolve")?.id ??
           s.choice.options.find((o) => o.id === "skip")?.id ??
           s.choice.options[0].id,
       );
@@ -134,7 +135,7 @@ async function record(answers) {
   return campaign();
 }
 /** Continue the campaign, choosing an optional chapter in the interlude. */
-async function continueCampaign(chapter, width, before) {
+async function continueCampaign(chapter, width, before, pick) {
   await page.getByRole("button", { name: /^Continue campaign/ }).click();
   if (chapter) {
     await page
@@ -145,7 +146,28 @@ async function continueCampaign(chapter, width, before) {
   if (before) await before();
   await page.getByRole("button", { name: /^Begin next chapter/ }).click();
   await reviewedState(page);
-  return opening();
+  return opening(pick);
+}
+/** A table state at a calm planning window. */
+function calmState(s) {
+  const t = structuredClone(s);
+  Object.assign(t, { phase: "planning", choice: null, queue: [] });
+  if (t.flow) t.flow.pending = null;
+  return t;
+}
+/** Play a card from hand through its Play card button. */
+async function playFromHand(id) {
+  await page
+    .locator(`[data-motion-card="${id}"]`)
+    .getByRole("button", { name: "Play card", exact: true })
+    .click();
+  const confirm = page
+    .getByRole("dialog")
+    .getByRole("button", { name: "Play card", exact: true });
+  await confirm.waitFor({ timeout: 3000 }).catch(() => {});
+  if (await confirm.count()) await confirm.click();
+  await reviewedState(page);
+  return campaign();
 }
 /** The hero carrying a campaign attachment. */
 const carrier = (s, code) =>
@@ -409,8 +431,126 @@ try {
     await checkpoint("isengard-setup", width);
     s = await victory(s);
     assert.ok(s.campaign.boons.includes(SAGA.palantir));
-    await page.getByText(/is not available in campaign mode yet/).waitFor();
     await checkpoint("isengard-complete", width);
+    // The Land of Shadow. The Passage of the Marshes: no card titled Aragorn
+    // (the interlude fills his slot) and hero changes without the penalty.
+    const penalty = s.campaign.threatPenalty;
+    s = await continueCampaign(undefined, width, async () => {
+      await page
+        .getByText(/lets each player change heroes without the \+1 threat/)
+        .waitFor();
+      await checkpoint("marshes-interlude", width);
+    });
+    assert.equal(s.scenarioId, "the-passage-of-the-marshes");
+    assert.ok(!s.campaign.heroes.some((h) => card(h).name === "Aragorn"));
+    assert.equal(s.campaign.threatPenalty, penalty);
+    assert.ok(!s.encounterDeck.includes(SAGA.voice));
+    assert.ok(
+      [...s.deck, ...s.discard, ...s.hand.map((u) => u.code)].includes(
+        SAGA.searchingEye,
+      ),
+    );
+    await checkpoint("marshes-setup", width);
+    // The Searching Eye, drawn: exhaust each hero or reveal a card.
+    const eye = calmState(s);
+    eye.deck = eye.deck.filter((c) => c !== SAGA.searchingEye);
+    eye.discard = eye.discard.filter((c) => c !== SAGA.searchingEye);
+    eye.hand = eye.hand.filter((u) => u.code !== SAGA.searchingEye);
+    eye.deck.unshift(SAGA.searchingEye);
+    for (const h of eye.heroes) h.exhausted = false;
+    draw(eye, 1);
+    flush(eye);
+    assert.match(eye.choice.title, /^The Searching Eye/);
+    s = await load(eye);
+    await checkpoint("marshes-searching-eye", width);
+    s = await choose("exhaust");
+    assert.ok(s.heroes.every((h) => h.exhausted));
+    assert.ok(s.discard.includes(SAGA.searchingEye));
+    // The resolution: a permanent +2 starting threat penalty.
+    s = await victory(s);
+    await page
+      .locator("[data-saga-resolution='the-passage-of-the-marshes']")
+      .waitFor();
+    await checkpoint("marshes-resolution", width);
+    s = await record([
+      [/either take a permanent \+2 starting threat penalty/, "penalty"],
+    ]);
+    assert.deepEqual(s.campaign.playerPenalty, [2]);
+    await page
+      .getByText(/Personal starting threat penalties/)
+      .first()
+      .waitFor();
+    // Journey to the Cross-roads: a copy of Brace of Coneys for the deck.
+    s = await continueCampaign(undefined, width, undefined, (t) =>
+      /^Journey to the Cross-roads/.test(t.choice.title) ? "coneys" : undefined,
+    );
+    assert.equal(s.scenarioId, "journey-to-the-cross-roads");
+    assert.deepEqual(s.sagaCards.coneys, [0]);
+    await checkpoint("crossroads-setup", width);
+    // Brace of Coneys: a Planning Action of the Ring-bearer's controller.
+    const meal = calmState(s);
+    meal.deck = meal.deck.filter((c) => c !== SAGA.coneys);
+    meal.discard = meal.discard.filter((c) => c !== SAGA.coneys);
+    meal.hand = meal.hand.filter((u) => u.code !== SAGA.coneys);
+    const coneys = make(meal, SAGA.coneys);
+    coneys.owner = 0;
+    meal.hand.push(coneys);
+    await load(meal);
+    s = await playFromHand(coneys.id);
+    assert.match(
+      s.choice.title,
+      /^Brace of Coneys · Choose an effect \(1 of 2\)/,
+    );
+    await checkpoint("crossroads-coneys", width);
+    s = await choose("draw");
+    s = await choose("threat");
+    assert.ok(s.victoryCards.includes(SAGA.coneys));
+    // The resolution earns the copy and notes the enemies under the Gate.
+    s = await victory(s, (t) => {
+      const harad = t.encounterDeck.find((c) => card(c).type_code === "enemy");
+      t.crossRoads.underBlackGate = [harad, harad];
+    });
+    assert.deepEqual(s.campaign.boonCopies, { [SAGA.coneys]: [0] });
+    assert.equal(s.campaign.blackGateEnemies.length, 2);
+    await page
+      .getByText(/Notes · under The Black Gate/)
+      .first()
+      .waitFor();
+    await checkpoint("crossroads-complete", width);
+    // Shelob's Lair: the earned copy's deck, and A Heavy Burden.
+    s = await continueCampaign(undefined, width, async () => {
+      await page
+        .getByLabel("Brace of Coneys (copy 1): deck", { exact: true })
+        .selectOption("0");
+      await checkpoint("shelob-interlude", width);
+    });
+    assert.equal(s.scenarioId, "shelobs-lair");
+    assert.ok(
+      ringBearer(s).attachments.some((a) => a.code === SAGA.heavy),
+      "A Heavy Burden on the Ring-bearer",
+    );
+    assert.ok(
+      [
+        ...s.deck,
+        ...s.discard,
+        ...s.hand.map((u) => u.code),
+        ...(s.victoryCards ?? []),
+      ].includes(SAGA.coneys),
+    );
+    await checkpoint("shelob-setup", width);
+    const heavy = calmState(s);
+    ringBearer(heavy).exhausted = false;
+    heavy.queue.push(fx("sagaHeavyBurden", { player: 0 }));
+    flush(heavy);
+    assert.match(heavy.choice.title, /^A Heavy Burden/);
+    s = await load(heavy);
+    await checkpoint("shelob-heavy-burden", width);
+    s = await choose("exhaust");
+    assert.ok(ringBearer(s).exhausted);
+    s = await victory(s);
+    assert.ok(s.campaign.burdens.includes(SAGA.heavy));
+    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await checkpoint("shelob-complete", width);
     assert.ok(ringBearer);
     await view.c.close();
   }

@@ -8,7 +8,13 @@ import { jdBalrog } from "./journey-dark-support";
 import { BF } from "./breaking-fellowship-support";
 import { effectiveTraits as effectiveTraitsOf } from "./expansion-passives";
 import { ringBearer } from "./lotr-saga";
-import { forOwner, playerOrder, seatIndices, seatView } from "./table";
+import {
+  activeSeat,
+  forOwner,
+  playerOrder,
+  seatIndices,
+  seatView,
+} from "./table";
 import { score } from "./actions";
 import { OF } from "./old-forest-support";
 
@@ -64,12 +70,34 @@ export const SAGA_CAMPAIGN_SUPPORTED: readonly ScenarioId[] = [
   "the-uruk-hai",
   "helms-deep",
   "the-road-to-isengard",
+  "the-passage-of-the-marshes",
+  "journey-to-the-cross-roads",
+  "shelobs-lair",
+];
+/**
+ * Chapters whose campaign cards let each player change hero cards without the
+ * +1 threat penalty (The Ring Goes South, Helm's Deep, The Passage of the
+ * Marshes).
+ */
+export const SAGA_FREE_CHANGES: readonly ScenarioId[] = [
+  "the-ring-goes-south",
+  "helms-deep",
+  "the-passage-of-the-marshes",
 ];
 /** The Treason of Saruman's chapters: Aragorn leads, without Frodo or his burdens. */
 export const TOS_CHAPTERS: readonly ScenarioId[] = [
   "the-uruk-hai",
   "helms-deep",
   "the-road-to-isengard",
+];
+/**
+ * The Land of Shadow's chapters: no card titled "Aragorn" can be used, and the
+ * burden sets of Helm's Deep and The Road to Isengard are left out.
+ */
+export const LOS_CHAPTERS: readonly ScenarioId[] = [
+  "the-passage-of-the-marshes",
+  "journey-to-the-cross-roads",
+  "shelobs-lair",
 ];
 export const SAGA = {
   underhill: "141017",
@@ -105,6 +133,9 @@ export const SAGA = {
   palantir: "143020",
   counsels: "143021",
   voice: "143068",
+  coneys: "144014",
+  searchingEye: "144015",
+  heavy: "144052",
   shadowCard: "octgn:307411f3-4a45-44ae-bc64-4e16deb97d10",
   forestCard: "octgn:088b62be-0f26-4a87-805a-277edd463c8c",
   fogCard: "octgn:d34c9025-6380-4294-be3f-01c992922830",
@@ -116,6 +147,9 @@ export const SAGA = {
   urukCard: "octgn:a54706fb-776c-4c00-b0ef-454b21673bcb",
   helmCard: "octgn:cf5fad0e-e1c3-4340-a467-567ff0611c6f",
   isengardCard: "octgn:cb2d88e5-d469-43c6-9d69-e0cf36e2862e",
+  marshesCard: "octgn:61963ddc-1260-471f-afdf-96581602a444",
+  crossroadsCard: "octgn:2b93afb6-38fd-4ded-bf92-ed86bc03635d",
+  shelobCard: "octgn:cc77ab8d-1968-4607-b18d-7db3c3c186c7",
 } as const;
 /** Each scenario's campaign card. */
 export const SAGA_CAMPAIGN_CARDS: Partial<Record<ScenarioId, string>> = {
@@ -130,6 +164,9 @@ export const SAGA_CAMPAIGN_CARDS: Partial<Record<ScenarioId, string>> = {
   "the-uruk-hai": SAGA.urukCard,
   "helms-deep": SAGA.helmCard,
   "the-road-to-isengard": SAGA.isengardCard,
+  "the-passage-of-the-marshes": SAGA.marshesCard,
+  "journey-to-the-cross-roads": SAGA.crossroadsCard,
+  "shelobs-lair": SAGA.shelobCard,
 };
 /** Old Man Willow's code (The Old Forest). */
 const OLD_FOREST_WILLOW = OF.willow;
@@ -160,6 +197,7 @@ export const SAGA_BOONS: readonly string[] = [
   SAGA.leader,
   SAGA.hope,
   SAGA.palantir,
+  SAGA.coneys,
 ];
 export const SAGA_BURDENS: readonly string[] = [
   SAGA.delay,
@@ -174,6 +212,8 @@ export const SAGA_BURDENS: readonly string[] = [
   SAGA.illFate,
   SAGA.counsels,
   SAGA.voice,
+  SAGA.searchingEye,
+  SAGA.heavy,
 ];
 /** The burden sets of A Shadow of the Past, Flight to the Ford and The Ring Goes South. */
 export const FRODO_BURDENS: readonly string[] = [
@@ -209,7 +249,14 @@ export const GIFT_BOONS: readonly string[] = [
   SAGA.lembas,
 ];
 /** Burdens that function like player cards, earned by each player. */
-export const DECK_BURDENS: readonly string[] = [SAGA.counsels];
+export const DECK_BURDENS: readonly string[] = [
+  SAGA.counsels,
+  SAGA.searchingEye,
+];
+/** The burden sets of Helm's Deep and The Road to Isengard. */
+export const HD_RTI_BURDENS: readonly string[] = [SAGA.counsels, SAGA.voice];
+/** Boons the players earn copy by copy, each joining a player's deck (Brace of Coneys). */
+export const COPY_BOONS: readonly string[] = [SAGA.coneys];
 /** Burden objectives whose Setup adds them to the staging area (besides Gandalf's Delay). */
 export const STAGED_BURDENS: readonly string[] = [SAGA.grief, SAGA.wound];
 /** Boons with the Permanent keyword. */
@@ -279,6 +326,16 @@ export const sagaChapterSupported = (id: ScenarioId | undefined) =>
   !!id && SAGA_CAMPAIGN_SUPPORTED.includes(id);
 export const sagaCampaignCard = (s: GameState) =>
   sagaCampaignGame(s) ? SAGA_CAMPAIGN_CARDS[s.scenarioId] : undefined;
+/**
+ * A player's starting threat penalty: the Campaign Log's, plus that player's
+ * own (The Passage of the Marshes' permanent +2).
+ */
+export const sagaPlayerPenalty = (
+  c: CampaignState | null | undefined,
+  seat: number,
+) =>
+  (c?.threatPenalty ?? 0) +
+  (isSagaCampaign(c) ? (c!.playerPenalty?.[seat] ?? 0) : 0);
 
 /** Gandalf's Delay: each player draws 1 less card in their starting hand. */
 export const sagaStartingHandPenalty = (s: GameState) =>
@@ -319,15 +376,17 @@ export function sagaCampaignDeckSetup(s: GameState) {
         );
       }
     });
-  // The Treason of Saruman: no card titled "Frodo Baggins" can be used.
-  if (TOS_CHAPTERS.includes(s.scenarioId))
+  // The Treason of Saruman: no card titled "Frodo Baggins" can be used; The
+  // Land of Shadow: no card titled "Aragorn".
+  const title = sagaForbiddenTitle(s.scenarioId);
+  if (title)
     for (const player of playerOrder(s))
       forOwner(s, player, () => {
-        if (s.deck.some((code) => card(code).name === "Frodo Baggins")) {
-          s.deck = s.deck.filter((code) => card(code).name !== "Frodo Baggins");
+        if (s.deck.some((code) => card(code).name === title)) {
+          s.deck = s.deck.filter((code) => card(code).name !== title);
           log(
             s,
-            "The Treason of Saruman: no card titled Frodo Baggins can be used in its chapters.",
+            `${TOS_CHAPTERS.includes(s.scenarioId) ? "The Treason of Saruman" : "The Land of Shadow"}: no card titled ${title} can be used in its chapters.`,
           );
         }
       });
@@ -340,6 +399,52 @@ export function sagaCampaignDeckSetup(s: GameState) {
       seats.includes(seat)
     )
       forOwner(s, seat, () => s.deck.push(code));
+  // Each earned copy of Brace of Coneys joins the deck the log assigns it to.
+  for (const [code, decks] of Object.entries(c!.boonCopies ?? {}))
+    if (c!.boons.includes(code) && COPY_BOONS.includes(code))
+      for (const seat of decks)
+        if (seat !== null && seats.includes(seat))
+          forOwner(s, seat, () => s.deck.push(code));
+}
+/**
+ * A mulligan redraws the starting hand before the campaign card's Setup: the
+ * cards that Setup shuffled into the deck are held out of the new hand.
+ */
+export function sagaHoldLateDeck(s: GameState): string[] {
+  const held: string[] = [];
+  for (const code of s.sagaCards?.lateDeck?.[activeSeat(s)] ?? []) {
+    const i = s.deck.indexOf(code);
+    if (i < 0) continue;
+    s.deck.splice(i, 1);
+    held.push(code);
+  }
+  return held;
+}
+export function sagaReturnLateDeck(s: GameState, held: readonly string[]) {
+  if (!held.length) return;
+  s.deck.push(...held);
+  shuffle(s, s.deck);
+}
+/** The card title a chapter's campaign rules forbid. */
+export const sagaForbiddenTitle = (id: ScenarioId) =>
+  TOS_CHAPTERS.includes(id)
+    ? "Frodo Baggins"
+    : LOS_CHAPTERS.includes(id)
+      ? "Aragorn"
+      : undefined;
+/**
+ * A card a campaign Setup shuffles into a player's deck after the starting
+ * hands; a mulligan holds it out.
+ */
+export function sagaLateDeckCard(s: GameState, code: string, seat: number) {
+  forOwner(s, seat, () => {
+    s.deck.push(code);
+    shuffle(s, s.deck);
+  });
+  const lists = ((s.sagaCards ??= { ringDraws: 0, underhill: [] }).lateDeck ??=
+    []);
+  while (lists.length <= seat) lists.push([]);
+  lists[seat].push(code);
 }
 /** Attach a campaign card (a Permanent boon) to a hero. */
 function attachBoon(s: GameState, hero: Unit, code: string) {
@@ -361,6 +466,14 @@ export function sagaCampaignSetup(s: GameState) {
   const c = s.campaign;
   if (!isSagaCampaign(c)) return;
   const tos = TOS_CHAPTERS.includes(s.scenarioId);
+  const los = LOS_CHAPTERS.includes(s.scenarioId);
+  // The burden sets a chapter's campaign card removes: The Treason of Saruman
+  // leaves out those of A Shadow of the Past, Flight to the Ford and The Ring
+  // Goes South; The Land of Shadow those of Helm's Deep and The Road to
+  // Isengard.
+  const left = (code: string) =>
+    (tos && FRODO_BURDENS.includes(code)) ||
+    (los && HD_RTI_BURDENS.includes(code));
   // The Uruk-hai's campaign card: "Remove Gildor Inglorion and Mr. Underhill
   // from the Campaign Pool."
   if (s.scenarioId === "the-uruk-hai") {
@@ -383,16 +496,15 @@ export function sagaCampaignSetup(s: GameState) {
   if (bearer)
     for (const code of c!.permanent[RING_BEARER_KEY] ?? [])
       attachBoon(s, bearer, code);
-  // The Treason of Saruman's chapters leave out the burden sets of A Shadow of
-  // the Past, Flight to the Ford and The Ring Goes South.
   const encounter = [
     ...c!.boons.filter((code) => code === SAGA.gildor),
     ...c!.burdens.filter(
       (code) =>
         code !== SAGA.delay &&
+        code !== SAGA.heavy &&
         !STAGED_BURDENS.includes(code) &&
         !DECK_BURDENS.includes(code) &&
-        !(tos && FRODO_BURDENS.includes(code)),
+        !left(code),
     ),
   ];
   if (s.scenarioId === "the-road-to-isengard") encounter.push(SAGA.voice);
@@ -404,6 +516,23 @@ export function sagaCampaignSetup(s: GameState) {
   }
   for (const code of new Set(staged))
     if (!s.staging.some((u) => u.code === code)) s.staging.push(make(s, code));
+  // A Heavy Burden: "Setup: Attach to the Ring-bearer." (Shelob's Lair's
+  // campaign card, then its own Setup once earned.)
+  if (
+    bearer &&
+    (s.scenarioId === "shelobs-lair" || c!.burdens.includes(SAGA.heavy)) &&
+    !bearer.attachments.some((a) => a.code === SAGA.heavy)
+  )
+    bearer.attachments.push({
+      id: `a${s.nextId++}`,
+      code: SAGA.heavy,
+      exhausted: false,
+    });
+  // Journey to the Cross-roads' campaign card: each player chooses resources
+  // for their heroes or a copy of Brace of Coneys for their deck.
+  if (s.scenarioId === "journey-to-the-cross-roads")
+    for (const player of playerOrder(s))
+      enqueue(s, fx("sagaCrossroadsChoice", { player }));
   // Breaking of the Fellowship's campaign card: starting with the first
   // player, each player chooses one Gift of Lórien for a hero they control.
   if (s.scenarioId === "breaking-of-the-fellowship") {
@@ -459,15 +588,16 @@ export function sagaCampaignSetup(s: GameState) {
   for (const code of [...new Set(encounter)])
     if (!s.encounterDeck.includes(code)) s.encounterDeck.push(code);
   shuffle(s, s.encounterDeck);
-  // Earned burdens with a player card back (Poisoned Counsels) are shuffled
-  // into their players' decks after the starting hands.
+  // Earned burdens with a player card back (Poisoned Counsels, The Searching
+  // Eye) are shuffled into their players' decks after the starting hands; The
+  // Passage of the Marshes' campaign card gives each player The Searching Eye.
   for (const [code, seats] of Object.entries(c!.deckBurdens ?? {}))
-    if (c!.burdens.includes(code))
+    if (c!.burdens.includes(code) && !left(code))
       for (const seat of seats.filter((x) => playerOrder(s).includes(x)))
-        forOwner(s, seat, () => {
-          s.deck.push(code);
-          shuffle(s, s.deck);
-        });
+        sagaLateDeckCard(s, code, seat);
+  if (s.scenarioId === "the-passage-of-the-marshes")
+    for (const seat of playerOrder(s))
+      sagaLateDeckCard(s, SAGA.searchingEye, seat);
   log(
     s,
     `Campaign mode · ${card(SAGA_CAMPAIGN_CARDS[s.scenarioId] ?? "").name || "The Lord of the Rings"}: ${[
@@ -476,9 +606,25 @@ export function sagaCampaignSetup(s: GameState) {
             "Mr. Underhill is attached to the Ring-bearer, Gandalf's Delay waits in the staging area, and Gildor Inglorion and The Ring Draws Them are shuffled into the encounter deck",
           ]
         : []),
-      ...(c!.boons.length || c!.burdens.length
+      ...(s.scenarioId === "the-passage-of-the-marshes"
+        ? ["each player shuffles 1 copy of The Searching Eye into their deck"]
+        : []),
+      ...(s.scenarioId === "shelobs-lair"
+        ? ["A Heavy Burden is attached to the Ring-bearer"]
+        : []),
+      ...(los
         ? [
-            `the Campaign Pool adds ${[...c!.boons, ...c!.burdens].map((code) => card(code).name).join(", ")}`,
+            "the burdens of Helm's Deep and The Road to Isengard are left out, and no card titled Aragorn can be used",
+          ]
+        : []),
+      ...(c!.boons.length || c!.burdens.some((code) => !left(code))
+        ? [
+            `the Campaign Pool adds ${[
+              ...c!.boons,
+              ...c!.burdens.filter((code) => !left(code)),
+            ]
+              .map((code) => card(code).name)
+              .join(", ")}`,
           ]
         : []),
     ].join("; ")}.`,
@@ -660,6 +806,37 @@ export function resolveSagaCampaign(s: GameState) {
       ].join("; ")}.`,
       "good",
     );
+  } else if (s.scenarioId === "journey-to-the-cross-roads") {
+    // "Each player who chose to shuffle a copy of Brace of Coneys into his
+    // deck during setup has earned that boon. ... Record the name and quantity
+    // of each enemy underneath The Black Gate in the notes section."
+    const seats = (s.sagaCards?.coneys ?? []).filter((p) =>
+      playerOrder(s).includes(p),
+    );
+    if (seats.length) {
+      if (!c.boons.includes(SAGA.coneys)) c.boons.push(SAGA.coneys);
+      c.boonCopies = {
+        ...(c.boonCopies ?? {}),
+        [SAGA.coneys]: [...(c.boonCopies?.[SAGA.coneys] ?? []), ...seats],
+      };
+    }
+    c.blackGateEnemies = [...(s.crossRoads?.underBlackGate ?? [])];
+    log(
+      s,
+      `Journey to the Cross-roads · Resolution: ${
+        seats.length
+          ? `${seats.length} ${seats.length === 1 ? "copy" : "copies"} of Brace of Coneys ${seats.length === 1 ? "is" : "are"} earned`
+          : "no player earned Brace of Coneys"
+      }; the Campaign Log records ${blackGateNote(c.blackGateEnemies) || "no enemy"} under The Black Gate.`,
+      "good",
+    );
+  } else if (s.scenarioId === "shelobs-lair") {
+    if (!c.burdens.includes(SAGA.heavy)) c.burdens.push(SAGA.heavy);
+    log(
+      s,
+      "Shelob's Lair · Resolution: A Heavy Burden is added to the Campaign Pool; the players have earned that burden.",
+      "good",
+    );
   } else if (s.scenarioId === "fog-on-the-barrow-downs") {
     if (!c.boons.includes(SAGA.tom)) c.boons.push(SAGA.tom);
     log(
@@ -671,6 +848,15 @@ export function resolveSagaCampaign(s: GameState) {
   log(s, "The Campaign Log has been updated.", "good");
 }
 
+/** The Campaign Log's note of the enemies under The Black Gate: "Name ×2, …". */
+export function blackGateNote(codes: readonly string[] = []) {
+  const counts = new Map<string, number>();
+  for (const code of codes)
+    counts.set(card(code).name, (counts.get(card(code).name) ?? 0) + 1);
+  return [...counts]
+    .map(([title, n]) => (n > 1 ? `${title} ×${n}` : title))
+    .join(", ");
+}
 export type SagaQuestion = {
   id: string;
   player?: number;
@@ -798,6 +984,20 @@ export function sagaResolutionQuestions(s: GameState): SagaQuestion[] {
         })),
       },
     ];
+  if (s.scenarioId === "the-passage-of-the-marshes")
+    return playerOrder(s).map((player) => ({
+      id: `eye:${player}`,
+      player,
+      label: `${s.table ? `Player ${player + 1}` : "You"} must choose: either take a permanent +2 starting threat penalty, or earn 1 copy of The Searching Eye.`,
+      options: [
+        { id: "penalty", label: "Take a permanent +2 starting threat penalty" },
+        {
+          id: "eye",
+          code: SAGA.searchingEye,
+          label: "Earn 1 copy of The Searching Eye",
+        },
+      ],
+    }));
   if (s.scenarioId === "journey-in-the-dark" && !jdBalrog(s))
     return [
       {
@@ -966,6 +1166,35 @@ export function applySagaResolution(
       );
     }
   }
+  if (s.scenarioId === "the-passage-of-the-marshes") {
+    const penalty = [...(c!.playerPenalty ?? [])];
+    while (penalty.length < (s.table?.seats.length ?? 1)) penalty.push(0);
+    const eyes: number[] = [];
+    for (const q of questions)
+      if (answers[q.id] === "penalty") penalty[q.player!] += 2;
+      else eyes.push(q.player!);
+    if (penalty.some((n) => n > 0)) c!.playerPenalty = penalty;
+    if (eyes.length) {
+      if (!c!.burdens.includes(SAGA.searchingEye))
+        c!.burdens.push(SAGA.searchingEye);
+      c!.deckBurdens = {
+        ...(c!.deckBurdens ?? {}),
+        [SAGA.searchingEye]: [
+          ...new Set([...(c!.deckBurdens?.[SAGA.searchingEye] ?? []), ...eyes]),
+        ],
+      };
+    }
+    log(
+      s,
+      `The Passage of the Marshes · Resolution: ${questions
+        .map(
+          (q) =>
+            `${s.table ? `Player ${q.player! + 1}` : "you"} ${answers[q.id] === "penalty" ? `${s.table ? "takes" : "take"} a permanent +2 starting threat penalty` : `${s.table ? "earns" : "earn"} The Searching Eye`}`,
+        )
+        .join("; ")}.`,
+      "good",
+    );
+  }
   if (s.scenarioId === "journey-in-the-dark") {
     c!.burdens.push(answers.treachery, answers.objective);
     log(
@@ -1043,6 +1272,38 @@ export function validateSagaCampaign(s: GameState): boolean {
         c.seatHeroes.reduce((n, x) => n + x, 0) === c.heroes.length)) &&
     (c.captives === undefined ||
       (codes(c.captives) && c.captives.every(hero))) &&
+    (c.playerPenalty === undefined ||
+      (Array.isArray(c.playerPenalty) &&
+        c.playerPenalty.length === (s.table?.seats.length ?? 1) &&
+        c.playerPenalty.every(integer))) &&
+    (c.boonCopies === undefined ||
+      (!!c.boonCopies &&
+        typeof c.boonCopies === "object" &&
+        !Array.isArray(c.boonCopies) &&
+        Object.entries(c.boonCopies).every(
+          ([code, decks]) =>
+            COPY_BOONS.includes(code) &&
+            c.boons.includes(code) &&
+            Array.isArray(decks) &&
+            decks.length >= 1 &&
+            decks.length <= 4 &&
+            decks.every(
+              (seat) =>
+                seat === null ||
+                (Number.isSafeInteger(seat) &&
+                  seat >= 0 &&
+                  seat < (s.table?.seats.length ?? 1)),
+            ),
+        ))) &&
+    (c.blackGateEnemies === undefined ||
+      (codes(c.blackGateEnemies) &&
+        c.blackGateEnemies.every((code) => {
+          try {
+            return card(code).type_code === "enemy";
+          } catch {
+            return false;
+          }
+        }))) &&
     (c.deckBurdens === undefined ||
       (!!c.deckBurdens &&
         typeof c.deckBurdens === "object" &&

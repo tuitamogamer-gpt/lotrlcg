@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2090,
+    "encounterCards": 2096,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3342,
-    "pending": 841
+    "scripted": 3348,
+    "pending": 835
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 261
+    "scripted": 264
   },
   "registeredCodes": [
     "01001",
@@ -843,6 +843,9 @@
     "144011",
     "144012",
     "144013",
+    "144014",
+    "144015",
+    "144052",
     "145001",
     "145002",
     "145003",
@@ -1466,6 +1469,7 @@
     "octgn:2b4188d2-7910-431f-8c8d-fbd358fc782d",
     "octgn:2b56edac-f289-4b76-ae90-f6f3e5fc9b58",
     "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1",
+    "octgn:2b93afb6-38fd-4ded-bf92-ed86bc03635d",
     "octgn:2b9c8fa1-a5c3-441e-95c1-c10c85948dc1",
     "octgn:2ba77eca-870d-41d9-84cb-f0f33b6d9f15",
     "octgn:2be47628-65a9-4809-87aa-6251eb68b4bc",
@@ -2251,6 +2255,7 @@
     "octgn:617952b3-1ac2-47a2-866f-302c3f0d8fd7",
     "octgn:617bc2e6-05a9-4c99-b3ff-8304ecb6ef32",
     "octgn:617ce2f8-f33e-4898-9fa4-38787ee9c2b6",
+    "octgn:61963ddc-1260-471f-afdf-96581602a444",
     "octgn:6220ef6b-f314-4cf9-92df-f9551d6cfde0",
     "octgn:624d5999-1a76-4783-b4e4-d9b596242d18",
     "octgn:626abd2c-11bc-416b-9db6-a72d5525d3de",
@@ -3078,6 +3083,7 @@
     "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
     "octgn:cc2cf907-a433-47e7-bc7f-21fa837aa025",
     "octgn:cc572a1a-2700-493c-9b82-309c9c9ba61c",
+    "octgn:cc77ab8d-1968-4607-b18d-7db3c3c186c7",
     "octgn:cd628acc-acdf-48c5-a9cc-136eb9bc3095",
     "octgn:cd883a3f-65b8-473e-97f7-b8ac12f91194",
     "octgn:cd974fa4-7f3a-4b46-b2d0-b99d086fe98a",
@@ -4151,9 +4157,9 @@
     {
       "product": "the-land-of-shadow",
       "total": 75,
-      "scripted": 68,
+      "scripted": 74,
       "player": 14,
-      "playerScripted": 13
+      "playerScripted": 14
     },
     {
       "product": "the-land-of-shadow-nightmare",
@@ -11027,7 +11033,7 @@
       "name": "Brace of Coneys",
       "type": "event",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -11035,7 +11041,7 @@
       "name": "The Searching Eye",
       "type": "treachery",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -11043,7 +11049,7 @@
       "name": "A Heavy Burden",
       "type": "objective",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -16779,7 +16785,7 @@
       "name": "Journey to the Cross-roads",
       "type": "campaign",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -24195,7 +24201,7 @@
       "name": "The Passage of the Marshes",
       "type": "campaign",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -33419,7 +33425,7 @@
       "name": "Shelob's Lair",
       "type": "campaign",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -40273,22 +40279,22 @@
       "id": "Q0C.10",
       "name": "The Passage of the Marshes",
       "mode": "campaign",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-passage-of-the-marshes",
+      "state": "scripted"
     },
     {
       "id": "Q0C.11",
       "name": "Journey to the Cross-roads",
       "mode": "campaign",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "journey-to-the-cross-roads",
+      "state": "scripted"
     },
     {
       "id": "Q0C.12",
       "name": "Shelob's Lair",
       "mode": "campaign",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "shelobs-lair",
+      "state": "scripted"
     },
     {
       "id": "Q0C.13",

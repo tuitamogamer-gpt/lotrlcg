@@ -345,6 +345,18 @@ export interface CampaignState {
   seatHeroes?: number[];
   /** Saga (Notes): the heroes taken captive at Breaking of the Fellowship. */
   captives?: string[];
+  /**
+   * Saga: each player's own permanent starting threat penalty (seat order),
+   * added to threatPenalty: The Passage of the Marshes' +2.
+   */
+  playerPenalty?: number[];
+  /**
+   * Saga: boons earned copy by copy (Brace of Coneys): the deck (seat index)
+   * each earned copy joins at setup, or null when it is left out.
+   */
+  boonCopies?: Record<string, (number | null)[]>;
+  /** Saga (Notes): the enemies under The Black Gate after Journey to the Cross-roads, one code per copy. */
+  blackGateEnemies?: string[];
 }
 export type Phase =
   | "setup"
@@ -554,6 +566,13 @@ export interface GameState {
     intimidated?: string;
     /** Palantír of Orthanc: the player who reveals 1 fewer card this quest phase. */
     palantir?: { player: number; round: number };
+    /** Journey to the Cross-roads: the players who shuffled Brace of Coneys into their decks. */
+    coneys?: number[];
+    /**
+     * Cards a campaign Setup shuffled into each player's deck after the
+     * starting hands (seat order): held out of a mulligan.
+     */
+    lateDeck?: string[][];
   };
   wrathRuin?: import("./wrath-ruin-types").WrathRuinState;
   burglarContract?: import("./burglar-contract-types").BurglarContractState;

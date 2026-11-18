@@ -6,8 +6,9 @@ of [The Passage of the Marshes](PASSAGE-MARSHES.md); Mablung was already
 scripted with the collector cards (see
 [the collector scripts](COLLECTOR-PLAYER-SCRIPTS.md)). The other eleven are
 scripted in `src/game/land-shadow-player-cards.ts`. The Brace of Coneys boon
-is a campaign-mode card: it stays pending until the Saga's campaign mode is
-imported, like the campaign-only text of the three scenarios.
+is a campaign-mode card, scripted with
+[The Lord of the Rings campaign](SAGA-CAMPAIGN.md) and never part of a deck
+built in the lobby.
 
 ## Sources
 

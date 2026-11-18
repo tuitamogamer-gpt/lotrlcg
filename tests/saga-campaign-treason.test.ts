@@ -102,7 +102,7 @@ test("The Treason of Saruman campaign cards, boons and Saruman's Voice are regis
       "The Uruk-hai",
       "Helm's Deep",
       "The Road to Isengard",
-      "The Passage of the Marshes",
+      "The Passing of the Grey Company",
     ].map((name) => automatedScenarioId({ name, mode: "campaign" })),
     ["the-uruk-hai", "helms-deep", "the-road-to-isengard", null],
   );
@@ -315,7 +315,7 @@ test("The Road to Isengard: Saruman's Voice joins the encounter deck, attaches t
   assert.ok(valid(many));
   assert.throws(
     () => continueCampaign(many, d.heroes, d.id, true, 53),
-    /not available yet/,
+    /No card titled Aragorn/,
   );
 });
 

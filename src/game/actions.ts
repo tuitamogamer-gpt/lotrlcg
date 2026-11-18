@@ -4,8 +4,16 @@ import {
   sagaCampaignAbility,
   sagaCampaignAbilityLabel,
   sagaCampaignAbilityProblem,
+  sagaCampaignEventCost,
+  sagaCampaignPlayerEvent,
+  sagaCampaignPlayProblem,
 } from "./saga-campaign-cards";
-import { sagaSetupHandIds, sagaStartingHandPenalty } from "./saga-campaign";
+import {
+  sagaHoldLateDeck,
+  sagaReturnLateDeck,
+  sagaSetupHandIds,
+  sagaStartingHandPenalty,
+} from "./saga-campaign";
 import { useVoyageAbility } from "./perilous-voyage";
 import { perilousVoyagePublic } from "./perilous-voyage-support";
 import * as BlackRidersPlayers from "./black-riders-player-cards";
@@ -969,6 +977,8 @@ export function canPlay(
   if (treasonProblem) return treasonProblem;
   const landShadowProblem = LandShadowPlayers.landShadowPlayerPlayProblem(s, u);
   if (landShadowProblem) return landShadowProblem;
+  const sagaCampaignProblem = sagaCampaignPlayProblem(s, u);
+  if (sagaCampaignProblem) return sagaCampaignProblem;
   const mountainFireProblem = MountainFirePlayers.mountainFirePlayerPlayProblem(
     s,
     u,
@@ -1689,6 +1699,7 @@ export function resolvePlayerCard(
         HobbitPlayers.hobbitPlayerEventCost(s, u, target);
         TreasonPlayers.treasonPlayerEventCost(s, u, target);
         LandShadowPlayers.landShadowPlayerEventCost(s, u);
+        sagaCampaignEventCost(s, u);
         const abilityCost =
           finalRingEventCost(s, u.code, target) ??
           RoadDarkensPlayers.roadDarkensPlayerEventCost(s, u);
@@ -1761,6 +1772,7 @@ export function handlePlayerEventAbilityEffect(
     !WainPlayers.wainridersPlayerEvent(s, physical.code) &&
     !TreasonPlayers.treasonPlayerEvent(s, physical.code) &&
     !LandShadowPlayers.landShadowPlayerEvent(s, physical.code) &&
+    !sagaCampaignPlayerEvent(s, physical.code) &&
     !MountainFirePlayers.mountainFirePlayerEvent(s, physical.code) &&
     !WrathPlayers.wrathRuinPlayerEvent(
       s,
@@ -3112,13 +3124,19 @@ export function applyAction(input: GameState, action: Action): GameState {
           putPlayerDeck(s, u);
         s.hand = s.hand.filter((u) => kept.has(u.id));
       }
-      shuffle(s, s.deck);
-      // Gandalf's Delay: the new starting hand also has 1 less card.
-      draw(
-        s,
-        (batch4Scenario(s).startingHandSize?.(s) ?? 6) -
-          sagaStartingHandPenalty(s),
-      );
+      {
+        // The Searching Eye, Poisoned Counsels and Journey to the
+        // Cross-roads' Brace of Coneys join the deck after the starting hand.
+        const held = sagaHoldLateDeck(s);
+        shuffle(s, s.deck);
+        // Gandalf's Delay: the new starting hand also has 1 less card.
+        draw(
+          s,
+          (batch4Scenario(s).startingHandSize?.(s) ?? 6) -
+            sagaStartingHandPenalty(s),
+        );
+        sagaReturnLateDeck(s, held);
+      }
       s.mulled = true;
       log(s, "You take your one mulligan.");
       break;

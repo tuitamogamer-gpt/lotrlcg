@@ -3,8 +3,9 @@
 The third scenario of **The Lord of the Rings: The Land of Shadow**
 (November 2015). It is playable in classic solo and with one to four local
 players, in normal and easy mode, with the box's Fellowship-sphere Frodo
-Baggins as the Ring-bearer. Campaign mode, with its campaign card and the A
-Heavy Burden burden, is not part of this import.
+Baggins as the Ring-bearer. Its campaign mode (recipe Q0C.12) is part of
+[The Lord of the Rings campaign](SAGA-CAMPAIGN.md): A Heavy Burden is attached
+to the Ring-bearer, and the resolution earns it.
 
 ## Sources and corrections
 

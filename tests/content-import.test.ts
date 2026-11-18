@@ -241,8 +241,9 @@ test("Core fixtures remain unchanged and reference imports do not enable unscrip
   assert.equal(byCode.get("01135")?.type_code, "objective-ally");
   assert.equal(byCode.get("01135")?.engine_code, "rc135");
   assert.ok(SCRIPTED.has("05001"));
-  // Brace of Coneys, a campaign boon, waits for the Saga's campaign mode.
-  assert.ok(!SCRIPTED.has("144014"));
+  // Brace of Coneys, a campaign boon, is scripted for the Saga's campaign
+  // mode (saga-campaign-land-shadow.test.ts).
+  assert.ok(SCRIPTED.has("144014"));
   assert.ok(!SCRIPTED.has("01132"));
   for (const c of catalogue.filter((c) => c.nightmare))
     assert.ok(!SCRIPTED.has(c.code));

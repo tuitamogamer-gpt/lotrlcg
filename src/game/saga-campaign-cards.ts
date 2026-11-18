@@ -5,6 +5,7 @@
 import type { Effect, GameState, Option, Unit } from "./types";
 import { card, name } from "./cards";
 import {
+  canGainResources,
   choose,
   draw,
   fx,
@@ -40,13 +41,14 @@ import {
 import { putPlayedEventInVictory } from "./event-resolution";
 import { playerCardImmune } from "./card-immunity";
 import { reduceThreat } from "./threat-reduction";
-import { oneRingExhausted } from "./lotr-saga";
+import { oneRingExhausted, ringBearer } from "./lotr-saga";
 import { hasResourceIcon } from "./expansion-passives";
 import {
   isSagaCampaign,
   SAGA,
   SAGA_BOONS,
   SAGA_BURDENS,
+  sagaLateDeckCard,
   SOUTH_BOONS,
 } from "./saga-campaign";
 import { isHero } from "./card-types";
@@ -382,10 +384,21 @@ export const sagaCampaignCannotCancel = (s: GameState, code?: string) =>
 
 /** The end of the phase: The Ring Draws Them's delayed engagement. */
 export function sagaCampaignPhaseEnd(s: GameState): Effect[] {
+  const out: Effect[] = [];
   const q = s.sagaCards;
-  if (!q?.ringDraws) return [];
-  q.ringDraws = 0;
-  return [fx("sagaRingDraws", { player: first(s) })];
+  if (q?.ringDraws) {
+    q.ringDraws = 0;
+    out.push(fx("sagaRingDraws", { player: first(s) }));
+  }
+  // A Heavy Burden: "Forced: At the end of the planning phase, ..."
+  if (
+    s.phase === "planning" &&
+    globalCharacters(s).some((u) =>
+      u.attachments.some((a) => a.code === SAGA.heavy && !a.blanked),
+    )
+  )
+    out.push(fx("sagaHeavyBurden", { player: first(s) }));
+  return out;
 }
 /** Gildor Inglorion's Forced at the end of the round. */
 export function sagaCampaignRoundEnd(s: GameState): Effect[] {
@@ -393,6 +406,39 @@ export function sagaCampaignRoundEnd(s: GameState): Effect[] {
     .filter((u) => u.code === SAGA.gildor && !u.blanked)
     .map((u) => fx("sagaGildorEnd", { target: u.id, player: first(s) }));
 }
+/** Brace of Coneys: "Play only if you control the Ring-bearer." A Planning Action. */
+export function sagaCampaignPlayProblem(s: GameState, u: Unit): string | null {
+  if (u.code !== SAGA.coneys) return null;
+  if (s.phase !== "planning") return "Brace of Coneys is a Planning Action.";
+  const bearer = ringBearer(s);
+  return bearer && ownerOf(s, bearer) === activeSeat(s)
+    ? null
+    : "Play Brace of Coneys only if you control the Ring-bearer.";
+}
+/** Brace of Coneys' cost: the victory display (it stays in the Campaign Pool). */
+export function sagaCampaignEventCost(s: GameState, u: Unit) {
+  if (u.code !== SAGA.coneys) return;
+  putPlayedEventInVictory(s, u.code);
+  log(s, "Brace of Coneys is added to the victory display.", "good");
+}
+export function sagaCampaignPlayerEvent(s: GameState, code: string): boolean {
+  if (code !== SAGA.coneys) return false;
+  prepend(s, fx("sagaConeys", { player: activeSeat(s) }));
+  return true;
+}
+/** Brace of Coneys' four effects: the player chooses 2. */
+const CONEYS = [
+  { id: "heal", label: "Heal up to 2 damage from a hero" },
+  { id: "resources", label: "Add 2 resources to a hero's pool" },
+  { id: "draw", label: "Choose a player to draw 2 cards" },
+  { id: "threat", label: "Reduce a player's threat by 2" },
+] as const;
+const coneysHeroes = (s: GameState, id: string) =>
+  globalCharacters(s).filter(
+    (h) => isHero(h) && (id === "heal" ? h.damage > 0 : canGainResources(s, h)),
+  );
+const coneysAvailable = (s: GameState, id: string) =>
+  id === "heal" || id === "resources" ? coneysHeroes(s, id).length > 0 : true;
 /** Heroes of the first player with a [fellowship] resource to spend. */
 const fellowshipPayers = (s: GameState) =>
   seatView(s, first(s)).heroes.filter(
@@ -831,9 +877,21 @@ export function sagaCampaignQuestSucceeded(s: GameState) {
     .map((h) => fx("sagaLeader", { target: h.id, player: ownerOf(s, h) }));
   if (offers.length) prepend(s, ...offers);
 }
-/** Poisoned Counsels outside Helm's Deep: discard all other cards in hand. */
+/**
+ * The Searching Eye: "Forced: After you draw this card, ..."; Poisoned
+ * Counsels outside Helm's Deep: discard all other cards in hand.
+ */
 export function sagaCampaignCardsDrawn(s: GameState, count: number) {
-  if (s.helmsDeep || !isSagaCampaign(s.campaign) || count <= 0) return;
+  if (!isSagaCampaign(s.campaign) || count <= 0) return;
+  const eyes = s.hand.slice(-count).filter((u) => u.code === SAGA.searchingEye);
+  if (eyes.length)
+    prepend(
+      s,
+      ...eyes.map((u) =>
+        fx("sagaSearchingEye", { target: u.id, player: activeSeat(s) }),
+      ),
+    );
+  if (s.helmsDeep) return;
   if (!s.hand.slice(-count).some((u) => u.code === SAGA.counsels)) return;
   const others = s.hand.filter((u) => u.code !== SAGA.counsels);
   if (!others.length) return;
@@ -916,6 +974,288 @@ export const sagaCampaignEnemyCannotAttack = (
 
 export function sagaCampaignEffect(s: GameState, e: Effect): boolean {
   switch (e.kind) {
+    case "sagaCrossroadsChoice": {
+      // Journey to the Cross-roads' Setup: "Each player must choose: either
+      // add 1 resource to each of his heroes' pools, or shuffle 1 copy of
+      // Brace of Coneys into his deck."
+      const p = e.player ?? first(s);
+      choose(
+        s,
+        `Journey to the Cross-roads · ${s.table ? `${seatName(s, p)} must choose` : "Choose"}`,
+        [
+          {
+            id: "resources",
+            label: `Add 1 resource to each of ${s.table ? "their" : "your"} heroes' pools`,
+            effects: [fx("sagaCrossroadsResources", { player: p })],
+          },
+          {
+            id: "coneys",
+            label: `Shuffle 1 copy of Brace of Coneys into ${s.table ? "their" : "your"} deck`,
+            code: SAGA.coneys,
+            effects: [fx("sagaCrossroadsConeys", { player: p })],
+          },
+        ],
+        card(SAGA.crossroadsCard).text,
+      );
+      return true;
+    }
+    case "sagaCrossroadsResources": {
+      const p = e.player ?? first(s);
+      const heroes = seatView(s, p).heroes;
+      for (const h of heroes) h.resources += 1;
+      log(
+        s,
+        `Journey to the Cross-roads: ${who(s, p)} ${s.table ? "adds" : "add"} 1 resource to each of ${s.table ? "their" : "your"} heroes' pools.`,
+        "good",
+      );
+      return true;
+    }
+    case "sagaCrossroadsConeys": {
+      const p = e.player ?? first(s);
+      sagaLateDeckCard(s, SAGA.coneys, p);
+      const q = state(s);
+      q.coneys = [...new Set([...(q.coneys ?? []), p])];
+      log(
+        s,
+        `Journey to the Cross-roads: ${who(s, p)} ${s.table ? "shuffles" : "shuffle"} 1 copy of Brace of Coneys into ${s.table ? "their" : "your"} deck.`,
+        "good",
+      );
+      return true;
+    }
+    case "sagaConeys": {
+      // Brace of Coneys: 2 different effects, chosen one after the other.
+      const p = e.player ?? activeSeat(s);
+      const options = CONEYS.filter(
+        (o) => o.id !== e.text && coneysAvailable(s, o.id),
+      );
+      if (!options.length) return true;
+      choose(
+        s,
+        `Brace of Coneys · Choose an effect (${e.text ? 2 : 1} of 2)`,
+        options.map((o) => ({
+          id: o.id,
+          label: o.label,
+          effects: [
+            fx("sagaConeysPick", { player: p, text: o.id }),
+            ...(e.text ? [] : [fx("sagaConeys", { player: p, text: o.id })]),
+          ],
+        })),
+        card(SAGA.coneys).text,
+      );
+      return true;
+    }
+    case "sagaConeysPick": {
+      const p = e.player ?? activeSeat(s);
+      if (e.text === "heal" || e.text === "resources") {
+        const heroes = coneysHeroes(s, e.text);
+        if (!heroes.length) return true;
+        choose(
+          s,
+          e.text === "heal"
+            ? "Brace of Coneys · Heal up to 2 damage from a hero"
+            : "Brace of Coneys · Add 2 resources to a hero's pool",
+          heroes.map((h) => ({
+            id: h.id,
+            code: h.code,
+            label: `${name(h)}${e.text === "heal" ? ` (${h.damage} damage)` : ""}${s.table ? ` · ${seatName(s, ownerOf(s, h))}` : ""}`,
+            effects: [
+              e.text === "heal"
+                ? fx("heal", {
+                    target: h.id,
+                    value: 2,
+                    code: SAGA.coneys,
+                    player: p,
+                  })
+                : fx("sagaConeysResources", { target: h.id, player: p }),
+            ],
+          })),
+        );
+        return true;
+      }
+      const kind = e.text === "draw" ? "sagaConeysDraw" : "sagaConeysThreat";
+      const players = playerOrder(s);
+      if (players.length === 1) {
+        prepend(s, fx(kind, { player: p, value: players[0] }));
+        return true;
+      }
+      choose(
+        s,
+        e.text === "draw"
+          ? "Brace of Coneys · Choose a player to draw 2 cards"
+          : "Brace of Coneys · Choose a player to reduce their threat by 2",
+        players.map((player) => ({
+          id: `player-${player}`,
+          label: seatName(s, player),
+          effects: [fx(kind, { player: p, value: player })],
+        })),
+      );
+      return true;
+    }
+    case "sagaConeysResources": {
+      const hero = get(s, e.target);
+      if (hero && canGainResources(s, hero)) {
+        hero.resources += 2;
+        log(
+          s,
+          `Brace of Coneys: 2 resources are added to ${name(hero)}'s pool.`,
+          "good",
+        );
+      }
+      return true;
+    }
+    case "sagaConeysDraw": {
+      const player = e.value ?? activeSeat(s);
+      forOwner(s, player, () => draw(s, 2));
+      log(
+        s,
+        `Brace of Coneys: ${who(s, player)} ${s.table ? "draws" : "draw"} 2 cards.`,
+        "good",
+      );
+      return true;
+    }
+    case "sagaConeysThreat": {
+      const player = e.value ?? activeSeat(s);
+      forOwner(s, player, () => reduceThreat(s, 2, SAGA.coneys));
+      log(
+        s,
+        `Brace of Coneys: ${who(s, player)} ${s.table ? "reduces their" : "reduce your"} threat by 2.`,
+        "good",
+      );
+      return true;
+    }
+    case "sagaSearchingEye": {
+      // The Searching Eye: "Forced: After you draw this card, either exhaust
+      // each hero you control, or reveal the top card of the encounter
+      // deck." As FAQ 1.44 rules for such choices, an option that cannot be
+      // performed in full (an exhausted hero) is left when the other can be.
+      const p = e.player ?? activeSeat(s);
+      const heroes = seatView(s, p).heroes;
+      const exhaust = heroes.length > 0 && heroes.every((h) => !h.exhausted);
+      const reveal = s.encounterDeck.length > 0;
+      const options: Option[] = [
+        ...(exhaust || !reveal
+          ? [
+              {
+                id: "exhaust",
+                label: `Exhaust each hero ${s.table ? "they control" : "you control"}`,
+                effects: [
+                  fx("sagaSearchingEyeResolve", {
+                    target: e.target,
+                    player: p,
+                    text: "exhaust",
+                  }),
+                ],
+              },
+            ]
+          : []),
+        ...(reveal || !exhaust
+          ? [
+              {
+                id: "reveal",
+                label: "Reveal the top card of the encounter deck",
+                effects: [
+                  fx("sagaSearchingEyeResolve", {
+                    target: e.target,
+                    player: p,
+                    text: "reveal",
+                  }),
+                ],
+              },
+            ]
+          : []),
+      ];
+      choose(
+        s,
+        `The Searching Eye · ${s.table ? `${seatName(s, p)} must choose` : "Choose"}`,
+        options,
+        card(SAGA.searchingEye).text,
+      );
+      return true;
+    }
+    case "sagaSearchingEyeResolve": {
+      const p = e.player ?? activeSeat(s);
+      // The treachery then goes to its owner's discard pile: it functions
+      // like a player card.
+      forOwner(s, p, () => {
+        const eye = s.hand.find((u) => u.id === e.target);
+        if (!eye) return;
+        s.hand = s.hand.filter((u) => u.id !== eye.id);
+        s.discard.push(eye.code);
+      });
+      if (e.text === "exhaust") {
+        forOwner(s, p, () => {
+          for (const h of s.heroes.filter((u) => !u.exhausted))
+            exhaustCharacter(s, h);
+        });
+        log(
+          s,
+          `The Searching Eye: ${who(s, p)} ${s.table ? "exhausts" : "exhaust"} each hero ${s.table ? "they control" : "you control"}.`,
+          "danger",
+        );
+      } else {
+        log(
+          s,
+          "The Searching Eye: the top card of the encounter deck is revealed.",
+          "danger",
+        );
+        prepend(s, fx("reveal", { player: p }));
+      }
+      return true;
+    }
+    case "sagaHeavyBurden": {
+      // A Heavy Burden: "Forced: At the end of the planning phase, either
+      // raise each player's threat by 1, or exhaust the Ring-bearer." The
+      // first player chooses; only a ready Ring-bearer can be exhausted.
+      const bearer = ringBearer(s);
+      const options: Option[] = [
+        {
+          id: "threat",
+          label: "Raise each player's threat by 1",
+          effects: [fx("sagaHeavyThreat", { player: first(s) })],
+        },
+        ...(bearer && !bearer.exhausted
+          ? [
+              {
+                id: "exhaust",
+                label: `Exhaust the Ring-bearer, ${name(bearer)}`,
+                code: bearer.code,
+                effects: [
+                  fx("sagaHeavyExhaust", {
+                    target: bearer.id,
+                    player: first(s),
+                  }),
+                ],
+              },
+            ]
+          : []),
+      ];
+      if (options.length === 1) {
+        prepend(s, ...options[0].effects);
+        return true;
+      }
+      choose(
+        s,
+        `A Heavy Burden · ${s.table ? `${seatName(s, first(s))} chooses` : "Choose"}`,
+        options,
+        card(SAGA.heavy).text,
+      );
+      return true;
+    }
+    case "sagaHeavyThreat":
+      for (const player of playerOrder(s))
+        forOwner(s, player, () => raiseThreat(s, 1, "encounter"));
+      log(s, "A Heavy Burden: each player raises their threat by 1.", "danger");
+      return true;
+    case "sagaHeavyExhaust": {
+      const bearer = get(s, e.target);
+      if (bearer && exhaustCharacter(s, bearer))
+        log(
+          s,
+          `A Heavy Burden: the Ring-bearer, ${name(bearer)}, exhausts.`,
+          "danger",
+        );
+      return true;
+    }
     case "sagaSouthChoice": {
       // The Ring Goes South: each player chooses a boon card for their hand.
       const pending = state(s).southPending ?? [];
@@ -1749,12 +2089,31 @@ export function validateSagaCards(s: GameState) {
       (Array.isArray(q.spent) &&
         new Set(q.spent).size === q.spent.length &&
         q.spent.every((code) => SAGA_BOONS.includes(code)))) &&
+    (q.coneys === undefined ||
+      (Array.isArray(q.coneys) &&
+        new Set(q.coneys).size === q.coneys.length &&
+        q.coneys.every(
+          (p) =>
+            Number.isSafeInteger(p) &&
+            p >= 0 &&
+            p < (s.table?.seats.length ?? 1),
+        ))) &&
+    (q.lateDeck === undefined ||
+      (Array.isArray(q.lateDeck) &&
+        q.lateDeck.length <= (s.table?.seats.length ?? 1) &&
+        q.lateDeck.every(
+          (codes) =>
+            Array.isArray(codes) &&
+            codes.every((code) => typeof code === "string" && !!code),
+        ))) &&
     (isSagaCampaign(s.campaign) ||
       (!q.ringDraws &&
         !q.underhill.length &&
         !q.spent?.length &&
         !q.southPending?.length &&
         !q.cleared?.length &&
-        !q.lustZero?.length))
+        !q.lustZero?.length &&
+        !q.coneys?.length &&
+        !q.lateDeck?.length))
   );
 }

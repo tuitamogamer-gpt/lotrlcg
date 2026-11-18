@@ -333,8 +333,13 @@ import type {
 } from "./game/types";
 import {
   applySagaResolution,
+  blackGateNote,
+  COPY_BOONS,
+  DECK_BURDENS,
+  fallenNames,
   nextSagaChapter,
   RING_BEARER_KEY,
+  SAGA_FREE_CHANGES,
   SAGA_CAMPAIGN_CARDS as SAGA_CAMPAIGN_CARD_CODES,
   SAGA_CAMPAIGN_JOURNAL,
   SAGA_CAMPAIGN_ORDER,
@@ -344,6 +349,7 @@ import {
   sagaChapterNumber,
   sagaChapterOptions,
   sagaChapterSupported,
+  sagaForbiddenTitle,
   sagaResolutionQuestions,
 } from "./game/saga-campaign";
 import {
@@ -1768,12 +1774,27 @@ export default function App() {
   const prepareNextChapter = () => {
     if (!game?.campaign) return;
     const c = game.campaign;
-    const picked = c.heroes.map((h) => (c.fallen.includes(h) ? "" : h));
+    // A fallen hero, or a title the next chapter forbids (no Aragorn in The
+    // Land of Shadow), leaves its slot to be filled.
+    const forbidden =
+      c.kind === "saga" ? sagaForbiddenTitle(nextChapterOf(c)!) : undefined;
+    const usable = (code: string) =>
+      !c.fallen.includes(code) &&
+      !(
+        c.kind === "saga" &&
+        // The Saga places its own Frodo Baggins as the Ring-bearer.
+        [...fallenNames(c), "Frodo Baggins"].includes(card(code).name)
+      ) &&
+      card(code).name !== forbidden;
+    const picked = c.heroes.map((h) => (usable(h) ? h : ""));
     for (let i = 0; i < picked.length; i++) {
       if (!picked[i])
         picked[i] =
           HERO_CARDS.find(
-            (h) => !picked.includes(h.code) && !c.fallen.includes(h.code),
+            (h) =>
+              !picked.includes(h.code) &&
+              usable(h.code) &&
+              !picked.some((x) => x && card(x).name === h.name),
           )?.code ?? "";
     }
     for (const h of HERO_CARDS)
@@ -1786,12 +1807,17 @@ export default function App() {
     setNextHeroes(picked);
     setNextChapter(nextChapterOf(c));
     setNextDeckBoons(
-      Object.fromEntries(
-        SAGA_DECK_BOONS.filter((code) => c.boons.includes(code)).map((code) => [
-          code,
-          c.deckBoons?.[code] ?? null,
-        ]),
-      ),
+      Object.fromEntries([
+        ...SAGA_DECK_BOONS.filter((code) => c.boons.includes(code)).map(
+          (code) => [code, c.deckBoons?.[code] ?? null] as const,
+        ),
+        // Brace of Coneys: one entry per earned copy ("code#copy").
+        ...COPY_BOONS.filter((code) => c.boons.includes(code)).flatMap((code) =>
+          (c.boonCopies?.[code] ?? []).map(
+            (seat, i) => [`${code}#${i}`, seat] as const,
+          ),
+        ),
+      ]),
     );
     setNextDeck(game.deckId);
     setNextSeatDecks(game.table?.seats.map((p) => p.deckId) ?? []);
@@ -4994,31 +5020,37 @@ export default function App() {
             Object.keys(nextDeckBoons).length > 0 && (
               <fieldset className="saga-deck-boons">
                 <legend>Earned boon cards in your decks</legend>
-                {Object.entries(nextDeckBoons).map(([code, seat]) => (
-                  <label key={code}>
-                    <span>{card(code).name}</span>
-                    <select
-                      aria-label={`${card(code).name}: deck`}
-                      value={seat === null ? "" : String(seat)}
-                      onChange={(e) =>
-                        setNextDeckBoons((d) => ({
-                          ...d,
-                          [code]:
-                            e.target.value === ""
-                              ? null
-                              : Number(e.target.value),
-                        }))
-                      }
-                    >
-                      <option value="">Not included</option>
-                      {(game.table?.seats ?? [null]).map((_, i) => (
-                        <option key={i} value={String(i)}>
-                          {game.table ? `Player ${i + 1}'s deck` : "Your deck"}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                ))}
+                {Object.entries(nextDeckBoons).map(([key, seat]) => {
+                  const [code, copy] = key.split("#");
+                  const title = `${card(code).name}${copy === undefined ? "" : ` (copy ${Number(copy) + 1})`}`;
+                  return (
+                    <label key={key}>
+                      <span>{title}</span>
+                      <select
+                        aria-label={`${title}: deck`}
+                        value={seat === null ? "" : String(seat)}
+                        onChange={(e) =>
+                          setNextDeckBoons((d) => ({
+                            ...d,
+                            [key]:
+                              e.target.value === ""
+                                ? null
+                                : Number(e.target.value),
+                          }))
+                        }
+                      >
+                        <option value="">Not included</option>
+                        {(game.table?.seats ?? [null]).map((_, i) => (
+                          <option key={i} value={String(i)}>
+                            {game.table
+                              ? `Player ${i + 1}'s deck`
+                              : "Your deck"}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  );
+                })}
                 <small>
                   Earned boons with a player card back may be included in a
                   player's deck; they do not count against its size.
@@ -5051,13 +5083,19 @@ export default function App() {
                 heroes={HERO_CARDS}
                 inspect={setDetail}
                 unavailable={(candidate) =>
-                  game.campaign!.fallen.includes(candidate)
+                  game.campaign!.fallen.includes(candidate) ||
+                  (game.campaign!.kind === "saga" &&
+                    fallenNames(game.campaign!).includes(card(candidate).name))
                     ? "Fallen"
-                    : nextHeroes.includes(candidate) && candidate !== code
-                      ? "Already in the company"
-                      : game.campaign!.prisoner === code && candidate !== code
-                        ? "Keep the recorded prisoner"
-                        : undefined
+                    : game.campaign!.kind === "saga" &&
+                        !!nextChapter &&
+                        sagaForbiddenTitle(nextChapter) === card(candidate).name
+                      ? `No card titled ${card(candidate).name} in this chapter`
+                      : nextHeroes.includes(candidate) && candidate !== code
+                        ? "Already in the company"
+                        : game.campaign!.prisoner === code && candidate !== code
+                          ? "Keep the recorded prisoner"
+                          : undefined
                 }
               />
             ))}
@@ -5128,22 +5166,41 @@ export default function App() {
           <p className="campaign-note">
             Starting threat penalty: +
             {game.campaign.threatPenalty +
-              (game.table
-                ? campaignSeatHeroes(
-                    game,
-                    game.campaign.kind === "saga" && game.campaign.seatHeroes
-                      ? game.campaign.heroes
-                      : game.table.seats.flatMap((p) => p.startingHeroes),
-                  ).reduce((total, before, i) => {
-                    const selected = campaignSeatHeroes(game, nextHeroes)[i];
-                    return (
-                      total + before.filter((h) => !selected.includes(h)).length
-                    );
-                  }, 0)
-                : game.campaign.heroes.filter((h) => !nextHeroes.includes(h))
-                    .length)}{" "}
-            for every player. Each player may replace fallen heroes and
-            voluntarily change one other hero.
+              (game.campaign.kind === "saga" &&
+              !!nextChapter &&
+              SAGA_FREE_CHANGES.includes(nextChapter)
+                ? 0
+                : game.table
+                  ? campaignSeatHeroes(
+                      game,
+                      game.campaign.kind === "saga" && game.campaign.seatHeroes
+                        ? game.campaign.heroes
+                        : game.table.seats.flatMap((p) => p.startingHeroes),
+                    ).reduce((total, before, i) => {
+                      const selected = campaignSeatHeroes(game, nextHeroes)[i];
+                      return (
+                        total +
+                        before.filter((h) => !selected.includes(h)).length
+                      );
+                    }, 0)
+                  : game.campaign.heroes.filter((h) => !nextHeroes.includes(h))
+                      .length)}{" "}
+            for every player.{" "}
+            {game.campaign.kind === "saga" &&
+            !!nextChapter &&
+            SAGA_FREE_CHANGES.includes(nextChapter)
+              ? "This chapter's campaign card lets each player change heroes without the +1 threat penalty."
+              : "Each player may replace fallen heroes and voluntarily change one other hero."}
+            {game.campaign.kind === "saga" &&
+              game.campaign.playerPenalty?.some((n) => n > 0) &&
+              ` Personal penalties: ${game.campaign.playerPenalty
+                .map((n, i) =>
+                  n > 0
+                    ? `${game.table ? `Player ${i + 1}` : "you"} +${n}`
+                    : "",
+                )
+                .filter(Boolean)
+                .join(", ")}.`}
           </p>
           <div className="modal-actions">
             <button className="secondary" onClick={() => setInterlude(false)}>
@@ -5391,15 +5448,18 @@ function CampaignJournal({
         <div>
           <span>BOONS</span>
           {c.boons.length ? (
-            [...new Set(c.boons)].map((code) => (
-              <button key={code} onClick={() => inspect(card(code))}>
-                <Sparkle size={13} />
-                {card(code).name}
-                {c.boons.filter((x) => x === code).length > 1
-                  ? ` ×${c.boons.filter((x) => x === code).length}`
-                  : ""}
-              </button>
-            ))
+            [...new Set(c.boons)].map((code) => {
+              const copies = COPY_BOONS.includes(code)
+                ? (c.boonCopies?.[code]?.length ?? 1)
+                : c.boons.filter((x) => x === code).length;
+              return (
+                <button key={code} onClick={() => inspect(card(code))}>
+                  <Sparkle size={13} />
+                  {card(code).name}
+                  {copies > 1 ? ` ×${copies}` : ""}
+                </button>
+              );
+            })
           ) : (
             <small>Earned as your story unfolds</small>
           )}
@@ -5407,15 +5467,18 @@ function CampaignJournal({
         <div>
           <span>BURDENS</span>
           {c.burdens.length ? (
-            [...new Set(c.burdens)].map((code) => (
-              <button key={code} onClick={() => inspect(card(code))}>
-                <Eye size={13} />
-                {card(code).name}
-                {c.burdens.filter((x) => x === code).length > 1
-                  ? ` ×${c.burdens.filter((x) => x === code).length}`
-                  : ""}
-              </button>
-            ))
+            [...new Set(c.burdens)].map((code) => {
+              const copies = DECK_BURDENS.includes(code)
+                ? (c.deckBurdens?.[code]?.length ?? 1)
+                : c.burdens.filter((x) => x === code).length;
+              return (
+                <button key={code} onClick={() => inspect(card(code))}>
+                  <Eye size={13} />
+                  {card(code).name}
+                  {copies > 1 ? ` ×${copies}` : ""}
+                </button>
+              );
+            })
           ) : (
             <small>No burdens recorded</small>
           )}
@@ -5425,6 +5488,25 @@ function CampaignJournal({
         <p className="campaign-note">
           Notes · captives:{" "}
           {c.captives.map((code) => card(code).name).join(", ")}
+        </p>
+      ) : null}
+      {c.blackGateEnemies ? (
+        <p className="campaign-note">
+          Notes · under The Black Gate:{" "}
+          {blackGateNote(c.blackGateEnemies) || "no enemy"}
+        </p>
+      ) : null}
+      {c.playerPenalty?.some((n) => n > 0) ? (
+        <p className="campaign-note">
+          Personal starting threat penalties:{" "}
+          {c.playerPenalty
+            .map((n, i) =>
+              n > 0
+                ? `${c.playerPenalty!.length > 1 ? `Player ${i + 1}` : "You"} +${n}`
+                : "",
+            )
+            .filter(Boolean)
+            .join(", ")}
         </p>
       ) : null}
       {Object.entries(c.permanent).map(([hero, boons]) => (

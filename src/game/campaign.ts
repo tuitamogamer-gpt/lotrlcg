@@ -11,9 +11,12 @@ import { log, random, requireRule } from "./core";
 import { createGame } from "./setup";
 import { score } from "./actions";
 import {
+  COPY_BOONS,
   isSagaCampaign,
+  LOS_CHAPTERS,
   nextSagaChapter,
   resolveSagaCampaign,
+  SAGA_FREE_CHANGES,
   sagaChapterOptions,
   sagaChapterSupported,
   TOS_CHAPTERS,
@@ -93,7 +96,11 @@ export function continueCampaign(
   seatDeckIds?: string[],
   /** The Lord of the Rings campaign: an optional chapter chosen instead of the next. */
   nextScenario?: ScenarioId,
-  /** The Lord of the Rings campaign: the deck (seat) each earned player-card boon joins, or null. */
+  /**
+   * The Lord of the Rings campaign: the deck (seat) each earned player-card
+   * boon joins, or null; a boon earned copy by copy (Brace of Coneys) is keyed
+   * "code#copy" for each earned copy.
+   */
   deckBoons?: Record<string, number | null>,
 ): GameState {
   const saga = isSagaCampaign(s.campaign);
@@ -132,15 +139,22 @@ export function continueCampaign(
     ? (nextScenario ?? nextSagaChapter(c)!)
     : SCENARIOS[c.completed.length].id;
   // The Ring Goes South's campaign card: "Each player may change hero cards he
-  // controls without incurring the +1 threat penalty."
-  // Helm's Deep's campaign card says the same.
-  const free = saga && ["the-ring-goes-south", "helms-deep"].includes(next);
+  // controls without incurring the +1 threat penalty." Helm's Deep's and The
+  // Passage of the Marshes' campaign cards say the same.
+  const free = saga && SAGA_FREE_CHANGES.includes(next);
   // The Treason of Saruman: no card titled "Frodo Baggins" can be used, and a
   // recorded Aragorn gives way to the Fellowship Aragorn without the penalty.
   const tos = saga && TOS_CHAPTERS.includes(next);
   requireRule(
     !tos || !heroes.some((h) => card(h).name === "Frodo Baggins"),
     "No card titled Frodo Baggins can be used in The Treason of Saruman's chapters.",
+  );
+  // The Land of Shadow: no card titled "Aragorn" can be used; a recorded
+  // Aragorn is replaced without the penalty.
+  const los = saga && LOS_CHAPTERS.includes(next);
+  requireRule(
+    !los || !heroes.some((h) => card(h).name === "Aragorn"),
+    "No card titled Aragorn can be used in The Land of Shadow's chapters.",
   );
   let offset = 0;
   const seats = s.table?.seats.map((p, i) => {
@@ -183,7 +197,7 @@ export function continueCampaign(
         return false;
       });
     }
-    if (tos) removed = removed.filter((h) => card(h).name !== "Aragorn");
+    if (tos || los) removed = removed.filter((h) => card(h).name !== "Aragorn");
     requireRule(
       free || removed.filter((h) => !c.fallen.includes(h)).length <= 1,
       "Between quests, each player may replace fallen heroes and voluntarily change one other hero.",
@@ -214,12 +228,31 @@ export function continueCampaign(
       ),
       "Choose a player's deck for each earned boon card.",
     );
+    const single = Object.entries(deckBoons).filter(
+      ([key]) => !key.includes("#"),
+    );
     c.deckBoons = Object.fromEntries(
-      Object.entries(deckBoons).filter(
+      single.filter(
         (entry): entry is [string, number] =>
           entry[1] !== null && c.boons.includes(entry[0]),
       ),
     );
+    // Brace of Coneys: each earned copy's deck, keyed "code#copy".
+    for (const [key, seat] of Object.entries(deckBoons)) {
+      const [code, copy] = key.split("#");
+      if (copy === undefined) continue;
+      const decks = c.boonCopies?.[code];
+      const i = Number(copy);
+      requireRule(
+        COPY_BOONS.includes(code) &&
+          !!decks &&
+          Number.isSafeInteger(i) &&
+          i >= 0 &&
+          i < decks.length,
+        "Each earned copy of a boon card can join one deck.",
+      );
+      decks![i] = seat;
+    }
   }
   if (s.table) c.seatPenalties = s.table.seats.map(() => c.threatPenalty);
   c.heroes = [...heroes];
