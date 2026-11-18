@@ -5,8 +5,8 @@
     "playerCards": 860,
     "heroes": 112,
     "deckCards": 744,
-    "encounterCards": 1803,
-    "scenarios": 116,
+    "encounterCards": 1817,
+    "scenarios": 118,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -120,6 +120,8 @@
       "mount-doom",
       "the-oath-2018",
       "the-oath",
+      "the-caves-of-nibin-dum-2018",
+      "the-caves-of-nibin-dum",
       "the-ruins-of-belegost",
       "murder-at-the-prancing-pony",
       "the-siege-of-annuminas",
@@ -128,12 +130,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3033,
-    "pending": 1150
+    "scripted": 3051,
+    "pending": 1132
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 241
+    "scripted": 245
   },
   "registeredCodes": [
     "01001",
@@ -1130,6 +1132,7 @@
     "octgn:08b55b0b-93e5-42d3-a746-703c7ce9146f",
     "octgn:0909409e-d2d3-4304-b239-76bb6da0dceb",
     "octgn:097b7d54-bfa9-4b13-a1b8-337b03cac21d",
+    "octgn:09a5cf0c-153e-4fa8-9f42-0e13ea70eb11",
     "octgn:09aeff64-6e0d-4dfa-af21-2e7805441376",
     "octgn:09b27f8f-60ab-4764-8c78-52fb09597921",
     "octgn:0a0e6044-c5ab-43ed-832a-71516c7d035a",
@@ -1290,6 +1293,7 @@
     "octgn:21a5e7e1-013b-478e-a1c3-ab0300541f39",
     "octgn:21b27ec8-a778-4bac-8228-aa013043b8ed",
     "octgn:21b339e8-a5e9-4491-96cc-1a4b0f1b18cb",
+    "octgn:21d3d814-0fa5-41a3-b0d9-3ba5163374ed",
     "octgn:21eb71b5-6b96-4388-bd95-e2576483a95a",
     "octgn:21ee317d-9aca-43be-9782-521539827cb8",
     "octgn:21f520fd-5efe-41f9-9f02-7a65e36eb31f",
@@ -1381,6 +1385,7 @@
     "octgn:2bf5a4d1-9d74-4e1a-8725-cf4a3a47dde9",
     "octgn:2c1f75cf-a6b5-4aa6-abbd-e1beb803e2e2",
     "octgn:2c20ea14-e7bc-4a38-a809-8834d659adf5",
+    "octgn:2c21eeec-9aa4-4278-b050-f4297426f89a",
     "octgn:2c32f4b8-83c7-4ac6-9401-3378a4ca530b",
     "octgn:2c3f8a11-c7a5-4709-ab8d-7435763f558b",
     "octgn:2c7e2c6c-ecaa-48dc-a19e-4477d4fc693d",
@@ -1399,6 +1404,7 @@
     "octgn:2f2e6076-2636-485b-874c-fd3bc4bcf5f0",
     "octgn:2f5221a8-8afd-48d8-afd3-352151d87ed6",
     "octgn:2f7770cd-3102-4f35-a3bc-bd9afcab8303",
+    "octgn:2fb27cc8-c3f5-4172-8ff0-456907f9b111",
     "octgn:2fd16de8-3286-4003-9978-574738b2a337",
     "octgn:2fe95d8c-0f30-4c20-b926-d92e4feea8e2",
     "octgn:303b01b8-2d61-4c20-81a0-50800e18d617",
@@ -1443,6 +1449,7 @@
     "octgn:35055e3e-d806-4c21-ad37-8177d70be329",
     "octgn:351afed2-188b-42d4-9b3a-bccb510ae7d2",
     "octgn:3551cf11-1670-46de-b404-7b8fd20d3aff",
+    "octgn:35617e02-f4ad-4e6d-af45-9b5e0b7ce682",
     "octgn:3566b6df-a1cd-4417-b202-27e0ecc0a966",
     "octgn:356f37d9-34c9-4fae-864d-c34dff7eaaa4",
     "octgn:3574e1dd-d730-485e-8c2b-16fb7d52f78b",
@@ -2063,6 +2070,7 @@
     "octgn:5a3a6917-900b-4878-9545-56c297a50248",
     "octgn:5a3d198a-5c72-42ec-b5ae-f183194632cf",
     "octgn:5a4545c3-8b25-4fad-9798-b67921c9e7d3",
+    "octgn:5a5f72e8-0133-439f-b715-c7600b20fba9",
     "octgn:5a654416-4449-4d0c-add8-8b3ca04bb401",
     "octgn:5a90429e-d5cf-442f-b8d8-af144b3ea861",
     "octgn:5abd3a4b-2769-401d-aa3c-c904da21b97a",
@@ -2132,6 +2140,7 @@
     "octgn:67251171-ee5f-46d5-b3c8-10523350c60c",
     "octgn:67455bf8-25ea-453e-9066-58e66fdf0528",
     "octgn:67c97a60-a53c-4624-83ec-2122a74ea730",
+    "octgn:67ddffc2-652d-4892-97a6-fe2af59d4616",
     "octgn:6805d08f-84e0-412d-a728-35a42ea9a091",
     "octgn:680e0591-23db-402e-829d-bc2c15ec026f",
     "octgn:6860f9ad-0f09-450a-adf9-6ebe9b872a49",
@@ -2208,6 +2217,7 @@
     "octgn:73752e58-5dc1-40ea-b294-3c8f1998142d",
     "octgn:737724a5-2603-40b0-8a0b-4e72dbb3775e",
     "octgn:737a8d5f-2f82-47e4-844e-52fdae95ccf5",
+    "octgn:737b346c-792e-48d2-b8da-5dae52ddc902",
     "octgn:738b3bad-7a2b-47ad-a34f-503028f4f4c1",
     "octgn:73969b8e-9591-4ab0-bd28-75c7780875b0",
     "octgn:7445051f-ca99-4a2c-8a8c-656f325fa227",
@@ -2305,6 +2315,7 @@
     "octgn:80af82a2-4377-4049-bb9d-2d79ad66d1db",
     "octgn:80e25c61-e49c-40cb-b8e7-b4c45620163c",
     "octgn:8103129a-77e7-47a2-a039-b0eddf305184",
+    "octgn:8104e805-08e3-4379-acde-0a9cc96837fe",
     "octgn:81632d10-625e-42f0-9e6b-09574a9ffbc3",
     "octgn:8165f1ef-d9df-464e-bd56-5baf4e43325f",
     "octgn:8174f1b9-6fd0-4eeb-971d-98b2d7a4eaf4",
@@ -2378,6 +2389,7 @@
     "octgn:8ac2d3ea-7e6d-4e9e-9cc5-70b65b24b835",
     "octgn:8affd994-f7f5-4341-8437-899f9a31b094",
     "octgn:8b083bb8-0ada-484a-9f83-6c8f431170b5",
+    "octgn:8b1a3e3e-903f-4c4d-acf4-c216c2116339",
     "octgn:8b203ead-9fb6-4734-9109-3633fc24d1a9",
     "octgn:8b4dd0c5-3847-46f6-a69b-a4c7ee2b21c8",
     "octgn:8b7c17f3-09d1-45a4-93ff-3b17a3285f35",
@@ -2513,11 +2525,13 @@
     "octgn:9e9e76b7-ef3c-4c7c-baf2-061dc0d2ccd0",
     "octgn:9eac32f5-dd08-4d1e-99bd-0722984cd32f",
     "octgn:9eb0298a-cb92-426d-87c6-37749aaae44b",
+    "octgn:9ebe2570-4478-45a4-af3b-5ba73a75cff9",
     "octgn:9f1f5ce8-2fa6-40e3-ba7c-34fb94db014b",
     "octgn:9fa12306-d6ed-4fb8-89ce-8145bb81a58a",
     "octgn:9feef7b4-4ca7-4adc-aeb7-56947254588a",
     "octgn:9ff94935-ae08-4d86-859f-f4d0776a66e5",
     "octgn:a0417d08-1905-46f9-bd65-067c1c59f0a3",
+    "octgn:a0b5c990-9acd-499c-befe-9a55e347f075",
     "octgn:a0d5be90-8618-4fe4-a917-d8d969c11264",
     "octgn:a0e1e091-fbbb-459e-9cb7-2cc63bd85711",
     "octgn:a0e456e0-5681-41fb-bf0c-06b42d4929de",
@@ -2546,6 +2560,7 @@
     "octgn:a531dc43-7feb-4e63-96ad-a33cdb3b717a",
     "octgn:a53e4587-03e4-4120-8aa5-9601a7069edd",
     "octgn:a56cab99-d482-4aa3-b5e4-b1e5b857515f",
+    "octgn:a589eabf-64a6-4400-aa3d-ad30b4f721c3",
     "octgn:a5aef3fe-7bb9-4165-ba0f-91127d8f21e3",
     "octgn:a5e60892-b524-43cf-a501-372a624e785e",
     "octgn:a62b42dc-ab4a-4573-a281-53742e2739f5",
@@ -2779,6 +2794,7 @@
     "octgn:c7bcb6fc-dde8-4df0-bd0e-3791b0fef4d0",
     "octgn:c7e3bde9-8348-41d6-8272-aa733f60a108",
     "octgn:c7ef7b6e-4346-4b4c-a9fa-2b42e3c2ab5c",
+    "octgn:c82f8ccc-d017-48ec-a611-49a77469d45d",
     "octgn:c88d317b-d8b9-43ef-b41d-427ae4337f8d",
     "octgn:c88f14e5-1bd3-4829-ab70-02479df6cdfd",
     "octgn:c898c9f0-d4a7-4821-b075-1e412cde86a7",
@@ -2851,6 +2867,7 @@
     "octgn:d3c68791-c3f9-4e8d-9515-2496f9ca1895",
     "octgn:d4686e4d-2d50-4ffd-9b95-7bcdf9b2a494",
     "octgn:d47ece86-2645-4d35-8ab7-c439d12abe65",
+    "octgn:d4a5f505-6cc6-4669-b9b9-8f5ad2a6e5df",
     "octgn:d4e4ab9d-d5ea-4d33-89f1-d8d24d166002",
     "octgn:d5134ddf-8c78-4e68-a603-7df5d48f5016",
     "octgn:d51db5d2-cd6d-4e28-9c46-c5f0a1c242d9",
@@ -2892,6 +2909,7 @@
     "octgn:db69ea89-f018-4534-9661-7c748298e1f5",
     "octgn:db960347-11ee-4ad7-8784-e4827fb7daaf",
     "octgn:dbdb65b4-924c-4d74-adcc-14b6d8e1e2f8",
+    "octgn:dbf55659-b4ea-4a8a-82d1-20c0f2e4405e",
     "octgn:dc074506-e478-4b63-88e4-9d6e4f8eb6d4",
     "octgn:dc074506-e478-4b63-88e4-9d6e4f8eb6d4:B",
     "octgn:dc8f31b6-73af-4aec-be26-8d297909d14d",
@@ -2906,6 +2924,7 @@
     "octgn:de8d68fc-15c4-4689-933e-1b2ca638cd78",
     "octgn:de903b76-e5e1-478b-a782-1e91f5a7261e",
     "octgn:ded946a7-99f0-42bf-92f6-a2c46ca64d98",
+    "octgn:dee08f07-580d-4229-8e56-573ef9eed6b0",
     "octgn:def7d5a8-3af5-428d-ac94-485c33388ff9",
     "octgn:df23bd50-5ca3-4a0e-a83c-a349632b0ff4",
     "octgn:df3f0718-7558-48c5-b680-2c2fc38d3de2",
@@ -3164,6 +3183,7 @@
     "octgn:ff597a85-6a02-4301-a9dc-4dcb4cf9b626",
     "octgn:ff79510f-a6c3-4357-a582-853e5bb3e2bc",
     "octgn:ff815834-bf79-4914-8057-903f834190f1",
+    "octgn:ffb334eb-991d-4615-93ce-b2215a02d74f",
     "octgn:ffd2cfe7-e5fc-4f47-b85e-19e8b2df5171",
     "octgn:ffe307bf-dd8e-4df3-9355-55564137d311",
     "octgn:ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e",
@@ -3437,7 +3457,7 @@
     {
       "product": "limited-starter",
       "total": 38,
-      "scripted": 21,
+      "scripted": 38,
       "player": 2,
       "playerScripted": 2
     },
@@ -3661,7 +3681,7 @@
     {
       "product": "the-dark-of-mirkwood",
       "total": 15,
-      "scripted": 3,
+      "scripted": 4,
       "player": 6,
       "playerScripted": 0
     },
@@ -13610,7 +13630,7 @@
       "name": "The Chasm",
       "type": "quest",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -15514,7 +15534,7 @@
       "name": "Collapsed Mine",
       "type": "location",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -16530,7 +16550,7 @@
       "name": "Goblin Tunnels",
       "type": "location",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -16810,7 +16830,7 @@
       "name": "Lost in the Dark",
       "type": "treachery",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -17378,7 +17398,7 @@
       "name": "Lightless Passage",
       "type": "location",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -23314,7 +23334,7 @@
       "name": "Watchful Eyes",
       "type": "treachery",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -24210,7 +24230,7 @@
       "name": "Goblin Dungeon",
       "type": "location",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -25178,7 +25198,7 @@
       "name": "Goblin Chieftain",
       "type": "enemy",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -26386,7 +26406,7 @@
       "name": "Cavern Warg",
       "type": "enemy",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -27322,7 +27342,7 @@
       "name": "Surprise Attack",
       "type": "quest",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -28906,7 +28926,7 @@
       "name": "The Dark of Nibin-Dûm",
       "type": "quest",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -29042,7 +29062,7 @@
       "name": "Cave Torch",
       "type": "objective",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -29410,7 +29430,7 @@
       "name": "Oathkeepers",
       "type": "quest",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -32770,7 +32790,7 @@
       "name": "Crumbling Stairs",
       "type": "location",
       "pack": "The Dark of Mirkwood",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dark-of-mirkwood"
     },
     {
@@ -33690,7 +33710,7 @@
       "name": "Branching Paths",
       "type": "location",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -34218,7 +34238,7 @@
       "name": "Great Cave-troll",
       "type": "enemy",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -34386,7 +34406,7 @@
       "name": "Cracked Pillar",
       "type": "location",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -37570,7 +37590,7 @@
       "name": "Crumbling Ruin",
       "type": "treachery",
       "pack": "Two-Player Limited Edition Starter",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "limited-starter"
     },
     {
@@ -37634,8 +37654,8 @@
       "id": "E00.02B",
       "name": "The Caves of Nibin-Dûm (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-caves-of-nibin-dum",
+      "state": "scripted"
     },
     {
       "id": "E01.1",
@@ -39104,8 +39124,8 @@
       "id": "Q00.01A",
       "name": "The Oath (Limited Collector's Edition)",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-oath-2018",
+      "state": "scripted"
     },
     {
       "id": "Q00.01B",
@@ -39118,15 +39138,15 @@
       "id": "Q00.02A",
       "name": "The Caves of Nibin-Dûm (Limited Collector's Edition)",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-caves-of-nibin-dum-2018",
+      "state": "scripted"
     },
     {
       "id": "Q00.02B",
       "name": "The Caves of Nibin-Dûm",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-caves-of-nibin-dum",
+      "state": "scripted"
     },
     {
       "id": "Q01.1",

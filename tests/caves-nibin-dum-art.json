@@ -1,0 +1,242 @@
+[
+  {
+    "code": "octgn:09a5cf0c-153e-4fa8-9f42-0e13ea70eb11",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/09a5cf0c-153e-4fa8-9f42-0e13ea70eb11.jpg",
+    "localPath": "/cards/09a5cf0c-153e-4fa8-9f42-0e13ea70eb11.jpg",
+    "bytes": 146361,
+    "sha256": "70d5b3974b82c0f3f95e91c38e903e04b6ef852743929e3808b0fa4196351f0d"
+  },
+  {
+    "code": "octgn:09a5cf0c-153e-4fa8-9f42-0e13ea70eb11",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/09a5cf0c-153e-4fa8-9f42-0e13ea70eb11.B.jpg",
+    "localPath": "/cards/09a5cf0c-153e-4fa8-9f42-0e13ea70eb11.B.jpg",
+    "bytes": 154979,
+    "sha256": "255204ff13f398261e8610db23b10596a4678d95012dc9f32f1f403114f27d76"
+  },
+  {
+    "code": "octgn:21d3d814-0fa5-41a3-b0d9-3ba5163374ed",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/21d3d814-0fa5-41a3-b0d9-3ba5163374ed.jpg",
+    "localPath": "/cards/21d3d814-0fa5-41a3-b0d9-3ba5163374ed.jpg",
+    "bytes": 145590,
+    "sha256": "be4309d828614218feea9cc81f2e0d1f274d76f26208ba1fdf0add11a565116d"
+  },
+  {
+    "code": "octgn:26e6135d-df1b-4221-ba45-a501858bafdf",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/26e6135d-df1b-4221-ba45-a501858bafdf.jpg",
+    "localPath": "/cards/26e6135d-df1b-4221-ba45-a501858bafdf.jpg",
+    "bytes": 164792,
+    "sha256": "a8345248a06ff93e237ff014ad284ed5d2ee7db11da5bc346a9cafa5f7c01bca"
+  },
+  {
+    "code": "octgn:2c21eeec-9aa4-4278-b050-f4297426f89a",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2c21eeec-9aa4-4278-b050-f4297426f89a.jpg",
+    "localPath": "/cards/2c21eeec-9aa4-4278-b050-f4297426f89a.jpg",
+    "bytes": 146145,
+    "sha256": "83fe4a385eb2800f38784df6958598fa89bb4f13434f1c992a2df221d14f4bed"
+  },
+  {
+    "code": "octgn:2fb27cc8-c3f5-4172-8ff0-456907f9b111",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2fb27cc8-c3f5-4172-8ff0-456907f9b111.jpg",
+    "localPath": "/cards/2fb27cc8-c3f5-4172-8ff0-456907f9b111.jpg",
+    "bytes": 150028,
+    "sha256": "0c29ccd18eb3f6c6834e4c6ca7c91aabc9ba2371b32a2f4e060ee310bb553641"
+  },
+  {
+    "code": "octgn:35617e02-f4ad-4e6d-af45-9b5e0b7ce682",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/35617e02-f4ad-4e6d-af45-9b5e0b7ce682.jpg",
+    "localPath": "/cards/35617e02-f4ad-4e6d-af45-9b5e0b7ce682.jpg",
+    "bytes": 139986,
+    "sha256": "0081e8c19bc620e736b06b73076ca098512883c73f748968b890cf68a7eafdcb"
+  },
+  {
+    "code": "octgn:5a5f72e8-0133-439f-b715-c7600b20fba9",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5a5f72e8-0133-439f-b715-c7600b20fba9.jpg",
+    "localPath": "/cards/5a5f72e8-0133-439f-b715-c7600b20fba9.jpg",
+    "bytes": 149183,
+    "sha256": "dfcc95c0f6c0be5b98d9fee54731fb13bc47a1c44c04a047733f00875e595a36"
+  },
+  {
+    "code": "octgn:5eb195bb-390f-48be-97fa-0ec09d6c807b",
+    "face": "front",
+    "source": "https://s3.amazonaws.com/hallofbeorn-resources/Images/Cards/The-Dark-of-Mirkwood/Obsidian-Arrows.jpg",
+    "localPath": "/cards/5eb195bb-390f-48be-97fa-0ec09d6c807b.jpg",
+    "bytes": 61829,
+    "sha256": "924a0ea77bf720b92d2f466583253a91df1a893e0cf0ad7e0af0b34cde0f6e9e"
+  },
+  {
+    "code": "octgn:67ddffc2-652d-4892-97a6-fe2af59d4616",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/67ddffc2-652d-4892-97a6-fe2af59d4616.jpg",
+    "localPath": "/cards/67ddffc2-652d-4892-97a6-fe2af59d4616.jpg",
+    "bytes": 143781,
+    "sha256": "3e8aa33ca64944c1108ff7184f474758d7f7146a54f02598fdeda0984d0ca618"
+  },
+  {
+    "code": "octgn:737b346c-792e-48d2-b8da-5dae52ddc902",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/737b346c-792e-48d2-b8da-5dae52ddc902.jpg",
+    "localPath": "/cards/737b346c-792e-48d2-b8da-5dae52ddc902.jpg",
+    "bytes": 150020,
+    "sha256": "9ce0c672357ef5260c246e008e37216b6edc6f827ac9d37a6b95de427c1ea7e4"
+  },
+  {
+    "code": "octgn:7b3e0874-fa4e-4ffb-8614-2bb088896d42",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7b3e0874-fa4e-4ffb-8614-2bb088896d42.jpg",
+    "localPath": "/cards/7b3e0874-fa4e-4ffb-8614-2bb088896d42.jpg",
+    "bytes": 122583,
+    "sha256": "1d43f5d06446c7d57aa9b488febe4211f577415d8c1f5b6fd0a024c0a72726cf"
+  },
+  {
+    "code": "octgn:8104e805-08e3-4379-acde-0a9cc96837fe",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8104e805-08e3-4379-acde-0a9cc96837fe.jpg",
+    "localPath": "/cards/8104e805-08e3-4379-acde-0a9cc96837fe.jpg",
+    "bytes": 159857,
+    "sha256": "c2e872b3e38d211868338f7705bb96145abba59e50584c8b31031909080bea58"
+  },
+  {
+    "code": "octgn:8b1a3e3e-903f-4c4d-acf4-c216c2116339",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8b1a3e3e-903f-4c4d-acf4-c216c2116339.jpg",
+    "localPath": "/cards/8b1a3e3e-903f-4c4d-acf4-c216c2116339.jpg",
+    "bytes": 139221,
+    "sha256": "cfcd396745dd4382d9de30f7575b6128dbf7f3b4d411fbe9351f9483129c8ae1"
+  },
+  {
+    "code": "octgn:8b1a3e3e-903f-4c4d-acf4-c216c2116339",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8b1a3e3e-903f-4c4d-acf4-c216c2116339.B.jpg",
+    "localPath": "/cards/8b1a3e3e-903f-4c4d-acf4-c216c2116339.B.jpg",
+    "bytes": 143152,
+    "sha256": "c39feef4b89d924a9be5b92877c7c8e08bef3895e58ea883afe1535e3f208ed8"
+  },
+  {
+    "code": "octgn:998f6e45-b0d3-42c4-b5ba-fdf301401d90",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/998f6e45-b0d3-42c4-b5ba-fdf301401d90.jpg",
+    "localPath": "/cards/998f6e45-b0d3-42c4-b5ba-fdf301401d90.jpg",
+    "bytes": 146422,
+    "sha256": "cd4417f9dbad99ff6a9ae8291a5ce958143cecb6c34651d77b51cfa0f73532e7"
+  },
+  {
+    "code": "octgn:9ebe2570-4478-45a4-af3b-5ba73a75cff9",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9ebe2570-4478-45a4-af3b-5ba73a75cff9.jpg",
+    "localPath": "/cards/9ebe2570-4478-45a4-af3b-5ba73a75cff9.jpg",
+    "bytes": 155372,
+    "sha256": "53a28efa6d5fbf1ed376442823910ff1d51d3aaad87d8be66b8014d991577c20"
+  },
+  {
+    "code": "octgn:9ebe2570-4478-45a4-af3b-5ba73a75cff9",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9ebe2570-4478-45a4-af3b-5ba73a75cff9.B.jpg",
+    "localPath": "/cards/9ebe2570-4478-45a4-af3b-5ba73a75cff9.B.jpg",
+    "bytes": 146501,
+    "sha256": "4ee8571e49b944133e7fb6dece031c27111b818087ca480bf8740f2235baf3d6"
+  },
+  {
+    "code": "octgn:a0b5c990-9acd-499c-befe-9a55e347f075",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a0b5c990-9acd-499c-befe-9a55e347f075.jpg",
+    "localPath": "/cards/a0b5c990-9acd-499c-befe-9a55e347f075.jpg",
+    "bytes": 136615,
+    "sha256": "f19befc53689ace9391841a5612b3e7413e8aeb55eec1b29684bd13ef4065914"
+  },
+  {
+    "code": "octgn:a589eabf-64a6-4400-aa3d-ad30b4f721c3",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a589eabf-64a6-4400-aa3d-ad30b4f721c3.jpg",
+    "localPath": "/cards/a589eabf-64a6-4400-aa3d-ad30b4f721c3.jpg",
+    "bytes": 137341,
+    "sha256": "38b71d6da352ae0a71d5c1b75c631b480fa4a86f31d156ce72f2c81123ba2d23"
+  },
+  {
+    "code": "octgn:a589eabf-64a6-4400-aa3d-ad30b4f721c3",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a589eabf-64a6-4400-aa3d-ad30b4f721c3.B.jpg",
+    "localPath": "/cards/a589eabf-64a6-4400-aa3d-ad30b4f721c3.B.jpg",
+    "bytes": 133153,
+    "sha256": "2c10b1484c01f77b556cc1b63deef80a2a75cfd54bbed9a291142f68af860954"
+  },
+  {
+    "code": "octgn:acd10bf3-4af4-41f0-888f-55eb777be3d8",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/acd10bf3-4af4-41f0-888f-55eb777be3d8.jpg",
+    "localPath": "/cards/acd10bf3-4af4-41f0-888f-55eb777be3d8.jpg",
+    "bytes": 154798,
+    "sha256": "27f002536c8d3fc73b6c776b723d4948ff6dcbcad6c12531bc39b91e798342ab"
+  },
+  {
+    "code": "octgn:b18b3bfa-4620-4c15-960f-5a3642ca9d5a",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b18b3bfa-4620-4c15-960f-5a3642ca9d5a.jpg",
+    "localPath": "/cards/b18b3bfa-4620-4c15-960f-5a3642ca9d5a.jpg",
+    "bytes": 152889,
+    "sha256": "7ff7fad4a5bad2ab9f0c45a2675c61dcbfc5e8a3d1e1abd1a603ff0a6ded12af"
+  },
+  {
+    "code": "octgn:c82f8ccc-d017-48ec-a611-49a77469d45d",
+    "face": "front",
+    "source": "https://s3.amazonaws.com/hallofbeorn-resources/Images/Cards/The-Dark-of-Mirkwood/Crumbling-Stairs.jpg",
+    "localPath": "/cards/c82f8ccc-d017-48ec-a611-49a77469d45d.jpg",
+    "bytes": 67110,
+    "sha256": "41753caffaf019aea85707e6bc7b2d2c579e9955ce58f3092642f40cc950d777"
+  },
+  {
+    "code": "octgn:d4a5f505-6cc6-4669-b9b9-8f5ad2a6e5df",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d4a5f505-6cc6-4669-b9b9-8f5ad2a6e5df.jpg",
+    "localPath": "/cards/d4a5f505-6cc6-4669-b9b9-8f5ad2a6e5df.jpg",
+    "bytes": 160141,
+    "sha256": "2394b07a34184e029f53b2fa89094ce7d1e8d7b548759130879bcdcf5484d2fc"
+  },
+  {
+    "code": "octgn:dbf55659-b4ea-4a8a-82d1-20c0f2e4405e",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dbf55659-b4ea-4a8a-82d1-20c0f2e4405e.jpg",
+    "localPath": "/cards/dbf55659-b4ea-4a8a-82d1-20c0f2e4405e.jpg",
+    "bytes": 160091,
+    "sha256": "e2fff6a143643b329778f0ae20fb8ecfb34748f67a54c1a5cd071109a63427af"
+  },
+  {
+    "code": "octgn:dee08f07-580d-4229-8e56-573ef9eed6b0",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dee08f07-580d-4229-8e56-573ef9eed6b0.jpg",
+    "localPath": "/cards/dee08f07-580d-4229-8e56-573ef9eed6b0.jpg",
+    "bytes": 144185,
+    "sha256": "5b1d59f7bdbde625fc542247bc9b9d2ebada4bbe8f5780396a0335a507e53061"
+  },
+  {
+    "code": "octgn:e62c0943-c58d-4dc7-8948-adef14de0e9a",
+    "face": "front",
+    "source": "https://s3.amazonaws.com/hallofbeorn-resources/Images/Cards/The-Dark-of-Mirkwood/Wild-Wargs.jpg",
+    "localPath": "/cards/e62c0943-c58d-4dc7-8948-adef14de0e9a.jpg",
+    "bytes": 64949,
+    "sha256": "55077879511f66c42df083b39096297ce59685e1808ae25d871aea06888d1a9f"
+  },
+  {
+    "code": "octgn:e8db9cc7-d53f-4ce9-991d-31078b2d507a",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e8db9cc7-d53f-4ce9-991d-31078b2d507a.jpg",
+    "localPath": "/cards/e8db9cc7-d53f-4ce9-991d-31078b2d507a.jpg",
+    "bytes": 154530,
+    "sha256": "76a3907afbeacf5692fcb1e3280593a891cb0fb864ad4e5c2158c8765b486a9a"
+  },
+  {
+    "code": "octgn:ffb334eb-991d-4615-93ce-b2215a02d74f",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ffb334eb-991d-4615-93ce-b2215a02d74f.jpg",
+    "localPath": "/cards/ffb334eb-991d-4615-93ce-b2215a02d74f.jpg",
+    "bytes": 146437,
+    "sha256": "d53cfd4367d3b10a1bfe3ff4212d68e37e6b66b598bb02ffa3de989b9f23db50"
+  }
+]

@@ -35,6 +35,7 @@ import { ruinsBelegostPublicState } from "./ruins-belegost-support";
 import { prancingPonyPublicState } from "./prancing-pony-support";
 import { annuminasPublicState } from "./annuminas-support";
 import { attackDolGuldurPublicState } from "./attack-dol-guldur-support";
+import { cavesPublicState } from "./caves-nibin-dum-support";
 import { helmsDeepPublicState } from "./helms-deep-support";
 import { roadIsengardPublicState } from "./road-isengard-support";
 import { passageMarshesPublicState } from "./passage-marshes-support";
@@ -3849,6 +3850,7 @@ export function publicState(s: GameState) {
     prancingPony: prancingPonyPublicState(s),
     annuminas: annuminasPublicState(s),
     attackDolGuldur: attackDolGuldurPublicState(s),
+    caves: cavesPublicState(s),
     fortressNurnPlayers: FortressPlayers.fortressNurnPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),

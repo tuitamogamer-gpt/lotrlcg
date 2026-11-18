@@ -54,13 +54,18 @@ export function automatedScenarioId(reference: { name: string; mode: string }) {
   // The frozen source recipe drops the article printed in the MEC77 title,
   // and names The Siege of Annúminas' standard game mode after its setup card
   // (the epic multiplayer mode recipe stays unsupported).
+  // The Starter's 2018 recipes are named after its Limited Collector's
+  // Edition; the atlas names them after the Two-Player Limited Edition Starter.
   const lower = name.toLocaleLowerCase("en");
   const canonicalName =
     lower === "temple of doom"
       ? "The Temple of Doom"
       : lower === "standard the siege of annúminas"
         ? "The Siege of Annúminas"
-        : name;
+        : name.replace(
+            /\s*\(Limited Collector['’]s Edition\)$/i,
+            " (Two-Player Limited Edition Starter)",
+          );
   const match = SCENARIOS.find(
     (s) =>
       s.name.toLocaleLowerCase("en") === canonicalName.toLocaleLowerCase("en"),

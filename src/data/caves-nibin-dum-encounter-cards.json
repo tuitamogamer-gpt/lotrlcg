@@ -1,0 +1,506 @@
+[
+  {
+    "code": "octgn:737b346c-792e-48d2-b8da-5dae52ddc902",
+    "octgnid": "737b346c-792e-48d2-b8da-5dae52ddc902",
+    "name": "Goblin Chieftain",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Goblin. Orc.",
+    "text": "X is the stage number of the quest.\nCannot take damage. Cannot have attachments.\nForced: After Goblin Chieftain attacks, either remove X progress from the quest, or return it to the staging area.",
+    "is_unique": true,
+    "pack_code": "Starter",
+    "pack_name": "Two-Player Limited Edition Starter",
+    "position": 82,
+    "quantity": 1,
+    "health": 8,
+    "engagement": 40,
+    "encounter_set": "The Caves of Nibin-Dum",
+    "printed_stats": {
+      "threat": "X",
+      "attack": "X",
+      "defense": "X",
+      "health": "8",
+      "engagement": "40"
+    },
+    "imagesrc": "/cards/737b346c-792e-48d2-b8da-5dae52ddc902.jpg",
+    "packs": [
+      {
+        "pack_code": "Starter",
+        "pack_name": "Two-Player Limited Edition Starter",
+        "position": 82,
+        "quantity": 1,
+        "octgnid": "737b346c-792e-48d2-b8da-5dae52ddc902",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/737b346c-792e-48d2-b8da-5dae52ddc902.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:dee08f07-580d-4229-8e56-573ef9eed6b0",
+    "octgnid": "dee08f07-580d-4229-8e56-573ef9eed6b0",
+    "name": "Cracked Pillar",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "While Cracked Pillar is in the staging area, it gains: \"The first player may declare an attack against Cracked Pillar during the combat phase as if it was an enemy engaged with him. Use Cracked Pillar's [threat] as its [defense] during this attack.\"\nTravel: Remove 4 damage from Cracked Pillar to travel here.",
+    "is_unique": true,
+    "pack_code": "Starter",
+    "pack_name": "Two-Player Limited Edition Starter",
+    "position": 83,
+    "quantity": 1,
+    "threat": 2,
+    "quest": 2,
+    "encounter_set": "The Caves of Nibin-Dum",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2"
+    },
+    "imagesrc": "/cards/dee08f07-580d-4229-8e56-573ef9eed6b0.jpg",
+    "packs": [
+      {
+        "pack_code": "Starter",
+        "pack_name": "Two-Player Limited Edition Starter",
+        "position": 83,
+        "quantity": 1,
+        "octgnid": "dee08f07-580d-4229-8e56-573ef9eed6b0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dee08f07-580d-4229-8e56-573ef9eed6b0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:a0b5c990-9acd-499c-befe-9a55e347f075",
+    "octgnid": "a0b5c990-9acd-499c-befe-9a55e347f075",
+    "name": "Cave Torch",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Light.",
+    "text": "Attach to a hero. Restricted.\nAction: Exhaust Cave Torch to place up to 3 progress tokens on a Dark location.\nForced: After Cave Torch exhausts, discard the top card of the encounter deck. If that card is an enemy, add it to the staging area.",
+    "is_unique": false,
+    "pack_code": "Starter",
+    "pack_name": "Two-Player Limited Edition Starter",
+    "position": 84,
+    "quantity": 1,
+    "encounter_set": "The Caves of Nibin-Dum",
+    "printed_stats": {},
+    "imagesrc": "/cards/a0b5c990-9acd-499c-befe-9a55e347f075.jpg",
+    "packs": [
+      {
+        "pack_code": "Starter",
+        "pack_name": "Two-Player Limited Edition Starter",
+        "position": 84,
+        "quantity": 1,
+        "octgnid": "a0b5c990-9acd-499c-befe-9a55e347f075",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a0b5c990-9acd-499c-befe-9a55e347f075.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:dbf55659-b4ea-4a8a-82d1-20c0f2e4405e",
+    "octgnid": "dbf55659-b4ea-4a8a-82d1-20c0f2e4405e",
+    "name": "Great Cave-troll",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Troll.",
+    "text": "Cannot have attachments.\nFor each point of excess combat damage dealt by Great Cave-troll (damage that is dealt beyond the remaining hit points of the character damaged by its attack) remove 1 progress from the current quest.",
+    "is_unique": false,
+    "pack_code": "Starter",
+    "pack_name": "Two-Player Limited Edition Starter",
+    "position": 85,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 6,
+    "defense": 4,
+    "health": 6,
+    "engagement": 36,
+    "encounter_set": "The Caves of Nibin-Dum",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "6",
+      "defense": "4",
+      "health": "6",
+      "engagement": "36"
+    },
+    "imagesrc": "/cards/dbf55659-b4ea-4a8a-82d1-20c0f2e4405e.jpg",
+    "packs": [
+      {
+        "pack_code": "Starter",
+        "pack_name": "Two-Player Limited Edition Starter",
+        "position": 85,
+        "quantity": 2,
+        "octgnid": "dbf55659-b4ea-4a8a-82d1-20c0f2e4405e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dbf55659-b4ea-4a8a-82d1-20c0f2e4405e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8104e805-08e3-4379-acde-0a9cc96837fe",
+    "octgnid": "8104e805-08e3-4379-acde-0a9cc96837fe",
+    "name": "Cavern Warg",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature. Warg.",
+    "text": "Response: When Cavern Warg attacks you, exhaust Cave Torch to cancel the attack and return Cavern Warg to the staging area.",
+    "is_unique": false,
+    "pack_code": "Starter",
+    "pack_name": "Two-Player Limited Edition Starter",
+    "position": 86,
+    "quantity": 2,
+    "threat": 2,
+    "attack": 3,
+    "defense": 2,
+    "health": 3,
+    "engagement": 33,
+    "encounter_set": "The Caves of Nibin-Dum",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "2",
+      "health": "3",
+      "engagement": "33"
+    },
+    "imagesrc": "/cards/8104e805-08e3-4379-acde-0a9cc96837fe.jpg",
+    "packs": [
+      {
+        "pack_code": "Starter",
+        "pack_name": "Two-Player Limited Edition Starter",
+        "position": 86,
+        "quantity": 2,
+        "octgnid": "8104e805-08e3-4379-acde-0a9cc96837fe",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8104e805-08e3-4379-acde-0a9cc96837fe.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "shadow": "Shadow: If this attack destroys a character, return attacking enemy to the staging area after this attack."
+  },
+  {
+    "code": "octgn:2c21eeec-9aa4-4278-b050-f4297426f89a",
+    "octgnid": "2c21eeec-9aa4-4278-b050-f4297426f89a",
+    "name": "Goblin Tunnels",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground. Dark.",
+    "text": "While Goblin Tunnels is in the staging area, it gains: \"Forced: After a Goblin is revealed from the encounter deck, remove a progress token from the current quest card.\"",
+    "is_unique": false,
+    "pack_code": "Starter",
+    "pack_name": "Two-Player Limited Edition Starter",
+    "position": 87,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 7,
+    "encounter_set": "The Caves of Nibin-Dum",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "7"
+    },
+    "imagesrc": "/cards/2c21eeec-9aa4-4278-b050-f4297426f89a.jpg",
+    "packs": [
+      {
+        "pack_code": "Starter",
+        "pack_name": "Two-Player Limited Edition Starter",
+        "position": 87,
+        "quantity": 2,
+        "octgnid": "2c21eeec-9aa4-4278-b050-f4297426f89a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2c21eeec-9aa4-4278-b050-f4297426f89a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. (+3 [attack] instead if attacking enemy is a Goblin.)"
+  },
+  {
+    "code": "octgn:35617e02-f4ad-4e6d-af45-9b5e0b7ce682",
+    "octgnid": "35617e02-f4ad-4e6d-af45-9b5e0b7ce682",
+    "name": "Lightless Passage",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground. Dark.",
+    "text": "Travel: Players must exhaust a Cave Torch to travel here.",
+    "is_unique": false,
+    "pack_code": "Starter",
+    "pack_name": "Two-Player Limited Edition Starter",
+    "position": 88,
+    "quantity": 2,
+    "threat": 4,
+    "quest": 4,
+    "encounter_set": "The Caves of Nibin-Dum",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/35617e02-f4ad-4e6d-af45-9b5e0b7ce682.jpg",
+    "packs": [
+      {
+        "pack_code": "Starter",
+        "pack_name": "Two-Player Limited Edition Starter",
+        "position": 88,
+        "quantity": 2,
+        "octgnid": "35617e02-f4ad-4e6d-af45-9b5e0b7ce682",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/35617e02-f4ad-4e6d-af45-9b5e0b7ce682.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "shadow": "Shadow: Cancel all combat damage dealt to attacking enemy."
+  },
+  {
+    "code": "octgn:d4a5f505-6cc6-4669-b9b9-8f5ad2a6e5df",
+    "octgnid": "d4a5f505-6cc6-4669-b9b9-8f5ad2a6e5df",
+    "name": "Branching Paths",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground. Dark.",
+    "text": "While Branching Paths is in the staging area, each Dark location gets +1 [threat].\nForced: After Branching Paths leaves play as an explored location, look at the top 3 cards of the encounter deck. Players must choose 1 of those to reveal and add to the staging area, moving the other 2 to the bottom of the deck.",
+    "is_unique": false,
+    "pack_code": "Starter",
+    "pack_name": "Two-Player Limited Edition Starter",
+    "position": 89,
+    "quantity": 2,
+    "threat": 1,
+    "quest": 3,
+    "encounter_set": "The Caves of Nibin-Dum",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/d4a5f505-6cc6-4669-b9b9-8f5ad2a6e5df.jpg",
+    "packs": [
+      {
+        "pack_code": "Starter",
+        "pack_name": "Two-Player Limited Edition Starter",
+        "position": 89,
+        "quantity": 2,
+        "octgnid": "d4a5f505-6cc6-4669-b9b9-8f5ad2a6e5df",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d4a5f505-6cc6-4669-b9b9-8f5ad2a6e5df.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:21d3d814-0fa5-41a3-b0d9-3ba5163374ed",
+    "octgnid": "21d3d814-0fa5-41a3-b0d9-3ba5163374ed",
+    "name": "Collapsed Mine",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground. Dark.",
+    "text": "While Collapsed Mine is in the staging area, no more than 4 progress can be placed on the quest each round.",
+    "is_unique": false,
+    "pack_code": "Starter",
+    "pack_name": "Two-Player Limited Edition Starter",
+    "position": 90,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 6,
+    "encounter_set": "The Caves of Nibin-Dum",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "6"
+    },
+    "imagesrc": "/cards/21d3d814-0fa5-41a3-b0d9-3ba5163374ed.jpg",
+    "packs": [
+      {
+        "pack_code": "Starter",
+        "pack_name": "Two-Player Limited Edition Starter",
+        "position": 90,
+        "quantity": 2,
+        "octgnid": "21d3d814-0fa5-41a3-b0d9-3ba5163374ed",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/21d3d814-0fa5-41a3-b0d9-3ba5163374ed.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "shadow": "Shadow: Raise your threat by 1 for each point of damage dealt by this attack."
+  },
+  {
+    "code": "octgn:67ddffc2-652d-4892-97a6-fe2af59d4616",
+    "octgnid": "67ddffc2-652d-4892-97a6-fe2af59d4616",
+    "name": "Goblin Dungeon",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "Travel: Reveal the top card of the encounter deck to travel here.\nResponse: After Goblin Dungeon leaves play as an explored location, the first player searches the top 5 cards of his deck for an ally and puts it into play under his control. Shuffle the rest of the searched cards back into his deck.",
+    "is_unique": false,
+    "pack_code": "Starter",
+    "pack_name": "Two-Player Limited Edition Starter",
+    "position": 91,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 5,
+    "encounter_set": "The Caves of Nibin-Dum",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/67ddffc2-652d-4892-97a6-fe2af59d4616.jpg",
+    "packs": [
+      {
+        "pack_code": "Starter",
+        "pack_name": "Two-Player Limited Edition Starter",
+        "position": 91,
+        "quantity": 2,
+        "octgnid": "67ddffc2-652d-4892-97a6-fe2af59d4616",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/67ddffc2-652d-4892-97a6-fe2af59d4616.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ffb334eb-991d-4615-93ce-b2215a02d74f",
+    "octgnid": "ffb334eb-991d-4615-93ce-b2215a02d74f",
+    "name": "Crumbling Ruin",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player must exhaust a character and discard the top card of his deck, if able. If the printed cost of the discarded card is equal to or higher than the remaining hit points of the exhausted character, discard the exhausted character.",
+    "is_unique": false,
+    "pack_code": "Starter",
+    "pack_name": "Two-Player Limited Edition Starter",
+    "position": 92,
+    "quantity": 2,
+    "encounter_set": "The Caves of Nibin-Dum",
+    "printed_stats": {},
+    "imagesrc": "/cards/ffb334eb-991d-4615-93ce-b2215a02d74f.jpg",
+    "packs": [
+      {
+        "pack_code": "Starter",
+        "pack_name": "Two-Player Limited Edition Starter",
+        "position": 92,
+        "quantity": 2,
+        "octgnid": "ffb334eb-991d-4615-93ce-b2215a02d74f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ffb334eb-991d-4615-93ce-b2215a02d74f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:2fb27cc8-c3f5-4172-8ff0-456907f9b111",
+    "octgnid": "2fb27cc8-c3f5-4172-8ff0-456907f9b111",
+    "name": "Lost in the Dark",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The player who controls Cave Torch must choose: Either exhaust Cave Torch, or progress cannot be placed on the quest until the end of the phase. (Progress can still be placed on the active location.)",
+    "is_unique": false,
+    "pack_code": "Starter",
+    "pack_name": "Two-Player Limited Edition Starter",
+    "position": 93,
+    "quantity": 2,
+    "encounter_set": "The Caves of Nibin-Dum",
+    "printed_stats": {},
+    "imagesrc": "/cards/2fb27cc8-c3f5-4172-8ff0-456907f9b111.jpg",
+    "packs": [
+      {
+        "pack_code": "Starter",
+        "pack_name": "Two-Player Limited Edition Starter",
+        "position": 93,
+        "quantity": 2,
+        "octgnid": "2fb27cc8-c3f5-4172-8ff0-456907f9b111",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2fb27cc8-c3f5-4172-8ff0-456907f9b111.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "shadow": "Shadow: Deal 1 damage to the defending character."
+  },
+  {
+    "code": "octgn:5a5f72e8-0133-439f-b715-c7600b20fba9",
+    "octgnid": "5a5f72e8-0133-439f-b715-c7600b20fba9",
+    "name": "Watchful Eyes",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player attaches Watchful Eyes to one of his heroes. (Counts as a Condition attachment with the text: \"Limit 1 per hero. Forced: If attached hero is exhausted at the end of the combat phase, reveal 1 card from the encounter deck and add it to the staging area.\")",
+    "is_unique": false,
+    "pack_code": "Starter",
+    "pack_name": "Two-Player Limited Edition Starter",
+    "position": 94,
+    "quantity": 1,
+    "encounter_set": "The Caves of Nibin-Dum",
+    "printed_stats": {},
+    "imagesrc": "/cards/5a5f72e8-0133-439f-b715-c7600b20fba9.jpg",
+    "packs": [
+      {
+        "pack_code": "Starter",
+        "pack_name": "Two-Player Limited Edition Starter",
+        "position": 94,
+        "quantity": 1,
+        "octgnid": "5a5f72e8-0133-439f-b715-c7600b20fba9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5a5f72e8-0133-439f-b715-c7600b20fba9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:c82f8ccc-d017-48ec-a611-49a77469d45d",
+    "octgnid": "c82f8ccc-d017-48ec-a611-49a77469d45d",
+    "name": "Crumbling Stairs",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "While Crumbling Stairs is in the staging area, progress cannot be placed on it.\nForced: When Crumbling Stairs leaves play as an explored location, discard the top card of the encounter deck. If the discarded card is a location, put it into play as the active location.",
+    "is_unique": false,
+    "pack_code": "TDoM",
+    "pack_name": "The Dark of Mirkwood",
+    "position": 37,
+    "quantity": 1,
+    "threat": 3,
+    "quest": 3,
+    "encounter_set": "The Caves of Nibin-Dum",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/c82f8ccc-d017-48ec-a611-49a77469d45d.jpg",
+    "packs": [
+      {
+        "pack_code": "TDoM",
+        "pack_name": "The Dark of Mirkwood",
+        "position": 37,
+        "quantity": 1,
+        "octgnid": "c82f8ccc-d017-48ec-a611-49a77469d45d",
+        "imagesrc": "https://s3.amazonaws.com/hallofbeorn-resources/Images/Cards/The-Dark-of-Mirkwood/Crumbling-Stairs.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

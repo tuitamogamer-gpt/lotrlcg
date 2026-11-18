@@ -1,0 +1,161 @@
+[
+  {
+    "code": "octgn:9ebe2570-4478-45a4-af3b-5ba73a75cff9",
+    "octgnid": "9ebe2570-4478-45a4-af3b-5ba73a75cff9",
+    "name": "The Dark of Nibin-Dûm",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Search the encounter deck for Goblin Chieftain, Cracked Pillar, and Cave Torch. Set Goblin Chieftain and Cracked Pillar aside, out of play. The first player attaches Cave Torch to one of his heroes. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "Starter",
+    "pack_name": "Two-Player Limited Edition Starter",
+    "position": 98,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Caves of Nibin-Dum",
+    "side": "A",
+    "back_name": "The Dark of Nibin-Dûm",
+    "back_text": "When Revealed: Each player searches the encounter deck for a different location and adds it to the staging area. Shuffle the encounter deck.",
+    "back_type_code": "quest",
+    "back_quest": 8,
+    "back_imagesrc": "/cards/9ebe2570-4478-45a4-af3b-5ba73a75cff9.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/9ebe2570-4478-45a4-af3b-5ba73a75cff9.jpg",
+    "packs": [
+      {
+        "pack_code": "Starter",
+        "pack_name": "Two-Player Limited Edition Starter",
+        "position": 98,
+        "quantity": 1,
+        "octgnid": "9ebe2570-4478-45a4-af3b-5ba73a75cff9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9ebe2570-4478-45a4-af3b-5ba73a75cff9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8b1a3e3e-903f-4c4d-acf4-c216c2116339",
+    "octgnid": "8b1a3e3e-903f-4c4d-acf4-c216c2116339",
+    "name": "Surprise Attack",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add Goblin Chieftain to the staging area. Each player searches the encounter deck and discard pile for a different enemy of his choice and adds it to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "Starter",
+    "pack_name": "Two-Player Limited Edition Starter",
+    "position": 99,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Caves of Nibin-Dum",
+    "side": "A",
+    "back_name": "Surprise Attack",
+    "back_text": "During the encounter phase, treat each enemy's engagement cost as if it were 0.\nThis stage gets +4 quest points for each enemy in play.",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "/cards/8b1a3e3e-903f-4c4d-acf4-c216c2116339.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/8b1a3e3e-903f-4c4d-acf4-c216c2116339.jpg",
+    "packs": [
+      {
+        "pack_code": "Starter",
+        "pack_name": "Two-Player Limited Edition Starter",
+        "position": 99,
+        "quantity": 1,
+        "octgnid": "8b1a3e3e-903f-4c4d-acf4-c216c2116339",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8b1a3e3e-903f-4c4d-acf4-c216c2116339.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:09a5cf0c-153e-4fa8-9f42-0e13ea70eb11",
+    "octgnid": "09a5cf0c-153e-4fa8-9f42-0e13ea70eb11",
+    "name": "The Chasm",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Set Goblin Chieftain aside, out of play. Add Cracked Pillar to the staging area.",
+    "is_unique": false,
+    "pack_code": "Starter",
+    "pack_name": "Two-Player Limited Edition Starter",
+    "position": 100,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Caves of Nibin-Dum",
+    "side": "A",
+    "back_name": "The Chasm",
+    "back_text": "Forced: Reveal an additional encounter card during the quest phase.\nProgress cannot be placed on Cracked Pillar while it is in the staging area.\nAfter Cracked Pillar leaves play as an explored location, advance to stage 4A.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/09a5cf0c-153e-4fa8-9f42-0e13ea70eb11.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/09a5cf0c-153e-4fa8-9f42-0e13ea70eb11.jpg",
+    "packs": [
+      {
+        "pack_code": "Starter",
+        "pack_name": "Two-Player Limited Edition Starter",
+        "position": 100,
+        "quantity": 1,
+        "octgnid": "09a5cf0c-153e-4fa8-9f42-0e13ea70eb11",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/09a5cf0c-153e-4fa8-9f42-0e13ea70eb11.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:a589eabf-64a6-4400-aa3d-ad30b4f721c3",
+    "octgnid": "a589eabf-64a6-4400-aa3d-ad30b4f721c3",
+    "name": "Oathkeepers",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add Goblin Chieftain to the staging area.",
+    "is_unique": false,
+    "pack_code": "Starter",
+    "pack_name": "Two-Player Limited Edition Starter",
+    "position": 101,
+    "quantity": 1,
+    "cost": 4,
+    "encounter_set": "The Caves of Nibin-Dum",
+    "side": "A",
+    "back_name": "Oathkeepers",
+    "back_text": "While there are at least 8 progress tokens on this stage, Goblin Chieftain loses the text \"Cannot take damage.\"\nThis stage cannot be defeated while Goblin Chieftain is in play. When this stage is defeated, the heroes rescue the captives, fulfilling their oaths, and the players win the game!",
+    "back_type_code": "quest",
+    "back_quest": 8,
+    "back_imagesrc": "/cards/a589eabf-64a6-4400-aa3d-ad30b4f721c3.B.jpg",
+    "printed_stats": {
+      "cost": "4"
+    },
+    "imagesrc": "/cards/a589eabf-64a6-4400-aa3d-ad30b4f721c3.jpg",
+    "packs": [
+      {
+        "pack_code": "Starter",
+        "pack_name": "Two-Player Limited Edition Starter",
+        "position": 101,
+        "quantity": 1,
+        "octgnid": "a589eabf-64a6-4400-aa3d-ad30b4f721c3",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a589eabf-64a6-4400-aa3d-ad30b4f721c3.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

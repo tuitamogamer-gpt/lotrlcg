@@ -62,6 +62,7 @@ import { rbUnits, validateRuinsBelegost } from "./ruins-belegost-support";
 import { ppUnits, validatePrancingPony } from "./prancing-pony-support";
 import { saUnits, validateAnnuminas } from "./annuminas-support";
 import { adgUnits, validateAttackDolGuldur } from "./attack-dol-guldur-support";
+import { cavesUnits, validateCaves } from "./caves-nibin-dum-support";
 import { validateHideTest } from "./hide-test";
 import { validateAsh, ashExtraUnits } from "./ash-mountains-support";
 import { validateAshPlayers } from "./ash-mountains-player";
@@ -1048,6 +1049,7 @@ export function validateSave(
         !validatePrancingPony(s, validUnit as (v: unknown) => boolean) ||
         !validateAnnuminas(s, validUnit as (v: unknown) => boolean) ||
         !validateAttackDolGuldur(s, validUnit as (v: unknown) => boolean) ||
+        !validateCaves(s, validUnit as (v: unknown) => boolean) ||
         !validateLandSorrow(s, validUnit as (v: unknown) => boolean) ||
         !validateAsh(s, validUnit as (v: unknown) => boolean) ||
         !validateWainriders(s, validUnit as (v: unknown) => boolean, (c) =>
@@ -1790,6 +1792,7 @@ export function validateSave(
       ...ppUnits(s),
       ...saUnits(s),
       ...adgUnits(s),
+      ...cavesUnits(s),
       ...(s.fortressNurnPlayers?.contracts.map((c) => c.unit) ?? []),
       ...(s.landSorrowPlayers?.contracts.flatMap((c) =>
         c.unit ? [c.unit] : [],

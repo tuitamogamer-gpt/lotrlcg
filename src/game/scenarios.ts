@@ -33,6 +33,7 @@ import { RUINS_BELEGOST_ADVENTURES } from "./ruins-belegost-scenario-data";
 import { PRANCING_PONY_ADVENTURES } from "./prancing-pony-scenario-data";
 import { ANNUMINAS_ADVENTURES } from "./annuminas-scenario-data";
 import { ATTACK_DOL_GULDUR_ADVENTURES } from "./attack-dol-guldur-scenario-data";
+import { CAVES_ADVENTURES } from "./caves-nibin-dum-scenario-data";
 import { LAND_SORROW_ADVENTURES } from "./land-sorrow-scenario-data";
 import { ASH_ADVENTURES } from "./ash-mountains-scenario-data";
 import { WAINRIDERS_ADVENTURES } from "./wainriders-scenario-data";
@@ -1229,6 +1230,7 @@ export const SCENARIOS = [
   ...BLACK_GATE_ADVENTURES,
   ...MOUNT_DOOM_ADVENTURES,
   ...OATH_ADVENTURES,
+  ...CAVES_ADVENTURES,
   ...RUINS_BELEGOST_ADVENTURES,
   ...PRANCING_PONY_ADVENTURES,
   ...ANNUMINAS_ADVENTURES,

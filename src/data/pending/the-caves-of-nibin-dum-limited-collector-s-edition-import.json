@@ -1,0 +1,1301 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The Caves of Nibin-Dûm (Limited Collector's Edition)",
+  "slug": "the-caves-of-nibin-dum-limited-collector-s-edition",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "octgn:09a5cf0c-153e-4fa8-9f42-0e13ea70eb11",
+      "octgnid": "09a5cf0c-153e-4fa8-9f42-0e13ea70eb11",
+      "name": "The Chasm",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Set Goblin Chieftain aside, out of play. Add Cracked Pillar to the staging area.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 100,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "The Caves of Nibin-Dum",
+      "side": "A",
+      "back_name": "The Chasm",
+      "back_text": "When Revealed: Set Goblin Chieftain aside, out of play. Add Cracked Pillar to the staging area.Forced: Reveal an additional encounter card during the quest phase.Progress cannot be placed on Cracked Pillar while it is in the staging area.After Cracked Pillar leaves play as an explored location, advance to stage 4A.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/09a5cf0c-153e-4fa8-9f42-0e13ea70eb11.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/09a5cf0c-153e-4fa8-9f42-0e13ea70eb11.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 100,
+          "quantity": 1,
+          "octgnid": "09a5cf0c-153e-4fa8-9f42-0e13ea70eb11",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/09a5cf0c-153e-4fa8-9f42-0e13ea70eb11.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:21d3d814-0fa5-41a3-b0d9-3ba5163374ed",
+      "octgnid": "21d3d814-0fa5-41a3-b0d9-3ba5163374ed",
+      "name": "Collapsed Mine",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground. Dark.",
+      "text": "While Collapsed Mine is in the staging area, no more than 4 progress can be placed on the quest each round.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 90,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 6,
+      "encounter_set": "The Caves of Nibin-Dum",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "6"
+      },
+      "imagesrc": "/cards/21d3d814-0fa5-41a3-b0d9-3ba5163374ed.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 90,
+          "quantity": 2,
+          "octgnid": "21d3d814-0fa5-41a3-b0d9-3ba5163374ed",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/21d3d814-0fa5-41a3-b0d9-3ba5163374ed.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:26e6135d-df1b-4221-ba45-a501858bafdf",
+      "octgnid": "26e6135d-df1b-4221-ba45-a501858bafdf",
+      "name": "Goblins are Upon You!",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player must search the encounter deck and discard pile for a Goblin enemy and put it into play, engaged with him. Then, shuffle the encounter deck. (This effect cannot be canceled.)",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 80,
+      "quantity": 1,
+      "encounter_set": "The Goblins",
+      "printed_stats": {},
+      "imagesrc": "/cards/26e6135d-df1b-4221-ba45-a501858bafdf.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 80,
+          "quantity": 1,
+          "octgnid": "26e6135d-df1b-4221-ba45-a501858bafdf",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/26e6135d-df1b-4221-ba45-a501858bafdf.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2c21eeec-9aa4-4278-b050-f4297426f89a",
+      "octgnid": "2c21eeec-9aa4-4278-b050-f4297426f89a",
+      "name": "Goblin Tunnels",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground. Dark.",
+      "text": "While Goblin Tunnels is in the staging area, it gains: `Forced: After a Goblin is revealed from the encounter deck, remove a progress token from the current quest card.`",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 87,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 7,
+      "encounter_set": "The Caves of Nibin-Dum",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "7"
+      },
+      "imagesrc": "/cards/2c21eeec-9aa4-4278-b050-f4297426f89a.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 87,
+          "quantity": 2,
+          "octgnid": "2c21eeec-9aa4-4278-b050-f4297426f89a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2c21eeec-9aa4-4278-b050-f4297426f89a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2fb27cc8-c3f5-4172-8ff0-456907f9b111",
+      "octgnid": "2fb27cc8-c3f5-4172-8ff0-456907f9b111",
+      "name": "Lost in the Dark",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The player who controls Cave Torch must choose: Either exhaust Cave Torch, or progress cannot be placed on the quest until the end of the phase. (Progress can still be placed on the active location.)",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 93,
+      "quantity": 2,
+      "encounter_set": "The Caves of Nibin-Dum",
+      "printed_stats": {},
+      "imagesrc": "/cards/2fb27cc8-c3f5-4172-8ff0-456907f9b111.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 93,
+          "quantity": 2,
+          "octgnid": "2fb27cc8-c3f5-4172-8ff0-456907f9b111",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2fb27cc8-c3f5-4172-8ff0-456907f9b111.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:35617e02-f4ad-4e6d-af45-9b5e0b7ce682",
+      "octgnid": "35617e02-f4ad-4e6d-af45-9b5e0b7ce682",
+      "name": "Lightless Passage",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground. Dark.",
+      "text": "Travel: Players must exhaust a Cave Torch to travel here.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 88,
+      "quantity": 2,
+      "threat": 4,
+      "quest": 4,
+      "encounter_set": "The Caves of Nibin-Dum",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/35617e02-f4ad-4e6d-af45-9b5e0b7ce682.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 88,
+          "quantity": 2,
+          "octgnid": "35617e02-f4ad-4e6d-af45-9b5e0b7ce682",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/35617e02-f4ad-4e6d-af45-9b5e0b7ce682.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5a5f72e8-0133-439f-b715-c7600b20fba9",
+      "octgnid": "5a5f72e8-0133-439f-b715-c7600b20fba9",
+      "name": "Watchful Eyes",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The first player attaches Watchful Eyes to one of his heroes. (Counts as a Condition attachment with the text: `Limit 1 per hero. Forced: If attached hero is exhausted at the end of the combat phase, reveal 1 card from the encounter deck and add it to the staging area.`)",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 94,
+      "quantity": 1,
+      "encounter_set": "The Caves of Nibin-Dum",
+      "printed_stats": {},
+      "imagesrc": "/cards/5a5f72e8-0133-439f-b715-c7600b20fba9.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 94,
+          "quantity": 1,
+          "octgnid": "5a5f72e8-0133-439f-b715-c7600b20fba9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5a5f72e8-0133-439f-b715-c7600b20fba9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:67ddffc2-652d-4892-97a6-fe2af59d4616",
+      "octgnid": "67ddffc2-652d-4892-97a6-fe2af59d4616",
+      "name": "Goblin Dungeon",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "Travel: Reveal the top card of the encounter deck to travel here.Response: After Goblin Dungeon leaves play as an explored location, the first player searches the top 5 cards of his deck for an ally and puts it into play under his control. Shuffle the rest of the searched cards back into his deck.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 91,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 5,
+      "encounter_set": "The Caves of Nibin-Dum",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/67ddffc2-652d-4892-97a6-fe2af59d4616.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 91,
+          "quantity": 2,
+          "octgnid": "67ddffc2-652d-4892-97a6-fe2af59d4616",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/67ddffc2-652d-4892-97a6-fe2af59d4616.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:737b346c-792e-48d2-b8da-5dae52ddc902",
+      "octgnid": "737b346c-792e-48d2-b8da-5dae52ddc902",
+      "name": "Goblin Chieftain",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Goblin. Orc.",
+      "text": "X is the stage number of the quest.Cannot take damage. Cannot have attachments.Forced: After Goblin Chieftain attacks, either remove X progress from the quest, or return it to the staging area.",
+      "is_unique": true,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 82,
+      "quantity": 1,
+      "health": 8,
+      "engagement": 40,
+      "encounter_set": "The Caves of Nibin-Dum",
+      "printed_stats": {
+        "threat": "X",
+        "attack": "X",
+        "defense": "X",
+        "health": "8",
+        "engagement": "40"
+      },
+      "imagesrc": "/cards/737b346c-792e-48d2-b8da-5dae52ddc902.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 82,
+          "quantity": 1,
+          "octgnid": "737b346c-792e-48d2-b8da-5dae52ddc902",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/737b346c-792e-48d2-b8da-5dae52ddc902.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7b3e0874-fa4e-4ffb-8614-2bb088896d42",
+      "octgnid": "7b3e0874-fa4e-4ffb-8614-2bb088896d42",
+      "name": "Eyes in the Dark",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 1.\nWhen Revealed: Each player must choose: Either raise your threat by 1 for each questing character you control, or discard a questing character you control.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 81,
+      "quantity": 2,
+      "encounter_set": "The Goblins",
+      "printed_stats": {},
+      "imagesrc": "/cards/7b3e0874-fa4e-4ffb-8614-2bb088896d42.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 81,
+          "quantity": 2,
+          "octgnid": "7b3e0874-fa4e-4ffb-8614-2bb088896d42",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7b3e0874-fa4e-4ffb-8614-2bb088896d42.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8104e805-08e3-4379-acde-0a9cc96837fe",
+      "octgnid": "8104e805-08e3-4379-acde-0a9cc96837fe",
+      "name": "Cavern Warg",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Warg.",
+      "text": "Response: When Cavern Warg attacks you, exhaust Cave Torch to cancel the attack and return Cavern Warg to the staging area.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 86,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 3,
+      "defense": 2,
+      "health": 3,
+      "engagement": 33,
+      "encounter_set": "The Caves of Nibin-Dum",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "2",
+        "health": "3",
+        "engagement": "33"
+      },
+      "imagesrc": "/cards/8104e805-08e3-4379-acde-0a9cc96837fe.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 86,
+          "quantity": 2,
+          "octgnid": "8104e805-08e3-4379-acde-0a9cc96837fe",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8104e805-08e3-4379-acde-0a9cc96837fe.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8b1a3e3e-903f-4c4d-acf4-c216c2116339",
+      "octgnid": "8b1a3e3e-903f-4c4d-acf4-c216c2116339",
+      "name": "Surprise Attack",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Add Goblin Chieftain to the staging area. Each player searches the encounter deck and discard pile for a different enemy of his choice and adds it to the staging area. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 99,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Caves of Nibin-Dum",
+      "side": "A",
+      "back_name": "Surprise Attack",
+      "back_text": "When Revealed: Add Goblin Chieftain to the staging area. Each player searches the encounter deck and discard pile for a different enemy of his choice and adds it to the staging area. Shuffle the encounter deck.During the encounter phase, treat each enemy`s engagement cost as if it were 0.The stage gets +4 quest points for each enemy in play.",
+      "back_type_code": "quest",
+      "back_quest": 0,
+      "back_imagesrc": "/cards/8b1a3e3e-903f-4c4d-acf4-c216c2116339.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/8b1a3e3e-903f-4c4d-acf4-c216c2116339.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 99,
+          "quantity": 1,
+          "octgnid": "8b1a3e3e-903f-4c4d-acf4-c216c2116339",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8b1a3e3e-903f-4c4d-acf4-c216c2116339.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:998f6e45-b0d3-42c4-b5ba-fdf301401d90",
+      "octgnid": "998f6e45-b0d3-42c4-b5ba-fdf301401d90",
+      "name": "Goblin Troop",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Goblin. Orc.",
+      "text": "Cannot have attachments.While Goblin Troop is engaged with you, each other Goblin enemy engaged with you gets +1 [attack] and +1 [defense].",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 76,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 5,
+      "defense": 3,
+      "health": 6,
+      "engagement": 35,
+      "encounter_set": "The Goblins",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "3",
+        "health": "6",
+        "engagement": "35"
+      },
+      "imagesrc": "/cards/998f6e45-b0d3-42c4-b5ba-fdf301401d90.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 76,
+          "quantity": 1,
+          "octgnid": "998f6e45-b0d3-42c4-b5ba-fdf301401d90",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/998f6e45-b0d3-42c4-b5ba-fdf301401d90.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9ebe2570-4478-45a4-af3b-5ba73a75cff9",
+      "octgnid": "9ebe2570-4478-45a4-af3b-5ba73a75cff9",
+      "name": "The Dark of Nibin-Dûm",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Search the encounter deck for Goblin Chieftain, Cracked Pillar, and Cave Torch. Set Goblin Chieftain and Cracked Pillar aside, out of play. The first player attached Cave Torch to one of his heroes. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 98,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The Caves of Nibin-Dum",
+      "side": "A",
+      "back_name": "The Dark of Nibin-Dûm",
+      "back_text": "Setup: Search the encounter deck for Goblin Chieftain, Cracked Pillar, and Cave Torch. Set Goblin Chieftain and Cracked Pillar aside, out of play. The first player attached Cave Torch to one of his heroes. Shuffle the encounter deck.When Revealed: Each player searches the encounter deck for a different location and adds it to the staging area. Shuffle the encounter deck.",
+      "back_type_code": "quest",
+      "back_quest": 8,
+      "back_imagesrc": "/cards/9ebe2570-4478-45a4-af3b-5ba73a75cff9.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/9ebe2570-4478-45a4-af3b-5ba73a75cff9.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 98,
+          "quantity": 1,
+          "octgnid": "9ebe2570-4478-45a4-af3b-5ba73a75cff9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9ebe2570-4478-45a4-af3b-5ba73a75cff9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a0b5c990-9acd-499c-befe-9a55e347f075",
+      "octgnid": "a0b5c990-9acd-499c-befe-9a55e347f075",
+      "name": "Cave Torch",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Light.",
+      "text": "Restricted.\nAttach to a hero.Action: Exhause Cave Torch to place up to 3 progress tokens on a Dark location.Forced: After Cave Torch exhausts, discard the top card of the encounter deck. If that card is an enemy, add it to the staging area.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 84,
+      "quantity": 1,
+      "encounter_set": "The Caves of Nibin-Dum",
+      "printed_stats": {},
+      "imagesrc": "/cards/a0b5c990-9acd-499c-befe-9a55e347f075.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 84,
+          "quantity": 1,
+          "octgnid": "a0b5c990-9acd-499c-befe-9a55e347f075",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a0b5c990-9acd-499c-befe-9a55e347f075.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a589eabf-64a6-4400-aa3d-ad30b4f721c3",
+      "octgnid": "a589eabf-64a6-4400-aa3d-ad30b4f721c3",
+      "name": "Oathkeepers",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Add Goblin Chieftain to the staging area.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 101,
+      "quantity": 1,
+      "cost": 4,
+      "encounter_set": "The Caves of Nibin-Dum",
+      "side": "A",
+      "back_name": "Oathkeepers",
+      "back_text": "When Revealed: Add Goblin Chieftain to the staging area.While there are at least 8 progress tokens on this stage, Goblin Chieftain loses the text: `Cannot take damage.`This stage cannot be defeated while Goblin Chieftain is in play. When this stage is defeated, the heroes rescue the captives, fulfilling their oaths, and the players win the game!",
+      "back_type_code": "quest",
+      "back_quest": 8,
+      "back_imagesrc": "/cards/a589eabf-64a6-4400-aa3d-ad30b4f721c3.B.jpg",
+      "printed_stats": {
+        "cost": "4"
+      },
+      "imagesrc": "/cards/a589eabf-64a6-4400-aa3d-ad30b4f721c3.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 101,
+          "quantity": 1,
+          "octgnid": "a589eabf-64a6-4400-aa3d-ad30b4f721c3",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a589eabf-64a6-4400-aa3d-ad30b4f721c3.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:acd10bf3-4af4-41f0-888f-55eb777be3d8",
+      "octgnid": "acd10bf3-4af4-41f0-888f-55eb777be3d8",
+      "name": "Goblin Runners",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Goblin. Orc.",
+      "text": "Surge.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 78,
+      "quantity": 2,
+      "threat": 1,
+      "attack": 3,
+      "defense": 1,
+      "health": 2,
+      "engagement": 20,
+      "encounter_set": "The Goblins",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "3",
+        "defense": "1",
+        "health": "2",
+        "engagement": "20"
+      },
+      "imagesrc": "/cards/acd10bf3-4af4-41f0-888f-55eb777be3d8.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 78,
+          "quantity": 2,
+          "octgnid": "acd10bf3-4af4-41f0-888f-55eb777be3d8",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/acd10bf3-4af4-41f0-888f-55eb777be3d8.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b18b3bfa-4620-4c15-960f-5a3642ca9d5a",
+      "octgnid": "b18b3bfa-4620-4c15-960f-5a3642ca9d5a",
+      "name": "Goblintown Scavengers",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Goblin. Orc.",
+      "text": "When Revealed: Discard the top card of each player`s deck. Until the end of the phase, increase Goblintown Savengers` [threat] by the total printed cost of all cards discarded in this way.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 79,
+      "quantity": 2,
+      "threat": 1,
+      "attack": 1,
+      "defense": 0,
+      "health": 3,
+      "engagement": 12,
+      "encounter_set": "The Goblins",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "1",
+        "defense": "0",
+        "health": "3",
+        "engagement": "12"
+      },
+      "imagesrc": "/cards/b18b3bfa-4620-4c15-960f-5a3642ca9d5a.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 79,
+          "quantity": 2,
+          "octgnid": "b18b3bfa-4620-4c15-960f-5a3642ca9d5a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b18b3bfa-4620-4c15-960f-5a3642ca9d5a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d4a5f505-6cc6-4669-b9b9-8f5ad2a6e5df",
+      "octgnid": "d4a5f505-6cc6-4669-b9b9-8f5ad2a6e5df",
+      "name": "Branching Paths",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground. Dark.",
+      "text": "While Branching Paths is in the staging area, each Dark location gets +1 [threat].Forced: After Branching Paths leaves play as an explored location, look at the top 3 cards of the encounter deck. Players must choose 1 of those to reveal and add to the staging area, moving the other 2 to the bottom of the deck.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 89,
+      "quantity": 2,
+      "threat": 1,
+      "quest": 3,
+      "encounter_set": "The Caves of Nibin-Dum",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/d4a5f505-6cc6-4669-b9b9-8f5ad2a6e5df.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 89,
+          "quantity": 2,
+          "octgnid": "d4a5f505-6cc6-4669-b9b9-8f5ad2a6e5df",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d4a5f505-6cc6-4669-b9b9-8f5ad2a6e5df.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:dbf55659-b4ea-4a8a-82d1-20c0f2e4405e",
+      "octgnid": "dbf55659-b4ea-4a8a-82d1-20c0f2e4405e",
+      "name": "Great Cave-troll",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Troll.",
+      "text": "Cannot have attachments.For each point of excess combat damage dealt by Great Cave-troll (damage that is dealt beyond the remaining hit points of the character damaged by its attack) remove 1 progress from the current quest.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 85,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 6,
+      "defense": 4,
+      "health": 6,
+      "engagement": 36,
+      "encounter_set": "The Caves of Nibin-Dum",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "6",
+        "defense": "4",
+        "health": "6",
+        "engagement": "36"
+      },
+      "imagesrc": "/cards/dbf55659-b4ea-4a8a-82d1-20c0f2e4405e.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 85,
+          "quantity": 2,
+          "octgnid": "dbf55659-b4ea-4a8a-82d1-20c0f2e4405e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dbf55659-b4ea-4a8a-82d1-20c0f2e4405e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:dee08f07-580d-4229-8e56-573ef9eed6b0",
+      "octgnid": "dee08f07-580d-4229-8e56-573ef9eed6b0",
+      "name": "Cracked Pillar",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "While Cracked Pillar is in the staging area, it gains: `The first player may declare an attack against Cracked Pillar during the combat phase as if it was an enemy engaged with him. Use Cracked Pillar`s [threat] as its [defense] during this attack.`Travel: Remove 4 damage from Cracked Pillar to travel here.",
+      "is_unique": true,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 83,
+      "quantity": 1,
+      "threat": 2,
+      "quest": 2,
+      "encounter_set": "The Caves of Nibin-Dum",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/dee08f07-580d-4229-8e56-573ef9eed6b0.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 83,
+          "quantity": 1,
+          "octgnid": "dee08f07-580d-4229-8e56-573ef9eed6b0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dee08f07-580d-4229-8e56-573ef9eed6b0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e8db9cc7-d53f-4ce9-991d-31078b2d507a",
+      "octgnid": "e8db9cc7-d53f-4ce9-991d-31078b2d507a",
+      "name": "Goblin Sniper",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Goblin. Orc.",
+      "text": "During the encounter phase, players cannot optionally engage Goblin Sniper if there are other enemies in the staging area.Forced: If Goblin Sniper is in the staging area at the end of the combat phase, each player deals 1 point of damage to 1 character he controls.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 77,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 2,
+      "defense": 0,
+      "health": 2,
+      "engagement": 48,
+      "encounter_set": "The Goblins",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "0",
+        "health": "2",
+        "engagement": "48"
+      },
+      "imagesrc": "/cards/e8db9cc7-d53f-4ce9-991d-31078b2d507a.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 77,
+          "quantity": 2,
+          "octgnid": "e8db9cc7-d53f-4ce9-991d-31078b2d507a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e8db9cc7-d53f-4ce9-991d-31078b2d507a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ffb334eb-991d-4615-93ce-b2215a02d74f",
+      "octgnid": "ffb334eb-991d-4615-93ce-b2215a02d74f",
+      "name": "Crumbling Ruin",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player must exhaust a character and discard the top card of his deck, if able. If the printed cost of the discarded card is equal to or higher than the remaining hit points of the exhausted character, discard the exhausted character.",
+      "is_unique": false,
+      "pack_code": "Starter",
+      "pack_name": "Two-Player Limited Edition Starter",
+      "position": 92,
+      "quantity": 2,
+      "encounter_set": "The Caves of Nibin-Dum",
+      "printed_stats": {},
+      "imagesrc": "/cards/ffb334eb-991d-4615-93ce-b2215a02d74f.jpg",
+      "packs": [
+        {
+          "pack_code": "Starter",
+          "pack_name": "Two-Player Limited Edition Starter",
+          "position": 92,
+          "quantity": 2,
+          "octgnid": "ffb334eb-991d-4615-93ce-b2215a02d74f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ffb334eb-991d-4615-93ce-b2215a02d74f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "Q00.02A",
+      "name": "The Caves of Nibin-Dûm (Limited Collector's Edition)",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "Starter"
+      ],
+      "card_codes": [
+        "octgn:9ebe2570-4478-45a4-af3b-5ba73a75cff9",
+        "octgn:8b1a3e3e-903f-4c4d-acf4-c216c2116339",
+        "octgn:09a5cf0c-153e-4fa8-9f42-0e13ea70eb11",
+        "octgn:a589eabf-64a6-4400-aa3d-ad30b4f721c3",
+        "octgn:998f6e45-b0d3-42c4-b5ba-fdf301401d90",
+        "octgn:e8db9cc7-d53f-4ce9-991d-31078b2d507a",
+        "octgn:acd10bf3-4af4-41f0-888f-55eb777be3d8",
+        "octgn:b18b3bfa-4620-4c15-960f-5a3642ca9d5a",
+        "octgn:26e6135d-df1b-4221-ba45-a501858bafdf",
+        "octgn:7b3e0874-fa4e-4ffb-8614-2bb088896d42",
+        "octgn:dbf55659-b4ea-4a8a-82d1-20c0f2e4405e",
+        "octgn:8104e805-08e3-4379-acde-0a9cc96837fe",
+        "octgn:2c21eeec-9aa4-4278-b050-f4297426f89a",
+        "octgn:35617e02-f4ad-4e6d-af45-9b5e0b7ce682",
+        "octgn:d4a5f505-6cc6-4669-b9b9-8f5ad2a6e5df",
+        "octgn:21d3d814-0fa5-41a3-b0d9-3ba5163374ed",
+        "octgn:67ddffc2-652d-4892-97a6-fe2af59d4616",
+        "octgn:ffb334eb-991d-4615-93ce-b2215a02d74f",
+        "octgn:2fb27cc8-c3f5-4172-8ff0-456907f9b111",
+        "octgn:5a5f72e8-0133-439f-b715-c7600b20fba9",
+        "octgn:dee08f07-580d-4229-8e56-573ef9eed6b0",
+        "octgn:737b346c-792e-48d2-b8da-5dae52ddc902",
+        "octgn:a0b5c990-9acd-499c-befe-9a55e347f075"
+      ],
+      "cards": [
+        {
+          "code": "octgn:9ebe2570-4478-45a4-af3b-5ba73a75cff9",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:8b1a3e3e-903f-4c4d-acf4-c216c2116339",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:09a5cf0c-153e-4fa8-9f42-0e13ea70eb11",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:a589eabf-64a6-4400-aa3d-ad30b4f721c3",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:998f6e45-b0d3-42c4-b5ba-fdf301401d90",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e8db9cc7-d53f-4ce9-991d-31078b2d507a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:acd10bf3-4af4-41f0-888f-55eb777be3d8",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b18b3bfa-4620-4c15-960f-5a3642ca9d5a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:26e6135d-df1b-4221-ba45-a501858bafdf",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7b3e0874-fa4e-4ffb-8614-2bb088896d42",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:dbf55659-b4ea-4a8a-82d1-20c0f2e4405e",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8104e805-08e3-4379-acde-0a9cc96837fe",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2c21eeec-9aa4-4278-b050-f4297426f89a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:35617e02-f4ad-4e6d-af45-9b5e0b7ce682",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d4a5f505-6cc6-4669-b9b9-8f5ad2a6e5df",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:21d3d814-0fa5-41a3-b0d9-3ba5163374ed",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:67ddffc2-652d-4892-97a6-fe2af59d4616",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ffb334eb-991d-4615-93ce-b2215a02d74f",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2fb27cc8-c3f5-4172-8ff0-456907f9b111",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5a5f72e8-0133-439f-b715-c7600b20fba9",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:dee08f07-580d-4229-8e56-573ef9eed6b0",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:737b346c-792e-48d2-b8da-5dae52ddc902",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:a0b5c990-9acd-499c-befe-9a55e347f075",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:67ddffc2-652d-4892-97a6-fe2af59d4616",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:21d3d814-0fa5-41a3-b0d9-3ba5163374ed",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:d4a5f505-6cc6-4669-b9b9-8f5ad2a6e5df",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:35617e02-f4ad-4e6d-af45-9b5e0b7ce682",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:2c21eeec-9aa4-4278-b050-f4297426f89a",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:9ebe2570-4478-45a4-af3b-5ba73a75cff9": 1,
+          "octgn:8b1a3e3e-903f-4c4d-acf4-c216c2116339": 1,
+          "octgn:09a5cf0c-153e-4fa8-9f42-0e13ea70eb11": 1,
+          "octgn:a589eabf-64a6-4400-aa3d-ad30b4f721c3": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:998f6e45-b0d3-42c4-b5ba-fdf301401d90": 1,
+          "octgn:e8db9cc7-d53f-4ce9-991d-31078b2d507a": 2,
+          "octgn:acd10bf3-4af4-41f0-888f-55eb777be3d8": 2,
+          "octgn:b18b3bfa-4620-4c15-960f-5a3642ca9d5a": 2,
+          "octgn:26e6135d-df1b-4221-ba45-a501858bafdf": 1,
+          "octgn:7b3e0874-fa4e-4ffb-8614-2bb088896d42": 2,
+          "octgn:dbf55659-b4ea-4a8a-82d1-20c0f2e4405e": 2,
+          "octgn:8104e805-08e3-4379-acde-0a9cc96837fe": 2,
+          "octgn:2c21eeec-9aa4-4278-b050-f4297426f89a": 1,
+          "octgn:35617e02-f4ad-4e6d-af45-9b5e0b7ce682": 1,
+          "octgn:d4a5f505-6cc6-4669-b9b9-8f5ad2a6e5df": 1,
+          "octgn:21d3d814-0fa5-41a3-b0d9-3ba5163374ed": 1,
+          "octgn:67ddffc2-652d-4892-97a6-fe2af59d4616": 1,
+          "octgn:ffb334eb-991d-4615-93ce-b2215a02d74f": 2,
+          "octgn:2fb27cc8-c3f5-4172-8ff0-456907f9b111": 2,
+          "octgn:5a5f72e8-0133-439f-b715-c7600b20fba9": 1
+        },
+        "sharedSetAside": {
+          "octgn:dee08f07-580d-4229-8e56-573ef9eed6b0": 1,
+          "octgn:737b346c-792e-48d2-b8da-5dae52ddc902": 1,
+          "octgn:a0b5c990-9acd-499c-befe-9a55e347f075": 1
+        },
+        "sharedStagingArea": {
+          "octgn:67ddffc2-652d-4892-97a6-fe2af59d4616": 1,
+          "octgn:21d3d814-0fa5-41a3-b0d9-3ba5163374ed": 1,
+          "octgn:d4a5f505-6cc6-4669-b9b9-8f5ad2a6e5df": 1,
+          "octgn:35617e02-f4ad-4e6d-af45-9b5e0b7ce682": 1,
+          "octgn:2c21eeec-9aa4-4278-b050-f4297426f89a": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:09a5cf0c-153e-4fa8-9f42-0e13ea70eb11",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/09a5cf0c-153e-4fa8-9f42-0e13ea70eb11.jpg",
+      "localPath": "/cards/09a5cf0c-153e-4fa8-9f42-0e13ea70eb11.jpg",
+      "bytes": 146361,
+      "sha256": "70d5b3974b82c0f3f95e91c38e903e04b6ef852743929e3808b0fa4196351f0d"
+    },
+    {
+      "code": "octgn:09a5cf0c-153e-4fa8-9f42-0e13ea70eb11",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/09a5cf0c-153e-4fa8-9f42-0e13ea70eb11.B.jpg",
+      "localPath": "/cards/09a5cf0c-153e-4fa8-9f42-0e13ea70eb11.B.jpg",
+      "bytes": 154979,
+      "sha256": "255204ff13f398261e8610db23b10596a4678d95012dc9f32f1f403114f27d76"
+    },
+    {
+      "code": "octgn:21d3d814-0fa5-41a3-b0d9-3ba5163374ed",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/21d3d814-0fa5-41a3-b0d9-3ba5163374ed.jpg",
+      "localPath": "/cards/21d3d814-0fa5-41a3-b0d9-3ba5163374ed.jpg",
+      "bytes": 145590,
+      "sha256": "be4309d828614218feea9cc81f2e0d1f274d76f26208ba1fdf0add11a565116d"
+    },
+    {
+      "code": "octgn:26e6135d-df1b-4221-ba45-a501858bafdf",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/26e6135d-df1b-4221-ba45-a501858bafdf.jpg",
+      "localPath": "/cards/26e6135d-df1b-4221-ba45-a501858bafdf.jpg",
+      "bytes": 164792,
+      "sha256": "a8345248a06ff93e237ff014ad284ed5d2ee7db11da5bc346a9cafa5f7c01bca"
+    },
+    {
+      "code": "octgn:2c21eeec-9aa4-4278-b050-f4297426f89a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2c21eeec-9aa4-4278-b050-f4297426f89a.jpg",
+      "localPath": "/cards/2c21eeec-9aa4-4278-b050-f4297426f89a.jpg",
+      "bytes": 146145,
+      "sha256": "83fe4a385eb2800f38784df6958598fa89bb4f13434f1c992a2df221d14f4bed"
+    },
+    {
+      "code": "octgn:2fb27cc8-c3f5-4172-8ff0-456907f9b111",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2fb27cc8-c3f5-4172-8ff0-456907f9b111.jpg",
+      "localPath": "/cards/2fb27cc8-c3f5-4172-8ff0-456907f9b111.jpg",
+      "bytes": 150028,
+      "sha256": "0c29ccd18eb3f6c6834e4c6ca7c91aabc9ba2371b32a2f4e060ee310bb553641"
+    },
+    {
+      "code": "octgn:35617e02-f4ad-4e6d-af45-9b5e0b7ce682",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/35617e02-f4ad-4e6d-af45-9b5e0b7ce682.jpg",
+      "localPath": "/cards/35617e02-f4ad-4e6d-af45-9b5e0b7ce682.jpg",
+      "bytes": 139986,
+      "sha256": "0081e8c19bc620e736b06b73076ca098512883c73f748968b890cf68a7eafdcb"
+    },
+    {
+      "code": "octgn:5a5f72e8-0133-439f-b715-c7600b20fba9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5a5f72e8-0133-439f-b715-c7600b20fba9.jpg",
+      "localPath": "/cards/5a5f72e8-0133-439f-b715-c7600b20fba9.jpg",
+      "bytes": 149183,
+      "sha256": "dfcc95c0f6c0be5b98d9fee54731fb13bc47a1c44c04a047733f00875e595a36"
+    },
+    {
+      "code": "octgn:67ddffc2-652d-4892-97a6-fe2af59d4616",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/67ddffc2-652d-4892-97a6-fe2af59d4616.jpg",
+      "localPath": "/cards/67ddffc2-652d-4892-97a6-fe2af59d4616.jpg",
+      "bytes": 143781,
+      "sha256": "3e8aa33ca64944c1108ff7184f474758d7f7146a54f02598fdeda0984d0ca618"
+    },
+    {
+      "code": "octgn:737b346c-792e-48d2-b8da-5dae52ddc902",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/737b346c-792e-48d2-b8da-5dae52ddc902.jpg",
+      "localPath": "/cards/737b346c-792e-48d2-b8da-5dae52ddc902.jpg",
+      "bytes": 150020,
+      "sha256": "9ce0c672357ef5260c246e008e37216b6edc6f827ac9d37a6b95de427c1ea7e4"
+    },
+    {
+      "code": "octgn:7b3e0874-fa4e-4ffb-8614-2bb088896d42",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7b3e0874-fa4e-4ffb-8614-2bb088896d42.jpg",
+      "localPath": "/cards/7b3e0874-fa4e-4ffb-8614-2bb088896d42.jpg",
+      "bytes": 122583,
+      "sha256": "1d43f5d06446c7d57aa9b488febe4211f577415d8c1f5b6fd0a024c0a72726cf"
+    },
+    {
+      "code": "octgn:8104e805-08e3-4379-acde-0a9cc96837fe",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8104e805-08e3-4379-acde-0a9cc96837fe.jpg",
+      "localPath": "/cards/8104e805-08e3-4379-acde-0a9cc96837fe.jpg",
+      "bytes": 159857,
+      "sha256": "c2e872b3e38d211868338f7705bb96145abba59e50584c8b31031909080bea58"
+    },
+    {
+      "code": "octgn:8b1a3e3e-903f-4c4d-acf4-c216c2116339",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8b1a3e3e-903f-4c4d-acf4-c216c2116339.jpg",
+      "localPath": "/cards/8b1a3e3e-903f-4c4d-acf4-c216c2116339.jpg",
+      "bytes": 139221,
+      "sha256": "cfcd396745dd4382d9de30f7575b6128dbf7f3b4d411fbe9351f9483129c8ae1"
+    },
+    {
+      "code": "octgn:8b1a3e3e-903f-4c4d-acf4-c216c2116339",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8b1a3e3e-903f-4c4d-acf4-c216c2116339.B.jpg",
+      "localPath": "/cards/8b1a3e3e-903f-4c4d-acf4-c216c2116339.B.jpg",
+      "bytes": 143152,
+      "sha256": "c39feef4b89d924a9be5b92877c7c8e08bef3895e58ea883afe1535e3f208ed8"
+    },
+    {
+      "code": "octgn:998f6e45-b0d3-42c4-b5ba-fdf301401d90",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/998f6e45-b0d3-42c4-b5ba-fdf301401d90.jpg",
+      "localPath": "/cards/998f6e45-b0d3-42c4-b5ba-fdf301401d90.jpg",
+      "bytes": 146422,
+      "sha256": "cd4417f9dbad99ff6a9ae8291a5ce958143cecb6c34651d77b51cfa0f73532e7"
+    },
+    {
+      "code": "octgn:9ebe2570-4478-45a4-af3b-5ba73a75cff9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9ebe2570-4478-45a4-af3b-5ba73a75cff9.jpg",
+      "localPath": "/cards/9ebe2570-4478-45a4-af3b-5ba73a75cff9.jpg",
+      "bytes": 155372,
+      "sha256": "53a28efa6d5fbf1ed376442823910ff1d51d3aaad87d8be66b8014d991577c20"
+    },
+    {
+      "code": "octgn:9ebe2570-4478-45a4-af3b-5ba73a75cff9",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9ebe2570-4478-45a4-af3b-5ba73a75cff9.B.jpg",
+      "localPath": "/cards/9ebe2570-4478-45a4-af3b-5ba73a75cff9.B.jpg",
+      "bytes": 146501,
+      "sha256": "4ee8571e49b944133e7fb6dece031c27111b818087ca480bf8740f2235baf3d6"
+    },
+    {
+      "code": "octgn:a0b5c990-9acd-499c-befe-9a55e347f075",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a0b5c990-9acd-499c-befe-9a55e347f075.jpg",
+      "localPath": "/cards/a0b5c990-9acd-499c-befe-9a55e347f075.jpg",
+      "bytes": 136615,
+      "sha256": "f19befc53689ace9391841a5612b3e7413e8aeb55eec1b29684bd13ef4065914"
+    },
+    {
+      "code": "octgn:a589eabf-64a6-4400-aa3d-ad30b4f721c3",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a589eabf-64a6-4400-aa3d-ad30b4f721c3.jpg",
+      "localPath": "/cards/a589eabf-64a6-4400-aa3d-ad30b4f721c3.jpg",
+      "bytes": 137341,
+      "sha256": "38b71d6da352ae0a71d5c1b75c631b480fa4a86f31d156ce72f2c81123ba2d23"
+    },
+    {
+      "code": "octgn:a589eabf-64a6-4400-aa3d-ad30b4f721c3",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a589eabf-64a6-4400-aa3d-ad30b4f721c3.B.jpg",
+      "localPath": "/cards/a589eabf-64a6-4400-aa3d-ad30b4f721c3.B.jpg",
+      "bytes": 133153,
+      "sha256": "2c10b1484c01f77b556cc1b63deef80a2a75cfd54bbed9a291142f68af860954"
+    },
+    {
+      "code": "octgn:acd10bf3-4af4-41f0-888f-55eb777be3d8",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/acd10bf3-4af4-41f0-888f-55eb777be3d8.jpg",
+      "localPath": "/cards/acd10bf3-4af4-41f0-888f-55eb777be3d8.jpg",
+      "bytes": 154798,
+      "sha256": "27f002536c8d3fc73b6c776b723d4948ff6dcbcad6c12531bc39b91e798342ab"
+    },
+    {
+      "code": "octgn:b18b3bfa-4620-4c15-960f-5a3642ca9d5a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b18b3bfa-4620-4c15-960f-5a3642ca9d5a.jpg",
+      "localPath": "/cards/b18b3bfa-4620-4c15-960f-5a3642ca9d5a.jpg",
+      "bytes": 152889,
+      "sha256": "7ff7fad4a5bad2ab9f0c45a2675c61dcbfc5e8a3d1e1abd1a603ff0a6ded12af"
+    },
+    {
+      "code": "octgn:d4a5f505-6cc6-4669-b9b9-8f5ad2a6e5df",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d4a5f505-6cc6-4669-b9b9-8f5ad2a6e5df.jpg",
+      "localPath": "/cards/d4a5f505-6cc6-4669-b9b9-8f5ad2a6e5df.jpg",
+      "bytes": 160141,
+      "sha256": "2394b07a34184e029f53b2fa89094ce7d1e8d7b548759130879bcdcf5484d2fc"
+    },
+    {
+      "code": "octgn:dbf55659-b4ea-4a8a-82d1-20c0f2e4405e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dbf55659-b4ea-4a8a-82d1-20c0f2e4405e.jpg",
+      "localPath": "/cards/dbf55659-b4ea-4a8a-82d1-20c0f2e4405e.jpg",
+      "bytes": 160091,
+      "sha256": "e2fff6a143643b329778f0ae20fb8ecfb34748f67a54c1a5cd071109a63427af"
+    },
+    {
+      "code": "octgn:dee08f07-580d-4229-8e56-573ef9eed6b0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dee08f07-580d-4229-8e56-573ef9eed6b0.jpg",
+      "localPath": "/cards/dee08f07-580d-4229-8e56-573ef9eed6b0.jpg",
+      "bytes": 144185,
+      "sha256": "5b1d59f7bdbde625fc542247bc9b9d2ebada4bbe8f5780396a0335a507e53061"
+    },
+    {
+      "code": "octgn:e8db9cc7-d53f-4ce9-991d-31078b2d507a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e8db9cc7-d53f-4ce9-991d-31078b2d507a.jpg",
+      "localPath": "/cards/e8db9cc7-d53f-4ce9-991d-31078b2d507a.jpg",
+      "bytes": 154530,
+      "sha256": "76a3907afbeacf5692fcb1e3280593a891cb0fb864ad4e5c2158c8765b486a9a"
+    },
+    {
+      "code": "octgn:ffb334eb-991d-4615-93ce-b2215a02d74f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ffb334eb-991d-4615-93ce-b2215a02d74f.jpg",
+      "localPath": "/cards/ffb334eb-991d-4615-93ce-b2215a02d74f.jpg",
+      "bytes": 146437,
+      "sha256": "d53cfd4367d3b10a1bfe3ff4212d68e37e6b66b598bb02ffa3de989b9f23db50"
+    }
+  ]
+}

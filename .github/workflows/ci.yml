@@ -999,6 +999,32 @@ jobs:
           path: output/attack-dol-guldur-release/failures
           retention-days: 7
 
+  caves-nibin-dum-simulation:
+    name: The Caves of Nibin-Dûm complete games (${{ matrix.scenario }}, ${{ matrix.part }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        scenario: [the-caves-of-nibin-dum-2018, the-caves-of-nibin-dum]
+        part: [full, late]
+    env:
+      CAVES_SIMULATION_SCENARIO: ${{ matrix.scenario }}
+      CAVES_SIMULATION_PART: ${{ matrix.part }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:caves-nibin-dum-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: caves-nibin-dum-simulation-${{ matrix.scenario }}-${{ matrix.part }}
+          path: output/caves-nibin-dum-release/failures
+          retention-days: 7
+
   shelob-lair-simulation:
     name: Shelob's Lair complete games (26 games)
     runs-on: ubuntu-latest
@@ -1210,6 +1236,8 @@ jobs:
             suite: test:browser-annuminas
           - group: attack-dol-guldur
             suite: test:browser-attack-dol-guldur
+          - group: caves-nibin-dum
+            suite: test:browser-caves-nibin-dum
           - group: treason-saruman-players
             suite: test:browser-treason-saruman-players
           - group: land-shadow-players

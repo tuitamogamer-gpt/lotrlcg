@@ -1,0 +1,210 @@
+[
+  {
+    "name": "The Dark of Nibin-Dûm",
+    "code": "octgn:9ebe2570-4478-45a4-af3b-5ba73a75cff9",
+    "starter": 1,
+    "starterEasy": 1,
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Surprise Attack",
+    "code": "octgn:8b1a3e3e-903f-4c4d-acf4-c216c2116339",
+    "starter": 1,
+    "starterEasy": 1,
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The Chasm",
+    "code": "octgn:09a5cf0c-153e-4fa8-9f42-0e13ea70eb11",
+    "starter": 1,
+    "starterEasy": 1,
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Oathkeepers",
+    "code": "octgn:a589eabf-64a6-4400-aa3d-ad30b4f721c3",
+    "starter": 1,
+    "starterEasy": 1,
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Goblin Troop",
+    "code": "octgn:998f6e45-b0d3-42c4-b5ba-fdf301401d90",
+    "starter": 1,
+    "starterEasy": 1,
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Goblin Sniper",
+    "code": "octgn:e8db9cc7-d53f-4ce9-991d-31078b2d507a",
+    "starter": 2,
+    "starterEasy": 2,
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Goblin Runners",
+    "code": "octgn:acd10bf3-4af4-41f0-888f-55eb777be3d8",
+    "starter": 2,
+    "starterEasy": 0,
+    "normal": 2,
+    "easy": 0
+  },
+  {
+    "name": "Goblintown Scavengers",
+    "code": "octgn:b18b3bfa-4620-4c15-960f-5a3642ca9d5a",
+    "starter": 2,
+    "starterEasy": 2,
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Goblins are Upon You!",
+    "code": "octgn:26e6135d-df1b-4221-ba45-a501858bafdf",
+    "starter": 1,
+    "starterEasy": 0,
+    "normal": 1,
+    "easy": 0
+  },
+  {
+    "name": "Eyes in the Dark",
+    "code": "octgn:7b3e0874-fa4e-4ffb-8614-2bb088896d42",
+    "starter": 2,
+    "starterEasy": 2,
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Great Cave-troll",
+    "code": "octgn:dbf55659-b4ea-4a8a-82d1-20c0f2e4405e",
+    "starter": 2,
+    "starterEasy": 0,
+    "normal": 2,
+    "easy": 0
+  },
+  {
+    "name": "Cavern Warg",
+    "code": "octgn:8104e805-08e3-4379-acde-0a9cc96837fe",
+    "starter": 2,
+    "starterEasy": 2,
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Goblin Tunnels",
+    "code": "octgn:2c21eeec-9aa4-4278-b050-f4297426f89a",
+    "starter": 2,
+    "starterEasy": 2,
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Lightless Passage",
+    "code": "octgn:35617e02-f4ad-4e6d-af45-9b5e0b7ce682",
+    "starter": 2,
+    "starterEasy": 2,
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Branching Paths",
+    "code": "octgn:d4a5f505-6cc6-4669-b9b9-8f5ad2a6e5df",
+    "starter": 2,
+    "starterEasy": 0,
+    "normal": 2,
+    "easy": 0
+  },
+  {
+    "name": "Collapsed Mine",
+    "code": "octgn:21d3d814-0fa5-41a3-b0d9-3ba5163374ed",
+    "starter": 2,
+    "starterEasy": 2,
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Goblin Dungeon",
+    "code": "octgn:67ddffc2-652d-4892-97a6-fe2af59d4616",
+    "starter": 2,
+    "starterEasy": 2,
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Crumbling Ruin",
+    "code": "octgn:ffb334eb-991d-4615-93ce-b2215a02d74f",
+    "starter": 2,
+    "starterEasy": 2,
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Lost in the Dark",
+    "code": "octgn:2fb27cc8-c3f5-4172-8ff0-456907f9b111",
+    "starter": 2,
+    "starterEasy": 2,
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Watchful Eyes",
+    "code": "octgn:5a5f72e8-0133-439f-b715-c7600b20fba9",
+    "starter": 1,
+    "starterEasy": 0,
+    "normal": 1,
+    "easy": 0
+  },
+  {
+    "name": "Cracked Pillar",
+    "code": "octgn:dee08f07-580d-4229-8e56-573ef9eed6b0",
+    "starter": 1,
+    "starterEasy": 1,
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Goblin Chieftain",
+    "code": "octgn:737b346c-792e-48d2-b8da-5dae52ddc902",
+    "starter": 1,
+    "starterEasy": 1,
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Cave Torch",
+    "code": "octgn:a0b5c990-9acd-499c-befe-9a55e347f075",
+    "starter": 1,
+    "starterEasy": 1,
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Wild Wargs",
+    "code": "octgn:e62c0943-c58d-4dc7-8948-adef14de0e9a",
+    "starter": 0,
+    "starterEasy": 0,
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Obsidian Arrows",
+    "code": "octgn:5eb195bb-390f-48be-97fa-0ec09d6c807b",
+    "starter": 0,
+    "starterEasy": 0,
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Crumbling Stairs",
+    "code": "octgn:c82f8ccc-d017-48ec-a611-49a77469d45d",
+    "starter": 0,
+    "starterEasy": 0,
+    "normal": 1,
+    "easy": 1
+  }
+]

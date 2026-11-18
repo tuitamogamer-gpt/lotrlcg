@@ -163,6 +163,14 @@ const HEADLINES: Partial<
     lead: "Keep your oath",
     em: "to the woodmen.",
   },
+  "the-caves-of-nibin-dum-2018": {
+    lead: "Rescue the captives",
+    em: "from Nibin-Dûm.",
+  },
+  "the-caves-of-nibin-dum": {
+    lead: "Rescue the captives",
+    em: "from Nibin-Dûm.",
+  },
   "the-ruins-of-belegost": {
     lead: "Plunder the ruins",
     em: "of Belegost.",

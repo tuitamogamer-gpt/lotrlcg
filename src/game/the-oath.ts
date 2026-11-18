@@ -15,7 +15,6 @@ import {
 import {
   allyCanEnter,
   damage,
-  discardCharacter,
   discardHandCard,
   discardPlayerDeck,
   enemyAddedToStaging,
@@ -23,7 +22,6 @@ import {
   enterEnemyEngaged,
   exhaustCharacter,
   questDefeated,
-  raiseThreat,
   takePlayerDiscard,
   win,
 } from "./board";
@@ -40,6 +38,15 @@ import { mainQuestUnit } from "./quest-state";
 import { addQuestProgress } from "./side-quests";
 import { surgeEffects } from "./surge";
 import { resolveDoomed } from "./voice-isengard";
+import {
+  goblinCannotAttach,
+  goblinCannotCancel,
+  goblinEffect,
+  goblinEncounter,
+  goblinEngaged,
+  goblinShadow,
+  goblinStats,
+} from "./goblins-set";
 import {
   OATH,
   OATH_QUESTS,
@@ -171,12 +178,8 @@ function encounter(
   const q = s.oath;
   if (!q) return false;
   const player = activeSeat(s);
-  if (code === OATH.scavengers) {
-    if (!fromReveal) return true;
-    const target = [...s.staging].reverse().find((u) => u.code === code);
-    prepend(s, fx("oathScavengers", { target: target?.id, player }));
-    return true;
-  }
+  // The Goblins set (shared with The Caves of Nibin-Dûm).
+  if (goblinEncounter(s, code, replay, fromReveal)) return true;
   if (!OATH_TREACHERIES.includes(code)) return false;
   if (!fromReveal) {
     if (!replay) s.encounterDiscard.push(code);
@@ -209,23 +212,6 @@ function treachery(s: GameState, held: Unit) {
         fx("oathSpeedCheck", { source: held.id, player: p }),
       );
       return;
-    // Each player puts a Goblin enemy from the deck or discard pile into play
-    // engaged with him, then the deck is shuffled (cannot be canceled).
-    case OATH.upon:
-      prepend(
-        s,
-        ...playerOrder(s).map((player) => fx("oathUpon", { player })),
-        fx("oathShuffle", { player: firstPlayer(s) }),
-      );
-      return;
-    // Each player raises his threat for his questers or discards one.
-    case OATH.eyes:
-      prepend(s, ...playerOrder(s).map((player) => fx("oathEyes", { player })));
-      return;
-    // Deal 2 damage to a character the revealing player controls.
-    case OATH.arrows:
-      prepend(s, fx("oathArrows", { value: 2, player: p }));
-      return;
   }
 }
 
@@ -233,6 +219,8 @@ function treachery(s: GameState, held: Unit) {
 function shadow(s: GameState, code: string) {
   const c = s.combat;
   if (!c || !s.oath) return false;
+  // The Goblins set (shared with The Caves of Nibin-Dûm).
+  if (goblinShadow(s, code)) return true;
   const p = c.attackPlayer ?? activeSeat(s);
   const enemy = get(s, c.enemyId);
   const defenders = (c.defenderIds ?? (c.defenderId ? [c.defenderId] : []))
@@ -246,34 +234,6 @@ function shadow(s: GameState, code: string) {
     case OATH.greatSpider:
       prepend(s, fx("oathGreatSpiderShadow", { player: p }));
       return true;
-    case OATH.troop:
-      c.attackBonus += 2;
-      log(s, "Goblin Troop: the attacking enemy gets +2 attack.", "danger");
-      return true;
-    case OATH.runners:
-      c.extraAttacks = (c.extraAttacks ?? 0) + 1;
-      log(
-        s,
-        "Goblin Runners: the attacking enemy makes an additional attack after this one.",
-        "danger",
-      );
-      return true;
-    case OATH.upon: {
-      const goblins = seatView(s, p).engaged.filter((u) =>
-        isGoblinEnemy(u.code),
-      ).length;
-      c.attackBonus += goblins;
-      log(
-        s,
-        `Goblins are Upon You!: the attacking enemy gets +${goblins} attack, 1 for each Goblin enemy engaged with ${who(s, p)}.`,
-        "danger",
-      );
-      return true;
-    }
-    case OATH.eyes:
-      if (undefended) prepend(s, fx("oathEyesShadow", { player: p }));
-      else log(s, "Eyes in the Dark: the attack was defended; no effect.");
-      return true;
     case OATH.speed:
       c.attackBonus += 1;
       c.returnToStaging = true;
@@ -282,9 +242,6 @@ function shadow(s: GameState, code: string) {
         `Surprising Speed: ${enemy ? name(enemy) : "the attacking enemy"} gets +1 attack and returns to the staging area after this attack.`,
         "danger",
       );
-      return true;
-    case OATH.arrows:
-      prepend(s, fx("oathArrows", { value: 1, player: p }));
       return true;
   }
   return false;
@@ -325,6 +282,8 @@ function discardLocation(s: GameState, u: Unit) {
 function oathEffect(s: GameState, e: Effect): boolean {
   const q = s.oath;
   if (!q || !e.kind.startsWith("oath")) return false;
+  // The Goblins set (shared with The Caves of Nibin-Dûm).
+  if (goblinEffect(s, e)) return true;
   const p = e.player ?? activeSeat(s);
   const first = firstPlayer(s);
   switch (e.kind) {
@@ -399,10 +358,6 @@ function oathEffect(s: GameState, e: Effect): boolean {
       log(s, `${name(u)} is added to the staging area.`, "danger");
       return true;
     }
-    case "oathShuffle":
-      s.encounterDeck = shuffle(s, s.encounterDeck);
-      log(s, "The encounter deck is shuffled.");
-      return true;
     case "oathTroop": {
       if (!q.troopAside) return true;
       q.troopAside = false;
@@ -419,14 +374,6 @@ function oathEffect(s: GameState, e: Effect): boolean {
     case "oathTreachery": {
       const held = q.resolving.find((x) => x.id === e.source);
       if (held) treachery(s, held);
-      return true;
-    }
-    case "oathTreacheryDone": {
-      const i = q.resolving.findIndex((x) => x.id === e.source);
-      if (i >= 0) {
-        const [held] = q.resolving.splice(i, 1);
-        s.encounterDiscard.push(held.code);
-      }
       return true;
     }
     case "oathSpeedReturn": {
@@ -479,119 +426,6 @@ function oathEffect(s: GameState, e: Effect): boolean {
       );
       prepend(s, ...surgeEffects(OATH.speed));
       resolveDoomed(s, 1, "encounter");
-      return true;
-    }
-    case "oathUpon": {
-      const options = searchable(s, (c) => isGoblinEnemy(c));
-      if (!options.length) {
-        log(
-          s,
-          `Goblins are Upon You!: there is no Goblin enemy for ${who(s, p)}.`,
-        );
-        return true;
-      }
-      choose(
-        s,
-        `Goblins are Upon You! · Put a Goblin enemy into play engaged with ${who(s, p)}${seatLabel(s, p)}`,
-        options.map((title) => ({
-          id: title,
-          label: title,
-          effects: [fx("oathUponEnemy", { text: title, player: p })],
-        })),
-        "When Revealed: each player must search the encounter deck and discard pile for a Goblin enemy and put it into play, engaged with him. (This effect cannot be canceled.)",
-      );
-      return true;
-    }
-    case "oathUponEnemy": {
-      const u = takeEncounter(s, e.text ?? "");
-      if (!u) return true;
-      log(
-        s,
-        `Goblins are Upon You!: ${name(u)} is put into play engaged with ${who(s, p)}.`,
-        "danger",
-      );
-      enterEnemyEngaged(s, u, p);
-      return true;
-    }
-    case "oathEyes": {
-      const questing = charactersOf(s, p).filter((u) => u.committed);
-      if (!questing.length) {
-        log(
-          s,
-          `Eyes in the Dark: ${who(s, p)} ${s.table ? "controls" : "control"} no questing character.`,
-        );
-        return true;
-      }
-      choose(
-        s,
-        `Eyes in the Dark · Choose${seatLabel(s, p)}`,
-        [
-          {
-            id: "threat",
-            label: `Raise ${his(s)} threat by ${questing.length} (1 for each questing character)`,
-            effects: [
-              fx("oathEyesThreat", { value: questing.length, player: p }),
-            ],
-          },
-          ...questing.map((u) => ({
-            id: u.id,
-            code: u.code,
-            label: `Discard ${name(u)}`,
-            effects: [fx("oathDiscardCharacter", { target: u.id, player: p })],
-          })),
-        ],
-        "When Revealed: each player must choose: either raise your threat by 1 for each questing character you control, or discard a questing character you control.",
-      );
-      return true;
-    }
-    case "oathEyesThreat":
-      forOwner(s, p, () => raiseThreat(s, e.value ?? 0, "encounter"));
-      log(
-        s,
-        `Eyes in the Dark: ${who(s, p)} ${s.table ? "raises" : "raise"} ${his(s)} threat by ${e.value}.`,
-        "danger",
-      );
-      return true;
-    case "oathDiscardCharacter":
-    case "oathEyesAlly": {
-      const u = get(s, e.target);
-      if (!u || !charactersOf(s, p).some((x) => x.id === u.id)) return true;
-      log(s, `${name(u)} is discarded.`, "danger");
-      forOwner(s, p, () => discardCharacter(s, u));
-      return true;
-    }
-    case "oathEyesShadow": {
-      const allies = seatView(s, p).allies;
-      if (!allies.length) return true;
-      choose(
-        s,
-        `Eyes in the Dark · Discard an ally you control${seatLabel(s, p)}`,
-        allies.map((u) => ({
-          id: u.id,
-          code: u.code,
-          label: name(u),
-          effects: [fx("oathEyesAlly", { target: u.id, player: p })],
-        })),
-        "Shadow: if this attack is undefended, discard an ally you control.",
-      );
-      return true;
-    }
-    case "oathArrows": {
-      const targets = charactersOf(s, p);
-      if (!targets.length) return true;
-      choose(
-        s,
-        `Obsidian Arrows · Deal ${e.value} damage to a character you control${seatLabel(s, p)}`,
-        targets.map((u) => ({
-          id: u.id,
-          code: u.code,
-          label: name(u),
-          effects: [fx("damage", { target: u.id, value: e.value, player: p })],
-        })),
-        e.value === 1
-          ? "Shadow: deal 1 damage to a character you control."
-          : "When Revealed: deal 2 damage to a character you control.",
-      );
       return true;
     }
     case "oathSpidersShadow": {
@@ -657,43 +491,6 @@ function oathEffect(s: GameState, e: Effect): boolean {
           effects: [fx("exhaust", { target: u.id, player: p })],
         })),
         "Forced: after Great Spider engages you, exhaust a character you control.",
-      );
-      return true;
-    }
-    case "oathWargs": {
-      const top = s.encounterDeck.shift();
-      if (!top) return true;
-      if (isGoblinEnemy(top)) {
-        const u = make(s, top);
-        log(
-          s,
-          `Wild Wargs: ${name(u)} is discarded from the encounter deck and put into play engaged with ${who(s, p)}.`,
-          "danger",
-        );
-        enterEnemyEngaged(s, u, p);
-        return true;
-      }
-      s.encounterDiscard.push(top);
-      log(
-        s,
-        `Wild Wargs: ${card(top).name} is discarded from the encounter deck.`,
-      );
-      return true;
-    }
-    case "oathScavengers": {
-      const u = get(s, e.target);
-      const discarded = playerOrder(s).flatMap((player) =>
-        discardPlayerDeck(s, 1, player),
-      );
-      const total = discarded.reduce(
-        (n, c) => n + (Number(card(c).cost) || 0),
-        0,
-      );
-      if (u) u.tempThreat = (u.tempThreat ?? 0) + total;
-      log(
-        s,
-        `Goblintown Scavengers: ${discarded.length ? discarded.map((c) => card(c).name).join(", ") : "no card"} discarded; it gets +${total} threat until the end of the phase.`,
-        "danger",
       );
       return true;
     }
@@ -816,27 +613,19 @@ export const OATH_HOOKS: Batch4ScenarioHooks = {
         ? {}
         : { attack: charactersOf(s, p).filter((x) => x.exhausted).length };
     }
-    // Goblin Troop: each other Goblin enemy engaged with its player gets +1/+1.
-    if (u.code !== OATH.troop && isGoblinEnemy(u.code)) {
-      const p = engagedWith(s, u);
-      if (
-        p !== undefined &&
-        seatView(s, p).engaged.some((x) => live(x, OATH.troop))
-      )
-        return { attack: 1, defense: 1 };
-    }
-    return {};
+    // Goblin Troop (the Goblins set).
+    return goblinStats(s, u);
   },
   threatBonus: (s, u) => (s.oath && live(u, OATH.grove) ? graveCount(s) : 0),
   cannotCancel: (s, _shadow, code) =>
-    !!s.oath && (activeIs(s, OATH.eaves) || code === OATH.upon),
-  cannotAttach: (s, u) => !!s.oath && u.code === OATH.troop,
+    !!s.oath && (activeIs(s, OATH.eaves) || goblinCannotCancel(s, code)),
+  cannotAttach: (s, u) => !!s.oath && goblinCannotAttach(s, u),
   engaged: (s, u) => {
     if (!s.oath) return;
     const p = activeSeat(s);
     if (live(u, OATH.greatSpider))
       prepend(s, fx("oathGreatSpider", { player: p }));
-    if (live(u, OATH.wargs)) prepend(s, fx("oathWargs", { player: p }));
+    goblinEngaged(s, u);
   },
   travelProblem: (s, u) =>
     s.oath &&

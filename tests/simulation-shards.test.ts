@@ -29,7 +29,7 @@ test("four CI simulation shards cover every registered complete-game case exactl
   assert.equal(baseline.selectedCases.length, baseline.registeredCases);
   assert.equal(new Set(baseline.selectedCases).size, baseline.registeredCases);
   assert.equal(priorSimulationCases.cases.length, 259);
-  assert.equal(baseline.registeredCases, 589);
+  assert.equal(baseline.registeredCases, 599);
   assert.deepEqual(
     baseline.selectedCases
       .filter(
@@ -94,6 +94,7 @@ test("four CI simulation shards cover every registered complete-game case exactl
             "Murder at the Prancing Pony",
             "The Siege of Annúminas",
             "Attack on Dol Guldur",
+            "The Caves of Nibin-Dûm",
             "The Black Serpent",
             "The Dungeons of Cirith Gurat",
             "The Crossings of Poros",

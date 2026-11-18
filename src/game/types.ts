@@ -304,6 +304,8 @@ export type ScenarioId =
   | "murder-at-the-prancing-pony"
   | "the-siege-of-annuminas"
   | "attack-on-dol-guldur"
+  | "the-caves-of-nibin-dum-2018"
+  | "the-caves-of-nibin-dum"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -498,6 +500,7 @@ export interface GameState {
   prancingPony?: import("./prancing-pony-types").PrancingPonyState;
   annuminas?: import("./annuminas-types").AnnuminasState;
   attackDolGuldur?: import("./attack-dol-guldur-types").AttackDolGuldurState;
+  caves?: import("./caves-nibin-dum-types").CavesState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -937,6 +940,10 @@ export interface GameState {
     saRevealOnKill?: boolean;
     /** Attack on Dol Guldur: Blackened Woods' shadow waits for a destroyed character. */
     adgWoods?: boolean;
+    /** The Caves of Nibin-Dûm: Cavern Warg's shadow waits for a destroyed character. */
+    cavesReturnOnKill?: boolean;
+    /** The Caves of Nibin-Dûm: Collapsed Mine's shadow raises threat by the damage dealt. */
+    cavesThreat?: boolean;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

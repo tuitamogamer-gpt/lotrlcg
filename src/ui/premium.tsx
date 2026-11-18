@@ -127,6 +127,14 @@ export const PLAYMATS = {
     name: "The Eaves of Mirkwood",
     detail: "The Goblins' trail · The Rearguard",
   },
+  "the-caves-of-nibin-dum-2018": {
+    name: "Nibin-Dûm",
+    detail: "The Goblins' caves · The captives",
+  },
+  "the-caves-of-nibin-dum": {
+    name: "Nibin-Dûm",
+    detail: "The Goblins' caves · The captives",
+  },
   "the-ruins-of-belegost": {
     name: "Belegost",
     detail: "The drowned Dwarf city · Naurlhûg's lair",
@@ -568,6 +576,8 @@ export const PLAYMAT_CHOICES = [
   "mount-doom",
   "the-oath-2018",
   "the-oath",
+  "the-caves-of-nibin-dum-2018",
+  "the-caves-of-nibin-dum",
   "the-ruins-of-belegost",
   "murder-at-the-prancing-pony",
   "the-siege-of-annuminas",
