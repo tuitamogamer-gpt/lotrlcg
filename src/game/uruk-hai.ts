@@ -337,9 +337,14 @@ export function urukHaiEffect(s: GameState, e: Effect): boolean {
     u = findUnit(s, e.target);
   switch (e.kind) {
     case "uhSetupCaptive": {
-      const heroes = s.heroes.filter(
+      const eligible = s.heroes.filter(
         (h) => card(h.code).sphere_code !== "fellowship",
       );
+      // Campaign mode: "choose each captive from the Campaign Log instead."
+      const recorded = eligible.filter((h) =>
+        s.campaign?.captives?.includes(h.code),
+      );
+      const heroes = recorded.length ? recorded : eligible;
       if (!heroes.length) {
         log(
           s,

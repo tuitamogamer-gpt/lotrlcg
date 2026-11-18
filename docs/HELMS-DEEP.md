@@ -3,9 +3,10 @@
 The second scenario of **The Lord of the Rings: The Treason of Saruman** (April
 2015). It is playable in classic solo and with one to four local players, in
 normal and easy mode, with the box's Fellowship-sphere Aragorn as in The
-Uruk-hai. Campaign mode, with its campaign card, boons and burdens, is not
-part of this import; the Poisoned Counsels burden is used as stage 1A
-offers it.
+Uruk-hai. The Poisoned Counsels burden is used as stage 1A offers it. Its
+campaign mode (recipe Q0C.08) is part of
+[The Lord of the Rings campaign](SAGA-CAMPAIGN.md): free hero changes, and
+Poisoned Counsels earned by each player who holds a copy.
 
 ## Sources and corrections
 

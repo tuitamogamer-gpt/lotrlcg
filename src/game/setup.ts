@@ -318,7 +318,10 @@ export function createGame(
       ? structuredClone(
           options.campaign ??
             (sagaCampaign
-              ? newSagaCampaign(chosenLine)
+              ? newSagaCampaign(
+                  chosenLine,
+                  options.seats?.map((p) => p.heroes.length),
+                )
               : newCampaign(chosenLine)),
         )
       : null;

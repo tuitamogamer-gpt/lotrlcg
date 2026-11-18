@@ -13,6 +13,7 @@ import {
   OLD_MAN_WILLOW_DAMAGE,
   RING_BEARER_KEY,
   SAGA,
+  sagaResolutionQuestions,
   SOUTH_BOONS,
 } from "../src/game/saga-campaign.ts";
 import { card } from "../src/game/cards.ts";
@@ -374,12 +375,42 @@ try {
     ]);
     assert.ok(s.campaign.burdens.includes(SAGA.illFate));
     assert.deepEqual(s.campaign.captives, [captive.code]);
-    await page.getByText(/is not available in campaign mode yet/).waitFor();
     await page
       .getByText(/Notes · captives/)
       .first()
       .waitFor();
     await checkpoint("breaking-complete", width);
+    // The Treason of Saruman: The Uruk-hai takes its captive from the log.
+    s = await continueCampaign();
+    assert.equal(s.scenarioId, "the-uruk-hai");
+    assert.ok(!s.campaign.boons.includes(SAGA.underhill));
+    assert.deepEqual(
+      s.urukHai.captives.map((c) => c.unit.code),
+      [captive.code],
+    );
+    await checkpoint("uruk-setup", width);
+    s = await victory(s);
+    await page.locator("[data-saga-resolution='the-uruk-hai']").waitFor();
+    await checkpoint("uruk-resolution", width);
+    const skill = sagaResolutionQuestions(s)
+      .find((q) => q.id === "skill:0")
+      .options.find((o) => o.id !== "none");
+    s = await record([[/Skill boons ·/, skill.id]]);
+    const [skillCode, skillHero] = skill.id.split("@");
+    assert.ok(s.campaign.permanent[skillHero].includes(skillCode));
+    // Helm's Deep and The Road to Isengard.
+    s = await continueCampaign();
+    assert.equal(s.scenarioId, "helms-deep");
+    await checkpoint("helm-setup", width);
+    s = await victory(s);
+    s = await continueCampaign();
+    assert.equal(s.scenarioId, "the-road-to-isengard");
+    assert.ok(s.encounterDeck.includes(SAGA.voice));
+    await checkpoint("isengard-setup", width);
+    s = await victory(s);
+    assert.ok(s.campaign.boons.includes(SAGA.palantir));
+    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await checkpoint("isengard-complete", width);
     assert.ok(ringBearer);
     await view.c.close();
   }

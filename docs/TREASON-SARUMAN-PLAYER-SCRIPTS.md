@@ -6,8 +6,8 @@ player controls in its three scenarios, is described with the Saga rules of
 the collector cards (see [the collector scripts](COLLECTOR-PLAYER-SCRIPTS.md))
 and Ent Draught with the passive player cards. The other ten are scripted in
 `src/game/treason-saruman-player-cards.ts`. The six boons are campaign-mode
-cards: they stay pending until the Saga's campaign mode is imported, like the
-campaign-only text of the three scenarios.
+cards, scripted with [The Lord of the Rings campaign](SAGA-CAMPAIGN.md) and
+never part of a player deck outside it.
 
 ## Sources
 

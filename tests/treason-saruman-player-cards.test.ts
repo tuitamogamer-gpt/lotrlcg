@@ -85,7 +85,8 @@ test("The Treason of Saruman player cards are scripted, deckable and pinned to r
     (c) => ![P.theoden, P.treebeard].includes(c as never),
   ))
     assert.ok(deckable.includes(code), code);
-  // The six boons need the Saga's campaign mode.
+  // The six boons belong to The Lord of the Rings campaign mode
+  // (saga-campaign-treason.test.ts): scripted, but never part of a player deck.
   for (const code of [
     "143015",
     "143016",
@@ -93,8 +94,10 @@ test("The Treason of Saruman player cards are scripted, deckable and pinned to r
     "143018",
     "143019",
     "143020",
-  ])
-    assert.ok(!SCRIPTED.has(code), code);
+  ]) {
+    assert.ok(SCRIPTED.has(code), code);
+    assert.ok(!deckable.includes(code), code);
+  }
   assert.equal(art.length, 13);
   for (const a of art) {
     assert.equal(readFileSync(`public${a.localPath}`).length, a.bytes);

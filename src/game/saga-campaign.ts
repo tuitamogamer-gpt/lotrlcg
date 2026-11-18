@@ -6,6 +6,7 @@ import { enqueue, fx, get, log, make, requireRule, shuffle } from "./core";
 import { isOneRing, isRingBearerCode } from "./lotr-saga-codes";
 import { jdBalrog } from "./journey-dark-support";
 import { BF } from "./breaking-fellowship-support";
+import { effectiveTraits as effectiveTraitsOf } from "./expansion-passives";
 import { ringBearer } from "./lotr-saga";
 import { forOwner, playerOrder, seatIndices, seatView } from "./table";
 import { score } from "./actions";
@@ -60,6 +61,15 @@ export const SAGA_CAMPAIGN_SUPPORTED: readonly ScenarioId[] = [
   "the-ring-goes-south",
   "journey-in-the-dark",
   "breaking-of-the-fellowship",
+  "the-uruk-hai",
+  "helms-deep",
+  "the-road-to-isengard",
+];
+/** The Treason of Saruman's chapters: Aragorn leads, without Frodo or his burdens. */
+export const TOS_CHAPTERS: readonly ScenarioId[] = [
+  "the-uruk-hai",
+  "helms-deep",
+  "the-road-to-isengard",
 ];
 export const SAGA = {
   underhill: "141017",
@@ -87,6 +97,14 @@ export const SAGA = {
   wound: "142088",
   night: "142089",
   illFate: "142090",
+  intimidation: "143015",
+  hands: "143016",
+  forewarned: "143017",
+  leader: "143018",
+  hope: "143019",
+  palantir: "143020",
+  counsels: "143021",
+  voice: "143068",
   shadowCard: "octgn:307411f3-4a45-44ae-bc64-4e16deb97d10",
   forestCard: "octgn:088b62be-0f26-4a87-805a-277edd463c8c",
   fogCard: "octgn:d34c9025-6380-4294-be3f-01c992922830",
@@ -95,6 +113,9 @@ export const SAGA = {
   southCard: "octgn:fb0f51c6-c96e-44f1-9f67-1235eb2351dc",
   darkCard: "octgn:a073c291-5f86-4b49-821e-d965baf369fa",
   breakingCard: "octgn:dfb04502-e86f-41bc-83a0-b77048b9668c",
+  urukCard: "octgn:a54706fb-776c-4c00-b0ef-454b21673bcb",
+  helmCard: "octgn:cf5fad0e-e1c3-4340-a467-567ff0611c6f",
+  isengardCard: "octgn:cb2d88e5-d469-43c6-9d69-e0cf36e2862e",
 } as const;
 /** Each scenario's campaign card. */
 export const SAGA_CAMPAIGN_CARDS: Partial<Record<ScenarioId, string>> = {
@@ -106,6 +127,9 @@ export const SAGA_CAMPAIGN_CARDS: Partial<Record<ScenarioId, string>> = {
   "the-ring-goes-south": SAGA.southCard,
   "journey-in-the-dark": SAGA.darkCard,
   "breaking-of-the-fellowship": SAGA.breakingCard,
+  "the-uruk-hai": SAGA.urukCard,
+  "helms-deep": SAGA.helmCard,
+  "the-road-to-isengard": SAGA.isengardCard,
 };
 /** Old Man Willow's code (The Old Forest). */
 const OLD_FOREST_WILLOW = OF.willow;
@@ -130,6 +154,12 @@ export const SAGA_BOONS: readonly string[] = [
   SAGA.hairs,
   SAGA.rope,
   SAGA.lembas,
+  SAGA.intimidation,
+  SAGA.hands,
+  SAGA.forewarned,
+  SAGA.leader,
+  SAGA.hope,
+  SAGA.palantir,
 ];
 export const SAGA_BURDENS: readonly string[] = [
   SAGA.delay,
@@ -142,7 +172,23 @@ export const SAGA_BURDENS: readonly string[] = [
   SAGA.wound,
   SAGA.night,
   SAGA.illFate,
+  SAGA.counsels,
+  SAGA.voice,
 ];
+/** The burden sets of A Shadow of the Past, Flight to the Ford and The Ring Goes South. */
+export const FRODO_BURDENS: readonly string[] = [
+  SAGA.delay,
+  SAGA.ringDraws,
+  ...FORD_BURDENS,
+  SAGA.lust,
+];
+/** The Uruk-hai's Skill boons and the trait each one's Setup asks for. */
+export const SKILL_BOONS: Record<string, string> = {
+  [SAGA.intimidation]: "Warrior",
+  [SAGA.hands]: "Healer",
+  [SAGA.forewarned]: "Ranger",
+  [SAGA.leader]: "Noble",
+};
 /** The Ring Goes South's boon cards: player cards the players may include in their decks. */
 export const SOUTH_BOONS: readonly string[] = [
   SAGA.sting,
@@ -151,7 +197,10 @@ export const SOUTH_BOONS: readonly string[] = [
   SAGA.anduril,
 ];
 /** Earned boons with a player card back that join a player's deck. */
-export const SAGA_DECK_BOONS: readonly string[] = [...SOUTH_BOONS];
+export const SAGA_DECK_BOONS: readonly string[] = [
+  ...SOUTH_BOONS,
+  SAGA.palantir,
+];
 /** Breaking of the Fellowship's Gifts of Lórien. */
 export const GIFT_BOONS: readonly string[] = [
   SAGA.phial,
@@ -159,6 +208,8 @@ export const GIFT_BOONS: readonly string[] = [
   SAGA.rope,
   SAGA.lembas,
 ];
+/** Burdens that function like player cards, earned by each player. */
+export const DECK_BURDENS: readonly string[] = [SAGA.counsels];
 /** Burden objectives whose Setup adds them to the staging area (besides Gandalf's Delay). */
 export const STAGED_BURDENS: readonly string[] = [SAGA.grief, SAGA.wound];
 /** Boons with the Permanent keyword. */
@@ -168,6 +219,11 @@ export const SAGA_PERMANENT: readonly string[] = [
   SAGA.healer,
   SAGA.warrior,
   SAGA.noble,
+  SAGA.intimidation,
+  SAGA.hands,
+  SAGA.forewarned,
+  SAGA.leader,
+  SAGA.hope,
 ];
 /** A Knife in the Dark's resolution: each player may choose one of these. */
 export const KNIFE_BOONS = [SAGA.ranger, SAGA.healer, SAGA.warrior, SAGA.noble];
@@ -176,9 +232,13 @@ export const RING_BEARER_KEY = "ring-bearer";
 
 export const isSagaCampaign = (c?: CampaignState | null) => c?.kind === "saga";
 export const sagaCampaignGame = (s: GameState) => isSagaCampaign(s.campaign);
-export function newSagaCampaign(heroes: string[]): CampaignState {
+export function newSagaCampaign(
+  heroes: string[],
+  seatHeroes?: number[],
+): CampaignState {
   return {
     kind: "saga",
+    ...(seatHeroes ? { seatHeroes: [...seatHeroes] } : {}),
     heroes: [...heroes],
     fallen: [],
     threatPenalty: 0,
@@ -224,7 +284,8 @@ export const sagaCampaignCard = (s: GameState) =>
 export const sagaStartingHandPenalty = (s: GameState) =>
   sagaCampaignGame(s) &&
   (s.scenarioId === "a-shadow-of-the-past" ||
-    s.campaign!.burdens.includes(SAGA.delay))
+    (s.campaign!.burdens.includes(SAGA.delay) &&
+      !TOS_CHAPTERS.includes(s.scenarioId)))
     ? 1
     : 0;
 
@@ -258,6 +319,18 @@ export function sagaCampaignDeckSetup(s: GameState) {
         );
       }
     });
+  // The Treason of Saruman: no card titled "Frodo Baggins" can be used.
+  if (TOS_CHAPTERS.includes(s.scenarioId))
+    for (const player of playerOrder(s))
+      forOwner(s, player, () => {
+        if (s.deck.some((code) => card(code).name === "Frodo Baggins")) {
+          s.deck = s.deck.filter((code) => card(code).name !== "Frodo Baggins");
+          log(
+            s,
+            "The Treason of Saruman: no card titled Frodo Baggins can be used in its chapters.",
+          );
+        }
+      });
   if (s.scenarioId === "the-ring-goes-south") return;
   const seats = playerOrder(s);
   for (const [code, seat] of Object.entries(c!.deckBoons ?? {}))
@@ -287,6 +360,19 @@ function attachBoon(s: GameState, hero: Unit, code: string) {
 export function sagaCampaignSetup(s: GameState) {
   const c = s.campaign;
   if (!isSagaCampaign(c)) return;
+  const tos = TOS_CHAPTERS.includes(s.scenarioId);
+  // The Uruk-hai's campaign card: "Remove Gildor Inglorion and Mr. Underhill
+  // from the Campaign Pool."
+  if (s.scenarioId === "the-uruk-hai") {
+    c!.boons = c!.boons.filter(
+      (code) => code !== SAGA.gildor && code !== SAGA.underhill,
+    );
+    for (const [key, codes] of Object.entries(c!.permanent)) {
+      const rest = codes.filter((code) => code !== SAGA.underhill);
+      if (rest.length) c!.permanent[key] = rest;
+      else delete c!.permanent[key];
+    }
+  }
   const bearer = ringBearer(s);
   for (const player of playerOrder(s))
     forOwner(s, player, () => {
@@ -297,12 +383,19 @@ export function sagaCampaignSetup(s: GameState) {
   if (bearer)
     for (const code of c!.permanent[RING_BEARER_KEY] ?? [])
       attachBoon(s, bearer, code);
+  // The Treason of Saruman's chapters leave out the burden sets of A Shadow of
+  // the Past, Flight to the Ford and The Ring Goes South.
   const encounter = [
     ...c!.boons.filter((code) => code === SAGA.gildor),
     ...c!.burdens.filter(
-      (code) => code !== SAGA.delay && !STAGED_BURDENS.includes(code),
+      (code) =>
+        code !== SAGA.delay &&
+        !STAGED_BURDENS.includes(code) &&
+        !DECK_BURDENS.includes(code) &&
+        !(tos && FRODO_BURDENS.includes(code)),
     ),
   ];
+  if (s.scenarioId === "the-road-to-isengard") encounter.push(SAGA.voice);
   const staged = c!.burdens.filter((code) => STAGED_BURDENS.includes(code));
   // Journey in the Dark's campaign card.
   if (s.scenarioId === "journey-in-the-dark") {
@@ -321,7 +414,7 @@ export function sagaCampaignSetup(s: GameState) {
     // An earned Gift: "Setup: Attach to a hero in play."
     for (const code of GIFT_BOONS.filter((g) => c!.boons.includes(g)))
       enqueue(s, fx("sagaGiftSetup", { code, player: s.table?.first ?? 0 }));
-  let delay = c!.burdens.includes(SAGA.delay);
+  let delay = c!.burdens.includes(SAGA.delay) && !tos;
   if (s.scenarioId === "a-shadow-of-the-past") {
     // A Shadow of the Past's campaign card.
     if (bearer) attachBoon(s, bearer, SAGA.underhill);
@@ -366,6 +459,15 @@ export function sagaCampaignSetup(s: GameState) {
   for (const code of [...new Set(encounter)])
     if (!s.encounterDeck.includes(code)) s.encounterDeck.push(code);
   shuffle(s, s.encounterDeck);
+  // Earned burdens with a player card back (Poisoned Counsels) are shuffled
+  // into their players' decks after the starting hands.
+  for (const [code, seats] of Object.entries(c!.deckBurdens ?? {}))
+    if (c!.burdens.includes(code))
+      for (const seat of seats.filter((x) => playerOrder(s).includes(x)))
+        forOwner(s, seat, () => {
+          s.deck.push(code);
+          shuffle(s, s.deck);
+        });
   log(
     s,
     `Campaign mode · ${card(SAGA_CAMPAIGN_CARDS[s.scenarioId] ?? "").name || "The Lord of the Rings"}: ${[
@@ -437,6 +539,8 @@ export function resolveSagaCampaign(s: GameState) {
     rounds: s.round,
   });
   c.resolution = null;
+  // The Uruk-hai is won by rescuing the captives.
+  if (s.scenarioId === "the-uruk-hai") delete c.captives;
   // Boons whose cost removed them from the Campaign Pool (Ho! Tom Bombadil!).
   const spent = (s.sagaCards?.spent ?? []).filter((code) =>
     c.boons.includes(code),
@@ -507,6 +611,55 @@ export function resolveSagaCampaign(s: GameState) {
         : "The Ring Goes South · Resolution: Lust for the Ring is not attached to a hero.",
       "good",
     );
+  } else if (s.scenarioId === "helms-deep") {
+    // "Each player with a copy of Poisoned Counsels in his hand, deck or
+    // discard pile has earned that burden."
+    const seats = playerOrder(s).filter((p) => {
+      const v = seatView(s, p);
+      return (
+        v.hand.some((u) => u.code === SAGA.counsels) ||
+        v.deck.includes(SAGA.counsels) ||
+        v.discard.includes(SAGA.counsels)
+      );
+    });
+    if (seats.length) {
+      if (!c.burdens.includes(SAGA.counsels)) c.burdens.push(SAGA.counsels);
+      c.deckBurdens = {
+        ...(c.deckBurdens ?? {}),
+        [SAGA.counsels]: [
+          ...new Set([...(c.deckBurdens?.[SAGA.counsels] ?? []), ...seats]),
+        ],
+      };
+    }
+    log(
+      s,
+      seats.length
+        ? `Helm's Deep · Resolution: ${seats.map((p) => (s.table ? `Player ${p + 1}` : "you")).join(", ")} ${seats.length === 1 && !s.table ? "have" : seats.length === 1 ? "has" : "have"} earned Poisoned Counsels.`
+        : "Helm's Deep · Resolution: no player has a copy of Poisoned Counsels.",
+      "good",
+    );
+  } else if (s.scenarioId === "the-road-to-isengard") {
+    const hands = playerOrder(s).map((p) => seatView(s, p).hand.length);
+    const voice = hands.some((n) => n <= 3);
+    const palantir = hands.some((n) => n >= 3);
+    if (voice && !c.burdens.includes(SAGA.voice)) c.burdens.push(SAGA.voice);
+    if (palantir && !c.boons.includes(SAGA.palantir)) {
+      c.boons.push(SAGA.palantir);
+      c.deckBoons = {
+        ...(c.deckBoons ?? {}),
+        [SAGA.palantir]: s.table?.first ?? 0,
+      };
+    }
+    log(
+      s,
+      `The Road to Isengard · Resolution: ${[
+        ...(voice ? ["the players have earned Saruman's Voice"] : []),
+        ...(palantir
+          ? ["the first player has earned the Palantír of Orthanc"]
+          : []),
+      ].join("; ")}.`,
+      "good",
+    );
   } else if (s.scenarioId === "fog-on-the-barrow-downs") {
     if (!c.boons.includes(SAGA.tom)) c.boons.push(SAGA.tom);
     log(
@@ -530,6 +683,86 @@ const heroLabel = (s: GameState, key: string) =>
   key === RING_BEARER_KEY
     ? `${ringBearer(s) ? name(ringBearer(s)!) : "Frodo Baggins"} (the Ring-bearer)`
     : card(key).name;
+/** The Uruk-hai: the pursuit value at which the players earn a reward. */
+export const URUK_PURSUIT = 25;
+/** A player's segment of the Campaign Log's heroes. */
+function seatHeroes(s: GameState, player: number) {
+  const c = s.campaign!;
+  const counts = c.seatHeroes ??
+    s.table?.seats.map((p) => p.startingHeroes.length) ?? [c.heroes.length];
+  const start = counts.slice(0, player).reduce((n, x) => n + x, 0);
+  return { start, codes: c.heroes.slice(start, start + counts[player]) };
+}
+/** The Uruk-hai's resolution: the Skill boons or Beyond All Hope. */
+function urukQuestions(s: GameState): SagaQuestion[] {
+  const c = s.campaign!;
+  const fallen = c.fallen.filter((code) => !c.heroes.includes(code));
+  const skills = Object.entries(SKILL_BOONS);
+  return [
+    {
+      id: "reward",
+      label:
+        "The players must choose: each player earns a Skill boon, or one player earns Beyond All Hope and takes back a fallen hero.",
+      options: [
+        { id: "skill", label: "Each player earns a Skill boon" },
+        ...(fallen.length
+          ? [{ id: "hope", label: "One player earns Beyond All Hope" }]
+          : []),
+      ],
+    },
+    ...playerOrder(s).map((player) => ({
+      id: `skill:${player}`,
+      player,
+      label: `Skill boons · ${s.table ? `Player ${player + 1}` : "You"}: a Skill boon for a hero ${s.table ? "that player controls" : "you control"} with its trait.`,
+      options: [
+        { id: "none", label: "No Skill boon" },
+        ...skills.flatMap(([code, trait]) =>
+          // The captives, rescued by the win, count as heroes they control.
+          [
+            ...seatView(s, player).heroes,
+            ...(s.urukHai?.captives
+              .filter((x) => x.owner === player)
+              .map((x) => x.unit) ?? []),
+          ]
+            .filter(
+              (h) =>
+                card(h.code).sphere_code !== "fellowship" &&
+                effectiveTraitsOf(h).includes(trait),
+            )
+            .map((h) => ({
+              id: `${code}@${h.code}`,
+              code,
+              label: `${card(code).name} · ${name(h)}`,
+            })),
+        ),
+      ],
+    })),
+    {
+      id: "hope",
+      label:
+        "Beyond All Hope · the player and the fallen hero they take control of.",
+      options: [
+        { id: "none", label: "Not chosen" },
+        ...playerOrder(s).flatMap((player) =>
+          fallen.map((code) => ({
+            id: `${player}@${code}`,
+            code,
+            label: `${s.table ? `Player ${player + 1}` : "You"} · ${card(code).name}`,
+          })),
+        ),
+      ],
+    },
+    {
+      id: "hopeDrop",
+      label:
+        "Beyond All Hope · the hero that player removes from the Campaign Log to control only 3 heroes.",
+      options: [
+        { id: "none", label: "No hero" },
+        ...c.heroes.map((code) => ({ id: code, code, label: card(code).name })),
+      ],
+    },
+  ];
+}
 /** Breaking of the Fellowship: the heroes a player may give up as a captive. */
 const captiveCandidates = (s: GameState, player: number) =>
   seatView(s, player).heroes.filter(
@@ -588,6 +821,11 @@ export function sagaResolutionQuestions(s: GameState): SagaQuestion[] {
         })),
       },
     ];
+  if (
+    s.scenarioId === "the-uruk-hai" &&
+    (s.urukHai?.pursuit ?? 99) <= URUK_PURSUIT
+  )
+    return urukQuestions(s);
   if (s.scenarioId === "breaking-of-the-fellowship")
     return [
       {
@@ -682,6 +920,52 @@ export function applySagaResolution(
       "good",
     );
   }
+  if (s.scenarioId === "the-uruk-hai") {
+    if (answers.reward === "skill") {
+      const chosen = questions
+        .filter((q) => q.id.startsWith("skill:"))
+        .map((q) => answers[q.id])
+        .filter((a) => a !== "none")
+        .map((a) => a.split("@"));
+      requireRule(
+        new Set(chosen.map(([code]) => code)).size === chosen.length,
+        "Each Skill boon can be earned once.",
+      );
+      for (const [code, hero] of chosen) {
+        c!.boons.push(code);
+        c!.permanent[hero] = [...(c!.permanent[hero] ?? []), code];
+      }
+      log(
+        s,
+        `The Uruk-hai · Resolution: ${chosen.length ? chosen.map(([code, hero]) => `${card(code).name} (${card(hero).name})`).join(", ") : "no Skill boon"} ${chosen.length === 1 ? "is" : "are"} earned.`,
+        "good",
+      );
+    } else {
+      requireRule(
+        answers.hope !== "none",
+        "Choose the player and the fallen hero for Beyond All Hope.",
+      );
+      const [seat, hero] = answers.hope.split("@");
+      const player = Number(seat);
+      const { start, codes } = seatHeroes(s, player);
+      // The engine keeps each player's hero count: the fallen hero takes the
+      // place of a hero that player removes from the Campaign Log.
+      requireRule(
+        codes.includes(answers.hopeDrop),
+        "Choose a hero of that player to remove from the Campaign Log.",
+      );
+      c!.heroes[start + codes.indexOf(answers.hopeDrop)] = hero;
+      delete c!.permanent[answers.hopeDrop];
+      c!.fallen = c!.fallen.filter((code) => code !== hero);
+      c!.boons.push(SAGA.hope);
+      c!.permanent[hero] = [...(c!.permanent[hero] ?? []), SAGA.hope];
+      log(
+        s,
+        `The Uruk-hai · Resolution: Beyond All Hope is earned; ${card(hero).name} returns to the fellowship in place of ${card(answers.hopeDrop).name}.`,
+        "good",
+      );
+    }
+  }
   if (s.scenarioId === "journey-in-the-dark") {
     c!.burdens.push(answers.treachery, answers.objective);
     log(
@@ -752,8 +1036,30 @@ export function validateSagaCampaign(s: GameState): boolean {
     ) &&
     c.prisoner === null &&
     typeof c.mendorSaved === "boolean" &&
+    (c.seatHeroes === undefined ||
+      (Array.isArray(c.seatHeroes) &&
+        c.seatHeroes.length === (s.table?.seats.length ?? 1) &&
+        c.seatHeroes.every((n) => Number.isSafeInteger(n) && n >= 1) &&
+        c.seatHeroes.reduce((n, x) => n + x, 0) === c.heroes.length)) &&
     (c.captives === undefined ||
       (codes(c.captives) && c.captives.every(hero))) &&
+    (c.deckBurdens === undefined ||
+      (!!c.deckBurdens &&
+        typeof c.deckBurdens === "object" &&
+        !Array.isArray(c.deckBurdens) &&
+        Object.entries(c.deckBurdens).every(
+          ([code, seats]) =>
+            DECK_BURDENS.includes(code) &&
+            c.burdens.includes(code) &&
+            Array.isArray(seats) &&
+            new Set(seats).size === seats.length &&
+            seats.every(
+              (seat) =>
+                Number.isSafeInteger(seat) &&
+                seat >= 0 &&
+                seat < (s.table?.seats.length ?? 1),
+            ),
+        ))) &&
     (c.deckBoons === undefined ||
       (!!c.deckBoons &&
         typeof c.deckBoons === "object" &&

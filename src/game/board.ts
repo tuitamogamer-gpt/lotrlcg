@@ -128,6 +128,7 @@ import {
   sagaCampaignCannotCancel,
   sagaCampaignCharacterDestroyed,
   sagaCampaignCharacterExhausted,
+  sagaCampaignCommitted,
   sagaCampaignDamageDealt,
   sagaCampaignEncounter,
   sagaCampaignEventPlayed,
@@ -600,6 +601,7 @@ export function charactersCommitted(
     (u) => u.committed && allCharacters(s).some((c) => c.id === u.id),
   );
   shadowFlameCharactersCommitted(s, actual);
+  sagaCampaignCommitted(s, actual);
   HaradResponses.haradCharactersCommitted(
     s,
     actual.map((u) => u.id),

@@ -444,6 +444,22 @@ const campaignKindOf = (c?: CampaignState | null): CampaignKind =>
 /** The chapters of a campaign, in order (with the saga's optional inserts). */
 const chaptersOf = (kind: CampaignKind): readonly ScenarioId[] =>
   kind === "saga" ? SAGA_CAMPAIGN_JOURNAL : CAMPAIGN_CHAPTERS;
+/** Each seat's hero count in the Campaign Log (a set-aside Aragorn still counts). */
+const campaignSeatCounts = (g: GameState): number[] =>
+  (g.campaign?.kind === "saga" ? g.campaign.seatHeroes : undefined) ??
+  g.table?.seats.map((p) => p.startingHeroes.length) ?? [
+    g.campaign?.heroes.length ?? 3,
+  ];
+/** Each seat's heroes as the Campaign Log records them. */
+const campaignSeatHeroes = (g: GameState, list: string[]) => {
+  const counts = campaignSeatCounts(g);
+  return counts.map((n, i) =>
+    list.slice(
+      counts.slice(0, i).reduce((a, b) => a + b, 0),
+      counts.slice(0, i).reduce((a, b) => a + b, 0) + n,
+    ),
+  );
+};
 /** Recorded chapters out of the campaign's required chapters. */
 const campaignProgress = (c: CampaignState) =>
   c.kind === "saga"
@@ -1762,8 +1778,7 @@ export default function App() {
     }
     for (const h of HERO_CARDS)
       if (
-        picked.length <
-          (game.table?.seats.flatMap((p) => p.startingHeroes).length ?? 3) &&
+        picked.length < campaignSeatCounts(game).reduce((n, x) => n + x, 0) &&
         !picked.includes(h.code) &&
         !c.fallen.includes(h.code)
       )
@@ -1792,7 +1807,7 @@ export default function App() {
         nextDeck,
         includeSupport,
         Date.now(),
-        game.table?.seats.some((p) => p.startingHeroes.length > 1)
+        game.table && campaignSeatCounts(game).some((n) => n > 1)
           ? nextSeatDecks
           : undefined,
         game.campaign?.kind === "saga" ? nextChapter : undefined,
@@ -5020,7 +5035,19 @@ export default function App() {
                     h.map((old, j) => (j === i ? code : old)),
                   )
                 }
-                label={`${game.table ? `Player ${game.table.seats.findIndex((_, seat) => i < game.table!.seats.slice(0, seat + 1).reduce((n, p) => n + p.startingHeroes.length, 0)) + 1} · ` : ""}Campaign hero ${i + 1}`}
+                label={`${
+                  game.table
+                    ? `Player ${
+                        campaignSeatCounts(game).findIndex(
+                          (_, seat) =>
+                            i <
+                            campaignSeatCounts(game)
+                              .slice(0, seat + 1)
+                              .reduce((n, x) => n + x, 0),
+                        ) + 1
+                      } · `
+                    : ""
+                }Campaign hero ${i + 1}`}
                 heroes={HERO_CARDS}
                 inspect={setDetail}
                 unavailable={(candidate) =>
@@ -5056,7 +5083,7 @@ export default function App() {
               />
             </>
           )}
-          {game.table?.seats.some((p) => p.startingHeroes.length > 1) && (
+          {game.table && campaignSeatCounts(game).some((n) => n > 1) && (
             <div className="campaign-deck-choices">
               {nextSeatDecks.map((deckId, i) => (
                 <section key={i}>
@@ -5102,18 +5129,15 @@ export default function App() {
             Starting threat penalty: +
             {game.campaign.threatPenalty +
               (game.table
-                ? game.table.seats.reduce((total, p, i) => {
-                    const offset = game
-                      .table!.seats.slice(0, i)
-                      .reduce((n, p) => n + p.startingHeroes.length, 0);
-                    const selected = nextHeroes.slice(
-                      offset,
-                      offset + p.startingHeroes.length,
-                    );
+                ? campaignSeatHeroes(
+                    game,
+                    game.campaign.kind === "saga" && game.campaign.seatHeroes
+                      ? game.campaign.heroes
+                      : game.table.seats.flatMap((p) => p.startingHeroes),
+                  ).reduce((total, before, i) => {
+                    const selected = campaignSeatHeroes(game, nextHeroes)[i];
                     return (
-                      total +
-                      p.startingHeroes.filter((h) => !selected.includes(h))
-                        .length
+                      total + before.filter((h) => !selected.includes(h)).length
                     );
                   }, 0)
                 : game.campaign.heroes.filter((h) => !nextHeroes.includes(h))

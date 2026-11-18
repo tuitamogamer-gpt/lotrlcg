@@ -339,6 +339,10 @@ export interface CampaignState {
   mendorSaved: boolean;
   /** Saga: the deck (seat index) each earned player-card boon joins at setup. */
   deckBoons?: Record<string, number>;
+  /** Saga: burdens with a player card back, shuffled into these players' decks (seat indices). */
+  deckBurdens?: Record<string, number[]>;
+  /** Saga, hot-seat: each player's number of heroes in `heroes` (in seat order). */
+  seatHeroes?: number[];
   /** Saga (Notes): the heroes taken captive at Breaking of the Fellowship. */
   captives?: string[];
 }
@@ -546,6 +550,10 @@ export interface GameState {
     griefLock?: { id: string; round: number }[];
     /** Seat of Seeing: burdens removed from the Campaign Pool once the scenario is won. */
     cleared?: string[];
+    /** Intimidation: the enemy that gets -2 defense for the current attack. */
+    intimidated?: string;
+    /** Palantír of Orthanc: the player who reveals 1 fewer card this quest phase. */
+    palantir?: { player: number; round: number };
   };
   wrathRuin?: import("./wrath-ruin-types").WrathRuinState;
   burglarContract?: import("./burglar-contract-types").BurglarContractState;

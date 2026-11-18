@@ -3,8 +3,10 @@
 The third scenario of **The Lord of the Rings: The Treason of Saruman** (April
 2015). It is playable in classic solo and with one to four local players, in
 normal and easy mode, with the box's Fellowship-sphere Aragorn as in The
-Uruk-hai and Helm's Deep. Campaign mode, with its campaign card, boons and
-the Saruman's Voice burden, is not part of this import.
+Uruk-hai and Helm's Deep. Its campaign mode (recipe Q0C.09) is part of
+[The Lord of the Rings campaign](SAGA-CAMPAIGN.md): Saruman's Voice joins the
+encounter deck, and the resolution earns it or the Palantír of Orthanc by the
+players' hand sizes.
 
 ## Sources and corrections
 

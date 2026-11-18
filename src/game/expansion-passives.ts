@@ -92,6 +92,9 @@ const rules: Record<string, AttachmentRule> = {
   "142012": { defense: 1, health: 1 },
   "142013": { restricted: 1, attack: 2 },
   "142014": { type: "hero", restricted: 1, will: 1, attack: 1, defense: 1 },
+  // The Treason of Saruman's boons: Beyond All Hope and the Palantír.
+  "143019": { type: "hero", will: 1, attack: 1, defense: 1 },
+  "143020": { type: "hero", names: ["Aragorn"] },
   // The Lord of the Rings: The Road Darkens. Fellowship of the Ring's
   // willpower and the abilities are in road-darkens-player-cards.ts.
   "142008": { names: ["Gandalf"], restricted: 1 },
@@ -475,6 +478,9 @@ export function expansionPlayTargets(s: GameState, c: Card): Unit[] | null {
         !u.attachments.some((a) => isOneRing(a.code))
       )
         return false;
+    } else if (c.code === "143020") {
+      // Palantír of Orthanc: attach to [fellowship] Aragorn.
+      if (card(u.code).sphere_code !== "fellowship") return false;
     } else if (c.code === "142013") {
       // Glamdring (a campaign boon): a Warrior hero or Gandalf.
       if (

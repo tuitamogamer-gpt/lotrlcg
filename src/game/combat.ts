@@ -1,4 +1,6 @@
 import {
+  sagaCampaignAttackDefensePenalty,
+  sagaCampaignAttackersDeclared,
   sagaCampaignAttackKilled,
   sagaCampaignAttackStarted,
   sagaCampaignDefendersDeclared,
@@ -439,6 +441,7 @@ export function playerAttack(
       enemy,
       attackers as Unit[],
     ),
+    ...sagaCampaignAttackersDeclared(s, enemy, attackers as Unit[]),
     fx("resolvePlayerAttack", {
       target: enemy.id,
       ids,
@@ -551,9 +554,13 @@ export function resolvePlayerAttack(
     ]),
   );
   const power = Object.values(contributions).reduce((total, n) => total + n, 0);
-  const defense =
-    LandShadowPlayers.landShadowPlayerAttackDefense(s, enemy, ids) ??
-    mirkwoodPlayerAttackDefense(s, enemy, ids);
+  const defense = Math.max(
+    0,
+    (LandShadowPlayers.landShadowPlayerAttackDefense(s, enemy, ids) ??
+      mirkwoodPlayerAttackDefense(s, enemy, ids)) -
+      // Intimidation (a campaign boon): -2 defense for this attack.
+      sagaCampaignAttackDefensePenalty(s, enemy),
+  );
   const unreplaced = heirsDamageAmount(s, enemy, Math.max(0, power - defense));
   if (
     MorgulQuest.morgulRedirectDamage(

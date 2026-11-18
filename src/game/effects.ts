@@ -46,6 +46,8 @@ import {
   sagaCampaignAfterDefense,
   sagaCampaignEffect,
   sagaCampaignEncounter,
+  sagaCampaignQuestSucceeded,
+  sagaCampaignRevealPlayers,
   sagaCampaignRoundEnd,
 } from "./saga-campaign-cards";
 import { finishGameSetup } from "./setup";
@@ -1049,6 +1051,7 @@ function handleEffect(s: GameState, e: Effect) {
       EredFinalPlayers.eredFinalPlayerQuestSucceeded(s);
       ShadowEastPlayers.shadowEastPlayerQuestSucceeded(s);
       batch4Scenario(s).questSucceeded?.(s, s.lastQuest?.net ?? 0);
+      sagaCampaignQuestSucceeded(s);
       redhornPlayerQuestSucceeded(s);
       rohanQuestSucceeded(s);
       DepthsPlayers.depthsPlayerQuestSucceeded(s);
@@ -1217,9 +1220,12 @@ function handleEffect(s: GameState, e: Effect) {
       enqueue(
         s,
         // The Lord of the Rings Saga: each player reveals in player order.
-        ...Array.from({ length: reveals }, (_, i) =>
-          fx("reveal", { player: sagaRevealPlayer(s, i, player) }),
-        ),
+        ...sagaCampaignRevealPlayers(
+          s,
+          Array.from({ length: reveals }, (_, i) =>
+            sagaRevealPlayer(s, i, player),
+          ),
+        ).map((p) => fx("reveal", { player: p })),
         fx("khazadStagingEnd", { player }),
         fx("questReady", { player }),
       );

@@ -119,7 +119,7 @@ test("The Road Darkens campaign cards, boons and burdens are registered with the
       "The Ring Goes South",
       "Journey in the Dark",
       "Breaking of the Fellowship",
-      "The Uruk-hai",
+      "The Passage of the Marshes",
     ].map((name) => automatedScenarioId({ name, mode: "campaign" })),
     [
       "the-ring-goes-south",
@@ -625,16 +625,11 @@ test("Breaking of the Fellowship: each player attaches a Gift of Lórien (earned
   // save checks are left out here; the Campaign Log's are not.)
   assert.ok(validateSagaCampaign(done));
   assert.ok(validateSagaCards(done));
-  assert.throws(
-    () =>
-      continueCampaign(
-        done,
-        [d.heroes[0], "01005", d.heroes[2]],
-        d.id,
-        true,
-        7,
-      ),
-    /not available yet/,
+  // The Treason of Saruman follows with The Uruk-hai.
+  assert.equal(
+    continueCampaign(done, [d.heroes[0], "01005", d.heroes[2]], d.id, true, 7)
+      .scenarioId,
+    "the-uruk-hai",
   );
 });
 

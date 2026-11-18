@@ -1,6 +1,7 @@
 import { wainridersQuestUnits } from "./wainriders-support";
 import {
   sagaCampaignCannotReady,
+  sagaCampaignCardsDrawn,
   sagaCampaignEnemyCannotAttack,
   sagaCampaignWillpowerOverride,
 } from "./saga-campaign-cards";
@@ -1590,6 +1591,7 @@ export function draw(
     log(s, `Drew ${n} ${n === 1 ? "card" : "cards"}.`);
     Fords.fordsCardsDrawn(s);
     batch4Scenario(s).cardsDrawn?.(s, activeSeat(s), n, cardEffect);
+    sagaCampaignCardsDrawn(s, n);
   }
 }
 

@@ -3,9 +3,11 @@
 The first scenario of **The Lord of the Rings: The Treason of Saruman** (April
 2015), which continues The Lord of the Rings Saga after The Road Darkens. It
 is playable in classic solo and with one to four local players, in normal and
-easy mode. Campaign mode, with its campaign card, boons and burdens, is not
-part of this import; the box's player cards follow in a later import, except
-the Fellowship-sphere Aragorn, whom the scenario puts into play.
+easy mode. Its campaign mode (recipe Q0C.07) is part of
+[The Lord of the Rings campaign](SAGA-CAMPAIGN.md): the captives come from the
+Campaign Log, and the resolution earns the Skill boons or Beyond All Hope. The
+box's player cards follow in a later import, except the Fellowship-sphere
+Aragorn, whom the scenario puts into play.
 
 ## Sources and corrections
 

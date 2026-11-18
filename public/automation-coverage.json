@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2080,
+    "encounterCards": 2090,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3332,
-    "pending": 851
+    "scripted": 3342,
+    "pending": 841
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 258
+    "scripted": 261
   },
   "registeredCodes": [
     "01001",
@@ -822,7 +822,14 @@
     "143012",
     "143013",
     "143014",
+    "143015",
+    "143016",
+    "143017",
+    "143018",
+    "143019",
+    "143020",
     "143021",
+    "143068",
     "144001",
     "144002",
     "144003",
@@ -2766,6 +2773,7 @@
     "octgn:a516b400-b53f-4c21-8e44-c0a889caa8d5",
     "octgn:a531dc43-7feb-4e63-96ad-a33cdb3b717a",
     "octgn:a53e4587-03e4-4120-8aa5-9601a7069edd",
+    "octgn:a54706fb-776c-4c00-b0ef-454b21673bcb",
     "octgn:a56cab99-d482-4aa3-b5e4-b1e5b857515f",
     "octgn:a589eabf-64a6-4400-aa3d-ad30b4f721c3",
     "octgn:a5aef3fe-7bb9-4165-ba0f-91127d8f21e3",
@@ -3058,6 +3066,7 @@
     "octgn:caaafdd2-3559-496a-a08c-ce81ec212b6c",
     "octgn:cac948bb-b3dc-423d-8082-340e2596d623",
     "octgn:cafa6a4e-1994-4a22-a465-3c03f1c0a425",
+    "octgn:cb2d88e5-d469-43c6-9d69-e0cf36e2862e",
     "octgn:cb2e53d5-5a62-4a70-88b0-3ee464b397c2",
     "octgn:cb3c0b3a-1c07-4da9-a65a-2e108d39736d",
     "octgn:cb3ca114-400e-4abf-87e6-124b75e92cb4",
@@ -3086,6 +3095,7 @@
     "octgn:cf070c26-dd32-4ee8-bd6c-ffe9c011bd64",
     "octgn:cf33276f-22e5-467d-9543-6b345d17e7bc",
     "octgn:cf435143-655b-4a7c-ac6b-f9f61b4cba72",
+    "octgn:cf5fad0e-e1c3-4340-a467-567ff0611c6f",
     "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
     "octgn:cf6114ac-f795-4085-b135-4cca76fb8608",
     "octgn:cf74c777-dfe4-4cea-8b7f-4b09fc1aa5b2",
@@ -4365,9 +4375,9 @@
     {
       "product": "the-treason-of-saruman",
       "total": 81,
-      "scripted": 71,
+      "scripted": 81,
       "player": 20,
-      "playerScripted": 14
+      "playerScripted": 20
     },
     {
       "product": "the-treason-of-saruman-nightmare",
@@ -10849,7 +10859,7 @@
       "name": "Intimidation",
       "type": "attachment",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -10857,7 +10867,7 @@
       "name": "Hands of a Healer",
       "type": "attachment",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -10865,7 +10875,7 @@
       "name": "Forewarned",
       "type": "attachment",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -10873,7 +10883,7 @@
       "name": "Leader of Men",
       "type": "attachment",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -10881,7 +10891,7 @@
       "name": "Beyond All Hope",
       "type": "attachment",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -10889,7 +10899,7 @@
       "name": "Palantír of Orthanc",
       "type": "attachment",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -10905,7 +10915,7 @@
       "name": "Saruman's Voice",
       "type": "treachery",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -29705,7 +29715,7 @@
       "name": "The Uruk-hai",
       "type": "campaign",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -33297,7 +33307,7 @@
       "name": "The Road to Isengard",
       "type": "campaign",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -33609,7 +33619,7 @@
       "name": "Helm's Deep",
       "type": "campaign",
       "pack": "The Treason of Saruman",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman"
     },
     {
@@ -40242,22 +40252,22 @@
       "id": "Q0C.07",
       "name": "The Uruk-hai",
       "mode": "campaign",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-uruk-hai",
+      "state": "scripted"
     },
     {
       "id": "Q0C.08",
       "name": "Helm's Deep",
       "mode": "campaign",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "helms-deep",
+      "state": "scripted"
     },
     {
       "id": "Q0C.09",
       "name": "The Road to Isengard",
       "mode": "campaign",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-road-to-isengard",
+      "state": "scripted"
     },
     {
       "id": "Q0C.10",

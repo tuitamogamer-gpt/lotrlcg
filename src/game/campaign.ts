@@ -16,6 +16,7 @@ import {
   resolveSagaCampaign,
   sagaChapterOptions,
   sagaChapterSupported,
+  TOS_CHAPTERS,
 } from "./saga-campaign";
 import type { ScenarioId } from "./types";
 
@@ -109,11 +110,15 @@ export function continueCampaign(
     "Record the campaign card's resolution before continuing.",
   );
   const c = structuredClone(s.campaign);
+  // The Campaign Log keeps each player's hero count (a recorded Aragorn set
+  // aside for the Fellowship Aragorn still counts).
+  const counts =
+    (saga ? c.seatHeroes : undefined) ??
+    s.table?.seats.map((p) => p.startingHeroes.length);
   // The Road Darkens FAQ: no version of a fallen hero can be used.
   const fallen = saga ? c.fallen.map((h) => card(h).name) : [];
   requireRule(
-    heroes.length ===
-      (s.table?.seats.flatMap((p) => p.startingHeroes).length ?? 3) &&
+    heroes.length === (counts?.reduce((n, x) => n + x, 0) ?? 3) &&
       new Set(heroes).size === heroes.length &&
       heroes.every(
         (h) =>
@@ -128,14 +133,22 @@ export function continueCampaign(
     : SCENARIOS[c.completed.length].id;
   // The Ring Goes South's campaign card: "Each player may change hero cards he
   // controls without incurring the +1 threat penalty."
-  const free = saga && next === "the-ring-goes-south";
+  // Helm's Deep's campaign card says the same.
+  const free = saga && ["the-ring-goes-south", "helms-deep"].includes(next);
+  // The Treason of Saruman: no card titled "Frodo Baggins" can be used, and a
+  // recorded Aragorn gives way to the Fellowship Aragorn without the penalty.
+  const tos = saga && TOS_CHAPTERS.includes(next);
+  requireRule(
+    !tos || !heroes.some((h) => card(h).name === "Frodo Baggins"),
+    "No card titled Frodo Baggins can be used in The Treason of Saruman's chapters.",
+  );
   let offset = 0;
   const seats = s.table?.seats.map((p, i) => {
-    const next = heroes.slice(offset, offset + p.startingHeroes.length);
-    offset += p.startingHeroes.length;
+    const next = heroes.slice(offset, offset + counts![i]);
+    offset += counts![i];
     const nextDeckId =
       seatDeckIds?.[i] ??
-      (p.startingHeroes.length === 1
+      (counts![i] === 1
         ? STARTERS.find((d) => d.heroes.includes(next[0]))!.id
         : p.deckId);
     return {
@@ -146,11 +159,16 @@ export function continueCampaign(
         : {}),
     };
   });
+  let logOffset = 0;
   const groups = s.table
-    ? s.table.seats.map((p, i) => ({
-        before: p.startingHeroes,
-        after: seats![i].heroes,
-      }))
+    ? s.table.seats.map((p, i) => {
+        const before =
+          saga && c.seatHeroes
+            ? c.heroes.slice(logOffset, logOffset + counts![i])
+            : p.startingHeroes;
+        logOffset += counts![i];
+        return { before, after: seats![i].heroes };
+      })
     : [{ before: c.heroes, after: heroes }];
   const replaced = groups.flatMap(({ before, after }) => {
     let removed = before.filter((h) => !after.includes(h));
@@ -165,6 +183,7 @@ export function continueCampaign(
         return false;
       });
     }
+    if (tos) removed = removed.filter((h) => card(h).name !== "Aragorn");
     requireRule(
       free || removed.filter((h) => !c.fallen.includes(h)).length <= 1,
       "Between quests, each player may replace fallen heroes and voluntarily change one other hero.",

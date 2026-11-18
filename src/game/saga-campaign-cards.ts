@@ -23,6 +23,7 @@ import {
   engage,
   enemyAddedToStaging,
   enterEnemyEngaged,
+  exhaustCharacter,
   progressLocation,
 } from "./board";
 import {
@@ -169,7 +170,9 @@ export function sagaCampaignEncounter(
       }
     } else {
       // Ill Fate: "Attach to a hero you control."
-      const heroes = seatView(s, p).heroes;
+      const heroes = seatView(s, p).heroes.filter(
+        (h) => !sagaCampaignNoTreachery(h),
+      );
       if (!heroes.length) {
         s.encounterDiscard.push(code);
         return true;
@@ -192,6 +195,34 @@ export function sagaCampaignEncounter(
         card(SAGA.illFate).text,
       );
     }
+    return true;
+  }
+  if (code === SAGA.voice && isSagaCampaign(s.campaign)) {
+    if (!fromReveal || replay) {
+      if (!replay) s.encounterDiscard.push(code);
+      return true;
+    }
+    // "Remove a hero from the quest and attach Saruman's Voice to that hero."
+    const all = globalCharacters(s).filter(
+      (u) => isHero(u) && !sagaCampaignNoTreachery(u),
+    );
+    const questing = all.filter((u) => u.committed);
+    const heroes = questing.length ? questing : all;
+    if (!heroes.length) {
+      s.encounterDiscard.push(code);
+      return true;
+    }
+    choose(
+      s,
+      "Saruman's Voice · Remove a hero from the quest and attach Saruman's Voice to it",
+      heroes.map((h) => ({
+        id: h.id,
+        code: h.code,
+        label: `${name(h)}${s.table ? ` · ${seatName(s, ownerOf(s, h))}` : ""}`,
+        effects: [fx("sagaVoiceAttach", { target: h.id })],
+      })),
+      card(SAGA.voice).text,
+    );
     return true;
   }
   if (code === SAGA.ringDraws) {
@@ -221,7 +252,10 @@ export function sagaCampaignLustRevealed(
   if (code !== SAGA.lust || s.ringSouth || !isSagaCampaign(s.campaign))
     return false;
   const heroes = globalCharacters(s).filter(
-    (u) => isHero(u) && card(u.code).sphere_code !== "fellowship",
+    (u) =>
+      isHero(u) &&
+      card(u.code).sphere_code !== "fellowship" &&
+      !sagaCampaignNoTreachery(u),
   );
   if (!heroes.length) {
     s.encounterDiscard.push(code);
@@ -384,9 +418,13 @@ export const sagaCampaignAbilityLabel = (code: string, s?: GameState) =>
             ? "Lórien Rope · Add to the victory display: each location in the staging area gets -2 threat this phase"
             : code === SAGA.lembas
               ? "Leaf-wrapped Lembas · Add to the victory display: ready all heroes in play"
-              : code === FF.oldRoad && s && isSagaCampaign(s.campaign)
-                ? "The Old Road · Place the top burden on the encounter deck to place 4 progress here"
-                : undefined;
+              : code === SAGA.hands
+                ? "Hands of a Healer · Exhaust it and its hero: heal up to 3 damage from a hero"
+                : code === SAGA.palantir
+                  ? "Palantír of Orthanc · Exhaust it and Aragorn: discard the top encounter card"
+                  : code === FF.oldRoad && s && isSagaCampaign(s.campaign)
+                    ? "The Old Road · Place the top burden on the encounter deck to place 4 progress here"
+                    : undefined;
 /** The Old Road (Flight to the Ford) in play: the staging area or active. */
 const oldRoadInPlay = (s: GameState, u: Unit) =>
   u.code === FF.oldRoad &&
@@ -405,6 +443,27 @@ export function sagaCampaignAbilityProblem(
     return null;
   }
   const a = u.attachments.find((x) => x.id === attachmentId);
+  if (a && [SAGA.hands, SAGA.palantir].includes(a.code as never)) {
+    if (a.blanked) return `${card(a.code).name}'s text is blank.`;
+    if (
+      (a.owner ?? ownerOf(s, u)) !== activeSeat(s) &&
+      ownerOf(s, u) !== activeSeat(s)
+    )
+      return `${card(a.code).name} belongs to another player.`;
+    if (a.exhausted || u.exhausted)
+      return `${card(a.code).name} and ${name(u)} must be ready.`;
+    if (
+      a.code === SAGA.hands &&
+      !globalCharacters(s).some((h) => isHero(h) && h.damage > 0)
+    )
+      return "No hero has damage to heal.";
+    if (a.code === SAGA.palantir) {
+      if (!["quest", "staging"].includes(s.phase))
+        return "This is a Quest Action.";
+      if (!s.encounterDeck.length) return "The encounter deck is empty.";
+    }
+    return null;
+  }
   if (a && GIFTS.includes(a.code)) {
     if (a.blanked) return `${card(a.code).name}'s text is blank.`;
     if ((a.owner ?? ownerOf(s, u)) !== activeSeat(s))
@@ -446,6 +505,61 @@ export function sagaCampaignAbility(
     return true;
   }
   const a = u.attachments.find((x) => x.id === attachmentId);
+  if (a && [SAGA.hands, SAGA.palantir].includes(a.code as never)) {
+    const problem = sagaCampaignAbilityProblem(s, u, attachmentId);
+    requireRule(!problem, problem ?? "");
+    a.exhausted = true;
+    requireRule(exhaustCharacter(s, u), `${name(u)} cannot exhaust.`);
+    const p = activeSeat(s);
+    if (a.code === SAGA.hands) {
+      choose(
+        s,
+        "Hands of a Healer · Heal up to 3 damage from a hero",
+        globalCharacters(s)
+          .filter((h) => isHero(h) && h.damage > 0)
+          .map((h) => ({
+            id: h.id,
+            code: h.code,
+            label: `${name(h)} · ${h.damage} damage`,
+            effects: [fx("heal", { target: h.id, value: 3 })],
+          })),
+        card(SAGA.hands).text,
+      );
+      return true;
+    }
+    // Palantír of Orthanc.
+    const top = s.encounterDeck.shift()!;
+    s.encounterDiscard.push(top);
+    const threat = card(top).threat ?? 0;
+    const will = stats(s, u).will;
+    log(
+      s,
+      `Palantír of Orthanc: ${card(top).name} (${threat} threat) is discarded from the encounter deck; ${name(u)} has ${will} willpower.`,
+    );
+    if (will > threat)
+      choose(
+        s,
+        "Palantír of Orthanc · Add it to the victory display to choose a player who reveals 1 fewer encounter card this phase?",
+        [
+          ...playerOrder(s).map((player) => ({
+            id: `player-${player}`,
+            code: SAGA.palantir,
+            label: `${s.table ? seatName(s, player) : "You"} reveal${s.table ? "s" : ""} 1 fewer encounter card`,
+            effects: [
+              fx("sagaPalantir", {
+                source: a.id,
+                target: u.id,
+                value: player,
+                player: p,
+              }),
+            ],
+          })),
+          { id: "skip", label: "Keep the Palantír", effects: [] },
+        ],
+        card(SAGA.palantir).text,
+      );
+    return true;
+  }
   if (a && GIFTS.includes(a.code)) {
     const problem = sagaCampaignAbilityProblem(s, u, attachmentId);
     requireRule(!problem, problem ?? "");
@@ -622,7 +736,11 @@ const GIFTS: readonly string[] = [
 ];
 const liveBoon = (u: Unit, code: string) =>
   u.attachments.find((a) => a.code === code && !a.blanked);
-/** Sting (a campaign boon): after the attached hero exhausts to defend an attack. */
+/**
+ * After defenders are declared: Sting (after its hero exhausts to defend),
+ * Forewarned (against a non-unique enemy, discard 1 shadow card) and
+ * Saruman's Voice (its hero's controller discards 1 card).
+ */
 export function sagaCampaignDefendersDeclared(
   s: GameState,
   enemy: Unit,
@@ -630,16 +748,112 @@ export function sagaCampaignDefendersDeclared(
   exhausted: string[],
 ): Effect[] {
   if (!isSagaCampaign(s.campaign)) return [];
-  return defenders
-    .filter((d) => exhausted.includes(d.id) && !!liveBoon(d, SAGA.sting))
-    .map((d) =>
-      fx("sagaSting", {
-        target: enemy.id,
-        source: d.id,
-        player: liveBoon(d, SAGA.sting)!.owner ?? ownerOf(s, d),
-      }),
-    );
+  return [
+    ...defenders
+      .filter((d) => exhausted.includes(d.id) && !!liveBoon(d, SAGA.sting))
+      .map((d) =>
+        fx("sagaSting", {
+          target: enemy.id,
+          source: d.id,
+          player: liveBoon(d, SAGA.sting)!.owner ?? ownerOf(s, d),
+        }),
+      ),
+    ...defenders
+      .filter((d) => {
+        const a = liveBoon(d, SAGA.forewarned);
+        return (
+          !!a &&
+          !a.exhausted &&
+          !card(enemy.code).is_unique &&
+          enemy.shadows.length > 0
+        );
+      })
+      .map((d) =>
+        fx("sagaForewarned", {
+          target: enemy.id,
+          source: d.id,
+          player: ownerOf(s, d),
+        }),
+      ),
+    ...voiceDiscards(s, defenders),
+  ];
 }
+/** Saruman's Voice: its hero's controller must discard 1 card from hand. */
+const voiceDiscards = (s: GameState, units: Unit[]) =>
+  units
+    .filter((u) => !!liveBoon(u, SAGA.voice))
+    .map((u) =>
+      fx("sagaVoiceDiscard", { target: u.id, player: ownerOf(s, u) }),
+    );
+/** Intimidation and Saruman's Voice, after attackers are declared. */
+export function sagaCampaignAttackersDeclared(
+  s: GameState,
+  enemy: Unit,
+  attackers: Unit[],
+): Effect[] {
+  if (!isSagaCampaign(s.campaign)) return [];
+  const only = attackers.length === 1 ? attackers[0] : undefined;
+  const intimidation = only && liveBoon(only, SAGA.intimidation);
+  return [
+    ...(only &&
+    intimidation &&
+    !intimidation.exhausted &&
+    !card(enemy.code).is_unique
+      ? [
+          fx("sagaIntimidation", {
+            target: enemy.id,
+            source: only.id,
+            player: ownerOf(s, only),
+          }),
+        ]
+      : []),
+    ...voiceDiscards(s, attackers),
+  ];
+}
+/** Intimidation: -2 defense for this attack (read once by the attack). */
+export function sagaCampaignAttackDefensePenalty(s: GameState, enemy: Unit) {
+  if (s.sagaCards?.intimidated !== enemy.id) return 0;
+  delete s.sagaCards.intimidated;
+  return 2;
+}
+/** Saruman's Voice, when its hero commits to the quest. */
+export function sagaCampaignCommitted(s: GameState, committed: Unit[]) {
+  if (isSagaCampaign(s.campaign)) prepend(s, ...voiceDiscards(s, committed));
+}
+/** Leader of Men: after its hero quests successfully. */
+export function sagaCampaignQuestSucceeded(s: GameState) {
+  if (!isSagaCampaign(s.campaign) || (s.lastQuest?.net ?? 0) <= 0) return;
+  const offers = globalCharacters(s)
+    .filter((h) => {
+      const a = liveBoon(h, SAGA.leader);
+      return isHero(h) && h.committed && !!a && !a.exhausted;
+    })
+    .map((h) => fx("sagaLeader", { target: h.id, player: ownerOf(s, h) }));
+  if (offers.length) prepend(s, ...offers);
+}
+/** Poisoned Counsels outside Helm's Deep: discard all other cards in hand. */
+export function sagaCampaignCardsDrawn(s: GameState, count: number) {
+  if (s.helmsDeep || !isSagaCampaign(s.campaign) || count <= 0) return;
+  if (!s.hand.slice(-count).some((u) => u.code === SAGA.counsels)) return;
+  const others = s.hand.filter((u) => u.code !== SAGA.counsels);
+  if (!others.length) return;
+  s.hand = s.hand.filter((u) => u.code === SAGA.counsels);
+  s.discard.push(...others.map((u) => u.code));
+  log(
+    s,
+    `Poisoned Counsels: all other cards in hand are discarded (${others.length}).`,
+    "danger",
+  );
+}
+/** Palantír of Orthanc: the chosen player reveals 1 fewer card this phase. */
+export function sagaCampaignRevealPlayers(s: GameState, players: number[]) {
+  const mark = s.sagaCards?.palantir;
+  if (!mark || mark.round !== s.round) return players;
+  const i = players.indexOf(mark.player);
+  return i < 0 ? players : players.filter((_, j) => j !== i);
+}
+/** Beyond All Hope: its hero cannot have treachery card attachments. */
+export const sagaCampaignNoTreachery = (u: Unit) => !!liveBoon(u, SAGA.hope);
 /** Glamdring (a campaign boon): after the attached character destroys an Orc enemy. */
 export function sagaCampaignAttackKilled(
   s: GameState,
@@ -761,6 +975,177 @@ export function sagaCampaignEffect(s: GameState, e: Effect): boolean {
       log(
         s,
         `The Ring Goes South: ${rest.map((code) => card(code).name).join(", ")} ${rest.length === 1 ? "is" : "are"} shuffled into the first player's deck.`,
+      );
+      return true;
+    }
+    case "sagaVoiceAttach": {
+      const hero = get(s, e.target);
+      if (!hero) {
+        s.encounterDiscard.push(SAGA.voice);
+        return true;
+      }
+      hero.committed = false;
+      hero.attachments.push({
+        id: `a${s.nextId++}`,
+        code: SAGA.voice,
+        exhausted: false,
+      });
+      log(
+        s,
+        `Saruman's Voice: ${name(hero)} is removed from the quest, and Saruman's Voice is attached to it.`,
+        "danger",
+      );
+      return true;
+    }
+    case "sagaVoiceDiscard": {
+      // "... its controller must discard 1 card from his hand."
+      const hero = get(s, e.target);
+      const p = e.player ?? activeSeat(s);
+      if (!hero || !live(hero, SAGA.voice) || !s.hand.length) return true;
+      choose(
+        s,
+        `Saruman's Voice · ${s.table ? `${seatName(s, p)} discards` : "Discard"} 1 card from ${s.table ? "their" : "your"} hand`,
+        s.hand.map((u) => ({
+          id: u.id,
+          code: u.code,
+          label: name(u),
+          effects: [fx("sagaVoiceDiscarded", { target: u.id, player: p })],
+        })),
+        card(SAGA.voice).text,
+      );
+      return true;
+    }
+    case "sagaVoiceDiscarded": {
+      const u = s.hand.find((x) => x.id === e.target);
+      if (!u) return true;
+      s.hand = s.hand.filter((x) => x.id !== u.id);
+      s.discard.push(u.code);
+      log(s, `Saruman's Voice: ${name(u)} is discarded from hand.`, "danger");
+      return true;
+    }
+    case "sagaIntimidation": {
+      const enemy = get(s, e.target);
+      const u = get(s, e.source);
+      const a = u && liveBoon(u, SAGA.intimidation);
+      if (!enemy || !u || !a || a.exhausted) return true;
+      choose(
+        s,
+        `Intimidation · ${name(u)} attacks ${name(enemy)} alone`,
+        [
+          {
+            id: "use",
+            code: SAGA.intimidation,
+            label: `Exhaust Intimidation: ${name(enemy)} gets -2 defense for this attack`,
+            effects: [{ ...e, kind: "sagaIntimidate" }],
+          },
+          { id: "skip", label: "Decline", effects: [] },
+        ],
+        card(SAGA.intimidation).text,
+      );
+      return true;
+    }
+    case "sagaIntimidate": {
+      const u = get(s, e.source);
+      const a = u && liveBoon(u, SAGA.intimidation);
+      if (!a || a.exhausted) return true;
+      a.exhausted = true;
+      state(s).intimidated = e.target;
+      log(
+        s,
+        "Intimidation: the enemy gets -2 defense for this attack.",
+        "good",
+      );
+      return true;
+    }
+    case "sagaForewarned": {
+      const enemy = get(s, e.target);
+      const u = get(s, e.source);
+      const a = u && liveBoon(u, SAGA.forewarned);
+      if (!enemy || !u || !a || a.exhausted || !enemy.shadows.length)
+        return true;
+      choose(
+        s,
+        `Forewarned · ${name(u)} defends against ${name(enemy)}`,
+        [
+          {
+            id: "use",
+            code: SAGA.forewarned,
+            label: "Exhaust Forewarned: discard 1 shadow card from that enemy",
+            effects: [{ ...e, kind: "sagaForewarn" }],
+          },
+          { id: "skip", label: "Decline", effects: [] },
+        ],
+        card(SAGA.forewarned).text,
+      );
+      return true;
+    }
+    case "sagaForewarn": {
+      const enemy = get(s, e.target);
+      const u = get(s, e.source);
+      const a = u && liveBoon(u, SAGA.forewarned);
+      if (!enemy || !a || a.exhausted || !enemy.shadows.length) return true;
+      a.exhausted = true;
+      const [code] = enemy.shadows.splice(0, 1);
+      enemy.faceupShadows?.splice(0, 1);
+      s.encounterDiscard.push(code);
+      // Its pending reveal is gone with it.
+      const i = s.queue.findIndex(
+        (x) => x.kind === "shadowReveal" && x.code === code,
+      );
+      if (i >= 0) s.queue.splice(i, 1);
+      log(
+        s,
+        `Forewarned: a shadow card of ${name(enemy)} is discarded.`,
+        "good",
+      );
+      return true;
+    }
+    case "sagaLeader": {
+      const hero = get(s, e.target);
+      const a = hero && liveBoon(hero, SAGA.leader);
+      if (!hero || !a || a.exhausted) return true;
+      choose(
+        s,
+        `Leader of Men · ${name(hero)} quested successfully`,
+        [
+          {
+            id: "use",
+            code: SAGA.leader,
+            label: `Exhaust Leader of Men: add 1 resource to ${name(hero)}'s pool`,
+            effects: [{ ...e, kind: "sagaLeaderGain" }],
+          },
+          { id: "skip", label: "Decline", effects: [] },
+        ],
+        card(SAGA.leader).text,
+      );
+      return true;
+    }
+    case "sagaLeaderGain": {
+      const hero = get(s, e.target);
+      const a = hero && liveBoon(hero, SAGA.leader);
+      if (!hero || !a || a.exhausted) return true;
+      a.exhausted = true;
+      hero.resources += 1;
+      log(
+        s,
+        `Leader of Men: 1 resource is added to ${name(hero)}'s pool.`,
+        "good",
+      );
+      return true;
+    }
+    case "sagaPalantir": {
+      const u = get(s, e.target);
+      const a = u?.attachments.find((x) => x.id === e.source);
+      if (!u || !a) return true;
+      u.attachments = u.attachments.filter((x) => x.id !== a.id);
+      addVictoryCard(s, a.code);
+      const q = state(s);
+      if (!(q.spent ??= []).includes(a.code)) q.spent.push(a.code);
+      q.palantir = { player: e.value ?? 0, round: s.round };
+      log(
+        s,
+        `Palantír of Orthanc is added to the victory display: ${who(s, e.value ?? 0)} ${s.table ? "reveals" : "reveal"} 1 fewer encounter card this phase.`,
+        "good",
       );
       return true;
     }
@@ -1350,6 +1735,12 @@ export function validateSagaCards(s: GameState) {
             x.round >= 0 &&
             x.round <= s.round,
         ))) &&
+    (q.intimidated === undefined || typeof q.intimidated === "string") &&
+    (q.palantir === undefined ||
+      (!!q.palantir &&
+        Number.isSafeInteger(q.palantir.player) &&
+        Number.isSafeInteger(q.palantir.round) &&
+        q.palantir.round <= s.round)) &&
     (q.cleared === undefined ||
       (Array.isArray(q.cleared) &&
         new Set(q.cleared).size === q.cleared.length &&
