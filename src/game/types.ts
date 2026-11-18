@@ -323,6 +323,10 @@ export type ScenarioId =
   | "shadow-and-flame";
 export type PlayMode = "normal" | "campaign";
 export interface CampaignState {
+  /** The Lord of the Rings saga campaign; absent for Mirkwood Paths. */
+  kind?: "saga";
+  /** Saga: the scenario whose campaign card resolution awaits the players' choices. */
+  resolution?: ScenarioId | null;
   seatPenalties?: number[];
   heroes: string[];
   fallen: string[];
@@ -520,6 +524,11 @@ export interface GameState {
   ulfast?: import("./ulfast-types").UlfastState;
   ulfastPlayers?: import("./ulfast-player-types").UlfastPlayersState;
   perilousVoyage?: import("./perilous-voyage-types").PerilousVoyageState;
+  /** The Lord of the Rings campaign: pending The Ring Draws Them engagements and Mr. Underhill marks. */
+  sagaCards?: {
+    ringDraws: number;
+    underhill: { enemy: string; player: number; round: number }[];
+  };
   wrathRuin?: import("./wrath-ruin-types").WrathRuinState;
   burglarContract?: import("./burglar-contract-types").BurglarContractState;
   wrathRuinPlayers?: import("./wrath-ruin-player-types").WrathRuinPlayersState;

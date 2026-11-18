@@ -247,7 +247,8 @@
     "test:browser-escape-khazad": "node --import tsx scripts/browser-escape-khazad.mjs",
     "test:hunt-dreadnaught-simulation": "node --import tsx --test tests/hunt-dreadnaught-simulation.test.ts",
     "test:browser-hunt-dreadnaught": "node --import tsx scripts/browser-hunt-dreadnaught.mjs",
-    "test:browser-perilous-voyage": "node --import tsx scripts/browser-perilous-voyage.mjs"
+    "test:browser-perilous-voyage": "node --import tsx scripts/browser-perilous-voyage.mjs",
+    "test:browser-saga-campaign": "node --import tsx scripts/browser-saga-campaign.mjs"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

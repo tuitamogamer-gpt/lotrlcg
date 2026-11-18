@@ -1,0 +1,300 @@
+import assert from "node:assert/strict";
+import fs from "node:fs/promises";
+import { createHash } from "node:crypto";
+import { chromium } from "playwright";
+import { win } from "../src/game/board.ts";
+import { flush } from "../src/game/effects.ts";
+import { fx, make } from "../src/game/core.ts";
+import { validateSave } from "../src/game/engine.ts";
+import { syncSeat } from "../src/game/table.ts";
+import { ringBearer } from "../src/game/lotr-saga.ts";
+import { RING_BEARER_KEY, SAGA } from "../src/game/saga-campaign.ts";
+import { reviewedState } from "./browser-review-helpers.mjs";
+import { capture, context, report, url } from "./browser-angmar-helpers.mjs";
+
+const art = JSON.parse(
+  await fs.readFile(
+    new URL("../tests/saga-campaign-art.json", import.meta.url),
+    "utf8",
+  ),
+);
+const dir = "output/saga-campaign-browser";
+await fs.mkdir(dir, { recursive: true });
+const errors = [],
+  entries = new Set(),
+  screenshots = [],
+  checks = [],
+  artwork = [];
+const sourceScriptSha256 = createHash("sha256")
+  .update(await fs.readFile(new URL(import.meta.url)))
+  .digest("hex");
+const CAMPAIGN = "there-and-back-again.campaign.v1";
+/** Evil Crow, a plain enemy of A Shadow of the Past. */
+const CROW = "octgn:ff597a85-6a02-4301-a9dc-4dcb4cf9b626";
+const browser = await chromium.launch({
+  headless: true,
+  ...(process.env.CHROMIUM_PATH
+    ? { executablePath: process.env.CHROMIUM_PATH }
+    : {}),
+});
+let page;
+const campaign = () =>
+  page.evaluate((key) => JSON.parse(localStorage.getItem(key)), CAMPAIGN);
+async function checkpoint(label, width) {
+  await reviewedState(page);
+  await capture(page, dir, `${label}-${width}`, screenshots);
+  checks.push(`${label}-${width}`);
+  console.log(`PASS ${label} @ ${width}`);
+}
+/** Load a campaign state into the campaign slot and open the table. */
+async function load(s) {
+  syncSeat(s);
+  assert.ok(validateSave(s), "valid campaign fixture");
+  await page.evaluate(
+    ([key, state]) => {
+      localStorage.setItem(key, JSON.stringify(state));
+      localStorage.setItem("there-and-back-again.mode.v1", "campaign");
+      localStorage.setItem("there-and-back-again.campaign-kind.v1", "saga");
+      localStorage.removeItem("there-and-back-again.choices.v1");
+    },
+    [CAMPAIGN, s],
+  );
+  await page.reload();
+  await page.locator("#start-btn").click();
+  await reviewedState(page);
+  return campaign();
+}
+/** Choose an option of the current choice dialog by its id. */
+async function choose(id) {
+  await reviewedState(page);
+  const s = await campaign(),
+    index = s.choice?.options.findIndex((o) => o.id === id) ?? -1;
+  assert.ok(index >= 0, JSON.stringify(s.choice));
+  const o = s.choice.options[index];
+  const occurrence = s.choice.options
+    .slice(0, index)
+    .filter((v) => v.label === o.label).length;
+  await page
+    .getByRole("dialog")
+    .getByRole("button", {
+      name: new RegExp(
+        `^${o.label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?:\\s|$)`,
+      ),
+    })
+    .nth(occurrence)
+    .click();
+  await reviewedState(page);
+  return campaign();
+}
+/** Keep the opening hand and reach the first action window. */
+async function opening() {
+  for (let i = 0; i < 200; i++) {
+    await reviewedState(page);
+    const s = await campaign();
+    if (s?.choice)
+      await choose(
+        s.choice.options.find((o) => o.id === "resolve")?.id ??
+          s.choice.options.find((o) => o.id === "skip")?.id ??
+          s.choice.options[0].id,
+      );
+    else if (s?.phase === "setup")
+      await page
+        .getByRole("button", { name: "Keep hand", exact: true })
+        .click();
+    else if (s && !s.queue.length && !s.flow?.pending) return s;
+    else await page.waitForTimeout(25);
+  }
+  throw Error("The campaign opening did not finish");
+}
+/** The chapter is won: the Campaign Log is updated. */
+async function victory(s) {
+  const t = structuredClone(s);
+  Object.assign(t, { phase: "planning", choice: null, queue: [] });
+  if (t.flow) t.flow.pending = null;
+  win(t);
+  return load(t);
+}
+async function record(answers) {
+  for (const [label, value] of answers)
+    await page.getByLabel(label).selectOption(value);
+  await page
+    .getByRole("button", { name: "Record the resolution", exact: false })
+    .click();
+  await reviewedState(page);
+  return campaign();
+}
+async function continueCampaign() {
+  await page.getByRole("button", { name: /^Continue campaign/ }).click();
+  await page.getByRole("button", { name: /^Begin next chapter/ }).click();
+  await reviewedState(page);
+  return opening();
+}
+try {
+  for (const width of [1280, 390, 320]) {
+    const view = await context(
+      browser,
+      width,
+      width === 1280 ? 1000 : 844,
+      errors,
+      entries,
+    );
+    page = view.p;
+    page.setDefaultTimeout(15000);
+    page.setDefaultNavigationTimeout(30000);
+    // A new Lord of the Rings campaign, started through the lobby.
+    await page.evaluate((key) => {
+      for (const k of [
+        key,
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+      localStorage.setItem("there-and-back-again.mode.v1", "campaign");
+    }, CAMPAIGN);
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page
+      .getByRole("group", { name: "Campaign", exact: true })
+      .getByRole("button", { name: /The Lord of the Rings/ })
+      .click();
+    await page.locator("#start-btn").click();
+    let s = await opening();
+    assert.equal(s.scenarioId, "a-shadow-of-the-past");
+    assert.equal(s.campaign.kind, "saga");
+    // Gandalf's Delay: 5 cards, then the first resource phase draws 1.
+    assert.equal(s.hand.length, 6, "Gandalf's Delay: 1 less card");
+    assert.ok(s.staging.some((u) => u.code === SAGA.delay));
+    assert.ok(
+      s.heroes.some((h) =>
+        h.attachments.some((a) => a.code === SAGA.underhill),
+      ),
+    );
+    await checkpoint("shadow-setup", width);
+    // Victory: A Shadow of the Past's resolution.
+    s = await victory(s);
+    assert.equal(s.campaign.resolution, "a-shadow-of-the-past");
+    await page
+      .locator("[data-saga-resolution='a-shadow-of-the-past']")
+      .waitFor();
+    await checkpoint("shadow-resolution", width);
+    s = await record([
+      [/Choose Gandalf's Delay or The Ring Draws Them/, SAGA.ringDraws],
+      [/choose Gildor Inglorion or Mr\. Underhill/, SAGA.underhill],
+    ]);
+    assert.deepEqual(s.campaign.burdens, [SAGA.ringDraws]);
+    assert.deepEqual(s.campaign.permanent, {
+      [RING_BEARER_KEY]: [SAGA.underhill],
+    });
+    await checkpoint("shadow-journal", width);
+    // A Knife in the Dark: the Campaign Pool carries forward.
+    s = await continueCampaign();
+    assert.equal(s.scenarioId, "a-knife-in-the-dark");
+    assert.equal(s.hand.length, 7, "6 cards and the resource phase's draw");
+    assert.ok(s.encounterDeck.includes(SAGA.ringDraws));
+    assert.ok(
+      s.heroes.some((h) =>
+        h.attachments.some((a) => a.code === SAGA.underhill),
+      ),
+    );
+    await checkpoint("knife-setup", width);
+    s = await victory(s);
+    await page
+      .locator("[data-saga-resolution='a-knife-in-the-dark']")
+      .waitFor();
+    const hero = s.heroes.find(
+      (h) => !h.attachments.some((a) => a.code === SAGA.underhill),
+    );
+    s = await record([
+      [/choose a boon to attach/, `${SAGA.ranger}@${hero.code}`],
+    ]);
+    assert.deepEqual(s.campaign.permanent[hero.code], [SAGA.ranger]);
+    await checkpoint("knife-resolution", width);
+    // Flight to the Ford: Tireless Ranger stays with its hero.
+    s = await continueCampaign();
+    assert.equal(s.scenarioId, "flight-to-the-ford");
+    assert.ok(
+      s.heroes
+        .find((h) => h.code === hero.code)
+        .attachments.some((a) => a.code === SAGA.ranger),
+    );
+    await checkpoint("ford-setup", width);
+    // The campaign card's Response cancels an attack with the top burden.
+    const attack = structuredClone(s);
+    Object.assign(attack, { phase: "defense", choice: null, queue: [] });
+    if (attack.flow) attack.flow.pending = null;
+    const crow = make(attack, CROW);
+    attack.engaged.push(crow);
+    attack.queue.push(fx("immediateAttack", { target: crow.id, player: 0 }));
+    flush(attack);
+    assert.match(attack.choice.title, /^Flight to the Ford · Campaign/);
+    const burdens = attack.flightFord.burdens.length;
+    s = await load(attack);
+    await checkpoint("ford-response", width);
+    s = await choose("cancel");
+    assert.equal(s.flightFord.burdens.length, burdens - 1);
+    // The resolution earns the burdens; the next chapter is not available yet.
+    s = await victory(s);
+    assert.equal(s.campaign.resolution, null);
+    assert.ok(s.campaign.burdens.length >= 2);
+    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await checkpoint("ford-complete", width);
+    assert.ok(ringBearer);
+    await view.c.close();
+  }
+  const p = await browser.newPage();
+  for (const a of art) {
+    const r = await p.request.get(new URL(a.localPath, url).href);
+    assert.equal(r.status(), 200);
+    const bytes = await r.body();
+    assert.equal(bytes.length, a.bytes);
+    assert.equal(createHash("sha256").update(bytes).digest("hex"), a.sha256);
+    const size = await p.evaluate(
+      async (bytes) => {
+        const b = await createImageBitmap(new Blob([Uint8Array.from(bytes)]));
+        const size = { width: b.width, height: b.height };
+        b.close();
+        return size;
+      },
+      [...bytes],
+    );
+    assert.ok(size.width > 0 && size.height > 0);
+    artwork.push({ ...a, ...size });
+  }
+  await p.close();
+  await report(dir, {
+    sourceScriptSha256,
+    errors,
+    entries,
+    screenshots,
+    checks,
+    artwork,
+  });
+  console.log(
+    `The Lord of the Rings campaign browser passed ${checks.length} checkpoints and ${artwork.length} original faces`,
+  );
+} catch (error) {
+  if (page && !page.isClosed()) {
+    await page.screenshot({ path: `${dir}/failure.png` }).catch(() => {});
+    await fs.writeFile(
+      `${dir}/failure.json`,
+      JSON.stringify(
+        {
+          error: String(error),
+          stack: error.stack,
+          state: await campaign().catch(() => null),
+          errors,
+          checks,
+        },
+        null,
+        2,
+      ),
+    );
+  }
+  throw error;
+} finally {
+  await browser.close();
+}

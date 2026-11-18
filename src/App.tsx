@@ -323,6 +323,7 @@ import {
 } from "./game/engine";
 import type {
   Action,
+  CampaignState,
   Card,
   GameState,
   Unit,
@@ -330,6 +331,16 @@ import type {
   PlayMode,
   SeatConfig,
 } from "./game/types";
+import {
+  applySagaResolution,
+  nextSagaChapter,
+  RING_BEARER_KEY,
+  SAGA_CAMPAIGN_CARDS as SAGA_CAMPAIGN_CARD_CODES,
+  SAGA_CAMPAIGN_ORDER,
+  SAGA_CAMPAIGN_SUPPORTED,
+  sagaChapterSupported,
+  sagaResolutionQuestions,
+} from "./game/saga-campaign";
 import {
   SCENARIOS,
   CAMPAIGN_CHAPTERS,
@@ -412,6 +423,31 @@ const SAVE_KEY = "there-and-back-again.save.v1",
   DECK_KEY = "there-and-back-again.deck.v1";
 const CAMPAIGN_KEY = "there-and-back-again.campaign.v1";
 const MODE_KEY = "there-and-back-again.mode.v1";
+const CAMPAIGN_KIND_KEY = "there-and-back-again.campaign-kind.v1";
+type CampaignKind = "mirkwood" | "saga";
+const readCampaignKind = (): CampaignKind => {
+  try {
+    return localStorage.getItem(CAMPAIGN_KIND_KEY) === "saga"
+      ? "saga"
+      : "mirkwood";
+  } catch {
+    return "mirkwood";
+  }
+};
+const campaignKindOf = (c?: CampaignState | null): CampaignKind =>
+  c?.kind === "saga" ? "saga" : "mirkwood";
+/** The chapters of a campaign, in order. */
+const chaptersOf = (kind: CampaignKind): readonly ScenarioId[] =>
+  kind === "saga" ? SAGA_CAMPAIGN_ORDER : CAMPAIGN_CHAPTERS;
+const CAMPAIGN_TITLES: Record<CampaignKind, string> = {
+  mirkwood: "Mirkwood Paths",
+  saga: "The Lord of the Rings",
+};
+/** The chapter a campaign continues with, or undefined when it is complete. */
+const nextChapterOf = (c: CampaignState): ScenarioId | undefined =>
+  c.kind === "saga"
+    ? nextSagaChapter(c)
+    : CAMPAIGN_CHAPTERS[c.completed.length];
 const readMode = (): PlayMode => {
   try {
     return localStorage.getItem(MODE_KEY) === "campaign"
@@ -955,6 +991,19 @@ export default function App() {
   const [selectedScenario, setSelectedScenario] = useState<ScenarioId>(
     () => initialChoices?.scenario ?? game?.scenarioId ?? "mirkwood",
   );
+  const [campaignKind, setCampaignKindState] = useState<CampaignKind>(() =>
+    game?.campaign ? campaignKindOf(game.campaign) : readCampaignKind(),
+  );
+  const setCampaignKind = (kind: CampaignKind) => {
+    setCampaignKindState(kind);
+    try {
+      localStorage.setItem(CAMPAIGN_KIND_KEY, kind);
+    } catch {
+      // The choice still applies for this visit.
+    }
+  };
+  const campaignStart: ScenarioId =
+    campaignKind === "saga" ? "a-shadow-of-the-past" : "mirkwood";
   const [interlude, setInterlude] = useState(false);
   const [nextHeroes, setNextHeroes] = useState<string[]>([]);
   const [nextSeatDecks, setNextSeatDecks] = useState<string[]>([]);
@@ -963,7 +1012,9 @@ export default function App() {
   const [claimId, setClaimId] = useState<string | null>(null);
   const quest = scenario(
     playMode === "campaign"
-      ? (game?.scenarioId ?? "mirkwood")
+      ? game?.campaign && campaignKindOf(game.campaign) === campaignKind
+        ? game.scenarioId
+        : campaignStart
       : selectedScenario,
   );
   const switchMode = (mode: PlayMode) => {
@@ -1244,7 +1295,8 @@ export default function App() {
   const [records, setRecords] = useState(readRecords);
   const resumable =
     game &&
-    (playMode === "campaign" ||
+    ((playMode === "campaign" &&
+      campaignKindOf(game.campaign) === campaignKind) ||
       (game.scenarioId === selectedScenario &&
         (setupMode === "hotseat"
           ? !!game.table &&
@@ -1257,13 +1309,15 @@ export default function App() {
             )
           : !game.table && matchesSavedDeck(game, selectedDeck, decks))));
   const displayHeroes =
-    playMode === "campaign" && game?.campaign
+    playMode === "campaign" &&
+    game?.campaign &&
+    campaignKindOf(game.campaign) === campaignKind
       ? game.campaign.heroes
       : setupMode === "hotseat"
         ? seats.flatMap((p) => p.heroes)
         : starter.heroes;
   const selectedScenarioProblem = shadowEastPlayerScenarioProblem(
-    playMode === "campaign" ? "mirkwood" : selectedScenario,
+    playMode === "campaign" ? campaignStart : selectedScenario,
     displayHeroes,
   );
   const [detail, setDetail] = useState<Card | null>(null);
@@ -1612,11 +1666,15 @@ export default function App() {
           burglarLoot,
           hobbitTreasures: selectedTreasures(style),
           easy: easyMode === "on",
-          scenarioId: playMode === "campaign" ? "mirkwood" : selectedScenario,
+          scenarioId:
+            playMode === "campaign" ? campaignStart : selectedScenario,
           playMode,
           ...(style === "hotseat" ? { seats: seats.map(seatConfig) } : {}),
           ...(playMode === "campaign" &&
-          game?.campaign?.completed.length === CAMPAIGN_CHAPTERS.length &&
+          campaignKind === "mirkwood" &&
+          game?.campaign &&
+          campaignKindOf(game.campaign) === "mirkwood" &&
+          game.campaign.completed.length === CAMPAIGN_CHAPTERS.length &&
           game.campaign.mendorSaved
             ? {
                 campaign: newCampaign(
@@ -1825,7 +1883,9 @@ export default function App() {
     a.href = url;
     a.download =
       game.playMode === "campaign"
-        ? "mirkwood-paths-campaign.json"
+        ? game.campaign?.kind === "saga"
+          ? "lord-of-the-rings-campaign.json"
+          : "mirkwood-paths-campaign.json"
         : `${game.scenarioId}-adventure.json`;
     a.click();
     URL.revokeObjectURL(url);
@@ -2349,7 +2409,7 @@ export default function App() {
                 <p>
                   {playMode === "normal"
                     ? `Choose from ${SCENARIOS.length} automated quests. Each adventure begins with a fresh fellowship.`
-                    : "Mirkwood Paths • Follow the quests in order. Boons, burdens, fallen heroes, and your story carry forward."}
+                    : `${CAMPAIGN_TITLES[campaignKind]} • Follow the quests in order. Boons, burdens, fallen heroes, and your story carry forward.`}
                 </p>
               </div>
               <div className="mode-tabs" role="group" aria-label="Game mode">
@@ -2369,12 +2429,41 @@ export default function App() {
                   <Books size={19} />
                   <span>
                     Campaign mode
-                    <small>
-                      One fellowship. {CAMPAIGN_CHAPTERS.length} chapters.
-                    </small>
+                    <small>One fellowship. Two campaigns.</small>
                   </span>
                 </button>
               </div>
+              {playMode === "campaign" && (
+                <div
+                  className="mode-tabs campaign-kind"
+                  role="group"
+                  aria-label="Campaign"
+                >
+                  <button
+                    aria-pressed={campaignKind === "mirkwood"}
+                    onClick={() => setCampaignKind("mirkwood")}
+                  >
+                    <span>
+                      Mirkwood Paths
+                      <small>
+                        {CAMPAIGN_CHAPTERS.length} Core Set chapters
+                      </small>
+                    </span>
+                  </button>
+                  <button
+                    aria-pressed={campaignKind === "saga"}
+                    onClick={() => setCampaignKind("saga")}
+                  >
+                    <span>
+                      The Lord of the Rings
+                      <small>
+                        {SAGA_CAMPAIGN_SUPPORTED.length} of{" "}
+                        {SAGA_CAMPAIGN_ORDER.length} saga chapters
+                      </small>
+                    </span>
+                  </button>
+                </div>
+              )}
             </section>
             <QuestIndex
               selected={quest.id}
@@ -2396,7 +2485,9 @@ export default function App() {
                 <div className="eyebrow">
                   <span />{" "}
                   {playMode === "campaign"
-                    ? `MIRKWOOD PATHS · CHAPTER ${quest.chapter}`
+                    ? campaignKind === "saga"
+                      ? `THE LORD OF THE RINGS · CHAPTER ${SAGA_CAMPAIGN_ORDER.indexOf(quest.id) + 1}`
+                      : `MIRKWOOD PATHS · CHAPTER ${quest.chapter}`
                     : quest.tagline.toUpperCase()}
                 </div>
                 <div className="adventure-preview-meta">
@@ -2577,19 +2668,22 @@ export default function App() {
                 </span>
               </div>
             </section>
-            {playMode === "campaign" && game?.campaign && (
-              <details className="lobby-journal">
-                <summary>
-                  <Books size={18} />
-                  Campaign journal
-                  <span>
-                    {game.campaign.completed.length} /{" "}
-                    {CAMPAIGN_CHAPTERS.length} chapters recorded
-                  </span>
-                </summary>
-                <CampaignJournal game={game} inspect={setDetail} />
-              </details>
-            )}
+            {playMode === "campaign" &&
+              game?.campaign &&
+              campaignKindOf(game.campaign) === campaignKind && (
+                <details className="lobby-journal">
+                  <summary>
+                    <Books size={18} />
+                    Campaign journal
+                    <span>
+                      {game.campaign.completed.length} /{" "}
+                      {chaptersOf(campaignKindOf(game.campaign)).length}{" "}
+                      chapters recorded
+                    </span>
+                  </summary>
+                  <CampaignJournal game={game} inspect={setDetail} />
+                </details>
+              )}
             <div className="lobby-lower">
               <section className="journey-panel">
                 <div className="section-line">
@@ -3171,7 +3265,7 @@ export default function App() {
                 <h1>{scenario(game.scenarioId).name}</h1>
                 <span className="game-mode-label">
                   {game.playMode === "campaign"
-                    ? "Mirkwood Paths · Campaign"
+                    ? `${CAMPAIGN_TITLES[campaignKindOf(game.campaign)]} · Campaign`
                     : "Normal game"}
                 </span>
               </div>
@@ -4813,8 +4907,10 @@ export default function App() {
           <p>
             Continue to{" "}
             <strong>
-              {scenario(CAMPAIGN_CHAPTERS[game.campaign.completed.length])
-                ?.name ?? "Campaign complete"}
+              {(() => {
+                const next = nextChapterOf(game.campaign);
+                return next ? scenario(next).name : "Campaign complete";
+              })()}
             </strong>
             . Heroes recover their damage and begin with a fresh deck. Each
             replaced hero adds +1 to your permanent starting threat penalty.
@@ -4891,14 +4987,16 @@ export default function App() {
               replacement raises every seat’s starting threat by 1.
             </p>
           )}
-          <label className="support-toggle">
-            <input
-              type="checkbox"
-              checked={includeSupport}
-              onChange={(e) => setIncludeSupport(e.target.checked)}
-            />{" "}
-            Add earned Mendor’s Support to the deck
-          </label>
+          {game.campaign.kind !== "saga" && (
+            <label className="support-toggle">
+              <input
+                type="checkbox"
+                checked={includeSupport}
+                onChange={(e) => setIncludeSupport(e.target.checked)}
+              />{" "}
+              Add earned Mendor’s Support to the deck
+            </label>
+          )}
           {game.campaign.prisoner && (
             <p className="campaign-note">
               The recorded prisoner, {card(game.campaign.prisoner).name}, must
@@ -4968,7 +5066,7 @@ export default function App() {
               </div>
               <h2>
                 {game.status === "won"
-                  ? game.campaign?.completed.length === CAMPAIGN_CHAPTERS.length
+                  ? game.campaign && !nextChapterOf(game.campaign)
                     ? "Your tale is complete."
                     : `${scenario(game.scenarioId).shortName} lies behind you.`
                   : "Every journey leaves a story."}
@@ -4990,12 +5088,34 @@ export default function App() {
               {game.campaign && (
                 <CampaignJournal game={game} inspect={setDetail} />
               )}
-              {game.campaign &&
-              game.status === "won" &&
-              game.campaign.completed.length < CAMPAIGN_CHAPTERS.length ? (
+              {game.status === "won" && game.campaign?.resolution ? (
+                <SagaResolution
+                  game={game}
+                  inspect={setDetail}
+                  onRecord={(answers) => {
+                    try {
+                      setGame(applySagaResolution(game, answers));
+                    } catch (e) {
+                      notify((e as Error).message);
+                    }
+                  }}
+                />
+              ) : game.campaign &&
+                game.status === "won" &&
+                nextChapterOf(game.campaign) &&
+                (game.campaign.kind !== "saga" ||
+                  sagaChapterSupported(nextChapterOf(game.campaign))) ? (
                 <button className="primary" onClick={prepareNextChapter}>
                   Continue campaign <ArrowRight />
                 </button>
+              ) : game.campaign?.kind === "saga" &&
+                game.status === "won" &&
+                nextChapterOf(game.campaign) ? (
+                <p className="campaign-note">
+                  The campaign log is recorded. The next chapter,{" "}
+                  {scenario(nextChapterOf(game.campaign)!).name}, is not
+                  available in campaign mode yet.
+                </p>
               ) : game.status === "lost" ? (
                 <button className="primary" onClick={retry}>
                   Retry this quest <ArrowCounterClockwise />
@@ -5010,13 +5130,15 @@ export default function App() {
                   Choose another adventure <ArrowRight />
                 </button>
               )}
-              {game.campaign?.completed.length === CAMPAIGN_CHAPTERS.length && (
-                <p className="campaign-note">
-                  {game.campaign.mendorSaved
-                    ? "Mendor survived. His Support will be available from the start of your next Core Set campaign."
-                    : "The campaign is complete, but Mendor did not survive the escape."}
-                </p>
-              )}
+              {game.campaign?.kind !== "saga" &&
+                game.campaign?.completed.length ===
+                  CAMPAIGN_CHAPTERS.length && (
+                  <p className="campaign-note">
+                    {game.campaign.mendorSaved
+                      ? "Mendor survived. His Support will be available from the start of your next Core Set campaign."
+                      : "The campaign is complete, but Mendor did not survive the escape."}
+                  </p>
+                )}
               <button className="text-link" onClick={() => nav("adventures")}>
                 Return to adventures
               </button>
@@ -5024,6 +5146,64 @@ export default function App() {
           </Modal>
         )}
     </div>
+  );
+}
+
+/** The campaign card's resolution: the players' choices for the Campaign Log. */
+function SagaResolution({
+  game,
+  inspect,
+  onRecord,
+}: {
+  game: GameState;
+  inspect: (c: Card) => void;
+  onRecord: (answers: Record<string, string>) => void;
+}) {
+  const questions = sagaResolutionQuestions(game);
+  const [answers, setAnswers] = useState<Record<string, string>>(() =>
+    Object.fromEntries(questions.map((q) => [q.id, q.options[0]?.id ?? ""])),
+  );
+  return (
+    <section
+      className="campaign-journal saga-resolution"
+      aria-label="Campaign resolution"
+      data-saga-resolution={game.scenarioId}
+    >
+      <div className="section-line">
+        <h3>
+          <Books size={18} /> Resolution
+        </h3>
+        <button
+          className="text-link"
+          onClick={() => {
+            const code = SAGA_CAMPAIGN_CARD_CODES[game.scenarioId];
+            if (code) inspect({ ...card(code), initialReverse: true } as Card);
+          }}
+        >
+          Inspect the campaign card
+        </button>
+      </div>
+      {questions.map((q) => (
+        <label key={q.id} className="saga-resolution-question">
+          <span>{q.label}</span>
+          <select
+            value={answers[q.id]}
+            onChange={(e) =>
+              setAnswers((a) => ({ ...a, [q.id]: e.target.value }))
+            }
+          >
+            {q.options.map((o) => (
+              <option key={o.id} value={o.id}>
+                {o.label}
+              </option>
+            ))}
+          </select>
+        </label>
+      ))}
+      <button className="primary" onClick={() => onRecord(answers)}>
+        Record the resolution <ArrowRight />
+      </button>
+    </section>
   );
 }
 
@@ -5040,14 +5220,14 @@ function CampaignJournal({
     <section className="campaign-journal" aria-label="Campaign log">
       <div className="section-line">
         <h3>
-          <Books size={18} /> Mirkwood Paths
+          <Books size={18} /> {CAMPAIGN_TITLES[campaignKindOf(c)]}
         </h3>
         <span>
-          {c.completed.length} / {CAMPAIGN_CHAPTERS.length} chapters
+          {c.completed.length} / {chaptersOf(campaignKindOf(c)).length} chapters
         </span>
       </div>
       <ol>
-        {CAMPAIGN_CHAPTERS.map((id) => {
+        {chaptersOf(campaignKindOf(c)).map((id, index) => {
           const q = scenario(id);
           const result = c.completed.find((r) => r.scenarioId === q.id);
           return (
@@ -5057,7 +5237,15 @@ function CampaignJournal({
                 result ? "complete" : q.id === game.scenarioId ? "current" : ""
               }
             >
-              <span>{result ? <Check size={15} /> : q.chapter}</span>
+              <span>
+                {result ? (
+                  <Check size={15} />
+                ) : c.kind === "saga" ? (
+                  index + 1
+                ) : (
+                  q.chapter
+                )}
+              </span>
               <strong>{q.name}</strong>
               <small>
                 {result
@@ -5106,9 +5294,18 @@ function CampaignJournal({
       </div>
       {Object.entries(c.permanent).map(([hero, boons]) => (
         <p className="campaign-note" key={hero}>
-          {card(hero).name}: {boons.map((code) => card(code).name).join(", ")}
+          {hero === RING_BEARER_KEY ? "The Ring-bearer" : card(hero).name}:{" "}
+          {boons.map((code) => card(code).name).join(", ")}
         </p>
       ))}
+      {c.kind === "saga" && (c.fallen.length > 0 || c.threatPenalty > 0) && (
+        <p className="campaign-note">
+          {c.fallen.length
+            ? `Fallen heroes: ${c.fallen.map((h) => card(h).name).join(", ")}. `
+            : ""}
+          Starting threat penalty: +{c.threatPenalty}.
+        </p>
+      )}
       {c.prisoner && (
         <p className="campaign-note">
           Recorded prisoner: {card(c.prisoner).name}

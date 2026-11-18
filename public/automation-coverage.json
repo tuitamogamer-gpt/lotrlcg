@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2048,
+    "encounterCards": 2059,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3300,
-    "pending": 883
+    "scripted": 3311,
+    "pending": 872
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 250
+    "scripted": 253
   },
   "registeredCodes": [
     "01001",
@@ -770,6 +770,14 @@
     "141014",
     "141015",
     "141016",
+    "141017",
+    "141018",
+    "141019",
+    "141020",
+    "141021",
+    "141077",
+    "141078",
+    "141079",
     "141080",
     "141081",
     "141082",
@@ -1192,6 +1200,7 @@
     "octgn:0eb36ad6-db76-4e69-b77c-77ff7da8661d",
     "octgn:0ebedc5b-fd8b-46b8-a2a1-1a6f739e8819",
     "octgn:0ec5f691-e5b3-41b5-bcec-2f963786ef4d",
+    "octgn:0ee09c42-34c9-41aa-aa98-b582608b15bb",
     "octgn:0f02460f-4ab8-4060-b520-0f82cbb8ce37",
     "octgn:0f201650-6d15-4909-9d06-0a87ab94f327",
     "octgn:0f2929de-bef9-40b8-b0ed-de69e136188f",
@@ -1459,6 +1468,7 @@
     "octgn:2e4aea1e-abb5-48c6-9f83-abbf9b6bcf72",
     "octgn:2e5e6e97-003b-4500-8372-495f5ee86051",
     "octgn:2e810a9b-5d79-4828-8268-33e82c5fc1fa",
+    "octgn:2efa631a-eb16-4078-84a5-18c7033b86f3",
     "octgn:2f2e6076-2636-485b-874c-fd3bc4bcf5f0",
     "octgn:2f5221a8-8afd-48d8-afd3-352151d87ed6",
     "octgn:2f7770cd-3102-4f35-a3bc-bd9afcab8303",
@@ -1468,6 +1478,7 @@
     "octgn:303b01b8-2d61-4c20-81a0-50800e18d617",
     "octgn:3043df29-f8e9-426e-bd14-5cb720ed8f10",
     "octgn:3065a397-5346-4148-8e0a-47009fe9b87d",
+    "octgn:307411f3-4a45-44ae-bc64-4e16deb97d10",
     "octgn:309c763a-60c9-4e33-bb0b-2b5e3a015227",
     "octgn:30a1913f-03e2-46fb-be6d-3b86064d1afd",
     "octgn:30a319ff-6092-4d5f-9b94-2a9b4f44f9c1",
@@ -3885,9 +3896,9 @@
     {
       "product": "the-black-riders",
       "total": 85,
-      "scripted": 74,
+      "scripted": 85,
       "player": 21,
-      "playerScripted": 16
+      "playerScripted": 21
     },
     {
       "product": "the-black-riders-nightmare",
@@ -10401,7 +10412,7 @@
       "name": "Mr. Underhill",
       "type": "attachment",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -10409,7 +10420,7 @@
       "name": "Tireless Ranger",
       "type": "attachment",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -10417,7 +10428,7 @@
       "name": "Skilled Healer",
       "type": "attachment",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -10425,7 +10436,7 @@
       "name": "Valiant Warrior",
       "type": "attachment",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -10433,7 +10444,7 @@
       "name": "Noble Hero",
       "type": "attachment",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -10441,7 +10452,7 @@
       "name": "Gildor Inglorion",
       "type": "objective-ally",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -10449,7 +10460,7 @@
       "name": "Gandalf's Delay",
       "type": "objective",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -10457,7 +10468,7 @@
       "name": "The Ring Draws Them",
       "type": "treachery",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -14313,7 +14324,7 @@
       "name": "Flight to the Ford",
       "type": "campaign",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -17025,7 +17036,7 @@
       "name": "A Knife in the Dark",
       "type": "campaign",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -17177,7 +17188,7 @@
       "name": "A Shadow of the Past",
       "type": "campaign",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -40154,8 +40165,8 @@
       "id": "Q0C.01",
       "name": "A Shadow of the Past",
       "mode": "campaign",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "a-shadow-of-the-past",
+      "state": "scripted"
     },
     {
       "id": "Q0C.01.1",
@@ -40175,15 +40186,15 @@
       "id": "Q0C.02",
       "name": "A Knife in the Dark",
       "mode": "campaign",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "a-knife-in-the-dark",
+      "state": "scripted"
     },
     {
       "id": "Q0C.03",
       "name": "Flight to the Ford",
       "mode": "campaign",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "flight-to-the-ford",
+      "state": "scripted"
     },
     {
       "id": "Q0C.04",

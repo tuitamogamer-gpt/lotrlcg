@@ -42,6 +42,11 @@ import { wainridersPlayerEffect } from "./wainriders-player";
 import { wainridersNoEngagement } from "./wainriders-player-support";
 import { ulfastPlayerEffect } from "./ulfast-player";
 import { perilousVoyageEffect, voyageRefresh } from "./perilous-voyage";
+import {
+  sagaCampaignEffect,
+  sagaCampaignEncounter,
+  sagaCampaignRoundEnd,
+} from "./saga-campaign-cards";
 import { finishGameSetup } from "./setup";
 import * as WrathPlayers from "./wrath-ruin-player";
 import * as Burglar from "./burglar-contract";
@@ -657,6 +662,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (wainridersPlayerEffect(s, e)) return;
   if (ulfastPlayerEffect(s, e)) return;
   if (perilousVoyageEffect(s, e)) return;
+  if (sagaCampaignEffect(s, e)) return;
   if (HaradPlayers.handleHaradPlayerEffect(s, e)) return;
   if (MumakPlayers.handleMumakilPlayerEffect(s, e)) return;
   if (RacePlayers.handleRaceHaradPlayerEffect(s, e)) return;
@@ -1662,6 +1668,7 @@ function handleEffect(s: GameState, e: Effect) {
             Carn.carnEncounter(s, e.code, true) ||
             Dread.dreadEncounter(s, e.code, true) ||
             Cobas.cobasEncounter(s, e.code, true) ||
+            sagaCampaignEncounter(s, e.code, true, true) ||
             batch4Scenario(s).encounter?.(s, e.code, true, true) ||
             City.cityEncounter(s, e.code, true) ||
             Umbar.umbarEncounter(s, e.code, true) ||
@@ -2170,6 +2177,7 @@ function handleEffect(s: GameState, e: Effect) {
       });
       passives.push(...WrathPlayers.wrathRuinPlayerRoundEnd(s));
       forced.push(...MountainFirePlayers.mountainFirePlayerRoundEnd(s));
+      forced.push(...sagaCampaignRoundEnd(s));
       prepend(s, ...passives, ...forced, fx("endRoundAfterCollector"));
       break;
     }

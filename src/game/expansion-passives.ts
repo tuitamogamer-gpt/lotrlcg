@@ -140,6 +140,12 @@ const rules: Record<string, AttachmentRule> = {
   "07010": { type: "hero" },
   "02010": { type: "hero" },
   "02031": { grantsTraits: ["Rohan"] },
+  // The Lord of the Rings campaign's Black Riders boons (Permanent).
+  "141017": { traits: ["Ring-bearer"] },
+  "141018": { type: "hero", defense: 1, grantsTraits: ["Ranger"] },
+  "141019": { type: "hero", health: 2, grantsTraits: ["Healer"] },
+  "141020": { type: "hero", attack: 1, grantsTraits: ["Warrior"] },
+  "141021": { type: "hero", will: 1, grantsTraits: ["Noble"] },
   // The Battle of the Pelennor Fields' boons (Esquire of Rohan, Esquire of Gondor).
   "145014": { type: "hero", grantsTraits: ["Rohan"] },
   "145015": { type: "hero", grantsTraits: ["Gondor"] },

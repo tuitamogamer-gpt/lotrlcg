@@ -81,6 +81,8 @@ import { shadowEastScenarioUnits } from "./shadow-east-scenario-state";
 import { wrathRuinSavedExtraUnits } from "./wrath-ruin-state";
 import { validateUlfast } from "./ulfast-support";
 import { validateUlfastPlayers } from "./ulfast-player-support";
+import { isSagaCampaign, validateSagaCampaign } from "./saga-campaign";
+import { validateSagaCards } from "./saga-campaign-cards";
 import { validatePerilousVoyage } from "./perilous-voyage-support";
 import { validateWrathRuin } from "./wrath-ruin-support";
 import { validateWrathRuinPlayers } from "./wrath-ruin-player-support";
@@ -1213,7 +1215,9 @@ export function validateSave(
     )
       return false;
     if (s.playMode === "normal" && s.campaign !== null) return false;
-    if (s.playMode === "campaign") {
+    if (s.playMode === "campaign" && isSagaCampaign(s.campaign)) {
+      if (!validateSagaCampaign(s)) return false;
+    } else if (s.playMode === "campaign") {
       const c = s.campaign;
       if (
         !c ||
@@ -1257,6 +1261,7 @@ export function validateSave(
     }
     if (
       s.campaign &&
+      !isSagaCampaign(s.campaign) &&
       s.campaign.completed.length !==
         SCENARIOS.findIndex((q) => q.id === s.scenarioId) +
           (s.status === "won" ? 1 : 0)
@@ -1444,6 +1449,7 @@ export function validateSave(
         !validateWainridersPlayers(s, validUnit as (v: unknown) => boolean) ||
         !validateUlfastPlayers(s, validUnit as (v: unknown) => boolean) ||
         !validatePerilousVoyage(s, validUnit as (v: unknown) => boolean) ||
+        !validateSagaCards(s) ||
         !validateBurglarContract(s, validUnit as (v: unknown) => boolean))
     )
       return false;

@@ -2650,5 +2650,19 @@
   "https://s3.amazonaws.com/hallofbeorn-resources/Images/Cards/The-Dark-of-Mirkwood/Abandoned-Camp.jpg": "/cards/4d976fdd-1a4b-429a-98ef-28c4695fa20d.jpg",
   "https://s3.amazonaws.com/hallofbeorn-resources/Images/Cards/The-Dark-of-Mirkwood/Crumbling-Stairs.jpg": "/cards/c82f8ccc-d017-48ec-a611-49a77469d45d.jpg",
   "https://s3.amazonaws.com/hallofbeorn-resources/Images/Cards/The-Dark-of-Mirkwood/Obsidian-Arrows.jpg": "/cards/5eb195bb-390f-48be-97fa-0ec09d6c807b.jpg",
-  "https://s3.amazonaws.com/hallofbeorn-resources/Images/Cards/The-Dark-of-Mirkwood/Wild-Wargs.jpg": "/cards/e62c0943-c58d-4dc7-8948-adef14de0e9a.jpg"
+  "https://s3.amazonaws.com/hallofbeorn-resources/Images/Cards/The-Dark-of-Mirkwood/Wild-Wargs.jpg": "/cards/e62c0943-c58d-4dc7-8948-adef14de0e9a.jpg",
+  "/bundles/cards/141017.png": "/cards/141017.jpg",
+  "/bundles/cards/141018.png": "/cards/141018.jpg",
+  "/bundles/cards/141019.png": "/cards/141019.jpg",
+  "/bundles/cards/141020.png": "/cards/141020.jpg",
+  "/bundles/cards/141021.png": "/cards/141021.jpg",
+  "/bundles/cards/141077.png": "/cards/141077.jpg",
+  "/bundles/cards/141078.png": "/cards/141078.jpg",
+  "/bundles/cards/141079.png": "/cards/141079.jpg",
+  "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/307411f3-4a45-44ae-bc64-4e16deb97d10.jpg": "/cards/307411f3-4a45-44ae-bc64-4e16deb97d10.jpg",
+  "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/307411f3-4a45-44ae-bc64-4e16deb97d10.B.jpg": "/cards/307411f3-4a45-44ae-bc64-4e16deb97d10.B.jpg",
+  "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2efa631a-eb16-4078-84a5-18c7033b86f3.jpg": "/cards/2efa631a-eb16-4078-84a5-18c7033b86f3.jpg",
+  "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2efa631a-eb16-4078-84a5-18c7033b86f3.B.jpg": "/cards/2efa631a-eb16-4078-84a5-18c7033b86f3.B.jpg",
+  "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0ee09c42-34c9-41aa-aa98-b582608b15bb.jpg": "/cards/0ee09c42-34c9-41aa-aa98-b582608b15bb.jpg",
+  "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0ee09c42-34c9-41aa-aa98-b582608b15bb.B.jpg": "/cards/0ee09c42-34c9-41aa-aa98-b582608b15bb.B.jpg"
 }

@@ -94,9 +94,12 @@ test("The Black Riders player cards are scripted, deckable and pinned to reviewe
     (c) => ![B.sam, B.merry, B.pippin, B.fatty].includes(c as never),
   ))
     assert.ok(deckable.includes(code), code);
-  // The campaign boons need the Saga campaign mode, which is not imported.
-  for (const code of ["141017", "141018", "141019", "141020", "141021"])
-    assert.ok(!SCRIPTED.has(code), code);
+  // The campaign boons belong to The Lord of the Rings campaign mode
+  // (saga-campaign.test.ts): scripted, but never part of a player deck.
+  for (const code of ["141017", "141018", "141019", "141020", "141021"]) {
+    assert.ok(SCRIPTED.has(code), code);
+    assert.ok(!deckable.includes(code), code);
+  }
   assert.equal(art.length, 14);
   for (const a of art) {
     assert.equal(readFileSync(`public${a.localPath}`).length, a.bytes);

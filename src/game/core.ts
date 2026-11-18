@@ -1,4 +1,5 @@
 import { wainridersQuestUnits } from "./wainriders-support";
+import { sagaCampaignEnemyCannotAttack } from "./saga-campaign-cards";
 import {
   landSorrowPlayerCannotReady,
   landSorrowPlayerCostReduction,
@@ -1278,6 +1279,7 @@ export const enemyAttackPrevented = (
   !!u.feinted ||
   !!u.preventedAttacks?.includes(player) ||
   !!batch4Scenario(s).enemyCannotAttack?.(s, u, player) ||
+  sagaCampaignEnemyCannotAttack(s, u, player) ||
   ShadowEastSupport.shadowEastPlayerPreventAttack(s, u, player) ||
   EredFinalSupport.eredFinalPlayerPreventAttack(s, u, player) ||
   has(u, "01069") ||

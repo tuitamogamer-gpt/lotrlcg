@@ -2,8 +2,9 @@
 
 The third scenario of **The Lord of the Rings: The Black Riders** (2013), in
 The Lord of the Rings Saga. It is playable in classic solo and with one to
-four local players, in normal and easy mode. Campaign mode is not part of
-this import, so The Old Road's campaign-only Action is never offered.
+four local players, in normal and easy mode. In campaign mode (see
+[The Lord of the Rings campaign](SAGA-CAMPAIGN.md)) the campaign card's
+Response and The Old Road's campaign-only Action are offered as well.
 
 ## Sources and corrections
 
@@ -63,7 +64,7 @@ his life reaches zero the players lose. The scenario panel shows the life.
 | Fell Rider            | Nazgûl, no non-Morgul attachments. While in the staging area, at the beginning of the encounter phase the first player engages it or reduces the Ring-bearer's life by 1.                      |
 | The Troll's Camp      | While active, each hero gets +1 willpower, attack and defense. Victory 1.                                                                                                                      |
 | Ettenmoors            | While active, Nazgûl enemies get no shadow card during the combat phase. After progress is placed on it, the Ring-bearer's life is reduced by 1.                                               |
-| The Old Road          | Its Action is for campaign mode only.                                                                                                                                                          |
+| The Old Road          | Its Action is for campaign mode only (see SAGA-CAMPAIGN.md).                                                                                                                                   |
 | Stricken Dumb         | Peril. Shuffle the top burden into the encounter deck and reveal another card, or raise each player's threat by 3 and end the quest phase at once without resolving the quest.                 |
 | The Enemy is Upon Us! | Each engaged enemy makes an immediate attack; with none, it surges. Shadow: if the attack destroys a character, all progress is removed from the current quest.                                |
 | The Nine are Abroad   | Each character in play has a blank text box (Traits kept) until the end of the round; it surges while a Nazgûl enemy is in the staging area. Shadow: the attacker returns to the staging area. |

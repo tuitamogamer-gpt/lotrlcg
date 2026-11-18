@@ -1,3 +1,4 @@
+import { sagaCampaignAttackStarted } from "./saga-campaign-cards";
 import { wainridersPlayerAttackKilled } from "./wainriders-player";
 import { POM } from "./passage-marshes-support";
 import { hobbitPlayerNoDefenseExhaust } from "./hobbit-player-cards";
@@ -700,6 +701,7 @@ export function combatDefenderDefense(
 export function enemyAttackStarted(s: GameState, enemy: Unit, player: number) {
   if (enemyAttackPrevented(s, enemy, player)) return;
   batch4Scenario(s).enemyAttackStarted?.(s, enemy, player);
+  sagaCampaignAttackStarted(s, enemy, player);
   Umbar.umbarAttackStarted(s, enemy, player);
   shadowFlameEnemyAttackStart(s, enemy, player);
   stewardFearAttackStarted(s, enemy, player);

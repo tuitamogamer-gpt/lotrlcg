@@ -124,6 +124,11 @@ import {
   voyageEliminationCheck,
   voyagePlayerEliminated,
 } from "./perilous-voyage";
+import {
+  sagaCampaignCannotCancel,
+  sagaCampaignEncounter,
+  sagaCampaignPhaseEnd,
+} from "./saga-campaign-cards";
 import { threatElimination } from "./tharbad-support";
 import * as Tharbad from "./tharbad";
 import * as Trials from "./three-trials";
@@ -1675,6 +1680,13 @@ export function discardAttachment(
     log(s, `${card(a.code).name} returns to staging, unclaimed.`);
     return;
   }
+  // Permanent: "If a hero leaves play, attachments with the permanent keyword
+  // attached to that hero are removed from the game."
+  if (leaving && /(?:^|\n)Permanent\./.test(card(a.code).text ?? "")) {
+    seatView(s, a.owner ?? ownerOf(s, u)).removed.push(a.code);
+    log(s, `${card(a.code).name} is removed from the game with ${name(u)}.`);
+    return;
+  }
   (card(a.code).sphere_code === "encounter"
     ? s.encounterDiscard
     : seatView(s, a.owner ?? ownerOf(s, u)).discard
@@ -2692,6 +2704,7 @@ export function phaseEnd(s: GameState) {
     .filter((u) => u.temporary || u.beornReturn)
     .map((u) => fx("allyDeparture", { target: u.id, player: ownerOf(s, u) }));
   const mountainFireEffects = MountainFirePlayers.mountainFirePlayerPhaseEnd(s);
+  const sagaCampaignEffects = sagaCampaignPhaseEnd(s);
   globalEachSeat(s, () => phaseEndPlayer(s));
   eachArea(s, () => redhornPhaseEnd(s));
   prepend(
@@ -2701,6 +2714,7 @@ export function phaseEnd(s: GameState) {
     ...otdEffects,
     ...treasonEffects,
     ...mountainFireEffects,
+    ...sagaCampaignEffects,
     ...cityDepartures,
     ...wainDepartures,
   );
@@ -3116,6 +3130,7 @@ export function revealed(
     Wastes.wastesCancelAllowed(s) &&
     !Sands.beneathSandsCannotCancel(s) &&
     !batch4Scenario(s).cannotCancel?.(s, false, code) &&
+    !sagaCampaignCannotCancel(s, code) &&
     Voyage.voyageCanCancelWhenRevealed(s, code) &&
     Storm.stormcallerCanCancelWhenRevealed(s, code) &&
     !allActiveLocations(s).some((l) => l.code === "02016")
@@ -3352,6 +3367,7 @@ export function resolveReveal(
     !Fords.fordsCannotCancel(s, code) &&
     !Sands.beneathSandsCannotCancel(s) &&
     !batch4Scenario(s).cannotCancel?.(s, false, code) &&
+    !sagaCampaignCannotCancel(s, code) &&
     !Drowned.drownedCannotCancel(s, code) &&
     Wastes.wastesCancelAllowed(s) &&
     Voyage.voyageCanCancelWhenRevealed(s, code) &&
@@ -3631,6 +3647,7 @@ export function placeEncounter(
   if (ShadowEastPlayers.shadowEastPlayerEncounter(s, code, false, fromReveal))
     return;
   if (WrathPlayers.wrathRuinPlayerEncounter(s, code, false, fromReveal)) return;
+  if (sagaCampaignEncounter(s, code, false, fromReveal)) return;
   if (batch4Scenario(s).encounter?.(s, code, false, fromReveal)) return;
   if (City.cityEncounter(s, code)) return;
   if (Umbar.umbarEncounter(s, code)) return;

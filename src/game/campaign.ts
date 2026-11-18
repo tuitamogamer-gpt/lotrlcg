@@ -10,6 +10,13 @@ import { log, random, requireRule } from "./core";
 
 import { createGame } from "./setup";
 import { score } from "./actions";
+import {
+  isSagaCampaign,
+  nextSagaChapter,
+  resolveSagaCampaign,
+  sagaChapterSupported,
+  SAGA_CAMPAIGN_ORDER,
+} from "./saga-campaign";
 
 export function newCampaign(
   heroes: string[],
@@ -30,6 +37,7 @@ export function newCampaign(
 
 export function resolveCampaign(s: GameState) {
   const c = s.campaign!;
+  if (isSagaCampaign(c)) return resolveSagaCampaign(s);
   if (c.completed.some((q) => q.scenarioId === s.scenarioId)) return;
   const fallen = seatIndices(s).flatMap((i) => {
     const p = seatView(s, i);
@@ -82,9 +90,16 @@ export function continueCampaign(
   seed = Date.now(),
   seatDeckIds?: string[],
 ): GameState {
+  const saga = isSagaCampaign(s.campaign);
   requireRule(
-    s.status === "won" && s.campaign && s.campaign.completed.length < 3,
+    s.status === "won" &&
+      s.campaign &&
+      s.campaign.completed.length < (saga ? SAGA_CAMPAIGN_ORDER.length : 3),
     "Win the current chapter before continuing.",
+  );
+  requireRule(
+    !saga || !s.campaign!.resolution,
+    "Record the campaign card's resolution before continuing.",
   );
   const c = structuredClone(s.campaign);
   requireRule(
@@ -127,7 +142,11 @@ export function continueCampaign(
     );
     return removed;
   });
-  const next = SCENARIOS[c.completed.length].id;
+  const next = saga ? nextSagaChapter(c) : SCENARIOS[c.completed.length].id;
+  requireRule(
+    !saga || sagaChapterSupported(next),
+    "The next chapter of The Lord of the Rings campaign is not available yet.",
+  );
   requireRule(
     next !== "dol-guldur" || !c.prisoner || heroes.includes(c.prisoner),
     "The recorded prisoner must remain in this fellowship.",

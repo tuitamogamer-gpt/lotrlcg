@@ -111,6 +111,14 @@ import { draw, enqueue, fx, log, make, requireRule, shuffle } from "./core";
 
 import { flush } from "./effects";
 import { newCampaign } from "./campaign";
+import {
+  isSagaCampaign,
+  newSagaCampaign,
+  nextSagaChapter,
+  sagaCampaignSetup,
+  sagaChapterSupported,
+  sagaStartingHandPenalty,
+} from "./saga-campaign";
 import { setupCarrock } from "./carrock";
 import { setupEmynMuil } from "./emyn-muil";
 import { setupRhosgobel } from "./rhosgobel";
@@ -274,19 +282,41 @@ export function createGame(
     playMode === "normal" || playMode === "campaign",
     "Unknown game mode.",
   );
+  // The Lord of the Rings campaign follows the saga scenarios; Mirkwood Paths
+  // follows the three Core Set quests.
+  const sagaCampaign =
+    playMode === "campaign" &&
+    (options.campaign
+      ? isSagaCampaign(options.campaign)
+      : isLotrSagaScenarioId(scenarioId));
   requireRule(
-    playMode !== "campaign" || options.campaign || scenarioId === "mirkwood",
+    playMode !== "campaign" ||
+      sagaCampaign ||
+      options.campaign ||
+      scenarioId === "mirkwood",
     "A campaign begins in Mirkwood.",
   );
   requireRule(
-    playMode !== "campaign" || CAMPAIGN_CHAPTERS.includes(scenarioId),
+    playMode !== "campaign" ||
+      sagaCampaign ||
+      CAMPAIGN_CHAPTERS.includes(scenarioId),
     "The Mirkwood Paths campaign covers the three Core Set quests.",
   );
+  requireRule(
+    !sagaCampaign ||
+      (sagaChapterSupported(scenarioId) &&
+        scenarioId ===
+          nextSagaChapter(options.campaign ?? newSagaCampaign([]))),
+    "The Lord of the Rings campaign follows its chapters in order, beginning with A Shadow of the Past.",
+  );
+  const chosenLine = options.seats?.flatMap((p) => p.heroes) ?? heroCodes;
   const campaign =
     playMode === "campaign"
       ? structuredClone(
           options.campaign ??
-            newCampaign(options.seats?.flatMap((p) => p.heroes) ?? heroCodes),
+            (sagaCampaign
+              ? newSagaCampaign(chosenLine)
+              : newCampaign(chosenLine)),
         )
       : null;
   const s: GameState = {
@@ -496,7 +526,7 @@ export function finishGameSetup(s: GameState) {
       "good",
     );
   }
-  if (campaign) {
+  if (campaign && !isSagaCampaign(campaign)) {
     s.encounterDeck.push(
       ...campaign.burdens.filter((c) => ["rc136", "rc137"].includes(c)),
     );
@@ -511,7 +541,12 @@ export function finishGameSetup(s: GameState) {
   }
   eachSeat(s, () => {
     shuffle(s, s.deck);
-    draw(s, batch4Scenario(s).startingHandSize?.(s) ?? 6);
+    // Gandalf's Delay (a saga campaign burden): 1 less card.
+    draw(
+      s,
+      (batch4Scenario(s).startingHandSize?.(s) ?? 6) -
+        sagaStartingHandPenalty(s),
+    );
   });
   greyHavensSetup(s);
   stormcallerPlayerSetup(s);
@@ -663,9 +698,10 @@ export function finishGameSetup(s: GameState) {
   ShadowEastPlayers.shadowEastPlayerEncounterSetup(s);
   batch4PlayerSetup(s);
   eredMithrinPlayerSetup(s);
+  sagaCampaignSetup(s);
   log(
     s,
-    `${scenario(scenarioId).name} · ${playMode === "campaign" ? "Mirkwood Paths campaign" : "Normal game"}.`,
+    `${scenario(scenarioId).name} · ${playMode === "campaign" ? (isSagaCampaign(campaign) ? "The Lord of the Rings campaign" : "Mirkwood Paths campaign") : "Normal game"}.`,
     "chapter",
   );
   if (s.flow)

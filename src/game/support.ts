@@ -1,5 +1,6 @@
 import { hasEncounterKeyword } from "./encounter-keyword";
 import { SCRIPTED, playerCards, encounterCards } from "./cards";
+import { SAGA_CAMPAIGN_SUPPORTED } from "./saga-campaign";
 import { SCENARIOS, CAMPAIGN_CHAPTERS } from "./scenarios";
 import type { Card } from "./types";
 import { EMYN_MUIL_QUESTS, RHOSGOBEL_QUESTS } from "./encounter-definitions";
@@ -72,7 +73,9 @@ export function automatedScenarioId(reference: { name: string; mode: string }) {
   );
   if (
     !match ||
-    (reference.mode === "campaign" && !CAMPAIGN_CHAPTERS.includes(match.id))
+    (reference.mode === "campaign" &&
+      !CAMPAIGN_CHAPTERS.includes(match.id) &&
+      !SAGA_CAMPAIGN_SUPPORTED.includes(match.id))
   )
     return null;
   return match.id;

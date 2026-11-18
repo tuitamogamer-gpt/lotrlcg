@@ -3612,6 +3612,19 @@ nav {
   gap: 18px;
   margin-bottom: 12px;
 }
+/* The Lord of the Rings campaign: each resolution choice on its own row. */
+.saga-resolution-question {
+  display: grid;
+  gap: 6px;
+  margin: 10px 0 14px;
+}
+.saga-resolution-question select {
+  width: 100%;
+  max-width: 100%;
+}
+.campaign-kind {
+  margin-top: 10px;
+}
 .campaign-pool > div > span {
   display: block;
   color: #b3a371;

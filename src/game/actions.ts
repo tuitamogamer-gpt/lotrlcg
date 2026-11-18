@@ -1,5 +1,10 @@
 import * as FortressPlayers from "./fortress-nurn-player";
 import * as HobbitPlayers from "./hobbit-player-cards";
+import {
+  sagaCampaignAbility,
+  sagaCampaignAbilityLabel,
+  sagaCampaignAbilityProblem,
+} from "./saga-campaign-cards";
 import { useVoyageAbility } from "./perilous-voyage";
 import { perilousVoyagePublic } from "./perilous-voyage-support";
 import * as BlackRidersPlayers from "./black-riders-player-cards";
@@ -2334,6 +2339,7 @@ function printedAbilities(s: GameState, u: Unit) {
       batch4Scenario(s).abilityLabel?.(u.code),
       batch4Scenario(s).abilityProblem?.(s, u),
     ],
+    [sagaCampaignAbilityLabel(u.code, s), sagaCampaignAbilityProblem(s, u)],
   ])
     if (label) results.push({ label, disabled: !!problem });
   const cityLabel = CityPlayers.cityPlayerAbilityLabel(u.code);
@@ -2582,6 +2588,10 @@ function printedAbilities(s: GameState, u: Unit) {
       [
         batch4Scenario(s).abilityLabel?.(a.code),
         batch4Scenario(s).abilityProblem?.(s, u, a.id),
+      ],
+      [
+        sagaCampaignAbilityLabel(a.code),
+        sagaCampaignAbilityProblem(s, u, a.id),
       ],
       [
         LandSorrowPlayers.landSorrowPlayerAbilityLabel(a.code),
@@ -3309,6 +3319,7 @@ export function applyAction(input: GameState, action: Action): GameState {
           )
             return;
           if (u && Cobas.cobasAbility(s, u, action.attachmentId)) return;
+          if (u && sagaCampaignAbility(s, u, action.attachmentId)) return;
           if (
             u &&
             batch4Scenario(s).abilityLabel?.(

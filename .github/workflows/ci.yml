@@ -1380,6 +1380,8 @@ jobs:
             suite: test:browser-hunt-dreadnaught
           - group: perilous-voyage
             suite: test:browser-perilous-voyage
+          - group: saga-campaign
+            suite: test:browser-saga-campaign
           - group: treason-saruman-players
             suite: test:browser-treason-saruman-players
           - group: land-shadow-players
