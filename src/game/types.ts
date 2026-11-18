@@ -332,6 +332,10 @@ export interface CampaignState {
   innocent?: number;
   /** Angmar Awakened: Protect the Innocent has been flipped to Arnor Ravaged (Deadmen's Dike). */
   ravaged?: boolean;
+  /** Angmar Awakened: Fend off Despair's cumulative reduction of each player's starting threat. */
+  threatReduction?: number;
+  /** Angmar Awakened: the characters Determination marked "determined". */
+  determined?: string[];
   /** Saga: the scenario whose campaign card resolution awaits the players' choices. */
   resolution?: ScenarioId | null;
   seatPenalties?: number[];
@@ -575,6 +579,10 @@ export interface GameState {
     boosts?: { target: string; phase: string; round: number }[];
     /** Deadmen's Dike: the burden attached to Thaurdir at random (pooled on a win). */
     thaurdir?: string;
+    /** Fend off Despair: how many times it was defeated in this game. */
+    despair?: number;
+    /** Cards a campaign Setup added to the starting hand (kept through a mulligan). */
+    setupHand?: string[];
   };
   /** The Lord of the Rings campaign: pending The Ring Draws Them engagements and Mr. Underhill marks. */
   sagaCards?: {

@@ -75,6 +75,12 @@ export const ANGMAR = {
   legacy: "10168",
   majesty: "10169",
   spite: "10170",
+  /** Determination (boon event, one copy per player). */
+  determination: "10172",
+  /** Fend off Despair (side quest). */
+  despair: "10173",
+  /** Arnor Ravaged: Protect the Innocent's other side, a burden objective. */
+  ravaged: "10158.B",
 } as const;
 /** Thaurdir's Legacy, Majesty and Spite (the support module's list, kept local to avoid an import cycle at load). */
 const THAURDIR_BURDENS: readonly string[] = [
@@ -107,7 +113,18 @@ export const ANGMAR_CAMPAIGN_SUPPORTED: readonly ScenarioId[] = [
   "intruders-in-chetwood",
   "the-weather-hills",
   "deadmens-dike",
+  "wastes-of-eriador",
 ];
+/** The chapters whose campaign card lets each player change heroes without the +1 threat penalty. */
+export const ANGMAR_FREE_CHANGES: readonly ScenarioId[] = [
+  "wastes-of-eriador",
+  "the-battle-of-carn-dum",
+];
+/** The Angmar Awakened boons that join a player's deck (Iârion's Pendant, once chosen). */
+export const ANGMAR_DECK_BOONS: readonly string[] = ["10157"];
+/** Fend off Despair: each player's starting threat is lowered by the Campaign Log's reduction. */
+export const angmarThreatReduction = (c?: CampaignState | null) =>
+  isAngmarCampaign(c) ? (c!.threatReduction ?? 0) : 0;
 /** Each chapter's campaign card. */
 export const ANGMAR_CAMPAIGN_CARDS: Partial<Record<ScenarioId, string>> = {
   "intruders-in-chetwood": ANGMAR.chetwoodCard,
@@ -174,6 +191,41 @@ export const angmarInnocent = (s: GameState): Unit | undefined =>
       u.code === ANGMAR.innocent &&
       (!s.angmarCards?.innocent || u.id === s.angmarCards.innocent),
   );
+/** Arnor Ravaged in the staging area. */
+export const angmarRavaged = (s: GameState): Unit | undefined =>
+  s.staging.find((u) => u.code === ANGMAR.ravaged);
+/** Fend off Despair in play: "Each event card gains doomed 1." */
+export const angmarEventDoomed = (s: GameState, code: string) =>
+  isAngmarCampaign(s.campaign) &&
+  card(code).type_code === "event" &&
+  s.staging.some((u) => u.code === ANGMAR.despair && !u.blanked)
+    ? 1
+    : 0;
+/** Cards a campaign Setup added to the hand: kept through a mulligan. */
+export const angmarSetupHandIds = (s: GameState) =>
+  isAngmarCampaign(s.campaign)
+    ? (s.angmarCards?.setupHand ?? []).filter((id) =>
+        s.hand.some((u) => u.id === id),
+      )
+    : [];
+/** Before the starting hands: the Campaign Pool's player cards join their decks. */
+export function angmarCampaignDeckSetup(s: GameState) {
+  const c = s.campaign;
+  if (!isAngmarCampaign(c)) return;
+  const seats = seatIndices(s);
+  for (const [code, seat] of Object.entries(c!.deckBoons ?? {}))
+    if (
+      c!.boons.includes(code) &&
+      ANGMAR_DECK_BOONS.includes(code) &&
+      seats.includes(seat)
+    )
+      forOwner(s, seat, () => s.deck.push(code));
+  // Determination: each copy joins the deck of the player who earned it.
+  if (c!.boons.includes(ANGMAR.determination))
+    for (const seat of c!.boonCopies?.[ANGMAR.determination] ?? [])
+      if (seat !== null && seats.includes(seat))
+        forOwner(s, seat, () => s.deck.push(ANGMAR.determination));
+}
 /** "If Protect the Innocent has 10 or more damage on it (20 or more damage if there are 3 or 4 players in the game), the players lose the game." */
 export const innocentLimit = (s: GameState) =>
   (s.table?.seats.length ?? 1) >= 3 ? 20 : 10;
@@ -210,6 +262,32 @@ export function angmarCampaignSetup(s: GameState) {
     s.encounterDeck.push(ANGMAR.omens);
     shuffle(s, s.encounterDeck);
   }
+  // The Wastes of Eriador: "Shuffle the Fend Off Despair side quest into the
+  // encounter deck." It returns to each later deck once it is in the pool.
+  if (
+    s.scenarioId === "wastes-of-eriador" ||
+    c!.burdens.includes(ANGMAR.despair)
+  ) {
+    s.encounterDeck.push(ANGMAR.despair);
+    shuffle(s, s.encounterDeck);
+  }
+  // Arnor Ravaged: "Setup: Add Arnor Ravaged to the staging area with damage
+  // on it equal to the amount of damage marked for it in the Campaign Log."
+  if (c!.ravaged && c!.burdens.includes(ANGMAR.innocent)) {
+    const ravaged = make(s, ANGMAR.ravaged);
+    ravaged.damage = c!.innocent ?? 0;
+    s.staging.push(ravaged);
+  }
+  // The Wastes of Eriador: "Each player adds 1 copy of Determination to
+  // their starting hand." (It stays there through a mulligan.)
+  if (s.scenarioId === "wastes-of-eriador")
+    for (const p of seatIndices(s))
+      forOwner(s, p, () => {
+        const u = make(s, ANGMAR.determination);
+        u.owner = p;
+        s.hand.push(u);
+        (state(s).setupHand ??= []).push(u.id);
+      });
   // The Weather Hills and Deadmen's Dike: "Add the Protect the Innocent side
   // quest to the staging area and place damage on it equal to the amount of
   // damage noted for it in the Campaign Log."
@@ -260,7 +338,20 @@ export function angmarCampaignSideChosen(s: GameState, quest: Unit) {
  * Ruthless, or Stalwart." The Campaign Log changes once the chapter is won.
  */
 export function angmarCampaignSideDefeated(s: GameState, quest: Unit) {
-  if (!isAngmarCampaign(s.campaign) || quest.code !== ANGMAR.omens) return;
+  if (!isAngmarCampaign(s.campaign)) return;
+  // Fend off Despair: "Forced: When Fend Off Despair is defeated, mark in the
+  // Campaign Log that each player's starting threat is reduced by 2. (This
+  // reduction is cumulative.)"
+  if (quest.code === ANGMAR.despair) {
+    state(s).despair = (s.angmarCards?.despair ?? 0) + 1;
+    log(
+      s,
+      "Fend off Despair is defeated: each player's starting threat will be 2 lower in later chapters once this chapter is won.",
+      "good",
+    );
+    return;
+  }
+  if (quest.code !== ANGMAR.omens) return;
   state(s).omens = true;
   log(
     s,
@@ -411,6 +502,20 @@ export function angmarCampaignAbility(
   }
   return true;
 }
+/** Determination: "Action: Attach Determination to a unique character. Then, ready each character with a copy of Determination attached, as well as each character who is 'determined' in the Campaign Log." */
+export function angmarCampaignPlayerEvent(s: GameState, code: string) {
+  if (code !== ANGMAR.determination || !isAngmarCampaign(s.campaign))
+    return false;
+  prepend(s, fx("angmarDetermination", { player: activeSeat(s) }));
+  return true;
+}
+/** The unique characters in play Determination can be attached to. */
+const uniqueCharacters = (s: GameState) =>
+  seatIndices(s).flatMap((p) =>
+    [...seatView(s, p).heroes, ...seatView(s, p).allies].filter(
+      (u) => card(u.code).is_unique,
+    ),
+  );
 /** Resolute: "Response: Cancel up to 2 points of damage just dealt to attached hero. (Limit once per game.)" */
 export function angmarOfferResolute(
   s: GameState,
@@ -571,6 +676,24 @@ export function angmarCampaignDamageDealt(
 ) {
   if (!isAngmarCampaign(s.campaign) || value <= 0 || !context.combatDamage)
     return;
+  // Arnor Ravaged: "Forced: After an attack damages a character but does not
+  // destroy it, move 1 damage from Arnor Ravaged to that character."
+  const ravaged = angmarRavaged(s);
+  if (
+    ravaged &&
+    !ravaged.blanked &&
+    ravaged.damage > 0 &&
+    ["hero", "ally", "objective-ally"].includes(card(u.code).type_code) &&
+    u.damage < stats(s, u).health
+  ) {
+    ravaged.damage -= 1;
+    u.damage += 1;
+    log(
+      s,
+      `Arnor Ravaged: 1 damage moves from it to ${name(u)} (${ravaged.damage} left on Arnor Ravaged).`,
+      "danger",
+    );
+  }
   const quest = angmarInnocent(s);
   if (!quest || quest.blanked) return;
   quest.damage += 1;
@@ -687,6 +810,50 @@ export function resolveAngmarCampaign(s: GameState) {
       `Mysterious Omens: ${q!.skills!.map((x) => `${card(x.code).name} (${card(x.hero).name})`).join(", ")} ${q!.skills!.length === 1 ? "is" : "are"} earned.`,
       "good",
     );
+  // Determination: "Forced: If you win this scenario, mark in the Campaign
+  // Log that attached character is 'determined.'"
+  const determined = seatIndices(s).flatMap((p) =>
+    [...seatView(s, p).heroes, ...seatView(s, p).allies]
+      .filter((u) =>
+        u.attachments.some(
+          (a) => a.code === ANGMAR.determination && !a.blanked,
+        ),
+      )
+      .map((u) => u.code),
+  );
+  if (determined.length) {
+    c.determined = [...new Set([...(c.determined ?? []), ...determined])];
+    log(
+      s,
+      `Determination: ${determined.map((code) => card(code).name).join(", ")} ${determined.length === 1 ? "is" : "are"} determined in the Campaign Log.`,
+      "good",
+    );
+  }
+  // Fend off Despair, defeated in this chapter: -2 starting threat each time.
+  if (q?.despair) {
+    c.threatReduction = (c.threatReduction ?? 0) + 2 * q.despair;
+    log(
+      s,
+      `Fend off Despair: each player's starting threat is reduced by ${c.threatReduction} in the Campaign Log.`,
+      "good",
+    );
+  }
+  if (s.scenarioId === "wastes-of-eriador") {
+    // "Add each of those events [Determination] to the Campaign Pool." and
+    // the Resolution: "Add Fend Off Despair to the Campaign Pool."
+    if (!c.boons.includes(ANGMAR.determination))
+      c.boons.push(ANGMAR.determination);
+    c.boonCopies = {
+      ...(c.boonCopies ?? {}),
+      [ANGMAR.determination]: seatIndices(s),
+    };
+    if (!c.burdens.includes(ANGMAR.despair)) c.burdens.push(ANGMAR.despair);
+    log(
+      s,
+      "The Wastes of Eriador · Resolution: each player's Determination and Fend off Despair are added to the Campaign Pool.",
+      "good",
+    );
+  }
   if (s.scenarioId === "the-weather-hills") {
     // "Note the amount of damage on Protect the Innocent in the Campaign Log
     // (replacing the previous number)."
@@ -807,6 +974,23 @@ export function angmarCampaignStatus(s: GameState): string[] {
       card(host.code).type_code === "hero"
         ? `${card(a.code).name} is attached to ${name(host)} (${a.code === ANGMAR.legacy ? "-2 willpower, its printed text box is blank" : a.code === ANGMAR.majesty ? "-2 attack, it cannot commit to the quest" : "-2 defense, it cannot be healed"}); after a Sorcery treachery is revealed it moves to ${BURDEN_RULE[a.code]}.`
         : `${card(a.code).name} is attached to Thaurdir: after a Sorcery treachery is revealed it moves to ${BURDEN_RULE[a.code]}.`,
+    );
+  const ravaged = angmarRavaged(s);
+  if (ravaged)
+    out.push(
+      `Arnor Ravaged has ${ravaged.damage} damage: after an attack damages a character without destroying it, 1 of its damage moves to that character.`,
+    );
+  if (
+    (s.scenarioId === "wastes-of-eriador" ||
+      s.campaign!.burdens.includes(ANGMAR.despair)) &&
+    !q?.despair
+  )
+    out.push(
+      "Fend off Despair is shuffled into the encounter deck: while it is in play each event gains doomed 1, and defeating it lowers each player's starting threat by 2 in later chapters.",
+    );
+  if (s.campaign!.determined?.length)
+    out.push(
+      `Determined in the Campaign Log: ${s.campaign!.determined.map((code) => card(code).name).join(", ")} (each Determination readies them).`,
     );
   if (q?.skills?.length)
     out.push(
@@ -1124,6 +1308,62 @@ export function angmarCampaignEffect(s: GameState, e: Effect): boolean {
       );
       return true;
     }
+    case "angmarDetermination": {
+      const p = e.player ?? first(s);
+      const targets = uniqueCharacters(s);
+      if (!targets.length) return true;
+      forOwner(s, p, () =>
+        choose(
+          s,
+          "Determination · Attach to a unique character",
+          targets.map((u) => ({
+            id: u.id,
+            code: u.code,
+            label: name(u),
+            effects: [
+              fx("angmarDeterminationAttach", { target: u.id, player: p }),
+            ],
+          })),
+          card(ANGMAR.determination).text,
+        ),
+      );
+      return true;
+    }
+    case "angmarDeterminationAttach": {
+      const p = e.player ?? first(s);
+      const host = get(s, e.target);
+      const pending = [...(s.resolvingEvents ?? [])]
+        .reverse()
+        .find(
+          (event) =>
+            event.unit.code === ANGMAR.determination &&
+            event.destination !== "spent",
+        );
+      if (!host || !pending) return true;
+      // The event stays in play as a Condition attachment.
+      pending.destination = "spent";
+      host.attachments.push({
+        id: pending.unit.id,
+        code: ANGMAR.determination,
+        exhausted: false,
+        owner: pending.unit.owner ?? p,
+      });
+      const determined = s.campaign!.determined ?? [];
+      const ready = seatIndices(s).flatMap((q) =>
+        [...seatView(s, q).heroes, ...seatView(s, q).allies].filter(
+          (u) =>
+            u.attachments.some((a) => a.code === ANGMAR.determination) ||
+            determined.includes(u.code),
+        ),
+      );
+      for (const u of ready) readyCharacter(s, u);
+      log(
+        s,
+        `Determination is attached to ${name(host)}; ${ready.map(name).join(", ")} ${ready.length === 1 ? "readies" : "ready"}.`,
+        "good",
+      );
+      return true;
+    }
     case "angmarPendantSpend": {
       const host = get(s, e.target);
       if (!host) return true;
@@ -1146,11 +1386,13 @@ export const ANGMAR_BOONS: readonly string[] = [
   ...SKILL_BOONS,
   ANGMAR.pendant,
   ANGMAR.courage,
+  ANGMAR.determination,
 ];
 export const ANGMAR_BURDENS: readonly string[] = [
   ANGMAR.innocent,
   ANGMAR.omens,
   ...THAURDIR_BURDENS,
+  ANGMAR.despair,
 ];
 /** The Angmar Awakened Campaign Log in a saved game. */
 export function validateAngmarCampaign(s: GameState): boolean {
@@ -1204,6 +1446,38 @@ export function validateAngmarCampaign(s: GameState): boolean {
         c.seatHeroes.reduce((n, x) => n + x, 0) === c.heroes.length)) &&
     (c.innocent === undefined || integer(c.innocent)) &&
     (c.ravaged === undefined || typeof c.ravaged === "boolean") &&
+    (c.threatReduction === undefined ||
+      (integer(c.threatReduction) && c.threatReduction % 2 === 0)) &&
+    (c.determined === undefined ||
+      (codes(c.determined) &&
+        new Set(c.determined).size === c.determined.length)) &&
+    (c.deckBoons === undefined ||
+      (!!c.deckBoons &&
+        typeof c.deckBoons === "object" &&
+        !Array.isArray(c.deckBoons) &&
+        Object.entries(c.deckBoons).every(
+          ([code, seat]) =>
+            ANGMAR_DECK_BOONS.includes(code) &&
+            c.boons.includes(code) &&
+            integer(seat) &&
+            seat < (s.table?.seats.length ?? 1),
+        ))) &&
+    (c.boonCopies === undefined ||
+      (!!c.boonCopies &&
+        typeof c.boonCopies === "object" &&
+        !Array.isArray(c.boonCopies) &&
+        Object.entries(c.boonCopies).every(
+          ([code, seats]) =>
+            code === ANGMAR.determination &&
+            c.boons.includes(code) &&
+            Array.isArray(seats) &&
+            seats.length <= 4 &&
+            seats.every(
+              (seat) =>
+                seat === null ||
+                (integer(seat) && seat < (s.table?.seats.length ?? 1)),
+            ),
+        ))) &&
     Array.isArray(c.completed) &&
     c.completed.every(
       (r, i) =>
@@ -1218,6 +1492,8 @@ export function validateAngmarCampaign(s: GameState): boolean {
         typeof q === "object" &&
         (q.innocent === undefined || typeof q.innocent === "string") &&
         (q.thaurdir === undefined || THAURDIR_BURDENS.includes(q.thaurdir)) &&
+        (q.despair === undefined || (integer(q.despair) && q.despair > 0)) &&
+        (q.setupHand === undefined || codes(q.setupHand)) &&
         (q.omens === undefined || typeof q.omens === "boolean") &&
         (q.skills === undefined ||
           (Array.isArray(q.skills) &&

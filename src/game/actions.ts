@@ -14,6 +14,9 @@ import {
   angmarCampaignAbility,
   angmarCampaignAbilityLabel,
   angmarCampaignAbilityProblem,
+  angmarCampaignPlayerEvent,
+  angmarEventDoomed,
+  angmarSetupHandIds,
 } from "./angmar-campaign";
 import {
   sagaCampaignLossCompletion,
@@ -1735,7 +1738,8 @@ export function resolvePlayerCard(
       played && fromHand,
       undefined,
       0,
-      0,
+      // Fend off Despair (the Angmar Awakened campaign): events gain doomed 1.
+      played ? angmarEventDoomed(s, u.code) : 0,
       played,
     );
   if (played && c.type_code === "event") {
@@ -1782,6 +1786,7 @@ export function handlePlayerEventAbilityEffect(
     !TreasonPlayers.treasonPlayerEvent(s, physical.code) &&
     !LandShadowPlayers.landShadowPlayerEvent(s, physical.code) &&
     !sagaCampaignPlayerEvent(s, physical.code) &&
+    !angmarCampaignPlayerEvent(s, physical.code) &&
     !MountainFirePlayers.mountainFirePlayerEvent(s, physical.code) &&
     !WrathPlayers.wrathRuinPlayerEvent(
       s,
@@ -3142,6 +3147,7 @@ function applyActionCore(input: GameState, action: Action): GameState {
         const kept = new Set([
           ...(s.shadowEastPlayers?.setupHandIds?.[activeSeat(s)] ?? []),
           ...sagaSetupHandIds(s),
+          ...angmarSetupHandIds(s),
         ]);
         for (const u of s.hand.filter((u) => !kept.has(u.id)))
           putPlayerDeck(s, u);

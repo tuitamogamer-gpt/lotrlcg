@@ -1242,3 +1242,16 @@ Validation on Node 22: the engine suite passes all 6,771 tests, including 8 for 
 Coverage is now 861 player definitions (112 heroes), 2,122 encounters and 123 scenarios. This resolves 3,374 of 4,183 identities and 270 of 355 recipes; 809 identities remain pending.
 
 Validation on Node 22: the engine suite passes all 6,775 tests, including 12 for the Angmar Awakened campaign; the Angmar browser suite passes 33 checkpoints at 1280, 390 and 320 pixels, through Deadmen's Dike's resolution dialog, and checks the 19 pinned faces; the production build passes.
+
+2026-11-18 The Angmar Awakened campaign, The Wastes of Eriador: continued the user's “Nastavi” after 1f3ee11. The campaign's fourth chapter is supported; the end of the game now reaches Escape from Mount Gram's note. See docs/ANGMAR-CAMPAIGN.md.
+
+- The Wastes of Eriador's campaign card, Determination and Fend off Despair are registered with the scans' texts (23 faces pinned in all), and Arnor Ravaged, Protect the Innocent's other side, is a runtime card of its own (10158.B, the scan's back face), so the side quest rules never see it.
+- Setup: heroes change without the +1 penalty (the interlude says so and its preview counts none; The Battle of Carn Dûm will share the rule); each player's Determination joins the starting hand and stays through a mulligan; Fend off Despair is shuffled into the encounter deck; Arnor Ravaged enters the staging area with the noted damage.
+- Determination is attached to a unique character as it resolves (the event stays in play) and readies each character with Determination and each "determined" one; a won chapter marks its characters determined.
+- Fend off Despair gives each event doomed 1 while it is in play; each defeat lowers every later starting threat by 2 (never below 0). The resolution pools each player's Determination (it joins that player's deck in later chapters) and Fend off Despair.
+- Arnor Ravaged moves 1 of its damage to a character an attack damaged without destroying; the moved damage can destroy it.
+- Iârion's Pendant, once chosen after Deadmen's Dike, can join a player's deck: the interlude's boon fieldset now serves this campaign, the log keeps the choice and the card joins that deck before the starting hand.
+
+Coverage is now 861 player definitions (112 heroes), 2,126 encounters and 123 scenarios. This resolves 3,377 of 4,183 identities and 270 of 355 recipes; 806 identities remain pending.
+
+Validation on Node 22: the engine suite passes all 6,779 tests, including 16 for the Angmar Awakened campaign; the Angmar browser suite passes 42 checkpoints at 1280, 390 and 320 pixels, through The Wastes of Eriador's interlude and resolution, and checks the 23 pinned faces; the production build passes.

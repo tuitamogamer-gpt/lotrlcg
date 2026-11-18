@@ -112,7 +112,9 @@ import { draw, enqueue, fx, log, make, requireRule, shuffle } from "./core";
 import { flush } from "./effects";
 import { newCampaign } from "./campaign";
 import {
+  angmarCampaignDeckSetup,
   angmarCampaignSetup,
+  angmarThreatReduction,
   angmarChapterSupported,
   angmarForbiddenTitle,
   isAngmarCampaign,
@@ -498,14 +500,24 @@ export function createGame(
         Array<string>(n).fill(code),
       );
       s.heroes = heroes.map((h) => make(s, h));
-      s.threat = startingThreat(heroes) + sagaPlayerPenalty(campaign, i);
+      s.threat = Math.max(
+        0,
+        startingThreat(heroes) +
+          sagaPlayerPenalty(campaign, i) -
+          angmarThreatReduction(campaign),
+      );
       s.startingThreat = s.threat;
       syncSeat(s);
     });
     selectSeat(s, 0);
   } else {
     s.heroes = heroCodes.map((code) => make(s, code));
-    s.threat = startingThreat(heroCodes) + sagaPlayerPenalty(campaign, 0);
+    s.threat = Math.max(
+      0,
+      startingThreat(heroCodes) +
+        sagaPlayerPenalty(campaign, 0) -
+        angmarThreatReduction(campaign),
+    );
   }
   s.rangerReserves = {};
   s.batch4WindReserves = {};
@@ -594,6 +606,8 @@ export function finishGameSetup(s: GameState) {
   }
   // The Lord of the Rings campaign: earned player-card boons join their decks.
   sagaCampaignDeckSetup(s);
+  // The Angmar Awakened campaign: Iârion's Pendant and Determination.
+  angmarCampaignDeckSetup(s);
   eachSeat(s, () => {
     shuffle(s, s.deck);
     // Gandalf's Delay (a saga campaign burden): 1 less card.

@@ -357,6 +357,8 @@ import {
 } from "./game/saga-campaign";
 import {
   ANGMAR,
+  ANGMAR_DECK_BOONS,
+  ANGMAR_FREE_CHANGES,
   ANGMAR_CAMPAIGN_CARDS,
   ANGMAR_CAMPAIGN_ORDER,
   ANGMAR_CAMPAIGN_SUPPORTED,
@@ -1848,6 +1850,12 @@ export default function App() {
         ...SAGA_DECK_BOONS.filter((code) => c.boons.includes(code)).map(
           (code) => [code, c.deckBoons?.[code] ?? null] as const,
         ),
+        // The Angmar Awakened campaign: Iârion's Pendant.
+        ...(c.kind === "angmar"
+          ? ANGMAR_DECK_BOONS.filter((code) => c.boons.includes(code)).map(
+              (code) => [code, c.deckBoons?.[code] ?? null] as const,
+            )
+          : []),
         // Brace of Coneys: one entry per earned copy ("code#copy").
         ...COPY_BOONS.filter((code) => c.boons.includes(code)).flatMap((code) =>
           (c.boonCopies?.[code] ?? []).map(
@@ -1874,7 +1882,9 @@ export default function App() {
           ? nextSeatDecks
           : undefined,
         game.campaign?.kind === "saga" ? nextChapter : undefined,
-        game.campaign?.kind === "saga" ? nextDeckBoons : undefined,
+        game.campaign?.kind === "saga" || game.campaign?.kind === "angmar"
+          ? nextDeckBoons
+          : undefined,
       );
       audio.stop();
       setSignificantMoment(null);
@@ -5087,8 +5097,9 @@ export default function App() {
                 </small>
               </label>
             )}
-          {game.campaign.kind === "saga" &&
-            nextChapter !== "the-ring-goes-south" &&
+          {((game.campaign.kind === "saga" &&
+            nextChapter !== "the-ring-goes-south") ||
+            game.campaign.kind === "angmar") &&
             Object.keys(nextDeckBoons).length > 0 && (
               <fieldset className="saga-deck-boons">
                 <legend>Earned boon cards in your decks</legend>
@@ -5239,9 +5250,7 @@ export default function App() {
           <p className="campaign-note">
             Starting threat penalty: +
             {game.campaign.threatPenalty +
-              (game.campaign.kind === "saga" &&
-              !!nextChapter &&
-              SAGA_FREE_CHANGES.includes(nextChapter)
+              (freeHeroChange(game, nextChapter)
                 ? 0
                 : game.table
                   ? campaignSeatHeroes(
@@ -5259,9 +5268,7 @@ export default function App() {
                   : game.campaign.heroes.filter((h) => !nextHeroes.includes(h))
                       .length)}{" "}
             for every player.{" "}
-            {game.campaign.kind === "saga" &&
-            !!nextChapter &&
-            SAGA_FREE_CHANGES.includes(nextChapter)
+            {freeHeroChange(game, nextChapter)
               ? "This chapter's campaign card lets each player change heroes without the +1 threat penalty."
               : "Each player may replace fallen heroes and voluntarily change one other hero."}
             {game.campaign.kind === "saga" &&
@@ -5481,6 +5488,16 @@ function SagaResolution({
   );
 }
 
+/** Does the next chapter's campaign card let each player change heroes without the +1 penalty? */
+const freeHeroChange = (g: GameState, chosen?: ScenarioId) => {
+  const c = g.campaign;
+  if (c?.kind === "saga") return !!chosen && SAGA_FREE_CHANGES.includes(chosen);
+  if (c?.kind === "angmar") {
+    const next = nextAngmarChapter(c);
+    return !!next && ANGMAR_FREE_CHANGES.includes(next);
+  }
+  return false;
+};
 /** The campaign card of the chapter being played, in either campaign. */
 const campaignCardOf = (game: GameState) =>
   !game.campaign
@@ -5558,9 +5575,10 @@ function CampaignJournal({
           <span>BOONS</span>
           {c.boons.length ? (
             [...new Set(c.boons)].map((code) => {
-              const copies = COPY_BOONS.includes(code)
-                ? (c.boonCopies?.[code]?.length ?? 1)
-                : c.boons.filter((x) => x === code).length;
+              const copies =
+                COPY_BOONS.includes(code) || code === ANGMAR.determination
+                  ? (c.boonCopies?.[code]?.length ?? 1)
+                  : c.boons.filter((x) => x === code).length;
               return (
                 <button key={code} onClick={() => inspect(card(code))}>
                   <Sparkle size={13} />
@@ -5625,6 +5643,18 @@ function CampaignJournal({
         <p className="campaign-note">
           Notes · The Corsair Fleet: {c.corsairFleet}{" "}
           {c.corsairFleet === 1 ? "resource" : "resources"}
+        </p>
+      ) : null}
+      {c.determined?.length ? (
+        <p className="campaign-note">
+          Notes · determined:{" "}
+          {c.determined.map((code) => card(code).name).join(", ")}
+        </p>
+      ) : null}
+      {c.threatReduction ? (
+        <p className="campaign-note">
+          Notes · Fend off Despair: each player's starting threat −
+          {c.threatReduction}
         </p>
       ) : null}
       {c.innocent !== undefined ? (

@@ -12,6 +12,7 @@ import {
   ANGMAR,
   angmarCampaignAfterReveal,
   angmarInnocent,
+  angmarRavaged,
 } from "../src/game/angmar-campaign.ts";
 import { card } from "../src/game/cards.ts";
 import { DIKE } from "../src/game/deadmens-dike-support.ts";
@@ -366,11 +367,11 @@ try {
     s = await record([
       [
         "The players as a group select Iârion's Pendant or Amarthiúl's Courage",
-        ANGMAR.courage,
+        ANGMAR.pendant,
       ],
     ]);
     assert.equal(s.campaign.resolution, null);
-    assert.deepEqual(s.campaign.boons, [ANGMAR.hardy, ANGMAR.courage]);
+    assert.deepEqual(s.campaign.boons, [ANGMAR.hardy, ANGMAR.pendant]);
     assert.equal(s.campaign.ravaged, true);
     assert.deepEqual(s.campaign.burdens, [ANGMAR.innocent, ANGMAR.spite]);
     await page
@@ -378,13 +379,62 @@ try {
       .first()
       .waitFor();
     await page.getByText("Arnor Ravaged", { exact: true }).first().waitFor();
-    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await page.getByRole("button", { name: /^Continue campaign/ }).waitFor();
     assert.equal(
       await page.getByText(/Mendor/).count(),
       0,
       "the Mirkwood Paths note stays out of this campaign",
     );
     await checkpoint("dike-complete", width);
+    // The Wastes of Eriador: the interlude puts Iârion's Pendant in a deck.
+    s = await continueCampaign(undefined, width, async () => {
+      await page
+        .getByLabel("Iârion's Pendant: deck", { exact: true })
+        .selectOption("0");
+      await page
+        .getByText(
+          "This chapter's campaign card lets each player change heroes without the +1 threat penalty.",
+        )
+        .waitFor();
+      await checkpoint("wastes-interlude", width);
+    });
+    assert.equal(s.scenarioId, "wastes-of-eriador");
+    assert.deepEqual(s.campaign.deckBoons, { [ANGMAR.pendant]: 0 });
+    assert.ok(
+      [...s.deck, ...s.hand.map((u) => u.code)].includes(ANGMAR.pendant),
+      "Iârion's Pendant is in the deck",
+    );
+    assert.ok(s.hand.some((u) => u.code === ANGMAR.determination));
+    assert.equal(angmarRavaged(s).damage, 4);
+    assert.equal(s.encounterDeck.filter((c) => c === ANGMAR.despair).length, 1);
+    await campaignCard(/^Arnor Ravaged has 4 damage/, "wastes-setup", width);
+    // The resolution: Determination marks its hero determined, Fend off
+    // Despair lowers the starting threat, and both join the pool.
+    s = await victory(s, (t) => {
+      const det = t.hand.find((u) => u.code === ANGMAR.determination);
+      t.hand = t.hand.filter((u) => u.id !== det.id);
+      t.heroes[0].attachments.push({
+        id: det.id,
+        code: ANGMAR.determination,
+        exhausted: false,
+        owner: 0,
+      });
+      t.angmarCards.despair = 1;
+    });
+    assert.deepEqual(s.campaign.determined, [s.heroes[0].code]);
+    assert.equal(s.campaign.threatReduction, 2);
+    assert.ok(s.campaign.boons.includes(ANGMAR.determination));
+    assert.ok(s.campaign.burdens.includes(ANGMAR.despair));
+    await page
+      .getByText(/Notes · determined: /)
+      .first()
+      .waitFor();
+    await page
+      .getByText(/Notes · Fend off Despair: each player's starting threat −2/)
+      .first()
+      .waitFor();
+    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await checkpoint("wastes-complete", width);
     await view.c.close();
   }
   const p = await browser.newPage();

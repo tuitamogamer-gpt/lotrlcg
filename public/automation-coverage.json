@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2122,
+    "encounterCards": 2126,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3374,
-    "pending": 809
+    "scripted": 3377,
+    "pending": 806
   },
   "scenarioRecipes": {
     "total": 355,
@@ -635,6 +635,7 @@
     "10149",
     "10157",
     "10158",
+    "10158.B",
     "10160",
     "10161",
     "10162",
@@ -645,6 +646,8 @@
     "10168",
     "10169",
     "10170",
+    "10172",
+    "10173",
     "11001",
     "11002",
     "11003",
@@ -3101,6 +3104,7 @@
     "octgn:cb3c0b3a-1c07-4da9-a65a-2e108d39736d",
     "octgn:cb3ca114-400e-4abf-87e6-124b75e92cb4",
     "octgn:cb3ca114-400e-4abf-87e6-124b75e92cb4:B",
+    "octgn:cb628fb0-b66a-49b0-8063-12dd39f564ce",
     "octgn:cb64fac2-c5ea-4233-86ed-90e30181a520",
     "octgn:cbbcf9d4-f9d8-448a-9454-3e36c493a31e",
     "octgn:cbf2984f-cfb8-4cc3-9d5c-fdadd4201451",
@@ -3595,9 +3599,9 @@
     {
       "product": "angmar-awakened-campaign-expansion",
       "total": 38,
-      "scripted": 15,
+      "scripted": 18,
       "player": 21,
-      "playerScripted": 7
+      "playerScripted": 8
     },
     {
       "product": "assault-on-osgiliath",
@@ -8699,7 +8703,7 @@
       "name": "Determination",
       "type": "event",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -8707,7 +8711,7 @@
       "name": "Fend off Despair",
       "type": "encounter-side-quest",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -33371,7 +33375,7 @@
       "name": "The Wastes of Eriador",
       "type": "campaign",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {

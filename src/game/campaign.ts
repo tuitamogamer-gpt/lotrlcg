@@ -27,6 +27,8 @@ import {
 } from "./saga-campaign";
 import type { ScenarioId } from "./types";
 import {
+  ANGMAR_DECK_BOONS,
+  ANGMAR_FREE_CHANGES,
   angmarChapterComplete,
   angmarChapterSupported,
   angmarForbiddenTitle,
@@ -192,7 +194,9 @@ export function continueCampaign(
   // The Ring Goes South's campaign card: "Each player may change hero cards he
   // controls without incurring the +1 threat penalty." Helm's Deep's and The
   // Passage of the Marshes' campaign cards say the same.
-  const free = saga && SAGA_FREE_CHANGES.includes(next);
+  const free =
+    (saga && SAGA_FREE_CHANGES.includes(next)) ||
+    (angmar && ANGMAR_FREE_CHANGES.includes(next));
   // The Treason of Saruman and The Flame of the West: no card titled "Frodo
   // Baggins" can be used, and a recorded Aragorn gives way to the Fellowship
   // Aragorn without the penalty. The Land of Shadow: no card titled
@@ -276,6 +280,25 @@ export function continueCampaign(
     "The recorded prisoner must remain in this fellowship.",
   );
   c.threatPenalty += free ? 0 : replaced.length;
+  // The Angmar Awakened campaign: Iârion's Pendant may join a player's deck.
+  if (angmar && deckBoons) {
+    const seatCount = s.table?.seats.length ?? 1;
+    requireRule(
+      Object.entries(deckBoons).every(
+        ([code, seat]) =>
+          ANGMAR_DECK_BOONS.includes(code) &&
+          c.boons.includes(code) &&
+          (seat === null ||
+            (Number.isSafeInteger(seat) && seat >= 0 && seat < seatCount)),
+      ),
+      "Choose a player's deck for each earned boon card.",
+    );
+    c.deckBoons = Object.fromEntries(
+      Object.entries(deckBoons).filter(
+        (entry): entry is [string, number] => entry[1] !== null,
+      ),
+    );
+  }
   if (saga && deckBoons) {
     requireRule(
       Object.values(deckBoons).every(

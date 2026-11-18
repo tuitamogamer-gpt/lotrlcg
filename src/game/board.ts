@@ -143,6 +143,7 @@ import {
 import {
   angmarCampaignAttachmentLeaves,
   angmarCampaignDamageDealt,
+  angmarEventDoomed,
   angmarOfferResolute,
   angmarPendantRevealOptions,
 } from "./angmar-campaign";
@@ -4286,7 +4287,14 @@ export function spendEvent(
   sagaCampaignEventPlayed(s, u);
   wainridersPlayerCardPlayed(s, card(u.code));
   batch4Scenario(s).playerCardPlayed?.(s, u);
-  Isengard.isengardPlayerPlayed(s, u, true, undefined, doomedX);
+  Isengard.isengardPlayerPlayed(
+    s,
+    u,
+    true,
+    undefined,
+    doomedX,
+    angmarEventDoomed(s, code),
+  );
   RacePlayers.raceHaradPlayerEventPlayed(s, u);
   stewardFearEventPlayed(s);
   log(s, `Played ${card(code).name}.`, "good");

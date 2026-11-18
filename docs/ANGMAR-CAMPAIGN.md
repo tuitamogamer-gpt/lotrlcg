@@ -4,10 +4,11 @@ Campaign mode for the nine scenarios of the Angmar Awakened cycle, with the
 Angmar Awakened Campaign Expansion's campaign cards, boons and burdens (the
 campaign pool CCC.3, 38 cards). The lobby's campaign mode offers it as the
 third campaign, next to Mirkwood Paths and The Lord of the Rings, for one
-fellowship of one to four local players. Its first three chapters, Intruders
-in Chetwood, The Weather Hills and Deadmen's Dike, are supported; the campaign
-log is kept after them, and the end of the game says that the next chapter,
-The Wastes of Eriador, is not available in campaign mode yet.
+fellowship of one to four local players. Its first four chapters, Intruders
+in Chetwood, The Weather Hills, Deadmen's Dike and The Wastes of Eriador, are
+supported; the campaign log is kept after them, and the end of the game says
+that the next chapter, Escape from Mount Gram, is not available in campaign
+mode yet.
 
 ## Sources
 
@@ -44,6 +45,16 @@ The Wastes of Eriador, is not available in campaign mode yet.
   penalty, and another version of the same hero is not a replacement.
 - **Amarthiúl**: the Amarthiúl hero cannot be chosen before The Battle of
   Carn Dûm.
+- **Free changes**: The Wastes of Eriador's and The Battle of Carn Dûm's
+  campaign cards let each player change heroes without the +1 penalty; the
+  interlude says so and its penalty preview counts none.
+- **Boons in decks**: Iârion's Pendant, once chosen, may join a player's deck:
+  the interlude before each chapter assigns it (or leaves it out), the log
+  keeps the choice, and the card joins that deck before the starting hand.
+  Each player's copy of Determination joins that player's deck in every
+  chapter after The Wastes of Eriador.
+- **Starting threat**: each defeat of Fend off Despair lowers every player's
+  starting threat by 2 in the later chapters (cumulatively, never below 0).
 - **The campaign card** of each chapter lies next to the quest deck (the quest
   inspector opens it and shows its state); its Setup resolves with the
   scenario's setup and its Resolution after a win. A Resolution that asks the
@@ -86,15 +97,22 @@ The Wastes of Eriador, is not available in campaign mode yet.
 | Thaurdir's Legacy, Majesty and Spite (burden objectives) | Thaurdir keeps his burden although he cannot have attachments (the campaign card attaches it). After a Sorcery treachery is revealed, each burden in play moves to the hero with the most resources (Legacy), the most non-objective attachments (Majesty) or the most damage (Spite); the first player breaks ties. On a hero each counts as a Sorcery attachment: -2 willpower and a blank text box (Legacy), -2 attack and it cannot commit to the quest (Majesty), -2 defense and it cannot be healed (Spite). A burden that leaves play is removed from the game. |
 | Amarthiúl's Courage (boon attachment)                    | Attached to Amarthiúl as he enters play with a scenario's setup (the objective ally of The Wastes of Eriador, Across the Ettenmoors and The Treachery of Rhudaur, or the Amarthiúl hero); otherwise it stays out of the game. +1 willpower and +1 hit point. Action: ready Amarthiúl (once per game).                                                                                                                                                                                                                                                                  |
 
+## The Wastes of Eriador (Part 4)
+
+| Card                                                      | Behaviour                                                                                                                                                                                                                                                                                                                                                                 |
+| --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Campaign card                                             | Setup: heroes change without the +1 penalty; each player adds 1 copy of Determination to their starting hand (it stays there through a mulligan); Fend off Despair is shuffled into the encounter deck. Resolution: each player's Determination and Fend off Despair join the Campaign Pool. Amarthiúl's Courage, if earned, is attached to the objective ally Amarthiúl. |
+| Determination (boon event, cost 1)                        | Action: attach it to a unique character (it stays in play as a Condition attachment), then ready each character with a Determination attached and each character the log marks "determined". When the players win, each character with a Determination attached is marked "determined".                                                                                   |
+| Fend off Despair (side quest, 8 quest points, Victory 10) | While it is in play each event gains doomed 1 (each player raises their threat by 1 as it is played). When it is defeated, every player's starting threat is lowered by 2 in the later chapters (recorded on a win; cumulative). Once in the pool it is shuffled into each later encounter deck.                                                                          |
+| Arnor Ravaged (burden objective, Doom.)                   | Protect the Innocent's other side, a runtime card of its own (10158.B, its scan's back face). Setup: it enters the staging area with the damage noted in the log. Forced: after an attack damages a character but does not destroy it, 1 of its damage moves to that character (and can destroy it).                                                                      |
+
 ## Not supported yet
 
-The Wastes of Eriador, Escape from Mount Gram, Across the Ettenmoors, The
-Treachery of Rhudaur, The Battle of Carn Dûm and The Dread Realm follow, with
-their boons and burdens (Determination, Fend off Despair, Loot the Dungeons and
-its six boons, Losing Time, the three Clue boons and the four Carn Dûm boons).
-They also bring the later effects of cards earned so far: Iârion's Pendant in a
-player's deck, Arnor Ravaged's setup and Forced effect, and Thaurdir's burdens'
-setup in The Treachery of Rhudaur and The Battle of Carn Dûm.
+Escape from Mount Gram, Across the Ettenmoors, The Treachery of Rhudaur, The
+Battle of Carn Dûm and The Dread Realm follow, with their boons and burdens
+(Loot the Dungeons and its six boons, Losing Time, the three Clue boons and the
+four Carn Dûm boons). They also bring Thaurdir's burdens' setup in The
+Treachery of Rhudaur and The Battle of Carn Dûm.
 
 ## Verification
 
@@ -104,7 +122,7 @@ npm run build
 npm run test:browser-angmar-campaign
 ```
 
-`tests/angmar-campaign.test.ts` (12 tests) covers the registered cards' texts
+`tests/angmar-campaign.test.ts` (16 tests) covers the registered cards' texts
 and faces, the chapter order and the Amarthiúl rule, Intruders in Chetwood's
 setup (one or two players), Iârion's Pendant on Iârion and its bonus,
 Protect the Innocent's damage, progress and loss, the Pendant's two
@@ -115,10 +133,16 @@ different boons), its resolution, and the five boons' bonuses, Actions and
 Response, their once-per-game limits and their return at the next setup;
 Deadmen's Dike's setup and Thaurdir's random burden, the three burdens'
 moves, ties and effects, their removal, the resolution's choice and its checks,
-and Amarthiúl's Courage. The browser suite starts a new Angmar Awakened
+and Amarthiúl's Courage; The Wastes of Eriador's free changes, its
+Determination in the starting hand and through a mulligan, Iârion's Pendant
+in its assigned deck, Determination's attachment, readying and "determined"
+log, Fend off Despair's doomed 1 and its starting threat reduction, and Arnor
+Ravaged's damage. The browser suite starts a new Angmar Awakened
 campaign through the lobby, plays Intruders in Chetwood's setup choice, records
 its resolution, continues into The Weather Hills, attaches Hardy through
 Mysterious Omens' choice, continues into Deadmen's Dike, moves Thaurdir's
 Spite to a hero, answers the resolution's choice in the end-of-game dialog,
-opens the campaign card's state in the quest inspector and checks the journal
-at 1280, 390 and 320 pixels (33 checkpoints), and checks the 19 pinned faces.
+puts Iârion's Pendant in a deck in the interlude, continues into The Wastes
+of Eriador and records its resolution, opens the campaign card's state in the
+quest inspector and checks the journal at 1280, 390 and 320 pixels (42
+checkpoints), and checks the 23 pinned faces.

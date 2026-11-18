@@ -33,7 +33,9 @@ import {
   angmarCampaignAfterReveal,
   angmarCampaignStatus,
   angmarInnocent,
+  angmarRavaged,
   angmarResolutionQuestions,
+  angmarThreatReduction,
   applyAngmarResolution,
   angmarPendantShadowOptions,
   innocentLimit,
@@ -124,6 +126,7 @@ test("The Angmar Awakened campaign: Intruders in Chetwood's campaign card, Iâri
     "intruders-in-chetwood",
     "the-weather-hills",
     "deadmens-dike",
+    "wastes-of-eriador",
   ]);
   const campaignCard = card(ANGMAR_CAMPAIGN_CARDS["intruders-in-chetwood"]!);
   assert.equal(campaignCard.subtitle, "Angmar Awakened Part 1");
@@ -209,7 +212,34 @@ test("The Angmar Awakened campaign: Intruders in Chetwood's campaign card, Iâri
     card(ANGMAR.courage).text!,
     /^Setup: Attach to Amarthiúl\. Otherwise, remove Amarthiúl's Courage from the game\./,
   );
-  assert.equal(art.length, 19);
+  const wastesCard = card(ANGMAR_CAMPAIGN_CARDS["wastes-of-eriador"]!);
+  assert.equal(wastesCard.subtitle, "Angmar Awakened Part 4");
+  assert.match(
+    wastesCard.text!,
+    /\nSetup: Each player may change hero cards without incurring the \+1 threat penalty\. Each player adds 1 copy of Determination to their starting hand\. Add each of those events to the Campaign Pool\. Shuffle the Fend Off Despair side quest into the encounter deck\.$/,
+  );
+  assert.deepEqual(
+    [card(ANGMAR.despair).quest, card(ANGMAR.despair).victory],
+    [8, 10],
+  );
+  assert.deepEqual(
+    [
+      card(ANGMAR.determination).type_code,
+      card(ANGMAR.determination).cost,
+      card(ANGMAR.determination).sphere_code,
+    ],
+    ["event", "1", "boon"],
+  );
+  // Arnor Ravaged, Protect the Innocent's other side, is its own runtime card.
+  assert.deepEqual(
+    [
+      card(ANGMAR.ravaged).name,
+      card(ANGMAR.ravaged).type_code,
+      card(ANGMAR.ravaged).imagesrc,
+    ],
+    ["Arnor Ravaged", "objective", card(ANGMAR.innocent).back_imagesrc],
+  );
+  assert.equal(art.length, 23);
   for (const a of art) {
     const bytes = readFileSync(`public${a.localPath}`);
     assert.equal(bytes.length, a.bytes);
@@ -884,9 +914,10 @@ test("Deadmen's Dike's resolution notes Protect the Innocent's damage and turns 
     () => applyAngmarResolution(t, { boon: ANGMAR.pendant }),
     /no resolution waiting/,
   );
-  assert.throws(
-    () => continueCampaign(t, HEROES, d.id, true, 9),
-    /not available in campaign mode yet/,
+  // The campaign continues with The Wastes of Eriador.
+  assert.equal(
+    continueCampaign(t, HEROES, d.id, true, 9).scenarioId,
+    "wastes-of-eriador",
   );
   const pendant = applyAngmarResolution(s, { boon: ANGMAR.pendant });
   assert.deepEqual(pendant.campaign!.boons, [ANGMAR.pendant]);
@@ -955,4 +986,187 @@ test("Amarthiúl's Courage: attached to Amarthiúl as he enters play with a scen
     hero.attachments.map((a) => a.code),
     [ANGMAR.courage],
   );
+});
+
+/** A won Deadmen's Dike with Iârion's Pendant chosen. */
+function dikeWon() {
+  const s = calm(reload(opening(dike())));
+  angmarInnocent(s)!.damage = 4;
+  s.angmarCards!.thaurdir = ANGMAR.spite;
+  win(s);
+  return applyAngmarResolution(s, { boon: ANGMAR.pendant });
+}
+const wastes = (seed = 5, campaign = dikeWon().campaign!) =>
+  createGame(seed, d.cards, HEROES, d.id, {
+    scenarioId: "wastes-of-eriador",
+    playMode: "campaign",
+    campaign,
+  });
+
+test("The Wastes of Eriador: heroes change without the +1 penalty, each player's Determination joins the starting hand and stays through a mulligan, Fend off Despair joins the encounter deck, Arnor Ravaged enters the staging area with the noted damage, and Iârion's Pendant joins the deck the interlude assigns it to", () => {
+  const won = dikeWon();
+  const swapped = ["01007", "01008", HEROES[2]];
+  const w = continueCampaign(
+    won,
+    swapped,
+    d.id,
+    true,
+    9,
+    undefined,
+    undefined,
+    {
+      [ANGMAR.pendant]: 0,
+    },
+  );
+  assert.equal(w.scenarioId, "wastes-of-eriador");
+  assert.equal(w.campaign!.threatPenalty, 0, "two heroes changed freely");
+  assert.deepEqual(w.campaign!.deckBoons, { [ANGMAR.pendant]: 0 });
+  assert.ok(
+    [...w.deck, ...w.hand.map((u) => u.code)].includes(ANGMAR.pendant),
+    "Iârion's Pendant is in the deck",
+  );
+  const determination = w.hand.find((u) => u.code === ANGMAR.determination)!;
+  assert.ok(determination, "Determination is in the starting hand");
+  assert.deepEqual(w.angmarCards!.setupHand, [determination.id]);
+  assert.equal(w.encounterDeck.filter((c) => c === ANGMAR.despair).length, 1);
+  const ravaged = angmarRavaged(w)!;
+  assert.ok(ravaged, "Arnor Ravaged is in the staging area");
+  assert.equal(ravaged.damage, 4);
+  assert.equal(angmarInnocent(w), undefined, "no Protect the Innocent");
+  assert.ok(valid(w));
+  const mulled = applyAction(reload(w), { type: "MULLIGAN" });
+  assert.ok(mulled.hand.some((u) => u.id === determination.id));
+  assert.equal(mulled.hand.length, 7, "6 new cards and Determination");
+  const t = calm(reload(opening(w)));
+  for (const line of [
+    "Arnor Ravaged has 4 damage: after an attack damages a character without destroying it, 1 of its damage moves to that character.",
+    "Fend off Despair is shuffled into the encounter deck: while it is in play each event gains doomed 1, and defeating it lowers each player's starting threat by 2 in later chapters.",
+  ])
+    assert.ok(angmarCampaignStatus(t).includes(line), line);
+  // Leaving Iârion's Pendant out of every deck is allowed.
+  const out = continueCampaign(
+    won,
+    HEROES,
+    d.id,
+    true,
+    9,
+    undefined,
+    undefined,
+    {
+      [ANGMAR.pendant]: null,
+    },
+  );
+  assert.ok(
+    ![...out.deck, ...out.hand.map((u) => u.code)].includes(ANGMAR.pendant),
+  );
+  assert.throws(
+    () =>
+      continueCampaign(won, HEROES, d.id, true, 9, undefined, undefined, {
+        [ANGMAR.courage]: 0,
+      }),
+    /Choose a player's deck for each earned boon card/,
+  );
+});
+
+test("Determination: attached to a unique character, it readies each character with Determination and each determined one; a won chapter marks its character determined, and The Wastes of Eriador pools each copy and Fend off Despair", () => {
+  let s = calm(reload(opening(wastes())));
+  s.campaign!.determined = ["01006"];
+  const hero = (code: string) => s.heroes.find((h) => h.code === code)!;
+  for (const h of s.heroes) h.exhausted = true;
+  hero("01005").resources = 1;
+  const det = s.hand.find((u) => u.code === ANGMAR.determination)!;
+  s = applyAction(reload(s), { type: "PLAY", id: det.id });
+  for (let i = 0; i < 5 && s.flow?.pending; i++)
+    s = applyAction(reload(s), { type: "CONTINUE", stepId: s.flow.pending.id });
+  assert.equal(s.choice!.title, "Determination · Attach to a unique character");
+  s = choose(s, hero("01003").id);
+  for (let i = 0; i < 5 && s.flow?.pending; i++)
+    s = applyAction(reload(s), { type: "CONTINUE", stepId: s.flow.pending.id });
+  assert.ok(
+    hero("01003").attachments.some(
+      (a) => a.code === ANGMAR.determination && a.id === det.id,
+    ),
+  );
+  assert.ok(!s.discard.includes(ANGMAR.determination), "it stays in play");
+  assert.equal(hero("01003").exhausted, false, "it carries Determination");
+  assert.equal(hero("01006").exhausted, false, "determined in the log");
+  assert.equal(hero("01005").exhausted, true);
+  assert.equal(hero("01005").resources, 0, "its cost is paid");
+  assert.ok(valid(s));
+  win(s);
+  const c = s.campaign!;
+  assert.deepEqual(c.determined, ["01006", "01003"]);
+  assert.ok(c.boons.includes(ANGMAR.determination));
+  assert.deepEqual(c.boonCopies, { [ANGMAR.determination]: [0] });
+  assert.ok(c.burdens.includes(ANGMAR.despair));
+  assert.ok(valid(s));
+  assert.throws(
+    () => continueCampaign(s, HEROES, d.id, true, 9),
+    /not available in campaign mode yet/,
+  );
+});
+
+test("Fend off Despair: while it is in play each event gains doomed 1; its defeat lowers each player's starting threat by 2 in later chapters, cumulatively", () => {
+  let s = calm(reload(opening(wastes())));
+  s.encounterDeck = s.encounterDeck.filter((c) => c !== ANGMAR.despair);
+  const despair = make(s, ANGMAR.despair);
+  s.staging.push(despair);
+  s.heroes[0].resources = 1;
+  const threat = s.threat;
+  const det = s.hand.find((u) => u.code === ANGMAR.determination)!;
+  s = applyAction(reload(s), { type: "PLAY", id: det.id });
+  for (let i = 0; i < 10 && (s.choice || s.flow?.pending); i++)
+    s = s.flow?.pending
+      ? applyAction(reload(s), { type: "CONTINUE", stepId: s.flow.pending.id })
+      : choose(s, s.choice!.options[0].id);
+  assert.equal(s.threat, threat + 1, "doomed 1");
+  // Its defeat.
+  s = calm(s);
+  addQuestProgress(
+    s,
+    s.staging.find((u) => u.code === ANGMAR.despair)!,
+    8,
+  );
+  assert.ok(s.victoryCards!.includes(ANGMAR.despair));
+  assert.equal(s.angmarCards!.despair, 1);
+  win(s);
+  assert.equal(s.campaign!.threatReduction, 2);
+  assert.equal(angmarThreatReduction(s.campaign), 2);
+  assert.ok(valid(s));
+  // The reduction applies to each player's starting threat (here a replay
+  // of the chapter with the reduction already in the log).
+  const plain = wastes(5);
+  const lower = wastes(5, { ...dikeWon().campaign!, threatReduction: 4 });
+  assert.equal(lower.threat, plain.threat - 4);
+});
+
+test("Arnor Ravaged: after an attack damages a character without destroying it, 1 of its damage moves to that character", () => {
+  const base = calm(reload(opening(wastes())));
+  let s = structuredClone(base);
+  const hero = s.heroes[2];
+  damage(s, hero.id, 1, { combatDamage: true, enemyId: "enemy" });
+  assert.equal(hero.damage, 2);
+  assert.equal(angmarRavaged(s)!.damage, 3);
+  damage(s, hero.id, 1, {});
+  assert.equal(angmarRavaged(s)!.damage, 3, "not an attack");
+  // An attack that destroys the character moves nothing.
+  s = structuredClone(base);
+  const victim = s.heroes[0];
+  damage(s, victim.id, stats(s, victim).health, {
+    combatDamage: true,
+    enemyId: "enemy",
+  });
+  assert.equal(angmarRavaged(s)!.damage, 4);
+  // The moved damage can destroy the character.
+  s = structuredClone(base);
+  const target = s.heroes[1];
+  target.damage = stats(s, target).health - 2;
+  damage(s, target.id, 1, { combatDamage: true, enemyId: "enemy" });
+  assert.ok(!s.heroes.some((h) => h.id === target.id), "destroyed");
+  assert.equal(angmarRavaged(s)!.damage, 3);
+  // With no damage left, nothing moves.
+  s = structuredClone(base);
+  angmarRavaged(s)!.damage = 0;
+  damage(s, s.heroes[2].id, 1, { combatDamage: true, enemyId: "enemy" });
+  assert.equal(s.heroes[2].damage, 1);
 });
