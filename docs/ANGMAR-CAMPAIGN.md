@@ -4,10 +4,10 @@ Campaign mode for the nine scenarios of the Angmar Awakened cycle, with the
 Angmar Awakened Campaign Expansion's campaign cards, boons and burdens (the
 campaign pool CCC.3, 38 cards). The lobby's campaign mode offers it as the
 third campaign, next to Mirkwood Paths and The Lord of the Rings, for one
-fellowship of one to four local players. Its first two chapters, Intruders in
-Chetwood and The Weather Hills, are supported; the campaign log is kept after
-them, and the end of the game says that the next chapter, Deadmen's Dike, is
-not available in campaign mode yet.
+fellowship of one to four local players. Its first three chapters, Intruders
+in Chetwood, The Weather Hills and Deadmen's Dike, are supported; the campaign
+log is kept after them, and the end of the game says that the next chapter,
+The Wastes of Eriador, is not available in campaign mode yet.
 
 ## Sources
 
@@ -46,7 +46,9 @@ not available in campaign mode yet.
   Carn Dûm.
 - **The campaign card** of each chapter lies next to the quest deck (the quest
   inspector opens it and shows its state); its Setup resolves with the
-  scenario's setup and its Resolution after a win.
+  scenario's setup and its Resolution after a win. A Resolution that asks the
+  players for a choice (Deadmen's Dike's) is answered in the end-of-game
+  dialog, and the campaign continues once it is recorded.
 - **The Campaign Pool** keeps the earned boons and burdens. A side quest in it
   (Mysterious Omens) is shuffled into each later encounter deck. A Permanent
   boon is recorded with the hero it is attached to and is attached to that hero
@@ -76,14 +78,23 @@ not available in campaign mode yet.
 | Ruthless (boon, Permanent Condition)                     | +1 attack. Action: move any amount of damage from its hero to an enemy engaged with you (once per game); moved damage is not dealt, and an enemy with damage equal to its hit points is destroyed unless it is indestructible.                                                                                                    |
 | Stalwart (boon, Permanent Condition)                     | +1 defense. Planning Action: play an attachment from your discard pile on its hero, paying its cost (once per game); the choice lists only attachments that can be played there, and Deadmen's Dike's discard pile rule forbids it.                                                                                               |
 
+## Deadmen's Dike (Part 3)
+
+| Card                                                     | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Campaign card                                            | Setup: Iârion's Pendant is attached to Iârion as he enters play with the scenario's setup; Protect the Innocent enters the staging area with its noted damage. Forced: after Thaurdir enters play (stage 2), one of his three burdens is attached to him at random. Resolution: Protect the Innocent's damage replaces the note, and Arnor Ravaged (its other side) takes its place in the Campaign Pool; Thaurdir's burden joins the pool; the players choose Iârion's Pendant or Amarthiúl's Courage for the pool.                                                   |
+| Thaurdir's Legacy, Majesty and Spite (burden objectives) | Thaurdir keeps his burden although he cannot have attachments (the campaign card attaches it). After a Sorcery treachery is revealed, each burden in play moves to the hero with the most resources (Legacy), the most non-objective attachments (Majesty) or the most damage (Spite); the first player breaks ties. On a hero each counts as a Sorcery attachment: -2 willpower and a blank text box (Legacy), -2 attack and it cannot commit to the quest (Majesty), -2 defense and it cannot be healed (Spite). A burden that leaves play is removed from the game. |
+| Amarthiúl's Courage (boon attachment)                    | Attached to Amarthiúl as he enters play with a scenario's setup (the objective ally of The Wastes of Eriador, Across the Ettenmoors and The Treachery of Rhudaur, or the Amarthiúl hero); otherwise it stays out of the game. +1 willpower and +1 hit point. Action: ready Amarthiúl (once per game).                                                                                                                                                                                                                                                                  |
+
 ## Not supported yet
 
-Deadmen's Dike, The Wastes of Eriador, Escape from Mount Gram, Across the
-Ettenmoors, The Treachery of Rhudaur, The Battle of Carn Dûm and The Dread
-Realm follow, with their boons and burdens (Thaurdir's three burdens,
-Amarthiúl's Courage, Arnor Ravaged, Determination, Fend off Despair, Loot the
-Dungeons and its six boons, Losing Time, the three Clue boons and the four
-Carn Dûm boons).
+The Wastes of Eriador, Escape from Mount Gram, Across the Ettenmoors, The
+Treachery of Rhudaur, The Battle of Carn Dûm and The Dread Realm follow, with
+their boons and burdens (Determination, Fend off Despair, Loot the Dungeons and
+its six boons, Losing Time, the three Clue boons and the four Carn Dûm boons).
+They also bring the later effects of cards earned so far: Iârion's Pendant in a
+player's deck, Arnor Ravaged's setup and Forced effect, and Thaurdir's burdens'
+setup in The Treachery of Rhudaur and The Battle of Carn Dûm.
 
 ## Verification
 
@@ -93,7 +104,7 @@ npm run build
 npm run test:browser-angmar-campaign
 ```
 
-`tests/angmar-campaign.test.ts` (8 tests) covers the registered cards' texts
+`tests/angmar-campaign.test.ts` (12 tests) covers the registered cards' texts
 and faces, the chapter order and the Amarthiúl rule, Intruders in Chetwood's
 setup (one or two players), Iârion's Pendant on Iârion and its bonus,
 Protect the Innocent's damage, progress and loss, the Pendant's two
@@ -101,9 +112,13 @@ cancellations, the resolution, fallen heroes, saves and the continuation into
 The Weather Hills; The Weather Hills' setup (also when replayed), Mysterious
 Omens' discard and its boon choices (one player, and two players taking
 different boons), its resolution, and the five boons' bonuses, Actions and
-Response, their once-per-game limits and their return at the next setup. The
-browser suite starts a new Angmar Awakened campaign through the lobby, plays
-Intruders in Chetwood's setup choice, records its resolution, continues into
-The Weather Hills, attaches Hardy through Mysterious Omens' choice, opens the
-campaign card's state in the quest inspector and records the resolution at
-1280, 390 and 320 pixels (21 checkpoints), and checks the 13 pinned faces.
+Response, their once-per-game limits and their return at the next setup;
+Deadmen's Dike's setup and Thaurdir's random burden, the three burdens'
+moves, ties and effects, their removal, the resolution's choice and its checks,
+and Amarthiúl's Courage. The browser suite starts a new Angmar Awakened
+campaign through the lobby, plays Intruders in Chetwood's setup choice, records
+its resolution, continues into The Weather Hills, attaches Hardy through
+Mysterious Omens' choice, continues into Deadmen's Dike, moves Thaurdir's
+Spite to a hero, answers the resolution's choice in the end-of-game dialog,
+opens the campaign card's state in the quest inspector and checks the journal
+at 1280, 390 and 320 pixels (33 checkpoints), and checks the 19 pinned faces.

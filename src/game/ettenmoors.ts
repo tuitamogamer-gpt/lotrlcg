@@ -1,3 +1,4 @@
+import { angmarAmarthiulEntered } from "./angmar-campaign";
 import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import type { Card, Effect, GameState, Option, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
@@ -480,6 +481,7 @@ export function ettenEffect(s: GameState, e: Effect) {
       const ranger = make(s, E.amarthiul);
       ranger.controller = firstPlayer(s);
       forOwner(s, firstPlayer(s), () => s.allies.push(ranger));
+      angmarAmarthiulEntered(s, ranger);
       q.initialized = true;
       log(
         s,

@@ -1,3 +1,4 @@
+import { THAURDIR_BURDENS } from "./angmar-campaign-support";
 import { removeFromQuest } from "./board";
 import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import { choosePlayerResponse } from "./player-ability-triggers";
@@ -446,7 +447,9 @@ export function heirsCheck(s: GameState) {
   ))
     c.committed = !c.blanked;
   for (const u of enemies(s).filter(heirsCannotHaveAttachments))
-    for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
+    for (const a of [...u.attachments])
+      // The Angmar Awakened campaign attaches Thaurdir's burdens to him.
+      if (!THAURDIR_BURDENS.includes(a.code)) discardAttachment(s, u, a, true);
   for (const u of battlegrounds(s)) {
     const maximum =
       u.code === H.banks

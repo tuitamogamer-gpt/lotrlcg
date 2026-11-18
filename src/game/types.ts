@@ -573,6 +573,8 @@ export interface GameState {
     spent?: string[];
     /** Cunning's +2 willpower, attack and defense until the end of the phase. */
     boosts?: { target: string; phase: string; round: number }[];
+    /** Deadmen's Dike: the burden attached to Thaurdir at random (pooled on a win). */
+    thaurdir?: string;
   };
   /** The Lord of the Rings campaign: pending The Ring Draws Them engagements and Mr. Underhill marks. */
   sagaCards?: {

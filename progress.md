@@ -1229,3 +1229,16 @@ Validation on Node 22: the engine suite passes all 6,768 tests, including 5 new 
 Coverage is now 861 player definitions (112 heroes), 2,117 encounters and 123 scenarios. This resolves 3,369 of 4,183 identities and 270 of 355 recipes; 814 identities remain pending.
 
 Validation on Node 22: the engine suite passes all 6,771 tests, including 8 for the Angmar Awakened campaign; the Angmar browser suite passes 21 checkpoints at 1280, 390 and 320 pixels, through The Weather Hills, and checks the 13 pinned faces; the production build passes.
+
+2026-11-18 The Angmar Awakened campaign, Deadmen's Dike: continued the user's “Nastavi” after 3c12d5b. The campaign's third chapter is supported; the end of the game now reaches The Wastes of Eriador's note. See docs/ANGMAR-CAMPAIGN.md.
+
+- Deadmen's Dike's campaign card, Thaurdir's Legacy, Majesty and Spite and Amarthiúl's Courage are registered with the scans' texts (19 faces pinned in all). Iârion's Pendant is attached to Iârion as he enters play, and Protect the Innocent returns with its noted damage (the rule is now shared by every chapter that keeps it in the pool).
+- Thaurdir takes one of his three burdens at random as he enters play (stage 2); the generic "cannot have attachments" cleanup leaves it on him. After a Sorcery treachery is revealed, each burden moves to the hero with the most resources, non-objective attachments or damage (the first player breaks ties); on a hero it is a Sorcery attachment: -2 willpower and a blank text box, -2 attack and no questing, or -2 defense and no healing. A burden that leaves play is removed from the game.
+- The resolution notes Protect the Innocent's damage, puts Arnor Ravaged (its other side) in its place, pools Thaurdir's burden and asks the group for Iârion's Pendant or Amarthiúl's Courage: the end-of-game resolution dialog now serves this campaign too, and the campaign continues once it is recorded. The journal names Arnor Ravaged.
+- Amarthiúl's Courage is attached to Amarthiúl as he enters play with a scenario's setup (the objective ally of three later chapters, or the hero), with +1 willpower, +1 hit point and a once-per-game ready.
+- The end-of-game dialog showed the Mirkwood Paths note about Mendor once any campaign had three chapters; it is limited to Mirkwood Paths now.
+- The first engine run failed two test files: the campaign module read the burdens' codes from the new support module at load, inside an import cycle; the codes are now local constants, and the rerun passes.
+
+Coverage is now 861 player definitions (112 heroes), 2,122 encounters and 123 scenarios. This resolves 3,374 of 4,183 identities and 270 of 355 recipes; 809 identities remain pending.
+
+Validation on Node 22: the engine suite passes all 6,775 tests, including 12 for the Angmar Awakened campaign; the Angmar browser suite passes 33 checkpoints at 1280, 390 and 320 pixels, through Deadmen's Dike's resolution dialog, and checks the 19 pinned faces; the production build passes.

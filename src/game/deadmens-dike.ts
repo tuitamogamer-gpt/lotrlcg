@@ -1,3 +1,4 @@
+import { angmarIarionEntered, angmarThaurdirEntered } from "./angmar-campaign";
 import { removeFromQuest } from "./board";
 import type { Card, Effect, GameState, Option, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
@@ -526,6 +527,8 @@ export function dikeEffect(s: GameState, e: Effect) {
         fx("dikeShuffle"),
         fx("dikeSetupReveal", { player: firstPlayer(s) }),
       );
+      // The Angmar Awakened campaign: Iârion's Pendant is attached to Iârion.
+      angmarIarionEntered(s, ally);
       break;
     }
     case "dikeSetupShade": {
@@ -546,6 +549,7 @@ export function dikeEffect(s: GameState, e: Effect) {
         q.setAside = q.setAside.filter((u) => u.id !== enemy.id);
         s.staging.push(enemy);
         enemyAddedToStaging(s, enemy);
+        angmarThaurdirEntered(s, enemy);
         prepend(
           s,
           ...playerOrder(s).map(() => fx("reveal", { player: firstPlayer(s) })),

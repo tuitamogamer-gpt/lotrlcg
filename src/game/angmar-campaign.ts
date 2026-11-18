@@ -69,7 +69,19 @@ export const ANGMAR = {
   resolute: "10163",
   ruthless: "10164",
   stalwart: "10165",
+  /** Amarthiúl's Courage (boon attachment, chosen after Deadmen's Dike). */
+  courage: "10167",
+  /** Thaurdir's three burdens. */
+  legacy: "10168",
+  majesty: "10169",
+  spite: "10170",
 } as const;
+/** Thaurdir's Legacy, Majesty and Spite (the support module's list, kept local to avoid an import cycle at load). */
+const THAURDIR_BURDENS: readonly string[] = [
+  ANGMAR.legacy,
+  ANGMAR.majesty,
+  ANGMAR.spite,
+];
 /** Cunning, Hardy, Resolute, Ruthless and Stalwart (Permanent Condition boons). */
 export const SKILL_BOONS: readonly string[] = [
   ANGMAR.cunning,
@@ -94,6 +106,7 @@ export const ANGMAR_CAMPAIGN_ORDER: readonly ScenarioId[] = [
 export const ANGMAR_CAMPAIGN_SUPPORTED: readonly ScenarioId[] = [
   "intruders-in-chetwood",
   "the-weather-hills",
+  "deadmens-dike",
 ];
 /** Each chapter's campaign card. */
 export const ANGMAR_CAMPAIGN_CARDS: Partial<Record<ScenarioId, string>> = {
@@ -169,11 +182,6 @@ export const innocentLimit = (s: GameState) =>
 export function angmarCampaignSetup(s: GameState) {
   const c = s.campaign;
   if (!isAngmarCampaign(c)) return;
-  const code = ANGMAR_CAMPAIGN_CARDS[s.scenarioId];
-  log(
-    s,
-    `${code ? card(code).name : "Angmar Awakened"} · The Angmar Awakened campaign.`,
-  );
   // The Permanent boons recorded in the Campaign Log return to their heroes
   // ("Setup: Attach to a hero"); Cunning adds 2 resources to that hero's pool.
   for (const p of seatIndices(s))
@@ -202,15 +210,23 @@ export function angmarCampaignSetup(s: GameState) {
     s.encounterDeck.push(ANGMAR.omens);
     shuffle(s, s.encounterDeck);
   }
-  // The Weather Hills: "Add the Protect the Innocent side quest to the
-  // staging area and place damage on it equal to the amount of damage noted
-  // for it in the Campaign Log."
-  if (s.scenarioId === "the-weather-hills") {
+  // The Weather Hills and Deadmen's Dike: "Add the Protect the Innocent side
+  // quest to the staging area and place damage on it equal to the amount of
+  // damage noted for it in the Campaign Log."
+  if (
+    s.scenarioId !== "intruders-in-chetwood" &&
+    c!.burdens.includes(ANGMAR.innocent) &&
+    !c!.ravaged
+  ) {
     const quest = make(s, ANGMAR.innocent);
     quest.damage = c!.innocent ?? 0;
     s.staging.push(quest);
     state(s).innocent = quest.id;
   }
+  // Amarthiúl's Courage: "Setup: Attach to Amarthiúl." (The Amarthiúl hero;
+  // the scenarios' objective ally is attached as he enters play.)
+  for (const p of seatIndices(s))
+    for (const h of seatView(s, p).heroes) angmarAmarthiulEntered(s, h);
   if (s.scenarioId === "intruders-in-chetwood") {
     // "Add the Protect the Innocent side quest to the staging area. Starting
     // with the first player, each player may place 4 damage on Protect the
@@ -276,7 +292,9 @@ export const angmarCampaignAbilityLabel = (code: string) =>
         ? "Ruthless · Move damage from attached hero to an enemy engaged with you (once per game)"
         : code === ANGMAR.stalwart
           ? "Stalwart · Play an attachment from your discard pile on attached hero (once per game)"
-          : undefined;
+          : code === ANGMAR.courage
+            ? "Amarthiúl's Courage · Ready Amarthiúl (once per game)"
+            : undefined;
 /** Attachments in a player's discard pile that Stalwart can play on its hero. */
 function stalwartChoices(s: GameState, hero: Unit, p: number) {
   return [...new Set(seatView(s, p).discard)].filter((code) => {
@@ -312,7 +330,9 @@ export function angmarCampaignAbilityProblem(
   if (ownerOf(s, u) !== p)
     return `${card(a.code).name} belongs to another player.`;
   if (spent(s, a.id)) return `${card(a.code).name} was used this game.`;
-  if (a.code === ANGMAR.hardy) {
+  if (a.code === ANGMAR.hardy || a.code === ANGMAR.courage) {
+    if (a.code === ANGMAR.courage && card(u.code).name !== "Amarthiúl")
+      return "Amarthiúl's Courage readies only Amarthiúl.";
     if (!u.exhausted) return `${name(u)} is already ready.`;
     if (cannotReady(u, s)) return `${name(u)} cannot ready.`;
   }
@@ -353,9 +373,9 @@ export function angmarCampaignAbility(
       `Cunning: ${name(u)} gets +2 willpower, +2 attack and +2 defense until the end of the phase.`,
       "good",
     );
-  } else if (a.code === ANGMAR.hardy) {
+  } else if (a.code === ANGMAR.hardy || a.code === ANGMAR.courage) {
     readyCharacter(s, u);
-    log(s, `Hardy: ${name(u)} readies.`, "good");
+    log(s, `${card(a.code).name}: ${name(u)} readies.`, "good");
   } else if (a.code === ANGMAR.ruthless) {
     choose(
       s,
@@ -419,6 +439,117 @@ export function angmarOfferResolute(
       player: ownerOf(s, u),
     }),
   );
+  return true;
+}
+/**
+ * Amarthiúl's Courage: "Setup: Attach to Amarthiúl. Otherwise, remove
+ * Amarthiúl's Courage from the game." Amarthiúl enters play with the setup
+ * (the objective ally of three scenarios, or a player's hero).
+ */
+export function angmarAmarthiulEntered(s: GameState, u: Unit) {
+  const c = s.campaign;
+  if (
+    !isAngmarCampaign(c) ||
+    !c!.boons.includes(ANGMAR.courage) ||
+    card(u.code).name !== "Amarthiúl" ||
+    seatIndices(s).some((p) =>
+      [...seatView(s, p).heroes, ...seatView(s, p).allies].some((x) =>
+        x.attachments.some((a) => a.code === ANGMAR.courage),
+      ),
+    )
+  )
+    return;
+  u.attachments.push({
+    id: `a${s.nextId++}`,
+    code: ANGMAR.courage,
+    exhausted: false,
+  });
+  log(s, "Amarthiúl's Courage is attached to Amarthiúl.", "good");
+}
+/**
+ * Deadmen's Dike: "Forced: After Thaurdir enters play, randomly select one of
+ * the following burdens and attach it to Thaurdir: Thaurdir's Legacy,
+ * Thaurdir's Majesty, or Thaurdir's Spite. Add that card to the Campaign
+ * Pool." (The Campaign Log records it once the chapter is won.)
+ */
+export function angmarThaurdirEntered(s: GameState, thaurdir: Unit) {
+  if (
+    !isAngmarCampaign(s.campaign) ||
+    s.scenarioId !== "deadmens-dike" ||
+    s.angmarCards?.thaurdir
+  )
+    return;
+  const code =
+    THAURDIR_BURDENS[Math.floor(random(s) * THAURDIR_BURDENS.length)];
+  thaurdir.attachments.push({ id: `a${s.nextId++}`, code, exhausted: false });
+  state(s).thaurdir = code;
+  log(
+    s,
+    `Deadmen's Dike: ${card(code).name} is attached to Thaurdir at random and joins the Campaign Pool.`,
+    "danger",
+  );
+}
+/** Thaurdir's burdens in play, with their hosts (Thaurdir or a hero). */
+function thaurdirBurdens(s: GameState) {
+  const hosts = [
+    ...seatIndices(s).flatMap((p) => [
+      ...seatView(s, p).heroes,
+      ...seatView(s, p).allies,
+      ...seatView(s, p).engaged,
+    ]),
+    ...s.staging,
+    ...(s.deadmensDike?.setAside ?? []),
+  ];
+  return hosts.flatMap((host) =>
+    host.attachments
+      .filter((a) => THAURDIR_BURDENS.includes(a.code) && !a.blanked)
+      .map((a) => ({ host, a })),
+  );
+}
+/** The heroes Thaurdir's burden moves to: the most resources, non-objective attachments or damage. */
+function burdenTargets(s: GameState, code: string) {
+  const heroes = seatIndices(s).flatMap((p) => seatView(s, p).heroes);
+  const value = (h: Unit) =>
+    code === ANGMAR.legacy
+      ? h.resources
+      : code === ANGMAR.majesty
+        ? h.attachments.filter(
+            (a) => !card(a.code).type_code.startsWith("objective"),
+          ).length
+        : h.damage;
+  const most = Math.max(...heroes.map(value));
+  return heroes.filter((h) => value(h) === most);
+}
+const BURDEN_RULE: Record<string, string> = {
+  [ANGMAR.legacy]: "the hero with the most resources",
+  [ANGMAR.majesty]: "the hero with the most non-objective attachments",
+  [ANGMAR.spite]: "the hero with the most damage",
+};
+/** Thaurdir's burdens: "Forced: After a Sorcery treachery is revealed, move … to the hero with the most …". */
+export function angmarCampaignAfterReveal(s: GameState, code: string) {
+  if (
+    !isAngmarCampaign(s.campaign) ||
+    card(code).type_code !== "treachery" ||
+    !(card(code).traits ?? "").split(".").some((t) => t.trim() === "Sorcery")
+  )
+    return;
+  prepend(
+    s,
+    ...thaurdirBurdens(s).map(({ a }) =>
+      fx("angmarThaurdirMove", { source: a.id, code: a.code }),
+    ),
+  );
+}
+/** Thaurdir's burden leaves play: it is removed from this game (the Campaign Pool keeps it). */
+export function angmarCampaignAttachmentLeaves(
+  s: GameState,
+  host: Unit,
+  a: { id: string; code: string },
+) {
+  if (!isAngmarCampaign(s.campaign) || !THAURDIR_BURDENS.includes(a.code))
+    return false;
+  host.attachments = host.attachments.filter((x) => x.id !== a.id);
+  log(s, `${card(a.code).name} is removed from the game.`);
   return true;
 }
 /** Iârion enters play: the campaign card attaches Iârion's Pendant to him. */
@@ -566,6 +697,25 @@ export function resolveAngmarCampaign(s: GameState) {
       "good",
     );
   }
+  if (s.scenarioId === "deadmens-dike") {
+    // "Note the amount of damage on Protect the Innocent in the Campaign Log
+    // (replacing the previous number) and remove Protect the Innocent from
+    // the Campaign Pool. Add Arnor Ravaged to the Campaign Pool in its place
+    // (found on the opposite side of Protect the Innocent)."
+    c.innocent = angmarInnocent(s)?.damage ?? 0;
+    c.ravaged = true;
+    if (!c.burdens.includes(ANGMAR.innocent)) c.burdens.push(ANGMAR.innocent);
+    const burden = q?.thaurdir;
+    if (burden && !c.burdens.includes(burden)) c.burdens.push(burden);
+    log(
+      s,
+      `Deadmen's Dike · Resolution: Protect the Innocent's ${c.innocent} damage is noted, and Arnor Ravaged takes its place in the Campaign Pool${burden ? `; ${card(burden).name} joins it` : ""}.`,
+      "good",
+    );
+    // "The players as a group must select either Iârion's Pendant or
+    // Amarthiúl's Courage to add to the Campaign Pool."
+    c.resolution = s.scenarioId;
+  }
   if (s.scenarioId === "intruders-in-chetwood") {
     // "Note the amount of damage on Protect the Innocent in the Campaign Log
     // and add Protect the Innocent to the Campaign Pool."
@@ -585,6 +735,59 @@ export function resolveAngmarCampaign(s: GameState) {
   log(s, "The Campaign Log has been updated.", "good");
 }
 
+/** The choices a campaign card's resolution asks of the players. */
+export function angmarResolutionQuestions(s: GameState): {
+  id: string;
+  label: string;
+  options: { id: string; code?: string; label: string }[];
+}[] {
+  const c = s.campaign;
+  if (
+    !isAngmarCampaign(c) ||
+    s.status !== "won" ||
+    c!.resolution !== s.scenarioId
+  )
+    return [];
+  if (s.scenarioId === "deadmens-dike")
+    return [
+      {
+        id: "boon",
+        label:
+          "The players as a group select Iârion's Pendant or Amarthiúl's Courage and add it to the Campaign Pool.",
+        options: [ANGMAR.pendant, ANGMAR.courage].map((code) => ({
+          id: code,
+          code,
+          label: card(code).name,
+        })),
+      },
+    ];
+  return [];
+}
+/** Record the players' resolution choices in the Campaign Log. */
+export function applyAngmarResolution(
+  input: GameState,
+  answers: Record<string, string>,
+): GameState {
+  const s = structuredClone(input);
+  const c = s.campaign;
+  const questions = angmarResolutionQuestions(s);
+  if (!questions.length)
+    throw new RuleError("This campaign card has no resolution waiting.");
+  for (const q of questions)
+    if (!q.options.some((o) => o.id === answers[q.id]))
+      throw new RuleError(`Answer: ${q.label}`);
+  if (s.scenarioId === "deadmens-dike") {
+    if (!c!.boons.includes(answers.boon)) c!.boons.push(answers.boon);
+    log(
+      s,
+      `Deadmen's Dike · Resolution: ${card(answers.boon).name} is added to the Campaign Pool${answers.boon === ANGMAR.pendant ? " (any player may add it to their deck)" : ""}.`,
+      "good",
+    );
+  }
+  c!.resolution = null;
+  return s;
+}
+
 /** The campaign card's live state, for the quest inspector. */
 export function angmarCampaignStatus(s: GameState): string[] {
   if (!isAngmarCampaign(s.campaign)) return [];
@@ -598,6 +801,12 @@ export function angmarCampaignStatus(s: GameState): string[] {
   if (s.campaign!.burdens.includes(ANGMAR.omens) && !q?.omens)
     out.push(
       "Mysterious Omens is shuffled into the encounter deck: defeating it removes it from the Campaign Pool and lets each player attach Cunning, Hardy, Resolute, Ruthless or Stalwart to a hero.",
+    );
+  for (const { host, a } of thaurdirBurdens(s))
+    out.push(
+      card(host.code).type_code === "hero"
+        ? `${card(a.code).name} is attached to ${name(host)} (${a.code === ANGMAR.legacy ? "-2 willpower, its printed text box is blank" : a.code === ANGMAR.majesty ? "-2 attack, it cannot commit to the quest" : "-2 defense, it cannot be healed"}); after a Sorcery treachery is revealed it moves to ${BURDEN_RULE[a.code]}.`
+        : `${card(a.code).name} is attached to Thaurdir: after a Sorcery treachery is revealed it moves to ${BURDEN_RULE[a.code]}.`,
     );
   if (q?.skills?.length)
     out.push(
@@ -868,6 +1077,53 @@ export function angmarCampaignEffect(s: GameState, e: Effect): boolean {
         applyCombatDamageConsequences(s, hero, enemy, value, remaining);
       return true;
     }
+    case "angmarThaurdirMove": {
+      const found = thaurdirBurdens(s).find(({ a }) => a.id === e.source);
+      if (!found) return true;
+      const targets = burdenTargets(s, found.a.code);
+      if (targets.length === 1)
+        prepend(
+          s,
+          fx("angmarThaurdirPlace", {
+            source: found.a.id,
+            target: targets[0].id,
+          }),
+        );
+      else if (targets.length)
+        forOwner(s, first(s), () =>
+          choose(
+            s,
+            `${card(found.a.code).name} · Choose ${BURDEN_RULE[found.a.code]}`,
+            targets.map((h) => ({
+              id: h.id,
+              code: h.code,
+              label: name(h),
+              effects: [
+                fx("angmarThaurdirPlace", { source: found.a.id, target: h.id }),
+              ],
+            })),
+            card(found.a.code).text,
+          ),
+        );
+      return true;
+    }
+    case "angmarThaurdirPlace": {
+      const found = thaurdirBurdens(s).find(({ a }) => a.id === e.source);
+      const hero = get(s, e.target);
+      if (!found || !hero) return true;
+      if (found.host.id !== hero.id) {
+        found.host.attachments = found.host.attachments.filter(
+          (x) => x.id !== found.a.id,
+        );
+        hero.attachments.push(found.a);
+      }
+      log(
+        s,
+        `${card(found.a.code).name} moves to ${name(hero)} (it counts as a Sorcery attachment).`,
+        "danger",
+      );
+      return true;
+    }
     case "angmarPendantSpend": {
       const host = get(s, e.target);
       if (!host) return true;
@@ -886,10 +1142,15 @@ export function angmarCampaignEffect(s: GameState, e: Effect): boolean {
 }
 
 /** The Campaign Pool's cards this campaign can hold so far. */
-export const ANGMAR_BOONS: readonly string[] = [...SKILL_BOONS];
+export const ANGMAR_BOONS: readonly string[] = [
+  ...SKILL_BOONS,
+  ANGMAR.pendant,
+  ANGMAR.courage,
+];
 export const ANGMAR_BURDENS: readonly string[] = [
   ANGMAR.innocent,
   ANGMAR.omens,
+  ...THAURDIR_BURDENS,
 ];
 /** The Angmar Awakened Campaign Log in a saved game. */
 export function validateAngmarCampaign(s: GameState): boolean {
@@ -931,7 +1192,11 @@ export function validateAngmarCampaign(s: GameState): boolean {
     ) &&
     c.prisoner === null &&
     typeof c.mendorSaved === "boolean" &&
-    (c.resolution === undefined || c.resolution === null) &&
+    (c.resolution === undefined ||
+      c.resolution === null ||
+      (c.resolution === s.scenarioId &&
+        s.status === "won" &&
+        s.scenarioId === "deadmens-dike")) &&
     (c.seatHeroes === undefined ||
       (Array.isArray(c.seatHeroes) &&
         c.seatHeroes.length === (s.table?.seats.length ?? 1) &&
@@ -952,6 +1217,7 @@ export function validateAngmarCampaign(s: GameState): boolean {
       (!!q &&
         typeof q === "object" &&
         (q.innocent === undefined || typeof q.innocent === "string") &&
+        (q.thaurdir === undefined || THAURDIR_BURDENS.includes(q.thaurdir)) &&
         (q.omens === undefined || typeof q.omens === "boolean") &&
         (q.skills === undefined ||
           (Array.isArray(q.skills) &&

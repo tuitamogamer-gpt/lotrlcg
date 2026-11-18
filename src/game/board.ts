@@ -141,6 +141,7 @@ import {
   sagaTomBombadilOptions,
 } from "./saga-campaign-cards";
 import {
+  angmarCampaignAttachmentLeaves,
   angmarCampaignDamageDealt,
   angmarOfferResolute,
   angmarPendantRevealOptions,
@@ -1674,6 +1675,11 @@ export function discardAttachment(
   // owner's hand.
   if (sagaCampaignAttachmentLeaves(s, a, leaving)) {
     u.attachments = u.attachments.filter((x) => x.id !== a.id);
+    syncAttachmentText(s);
+    return;
+  }
+  // The Angmar Awakened campaign: Thaurdir's burdens leave the game.
+  if (angmarCampaignAttachmentLeaves(s, u, a)) {
     syncAttachmentText(s);
     return;
   }

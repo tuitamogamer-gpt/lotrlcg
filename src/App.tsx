@@ -356,6 +356,7 @@ import {
   sagaResolutionQuestions,
 } from "./game/saga-campaign";
 import {
+  ANGMAR,
   ANGMAR_CAMPAIGN_CARDS,
   ANGMAR_CAMPAIGN_ORDER,
   ANGMAR_CAMPAIGN_SUPPORTED,
@@ -363,6 +364,8 @@ import {
   angmarChapterComplete,
   angmarChapterSupported,
   angmarForbiddenTitle,
+  angmarResolutionQuestions,
+  applyAngmarResolution,
   nextAngmarChapter,
 } from "./game/angmar-campaign";
 import {
@@ -5340,7 +5343,11 @@ export default function App() {
                   inspect={setDetail}
                   onRecord={(answers) => {
                     try {
-                      setGame(applySagaResolution(game, answers));
+                      setGame(
+                        game.campaign?.kind === "angmar"
+                          ? applyAngmarResolution(game, answers)
+                          : applySagaResolution(game, answers),
+                      );
                     } catch (e) {
                       notify((e as Error).message);
                     }
@@ -5394,9 +5401,9 @@ export default function App() {
                   Choose another adventure <ArrowRight />
                 </button>
               )}
-              {game.campaign?.kind !== "saga" &&
-                game.campaign?.completed.length ===
-                  CAMPAIGN_CHAPTERS.length && (
+              {game.campaign &&
+                !game.campaign.kind &&
+                game.campaign.completed.length === CAMPAIGN_CHAPTERS.length && (
                   <p className="campaign-note">
                     {game.campaign.mendorSaved
                       ? "Mendor survived. His Support will be available from the start of your next Core Set campaign."
@@ -5423,7 +5430,10 @@ function SagaResolution({
   inspect: (c: Card) => void;
   onRecord: (answers: Record<string, string>) => void;
 }) {
-  const questions = sagaResolutionQuestions(game);
+  const questions =
+    game.campaign?.kind === "angmar"
+      ? angmarResolutionQuestions(game)
+      : sagaResolutionQuestions(game);
   const [answers, setAnswers] = useState<Record<string, string>>(() =>
     Object.fromEntries(questions.map((q) => [q.id, q.options[0]?.id ?? ""])),
   );
@@ -5440,7 +5450,7 @@ function SagaResolution({
         <button
           className="text-link"
           onClick={() => {
-            const code = SAGA_CAMPAIGN_CARD_CODES[game.scenarioId];
+            const code = campaignCardOf(game);
             if (code) inspect({ ...card(code), initialReverse: true } as Card);
           }}
         >
@@ -5572,9 +5582,20 @@ function CampaignJournal({
                 : (c.burdenCopies?.[code] ??
                   c.burdens.filter((x) => x === code).length);
               return (
-                <button key={code} onClick={() => inspect(card(code))}>
+                <button
+                  key={code}
+                  onClick={() =>
+                    inspect(
+                      code === ANGMAR.innocent && c.ravaged
+                        ? ({ ...card(code), initialReverse: true } as Card)
+                        : card(code),
+                    )
+                  }
+                >
                   <Eye size={13} />
-                  {card(code).name}
+                  {code === ANGMAR.innocent && c.ravaged
+                    ? "Arnor Ravaged"
+                    : card(code).name}
                   {copies > 1 ? ` ×${copies}` : ""}
                 </button>
               );

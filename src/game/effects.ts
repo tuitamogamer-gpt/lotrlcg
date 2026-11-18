@@ -1,3 +1,4 @@
+import { angmarCampaignAfterReveal } from "./angmar-campaign";
 import { bagginsBilboFollowsFirstPlayer } from "./hobbit-saga";
 import {
   lotrSagaEffect,
@@ -1639,6 +1640,7 @@ function handleEffect(s: GameState, e: Effect) {
       Storm.stormcallerWeatherRevealed(s, e.code!);
       Chetwood.chetwoodAfterReveal(s, e.code!, e.revealOrigin);
       Dike.dikeAfterReveal(s, e.code!, e.revealOrigin);
+      angmarCampaignAfterReveal(s, e.code!);
       Weather.weatherAfterReveal(s, e.code!);
       stewardFearTreacheryRevealed(s, e.code!, e.revealOrigin);
       Amon.amonDinTreacheryRevealed(s, e.code!, e.revealOrigin);

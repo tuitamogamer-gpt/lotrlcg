@@ -1,3 +1,4 @@
+import { angmarCampaignCharacterBlanked } from "./angmar-campaign-support";
 import * as EredSupport from "./ered-mithrin-player-support";
 import { burglarGuardedObjective } from "./burglar-contract-support";
 import { batch4Scenario } from "./batch4-scenarios";
@@ -89,6 +90,7 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
           a.code === "octgn:617bc2e6-05a9-4c99-b3ff-8304ecb6ef32" && !a.blanked,
       ) ||
       khazadBlanked(host) ||
+      angmarCampaignCharacterBlanked(s, host) ||
       Mordor.mordorBlanked(s, host) ||
       (Mumakil.mumakilCharacterBlanked(s, host) &&
         !Mumakil.mumakilPreservesTraits(s, host)) ||

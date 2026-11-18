@@ -8,7 +8,13 @@ import { flush } from "../src/game/effects.ts";
 import { addQuestProgress } from "../src/game/side-quests.ts";
 import { validateSave } from "../src/game/engine.ts";
 import { syncSeat } from "../src/game/table.ts";
-import { ANGMAR, angmarInnocent } from "../src/game/angmar-campaign.ts";
+import {
+  ANGMAR,
+  angmarCampaignAfterReveal,
+  angmarInnocent,
+} from "../src/game/angmar-campaign.ts";
+import { card } from "../src/game/cards.ts";
+import { DIKE } from "../src/game/deadmens-dike-support.ts";
 import { CHETWOOD } from "../src/game/chetwood-support.ts";
 import { reviewedState } from "./browser-review-helpers.mjs";
 import { capture, context, report, url } from "./browser-angmar-helpers.mjs";
@@ -293,8 +299,92 @@ try {
       .getByText(/: Hardy$/)
       .first()
       .waitFor();
-    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await page.getByRole("button", { name: /^Continue campaign/ }).waitFor();
     await checkpoint("weather-complete", width);
+    // Deadmen's Dike: Protect the Innocent with its noted damage, Iârion's
+    // Pendant on Iârion, and Hardy back on its hero.
+    s = await continueCampaign(undefined, width);
+    assert.equal(s.scenarioId, "deadmens-dike");
+    assert.equal(angmarInnocent(s).damage, 3);
+    assert.ok(
+      s.heroes
+        .find((h) => h.code === hardyHero.code)
+        .attachments.some((a) => a.code === ANGMAR.hardy),
+    );
+    assert.ok(
+      s.allies
+        .find((u) => u.code === CHETWOOD.iarion)
+        ?.attachments.some((a) => a.code === ANGMAR.pendant),
+      "Iârion's Pendant on Iârion",
+    );
+    await campaignCard(
+      /^Protect the Innocent has 3 damage/,
+      "dike-setup",
+      width,
+    );
+    // Thaurdir's Spite moves to the hero with the most damage after a
+    // Sorcery treachery is revealed.
+    const sorceryTable = calmState(s);
+    const dikeState = sorceryTable.deadmensDike;
+    const thaurdir = dikeState.setAside.find((u) => u.code === DIKE.thaurdir);
+    dikeState.setAside = dikeState.setAside.filter((u) => u.id !== thaurdir.id);
+    sorceryTable.staging.push(thaurdir);
+    sorceryTable.stage = 2;
+    thaurdir.attachments.push({
+      id: `a${sorceryTable.nextId++}`,
+      code: ANGMAR.spite,
+      exhausted: false,
+    });
+    sorceryTable.angmarCards.thaurdir = ANGMAR.spite;
+    sorceryTable.heroes[1].damage = 2;
+    angmarCampaignAfterReveal(
+      sorceryTable,
+      sorceryTable.encounterDeck.find(
+        (c) =>
+          card(c).type_code === "treachery" &&
+          (card(c).traits ?? "").includes("Sorcery"),
+      ),
+    );
+    flush(sorceryTable);
+    s = await load(sorceryTable);
+    assert.ok(s.heroes[1].attachments.some((a) => a.code === ANGMAR.spite));
+    await campaignCard(
+      /^Thaurdir's Spite is attached to /,
+      "dike-thaurdir",
+      width,
+    );
+    // The resolution: Arnor Ravaged takes Protect the Innocent's place,
+    // Thaurdir's Spite joins the pool, and the group chooses a boon.
+    s = await victory(s, (t) => {
+      angmarInnocent(t).damage = 4;
+    });
+    assert.equal(s.campaign.resolution, "deadmens-dike");
+    await page
+      .getByRole("button", { name: /^Record the resolution/ })
+      .waitFor();
+    await checkpoint("dike-resolution", width);
+    s = await record([
+      [
+        "The players as a group select Iârion's Pendant or Amarthiúl's Courage",
+        ANGMAR.courage,
+      ],
+    ]);
+    assert.equal(s.campaign.resolution, null);
+    assert.deepEqual(s.campaign.boons, [ANGMAR.hardy, ANGMAR.courage]);
+    assert.equal(s.campaign.ravaged, true);
+    assert.deepEqual(s.campaign.burdens, [ANGMAR.innocent, ANGMAR.spite]);
+    await page
+      .getByText(/Notes · Arnor Ravaged: 4 damage/)
+      .first()
+      .waitFor();
+    await page.getByText("Arnor Ravaged", { exact: true }).first().waitFor();
+    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    assert.equal(
+      await page.getByText(/Mendor/).count(),
+      0,
+      "the Mirkwood Paths note stays out of this campaign",
+    );
+    await checkpoint("dike-complete", width);
     await view.c.close();
   }
   const p = await browser.newPage();

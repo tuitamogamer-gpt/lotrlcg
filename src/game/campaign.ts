@@ -135,7 +135,7 @@ export function continueCampaign(
     "The campaign is complete.",
   );
   requireRule(
-    !saga || !s.campaign!.resolution,
+    !(saga || angmar) || !s.campaign!.resolution,
     "Record the campaign card's resolution before continuing.",
   );
   const c = structuredClone(s.campaign);

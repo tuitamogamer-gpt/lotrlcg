@@ -1,3 +1,4 @@
+import { angmarCampaignCannotCommit } from "./angmar-campaign-support";
 import * as FortressPlayers from "./fortress-nurn-player";
 import * as HobbitPlayers from "./hobbit-player-cards";
 import {
@@ -619,6 +620,7 @@ export function canCommit(s: GameState, u: Unit, byEffect = false): boolean {
     !u.committed &&
     !isSacked(u) &&
     !batch4Scenario(s).cannotCommit?.(s, u) &&
+    !angmarCampaignCannotCommit(s, u) &&
     (s.scenarioId !== "hunt-for-gollum" ||
       s.stage !== 3 ||
       s.heroes.some(hasClue))

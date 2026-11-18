@@ -173,6 +173,11 @@ const rules: Record<string, AttachmentRule> = {
   "10163": { type: "hero", will: 1 },
   "10164": { type: "hero", attack: 1 },
   "10165": { type: "hero", defense: 1 },
+  // Amarthiúl's Courage; Thaurdir's Legacy, Majesty and Spite on a hero.
+  "10167": { names: ["Amarthiúl"], will: 1, health: 1 },
+  "10168": { type: "hero", will: -2 },
+  "10169": { type: "hero", attack: -2 },
+  "10170": { type: "hero", defense: -2 },
   // The Battle of the Pelennor Fields' boons (Esquire of Rohan, Esquire of Gondor).
   "145014": { type: "hero", grantsTraits: ["Rohan"] },
   "145015": { type: "hero", grantsTraits: ["Gondor"] },

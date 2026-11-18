@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2117,
+    "encounterCards": 2122,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3369,
-    "pending": 814
+    "scripted": 3374,
+    "pending": 809
   },
   "scenarioRecipes": {
     "total": 355,
@@ -641,6 +641,10 @@
     "10163",
     "10164",
     "10165",
+    "10167",
+    "10168",
+    "10169",
+    "10170",
     "11001",
     "11002",
     "11003",
@@ -1238,6 +1242,7 @@
     "octgn:0ec5f691-e5b3-41b5-bcec-2f963786ef4d",
     "octgn:0ee09c42-34c9-41aa-aa98-b582608b15bb",
     "octgn:0f02460f-4ab8-4060-b520-0f82cbb8ce37",
+    "octgn:0f039a53-c92a-4ac0-b7db-c1506d7b96e5",
     "octgn:0f201650-6d15-4909-9d06-0a87ab94f327",
     "octgn:0f2929de-bef9-40b8-b0ed-de69e136188f",
     "octgn:0f31d397-55d8-4988-b6bb-3d4101977515",
@@ -3590,9 +3595,9 @@
     {
       "product": "angmar-awakened-campaign-expansion",
       "total": 38,
-      "scripted": 10,
+      "scripted": 15,
       "player": 21,
-      "playerScripted": 6
+      "playerScripted": 7
     },
     {
       "product": "assault-on-osgiliath",
@@ -8662,7 +8667,7 @@
       "name": "Amarthiúl's Courage",
       "type": "attachment",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -8670,7 +8675,7 @@
       "name": "Thaurdir's Legacy",
       "type": "objective",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -8678,7 +8683,7 @@
       "name": "Thaurdir's Majesty",
       "type": "objective",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -8686,7 +8691,7 @@
       "name": "Thaurdir's Spite",
       "type": "objective",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -14398,7 +14403,7 @@
       "name": "Deadmen's Dike",
       "type": "campaign",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {

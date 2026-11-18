@@ -1,3 +1,4 @@
+import { angmarCampaignCannotHeal } from "./angmar-campaign-support";
 import { threatElimination } from "./tharbad-support";
 import { batch4Scenario } from "./batch4-scenarios";
 import { mainQuestCode } from "./quest-state";
@@ -192,6 +193,7 @@ export const rhosgobelTravelProblem = (s: GameState, u: Unit) =>
     : null;
 export const rhosgobelHealingAllowed = (s: GameState, u: Unit) =>
   !batch4Scenario(s).cannotHeal?.(s, u) &&
+  !angmarCampaignCannotHeal(s, u) &&
   !s.staging.some((q) => q.code === WEATHER.camp && !q.blanked) &&
   !(
     s.scenarioId === "road-to-rivendell" &&

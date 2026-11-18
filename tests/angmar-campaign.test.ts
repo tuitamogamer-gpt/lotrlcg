@@ -3,7 +3,13 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { card, STARTERS } from "../src/game/cards";
-import { damage, win } from "../src/game/board";
+import { damage, discardAttachment, win } from "../src/game/board";
+import { canCommit } from "../src/game/actions";
+import { rhosgobelHealingAllowed } from "../src/game/rhosgobel";
+import { syncAttachmentText } from "../src/game/attachment-text";
+import { DIKE } from "../src/game/deadmens-dike-support";
+import { WASTES } from "../src/game/wastes-eriador-support";
+import { THAURDIR_BURDENS } from "../src/game/angmar-campaign-support";
 import { flush } from "../src/game/effects";
 import { fx, make, stats } from "../src/game/core";
 import {
@@ -23,8 +29,12 @@ import {
   ANGMAR_CAMPAIGN_CARDS,
   ANGMAR_CAMPAIGN_ORDER,
   ANGMAR_CAMPAIGN_SUPPORTED,
+  angmarAmarthiulEntered,
+  angmarCampaignAfterReveal,
   angmarCampaignStatus,
   angmarInnocent,
+  angmarResolutionQuestions,
+  applyAngmarResolution,
   angmarPendantShadowOptions,
   innocentLimit,
   newAngmarCampaign,
@@ -113,6 +123,7 @@ test("The Angmar Awakened campaign: Intruders in Chetwood's campaign card, Iâri
   assert.deepEqual(ANGMAR_CAMPAIGN_SUPPORTED, [
     "intruders-in-chetwood",
     "the-weather-hills",
+    "deadmens-dike",
   ]);
   const campaignCard = card(ANGMAR_CAMPAIGN_CARDS["intruders-in-chetwood"]!);
   assert.equal(campaignCard.subtitle, "Angmar Awakened Part 1");
@@ -172,7 +183,33 @@ test("The Angmar Awakened campaign: Intruders in Chetwood's campaign card, Iâri
   );
   for (const code of SKILL_BOONS)
     assert.match(card(code).text!, /^Permanent\.\nSetup: Attach to a hero\./);
-  assert.equal(art.length, 13);
+  const dikeCard = card(ANGMAR_CAMPAIGN_CARDS["deadmens-dike"]!);
+  assert.equal(dikeCard.subtitle, "Angmar Awakened Part 3");
+  assert.match(
+    dikeCard.text!,
+    /\nForced: After Thaurdir enters play, randomly select one of the following burdens and attach it to Thaurdir: Thaurdir's Legacy, Thaurdir's Majesty, or Thaurdir's Spite\. Add that card to the Campaign Pool\.$/,
+  );
+  assert.match(
+    dikeCard.back_text!,
+    /The players as a group must select either Iârion's Pendant or Amarthiúl's Courage to add to the Campaign Pool\. Any player may add Iârion's Pendant to their deck if it is chosen\.$/,
+  );
+  assert.deepEqual(
+    [ANGMAR.legacy, ANGMAR.majesty, ANGMAR.spite].map((code) => [
+      card(code).name,
+      card(code).type_code,
+      card(code).traits,
+    ]),
+    [
+      ["Thaurdir's Legacy", "objective", "Thaurdir."],
+      ["Thaurdir's Majesty", "objective", "Thaurdir."],
+      ["Thaurdir's Spite", "objective", "Thaurdir."],
+    ],
+  );
+  assert.match(
+    card(ANGMAR.courage).text!,
+    /^Setup: Attach to Amarthiúl\. Otherwise, remove Amarthiúl's Courage from the game\./,
+  );
+  assert.equal(art.length, 19);
   for (const a of art) {
     const bytes = readFileSync(`public${a.localPath}`);
     assert.equal(bytes.length, a.bytes);
@@ -448,10 +485,15 @@ test("Mysterious Omens: becoming the current quest discards a random card from e
     ["intruders-in-chetwood", "the-weather-hills"],
   );
   assert.ok(valid(s));
-  assert.throws(
-    () => continueCampaign(s, HEROES, d.id, true, 9),
-    /not available in campaign mode yet/,
+  // The campaign continues with Deadmen's Dike; Hardy returns to Legolas.
+  const next = continueCampaign(s, HEROES, d.id, true, 9);
+  assert.equal(next.scenarioId, "deadmens-dike");
+  assert.equal(angmarInnocent(next)!.damage, 3);
+  assert.deepEqual(
+    next.heroes.find((h) => h.code === "01005")!.attachments.map((a) => a.code),
+    [ANGMAR.hardy],
   );
+  assert.ok(valid(next));
   // Hot-seat: each player in turn, and a boon taken is no longer offered.
   const heroes = ["01005", "01006", "01007", "01008"];
   const seats = [
@@ -628,4 +670,289 @@ test("The Permanent boons: their bonuses, Cunning's, Hardy's, Ruthless's and Sta
   );
   assert.equal(hero(next).resources, 2);
   assert.ok(valid(next));
+});
+
+/** The Campaign Log after The Weather Hills (Mysterious Omens still in the pool). */
+const afterWeather = (innocent = 3, heroes = HEROES): CampaignState => ({
+  ...afterChetwood(innocent, heroes),
+  burdens: [ANGMAR.innocent, ANGMAR.omens],
+  completed: [
+    { scenarioId: "intruders-in-chetwood", score: 0, rounds: 1 },
+    { scenarioId: "the-weather-hills", score: 0, rounds: 1 },
+  ],
+});
+const dike = (seed = 5, campaign = afterWeather()) =>
+  createGame(seed, d.cards, HEROES, d.id, {
+    scenarioId: "deadmens-dike",
+    playMode: "campaign",
+    campaign,
+  });
+/** Thaurdir, out of the set-aside cards and into the staging area. */
+function thaurdirInPlay(s: GameState) {
+  const q = s.deadmensDike!;
+  const thaurdir = q.setAside.find((u) => u.code === DIKE.thaurdir)!;
+  q.setAside = q.setAside.filter((u) => u.id !== thaurdir.id);
+  s.staging.push(thaurdir);
+  s.stage = 2;
+  return thaurdir;
+}
+
+test("Deadmen's Dike: Protect the Innocent returns with its noted damage, Iârion's Pendant is attached to Iârion, and Thaurdir takes one of his three burdens at random as he enters play", () => {
+  const s = dike();
+  assert.equal(angmarInnocent(s)!.damage, 3);
+  assert.equal(
+    s.encounterDeck.filter((c) => c === ANGMAR.omens).length,
+    1,
+    "Mysterious Omens stays in the pool",
+  );
+  const t = calm(reload(opening(s)));
+  const iarion = t.allies.find((u) => u.code === CHETWOOD.iarion)!;
+  assert.ok(iarion, "Iârion enters play with the scenario's setup");
+  assert.deepEqual(
+    iarion.attachments.map((a) => a.code),
+    [ANGMAR.pendant],
+  );
+  // Stage 2 brings Thaurdir into play.
+  t.stage = 2;
+  t.queue.push(fx("dikeStageTwo", { player: 0 }));
+  flush(t);
+  const thaurdir = t.staging.find((u) => u.code === DIKE.thaurdir)!;
+  assert.ok(thaurdir);
+  const burdens = thaurdir.attachments.map((a) => a.code);
+  assert.equal(burdens.length, 1);
+  assert.ok(THAURDIR_BURDENS.includes(burdens[0]));
+  assert.equal(t.angmarCards!.thaurdir, burdens[0]);
+  assert.ok(
+    angmarCampaignStatus(t).some((line) =>
+      line.startsWith(
+        `${card(burdens[0]).name} is attached to Thaurdir: after a Sorcery treachery is revealed it moves to the hero with the most`,
+      ),
+    ),
+  );
+  assert.ok(valid(t));
+  // Each burden can be drawn.
+  const drawn = new Set(
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((seed) => {
+      const u = calm(reload(opening(dike(seed))));
+      u.stage = 2;
+      u.queue.push(fx("dikeStageTwo", { player: 0 }));
+      flush(u);
+      return u.angmarCards!.thaurdir;
+    }),
+  );
+  assert.equal(drawn.size, 3);
+});
+
+test("Thaurdir's burdens: a revealed Sorcery treachery moves each to the hero with the most resources, non-objective attachments or damage (the first player breaks ties); on a hero each counts as a Sorcery attachment", () => {
+  const base = calm(reload(opening(dike())));
+  const sorcery = base.encounterDeck.find(
+    (c) =>
+      card(c).type_code === "treachery" &&
+      (card(c).traits ?? "").includes("Sorcery"),
+  )!;
+  assert.ok(sorcery, "Deadmen's Dike has Sorcery treacheries");
+  const hero = (s: GameState, code: string) =>
+    s.heroes.find((h) => h.code === code)!;
+  // Thaurdir's Legacy: the hero with the most resources; -2 willpower and a
+  // blank text box.
+  let s = structuredClone(base);
+  const thaurdir = thaurdirInPlay(s);
+  attach(s, thaurdir, ANGMAR.legacy);
+  s.heroes.forEach((h, i) => (h.resources = [0, 1, 3][i]));
+  const before = stats(s, hero(s, "01003")).will;
+  assert.equal(before, 2);
+  angmarCampaignAfterReveal(s, sorcery);
+  flush(s);
+  assert.deepEqual(
+    hero(s, "01003").attachments.map((a) => a.code),
+    [ANGMAR.legacy],
+  );
+  assert.equal(thaurdir.attachments.length, 0);
+  assert.equal(stats(s, hero(s, "01003")).will, 0);
+  syncAttachmentText(s);
+  assert.equal(hero(s, "01003").blanked, true);
+  assert.ok(valid(s));
+  // A treachery without the Sorcery trait leaves it where it is.
+  const other = s.encounterDeck.find(
+    (c) =>
+      card(c).type_code === "treachery" &&
+      !(card(c).traits ?? "").includes("Sorcery"),
+  );
+  if (other) {
+    s.heroes.forEach((h, i) => (h.resources = [5, 0, 0][i]));
+    angmarCampaignAfterReveal(s, other);
+    flush(s);
+    assert.ok(
+      hero(s, "01003").attachments.some((a) => a.code === ANGMAR.legacy),
+    );
+  }
+  // Thaurdir's Majesty: a tie for the most non-objective attachments is
+  // broken by the first player; -2 attack and no questing.
+  s = structuredClone(base);
+  attach(s, thaurdirInPlay(s), ANGMAR.majesty);
+  attach(s, hero(s, "01005"), "01039");
+  attach(s, hero(s, "01006"), "01041");
+  const attack = stats(s, hero(s, "01006")).attack;
+  angmarCampaignAfterReveal(s, sorcery);
+  flush(s);
+  assert.match(
+    s.choice!.title,
+    /^Thaurdir's Majesty · Choose the hero with the most non-objective attachments$/,
+  );
+  assert.deepEqual(
+    s.choice!.options.map((o) => o.code),
+    ["01005", "01006"],
+  );
+  s = choose(s, hero(s, "01006").id);
+  assert.ok(
+    hero(s, "01006").attachments.some((a) => a.code === ANGMAR.majesty),
+  );
+  assert.equal(stats(s, hero(s, "01006")).attack, attack - 2);
+  s.phase = "quest";
+  assert.equal(canCommit(s, hero(s, "01006")), false);
+  assert.equal(canCommit(s, hero(s, "01005")), true);
+  // Thaurdir's Spite: the hero with the most damage; -2 defense and no healing.
+  s = structuredClone(base);
+  attach(s, thaurdirInPlay(s), ANGMAR.spite);
+  hero(s, "01003").damage = 2;
+  const defense = stats(s, hero(s, "01003")).defense;
+  angmarCampaignAfterReveal(s, sorcery);
+  flush(s);
+  assert.ok(hero(s, "01003").attachments.some((a) => a.code === ANGMAR.spite));
+  assert.equal(defense, 1);
+  assert.equal(
+    stats(s, hero(s, "01003")).defense,
+    0,
+    "-2 defense, never below 0",
+  );
+  assert.equal(rhosgobelHealingAllowed(s, hero(s, "01003")), false);
+  assert.equal(
+    rhosgobelHealingAllowed(s, hero(s, "01005")),
+    false,
+    "no damage",
+  );
+  hero(s, "01005").damage = 1;
+  assert.equal(rhosgobelHealingAllowed(s, hero(s, "01005")), true);
+  assert.ok(
+    angmarCampaignStatus(s).includes(
+      "Thaurdir's Spite is attached to Glóin (-2 defense, it cannot be healed); after a Sorcery treachery is revealed it moves to the hero with the most damage.",
+    ),
+  );
+  assert.ok(valid(s));
+  // A burden leaving play is removed from the game.
+  const spite = hero(s, "01003").attachments.find(
+    (a) => a.code === ANGMAR.spite,
+  )!;
+  discardAttachment(s, hero(s, "01003"), spite, true);
+  assert.ok(!hero(s, "01003").attachments.some((a) => a.code === ANGMAR.spite));
+  assert.ok(
+    ![...s.encounterDiscard, ...s.discard].includes(ANGMAR.spite),
+    "neither discard pile",
+  );
+});
+
+test("Deadmen's Dike's resolution notes Protect the Innocent's damage and turns it to Arnor Ravaged, pools Thaurdir's burden, and asks the players for Iârion's Pendant or Amarthiúl's Courage before the campaign continues", () => {
+  const s = calm(reload(opening(dike())));
+  angmarInnocent(s)!.damage = 4;
+  s.angmarCards!.thaurdir = ANGMAR.spite;
+  win(s);
+  const c = s.campaign!;
+  assert.equal(c.innocent, 4);
+  assert.equal(c.ravaged, true);
+  assert.deepEqual(c.burdens, [ANGMAR.innocent, ANGMAR.omens, ANGMAR.spite]);
+  assert.equal(c.resolution, "deadmens-dike");
+  assert.ok(valid(s));
+  assert.throws(
+    () => continueCampaign(s, HEROES, d.id, true, 9),
+    /Record the campaign card's resolution before continuing/,
+  );
+  const [question] = angmarResolutionQuestions(s);
+  assert.deepEqual(
+    question.options.map((o) => o.id),
+    [ANGMAR.pendant, ANGMAR.courage],
+  );
+  assert.throws(
+    () => applyAngmarResolution(s, { boon: "01039" }),
+    /Answer: The players as a group select Iârion's Pendant or Amarthiúl's Courage/,
+  );
+  const t = applyAngmarResolution(s, { boon: ANGMAR.courage });
+  assert.deepEqual(t.campaign!.boons, [ANGMAR.courage]);
+  assert.equal(t.campaign!.resolution, null);
+  assert.deepEqual(angmarResolutionQuestions(t), []);
+  assert.ok(valid(t));
+  assert.throws(
+    () => applyAngmarResolution(t, { boon: ANGMAR.pendant }),
+    /no resolution waiting/,
+  );
+  assert.throws(
+    () => continueCampaign(t, HEROES, d.id, true, 9),
+    /not available in campaign mode yet/,
+  );
+  const pendant = applyAngmarResolution(s, { boon: ANGMAR.pendant });
+  assert.deepEqual(pendant.campaign!.boons, [ANGMAR.pendant]);
+  assert.ok(valid(pendant));
+});
+
+test("Amarthiúl's Courage: attached to Amarthiúl as he enters play with a scenario's setup (the objective ally, or the Amarthiúl hero), +1 willpower and +1 hit point, and its Action readies him once per game", () => {
+  // The Wastes of Eriador, Across the Ettenmoors and The Treachery of Rhudaur
+  // bring the objective ally into play with their setup (each calls the same
+  // hook), and The Battle of Carn Dûm allows the Amarthiúl hero.
+  const base = calm(reload(opening(dike())));
+  base.campaign!.boons = [ANGMAR.courage];
+  let s = structuredClone(base);
+  const ally = make(s, WASTES.amarthiul);
+  delete ally.owner;
+  ally.controller = 0;
+  s.allies.push(ally);
+  angmarAmarthiulEntered(s, ally);
+  const amarthiul = () => s.allies.find((u) => u.id === ally.id)!;
+  const courage = amarthiul().attachments.find(
+    (a) => a.code === ANGMAR.courage,
+  )!;
+  assert.ok(courage);
+  const bare = structuredClone(s);
+  bare.allies.find((u) => u.id === ally.id)!.attachments = [];
+  const [plain, brave] = [
+    stats(
+      bare,
+      bare.allies.find((u) => u.id === ally.id)!,
+    ),
+    stats(s, amarthiul()),
+  ];
+  assert.deepEqual(
+    [brave.will - plain.will, brave.health - plain.health],
+    [1, 1],
+  );
+  // A second Amarthiúl does not take another copy.
+  const twin = make(s, WASTES.amarthiul);
+  angmarAmarthiulEntered(s, twin);
+  assert.equal(twin.attachments.length, 0);
+  // Its Action readies Amarthiúl once per game.
+  assert.ok(valid(s));
+  const use = () =>
+    applyAction(reload(s), {
+      type: "ABILITY",
+      id: ally.id,
+      attachmentId: courage.id,
+    });
+  assert.throws(use, /already ready/);
+  amarthiul().exhausted = true;
+  s = use();
+  assert.equal(amarthiul().exhausted, false);
+  amarthiul().exhausted = true;
+  assert.throws(use, /Amarthiúl's Courage was used this game/);
+  // Without the boon in the Campaign Pool nothing is attached.
+  const none = structuredClone(base);
+  none.campaign!.boons = [];
+  const lone = make(none, WASTES.amarthiul);
+  angmarAmarthiulEntered(none, lone);
+  assert.equal(lone.attachments.length, 0);
+  // The Amarthiúl hero.
+  const hero = make(structuredClone(base), "10115");
+  const withHero = structuredClone(base);
+  angmarAmarthiulEntered(withHero, hero);
+  assert.deepEqual(
+    hero.attachments.map((a) => a.code),
+    [ANGMAR.courage],
+  );
 });

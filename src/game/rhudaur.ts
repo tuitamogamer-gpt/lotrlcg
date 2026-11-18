@@ -1,4 +1,7 @@
-import { angmarCampaignSideChosen } from "./angmar-campaign";
+import {
+  angmarAmarthiulEntered,
+  angmarCampaignSideChosen,
+} from "./angmar-campaign";
 import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import type { Attachment, Effect, GameState, Option, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
@@ -659,6 +662,7 @@ export function rhudaurEffect(s: GameState, e: Effect) {
       const ally = make(s, R.amarthiul);
       ally.controller = firstPlayer(s);
       forOwner(s, firstPlayer(s), () => s.allies.push(ally));
+      angmarAmarthiulEntered(s, ally);
       shuffle(s, s.encounterDeck);
       q.initialized = true;
       break;

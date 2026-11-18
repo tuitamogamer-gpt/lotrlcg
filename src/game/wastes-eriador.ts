@@ -1,3 +1,4 @@
+import { angmarAmarthiulEntered } from "./angmar-campaign";
 import type { Effect, GameState, Option, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
 import { card, name } from "./cards";
@@ -435,6 +436,7 @@ export function wastesEffect(s: GameState, e: Effect) {
       a.controller = firstPlayer(s);
       s.staging.push(t);
       forOwner(s, firstPlayer(s), () => s.allies.push(a));
+      angmarAmarthiulEntered(s, a);
       s.activeLocation = make(s, W.hills);
       s.wastesEriador!.initialized = true;
       s.stageRevealing = true;
