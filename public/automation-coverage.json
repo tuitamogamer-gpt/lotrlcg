@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2104,
+    "encounterCards": 2107,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3356,
-    "pending": 827
+    "scripted": 3359,
+    "pending": 824
   },
   "scenarioRecipes": {
     "total": 355,
@@ -2197,6 +2197,7 @@
     "octgn:5842e027-3789-4253-a382-27527ec4fe8a",
     "octgn:5855e76e-e807-4a8c-9035-de7b9cb4366e",
     "octgn:58616050-8a7f-4a9b-a8dc-e0d09e383741",
+    "octgn:586c2dcd-2157-455b-a195-b9452149427c",
     "octgn:58d90f80-eb1a-46d9-a5c1-2e7b8c5b8451",
     "octgn:58f1cb80-d8de-4f96-98d0-0fdf61988da3",
     "octgn:58f1cb80-d8de-4f96-98d0-0fdf61988da3:B",
@@ -2321,6 +2322,7 @@
     "octgn:6b1a56ae-f173-4842-984c-d07b0545ad23",
     "octgn:6b2673af-c764-4599-a265-6e43d3b75310",
     "octgn:6b34adb4-b510-4db9-aaba-9a1876626dce",
+    "octgn:6b61a3fd-1e84-4516-8a42-972524daaf50",
     "octgn:6b828300-4558-4a8b-a591-a9865202a630",
     "octgn:6b8ca34a-1f6f-4eed-841c-a5d0db80619a",
     "octgn:6bd6a282-9f43-4b12-a4bb-501f554daf2b",
@@ -3379,6 +3381,7 @@
     "octgn:f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695",
     "octgn:f330efb5-6263-48a1-9f08-0911f214bd96",
     "octgn:f35e7236-2e03-4e03-aa92-7c4803e79acf",
+    "octgn:f36b6f95-59bc-4d1f-9f03-be1645fe3b58",
     "octgn:f388bf8b-461c-4478-8155-74775bf27714",
     "octgn:f38caab3-61dc-45e2-9b31-533ba3b9fbd9",
     "octgn:f3bc3759-1f94-4983-bebb-66c7d9e3e0b3",
@@ -3850,7 +3853,7 @@
     {
       "product": "revised-core",
       "total": 10,
-      "scripted": 7,
+      "scripted": 10,
       "player": 3,
       "playerScripted": 3
     },
@@ -23529,7 +23532,7 @@
       "name": "Escape from Dol Goldur",
       "type": "campaign",
       "pack": "Revised Core Set",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "revised-core"
     },
     {
@@ -24825,7 +24828,7 @@
       "name": "Journey Along the Anduin",
       "type": "campaign",
       "pack": "Revised Core Set",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "revised-core"
     },
     {
@@ -36649,7 +36652,7 @@
       "name": "Passage Through Mirkwood",
       "type": "campaign",
       "pack": "Revised Core Set",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "revised-core"
     },
     {

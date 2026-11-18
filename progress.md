@@ -1197,3 +1197,14 @@ Validation on Node 22: the engine suite passes all 6,762 tests, including 38 foc
 Coverage is now 861 player definitions (112 heroes), 2,104 encounters and 123 scenarios. This resolves 3,356 of 4,183 identities and 270 of 355 recipes; 827 identities remain pending.
 
 Validation on Node 22: the engine suite passes all 6,762 tests; the Lord of the Rings campaign browser suite passes its 174 checkpoints and the 76 original faces; the production build passes.
+
+2026-11-18 The Mirkwood Paths campaign cards: continued the user's “Nastavi” after 1e00a25. The Revised Core Set's three campaign cards (Passage Through Mirkwood, Journey Along the Anduin and Escape from Dol Guldur, Mirkwood Paths Parts 1–3) are registered under their catalog identities with the DragnCards scans' texts; the campaign's rules were already scripted from the print-and-play cards.
+
+- The scans correct the catalog: the third card is "Escape from Dol Guldur" (the catalog spells "Goldur"), and its prisoner paragraph is a Forced effect. All six faces are pinned in tests/core-campaign-art.json.
+- The quest inspector now offers the chapter's campaign card in Mirkwood Paths too.
+- The base encounter deck builder skipped no card type, so a campaign card sharing its quest's encounter set would have joined the deck; campaign cards are now kept out, and the focused test checks the three quests' decks.
+- The Core campaign browser suite also needed its Gimli choice narrowed to the Core Set hero (The Sands of Harad's Gimli now shares the name).
+
+Coverage is now 861 player definitions (112 heroes), 2,107 encounters and 123 scenarios. This resolves 3,359 of 4,183 identities and 270 of 355 recipes; 824 identities remain pending.
+
+Validation on Node 22: the engine suite passes all 6,763 tests (the one count that included the campaign card was corrected and rerun); the Core campaign browser suite passes; the production build passes.

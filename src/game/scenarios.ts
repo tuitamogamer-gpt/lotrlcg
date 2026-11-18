@@ -1252,6 +1252,12 @@ export const CAMPAIGN_CHAPTERS: readonly ScenarioId[] = [
   "anduin",
   "dol-guldur",
 ];
+/** The Revised Core Set's campaign card for each Mirkwood Paths chapter. */
+export const CORE_CAMPAIGN_CARDS: Partial<Record<ScenarioId, string>> = {
+  mirkwood: "octgn:f36b6f95-59bc-4d1f-9f03-be1645fe3b58",
+  anduin: "octgn:6b61a3fd-1e84-4516-8a42-972524daaf50",
+  "dol-guldur": "octgn:586c2dcd-2157-455b-a195-b9452149427c",
+};
 /** Signs of Gollum: the Clue objective of The Hunt for Gollum. */
 export const CLUE = "02014";
 export const scenario = (id: ScenarioId) => SCENARIOS.find((s) => s.id === id)!;

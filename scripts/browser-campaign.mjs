@@ -113,6 +113,17 @@ assert.ok(await p.locator(".mission-dol-guldur").isDisabled());
 await screenshot(p, "campaign-lobby");
 await p.getByRole("button", { name: "Begin campaign", exact: true }).click();
 assert.equal((await state(p)).allies[0].code, "rc135");
+// The quest inspector offers the chapter's campaign card.
+await p.getByRole("button", { name: /^Inspect quest: / }).click();
+await p
+  .getByLabel("Campaign card", { exact: true })
+  .getByRole("button", { name: "Campaign card · Passage Through Mirkwood" })
+  .waitFor();
+await screenshot(p, "campaign-card");
+await p
+  .getByRole("button", { name: "Close dialog", exact: true })
+  .last()
+  .click();
 await p.reload();
 assert.equal((await state(p)).playMode, "campaign");
 await p.getByRole("button", { name: /Normal game/ }).click();
@@ -143,7 +154,11 @@ await p
   .click();
 await p
   .getByRole("group", { name: "Campaign hero 3", exact: true })
-  .getByRole("button", { name: "Choose Gimli", exact: true })
+  .getByRole("button", {
+    name: "Choose Gimli",
+    description: "tactics · Core Set",
+    exact: true,
+  })
   .click();
 await screenshot(p, "chapter-preparation");
 await p

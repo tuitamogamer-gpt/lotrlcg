@@ -1,0 +1,50 @@
+[
+  {
+    "code": "octgn:f36b6f95-59bc-4d1f-9f03-be1645fe3b58",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f36b6f95-59bc-4d1f-9f03-be1645fe3b58.jpg",
+    "localPath": "/cards/f36b6f95-59bc-4d1f-9f03-be1645fe3b58.jpg",
+    "bytes": 136549,
+    "sha256": "7f61a68ac293487d5f05644fecf7fce3afcff0d554c64d54b7ea342e639e9996"
+  },
+  {
+    "code": "octgn:f36b6f95-59bc-4d1f-9f03-be1645fe3b58",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f36b6f95-59bc-4d1f-9f03-be1645fe3b58.B.jpg",
+    "localPath": "/cards/f36b6f95-59bc-4d1f-9f03-be1645fe3b58.B.jpg",
+    "bytes": 107754,
+    "sha256": "e5255c48e576e378771eaef4c856d7820c576690e7c824de8424ac00ebff3e68"
+  },
+  {
+    "code": "octgn:6b61a3fd-1e84-4516-8a42-972524daaf50",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6b61a3fd-1e84-4516-8a42-972524daaf50.jpg",
+    "localPath": "/cards/6b61a3fd-1e84-4516-8a42-972524daaf50.jpg",
+    "bytes": 156401,
+    "sha256": "31be414ff5ca4c29abc9c9aa050f413a89494e9a52c5340ea380161fa8b01382"
+  },
+  {
+    "code": "octgn:6b61a3fd-1e84-4516-8a42-972524daaf50",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6b61a3fd-1e84-4516-8a42-972524daaf50.B.jpg",
+    "localPath": "/cards/6b61a3fd-1e84-4516-8a42-972524daaf50.B.jpg",
+    "bytes": 130161,
+    "sha256": "a4ee50801e0fcfa9fa6fe6bba58305ff424c30e51715abdd56e9a92e241fdb2a"
+  },
+  {
+    "code": "octgn:586c2dcd-2157-455b-a195-b9452149427c",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/586c2dcd-2157-455b-a195-b9452149427c.jpg",
+    "localPath": "/cards/586c2dcd-2157-455b-a195-b9452149427c.jpg",
+    "bytes": 160720,
+    "sha256": "eace470074139fcb991993d7f349d9067cd62db451467827ad564316c84eb1c2"
+  },
+  {
+    "code": "octgn:586c2dcd-2157-455b-a195-b9452149427c",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/586c2dcd-2157-455b-a195-b9452149427c.B.jpg",
+    "localPath": "/cards/586c2dcd-2157-455b-a195-b9452149427c.B.jpg",
+    "bytes": 129047,
+    "sha256": "6bc52cdef3e0d1020078f0329840860543e6ad7bcc9733771c556ba573eb2b43"
+  }
+]

@@ -83,12 +83,15 @@ for (const d of STARTERS) {
 test("scenario uses exact 36-card original encounter list", () =>
   assert.equal(
     encounterCards
-      .filter((c) =>
-        [
-          "Passage Through Mirkwood",
-          "Spiders of Mirkwood",
-          "Dol Guldur Orcs",
-        ].includes(c.encounter_set!),
+      .filter(
+        (c) =>
+          // The Mirkwood Paths campaign card shares the quest's set.
+          c.type_code !== "campaign" &&
+          [
+            "Passage Through Mirkwood",
+            "Spiders of Mirkwood",
+            "Dol Guldur Orcs",
+          ].includes(c.encounter_set!),
       )
       .reduce((n, c) => n + (c.quantity ?? 0), 0),
     36,

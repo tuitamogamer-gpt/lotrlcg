@@ -358,6 +358,7 @@ import {
 import {
   SCENARIOS,
   CAMPAIGN_CHAPTERS,
+  CORE_CAMPAIGN_CARDS,
   scenario,
   scenarioStageCount,
   OBJECTIVES,
@@ -4273,31 +4274,24 @@ export default function App() {
               />
             )}
             <QuestGoals s={game} />
-            {game.campaign?.kind === "saga" &&
-              SAGA_CAMPAIGN_CARD_CODES[game.scenarioId] && (
-                <div
-                  className="saga-campaign-status"
-                  aria-label="Campaign card"
+            {campaignCardOf(game) && (
+              <div className="saga-campaign-status" aria-label="Campaign card">
+                <button
+                  className="text-link"
+                  onClick={() => {
+                    setShowQuest(false);
+                    setDetail(card(campaignCardOf(game)!));
+                  }}
                 >
-                  <button
-                    className="text-link"
-                    onClick={() => {
-                      setShowQuest(false);
-                      setDetail(
-                        card(SAGA_CAMPAIGN_CARD_CODES[game.scenarioId]!),
-                      );
-                    }}
-                  >
-                    Campaign card ·{" "}
-                    {card(SAGA_CAMPAIGN_CARD_CODES[game.scenarioId]!).name}
-                  </button>
-                  {sagaCampaignStatus(game).map((line) => (
-                    <p key={line} className="campaign-note">
-                      {line}
-                    </p>
-                  ))}
-                </div>
-              )}
+                  Campaign card · {card(campaignCardOf(game)!).name}
+                </button>
+                {sagaCampaignStatus(game).map((line) => (
+                  <p key={line} className="campaign-note">
+                    {line}
+                  </p>
+                ))}
+              </div>
+            )}
             <p>
               <strong>
                 {currentQuestProgress(game)} /{" "}
@@ -5418,6 +5412,13 @@ function SagaResolution({
   );
 }
 
+/** The campaign card of the chapter being played, in either campaign. */
+const campaignCardOf = (game: GameState) =>
+  !game.campaign
+    ? undefined
+    : game.campaign.kind === "saga"
+      ? SAGA_CAMPAIGN_CARD_CODES[game.scenarioId]
+      : CORE_CAMPAIGN_CARDS[game.scenarioId];
 function CampaignJournal({
   game,
   inspect,

@@ -382,11 +382,15 @@ export function createGame(
     deck: list,
     discard: [],
     removed: [],
+    // A campaign card lies next to the quest deck, never in the encounter
+    // deck, even when it shares the scenario's encounter set.
     encounterDeck: encounterCards
-      .filter((c) =>
-        (scenario(scenarioId).sets as readonly string[]).includes(
-          c.encounter_set ?? "",
-        ),
+      .filter(
+        (c) =>
+          c.type_code !== "campaign" &&
+          (scenario(scenarioId).sets as readonly string[]).includes(
+            c.encounter_set ?? "",
+          ),
       )
       .flatMap((c) =>
         Array(

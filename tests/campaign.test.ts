@@ -2,7 +2,15 @@ import { applyAction as act } from "./pass-resource-window.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { card, STARTERS, encounterCards } from "../src/game/cards.ts";
-import { SCENARIOS, OBJECTIVES } from "../src/game/scenarios.ts";
+import {
+  SCENARIOS,
+  OBJECTIVES,
+  CAMPAIGN_CHAPTERS,
+  CORE_CAMPAIGN_CARDS,
+} from "../src/game/scenarios.ts";
+import { readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import coreCampaignArt from "./core-campaign-art.json";
 import {
   createGame,
   continueCampaign,
@@ -111,11 +119,72 @@ test("the exact encounter decks include all 45 Core Set definitions and the 11 H
     ["mirkwood", "anduin", "dol-guldur", "hunt-for-gollum"].includes(q.id),
   ).map((q) =>
     encounterCards
-      .filter((c) => (q.sets as readonly string[]).includes(c.encounter_set!))
+      .filter(
+        (c) =>
+          c.type_code !== "campaign" &&
+          (q.sets as readonly string[]).includes(c.encounter_set!),
+      )
       .reduce((n, c) => n + c.quantity!, 0),
   );
   assert.deepEqual(counts, [36, 47, 41, 48]);
+  // The Mirkwood Paths campaign cards share their quests' encounter sets but
+  // never join an encounter deck.
+  for (const id of CAMPAIGN_CHAPTERS) {
+    const s = createGame(
+      5,
+      STARTERS[0].cards,
+      STARTERS[0].heroes,
+      STARTERS[0].id,
+      {
+        scenarioId: id,
+      },
+    );
+    assert.ok(!s.encounterDeck.includes(CORE_CAMPAIGN_CARDS[id]!), id);
+  }
 });
+test("The Mirkwood Paths campaign cards are registered with the scans' texts, and both faces of each are pinned", () => {
+  const cards = CAMPAIGN_CHAPTERS.map((id) => card(CORE_CAMPAIGN_CARDS[id]!));
+  assert.deepEqual(
+    cards.map((c) => [c.name, c.type_code, c.subtitle, c.position]),
+    CAMPAIGN_CHAPTERS.map((id, i) => [
+      SCENARIOS.find((q) => q.id === id)!.name,
+      "campaign",
+      `Mirkwood Paths - Part ${i + 1}`,
+      129 + i,
+    ]),
+  );
+  for (const c of cards)
+    assert.match(
+      c.text!,
+      /^You are playing Campaign Mode\. Setup: Put Mendor into play\./,
+    );
+  assert.match(
+    cards[0].back_text!,
+    /If stage 3B was Beorn's Path, add the Ungoliant's Swarm burden card to the Campaign Pool\.\nIf stage 3B was Don't Leave the Path, add the Lingering Venom burden card/,
+  );
+  assert.match(
+    cards[1].text!,
+    /\nForced: After a character is destroyed by a Hill Troll, each player attaches 1 set-aside copy of Scarred to a hero they control\. \(Limit once per game\.\)/,
+  );
+  // The scans correct the catalog: the prisoner paragraph is a Forced
+  // effect, and the card is "Escape from Dol Guldur" (the catalog spells it
+  // "Goldur").
+  assert.match(
+    cards[2].text!,
+    /\nForced: When a hero would be randomly selected to be a "prisoner," the "prisoner" from the Campaign Log is selected instead\./,
+  );
+  assert.match(
+    cards[2].back_text!,
+    /^Response: After the first objective is claimed, flip Mendor face-up and place 1 damage token on him\.\nResolution:/,
+  );
+  assert.equal(coreCampaignArt.length, 6);
+  for (const a of coreCampaignArt) {
+    const bytes = readFileSync(`public${a.localPath}`);
+    assert.equal(bytes.length, a.bytes);
+    assert.equal(createHash("sha256").update(bytes).digest("hex"), a.sha256);
+  }
+});
+
 test("Anduin setup reveals one card and ensures a Hill Troll; no campaign cards in normal mode", () => {
   const s = game("anduin");
   assert.ok(s.staging.some((u) => u.code === "01082"));
