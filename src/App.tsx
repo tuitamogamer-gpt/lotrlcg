@@ -356,6 +356,16 @@ import {
   sagaResolutionQuestions,
 } from "./game/saga-campaign";
 import {
+  ANGMAR_CAMPAIGN_CARDS,
+  ANGMAR_CAMPAIGN_ORDER,
+  ANGMAR_CAMPAIGN_SUPPORTED,
+  angmarCampaignStatus,
+  angmarChapterComplete,
+  angmarChapterSupported,
+  angmarForbiddenTitle,
+  nextAngmarChapter,
+} from "./game/angmar-campaign";
+import {
   SCENARIOS,
   CAMPAIGN_CHAPTERS,
   CORE_CAMPAIGN_CARDS,
@@ -439,24 +449,27 @@ const SAVE_KEY = "there-and-back-again.save.v1",
 const CAMPAIGN_KEY = "there-and-back-again.campaign.v1";
 const MODE_KEY = "there-and-back-again.mode.v1";
 const CAMPAIGN_KIND_KEY = "there-and-back-again.campaign-kind.v1";
-type CampaignKind = "mirkwood" | "saga";
+type CampaignKind = "mirkwood" | "saga" | "angmar";
 const readCampaignKind = (): CampaignKind => {
   try {
-    return localStorage.getItem(CAMPAIGN_KIND_KEY) === "saga"
-      ? "saga"
-      : "mirkwood";
+    const kind = localStorage.getItem(CAMPAIGN_KIND_KEY);
+    return kind === "saga" || kind === "angmar" ? kind : "mirkwood";
   } catch {
     return "mirkwood";
   }
 };
 const campaignKindOf = (c?: CampaignState | null): CampaignKind =>
-  c?.kind === "saga" ? "saga" : "mirkwood";
+  c?.kind === "saga" ? "saga" : c?.kind === "angmar" ? "angmar" : "mirkwood";
 /** The chapters of a campaign, in order (with the saga's optional inserts). */
 const chaptersOf = (kind: CampaignKind): readonly ScenarioId[] =>
-  kind === "saga" ? SAGA_CAMPAIGN_JOURNAL : CAMPAIGN_CHAPTERS;
+  kind === "saga"
+    ? SAGA_CAMPAIGN_JOURNAL
+    : kind === "angmar"
+      ? ANGMAR_CAMPAIGN_ORDER
+      : CAMPAIGN_CHAPTERS;
 /** Each seat's hero count in the Campaign Log (a set-aside Aragorn still counts). */
 const campaignSeatCounts = (g: GameState): number[] =>
-  (g.campaign?.kind === "saga" ? g.campaign.seatHeroes : undefined) ??
+  (g.campaign?.kind ? g.campaign.seatHeroes : undefined) ??
   g.table?.seats.map((p) => p.startingHeroes.length) ?? [
     g.campaign?.heroes.length ?? 3,
   ];
@@ -474,16 +487,30 @@ const campaignSeatHeroes = (g: GameState, list: string[]) => {
 const campaignProgress = (c: CampaignState) =>
   c.kind === "saga"
     ? `${c.completed.filter((q) => !SAGA_INSERTS.includes(q.scenarioId)).length} / ${SAGA_CAMPAIGN_ORDER.length}`
-    : `${c.completed.length} / ${CAMPAIGN_CHAPTERS.length}`;
+    : c.kind === "angmar"
+      ? `${c.completed.length} / ${ANGMAR_CAMPAIGN_ORDER.length}`
+      : `${c.completed.length} / ${CAMPAIGN_CHAPTERS.length}`;
 const CAMPAIGN_TITLES: Record<CampaignKind, string> = {
   mirkwood: "Mirkwood Paths",
   saga: "The Lord of the Rings",
+  angmar: "Angmar Awakened",
 };
 /** The chapter a campaign continues with, or undefined when it is complete. */
 const nextChapterOf = (c: CampaignState): ScenarioId | undefined =>
   c.kind === "saga"
     ? nextSagaChapter(c)
-    : CAMPAIGN_CHAPTERS[c.completed.length];
+    : c.kind === "angmar"
+      ? nextAngmarChapter(c)
+      : CAMPAIGN_CHAPTERS[c.completed.length];
+/** The hero title a campaign's next chapter forbids. */
+const forbiddenTitleOf = (c: CampaignState, next?: ScenarioId) =>
+  !next
+    ? undefined
+    : c.kind === "saga"
+      ? sagaForbiddenTitle(next)
+      : c.kind === "angmar"
+        ? angmarForbiddenTitle(next)
+        : undefined;
 const readMode = (): PlayMode => {
   try {
     return localStorage.getItem(MODE_KEY) === "campaign"
@@ -1039,7 +1066,11 @@ export default function App() {
     }
   };
   const campaignStart: ScenarioId =
-    campaignKind === "saga" ? "a-shadow-of-the-past" : "mirkwood";
+    campaignKind === "saga"
+      ? "a-shadow-of-the-past"
+      : campaignKind === "angmar"
+        ? "intruders-in-chetwood"
+        : "mirkwood";
   const [interlude, setInterlude] = useState(false);
   const [nextHeroes, setNextHeroes] = useState<string[]>([]);
   const [nextSeatDecks, setNextSeatDecks] = useState<string[]>([]);
@@ -1780,8 +1811,7 @@ export default function App() {
     const c = game.campaign;
     // A fallen hero, or a title the next chapter forbids (no Aragorn in The
     // Land of Shadow), leaves its slot to be filled.
-    const forbidden =
-      c.kind === "saga" ? sagaForbiddenTitle(nextChapterOf(c)!) : undefined;
+    const forbidden = forbiddenTitleOf(c, nextChapterOf(c));
     const usable = (code: string) =>
       !c.fallen.includes(code) &&
       !(
@@ -2501,7 +2531,7 @@ export default function App() {
                   <Books size={19} />
                   <span>
                     Campaign mode
-                    <small>One fellowship. Two campaigns.</small>
+                    <small>One fellowship. Three campaigns.</small>
                   </span>
                 </button>
               </div>
@@ -2544,6 +2574,18 @@ export default function App() {
                       </small>
                     </span>
                   </button>
+                  <button
+                    aria-pressed={campaignKind === "angmar"}
+                    onClick={() => setCampaignKind("angmar")}
+                  >
+                    <span>
+                      Angmar Awakened
+                      <small>
+                        {ANGMAR_CAMPAIGN_SUPPORTED.length} of{" "}
+                        {ANGMAR_CAMPAIGN_ORDER.length} chapters
+                      </small>
+                    </span>
+                  </button>
                 </div>
               )}
             </section>
@@ -2569,7 +2611,9 @@ export default function App() {
                   {playMode === "campaign"
                     ? campaignKind === "saga"
                       ? `THE LORD OF THE RINGS · CHAPTER ${sagaChapterNumber(quest.id)}`
-                      : `MIRKWOOD PATHS · CHAPTER ${quest.chapter}`
+                      : campaignKind === "angmar"
+                        ? `ANGMAR AWAKENED · CHAPTER ${ANGMAR_CAMPAIGN_ORDER.indexOf(quest.id) + 1}`
+                        : `MIRKWOOD PATHS · CHAPTER ${quest.chapter}`
                     : quest.tagline.toUpperCase()}
                 </div>
                 <div className="adventure-preview-meta">
@@ -4285,7 +4329,10 @@ export default function App() {
                 >
                   Campaign card · {card(campaignCardOf(game)!).name}
                 </button>
-                {sagaCampaignStatus(game).map((line) => (
+                {[
+                  ...sagaCampaignStatus(game),
+                  ...angmarCampaignStatus(game),
+                ].map((line) => (
                   <p key={line} className="campaign-note">
                     {line}
                   </p>
@@ -5109,9 +5156,10 @@ export default function App() {
                   (game.campaign!.kind === "saga" &&
                     fallenNames(game.campaign!).includes(card(candidate).name))
                     ? "Fallen"
-                    : game.campaign!.kind === "saga" &&
-                        !!nextChapter &&
-                        sagaForbiddenTitle(nextChapter) === card(candidate).name
+                    : forbiddenTitleOf(
+                          game.campaign!,
+                          nextChapter ?? nextChapterOf(game.campaign!),
+                        ) === card(candidate).name
                       ? `No card titled ${card(candidate).name} in this chapter`
                       : nextHeroes.includes(candidate) && candidate !== code
                         ? "Already in the company"
@@ -5301,8 +5349,11 @@ export default function App() {
               ) : game.campaign &&
                 (game.status === "won" || sagaChapterComplete(game)) &&
                 nextChapterOf(game.campaign) &&
-                (game.campaign.kind !== "saga" ||
-                  sagaChapterSupported(nextChapterOf(game.campaign))) ? (
+                (game.campaign.kind === "saga"
+                  ? sagaChapterSupported(nextChapterOf(game.campaign))
+                  : game.campaign.kind === "angmar"
+                    ? angmarChapterSupported(nextChapterOf(game.campaign))
+                    : true) ? (
                 <>
                   {game.status === "lost" && (
                     <p className="campaign-note">
@@ -5320,6 +5371,14 @@ export default function App() {
                   {game.campaign.outcome === "won"
                     ? "The One Ring is destroyed and the power of Sauron defeated: the players win The Lord of the Rings campaign."
                     : "The One Ring is kept, and its bearer succumbs to the power of Sauron: the players lose The Lord of the Rings campaign."}
+                </p>
+              ) : game.campaign?.kind === "angmar" &&
+                angmarChapterComplete(game) &&
+                nextChapterOf(game.campaign) ? (
+                <p className="campaign-note">
+                  The campaign log is recorded. The next chapter,{" "}
+                  {scenario(nextChapterOf(game.campaign)!).name}, is not
+                  available in campaign mode yet.
                 </p>
               ) : game.status === "lost" ? (
                 <button className="primary" onClick={retry}>
@@ -5418,7 +5477,9 @@ const campaignCardOf = (game: GameState) =>
     ? undefined
     : game.campaign.kind === "saga"
       ? SAGA_CAMPAIGN_CARD_CODES[game.scenarioId]
-      : CORE_CAMPAIGN_CARDS[game.scenarioId];
+      : game.campaign.kind === "angmar"
+        ? ANGMAR_CAMPAIGN_CARDS[game.scenarioId]
+        : CORE_CAMPAIGN_CARDS[game.scenarioId];
 function CampaignJournal({
   game,
   inspect,
@@ -5460,6 +5521,8 @@ function CampaignJournal({
                   <Check size={15} />
                 ) : c.kind === "saga" ? (
                   sagaChapterNumber(id)
+                ) : c.kind === "angmar" ? (
+                  ANGMAR_CAMPAIGN_ORDER.indexOf(id) + 1
                 ) : (
                   q.chapter
                 )}
@@ -5541,6 +5604,12 @@ function CampaignJournal({
         <p className="campaign-note">
           Notes · The Corsair Fleet: {c.corsairFleet}{" "}
           {c.corsairFleet === 1 ? "resource" : "resources"}
+        </p>
+      ) : null}
+      {c.innocent !== undefined ? (
+        <p className="campaign-note">
+          Notes · {c.ravaged ? "Arnor Ravaged" : "Protect the Innocent"}:{" "}
+          {c.innocent} damage
         </p>
       ) : null}
       {c.blackGateTokens !== undefined ? (

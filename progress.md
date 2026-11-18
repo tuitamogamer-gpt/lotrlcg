@@ -1208,3 +1208,13 @@ Validation on Node 22: the engine suite passes all 6,762 tests; the Lord of the 
 Coverage is now 861 player definitions (112 heroes), 2,107 encounters and 123 scenarios. This resolves 3,359 of 4,183 identities and 270 of 355 recipes; 824 identities remain pending.
 
 Validation on Node 22: the engine suite passes all 6,763 tests (the one count that included the campaign card was corrected and rerun); the Core campaign browser suite passes; the production build passes.
+
+2026-11-18 The Angmar Awakened campaign, Intruders in Chetwood: continued the user's “Nastavi” after f1b6c5e. Campaign mode now offers a third campaign, Angmar Awakened (the Campaign Expansion's pool CCC.3), and its first chapter is supported. See docs/ANGMAR-CAMPAIGN.md.
+
+- All 38 cards of the expansion (48 faces) were checked by eye against the DragnCards scans; the scans correct the catalog (Iârion's Pendant Victory 1, Mysterious Omens 9 quest points and Victory 5, Fend off Despair 8 and Victory 10, Loot the Dungeons 4 and Victory 10, Protect the Innocent's "–" quest points, "The Battle of Carn Dûm"). The cards are registered chapter by chapter with their scripts: Intruders in Chetwood's campaign card, Iârion's Pendant and Protect the Innocent (5 faces) now.
+- The campaign framework: a third campaign kind with the Revised Core rules (fallen heroes, the +1 penalty for each replacement, same-title swaps, each seat's hero count), its nine chapters in order, the Amarthiúl hero barred until The Battle of Carn Dûm, saves checked, the lobby's third campaign button (the campaign choice now takes its own row and stacks on phones), the journal's notes and the quest inspector's campaign card.
+- Intruders in Chetwood: Protect the Innocent enters the staging area and each player may place 4 damage on it for a resource on each hero; each attack that damages a character adds 1 damage, progress placed on it removes damage instead (it is never defeated), and 10 damage (20 with three or four players) loses the game; Iârion's Pendant is attached to Iârion (+1 willpower) and its Response cancels a revealed card's when revealed effects or a shadow effect; the resolution notes the damage and adds Protect the Innocent to the Campaign Pool.
+
+Coverage is now 861 player definitions (112 heroes), 2,110 encounters and 123 scenarios. This resolves 3,362 of 4,183 identities and 270 of 355 recipes; 821 identities remain pending.
+
+Validation on Node 22: the engine suite passes all 6,768 tests, including 5 new for the Angmar Awakened campaign. The new Angmar browser suite passes 12 checkpoints at 1280, 390 and 320 pixels and checks the 5 pinned faces; the Lord of the Rings campaign browser suite still passes its 174 checkpoints with the new lobby row; the production build passes.

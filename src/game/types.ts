@@ -323,8 +323,15 @@ export type ScenarioId =
   | "shadow-and-flame";
 export type PlayMode = "normal" | "campaign";
 export interface CampaignState {
-  /** The Lord of the Rings saga campaign; absent for Mirkwood Paths. */
-  kind?: "saga";
+  /**
+   * The Lord of the Rings saga campaign or the Angmar Awakened campaign;
+   * absent for Mirkwood Paths.
+   */
+  kind?: "saga" | "angmar";
+  /** Angmar Awakened: the damage noted for Protect the Innocent (and later Arnor Ravaged). */
+  innocent?: number;
+  /** Angmar Awakened: Protect the Innocent has been flipped to Arnor Ravaged (Deadmen's Dike). */
+  ravaged?: boolean;
   /** Saga: the scenario whose campaign card resolution awaits the players' choices. */
   resolution?: ScenarioId | null;
   seatPenalties?: number[];
@@ -554,6 +561,11 @@ export interface GameState {
   ulfast?: import("./ulfast-types").UlfastState;
   ulfastPlayers?: import("./ulfast-player-types").UlfastPlayersState;
   perilousVoyage?: import("./perilous-voyage-types").PerilousVoyageState;
+  /** The Angmar Awakened campaign: its campaign-only cards' state during a chapter. */
+  angmarCards?: {
+    /** Protect the Innocent's (or Arnor Ravaged's) unit in the staging area. */
+    innocent?: string;
+  };
   /** The Lord of the Rings campaign: pending The Ring Draws Them engagements and Mr. Underhill marks. */
   sagaCards?: {
     ringDraws: number;

@@ -26,6 +26,14 @@ import {
   TOS_CHAPTERS,
 } from "./saga-campaign";
 import type { ScenarioId } from "./types";
+import {
+  angmarChapterComplete,
+  angmarChapterSupported,
+  angmarForbiddenTitle,
+  isAngmarCampaign,
+  nextAngmarChapter,
+  resolveAngmarCampaign,
+} from "./angmar-campaign";
 
 export function newCampaign(
   heroes: string[],
@@ -47,6 +55,7 @@ export function newCampaign(
 export function resolveCampaign(s: GameState) {
   const c = s.campaign!;
   if (isSagaCampaign(c)) return resolveSagaCampaign(s);
+  if (isAngmarCampaign(c)) return resolveAngmarCampaign(s);
   if (c.completed.some((q) => q.scenarioId === s.scenarioId)) return;
   const fallen = seatIndices(s).flatMap((i) => {
     const p = seatView(s, i);
@@ -108,14 +117,21 @@ export function continueCampaign(
   deckBoons?: Record<string, number | null>,
 ): GameState {
   const saga = isSagaCampaign(s.campaign);
+  const angmar = isAngmarCampaign(s.campaign);
   requireRule(
-    (saga ? sagaChapterComplete(s) : s.status === "won") && s.campaign,
+    (saga
+      ? sagaChapterComplete(s)
+      : angmar
+        ? angmarChapterComplete(s)
+        : s.status === "won") && s.campaign,
     "Win the current chapter before continuing.",
   );
   requireRule(
     saga
       ? sagaChapterOptions(s.campaign!).length > 0
-      : s.campaign!.completed.length < 3,
+      : angmar
+        ? !!nextAngmarChapter(s.campaign!)
+        : s.campaign!.completed.length < 3,
     "The campaign is complete.",
   );
   requireRule(
@@ -125,7 +141,9 @@ export function continueCampaign(
   const c = structuredClone(s.campaign);
   const next = saga
     ? (nextScenario ?? nextSagaChapter(c)!)
-    : SCENARIOS[c.completed.length].id;
+    : angmar
+      ? nextAngmarChapter(c)!
+      : SCENARIOS[c.completed.length].id;
   // The Treason of Saruman and The Flame of the West: a fallen Aragorn leaves
   // the list of fallen heroes (each player takes a permanent +1 threat
   // penalty), and the Permanent cards of a recorded Aragorn are transferred to
@@ -156,10 +174,10 @@ export function continueCampaign(
   // The Campaign Log keeps each player's hero count (a recorded Aragorn set
   // aside for the Fellowship Aragorn still counts).
   const counts =
-    (saga ? c.seatHeroes : undefined) ??
+    (saga || angmar ? c.seatHeroes : undefined) ??
     s.table?.seats.map((p) => p.startingHeroes.length);
   // The Road Darkens FAQ: no version of a fallen hero can be used.
-  const fallen = saga ? c.fallen.map((h) => card(h).name) : [];
+  const fallen = saga || angmar ? c.fallen.map((h) => card(h).name) : [];
   requireRule(
     heroes.length === (counts?.reduce((n, x) => n + x, 0) ?? 3) &&
       new Set(heroes).size === heroes.length &&
@@ -179,10 +197,16 @@ export function continueCampaign(
   // Baggins" can be used, and a recorded Aragorn gives way to the Fellowship
   // Aragorn without the penalty. The Land of Shadow: no card titled
   // "Aragorn", and a recorded Aragorn is replaced without the penalty.
-  const title = saga ? sagaForbiddenTitle(next) : undefined;
+  const title = saga
+    ? sagaForbiddenTitle(next)
+    : angmar
+      ? angmarForbiddenTitle(next)
+      : undefined;
   requireRule(
     !title || !heroes.some((h) => card(h).name === title),
-    `No card titled ${title} can be used in ${TOS_CHAPTERS.includes(next) ? "The Treason of Saruman" : LOS_CHAPTERS.includes(next) ? "The Land of Shadow" : "The Flame of the West"}'s chapters.`,
+    angmar
+      ? "The Amarthiúl hero cannot be used until a campaign card allows it (The Battle of Carn Dûm)."
+      : `No card titled ${title} can be used in ${TOS_CHAPTERS.includes(next) ? "The Treason of Saruman" : LOS_CHAPTERS.includes(next) ? "The Land of Shadow" : "The Flame of the West"}'s chapters.`,
   );
   const aragornFree =
     saga && (!!fellowshipAragornCode(next) || LOS_CHAPTERS.includes(next));
@@ -207,7 +231,7 @@ export function continueCampaign(
   const groups = s.table
     ? s.table.seats.map((p, i) => {
         const before =
-          saga && c.seatHeroes
+          (saga || angmar) && c.seatHeroes
             ? c.heroes.slice(logOffset, logOffset + counts![i])
             : p.startingHeroes;
         logOffset += counts![i];
@@ -216,7 +240,7 @@ export function continueCampaign(
     : [{ before: c.heroes, after: heroes }];
   const replaced = groups.flatMap(({ before, after }) => {
     let removed = before.filter((h) => !after.includes(h));
-    if (saga) {
+    if (saga || angmar) {
       // The Road Darkens FAQ: a hero replaced by another version of the same
       // hero (the same title) is not a replacement.
       const added = after.filter((h) => !before.includes(h));
@@ -242,6 +266,10 @@ export function continueCampaign(
   requireRule(
     !saga || sagaChapterSupported(next),
     "The next chapter of The Lord of the Rings campaign is not available yet.",
+  );
+  requireRule(
+    !angmar || angmarChapterSupported(next),
+    "The next chapter of the Angmar Awakened campaign is not available in campaign mode yet.",
   );
   requireRule(
     next !== "dol-guldur" || !c.prisoner || heroes.includes(c.prisoner),

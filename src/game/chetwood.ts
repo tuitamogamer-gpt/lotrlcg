@@ -1,4 +1,5 @@
 import { isAlly } from "./card-types";
+import { angmarIarionEntered } from "./angmar-campaign";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { isAngmarAdventure } from "./angmar-scenario-ids";
 import type { Effect, GameState, Option, Unit } from "./types";
@@ -590,6 +591,8 @@ export function chetwoodEffect(s: GameState, e: Effect) {
       const ally = make(s, C.iarion);
       ally.controller = firstPlayer(s);
       forOwner(s, firstPlayer(s), () => s.allies.push(ally));
+      // The Angmar Awakened campaign card attaches Iârion's Pendant to him.
+      angmarIarionEntered(s, ally);
       const party = make(s, C.party);
       s.staging.push(party);
       enemyAddedToStaging(s, party);

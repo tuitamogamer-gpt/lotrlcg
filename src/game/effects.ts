@@ -52,6 +52,10 @@ import {
   sagaCampaignQuestBegin,
   sagaCampaignFirstPlayerChanged,
 } from "./saga-campaign-cards";
+import {
+  angmarCampaignEffect,
+  angmarPendantShadowOptions,
+} from "./angmar-campaign";
 import { finishGameSetup } from "./setup";
 import * as WrathPlayers from "./wrath-ruin-player";
 import * as Burglar from "./burglar-contract";
@@ -668,6 +672,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (ulfastPlayerEffect(s, e)) return;
   if (perilousVoyageEffect(s, e)) return;
   if (sagaCampaignEffect(s, e)) return;
+  if (angmarCampaignEffect(s, e)) return;
   if (HaradPlayers.handleHaradPlayerEffect(s, e)) return;
   if (MumakPlayers.handleMumakilPlayerEffect(s, e)) return;
   if (RacePlayers.handleRaceHaradPlayerEffect(s, e)) return;
@@ -3032,8 +3037,16 @@ export function shadowResponse(s: GameState, code: string) {
     batch4Scenario(s).cannotCancel?.(s, true, code)
       ? []
       : ruinsBelegostShadowOptions(s, code, !!shadowText);
+  // Iârion's Pendant (an Angmar Awakened campaign boon).
+  const pendantOptions =
+    roadRivendellCannotCancel(s) ||
+    allActiveLocations(s).some((l) => l.code === "02016") ||
+    batch4Scenario(s).cannotCancel?.(s, true, code)
+      ? []
+      : angmarPendantShadowOptions(s, !!shadowText);
   if (
     swordOptions.length ||
+    pendantOptions.length ||
     sternerOptions.length ||
     balinOptions.length ||
     wrathOptions.length ||
@@ -3054,6 +3067,7 @@ export function shadowResponse(s: GameState, code: string) {
         ...balinOptions,
         ...sternerOptions,
         ...swordOptions,
+        ...pendantOptions,
         ...brand,
         ...erkenbrand,
         ...watcher,

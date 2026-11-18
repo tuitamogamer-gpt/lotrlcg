@@ -29,6 +29,10 @@ import {
   carnSideDefeated,
 } from "./carn-dum";
 import { dreadSideDefeated } from "./dread-realm";
+import {
+  angmarInnocentProgress,
+  angmarSideDefeatBlocked,
+} from "./angmar-campaign";
 import { gramProgress } from "./mount-gram";
 import { wastesProgress } from "./wastes-eriador";
 import { angmarSideDefeated } from "./angmar-player";
@@ -115,6 +119,8 @@ export function addQuestProgress(s: GameState, quest: Unit, amount: number) {
   )
     return;
   if (rhudaurRedirectProgress(s, physical, amount)) return;
+  // Protect the Innocent: progress removes its damage instead.
+  if (!isMain && angmarInnocentProgress(s, physical, amount)) return;
   if (isMain && fateQuestProgressBlocked(s)) return;
   const isCurrent = currentQuestUnit(s)?.id === physical.id;
   let placed = isMain
@@ -156,6 +162,7 @@ export function checkSideQuestDefeats(s: GameState) {
 function defeatSideQuest(s: GameState, quest: Unit) {
   if (
     Umbar.umbarSideDefeatBlocked(s, quest) ||
+    angmarSideDefeatBlocked(s, quest) ||
     batch4Scenario(s).sideDefeatBlocked?.(s, quest)
   )
     return;

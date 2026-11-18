@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2107,
+    "encounterCards": 2110,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3359,
-    "pending": 824
+    "scripted": 3362,
+    "pending": 821
   },
   "scenarioRecipes": {
     "total": 355,
@@ -633,6 +633,8 @@
     "10147",
     "10148",
     "10149",
+    "10157",
+    "10158",
     "11001",
     "11002",
     "11003",
@@ -2505,6 +2507,7 @@
     "octgn:81b31016-bcc3-4445-8f4d-64187e99aff3",
     "octgn:81de0a94-a871-42af-8497-d66b900c9620",
     "octgn:81e81787-13b1-4bbf-a9ef-b8516deebbbc",
+    "octgn:81f744b1-aa0e-4326-bd18-d701390141bf",
     "octgn:820e2015-fc9c-4547-8e93-d4eb7cd79691",
     "octgn:82141d38-fb53-472c-a5e8-6a495447c9ad",
     "octgn:821a078b-ae42-4b69-bd49-cc235916be77",
@@ -3580,9 +3583,9 @@
     {
       "product": "angmar-awakened-campaign-expansion",
       "total": 38,
-      "scripted": 0,
+      "scripted": 3,
       "player": 21,
-      "playerScripted": 0
+      "playerScripted": 1
     },
     {
       "product": "assault-on-osgiliath",
@@ -8588,7 +8591,7 @@
       "name": "Iârion's Pendant",
       "type": "attachment",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -8596,7 +8599,7 @@
       "name": "Protect the Innocent",
       "type": "encounter-side-quest",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -26836,7 +26839,7 @@
       "name": "Intruders in Chetwood",
       "type": "campaign",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {

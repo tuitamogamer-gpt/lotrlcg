@@ -140,6 +140,10 @@ import {
   sagaCampaignShadow,
   sagaTomBombadilOptions,
 } from "./saga-campaign-cards";
+import {
+  angmarCampaignDamageDealt,
+  angmarPendantRevealOptions,
+} from "./angmar-campaign";
 import { threatElimination } from "./tharbad-support";
 import * as Tharbad from "./tharbad";
 import * as Trials from "./three-trials";
@@ -1555,6 +1559,7 @@ export function damage(
   HaradResponses.haradPlayerDamageTaken(s, u, value, context);
   RoadDarkensPlayers.roadDarkensPlayerDamageTaken(s, u, value);
   sagaCampaignDamageDealt(s, u, value);
+  angmarCampaignDamageDealt(s, u, value, context);
   if (u.damage >= stats(s, u).health)
     City.cityCharacterDestroyed(s, u, context);
   if (u.damage >= stats(s, u).health)
@@ -3492,6 +3497,22 @@ export function resolveReveal(
       ...collectorEnemyCancelOptions(
         s,
         code,
+        fx("placeEncounter", {
+          text: "revealed",
+          code,
+          player: revealingPlayer,
+          value: thalin ? 1 : 0,
+          count: initialProgress,
+          source: guarding,
+          revealOrigin,
+        }),
+      ),
+    );
+  // Iârion's Pendant (an Angmar Awakened campaign boon).
+  if (when && revealOrigin === "encounter")
+    options.push(
+      ...angmarPendantRevealOptions(
+        s,
         fx("placeEncounter", {
           text: "revealed",
           code,

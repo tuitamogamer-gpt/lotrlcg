@@ -3514,8 +3514,9 @@ nav {
 /* Core Set journeys and persistent campaign play. */
 .mode-selection {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 30px;
+  gap: 14px 30px;
   margin: 8px 0 24px;
 }
 .mode-selection > p {
@@ -3659,8 +3660,13 @@ nav {
   color: #8e9a89;
   font-size: var(--text-small);
 }
-.campaign-kind {
-  margin-top: 10px;
+/* The campaign choice takes its own row under the game modes. */
+.mode-tabs.campaign-kind {
+  width: 100%;
+  flex-wrap: wrap;
+}
+.mode-tabs.campaign-kind button {
+  flex: 1 1 12rem;
 }
 .campaign-pool > div > span {
   display: block;
@@ -3787,6 +3793,9 @@ nav {
   }
   .mode-selection > p {
     font-size: var(--text-small);
+  }
+  .mode-tabs.campaign-kind button {
+    flex: 1 1 100%;
   }
   .campaign-journal {
     padding: 16px;

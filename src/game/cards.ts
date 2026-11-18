@@ -168,6 +168,7 @@ import ulfastPlayers from "../data/ulfast-player-cards.json";
 import dreadnaughtPlayers from "../data/dreadnaught-player-cards.json";
 import sagaCampaignCards from "../data/saga-campaign-cards.json";
 import coreCampaignCards from "../data/core-campaign-cards.json";
+import angmarCampaignCards from "../data/angmar-campaign-cards.json";
 import { ULFAST_ENCOUNTERS, ULFAST_QUESTS } from "./ulfast-scenario-data";
 import wrathRuinPlayers from "../data/wrath-ruin-player-cards.json";
 import {
@@ -635,6 +636,7 @@ export const encounterCards = [
       ...HD_ENCOUNTERS,
       ...(sagaCampaignCards as Card[]),
       ...(coreCampaignCards as Card[]),
+      ...(angmarCampaignCards as Card[]),
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),

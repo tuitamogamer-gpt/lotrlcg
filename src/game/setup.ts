@@ -112,6 +112,14 @@ import { draw, enqueue, fx, log, make, requireRule, shuffle } from "./core";
 import { flush } from "./effects";
 import { newCampaign } from "./campaign";
 import {
+  angmarCampaignSetup,
+  angmarChapterSupported,
+  angmarForbiddenTitle,
+  isAngmarCampaign,
+  newAngmarCampaign,
+  nextAngmarChapter,
+} from "./angmar-campaign";
+import {
   isSagaCampaign,
   newSagaCampaign,
   sagaChapterOptions,
@@ -292,9 +300,16 @@ export function createGame(
     (options.campaign
       ? isSagaCampaign(options.campaign)
       : isLotrSagaScenarioId(scenarioId));
+  // The Angmar Awakened campaign begins with Intruders in Chetwood.
+  const angmarCampaign =
+    playMode === "campaign" &&
+    (options.campaign
+      ? isAngmarCampaign(options.campaign)
+      : scenarioId === "intruders-in-chetwood");
   requireRule(
     playMode !== "campaign" ||
       sagaCampaign ||
+      angmarCampaign ||
       options.campaign ||
       scenarioId === "mirkwood",
     "A campaign begins in Mirkwood.",
@@ -302,8 +317,16 @@ export function createGame(
   requireRule(
     playMode !== "campaign" ||
       sagaCampaign ||
+      angmarCampaign ||
       CAMPAIGN_CHAPTERS.includes(scenarioId),
     "The Mirkwood Paths campaign covers the three Core Set quests.",
+  );
+  requireRule(
+    !angmarCampaign ||
+      (angmarChapterSupported(scenarioId) &&
+        nextAngmarChapter(options.campaign ?? { completed: [] }) ===
+          scenarioId),
+    "The Angmar Awakened campaign follows its chapters in order, beginning with Intruders in Chetwood.",
   );
   // The Old Forest and Fog on the Barrow-downs may follow A Shadow of the Past.
   requireRule(
@@ -317,7 +340,11 @@ export function createGame(
   // The campaign's box rules: no card titled "Frodo Baggins" in The Treason
   // of Saruman and The Flame of the West, none titled "Aragorn" in The Land of
   // Shadow.
-  const forbidden = sagaCampaign ? sagaForbiddenTitle(scenarioId) : undefined;
+  const forbidden = sagaCampaign
+    ? sagaForbiddenTitle(scenarioId)
+    : angmarCampaign
+      ? angmarForbiddenTitle(scenarioId)
+      : undefined;
   requireRule(
     !forbidden || !chosenHeroes.some((c) => card(c).name === forbidden),
     `No card titled ${forbidden} can be used in this chapter of the campaign.`,
@@ -332,7 +359,12 @@ export function createGame(
                   chosenLine,
                   options.seats?.map((p) => p.heroes.length),
                 )
-              : newCampaign(chosenLine)),
+              : angmarCampaign
+                ? newAngmarCampaign(
+                    chosenLine,
+                    options.seats?.map((p) => p.heroes.length),
+                  )
+                : newCampaign(chosenLine)),
         )
       : null;
   const s: GameState = {
@@ -546,7 +578,8 @@ export function finishGameSetup(s: GameState) {
       "good",
     );
   }
-  if (campaign && !isSagaCampaign(campaign)) {
+  // Mirkwood Paths (the campaign without a kind).
+  if (campaign && !campaign.kind) {
     s.encounterDeck.push(
       ...campaign.burdens.filter((c) => ["rc136", "rc137"].includes(c)),
     );
@@ -708,7 +741,7 @@ export function finishGameSetup(s: GameState) {
       (code) => code !== "01102" && !OBJECTIVES.includes(code),
     );
     shuffle(s, s.encounterDeck);
-    if (campaign)
+    if (campaign && !campaign.kind)
       enqueue(s, fx("appointedByFate", { player: s.table?.first ?? 0 }));
     for (const code of OBJECTIVES) {
       const objective = make(s, code);
@@ -721,9 +754,10 @@ export function finishGameSetup(s: GameState) {
   batch4PlayerSetup(s);
   eredMithrinPlayerSetup(s);
   sagaCampaignSetup(s);
+  angmarCampaignSetup(s);
   log(
     s,
-    `${scenario(scenarioId).name} · ${playMode === "campaign" ? (isSagaCampaign(campaign) ? "The Lord of the Rings campaign" : "Mirkwood Paths campaign") : "Normal game"}.`,
+    `${scenario(scenarioId).name} · ${playMode === "campaign" ? (isSagaCampaign(campaign) ? "The Lord of the Rings campaign" : isAngmarCampaign(campaign) ? "The Angmar Awakened campaign" : "Mirkwood Paths campaign") : "Normal game"}.`,
     "chapter",
   );
   if (s.flow)

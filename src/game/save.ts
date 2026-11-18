@@ -82,6 +82,7 @@ import { wrathRuinSavedExtraUnits } from "./wrath-ruin-state";
 import { validateUlfast } from "./ulfast-support";
 import { validateUlfastPlayers } from "./ulfast-player-support";
 import { isSagaCampaign, validateSagaCampaign } from "./saga-campaign";
+import { isAngmarCampaign, validateAngmarCampaign } from "./angmar-campaign";
 import { validateSagaCards } from "./saga-campaign-cards";
 import { validatePerilousVoyage } from "./perilous-voyage-support";
 import { validateWrathRuin } from "./wrath-ruin-support";
@@ -1224,6 +1225,8 @@ export function validateSave(
     if (s.playMode === "normal" && s.campaign !== null) return false;
     if (s.playMode === "campaign" && isSagaCampaign(s.campaign)) {
       if (!validateSagaCampaign(s)) return false;
+    } else if (s.playMode === "campaign" && isAngmarCampaign(s.campaign)) {
+      if (!validateAngmarCampaign(s)) return false;
     } else if (s.playMode === "campaign") {
       const c = s.campaign;
       if (
@@ -1268,7 +1271,7 @@ export function validateSave(
     }
     if (
       s.campaign &&
-      !isSagaCampaign(s.campaign) &&
+      !s.campaign.kind &&
       s.campaign.completed.length !==
         SCENARIOS.findIndex((q) => q.id === s.scenarioId) +
           (s.status === "won" ? 1 : 0)
