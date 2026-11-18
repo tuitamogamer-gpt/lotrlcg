@@ -552,12 +552,12 @@
     "sha256": "c51db7b685fd1238cc14015a127ebd41b8f77062a407293cd053fb83f07e70f1"
   },
   {
-    "code": "pelennor-corsair-fleet",
+    "code": "octgn:b002c7a6-f827-4a7d-8432-c3f2f995089e",
     "face": "front",
-    "source": "https://s3.amazonaws.com/hallofbeorn-resources/Images/Cards/The-Flame-of-the-West/The-Corsair-Fleet-Gondor.jpg",
-    "localPath": "/cards/pelennor-corsair-fleet.jpg",
-    "bytes": 1212811,
-    "sha256": "d519b972cf4a1b1f05a4c3003c8e5c6f69043c950ef825d431d101f821063afb"
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b002c7a6-f827-4a7d-8432-c3f2f995089e.jpg",
+    "localPath": "/cards/b002c7a6-f827-4a7d-8432-c3f2f995089e.jpg",
+    "bytes": 144568,
+    "sha256": "a48c2513989bde35b53541bab6060b0c96dccb12dae41e5cd04526a64d4b44e4"
   },
   {
     "code": "octgn:a27a3045-58aa-4cbe-ab36-90bc6e7a5cdb",

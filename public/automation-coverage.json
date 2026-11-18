@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3355,
-    "pending": 828
+    "scripted": 3356,
+    "pending": 827
   },
   "scenarioRecipes": {
     "total": 355,
@@ -2875,6 +2875,7 @@
     "octgn:af53407e-c51f-4b41-bd25-312f681149e1",
     "octgn:af787868-59d6-48be-983f-447ba0523f46",
     "octgn:afd48fc2-1bca-44d1-9b30-380d2035f2fb",
+    "octgn:b002c7a6-f827-4a7d-8432-c3f2f995089e",
     "octgn:b00c623e-2aaa-4286-9fba-499fe39eb204",
     "octgn:b03a007c-42bc-433c-bd0e-efbf65a8696d",
     "octgn:b06030a9-7ab9-48a6-b7da-5ffd8ce3a1a6",
@@ -3510,7 +3511,6 @@
     "octgn:ffe307bf-dd8e-4df3-9355-55564137d311",
     "octgn:ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e",
     "orc-guard",
-    "pelennor-corsair-fleet",
     "rc132",
     "rc133",
     "rc134",
@@ -4095,7 +4095,7 @@
     {
       "product": "the-flame-of-the-west",
       "total": 82,
-      "scripted": 81,
+      "scripted": 82,
       "player": 15,
       "playerScripted": 15
     },
@@ -30649,7 +30649,7 @@
       "name": "The Corsair Fleet",
       "type": "objective",
       "pack": "The Flame of the West",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-flame-of-the-west"
     },
     {

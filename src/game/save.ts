@@ -1908,10 +1908,28 @@ export function validateSave(
   }
 }
 
+/**
+ * Codes a release used before their catalog identity was registered: The
+ * Battle of the Pelennor Fields' campaign Corsair Fleet (the box's card 72).
+ */
+const RENAMED_CODES: Readonly<Record<string, string>> = {
+  "pelennor-corsair-fleet": "octgn:b002c7a6-f827-4a7d-8432-c3f2f995089e",
+};
+/** A copy of the saved state, with any renamed code replaced. */
+function copyWithCurrentCodes(value: object): object {
+  let text = JSON.stringify(value);
+  const renamed = Object.entries(RENAMED_CODES).filter(([from]) =>
+    text.includes(JSON.stringify(from)),
+  );
+  if (!renamed.length) return structuredClone(value);
+  for (const [from, to] of renamed)
+    text = text.replaceAll(JSON.stringify(from), JSON.stringify(to));
+  return JSON.parse(text);
+}
 export function restoreSave(value: unknown): GameState | null {
   try {
     if (!value || typeof value !== "object") return null;
-    const s = structuredClone(value) as GameState;
+    const s = copyWithCurrentCodes(value) as GameState;
     if ((s.version as number) === 1) {
       Object.assign(s, {
         version: 2,

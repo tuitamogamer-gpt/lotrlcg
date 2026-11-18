@@ -1187,3 +1187,13 @@ Engine: src/game/saga-campaign.ts adds the three setups and resolutions, the los
 Coverage is now 861 player definitions (112 heroes), 2,104 encounters and 123 scenarios. This resolves 3,355 of 4,183 identities and 270 of 355 recipes; 828 identities remain pending.
 
 Validation on Node 22: the engine suite passes all 6,762 tests, including 38 focused campaign tests (6 new for The Mountain of Fire). The browser suite plays the campaign log from the lobby through every chapter, from A Shadow of the Past to Mount Doom's won campaign, at 1280, 390 and 320 pixels (174 checkpoints) and checks the 76 original faces. The production build passes.
+
+2026-11-18 The Battle of the Pelennor Fields' campaign Corsair Fleet now uses its catalog identity: continued the user's “Nastavi” after 6980c8e. The Flame of the West import gave the Gondor side of The Corsair Fleet (the box's card 72) a local code, "pelennor-corsair-fleet", and Hall of Beorn's scan, believing the catalog and DragnCards lacked it; the coverage audit's pending list showed the catalog's octgn:b002c7a6-f827-4a7d-8432-c3f2f995089e, in the Pelennor's set with the same text, and DragnCards serves its scan.
+
+- The card data, the art pin (DragnCards' scan, checked by eye against Hall of Beorn's) and the reference art map use the catalog's identity; the 1.2 MB Hall of Beorn file is gone.
+- restoreSave converts the old code in saves made since b6d0895 (a JSON copy only when the code is present), and the focused test restores such a save.
+- docs/SAGA-CAMPAIGN.md's sources note is corrected.
+
+Coverage is now 861 player definitions (112 heroes), 2,104 encounters and 123 scenarios. This resolves 3,356 of 4,183 identities and 270 of 355 recipes; 827 identities remain pending.
+
+Validation on Node 22: the engine suite passes all 6,762 tests; the Lord of the Rings campaign browser suite passes its 174 checkpoints and the 76 original faces; the production build passes.

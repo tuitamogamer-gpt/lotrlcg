@@ -1157,15 +1157,16 @@
     "imagesrc": "/cards/145068.jpg"
   },
   {
-    "code": "pelennor-corsair-fleet",
+    "code": "octgn:b002c7a6-f827-4a7d-8432-c3f2f995089e",
     "name": "The Corsair Fleet",
     "is_unique": true,
     "quantity": 1,
     "official": true,
     "nightmare": false,
-    "source": "hallofbeorn",
+    "source": "dragncards",
     "pack_code": "FotW",
     "pack_name": "The Flame of the West",
+    "octgnid": "b002c7a6-f827-4a7d-8432-c3f2f995089e",
     "type_code": "objective",
     "sphere_code": "encounter",
     "subtitle": "The Battle of the Pelennor Fields",
@@ -1175,7 +1176,7 @@
     "text": "Forced: At the beginning of the quest phase, remove 1 resource from The Corsair Fleet. Then, if there are no resources here, the first player takes control of Aragorn and adds The Corsair Fleet to the victory display.",
     "flavor": "\"The oars were now wielded by free men, and manfully they laboured...\" -Legolas, The Return of the King",
     "illustrator": "Johan Törnlund",
-    "imagesrc": "/cards/pelennor-corsair-fleet.jpg",
+    "imagesrc": "/cards/b002c7a6-f827-4a7d-8432-c3f2f995089e.jpg",
     "printed_stats": {}
   },
   {

@@ -75,11 +75,12 @@ keeps it and they lose.
   [RulesPal](https://rulespal.com/the-lord-of-the-rings-the-card-game-the-land-of-shadow/rulebook),
   adds that no card titled Aragorn can be used in its chapters in campaign
   mode.
-- The Flame of the West's three campaign cards (both faces) and the Army of
-  the Dead boon were checked by eye against the scans; the campaign-only Corsair
-  Fleet of The Battle of the Pelennor Fields (Gondor, the box's card 72, which
-  neither the catalog nor DragnCards has) comes from Hall of Beorn's scan. With
-  them, all 70 faces are pinned. The five burden set icons on the three cards
+- The Flame of the West's three campaign cards (both faces), the Army of the
+  Dead boon and the campaign-only Corsair Fleet of The Battle of the Pelennor
+  Fields (Gondor side, the box's card 72) were checked by eye against the
+  scans. The first release gave that Corsair Fleet a local code and Hall of
+  Beorn's scan; it now uses the catalog's identity and DragnCards' scan, and
+  older saves are converted. With them, all 70 faces are pinned. The five burden set icons on the three cards
   are those of A Shadow of the Past, Flight to the Ford and The Ring Goes South
   (the same shapes as on The Treason of Saruman's cards), The Passage of the
   Marshes and Shelob's Lair. Esquire of Rohan, Esquire of Gondor, Overcome by

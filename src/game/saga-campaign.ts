@@ -184,7 +184,7 @@ export const SAGA = {
   /** The Siege of Gondor's Corsair Fleet (Corsair side). */
   corsairFleet: "octgn:0140d146-771e-4f19-9de8-d7cf0b4d8268",
   /** The Battle of the Pelennor Fields' Corsair Fleet (Gondor side, campaign mode only). */
-  gondorFleet: "pelennor-corsair-fleet",
+  gondorFleet: "octgn:b002c7a6-f827-4a7d-8432-c3f2f995089e",
   gwaihir: "146041",
   /** The Tower of Cirith Ungol's Shagrat and Last of the Company. */
   shagrat: "octgn:a246d29f-f370-4308-828d-c1ff09029b4a",

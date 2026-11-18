@@ -115,6 +115,19 @@ test("The Flame of the West campaign cards, the Army of the Dead boon and the Pe
     /^Forced: At the beginning of the quest phase, remove 1 resource from The Corsair Fleet\. Then, if there are no resources here, the first player takes control of Aragorn/,
   );
   assert.equal(card(SAGA.gondorFleet).traits, "Gondor.");
+  // The catalog's identity: the box's card 72, in the Pelennor's set.
+  assert.deepEqual(
+    [
+      SAGA.gondorFleet,
+      card(SAGA.gondorFleet).position,
+      card(SAGA.gondorFleet).encounter_set,
+    ],
+    [
+      "octgn:b002c7a6-f827-4a7d-8432-c3f2f995089e",
+      72,
+      "The Battle of the Pelennor Fields",
+    ],
+  );
   assert.deepEqual(
     [
       "The Passing of the Grey Company",
@@ -330,6 +343,20 @@ test("The Battle of the Pelennor Fields: the recorded Harad enemies wait for sta
   assert.equal(fleet.resources, 2);
   pf = settle(pf);
   assert.ok(valid(pf));
+  // A save from the release that named the fleet "pelennor-corsair-fleet".
+  const legacy = restoreSave(
+    JSON.parse(
+      JSON.stringify(pf).replaceAll(
+        JSON.stringify(SAGA.gondorFleet),
+        JSON.stringify("pelennor-corsair-fleet"),
+      ),
+    ),
+  );
+  assert.ok(legacy, "the older save is restored");
+  assert.equal(
+    legacy!.staging.find((u) => u.code === SAGA.gondorFleet)?.resources,
+    2,
+  );
   // The beginning of the quest phase.
   const quest = calm(reload(pf));
   const f = quest.staging.find((u) => u.code === SAGA.gondorFleet)!;
