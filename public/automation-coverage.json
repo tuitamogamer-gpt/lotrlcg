@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2136,
+    "encounterCards": 2140,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3387,
-    "pending": 796
+    "scripted": 3391,
+    "pending": 792
   },
   "scenarioRecipes": {
     "total": 355,
@@ -656,6 +656,9 @@
     "10180",
     "10181",
     "10183",
+    "10185",
+    "10186",
+    "10187",
     "11001",
     "11002",
     "11003",
@@ -3152,6 +3155,7 @@
     "octgn:cfe25792-3c08-4154-8770-821eee3c9e3f",
     "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958",
     "octgn:d057a6d6-8eda-4aa2-8d2d-8f2af6b6eeb8",
+    "octgn:d060f58b-3067-43c0-a480-d55c68c33305",
     "octgn:d0b6992d-9dc4-41fa-a483-b4ad0a3d60b3",
     "octgn:d0bf9c82-d626-4602-a383-4a5660a08c5f",
     "octgn:d12e280f-44f3-469e-a2e8-e3bfd541f909",
@@ -3609,9 +3613,9 @@
     {
       "product": "angmar-awakened-campaign-expansion",
       "total": 38,
-      "scripted": 28,
+      "scripted": 32,
       "player": 21,
-      "playerScripted": 14
+      "playerScripted": 17
     },
     {
       "product": "assault-on-osgiliath",
@@ -8793,7 +8797,7 @@
       "name": "Daechanar's Brand",
       "type": "attachment",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -8801,7 +8805,7 @@
       "name": "Heirloom of Iârchon",
       "type": "attachment",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -8809,7 +8813,7 @@
       "name": "Orders from Angmar",
       "type": "attachment",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -33777,7 +33781,7 @@
       "name": "The Treachery of Rhudaur",
       "type": "campaign",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {

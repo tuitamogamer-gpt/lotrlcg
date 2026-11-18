@@ -16,6 +16,7 @@ import {
 } from "../src/game/angmar-campaign.ts";
 import { card } from "../src/game/cards.ts";
 import { DIKE } from "../src/game/deadmens-dike-support.ts";
+import { RHUDAUR } from "../src/game/rhudaur-support.ts";
 import { CHETWOOD } from "../src/game/chetwood-support.ts";
 import { reviewedState } from "./browser-review-helpers.mjs";
 import { capture, context, report, url } from "./browser-angmar-helpers.mjs";
@@ -477,8 +478,41 @@ try {
       .getByText(/Losing Time ×2/)
       .first()
       .waitFor();
-    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await page.getByRole("button", { name: /^Continue campaign/ }).waitFor();
     await checkpoint("etten-complete", width);
+    // The Treachery of Rhudaur: Losing Time returns to the encounter deck.
+    s = await continueCampaign(undefined, width);
+    assert.equal(s.scenarioId, "the-treachery-of-rhudaur");
+    assert.equal(s.encounterDeck.filter((c) => c === ANGMAR.losing).length, 2);
+    await campaignCard(
+      /^Losing Time \(2 in the Campaign Pool\)/,
+      "rhudaur-setup",
+      width,
+    );
+    // The resolution: the player with a Clue may add the boon of the same name.
+    s = await victory(s, (t) => {
+      t.heroes[0].attachments.push({
+        id: `a${t.nextId++}`,
+        code: RHUDAUR.brand,
+        exhausted: false,
+      });
+    });
+    assert.equal(s.campaign.resolution, "the-treachery-of-rhudaur");
+    await page
+      .getByRole("button", { name: /^Record the resolution/ })
+      .waitFor();
+    await checkpoint("rhudaur-resolution", width);
+    s = await record([
+      ["Add Daechanar's Brand to the Campaign Pool and your deck?", "add"],
+    ]);
+    assert.ok(s.campaign.boons.includes(ANGMAR.brand));
+    assert.equal(s.campaign.deckBoons[ANGMAR.brand], 0);
+    await page
+      .getByText("Daechanar's Brand", { exact: true })
+      .first()
+      .waitFor();
+    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await checkpoint("rhudaur-complete", width);
     await view.c.close();
   }
   const p = await browser.newPage();

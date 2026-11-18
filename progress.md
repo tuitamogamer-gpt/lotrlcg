@@ -1278,3 +1278,14 @@ Validation on Node 22: the engine suite passes all 6,782 tests, including 19 for
 Coverage is now 861 player definitions (112 heroes), 2,136 encounters and 123 scenarios. This resolves 3,387 of 4,183 identities and 270 of 355 recipes; 796 identities remain pending.
 
 Validation on Node 22: the engine suite passes all 6,784 tests, including 21 for the Angmar Awakened campaign; the Angmar browser suite passes 54 checkpoints at 1280, 390 and 320 pixels, through Across the Ettenmoors' resolution, and checks the 35 pinned faces; the production build passes.
+
+2026-11-18 The Angmar Awakened campaign, The Treachery of Rhudaur: continued the user's “Nastavi” after 166dd60. The campaign's seventh chapter is supported; the end of the game now reaches The Battle of Carn Dûm's note. See docs/ANGMAR-CAMPAIGN.md.
+
+- The Treachery of Rhudaur's campaign card and the three Clue boons are registered with the scans' texts (40 faces pinned in all).
+- The cards the pool has gathered return: Losing Time's copies, Fend off Despair and Mysterious Omens in the encounter deck, Arnor Ravaged, Amarthiúl's Courage on the objective ally, and Thaurdir's burdens on the set-aside Thaurdir ("even if he is out of play"); a Sorcery treachery moves a burden from him.
+- The resolution asks each player, per Clue they control, whether to add the boon of the same name to the Campaign Pool and their deck (the end-of-game dialog serves it).
+- Daechanar's Brand (+1 attack, +2 against Undead; a Sorcery treachery from the top 5 encounter cards to the victory display), Heirloom of Iârchon (+1 willpower; all damage healed) and Orders from Angmar (+1 defense, +2 against Undead; a weak non-unique Undead enemy discarded) are scripted, their Responses after they are played.
+
+Coverage is now 861 player definitions (112 heroes), 2,140 encounters and 123 scenarios. This resolves 3,391 of 4,183 identities and 270 of 355 recipes; 792 identities remain pending.
+
+Validation on Node 22: the engine suite passes all 6,786 tests, including 23 for the Angmar Awakened campaign; the Angmar browser suite passes 63 checkpoints at 1280, 390 and 320 pixels, through The Treachery of Rhudaur's resolution dialog, and checks the 40 pinned faces; the production build passes.

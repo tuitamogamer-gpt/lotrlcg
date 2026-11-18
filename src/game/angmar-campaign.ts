@@ -48,6 +48,7 @@ import {
 } from "./deadmens-discard";
 import { angmarPhase } from "./angmar-campaign-boost";
 import { gramState } from "./mount-gram-support";
+import { RHUDAUR } from "./rhudaur-support";
 import { gramCardLeaves } from "./mount-gram";
 
 /** The campaign's cards. */
@@ -95,7 +96,22 @@ export const ANGMAR = {
   silverthorn: "10181",
   /** Losing Time (burden treachery, five copies). */
   losing: "10183",
+  /** The Clue boons of The Treachery of Rhudaur. */
+  brand: "10185",
+  heirloom: "10186",
+  orders: "10187",
 } as const;
+/** Daechanar's Brand, Heirloom of Iârchon and Orders from Angmar. */
+export const CLUE_BOONS: readonly string[] = ["10185", "10186", "10187"];
+/** The Treachery of Rhudaur's Clue objectives and the boons with the same names (read when used, not at load). */
+const clueBoon = (code: string) =>
+  code === RHUDAUR.brand
+    ? "10185"
+    : code === RHUDAUR.heirloom
+      ? "10186"
+      : code === RHUDAUR.orders
+        ? "10187"
+        : undefined;
 /** Berelind, Chieftain's Brooch, Coruhaer, Laermuin, Mail of Eärnur and Silverthorn. */
 export const LOOT_BOONS: readonly string[] = [
   "10176",
@@ -139,6 +155,7 @@ export const ANGMAR_CAMPAIGN_SUPPORTED: readonly ScenarioId[] = [
   "wastes-of-eriador",
   "escape-from-mount-gram",
   "across-the-ettenmoors",
+  "the-treachery-of-rhudaur",
 ];
 /** The chapters whose campaign card lets each player change heroes without the +1 threat penalty. */
 export const ANGMAR_FREE_CHANGES: readonly ScenarioId[] = [
@@ -146,7 +163,11 @@ export const ANGMAR_FREE_CHANGES: readonly ScenarioId[] = [
   "the-battle-of-carn-dum",
 ];
 /** The Angmar Awakened boons that join a player's deck (Iârion's Pendant, once chosen). */
-export const ANGMAR_DECK_BOONS: readonly string[] = ["10157", ...LOOT_BOONS];
+export const ANGMAR_DECK_BOONS: readonly string[] = [
+  "10157",
+  ...LOOT_BOONS,
+  ...CLUE_BOONS,
+];
 /** Fend off Despair: each player's starting threat is lowered by the Campaign Log's reduction. */
 export const angmarThreatReduction = (c?: CampaignState | null) =>
   isAngmarCampaign(c) ? (c!.threatReduction ?? 0) : 0;
@@ -350,6 +371,10 @@ export function angmarCampaignSetup(s: GameState) {
     s.staging.push(quest);
     state(s).innocent = quest.id;
   }
+  // Thaurdir's burdens: "Setup: Attach to Thaurdir (even if he is out of
+  // play)." The Treachery of Rhudaur holds him aside from its setup.
+  for (const thaurdir of s.rhudaur?.setAside ?? [])
+    angmarThaurdirAppears(s, thaurdir);
   // Amarthiúl's Courage: "Setup: Attach to Amarthiúl." (The Amarthiúl hero;
   // the scenarios' objective ally is attached as he enters play.)
   for (const p of seatIndices(s))
@@ -663,6 +688,27 @@ export function angmarThaurdirEntered(s: GameState, thaurdir: Unit) {
     "danger",
   );
 }
+/**
+ * Thaurdir's burdens in the Campaign Pool: "Setup: Attach to Thaurdir (even
+ * if he is out of play). Otherwise, remove this card from the game."
+ */
+export function angmarThaurdirAppears(s: GameState, thaurdir: Unit) {
+  const c = s.campaign;
+  if (!isAngmarCampaign(c) || card(thaurdir.code).name !== "Thaurdir") return;
+  const burdens = c!.burdens.filter(
+    (code) =>
+      THAURDIR_BURDENS.includes(code) &&
+      !thaurdirBurdens(s).some(({ a }) => a.code === code),
+  );
+  for (const code of burdens)
+    thaurdir.attachments.push({ id: `a${s.nextId++}`, code, exhausted: false });
+  if (burdens.length)
+    log(
+      s,
+      `${burdens.map((code) => card(code).name).join(", ")} ${burdens.length === 1 ? "is" : "are"} attached to Thaurdir.`,
+      "danger",
+    );
+}
 /** Thaurdir's burdens in play, with their hosts (Thaurdir or a hero). */
 function thaurdirBurdens(s: GameState) {
   const hosts = [
@@ -673,6 +719,7 @@ function thaurdirBurdens(s: GameState) {
     ]),
     ...s.staging,
     ...(s.deadmensDike?.setAside ?? []),
+    ...(s.rhudaur?.setAside ?? []),
   ];
   return hosts.flatMap((host) =>
     host.attachments
@@ -1016,6 +1063,10 @@ export function resolveAngmarCampaign(s: GameState) {
       "good",
     );
   }
+  if (s.scenarioId === "the-treachery-of-rhudaur" && rhudaurClues(s).length)
+    // "For each Clue a player controls, that player may add the boon with
+    // the same name to the Campaign Pool and their deck."
+    c.resolution = s.scenarioId;
   if (s.scenarioId === "across-the-ettenmoors") {
     // "Add each copy of Losing Time in the encounter deck or encounter
     // discard pile to the Campaign Pool."
@@ -1137,6 +1188,16 @@ export function resolveAngmarCampaign(s: GameState) {
   log(s, "The Campaign Log has been updated.", "good");
 }
 
+/** The Clues each player controls at the end of The Treachery of Rhudaur, with the boons of the same names. */
+function rhudaurClues(s: GameState) {
+  return seatIndices(s).flatMap((seat) =>
+    [...seatView(s, seat).heroes, ...seatView(s, seat).allies].flatMap((u) =>
+      u.attachments
+        .filter((a) => clueBoon(a.code))
+        .map((a) => ({ boon: clueBoon(a.code)!, seat })),
+    ),
+  );
+}
 /** The choices a campaign card's resolution asks of the players. */
 export function angmarResolutionQuestions(s: GameState): {
   id: string;
@@ -1150,6 +1211,15 @@ export function angmarResolutionQuestions(s: GameState): {
     c!.resolution !== s.scenarioId
   )
     return [];
+  if (s.scenarioId === "the-treachery-of-rhudaur")
+    return rhudaurClues(s).map(({ boon, seat }) => ({
+      id: `clue:${boon}:${seat}`,
+      label: `Add ${card(boon).name} to the Campaign Pool and ${several(s) ? `${seatName(s, seat)}'s` : "your"} deck?`,
+      options: [
+        { id: "add", code: boon, label: `Add ${card(boon).name}` },
+        { id: "skip", label: "Do not add it" },
+      ],
+    }));
   if (s.scenarioId === "deadmens-dike")
     return [
       {
@@ -1178,6 +1248,23 @@ export function applyAngmarResolution(
   for (const q of questions)
     if (!q.options.some((o) => o.id === answers[q.id]))
       throw new RuleError(`Answer: ${q.label}`);
+  if (s.scenarioId === "the-treachery-of-rhudaur") {
+    const added: string[] = [];
+    for (const q of questions) {
+      if (answers[q.id] !== "add") continue;
+      const [, boon, seat] = q.id.split(":");
+      if (!c!.boons.includes(boon)) c!.boons.push(boon);
+      c!.deckBoons = { ...(c!.deckBoons ?? {}), [boon]: Number(seat) };
+      added.push(card(boon).name);
+    }
+    log(
+      s,
+      added.length
+        ? `The Treachery of Rhudaur · Resolution: ${added.join(", ")} ${added.length === 1 ? "joins" : "join"} the Campaign Pool and ${added.length === 1 ? "its" : "their"} player's deck.`
+        : "The Treachery of Rhudaur · Resolution: no Clue boon is added.",
+      "good",
+    );
+  }
   if (s.scenarioId === "deadmens-dike") {
     if (!c!.boons.includes(answers.boon)) c!.boons.push(answers.boon);
     log(
@@ -1771,6 +1858,7 @@ export const ANGMAR_BOONS: readonly string[] = [
   ANGMAR.courage,
   ANGMAR.determination,
   ...LOOT_BOONS,
+  ...CLUE_BOONS,
 ];
 export const ANGMAR_BURDENS: readonly string[] = [
   ANGMAR.innocent,
@@ -1823,7 +1911,9 @@ export function validateAngmarCampaign(s: GameState): boolean {
       c.resolution === null ||
       (c.resolution === s.scenarioId &&
         s.status === "won" &&
-        s.scenarioId === "deadmens-dike")) &&
+        ["deadmens-dike", "the-treachery-of-rhudaur"].includes(
+          s.scenarioId,
+        ))) &&
     (c.seatHeroes === undefined ||
       (Array.isArray(c.seatHeroes) &&
         c.seatHeroes.length === (s.table?.seats.length ?? 1) &&

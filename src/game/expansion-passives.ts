@@ -180,6 +180,10 @@ const rules: Record<string, AttachmentRule> = {
   "10170": { type: "hero", defense: -2 },
   // Loot the Dungeons' Mail of Eärnur.
   "10180": { type: "hero", health: 2 },
+  // The Treachery of Rhudaur's Clue boons (their extra point against Undead is in combat).
+  "10185": { type: "hero", attack: 1 },
+  "10186": { type: "hero", will: 1 },
+  "10187": { type: "hero", defense: 1 },
   // The Battle of the Pelennor Fields' boons (Esquire of Rohan, Esquire of Gondor).
   "145014": { type: "hero", grantsTraits: ["Rohan"] },
   "145015": { type: "hero", grantsTraits: ["Gondor"] },

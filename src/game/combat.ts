@@ -1,4 +1,5 @@
 import {
+  angmarClueUndeadBonus,
   angmarLootAttackKilled,
   angmarSilverthornBonus,
 } from "./angmar-campaign-loot";
@@ -552,6 +553,7 @@ export function resolvePlayerAttack(
           (batch4Scenario(s).playerAttackBonus?.(s, u, enemy, attackers) ?? 0) +
           sagaCampaignAttackBonus(s, u, attackers) +
           angmarSilverthornBonus(s, u, enemy) +
+          angmarClueUndeadBonus(s, u, enemy, "attack") +
           FlameWestPlayers.flameWestPlayerAttackBonus(s, u, attackers) +
           (card(enemy.code).traits?.includes("Orc")
             ? u.attachments.filter((a) => !a.blanked && a.code === "01039")
@@ -729,7 +731,8 @@ export function combatDefenderDefense(
       Rhudaur.rhudaurDefenseBonus(s, enemy, defender) +
       BlackRidersPlayers.blackRidersPlayerDefenseBonus(s, defender, enemy) +
       RoadDarkensPlayers.roadDarkensPlayerDefenseBonus(s, defender, enemy) +
-      angmarSilverthornBonus(s, defender, enemy) -
+      angmarSilverthornBonus(s, defender, enemy) +
+      angmarClueUndeadBonus(s, defender, enemy, "defense") -
       (combat.defensePenalty ?? 0),
   );
 }

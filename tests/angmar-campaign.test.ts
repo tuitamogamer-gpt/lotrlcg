@@ -39,6 +39,7 @@ import {
   angmarRavaged,
   angmarRefreshBase,
   angmarResolutionQuestions,
+  CLUE_BOONS,
   angmarThreatReduction,
   applyAngmarResolution,
   angmarPendantShadowOptions,
@@ -49,7 +50,9 @@ import {
 } from "../src/game/angmar-campaign";
 import { gramState } from "../src/game/mount-gram-support";
 import { reduceThreat } from "../src/game/threat-reduction";
+import { RHUDAUR } from "../src/game/rhudaur-support";
 import {
+  angmarClueUndeadBonus,
   angmarBroochWill,
   angmarLootAttackKilled,
   angmarLootCommitted,
@@ -143,6 +146,7 @@ test("The Angmar Awakened campaign: Intruders in Chetwood's campaign card, Iâri
     "wastes-of-eriador",
     "escape-from-mount-gram",
     "across-the-ettenmoors",
+    "the-treachery-of-rhudaur",
   ]);
   const campaignCard = card(ANGMAR_CAMPAIGN_CARDS["intruders-in-chetwood"]!);
   assert.equal(campaignCard.subtitle, "Angmar Awakened Part 1");
@@ -286,7 +290,21 @@ test("The Angmar Awakened campaign: Intruders in Chetwood's campaign card, Iâri
     [card(ANGMAR.losing).type_code, card(ANGMAR.losing).quantity],
     ["treachery", 5],
   );
-  assert.equal(art.length, 35);
+  const rhudaurCard = card(ANGMAR_CAMPAIGN_CARDS["the-treachery-of-rhudaur"]!);
+  assert.equal(rhudaurCard.subtitle, "Angmar Awakened Part 7");
+  assert.equal(
+    rhudaurCard.back_text,
+    "Resolution: For each Clue a player controls, that player may add the boon with the same name to the Campaign Pool and their deck.",
+  );
+  assert.deepEqual(
+    CLUE_BOONS.map((code) => [card(code).name, card(code).cost]),
+    [
+      ["Daechanar's Brand", "0"],
+      ["Heirloom of Iârchon", "0"],
+      ["Orders from Angmar", "0"],
+    ],
+  );
+  assert.equal(art.length, 40);
   for (const a of art) {
     const bytes = readFileSync(`public${a.localPath}`);
     assert.equal(bytes.length, a.bytes);
@@ -1592,10 +1610,11 @@ test("Across the Ettenmoors: the 5 Losing Time wait out of play; each quest phas
   assert.ok(t.campaign!.burdens.includes(ANGMAR.losing));
   assert.deepEqual(t.campaign!.burdenCopies, { [ANGMAR.losing]: 2 });
   assert.ok(valid(t));
-  assert.throws(
-    () => continueCampaign(t, HEROES, d.id, true, 9),
-    /not available in campaign mode yet/,
-  );
+  // The campaign continues with The Treachery of Rhudaur: both copies join
+  // its encounter deck.
+  const next = continueCampaign(t, HEROES, d.id, true, 9);
+  assert.equal(next.scenarioId, "the-treachery-of-rhudaur");
+  assert.equal(next.encounterDeck.filter((c) => c === ANGMAR.losing).length, 2);
 });
 
 test("Losing Time's shadow: the attacking enemy gets +3 attack or +3 defense until the end of the phase", () => {
@@ -1627,4 +1646,183 @@ test("Losing Time's shadow: the attacking enemy gets +3 attack or +3 defense unt
     "until the end of the phase",
   );
   assert.ok(valid(s));
+});
+
+/** The Campaign Log after Across the Ettenmoors (Thaurdir's Spite, Losing Time and Courage earned). */
+const afterEtten = (): CampaignState => ({
+  ...afterWastes(),
+  boons: [ANGMAR.hardy, ANGMAR.courage],
+  burdens: [ANGMAR.innocent, ANGMAR.spite, ANGMAR.despair, ANGMAR.losing],
+  burdenCopies: { [ANGMAR.losing]: 2 },
+  completed: ANGMAR_CAMPAIGN_ORDER.slice(0, 6).map((scenarioId) => ({
+    scenarioId,
+    score: 0,
+    rounds: 1,
+  })),
+});
+const rhudaur = (seed = 5, campaign = afterEtten()) =>
+  createGame(seed, d.cards, HEROES, d.id, {
+    scenarioId: "the-treachery-of-rhudaur",
+    playMode: "campaign",
+    campaign,
+  });
+
+test("The Treachery of Rhudaur: the pool's burdens and cards return (Thaurdir's Spite on the set-aside Thaurdir, Losing Time, Fend off Despair, Arnor Ravaged, Amarthiúl's Courage), and the resolution asks each player with a Clue whether to add the boon of the same name to the pool and their deck", () => {
+  const created = rhudaur();
+  const aside = created.rhudaur!.setAside.find(
+    (u) => card(u.code).name === "Thaurdir",
+  )!;
+  assert.deepEqual(
+    aside.attachments.map((a) => a.code),
+    [ANGMAR.spite],
+    "attached to Thaurdir even out of play",
+  );
+  assert.equal(
+    created.encounterDeck.filter((c) => c === ANGMAR.losing).length,
+    2,
+  );
+  assert.ok(created.encounterDeck.includes(ANGMAR.despair));
+  assert.ok(angmarRavaged(created));
+  let s = calm(reload(opening(created)));
+  const amarthiul = s.allies.find((u) => card(u.code).name === "Amarthiúl")!;
+  assert.ok(amarthiul.attachments.some((a) => a.code === ANGMAR.courage));
+  // Spite leaves the out-of-play Thaurdir after a Sorcery treachery.
+  const sorcery = [...s.encounterDeck, ...s.encounterDiscard].find(
+    (c) =>
+      card(c).type_code === "treachery" &&
+      (card(c).traits ?? "").includes("Sorcery"),
+  );
+  if (sorcery) {
+    s.heroes[1].damage = 2;
+    angmarCampaignAfterReveal(s, sorcery);
+    flush(s);
+    for (let i = 0; i < 4 && s.choice; i++)
+      s = choose(s, s.choice.options[0].id);
+    assert.ok(s.heroes[1].attachments.some((a) => a.code === ANGMAR.spite));
+  }
+  assert.ok(valid(s));
+  // A player who controls a Clue may add the boon with the same name.
+  s = calm(s);
+  s.heroes[0].attachments.push({
+    id: `a${s.nextId++}`,
+    code: RHUDAUR.brand,
+    exhausted: false,
+  });
+  win(s);
+  assert.equal(s.campaign!.resolution, "the-treachery-of-rhudaur");
+  const questions = angmarResolutionQuestions(s);
+  assert.deepEqual(
+    questions.map((q) => [q.id, q.label]),
+    [
+      [
+        `clue:${ANGMAR.brand}:0`,
+        "Add Daechanar's Brand to the Campaign Pool and your deck?",
+      ],
+    ],
+  );
+  assert.ok(valid(s));
+  const t = applyAngmarResolution(s, { [questions[0].id]: "add" });
+  assert.ok(t.campaign!.boons.includes(ANGMAR.brand));
+  assert.equal(t.campaign!.deckBoons![ANGMAR.brand], 0);
+  assert.ok(valid(t));
+  const none = applyAngmarResolution(s, { [questions[0].id]: "skip" });
+  assert.ok(!none.campaign!.boons.includes(ANGMAR.brand));
+  assert.throws(
+    () => continueCampaign(t, HEROES, d.id, true, 9),
+    /not available in campaign mode yet/,
+  );
+});
+
+test("The Clue boons: Daechanar's Brand and Orders from Angmar against Undead enemies, and the three Responses after they are played (a Sorcery treachery to the victory display, all damage healed, a weak Undead enemy discarded)", () => {
+  const base = calm(reload(opening(rhudaur())));
+  const hero = (s: GameState) => s.heroes[0];
+  const give = (s: GameState, code: string) => {
+    const u = make(s, code);
+    s.hand.push(u);
+    return u;
+  };
+  const resolveTo = (s: GameState, id: string) => {
+    for (let i = 0; i < 5 && s.flow?.pending; i++)
+      s = applyAction(reload(s), {
+        type: "CONTINUE",
+        stepId: s.flow.pending.id,
+      });
+    return choose(s, id);
+  };
+  // Daechanar's Brand: +1 attack, +2 against an Undead enemy; a Sorcery
+  // treachery from the top 5 cards goes to the victory display.
+  let s = structuredClone(base);
+  const undeadCode = [...s.encounterDeck].find(
+    (c) =>
+      card(c).type_code === "enemy" &&
+      (card(c).traits ?? "").includes("Undead"),
+  )!;
+  const sorcery = s.encounterDeck.find(
+    (c) =>
+      card(c).type_code === "treachery" &&
+      (card(c).traits ?? "").includes("Sorcery"),
+  )!;
+  s.encounterDeck.splice(s.encounterDeck.indexOf(sorcery), 1);
+  s.encounterDeck.unshift(sorcery);
+  const brand = give(s, ANGMAR.brand);
+  const attack = stats(s, hero(s)).attack;
+  s = applyAction(reload(s), {
+    type: "PLAY",
+    id: brand.id,
+    target: hero(s).id,
+  });
+  assert.equal(stats(s, hero(s)).attack, attack + 1);
+  assert.match(
+    s.choice!.title,
+    /^Daechanar's Brand · Search the top 5 cards of the encounter deck for a Sorcery treachery\?$/,
+  );
+  s = resolveTo(s, sorcery);
+  for (let i = 0; i < 3 && s.choice; i++) s = choose(s, s.choice.options[0].id);
+  assert.ok(s.victoryCards!.includes(sorcery));
+  const wight = make(s, undeadCode);
+  assert.equal(angmarClueUndeadBonus(s, hero(s), wight, "attack"), 1);
+  assert.equal(angmarClueUndeadBonus(s, hero(s), wight, "defense"), 0);
+  assert.ok(valid(s));
+  // Heirloom of Iârchon: +1 willpower; all damage on its hero is healed.
+  s = structuredClone(base);
+  hero(s).damage = 2;
+  const heirloom = give(s, ANGMAR.heirloom);
+  const will = stats(s, hero(s)).will;
+  s = applyAction(reload(s), {
+    type: "PLAY",
+    id: heirloom.id,
+    target: hero(s).id,
+  });
+  assert.equal(stats(s, hero(s)).will, will + 1);
+  assert.match(s.choice!.title, /^Heirloom of Iârchon · Heal all damage from /);
+  s = resolveTo(s, "heal");
+  for (let i = 0; i < 3 && s.choice; i++) s = choose(s, s.choice.options[0].id);
+  assert.equal(hero(s).damage, 0);
+  // Orders from Angmar: +1 defense, +2 while defending against an Undead
+  // enemy; a non-unique Undead enemy with 2 or less hit points left is discarded.
+  s = structuredClone(base);
+  const foe = engage(s, undeadCode);
+  foe.damage = Math.max(0, stats(s, foe).health - 2);
+  const orders = give(s, ANGMAR.orders);
+  const defense = stats(s, hero(s)).defense;
+  s = applyAction(reload(s), {
+    type: "PLAY",
+    id: orders.id,
+    target: hero(s).id,
+  });
+  assert.equal(stats(s, hero(s)).defense, defense + 1);
+  if (!card(undeadCode).is_unique) {
+    assert.match(
+      s.choice!.title,
+      /^Orders from Angmar · Discard a non-unique Undead enemy/,
+    );
+    s = resolveTo(s, foe.id);
+    for (let i = 0; i < 3 && s.choice; i++)
+      s = choose(s, s.choice.options[0].id);
+    assert.ok(!s.engaged.some((u) => u.id === foe.id), "discarded");
+  }
+  assert.equal(
+    angmarClueUndeadBonus(s, hero(s), make(s, undeadCode), "defense"),
+    1,
+  );
 });

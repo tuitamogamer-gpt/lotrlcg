@@ -1,3 +1,4 @@
+import { angmarCampaignAttachmentPlayed } from "./angmar-campaign-loot";
 import { angmarCampaignCannotCommit } from "./angmar-campaign-support";
 import * as FortressPlayers from "./fortress-nurn-player";
 import * as HobbitPlayers from "./hobbit-player-cards";
@@ -1661,6 +1662,7 @@ export function resolvePlayerCard(
     );
     if (played)
       LandShadowPlayers.landShadowPlayerAttachmentPlayed(s, host, attachment);
+    if (played) angmarCampaignAttachmentPlayed(s, host, attachment);
     if (played)
       redhornPlayerAttachmentPlayed(s, host, attachment, activeSeat(s));
     BatchPlayers.batch4PlayerAttachmentPlayed(

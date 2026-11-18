@@ -1,6 +1,8 @@
-// The Angmar Awakened campaign: the six boons Loot the Dungeons offers in
-// Escape from Mount Gram (Berelind, Chieftain's Brooch, Coruhaer, Laermuin,
-// Mail of Eärnur and Silverthorn), as player cards in play.
+// The Angmar Awakened campaign's player-card boons in play: the six boons
+// Loot the Dungeons offers in Escape from Mount Gram (Berelind, Chieftain's
+// Brooch, Coruhaer, Laermuin, Mail of Eärnur and Silverthorn) and the three
+// Clue boons of The Treachery of Rhudaur (Daechanar's Brand, Heirloom of
+// Iârchon and Orders from Angmar).
 import type { Effect, GameState, Option, Unit } from "./types";
 import { card, name } from "./cards";
 import { fx, get, log, prepend } from "./core";
@@ -15,7 +17,8 @@ import {
 } from "./table";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { rhosgobelHealingAllowed } from "./rhosgobel";
-import { addVictoryCard, check, damage } from "./board";
+import { addVictoryCard, check, damage, destroy } from "./board";
+import { shuffle, stats } from "./core";
 import { addQuestProgress } from "./side-quests";
 import { mainQuestUnit } from "./quest-state";
 
@@ -26,6 +29,11 @@ export const LOOT = {
   laermuin: "10179",
   mail: "10180",
   silverthorn: "10181",
+} as const;
+export const CLUE = {
+  brand: "10185",
+  heirloom: "10186",
+  orders: "10187",
 } as const;
 const live = (s: GameState, u?: Unit) =>
   !!u && !u.blanked && s.campaign?.kind === "angmar";
@@ -70,6 +78,57 @@ export function angmarSilverthornBonus(s: GameState, u: Unit, enemy?: Unit) {
   return effectiveTraits(enemy).some((t) => traits.has(t)) ? n : 0;
 }
 
+const undead = (enemy?: Unit) =>
+  !!enemy && effectiveTraits(enemy).includes("Undead");
+/**
+ * Daechanar's Brand: "+1 [attack] (+2 [attack] instead when attacking an
+ * Undead enemy)"; Orders from Angmar: "+1 [defense] (+2 [defense] instead
+ * while defending against an Undead enemy)". The +1 is a passive bonus; this
+ * is the extra point against Undead.
+ */
+export function angmarClueUndeadBonus(
+  s: GameState,
+  u: Unit,
+  enemy: Unit | undefined,
+  stat: "attack" | "defense",
+) {
+  if (s.campaign?.kind !== "angmar" || !undead(enemy)) return 0;
+  return attached(u, stat === "attack" ? CLUE.brand : CLUE.orders).length;
+}
+/** The Clue boons' Responses: "After you play …". */
+export function angmarCampaignAttachmentPlayed(
+  s: GameState,
+  host: Unit,
+  attachment: { id: string; code: string; owner?: number; controller?: number },
+) {
+  if (s.campaign?.kind !== "angmar") return;
+  const p = attachment.controller ?? attachment.owner ?? ownerOf(s, host);
+  if (attachment.code === CLUE.brand)
+    prepend(s, fx("angmarClueBrand", { source: attachment.id, player: p }));
+  else if (attachment.code === CLUE.heirloom && host.damage > 0)
+    prepend(
+      s,
+      fx("angmarClueHeirloom", {
+        source: attachment.id,
+        target: host.id,
+        player: p,
+      }),
+    );
+  else if (attachment.code === CLUE.orders && ordersTargets(s).length)
+    prepend(s, fx("angmarClueOrders", { source: attachment.id, player: p }));
+}
+/** Orders from Angmar: the non-unique Undead enemies with 2 or less remaining hit points. */
+const ordersTargets = (s: GameState) =>
+  [
+    ...s.staging,
+    ...seatIndices(s).flatMap((p) => seatView(s, p).engaged),
+  ].filter(
+    (u) =>
+      ["enemy", "ship-enemy"].includes(card(u.code).type_code) &&
+      !card(u.code).is_unique &&
+      undead(u) &&
+      stats(s, u).health - u.damage <= 2,
+  );
 /** Berelind's and Silverthorn's Responses, after an attack destroys an enemy. */
 export function angmarLootAttackKilled(
   s: GameState,
@@ -312,6 +371,125 @@ export function angmarLootEffect(s: GameState, e: Effect): boolean {
           p,
         ),
       );
+      return true;
+    }
+    case "angmarClueBrand": {
+      const p = e.player ?? 0;
+      const top = s.encounterDeck.slice(0, 5);
+      const sorcery = [...new Set(top)].filter(
+        (code) =>
+          card(code).type_code === "treachery" &&
+          (card(code).traits ?? "")
+            .split(".")
+            .some((t) => t.trim() === "Sorcery"),
+      );
+      forOwner(s, p, () =>
+        choosePlayerResponse(
+          s,
+          e.source ?? CLUE.brand,
+          CLUE.brand,
+          "Daechanar's Brand · Search the top 5 cards of the encounter deck for a Sorcery treachery?",
+          [
+            ...sorcery.map((code) => ({
+              id: code,
+              code,
+              label: `Add ${card(code).name} to the victory display`,
+              effects: [fx("angmarClueBrandTake", { code })],
+            })),
+            {
+              id: "search",
+              label: sorcery.length
+                ? "Take no card · Shuffle the encounter deck"
+                : "No Sorcery treachery · Shuffle the encounter deck",
+              effects: [fx("angmarClueBrandTake", {})],
+            },
+            skip,
+          ],
+          card(CLUE.brand).text,
+          p,
+        ),
+      );
+      return true;
+    }
+    case "angmarClueBrandTake": {
+      if (e.code) {
+        const i = s.encounterDeck.slice(0, 5).indexOf(e.code);
+        if (i >= 0) {
+          s.encounterDeck.splice(i, 1);
+          addVictoryCard(s, e.code);
+          log(
+            s,
+            `Daechanar's Brand: ${card(e.code).name} is added to the victory display.`,
+            "good",
+          );
+        }
+      }
+      shuffle(s, s.encounterDeck);
+      return true;
+    }
+    case "angmarClueHeirloom": {
+      const p = e.player ?? 0;
+      const host = get(s, e.target);
+      if (!host || !host.damage || !rhosgobelHealingAllowed(s, host))
+        return true;
+      forOwner(s, p, () =>
+        choosePlayerResponse(
+          s,
+          e.source ?? CLUE.heirloom,
+          CLUE.heirloom,
+          `Heirloom of Iârchon · Heal all damage from ${name(host)}?`,
+          [
+            {
+              id: "heal",
+              label: `Heal ${host.damage} damage from ${name(host)}`,
+              effects: [
+                fx("heal", {
+                  target: host.id,
+                  value: host.damage,
+                  source: e.source,
+                  code: CLUE.heirloom,
+                  player: p,
+                }),
+              ],
+            },
+            skip,
+          ],
+          card(CLUE.heirloom).text,
+          p,
+        ),
+      );
+      return true;
+    }
+    case "angmarClueOrders": {
+      const p = e.player ?? 0;
+      const targets = ordersTargets(s);
+      if (!targets.length) return true;
+      forOwner(s, p, () =>
+        choosePlayerResponse(
+          s,
+          e.source ?? CLUE.orders,
+          CLUE.orders,
+          "Orders from Angmar · Discard a non-unique Undead enemy with 2 or less remaining hit points?",
+          [
+            ...targets.map((u) => ({
+              id: u.id,
+              code: u.code,
+              label: `Discard ${name(u)}`,
+              effects: [fx("angmarClueOrdersDiscard", { target: u.id })],
+            })),
+            skip,
+          ],
+          card(CLUE.orders).text,
+          p,
+        ),
+      );
+      return true;
+    }
+    case "angmarClueOrdersDiscard": {
+      const enemy = ordersTargets(s).find((u) => u.id === e.target);
+      if (!enemy) return true;
+      log(s, `Orders from Angmar: ${name(enemy)} is discarded.`, "good");
+      destroy(s, enemy, false);
       return true;
     }
     case "angmarLootMail": {
