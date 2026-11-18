@@ -27,6 +27,7 @@ import { ettenSideQuestBlanked } from "./ettenmoors";
 import { templePlayerBlanked } from "./temple-player";
 import { dwarfResourceIcons } from "./dwarf-player-cards";
 import { otdPlayerLocationBlanked } from "./otd-player-cards";
+import { sagaCampaignCharacterBlanked } from "./saga-campaign-cards";
 
 /** Keep printed-text effects consistent across stats, payment, actions and saves.
  * Blanking removes traits, keywords and abilities within the printed text box.
@@ -103,6 +104,7 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
       batch4Scenario(s).characterBlanked?.(s, host) ||
       templePlayerBlanked(s, host) ||
       Desert.desertCrossingCharacterBlanked(s, host) ||
+      sagaCampaignCharacterBlanked(s, host) ||
       (Mumakil.mumakilCharacterBlanked(s, host) &&
         Mumakil.mumakilPreservesTraits(s, host));
     if (

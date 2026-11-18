@@ -99,9 +99,22 @@ test("The Road Darkens player cards are scripted, deckable and pinned to reviewe
   assert.ok(heroes.includes(R.gandalf));
   for (const code of codes.filter((c) => c !== R.gandalf))
     assert.ok(deckable.includes(code), code);
-  // The campaign boons need the Saga campaign mode, which is not imported.
-  for (const code of ["142011", "142012", "142013", "142014", "142015"])
-    assert.ok(!SCRIPTED.has(code), code);
+  // The campaign boons belong to The Lord of the Rings campaign mode
+  // (saga-campaign-road-darkens.test.ts): scripted, but never part of a
+  // player deck.
+  for (const code of [
+    "142011",
+    "142012",
+    "142013",
+    "142014",
+    "142015",
+    "142016",
+    "142017",
+    "142018",
+  ]) {
+    assert.ok(SCRIPTED.has(code), code);
+    assert.ok(!deckable.includes(code), code);
+  }
   assert.equal(art.length, 9);
   for (const a of art) {
     assert.equal(readFileSync(`public${a.localPath}`).length, a.bytes);

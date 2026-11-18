@@ -1,4 +1,8 @@
-import { sagaCampaignAttackStarted } from "./saga-campaign-cards";
+import {
+  sagaCampaignAttackKilled,
+  sagaCampaignAttackStarted,
+  sagaCampaignDefendersDeclared,
+} from "./saga-campaign-cards";
 import { wainridersPlayerAttackKilled } from "./wainriders-player";
 import { POM } from "./passage-marshes-support";
 import { hobbitPlayerNoDefenseExhaust } from "./hobbit-player-cards";
@@ -175,7 +179,8 @@ export function playerAttack(
     | "charge-into-battle"
     | "great-yew-bow"
     | "roheryn"
-    | "eomer",
+    | "eomer"
+    | "anduril",
 ) {
   ids = [...new Set(ids)];
   requireRule(
@@ -240,12 +245,20 @@ export function playerAttack(
                     ownerOf(s, u) === activeSeat(s) &&
                     eomerCanAttack(s, enemy, u),
                 )
-              : attackersFor(
-                  s,
-                  enemy,
-                  abilityMode === "battle-fury" ? ids[0] : undefined,
-                  abilityMode === "charge-into-battle",
-                )
+              : abilityMode === "anduril"
+                ? // Andúril (a campaign boon): its hero, even exhausted by defending.
+                  allCharacters(s).filter(
+                    (u) =>
+                      ownerOf(s, u) === activeSeat(s) &&
+                      u.attachments.some((a) => a.code === "142014") &&
+                      rhosgobelCanFight(enemy, u),
+                  )
+                : attackersFor(
+                    s,
+                    enemy,
+                    abilityMode === "battle-fury" ? ids[0] : undefined,
+                    abilityMode === "charge-into-battle",
+                  )
     ).find((u) => u.id === id),
   );
   if (abilityMode === "haldir")
@@ -275,6 +288,11 @@ export function playerAttack(
         s.staging.some((u) => u.id === enemy.id) &&
         !playerEffectImmune(s, enemy, "132014"),
       "Great Yew Bow declares only its hero against an enemy in the staging area.",
+    );
+  if (abilityMode === "anduril")
+    requireRule(
+      ids.length === 1,
+      "Andúril declares only its hero against the enemy that just attacked.",
     );
   if (abilityMode === "eomer")
     requireRule(
@@ -327,8 +345,9 @@ export function playerAttack(
   attackers.forEach((u) => {
     // Éomer is declared after questing exhausted him; a ready Éomer (Captains
     // of the West) exhausts as he is declared.
+    // Andúril's hero attacks after defending; a ready hero exhausts.
     if (
-      abilityMode === "eomer" &&
+      (abilityMode === "eomer" || abilityMode === "anduril") &&
       !u!.exhausted &&
       !Angmar.angmarNoCombatExhaust(s, u!) &&
       !pathOfNeed(s, u!) &&
@@ -340,6 +359,7 @@ export function playerAttack(
       abilityMode !== "great-yew-bow" &&
       abilityMode !== "roheryn" &&
       abilityMode !== "eomer" &&
+      abilityMode !== "anduril" &&
       abilityMode !== "battle-fury" &&
       !Angmar.angmarNoCombatExhaust(s, u!) &&
       (abilityMode === "knight" ||
@@ -656,6 +676,7 @@ export function playerAttackKilled(
     attackers.map((u) => u.id),
   );
   khazadPlayerAttackKilled(s, enemy, ids);
+  sagaCampaignAttackKilled(s, ids, lastKnownTraits);
   emynPlayerAttackKilled(
     s,
     enemy,
@@ -1010,6 +1031,12 @@ export function beginEnemyAttack(
       s,
       enemy,
       defenders.filter((d): d is Unit => !!d),
+    ),
+    ...sagaCampaignDefendersDeclared(
+      s,
+      enemy,
+      defenders.filter((d): d is Unit => !!d),
+      actuallyExhausted,
     ),
     ...(holdLine === "declared"
       ? [

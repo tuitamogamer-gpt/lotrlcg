@@ -1,3 +1,4 @@
+import { sagaCampaignOneRingExhausted } from "./saga-campaign-cards";
 import type { Effect, GameState, Option, Unit } from "./types";
 import { card, name } from "./cards";
 import {
@@ -255,6 +256,7 @@ export const morgulWraithCannotAttach = (s: GameState, u: Unit, code: string) =>
   gollumScenario(s) && live(u, POM.wraith) && !isMorgul(code);
 function ringExhausted(s: GameState) {
   batch4Scenario(s).oneRingExhausted?.(s);
+  sagaCampaignOneRingExhausted(s);
 }
 /** Effects shared by every scenario with Gollum and the Nazgûl. */
 export const GOLLUM_SHARED_EFFECTS: readonly string[] = [

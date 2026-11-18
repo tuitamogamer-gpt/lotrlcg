@@ -1,3 +1,4 @@
+import { sagaCampaignOneRingExhausted } from "./saga-campaign-cards";
 import type { Card, Effect, GameState, Unit } from "./types";
 import { card, name } from "./cards";
 import {
@@ -243,6 +244,7 @@ export function useMountainFirePlayerAbility(
   theOneRing(s)!.ring.exhausted = true;
   log(s, "Frodo Baggins exhausts The One Ring.", "good");
   batch4Scenario(s).oneRingExhausted?.(s);
+  sagaCampaignOneRingExhausted(s);
   choose(
     s,
     `Frodo Baggins · Add 1 resource to a hero's pool${seatLabel(s, p)}`,

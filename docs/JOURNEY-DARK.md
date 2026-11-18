@@ -2,9 +2,11 @@
 
 The second scenario of **The Lord of the Rings: The Road Darkens** (October
 2014), the second box of The Lord of the Rings Saga. It is playable in classic
-solo and with one to four local players, in normal and easy mode. Campaign
-mode, with its boons and burdens, is not part of this import; the box's player
-cards follow in a later import.
+solo and with one to four local players, in normal and easy mode. Its
+campaign mode (recipe Q0C.05) is part of
+[The Lord of the Rings campaign](SAGA-CAMPAIGN.md): Shadow of Fear, Pursued by
+the Enemy, Grievous Wound and Overcome by Grief, all four earned while The
+Balrog is still in play.
 
 ## Sources and corrections
 

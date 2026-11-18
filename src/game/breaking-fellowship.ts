@@ -1,3 +1,4 @@
+import { isSagaCampaign } from "./saga-campaign";
 import type { Effect, GameState, Option, Unit } from "./types";
 import type { Batch4ScenarioHooks } from "./batch4-scenario-contract";
 import type { FliesSpidersArea } from "./flies-spiders-types";
@@ -1577,11 +1578,15 @@ export const BREAKING_FELLOWSHIP_HOOKS: Batch4ScenarioHooks = {
     if (!s.breakingFellowship) return;
     if (live(u, BF.sarn))
       prepend(s, fx("btfSarnGebir", { player: firstPlayer(s) }));
-    if (live(u, BF.seeing))
-      log(
-        s,
-        "Seat of Seeing is explored: there is no burden card outside campaign mode, so its response has no effect.",
-      );
+    if (live(u, BF.seeing)) {
+      if (isSagaCampaign(s.campaign))
+        prepend(s, fx("sagaSeatOfSeeing", { player: firstPlayer(s) }));
+      else
+        log(
+          s,
+          "Seat of Seeing is explored: there is no burden card outside campaign mode, so its response has no effect.",
+        );
+    }
   },
   // 3B: progress on this quest discards encounter cards while Frodo's
   // Choice is not in play.

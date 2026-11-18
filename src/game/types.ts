@@ -337,6 +337,10 @@ export interface CampaignState {
   prisoner: string | null;
   completed: { scenarioId: ScenarioId; score: number; rounds: number }[];
   mendorSaved: boolean;
+  /** Saga: the deck (seat index) each earned player-card boon joins at setup. */
+  deckBoons?: Record<string, number>;
+  /** Saga (Notes): the heroes taken captive at Breaking of the Fellowship. */
+  captives?: string[];
 }
 export type Phase =
   | "setup"
@@ -530,6 +534,18 @@ export interface GameState {
     underhill: { enemy: string; player: number; round: number }[];
     /** Boons a cost removed from the Campaign Pool: recorded only after a win. */
     spent?: string[];
+    /** Cards a campaign Setup added to a hand (kept through a mulligan). */
+    setupHand?: string[];
+    /** The Ring Goes South: the boon cards not chosen yet at setup. */
+    southPending?: string[];
+    /** Lust for the Ring outside The Ring Goes South: willpower 0 this round. */
+    lustZero?: { id: string; round: number }[];
+    /** Shadow of Fear: the characters whose text boxes are blank this round. */
+    fear?: { round: number; ids: string[] };
+    /** Overcome by Grief: heroes that cannot ready this round. */
+    griefLock?: { id: string; round: number }[];
+    /** Seat of Seeing: burdens removed from the Campaign Pool once the scenario is won. */
+    cleared?: string[];
   };
   wrathRuin?: import("./wrath-ruin-types").WrathRuinState;
   burglarContract?: import("./burglar-contract-types").BurglarContractState;

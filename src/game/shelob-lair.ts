@@ -1,3 +1,4 @@
+import { sagaCampaignOneRingExhausted } from "./saga-campaign-cards";
 import type { Effect, GameState, Option, Unit } from "./types";
 import type { Batch4ScenarioHooks } from "./batch4-scenario-contract";
 import { card, name } from "./cards";
@@ -732,6 +733,7 @@ export function shelobLairEffect(s: GameState, e: Effect): boolean {
       ring.exhausted = true;
       log(s, `${e.text}: The One Ring is exhausted.`, "danger");
       SHELOB_LAIR_HOOKS.oneRingExhausted?.(s);
+      sagaCampaignOneRingExhausted(s);
       return true;
     }
     case "slSecretWayExplored": {

@@ -9,10 +9,13 @@ import { validateSave } from "../src/game/engine.ts";
 import { syncSeat } from "../src/game/table.ts";
 import { ringBearer } from "../src/game/lotr-saga.ts";
 import {
+  GIFT_BOONS,
   OLD_MAN_WILLOW_DAMAGE,
   RING_BEARER_KEY,
   SAGA,
+  SOUTH_BOONS,
 } from "../src/game/saga-campaign.ts";
+import { card } from "../src/game/cards.ts";
 import { OF } from "../src/game/old-forest-support.ts";
 import { reviewedState } from "./browser-review-helpers.mjs";
 import { capture, context, report, url } from "./browser-angmar-helpers.mjs";
@@ -130,7 +133,7 @@ async function record(answers) {
   return campaign();
 }
 /** Continue the campaign, choosing an optional chapter in the interlude. */
-async function continueCampaign(chapter, width) {
+async function continueCampaign(chapter, width, before) {
   await page.getByRole("button", { name: /^Continue campaign/ }).click();
   if (chapter) {
     await page
@@ -138,6 +141,7 @@ async function continueCampaign(chapter, width) {
       .selectOption(chapter);
     await checkpoint(`interlude-${chapter}`, width);
   }
+  if (before) await before();
   await page.getByRole("button", { name: /^Begin next chapter/ }).click();
   await reviewedState(page);
   return opening();
@@ -307,12 +311,75 @@ try {
     await checkpoint("ford-response", width);
     s = await choose("cancel");
     assert.equal(s.flightFord.burdens.length, burdens - 1);
-    // The resolution earns the burdens; the next chapter is not available yet.
+    // The resolution earns the burdens.
     s = await victory(s);
     assert.equal(s.campaign.resolution, null);
     assert.ok(s.campaign.burdens.length >= 2);
-    await page.getByText(/is not available in campaign mode yet/).waitFor();
     await checkpoint("ford-complete", width);
+    // The Road Darkens: The Ring Goes South's campaign card earns Sting,
+    // Mithril Shirt, Glamdring and Andúril; one joins the hand.
+    s = await continueCampaign();
+    assert.equal(s.scenarioId, "the-ring-goes-south");
+    for (const code of SOUTH_BOONS) assert.ok(s.campaign.boons.includes(code));
+    assert.ok(s.hand.some((u) => u.code === SAGA.sting));
+    assert.equal(s.campaign.threatPenalty, 0);
+    await checkpoint("south-setup", width);
+    s = await victory(s);
+    assert.equal(s.campaign.resolution, null);
+    // Journey in the Dark: the interlude assigns the earned boons to decks.
+    s = await continueCampaign(undefined, width, async () => {
+      await page
+        .getByLabel("Mithril Shirt: deck", { exact: true })
+        .selectOption("");
+      await checkpoint("dark-interlude", width);
+    });
+    assert.equal(s.scenarioId, "journey-in-the-dark");
+    assert.ok(s.staging.some((u) => u.code === SAGA.wound));
+    assert.ok(s.staging.some((u) => u.code === SAGA.grief));
+    assert.ok(!s.deck.includes(SAGA.mithril));
+    assert.ok(
+      [SAGA.glamdring, SAGA.anduril].every(
+        (code) => s.deck.includes(code) || s.hand.some((u) => u.code === code),
+      ),
+    );
+    await checkpoint("dark-setup", width);
+    s = await victory(s);
+    await page
+      .locator("[data-saga-resolution='journey-in-the-dark']")
+      .waitFor();
+    await checkpoint("dark-resolution", width);
+    s = await record([
+      [/burden treachery cards/, SAGA.shadowFear],
+      [/burden objective cards/, SAGA.grief],
+    ]);
+    assert.ok(s.campaign.burdens.includes(SAGA.shadowFear));
+    assert.ok(s.campaign.burdens.includes(SAGA.grief));
+    // Breaking of the Fellowship: a Gift of Lórien for a hero.
+    s = await continueCampaign();
+    assert.equal(s.scenarioId, "breaking-of-the-fellowship");
+    assert.ok(GIFT_BOONS.some((code) => carrier(s, code)));
+    assert.ok(GIFT_BOONS.some((code) => s.campaign.boons.includes(code)));
+    await checkpoint("breaking-setup", width);
+    s = await victory(s);
+    await page
+      .locator("[data-saga-resolution='breaking-of-the-fellowship']")
+      .waitFor();
+    await checkpoint("breaking-resolution", width);
+    const captive = s.heroes.find(
+      (h) => !["Aragorn", "Frodo Baggins"].includes(card(h.code).name),
+    );
+    s = await record([
+      [/Followed by Night or Ill Fate/, SAGA.illFate],
+      [/taken captive/, captive.code],
+    ]);
+    assert.ok(s.campaign.burdens.includes(SAGA.illFate));
+    assert.deepEqual(s.campaign.captives, [captive.code]);
+    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await page
+      .getByText(/Notes · captives/)
+      .first()
+      .waitFor();
+    await checkpoint("breaking-complete", width);
     assert.ok(ringBearer);
     await view.c.close();
   }

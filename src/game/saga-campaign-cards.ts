@@ -15,15 +15,19 @@ import {
   putPlayerDeck,
   requireRule,
   shuffle,
+  stats,
 } from "./core";
 import {
   addVictoryCard,
   discardAttachment,
   engage,
+  enemyAddedToStaging,
+  enterEnemyEngaged,
   progressLocation,
 } from "./board";
 import {
   activeSeat,
+  allEngaged,
   allHeroes,
   forOwner,
   globalCharacters,
@@ -33,9 +37,20 @@ import {
   seatView,
 } from "./table";
 import { putPlayedEventInVictory } from "./event-resolution";
+import { playerCardImmune } from "./card-immunity";
+import { reduceThreat } from "./threat-reduction";
 import { oneRingExhausted } from "./lotr-saga";
 import { hasResourceIcon } from "./expansion-passives";
-import { isSagaCampaign, SAGA, SAGA_BOONS } from "./saga-campaign";
+import {
+  isSagaCampaign,
+  SAGA,
+  SAGA_BOONS,
+  SAGA_BURDENS,
+  SOUTH_BOONS,
+} from "./saga-campaign";
+import { isHero } from "./card-types";
+import { playerAttack } from "./combat";
+import { raiseThreat } from "./board";
 import { FF } from "./flight-ford-support";
 
 type SagaCardsState = NonNullable<GameState["sagaCards"]>;
@@ -70,6 +85,115 @@ export function sagaCampaignEncounter(
     );
     return true;
   }
+  if (code === SAGA.lust && !s.ringSouth && isSagaCampaign(s.campaign)) {
+    if (!fromReveal || replay) {
+      if (!replay) s.encounterDiscard.push(code);
+      return true;
+    }
+    return sagaCampaignLustRevealed(s, code, activeSeat(s));
+  }
+  if (
+    [SAGA.shadowFear, SAGA.pursued, SAGA.night, SAGA.illFate].includes(
+      code as never,
+    ) &&
+    isSagaCampaign(s.campaign)
+  ) {
+    if (!replay && code !== SAGA.illFate) s.encounterDiscard.push(code);
+    if (!fromReveal) {
+      if (!replay && code === SAGA.illFate) s.encounterDiscard.push(code);
+      return true;
+    }
+    const p = activeSeat(s);
+    if (code === SAGA.shadowFear) {
+      // "Treat the printed text box of each character in play as blank
+      // (except for Traits) until the end of the round."
+      state(s).fear = {
+        round: s.round,
+        ids: globalCharacters(s).map((u) => u.id),
+      };
+      log(
+        s,
+        "Shadow of Fear: the printed text box of each character in play is blank (except for Traits) until the end of the round.",
+        "danger",
+      );
+    } else if (code === SAGA.pursued) {
+      // "Each enemy engaged with a player, and not in the staging area, makes
+      // an immediate attack."
+      const ids = playerOrder(s).flatMap((i) =>
+        seatView(s, i)
+          .engaged.filter((u) =>
+            ["enemy", "ship-enemy"].includes(card(u.code).type_code),
+          )
+          .map((u) => u.id),
+      );
+      log(
+        s,
+        ids.length
+          ? "Pursued by the Enemy: each engaged enemy makes an immediate attack."
+          : "Pursued by the Enemy: no enemy is engaged with a player.",
+        "danger",
+      );
+      if (ids.length) prepend(s, fx("sagaPursued", { ids, player: p }));
+    } else if (code === SAGA.night) {
+      // "Put the topmost enemy of the encounter deck discard pile into play
+      // engaged with you."
+      let index = -1;
+      for (let i = s.encounterDiscard.length - 1; i >= 0 && index < 0; i--)
+        if (
+          ["enemy", "ship-enemy"].includes(
+            card(s.encounterDiscard[i]).type_code,
+          )
+        )
+          index = i;
+      if (index < 0) {
+        log(s, "Followed by Night: there is no enemy in the discard pile.");
+        return true;
+      }
+      const [enemyCode] = s.encounterDiscard.splice(index, 1);
+      const enemy = make(s, enemyCode);
+      log(
+        s,
+        `Followed by Night: ${name(enemy)} comes out of the discard pile to engage ${who(s, p)}.`,
+        "danger",
+      );
+      enterEnemyEngaged(s, enemy, p);
+      // An enemy that cannot engage (as on The Great River) stays in play in
+      // the staging area.
+      if (!allEngaged(s).some((u) => u.id === enemy.id)) {
+        s.staging.push(enemy);
+        enemyAddedToStaging(s, enemy);
+        log(
+          s,
+          `${name(enemy)} cannot engage and is added to the staging area.`,
+        );
+      }
+    } else {
+      // Ill Fate: "Attach to a hero you control."
+      const heroes = seatView(s, p).heroes;
+      if (!heroes.length) {
+        s.encounterDiscard.push(code);
+        return true;
+      }
+      choose(
+        s,
+        `Ill Fate · Attach to a hero ${s.table ? `${seatName(s, p)} controls` : "you control"}`,
+        heroes.map((h) => ({
+          id: h.id,
+          code: h.code,
+          label: name(h),
+          effects: [
+            fx("sagaConditionAttach", {
+              target: h.id,
+              code: SAGA.illFate,
+              player: p,
+            }),
+          ],
+        })),
+        card(SAGA.illFate).text,
+      );
+    }
+    return true;
+  }
   if (code === SAGA.ringDraws) {
     if (!replay) s.encounterDiscard.push(code);
     if (!fromReveal) return true;
@@ -84,6 +208,140 @@ export function sagaCampaignEncounter(
   }
   return false;
 }
+/**
+ * Lust for the Ring, earned at The Ring Goes South, revealed in a later
+ * chapter (The Ring Goes South scripts its own copy): "When Revealed: Attach to
+ * a non-[fellowship] hero in play."
+ */
+export function sagaCampaignLustRevealed(
+  s: GameState,
+  code: string,
+  player: number,
+): boolean {
+  if (code !== SAGA.lust || s.ringSouth || !isSagaCampaign(s.campaign))
+    return false;
+  const heroes = globalCharacters(s).filter(
+    (u) => isHero(u) && card(u.code).sphere_code !== "fellowship",
+  );
+  if (!heroes.length) {
+    s.encounterDiscard.push(code);
+    log(s, "Lust for the Ring: there is no non-Fellowship hero in play.");
+    return true;
+  }
+  choose(
+    s,
+    `Lust for the Ring · Attach to a non-Fellowship hero in play${s.table ? ` · ${seatName(s, player)}` : ""}`,
+    heroes.map((h) => ({
+      id: h.id,
+      code: h.code,
+      label: `${name(h)}${s.table ? ` · ${seatName(s, ownerOf(s, h))}` : ""}`,
+      effects: [fx("sagaLustAttach", { target: h.id, player })],
+    })),
+    "Peril. After The One Ring exhausts, each player raises their threat by 1 and the attached hero's willpower is 0 until the end of the round.",
+  );
+  return true;
+}
+const lusted = (u: Unit) =>
+  u.attachments.some((a) => a.code === SAGA.lust && !a.blanked);
+/** Lust for the Ring's Forced, outside The Ring Goes South. */
+export function sagaCampaignOneRingExhausted(s: GameState) {
+  if (s.ringSouth || !isSagaCampaign(s.campaign)) return;
+  for (const hero of globalCharacters(s).filter(
+    (u) => isHero(u) && lusted(u),
+  )) {
+    for (const player of playerOrder(s))
+      forOwner(s, player, () => raiseThreat(s, 1, "encounter"));
+    const q = state(s);
+    q.lustZero = (q.lustZero ?? []).filter((x) => x.round === s.round);
+    if (!q.lustZero.some((x) => x.id === hero.id))
+      q.lustZero.push({ id: hero.id, round: s.round });
+    log(
+      s,
+      `Lust for the Ring: each player raises their threat by 1 and ${name(hero)}'s willpower is 0 until the end of the round.`,
+      "danger",
+    );
+  }
+}
+export const sagaCampaignWillpowerOverride = (s: GameState, u: Unit) =>
+  s.sagaCards?.lustZero?.some((x) => x.id === u.id && x.round === s.round)
+    ? 0
+    : undefined;
+/** The burdens' shadow effects. */
+export function sagaCampaignShadow(s: GameState, code: string): boolean {
+  const c = s.combat;
+  if (!c || !isSagaCampaign(s.campaign)) return false;
+  if (code === SAGA.shadowFear) {
+    c.ignoreDefense = true;
+    log(
+      s,
+      "Shadow of Fear: the defending character does not count its defense.",
+      "danger",
+    );
+    return true;
+  }
+  if (code === SAGA.pursued) {
+    c.extraAttacks = (c.extraAttacks ?? 0) + 1;
+    log(
+      s,
+      "Pursued by the Enemy: the attacking enemy makes an additional attack after this one.",
+      "danger",
+    );
+    return true;
+  }
+  return false;
+}
+/** Shadow of Fear: the characters' printed text boxes are blank (Traits remain). */
+export const sagaCampaignCharacterBlanked = (s: GameState, u: Unit) =>
+  s.sagaCards?.fear?.round === s.round && s.sagaCards.fear.ids.includes(u.id);
+const live = (u: Unit, code: string) =>
+  u.attachments.find((a) => a.code === code && !a.blanked);
+/** Grievous Wound: "After a hero takes damage, if Grievous Wound is unattached, attach to that hero." */
+export function sagaCampaignDamageDealt(s: GameState, u: Unit, value: number) {
+  if (!isSagaCampaign(s.campaign) || value <= 0 || !isHero(u)) return;
+  const wound = s.staging.find((x) => x.code === SAGA.wound);
+  if (!wound || u.damage >= stats(s, u).health) return;
+  s.staging = s.staging.filter((x) => x.id !== wound.id);
+  u.attachments.push({
+    id: `a${s.nextId++}`,
+    code: SAGA.wound,
+    exhausted: false,
+  });
+  log(s, `Grievous Wound is attached to ${name(u)}.`, "danger");
+}
+/** Grievous Wound: "After attached hero exhausts, deal 1 damage to it." */
+export function sagaCampaignCharacterExhausted(s: GameState, u: Unit) {
+  if (isSagaCampaign(s.campaign) && live(u, SAGA.wound))
+    prepend(s, fx("sagaWoundDamage", { target: u.id, player: ownerOf(s, u) }));
+}
+/**
+ * After a character is destroyed: Overcome by Grief (unattached: attach to a
+ * hero; attached: exhaust its hero, which cannot ready this round) and Ill
+ * Fate (its hero's controller raises their threat by 2).
+ */
+export function sagaCampaignCharacterDestroyed(s: GameState, u: Unit) {
+  if (!isSagaCampaign(s.campaign)) return;
+  if (!["hero", "ally", "objective-ally"].includes(card(u.code).type_code))
+    return;
+  const controller = ownerOf(s, u);
+  const effects: Effect[] = [];
+  for (const hero of globalCharacters(s).filter(
+    (h) => isHero(h) && h.id !== u.id,
+  )) {
+    if (ownerOf(s, hero) !== controller) continue;
+    if (live(hero, SAGA.grief))
+      effects.push(
+        fx("sagaGriefExhaust", { target: hero.id, player: controller }),
+      );
+    if (live(hero, SAGA.illFate))
+      effects.push(fx("sagaIllFate", { target: hero.id, player: controller }));
+  }
+  if (s.staging.some((x) => x.code === SAGA.grief))
+    effects.push(fx("sagaGriefAttachOffer", { player: first(s) }));
+  if (effects.length) prepend(s, ...effects);
+}
+/** Overcome by Grief: its hero cannot ready until the end of the round. */
+export const sagaCampaignCannotReady = (s: GameState, u: Unit) =>
+  !!s.sagaCards?.griefLock?.some((x) => x.id === u.id && x.round === s.round);
 /** "If The One Ring is exhausted, this effect cannot be canceled." */
 export const sagaCampaignCannotCancel = (s: GameState, code?: string) =>
   code === SAGA.ringDraws && oneRingExhausted(s);
@@ -118,9 +376,17 @@ export const sagaCampaignAbilityLabel = (code: string, s?: GameState) =>
     ? "Mr. Underhill · Add to the victory display: an engaged enemy cannot attack you this round"
     : code === SAGA.bogey
       ? "Old Bogey-stories · Add to the victory display: shuffle your hand into your deck, then draw 6"
-      : code === FF.oldRoad && s && isSagaCampaign(s.campaign)
-        ? "The Old Road · Place the top burden on the encounter deck to place 4 progress here"
-        : undefined;
+      : code === SAGA.phial
+        ? "Phial of Galadriel · Add to the victory display: each enemy engaged with you gets -4 attack this round"
+        : code === SAGA.hairs
+          ? "Three Golden Hairs · Add to the victory display: each player lowers their threat by 3 and draws 3 cards"
+          : code === SAGA.rope
+            ? "Lórien Rope · Add to the victory display: each location in the staging area gets -2 threat this phase"
+            : code === SAGA.lembas
+              ? "Leaf-wrapped Lembas · Add to the victory display: ready all heroes in play"
+              : code === FF.oldRoad && s && isSagaCampaign(s.campaign)
+                ? "The Old Road · Place the top burden on the encounter deck to place 4 progress here"
+                : undefined;
 /** The Old Road (Flight to the Ford) in play: the staging area or active. */
 const oldRoadInPlay = (s: GameState, u: Unit) =>
   u.code === FF.oldRoad &&
@@ -139,6 +405,12 @@ export function sagaCampaignAbilityProblem(
     return null;
   }
   const a = u.attachments.find((x) => x.id === attachmentId);
+  if (a && GIFTS.includes(a.code)) {
+    if (a.blanked) return `${card(a.code).name}'s text is blank.`;
+    if ((a.owner ?? ownerOf(s, u)) !== activeSeat(s))
+      return `${card(a.code).name} belongs to another player.`;
+    return null;
+  }
   if (a?.code === SAGA.bogey) {
     if (a.blanked) return "Old Bogey-stories' text is blank.";
     if ((a.owner ?? ownerOf(s, u)) !== activeSeat(s))
@@ -174,6 +446,18 @@ export function sagaCampaignAbility(
     return true;
   }
   const a = u.attachments.find((x) => x.id === attachmentId);
+  if (a && GIFTS.includes(a.code)) {
+    const problem = sagaCampaignAbilityProblem(s, u, attachmentId);
+    requireRule(!problem, problem ?? "");
+    // Cost: the victory display; the removal from the Campaign Pool is
+    // recorded when the scenario is won (The Road Darkens FAQ).
+    u.attachments = u.attachments.filter((x) => x.id !== a.id);
+    addVictoryCard(s, a.code);
+    const spent = (state(s).spent ??= []);
+    if (!spent.includes(a.code)) spent.push(a.code);
+    giftEffect(s, a.code, activeSeat(s));
+    return true;
+  }
   if (a?.code === SAGA.bogey) {
     const problem = sagaCampaignAbilityProblem(s, u, attachmentId);
     requireRule(!problem, problem ?? "");
@@ -286,6 +570,126 @@ export function sagaCampaignEventPlayed(s: GameState, u: Unit) {
     "good",
   );
 }
+/** The Gifts of Lórien's Actions, after their cost is paid. */
+function giftEffect(s: GameState, code: string, p: number) {
+  const giftName = card(code).name;
+  if (code === SAGA.phial) {
+    const enemies = seatView(s, p).engaged.filter(
+      (e) =>
+        ["enemy", "ship-enemy"].includes(card(e.code).type_code) &&
+        !playerCardImmune(e),
+    );
+    for (const e of enemies) e.roundAttack = (e.roundAttack ?? 0) - 4;
+    log(
+      s,
+      `${giftName} is added to the victory display: ${enemies.length ? `${enemies.map((e) => name(e)).join(", ")} ${enemies.length === 1 ? "gets" : "get"} -4 attack until the end of the round` : "no enemy is engaged with you"}.`,
+      "good",
+    );
+  } else if (code === SAGA.hairs) {
+    for (const player of playerOrder(s))
+      forOwner(s, player, () => reduceThreat(s, 3, code));
+    for (const player of playerOrder(s)) forOwner(s, player, () => draw(s, 3));
+    log(
+      s,
+      `${giftName} is added to the victory display: each player lowers their threat by 3 and draws 3 cards.`,
+      "good",
+    );
+  } else if (code === SAGA.rope) {
+    const locations = s.staging.filter(
+      (l) => card(l.code).type_code === "location" && !playerCardImmune(l),
+    );
+    for (const l of locations) l.tempThreat = (l.tempThreat ?? 0) - 2;
+    log(
+      s,
+      `${giftName} is added to the victory display: each location in the staging area gets -2 threat until the end of the phase.`,
+      "good",
+    );
+  } else if (code === SAGA.lembas) {
+    const heroes = globalCharacters(s).filter((h) => isHero(h) && h.exhausted);
+    log(
+      s,
+      `${giftName} is added to the victory display: all heroes in play ready.`,
+      "good",
+    );
+    prepend(s, ...heroes.map((h) => fx("ready", { target: h.id })));
+  }
+}
+const GIFTS: readonly string[] = [
+  SAGA.phial,
+  SAGA.hairs,
+  SAGA.rope,
+  SAGA.lembas,
+];
+const liveBoon = (u: Unit, code: string) =>
+  u.attachments.find((a) => a.code === code && !a.blanked);
+/** Sting (a campaign boon): after the attached hero exhausts to defend an attack. */
+export function sagaCampaignDefendersDeclared(
+  s: GameState,
+  enemy: Unit,
+  defenders: Unit[],
+  exhausted: string[],
+): Effect[] {
+  if (!isSagaCampaign(s.campaign)) return [];
+  return defenders
+    .filter((d) => exhausted.includes(d.id) && !!liveBoon(d, SAGA.sting))
+    .map((d) =>
+      fx("sagaSting", {
+        target: enemy.id,
+        source: d.id,
+        player: liveBoon(d, SAGA.sting)!.owner ?? ownerOf(s, d),
+      }),
+    );
+}
+/** Glamdring (a campaign boon): after the attached character destroys an Orc enemy. */
+export function sagaCampaignAttackKilled(
+  s: GameState,
+  ids: string[],
+  traits: string[],
+) {
+  if (!isSagaCampaign(s.campaign) || !traits.includes("Orc")) return;
+  for (const id of ids) {
+    const u = get(s, id);
+    const glamdring = u && liveBoon(u, SAGA.glamdring);
+    if (u && glamdring)
+      prepend(
+        s,
+        fx("sagaGlamdring", {
+          target: u.id,
+          player: glamdring.owner ?? ownerOf(s, u),
+        }),
+      );
+  }
+}
+/**
+ * Andúril (a campaign boon): "After an attack in which the attached hero
+ * defended resolves, exhaust Andúril to target the enemy that just attacked.
+ * Declare attached hero as an attacker against that enemy."
+ */
+export function sagaCampaignAfterDefense(
+  s: GameState,
+  completed: NonNullable<GameState["combat"]>,
+) {
+  if (!isSagaCampaign(s.campaign) || completed.redirectedToEnemy) return;
+  const enemy = get(s, completed.enemyId);
+  if (!enemy) return;
+  const ids =
+    completed.defenderIds ??
+    (completed.defenderId ? [completed.defenderId] : []);
+  for (const id of ids) {
+    const u = get(s, id);
+    const anduril = u && liveBoon(u, SAGA.anduril);
+    if (u && anduril && !anduril.exhausted)
+      prepend(
+        s,
+        fx("sagaAndurilOffer", {
+          target: u.id,
+          source: anduril.id,
+          text: enemy.id,
+          player: anduril.owner ?? ownerOf(s, u),
+        }),
+      );
+  }
+}
 /** Mr. Underhill: the chosen enemy cannot attack that player this round. */
 export const sagaCampaignEnemyCannotAttack = (
   s: GameState,
@@ -298,6 +702,422 @@ export const sagaCampaignEnemyCannotAttack = (
 
 export function sagaCampaignEffect(s: GameState, e: Effect): boolean {
   switch (e.kind) {
+    case "sagaSouthChoice": {
+      // The Ring Goes South: each player chooses a boon card for their hand.
+      const pending = state(s).southPending ?? [];
+      const p = e.player ?? first(s);
+      if (!pending.length) return true;
+      choose(
+        s,
+        `The Ring Goes South · ${s.table ? `${seatName(s, p)} chooses` : "Choose"} a boon card to add to ${s.table ? "their" : "your"} hand`,
+        pending.map((code) => ({
+          id: code,
+          code,
+          label: card(code).name,
+          effects: [fx("sagaSouthTake", { code, player: p })],
+        })),
+        card(SAGA.southCard).text,
+      );
+      return true;
+    }
+    case "sagaSouthTake": {
+      const q = state(s);
+      const code = e.code!;
+      const p = e.player ?? first(s);
+      if (!q.southPending?.includes(code)) return true;
+      q.southPending = q.southPending.filter((x) => x !== code);
+      forOwner(s, p, () => {
+        const u = make(s, code);
+        u.owner = p;
+        s.hand.push(u);
+        (q.setupHand ??= []).push(u.id);
+      });
+      const c = s.campaign!;
+      c.deckBoons = { ...(c.deckBoons ?? {}), [code]: p };
+      log(
+        s,
+        `The Ring Goes South: ${card(code).name} is added to ${s.table ? `${seatName(s, p)}'s` : "your"} hand.`,
+        "good",
+      );
+      return true;
+    }
+    case "sagaSouthDeal": {
+      // "If any of those boon cards remain unchosen, shuffle them into the
+      // first player's deck."
+      const q = state(s);
+      const rest = q.southPending ?? [];
+      delete q.southPending;
+      if (!rest.length) return true;
+      const p = e.player ?? first(s);
+      forOwner(s, p, () => {
+        s.deck.push(...rest);
+        shuffle(s, s.deck);
+      });
+      const c = s.campaign!;
+      c.deckBoons = {
+        ...(c.deckBoons ?? {}),
+        ...Object.fromEntries(rest.map((code) => [code, p])),
+      };
+      log(
+        s,
+        `The Ring Goes South: ${rest.map((code) => card(code).name).join(", ")} ${rest.length === 1 ? "is" : "are"} shuffled into the first player's deck.`,
+      );
+      return true;
+    }
+    case "sagaSeatOfSeeing": {
+      // Seat of Seeing (campaign mode): "choose a burden card in play, in the
+      // encounter deck, or in the discard pile, and remove it from the game.
+      // Shuffle the encounter deck. (... remove that card from the campaign
+      // pool.)"
+      const options: Option[] = [];
+      for (const u of s.staging.filter((x) => SAGA_BURDENS.includes(x.code)))
+        options.push({
+          id: `unit:${u.id}`,
+          code: u.code,
+          label: `${name(u)} · in the staging area`,
+          effects: [{ ...e, kind: "sagaSeatRemove", target: u.id }],
+        });
+      for (const h of globalCharacters(s))
+        for (const a of h.attachments.filter((x) =>
+          SAGA_BURDENS.includes(x.code),
+        ))
+          options.push({
+            id: `attachment:${a.id}`,
+            code: a.code,
+            label: `${card(a.code).name} · attached to ${name(h)}`,
+            effects: [
+              { ...e, kind: "sagaSeatRemove", target: h.id, source: a.id },
+            ],
+          });
+      for (const [zone, cards] of [
+        ["deck", s.encounterDeck],
+        ["discard", s.encounterDiscard],
+      ] as const)
+        for (const code of [
+          ...new Set(cards.filter((c) => SAGA_BURDENS.includes(c))),
+        ])
+          options.push({
+            id: `${zone}:${code}`,
+            code,
+            label: `${card(code).name} · in the encounter ${zone === "deck" ? "deck" : "discard pile"}`,
+            effects: [{ ...e, kind: "sagaSeatRemove", code, text: zone }],
+          });
+      if (!options.length) {
+        log(
+          s,
+          "Seat of Seeing is explored: there is no burden card to remove.",
+        );
+        return true;
+      }
+      choose(
+        s,
+        "Seat of Seeing · Response: remove a burden card from the game?",
+        [...options, { id: "skip", label: "Decline", effects: [] }],
+        "Choose a burden card in play, in the encounter deck, or in the discard pile, and remove it from the game. Shuffle the encounter deck. (In campaign mode, remove that card from the campaign pool.)",
+      );
+      return true;
+    }
+    case "sagaSeatRemove": {
+      let code = e.code;
+      if (e.source) {
+        const h = get(s, e.target);
+        const a = h?.attachments.find((x) => x.id === e.source);
+        if (!h || !a) return true;
+        h.attachments = h.attachments.filter((x) => x.id !== a.id);
+        code = a.code;
+      } else if (e.target) {
+        const u = s.staging.find((x) => x.id === e.target);
+        if (!u) return true;
+        s.staging = s.staging.filter((x) => x.id !== u.id);
+        code = u.code;
+      } else {
+        const zone = e.text === "deck" ? s.encounterDeck : s.encounterDiscard;
+        const i = zone.indexOf(code ?? "");
+        if (i < 0) return true;
+        zone.splice(i, 1);
+      }
+      if (!code) return true;
+      (s.removedEncounter ??= []).push(code);
+      shuffle(s, s.encounterDeck);
+      const q = state(s);
+      if (!(q.cleared ??= []).includes(code)) q.cleared.push(code);
+      log(
+        s,
+        `Seat of Seeing: ${card(code).name} is removed from the game (and from the Campaign Pool when the scenario is won); the encounter deck is shuffled.`,
+        "good",
+      );
+      return true;
+    }
+    case "sagaPursued": {
+      // Each engaged enemy attacks in turn.
+      const [id, ...rest] = (e.ids ?? []).filter((x) =>
+        playerOrder(s).some((i) =>
+          seatView(s, i).engaged.some((u) => u.id === x),
+        ),
+      );
+      if (!id) return true;
+      const enemy = get(s, id)!;
+      const owner = playerOrder(s).find((i) =>
+        seatView(s, i).engaged.some((u) => u.id === id),
+      )!;
+      prepend(
+        s,
+        fx("immediateAttack", { target: enemy.id, player: owner }),
+        ...(rest.length
+          ? [fx("sagaPursued", { ids: rest, player: e.player })]
+          : []),
+      );
+      return true;
+    }
+    case "sagaConditionAttach": {
+      // Ill Fate and Overcome by Grief become Condition attachments.
+      const hero = get(s, e.target);
+      const code = e.code!;
+      const staged = s.staging.find((x) => x.code === code);
+      if (code === SAGA.grief) {
+        if (!staged) return true;
+        s.staging = s.staging.filter((x) => x.id !== staged.id);
+      }
+      if (!hero) {
+        s.encounterDiscard.push(code);
+        return true;
+      }
+      hero.attachments.push({ id: `a${s.nextId++}`, code, exhausted: false });
+      log(s, `${card(code).name} is attached to ${name(hero)}.`, "danger");
+      return true;
+    }
+    case "sagaGriefAttachOffer": {
+      // "After a character is destroyed, if Overcome by Grief is unattached,
+      // attach to a hero." The first player chooses the hero.
+      if (!s.staging.some((x) => x.code === SAGA.grief)) return true;
+      const heroes = globalCharacters(s).filter(isHero);
+      if (!heroes.length) return true;
+      choose(
+        s,
+        "Overcome by Grief · Forced: attach to a hero",
+        heroes.map((h) => ({
+          id: h.id,
+          code: h.code,
+          label: `${name(h)}${s.table ? ` · ${seatName(s, ownerOf(s, h))}` : ""}`,
+          effects: [
+            fx("sagaConditionAttach", { target: h.id, code: SAGA.grief }),
+          ],
+        })),
+        card(SAGA.grief).text,
+      );
+      return true;
+    }
+    case "sagaGriefExhaust": {
+      const hero = get(s, e.target);
+      if (!hero || !live(hero, SAGA.grief)) return true;
+      hero.exhausted = true;
+      const q = state(s);
+      q.griefLock = (q.griefLock ?? []).filter((x) => x.round === s.round);
+      if (!q.griefLock.some((x) => x.id === hero.id))
+        q.griefLock.push({ id: hero.id, round: s.round });
+      log(
+        s,
+        `Overcome by Grief: ${name(hero)} is exhausted and cannot ready until the end of the round.`,
+        "danger",
+      );
+      return true;
+    }
+    case "sagaIllFate": {
+      const hero = get(s, e.target);
+      if (!hero || !live(hero, SAGA.illFate)) return true;
+      const p = e.player ?? ownerOf(s, hero);
+      forOwner(s, p, () => raiseThreat(s, 2, "encounter"));
+      log(
+        s,
+        `Ill Fate: ${who(s, p)} ${s.table ? "raises" : "raise"} ${s.table ? "their" : "your"} threat by 2.`,
+        "danger",
+      );
+      return true;
+    }
+    case "sagaWoundDamage": {
+      const hero = get(s, e.target);
+      if (!hero || !live(hero, SAGA.wound)) return true;
+      log(s, `Grievous Wound: 1 damage is dealt to ${name(hero)}.`, "danger");
+      prepend(s, fx("damage", { target: hero.id, value: 1, player: e.player }));
+      return true;
+    }
+    case "sagaGiftChoice": {
+      // Breaking of the Fellowship's Setup: a Gift for a hero you control.
+      const p = e.player ?? first(s);
+      const taken = new Set(
+        globalCharacters(s).flatMap((u) => u.attachments.map((a) => a.code)),
+      );
+      const gifts = GIFTS.filter((code) => !taken.has(code));
+      const heroes = seatView(s, p).heroes;
+      if (!gifts.length || !heroes.length) return true;
+      choose(
+        s,
+        `Breaking of the Fellowship · ${s.table ? `${seatName(s, p)} chooses` : "Choose"} a Gift of Lórien for a hero ${s.table ? "they control" : "you control"}`,
+        gifts.flatMap((code) =>
+          heroes.map((h) => ({
+            id: `${code}@${h.id}`,
+            code,
+            label: `${card(code).name} · ${name(h)}`,
+            effects: [
+              fx("sagaGiftAttach", {
+                code,
+                target: h.id,
+                player: p,
+                flag: true,
+              }),
+            ],
+          })),
+        ),
+        card(SAGA.breakingCard).text,
+      );
+      return true;
+    }
+    case "sagaGiftSetup": {
+      // An earned Gift: "Setup: Attach to a hero in play."
+      const code = e.code!;
+      const heroes = globalCharacters(s).filter(isHero);
+      if (!heroes.length) return true;
+      choose(
+        s,
+        `${card(code).name} · Setup: attach it to a hero in play`,
+        heroes.map((h) => ({
+          id: h.id,
+          code: h.code,
+          label: `${name(h)}${s.table ? ` · ${seatName(s, ownerOf(s, h))}` : ""}`,
+          effects: [fx("sagaGiftAttach", { code, target: h.id })],
+        })),
+        card(code).text,
+      );
+      return true;
+    }
+    case "sagaGiftAttach": {
+      const hero = get(s, e.target);
+      const code = e.code!;
+      if (!hero || hero.attachments.some((a) => a.code === code)) return true;
+      hero.attachments.push({
+        id: `a${s.nextId++}`,
+        code,
+        exhausted: false,
+        owner: ownerOf(s, hero),
+      });
+      const c = s.campaign!;
+      if (e.flag && !c.boons.includes(code)) c.boons.push(code);
+      log(
+        s,
+        `${card(code).name} is attached to ${name(hero)}${e.flag ? "; the players have earned it" : ""}.`,
+        "good",
+      );
+      return true;
+    }
+    case "sagaLustAttach": {
+      const hero = get(s, e.target);
+      if (!hero) {
+        s.encounterDiscard.push(SAGA.lust);
+        return true;
+      }
+      hero.attachments.push({
+        id: `a${s.nextId++}`,
+        code: SAGA.lust,
+        exhausted: false,
+      });
+      log(s, `Lust for the Ring is attached to ${name(hero)}.`, "danger");
+      return true;
+    }
+    case "sagaSting": {
+      const enemy = get(s, e.target);
+      if (!enemy || !s.encounterDeck.length) return true;
+      choose(
+        s,
+        "Sting · Discard the top encounter card to damage the attacker?",
+        [
+          {
+            id: "sting",
+            code: SAGA.sting,
+            label: "Discard the top card and deal damage equal to its threat",
+            effects: [{ ...e, kind: "sagaStingResolve" }],
+          },
+          { id: "skip", label: "Decline", effects: [] },
+        ],
+        card(SAGA.sting).text,
+      );
+      return true;
+    }
+    case "sagaStingResolve": {
+      const code = s.encounterDeck.shift();
+      if (!code) return true;
+      s.encounterDiscard.push(code);
+      const amount = card(code).threat ?? 0;
+      log(
+        s,
+        `Sting discards ${card(code).name} from the encounter deck (${amount} threat).`,
+        "good",
+      );
+      const enemy = get(s, e.target);
+      if (enemy && amount > 0)
+        prepend(
+          s,
+          fx("damage", { target: enemy.id, value: amount, player: e.player }),
+        );
+      return true;
+    }
+    case "sagaGlamdring": {
+      const u = get(s, e.target);
+      if (!u) return true;
+      choose(
+        s,
+        `Glamdring · ${name(u)} destroyed an Orc enemy: draw 1 card?`,
+        [
+          {
+            id: "draw",
+            code: SAGA.glamdring,
+            label: "Draw 1 card",
+            effects: [{ ...e, kind: "sagaGlamdringDraw" }],
+          },
+          { id: "skip", label: "Decline", effects: [] },
+        ],
+        card(SAGA.glamdring).text,
+      );
+      return true;
+    }
+    case "sagaGlamdringDraw":
+      draw(s, 1);
+      log(s, "Glamdring: 1 card is drawn.", "good");
+      return true;
+    case "sagaAndurilOffer": {
+      const u = get(s, e.target);
+      const anduril = u?.attachments.find(
+        (a) => a.id === e.source && a.code === SAGA.anduril && !a.blanked,
+      );
+      const enemy = get(s, e.text);
+      if (!u || !anduril || anduril.exhausted || !enemy) return true;
+      choose(
+        s,
+        `Andúril · ${name(u)} defended against ${name(enemy)}`,
+        [
+          {
+            id: "attack",
+            code: SAGA.anduril,
+            label: `Exhaust Andúril: ${name(u)} attacks ${name(enemy)}`,
+            effects: [{ ...e, kind: "sagaAndurilAttack" }],
+          },
+          { id: "skip", label: "Decline", effects: [] },
+        ],
+        card(SAGA.anduril).text,
+      );
+      return true;
+    }
+    case "sagaAndurilAttack": {
+      const u = get(s, e.target);
+      const anduril = u?.attachments.find(
+        (a) => a.id === e.source && a.code === SAGA.anduril,
+      );
+      const enemy = get(s, e.text);
+      if (!u || !anduril || anduril.exhausted || !enemy) return true;
+      anduril.exhausted = true;
+      log(s, `Andúril: ${name(u)} attacks ${name(enemy)}.`, "good");
+      playerAttack(s, enemy, [u.id], false, "anduril");
+      return true;
+    }
     case "sagaBogeySetup": {
       // "Setup: The first player attaches Old Bogey-stories to a hero in play."
       const heroes = allHeroes(s);
@@ -496,11 +1316,54 @@ export function validateSagaCards(s: GameState) {
         m.round >= 0 &&
         m.round <= s.round,
     ) &&
+    (q.setupHand === undefined ||
+      (Array.isArray(q.setupHand) &&
+        q.setupHand.every((id) => typeof id === "string"))) &&
+    (q.southPending === undefined ||
+      (Array.isArray(q.southPending) &&
+        new Set(q.southPending).size === q.southPending.length &&
+        q.southPending.every((code) => SOUTH_BOONS.includes(code)))) &&
+    (q.lustZero === undefined ||
+      (Array.isArray(q.lustZero) &&
+        q.lustZero.every(
+          (x) =>
+            !!x &&
+            typeof x.id === "string" &&
+            Number.isSafeInteger(x.round) &&
+            x.round >= 0 &&
+            x.round <= s.round,
+        ))) &&
+    (q.fear === undefined ||
+      (!!q.fear &&
+        Number.isSafeInteger(q.fear.round) &&
+        q.fear.round >= 0 &&
+        q.fear.round <= s.round &&
+        Array.isArray(q.fear.ids) &&
+        q.fear.ids.every((id) => typeof id === "string"))) &&
+    (q.griefLock === undefined ||
+      (Array.isArray(q.griefLock) &&
+        q.griefLock.every(
+          (x) =>
+            !!x &&
+            typeof x.id === "string" &&
+            Number.isSafeInteger(x.round) &&
+            x.round >= 0 &&
+            x.round <= s.round,
+        ))) &&
+    (q.cleared === undefined ||
+      (Array.isArray(q.cleared) &&
+        new Set(q.cleared).size === q.cleared.length &&
+        q.cleared.every((code) => SAGA_BURDENS.includes(code)))) &&
     (q.spent === undefined ||
       (Array.isArray(q.spent) &&
         new Set(q.spent).size === q.spent.length &&
         q.spent.every((code) => SAGA_BOONS.includes(code)))) &&
     (isSagaCampaign(s.campaign) ||
-      (!q.ringDraws && !q.underhill.length && !q.spent?.length))
+      (!q.ringDraws &&
+        !q.underhill.length &&
+        !q.spent?.length &&
+        !q.southPending?.length &&
+        !q.cleared?.length &&
+        !q.lustZero?.length))
   );
 }

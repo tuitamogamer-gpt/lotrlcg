@@ -1,3 +1,4 @@
+import { sagaCampaignOneRingExhausted } from "./saga-campaign-cards";
 import type { Card, Effect, GameState, Option, Unit } from "./types";
 import { card, name } from "./cards";
 import {
@@ -152,6 +153,7 @@ export function useLandShadowPlayerAbility(
     "good",
   );
   batch4Scenario(s).oneRingExhausted?.(s);
+  sagaCampaignOneRingExhausted(s);
   return true;
 }
 

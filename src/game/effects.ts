@@ -43,6 +43,7 @@ import { wainridersNoEngagement } from "./wainriders-player-support";
 import { ulfastPlayerEffect } from "./ulfast-player";
 import { perilousVoyageEffect, voyageRefresh } from "./perilous-voyage";
 import {
+  sagaCampaignAfterDefense,
   sagaCampaignEffect,
   sagaCampaignEncounter,
   sagaCampaignRoundEnd,
@@ -2776,6 +2777,7 @@ function handleEffect(s: GameState, e: Effect) {
             completed,
             attackPlayer,
           );
+          sagaCampaignAfterDefense(s, completed);
         }
       }
       finalRingDefenseFinished(s);

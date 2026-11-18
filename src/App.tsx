@@ -339,6 +339,7 @@ import {
   SAGA_CAMPAIGN_JOURNAL,
   SAGA_CAMPAIGN_ORDER,
   SAGA_CAMPAIGN_SUPPORTED,
+  SAGA_DECK_BOONS,
   SAGA_INSERTS,
   sagaChapterNumber,
   sagaChapterOptions,
@@ -1019,6 +1020,10 @@ export default function App() {
   const [nextDeck, setNextDeck] = useState("leadership");
   /** The Lord of the Rings campaign: the chapter chosen for the interlude. */
   const [nextChapter, setNextChapter] = useState<ScenarioId | undefined>();
+  /** The Lord of the Rings campaign: the deck each earned player-card boon joins. */
+  const [nextDeckBoons, setNextDeckBoons] = useState<
+    Record<string, number | null>
+  >({});
   const [includeSupport, setIncludeSupport] = useState(true);
   const [claimId, setClaimId] = useState<string | null>(null);
   const quest = scenario(
@@ -1765,6 +1770,14 @@ export default function App() {
         picked.push(h.code);
     setNextHeroes(picked);
     setNextChapter(nextChapterOf(c));
+    setNextDeckBoons(
+      Object.fromEntries(
+        SAGA_DECK_BOONS.filter((code) => c.boons.includes(code)).map((code) => [
+          code,
+          c.deckBoons?.[code] ?? null,
+        ]),
+      ),
+    );
     setNextDeck(game.deckId);
     setNextSeatDecks(game.table?.seats.map((p) => p.deckId) ?? []);
     setIncludeSupport(true);
@@ -1783,6 +1796,7 @@ export default function App() {
           ? nextSeatDecks
           : undefined,
         game.campaign?.kind === "saga" ? nextChapter : undefined,
+        game.campaign?.kind === "saga" ? nextDeckBoons : undefined,
       );
       audio.stop();
       setSignificantMoment(null);
@@ -4960,6 +4974,42 @@ export default function App() {
                 </small>
               </label>
             )}
+          {game.campaign.kind === "saga" &&
+            nextChapter !== "the-ring-goes-south" &&
+            Object.keys(nextDeckBoons).length > 0 && (
+              <fieldset className="saga-deck-boons">
+                <legend>Earned boon cards in your decks</legend>
+                {Object.entries(nextDeckBoons).map(([code, seat]) => (
+                  <label key={code}>
+                    <span>{card(code).name}</span>
+                    <select
+                      aria-label={`${card(code).name}: deck`}
+                      value={seat === null ? "" : String(seat)}
+                      onChange={(e) =>
+                        setNextDeckBoons((d) => ({
+                          ...d,
+                          [code]:
+                            e.target.value === ""
+                              ? null
+                              : Number(e.target.value),
+                        }))
+                      }
+                    >
+                      <option value="">Not included</option>
+                      {(game.table?.seats ?? [null]).map((_, i) => (
+                        <option key={i} value={String(i)}>
+                          {game.table ? `Player ${i + 1}'s deck` : "Your deck"}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                ))}
+                <small>
+                  Earned boons with a player card back may be included in a
+                  player's deck; they do not count against its size.
+                </small>
+              </fieldset>
+            )}
           <div className="campaign-hero-slots">
             {nextHeroes.map((code, i) => (
               <HeroPicker
@@ -5347,6 +5397,12 @@ function CampaignJournal({
           )}
         </div>
       </div>
+      {c.captives?.length ? (
+        <p className="campaign-note">
+          Notes · captives:{" "}
+          {c.captives.map((code) => card(code).name).join(", ")}
+        </p>
+      ) : null}
       {Object.entries(c.permanent).map(([hero, boons]) => (
         <p className="campaign-note" key={hero}>
           {hero === RING_BEARER_KEY ? "The Ring-bearer" : card(hero).name}:{" "}

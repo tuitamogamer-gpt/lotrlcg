@@ -14,7 +14,11 @@ import definitions from "../data/passive-player-cards.json";
 import type { Attachment, Card, GameState, Unit } from "./types";
 import { cobasEconomyNoQuestExhaust } from "./cobas-economy";
 import { card } from "./cards";
-import { FLAME_WEST_ARAGORN } from "./lotr-saga-codes";
+import {
+  FLAME_WEST_ARAGORN,
+  isOneRing,
+  isRingBearerCode,
+} from "./lotr-saga-codes";
 import { isHero, isAlly, unitType } from "./card-types";
 import { allActiveLocations, allCharacters, ownerOf, seatView } from "./table";
 import { marshPlayerNoQuestExhaust } from "./marsh-player-cards";
@@ -75,6 +79,19 @@ const rules: Record<string, AttachmentRule> = {
   "141013": { type: "hero", traits: ["Hobbit"], limit: 1 },
   "141014": { type: "hero", restricted: 1, attack: 1 },
   "141015": { traits: ["Hobbit"], limit: 1 },
+  // The Lord of the Rings campaign: The Road Darkens' player-card boons (the
+  // Responses are in saga-campaign-cards.ts).
+  "142011": {
+    type: "hero",
+    traits: ["Hobbit"],
+    restricted: 1,
+    will: 1,
+    attack: 1,
+    defense: 1,
+  },
+  "142012": { defense: 1, health: 1 },
+  "142013": { restricted: 1, attack: 2 },
+  "142014": { type: "hero", restricted: 1, will: 1, attack: 1, defense: 1 },
   // The Lord of the Rings: The Road Darkens. Fellowship of the Ring's
   // willpower and the abilities are in road-darkens-player-cards.ts.
   "142008": { names: ["Gandalf"], restricted: 1 },
@@ -450,6 +467,24 @@ export function expansionPlayTargets(s: GameState, c: Card): Unit[] | null {
     if (c.code === "131022") {
       // Glamdring: attach to a hero or Gandalf.
       if (unitType(u) !== "hero" && card(u.code).name !== "Gandalf")
+        return false;
+    } else if (c.code === "142012") {
+      // Mithril Shirt (a campaign boon): attach to the Ring-bearer.
+      if (
+        !isRingBearerCode(u.code) &&
+        !u.attachments.some((a) => isOneRing(a.code))
+      )
+        return false;
+    } else if (c.code === "142013") {
+      // Glamdring (a campaign boon): a Warrior hero or Gandalf.
+      if (
+        !(unitType(u) === "hero" && hasTrait(u, "Warrior")) &&
+        card(u.code).name !== "Gandalf"
+      )
+        return false;
+    } else if (c.code === "142014") {
+      // Andúril (a campaign boon): a Noble hero or Aragorn.
+      if (!hasTrait(u, "Noble") && card(u.code).name !== "Aragorn")
         return false;
     } else if (c.code === "04057") {
       if (!traitMatch && card(u.code).name !== "Aragorn") return false;

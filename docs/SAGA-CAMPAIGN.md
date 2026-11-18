@@ -6,10 +6,11 @@ of the Past (Q0C.01.1 and Q0C.01.2), played by one fellowship of one to four
 local players. The lobby's campaign mode offers two campaigns: Mirkwood Paths
 (the three Core Set quests) and The Lord of the Rings. The three chapters of
 The Black Riders are supported (A Shadow of the Past, A Knife in the Dark and
-Flight to the Ford), and so are the optional Parts 1.1 and 1.2, The Old Forest
-and Fog on the Barrow-downs. The campaign log is kept after Flight to the
-Ford, and the end of the game says that the next chapter, The Ring Goes South,
-is not available in campaign mode yet.
+Flight to the Ford), the optional Parts 1.1 and 1.2 (The Old Forest and Fog
+on the Barrow-downs), and The Road Darkens' three chapters (The Ring Goes
+South, Journey in the Dark and Breaking of the Fellowship). The campaign log
+is kept after Breaking of the Fellowship, and the end of the game says that
+the next chapter, The Uruk-hai, is not available in campaign mode yet.
 
 ## Sources
 
@@ -34,6 +35,17 @@ is not available in campaign mode yet.
   [RulesPal](https://rulespal.com/the-lord-of-the-rings-the-card-game-the-road-darkens/rulebook),
   rules that removing a boon from the Campaign Pool as part of a cost is
   recorded only after the scenario is defeated; Ho! Tom Bombadil! follows it.
+- The Road Darkens' three campaign cards (both faces), its eight boons and
+  its six new burdens were checked by eye against the scans (Lust for the
+  Ring was already scripted with The Ring Goes South); with them, all 40 faces
+  are pinned. The scans correct the catalog: the four Gifts of Lórien have
+  Victory 3, Journey in the Dark's resolution reads "Grievous Wound" (the
+  catalog misspells it), The Ring Goes South names "Andúril" and Breaking of
+  the Fellowship "Lórien Rope", and Sting's Response is a paragraph of its own.
+- The Road Darkens' FAQ (same transcript) also rules that no version (hero or
+  ally) of a fallen hero can be used for the rest of the campaign, that a hero
+  replaced by another version of the same hero is not a replacement, and that
+  the Gifts' removal from the Campaign Pool waits for a win.
 - The two campaign cards are numbered Parts 1.1 and 1.2 of The Lord of the
   Rings: the chapters are played after A Shadow of the Past (Part 1) and
   before A Knife in the Dark (Part 2). Each is optional, and when both are
@@ -54,7 +66,10 @@ is not available in campaign mode yet.
   the end of a won chapter is a **fallen hero** and cannot be used again; its
   player chooses a new hero for the next chapter. Each player may also replace
   one other hero voluntarily. Each replacement gives every player a permanent
-  +1 starting threat penalty.
+  +1 starting threat penalty; another version of the same hero (the same
+  title) is not a replacement, and no version of a fallen hero can be chosen
+  (an ally version of it is taken out of the decks at setup). The Ring Goes
+  South lets each player change heroes freely, without the penalty.
 - **The campaign card** of each scenario lies next to the quest deck; its Setup
   resolves after the scenario's own setup, and its Resolution is recorded after
   a win. Resolutions that ask for choices are answered in the end-of-game
@@ -66,8 +81,16 @@ is not available in campaign mode yet.
   deck, and Gandalf's Delay goes to the staging area (each player draws 1 less
   card in their starting hand, also after a mulligan). Old Bogey-stories is
   attached by the first player to a hero in play, and Ho! Tom Bombadil! is
-  added to the first player's hand (it stays there through a mulligan). A
-  fallen hero's Permanent cards leave the pool.
+  added to the first player's hand (it stays there through a mulligan). The
+  burden objectives Grievous Wound and Overcome by Grief go to the staging
+  area, and an earned Gift of Lórien is attached by the first player to a hero
+  in play. A fallen hero's Permanent cards leave the pool.
+- **Boons in decks**: Sting, Mithril Shirt, Glamdring and Andúril are player
+  cards. The interlude before each chapter after The Ring Goes South assigns
+  each of them to a player's deck (or leaves it out); the assignment is kept
+  in the log, and the cards do not count against the deck's size.
+- **Notes**: the captives Breaking of the Fellowship takes are recorded in the
+  journal for the chapters of The Treason of Saruman.
 - **Permanent**: a Permanent attachment cannot be discarded from its hero while
   the hero is in play; when the hero leaves play, it is removed from the game.
 
@@ -86,6 +109,19 @@ is not available in campaign mode yet.
 | The Old Forest (Part 1.1)          | Setup: the first player attaches Old Bogey-stories to a hero in play. Resolution: if there are at least 12 damage tokens on Old Man Willow, the players earn Old Bogey-stories. |
 | Fog on the Barrow-downs (Part 1.2) | While any player is at stage 4B (trapped inside a barrow), the first player cannot lose control of the first player token. Resolution: the players earn Ho! Tom Bombadil!.      |
 
+## The Road Darkens chapters
+
+| Chapter                    | Campaign card                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| The Ring Goes South        | Setup: each player may change heroes without the +1 threat penalty; the players earn Sting, Mithril Shirt, Glamdring and Andúril; starting with the first player, each player chooses one for their hand (kept through a mulligan) and the rest are shuffled into the first player's deck. Resolution: if Lust for the Ring is attached to a hero, the players earn it.                                                                                                                                                           |
+| Journey in the Dark        | Setup: Pursued by the Enemy and Shadow of Fear are shuffled into the encounter deck; Grievous Wound and Overcome by Grief are added to the staging area. Resolution: the first player chooses one of the treacheries and one of the objectives for the Campaign Pool, or all four if The Balrog is still in play.                                                                                                                                                                                                                 |
+| Breaking of the Fellowship | Setup: starting with the first player, each player chooses one of Phial of Galadriel, Three Golden Hairs, Lórien Rope and Leaf-wrapped Lembas and attaches it to a hero they control (earned); Followed by Night and Ill Fate are shuffled into the encounter deck. Resolution: a hero with Fallen into Evil attached becomes fallen; the first player chooses Followed by Night or Ill Fate for the Campaign Pool; each player chooses a hero they control (not the Ring-bearer or Aragorn) as a captive, recorded in the Notes. |
+
+Seat of Seeing's campaign response is scripted too: when it is explored, the
+first player may remove a burden card in play, in the encounter deck or in the
+discard pile from the game (and, once the scenario is won, from the Campaign
+Pool), and the encounter deck is shuffled.
+
 ## Boons and burdens
 
 | Card                                                                              | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
@@ -98,18 +134,28 @@ is not available in campaign mode yet.
 | Weight of the Ring, Fear of Discovery, Eaten Alive!, Panicked, Overcome by Terror | Flight to the Ford's burden deck (already scripted); earned by its resolution and shuffled into later encounter decks.                                                                                                                                                                                                                                                                                                                                           |
 | Old Bogey-stories (boon, attachment)                                              | Setup: attached to a hero in play; its controller is that hero's controller. Action: add it to the victory display (Victory 1) to shuffle a hand of at least 6 cards into the deck, then draw 6. It stays in the Campaign Pool.                                                                                                                                                                                                                                  |
 | Ho! Tom Bombadil! (boon, event)                                                   | Setup: added to the first player's hand. Response (offered with A Test of Will when an encounter card is revealed from the encounter deck): add it to the victory display (Victory 1) and remove it from the Campaign Pool to cancel the when revealed effects. As The Road Darkens' FAQ rules for the Gift boons, the removal is recorded only when the scenario is won: a lost chapter is replayed with it still in the pool. It is never played as an Action. |
+| Sting (boon, attachment, cost 2)                                                  | Attach to a Hobbit hero; Restricted; +1 willpower, +1 attack and +1 defense. Response: after its hero exhausts to defend, discard the top card of the encounter deck and deal damage equal to its threat to the attacker.                                                                                                                                                                                                                                        |
+| Mithril Shirt (boon, attachment, cost 1)                                          | Attach to the Ring-bearer; +1 defense and +1 hit point.                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Glamdring (boon, attachment, cost 2)                                              | Attach to a Warrior hero or Gandalf; Restricted; +2 attack. Response: after its character destroys an Orc enemy, draw 1 card.                                                                                                                                                                                                                                                                                                                                    |
+| Andúril (boon, attachment, cost 3)                                                | Attach to a Noble hero or Aragorn; Restricted; +1 willpower, +1 attack and +1 defense. Response: after an attack its hero defended resolves, exhaust Andúril and the hero attacks that enemy (even exhausted by defending).                                                                                                                                                                                                                                      |
+| Phial of Galadriel, Three Golden Hairs, Lórien Rope, Leaf-wrapped Lembas (Gifts)  | Action: add it to the victory display (Victory 3) and remove it from the Campaign Pool (recorded after a win) to give each enemy engaged with you -4 attack this round; to lower each player's threat by 3, then each player draws 3; to give each location in the staging area -2 threat this phase; to ready all heroes in play.                                                                                                                               |
+| Lust for the Ring (burden, treachery)                                             | Peril. Surge. When Revealed: attach to a non-Fellowship hero. Forced: after The One Ring exhausts, each player raises their threat by 1 and its hero's willpower is 0 until the end of the round (in every later chapter).                                                                                                                                                                                                                                       |
+| Shadow of Fear (burden, treachery)                                                | Doomed 1. Surge. When Revealed: the printed text box of each character in play is blank (except Traits) until the end of the round. Shadow: the defending character does not count its defense.                                                                                                                                                                                                                                                                  |
+| Pursued by the Enemy (burden, treachery)                                          | Doomed 1. Surge. When Revealed: each enemy engaged with a player makes an immediate attack. Shadow: the attacking enemy makes an additional attack after this one.                                                                                                                                                                                                                                                                                               |
+| Grievous Wound, Overcome by Grief (burdens, objectives)                           | Setup: added to the staging area. After a hero takes damage, Grievous Wound attaches to it and deals it 1 damage each time it exhausts. After a character is destroyed, the first player attaches Overcome by Grief to a hero, which then exhausts (and cannot ready this round) whenever a character its controller controls is destroyed.                                                                                                                      |
+| Followed by Night, Ill Fate (burdens, treacheries)                                | Peril. Surge. Followed by Night puts the topmost enemy of the encounter discard pile into play engaged with you (in the staging area where enemies cannot engage). Ill Fate attaches to a hero you control; after a character you control is destroyed, raise your threat by 2.                                                                                                                                                                                  |
 
 ## Not supported yet
 
-The campaign cards, boons and burdens of The Road Darkens, The Treason of
-Saruman, The Land of Shadow, The Flame of the West and The Mountain of Fire
-follow in publication order. One campaign is saved at a time: starting a new
+The campaign cards, boons and burdens of The Treason of Saruman, The Land of
+Shadow, The Flame of the West and The Mountain of Fire follow in publication
+order. One campaign is saved at a time: starting a new
 campaign replaces the saved one.
 
 ## Verification
 
 ```sh
-node --import tsx --test tests/saga-campaign.test.ts
+node --import tsx --test tests/saga-campaign.test.ts tests/saga-campaign-road-darkens.test.ts
 npm run build
 npm run test:browser-saga-campaign
 ```
@@ -123,10 +169,19 @@ Ring Draws Them, The Old Road's campaign Action, the Permanent stat boons, the
 optional chapters (their order, skipping them, saves that break the order, Old
 Bogey-stories' setup, Action and resolution, the Fog card's first player
 token) and Ho! Tom Bombadil! (its setup, the mulligan, its Response and the
-Campaign Pool). The browser suite starts a new Lord of the Rings campaign
-through the lobby and plays its log through A Shadow of the Past, both optional
-chapters (chosen in the interlude), A Knife in the Dark and Flight to the Ford
-at 1280, 390 and 320 pixels (45 checkpoints: each chapter's setup, both
-interlude choices, the resolution dialogs and journals, Ho! Tom Bombadil!'s
-Response, the Flight to the Ford Response and the recorded end of Flight to the
-Ford) and checks all 20 original faces.
+Campaign Pool). `tests/saga-campaign-road-darkens.test.ts` (7 tests) covers
+The Road Darkens: its data and the scans' corrections, The Ring Goes South's
+free hero changes and boon cards (the hand, the first player's deck, the
+mulligan), same-title swaps and fallen heroes, the four player-card boons'
+targets, bonuses and Responses, Lust for the Ring in a later chapter, Journey
+in the Dark's setup, burdens and both resolutions, Breaking of the
+Fellowship's Gifts, Followed by Night, Ill Fate, Seat of Seeing, Fallen into
+Evil and the captives, the deck assignments and the saved log's checks. The
+browser suite starts a new Lord of the Rings campaign through the lobby and
+plays its log through A Shadow of the Past, both optional chapters (chosen in
+the interlude), A Knife in the Dark, Flight to the Ford and The Road Darkens'
+three chapters at 1280, 390 and 320 pixels (66 checkpoints: each chapter's
+setup, both interlude choices and the deck assignments, the resolution dialogs
+and journals, Ho! Tom Bombadil!'s Response, the Flight to the Ford Response and
+the recorded end of Breaking of the Fellowship) and checks all 40 original
+faces.

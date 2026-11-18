@@ -67,7 +67,8 @@ function finish(s: GameState, answers: Record<string, string> = {}) {
 }
 
 test("The Lord of the Rings campaign: its campaign cards, boons and burdens are registered with every face pinned; the three Black Riders chapters and the two campaign inserts are supported", () => {
-  assert.equal(art.length, 20);
+  // The Black Riders, the two campaign inserts and The Road Darkens.
+  assert.equal(art.length, 40);
   for (const a of art) {
     const bytes = readFileSync(`public${a.localPath}`);
     assert.equal(bytes.length, a.bytes);
@@ -119,7 +120,7 @@ test("The Lord of the Rings campaign: its campaign cards, boons and burdens are 
       ["Fog on the Barrow-downs", "fog-on-the-barrow-downs"],
       ["A Knife in the Dark", "a-knife-in-the-dark"],
       ["Flight to the Ford", "flight-to-the-ford"],
-      ["The Ring Goes South", null],
+      ["The Uruk-hai", null],
     ].map(([name]) => automatedScenarioId({ name: name!, mode: "campaign" })),
     [
       "a-shadow-of-the-past",
@@ -285,9 +286,10 @@ test("Flight to the Ford's resolution adds each burden in play, in the encounter
   assert.ok(f.campaign!.burdens.includes(SAGA.ringDraws));
   assert.ok(f.campaign!.burdens.includes(burdens[1] ?? burdens[0]));
   assert.ok(validateSave(JSON.parse(JSON.stringify(f))));
-  assert.throws(
-    () => continueCampaign(f, d.heroes, d.id, true, 7),
-    /not available yet/,
+  // The Road Darkens follows: The Ring Goes South.
+  assert.equal(
+    continueCampaign(f, d.heroes, d.id, true, 7).scenarioId,
+    "the-ring-goes-south",
   );
 });
 

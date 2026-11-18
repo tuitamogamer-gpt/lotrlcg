@@ -6,9 +6,9 @@ Ring-bearer, is described with the Saga rules of
 scripted with the collector cards, from their Two-Player Limited Edition
 Starter reprint (see [the collector scripts](COLLECTOR-PLAYER-SCRIPTS.md)).
 The other seven are scripted in `src/game/road-darkens-player-cards.ts`. The
-eight boons are campaign-mode cards: they stay pending until the Saga's
-campaign mode is imported, like the campaign-only text of the three
-scenarios.
+eight boons are campaign-mode cards, scripted with
+[The Lord of the Rings campaign](SAGA-CAMPAIGN.md) and never part of a
+player deck outside it.
 
 ## Sources
 

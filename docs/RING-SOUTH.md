@@ -2,9 +2,11 @@
 
 The first scenario of **The Lord of the Rings: The Road Darkens** (October
 2014), the second box of The Lord of the Rings Saga. It is playable in classic
-solo and with one to four local players, in normal and easy mode. Campaign
-mode, with its boons and burdens, is not part of this import; the box's other
-player cards follow in a later import.
+solo and with one to four local players, in normal and easy mode. Its
+campaign mode (recipe Q0C.04) is part of
+[The Lord of the Rings campaign](SAGA-CAMPAIGN.md): free hero changes, the
+boons Sting, Mithril Shirt, Glamdring and Andúril, and Lust for the Ring earned
+when it is attached to a hero.
 
 ## Sources and corrections
 

@@ -92,6 +92,8 @@ export function continueCampaign(
   seatDeckIds?: string[],
   /** The Lord of the Rings campaign: an optional chapter chosen instead of the next. */
   nextScenario?: ScenarioId,
+  /** The Lord of the Rings campaign: the deck (seat) each earned player-card boon joins, or null. */
+  deckBoons?: Record<string, number | null>,
 ): GameState {
   const saga = isSagaCampaign(s.campaign);
   requireRule(
@@ -107,15 +109,26 @@ export function continueCampaign(
     "Record the campaign card's resolution before continuing.",
   );
   const c = structuredClone(s.campaign);
+  // The Road Darkens FAQ: no version of a fallen hero can be used.
+  const fallen = saga ? c.fallen.map((h) => card(h).name) : [];
   requireRule(
     heroes.length ===
       (s.table?.seats.flatMap((p) => p.startingHeroes).length ?? 3) &&
       new Set(heroes).size === heroes.length &&
       heroes.every(
-        (h) => card(h).type_code === "hero" && !c.fallen.includes(h),
+        (h) =>
+          card(h).type_code === "hero" &&
+          !c.fallen.includes(h) &&
+          !fallen.includes(card(h).name),
       ),
     "Choose different heroes who have not fallen, keeping each player's hero count.",
   );
+  const next = saga
+    ? (nextScenario ?? nextSagaChapter(c)!)
+    : SCENARIOS[c.completed.length].id;
+  // The Ring Goes South's campaign card: "Each player may change hero cards he
+  // controls without incurring the +1 threat penalty."
+  const free = saga && next === "the-ring-goes-south";
   let offset = 0;
   const seats = s.table?.seats.map((p, i) => {
     const next = heroes.slice(offset, offset + p.startingHeroes.length);
@@ -140,16 +153,24 @@ export function continueCampaign(
       }))
     : [{ before: c.heroes, after: heroes }];
   const replaced = groups.flatMap(({ before, after }) => {
-    const removed = before.filter((h) => !after.includes(h));
+    let removed = before.filter((h) => !after.includes(h));
+    if (saga) {
+      // The Road Darkens FAQ: a hero replaced by another version of the same
+      // hero (the same title) is not a replacement.
+      const added = after.filter((h) => !before.includes(h));
+      removed = removed.filter((h) => {
+        const same = added.findIndex((x) => card(x).name === card(h).name);
+        if (same < 0) return true;
+        added.splice(same, 1);
+        return false;
+      });
+    }
     requireRule(
-      removed.filter((h) => !c.fallen.includes(h)).length <= 1,
+      free || removed.filter((h) => !c.fallen.includes(h)).length <= 1,
       "Between quests, each player may replace fallen heroes and voluntarily change one other hero.",
     );
     return removed;
   });
-  const next = saga
-    ? (nextScenario ?? nextSagaChapter(c)!)
-    : SCENARIOS[c.completed.length].id;
   requireRule(
     !saga || sagaChapterOptions(c).includes(next),
     "The Lord of the Rings campaign follows its chapters in order.",
@@ -162,7 +183,25 @@ export function continueCampaign(
     next !== "dol-guldur" || !c.prisoner || heroes.includes(c.prisoner),
     "The recorded prisoner must remain in this fellowship.",
   );
-  c.threatPenalty += replaced.length;
+  c.threatPenalty += free ? 0 : replaced.length;
+  if (saga && deckBoons) {
+    requireRule(
+      Object.values(deckBoons).every(
+        (seat) =>
+          seat === null ||
+          (Number.isSafeInteger(seat) &&
+            seat >= 0 &&
+            seat < (s.table?.seats.length ?? 1)),
+      ),
+      "Choose a player's deck for each earned boon card.",
+    );
+    c.deckBoons = Object.fromEntries(
+      Object.entries(deckBoons).filter(
+        (entry): entry is [string, number] =>
+          entry[1] !== null && c.boons.includes(entry[0]),
+      ),
+    );
+  }
   if (s.table) c.seatPenalties = s.table.seats.map(() => c.threatPenalty);
   c.heroes = [...heroes];
   const d = BUILT_IN_DECKS.find((d) => d.id === deckId);

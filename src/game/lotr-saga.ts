@@ -1,3 +1,4 @@
+import { sagaCampaignOneRingExhausted } from "./saga-campaign-cards";
 import type { Effect, GameState, Option, Unit } from "./types";
 import { card, name } from "./cards";
 import {
@@ -294,6 +295,7 @@ export function lotrSagaEffect(s: GameState, e: Effect): boolean {
       for (const player of playerOrder(s))
         forOwner(s, player, () => raiseThreat(s, 2, "player-card"));
       batch4Scenario(s).oneRingExhausted?.(s);
+      sagaCampaignOneRingExhausted(s);
       return true;
     }
     case "sagaFrodoCancel": {

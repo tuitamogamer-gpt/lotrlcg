@@ -126,9 +126,13 @@ import {
 } from "./perilous-voyage";
 import {
   sagaCampaignCannotCancel,
+  sagaCampaignCharacterDestroyed,
+  sagaCampaignCharacterExhausted,
+  sagaCampaignDamageDealt,
   sagaCampaignEncounter,
   sagaCampaignEventPlayed,
   sagaCampaignPhaseEnd,
+  sagaCampaignShadow,
   sagaTomBombadilOptions,
 } from "./saga-campaign-cards";
 import { threatElimination } from "./tharbad-support";
@@ -549,6 +553,7 @@ export function exhaustCharacter(s: GameState, u: Unit): boolean {
   roadRivendellCharacterExhausted(s, u);
   stewardFearCharacterExhausted(s, u);
   batch4Scenario(s).characterExhausted?.(s, u);
+  sagaCampaignCharacterExhausted(s, u);
   return true;
 }
 /** Every addition to staging shares the response timing, including a return from engagement. */
@@ -1540,6 +1545,7 @@ export function damage(
   Mumakil.mumakilDamageDealt(s, u, value, context);
   HaradResponses.haradPlayerDamageTaken(s, u, value, context);
   RoadDarkensPlayers.roadDarkensPlayerDamageTaken(s, u, value);
+  sagaCampaignDamageDealt(s, u, value);
   if (u.damage >= stats(s, u).health)
     City.cityCharacterDestroyed(s, u, context);
   if (u.damage >= stats(s, u).health)
@@ -1842,6 +1848,7 @@ export function destroy(
       allActiveLocations(s).some((location) => location.id === u.id),
     );
   if (destruction) batch4Scenario(s).characterDestroyed?.(s, u, damageContext);
+  if (destruction) sagaCampaignCharacterDestroyed(s, u);
   batch4Scenario(s).hostLeaves?.(s, u, destruction);
   EredFinalPlayers.eredFinalPlayerUnitLeaving(s, u);
   EredPlayers.eredMithrinPlayerGuardLeaving(s, u);
@@ -4324,6 +4331,7 @@ export function shadow(s: GameState, code: string) {
     return;
   const longDarkAttacker = get(s, s.combat?.enemyId);
   if (longDarkAttacker && longDarkShadow(s, longDarkAttacker, code)) return;
+  if (sagaCampaignShadow(s, code)) return;
   if (watcherWaterShadow(s, code)) return;
   if (roadRivendellShadow(s, code)) return;
   if (redhornShadow(s, code)) return;

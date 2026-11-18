@@ -2,9 +2,10 @@
 
 The third scenario of **The Lord of the Rings: The Road Darkens** (October
 2014), which completes the box's quests. It is playable in classic solo and
-with one to four local players, in normal and easy mode. Campaign mode, with
-its boons and burdens, is not part of this import; the box's player cards
-follow in a later import.
+with one to four local players, in normal and easy mode. Its campaign mode
+(recipe Q0C.06) is part of [The Lord of the Rings campaign](SAGA-CAMPAIGN.md):
+the Gifts of Lórien, Followed by Night and Ill Fate, Seat of Seeing's campaign
+response, Fallen into Evil heroes recorded as fallen, and the captives.
 
 ## Sources and corrections
 
@@ -56,7 +57,7 @@ follow in a later import.
 | The Argonath           | Immune; X threat, the number of players in the game; Victory 1. No travel while Sarn Gebir is in play. While active, the combat phase is skipped.                                                                                                  |
 | Sarn Gebir             | Immune; Victory 1. When explored, 1 damage to each exhausted character.                                                                                                                                                                            |
 | Parth Galen            | Immune; Victory 1. Travel: search the encounter deck and discard pile for an enemy for the staging area. While it is in play, the players cannot win.                                                                                              |
-| Seat of Seeing         | Immune; Victory 1. Its response removes a burden card, which only campaign mode has.                                                                                                                                                               |
+| Seat of Seeing         | Immune; Victory 1. In campaign mode its response removes a burden card in play, in the encounter deck or in the discard pile from the game, and from the Campaign Pool once the scenario is won.                                                   |
 | River Anduin           | At the end of the travel phase, each player at its stage raises his threat by 1; then it moves to the staging area to the left (the next player's), if able.                                                                                       |
 | Wooded Shoreline       | Archery 2 in the staging area. Travel: search the encounter deck and discard pile for an enemy for this staging area.                                                                                                                              |
 | Slopes of Amon Hen     | Travel: the player engages an enemy in any staging area. Shadow: +1 attack, +2 against a defending character with fewer printed hit points.                                                                                                        |

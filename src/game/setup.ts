@@ -115,6 +115,7 @@ import {
   isSagaCampaign,
   newSagaCampaign,
   sagaChapterOptions,
+  sagaCampaignDeckSetup,
   sagaCampaignSetup,
   sagaChapterSupported,
   sagaStartingHandPenalty,
@@ -541,6 +542,8 @@ export function finishGameSetup(s: GameState) {
     });
     s.allies.push(make(s, "rc135"));
   }
+  // The Lord of the Rings campaign: earned player-card boons join their decks.
+  sagaCampaignDeckSetup(s);
   eachSeat(s, () => {
     shuffle(s, s.deck);
     // Gandalf's Delay (a saga campaign burden): 1 less card.

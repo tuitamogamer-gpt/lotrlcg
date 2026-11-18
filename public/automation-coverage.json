@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2063,
+    "encounterCards": 2080,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3315,
-    "pending": 868
+    "scripted": 3332,
+    "pending": 851
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 255
+    "scripted": 258
   },
   "registeredCodes": [
     "01001",
@@ -793,7 +793,21 @@
     "142008",
     "142009",
     "142010",
+    "142011",
+    "142012",
+    "142013",
+    "142014",
+    "142015",
+    "142016",
+    "142017",
+    "142018",
     "142084",
+    "142085",
+    "142086",
+    "142087",
+    "142088",
+    "142089",
+    "142090",
     "143001",
     "143002",
     "143003",
@@ -2720,6 +2734,7 @@
     "octgn:9feef7b4-4ca7-4adc-aeb7-56947254588a",
     "octgn:9ff94935-ae08-4d86-859f-f4d0776a66e5",
     "octgn:a0417d08-1905-46f9-bd65-067c1c59f0a3",
+    "octgn:a073c291-5f86-4b49-821e-d965baf369fa",
     "octgn:a0b5c990-9acd-499c-befe-9a55e347f075",
     "octgn:a0d5be90-8618-4fe4-a917-d8d969c11264",
     "octgn:a0e1e091-fbbb-459e-9cb7-2cc63bd85711",
@@ -3177,6 +3192,7 @@
     "octgn:df7789f2-e7fd-45bd-a64f-fbd98a9ee146",
     "octgn:df908f24-8927-42cf-a6dd-9dfc41de74c1",
     "octgn:df9ba79f-91a3-4fc7-a2af-6bddcc795f29",
+    "octgn:dfb04502-e86f-41bc-83a0-b77048b9668c",
     "octgn:dfd05c9f-1dc1-4af6-a22f-fe39969c6371",
     "octgn:dfd0e951-2ba4-45c5-bed9-24caf8ae868f",
     "octgn:dff2fcb1-1231-4cda-9d10-029db96ef9e8",
@@ -3406,6 +3422,7 @@
     "octgn:fac30859-0ad6-4d07-8b73-b5e2af044a52",
     "octgn:faf4a518-7e63-4675-9337-8cc5095c5a91",
     "octgn:fafbd12c-b97e-41d8-a696-5c89566927ba",
+    "octgn:fb0f51c6-c96e-44f1-9f67-1235eb2351dc",
     "octgn:fb301d7d-7936-49b6-a938-40ff0ca549cb",
     "octgn:fb36c038-bbb8-454f-a4a6-1f8d8fcbd112",
     "octgn:fb40f70e-0d36-4d18-ae51-23be5f1a3260",
@@ -4250,9 +4267,9 @@
     {
       "product": "the-road-darkens",
       "total": 91,
-      "scripted": 74,
+      "scripted": 91,
       "player": 18,
-      "playerScripted": 10
+      "playerScripted": 18
     },
     {
       "product": "the-road-darkens-nightmare",
@@ -10600,7 +10617,7 @@
       "name": "Sting",
       "type": "attachment",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -10608,7 +10625,7 @@
       "name": "Mithril Shirt",
       "type": "attachment",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -10616,7 +10633,7 @@
       "name": "Glamdring",
       "type": "attachment",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -10624,7 +10641,7 @@
       "name": "Andúril",
       "type": "attachment",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -10632,7 +10649,7 @@
       "name": "Phial of Galadriel",
       "type": "attachment",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -10640,7 +10657,7 @@
       "name": "Three Golden Hairs",
       "type": "attachment",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -10648,7 +10665,7 @@
       "name": "Lórien Rope",
       "type": "attachment",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -10656,7 +10673,7 @@
       "name": "Leaf-wrapped Lembas",
       "type": "attachment",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -10672,7 +10689,7 @@
       "name": "Shadow of Fear",
       "type": "treachery",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -10680,7 +10697,7 @@
       "name": "Pursued by the Enemy",
       "type": "treachery",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -10688,7 +10705,7 @@
       "name": "Overcome by Grief",
       "type": "objective",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -10696,7 +10713,7 @@
       "name": "Grievous Wound",
       "type": "objective",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -10704,7 +10721,7 @@
       "name": "Followed by Night",
       "type": "treachery",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -10712,7 +10729,7 @@
       "name": "Ill Fate",
       "type": "treachery",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -29320,7 +29337,7 @@
       "name": "Journey in the Dark",
       "type": "campaign",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -34760,7 +34777,7 @@
       "name": "Breaking of the Fellowship",
       "type": "campaign",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -37296,7 +37313,7 @@
       "name": "The Ring Goes South",
       "type": "campaign",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -40204,22 +40221,22 @@
       "id": "Q0C.04",
       "name": "The Ring Goes South",
       "mode": "campaign",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-ring-goes-south",
+      "state": "scripted"
     },
     {
       "id": "Q0C.05",
       "name": "Journey in the Dark",
       "mode": "campaign",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "journey-in-the-dark",
+      "state": "scripted"
     },
     {
       "id": "Q0C.06",
       "name": "Breaking of the Fellowship",
       "mode": "campaign",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "breaking-of-the-fellowship",
+      "state": "scripted"
     },
     {
       "id": "Q0C.07",

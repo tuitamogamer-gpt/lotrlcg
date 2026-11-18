@@ -1,5 +1,9 @@
 import { wainridersQuestUnits } from "./wainriders-support";
-import { sagaCampaignEnemyCannotAttack } from "./saga-campaign-cards";
+import {
+  sagaCampaignCannotReady,
+  sagaCampaignEnemyCannotAttack,
+  sagaCampaignWillpowerOverride,
+} from "./saga-campaign-cards";
 import {
   landSorrowPlayerCannotReady,
   landSorrowPlayerCostReduction,
@@ -334,6 +338,7 @@ export const cannotReady = (u: Unit, s?: GameState) =>
       Sands.beneathSandsCannotReady(s, u) ||
       batch4Scenario(s).cannotReady?.(s, u) ||
       landSorrowPlayerCannotReady(s, u) ||
+      sagaCampaignCannotReady(s, u) ||
       Fangorn.fangornCannotReady(s, u) ||
       Etten.ettenCannotReady(s, u)));
 
@@ -893,7 +898,9 @@ export function stats(s: GameState, u: Unit) {
   };
   if (Dread.dreadWillZero(s, u)) result.will = 0;
   if (druadanPlayerDefenseStat(s, u)) result.defense = result.will;
-  const overrideWill = batch4Scenario(s).willpowerOverride?.(s, u);
+  const overrideWill =
+    batch4Scenario(s).willpowerOverride?.(s, u) ??
+    sagaCampaignWillpowerOverride(s, u);
   if (overrideWill !== undefined) result.will = overrideWill;
   result.attack = Math.max(0, result.attack);
   return result;
