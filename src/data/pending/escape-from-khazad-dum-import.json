@@ -1,0 +1,2685 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "Escape from Khazad-dûm",
+  "slug": "escape-from-khazad-dum",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "octgn:01500c6a-9f16-4226-b194-345174a3d11b",
+      "octgnid": "01500c6a-9f16-4226-b194-345174a3d11b",
+      "name": "Lost and Alone",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The opposing team chooses a questing charactert controlled by each player and removes them from the quest.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 26,
+      "quantity": 1,
+      "encounter_set": "Escape from Khazad-dum 19",
+      "printed_stats": {},
+      "imagesrc": "/cards/01500c6a-9f16-4226-b194-345174a3d11b.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 26,
+          "quantity": 1,
+          "octgnid": "01500c6a-9f16-4226-b194-345174a3d11b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/01500c6a-9f16-4226-b194-345174a3d11b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:01dfa4f4-f3de-43b7-96d2-a6919b0c3491",
+      "octgnid": "01dfa4f4-f3de-43b7-96d2-a6919b0c3491",
+      "name": "Orc Raiders",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. uruk.",
+      "text": "Forced: After Orc Raider engages a player, deal it a shadow card.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 45,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 2,
+      "defense": 1,
+      "health": 3,
+      "engagement": 28,
+      "encounter_set": "Escape from Khazad-dum 26",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "1",
+        "health": "3",
+        "engagement": "28"
+      },
+      "imagesrc": "/cards/01dfa4f4-f3de-43b7-96d2-a6919b0c3491.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 45,
+          "quantity": 2,
+          "octgnid": "01dfa4f4-f3de-43b7-96d2-a6919b0c3491",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/01dfa4f4-f3de-43b7-96d2-a6919b0c3491.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:0a42a6ff-e693-484c-860d-3bc7e2780680",
+      "octgnid": "0a42a6ff-e693-484c-860d-3bc7e2780680",
+      "name": "Silent Caverns",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "While Silent Caverns is in the staging area, each player`s threat cannot be reduced by more than 1 each round.Travel: Raise each player`s threat by 2.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 37,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 3,
+      "encounter_set": "Escape from Khazad-dum 23",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/0a42a6ff-e693-484c-860d-3bc7e2780680.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 37,
+          "quantity": 2,
+          "octgnid": "0a42a6ff-e693-484c-860d-3bc7e2780680",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0a42a6ff-e693-484c-860d-3bc7e2780680.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:0ade7e4d-f04b-4e65-870e-f5d85e080130",
+      "octgnid": "0ade7e4d-f04b-4e65-870e-f5d85e080130",
+      "name": "Cave-troll",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Troll.",
+      "text": "Cannot have non-objective player card attachments.Allies cannot be declared as attackers or defenders against Cave-troll.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 18,
+      "quantity": 1,
+      "threat": 2,
+      "attack": 5,
+      "defense": 1,
+      "health": 6,
+      "engagement": 36,
+      "encounter_set": "Escape from Khazad-dum 17",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "5",
+        "defense": "1",
+        "health": "6",
+        "engagement": "36"
+      },
+      "imagesrc": "/cards/0ade7e4d-f04b-4e65-870e-f5d85e080130.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 18,
+          "quantity": 1,
+          "octgnid": "0ade7e4d-f04b-4e65-870e-f5d85e080130",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0ade7e4d-f04b-4e65-870e-f5d85e080130.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:0dc0486c-a0b9-4499-8b9f-03168db9bdb0",
+      "octgnid": "0dc0486c-a0b9-4499-8b9f-03168db9bdb0",
+      "name": "Old Stone-troll",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Troll.",
+      "text": "Cannot have non-objective player card attachments.Forced: After Old Stone-troll attachs and destroys a character you control, raise your threat by 1 for each excess point of damage dealt.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 21,
+      "quantity": 1,
+      "threat": 1,
+      "attack": 6,
+      "defense": 1,
+      "health": 8,
+      "engagement": 33,
+      "encounter_set": "Escape from Khazad-dum 18",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "6",
+        "defense": "1",
+        "health": "8",
+        "engagement": "33"
+      },
+      "imagesrc": "/cards/0dc0486c-a0b9-4499-8b9f-03168db9bdb0.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 21,
+          "quantity": 1,
+          "octgnid": "0dc0486c-a0b9-4499-8b9f-03168db9bdb0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0dc0486c-a0b9-4499-8b9f-03168db9bdb0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:11381200-d546-4d40-a826-2c6c901e8d61",
+      "octgnid": "11381200-d546-4d40-a826-2c6c901e8d61",
+      "name": "Hobgoblin",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Goblin.",
+      "text": "Forced: After Hobgobling engages a player, it cannot take damage until the end of the round.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 27,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 5,
+      "defense": 2,
+      "health": 5,
+      "engagement": 30,
+      "encounter_set": "Escape from Khazad-dum 20",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "2",
+        "health": "5",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/11381200-d546-4d40-a826-2c6c901e8d61.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 27,
+          "quantity": 1,
+          "octgnid": "11381200-d546-4d40-a826-2c6c901e8d61",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/11381200-d546-4d40-a826-2c6c901e8d61.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:11d44754-de69-4ecf-997e-593ef87521a9",
+      "octgnid": "11d44754-de69-4ecf-997e-593ef87521a9",
+      "name": "Goblin Dungeon",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "When Revealed: The opposing team chooses an ally, discards all tokens from it, and places it faceup as a guarded objective. When Goblin Dungeon is explored, return that ally to its owner`s control exhausted.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 40,
+      "quantity": 1,
+      "threat": 2,
+      "quest": 5,
+      "encounter_set": "Escape from Khazad-dum 24",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/11d44754-de69-4ecf-997e-593ef87521a9.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 40,
+          "quantity": 1,
+          "octgnid": "11d44754-de69-4ecf-997e-593ef87521a9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/11d44754-de69-4ecf-997e-593ef87521a9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:187017b6-8632-49ee-9275-8126d313424e",
+      "octgnid": "187017b6-8632-49ee-9275-8126d313424e",
+      "name": "Nearing the Gate",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Add the set-aside Durin`s Bane to the staging area. It cannot take damage this round. If there is more than 1 player, it makes an immediate attack against the first player.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 9,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "Escape from Khazad-dum",
+      "side": "A",
+      "back_name": "The Rear Guard",
+      "back_text": "Each player`s threat cannot be reduced by player card effects.Durin`s Bane is considered to be engaged with each player and attacks each player in turn order during the combat phase. (Deal and resolve a shadow card for each attack.)If the players defeat this stage, they win the game.",
+      "back_type_code": "quest",
+      "back_quest": 20,
+      "back_imagesrc": "/cards/187017b6-8632-49ee-9275-8126d313424e.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/187017b6-8632-49ee-9275-8126d313424e.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 9,
+          "quantity": 1,
+          "octgnid": "187017b6-8632-49ee-9275-8126d313424e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/187017b6-8632-49ee-9275-8126d313424e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2d34a913-e212-42c4-859b-2db9b2056276",
+      "octgnid": "2d34a913-e212-42c4-859b-2db9b2056276",
+      "name": "Nearing the Gate",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Add the set-aside Durin`s Bane to the staging area. It cannot take damage this round. If there is more than 1 player, it makes an immediate attack against the first player.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 7,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "Escape from Khazad-dum",
+      "side": "A",
+      "back_name": "The Bridge of Khazad-dum",
+      "back_text": "No more than 5 progress can be placed here each round.Forced: At the beginning of the quest phase, Durin`s Bane makes an attack against the first player. Any undefended or excess damage dealt by this attack must be placed here.If this stage has damage on it equal to or greater than its quest points, the players lose the game. If this stage is defeated the players win the game.",
+      "back_type_code": "quest",
+      "back_quest": 10,
+      "back_imagesrc": "/cards/2d34a913-e212-42c4-859b-2db9b2056276.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/2d34a913-e212-42c4-859b-2db9b2056276.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 7,
+          "quantity": 1,
+          "octgnid": "2d34a913-e212-42c4-859b-2db9b2056276",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2d34a913-e212-42c4-859b-2db9b2056276.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2dc57c6f-fab3-4689-9398-332a22c13fa9",
+      "octgnid": "2dc57c6f-fab3-4689-9398-332a22c13fa9",
+      "name": "Elder Nameless Thing",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Cannot be optionally engaged.While Elder Nameless Thing is in the staging area, it gains: `Forced: After players have committed characters to the quest, Elder Nameless Thing makes an attack against the first player.",
+      "is_unique": true,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 36,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 5,
+      "defense": 3,
+      "health": 9,
+      "engagement": 38,
+      "encounter_set": "Escape from Khazad-dum 23",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "3",
+        "health": "9",
+        "engagement": "38"
+      },
+      "imagesrc": "/cards/2dc57c6f-fab3-4689-9398-332a22c13fa9.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 36,
+          "quantity": 1,
+          "octgnid": "2dc57c6f-fab3-4689-9398-332a22c13fa9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2dc57c6f-fab3-4689-9398-332a22c13fa9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:32deb3d1-afe3-4fbc-bd6c-30f139003cc7",
+      "octgnid": "32deb3d1-afe3-4fbc-bd6c-30f139003cc7",
+      "name": "Black Uruks",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Uruk.",
+      "text": "While Black Uruks is attacking, it gets +1 [attack] for each shadow card dealt for this attack.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 42,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 3,
+      "defense": 2,
+      "health": 5,
+      "engagement": 30,
+      "encounter_set": "Escape from Khazad-dum 25",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "2",
+        "health": "5",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/32deb3d1-afe3-4fbc-bd6c-30f139003cc7.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 42,
+          "quantity": 2,
+          "octgnid": "32deb3d1-afe3-4fbc-bd6c-30f139003cc7",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32deb3d1-afe3-4fbc-bd6c-30f139003cc7.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:36b82b22-4432-488a-8a88-d6486b7c75a3",
+      "octgnid": "36b82b22-4432-488a-8a88-d6486b7c75a3",
+      "name": "Chieftain of the Pit",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Uruk.",
+      "text": "Cannot have non-objective player card attachments or take non-combat damage.Shadow effects cannot be canceled.Forced: When Chieftain of the Pit attacks, deal it an additional shadow card.",
+      "is_unique": true,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 48,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 5,
+      "defense": 3,
+      "health": 8,
+      "engagement": 35,
+      "encounter_set": "Escape from Khazad-dum 27",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "3",
+        "health": "8",
+        "engagement": "35"
+      },
+      "imagesrc": "/cards/36b82b22-4432-488a-8a88-d6486b7c75a3.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 48,
+          "quantity": 1,
+          "octgnid": "36b82b22-4432-488a-8a88-d6486b7c75a3",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/36b82b22-4432-488a-8a88-d6486b7c75a3.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:38632ac4-e8c7-4d1e-819a-d16b3522915a",
+      "octgnid": "38632ac4-e8c7-4d1e-819a-d16b3522915a",
+      "name": "Western Hall",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "Travel: Discard the top card of the encounter deck. Raise each player`s threat by X, where X is that card`s printed [threat].",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 28,
+      "quantity": 1,
+      "threat": 3,
+      "quest": 4,
+      "encounter_set": "Escape from Khazad-dum 20",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/38632ac4-e8c7-4d1e-819a-d16b3522915a.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 28,
+          "quantity": 1,
+          "octgnid": "38632ac4-e8c7-4d1e-819a-d16b3522915a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/38632ac4-e8c7-4d1e-819a-d16b3522915a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3a47aa88-5089-435d-b5ab-899dab400c98",
+      "octgnid": "3a47aa88-5089-435d-b5ab-899dab400c98",
+      "name": "Orcish Howls",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Exhaust X characters, where X is the number of Uruk enemies in play. If there are no Uruk enemies in play, Orcish Howls gains surge.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 44,
+      "quantity": 1,
+      "encounter_set": "Escape from Khazad-dum 25",
+      "printed_stats": {},
+      "imagesrc": "/cards/3a47aa88-5089-435d-b5ab-899dab400c98.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 44,
+          "quantity": 1,
+          "octgnid": "3a47aa88-5089-435d-b5ab-899dab400c98",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3a47aa88-5089-435d-b5ab-899dab400c98.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4174df7e-5bb2-4b0f-9e35-d025f132d4a1",
+      "octgnid": "4174df7e-5bb2-4b0f-9e35-d025f132d4a1",
+      "name": "Branching Paths",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "Branching Paths gets +1 [threat] for each location in the staging area. (Limit +3 [threat].)",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 34,
+      "quantity": 3,
+      "threat": 0,
+      "quest": 3,
+      "encounter_set": "Escape from Khazad-dum 22",
+      "printed_stats": {
+        "threat": "0",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/4174df7e-5bb2-4b0f-9e35-d025f132d4a1.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 34,
+          "quantity": 3,
+          "octgnid": "4174df7e-5bb2-4b0f-9e35-d025f132d4a1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4174df7e-5bb2-4b0f-9e35-d025f132d4a1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:47744d79-27d4-4ea2-aee7-30597fb0b47f",
+      "octgnid": "47744d79-27d4-4ea2-aee7-30597fb0b47f",
+      "name": "Rock Adder",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Players cannot declare defenders against Rock Adder.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 24,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 1,
+      "defense": 0,
+      "health": 3,
+      "engagement": 18,
+      "encounter_set": "Escape from Khazad-dum 19",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "1",
+        "defense": "0",
+        "health": "3",
+        "engagement": "18"
+      },
+      "imagesrc": "/cards/47744d79-27d4-4ea2-aee7-30597fb0b47f.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 24,
+          "quantity": 2,
+          "octgnid": "47744d79-27d4-4ea2-aee7-30597fb0b47f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/47744d79-27d4-4ea2-aee7-30597fb0b47f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:55436edb-0e1f-4b25-a59e-1b131b408db4",
+      "octgnid": "55436edb-0e1f-4b25-a59e-1b131b408db4",
+      "name": "Black Bats",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "When Revealed: Eithe raise each player`s threat by 2, or reveal an additional encounter card.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 12,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 3,
+      "defense": 1,
+      "health": 2,
+      "engagement": 23,
+      "encounter_set": "Escape from Khazad-dum 15",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "3",
+        "defense": "1",
+        "health": "2",
+        "engagement": "23"
+      },
+      "imagesrc": "/cards/55436edb-0e1f-4b25-a59e-1b131b408db4.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 12,
+          "quantity": 3,
+          "octgnid": "55436edb-0e1f-4b25-a59e-1b131b408db4",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/55436edb-0e1f-4b25-a59e-1b131b408db4.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6458d002-326f-45a6-af65-38025d301f07",
+      "octgnid": "6458d002-326f-45a6-af65-38025d301f07",
+      "name": "Cave Spider",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Spider.",
+      "text": "Forced: When Cave Spider attacks, either remove 2 progress from the main quest, or Cave Spider gets +2 [attack] for this attack.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 15,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 3,
+      "defense": 1,
+      "health": 5,
+      "engagement": 28,
+      "encounter_set": "Escape from Khazad-dum 16",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "1",
+        "health": "5",
+        "engagement": "28"
+      },
+      "imagesrc": "/cards/6458d002-326f-45a6-af65-38025d301f07.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 15,
+          "quantity": 2,
+          "octgnid": "6458d002-326f-45a6-af65-38025d301f07",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6458d002-326f-45a6-af65-38025d301f07.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:72025370-07e1-4797-acb2-1d2371a7f3b0",
+      "octgnid": "72025370-07e1-4797-acb2-1d2371a7f3b0",
+      "name": "Swarm of Bats",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each character gets -1 [willpower] until the end of the phase.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 14,
+      "quantity": 1,
+      "encounter_set": "Escape from Khazad-dum 15",
+      "printed_stats": {},
+      "imagesrc": "/cards/72025370-07e1-4797-acb2-1d2371a7f3b0.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 14,
+          "quantity": 1,
+          "octgnid": "72025370-07e1-4797-acb2-1d2371a7f3b0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/72025370-07e1-4797-acb2-1d2371a7f3b0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:779079f4-d3a8-4832-9bd5-12e8ca828ba7",
+      "octgnid": "779079f4-d3a8-4832-9bd5-12e8ca828ba7",
+      "name": "Vast and Intricate",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The opposing team attaches Vast and Intricate to a non-unique location in the staging area. If there are no non-unique locations in the staging area, Vast and Intricate gains surge. (Counts as a Condition attachment with the text: `Attached location gets +2 [threat] and is immune to player card effects.`)",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 47,
+      "quantity": 2,
+      "encounter_set": "Escape from Khazad-dum 26",
+      "printed_stats": {},
+      "imagesrc": "/cards/779079f4-d3a8-4832-9bd5-12e8ca828ba7.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 47,
+          "quantity": 2,
+          "octgnid": "779079f4-d3a8-4832-9bd5-12e8ca828ba7",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/779079f4-d3a8-4832-9bd5-12e8ca828ba7.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8a2cbffd-43f8-4a61-9ccd-cb07293eac5f",
+      "octgnid": "8a2cbffd-43f8-4a61-9ccd-cb07293eac5f",
+      "name": "Shadow Dweller",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Cannot have non-objective player card attachments or take non-combat damage.Forced: When Shadow Dweller attacks you, discard the top card of your deck and assign X damage among character you control, where X is the discarded card`s cost.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 33,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 5,
+      "defense": 3,
+      "health": 6,
+      "engagement": 36,
+      "encounter_set": "Escape from Khazad-dum 22",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "3",
+        "health": "6",
+        "engagement": "36"
+      },
+      "imagesrc": "/cards/8a2cbffd-43f8-4a61-9ccd-cb07293eac5f.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 33,
+          "quantity": 1,
+          "octgnid": "8a2cbffd-43f8-4a61-9ccd-cb07293eac5f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8a2cbffd-43f8-4a61-9ccd-cb07293eac5f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8aa74679-5918-46ca-99b1-18cdb150f17d",
+      "octgnid": "8aa74679-5918-46ca-99b1-18cdb150f17d",
+      "name": "Dreadful Gap",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "While Dreadful Gap is in the staging area, progress cannot be placed on other locations in the staging area.Travel: The opposing team chooses a card in the encounter discard pile and shuffles it into the encounter deck.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 43,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 4,
+      "encounter_set": "Escape from Khazad-dum 25",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/8aa74679-5918-46ca-99b1-18cdb150f17d.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 43,
+          "quantity": 2,
+          "octgnid": "8aa74679-5918-46ca-99b1-18cdb150f17d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8aa74679-5918-46ca-99b1-18cdb150f17d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8be49f80-c3ca-44f0-92d1-15ff0ac6c25b",
+      "octgnid": "8be49f80-c3ca-44f0-92d1-15ff0ac6c25b",
+      "name": "Forked Passage",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "While Forked Passage is in the staging area, raise each player`s threat by 1 additional point during the refresh phase.Travel: Raise each player`s threat by 1.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 49,
+      "quantity": 2,
+      "threat": 1,
+      "quest": 5,
+      "encounter_set": "Escape from Khazad-dum 27",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/8be49f80-c3ca-44f0-92d1-15ff0ac6c25b.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 49,
+          "quantity": 2,
+          "octgnid": "8be49f80-c3ca-44f0-92d1-15ff0ac6c25b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8be49f80-c3ca-44f0-92d1-15ff0ac6c25b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8ffa3a89-6e0c-43e3-9ff6-e5db6fff4032",
+      "octgnid": "8ffa3a89-6e0c-43e3-9ff6-e5db6fff4032",
+      "name": "Chance Encounter",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The highest [attack] enemy in the staging area makes an attack against the first player. If no attack is made this way, Chance Encounter gains surge.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 50,
+      "quantity": 2,
+      "encounter_set": "Escape from Khazad-dum 27",
+      "printed_stats": {},
+      "imagesrc": "/cards/8ffa3a89-6e0c-43e3-9ff6-e5db6fff4032.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 50,
+          "quantity": 2,
+          "octgnid": "8ffa3a89-6e0c-43e3-9ff6-e5db6fff4032",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8ffa3a89-6e0c-43e3-9ff6-e5db6fff4032.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:935b596a-4e20-434c-89f5-8b3c20fcd241",
+      "octgnid": "935b596a-4e20-434c-89f5-8b3c20fcd241",
+      "name": "Mithril Lode",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "While Mitril Lode is the active location, it gains: `Response: When Mithril Lode is explored, each player adds 1 resource to the resource pool of a hero he controls.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 52,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 5,
+      "encounter_set": "Escape from Khazad-dum 28",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/935b596a-4e20-434c-89f5-8b3c20fcd241.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 52,
+          "quantity": 2,
+          "octgnid": "935b596a-4e20-434c-89f5-8b3c20fcd241",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/935b596a-4e20-434c-89f5-8b3c20fcd241.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:96e30879-9a56-428e-853d-93503f01ddb3",
+      "octgnid": "96e30879-9a56-428e-853d-93503f01ddb3",
+      "name": "Out of the Depths",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Add Dark Pit to the staging area. The opposing team searches the encounter deck for one different 0-cost enemy or location per player and adds them to the staging area. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 1,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "Escape from Khazad-dum",
+      "side": "A",
+      "back_name": "Out of the Depths",
+      "back_text": "Shuffle the encounter deck.Forced: When Dark Pit is explored, flip it over and set Durin`s Bane aside, out of play. Each player searches the top 5 cards of his deck for a card, adds it to his hand, and shuffles his deck.This stage cannot be defeated while Dark Pit is in play.",
+      "back_type_code": "quest",
+      "back_quest": 10,
+      "back_imagesrc": "/cards/96e30879-9a56-428e-853d-93503f01ddb3.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/96e30879-9a56-428e-853d-93503f01ddb3.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 1,
+          "quantity": 1,
+          "octgnid": "96e30879-9a56-428e-853d-93503f01ddb3",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/96e30879-9a56-428e-853d-93503f01ddb3.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:977ebe93-58f5-44f9-81d8-66037501a86e",
+      "octgnid": "977ebe93-58f5-44f9-81d8-66037501a86e",
+      "name": "Lightless Grotto",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "While Lightless Grotto is in the staging area, non-unique enemies in the staging area cannot take damage.Travel: The first player chooses an enemy in the staging area and engages it.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 31,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 3,
+      "encounter_set": "Escape from Khazad-dum 21",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/977ebe93-58f5-44f9-81d8-66037501a86e.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 31,
+          "quantity": 2,
+          "octgnid": "977ebe93-58f5-44f9-81d8-66037501a86e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/977ebe93-58f5-44f9-81d8-66037501a86e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9b83ddc0-9e95-4cbb-9428-8a209fc80bd2",
+      "octgnid": "9b83ddc0-9e95-4cbb-9428-8a209fc80bd2",
+      "name": "Nameless Thing",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Forced: After Nameless Thing enters play, the first player attaches the top card of his deck to it faceup as a guarded attached. Nameless Thing gets +X [threat], +X [attack], and +X [defense], where X is that card`s printed cost. When Nameless Thing leaves play, discard that card.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 51,
+      "quantity": 2,
+      "threat": 1,
+      "attack": 1,
+      "defense": 1,
+      "health": 4,
+      "engagement": 33,
+      "encounter_set": "Escape from Khazad-dum 28",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "1",
+        "defense": "1",
+        "health": "4",
+        "engagement": "33"
+      },
+      "imagesrc": "/cards/9b83ddc0-9e95-4cbb-9428-8a209fc80bd2.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 51,
+          "quantity": 2,
+          "octgnid": "9b83ddc0-9e95-4cbb-9428-8a209fc80bd2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9b83ddc0-9e95-4cbb-9428-8a209fc80bd2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9ce09230-e009-465f-9125-725f31c653b9",
+      "octgnid": "9ce09230-e009-465f-9125-725f31c653b9",
+      "name": "Unspeakable Thing",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Forced: When Unspeakable Thing attacks you, discard the top card of your deck. Unspeakable thing gets +X [attack] for this attack, where X is the discarded card`s printed cost.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 30,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 2,
+      "defense": 2,
+      "health": 5,
+      "engagement": 34,
+      "encounter_set": "Escape from Khazad-dum 21",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "2",
+        "health": "5",
+        "engagement": "34"
+      },
+      "imagesrc": "/cards/9ce09230-e009-465f-9125-725f31c653b9.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 30,
+          "quantity": 2,
+          "octgnid": "9ce09230-e009-465f-9125-725f31c653b9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9ce09230-e009-465f-9125-725f31c653b9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a210439e-5670-476f-b933-c862b6e88602",
+      "octgnid": "a210439e-5670-476f-b933-c862b6e88602",
+      "name": "Deep Fissure",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player deals 1 damage to a questing character he controls and removes that character from the quest.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 41,
+      "quantity": 2,
+      "encounter_set": "Escape from Khazad-dum 24",
+      "printed_stats": {},
+      "imagesrc": "/cards/a210439e-5670-476f-b933-c862b6e88602.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 41,
+          "quantity": 2,
+          "octgnid": "a210439e-5670-476f-b933-c862b6e88602",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a210439e-5670-476f-b933-c862b6e88602.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a7dd3c14-52fa-439c-8944-42728593c20c",
+      "octgnid": "a7dd3c14-52fa-439c-8944-42728593c20c",
+      "name": "The Mountain's Roots",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "X is 1 more than the stage number of the main quest.Travel: Each player discards the top X cards of his deck.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 16,
+      "quantity": 2,
+      "quest": 4,
+      "encounter_set": "Escape from Khazad-dum 16",
+      "printed_stats": {
+        "threat": "X",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/a7dd3c14-52fa-439c-8944-42728593c20c.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 16,
+          "quantity": 2,
+          "octgnid": "a7dd3c14-52fa-439c-8944-42728593c20c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a7dd3c14-52fa-439c-8944-42728593c20c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a9cdd0bf-1d77-415c-8820-d4974ec02ee0",
+      "octgnid": "a9cdd0bf-1d77-415c-8820-d4974ec02ee0",
+      "name": "Search for an Exit",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The opposing team searches the top 5 cards of the encounter deck for a card with cost 1 or less (cost 2 or less instead if there are two or more players), sets it aside, and shuffles the encounter deck. Reveal the set aside card. It`s `when revealed` effects cannot be canceled.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 4,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "Escape from Khazad-dum",
+      "side": "A",
+      "back_name": "A Wrong Turn",
+      "back_text": "When Revealed: Each player chooses 1 card in his hand and shuffles the rest into his deck.",
+      "back_type_code": "quest",
+      "back_quest": 15,
+      "back_imagesrc": "/cards/a9cdd0bf-1d77-415c-8820-d4974ec02ee0.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/a9cdd0bf-1d77-415c-8820-d4974ec02ee0.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 4,
+          "quantity": 1,
+          "octgnid": "a9cdd0bf-1d77-415c-8820-d4974ec02ee0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a9cdd0bf-1d77-415c-8820-d4974ec02ee0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b28b1154-c486-4fbb-99c4-8db4e04983c6",
+      "octgnid": "b28b1154-c486-4fbb-99c4-8db4e04983c6",
+      "name": "Deep Deep Dark",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player must choose: either raise your threat by 1 for each character you control, or discard a character you control.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 23,
+      "quantity": 3,
+      "encounter_set": "Escape from Khazad-dum 18",
+      "printed_stats": {},
+      "imagesrc": "/cards/b28b1154-c486-4fbb-99c4-8db4e04983c6.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 23,
+          "quantity": 3,
+          "octgnid": "b28b1154-c486-4fbb-99c4-8db4e04983c6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b28b1154-c486-4fbb-99c4-8db4e04983c6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b3405b30-27e3-4ba3-9518-9dec0f2b2eda",
+      "octgnid": "b3405b30-27e3-4ba3-9518-9dec0f2b2eda",
+      "name": "New Devilry",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Until the end of the round, treat each character`s text box as if it were blank, except for Traits.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 29,
+      "quantity": 3,
+      "encounter_set": "Escape from Khazad-dum 20",
+      "printed_stats": {},
+      "imagesrc": "/cards/b3405b30-27e3-4ba3-9518-9dec0f2b2eda.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 29,
+          "quantity": 3,
+          "octgnid": "b3405b30-27e3-4ba3-9518-9dec0f2b2eda",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b3405b30-27e3-4ba3-9518-9dec0f2b2eda.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b4cd6eea-17ec-4051-89b3-c4b735d8452f",
+      "octgnid": "b4cd6eea-17ec-4051-89b3-c4b735d8452f",
+      "name": "A Foe Beyond",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The opposing team chooses an attachment controlled by a player and discards it. If no attachment is discarded this way, A Foe Beyond gains surge.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 53,
+      "quantity": 1,
+      "encounter_set": "Escape from Khazad-dum 28",
+      "printed_stats": {},
+      "imagesrc": "/cards/b4cd6eea-17ec-4051-89b3-c4b735d8452f.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 53,
+          "quantity": 1,
+          "octgnid": "b4cd6eea-17ec-4051-89b3-c4b735d8452f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b4cd6eea-17ec-4051-89b3-c4b735d8452f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b899f859-3c09-4cb3-9adf-7fb57e46e7ad",
+      "octgnid": "b899f859-3c09-4cb3-9adf-7fb57e46e7ad",
+      "name": "Many Roads",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The opposing team searches the encounter deck and discard pile for a different 0-cost location per player and adds them to the staging area. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 32,
+      "quantity": 1,
+      "encounter_set": "Escape from Khazad-dum 21",
+      "printed_stats": {},
+      "imagesrc": "/cards/b899f859-3c09-4cb3-9adf-7fb57e46e7ad.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 32,
+          "quantity": 1,
+          "octgnid": "b899f859-3c09-4cb3-9adf-7fb57e46e7ad",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b899f859-3c09-4cb3-9adf-7fb57e46e7ad.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:bde125e7-6c33-4659-8713-e3374b93f414",
+      "octgnid": "bde125e7-6c33-4659-8713-e3374b93f414",
+      "name": "Search for an Exit",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The opposing team searches the top 5 cards of the encounter deck for a card with cost 1 or less (cost 2 or less instead if there are two or more players), sets it aside, and shuffles the encounter deck. Reveal the set aside card. It`s `when revealed` effects cannot be canceled.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 3,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "Escape from Khazad-dum",
+      "side": "A",
+      "back_name": "Old One Lair",
+      "back_text": "When Revealed: The opposing team searchs the encounter deck and discard pile for an enemy with cost 2 or less, adds it to the staging area, and places a resources on it. Shuffle the encounter deck.The enemy with a resource on it is immune to player card effects, and progress cannot be placed on this stage while that enemy is in play.",
+      "back_type_code": "quest",
+      "back_quest": 10,
+      "back_imagesrc": "/cards/bde125e7-6c33-4659-8713-e3374b93f414.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/bde125e7-6c33-4659-8713-e3374b93f414.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 3,
+          "quantity": 1,
+          "octgnid": "bde125e7-6c33-4659-8713-e3374b93f414",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bde125e7-6c33-4659-8713-e3374b93f414.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c3a29d33-4096-4cce-871e-6673d2e4684e",
+      "octgnid": "c3a29d33-4096-4cce-871e-6673d2e4684e",
+      "name": "Frightful Den",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "While Frightful Den is in the staging area, each Troll enemy gets -10 engagement cost.Forced: When Frightful Den is explored, the opposing team searches the encounter deck and discard pile for a Troll enemy with cost 1 or less and adds it to the staging area. Shuffle the encounter deck.",
+      "is_unique": true,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 22,
+      "quantity": 1,
+      "threat": 4,
+      "quest": 4,
+      "encounter_set": "Escape from Khazad-dum 18",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/c3a29d33-4096-4cce-871e-6673d2e4684e.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 22,
+          "quantity": 1,
+          "octgnid": "c3a29d33-4096-4cce-871e-6673d2e4684e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c3a29d33-4096-4cce-871e-6673d2e4684e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c7325b46-089b-4910-99cd-159eebc01a0c",
+      "octgnid": "c7325b46-089b-4910-99cd-159eebc01a0c",
+      "name": "Watchful Eyes",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The opposing team attaches Watchful Eyes to a hero. (Counts as a Condition attachment with the text: `Limit 1 per hero. Forced: If attached hero is exhausted at the end of the combat phase, reveal 1 card from the encounter deck.`)",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 17,
+      "quantity": 1,
+      "encounter_set": "Escape from Khazad-dum 16",
+      "printed_stats": {},
+      "imagesrc": "/cards/c7325b46-089b-4910-99cd-159eebc01a0c.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 17,
+          "quantity": 1,
+          "octgnid": "c7325b46-089b-4910-99cd-159eebc01a0c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c7325b46-089b-4910-99cd-159eebc01a0c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c90db37c-2fdf-4f69-b4a8-869064e4650b",
+      "octgnid": "c90db37c-2fdf-4f69-b4a8-869064e4650b",
+      "name": "Dark Pit",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "Immune to player card effects.Travel: The opposing team searches the top 5 cards of the encounter deck for a card with cost 1 or less (cost 2 or less instead if there are 2 or more players), sets it aside, and shuffles the encounter deck. Reveal the set aside card. Its `when revealed` effects cannot be canceled.",
+      "is_unique": true,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 10,
+      "quantity": 1,
+      "threat": 1,
+      "quest": 1,
+      "encounter_set": "Escape from Khazad-dum",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "1"
+      },
+      "imagesrc": "/cards/c90db37c-2fdf-4f69-b4a8-869064e4650b.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 10,
+          "quantity": 1,
+          "octgnid": "c90db37c-2fdf-4f69-b4a8-869064e4650b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c90db37c-2fdf-4f69-b4a8-869064e4650b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:cc572a1a-2700-493c-9b82-309c9c9ba61c",
+      "octgnid": "cc572a1a-2700-493c-9b82-309c9c9ba61c",
+      "name": "Dark Places",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Raise each player`s threat by X, where X is the threat of the active location. If there is no active location, Dark Places gains surge.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 38,
+      "quantity": 2,
+      "encounter_set": "Escape from Khazad-dum 23",
+      "printed_stats": {},
+      "imagesrc": "/cards/cc572a1a-2700-493c-9b82-309c9c9ba61c.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 38,
+          "quantity": 2,
+          "octgnid": "cc572a1a-2700-493c-9b82-309c9c9ba61c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cc572a1a-2700-493c-9b82-309c9c9ba61c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d2d3aeae-58ae-497e-bc44-70863d49f25d",
+      "octgnid": "d2d3aeae-58ae-497e-bc44-70863d49f25d",
+      "name": "Fatigue",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player exhausts a character he controls. Until the end of the round, characters cannot be readied by player card effects.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 35,
+      "quantity": 1,
+      "encounter_set": "Escape from Khazad-dum 22",
+      "printed_stats": {},
+      "imagesrc": "/cards/d2d3aeae-58ae-497e-bc44-70863d49f25d.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 35,
+          "quantity": 1,
+          "octgnid": "d2d3aeae-58ae-497e-bc44-70863d49f25d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d2d3aeae-58ae-497e-bc44-70863d49f25d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d679e2f4-1762-4177-a0f8-bb074a58a0cc",
+      "octgnid": "d679e2f4-1762-4177-a0f8-bb074a58a0cc",
+      "name": "Twisting Passage",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "When Revealed: Discard the top card of the encounter deck. If that card is a location, add it to the staging area.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 19,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 2,
+      "encounter_set": "Escape from Khazad-dum 17",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/d679e2f4-1762-4177-a0f8-bb074a58a0cc.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 19,
+          "quantity": 2,
+          "octgnid": "d679e2f4-1762-4177-a0f8-bb074a58a0cc",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d679e2f4-1762-4177-a0f8-bb074a58a0cc.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d83e852c-60cc-41b3-8904-25815bc1d2d5",
+      "octgnid": "d83e852c-60cc-41b3-8904-25815bc1d2d5",
+      "name": "Nest of Vermin",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "While Nest of Vermin is in the staging area, each Creature enemy gets +1 [threat].Forced: When Nest of Vermin is explored, the opposing team searches the encounter deck and discard pile for a Creature enemy with cost 1 or less and adds it to the staging area. Shuffle the encounter deck.",
+      "is_unique": true,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 13,
+      "quantity": 1,
+      "threat": 3,
+      "quest": 5,
+      "encounter_set": "Escape from Khazad-dum 15",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/d83e852c-60cc-41b3-8904-25815bc1d2d5.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 13,
+          "quantity": 1,
+          "octgnid": "d83e852c-60cc-41b3-8904-25815bc1d2d5",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d83e852c-60cc-41b3-8904-25815bc1d2d5.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e30cfc82-bbb0-42f9-b25c-bc2152445368",
+      "octgnid": "e30cfc82-bbb0-42f9-b25c-bc2152445368",
+      "name": "Search for an Exit",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The opposing team searches the top 5 cards of the encounter deck for a card with cost 1 or less (cost 2 or less instead if there are two or more players), sets it aside, and shuffles the encounter deck. Reveal the set aside card. It`s `when revealed` effects cannot be canceled.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 5,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "Escape from Khazad-dum",
+      "side": "A",
+      "back_name": "A Way Up",
+      "back_text": "Add the active location`s [threat] to the staging area.During the travel phase, the players must travel, if able.",
+      "back_type_code": "quest",
+      "back_quest": 20,
+      "back_imagesrc": "/cards/e30cfc82-bbb0-42f9-b25c-bc2152445368.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/e30cfc82-bbb0-42f9-b25c-bc2152445368.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 5,
+          "quantity": 1,
+          "octgnid": "e30cfc82-bbb0-42f9-b25c-bc2152445368",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e30cfc82-bbb0-42f9-b25c-bc2152445368.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e4e35740-73ca-460d-bdbb-afcbc97e90d9",
+      "octgnid": "e4e35740-73ca-460d-bdbb-afcbc97e90d9",
+      "name": "Orc Horn Blower",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Uruk.",
+      "text": "Forced: At the beginning of the combat phase, deal each engaged enemy an additional shadow card.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 39,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 4,
+      "defense": 3,
+      "health": 5,
+      "engagement": 45,
+      "encounter_set": "Escape from Khazad-dum 24",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "3",
+        "health": "5",
+        "engagement": "45"
+      },
+      "imagesrc": "/cards/e4e35740-73ca-460d-bdbb-afcbc97e90d9.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 39,
+          "quantity": 2,
+          "octgnid": "e4e35740-73ca-460d-bdbb-afcbc97e90d9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e4e35740-73ca-460d-bdbb-afcbc97e90d9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ee118b36-0113-4c74-82b3-14f235914212",
+      "octgnid": "ee118b36-0113-4c74-82b3-14f235914212",
+      "name": "Nearing the Gate",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Add the set-aside Durin`s Bane to the staging area. It cannot take damage this round. If there is more than 1 player, it makes an immediate attack against the first player.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 8,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "Escape from Khazad-dum",
+      "side": "A",
+      "back_name": "Last Lord of Moria",
+      "back_text": "Durin`s Bane engages the first player.Durin`s Bane cannot take more than X damage per round, where X is the number of progress tokens on this stage.This stage cannot be defeated while Durin`s Bane is in play. If the players defeat this stage, they win the game.",
+      "back_type_code": "quest",
+      "back_quest": 15,
+      "back_imagesrc": "/cards/ee118b36-0113-4c74-82b3-14f235914212.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/ee118b36-0113-4c74-82b3-14f235914212.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 8,
+          "quantity": 1,
+          "octgnid": "ee118b36-0113-4c74-82b3-14f235914212",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ee118b36-0113-4c74-82b3-14f235914212.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ee76f0c0-da20-402c-a1e6-8abd1504b56a",
+      "octgnid": "ee76f0c0-da20-402c-a1e6-8abd1504b56a",
+      "name": "Undisturbed Bones",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nSurge.When Revealed: Attach to the main quest. (Counts as a Condition attachment with the text, `Forced: When a `when revealed` effect would be canceled, discard Undisturbed Bones instead.`)",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 20,
+      "quantity": 2,
+      "encounter_set": "Escape from Khazad-dum 17",
+      "printed_stats": {},
+      "imagesrc": "/cards/ee76f0c0-da20-402c-a1e6-8abd1504b56a.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 20,
+          "quantity": 2,
+          "octgnid": "ee76f0c0-da20-402c-a1e6-8abd1504b56a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ee76f0c0-da20-402c-a1e6-8abd1504b56a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fd00d162-0c0e-4ddb-b58d-653813396c52",
+      "octgnid": "fd00d162-0c0e-4ddb-b58d-653813396c52",
+      "name": "Bottomless Chasm",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "When faced with the option to travel, the player must choose Bottomless Chasm, if able.",
+      "is_unique": false,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 25,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 6,
+      "encounter_set": "Escape from Khazad-dum 19",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "6"
+      },
+      "imagesrc": "/cards/fd00d162-0c0e-4ddb-b58d-653813396c52.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 25,
+          "quantity": 2,
+          "octgnid": "fd00d162-0c0e-4ddb-b58d-653813396c52",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fd00d162-0c0e-4ddb-b58d-653813396c52.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ff0bc03a-e47d-4917-bf27-a0b97bc292ca",
+      "octgnid": "ff0bc03a-e47d-4917-bf27-a0b97bc292ca",
+      "name": "The Great Bridge",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "While The Great Bridge is in the staging area, no more than 1 character can be declared as an attacker against each enemy.Forced: When The Great Bridge is explored, reveal 1 encounter card per player.",
+      "is_unique": true,
+      "pack_code": "EfKD",
+      "pack_name": "Escape from Khazad-dûm",
+      "position": 46,
+      "quantity": 1,
+      "threat": 4,
+      "quest": 5,
+      "encounter_set": "Escape from Khazad-dum 26",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/ff0bc03a-e47d-4917-bf27-a0b97bc292ca.jpg",
+      "packs": [
+        {
+          "pack_code": "EfKD",
+          "pack_name": "Escape from Khazad-dûm",
+          "position": 46,
+          "quantity": 1,
+          "octgnid": "ff0bc03a-e47d-4917-bf27-a0b97bc292ca",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ff0bc03a-e47d-4917-bf27-a0b97bc292ca.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "Q99.14",
+      "name": "Escape from Khazad-dûm",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "EfKD"
+      ],
+      "card_codes": [
+        "octgn:55436edb-0e1f-4b25-a59e-1b131b408db4",
+        "octgn:d83e852c-60cc-41b3-8904-25815bc1d2d5",
+        "octgn:72025370-07e1-4797-acb2-1d2371a7f3b0",
+        "octgn:6458d002-326f-45a6-af65-38025d301f07",
+        "octgn:a7dd3c14-52fa-439c-8944-42728593c20c",
+        "octgn:c7325b46-089b-4910-99cd-159eebc01a0c",
+        "octgn:0ade7e4d-f04b-4e65-870e-f5d85e080130",
+        "octgn:d679e2f4-1762-4177-a0f8-bb074a58a0cc",
+        "octgn:ee76f0c0-da20-402c-a1e6-8abd1504b56a",
+        "octgn:0dc0486c-a0b9-4499-8b9f-03168db9bdb0",
+        "octgn:c3a29d33-4096-4cce-871e-6673d2e4684e",
+        "octgn:b28b1154-c486-4fbb-99c4-8db4e04983c6",
+        "octgn:47744d79-27d4-4ea2-aee7-30597fb0b47f",
+        "octgn:fd00d162-0c0e-4ddb-b58d-653813396c52",
+        "octgn:01500c6a-9f16-4226-b194-345174a3d11b",
+        "octgn:11381200-d546-4d40-a826-2c6c901e8d61",
+        "octgn:38632ac4-e8c7-4d1e-819a-d16b3522915a",
+        "octgn:b3405b30-27e3-4ba3-9518-9dec0f2b2eda",
+        "octgn:9ce09230-e009-465f-9125-725f31c653b9",
+        "octgn:977ebe93-58f5-44f9-81d8-66037501a86e",
+        "octgn:b899f859-3c09-4cb3-9adf-7fb57e46e7ad",
+        "octgn:8a2cbffd-43f8-4a61-9ccd-cb07293eac5f",
+        "octgn:4174df7e-5bb2-4b0f-9e35-d025f132d4a1",
+        "octgn:d2d3aeae-58ae-497e-bc44-70863d49f25d",
+        "octgn:2dc57c6f-fab3-4689-9398-332a22c13fa9",
+        "octgn:0a42a6ff-e693-484c-860d-3bc7e2780680",
+        "octgn:cc572a1a-2700-493c-9b82-309c9c9ba61c",
+        "octgn:e4e35740-73ca-460d-bdbb-afcbc97e90d9",
+        "octgn:11d44754-de69-4ecf-997e-593ef87521a9",
+        "octgn:a210439e-5670-476f-b933-c862b6e88602",
+        "octgn:32deb3d1-afe3-4fbc-bd6c-30f139003cc7",
+        "octgn:8aa74679-5918-46ca-99b1-18cdb150f17d",
+        "octgn:3a47aa88-5089-435d-b5ab-899dab400c98",
+        "octgn:01dfa4f4-f3de-43b7-96d2-a6919b0c3491",
+        "octgn:ff0bc03a-e47d-4917-bf27-a0b97bc292ca",
+        "octgn:779079f4-d3a8-4832-9bd5-12e8ca828ba7",
+        "octgn:36b82b22-4432-488a-8a88-d6486b7c75a3",
+        "octgn:8be49f80-c3ca-44f0-92d1-15ff0ac6c25b",
+        "octgn:8ffa3a89-6e0c-43e3-9ff6-e5db6fff4032",
+        "octgn:9b83ddc0-9e95-4cbb-9428-8a209fc80bd2",
+        "octgn:935b596a-4e20-434c-89f5-8b3c20fcd241",
+        "octgn:b4cd6eea-17ec-4051-89b3-c4b735d8452f",
+        "octgn:96e30879-9a56-428e-853d-93503f01ddb3",
+        "octgn:bde125e7-6c33-4659-8713-e3374b93f414",
+        "octgn:a9cdd0bf-1d77-415c-8820-d4974ec02ee0",
+        "octgn:e30cfc82-bbb0-42f9-b25c-bc2152445368",
+        "octgn:2d34a913-e212-42c4-859b-2db9b2056276",
+        "octgn:ee118b36-0113-4c74-82b3-14f235914212",
+        "octgn:187017b6-8632-49ee-9275-8126d313424e",
+        "octgn:c90db37c-2fdf-4f69-b4a8-869064e4650b"
+      ],
+      "cards": [
+        {
+          "code": "octgn:55436edb-0e1f-4b25-a59e-1b131b408db4",
+          "quantity": 3,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:d83e852c-60cc-41b3-8904-25815bc1d2d5",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:72025370-07e1-4797-acb2-1d2371a7f3b0",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:6458d002-326f-45a6-af65-38025d301f07",
+          "quantity": 2,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:a7dd3c14-52fa-439c-8944-42728593c20c",
+          "quantity": 2,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:c7325b46-089b-4910-99cd-159eebc01a0c",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:0ade7e4d-f04b-4e65-870e-f5d85e080130",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:d679e2f4-1762-4177-a0f8-bb074a58a0cc",
+          "quantity": 2,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:ee76f0c0-da20-402c-a1e6-8abd1504b56a",
+          "quantity": 2,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:0dc0486c-a0b9-4499-8b9f-03168db9bdb0",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:c3a29d33-4096-4cce-871e-6673d2e4684e",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:b28b1154-c486-4fbb-99c4-8db4e04983c6",
+          "quantity": 3,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:47744d79-27d4-4ea2-aee7-30597fb0b47f",
+          "quantity": 2,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:fd00d162-0c0e-4ddb-b58d-653813396c52",
+          "quantity": 2,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:01500c6a-9f16-4226-b194-345174a3d11b",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:11381200-d546-4d40-a826-2c6c901e8d61",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:38632ac4-e8c7-4d1e-819a-d16b3522915a",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:b3405b30-27e3-4ba3-9518-9dec0f2b2eda",
+          "quantity": 3,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:9ce09230-e009-465f-9125-725f31c653b9",
+          "quantity": 2,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:977ebe93-58f5-44f9-81d8-66037501a86e",
+          "quantity": 2,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:b899f859-3c09-4cb3-9adf-7fb57e46e7ad",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:8a2cbffd-43f8-4a61-9ccd-cb07293eac5f",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:4174df7e-5bb2-4b0f-9e35-d025f132d4a1",
+          "quantity": 3,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:d2d3aeae-58ae-497e-bc44-70863d49f25d",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:2dc57c6f-fab3-4689-9398-332a22c13fa9",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:0a42a6ff-e693-484c-860d-3bc7e2780680",
+          "quantity": 2,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:cc572a1a-2700-493c-9b82-309c9c9ba61c",
+          "quantity": 2,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:e4e35740-73ca-460d-bdbb-afcbc97e90d9",
+          "quantity": 2,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:11d44754-de69-4ecf-997e-593ef87521a9",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:a210439e-5670-476f-b933-c862b6e88602",
+          "quantity": 2,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:32deb3d1-afe3-4fbc-bd6c-30f139003cc7",
+          "quantity": 2,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:8aa74679-5918-46ca-99b1-18cdb150f17d",
+          "quantity": 2,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:3a47aa88-5089-435d-b5ab-899dab400c98",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:01dfa4f4-f3de-43b7-96d2-a6919b0c3491",
+          "quantity": 2,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:ff0bc03a-e47d-4917-bf27-a0b97bc292ca",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:779079f4-d3a8-4832-9bd5-12e8ca828ba7",
+          "quantity": 2,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:36b82b22-4432-488a-8a88-d6486b7c75a3",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:8be49f80-c3ca-44f0-92d1-15ff0ac6c25b",
+          "quantity": 2,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:8ffa3a89-6e0c-43e3-9ff6-e5db6fff4032",
+          "quantity": 2,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:9b83ddc0-9e95-4cbb-9428-8a209fc80bd2",
+          "quantity": 2,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:935b596a-4e20-434c-89f5-8b3c20fcd241",
+          "quantity": 2,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:b4cd6eea-17ec-4051-89b3-c4b735d8452f",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:96e30879-9a56-428e-853d-93503f01ddb3",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:bde125e7-6c33-4659-8713-e3374b93f414",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:a9cdd0bf-1d77-415c-8820-d4974ec02ee0",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:e30cfc82-bbb0-42f9-b25c-bc2152445368",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:2d34a913-e212-42c4-859b-2db9b2056276",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:ee118b36-0113-4c74-82b3-14f235914212",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:187017b6-8632-49ee-9275-8126d313424e",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:c90db37c-2fdf-4f69-b4a8-869064e4650b",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:55436edb-0e1f-4b25-a59e-1b131b408db4": 3,
+          "octgn:d83e852c-60cc-41b3-8904-25815bc1d2d5": 1,
+          "octgn:72025370-07e1-4797-acb2-1d2371a7f3b0": 1,
+          "octgn:6458d002-326f-45a6-af65-38025d301f07": 2,
+          "octgn:a7dd3c14-52fa-439c-8944-42728593c20c": 2,
+          "octgn:c7325b46-089b-4910-99cd-159eebc01a0c": 1,
+          "octgn:0ade7e4d-f04b-4e65-870e-f5d85e080130": 1,
+          "octgn:d679e2f4-1762-4177-a0f8-bb074a58a0cc": 2,
+          "octgn:ee76f0c0-da20-402c-a1e6-8abd1504b56a": 2,
+          "octgn:0dc0486c-a0b9-4499-8b9f-03168db9bdb0": 1,
+          "octgn:c3a29d33-4096-4cce-871e-6673d2e4684e": 1,
+          "octgn:b28b1154-c486-4fbb-99c4-8db4e04983c6": 3,
+          "octgn:47744d79-27d4-4ea2-aee7-30597fb0b47f": 2,
+          "octgn:fd00d162-0c0e-4ddb-b58d-653813396c52": 2,
+          "octgn:01500c6a-9f16-4226-b194-345174a3d11b": 1,
+          "octgn:11381200-d546-4d40-a826-2c6c901e8d61": 1,
+          "octgn:38632ac4-e8c7-4d1e-819a-d16b3522915a": 1,
+          "octgn:b3405b30-27e3-4ba3-9518-9dec0f2b2eda": 3,
+          "octgn:9ce09230-e009-465f-9125-725f31c653b9": 2,
+          "octgn:977ebe93-58f5-44f9-81d8-66037501a86e": 2,
+          "octgn:b899f859-3c09-4cb3-9adf-7fb57e46e7ad": 1,
+          "octgn:8a2cbffd-43f8-4a61-9ccd-cb07293eac5f": 1,
+          "octgn:4174df7e-5bb2-4b0f-9e35-d025f132d4a1": 3,
+          "octgn:d2d3aeae-58ae-497e-bc44-70863d49f25d": 1,
+          "octgn:2dc57c6f-fab3-4689-9398-332a22c13fa9": 1,
+          "octgn:0a42a6ff-e693-484c-860d-3bc7e2780680": 2,
+          "octgn:cc572a1a-2700-493c-9b82-309c9c9ba61c": 2,
+          "octgn:e4e35740-73ca-460d-bdbb-afcbc97e90d9": 2,
+          "octgn:11d44754-de69-4ecf-997e-593ef87521a9": 1,
+          "octgn:a210439e-5670-476f-b933-c862b6e88602": 2,
+          "octgn:32deb3d1-afe3-4fbc-bd6c-30f139003cc7": 2,
+          "octgn:8aa74679-5918-46ca-99b1-18cdb150f17d": 2,
+          "octgn:3a47aa88-5089-435d-b5ab-899dab400c98": 1,
+          "octgn:01dfa4f4-f3de-43b7-96d2-a6919b0c3491": 2,
+          "octgn:ff0bc03a-e47d-4917-bf27-a0b97bc292ca": 1,
+          "octgn:779079f4-d3a8-4832-9bd5-12e8ca828ba7": 2,
+          "octgn:36b82b22-4432-488a-8a88-d6486b7c75a3": 1,
+          "octgn:8be49f80-c3ca-44f0-92d1-15ff0ac6c25b": 2,
+          "octgn:8ffa3a89-6e0c-43e3-9ff6-e5db6fff4032": 2,
+          "octgn:9b83ddc0-9e95-4cbb-9428-8a209fc80bd2": 2,
+          "octgn:935b596a-4e20-434c-89f5-8b3c20fcd241": 2,
+          "octgn:b4cd6eea-17ec-4051-89b3-c4b735d8452f": 1
+        },
+        "sharedSetAside": {
+          "octgn:96e30879-9a56-428e-853d-93503f01ddb3": 1,
+          "octgn:bde125e7-6c33-4659-8713-e3374b93f414": 1,
+          "octgn:a9cdd0bf-1d77-415c-8820-d4974ec02ee0": 1,
+          "octgn:e30cfc82-bbb0-42f9-b25c-bc2152445368": 1,
+          "octgn:2d34a913-e212-42c4-859b-2db9b2056276": 1,
+          "octgn:ee118b36-0113-4c74-82b3-14f235914212": 1,
+          "octgn:187017b6-8632-49ee-9275-8126d313424e": 1,
+          "octgn:c90db37c-2fdf-4f69-b4a8-869064e4650b": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:01500c6a-9f16-4226-b194-345174a3d11b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/01500c6a-9f16-4226-b194-345174a3d11b.jpg",
+      "localPath": "/cards/01500c6a-9f16-4226-b194-345174a3d11b.jpg",
+      "bytes": 247387,
+      "sha256": "2d1a78164bd2696306798d54ab28ee2fbce94895f5896870792dd5bbe8417d44"
+    },
+    {
+      "code": "octgn:01dfa4f4-f3de-43b7-96d2-a6919b0c3491",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/01dfa4f4-f3de-43b7-96d2-a6919b0c3491.jpg",
+      "localPath": "/cards/01dfa4f4-f3de-43b7-96d2-a6919b0c3491.jpg",
+      "bytes": 252724,
+      "sha256": "900601a3fd312760bf4afa336ec3a82a4732079b0a90f4e1dab9178339f2554c"
+    },
+    {
+      "code": "octgn:0a42a6ff-e693-484c-860d-3bc7e2780680",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0a42a6ff-e693-484c-860d-3bc7e2780680.jpg",
+      "localPath": "/cards/0a42a6ff-e693-484c-860d-3bc7e2780680.jpg",
+      "bytes": 261582,
+      "sha256": "f063a3d32cd6fd5ae52261c3eb96435aa72fc7aa488302066d166a83bbdae9e7"
+    },
+    {
+      "code": "octgn:0ade7e4d-f04b-4e65-870e-f5d85e080130",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0ade7e4d-f04b-4e65-870e-f5d85e080130.jpg",
+      "localPath": "/cards/0ade7e4d-f04b-4e65-870e-f5d85e080130.jpg",
+      "bytes": 243770,
+      "sha256": "92d08e39188d1c66f75387fb11221b2631fae8587ad5384b6489fcbf45a371f2"
+    },
+    {
+      "code": "octgn:0dc0486c-a0b9-4499-8b9f-03168db9bdb0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0dc0486c-a0b9-4499-8b9f-03168db9bdb0.jpg",
+      "localPath": "/cards/0dc0486c-a0b9-4499-8b9f-03168db9bdb0.jpg",
+      "bytes": 263533,
+      "sha256": "5ef33a83de06799f2c87ea86a504a2d88186f8d1f437de4b3e186e0b2fbc7aad"
+    },
+    {
+      "code": "octgn:11381200-d546-4d40-a826-2c6c901e8d61",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/11381200-d546-4d40-a826-2c6c901e8d61.jpg",
+      "localPath": "/cards/11381200-d546-4d40-a826-2c6c901e8d61.jpg",
+      "bytes": 258224,
+      "sha256": "4020f11c88f474e4eba597707ec7f51c536cabda41f3b4843d649fef442eaaad"
+    },
+    {
+      "code": "octgn:11d44754-de69-4ecf-997e-593ef87521a9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/11d44754-de69-4ecf-997e-593ef87521a9.jpg",
+      "localPath": "/cards/11d44754-de69-4ecf-997e-593ef87521a9.jpg",
+      "bytes": 256140,
+      "sha256": "953d000f1003f1621a5ed3af678a22cb6adfcbcf9b6d860602af70c504989cea"
+    },
+    {
+      "code": "octgn:187017b6-8632-49ee-9275-8126d313424e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/187017b6-8632-49ee-9275-8126d313424e.jpg",
+      "localPath": "/cards/187017b6-8632-49ee-9275-8126d313424e.jpg",
+      "bytes": 250724,
+      "sha256": "b122c93bed352c950d12a635b203257f532666c3efa54dc99a21107e48ec41e4"
+    },
+    {
+      "code": "octgn:187017b6-8632-49ee-9275-8126d313424e",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/187017b6-8632-49ee-9275-8126d313424e.B.jpg",
+      "localPath": "/cards/187017b6-8632-49ee-9275-8126d313424e.B.jpg",
+      "bytes": 262575,
+      "sha256": "d9ffd2232c1cb364edda147c5d71dd10587da0cb0c4bf64ecca3c38ba1575cde"
+    },
+    {
+      "code": "octgn:2d34a913-e212-42c4-859b-2db9b2056276",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2d34a913-e212-42c4-859b-2db9b2056276.jpg",
+      "localPath": "/cards/2d34a913-e212-42c4-859b-2db9b2056276.jpg",
+      "bytes": 250730,
+      "sha256": "ce84818cd72a243853a1bf7336019ac53c7352d5d4d3d1c60726cd30a4787502"
+    },
+    {
+      "code": "octgn:2d34a913-e212-42c4-859b-2db9b2056276",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2d34a913-e212-42c4-859b-2db9b2056276.B.jpg",
+      "localPath": "/cards/2d34a913-e212-42c4-859b-2db9b2056276.B.jpg",
+      "bytes": 258023,
+      "sha256": "8750470586240a9952eb7d61c6490a9939ddfac133f9b9a17389ddfcdc14a504"
+    },
+    {
+      "code": "octgn:2dc57c6f-fab3-4689-9398-332a22c13fa9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2dc57c6f-fab3-4689-9398-332a22c13fa9.jpg",
+      "localPath": "/cards/2dc57c6f-fab3-4689-9398-332a22c13fa9.jpg",
+      "bytes": 253565,
+      "sha256": "9461a10fe0e21a4b93817ce8a6b963108d6c6f2975967a294c4577dbd582e028"
+    },
+    {
+      "code": "octgn:32deb3d1-afe3-4fbc-bd6c-30f139003cc7",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32deb3d1-afe3-4fbc-bd6c-30f139003cc7.jpg",
+      "localPath": "/cards/32deb3d1-afe3-4fbc-bd6c-30f139003cc7.jpg",
+      "bytes": 249118,
+      "sha256": "04998ccfcb069e5a2db595849bfd32444b43902164f690642318a17588a65b02"
+    },
+    {
+      "code": "octgn:36b82b22-4432-488a-8a88-d6486b7c75a3",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/36b82b22-4432-488a-8a88-d6486b7c75a3.jpg",
+      "localPath": "/cards/36b82b22-4432-488a-8a88-d6486b7c75a3.jpg",
+      "bytes": 254325,
+      "sha256": "8b332041394400d4b8b8f07e56a4307efc53bddc400ebbcca3d5b23ef55aee37"
+    },
+    {
+      "code": "octgn:38632ac4-e8c7-4d1e-819a-d16b3522915a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/38632ac4-e8c7-4d1e-819a-d16b3522915a.jpg",
+      "localPath": "/cards/38632ac4-e8c7-4d1e-819a-d16b3522915a.jpg",
+      "bytes": 241592,
+      "sha256": "db9a5bdee54d8492760d03f9e01a85cbb052e09a44e3ec06d106e84e985db61c"
+    },
+    {
+      "code": "octgn:3a47aa88-5089-435d-b5ab-899dab400c98",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3a47aa88-5089-435d-b5ab-899dab400c98.jpg",
+      "localPath": "/cards/3a47aa88-5089-435d-b5ab-899dab400c98.jpg",
+      "bytes": 243884,
+      "sha256": "56e951d7b0daaa72ea01dbee3eb305315c017ec349b089d16a5929793ff933dd"
+    },
+    {
+      "code": "octgn:4174df7e-5bb2-4b0f-9e35-d025f132d4a1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4174df7e-5bb2-4b0f-9e35-d025f132d4a1.jpg",
+      "localPath": "/cards/4174df7e-5bb2-4b0f-9e35-d025f132d4a1.jpg",
+      "bytes": 254213,
+      "sha256": "78853f90e1a077fae25b07915224bf001efa33ae12c90c5d08840f867f3b5ce0"
+    },
+    {
+      "code": "octgn:47744d79-27d4-4ea2-aee7-30597fb0b47f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/47744d79-27d4-4ea2-aee7-30597fb0b47f.jpg",
+      "localPath": "/cards/47744d79-27d4-4ea2-aee7-30597fb0b47f.jpg",
+      "bytes": 262224,
+      "sha256": "5976f99f75229b051e772977bdbddff1f74ecff3c7d95af546763ccfec97a287"
+    },
+    {
+      "code": "octgn:55436edb-0e1f-4b25-a59e-1b131b408db4",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/55436edb-0e1f-4b25-a59e-1b131b408db4.jpg",
+      "localPath": "/cards/55436edb-0e1f-4b25-a59e-1b131b408db4.jpg",
+      "bytes": 257643,
+      "sha256": "f9b691c91d123a6e4278182fc07ddba38bb95e912e49d4d69b148d8d88a2af0f"
+    },
+    {
+      "code": "octgn:6458d002-326f-45a6-af65-38025d301f07",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6458d002-326f-45a6-af65-38025d301f07.jpg",
+      "localPath": "/cards/6458d002-326f-45a6-af65-38025d301f07.jpg",
+      "bytes": 282990,
+      "sha256": "f8df1c4e31339a961c4fd197c26914e4164d2e63954b724700a5e7fce5bac6c5"
+    },
+    {
+      "code": "octgn:72025370-07e1-4797-acb2-1d2371a7f3b0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/72025370-07e1-4797-acb2-1d2371a7f3b0.jpg",
+      "localPath": "/cards/72025370-07e1-4797-acb2-1d2371a7f3b0.jpg",
+      "bytes": 249566,
+      "sha256": "c17af4a6fc32b798a2721bd628273cd46cf48858cf63f49a2a7c61d934b67e6d"
+    },
+    {
+      "code": "octgn:779079f4-d3a8-4832-9bd5-12e8ca828ba7",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/779079f4-d3a8-4832-9bd5-12e8ca828ba7.jpg",
+      "localPath": "/cards/779079f4-d3a8-4832-9bd5-12e8ca828ba7.jpg",
+      "bytes": 271150,
+      "sha256": "eb2cfcac11f86cbe81f821e17fc82c4a0b027d6281b38a3ea981a9dfc0a6dd26"
+    },
+    {
+      "code": "octgn:8a2cbffd-43f8-4a61-9ccd-cb07293eac5f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8a2cbffd-43f8-4a61-9ccd-cb07293eac5f.jpg",
+      "localPath": "/cards/8a2cbffd-43f8-4a61-9ccd-cb07293eac5f.jpg",
+      "bytes": 250531,
+      "sha256": "0b18636699eb77dfa1e72cc2c0e70f125697de78f91ccc397cb5f22db56438ac"
+    },
+    {
+      "code": "octgn:8aa74679-5918-46ca-99b1-18cdb150f17d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8aa74679-5918-46ca-99b1-18cdb150f17d.jpg",
+      "localPath": "/cards/8aa74679-5918-46ca-99b1-18cdb150f17d.jpg",
+      "bytes": 256677,
+      "sha256": "a9d6dd398586afd0909f0f1777736ff72929026bcf2a9c7905bacf2e7114a568"
+    },
+    {
+      "code": "octgn:8be49f80-c3ca-44f0-92d1-15ff0ac6c25b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8be49f80-c3ca-44f0-92d1-15ff0ac6c25b.jpg",
+      "localPath": "/cards/8be49f80-c3ca-44f0-92d1-15ff0ac6c25b.jpg",
+      "bytes": 222255,
+      "sha256": "6339a450a1e6163a1e722549fecbe8d1119dc805e60ce6636af8aacd5adba865"
+    },
+    {
+      "code": "octgn:8ffa3a89-6e0c-43e3-9ff6-e5db6fff4032",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8ffa3a89-6e0c-43e3-9ff6-e5db6fff4032.jpg",
+      "localPath": "/cards/8ffa3a89-6e0c-43e3-9ff6-e5db6fff4032.jpg",
+      "bytes": 264646,
+      "sha256": "0fe307a3b0e49949c2fa5c785f2410ca7eab517b3742e77c3972803ffd310065"
+    },
+    {
+      "code": "octgn:935b596a-4e20-434c-89f5-8b3c20fcd241",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/935b596a-4e20-434c-89f5-8b3c20fcd241.jpg",
+      "localPath": "/cards/935b596a-4e20-434c-89f5-8b3c20fcd241.jpg",
+      "bytes": 256619,
+      "sha256": "fcdf37a0c38448a581c158458cf7fb3354dd23cb35dce92b38d20924e5769df6"
+    },
+    {
+      "code": "octgn:96e30879-9a56-428e-853d-93503f01ddb3",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/96e30879-9a56-428e-853d-93503f01ddb3.jpg",
+      "localPath": "/cards/96e30879-9a56-428e-853d-93503f01ddb3.jpg",
+      "bytes": 277424,
+      "sha256": "31b056195a0addafda0def7a9817899be3129f1ac680346eec2408d3cf08ebb5"
+    },
+    {
+      "code": "octgn:96e30879-9a56-428e-853d-93503f01ddb3",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/96e30879-9a56-428e-853d-93503f01ddb3.B.jpg",
+      "localPath": "/cards/96e30879-9a56-428e-853d-93503f01ddb3.B.jpg",
+      "bytes": 270538,
+      "sha256": "5dddbbe4305cc24599f77b1b15fa47db4fb60eb5e4f6001d592f14276b1f21ce"
+    },
+    {
+      "code": "octgn:977ebe93-58f5-44f9-81d8-66037501a86e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/977ebe93-58f5-44f9-81d8-66037501a86e.jpg",
+      "localPath": "/cards/977ebe93-58f5-44f9-81d8-66037501a86e.jpg",
+      "bytes": 251656,
+      "sha256": "ebc9da86c037e045902df9eddb3d69285eb49bc5772a50a28a5b01dd02ebc8f7"
+    },
+    {
+      "code": "octgn:9b83ddc0-9e95-4cbb-9428-8a209fc80bd2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9b83ddc0-9e95-4cbb-9428-8a209fc80bd2.jpg",
+      "localPath": "/cards/9b83ddc0-9e95-4cbb-9428-8a209fc80bd2.jpg",
+      "bytes": 262967,
+      "sha256": "5bbb8186cab54a704edaea38b0555d2723c2950be45464cc0b5839ca1c051431"
+    },
+    {
+      "code": "octgn:9ce09230-e009-465f-9125-725f31c653b9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9ce09230-e009-465f-9125-725f31c653b9.jpg",
+      "localPath": "/cards/9ce09230-e009-465f-9125-725f31c653b9.jpg",
+      "bytes": 237166,
+      "sha256": "d365f27862945f2e0e787136e066316edddc22ff274c03bc948c2c9d7def659c"
+    },
+    {
+      "code": "octgn:a210439e-5670-476f-b933-c862b6e88602",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a210439e-5670-476f-b933-c862b6e88602.jpg",
+      "localPath": "/cards/a210439e-5670-476f-b933-c862b6e88602.jpg",
+      "bytes": 245131,
+      "sha256": "80a1dd933f6884aed62dcb7f96b7614103575f3b85ddf1f9015450a10c4f1fab"
+    },
+    {
+      "code": "octgn:a7dd3c14-52fa-439c-8944-42728593c20c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a7dd3c14-52fa-439c-8944-42728593c20c.jpg",
+      "localPath": "/cards/a7dd3c14-52fa-439c-8944-42728593c20c.jpg",
+      "bytes": 255413,
+      "sha256": "419d5abafb6c33773ce4632fc68bc602efd766d332f57ac00cf3d0d921f0f248"
+    },
+    {
+      "code": "octgn:a9cdd0bf-1d77-415c-8820-d4974ec02ee0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a9cdd0bf-1d77-415c-8820-d4974ec02ee0.jpg",
+      "localPath": "/cards/a9cdd0bf-1d77-415c-8820-d4974ec02ee0.jpg",
+      "bytes": 255547,
+      "sha256": "b95fe91f274107b80b6fe0a35644b2a2329b8c75aafa9904c73fd5fdf42baa58"
+    },
+    {
+      "code": "octgn:a9cdd0bf-1d77-415c-8820-d4974ec02ee0",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a9cdd0bf-1d77-415c-8820-d4974ec02ee0.B.jpg",
+      "localPath": "/cards/a9cdd0bf-1d77-415c-8820-d4974ec02ee0.B.jpg",
+      "bytes": 229025,
+      "sha256": "7ac742404662ff2178e341be37ddf952f5c67a11ae7c6d0bdce42220a7d260ce"
+    },
+    {
+      "code": "octgn:b28b1154-c486-4fbb-99c4-8db4e04983c6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b28b1154-c486-4fbb-99c4-8db4e04983c6.jpg",
+      "localPath": "/cards/b28b1154-c486-4fbb-99c4-8db4e04983c6.jpg",
+      "bytes": 247520,
+      "sha256": "602e1c05316376f1c6b5cd05b30465d68f7543c6b2c93a8736cb8fe5f4ca214e"
+    },
+    {
+      "code": "octgn:b3405b30-27e3-4ba3-9518-9dec0f2b2eda",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b3405b30-27e3-4ba3-9518-9dec0f2b2eda.jpg",
+      "localPath": "/cards/b3405b30-27e3-4ba3-9518-9dec0f2b2eda.jpg",
+      "bytes": 215457,
+      "sha256": "32475e24e4c9bf716a34a60ac04139d8b7a33e2af4108cb347b48b4b95d8a97f"
+    },
+    {
+      "code": "octgn:b4cd6eea-17ec-4051-89b3-c4b735d8452f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b4cd6eea-17ec-4051-89b3-c4b735d8452f.jpg",
+      "localPath": "/cards/b4cd6eea-17ec-4051-89b3-c4b735d8452f.jpg",
+      "bytes": 252195,
+      "sha256": "613383d7ecef2eb7d25540d5b830caea7e1213f28424829ce485d179e077ea7a"
+    },
+    {
+      "code": "octgn:b899f859-3c09-4cb3-9adf-7fb57e46e7ad",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b899f859-3c09-4cb3-9adf-7fb57e46e7ad.jpg",
+      "localPath": "/cards/b899f859-3c09-4cb3-9adf-7fb57e46e7ad.jpg",
+      "bytes": 248952,
+      "sha256": "7ef8d96139e2240eaed7eb9ac895fa1a68fbd0f25ff87b0cf1bb0587d6f49f7e"
+    },
+    {
+      "code": "octgn:bde125e7-6c33-4659-8713-e3374b93f414",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bde125e7-6c33-4659-8713-e3374b93f414.jpg",
+      "localPath": "/cards/bde125e7-6c33-4659-8713-e3374b93f414.jpg",
+      "bytes": 255547,
+      "sha256": "a4dc2c15c843f506dab61559d09e5a8996825b3434d2c782dfc6e55c1f4d710f"
+    },
+    {
+      "code": "octgn:bde125e7-6c33-4659-8713-e3374b93f414",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bde125e7-6c33-4659-8713-e3374b93f414.B.jpg",
+      "localPath": "/cards/bde125e7-6c33-4659-8713-e3374b93f414.B.jpg",
+      "bytes": 241827,
+      "sha256": "14aee21b74150fb41f922294db9f738dff00eb1c10fffcb3b7c22a6d251d3d90"
+    },
+    {
+      "code": "octgn:c3a29d33-4096-4cce-871e-6673d2e4684e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c3a29d33-4096-4cce-871e-6673d2e4684e.jpg",
+      "localPath": "/cards/c3a29d33-4096-4cce-871e-6673d2e4684e.jpg",
+      "bytes": 259352,
+      "sha256": "fafd087c8fe1f0dc4ee89f57ec5035d898ccff6607c2a068fd04273c99cee8bb"
+    },
+    {
+      "code": "octgn:c7325b46-089b-4910-99cd-159eebc01a0c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c7325b46-089b-4910-99cd-159eebc01a0c.jpg",
+      "localPath": "/cards/c7325b46-089b-4910-99cd-159eebc01a0c.jpg",
+      "bytes": 224035,
+      "sha256": "699018801e8189438674734b6ece6444c52fa262ded72841f1571e2c8d4754e4"
+    },
+    {
+      "code": "octgn:c90db37c-2fdf-4f69-b4a8-869064e4650b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c90db37c-2fdf-4f69-b4a8-869064e4650b.jpg",
+      "localPath": "/cards/c90db37c-2fdf-4f69-b4a8-869064e4650b.jpg",
+      "bytes": 251572,
+      "sha256": "df303aa22840c84fa3bcfffdea8a054d8407550450572577ac180cd00a1ac23e"
+    },
+    {
+      "code": "octgn:cc572a1a-2700-493c-9b82-309c9c9ba61c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cc572a1a-2700-493c-9b82-309c9c9ba61c.jpg",
+      "localPath": "/cards/cc572a1a-2700-493c-9b82-309c9c9ba61c.jpg",
+      "bytes": 251349,
+      "sha256": "5e06f449982a9e92902850f61e046cf31ad283b1ff3ad77a634c4596b4a36f3f"
+    },
+    {
+      "code": "octgn:d2d3aeae-58ae-497e-bc44-70863d49f25d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d2d3aeae-58ae-497e-bc44-70863d49f25d.jpg",
+      "localPath": "/cards/d2d3aeae-58ae-497e-bc44-70863d49f25d.jpg",
+      "bytes": 266336,
+      "sha256": "843ea4c856026bfffa3e1492ad9f394e06036f075e63de64f2b6b3a4f425f2f4"
+    },
+    {
+      "code": "octgn:d679e2f4-1762-4177-a0f8-bb074a58a0cc",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d679e2f4-1762-4177-a0f8-bb074a58a0cc.jpg",
+      "localPath": "/cards/d679e2f4-1762-4177-a0f8-bb074a58a0cc.jpg",
+      "bytes": 260101,
+      "sha256": "740d22128faa90152241feb0ad18bbfa05bdadc03d47a32d76a379e2399f5a2c"
+    },
+    {
+      "code": "octgn:d83e852c-60cc-41b3-8904-25815bc1d2d5",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d83e852c-60cc-41b3-8904-25815bc1d2d5.jpg",
+      "localPath": "/cards/d83e852c-60cc-41b3-8904-25815bc1d2d5.jpg",
+      "bytes": 275358,
+      "sha256": "4543f3db034be2ecac07f389317a0c61ec35087bc8cbc78e3d0456e4040b2a73"
+    },
+    {
+      "code": "octgn:e30cfc82-bbb0-42f9-b25c-bc2152445368",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e30cfc82-bbb0-42f9-b25c-bc2152445368.jpg",
+      "localPath": "/cards/e30cfc82-bbb0-42f9-b25c-bc2152445368.jpg",
+      "bytes": 255547,
+      "sha256": "c58d507e144a2a5d4bb773fbd84f4a9918ece472d1ecb9720f79d2f7df9b79b1"
+    },
+    {
+      "code": "octgn:e30cfc82-bbb0-42f9-b25c-bc2152445368",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e30cfc82-bbb0-42f9-b25c-bc2152445368.B.jpg",
+      "localPath": "/cards/e30cfc82-bbb0-42f9-b25c-bc2152445368.B.jpg",
+      "bytes": 231831,
+      "sha256": "845086d2a6af7da6119c5f831bffb9377ddee8d7d1c4d382905e8af8856f6f68"
+    },
+    {
+      "code": "octgn:e4e35740-73ca-460d-bdbb-afcbc97e90d9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e4e35740-73ca-460d-bdbb-afcbc97e90d9.jpg",
+      "localPath": "/cards/e4e35740-73ca-460d-bdbb-afcbc97e90d9.jpg",
+      "bytes": 244657,
+      "sha256": "1d2a860862cbb8fecfe38e081baf81ec1965ef3f71c078805db53f2e3d4a34c7"
+    },
+    {
+      "code": "octgn:ee118b36-0113-4c74-82b3-14f235914212",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ee118b36-0113-4c74-82b3-14f235914212.jpg",
+      "localPath": "/cards/ee118b36-0113-4c74-82b3-14f235914212.jpg",
+      "bytes": 250730,
+      "sha256": "d0cd7e45d1a9409a02ad85d6de4064297091a51ea49c733603f3ecd2b4545442"
+    },
+    {
+      "code": "octgn:ee118b36-0113-4c74-82b3-14f235914212",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ee118b36-0113-4c74-82b3-14f235914212.B.jpg",
+      "localPath": "/cards/ee118b36-0113-4c74-82b3-14f235914212.B.jpg",
+      "bytes": 290369,
+      "sha256": "82022786786a43b5e50369bcb0b949d8912f4f65bdf12b2ed47e81badf1c9e8c"
+    },
+    {
+      "code": "octgn:ee76f0c0-da20-402c-a1e6-8abd1504b56a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ee76f0c0-da20-402c-a1e6-8abd1504b56a.jpg",
+      "localPath": "/cards/ee76f0c0-da20-402c-a1e6-8abd1504b56a.jpg",
+      "bytes": 259008,
+      "sha256": "18be38fbfb637f48b50543a3d8272f88ecc45815d7cbab69e3d4f32cbd6192cb"
+    },
+    {
+      "code": "octgn:fd00d162-0c0e-4ddb-b58d-653813396c52",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fd00d162-0c0e-4ddb-b58d-653813396c52.jpg",
+      "localPath": "/cards/fd00d162-0c0e-4ddb-b58d-653813396c52.jpg",
+      "bytes": 246341,
+      "sha256": "388a06020cc1e0ceeb2535072ca9986535445980c1fb68d1cb77c4ce3c2cfb70"
+    },
+    {
+      "code": "octgn:ff0bc03a-e47d-4917-bf27-a0b97bc292ca",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ff0bc03a-e47d-4917-bf27-a0b97bc292ca.jpg",
+      "localPath": "/cards/ff0bc03a-e47d-4917-bf27-a0b97bc292ca.jpg",
+      "bytes": 243867,
+      "sha256": "5eb60022cf408611a7a81c043023031fbbd44c6c94f736d1bf53168dc8ba7938"
+    }
+  ]
+}

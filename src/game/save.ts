@@ -66,6 +66,7 @@ import { cavesUnits, validateCaves } from "./caves-nibin-dum-support";
 import { validateWizardsQuest, wqUnits } from "./wizards-quest-support";
 import { validateWoodlandRealm, wrUnits } from "./woodland-realm-support";
 import { mmUnits, validateMinesMoria } from "./mines-moria-support";
+import { ekUnits, validateEscapeKhazad } from "./escape-khazad-support";
 import { validateHideTest } from "./hide-test";
 import { validateAsh, ashExtraUnits } from "./ash-mountains-support";
 import { validateAshPlayers } from "./ash-mountains-player";
@@ -1056,6 +1057,7 @@ export function validateSave(
         !validateWizardsQuest(s, validUnit as (v: unknown) => boolean) ||
         !validateWoodlandRealm(s, validUnit as (v: unknown) => boolean) ||
         !validateMinesMoria(s, validUnit as (v: unknown) => boolean) ||
+        !validateEscapeKhazad(s, validUnit as (v: unknown) => boolean) ||
         !validateLandSorrow(s, validUnit as (v: unknown) => boolean) ||
         !validateAsh(s, validUnit as (v: unknown) => boolean) ||
         !validateWainriders(s, validUnit as (v: unknown) => boolean, (c) =>
@@ -1802,6 +1804,7 @@ export function validateSave(
       ...wqUnits(s),
       ...wrUnits(s),
       ...mmUnits(s),
+      ...ekUnits(s),
       ...(s.fortressNurnPlayers?.contracts.map((c) => c.unit) ?? []),
       ...(s.landSorrowPlayers?.contracts.flatMap((c) =>
         c.unit ? [c.unit] : [],

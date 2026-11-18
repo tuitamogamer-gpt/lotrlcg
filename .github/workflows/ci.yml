@@ -1103,6 +1103,32 @@ jobs:
           path: output/mines-moria-release/failures
           retention-days: 7
 
+  escape-khazad-simulation:
+    name: Escape from Khazad-dûm complete games (${{ matrix.difficulty }}, ${{ matrix.part }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        difficulty: [normal, easy]
+        part: [full, late]
+    env:
+      EK_SIMULATION_DIFFICULTY: ${{ matrix.difficulty }}
+      EK_SIMULATION_PART: ${{ matrix.part }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:escape-khazad-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: escape-khazad-simulation-${{ matrix.difficulty }}-${{ matrix.part }}
+          path: output/escape-khazad-release/failures
+          retention-days: 7
+
   shelob-lair-simulation:
     name: Shelob's Lair complete games (26 games)
     runs-on: ubuntu-latest
@@ -1322,6 +1348,8 @@ jobs:
             suite: test:browser-woodland-realm
           - group: mines-moria
             suite: test:browser-mines-moria
+          - group: escape-khazad
+            suite: test:browser-escape-khazad
           - group: treason-saruman-players
             suite: test:browser-treason-saruman-players
           - group: land-shadow-players

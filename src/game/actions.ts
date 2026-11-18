@@ -39,6 +39,7 @@ import { cavesPublicState } from "./caves-nibin-dum-support";
 import { wizardsQuestPublicState } from "./wizards-quest-support";
 import { woodlandRealmPublicState } from "./woodland-realm-support";
 import { minesMoriaPublicState } from "./mines-moria-support";
+import { escapeKhazadPublicState } from "./escape-khazad-support";
 import { helmsDeepPublicState } from "./helms-deep-support";
 import { roadIsengardPublicState } from "./road-isengard-support";
 import { passageMarshesPublicState } from "./passage-marshes-support";
@@ -3857,6 +3858,7 @@ export function publicState(s: GameState) {
     wizardsQuest: wizardsQuestPublicState(s),
     woodlandRealm: woodlandRealmPublicState(s),
     minesMoria: minesMoriaPublicState(s),
+    escapeKhazad: escapeKhazadPublicState(s),
     fortressNurnPlayers: FortressPlayers.fortressNurnPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),

@@ -147,6 +147,10 @@ export const PLAYMATS = {
     name: "Moria",
     detail: "The West-door · The Chamber of Mazarbul",
   },
+  "escape-from-khazad-dum": {
+    name: "Khazad-dûm",
+    detail: "The Dark Pit · The Bridge of Khazad-dûm",
+  },
   "the-ruins-of-belegost": {
     name: "Belegost",
     detail: "The drowned Dwarf city · Naurlhûg's lair",
@@ -597,6 +601,7 @@ export const PLAYMAT_CHOICES = [
   "the-wizards-quest",
   "the-woodland-realm",
   "the-mines-of-moria",
+  "escape-from-khazad-dum",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

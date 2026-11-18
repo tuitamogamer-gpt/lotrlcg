@@ -199,6 +199,10 @@ const HEADLINES: Partial<
     lead: "Seek the Chamber",
     em: "of Mazarbul.",
   },
+  "escape-from-khazad-dum": {
+    lead: "Fly from",
+    em: "the Balrog.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

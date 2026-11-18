@@ -37,6 +37,7 @@ import { CAVES_ADVENTURES } from "./caves-nibin-dum-scenario-data";
 import { WIZARDS_QUEST_ADVENTURES } from "./wizards-quest-scenario-data";
 import { WOODLAND_REALM_ADVENTURES } from "./woodland-realm-scenario-data";
 import { MINES_MORIA_ADVENTURES } from "./mines-moria-scenario-data";
+import { ESCAPE_KHAZAD_ADVENTURES } from "./escape-khazad-scenario-data";
 import { LAND_SORROW_ADVENTURES } from "./land-sorrow-scenario-data";
 import { ASH_ADVENTURES } from "./ash-mountains-scenario-data";
 import { WAINRIDERS_ADVENTURES } from "./wainriders-scenario-data";
@@ -1241,6 +1242,7 @@ export const SCENARIOS = [
   ...WIZARDS_QUEST_ADVENTURES,
   ...WOODLAND_REALM_ADVENTURES,
   ...MINES_MORIA_ADVENTURES,
+  ...ESCAPE_KHAZAD_ADVENTURES,
 ] as const;
 /** The Mirkwood Paths campaign covers the three Core Set quests in order. */
 export const CAMPAIGN_CHAPTERS: readonly ScenarioId[] = [

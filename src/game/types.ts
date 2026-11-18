@@ -309,6 +309,7 @@ export type ScenarioId =
   | "the-wizards-quest"
   | "the-woodland-realm"
   | "the-mines-of-moria"
+  | "escape-from-khazad-dum"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -507,6 +508,7 @@ export interface GameState {
   wizardsQuest?: import("./wizards-quest-types").WizardsQuestState;
   woodlandRealm?: import("./woodland-realm-types").WoodlandRealmState;
   minesMoria?: import("./mines-moria-types").MinesMoriaState;
+  escapeKhazad?: import("./escape-khazad-types").EscapeKhazadState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -971,6 +973,8 @@ export interface GameState {
     mmReturnOnKill?: boolean;
     /** Savage Werewolf: an additional attack after this one, with no shadow card. */
     mmSavageAttack?: boolean;
+    /** Western Hall's shadow: a destroyed character reveals the top encounter card. */
+    ekRevealOnKill?: boolean;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

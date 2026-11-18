@@ -18,13 +18,14 @@ import {
 } from "./fellowship-event-lib";
 
 /**
- * The Fellowship event scenarios (The Wizard's Quest, The Woodland Realm and
- * The Mines of Moria) share their structure: the players build the quest deck
- * from stage 1 and one of three stage 2 and one of three stage 3 cards, and
- * the encounter deck from 7 of the 14 encounter sets (the quick build); 1A
- * stages a set-aside card and (unless the scenario sets it up otherwise) one
- * different 0 cost card per player; each A side of stages 2 and 3 reveals a
- * card from the top 5 within a cost; defeating the stage 3 card wins. The
+ * The Fellowship event scenarios (The Wizard's Quest, The Woodland Realm, The
+ * Mines of Moria and Escape from Khazad-dûm) share their structure: the
+ * players build the quest deck from stage 1 and one of three stage 2 and one
+ * of three stage 3 cards, and the encounter deck from 7 of the 14 encounter
+ * sets (the quick build); 1A stages a set-aside card and (unless the scenario
+ * sets it up otherwise) one different 0 cost card per player; each A side of
+ * stages 2 and 3 reveals a card from the top 5 within a cost (unless the
+ * scenario's A side does otherwise); defeating the stage 3 card wins. The
  * first player resolves each 'opposing team' effect, as the cooperative rules
  * ask.
  */
@@ -36,6 +37,11 @@ export interface FellowshipEventConfig extends FellowshipEventCards {
   stageDefeated?: (s: GameState, code: string) => void;
   /** The B side's 'when revealed' effects, after the A side's search. */
   stageRevealed?: (s: GameState, code: string) => Effect[];
+  /**
+   * The A side's 'when revealed' effects, when a stage's A side does
+   * something else than the search of the top 5 encounter cards.
+   */
+  stageFront?: (s: GameState, code: string) => Effect[] | undefined;
   /**
    * 1A's setup after the set-aside card is staged; by default the opposing
    * team adds one different 0 cost enemy or location per player.
@@ -313,41 +319,53 @@ export function fellowshipEventEffect(
       log(s, `${card(next).name} (stage ${s.stage}) begins.`, "chapter");
       prepend(
         s,
-        fx(k("TopSearch"), { player: first }),
+        ...(cfg.stageFront?.(s, next) ?? [
+          fx(k("TopSearch"), { player: first }),
+        ]),
         fx(k("StageBack"), { player: first }),
       );
       return true;
     }
-    // 2A and 3A: a card from the top 5, revealed; its 'when revealed' cannot be canceled.
+    // 2A and 3A: a card from the top 5, revealed; its 'when revealed' cannot be
+    // canceled. Another card's search (Dark Pit's travel) names its card and cost.
     case "TopSearch": {
       const max =
-        stageNumber(s) === 2
+        e.value ??
+        (stageNumber(s) === 2
           ? players(s) >= 2
             ? 2
             : 1
           : players(s) >= 2
             ? 3
-            : 2;
+            : 2);
+      const source = e.code ?? q.currentQuest;
+      const title = card(source).name;
       const top = s.encounterDeck.slice(0, 5);
       const eligible = [...new Set(top.filter((c) => cfg.cost(c) <= max))];
       if (!eligible.length) {
         s.encounterDeck = shuffle(s, s.encounterDeck);
         log(
           s,
-          `${card(q.currentQuest).name}: no card with cost ${max} or less among the top 5 encounter cards; the deck is shuffled.`,
+          `${title}: no card with cost ${max} or less among the top 5 encounter cards; the deck is shuffled.`,
         );
         return true;
       }
       choose(
         s,
-        `${card(q.currentQuest).name} · The opposing team chooses a card with cost ${max} or less from the top 5 encounter cards to reveal${seatLabel(s, first)}`,
+        `${title} · The opposing team chooses a card with cost ${max} or less from the top 5 encounter cards to reveal${seatLabel(s, first)}`,
         eligible.map((c) => ({
           id: c,
           code: c,
           label: `Reveal ${card(c).name} (cost ${cfg.cost(c)})`,
-          effects: [fx(k("TopTake"), { code: c, player: first })],
+          effects: [
+            fx(k("TopTake"), {
+              code: c,
+              ...(e.code ? { text: title } : {}),
+              player: first,
+            }),
+          ],
         })),
-        card(q.currentQuest).text,
+        card(source).text,
       );
       return true;
     }
@@ -359,7 +377,7 @@ export function fellowshipEventEffect(
       q.noCancel = c;
       log(
         s,
-        `${card(q.currentQuest).name}: ${card(c).name} is set aside, the encounter deck is shuffled and it is revealed.`,
+        `${e.text ?? card(q.currentQuest).name}: ${card(c).name} is set aside, the encounter deck is shuffled and it is revealed.`,
         "danger",
       );
       prepend(

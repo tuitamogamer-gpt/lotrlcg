@@ -1,0 +1,402 @@
+[
+  {
+    "name": "Out of the Depths",
+    "code": "octgn:96e30879-9a56-428e-853d-93503f01ddb3",
+    "type": "quest",
+    "set": null,
+    "cost": null,
+    "quantity": 1
+  },
+  {
+    "name": "Old One Lair",
+    "code": "octgn:bde125e7-6c33-4659-8713-e3374b93f414",
+    "type": "quest",
+    "set": null,
+    "cost": null,
+    "quantity": 1
+  },
+  {
+    "name": "A Wrong Turn",
+    "code": "octgn:a9cdd0bf-1d77-415c-8820-d4974ec02ee0",
+    "type": "quest",
+    "set": null,
+    "cost": null,
+    "quantity": 1
+  },
+  {
+    "name": "A Way Up",
+    "code": "octgn:e30cfc82-bbb0-42f9-b25c-bc2152445368",
+    "type": "quest",
+    "set": null,
+    "cost": null,
+    "quantity": 1
+  },
+  {
+    "name": "The Bridge of Khazad-dum",
+    "code": "octgn:2d34a913-e212-42c4-859b-2db9b2056276",
+    "type": "quest",
+    "set": null,
+    "cost": null,
+    "quantity": 1
+  },
+  {
+    "name": "Last Lord of Moria",
+    "code": "octgn:ee118b36-0113-4c74-82b3-14f235914212",
+    "type": "quest",
+    "set": null,
+    "cost": null,
+    "quantity": 1
+  },
+  {
+    "name": "The Rear Guard",
+    "code": "octgn:187017b6-8632-49ee-9275-8126d313424e",
+    "type": "quest",
+    "set": null,
+    "cost": null,
+    "quantity": 1
+  },
+  {
+    "name": "Dark Pit",
+    "code": "octgn:c90db37c-2fdf-4f69-b4a8-869064e4650b",
+    "type": "location",
+    "set": null,
+    "cost": null,
+    "quantity": 1
+  },
+  {
+    "name": "Black Bats",
+    "code": "octgn:55436edb-0e1f-4b25-a59e-1b131b408db4",
+    "type": "enemy",
+    "set": 15,
+    "cost": 0,
+    "quantity": 3
+  },
+  {
+    "name": "Nest of Vermin",
+    "code": "octgn:d83e852c-60cc-41b3-8904-25815bc1d2d5",
+    "type": "location",
+    "set": 15,
+    "cost": 2,
+    "quantity": 1
+  },
+  {
+    "name": "Swarm of Bats",
+    "code": "octgn:72025370-07e1-4797-acb2-1d2371a7f3b0",
+    "type": "treachery",
+    "set": 15,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "Cave Spider",
+    "code": "octgn:6458d002-326f-45a6-af65-38025d301f07",
+    "type": "enemy",
+    "set": 16,
+    "cost": 1,
+    "quantity": 2
+  },
+  {
+    "name": "The Mountain's Roots",
+    "code": "octgn:a7dd3c14-52fa-439c-8944-42728593c20c",
+    "type": "location",
+    "set": 16,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Watchful Eyes",
+    "code": "octgn:c7325b46-089b-4910-99cd-159eebc01a0c",
+    "type": "treachery",
+    "set": 16,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "Cave-troll",
+    "code": "octgn:0ade7e4d-f04b-4e65-870e-f5d85e080130",
+    "type": "enemy",
+    "set": 17,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "Twisting Passage",
+    "code": "octgn:d679e2f4-1762-4177-a0f8-bb074a58a0cc",
+    "type": "location",
+    "set": 17,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Undisturbed Bones",
+    "code": "octgn:ee76f0c0-da20-402c-a1e6-8abd1504b56a",
+    "type": "treachery",
+    "set": 17,
+    "cost": 1,
+    "quantity": 2
+  },
+  {
+    "name": "Old Stone-troll",
+    "code": "octgn:0dc0486c-a0b9-4499-8b9f-03168db9bdb0",
+    "type": "enemy",
+    "set": 18,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "Frightful Den",
+    "code": "octgn:c3a29d33-4096-4cce-871e-6673d2e4684e",
+    "type": "location",
+    "set": 18,
+    "cost": 2,
+    "quantity": 1
+  },
+  {
+    "name": "Deep Deep Dark",
+    "code": "octgn:b28b1154-c486-4fbb-99c4-8db4e04983c6",
+    "type": "treachery",
+    "set": 18,
+    "cost": 0,
+    "quantity": 3
+  },
+  {
+    "name": "Rock Adder",
+    "code": "octgn:47744d79-27d4-4ea2-aee7-30597fb0b47f",
+    "type": "enemy",
+    "set": 19,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Bottomless Chasm",
+    "code": "octgn:fd00d162-0c0e-4ddb-b58d-653813396c52",
+    "type": "location",
+    "set": 19,
+    "cost": 1,
+    "quantity": 2
+  },
+  {
+    "name": "Lost and Alone",
+    "code": "octgn:01500c6a-9f16-4226-b194-345174a3d11b",
+    "type": "treachery",
+    "set": 19,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "Hobgoblin",
+    "code": "octgn:11381200-d546-4d40-a826-2c6c901e8d61",
+    "type": "enemy",
+    "set": 20,
+    "cost": 2,
+    "quantity": 1
+  },
+  {
+    "name": "Western Hall",
+    "code": "octgn:38632ac4-e8c7-4d1e-819a-d16b3522915a",
+    "type": "location",
+    "set": 20,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "New Devilry",
+    "code": "octgn:b3405b30-27e3-4ba3-9518-9dec0f2b2eda",
+    "type": "treachery",
+    "set": 20,
+    "cost": 0,
+    "quantity": 3
+  },
+  {
+    "name": "Unspeakable Thing",
+    "code": "octgn:9ce09230-e009-465f-9125-725f31c653b9",
+    "type": "enemy",
+    "set": 21,
+    "cost": 1,
+    "quantity": 2
+  },
+  {
+    "name": "Lightless Grotto",
+    "code": "octgn:977ebe93-58f5-44f9-81d8-66037501a86e",
+    "type": "location",
+    "set": 21,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Many Roads",
+    "code": "octgn:b899f859-3c09-4cb3-9adf-7fb57e46e7ad",
+    "type": "treachery",
+    "set": 21,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "Shadow Dweller",
+    "code": "octgn:8a2cbffd-43f8-4a61-9ccd-cb07293eac5f",
+    "type": "enemy",
+    "set": 22,
+    "cost": 2,
+    "quantity": 1
+  },
+  {
+    "name": "Branching Paths",
+    "code": "octgn:4174df7e-5bb2-4b0f-9e35-d025f132d4a1",
+    "type": "location",
+    "set": 22,
+    "cost": 0,
+    "quantity": 3
+  },
+  {
+    "name": "Fatigue",
+    "code": "octgn:d2d3aeae-58ae-497e-bc44-70863d49f25d",
+    "type": "treachery",
+    "set": 22,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "Elder Nameless Thing",
+    "code": "octgn:2dc57c6f-fab3-4689-9398-332a22c13fa9",
+    "type": "enemy",
+    "set": 23,
+    "cost": 3,
+    "quantity": 1
+  },
+  {
+    "name": "Silent Caverns",
+    "code": "octgn:0a42a6ff-e693-484c-860d-3bc7e2780680",
+    "type": "location",
+    "set": 23,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Dark Places",
+    "code": "octgn:cc572a1a-2700-493c-9b82-309c9c9ba61c",
+    "type": "treachery",
+    "set": 23,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Orc Horn Blower",
+    "code": "octgn:e4e35740-73ca-460d-bdbb-afcbc97e90d9",
+    "type": "enemy",
+    "set": 24,
+    "cost": 1,
+    "quantity": 2
+  },
+  {
+    "name": "Goblin Dungeon",
+    "code": "octgn:11d44754-de69-4ecf-997e-593ef87521a9",
+    "type": "location",
+    "set": 24,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "Deep Fissure",
+    "code": "octgn:a210439e-5670-476f-b933-c862b6e88602",
+    "type": "treachery",
+    "set": 24,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Black Uruks",
+    "code": "octgn:32deb3d1-afe3-4fbc-bd6c-30f139003cc7",
+    "type": "enemy",
+    "set": 25,
+    "cost": 1,
+    "quantity": 2
+  },
+  {
+    "name": "Dreadful Gap",
+    "code": "octgn:8aa74679-5918-46ca-99b1-18cdb150f17d",
+    "type": "location",
+    "set": 25,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Orcish Howls",
+    "code": "octgn:3a47aa88-5089-435d-b5ab-899dab400c98",
+    "type": "treachery",
+    "set": 25,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "Orc Raiders",
+    "code": "octgn:01dfa4f4-f3de-43b7-96d2-a6919b0c3491",
+    "type": "enemy",
+    "set": 26,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "The Great Bridge",
+    "code": "octgn:ff0bc03a-e47d-4917-bf27-a0b97bc292ca",
+    "type": "location",
+    "set": 26,
+    "cost": 3,
+    "quantity": 1
+  },
+  {
+    "name": "Vast and Intricate",
+    "code": "octgn:779079f4-d3a8-4832-9bd5-12e8ca828ba7",
+    "type": "treachery",
+    "set": 26,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Chieftain of the Pit",
+    "code": "octgn:36b82b22-4432-488a-8a88-d6486b7c75a3",
+    "type": "enemy",
+    "set": 27,
+    "cost": 3,
+    "quantity": 1
+  },
+  {
+    "name": "Forked Passage",
+    "code": "octgn:8be49f80-c3ca-44f0-92d1-15ff0ac6c25b",
+    "type": "location",
+    "set": 27,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Chance Encounter",
+    "code": "octgn:8ffa3a89-6e0c-43e3-9ff6-e5db6fff4032",
+    "type": "treachery",
+    "set": 27,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Nameless Thing",
+    "code": "octgn:9b83ddc0-9e95-4cbb-9428-8a209fc80bd2",
+    "type": "enemy",
+    "set": 28,
+    "cost": 1,
+    "quantity": 2
+  },
+  {
+    "name": "Mithril Lode",
+    "code": "octgn:935b596a-4e20-434c-89f5-8b3c20fcd241",
+    "type": "location",
+    "set": 28,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "A Foe Beyond",
+    "code": "octgn:b4cd6eea-17ec-4051-89b3-c4b735d8452f",
+    "type": "treachery",
+    "set": 28,
+    "cost": 1,
+    "quantity": 1
+  }
+]
