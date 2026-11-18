@@ -35,6 +35,7 @@ import {
   seatView,
 } from "./table";
 import { canPlay, playHandCard, playTargets, score } from "./actions";
+import { removePlayedEvent } from "./event-resolution";
 import {
   encodeDamageContext,
   readDamageContext,
@@ -100,7 +101,19 @@ export const ANGMAR = {
   brand: "10185",
   heirloom: "10186",
   orders: "10187",
+  /** The Battle of Carn Dûm's four boons. */
+  champion: "10189",
+  lore: "10190",
+  raiment: "10191",
+  skirmishers: "10192",
 } as const;
+/** Elrond's Champion, Lore of Ancient Arnor, Raiment of the Second Age and Rivendell Skirmishers. */
+export const CARN_BOONS: readonly string[] = [
+  "10189",
+  "10190",
+  "10191",
+  "10192",
+];
 /** Daechanar's Brand, Heirloom of Iârchon and Orders from Angmar. */
 export const CLUE_BOONS: readonly string[] = ["10185", "10186", "10187"];
 /** The Treachery of Rhudaur's Clue objectives and the boons with the same names (read when used, not at load). */
@@ -156,6 +169,8 @@ export const ANGMAR_CAMPAIGN_SUPPORTED: readonly ScenarioId[] = [
   "escape-from-mount-gram",
   "across-the-ettenmoors",
   "the-treachery-of-rhudaur",
+  "the-battle-of-carn-dum",
+  "the-dread-realm",
 ];
 /** The chapters whose campaign card lets each player change heroes without the +1 threat penalty. */
 export const ANGMAR_FREE_CHANGES: readonly ScenarioId[] = [
@@ -167,6 +182,7 @@ export const ANGMAR_DECK_BOONS: readonly string[] = [
   "10157",
   ...LOOT_BOONS,
   ...CLUE_BOONS,
+  ...CARN_BOONS,
 ];
 /** Fend off Despair: each player's starting threat is lowered by the Campaign Log's reduction. */
 export const angmarThreatReduction = (c?: CampaignState | null) =>
@@ -379,6 +395,23 @@ export function angmarCampaignSetup(s: GameState) {
   // the scenarios' objective ally is attached as he enters play.)
   for (const p of seatIndices(s))
     for (const h of seatView(s, p).heroes) angmarAmarthiulEntered(s, h);
+  // The Battle of Carn Dûm: "Then, each player in turn order may select one
+  // of the following boons and add it to their opening hand: Elrond's
+  // Champion, Lore of Ancient Arnor, Raiment of the Second Age, or Rivendell
+  // Skirmishers. Add the chosen cards to the Campaign Pool."
+  if (s.scenarioId === "the-battle-of-carn-dum")
+    for (const player of playerOrder(s))
+      enqueue(s, fx("angmarCarnChoice", { player }));
+  // The Dread Realm: "Each player may search their deck for a boon card and
+  // add it to their opening hand. Each hero begins the game with damage on
+  // them equal to the amount noted for them in the Campaign Log."
+  if (s.scenarioId === "the-dread-realm") {
+    for (const p of seatIndices(s))
+      for (const h of seatView(s, p).heroes)
+        h.damage = c!.heroDamage?.[h.code] ?? 0;
+    for (const player of playerOrder(s))
+      enqueue(s, fx("angmarDreadSearch", { player }));
+  }
   if (s.scenarioId === "intruders-in-chetwood") {
     // "Add the Protect the Innocent side quest to the staging area. Starting
     // with the first player, each player may place 4 damage on Protect the
@@ -598,8 +631,27 @@ export function angmarCampaignAbility(
 }
 /** Determination: "Action: Attach Determination to a unique character. Then, ready each character with a copy of Determination attached, as well as each character who is 'determined' in the Campaign Log." */
 export function angmarCampaignPlayerEvent(s: GameState, code: string) {
-  if (code !== ANGMAR.determination || !isAngmarCampaign(s.campaign))
-    return false;
+  if (!isAngmarCampaign(s.campaign)) return false;
+  if (code === ANGMAR.lore) {
+    // Lore of Ancient Arnor: "Action: Each player returns 1 card from their
+    // discard pile to their hand (2 cards instead if you are the only player
+    // in the game) and shuffles the rest of their discard pile back into
+    // their deck. Then, remove this card from the game."
+    removePlayedEvent(s, code);
+    const players = playerOrder(s);
+    prepend(
+      s,
+      ...players.map((player) =>
+        fx("angmarLoreReturn", {
+          player,
+          count: globalPlayerOrder(s).length === 1 ? 2 : 1,
+        }),
+      ),
+      fx("angmarLoreShuffle", { player: activeSeat(s) }),
+    );
+    return true;
+  }
+  if (code !== ANGMAR.determination) return false;
   prepend(s, fx("angmarDetermination", { player: activeSeat(s) }));
   return true;
 }
@@ -1063,6 +1115,36 @@ export function resolveAngmarCampaign(s: GameState) {
       "good",
     );
   }
+  if (s.scenarioId === "the-battle-of-carn-dum") {
+    // "Note the amount of damage on each hero at the end of the game."
+    c.heroDamage = Object.fromEntries(
+      seatIndices(s).flatMap((p) =>
+        seatView(s, p).heroes.map((h) => [h.code, h.damage] as const),
+      ),
+    );
+    for (const { code, seat } of q?.carnBoons ?? []) {
+      if (!c.boons.includes(code)) c.boons.push(code);
+      c.deckBoons = { ...(c.deckBoons ?? {}), [code]: seat };
+    }
+    log(
+      s,
+      `The Battle of Carn Dûm · Resolution: the damage on each hero is noted (${Object.entries(
+        c.heroDamage,
+      )
+        .map(([code, n]) => `${card(code).name} ${n}`)
+        .join(", ")}).`,
+      "good",
+    );
+  }
+  if (s.scenarioId === "the-dread-realm") {
+    // "The players win the campaign!"
+    c.outcome = "won";
+    log(
+      s,
+      "The Dread Realm · Resolution: the players win the campaign!",
+      "good",
+    );
+  }
   if (s.scenarioId === "the-treachery-of-rhudaur" && rhudaurClues(s).length)
     // "For each Clue a player controls, that player may add the boon with
     // the same name to the Campaign Pool and their deck."
@@ -1331,6 +1413,18 @@ export function angmarCampaignStatus(s: GameState): string[] {
   if (s.campaign!.determined?.length)
     out.push(
       `Determined in the Campaign Log: ${s.campaign!.determined.map((code) => card(code).name).join(", ")} (each Determination readies them).`,
+    );
+  if (s.scenarioId === "the-battle-of-carn-dum")
+    out.push(
+      "The damage on each hero at the end of this chapter is noted in the Campaign Log: each hero begins The Dread Realm with it.",
+    );
+  if (s.scenarioId === "the-dread-realm" && s.campaign!.heroDamage)
+    out.push(
+      `Each hero began with the damage noted after The Battle of Carn Dûm (${Object.entries(
+        s.campaign!.heroDamage,
+      )
+        .map(([code, n]) => `${card(code).name} ${n}`)
+        .join(", ")}).`,
     );
   if (q?.skills?.length)
     out.push(
@@ -1648,6 +1742,154 @@ export function angmarCampaignEffect(s: GameState, e: Effect): boolean {
       );
       return true;
     }
+    case "angmarCarnChoice": {
+      const p = e.player ?? first(s);
+      const taken = (s.angmarCards?.carnBoons ?? []).map((x) => x.code);
+      const free = CARN_BOONS.filter(
+        (code) => !taken.includes(code) && !s.campaign!.boons.includes(code),
+      );
+      if (!free.length) return true;
+      forOwner(s, p, () =>
+        choose(
+          s,
+          `The Battle of Carn Dûm · ${several(s) ? `${seatName(s, p)} may` : "You may"} add a boon to ${several(s) ? "their" : "your"} opening hand`,
+          [
+            ...free.map((code) => ({
+              id: code,
+              code,
+              label: card(code).name,
+              effects: [fx("angmarCarnTake", { code, player: p })],
+            })),
+            { id: "skip", label: "Do not take a boon", effects: [] },
+          ],
+          card(ANGMAR.carnCard).text,
+        ),
+      );
+      return true;
+    }
+    case "angmarCarnTake": {
+      const p = e.player ?? first(s);
+      if (
+        !CARN_BOONS.includes(e.code!) ||
+        (s.angmarCards?.carnBoons ?? []).some((x) => x.code === e.code)
+      )
+        return true;
+      forOwner(s, p, () => {
+        const u = make(s, e.code!);
+        u.owner = p;
+        s.hand.push(u);
+        (state(s).setupHand ??= []).push(u.id);
+      });
+      (state(s).carnBoons ??= []).push({ code: e.code!, seat: p });
+      log(
+        s,
+        `The Battle of Carn Dûm: ${card(e.code!).name} is added to ${several(s) ? `${seatName(s, p)}'s` : "your"} opening hand.`,
+        "good",
+      );
+      return true;
+    }
+    case "angmarDreadSearch": {
+      const p = e.player ?? first(s);
+      const boons = [
+        ...new Set(
+          seatView(s, p).deck.filter(
+            (code) => card(code).sphere_code === "boon",
+          ),
+        ),
+      ];
+      if (!boons.length) return true;
+      forOwner(s, p, () =>
+        choose(
+          s,
+          `The Dread Realm · ${several(s) ? `${seatName(s, p)} may` : "You may"} search ${several(s) ? "their" : "your"} deck for a boon card`,
+          [
+            ...boons.map((code) => ({
+              id: code,
+              code,
+              label: card(code).name,
+              effects: [fx("angmarDreadTake", { code, player: p })],
+            })),
+            { id: "skip", label: "Do not search", effects: [] },
+          ],
+          card(ANGMAR.dreadCard).text,
+        ),
+      );
+      return true;
+    }
+    case "angmarDreadTake": {
+      const p = e.player ?? first(s);
+      forOwner(s, p, () => {
+        const i = s.deck.indexOf(e.code!);
+        if (i < 0) return;
+        s.deck.splice(i, 1);
+        const u = make(s, e.code!);
+        u.owner = p;
+        s.hand.push(u);
+        (state(s).setupHand ??= []).push(u.id);
+        shuffle(s, s.deck);
+      });
+      log(
+        s,
+        `The Dread Realm: ${card(e.code!).name} is added to ${several(s) ? `${seatName(s, p)}'s` : "your"} opening hand.`,
+        "good",
+      );
+      return true;
+    }
+    case "angmarLoreReturn": {
+      const p = e.player ?? first(s);
+      const discard = seatView(s, p).discard;
+      if (!discard.length || !(e.count ?? 0)) return true;
+      forOwner(s, p, () =>
+        choose(
+          s,
+          `Lore of Ancient Arnor · ${several(s) ? `${seatName(s, p)} returns` : "Return"} a card from ${several(s) ? "their" : "your"} discard pile to ${several(s) ? "their" : "your"} hand`,
+          [...new Set(discard)].map((code) => ({
+            id: code,
+            code,
+            label: card(code).name,
+            effects: [
+              fx("angmarLoreTake", { code, player: p, count: e.count }),
+            ],
+          })),
+          card(ANGMAR.lore).text,
+        ),
+      );
+      return true;
+    }
+    case "angmarLoreTake": {
+      const p = e.player ?? first(s);
+      forOwner(s, p, () => {
+        const i = s.discard.lastIndexOf(e.code!);
+        if (i < 0) return;
+        s.discard.splice(i, 1);
+        const u = make(s, e.code!);
+        u.owner = p;
+        s.hand.push(u);
+      });
+      log(
+        s,
+        `Lore of Ancient Arnor: ${card(e.code!).name} returns to ${several(s) ? `${seatName(s, p)}'s` : "your"} hand.`,
+        "good",
+      );
+      if ((e.count ?? 1) > 1)
+        prepend(
+          s,
+          fx("angmarLoreReturn", { player: p, count: (e.count ?? 1) - 1 }),
+        );
+      return true;
+    }
+    case "angmarLoreShuffle":
+      for (const p of seatIndices(s))
+        forOwner(s, p, () => {
+          if (!s.discard.length) return;
+          s.deck.push(...s.discard.splice(0));
+          shuffle(s, s.deck);
+        });
+      log(
+        s,
+        "Lore of Ancient Arnor: each player shuffles the rest of their discard pile into their deck.",
+      );
+      return true;
     case "angmarRevealLosing":
       revealed(s, ANGMAR.losing, undefined, "encounter");
       return true;
@@ -1859,6 +2101,7 @@ export const ANGMAR_BOONS: readonly string[] = [
   ANGMAR.determination,
   ...LOOT_BOONS,
   ...CLUE_BOONS,
+  ...CARN_BOONS,
 ];
 export const ANGMAR_BURDENS: readonly string[] = [
   ANGMAR.innocent,
@@ -1933,6 +2176,16 @@ export function validateAngmarCampaign(s: GameState): boolean {
             +seat < (s.table?.seats.length ?? 1) &&
             codes(list),
         ))) &&
+    (c.heroDamage === undefined ||
+      (!!c.heroDamage &&
+        typeof c.heroDamage === "object" &&
+        !Array.isArray(c.heroDamage) &&
+        Object.entries(c.heroDamage).every(
+          ([code, n]) => hero(code) && integer(n),
+        ))) &&
+    (c.outcome === undefined ||
+      (c.outcome === "won" &&
+        c.completed.at(-1)?.scenarioId === "the-dread-realm")) &&
     (c.determined === undefined ||
       (codes(c.determined) &&
         new Set(c.determined).size === c.determined.length)) &&
@@ -1992,6 +2245,17 @@ export function validateAngmarCampaign(s: GameState): boolean {
         (q.thaurdir === undefined || THAURDIR_BURDENS.includes(q.thaurdir)) &&
         (q.despair === undefined || (integer(q.despair) && q.despair > 0)) &&
         (q.setupHand === undefined || codes(q.setupHand)) &&
+        (q.carnBoons === undefined ||
+          (Array.isArray(q.carnBoons) &&
+            q.carnBoons.every(
+              (x) =>
+                !!x &&
+                CARN_BOONS.includes(x.code) &&
+                integer(x.seat) &&
+                x.seat < (s.table?.seats.length ?? 1),
+            ) &&
+            new Set(q.carnBoons.map((x) => x.code)).size ===
+              q.carnBoons.length)) &&
         (q.losing === undefined ||
           (!!q.losing &&
             integer(q.losing.aside) &&

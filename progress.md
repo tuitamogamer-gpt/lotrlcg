@@ -1289,3 +1289,14 @@ Validation on Node 22: the engine suite passes all 6,784 tests, including 21 for
 Coverage is now 861 player definitions (112 heroes), 2,140 encounters and 123 scenarios. This resolves 3,391 of 4,183 identities and 270 of 355 recipes; 792 identities remain pending.
 
 Validation on Node 22: the engine suite passes all 6,786 tests, including 23 for the Angmar Awakened campaign; the Angmar browser suite passes 63 checkpoints at 1280, 390 and 320 pixels, through The Treachery of Rhudaur's resolution dialog, and checks the 40 pinned faces; the production build passes.
+
+2026-11-18 The Angmar Awakened campaign, The Battle of Carn Dûm and The Dread Realm: continued the user's “Nastavi dok ne završis sve” after 25ed8f0. The campaign's last two chapters are supported, so all nine are playable and The Dread Realm's resolution wins the campaign. See docs/ANGMAR-CAMPAIGN.md.
+
+- The Battle of Carn Dûm's and The Dread Realm's campaign cards and the four Carn Dûm boons are registered with the scans' texts (48 faces pinned in all, every card of the expansion).
+- The Battle of Carn Dûm: heroes change without the +1 penalty and the Amarthiúl hero may be chosen; each player in turn order may add Elrond's Champion, Lore of Ancient Arnor, Raiment of the Second Age or Rivendell Skirmishers to their opening hand (a boon already taken is not offered again; it stays through a mulligan). Thaurdir's burdens attach to Thaurdir as the scenario puts him in the staging area. The resolution pools the chosen boons into their players' decks and notes the damage on each hero; the journal lists it.
+- Elrond's Champion readies after an enemy engages its player; Raiment of the Second Age gives +2 attack and +2 hit points (Restricted) and draws after its character attacks and destroys an enemy; Rivendell Skirmishers discards a non-unique attacker's shadow cards after it exhausts to defend, before they are revealed; Lore of Ancient Arnor returns 1 discarded card to each player's hand (2 alone), shuffles the rest back and is removed from the game.
+- The Dread Realm: each hero begins with its noted damage and each player may search their deck for a boon card for the opening hand (kept through a mulligan). Its resolution records the won campaign; the end-of-game dialog and the journal say so and no chapter follows.
+
+Coverage is now 861 player definitions (112 heroes), 2,146 encounters and 123 scenarios. This resolves 3,397 of 4,183 identities and 270 of 355 recipes; 786 identities remain pending.
+
+Validation on Node 22: the engine suite passes all 6,789 tests, including 26 for the Angmar Awakened campaign; the Angmar browser suite passes 75 checkpoints at 1280, 390 and 320 pixels, through The Dread Realm's won campaign, and checks the 48 pinned faces; the production build passes.

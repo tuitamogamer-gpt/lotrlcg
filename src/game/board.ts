@@ -1,4 +1,7 @@
-import { angmarLootCommitted } from "./angmar-campaign-loot";
+import {
+  angmarLootCommitted,
+  angmarLootEnemyEngaged,
+} from "./angmar-campaign-loot";
 import {
   landSorrowPlayerAllyEntered,
   landSorrowPlayerAttachmentLeaves,
@@ -3095,6 +3098,7 @@ export function engage(s: GameState, u: Unit, optional = false) {
   Voyage.voyageEngaged(s, u, fromStaging);
   Cobas.cobasEngaged(s, u);
   EredPlayers.eredMithrinPlayerEnemyEngaged(s, u, activeSeat(s));
+  angmarLootEnemyEngaged(s, u, activeSeat(s));
   BatchPlayers.batch4PlayerEnemyEngaged(s, u, activeSeat(s));
   BlackRidersPlayers.blackRidersPlayerEnemyEngaged(s, u);
   LandShadowPlayers.landShadowPlayerEnemyEngaged(s, u);

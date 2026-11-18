@@ -184,6 +184,8 @@ const rules: Record<string, AttachmentRule> = {
   "10185": { type: "hero", attack: 1 },
   "10186": { type: "hero", will: 1 },
   "10187": { type: "hero", defense: 1 },
+  // The Battle of Carn Dûm's Raiment of the Second Age (its draw is in angmar-campaign-loot.ts).
+  "10191": { attack: 2, health: 2, restricted: 1 },
   // The Battle of the Pelennor Fields' boons (Esquire of Rohan, Esquire of Gondor).
   "145014": { type: "hero", grantsTraits: ["Rohan"] },
   "145015": { type: "hero", grantsTraits: ["Gondor"] },

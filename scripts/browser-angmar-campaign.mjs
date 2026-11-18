@@ -511,8 +511,67 @@ try {
       .getByText("Daechanar's Brand", { exact: true })
       .first()
       .waitFor();
-    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await page.getByRole("button", { name: /^Continue campaign/ }).waitFor();
     await checkpoint("rhudaur-complete", width);
+    // The Battle of Carn Dûm: the first player adds Raiment of the Second Age
+    // to their opening hand, and Thaurdir takes the pool's burdens.
+    s = await continueCampaign(undefined, width, undefined, (t) =>
+      t.choice.title.startsWith("The Battle of Carn Dûm")
+        ? ANGMAR.raiment
+        : undefined,
+    );
+    assert.equal(s.scenarioId, "the-battle-of-carn-dum");
+    assert.ok(s.hand.some((u) => u.code === ANGMAR.raiment));
+    assert.deepEqual(s.angmarCards.carnBoons, [
+      { code: ANGMAR.raiment, seat: 0 },
+    ]);
+    const captain = s.staging.find((u) => card(u.code).name === "Thaurdir");
+    assert.deepEqual(
+      captain.attachments.map((a) => a.code).sort(),
+      s.campaign.burdens
+        .filter((code) =>
+          [ANGMAR.legacy, ANGMAR.majesty, ANGMAR.spite].includes(code),
+        )
+        .sort(),
+    );
+    await campaignCard(
+      /^The damage on each hero at the end of this chapter is noted/,
+      "carn-setup",
+      width,
+    );
+    // The resolution notes each hero's damage and pools the chosen boon.
+    s = await victory(s, (t) => {
+      t.heroes[0].damage = 1;
+    });
+    assert.equal(s.campaign.heroDamage[s.heroes[0].code], 1);
+    assert.ok(s.campaign.boons.includes(ANGMAR.raiment));
+    await page
+      .getByText(/^Notes · damage after The Battle of Carn Dûm: /)
+      .first()
+      .waitFor();
+    await page.getByRole("button", { name: /^Continue campaign/ }).waitFor();
+    await checkpoint("carn-complete", width);
+    // The Dread Realm: each hero begins with its noted damage, and the first
+    // player searches their deck for Raiment of the Second Age.
+    s = await continueCampaign(undefined, width, undefined, (t) =>
+      t.choice.title.startsWith("The Dread Realm") ? ANGMAR.raiment : undefined,
+    );
+    assert.equal(s.scenarioId, "the-dread-realm");
+    assert.equal(s.heroes[0].damage, 1);
+    assert.ok(s.hand.some((u) => u.code === ANGMAR.raiment));
+    await campaignCard(
+      /^Each hero began with the damage noted after The Battle of Carn Dûm/,
+      "dread-setup",
+      width,
+    );
+    // The resolution: the players win the campaign.
+    s = await victory(s);
+    assert.equal(s.campaign.outcome, "won");
+    await page
+      .getByText(/the players win the Angmar Awakened campaign!/)
+      .first()
+      .waitFor();
+    await checkpoint("dread-complete", width);
     await view.c.close();
   }
   const p = await browser.newPage();

@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2140,
+    "encounterCards": 2146,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3391,
-    "pending": 792
+    "scripted": 3397,
+    "pending": 786
   },
   "scenarioRecipes": {
     "total": 355,
@@ -659,6 +659,10 @@
     "10185",
     "10186",
     "10187",
+    "10189",
+    "10190",
+    "10191",
+    "10192",
     "11001",
     "11002",
     "11003",
@@ -2301,6 +2305,7 @@
     "octgn:63f46289-b5ef-44d1-b6cb-ce382031a768:B",
     "octgn:6458d002-326f-45a6-af65-38025d301f07",
     "octgn:64813258-1533-420c-9fce-4d4c1f13c99d",
+    "octgn:64a91e39-51e9-42d4-9445-d8bbaca95314",
     "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
     "octgn:650522ec-c2e3-4e42-be7a-e87cceccc545",
     "octgn:6566587d-e2ac-46e6-adbd-fe667b077136",
@@ -3314,6 +3319,7 @@
     "octgn:e6d7da0a-eb6d-429b-b9f9-e32027866d1b",
     "octgn:e6e7d9de-4b7d-422c-b367-8f2c65982468",
     "octgn:e6fea7ff-7fdf-4938-a57b-6be82af1c152",
+    "octgn:e7020edb-aebd-44c2-8c5a-37fc744b7b9f",
     "octgn:e70dc756-86c4-460a-97cd-1d2c65b1e874",
     "octgn:e70fa96c-f4c7-4d6c-ab14-41831a6eb8c8",
     "octgn:e7100f6a-bdbd-4605-86e2-67d4479d227d",
@@ -3613,9 +3619,9 @@
     {
       "product": "angmar-awakened-campaign-expansion",
       "total": 38,
-      "scripted": 32,
+      "scripted": 38,
       "player": 21,
-      "playerScripted": 17
+      "playerScripted": 21
     },
     {
       "product": "assault-on-osgiliath",
@@ -8821,7 +8827,7 @@
       "name": "Elrond's Champion",
       "type": "ally",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -8829,7 +8835,7 @@
       "name": "Lore of Ancient Arnor",
       "type": "event",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -8837,7 +8843,7 @@
       "name": "Raiment of the Second Age",
       "type": "attachment",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -8845,7 +8851,7 @@
       "name": "Rivendell Skirmishers",
       "type": "ally",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -24389,7 +24395,7 @@
       "name": "The Dread Realm",
       "type": "campaign",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -35405,7 +35411,7 @@
       "name": "The Battle of Carn Dum",
       "type": "campaign",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {

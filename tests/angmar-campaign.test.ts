@@ -3,7 +3,12 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { card, STARTERS } from "../src/game/cards";
-import { damage, discardAttachment, win } from "../src/game/board";
+import {
+  damage,
+  discardAttachment,
+  engage as engageEnemy,
+  win,
+} from "../src/game/board";
 import { canCommit } from "../src/game/actions";
 import { rhosgobelHealingAllowed } from "../src/game/rhosgobel";
 import { syncAttachmentText } from "../src/game/attachment-text";
@@ -25,11 +30,13 @@ import {
   sideQuestGoal,
 } from "../src/game/side-quests";
 import { CHETWOOD } from "../src/game/chetwood-support";
+import { CARN } from "../src/game/carn-dum-support";
 import {
   ANGMAR,
   ANGMAR_CAMPAIGN_CARDS,
   ANGMAR_CAMPAIGN_ORDER,
   ANGMAR_CAMPAIGN_SUPPORTED,
+  CARN_BOONS,
   angmarAmarthiulEntered,
   angmarCampaignAfterReveal,
   angmarCampaignEncounter,
@@ -56,6 +63,7 @@ import {
   angmarBroochWill,
   angmarLootAttackKilled,
   angmarLootCommitted,
+  angmarLootDefendersDeclared,
   angmarLootEnemyAttackResolved,
   angmarSilverthornBonus,
 } from "../src/game/angmar-campaign-loot";
@@ -147,6 +155,8 @@ test("The Angmar Awakened campaign: Intruders in Chetwood's campaign card, Iâri
     "escape-from-mount-gram",
     "across-the-ettenmoors",
     "the-treachery-of-rhudaur",
+    "the-battle-of-carn-dum",
+    "the-dread-realm",
   ]);
   const campaignCard = card(ANGMAR_CAMPAIGN_CARDS["intruders-in-chetwood"]!);
   assert.equal(campaignCard.subtitle, "Angmar Awakened Part 1");
@@ -304,7 +314,7 @@ test("The Angmar Awakened campaign: Intruders in Chetwood's campaign card, Iâri
       ["Orders from Angmar", "0"],
     ],
   );
-  assert.equal(art.length, 40);
+  assert.equal(art.length, 48);
   for (const a of art) {
     const bytes = readFileSync(`public${a.localPath}`);
     assert.equal(bytes.length, a.bytes);
@@ -1727,9 +1737,22 @@ test("The Treachery of Rhudaur: the pool's burdens and cards return (Thaurdir's 
   assert.ok(valid(t));
   const none = applyAngmarResolution(s, { [questions[0].id]: "skip" });
   assert.ok(!none.campaign!.boons.includes(ANGMAR.brand));
-  assert.throws(
-    () => continueCampaign(t, HEROES, d.id, true, 9),
-    /not available in campaign mode yet/,
+  const next = continueCampaign(t, HEROES, d.id, true, 9);
+  assert.equal(next.scenarioId, "the-battle-of-carn-dum");
+  // The Battle of Carn Dûm's Setup: heroes change without the +1 penalty,
+  // and Amarthiúl may be included among them.
+  const swapped = continueCampaign(
+    t,
+    ["10115", "01007", HEROES[2]],
+    d.id,
+    true,
+    9,
+  );
+  assert.equal(swapped.campaign!.threatPenalty, 0);
+  assert.equal(card(swapped.heroes[0].code).name, "Amarthiúl");
+  assert.ok(
+    [...next.deck, ...next.hand.map((u) => u.code)].includes(ANGMAR.brand),
+    "Daechanar's Brand joins the deck of the player who earned it",
   );
 });
 
@@ -1824,5 +1847,337 @@ test("The Clue boons: Daechanar's Brand and Orders from Angmar against Undead en
   assert.equal(
     angmarClueUndeadBonus(s, hero(s), make(s, undeadCode), "defense"),
     1,
+  );
+});
+
+/** The Campaign Log after The Treachery of Rhudaur (the first player earned Daechanar's Brand). */
+const afterRhudaur = (
+  heroes = HEROES,
+  seatHeroes?: number[],
+): CampaignState => ({
+  ...afterWastes(heroes, seatHeroes),
+  boons: [ANGMAR.hardy, ANGMAR.courage, ANGMAR.brand],
+  deckBoons: { [ANGMAR.brand]: 0 },
+  burdens: [ANGMAR.innocent, ANGMAR.spite, ANGMAR.despair, ANGMAR.losing],
+  burdenCopies: { [ANGMAR.losing]: 2 },
+  completed: ANGMAR_CAMPAIGN_ORDER.slice(0, 7).map((scenarioId) => ({
+    scenarioId,
+    score: 0,
+    rounds: 1,
+  })),
+});
+const carn = (seed = 5, campaign = afterRhudaur(), heroes = HEROES) =>
+  createGame(seed, d.cards, heroes, d.id, {
+    scenarioId: "the-battle-of-carn-dum",
+    playMode: "campaign",
+    campaign,
+  });
+
+test("The Battle of Carn Dûm: the Amarthiúl hero may join; each player in turn may add Elrond's Champion, Lore of Ancient Arnor, Raiment of the Second Age or Rivendell Skirmishers to their opening hand (kept through a mulligan); Thaurdir's burdens attach to Thaurdir; the resolution pools the chosen boons and notes each hero's damage", () => {
+  const carnCard = card(ANGMAR_CAMPAIGN_CARDS["the-battle-of-carn-dum"]!);
+  assert.equal(carnCard.subtitle, "Angmar Awakened Part 8");
+  assert.equal(
+    carnCard.back_text,
+    "Resolution: Note the amount of damage on each hero at the end of the game.",
+  );
+  assert.deepEqual(
+    CARN_BOONS.map((code) => [
+      card(code).name,
+      card(code).type_code,
+      card(code).sphere_code,
+      card(code).cost,
+    ]),
+    [
+      ["Elrond's Champion", "ally", "boon", "3"],
+      ["Lore of Ancient Arnor", "event", "boon", "3"],
+      ["Raiment of the Second Age", "attachment", "boon", "3"],
+      ["Rivendell Skirmishers", "ally", "boon", "3"],
+    ],
+  );
+  let s = carn();
+  assert.equal(
+    s.choice!.title,
+    "The Battle of Carn Dûm · You may add a boon to your opening hand",
+  );
+  assert.deepEqual(
+    s.choice!.options.map((o) => o.id),
+    [...CARN_BOONS, "skip"],
+  );
+  s = choose(s, ANGMAR.raiment);
+  const raiment = s.hand.find((u) => u.code === ANGMAR.raiment)!;
+  assert.ok(raiment, "Raiment of the Second Age is in the opening hand");
+  assert.deepEqual(s.angmarCards!.carnBoons, [
+    { code: ANGMAR.raiment, seat: 0 },
+  ]);
+  assert.ok(valid(s));
+  const mulled = applyAction(reload(s), { type: "MULLIGAN" });
+  assert.ok(
+    mulled.hand.some((u) => u.id === raiment.id),
+    "kept",
+  );
+  // Thaurdir enters the staging area with the pool's burden.
+  s = calm(reload(opening(s)));
+  const thaurdir = s.staging.find((u) => u.code === CARN.thaurdir)!;
+  assert.deepEqual(
+    thaurdir.attachments.map((a) => a.code),
+    [ANGMAR.spite],
+  );
+  assert.ok(
+    angmarCampaignStatus(s).includes(
+      "The damage on each hero at the end of this chapter is noted in the Campaign Log: each hero begins The Dread Realm with it.",
+    ),
+  );
+  assert.ok(valid(s));
+  // The resolution notes each hero's damage and pools the chosen boon.
+  s.heroes[0].damage = 2;
+  s.heroes[2].damage = 1;
+  win(s);
+  const c = s.campaign!;
+  assert.equal(c.resolution, null);
+  assert.deepEqual(c.heroDamage, {
+    [HEROES[0]]: 2,
+    [HEROES[1]]: 0,
+    [HEROES[2]]: 1,
+  });
+  assert.ok(c.boons.includes(ANGMAR.raiment));
+  assert.equal(c.deckBoons![ANGMAR.raiment], 0);
+  assert.ok(valid(s));
+  const dread = continueCampaign(s, HEROES, d.id, true, 9);
+  assert.equal(dread.scenarioId, "the-dread-realm");
+  assert.ok(
+    [...dread.deck, ...dread.hand.map((u) => u.code)].includes(ANGMAR.raiment),
+    "Raiment of the Second Age joins its player's deck",
+  );
+  // A skipped choice adds nothing; the Amarthiúl hero may now be a hero.
+  const skipped = choose(carn(), "skip");
+  assert.ok(!skipped.hand.some((u) => CARN_BOONS.includes(u.code)));
+  const amarthiul = carn(5, afterRhudaur(["10115", "01006", HEROES[2]]), [
+    "10115",
+    "01006",
+    HEROES[2],
+  ]);
+  assert.equal(card(amarthiul.heroes[0].code).name, "Amarthiúl");
+  assert.ok(
+    amarthiul.heroes[0].attachments.some((a) => a.code === ANGMAR.courage),
+    "Amarthiúl's Courage is attached to him",
+  );
+  // Two players choose different boons, in turn order.
+  const heroes = ["01005", "01006", "01007", "01008"];
+  const seats = [
+    { heroes: heroes.slice(0, 2), deckId: STARTERS[1].id },
+    { heroes: heroes.slice(2), deckId: STARTERS[2].id },
+  ];
+  let two = createGame(8, STARTERS[1].cards, seats[0].heroes, seats[0].deckId, {
+    scenarioId: "the-battle-of-carn-dum",
+    playMode: "campaign",
+    seats,
+    campaign: afterRhudaur(heroes, [2, 2]),
+  });
+  assert.match(two.choice!.title, /may add a boon to their opening hand$/);
+  two = choose(two, ANGMAR.champion);
+  assert.deepEqual(
+    two.choice!.options.map((o) => o.id),
+    [ANGMAR.lore, ANGMAR.raiment, ANGMAR.skirmishers, "skip"],
+  );
+  two = choose(two, ANGMAR.skirmishers);
+  assert.ok(seatView(two, 0).hand.some((u) => u.code === ANGMAR.champion));
+  assert.ok(seatView(two, 1).hand.some((u) => u.code === ANGMAR.skirmishers));
+  assert.deepEqual(two.angmarCards!.carnBoons, [
+    { code: ANGMAR.champion, seat: 0 },
+    { code: ANGMAR.skirmishers, seat: 1 },
+  ]);
+  assert.ok(valid(two));
+});
+
+test("The Battle of Carn Dûm's boons: Elrond's Champion readies after an enemy engages, Raiment of the Second Age's bonuses and draw, Rivendell Skirmishers discards a non-unique attacker's shadow cards, and Lore of Ancient Arnor returns discarded cards and shuffles the rest back", () => {
+  const base = calm(reload(opening(carn())));
+  const resolveTo = (s: GameState, id: string) => {
+    for (let i = 0; i < 5 && s.flow?.pending; i++)
+      s = applyAction(reload(s), {
+        type: "CONTINUE",
+        stepId: s.flow.pending.id,
+      });
+    return choose(s, id);
+  };
+  const foeCode = base.encounterDeck.find(
+    (c) => card(c).type_code === "enemy" && !card(c).is_unique,
+  )!;
+  // Elrond's Champion: "After an enemy engages you, ready Elrond's Champion."
+  let s = structuredClone(base);
+  const champion = make(s, ANGMAR.champion);
+  champion.exhausted = true;
+  s.allies.push(champion);
+  s.encounterDeck.splice(s.encounterDeck.indexOf(foeCode), 1);
+  const foe = make(s, foeCode);
+  s.staging.push(foe);
+  engageEnemy(s, foe);
+  flush(s);
+  assert.equal(s.choice!.title, "Elrond's Champion · Ready Elrond's Champion?");
+  s = resolveTo(s, "ready");
+  for (let i = 0; i < 3 && s.choice; i++) s = choose(s, s.choice.options[0].id);
+  assert.equal(s.allies.find((u) => u.id === champion.id)!.exhausted, false);
+  assert.ok(valid(s));
+  // Raiment of the Second Age: +2 attack and +2 hit points; a draw after
+  // its character attacks and destroys an enemy.
+  s = structuredClone(base);
+  const hero = s.heroes[0];
+  const before = stats(s, hero);
+  const raiment = make(s, ANGMAR.raiment);
+  s.hand.push(raiment);
+  s.heroes.forEach((h) => (h.resources = 3));
+  s = applyAction(reload(s), {
+    type: "PLAY",
+    id: raiment.id,
+    target: hero.id,
+  });
+  for (let i = 0; i < 3 && s.choice; i++) s = choose(s, s.choice.options[0].id);
+  const host = s.heroes.find((h) => h.id === hero.id)!;
+  assert.ok(host.attachments.some((a) => a.code === ANGMAR.raiment));
+  assert.equal(stats(s, host).attack, before.attack + 2);
+  assert.equal(stats(s, host).health, before.health + 2);
+  const hand = s.hand.length;
+  const victim = make(s, foeCode);
+  angmarLootAttackKilled(s, victim, [host.id]);
+  flush(s);
+  assert.equal(s.choice!.title, "Raiment of the Second Age · Draw 1 card?");
+  s = resolveTo(s, "draw");
+  assert.equal(s.hand.length, hand + 1);
+  assert.ok(valid(s));
+  // Rivendell Skirmishers: after it exhausts to defend an attack from a
+  // non-unique enemy, each shadow card on that enemy is discarded.
+  s = structuredClone(base);
+  const skirmishers = make(s, ANGMAR.skirmishers);
+  s.allies.push(skirmishers);
+  const attacker = engage(s, foeCode);
+  const shadow = s.encounterDeck.shift()!;
+  attacker.shadows = [shadow];
+  assert.deepEqual(
+    angmarLootDefendersDeclared(s, attacker, [skirmishers], []),
+    [],
+    "only when it exhausted to defend",
+  );
+  const responses = angmarLootDefendersDeclared(
+    s,
+    attacker,
+    [skirmishers],
+    [skirmishers.id],
+  );
+  assert.equal(responses.length, 1);
+  s.queue.unshift(...responses);
+  flush(s);
+  assert.match(
+    s.choice!.title,
+    /^Rivendell Skirmishers · Discard each shadow card from /,
+  );
+  s = resolveTo(s, "discard");
+  const after = [...s.engaged].find((u) => u.id === attacker.id)!;
+  assert.deepEqual(after.shadows, []);
+  assert.equal(s.encounterDiscard.at(-1), shadow);
+  const boss = s.staging.find((u) => u.code === CARN.thaurdir)!;
+  boss.shadows = [s.encounterDeck.shift()!];
+  assert.deepEqual(
+    angmarLootDefendersDeclared(s, boss, [skirmishers], [skirmishers.id]),
+    [],
+    "not against a unique enemy",
+  );
+  // Lore of Ancient Arnor: as the only player, 2 cards return from the
+  // discard pile to the hand, the rest is shuffled into the deck, and the
+  // event is removed from the game.
+  s = structuredClone(base);
+  const discarded = s.deck.splice(0, 4);
+  s.discard.push(...discarded);
+  const lore = make(s, ANGMAR.lore);
+  s.hand.push(lore);
+  s.heroes.forEach((h) => (h.resources = 3));
+  const deck = s.deck.length;
+  s = applyAction(reload(s), { type: "PLAY", id: lore.id });
+  for (let i = 0; i < 6 && (s.choice || s.flow?.pending); i++) {
+    if (s.flow?.pending) {
+      s = applyAction(reload(s), {
+        type: "CONTINUE",
+        stepId: s.flow.pending.id,
+      });
+      continue;
+    }
+    const pick = s.choice!.options.find((o) => discarded.includes(o.id));
+    s = choose(s, (pick ?? s.choice!.options[0]).id);
+  }
+  assert.equal(s.discard.length, 0, "the rest is shuffled into the deck");
+  assert.equal(s.deck.length, deck + 2);
+  assert.equal(
+    s.hand.filter((u) => discarded.includes(u.code)).length,
+    2,
+    "2 cards return as the only player",
+  );
+  assert.ok(s.removed.includes(ANGMAR.lore), "removed from the game");
+  assert.ok(!s.hand.some((u) => u.id === lore.id));
+  assert.ok(valid(s));
+});
+
+/** The Campaign Log after The Battle of Carn Dûm (Raiment of the Second Age chosen by the first player). */
+const afterCarn = (): CampaignState => ({
+  ...afterRhudaur(),
+  boons: [ANGMAR.hardy, ANGMAR.courage, ANGMAR.brand, ANGMAR.raiment],
+  deckBoons: { [ANGMAR.brand]: 0, [ANGMAR.raiment]: 0 },
+  heroDamage: { [HEROES[0]]: 2, [HEROES[1]]: 0, [HEROES[2]]: 1 },
+  completed: ANGMAR_CAMPAIGN_ORDER.slice(0, 8).map((scenarioId) => ({
+    scenarioId,
+    score: 0,
+    rounds: 1,
+  })),
+});
+const dread = (seed = 5, campaign = afterCarn()) =>
+  createGame(seed, d.cards, HEROES, d.id, {
+    scenarioId: "the-dread-realm",
+    playMode: "campaign",
+    campaign,
+  });
+
+test("The Dread Realm: each hero begins with the damage noted after The Battle of Carn Dûm, each player may search their deck for a boon card for their opening hand, and the resolution wins the campaign", () => {
+  const dreadCard = card(ANGMAR_CAMPAIGN_CARDS["the-dread-realm"]!);
+  assert.equal(dreadCard.subtitle, "Angmar Awakened Part 9");
+  assert.equal(
+    dreadCard.back_text,
+    "Resolution: The players win the campaign!",
+  );
+  let s = dread();
+  assert.deepEqual(
+    s.heroes.map((h) => h.damage),
+    [2, 0, 1],
+  );
+  assert.equal(
+    s.choice!.title,
+    "The Dread Realm · You may search your deck for a boon card",
+  );
+  const boons = s.choice!.options.map((o) => o.id);
+  assert.ok(boons.includes("skip"));
+  const pick = boons.find((id) => id !== "skip")!;
+  assert.equal(card(pick).sphere_code, "boon");
+  const deck = s.deck.length;
+  s = choose(s, pick);
+  assert.equal(s.deck.length, deck - 1);
+  const found = s.hand.find((u) => u.code === pick)!;
+  assert.ok(found, "the boon card joins the opening hand");
+  assert.ok(s.angmarCards!.setupHand!.includes(found.id));
+  assert.ok(valid(s));
+  assert.ok(
+    applyAction(reload(s), { type: "MULLIGAN" }).hand.some(
+      (u) => u.id === found.id,
+    ),
+    "kept through a mulligan",
+  );
+  s = calm(reload(opening(s)));
+  assert.ok(
+    angmarCampaignStatus(s).includes(
+      `Each hero began with the damage noted after The Battle of Carn Dûm (${card(HEROES[0]).name} 2, ${card(HEROES[1]).name} 0, ${card(HEROES[2]).name} 1).`,
+    ),
+  );
+  win(s);
+  assert.equal(s.campaign!.outcome, "won");
+  assert.equal(s.campaign!.completed.length, 9);
+  assert.ok(valid(s));
+  assert.throws(
+    () => continueCampaign(s, HEROES, d.id, true, 9),
+    /The campaign is complete/,
   );
 });

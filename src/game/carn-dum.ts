@@ -1,3 +1,4 @@
+import { angmarThaurdirAppears } from "./angmar-campaign";
 import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import type { Card, Effect, GameState, Option, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
@@ -554,7 +555,10 @@ export function carnEffect(s: GameState, e: Effect) {
       )!.quantity;
       const players = playerOrder(s).length,
         used = Math.min(count, players);
-      s.staging.push(make(s, C.thaurdir));
+      const thaurdir = make(s, C.thaurdir);
+      s.staging.push(thaurdir);
+      // The Angmar Awakened campaign: Thaurdir's burdens attach to him.
+      angmarThaurdirAppears(s, thaurdir);
       for (let i = 0; i < used; i++) s.staging.push(make(s, C.garrison));
       s.encounterDeck.push(...Array<string>(count - used).fill(C.garrison));
       s.activeLocation = make(s, C.battlefield);

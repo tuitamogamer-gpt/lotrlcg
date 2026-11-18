@@ -1,6 +1,7 @@
 import {
   angmarClueUndeadBonus,
   angmarLootAttackKilled,
+  angmarLootDefendersDeclared,
   angmarSilverthornBonus,
 } from "./angmar-campaign-loot";
 import {
@@ -1052,6 +1053,12 @@ export function beginEnemyAttack(
       defenders.filter((d): d is Unit => !!d),
     ),
     ...sagaCampaignDefendersDeclared(
+      s,
+      enemy,
+      defenders.filter((d): d is Unit => !!d),
+      actuallyExhausted,
+    ),
+    ...angmarLootDefendersDeclared(
       s,
       enemy,
       defenders.filter((d): d is Unit => !!d),

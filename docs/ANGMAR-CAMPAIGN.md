@@ -4,12 +4,9 @@ Campaign mode for the nine scenarios of the Angmar Awakened cycle, with the
 Angmar Awakened Campaign Expansion's campaign cards, boons and burdens (the
 campaign pool CCC.3, 38 cards). The lobby's campaign mode offers it as the
 third campaign, next to Mirkwood Paths and The Lord of the Rings, for one
-fellowship of one to four local players. Its first seven chapters, Intruders
-in Chetwood, The Weather Hills, Deadmen's Dike, The Wastes of Eriador, Escape
-from Mount Gram, Across the Ettenmoors and The Treachery of Rhudaur, are
-supported; the campaign log is kept after them, and the end of the game says
-that the next chapter, The Battle of Carn Dûm, is not available in campaign
-mode yet.
+fellowship of one to four local players. All nine chapters are supported,
+from Intruders in Chetwood to The Dread Realm, whose resolution wins the
+campaign.
 
 ## Sources
 
@@ -53,9 +50,10 @@ mode yet.
   the interlude before each chapter assigns it (or leaves it out), the log
   keeps the choice, and the card joins that deck before the starting hand.
   Each player's copy of Determination joins that player's deck in every
-  chapter after The Wastes of Eriador. Loot the Dungeons' boons join the deck
-  of the player who took them, and the interlude can reassign them like
-  Iârion's Pendant.
+  chapter after The Wastes of Eriador. Loot the Dungeons' boons, the Clue
+  boons of The Treachery of Rhudaur and The Battle of Carn Dûm's boons join
+  the deck of the player who took them, and the interlude can reassign them
+  like Iârion's Pendant.
 - **Banned cards**: the unique cards a player left in their captured deck at
   the end of Escape from Mount Gram are left out of that player's deck in the
   later chapters; the journal lists them.
@@ -141,10 +139,24 @@ mode yet.
 | Heirloom of Iârchon (boon attachment, cost 0) | Attach to a hero: +1 willpower. Response: after it is played, heal all damage from that hero.                                                                                                                                                                                                                     |
 | Orders from Angmar (boon attachment, cost 0)  | Attach to a hero: +1 defense (+2 while defending against an Undead enemy). Response: after it is played, discard a non-unique Undead enemy with 2 or less remaining hit points.                                                                                                                                   |
 
-## Not supported yet
+## The Battle of Carn Dûm (Part 8)
 
-The Battle of Carn Dûm and The Dread Realm follow, with the four Carn Dûm
-boons and Thaurdir's burdens' setup in The Battle of Carn Dûm.
+| Card                                                | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Campaign card                                       | Setup: heroes change without the +1 penalty and the Amarthiúl hero may be chosen; then each player in turn order may add Elrond's Champion, Lore of Ancient Arnor, Raiment of the Second Age or Rivendell Skirmishers to their opening hand (a boon taken by an earlier player is not offered again; the card stays through a mulligan). Thaurdir's burdens attach to Thaurdir as the scenario puts him in the staging area. Resolution: the chosen boons join the Campaign Pool and their players' decks, and the damage on each hero is noted in the Campaign Log (the journal lists it). |
+| Elrond's Champion (boon ally, cost 3)               | 2 willpower, 3 attack, 1 defense, 5 hit points. Response: after an enemy engages you, ready Elrond's Champion.                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Lore of Ancient Arnor (boon event, cost 3)          | Action: each player returns 1 card from their discard pile to their hand (2 as the only player) and shuffles the rest of their discard pile into their deck; then the event is removed from the game (it stays in the Campaign Pool).                                                                                                                                                                                                                                                                                                                                                       |
+| Raiment of the Second Age (boon attachment, cost 3) | Attach to a character, Restricted: +2 attack and +2 hit points. Response: after attached character attacks and destroys an enemy, draw 1 card.                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Rivendell Skirmishers (boon ally, cost 3)           | 2 willpower, 2 attack, 3 defense, 3 hit points. Response: after it exhausts to defend an attack from a non-unique enemy, discard each shadow card from that enemy (before they are revealed).                                                                                                                                                                                                                                                                                                                                                                                               |
+
+## The Dread Realm (Part 9)
+
+| Card          | Behaviour                                                                                                                                                                                                                                                                                                                                                                                 |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Campaign card | Setup: each hero begins the game with the damage noted for it after The Battle of Carn Dûm (a hero without a note has none), and each player may search their deck for a boon card and add it to their opening hand (it stays through a mulligan; the deck is shuffled). Resolution: the players win the campaign; the end-of-game dialog and the journal say so, and no chapter follows. |
+
+Thaurdir does not appear in The Dread Realm, so his burdens are removed from
+that game (as in the chapters without him).
 
 ## Verification
 
@@ -154,7 +166,7 @@ npm run build
 npm run test:browser-angmar-campaign
 ```
 
-`tests/angmar-campaign.test.ts` (23 tests) covers the registered cards' texts
+`tests/angmar-campaign.test.ts` (26 tests) covers the registered cards' texts
 and faces, the chapter order and the Amarthiúl rule, Intruders in Chetwood's
 setup (one or two players), Iârion's Pendant on Iârion and its bonus,
 Protect the Innocent's damage, progress and loss, the Pendant's two
@@ -176,13 +188,19 @@ decks, and the six boons' scripts; Across the Ettenmoors' set-aside Losing
 Time, the campaign card's resources and reveal, Losing Time's two choices and
 its shadow, and the copies pooled; The Treachery of Rhudaur's returning pool
 cards, the set-aside Thaurdir's burden, the Clue questions and the three Clue
-boons. The browser suite starts a new Angmar Awakened
+boons, and the free changes into The Battle of Carn Dûm (with Amarthiúl); The
+Battle of Carn Dûm's boon choices (one player, two players in turn order, a
+skip and a mulligan), Thaurdir's burden, the noted damage, the pooled boon in
+its deck, and the four boons' scripts; The Dread Realm's starting damage, its
+boon search, the won campaign and the end of the chapters. The browser suite starts a new Angmar Awakened
 campaign through the lobby, plays Intruders in Chetwood's setup choice, records
 its resolution, continues into The Weather Hills, attaches Hardy through
 Mysterious Omens' choice, continues into Deadmen's Dike, moves Thaurdir's
 Spite to a hero, answers the resolution's choice in the end-of-game dialog,
 puts Iârion's Pendant in a deck in the interlude, continues into The Wastes
-of Eriador, Escape from Mount Gram, Across the Ettenmoors and The Treachery of
-Rhudaur and records their resolutions (a Clue boon through the dialog), opens
-the campaign card's state in the quest inspector and checks the journal at
-1280, 390 and 320 pixels (63 checkpoints), and checks the 40 pinned faces.
+of Eriador, Escape from Mount Gram, Across the Ettenmoors, The Treachery of
+Rhudaur, The Battle of Carn Dûm (taking Raiment of the Second Age) and The
+Dread Realm (searching the deck for it) and records their resolutions (a Clue
+boon through the dialog, the noted damage, the won campaign), opens the
+campaign card's state in the quest inspector and checks the journal at 1280,
+390 and 320 pixels (75 checkpoints), and checks the 48 pinned faces.

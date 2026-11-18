@@ -5387,6 +5387,12 @@ export default function App() {
                     : "The One Ring is kept, and its bearer succumbs to the power of Sauron: the players lose The Lord of the Rings campaign."}
                 </p>
               ) : game.campaign?.kind === "angmar" &&
+                game.campaign.outcome === "won" ? (
+                <p className="campaign-note saga-outcome">
+                  The Dread Realm · Resolution: the players win the Angmar
+                  Awakened campaign!
+                </p>
+              ) : game.campaign?.kind === "angmar" &&
                 angmarChapterComplete(game) &&
                 nextChapterOf(game.campaign) ? (
                 <p className="campaign-note">
@@ -5669,6 +5675,14 @@ function CampaignJournal({
           {c.threatReduction}
         </p>
       ) : null}
+      {c.heroDamage && Object.keys(c.heroDamage).length ? (
+        <p className="campaign-note">
+          Notes · damage after The Battle of Carn Dûm:{" "}
+          {Object.entries(c.heroDamage)
+            .map(([code, n]) => `${card(code).name} ${n}`)
+            .join(", ")}
+        </p>
+      ) : null}
       {c.innocent !== undefined ? (
         <p className="campaign-note">
           Notes · {c.ravaged ? "Arnor Ravaged" : "Protect the Innocent"}:{" "}
@@ -5683,9 +5697,11 @@ function CampaignJournal({
       ) : null}
       {c.outcome ? (
         <p className="campaign-note">
-          {c.outcome === "won"
-            ? "The campaign is won: The One Ring is destroyed."
-            : "The campaign is lost: The One Ring was kept."}
+          {c.kind === "angmar"
+            ? "The campaign is won: The Dread Realm is complete."
+            : c.outcome === "won"
+              ? "The campaign is won: The One Ring is destroyed."
+              : "The campaign is lost: The One Ring was kept."}
         </p>
       ) : null}
       {c.blackGateEnemies ? (

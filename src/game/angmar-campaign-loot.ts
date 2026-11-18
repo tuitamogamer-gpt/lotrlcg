@@ -1,8 +1,10 @@
 // The Angmar Awakened campaign's player-card boons in play: the six boons
 // Loot the Dungeons offers in Escape from Mount Gram (Berelind, Chieftain's
-// Brooch, Coruhaer, Laermuin, Mail of Eärnur and Silverthorn) and the three
+// Brooch, Coruhaer, Laermuin, Mail of Eärnur and Silverthorn), the three
 // Clue boons of The Treachery of Rhudaur (Daechanar's Brand, Heirloom of
-// Iârchon and Orders from Angmar).
+// Iârchon and Orders from Angmar) and The Battle of Carn Dûm's boons
+// (Elrond's Champion, Raiment of the Second Age and Rivendell Skirmishers;
+// Lore of Ancient Arnor is an event, resolved with the campaign's events).
 import type { Effect, GameState, Option, Unit } from "./types";
 import { card, name } from "./cards";
 import { fx, get, log, prepend } from "./core";
@@ -17,8 +19,14 @@ import {
 } from "./table";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { rhosgobelHealingAllowed } from "./rhosgobel";
-import { addVictoryCard, check, damage, destroy } from "./board";
-import { shuffle, stats } from "./core";
+import {
+  addVictoryCard,
+  check,
+  damage,
+  destroy,
+  readyCharacter,
+} from "./board";
+import { draw, shuffle, stats } from "./core";
 import { addQuestProgress } from "./side-quests";
 import { mainQuestUnit } from "./quest-state";
 
@@ -29,6 +37,12 @@ export const LOOT = {
   laermuin: "10179",
   mail: "10180",
   silverthorn: "10181",
+} as const;
+export const CARN = {
+  champion: "10189",
+  lore: "10190",
+  raiment: "10191",
+  skirmishers: "10192",
 } as const;
 export const CLUE = {
   brand: "10185",
@@ -144,6 +158,17 @@ export function angmarLootAttackKilled(
         s,
         fx("angmarLootBerelind", { source: u.id, player: ownerOf(s, u) }),
       );
+    // Raiment of the Second Age: "After attached character attacks and
+    // destroys an enemy, draw 1 card."
+    for (const a of attached(u, CARN.raiment))
+      prepend(
+        s,
+        fx("angmarCarnRaiment", {
+          source: a.id,
+          target: u.id,
+          player: a.controller ?? a.owner ?? ownerOf(s, u),
+        }),
+      );
     for (const a of attached(u, LOOT.silverthorn))
       // A destroyed enemy in the encounter discard pile (not one that went
       // to the victory display by its own Victory points).
@@ -158,6 +183,45 @@ export function angmarLootAttackKilled(
           }),
         );
   }
+}
+/** Elrond's Champion: "Response: After an enemy engages you, ready Elrond's Champion." */
+export function angmarLootEnemyEngaged(s: GameState, _enemy: Unit, p: number) {
+  if (s.campaign?.kind !== "angmar") return;
+  for (const u of seatView(s, p).allies)
+    if (u.code === CARN.champion && live(s, u) && u.exhausted)
+      prepend(s, fx("angmarCarnChampion", { source: u.id, player: p }));
+}
+/**
+ * Rivendell Skirmishers: "Response: After Rivendell Skirmishers exhausts to
+ * defend an attack from non-unique enemy, discard each shadow card from that
+ * enemy."
+ */
+export function angmarLootDefendersDeclared(
+  s: GameState,
+  enemy: Unit,
+  defenders: Unit[],
+  exhaustedIds: string[] = [],
+): Effect[] {
+  if (
+    s.campaign?.kind !== "angmar" ||
+    card(enemy.code).is_unique ||
+    !enemy.shadows.length
+  )
+    return [];
+  return defenders
+    .filter(
+      (u) =>
+        u.code === CARN.skirmishers &&
+        live(s, u) &&
+        exhaustedIds.includes(u.id),
+    )
+    .map((u) =>
+      fx("angmarCarnSkirmishers", {
+        source: u.id,
+        target: enemy.id,
+        player: ownerOf(s, u),
+      }),
+    );
 }
 /** Coruhaer's Response, after it defends an attack. */
 export function angmarLootEnemyAttackResolved(
@@ -371,6 +435,101 @@ export function angmarLootEffect(s: GameState, e: Effect): boolean {
           p,
         ),
       );
+      return true;
+    }
+    case "angmarCarnChampion": {
+      const p = e.player ?? 0;
+      const u = get(s, e.source);
+      if (!u || !u.exhausted) return true;
+      forOwner(s, p, () =>
+        choosePlayerResponse(
+          s,
+          u.id,
+          CARN.champion,
+          "Elrond's Champion · Ready Elrond's Champion?",
+          [
+            {
+              id: "ready",
+              label: "Ready Elrond's Champion",
+              effects: [fx("angmarCarnReady", { target: u.id })],
+            },
+            skip,
+          ],
+          card(CARN.champion).text,
+          p,
+        ),
+      );
+      return true;
+    }
+    case "angmarCarnReady": {
+      const u = get(s, e.target);
+      if (u) {
+        readyCharacter(s, u);
+        log(s, `Elrond's Champion readies.`, "good");
+      }
+      return true;
+    }
+    case "angmarCarnRaiment": {
+      const p = e.player ?? 0;
+      forOwner(s, p, () =>
+        choosePlayerResponse(
+          s,
+          e.source ?? CARN.raiment,
+          CARN.raiment,
+          "Raiment of the Second Age · Draw 1 card?",
+          [
+            {
+              id: "draw",
+              label: "Draw 1 card",
+              effects: [fx("angmarCarnDraw", { player: p })],
+            },
+            skip,
+          ],
+          card(CARN.raiment).text,
+          p,
+        ),
+      );
+      return true;
+    }
+    case "angmarCarnDraw":
+      forOwner(s, e.player ?? 0, () => draw(s, 1));
+      return true;
+    case "angmarCarnSkirmishers": {
+      const p = e.player ?? 0;
+      const enemy = get(s, e.target);
+      if (!enemy || !enemy.shadows.length) return true;
+      forOwner(s, p, () =>
+        choosePlayerResponse(
+          s,
+          e.source ?? CARN.skirmishers,
+          CARN.skirmishers,
+          `Rivendell Skirmishers · Discard each shadow card from ${name(enemy)}?`,
+          [
+            {
+              id: "discard",
+              label: `Discard ${enemy.shadows.length} shadow card${enemy.shadows.length === 1 ? "" : "s"}`,
+              effects: [fx("angmarCarnShadows", { target: enemy.id })],
+            },
+            skip,
+          ],
+          card(CARN.skirmishers).text,
+          p,
+        ),
+      );
+      return true;
+    }
+    case "angmarCarnShadows": {
+      const enemy = get(s, e.target);
+      if (!enemy) return true;
+      s.encounterDiscard.push(...enemy.shadows);
+      log(
+        s,
+        `Rivendell Skirmishers: ${enemy.shadows.length} shadow card${enemy.shadows.length === 1 ? " is" : "s are"} discarded from ${name(enemy)}.`,
+        "good",
+      );
+      enemy.shadows = [];
+      delete enemy.faceupShadows;
+      enemy.revealedShadowCount = 0;
       return true;
     }
     case "angmarClueBrand": {

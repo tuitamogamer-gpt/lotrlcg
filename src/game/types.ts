@@ -338,6 +338,8 @@ export interface CampaignState {
   determined?: string[];
   /** Angmar Awakened: the unique cards each seat cannot include in its deck (Escape from Mount Gram). */
   banned?: Record<number, string[]>;
+  /** Angmar Awakened: the damage on each hero at the end of The Battle of Carn Dûm. */
+  heroDamage?: Record<string, number>;
   /** Saga: the scenario whose campaign card resolution awaits the players' choices. */
   resolution?: ScenarioId | null;
   seatPenalties?: number[];
@@ -595,6 +597,8 @@ export interface GameState {
     loot?: { code: string; seat: number }[];
     /** Across the Ettenmoors: the set-aside Losing Time copies and the campaign card's resources. */
     losing?: { aside: number; clock: number };
+    /** The Battle of Carn Dûm: the boons each player took into the opening hand (pooled on a win). */
+    carnBoons?: { code: string; seat: number }[];
   };
   /** The Lord of the Rings campaign: pending The Ring Draws Them engagements and Mr. Underhill marks. */
   sagaCards?: {
