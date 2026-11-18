@@ -1677,6 +1677,10 @@ body {
   .redbook .mode-tabs button {
     flex: 1;
   }
+  /* Four campaigns share two rows on a phone. */
+  .redbook .mode-tabs.campaign-kind button {
+    flex: 1 1 calc(50% - 5px);
+  }
   .redbook .mission-selection {
     height: clamp(360px, 52svh, 480px);
     border-radius: 2px 10px 2px 10px;

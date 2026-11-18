@@ -3,6 +3,16 @@ import { cityCardEntered } from "./city";
 import { COBAS_CORSAIRS } from "./cobas-support";
 import { cobasBoardingModifier } from "./cobas";
 import { isShipEnemy, isShipObjective } from "./ships";
+import {
+  DC,
+  dcBackFace,
+  dcIs,
+  dreamchaserFleet,
+  isDreamchaserGame,
+  isFleetShip,
+} from "./dreamchaser-campaign-support";
+import { dreamchaserFleetReady } from "./dreamchaser-campaign";
+import { dreamchaserBoardingOffer } from "./dreamchaser-campaign-cards";
 import { stormcallerState, STORMCALLER_CORSAIRS } from "./stormcaller-support";
 import type { Card, Effect, GameState, Option, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
@@ -130,23 +140,27 @@ export const voyageArchery = (s: GameState, u: Unit) =>
 export const voyageCanCancelWhenRevealed = (s: GameState, code: string) =>
   !isFleet(s) || code !== V.winds || s.sailing?.heading !== 3;
 export const voyageDrawBonus = (s: GameState, player = activeSeat(s)) =>
-  isFleet(s) && own(s, player).some((u) => u.code === V.dawn && !u.blanked)
+  isFleet(s) && own(s, player).some((u) => dcIs(u, V.dawn) && !u.blanked)
     ? 1
     : 0;
+/**
+ * Nárelenya: "Reduce the cost of the first ally you play each round by 1."
+ * Its Upgraded side (the Dream-chaser campaign): "the first card you play".
+ */
+const narelenyaFor = (s: GameState, player: number) =>
+  own(s, player).find((u) => dcIs(u, V.narelenya) && !u.blanked);
+const narelenyaApplies = (s: GameState, c: Card, player = activeSeat(s)) => {
+  const u = narelenyaFor(s, player);
+  return (
+    !!u &&
+    !s.used.includes("voyage-narelenya") &&
+    (c.type_code === "ally" || dcBackFace(u))
+  );
+};
 export const voyagePlayCost = (s: GameState, c: Card) =>
-  isFleet(s) &&
-  c.type_code === "ally" &&
-  !s.used.includes("voyage-narelenya") &&
-  own(s, activeSeat(s)).some((u) => u.code === V.narelenya && !u.blanked)
-    ? -1
-    : 0;
+  isFleet(s) && narelenyaApplies(s, c) ? -1 : 0;
 export function voyagePlayerCardPlayed(s: GameState, c: Card) {
-  if (
-    isFleet(s) &&
-    c.type_code === "ally" &&
-    !s.used.includes("voyage-narelenya")
-  )
-    s.used.push("voyage-narelenya");
+  if (isFleet(s) && narelenyaApplies(s, c)) s.used.push("voyage-narelenya");
 }
 export function voyageStats(s: GameState, u: Unit) {
   const corsair =
@@ -156,7 +170,7 @@ export function voyageStats(s: GameState, u: Unit) {
       corsair +
       (isFleet(s) &&
       isHero(u) &&
-      own(s, ownerOf(s, u)).some((a) => a.code === V.silver && !a.blanked)
+      own(s, ownerOf(s, u)).some((a) => dcIs(a, V.silver) && !a.blanked)
         ? 1
         : 0),
     defense: corsair,
@@ -252,7 +266,11 @@ export function setupVoyage(s: GameState) {
     currentQuest: V.departure,
     questDeck: [...shuffle(s, [...VOYAGE_STAGE_TWO]), V.pursuit],
     completedQuests: [],
-    setAside: VOYAGE_SHIPS.map((c) => make(s, c)),
+    // The Dream-chaser campaign prepares its fleet from six ships.
+    setAside: (isDreamchaserGame(s)
+      ? dreamchaserFleet(s.campaign)
+      : VOYAGE_SHIPS
+    ).map((c) => make(s, c)),
     corsairDeck: shuffle(
       s,
       recipe.cards
@@ -324,7 +342,12 @@ export function voyageCorsairDiscard(s: GameState, code: string) {
     : isVoyage(s)
       ? VOYAGE_CORSAIRS
       : STORMCALLER_CORSAIRS;
-  if (!q || !corsairs.includes(code)) return false;
+  // The Dream-chaser campaign: Crowley is shuffled into the Corsair deck.
+  if (
+    !q ||
+    !(corsairs.includes(code) || (isDreamchaserGame(s) && code === DC.crowley))
+  )
+    return false;
   q.corsairDiscard.push(code);
   if (!q.corsairDeck.length)
     q.corsairDeck = shuffle(s, q.corsairDiscard.splice(0));
@@ -340,8 +363,18 @@ export function voyageEngaged(s: GameState, u: Unit, fromStaging: boolean) {
       voyageBoardingBonus(s) +
       cobasBoardingModifier(s);
     effects.push(
-      ...Array.from({ length: Math.max(0, boarding) }, () =>
-        fx("voyageBoard", { player, source: u.id, flag: u.code === V.cruiser }),
+      // The Dream-chaser campaign: Extra Sails (Upgraded) may reduce it.
+      ...dreamchaserBoardingOffer(
+        s,
+        u,
+        player,
+        Array.from({ length: Math.max(0, boarding) }, () =>
+          fx("voyageBoard", {
+            player,
+            source: u.id,
+            flag: u.code === V.cruiser,
+          }),
+        ),
       ),
     );
   }
@@ -375,14 +408,14 @@ export function voyageCharacterLeaves(
 ) {
   if (!isFleet(s)) return;
   if (!destruction || !ship(u)) return;
-  if (u.code === V.dream) {
+  if (dcIs(u, V.dream)) {
     s.status = "lost";
     s.reason =
       "The Dream-chaser is destroyed. The fleet cannot complete its voyage.";
     s.choice = null;
     s.queue = [];
     log(s, s.reason, "danger");
-  } else if (VOYAGE_SHIPS.includes(u.code))
+  } else if (isFleetShip(u.code))
     forOwner(s, ownerOf(s, u), () => {
       if (!s.used.includes(SHIP_CONTROLLER_ELIMINATED))
         s.used.push(SHIP_CONTROLLER_ELIMINATED);
@@ -561,13 +594,13 @@ export function voyageEffect(s: GameState, e: Effect) {
         slot = e.value ?? 0;
       if (slot >= (players.length === 1 ? 2 : players.length)) break;
       const player = players.length === 1 ? players[0] : players[slot];
-      const dreamControlled = ships(s).some((u) => u.code === V.dream);
+      const dreamControlled = ships(s).some((u) => dcIs(u, V.dream));
       const available = q.setAside
-        .filter((u) => VOYAGE_SHIPS.includes(u.code))
+        .filter((u) => isFleetShip(u.code))
         .filter((u) =>
           (players.length === 1 && slot === 0) ||
           (!dreamControlled && slot === players.length - 1)
-            ? u.code === V.dream
+            ? dcIs(u, V.dream)
             : true,
         );
       choose(
@@ -599,7 +632,7 @@ export function voyageEffect(s: GameState, e: Effect) {
         player = e.player ?? activeSeat(s);
       unit.owner = player;
       unit.controller = player;
-      if (unit.code === V.dream)
+      if (dcIs(unit, V.dream))
         unit.attachments.push({
           id: `c${s.nextId++}`,
           code: V.heading,
@@ -607,8 +640,12 @@ export function voyageEffect(s: GameState, e: Effect) {
         });
       forOwner(s, player, () => {
         s.allies.push(unit);
-        if (unit.code === V.dawn) s.threat += 3;
-        if (unit.code === V.silver) s.threat = Math.max(0, s.threat - 3);
+        // Dawn Star: "Raise your starting threat by 3." (Not on its Upgraded
+        // side.) Silver Wing: "Reduce your starting threat by 3." (By 6 on
+        // its Upgraded side.)
+        if (dcIs(unit, V.dawn) && !dcBackFace(unit)) s.threat += 3;
+        if (dcIs(unit, V.silver))
+          s.threat = Math.max(0, s.threat - (dcBackFace(unit) ? 6 : 3));
       });
       log(s, `${seatName(s, player)} controls ${name(unit)}.`);
       break;
@@ -622,6 +659,8 @@ export function voyageEffect(s: GameState, e: Effect) {
       }
       shuffle(s, s.encounterDeck);
       q.initialized = true;
+      // The Dream-chaser campaign: the campaign card's fleet setup.
+      prepend(s, ...dreamchaserFleetReady(s));
       break;
     case "voyageShift":
       shiftHeading(s, e.value ?? 1);

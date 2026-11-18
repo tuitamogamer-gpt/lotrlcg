@@ -1,3 +1,4 @@
+import * as DreamCards from "./dreamchaser-campaign-cards";
 import {
   angmarLootCommitted,
   angmarLootEnemyEngaged,
@@ -760,6 +761,8 @@ export function readyCharacter(s: GameState, u: Unit, cardEffect = true) {
   if (wasExhausted) Angmar.angmarCharacterReadied(s, u);
   if (wasExhausted) batch4Scenario(s).characterReadied?.(s, u);
   if (wasExhausted) landSorrowPlayerCharacterReadied(s, u);
+  if (wasExhausted && cardEffect)
+    DreamCards.dreamchaserPlayerCardHealedOrReadied(s, u);
 }
 /** Move actual top cards atomically; deck-discard responses run after the causing effect. */
 export function discardPlayerDeck(
@@ -1507,6 +1510,7 @@ export function damage(
   value = Mumakil.mumakilDamageAmount(s, u, value);
   value = Race.raceHaradDamageAmount(s, u, value);
   value = Sands.beneathSandsDamageAmount(s, u, value);
+  value = DreamCards.dreamchaserDamageAmount(s, u, value);
   if (batch4Scenario(s).replaceDamage?.(s, u, value, context)) return false;
   value = batch4Scenario(s).damageAmount?.(s, u, value, context) ?? value;
   if (value <= 0) return false;
@@ -1572,6 +1576,7 @@ export function damage(
   RoadDarkensPlayers.roadDarkensPlayerDamageTaken(s, u, value);
   sagaCampaignDamageDealt(s, u, value);
   angmarCampaignDamageDealt(s, u, value, context);
+  DreamCards.dreamchaserDamageDealt(s, u, value);
   if (u.damage >= stats(s, u).health)
     City.cityCharacterDestroyed(s, u, context);
   if (u.damage >= stats(s, u).health)
@@ -1688,6 +1693,11 @@ export function discardAttachment(
   }
   // The Angmar Awakened campaign: Thaurdir's burdens leave the game.
   if (angmarCampaignAttachmentLeaves(s, u, a)) {
+    syncAttachmentText(s);
+    return;
+  }
+  // The Dream-chaser campaign: Modification boons leave the game.
+  if (DreamCards.dreamchaserAttachmentLeaves(s, u, a)) {
     syncAttachmentText(s);
     return;
   }
@@ -2036,6 +2046,7 @@ export function destroy(
       s.encounterDeck.push(u.code);
       shuffle(s, s.encounterDeck);
     } else if (City.cityEnemyDestination(s, u, destruction)) {
+    } else if (DreamCards.dreamchaserEnemyDestination(s, u, destruction)) {
     } else if (Raid.raidEliteGoesToVictory(s, u)) addVictoryCard(s, u.code);
     else if (destruction && c.victory) addVictoryCard(s, u.code);
     else if (
@@ -3099,6 +3110,7 @@ export function engage(s: GameState, u: Unit, optional = false) {
   Cobas.cobasEngaged(s, u);
   EredPlayers.eredMithrinPlayerEnemyEngaged(s, u, activeSeat(s));
   angmarLootEnemyEngaged(s, u, activeSeat(s));
+  DreamCards.dreamchaserEnemyEngaged(s, u);
   BatchPlayers.batch4PlayerEnemyEngaged(s, u, activeSeat(s));
   BlackRidersPlayers.blackRidersPlayerEnemyEngaged(s, u);
   LandShadowPlayers.landShadowPlayerEnemyEngaged(s, u);
@@ -3180,6 +3192,7 @@ export function revealed(
     !Sands.beneathSandsCannotCancel(s) &&
     !batch4Scenario(s).cannotCancel?.(s, false, code) &&
     !sagaCampaignCannotCancel(s, code) &&
+    !DreamCards.dreamchaserCannotCancel(s, code) &&
     Voyage.voyageCanCancelWhenRevealed(s, code) &&
     Storm.stormcallerCanCancelWhenRevealed(s, code) &&
     !allActiveLocations(s).some((l) => l.code === "02016")
@@ -3417,6 +3430,7 @@ export function resolveReveal(
     !Sands.beneathSandsCannotCancel(s) &&
     !batch4Scenario(s).cannotCancel?.(s, false, code) &&
     !sagaCampaignCannotCancel(s, code) &&
+    !DreamCards.dreamchaserCannotCancel(s, code) &&
     !Drowned.drownedCannotCancel(s, code) &&
     Wastes.wastesCancelAllowed(s) &&
     Voyage.voyageCanCancelWhenRevealed(s, code) &&
@@ -3730,6 +3744,8 @@ export function placeEncounter(
   if (WrathPlayers.wrathRuinPlayerEncounter(s, code, false, fromReveal)) return;
   if (sagaCampaignEncounter(s, code, false, fromReveal)) return;
   if (angmarCampaignEncounter(s, code, false, fromReveal)) return;
+  if (DreamCards.dreamchaserCampaignEncounter(s, code, false, fromReveal))
+    return;
   if (batch4Scenario(s).encounter?.(s, code, false, fromReveal)) return;
   if (City.cityEncounter(s, code)) return;
   if (Umbar.umbarEncounter(s, code)) return;
@@ -4397,6 +4413,7 @@ export function shadow(s: GameState, code: string) {
   if (longDarkAttacker && longDarkShadow(s, longDarkAttacker, code)) return;
   if (sagaCampaignShadow(s, code)) return;
   if (angmarCampaignShadow(s, code)) return;
+  if (DreamCards.dreamchaserCampaignShadow(s, code)) return;
   if (watcherWaterShadow(s, code)) return;
   if (roadRivendellShadow(s, code)) return;
   if (redhornShadow(s, code)) return;

@@ -1,3 +1,7 @@
+import {
+  dreamchaserThreatReduced,
+  dreamchaserThreatReductionLimit,
+} from "./dreamchaser-campaign-cards";
 import { angmarLootThreatReduced } from "./angmar-campaign-loot";
 import { sarumanThreatReduction } from "./wainriders-player-support";
 import { voyageThreatReduction } from "./perilous-voyage-support";
@@ -61,6 +65,8 @@ export function reduceThreat(
   amount =
     batch4Scenario(s).threatReduction?.(s, amount, reason, source) ?? amount;
   amount = sarumanThreatReduction(s, amount, reason);
+  // The Dream-chaser campaign's Hard and Expert Mode.
+  amount = dreamchaserThreatReductionLimit(s, amount);
   const requested = amount;
   amount = voyageThreatReduction(s, amount, reason, source);
   if (requested > 0 && !amount)
@@ -72,6 +78,7 @@ export function reduceThreat(
   s.threat -= reduction;
   if (reduction) blackRidersPlayerThreatReduced(s, source, reason);
   if (reduction) angmarLootThreatReduced(s);
+  if (reduction) dreamchaserThreatReduced(s, reduction);
   if (
     !reduction ||
     reason !== "player-card" ||

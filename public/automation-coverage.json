@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2146,
+    "encounterCards": 2172,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3397,
-    "pending": 786
+    "scripted": 3412,
+    "pending": 771
   },
   "scenarioRecipes": {
     "total": 355,
@@ -678,6 +678,17 @@
     "11013",
     "11014",
     "11015",
+    "11172",
+    "11172.B",
+    "11173",
+    "11173.B",
+    "11174",
+    "11174.B",
+    "11175",
+    "11175.B",
+    "11176",
+    "11177",
+    "11178",
     "12001",
     "12002",
     "12003",
@@ -1329,6 +1340,7 @@
     "octgn:1866ce74-8552-4ac5-8b0a-1e7a6f3b4338",
     "octgn:187017b6-8632-49ee-9275-8126d313424e",
     "octgn:1877b069-7015-4172-b5df-bbfd235b976f",
+    "octgn:18b9cb80-a536-427f-8c76-a05a9477bb7f",
     "octgn:18d6f0aa-a62e-4ce5-b169-cae8836d8442",
     "octgn:1920b1cc-8392-4fb6-9c9c-22b8bfd8d539",
     "octgn:194ceae6-a5e2-4a52-ba07-76e6c2611e8e",
@@ -1433,6 +1445,8 @@
     "octgn:23dec64e-9e30-4329-9df7-4d2628d2a7a8",
     "octgn:23fb0422-0e54-4064-bb76-e5bf3c214709",
     "octgn:240a9f5b-17dc-4182-b854-3d2dd5a33f68",
+    "octgn:24180e46-4cad-4d59-a917-6cda1ff1383f",
+    "octgn:24180e46-4cad-4d59-a917-6cda1ff1383f.B",
     "octgn:244873ca-427f-4358-804d-16bec79fca36",
     "octgn:244873ca-427f-4358-804d-16bec79fca36:B",
     "octgn:246b941e-f8a7-46ba-966d-d0515111ab46",
@@ -2521,6 +2535,8 @@
     "octgn:7fe0f143-9d3b-461a-b6bd-bc86e1491311",
     "octgn:801078c6-56a9-45f2-b5a4-7e38cb5bc507",
     "octgn:8042f7de-6fed-49cf-95be-450f0fae1601",
+    "octgn:8043cc1b-caa1-4f12-8abb-61322c9e9499",
+    "octgn:8043cc1b-caa1-4f12-8abb-61322c9e9499.B",
     "octgn:807175bd-1d09-41ff-a3ab-560a935eb259",
     "octgn:80764232-a3c9-47f1-9034-9c9ac82002e4",
     "octgn:808f60ad-a63f-4504-9b67-4fd45d630add",
@@ -2529,6 +2545,8 @@
     "octgn:80e25c61-e49c-40cb-b8e7-b4c45620163c",
     "octgn:8103129a-77e7-47a2-a039-b0eddf305184",
     "octgn:8104e805-08e3-4379-acde-0a9cc96837fe",
+    "octgn:814fecd8-1d51-431e-a904-e12ba8747391",
+    "octgn:814fecd8-1d51-431e-a904-e12ba8747391.B",
     "octgn:81632d10-625e-42f0-9e6b-09574a9ffbc3",
     "octgn:8165f1ef-d9df-464e-bd56-5baf4e43325f",
     "octgn:8174f1b9-6fd0-4eeb-971d-98b2d7a4eaf4",
@@ -2592,6 +2610,8 @@
     "octgn:8830070b-b918-4b74-8dfb-dced3866e53b",
     "octgn:888e1fe6-2fc4-407d-8bb3-df2c020e1e24",
     "octgn:8893eba4-1f9c-4661-bfc2-bb485e023066",
+    "octgn:88d4f08d-3f1b-4d3b-9f46-b896c9b662b0",
+    "octgn:88d4f08d-3f1b-4d3b-9f46-b896c9b662b0.B",
     "octgn:88df7c56-ee11-48f0-b6a0-0486e0a8ce92",
     "octgn:88e75969-9e5d-4b83-a535-d58409a473b2",
     "octgn:88efb537-cea8-4c20-8b73-e51f0742f769",
@@ -2692,6 +2712,8 @@
     "octgn:949e2607-cbb5-4ae3-af26-f9d7e00e09d2",
     "octgn:94befa92-9e5f-4838-b1e1-0b54d698bcb3",
     "octgn:94ef148f-62f7-4659-8a49-9c42b9ed7cef",
+    "octgn:94f2aa12-7d4c-4124-a642-a7f3fb2ca414",
+    "octgn:94f2aa12-7d4c-4124-a642-a7f3fb2ca414.B",
     "octgn:9511bcf2-9c06-413e-bf09-3bc076eb76d4",
     "octgn:9550172a-c624-40fd-b654-f2430ed93df1",
     "octgn:95d26956-eda3-43b2-b68b-6f8010d076bd",
@@ -2848,6 +2870,8 @@
     "octgn:a835576b-6a6c-4407-8f40-0151b70f5902",
     "octgn:a837fe8b-6f21-4d20-9897-89a3c4706b40",
     "octgn:a8494d53-c8a4-4f74-b3e1-2e4183aeea2a",
+    "octgn:a85f3566-9501-4f73-83d7-3f1d6a81f08a",
+    "octgn:a85f3566-9501-4f73-83d7-3f1d6a81f08a.B",
     "octgn:a880b0ab-79d4-42b4-81b1-5ad9a8054c27",
     "octgn:a8870930-554e-4e94-9188-b454e2a1158a",
     "octgn:a8918c80-f092-4649-bb5c-9f7fde3cef75",
@@ -2894,6 +2918,8 @@
     "octgn:ad6a6843-b482-43a8-8d1f-771ac69c9ab5",
     "octgn:ad73bb42-f0fb-4732-956d-e921140e99bb",
     "octgn:ad7fc95f-4a8d-4a15-b170-b0db3c3002f0",
+    "octgn:adc553ec-872a-493b-bbed-c9313e9d0f0f",
+    "octgn:adc553ec-872a-493b-bbed-c9313e9d0f0f.B",
     "octgn:adeb3985-c342-4d9e-acd6-2c7cf35dafe6",
     "octgn:adf2480a-644a-47ee-8deb-bd08ff32bf31",
     "octgn:ae16b39f-ed64-4aa9-b6b8-1fbfbda70e6f",
@@ -3703,9 +3729,9 @@
     {
       "product": "dream-chaser-campaign-expansion",
       "total": 60,
-      "scripted": 0,
+      "scripted": 15,
       "player": 26,
-      "playerScripted": 0
+      "playerScripted": 4
     },
     {
       "product": "encounter-at-amon-din",
@@ -8979,7 +9005,7 @@
       "name": "Armor Plating",
       "type": "attachment",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -8987,7 +9013,7 @@
       "name": "Ballista",
       "type": "attachment",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -8995,7 +9021,7 @@
       "name": "Enlarged Quarters",
       "type": "attachment",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -9003,7 +9029,7 @@
       "name": "Extra Sails",
       "type": "attachment",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -9011,7 +9037,7 @@
       "name": "Ominous Fate",
       "type": "treachery",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -9019,7 +9045,7 @@
       "name": "Thunderstruck",
       "type": "enemy",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -9027,7 +9053,7 @@
       "name": "Crowley",
       "type": "enemy",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -15139,7 +15165,7 @@
       "name": "Voyage across Belegaer",
       "type": "campaign",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -16155,7 +16181,7 @@
       "name": "Silver Wing",
       "type": "ship-objective",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -26675,7 +26701,7 @@
       "name": "Dream-chaser",
       "type": "ship-objective",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -26787,7 +26813,7 @@
       "name": "Glorinaith",
       "type": "ship-objective",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -27459,7 +27485,7 @@
       "name": "Dawn Star",
       "type": "ship-objective",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -28483,7 +28509,7 @@
       "name": "Duskbringer",
       "type": "ship-objective",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -30051,7 +30077,7 @@
       "name": "Narelenya",
       "type": "ship-objective",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -30523,7 +30549,7 @@
       "name": "Hard Mode",
       "type": "objective",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {

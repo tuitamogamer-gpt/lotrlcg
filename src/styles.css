@@ -3646,6 +3646,61 @@ nav {
   color: #8e9a89;
   font-size: var(--text-small);
 }
+/* The Dream-chaser campaign's interlude: XP spent on the Campaign Log's checkboxes. */
+.dreamchaser-xp {
+  display: grid;
+  gap: 8px;
+  margin: 4px 0 16px;
+  padding: 10px 12px;
+  border: 1px solid #9c783e55;
+  border-radius: 3px;
+}
+.dreamchaser-xp ul {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 260px;
+  overflow-y: auto;
+}
+.dreamchaser-xp li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+.dreamchaser-xp li > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.dreamchaser-xp small {
+  color: #8e9a89;
+  font-size: var(--text-small);
+}
+.dreamchaser-xp label,
+.dreamchaser-mode {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: 10px;
+  align-items: center;
+}
+.dreamchaser-xp select,
+.dreamchaser-mode select {
+  width: 100%;
+  max-width: 100%;
+}
+.dreamchaser-mode {
+  margin-top: 10px;
+}
+@media (max-width: 599px) {
+  .dreamchaser-xp label,
+  .dreamchaser-mode {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+  }
+}
 /* The interlude's chapter choice (The Old Forest and Fog on the Barrow-downs). */
 .saga-next-chapter {
   display: grid;

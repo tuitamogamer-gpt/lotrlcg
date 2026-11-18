@@ -36,6 +36,15 @@ import {
   nextAngmarChapter,
   resolveAngmarCampaign,
 } from "./angmar-campaign";
+import {
+  dreamchaserChapterComplete,
+  dreamchaserChapterSupported,
+  dreamchaserForbiddenTitle,
+  isDreamchaserCampaign,
+  nextDreamchaserChapter,
+  resolveDreamchaserCampaign,
+  spendDreamchaserXp,
+} from "./dreamchaser-campaign";
 
 export function newCampaign(
   heroes: string[],
@@ -58,6 +67,7 @@ export function resolveCampaign(s: GameState) {
   const c = s.campaign!;
   if (isSagaCampaign(c)) return resolveSagaCampaign(s);
   if (isAngmarCampaign(c)) return resolveAngmarCampaign(s);
+  if (isDreamchaserCampaign(c)) return resolveDreamchaserCampaign(s);
   if (c.completed.some((q) => q.scenarioId === s.scenarioId)) return;
   const fallen = seatIndices(s).flatMap((i) => {
     const p = seatView(s, i);
@@ -117,15 +127,28 @@ export function continueCampaign(
    * "code#copy" for each earned copy.
    */
   deckBoons?: Record<string, number | null>,
+  /**
+   * The Dream-chaser campaign: the Campaign Log's checkboxes after spending
+   * XP in the interlude, and the Hard/Expert Mode card for the next chapter.
+   */
+  dreamchaser?: {
+    marks?: Record<string, number>;
+    mode?: "hard" | "expert" | null;
+  },
 ): GameState {
   const saga = isSagaCampaign(s.campaign);
   const angmar = isAngmarCampaign(s.campaign);
+  const dream = isDreamchaserCampaign(s.campaign);
+  // The two newer campaigns keep the saga's Campaign Log rules.
+  const logged = saga || angmar || dream;
   requireRule(
     (saga
       ? sagaChapterComplete(s)
       : angmar
         ? angmarChapterComplete(s)
-        : s.status === "won") && s.campaign,
+        : dream
+          ? dreamchaserChapterComplete(s)
+          : s.status === "won") && s.campaign,
     "Win the current chapter before continuing.",
   );
   requireRule(
@@ -133,19 +156,28 @@ export function continueCampaign(
       ? sagaChapterOptions(s.campaign!).length > 0
       : angmar
         ? !!nextAngmarChapter(s.campaign!)
-        : s.campaign!.completed.length < 3,
+        : dream
+          ? !!nextDreamchaserChapter(s.campaign!)
+          : s.campaign!.completed.length < 3,
     "The campaign is complete.",
   );
   requireRule(
-    !(saga || angmar) || !s.campaign!.resolution,
+    !logged || !s.campaign!.resolution,
     "Record the campaign card's resolution before continuing.",
   );
-  const c = structuredClone(s.campaign);
+  // The Dream-chaser campaign: "Spending 1 XP allows the players to mark any
+  // one checkbox. The players can only spend XP before or after a scenario."
+  const c =
+    dream && dreamchaser?.marks
+      ? spendDreamchaserXp(s.campaign!, dreamchaser.marks)
+      : structuredClone(s.campaign);
   const next = saga
     ? (nextScenario ?? nextSagaChapter(c)!)
     : angmar
       ? nextAngmarChapter(c)!
-      : SCENARIOS[c.completed.length].id;
+      : dream
+        ? nextDreamchaserChapter(c)!
+        : SCENARIOS[c.completed.length].id;
   // The Treason of Saruman and The Flame of the West: a fallen Aragorn leaves
   // the list of fallen heroes (each player takes a permanent +1 threat
   // penalty), and the Permanent cards of a recorded Aragorn are transferred to
@@ -176,10 +208,10 @@ export function continueCampaign(
   // The Campaign Log keeps each player's hero count (a recorded Aragorn set
   // aside for the Fellowship Aragorn still counts).
   const counts =
-    (saga || angmar ? c.seatHeroes : undefined) ??
+    (logged ? c.seatHeroes : undefined) ??
     s.table?.seats.map((p) => p.startingHeroes.length);
   // The Road Darkens FAQ: no version of a fallen hero can be used.
-  const fallen = saga || angmar ? c.fallen.map((h) => card(h).name) : [];
+  const fallen = logged ? c.fallen.map((h) => card(h).name) : [];
   requireRule(
     heroes.length === (counts?.reduce((n, x) => n + x, 0) ?? 3) &&
       new Set(heroes).size === heroes.length &&
@@ -205,12 +237,16 @@ export function continueCampaign(
     ? sagaForbiddenTitle(next)
     : angmar
       ? angmarForbiddenTitle(next)
-      : undefined;
+      : dream
+        ? dreamchaserForbiddenTitle(next)
+        : undefined;
   requireRule(
     !title || !heroes.some((h) => card(h).name === title),
     angmar
       ? "The Amarthiúl hero cannot be used until a campaign card allows it (The Battle of Carn Dûm)."
-      : `No card titled ${title} can be used in ${TOS_CHAPTERS.includes(next) ? "The Treason of Saruman" : LOS_CHAPTERS.includes(next) ? "The Land of Shadow" : "The Flame of the West"}'s chapters.`,
+      : dream
+        ? "The Na'asiyah hero cannot be used in scenarios 1 through 7 of the Dream-chaser campaign."
+        : `No card titled ${title} can be used in ${TOS_CHAPTERS.includes(next) ? "The Treason of Saruman" : LOS_CHAPTERS.includes(next) ? "The Land of Shadow" : "The Flame of the West"}'s chapters.`,
   );
   const aragornFree =
     saga && (!!fellowshipAragornCode(next) || LOS_CHAPTERS.includes(next));
@@ -235,7 +271,7 @@ export function continueCampaign(
   const groups = s.table
     ? s.table.seats.map((p, i) => {
         const before =
-          (saga || angmar) && c.seatHeroes
+          logged && c.seatHeroes
             ? c.heroes.slice(logOffset, logOffset + counts![i])
             : p.startingHeroes;
         logOffset += counts![i];
@@ -244,7 +280,7 @@ export function continueCampaign(
     : [{ before: c.heroes, after: heroes }];
   const replaced = groups.flatMap(({ before, after }) => {
     let removed = before.filter((h) => !after.includes(h));
-    if (saga || angmar) {
+    if (logged) {
       // The Road Darkens FAQ: a hero replaced by another version of the same
       // hero (the same title) is not a replacement.
       const added = after.filter((h) => !before.includes(h));
@@ -276,6 +312,10 @@ export function continueCampaign(
     "The next chapter of the Angmar Awakened campaign is not available in campaign mode yet.",
   );
   requireRule(
+    !dream || dreamchaserChapterSupported(next),
+    "The next chapter of the Dream-chaser campaign is not available in campaign mode yet.",
+  );
+  requireRule(
     next !== "dol-guldur" || !c.prisoner || heroes.includes(c.prisoner),
     "The recorded prisoner must remain in this fellowship.",
   );
@@ -287,6 +327,25 @@ export function continueCampaign(
       Object.entries(deckBoons).every(
         ([code, seat]) =>
           ANGMAR_DECK_BOONS.includes(code) &&
+          c.boons.includes(code) &&
+          (seat === null ||
+            (Number.isSafeInteger(seat) && seat >= 0 && seat < seatCount)),
+      ),
+      "Choose a player's deck for each earned boon card.",
+    );
+    c.deckBoons = Object.fromEntries(
+      Object.entries(deckBoons).filter(
+        (entry): entry is [string, number] => entry[1] !== null,
+      ),
+    );
+  }
+  // The Dream-chaser campaign: the earned player-card boons join the decks
+  // the interlude assigns (or are left out).
+  if (dream && deckBoons) {
+    const seatCount = s.table?.seats.length ?? 1;
+    requireRule(
+      Object.entries(deckBoons).every(
+        ([code, seat]) =>
           c.boons.includes(code) &&
           (seat === null ||
             (Number.isSafeInteger(seat) && seat >= 0 && seat < seatCount)),
@@ -355,6 +414,9 @@ export function continueCampaign(
       guided: !!s.flow,
       reviewMode: s.flow?.mode,
       easy: s.easyMode,
+      ...(dream && dreamchaser?.mode
+        ? { dreamchaserMode: dreamchaser.mode }
+        : {}),
     },
   );
 }
@@ -384,5 +446,7 @@ export function retryAdventure(s: GameState, seed = Date.now()): GameState {
     guided: !!s.flow,
     reviewMode: s.flow?.mode,
     easy: s.easyMode,
+    // The Dream-chaser campaign: a replayed chapter keeps its Hard/Expert Mode card.
+    ...(s.dreamchaser?.mode ? { dreamchaserMode: s.dreamchaser.mode } : {}),
   });
 }

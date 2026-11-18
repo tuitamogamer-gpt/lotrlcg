@@ -1,3 +1,4 @@
+import * as DreamCards from "./dreamchaser-campaign-cards";
 import {
   angmarClueUndeadBonus,
   angmarLootAttackKilled,
@@ -636,6 +637,7 @@ export function playerAttackResolved(
   DrownedCompanions.drownedPlayerAttackFinished(s, enemy);
   CobasPlayers.cobasPlayerAttackFinished(s, enemy.id, true);
   StormPlayers.stormcallerAttackFinished(s, ids);
+  DreamCards.dreamchaserPlayerAttackResolved(s, ids);
   if (s.status !== "playing") return;
   batch4Scenario(s).playerAttackResolved?.(
     s,

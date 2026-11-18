@@ -371,6 +371,18 @@ import {
   nextAngmarChapter,
 } from "./game/angmar-campaign";
 import {
+  DREAMCHASER_CAMPAIGN_CARDS,
+  DREAMCHASER_CAMPAIGN_ORDER,
+  DREAMCHASER_CAMPAIGN_SUPPORTED,
+  DREAMCHASER_LOG,
+  dreamchaserCampaignStatus,
+  dreamchaserChapterComplete,
+  dreamchaserChapterSupported,
+  dreamchaserForbiddenTitle,
+  dreamchaserMarksProblem,
+  nextDreamchaserChapter,
+} from "./game/dreamchaser-campaign";
+import {
   SCENARIOS,
   CAMPAIGN_CHAPTERS,
   CORE_CAMPAIGN_CARDS,
@@ -454,24 +466,34 @@ const SAVE_KEY = "there-and-back-again.save.v1",
 const CAMPAIGN_KEY = "there-and-back-again.campaign.v1";
 const MODE_KEY = "there-and-back-again.mode.v1";
 const CAMPAIGN_KIND_KEY = "there-and-back-again.campaign-kind.v1";
-type CampaignKind = "mirkwood" | "saga" | "angmar";
+type CampaignKind = "mirkwood" | "saga" | "angmar" | "dreamchaser";
 const readCampaignKind = (): CampaignKind => {
   try {
     const kind = localStorage.getItem(CAMPAIGN_KIND_KEY);
-    return kind === "saga" || kind === "angmar" ? kind : "mirkwood";
+    return kind === "saga" || kind === "angmar" || kind === "dreamchaser"
+      ? kind
+      : "mirkwood";
   } catch {
     return "mirkwood";
   }
 };
 const campaignKindOf = (c?: CampaignState | null): CampaignKind =>
-  c?.kind === "saga" ? "saga" : c?.kind === "angmar" ? "angmar" : "mirkwood";
+  c?.kind === "saga"
+    ? "saga"
+    : c?.kind === "angmar"
+      ? "angmar"
+      : c?.kind === "dreamchaser"
+        ? "dreamchaser"
+        : "mirkwood";
 /** The chapters of a campaign, in order (with the saga's optional inserts). */
 const chaptersOf = (kind: CampaignKind): readonly ScenarioId[] =>
   kind === "saga"
     ? SAGA_CAMPAIGN_JOURNAL
     : kind === "angmar"
       ? ANGMAR_CAMPAIGN_ORDER
-      : CAMPAIGN_CHAPTERS;
+      : kind === "dreamchaser"
+        ? DREAMCHASER_CAMPAIGN_ORDER
+        : CAMPAIGN_CHAPTERS;
 /** Each seat's hero count in the Campaign Log (a set-aside Aragorn still counts). */
 const campaignSeatCounts = (g: GameState): number[] =>
   (g.campaign?.kind ? g.campaign.seatHeroes : undefined) ??
@@ -494,11 +516,14 @@ const campaignProgress = (c: CampaignState) =>
     ? `${c.completed.filter((q) => !SAGA_INSERTS.includes(q.scenarioId)).length} / ${SAGA_CAMPAIGN_ORDER.length}`
     : c.kind === "angmar"
       ? `${c.completed.length} / ${ANGMAR_CAMPAIGN_ORDER.length}`
-      : `${c.completed.length} / ${CAMPAIGN_CHAPTERS.length}`;
+      : c.kind === "dreamchaser"
+        ? `${c.completed.length} / ${DREAMCHASER_CAMPAIGN_ORDER.length}`
+        : `${c.completed.length} / ${CAMPAIGN_CHAPTERS.length}`;
 const CAMPAIGN_TITLES: Record<CampaignKind, string> = {
   mirkwood: "Mirkwood Paths",
   saga: "The Lord of the Rings",
   angmar: "Angmar Awakened",
+  dreamchaser: "Dream-chaser",
 };
 /** The chapter a campaign continues with, or undefined when it is complete. */
 const nextChapterOf = (c: CampaignState): ScenarioId | undefined =>
@@ -506,7 +531,9 @@ const nextChapterOf = (c: CampaignState): ScenarioId | undefined =>
     ? nextSagaChapter(c)
     : c.kind === "angmar"
       ? nextAngmarChapter(c)
-      : CAMPAIGN_CHAPTERS[c.completed.length];
+      : c.kind === "dreamchaser"
+        ? nextDreamchaserChapter(c)
+        : CAMPAIGN_CHAPTERS[c.completed.length];
 /** The hero title a campaign's next chapter forbids. */
 const forbiddenTitleOf = (c: CampaignState, next?: ScenarioId) =>
   !next
@@ -515,7 +542,9 @@ const forbiddenTitleOf = (c: CampaignState, next?: ScenarioId) =>
       ? sagaForbiddenTitle(next)
       : c.kind === "angmar"
         ? angmarForbiddenTitle(next)
-        : undefined;
+        : c.kind === "dreamchaser"
+          ? dreamchaserForbiddenTitle(next)
+          : undefined;
 const readMode = (): PlayMode => {
   try {
     return localStorage.getItem(MODE_KEY) === "campaign"
@@ -1075,7 +1104,9 @@ export default function App() {
       ? "a-shadow-of-the-past"
       : campaignKind === "angmar"
         ? "intruders-in-chetwood"
-        : "mirkwood";
+        : campaignKind === "dreamchaser"
+          ? "voyage-across-belegaer"
+          : "mirkwood";
   const [interlude, setInterlude] = useState(false);
   const [nextHeroes, setNextHeroes] = useState<string[]>([]);
   const [nextSeatDecks, setNextSeatDecks] = useState<string[]>([]);
@@ -1083,6 +1114,10 @@ export default function App() {
   /** The Lord of the Rings campaign: the chapter chosen for the interlude. */
   const [nextChapter, setNextChapter] = useState<ScenarioId | undefined>();
   /** The Lord of the Rings campaign: the deck each earned player-card boon joins. */
+  /** The Dream-chaser campaign: the Hard/Expert Mode card for the next chapter. */
+  const [dcMode, setDcMode] = useState<"" | "hard" | "expert">("");
+  /** The Dream-chaser campaign: the Campaign Log's checkboxes after spending XP. */
+  const [nextMarks, setNextMarks] = useState<Record<string, number>>({});
   const [nextDeckBoons, setNextDeckBoons] = useState<
     Record<string, number | null>
   >({});
@@ -1747,6 +1782,11 @@ export default function App() {
           scenarioId:
             playMode === "campaign" ? campaignStart : selectedScenario,
           playMode,
+          ...(playMode === "campaign" &&
+          campaignKind === "dreamchaser" &&
+          dcMode
+            ? { dreamchaserMode: dcMode }
+            : {}),
           ...(style === "hotseat" ? { seats: seats.map(seatConfig) } : {}),
           ...(playMode === "campaign" &&
           campaignKind === "mirkwood" &&
@@ -1856,6 +1896,17 @@ export default function App() {
               (code) => [code, c.deckBoons?.[code] ?? null] as const,
             )
           : []),
+        // The Dream-chaser campaign: the earned player-card boons.
+        ...(c.kind === "dreamchaser"
+          ? c.boons
+              .filter((code) =>
+                ["event", "attachment", "ally"].includes(card(code).type_code),
+              )
+              .filter(
+                (code) => !Object.values(c.permanent).flat().includes(code),
+              )
+              .map((code) => [code, c.deckBoons?.[code] ?? null] as const)
+          : []),
         // Brace of Coneys: one entry per earned copy ("code#copy").
         ...COPY_BOONS.filter((code) => c.boons.includes(code)).flatMap((code) =>
           (c.boonCopies?.[code] ?? []).map(
@@ -1867,6 +1918,8 @@ export default function App() {
     setNextDeck(game.deckId);
     setNextSeatDecks(game.table?.seats.map((p) => p.deckId) ?? []);
     setIncludeSupport(true);
+    setNextMarks({ ...(c.marks ?? {}) });
+    setDcMode("");
     setInterlude(true);
   };
   const advanceCampaign = () => {
@@ -1882,8 +1935,13 @@ export default function App() {
           ? nextSeatDecks
           : undefined,
         game.campaign?.kind === "saga" ? nextChapter : undefined,
-        game.campaign?.kind === "saga" || game.campaign?.kind === "angmar"
+        game.campaign?.kind === "saga" ||
+          game.campaign?.kind === "angmar" ||
+          game.campaign?.kind === "dreamchaser"
           ? nextDeckBoons
+          : undefined,
+        game.campaign?.kind === "dreamchaser"
+          ? { marks: nextMarks, mode: dcMode || null }
           : undefined,
       );
       audio.stop();
@@ -2544,7 +2602,7 @@ export default function App() {
                   <Books size={19} />
                   <span>
                     Campaign mode
-                    <small>One fellowship. Three campaigns.</small>
+                    <small>One fellowship. Four campaigns.</small>
                   </span>
                 </button>
               </div>
@@ -2599,8 +2657,41 @@ export default function App() {
                       </small>
                     </span>
                   </button>
+                  <button
+                    aria-pressed={campaignKind === "dreamchaser"}
+                    onClick={() => setCampaignKind("dreamchaser")}
+                  >
+                    <span>
+                      Dream-chaser
+                      <small>
+                        {DREAMCHASER_CAMPAIGN_SUPPORTED.length} of{" "}
+                        {DREAMCHASER_CAMPAIGN_ORDER.length} chapters · XP
+                      </small>
+                    </span>
+                  </button>
                 </div>
               )}
+              {playMode === "campaign" &&
+                campaignKind === "dreamchaser" &&
+                !(
+                  game?.campaign &&
+                  campaignKindOf(game.campaign) === "dreamchaser"
+                ) && (
+                  <label className="dreamchaser-mode">
+                    <span>Hard/Expert Mode card</span>
+                    <select
+                      aria-label="Hard or Expert Mode"
+                      value={dcMode}
+                      onChange={(e) =>
+                        setDcMode(e.target.value as "" | "hard" | "expert")
+                      }
+                    >
+                      <option value="">Not used</option>
+                      <option value="hard">Hard Mode · +1 XP</option>
+                      <option value="expert">Expert Mode · +2 XP</option>
+                    </select>
+                  </label>
+                )}
             </section>
             <QuestIndex
               selected={quest.id}
@@ -2626,7 +2717,9 @@ export default function App() {
                       ? `THE LORD OF THE RINGS · CHAPTER ${sagaChapterNumber(quest.id)}`
                       : campaignKind === "angmar"
                         ? `ANGMAR AWAKENED · CHAPTER ${ANGMAR_CAMPAIGN_ORDER.indexOf(quest.id) + 1}`
-                        : `MIRKWOOD PATHS · CHAPTER ${quest.chapter}`
+                        : campaignKind === "dreamchaser"
+                          ? `DREAM-CHASER · PART ${DREAMCHASER_CAMPAIGN_ORDER.indexOf(quest.id) + 1}`
+                          : `MIRKWOOD PATHS · CHAPTER ${quest.chapter}`
                     : quest.tagline.toUpperCase()}
                 </div>
                 <div className="adventure-preview-meta">
@@ -4345,6 +4438,7 @@ export default function App() {
                 {[
                   ...sagaCampaignStatus(game),
                   ...angmarCampaignStatus(game),
+                  ...dreamchaserCampaignStatus(game),
                 ].map((line) => (
                   <p key={line} className="campaign-note">
                     {line}
@@ -5099,7 +5193,8 @@ export default function App() {
             )}
           {((game.campaign.kind === "saga" &&
             nextChapter !== "the-ring-goes-south") ||
-            game.campaign.kind === "angmar") &&
+            game.campaign.kind === "angmar" ||
+            game.campaign.kind === "dreamchaser") &&
             Object.keys(nextDeckBoons).length > 0 && (
               <fieldset className="saga-deck-boons">
                 <legend>Earned boon cards in your decks</legend>
@@ -5140,6 +5235,15 @@ export default function App() {
                 </small>
               </fieldset>
             )}
+          {game.campaign.kind === "dreamchaser" && (
+            <DreamchaserXp
+              campaign={game.campaign}
+              marks={nextMarks}
+              onChange={setNextMarks}
+              mode={dcMode}
+              onMode={setDcMode}
+            />
+          )}
           <div className="campaign-hero-slots">
             {nextHeroes.map((code, i) => (
               <HeroPicker
@@ -5367,7 +5471,11 @@ export default function App() {
                   ? sagaChapterSupported(nextChapterOf(game.campaign))
                   : game.campaign.kind === "angmar"
                     ? angmarChapterSupported(nextChapterOf(game.campaign))
-                    : true) ? (
+                    : game.campaign.kind === "dreamchaser"
+                      ? dreamchaserChapterSupported(
+                          nextChapterOf(game.campaign),
+                        )
+                      : true) ? (
                 <>
                   {game.status === "lost" && (
                     <p className="campaign-note">
@@ -5392,12 +5500,14 @@ export default function App() {
                   The Dread Realm · Resolution: the players win the Angmar
                   Awakened campaign!
                 </p>
-              ) : game.campaign?.kind === "angmar" &&
-                angmarChapterComplete(game) &&
-                nextChapterOf(game.campaign) ? (
+              ) : (game.campaign?.kind === "angmar"
+                  ? angmarChapterComplete(game)
+                  : game.campaign?.kind === "dreamchaser" &&
+                    dreamchaserChapterComplete(game)) &&
+                nextChapterOf(game.campaign!) ? (
                 <p className="campaign-note">
                   The campaign log is recorded. The next chapter,{" "}
-                  {scenario(nextChapterOf(game.campaign)!).name}, is not
+                  {scenario(nextChapterOf(game.campaign!)!).name}, is not
                   available in campaign mode yet.
                 </p>
               ) : game.status === "lost" ? (
@@ -5512,7 +5622,99 @@ const campaignCardOf = (game: GameState) =>
       ? SAGA_CAMPAIGN_CARD_CODES[game.scenarioId]
       : game.campaign.kind === "angmar"
         ? ANGMAR_CAMPAIGN_CARDS[game.scenarioId]
-        : CORE_CAMPAIGN_CARDS[game.scenarioId];
+        : game.campaign.kind === "dreamchaser"
+          ? DREAMCHASER_CAMPAIGN_CARDS[game.scenarioId]
+          : CORE_CAMPAIGN_CARDS[game.scenarioId];
+/**
+ * The Dream-chaser campaign's interlude: spend XP on the Campaign Log's
+ * checkboxes, and choose the Hard/Expert Mode card for the next chapter.
+ */
+function DreamchaserXp({
+  campaign: c,
+  marks,
+  onChange,
+  mode,
+  onMode,
+}: {
+  campaign: CampaignState;
+  marks: Record<string, number>;
+  onChange: (m: Record<string, number>) => void;
+  mode: "" | "hard" | "expert";
+  onMode: (m: "" | "hard" | "expert") => void;
+}) {
+  const spent = DREAMCHASER_LOG.reduce(
+    (n, l) => n + (marks[l.key] ?? 0) - (c.marks?.[l.key] ?? 0),
+    0,
+  );
+  const left = (c.xp ?? 0) - spent;
+  const mark = (key: string, delta: number) => {
+    const next = { ...marks, [key]: (marks[key] ?? 0) + delta };
+    if (!dreamchaserMarksProblem(c, next)) onChange(next);
+  };
+  return (
+    <fieldset className="dreamchaser-xp" aria-label="Campaign Log XP">
+      <legend>Campaign Log · {left} unspent XP</legend>
+      <small>
+        Spending 1 XP marks one checkbox. A scalable card's level is its number
+        of marked checkboxes; an upgradable card uses its Upgraded side once all
+        of its checkboxes are marked.
+      </small>
+      <ul>
+        {DREAMCHASER_LOG.map((l) => {
+          const before = c.marks?.[l.key] ?? 0;
+          const now = marks[l.key] ?? 0;
+          const addProblem = dreamchaserMarksProblem(c, {
+            ...marks,
+            [l.key]: now + 1,
+          });
+          return (
+            <li key={l.key}>
+              <span>
+                {l.label}{" "}
+                <span aria-label={`${now} of ${l.boxes} checkboxes`}>
+                  {"■".repeat(now)}
+                  {"□".repeat(l.boxes - now)}
+                </span>
+                {l.kind === "upgradable" && now >= l.boxes ? " · Upgraded" : ""}
+                {l.kind === "scalable" ? ` · level ${now}` : ""}
+              </span>
+              <button
+                className="text-link"
+                aria-label={`Mark a checkbox: ${l.label}`}
+                disabled={!!addProblem}
+                title={addProblem ?? undefined}
+                onClick={() => mark(l.key, 1)}
+              >
+                +1 XP
+              </button>
+              {now > before && (
+                <button
+                  className="text-link"
+                  aria-label={`Unmark a checkbox: ${l.label}`}
+                  onClick={() => mark(l.key, -1)}
+                >
+                  Undo
+                </button>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+      <label>
+        <span>Hard/Expert Mode card</span>
+        <select
+          aria-label="Hard or Expert Mode"
+          value={mode}
+          onChange={(e) => onMode(e.target.value as "" | "hard" | "expert")}
+        >
+          <option value="">Not used</option>
+          <option value="hard">Hard Mode · +1 XP</option>
+          <option value="expert">Expert Mode · +2 XP</option>
+        </select>
+      </label>
+    </fieldset>
+  );
+}
 function CampaignJournal({
   game,
   inspect,
@@ -5556,6 +5758,8 @@ function CampaignJournal({
                   sagaChapterNumber(id)
                 ) : c.kind === "angmar" ? (
                   ANGMAR_CAMPAIGN_ORDER.indexOf(id) + 1
+                ) : c.kind === "dreamchaser" ? (
+                  DREAMCHASER_CAMPAIGN_ORDER.indexOf(id) + 1
                 ) : (
                   q.chapter
                 )}
@@ -5563,7 +5767,7 @@ function CampaignJournal({
               <strong>{q.name}</strong>
               <small>
                 {result
-                  ? `Score ${result.score}`
+                  ? `Score ${result.score}${result.xp !== undefined ? ` · ${result.xp} XP` : ""}`
                   : q.id === game.scenarioId
                     ? "Current chapter"
                     : skipped
@@ -5693,6 +5897,19 @@ function CampaignJournal({
         <p className="campaign-note">
           Notes · The Black Gate: {c.blackGateTokens} resource{" "}
           {c.blackGateTokens === 1 ? "token" : "tokens"}
+        </p>
+      ) : null}
+      {c.kind === "dreamchaser" ? (
+        <p className="campaign-note">
+          Notes · {c.xp ?? 0} unspent XP
+          {DREAMCHASER_LOG.some((l) => c.marks?.[l.key])
+            ? ` · ${DREAMCHASER_LOG.filter((l) => c.marks?.[l.key])
+                .map(
+                  (l) =>
+                    `${l.label} ${c.marks![l.key]}/${l.boxes}${l.kind === "upgradable" && c.marks![l.key] >= l.boxes ? " (upgraded)" : ""}`,
+                )
+                .join(", ")}`
+            : ""}
         </p>
       ) : null}
       {c.outcome ? (

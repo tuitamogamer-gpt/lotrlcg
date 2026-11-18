@@ -1,3 +1,4 @@
+import * as DreamCards from "./dreamchaser-campaign-cards";
 import { angmarCampaignAttachmentPlayed } from "./angmar-campaign-loot";
 import { angmarCampaignCannotCommit } from "./angmar-campaign-support";
 import * as FortressPlayers from "./fortress-nurn-player";
@@ -1598,6 +1599,7 @@ export function resolvePlayerCard(
   if (played) wainridersPlayerCardPlayed(s, c);
   if (played && s.ninEilph) s.used.push("nin:played");
   if (played) Voyage.voyagePlayerCardPlayed(s, c);
+  if (played) DreamCards.dreamchaserCardPlayed(s, c);
   if (played) cityPlayerCardPlayed(s, c);
   if (played) haradPlayerCardPlayed(s, c);
   if (played) MountainFirePlayers.mountainFirePlayerCardPlayed(s, c);
@@ -2427,6 +2429,15 @@ function printedAbilities(s: GameState, u: Unit) {
     results.push({
       label: angmarLabel,
       disabled: !!Angmar.angmarAbilityProblem(s, u),
+    });
+  const dreamLabel =
+    s.campaign?.kind === "dreamchaser"
+      ? DreamCards.dreamchaserAbilityLabel(u.code)
+      : undefined;
+  if (dreamLabel)
+    results.push({
+      label: dreamLabel,
+      disabled: !!DreamCards.dreamchaserAbilityProblem(s, u),
     });
   const finalRingLabel = finalRingAbilityLabel(u.code);
   if (finalRingLabel)
@@ -3466,6 +3477,10 @@ function applyActionCore(input: GameState, action: Action): GameState {
               "Orc Vanguard prevents Glorfindel from spending the resource cost.",
             );
           if (Angmar.useAngmarAbility(s, u, action.attachmentId)) {
+          } else if (
+            !action.attachmentId &&
+            DreamCards.dreamchaserAbility(s, u)
+          ) {
           } else if (useStewardFearAbility(s, u, action.attachmentId)) {
           } else if (u.code === CARROCK.grimbeorn && !action.attachmentId)
             enqueue(s, fx("carrockContribute", { target: u.id }));

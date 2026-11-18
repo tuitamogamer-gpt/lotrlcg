@@ -1,3 +1,5 @@
+import * as DreamCards from "./dreamchaser-campaign-cards";
+import { dreamchaserCampaignEffect } from "./dreamchaser-campaign";
 import {
   angmarLootEffect,
   angmarLootEnemyAttackResolved,
@@ -683,6 +685,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (perilousVoyageEffect(s, e)) return;
   if (sagaCampaignEffect(s, e)) return;
   if (angmarCampaignEffect(s, e)) return;
+  if (dreamchaserCampaignEffect(s, e)) return;
   if (angmarLootEffect(s, e)) return;
   if (HaradPlayers.handleHaradPlayerEffect(s, e)) return;
   if (MumakPlayers.handleMumakilPlayerEffect(s, e)) return;
@@ -2125,6 +2128,7 @@ function handleEffect(s: GameState, e: Effect) {
         ...DunlandQuest.dunlandCombatEndEffects(s),
         ...Raid.raidCombatEnd(s),
         ...Depths.depthsCombatEnd(s),
+        ...DreamCards.dreamchaserCombatEnd(s),
         fx("khazadCombatEnd"),
         fx("refreshReady"),
       );
@@ -2466,7 +2470,10 @@ function handleEffect(s: GameState, e: Effect) {
         const archery = Cobas.cobasArchery(
           s,
           [...s.staging, ...allEngaged(s)].reduce(
-            (total, enemy) => total + Voyage.voyageArchery(s, enemy),
+            (total, enemy) =>
+              total +
+              Voyage.voyageArchery(s, enemy) +
+              DreamCards.dreamchaserArchery(s, enemy),
             0,
           ),
         );
@@ -2869,6 +2876,8 @@ function handleEffect(s: GameState, e: Effect) {
         if (enemy)
           EredPlayers.eredMithrinPlayerEnemyAttackResolved(s, enemy, defenders);
         if (enemy) angmarLootEnemyAttackResolved(s, enemy, defenders);
+        if (enemy)
+          DreamCards.dreamchaserEnemyAttackResolved(s, enemy, defenders);
       }
       if (completed) prepend(s, ...Mordor.mordorAttackFinished(s, completed));
       if (completed) prepend(s, ...Mumakil.mumakilAttackFinished(s, completed));

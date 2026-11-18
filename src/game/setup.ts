@@ -122,6 +122,15 @@ import {
   nextAngmarChapter,
 } from "./angmar-campaign";
 import {
+  dreamchaserCampaignSetup,
+  dreamchaserChapterSupported,
+  dreamchaserDeckSetup,
+  dreamchaserForbiddenTitle,
+  isDreamchaserCampaign,
+  newDreamchaserCampaign,
+  nextDreamchaserChapter,
+} from "./dreamchaser-campaign";
+import {
   isSagaCampaign,
   newSagaCampaign,
   sagaChapterOptions,
@@ -204,6 +213,8 @@ export function createGame(
     burglarLoot?: Record<number, string[]>;
     /** The Hobbit: discovered treasures each player adds to their deck. */
     hobbitTreasures?: Record<number, string[]>;
+    /** The Dream-chaser campaign: the Hard/Expert Mode card's side for this chapter. */
+    dreamchaserMode?: "hard" | "expert";
   } = {},
 ): GameState {
   const starter = BUILT_IN_DECKS.find((d) => d.id === deckId);
@@ -308,10 +319,17 @@ export function createGame(
     (options.campaign
       ? isAngmarCampaign(options.campaign)
       : scenarioId === "intruders-in-chetwood");
+  // The Dream-chaser campaign begins with Voyage Across Belegaer.
+  const dreamchaserCampaign =
+    playMode === "campaign" &&
+    (options.campaign
+      ? isDreamchaserCampaign(options.campaign)
+      : scenarioId === "voyage-across-belegaer");
   requireRule(
     playMode !== "campaign" ||
       sagaCampaign ||
       angmarCampaign ||
+      dreamchaserCampaign ||
       options.campaign ||
       scenarioId === "mirkwood",
     "A campaign begins in Mirkwood.",
@@ -320,6 +338,7 @@ export function createGame(
     playMode !== "campaign" ||
       sagaCampaign ||
       angmarCampaign ||
+      dreamchaserCampaign ||
       CAMPAIGN_CHAPTERS.includes(scenarioId),
     "The Mirkwood Paths campaign covers the three Core Set quests.",
   );
@@ -329,6 +348,17 @@ export function createGame(
         nextAngmarChapter(options.campaign ?? { completed: [] }) ===
           scenarioId),
     "The Angmar Awakened campaign follows its chapters in order, beginning with Intruders in Chetwood.",
+  );
+  requireRule(
+    !dreamchaserCampaign ||
+      (dreamchaserChapterSupported(scenarioId) &&
+        nextDreamchaserChapter(options.campaign ?? { completed: [] }) ===
+          scenarioId),
+    "The Dream-chaser campaign follows its chapters in order, beginning with Voyage Across Belegaer.",
+  );
+  requireRule(
+    !options.dreamchaserMode || dreamchaserCampaign,
+    "Hard and Expert Mode belong to the Dream-chaser campaign.",
   );
   // The Old Forest and Fog on the Barrow-downs may follow A Shadow of the Past.
   requireRule(
@@ -346,7 +376,9 @@ export function createGame(
     ? sagaForbiddenTitle(scenarioId)
     : angmarCampaign
       ? angmarForbiddenTitle(scenarioId)
-      : undefined;
+      : dreamchaserCampaign
+        ? dreamchaserForbiddenTitle(scenarioId)
+        : undefined;
   requireRule(
     !forbidden || !chosenHeroes.some((c) => card(c).name === forbidden),
     `No card titled ${forbidden} can be used in this chapter of the campaign.`,
@@ -366,10 +398,19 @@ export function createGame(
                     chosenLine,
                     options.seats?.map((p) => p.heroes.length),
                   )
-                : newCampaign(chosenLine)),
+                : dreamchaserCampaign
+                  ? newDreamchaserCampaign(
+                      chosenLine,
+                      options.seats?.map((p) => p.heroes.length),
+                    )
+                  : newCampaign(chosenLine)),
         )
       : null;
   const s: GameState = {
+    // The Dream-chaser campaign: the Hard/Expert Mode card for this chapter.
+    ...(options.dreamchaserMode
+      ? { dreamchaser: { mode: options.dreamchaserMode } }
+      : {}),
     ...(options.guided
       ? {
           flow: {
@@ -608,6 +649,8 @@ export function finishGameSetup(s: GameState) {
   sagaCampaignDeckSetup(s);
   // The Angmar Awakened campaign: Iârion's Pendant and Determination.
   angmarCampaignDeckSetup(s);
+  // The Dream-chaser campaign: the Campaign Pool's player cards.
+  dreamchaserDeckSetup(s);
   eachSeat(s, () => {
     shuffle(s, s.deck);
     // Gandalf's Delay (a saga campaign burden): 1 less card.
@@ -769,9 +812,10 @@ export function finishGameSetup(s: GameState) {
   eredMithrinPlayerSetup(s);
   sagaCampaignSetup(s);
   angmarCampaignSetup(s);
+  dreamchaserCampaignSetup(s);
   log(
     s,
-    `${scenario(scenarioId).name} · ${playMode === "campaign" ? (isSagaCampaign(campaign) ? "The Lord of the Rings campaign" : isAngmarCampaign(campaign) ? "The Angmar Awakened campaign" : "Mirkwood Paths campaign") : "Normal game"}.`,
+    `${scenario(scenarioId).name} · ${playMode === "campaign" ? (isSagaCampaign(campaign) ? "The Lord of the Rings campaign" : isAngmarCampaign(campaign) ? "The Angmar Awakened campaign" : isDreamchaserCampaign(campaign) ? "The Dream-chaser campaign" : "Mirkwood Paths campaign") : "Normal game"}.`,
     "chapter",
   );
   if (s.flow)

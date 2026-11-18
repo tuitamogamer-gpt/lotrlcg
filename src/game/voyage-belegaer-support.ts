@@ -2,6 +2,7 @@ import encounters from "../data/voyage-belegaer-encounter-cards.json";
 import quests from "../data/voyage-belegaer-quest-cards.json";
 import recipes from "../data/voyage-belegaer-recipes.json";
 import type { Card, GameState, Unit } from "./types";
+import { DC, isFleetShip } from "./dreamchaser-campaign-support";
 
 export const VOYAGE_ENCOUNTERS = encounters as Card[];
 export const VOYAGE_QUESTS = quests as Card[];
@@ -109,11 +110,15 @@ export function validateVoyage(
         ? VOYAGE_STAGE_TWO.includes(q.currentQuest)
         : q.currentQuest === VOYAGE.pursuit) &&
     Array.isArray(q.setAside) &&
-    q.setAside.every((u) => validUnit(u) && VOYAGE_SHIPS.includes(u.code)) &&
+    q.setAside.every((u) => validUnit(u) && isFleetShip(u.code)) &&
     new Set(q.setAside.map((u) => u.code)).size === q.setAside.length &&
     Array.isArray(q.corsairDeck) &&
-    q.corsairDeck.every((c) => VOYAGE_CORSAIRS.includes(c)) &&
+    q.corsairDeck.every(
+      (c) => VOYAGE_CORSAIRS.includes(c) || c === DC.crowley,
+    ) &&
     Array.isArray(q.corsairDiscard) &&
-    q.corsairDiscard.every((c) => VOYAGE_CORSAIRS.includes(c))
+    q.corsairDiscard.every(
+      (c) => VOYAGE_CORSAIRS.includes(c) || c === DC.crowley,
+    )
   );
 }

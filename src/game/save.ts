@@ -83,6 +83,10 @@ import { validateUlfast } from "./ulfast-support";
 import { validateUlfastPlayers } from "./ulfast-player-support";
 import { isSagaCampaign, validateSagaCampaign } from "./saga-campaign";
 import { isAngmarCampaign, validateAngmarCampaign } from "./angmar-campaign";
+import {
+  isDreamchaserCampaign,
+  validateDreamchaserCampaign,
+} from "./dreamchaser-campaign";
 import { validateSagaCards } from "./saga-campaign-cards";
 import { validatePerilousVoyage } from "./perilous-voyage-support";
 import { validateWrathRuin } from "./wrath-ruin-support";
@@ -1227,6 +1231,8 @@ export function validateSave(
       if (!validateSagaCampaign(s)) return false;
     } else if (s.playMode === "campaign" && isAngmarCampaign(s.campaign)) {
       if (!validateAngmarCampaign(s)) return false;
+    } else if (s.playMode === "campaign" && isDreamchaserCampaign(s.campaign)) {
+      if (!validateDreamchaserCampaign(s)) return false;
     } else if (s.playMode === "campaign") {
       const c = s.campaign;
       if (

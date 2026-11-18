@@ -1,0 +1,264 @@
+import assert from "node:assert/strict";
+import fs from "node:fs/promises";
+import { createHash } from "node:crypto";
+import { chromium } from "playwright";
+import { win } from "../src/game/board.ts";
+import { validateSave } from "../src/game/engine.ts";
+import { syncSeat } from "../src/game/table.ts";
+import { DC } from "../src/game/dreamchaser-campaign-support.ts";
+import { VOYAGE } from "../src/game/voyage-belegaer-support.ts";
+import { card } from "../src/game/cards.ts";
+import { reviewedState } from "./browser-review-helpers.mjs";
+import { capture, context, report, url } from "./browser-angmar-helpers.mjs";
+
+const art = JSON.parse(
+  await fs.readFile(
+    new URL("../tests/dreamchaser-campaign-art.json", import.meta.url),
+    "utf8",
+  ),
+);
+const dir = "output/dreamchaser-campaign-browser";
+await fs.mkdir(dir, { recursive: true });
+const errors = [],
+  entries = new Set(),
+  screenshots = [],
+  checks = [],
+  artwork = [];
+const sourceScriptSha256 = createHash("sha256")
+  .update(await fs.readFile(new URL(import.meta.url)))
+  .digest("hex");
+const CAMPAIGN = "there-and-back-again.campaign.v1";
+const browser = await chromium.launch({
+  headless: true,
+  ...(process.env.CHROMIUM_PATH
+    ? { executablePath: process.env.CHROMIUM_PATH }
+    : {}),
+});
+let page;
+const campaign = () =>
+  page.evaluate((key) => JSON.parse(localStorage.getItem(key)), CAMPAIGN);
+async function checkpoint(label, width) {
+  await reviewedState(page);
+  await capture(page, dir, `${label}-${width}`, screenshots);
+  checks.push(`${label}-${width}`);
+  console.log(`PASS ${label} @ ${width}`);
+}
+/** Load a campaign state into the campaign slot and open the table. */
+async function load(s) {
+  syncSeat(s);
+  assert.ok(validateSave(s), "valid campaign fixture");
+  await page.evaluate(
+    ([key, state]) => {
+      localStorage.setItem(key, JSON.stringify(state));
+      localStorage.setItem("there-and-back-again.mode.v1", "campaign");
+      localStorage.setItem(
+        "there-and-back-again.campaign-kind.v1",
+        "dreamchaser",
+      );
+      localStorage.removeItem("there-and-back-again.choices.v1");
+    },
+    [CAMPAIGN, s],
+  );
+  await page.reload();
+  await page.locator("#start-btn").click();
+  await reviewedState(page);
+  return campaign();
+}
+/** Choose an option of the current choice dialog by its id. */
+async function choose(id) {
+  await reviewedState(page);
+  const s = await campaign(),
+    index = s.choice?.options.findIndex((o) => o.id === id) ?? -1;
+  assert.ok(index >= 0, JSON.stringify(s.choice));
+  const o = s.choice.options[index];
+  const occurrence = s.choice.options
+    .slice(0, index)
+    .filter((v) => v.label === o.label).length;
+  await page
+    .getByRole("dialog")
+    .getByRole("button", {
+      name: new RegExp(
+        `^${o.label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?:\\s|$)`,
+      ),
+    })
+    .nth(occurrence)
+    .click();
+  await reviewedState(page);
+  return campaign();
+}
+/** Keep the opening hand and reach the first action window (`pick` may answer a choice). */
+async function opening(pick = () => undefined) {
+  for (let i = 0; i < 200; i++) {
+    await reviewedState(page);
+    const s = await campaign();
+    if (s?.choice)
+      await choose(
+        pick(s) ??
+          s.choice.options.find((o) => o.id === "resolve")?.id ??
+          s.choice.options.find((o) => o.id === "skip")?.id ??
+          s.choice.options[0].id,
+      );
+    else if (s?.phase === "setup")
+      await page
+        .getByRole("button", { name: "Keep hand", exact: true })
+        .click();
+    else if (s && !s.queue.length && !s.flow?.pending) return s;
+    else await page.waitForTimeout(25);
+  }
+  throw Error("The campaign opening did not finish");
+}
+/** The chapter is won (after `before` prepares the table): the Campaign Log is updated. */
+async function victory(s, before = () => {}) {
+  const t = structuredClone(s);
+  Object.assign(t, { phase: "planning", choice: null, queue: [] });
+  if (t.flow) t.flow.pending = null;
+  before(t);
+  win(t);
+  return load(t);
+}
+/** Open the quest inspector, wait for a campaign card line and check it. */
+async function campaignCard(text, label, width) {
+  await page.getByRole("button", { name: /^Inspect quest: / }).click();
+  await page
+    .getByLabel("Campaign card", { exact: true })
+    .getByText(text)
+    .waitFor();
+  await checkpoint(label, width);
+  await page
+    .getByRole("button", { name: "Close dialog", exact: true })
+    .last()
+    .click();
+}
+try {
+  for (const width of [1280, 390, 320]) {
+    const view = await context(
+      browser,
+      width,
+      width === 1280 ? 1000 : 844,
+      errors,
+      entries,
+    );
+    page = view.p;
+    page.setDefaultTimeout(15000);
+    page.setDefaultNavigationTimeout(30000);
+    // A new Dream-chaser campaign, started through the lobby on Hard Mode.
+    await page.evaluate((key) => {
+      for (const k of [
+        key,
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+      localStorage.setItem("there-and-back-again.mode.v1", "campaign");
+    }, CAMPAIGN);
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page
+      .getByRole("group", { name: "Campaign", exact: true })
+      .getByRole("button", { name: /Dream-chaser/ })
+      .click();
+    await page.getByLabel("Hard or Expert Mode").first().selectOption("hard");
+    await checkpoint("lobby", width);
+    await page.locator("#start-btn").click();
+    await reviewedState(page);
+    let s = await campaign();
+    assert.equal(s.scenarioId, "voyage-across-belegaer");
+    assert.equal(s.campaign.kind, "dreamchaser");
+    assert.equal(s.dreamchaser.mode, "hard");
+    assert.ok(s.encounterDeck.includes(DC.ominous));
+    assert.ok(s.voyageBelegaer.corsairDeck.includes(DC.crowley));
+    // The fleet: the Dream-chaser and Duskbringer; their Modification boons.
+    s = await opening((t) =>
+      /^Prepare the fleet/.test(t.choice.title) &&
+      t.choice.options.some((o) => card(o.code).name === "Duskbringer")
+        ? t.choice.options.find((o) => card(o.code).name === "Duskbringer").id
+        : /Choose a Modification boon for Dream-chaser/.test(t.choice.title)
+          ? DC.armor
+          : /Choose a Modification boon/.test(t.choice.title)
+            ? DC.quarters
+            : undefined,
+    );
+    const fleet = s.allies.filter(
+      (u) => card(u.code).type_code === "ship-objective",
+    );
+    assert.deepEqual(
+      fleet.map((u) => card(u.code).name),
+      ["Dream-chaser", "Duskbringer"],
+    );
+    assert.ok(fleet[0].attachments.some((a) => a.code === DC.armor));
+    assert.ok(fleet[1].attachments.some((a) => a.code === DC.quarters));
+    await campaignCard(/^Campaign Log: 0 unspent XP/, "voyage-setup", width);
+    // The resolution: XP for the campaign card's bullets (and Hard Mode).
+    s = await victory(s, (t) => {
+      t.victoryCards = [...(t.victoryCards ?? []), VOYAGE.warship];
+      t.sailing.heading = 0;
+    });
+    assert.ok(s.campaign.burdens.includes(DC.ominous));
+    assert.ok(s.campaign.xp >= 3, `XP ${s.campaign.xp}`);
+    assert.equal(s.campaign.completed[0].xp, s.campaign.xp);
+    await page
+      .getByText(new RegExp(`Notes · ${s.campaign.xp} unspent XP`))
+      .first()
+      .waitFor();
+    await page.getByText("Ominous Fate", { exact: true }).first().waitFor();
+    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await checkpoint("voyage-complete", width);
+    await view.c.close();
+  }
+  const p = await browser.newPage();
+  for (const a of art) {
+    const r = await p.request.get(new URL(a.localPath, url).href);
+    assert.equal(r.status(), 200);
+    const bytes = await r.body();
+    assert.equal(bytes.length, a.bytes);
+    assert.equal(createHash("sha256").update(bytes).digest("hex"), a.sha256);
+    const size = await p.evaluate(
+      async (bytes) => {
+        const b = await createImageBitmap(new Blob([Uint8Array.from(bytes)]));
+        const size = { width: b.width, height: b.height };
+        b.close();
+        return size;
+      },
+      [...bytes],
+    );
+    assert.ok(size.width > 0 && size.height > 0);
+    artwork.push({ ...a, ...size });
+  }
+  await p.close();
+  await report(dir, {
+    sourceScriptSha256,
+    errors,
+    entries,
+    screenshots,
+    checks,
+    artwork,
+  });
+  console.log(
+    `The Dream-chaser campaign browser passed ${checks.length} checkpoints and ${artwork.length} original faces`,
+  );
+} catch (error) {
+  if (page && !page.isClosed()) {
+    await page.screenshot({ path: `${dir}/failure.png` }).catch(() => {});
+    await fs.writeFile(
+      `${dir}/failure.json`,
+      JSON.stringify(
+        {
+          error: String(error),
+          stack: error.stack,
+          state: await campaign().catch(() => null),
+          errors,
+          checks,
+        },
+        null,
+        2,
+      ),
+    );
+  }
+  throw error;
+} finally {
+  await browser.close();
+}

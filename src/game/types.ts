@@ -41,6 +41,8 @@ export interface Card {
   sailing?: number;
   /** Printed Sauron's Eye icons counted in Fortitude tests (The Mountain of Fire). */
   sauron_eyes?: number;
+  /** The Dream-chaser campaign: the XP cost printed on an upgradable card's face. */
+  upgrade_xp?: number;
   /** Printed mark in the lower right corner of Beneath the Sands encounter cards. */
   on_track?: boolean;
   /** Printed Track keyword value used after travel while Search is Off Track. */
@@ -327,7 +329,13 @@ export interface CampaignState {
    * The Lord of the Rings saga campaign or the Angmar Awakened campaign;
    * absent for Mirkwood Paths.
    */
-  kind?: "saga" | "angmar";
+  kind?: "saga" | "angmar" | "dreamchaser";
+  /** The Dream-chaser campaign: unspent XP. */
+  xp?: number;
+  /** The Dream-chaser campaign: the checkboxes marked next to each scalable or upgradable card's title. */
+  marks?: Record<string, number>;
+  /** The Dream-chaser campaign: the seat each Recurring Nightmare in the Campaign Pool is shuffled into (one per copy). */
+  nightmares?: number[];
   /** Angmar Awakened: the damage noted for Protect the Innocent (and later Arnor Ravaged). */
   innocent?: number;
   /** Angmar Awakened: Protect the Innocent has been flipped to Arnor Ravaged (Deadmen's Dike). */
@@ -350,7 +358,13 @@ export interface CampaignState {
   burdens: string[];
   permanent: Record<string, string[]>;
   prisoner: string | null;
-  completed: { scenarioId: ScenarioId; score: number; rounds: number }[];
+  completed: {
+    scenarioId: ScenarioId;
+    score: number;
+    rounds: number;
+    /** The Dream-chaser campaign: the XP gained with this chapter's resolution. */
+    xp?: number;
+  }[];
   mendorSaved: boolean;
   /** Saga: the deck (seat index) each earned player-card boon joins at setup. */
   deckBoons?: Record<string, number>;
@@ -488,6 +502,8 @@ export interface GameState {
   /** Innermost printed player ability; retained across choices and nested responses. */
   playerAbilitySources?: { source: string; code: string }[];
   sailing?: import("./sailing").SailingState;
+  /** The Dream-chaser campaign's state during a chapter. */
+  dreamchaser?: import("./dreamchaser-campaign").DreamchaserGame;
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;

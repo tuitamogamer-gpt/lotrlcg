@@ -1,3 +1,7 @@
+import {
+  dreamchaserAnySailing,
+  dreamchaserSailingWeight,
+} from "./dreamchaser-campaign-cards";
 import citySymbols from "../data/city-sailing-icons.json";
 import cobasSymbols from "../data/cobas-sailing-icons.json";
 import { cobasSailingExtraCards } from "./cobas";
@@ -82,13 +86,15 @@ export function sailingCandidates(s: GameState) {
     (u) =>
       !u.exhausted &&
       !test.committedIds.includes(u.id) &&
-      (ownerOf(s, u) === test.player || isDreamChaser(u)),
+      (ownerOf(s, u) === test.player ||
+        isDreamChaser(u) ||
+        dreamchaserAnySailing(u)),
   );
 }
 export function sailingCommitCount(s: GameState) {
   return (s.sailing?.test?.committedIds ?? []).reduce((total, id) => {
     const u = get(s, id);
-    return total + (u ? (isDreamChaser(u) ? 2 : 1) : 0);
+    return total + (u ? dreamchaserSailingWeight(u) : 0);
   }, 0);
 }
 function chooseSailors(s: GameState) {
@@ -103,7 +109,7 @@ function chooseSailors(s: GameState) {
         id: u.id,
         label: `Commit ${name(u)}`,
         code: u.code,
-        detail: `Exhaust; look at ${isDreamChaser(u) ? 2 : 1} encounter card${isDreamChaser(u) ? "s" : ""}`,
+        detail: `Exhaust; look at ${dreamchaserSailingWeight(u)} encounter card${dreamchaserSailingWeight(u) === 1 ? "" : "s"}`,
         effects: [fx("sailingCommit", { target: u.id, player: test.player })],
       })),
       {
