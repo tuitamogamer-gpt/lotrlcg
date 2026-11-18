@@ -372,9 +372,11 @@ export function effectiveKeyword(u: Unit, keyword: string): boolean {
   );
 }
 export function hasResourceIcon(u: Unit, sphere: string) {
-  if (u.noResourceIcons && sphere !== "neutral") return false;
+  // Boon cards (Lord of the Rings campaign) are neutral player cards.
+  const neutral = sphere === "neutral" || sphere === "boon";
+  if (u.noResourceIcons && !neutral) return false;
   return (
-    sphere === "neutral" ||
+    neutral ||
     card(u.code).sphere_code === sphere ||
     !!u.phaseResourceIcons?.includes(sphere) ||
     !!u.dynamicResourceIcons?.includes(sphere) ||

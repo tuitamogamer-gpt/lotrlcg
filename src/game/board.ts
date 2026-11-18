@@ -127,7 +127,9 @@ import {
 import {
   sagaCampaignCannotCancel,
   sagaCampaignEncounter,
+  sagaCampaignEventPlayed,
   sagaCampaignPhaseEnd,
+  sagaTomBombadilOptions,
 } from "./saga-campaign-cards";
 import { threatElimination } from "./tharbad-support";
 import * as Tharbad from "./tharbad";
@@ -3477,6 +3479,22 @@ export function resolveReveal(
         }),
       ),
     );
+  // Ho! Tom Bombadil! (a Lord of the Rings campaign boon).
+  if (when && revealOrigin === "encounter")
+    options.push(
+      ...sagaTomBombadilOptions(
+        s,
+        fx("placeEncounter", {
+          text: "revealed",
+          code,
+          player: revealingPlayer,
+          value: thalin ? 1 : 0,
+          count: initialProgress,
+          source: guarding,
+          revealOrigin,
+        }),
+      ),
+    );
   if (canCancelWhenRevealed && revealOrigin === "encounter")
     options.push(
       ...HaradResponses.haradWhenRevealedOptions(
@@ -4211,6 +4229,7 @@ export function spendEvent(
   s.hand = s.hand.filter((x) => x.id !== u.id);
   if (s.ninEilph) s.used.push("nin:played");
   holdPlayedEvent(s, u);
+  sagaCampaignEventPlayed(s, u);
   wainridersPlayerCardPlayed(s, card(u.code));
   batch4Scenario(s).playerCardPlayed?.(s, u);
   Isengard.isengardPlayerPlayed(s, u, true, undefined, doomedX);

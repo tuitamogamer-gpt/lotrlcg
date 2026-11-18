@@ -1,15 +1,18 @@
 // The Lord of the Rings campaign's boons and burdens: Mr. Underhill, Gildor
-// Inglorion and The Ring Draws Them (the Permanent stat boons are attachment
-// rules in expansion-passives.ts; Gandalf's Delay is resolved at setup).
-import type { Effect, GameState, Unit } from "./types";
+// Inglorion, The Ring Draws Them, Old Bogey-stories and Ho! Tom Bombadil! (the
+// Permanent stat boons are attachment rules in expansion-passives.ts;
+// Gandalf's Delay is resolved at setup).
+import type { Effect, GameState, Option, Unit } from "./types";
 import { card, name } from "./cards";
 import {
   choose,
+  draw,
   fx,
   get,
   log,
   make,
   prepend,
+  putPlayerDeck,
   requireRule,
   shuffle,
 } from "./core";
@@ -21,6 +24,7 @@ import {
 } from "./board";
 import {
   activeSeat,
+  allHeroes,
   forOwner,
   globalCharacters,
   ownerOf,
@@ -28,9 +32,10 @@ import {
   seatName,
   seatView,
 } from "./table";
+import { putPlayedEventInVictory } from "./event-resolution";
 import { oneRingExhausted } from "./lotr-saga";
 import { hasResourceIcon } from "./expansion-passives";
-import { isSagaCampaign, SAGA } from "./saga-campaign";
+import { isSagaCampaign, SAGA, SAGA_BOONS } from "./saga-campaign";
 import { FF } from "./flight-ford-support";
 
 type SagaCardsState = NonNullable<GameState["sagaCards"]>;
@@ -111,9 +116,11 @@ const underhillTargets = (s: GameState, p: number) =>
 export const sagaCampaignAbilityLabel = (code: string, s?: GameState) =>
   code === SAGA.underhill
     ? "Mr. Underhill · Add to the victory display: an engaged enemy cannot attack you this round"
-    : code === FF.oldRoad && s && isSagaCampaign(s.campaign)
-      ? "The Old Road · Place the top burden on the encounter deck to place 4 progress here"
-      : undefined;
+    : code === SAGA.bogey
+      ? "Old Bogey-stories · Add to the victory display: shuffle your hand into your deck, then draw 6"
+      : code === FF.oldRoad && s && isSagaCampaign(s.campaign)
+        ? "The Old Road · Place the top burden on the encounter deck to place 4 progress here"
+        : undefined;
 /** The Old Road (Flight to the Ford) in play: the staging area or active. */
 const oldRoadInPlay = (s: GameState, u: Unit) =>
   u.code === FF.oldRoad &&
@@ -132,6 +139,14 @@ export function sagaCampaignAbilityProblem(
     return null;
   }
   const a = u.attachments.find((x) => x.id === attachmentId);
+  if (a?.code === SAGA.bogey) {
+    if (a.blanked) return "Old Bogey-stories' text is blank.";
+    if ((a.owner ?? ownerOf(s, u)) !== activeSeat(s))
+      return "Old Bogey-stories belongs to another player.";
+    if (s.hand.length < 6)
+      return "Old Bogey-stories needs a hand of at least 6 cards.";
+    return null;
+  }
   if (!a || a.code !== SAGA.underhill) return "No campaign card ability.";
   if (a.blanked) return "Mr. Underhill's text is blank.";
   if (ownerOf(s, u) !== activeSeat(s))
@@ -159,6 +174,25 @@ export function sagaCampaignAbility(
     return true;
   }
   const a = u.attachments.find((x) => x.id === attachmentId);
+  if (a?.code === SAGA.bogey) {
+    const problem = sagaCampaignAbilityProblem(s, u, attachmentId);
+    requireRule(!problem, problem ?? "");
+    // Cost: Old Bogey-stories goes to the victory display (it stays in the
+    // Campaign Pool); then the whole hand is shuffled in and 6 are drawn.
+    u.attachments = u.attachments.filter((x) => x.id !== a.id);
+    addVictoryCard(s, a.code);
+    const count = s.hand.length;
+    for (const x of [...s.hand]) putPlayerDeck(s, x);
+    s.hand = [];
+    shuffle(s, s.deck);
+    draw(s, 6);
+    log(
+      s,
+      `Old Bogey-stories is added to the victory display: ${who(s, activeSeat(s))} ${s.table ? "shuffles" : "shuffle"} ${count} cards from hand into the deck and ${s.table ? "draws" : "draw"} 6.`,
+      "good",
+    );
+    return true;
+  }
   if (!a || a.code !== SAGA.underhill) return false;
   const problem = sagaCampaignAbilityProblem(s, u, attachmentId);
   requireRule(!problem, problem ?? "");
@@ -192,6 +226,66 @@ export function sagaCampaignAttackStarted(
   )
     prepend(s, fx("sagaFordOffer", { target: enemy.id, player }));
 }
+/**
+ * Ho! Tom Bombadil!: "Response: Add this card to the victory display and
+ * remove it from the campaign pool to cancel the 'when revealed' effects of an
+ * encounter card just revealed from the encounter deck." Offered to each
+ * player holding it, like A Test of Will.
+ */
+export function sagaTomBombadilOptions(
+  s: GameState,
+  continuation: Effect,
+): Option[] {
+  if (!isSagaCampaign(s.campaign)) return [];
+  return playerOrder(s).flatMap((player) => {
+    const tom = seatView(s, player).hand.find((u) => u.code === SAGA.tom);
+    if (!tom) return [];
+    return [
+      {
+        id: s.table ? `tom-${player}` : "tom",
+        label: `Play Ho! Tom Bombadil!${s.table ? ` · ${seatName(s, player)}` : ""}`,
+        code: SAGA.tom,
+        ability: {
+          player,
+          source: tom.id,
+          code: SAGA.tom,
+          type: "response" as const,
+        },
+        effects: [
+          fx("eventPlay", {
+            code: SAGA.tom,
+            source: tom.id,
+            player,
+            effects: [
+              fx("afterPlayerAbility", {
+                effects: [{ ...continuation, flag: true }],
+              }),
+            ],
+            cancelledEffects: [continuation],
+          }),
+        ],
+      },
+    ];
+  });
+}
+/**
+ * Ho! Tom Bombadil!'s cost: the victory display and out of the Campaign Pool.
+ * As the Gift boons' FAQ rules, the removal is recorded only once the scenario
+ * is defeated: a lost scenario is replayed with the boon still in the pool.
+ */
+export function sagaCampaignEventPlayed(s: GameState, u: Unit) {
+  if (u.code !== SAGA.tom) return;
+  putPlayedEventInVictory(s, u.code);
+  if (isSagaCampaign(s.campaign)) {
+    const spent = (state(s).spent ??= []);
+    if (!spent.includes(SAGA.tom)) spent.push(SAGA.tom);
+  }
+  log(
+    s,
+    "Ho! Tom Bombadil! is added to the victory display and removed from the Campaign Pool (recorded when the scenario is won).",
+    "good",
+  );
+}
 /** Mr. Underhill: the chosen enemy cannot attack that player this round. */
 export const sagaCampaignEnemyCannotAttack = (
   s: GameState,
@@ -204,6 +298,37 @@ export const sagaCampaignEnemyCannotAttack = (
 
 export function sagaCampaignEffect(s: GameState, e: Effect): boolean {
   switch (e.kind) {
+    case "sagaBogeySetup": {
+      // "Setup: The first player attaches Old Bogey-stories to a hero in play."
+      const heroes = allHeroes(s);
+      if (!heroes.length) return true;
+      choose(
+        s,
+        "Old Bogey-stories · Setup: attach it to a hero in play",
+        heroes.map((h) => ({
+          id: h.id,
+          code: h.code,
+          label: `${name(h)}${s.table ? ` · ${seatName(s, ownerOf(s, h))}` : ""}`,
+          effects: [fx("sagaBogeyAttach", { target: h.id })],
+        })),
+        card(SAGA.bogey).text,
+      );
+      return true;
+    }
+    case "sagaBogeyAttach": {
+      const hero = get(s, e.target);
+      if (!hero || hero.attachments.some((a) => a.code === SAGA.bogey))
+        return true;
+      // The hero's controller uses its Action.
+      hero.attachments.push({
+        id: `a${s.nextId++}`,
+        code: SAGA.bogey,
+        exhausted: false,
+        owner: ownerOf(s, hero),
+      });
+      log(s, `Old Bogey-stories is attached to ${name(hero)}.`, "good");
+      return true;
+    }
     case "sagaUnderhill": {
       const host = globalCharacters(s).find((h) =>
         h.attachments.some((a) => a.id === e.source),
@@ -371,6 +496,11 @@ export function validateSagaCards(s: GameState) {
         m.round >= 0 &&
         m.round <= s.round,
     ) &&
-    (isSagaCampaign(s.campaign) || (!q.ringDraws && !q.underhill.length))
+    (q.spent === undefined ||
+      (Array.isArray(q.spent) &&
+        new Set(q.spent).size === q.spent.length &&
+        q.spent.every((code) => SAGA_BOONS.includes(code)))) &&
+    (isSagaCampaign(s.campaign) ||
+      (!q.ringDraws && !q.underhill.length && !q.spent?.length))
   );
 }

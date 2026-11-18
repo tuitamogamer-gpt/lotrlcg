@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2059,
+    "encounterCards": 2063,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3311,
-    "pending": 872
+    "scripted": 3315,
+    "pending": 868
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 253
+    "scripted": 255
   },
   "registeredCodes": [
     "01001",
@@ -853,6 +853,8 @@
     "146012",
     "146013",
     "146041",
+    "147024",
+    "148021",
     "16001",
     "16002",
     "16003",
@@ -1153,6 +1155,7 @@
     "octgn:07a8f60f-926c-4342-bf04-e3af9a24df10",
     "octgn:080f86b2-8cea-4134-8e79-de6312b51ed6",
     "octgn:0856a4b4-ec02-4586-8147-93fbadf544cd",
+    "octgn:088b62be-0f26-4a87-805a-277edd463c8c",
     "octgn:08a094d3-de00-4ea3-9dc3-141da9944763",
     "octgn:08af0240-fb38-4a33-a1f0-af07fd496b42",
     "octgn:08b55b0b-93e5-42d3-a746-703c7ce9146f",
@@ -3093,6 +3096,7 @@
     "octgn:d30fcccc-2f1a-43bb-8bc4-ce0fccdd4a0f",
     "octgn:d32ba7ec-fa7d-4a1a-b157-da4186e62ea6",
     "octgn:d33ef89b-13c9-49b2-a921-a527f27a415a",
+    "octgn:d34c9025-6380-4294-be3f-01c992922830",
     "octgn:d3a3d024-2321-4707-b319-eb62537e6d92",
     "octgn:d3bd47e5-cf59-4097-9cec-92a15fe56bf4",
     "octgn:d3c68791-c3f9-4e8d-9515-2496f9ca1895",
@@ -3686,9 +3690,9 @@
     {
       "product": "fog-on-the-barrow-downs",
       "total": 21,
-      "scripted": 19,
+      "scripted": 21,
       "player": 1,
-      "playerScripted": 0
+      "playerScripted": 1
     },
     {
       "product": "foundations-of-stone",
@@ -4225,9 +4229,9 @@
     {
       "product": "the-old-forest",
       "total": 24,
-      "scripted": 22,
+      "scripted": 24,
       "player": 1,
-      "playerScripted": 0
+      "playerScripted": 1
     },
     {
       "product": "the-redhorn-gate",
@@ -11276,7 +11280,7 @@
       "name": "Old Bogey-stories",
       "type": "attachment",
       "pack": "The Old Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-old-forest"
     },
     {
@@ -11284,7 +11288,7 @@
       "name": "Ho! Tom Bombadil!",
       "type": "event",
       "pack": "Fog on the Barrow-downs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fog-on-the-barrow-downs"
     },
     {
@@ -13844,7 +13848,7 @@
       "name": "The Old Forest",
       "type": "campaign",
       "pack": "The Old Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-old-forest"
     },
     {
@@ -33876,7 +33880,7 @@
       "name": "Fog on the Barrow-downs",
       "type": "campaign",
       "pack": "Fog on the Barrow-downs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fog-on-the-barrow-downs"
     },
     {
@@ -40172,15 +40176,15 @@
       "id": "Q0C.01.1",
       "name": "The Old Forest",
       "mode": "campaign",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-old-forest",
+      "state": "scripted"
     },
     {
       "id": "Q0C.01.2",
       "name": "Fog on the Barrow-downs",
       "mode": "campaign",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "fog-on-the-barrow-downs",
+      "state": "scripted"
     },
     {
       "id": "Q0C.02",

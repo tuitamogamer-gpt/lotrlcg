@@ -50,6 +50,7 @@ import { isEnemy } from "./ships";
 import { mainQuestUnit } from "./quest-state";
 import { fasSelectArea, fasSyncArea } from "./flies-spiders-support";
 import { lotrSagaCheck } from "./lotr-saga";
+import { isSagaCampaign } from "./saga-campaign";
 import {
   FB,
   FB_ARM,
@@ -1369,6 +1370,12 @@ function attackFinished(s: GameState, combat: Combat, skipped = false) {
 
 export const FOG_BARROW_HOOKS: Batch4ScenarioHooks = {
   setup: setupFogBarrow,
+  // The campaign card: "While any player is at stage 4B, the first player
+  // cannot lose control of the first player token."
+  keepFirstPlayer: (s) =>
+    !!s.fogBarrow &&
+    isSagaCampaign(s.campaign) &&
+    playerOrder(s).some((p) => fbTrapped(s, p)),
   advance,
   stageInfo: fogBarrowStageInfo,
   check: (s) => {

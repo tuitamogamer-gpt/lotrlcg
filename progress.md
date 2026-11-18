@@ -1091,3 +1091,19 @@ Engine: src/game/saga-campaign.ts keeps the log, the setup, the resolutions and 
 Coverage is now 861 player definitions (112 heroes), 2,059 encounters and 123 scenarios. This resolves 3,311 of 4,183 identities and 253 of 355 recipes (The Black Riders is complete); 872 identities remain pending.
 
 Validation on Node 22: the engine suite passes all 6,729 tests, including 5 focused campaign tests. The browser suite starts a new campaign through the lobby and plays its log through the three chapters at 1280, 390 and 320 pixels (24 checkpoints) and checks the 14 original faces. The production build passes.
+
+2026-11-18 The Lord of the Rings campaign, The Old Forest and Fog on the Barrow-downs: continued the user's “Nastavi” after 56677cc. The two print-on-demand chapters (recipes Q0C.01.1 and Q0C.01.2) are now part of The Lord of the Rings campaign as the optional Parts 1.1 and 1.2. See docs/SAGA-CAMPAIGN.md.
+
+- Order: after A Shadow of the Past, the interlude's Next chapter list offers The Old Forest, Fog on the Barrow-downs and A Knife in the Dark (after The Old Forest: Fog on the Barrow-downs and A Knife in the Dark). A skipped chapter cannot be played later; the journal numbers them 1.1 and 1.2 and marks a skipped one "Not included". New games, continued games and saves check the order step by step.
+- The Old Forest's campaign card: the first player attaches Old Bogey-stories to a hero in play at setup; the Resolution earns it with at least 12 damage on Old Man Willow. Old Bogey-stories: its controller (the hero's controller) may add it to the victory display to shuffle a hand of at least 6 cards into the deck and draw 6; once earned, it is attached again in each later chapter.
+- Fog on the Barrow-downs' campaign card: while any player is at stage 4B, the first player keeps the first player token; the Resolution earns Ho! Tom Bombadil!. Ho! Tom Bombadil!: added to the first player's hand at setup (kept through a mulligan), offered with A Test of Will when an encounter card is revealed from the encounter deck, it cancels the when revealed effects and goes to the victory display; its removal from the Campaign Pool is recorded when the chapter is won (a lost chapter is replayed with it, as The Road Darkens' FAQ rules for boons removed by a cost). It is never played as an Action.
+- Boon cards are neutral (RingsDB lists their sphere as Neutral) and need no resource match. Gandalf's Delay now also applies to the hand drawn after a mulligan.
+- The Campaign Pool's boon and burden names are readable on parchment (they kept the dark theme's light colour), and the lobby counts the supported chapters as "3 of 18 saga chapters · 2 optional".
+
+Sources: both campaign cards (both sides) and both boons were checked against the scans; 20 faces are now pinned in tests/saga-campaign-art.json.
+
+Engine: src/game/saga-campaign.ts gains the chapter options (sagaChapterOptions, SAGA_INSERTS, the journal order and part numbers), the Setups of both boons, both Resolutions and the deferred pool removal; src/game/saga-campaign-cards.ts scripts Old Bogey-stories and Ho! Tom Bombadil!; campaign.ts continues to a chosen chapter, setup.ts checks it, the Fog module keeps the first player token, and the interlude offers the Next chapter list.
+
+Coverage is now 861 player definitions (112 heroes), 2,063 encounters and 123 scenarios. This resolves 3,315 of 4,183 identities and 255 of 355 recipes; 868 identities remain pending.
+
+Validation on Node 22: the engine suite passes all 6,731 tests, including 7 focused campaign tests (2 new). The browser suite starts a new campaign through the lobby and plays its log through A Shadow of the Past, both optional chapters, A Knife in the Dark and Flight to the Ford at 1280, 390 and 320 pixels (45 checkpoints) and checks the 20 original faces. The production build passes.

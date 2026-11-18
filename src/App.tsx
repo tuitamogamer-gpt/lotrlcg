@@ -336,8 +336,12 @@ import {
   nextSagaChapter,
   RING_BEARER_KEY,
   SAGA_CAMPAIGN_CARDS as SAGA_CAMPAIGN_CARD_CODES,
+  SAGA_CAMPAIGN_JOURNAL,
   SAGA_CAMPAIGN_ORDER,
   SAGA_CAMPAIGN_SUPPORTED,
+  SAGA_INSERTS,
+  sagaChapterNumber,
+  sagaChapterOptions,
   sagaChapterSupported,
   sagaResolutionQuestions,
 } from "./game/saga-campaign";
@@ -436,9 +440,14 @@ const readCampaignKind = (): CampaignKind => {
 };
 const campaignKindOf = (c?: CampaignState | null): CampaignKind =>
   c?.kind === "saga" ? "saga" : "mirkwood";
-/** The chapters of a campaign, in order. */
+/** The chapters of a campaign, in order (with the saga's optional inserts). */
 const chaptersOf = (kind: CampaignKind): readonly ScenarioId[] =>
-  kind === "saga" ? SAGA_CAMPAIGN_ORDER : CAMPAIGN_CHAPTERS;
+  kind === "saga" ? SAGA_CAMPAIGN_JOURNAL : CAMPAIGN_CHAPTERS;
+/** Recorded chapters out of the campaign's required chapters. */
+const campaignProgress = (c: CampaignState) =>
+  c.kind === "saga"
+    ? `${c.completed.filter((q) => !SAGA_INSERTS.includes(q.scenarioId)).length} / ${SAGA_CAMPAIGN_ORDER.length}`
+    : `${c.completed.length} / ${CAMPAIGN_CHAPTERS.length}`;
 const CAMPAIGN_TITLES: Record<CampaignKind, string> = {
   mirkwood: "Mirkwood Paths",
   saga: "The Lord of the Rings",
@@ -1008,6 +1017,8 @@ export default function App() {
   const [nextHeroes, setNextHeroes] = useState<string[]>([]);
   const [nextSeatDecks, setNextSeatDecks] = useState<string[]>([]);
   const [nextDeck, setNextDeck] = useState("leadership");
+  /** The Lord of the Rings campaign: the chapter chosen for the interlude. */
+  const [nextChapter, setNextChapter] = useState<ScenarioId | undefined>();
   const [includeSupport, setIncludeSupport] = useState(true);
   const [claimId, setClaimId] = useState<string | null>(null);
   const quest = scenario(
@@ -1753,6 +1764,7 @@ export default function App() {
       )
         picked.push(h.code);
     setNextHeroes(picked);
+    setNextChapter(nextChapterOf(c));
     setNextDeck(game.deckId);
     setNextSeatDecks(game.table?.seats.map((p) => p.deckId) ?? []);
     setIncludeSupport(true);
@@ -1770,6 +1782,7 @@ export default function App() {
         game.table?.seats.some((p) => p.startingHeroes.length > 1)
           ? nextSeatDecks
           : undefined,
+        game.campaign?.kind === "saga" ? nextChapter : undefined,
       );
       audio.stop();
       setSignificantMoment(null);
@@ -2457,8 +2470,18 @@ export default function App() {
                     <span>
                       The Lord of the Rings
                       <small>
-                        {SAGA_CAMPAIGN_SUPPORTED.length} of{" "}
-                        {SAGA_CAMPAIGN_ORDER.length} saga chapters
+                        {
+                          SAGA_CAMPAIGN_SUPPORTED.filter((id) =>
+                            SAGA_CAMPAIGN_ORDER.includes(id),
+                          ).length
+                        }{" "}
+                        of {SAGA_CAMPAIGN_ORDER.length} saga chapters ·{" "}
+                        {
+                          SAGA_CAMPAIGN_SUPPORTED.filter((id) =>
+                            SAGA_INSERTS.includes(id),
+                          ).length
+                        }{" "}
+                        optional
                       </small>
                     </span>
                   </button>
@@ -2486,7 +2509,7 @@ export default function App() {
                   <span />{" "}
                   {playMode === "campaign"
                     ? campaignKind === "saga"
-                      ? `THE LORD OF THE RINGS · CHAPTER ${SAGA_CAMPAIGN_ORDER.indexOf(quest.id) + 1}`
+                      ? `THE LORD OF THE RINGS · CHAPTER ${sagaChapterNumber(quest.id)}`
                       : `MIRKWOOD PATHS · CHAPTER ${quest.chapter}`
                     : quest.tagline.toUpperCase()}
                 </div>
@@ -2676,9 +2699,7 @@ export default function App() {
                     <Books size={18} />
                     Campaign journal
                     <span>
-                      {game.campaign.completed.length} /{" "}
-                      {chaptersOf(campaignKindOf(game.campaign)).length}{" "}
-                      chapters recorded
+                      {campaignProgress(game.campaign)} chapters recorded
                     </span>
                   </summary>
                   <CampaignJournal game={game} inspect={setDetail} />
@@ -4908,13 +4929,37 @@ export default function App() {
             Continue to{" "}
             <strong>
               {(() => {
-                const next = nextChapterOf(game.campaign);
+                const next =
+                  game.campaign.kind === "saga"
+                    ? nextChapter
+                    : nextChapterOf(game.campaign);
                 return next ? scenario(next).name : "Campaign complete";
               })()}
             </strong>
             . Heroes recover their damage and begin with a fresh deck. Each
             replaced hero adds +1 to your permanent starting threat penalty.
           </p>
+          {game.campaign.kind === "saga" &&
+            sagaChapterOptions(game.campaign).length > 1 && (
+              <label className="saga-next-chapter">
+                <span>Next chapter</span>
+                <select
+                  aria-label="Next chapter"
+                  value={nextChapter}
+                  onChange={(e) => setNextChapter(e.target.value as ScenarioId)}
+                >
+                  {sagaChapterOptions(game.campaign).map((id) => (
+                    <option key={id} value={id}>
+                      {`Part ${sagaChapterNumber(id)} · ${scenario(id).name}${SAGA_INSERTS.includes(id) ? " (optional)" : ""}`}
+                    </option>
+                  ))}
+                </select>
+                <small>
+                  The Old Forest and Fog on the Barrow-downs may be included
+                  after A Shadow of the Past, in that order.
+                </small>
+              </label>
+            )}
           <div className="campaign-hero-slots">
             {nextHeroes.map((code, i) => (
               <HeroPicker
@@ -5222,14 +5267,20 @@ function CampaignJournal({
         <h3>
           <Books size={18} /> {CAMPAIGN_TITLES[campaignKindOf(c)]}
         </h3>
-        <span>
-          {c.completed.length} / {chaptersOf(campaignKindOf(c)).length} chapters
-        </span>
+        <span>{campaignProgress(c)} chapters</span>
       </div>
       <ol>
-        {chaptersOf(campaignKindOf(c)).map((id, index) => {
+        {chaptersOf(campaignKindOf(c)).map((id) => {
           const q = scenario(id);
           const result = c.completed.find((r) => r.scenarioId === q.id);
+          // The Old Forest and Fog on the Barrow-downs are optional.
+          const insert = c.kind === "saga" && SAGA_INSERTS.includes(id);
+          const skipped =
+            insert &&
+            !result &&
+            q.id !== game.scenarioId &&
+            c.completed.length > 0 &&
+            !sagaChapterOptions(c).includes(id);
           return (
             <li
               key={q.id}
@@ -5241,7 +5292,7 @@ function CampaignJournal({
                 {result ? (
                   <Check size={15} />
                 ) : c.kind === "saga" ? (
-                  index + 1
+                  sagaChapterNumber(id)
                 ) : (
                   q.chapter
                 )}
@@ -5252,7 +5303,11 @@ function CampaignJournal({
                   ? `Score ${result.score}`
                   : q.id === game.scenarioId
                     ? "Current chapter"
-                    : "Ahead"}
+                    : skipped
+                      ? "Not included"
+                      : insert
+                        ? "Optional"
+                        : "Ahead"}
               </small>
             </li>
           );

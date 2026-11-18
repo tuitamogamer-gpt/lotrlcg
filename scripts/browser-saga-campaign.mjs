@@ -8,7 +8,12 @@ import { fx, make } from "../src/game/core.ts";
 import { validateSave } from "../src/game/engine.ts";
 import { syncSeat } from "../src/game/table.ts";
 import { ringBearer } from "../src/game/lotr-saga.ts";
-import { RING_BEARER_KEY, SAGA } from "../src/game/saga-campaign.ts";
+import {
+  OLD_MAN_WILLOW_DAMAGE,
+  RING_BEARER_KEY,
+  SAGA,
+} from "../src/game/saga-campaign.ts";
+import { OF } from "../src/game/old-forest-support.ts";
 import { reviewedState } from "./browser-review-helpers.mjs";
 import { capture, context, report, url } from "./browser-angmar-helpers.mjs";
 
@@ -106,11 +111,12 @@ async function opening() {
   }
   throw Error("The campaign opening did not finish");
 }
-/** The chapter is won: the Campaign Log is updated. */
-async function victory(s) {
+/** The chapter is won (after `before` prepares the table): the Campaign Log is updated. */
+async function victory(s, before = () => {}) {
   const t = structuredClone(s);
   Object.assign(t, { phase: "planning", choice: null, queue: [] });
   if (t.flow) t.flow.pending = null;
+  before(t);
   win(t);
   return load(t);
 }
@@ -123,12 +129,22 @@ async function record(answers) {
   await reviewedState(page);
   return campaign();
 }
-async function continueCampaign() {
+/** Continue the campaign, choosing an optional chapter in the interlude. */
+async function continueCampaign(chapter, width) {
   await page.getByRole("button", { name: /^Continue campaign/ }).click();
+  if (chapter) {
+    await page
+      .getByLabel("Next chapter", { exact: true })
+      .selectOption(chapter);
+    await checkpoint(`interlude-${chapter}`, width);
+  }
   await page.getByRole("button", { name: /^Begin next chapter/ }).click();
   await reviewedState(page);
   return opening();
 }
+/** The hero carrying a campaign attachment. */
+const carrier = (s, code) =>
+  s.heroes.find((h) => h.attachments.some((a) => a.code === code));
 try {
   for (const width of [1280, 390, 320]) {
     const view = await context(
@@ -190,28 +206,83 @@ try {
       [RING_BEARER_KEY]: [SAGA.underhill],
     });
     await checkpoint("shadow-journal", width);
+    // The Old Forest (Part 1.1), chosen in the interlude: the first player
+    // attaches Old Bogey-stories to a hero in play.
+    s = await continueCampaign("the-old-forest", width);
+    assert.equal(s.scenarioId, "the-old-forest");
+    assert.ok(carrier(s, SAGA.bogey), "Old Bogey-stories is attached");
+    await checkpoint("forest-setup", width);
+    // 12 damage on Old Man Willow earn Old Bogey-stories.
+    s = await victory(s, (t) => {
+      const willow = make(t, OF.willow);
+      willow.damage = OLD_MAN_WILLOW_DAMAGE;
+      t.staging.push(willow);
+    });
+    assert.ok(s.campaign.boons.includes(SAGA.bogey));
+    await page
+      .locator(".campaign-pool")
+      .getByRole("button", { name: "Old Bogey-stories" })
+      .waitFor();
+    await checkpoint("forest-journal", width);
+    // Fog on the Barrow-downs (Part 1.2): it earns Ho! Tom Bombadil!.
+    s = await continueCampaign("fog-on-the-barrow-downs", width);
+    assert.equal(s.scenarioId, "fog-on-the-barrow-downs");
+    assert.ok(carrier(s, SAGA.bogey), "the earned Old Bogey-stories");
+    await checkpoint("fog-setup", width);
+    s = await victory(s);
+    assert.ok(s.campaign.boons.includes(SAGA.tom));
+    await page
+      .locator(".campaign-pool")
+      .getByRole("button", { name: "Ho! Tom Bombadil!" })
+      .waitFor();
+    await checkpoint("fog-journal", width);
     // A Knife in the Dark: the Campaign Pool carries forward.
     s = await continueCampaign();
     assert.equal(s.scenarioId, "a-knife-in-the-dark");
-    assert.equal(s.hand.length, 7, "6 cards and the resource phase's draw");
-    assert.ok(s.encounterDeck.includes(SAGA.ringDraws));
-    assert.ok(
-      s.heroes.some((h) =>
-        h.attachments.some((a) => a.code === SAGA.underhill),
-      ),
+    assert.equal(
+      s.hand.length,
+      8,
+      "6 cards, Ho! Tom Bombadil! and the resource phase's draw",
     );
+    assert.ok(s.hand.some((u) => u.code === SAGA.tom));
+    assert.ok(s.encounterDeck.includes(SAGA.ringDraws));
+    assert.ok(carrier(s, SAGA.underhill));
+    assert.ok(carrier(s, SAGA.bogey));
     await checkpoint("knife-setup", width);
+    // Ho! Tom Bombadil! cancels the when revealed effects of The Ring Draws Them.
+    const reveal = structuredClone(s);
+    Object.assign(reveal, { phase: "quest", choice: null, queue: [] });
+    if (reveal.flow) reveal.flow.pending = null;
+    reveal.encounterDeck.unshift(SAGA.ringDraws, CROW);
+    reveal.queue.push(fx("reveal", { player: 0 }));
+    flush(reveal);
+    // A guided game first presents the revealed card, then the Response.
+    assert.ok(reveal.choice || reveal.flow?.pending, "the reveal waits");
+    s = await load(reveal);
+    assert.match(s.choice?.title ?? "", /^Revealed: The Ring Draws Them/);
+    await checkpoint("tom-response", width);
+    s = await choose(s.choice.options.find((o) => o.code === SAGA.tom).id);
+    for (let i = 0; i < 10 && s.choice; i++)
+      s = await choose(s.choice.options[0].id);
+    assert.ok(s.victoryCards.includes(SAGA.tom));
+    // Recorded in the Campaign Log when A Knife in the Dark is won.
+    assert.deepEqual(s.sagaCards.spent, [SAGA.tom]);
+    assert.ok(!s.sagaCards?.ringDraws, "the when revealed effect is canceled");
     s = await victory(s);
     await page
       .locator("[data-saga-resolution='a-knife-in-the-dark']")
       .waitFor();
     const hero = s.heroes.find(
-      (h) => !h.attachments.some((a) => a.code === SAGA.underhill),
+      (h) =>
+        !h.attachments.some((a) =>
+          [SAGA.underhill, SAGA.bogey].includes(a.code),
+        ),
     );
     s = await record([
       [/choose a boon to attach/, `${SAGA.ranger}@${hero.code}`],
     ]);
     assert.deepEqual(s.campaign.permanent[hero.code], [SAGA.ranger]);
+    assert.ok(!s.campaign.boons.includes(SAGA.tom));
     await checkpoint("knife-resolution", width);
     // Flight to the Ford: Tireless Ranger stays with its hero.
     s = await continueCampaign();

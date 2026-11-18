@@ -15,18 +15,28 @@ import {
   validateSave,
 } from "../src/game/engine";
 import { continueCampaign, retryAdventure } from "../src/game/campaign";
-import { fx, make } from "../src/game/core";
+import { draw, fx, make } from "../src/game/core";
 import { effectiveTraits } from "../src/game/expansion-passives";
 import { automatedScenarioId } from "../src/game/support";
 import { ringBearer } from "../src/game/lotr-saga";
 import {
   applySagaResolution,
+  OLD_MAN_WILLOW_DAMAGE,
   RING_BEARER_KEY,
   SAGA,
+  SAGA_CAMPAIGN_JOURNAL,
   SAGA_CAMPAIGN_ORDER,
+  sagaChapterNumber,
+  sagaChapterOptions,
   sagaResolutionQuestions,
 } from "../src/game/saga-campaign";
-import { sagaCampaignAbilityProblem } from "../src/game/saga-campaign-cards";
+import { batch4Scenario } from "../src/game/batch4-scenarios";
+import { OF } from "../src/game/old-forest-support";
+import { FB } from "../src/game/fog-barrow-support";
+import {
+  sagaCampaignAbilityProblem,
+  sagaTomBombadilOptions,
+} from "../src/game/saga-campaign-cards";
 import { forOwner, seatView } from "../src/game/table";
 import type { GameState } from "../src/game/types";
 import art from "./saga-campaign-art.json";
@@ -56,8 +66,8 @@ function finish(s: GameState, answers: Record<string, string> = {}) {
   return s.campaign!.resolution ? applySagaResolution(s, answers) : s;
 }
 
-test("The Lord of the Rings campaign: its campaign cards, boons and burdens are registered with every face pinned; the three Black Riders chapters are supported", () => {
-  assert.equal(art.length, 14);
+test("The Lord of the Rings campaign: its campaign cards, boons and burdens are registered with every face pinned; the three Black Riders chapters and the two campaign inserts are supported", () => {
+  assert.equal(art.length, 20);
   for (const a of art) {
     const bytes = readFileSync(`public${a.localPath}`);
     assert.equal(bytes.length, a.bytes);
@@ -79,21 +89,55 @@ test("The Lord of the Rings campaign: its campaign cards, boons and burdens are 
     /Each player draws 1 less card in his starting hand\./,
   );
   assert.equal(card(SAGA.underhill).victory, 1);
+  // The Old Forest and Fog on the Barrow-downs (Parts 1.1 and 1.2).
+  assert.match(
+    card(SAGA.forestCard).text!,
+    /Setup: The first player attaches Old Bogey-stories to a hero in play\./,
+  );
+  assert.match(
+    card(SAGA.forestCard).back_text!,
+    /at least 12 damage tokens on Old Man Willow/,
+  );
+  assert.match(
+    card(SAGA.fogCard).text!,
+    /While any player is at stage 4B, the first player cannot lose control of the first player token\./,
+  );
+  assert.match(card(SAGA.fogCard).back_text!, /Ho! Tom Bombadil!/);
+  assert.match(
+    card(SAGA.bogey).text!,
+    /shuffle your hand of at least 6 cards into your deck\. Then, draw 6 cards\./,
+  );
+  assert.match(
+    card(SAGA.tom).text!,
+    /remove it from the campaign pool to cancel the "when revealed" effects/,
+  );
+  assert.deepEqual([card(SAGA.bogey).victory, card(SAGA.tom).victory], [1, 1]);
   assert.deepEqual(
-    ["Q0C.01", "Q0C.02", "Q0C.03", "Q0C.04"].map((id, i) =>
-      automatedScenarioId({
-        name: [
-          "A Shadow of the Past",
-          "A Knife in the Dark",
-          "Flight to the Ford",
-          "The Ring Goes South",
-        ][i],
-        mode: "campaign",
-      }),
-    ),
-    ["a-shadow-of-the-past", "a-knife-in-the-dark", "flight-to-the-ford", null],
+    [
+      ["A Shadow of the Past", "a-shadow-of-the-past"],
+      ["The Old Forest", "the-old-forest"],
+      ["Fog on the Barrow-downs", "fog-on-the-barrow-downs"],
+      ["A Knife in the Dark", "a-knife-in-the-dark"],
+      ["Flight to the Ford", "flight-to-the-ford"],
+      ["The Ring Goes South", null],
+    ].map(([name]) => automatedScenarioId({ name: name!, mode: "campaign" })),
+    [
+      "a-shadow-of-the-past",
+      "the-old-forest",
+      "fog-on-the-barrow-downs",
+      "a-knife-in-the-dark",
+      "flight-to-the-ford",
+      null,
+    ],
   );
   assert.equal(SAGA_CAMPAIGN_ORDER.length, 18);
+  assert.equal(SAGA_CAMPAIGN_JOURNAL.length, 20);
+  assert.deepEqual(SAGA_CAMPAIGN_JOURNAL.slice(0, 4).map(sagaChapterNumber), [
+    "1",
+    "1.1",
+    "1.2",
+    "2",
+  ]);
 });
 
 test("A Shadow of the Past in campaign mode: Mr. Underhill is attached to the Ring-bearer, Gandalf's Delay is staged (each player draws 1 less card) and Gildor Inglorion and The Ring Draws Them join the encounter deck", () => {
@@ -369,4 +413,235 @@ test("Boons and burdens: Mr. Underhill keeps an engaged enemy from attacking, Gi
   void check;
   void forOwner;
   void seatView;
+});
+
+/** Answer each pending setup choice, attaching Old Bogey-stories to `hero`. */
+function settle(s: GameState, hero?: string) {
+  for (let i = 0; i < 10 && s.choice; i++)
+    s = choose(
+      s,
+      /^Old Bogey-stories/.test(s.choice.title) && hero
+        ? s.choice.options.find((o) => o.code === hero)!.id
+        : s.choice.options[0].id,
+    );
+  return s;
+}
+
+test("Campaign inserts: The Old Forest and Fog on the Barrow-downs may follow A Shadow of the Past in that order; Old Bogey-stories is attached by the first player, shuffles a hand of 6 cards back for 6 new ones and is earned by 12 damage on Old Man Willow; Fog earns Ho! Tom Bombadil!", () => {
+  const s = finish(begin(), { burden: SAGA.delay, boon: SAGA.underhill });
+  assert.deepEqual(sagaChapterOptions(s.campaign!), [
+    "the-old-forest",
+    "fog-on-the-barrow-downs",
+    "a-knife-in-the-dark",
+  ]);
+  assert.throws(
+    () =>
+      continueCampaign(
+        s,
+        d.heroes,
+        d.id,
+        true,
+        1,
+        undefined,
+        "flight-to-the-ford",
+      ),
+    /follows its chapters in order/,
+  );
+  // The Old Forest's campaign card: the first player attaches Old Bogey-stories.
+  let o = continueCampaign(
+    s,
+    d.heroes,
+    d.id,
+    true,
+    2,
+    undefined,
+    "the-old-forest",
+  );
+  assert.equal(o.scenarioId, "the-old-forest");
+  assert.match(o.choice!.title, /^Old Bogey-stories · Setup/);
+  assert.equal(o.choice!.options.length, 4, "any hero in play, Frodo included");
+  o = settle(o, d.heroes[1]);
+  assert.equal(o.hand.length, 5, "the earned Gandalf's Delay");
+  let host = o.heroes.find((h) => h.code === d.heroes[1])!;
+  const bogey = host.attachments.find((a) => a.code === SAGA.bogey)!;
+  assert.ok(bogey);
+  assert.ok(ringBearer(o)!.attachments.some((a) => a.code === SAGA.underhill));
+  assert.ok(validateSave(JSON.parse(JSON.stringify(o))));
+  // Action: add it to the victory display to shuffle a hand of at least 6 in.
+  calm(o);
+  assert.match(
+    sagaCampaignAbilityProblem(o, host, bogey.id)!,
+    /at least 6 cards/,
+  );
+  draw(o, 6 - o.hand.length + 1);
+  const hand = o.hand.length,
+    deck = o.deck.length;
+  assert.ok(
+    availableAbilities(o, host).some(
+      (a) => /^Old Bogey-stories/.test(a.label) && !a.disabled,
+    ),
+  );
+  o = applyAction(reload(o), {
+    type: "ABILITY",
+    id: host.id,
+    attachmentId: bogey.id,
+  });
+  host = o.heroes.find((h) => h.code === d.heroes[1])!;
+  assert.ok(!host.attachments.some((a) => a.code === SAGA.bogey));
+  assert.ok(o.victoryCards!.includes(SAGA.bogey));
+  assert.equal(o.hand.length, 6);
+  assert.equal(o.deck.length, deck + hand - 6);
+  // Resolution: Old Bogey-stories is earned with 12 damage on Old Man Willow.
+  const few = calm(structuredClone(o));
+  const weak = make(few, OF.willow);
+  weak.damage = OLD_MAN_WILLOW_DAMAGE - 1;
+  few.staging.push(weak);
+  win(few);
+  assert.ok(!few.campaign!.boons.includes(SAGA.bogey));
+  calm(o);
+  const willow = make(o, OF.willow);
+  willow.damage = OLD_MAN_WILLOW_DAMAGE;
+  o.staging.push(willow);
+  win(o);
+  assert.equal(o.campaign!.resolution, null);
+  assert.ok(o.campaign!.boons.includes(SAGA.bogey));
+  assert.deepEqual(sagaChapterOptions(o.campaign!), [
+    "fog-on-the-barrow-downs",
+    "a-knife-in-the-dark",
+  ]);
+  assert.ok(validateSave(JSON.parse(JSON.stringify(o))));
+  // Fog on the Barrow-downs: the earned boon is attached again.
+  let f = continueCampaign(
+    o,
+    d.heroes,
+    d.id,
+    true,
+    3,
+    undefined,
+    "fog-on-the-barrow-downs",
+  );
+  assert.equal(f.scenarioId, "fog-on-the-barrow-downs");
+  f = settle(f, d.heroes[0]);
+  assert.ok(
+    f.heroes
+      .find((h) => h.code === d.heroes[0])!
+      .attachments.some((a) => a.code === SAGA.bogey),
+  );
+  // The campaign card keeps the first player token while a player is at stage 4.
+  assert.equal(batch4Scenario(f).keepFirstPlayer?.(f), false);
+  const stage = f.fogBarrow!.currentQuest;
+  f.fogBarrow!.currentQuest = FB.trapped;
+  assert.equal(batch4Scenario(f).keepFirstPlayer?.(f), true);
+  f.fogBarrow!.currentQuest = stage;
+  const normal = createGame(4, d.cards, d.heroes, d.id, {
+    scenarioId: "fog-on-the-barrow-downs",
+  });
+  normal.fogBarrow!.currentQuest = FB.trapped;
+  assert.equal(batch4Scenario(normal).keepFirstPlayer?.(normal), false);
+  f = finish(f);
+  assert.ok(f.campaign!.boons.includes(SAGA.tom));
+  assert.deepEqual(sagaChapterOptions(f.campaign!), ["a-knife-in-the-dark"]);
+  assert.deepEqual(
+    f.campaign!.completed.map((q) => q.scenarioId),
+    ["a-shadow-of-the-past", "the-old-forest", "fog-on-the-barrow-downs"],
+  );
+  assert.ok(validateSave(JSON.parse(JSON.stringify(f))));
+  // A log that plays the inserts out of order is not a valid save.
+  const bad = structuredClone(f);
+  bad.campaign!.completed.reverse();
+  assert.ok(!validateSave(JSON.parse(JSON.stringify(bad))));
+  // Skipping an insert closes it: A Knife in the Dark cannot go back.
+  const k = finish(continueCampaign(s, d.heroes, d.id, true, 5), {
+    "boon:0": "none",
+  });
+  assert.deepEqual(sagaChapterOptions(k.campaign!), ["flight-to-the-ford"]);
+  assert.throws(
+    () =>
+      createGame(6, d.cards, d.heroes, d.id, {
+        scenarioId: "the-old-forest",
+        playMode: "campaign",
+        campaign: k.campaign!,
+      }),
+    /follows its chapters in order/,
+  );
+});
+
+test("Ho! Tom Bombadil!: the first player adds it to their hand at setup (kept through a mulligan); its Response, offered when an encounter card is revealed, cancels the when revealed effects, goes to the victory display and leaves the Campaign Pool once the chapter is won", () => {
+  let s = finish(begin(), { burden: SAGA.delay, boon: SAGA.underhill });
+  s = finish(
+    settle(
+      continueCampaign(
+        s,
+        d.heroes,
+        d.id,
+        true,
+        7,
+        undefined,
+        "fog-on-the-barrow-downs",
+      ),
+    ),
+  );
+  assert.deepEqual(s.campaign!.boons, [SAGA.underhill, SAGA.tom]);
+  let k = settle(continueCampaign(s, d.heroes, d.id, true, 8));
+  assert.equal(k.scenarioId, "a-knife-in-the-dark");
+  assert.equal(k.phase, "setup");
+  const tom = k.hand.find((u) => u.code === SAGA.tom)!;
+  assert.ok(tom, "Ho! Tom Bombadil! is in the first player's hand");
+  assert.equal(k.hand.length, 6, "5 cards (Gandalf's Delay) and Tom");
+  // A mulligan keeps it, and the new hand also has 1 less card.
+  k = applyAction(reload(k), { type: "MULLIGAN" });
+  assert.ok(k.hand.some((u) => u.id === tom.id));
+  assert.equal(k.hand.length, 6);
+  // It is a Response: never played as an Action.
+  calm(k);
+  assert.throws(
+    () => applyAction(reload(k), { type: "PLAY", id: tom.id }),
+    /offered automatically/,
+  );
+  // Revealed from the encounter deck: The Ring Draws Them is canceled.
+  k.phase = "quest";
+  k.encounterDeck.unshift(SAGA.ringDraws, CROW);
+  k.queue.push(fx("reveal", { player: 0 }));
+  flush(k);
+  assert.match(k.choice!.title, /^Revealed: The Ring Draws Them/);
+  assert.ok(k.choice!.options.some((o) => o.id === "tom"));
+  k = choose(k, "tom");
+  for (let i = 0; i < 5 && k.choice && !/^Revealed/.test(k.choice.title); i++)
+    k = choose(k, k.choice.options[0].id);
+  assert.ok(!k.sagaCards?.ringDraws, "the when revealed effect is canceled");
+  assert.ok(k.victoryCards!.includes(SAGA.tom));
+  assert.ok(!k.hand.some((u) => u.code === SAGA.tom));
+  assert.ok(!k.discard.includes(SAGA.tom));
+  // The removal from the Campaign Pool is recorded only when the scenario is won.
+  assert.deepEqual(k.sagaCards!.spent, [SAGA.tom]);
+  assert.deepEqual(k.campaign!.boons, [SAGA.underhill, SAGA.tom]);
+  assert.ok(k.log.some((l) => /removed from the Campaign Pool/.test(l.text)));
+  assert.ok(validateSave(JSON.parse(JSON.stringify(k))));
+  // A lost chapter is replayed with Ho! Tom Bombadil! still in the pool.
+  const lost = structuredClone(k);
+  lost.status = "lost";
+  const again = settle(retryAdventure(lost, 10));
+  assert.ok(again.hand.some((u) => u.code === SAGA.tom));
+  assert.deepEqual(again.campaign!.boons, [SAGA.underhill, SAGA.tom]);
+  // A win records it.
+  const won = finish(k, { "boon:0": "none" });
+  assert.deepEqual(won.campaign!.boons, [SAGA.underhill]);
+  assert.ok(validateSave(JSON.parse(JSON.stringify(won))));
+  const bad = structuredClone(k);
+  bad.sagaCards!.spent = [SAGA.tom, SAGA.tom];
+  assert.ok(!validateSave(JSON.parse(JSON.stringify(bad))));
+  // Outside campaign mode it is never offered.
+  const plain = calm(
+    createGame(9, d.cards, d.heroes, d.id, {
+      scenarioId: "a-knife-in-the-dark",
+    }),
+  );
+  plain.hand.push(make(plain, SAGA.tom));
+  assert.deepEqual(
+    sagaTomBombadilOptions(
+      plain,
+      fx("placeEncounter", { text: "revealed", code: SAGA.ringDraws }),
+    ),
+    [],
+  );
 });

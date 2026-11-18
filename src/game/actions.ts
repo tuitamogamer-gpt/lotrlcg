@@ -5,6 +5,7 @@ import {
   sagaCampaignAbilityLabel,
   sagaCampaignAbilityProblem,
 } from "./saga-campaign-cards";
+import { sagaSetupHandIds, sagaStartingHandPenalty } from "./saga-campaign";
 import { useVoyageAbility } from "./perilous-voyage";
 import { perilousVoyagePublic } from "./perilous-voyage-support";
 import * as BlackRidersPlayers from "./black-riders-player-cards";
@@ -2173,6 +2174,8 @@ export const responseCards = [
   "131015",
   "05008",
   "02054",
+  // Ho! Tom Bombadil! (a Lord of the Rings campaign boon).
+  "148021",
 ];
 
 export function availableAbilities(s: GameState, u: Unit) {
@@ -3100,15 +3103,22 @@ export function applyAction(input: GameState, action: Action): GameState {
         "You may mulligan once before the first round.",
       );
       {
-        const kept = new Set(
-          s.shadowEastPlayers?.setupHandIds?.[activeSeat(s)] ?? [],
-        );
+        // Ho! Tom Bombadil! joins the hand by its own Setup, after the mulligan.
+        const kept = new Set([
+          ...(s.shadowEastPlayers?.setupHandIds?.[activeSeat(s)] ?? []),
+          ...sagaSetupHandIds(s),
+        ]);
         for (const u of s.hand.filter((u) => !kept.has(u.id)))
           putPlayerDeck(s, u);
         s.hand = s.hand.filter((u) => kept.has(u.id));
       }
       shuffle(s, s.deck);
-      draw(s, batch4Scenario(s).startingHandSize?.(s) ?? 6);
+      // Gandalf's Delay: the new starting hand also has 1 less card.
+      draw(
+        s,
+        (batch4Scenario(s).startingHandSize?.(s) ?? 6) -
+          sagaStartingHandPenalty(s),
+      );
       s.mulled = true;
       log(s, "You take your one mulligan.");
       break;

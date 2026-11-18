@@ -2,10 +2,11 @@
 // each scenario's campaign card (setup and resolution).
 import type { CampaignState, GameState, ScenarioId, Unit } from "./types";
 import { card, name } from "./cards";
-import { log, make, requireRule, shuffle } from "./core";
+import { enqueue, fx, log, make, requireRule, shuffle } from "./core";
 import { ringBearer } from "./lotr-saga";
 import { forOwner, playerOrder, seatIndices, seatView } from "./table";
 import { score } from "./actions";
+import { OF } from "./old-forest-support";
 
 /** The campaign's scenarios in order (The Old Forest and Fog on the Barrow-downs follow A Shadow of the Past when included). */
 export const SAGA_CAMPAIGN_ORDER: readonly ScenarioId[] = [
@@ -28,9 +29,29 @@ export const SAGA_CAMPAIGN_ORDER: readonly ScenarioId[] = [
   "the-black-gate-opens",
   "mount-doom",
 ];
+/** The Old Forest and Fog on the Barrow-downs (Parts 1.1 and 1.2): optional, after A Shadow of the Past. */
+export const SAGA_INSERTS: readonly ScenarioId[] = [
+  "the-old-forest",
+  "fog-on-the-barrow-downs",
+];
+/** The Campaign Log's chapters in play order (Parts 1, 1.1, 1.2, 2 … 18). */
+export const SAGA_CAMPAIGN_JOURNAL: readonly ScenarioId[] = [
+  SAGA_CAMPAIGN_ORDER[0],
+  ...SAGA_INSERTS,
+  ...SAGA_CAMPAIGN_ORDER.slice(1),
+];
+/** A chapter's part number on its campaign card: "1", "1.1", "1.2", "2" … */
+export const sagaChapterNumber = (id: ScenarioId) => {
+  const insert = SAGA_INSERTS.indexOf(id);
+  return insert >= 0
+    ? `1.${insert + 1}`
+    : String(SAGA_CAMPAIGN_ORDER.indexOf(id) + 1);
+};
 /** The chapters whose campaign cards are implemented. */
 export const SAGA_CAMPAIGN_SUPPORTED: readonly ScenarioId[] = [
   "a-shadow-of-the-past",
+  "the-old-forest",
+  "fog-on-the-barrow-downs",
   "a-knife-in-the-dark",
   "flight-to-the-ford",
 ];
@@ -43,16 +64,26 @@ export const SAGA = {
   gildor: "141077",
   delay: "141078",
   ringDraws: "141079",
+  bogey: "147024",
+  tom: "148021",
   shadowCard: "octgn:307411f3-4a45-44ae-bc64-4e16deb97d10",
+  forestCard: "octgn:088b62be-0f26-4a87-805a-277edd463c8c",
+  fogCard: "octgn:d34c9025-6380-4294-be3f-01c992922830",
   knifeCard: "octgn:2efa631a-eb16-4078-84a5-18c7033b86f3",
   fordCard: "octgn:0ee09c42-34c9-41aa-aa98-b582608b15bb",
 } as const;
 /** Each scenario's campaign card. */
 export const SAGA_CAMPAIGN_CARDS: Partial<Record<ScenarioId, string>> = {
   "a-shadow-of-the-past": SAGA.shadowCard,
+  "the-old-forest": SAGA.forestCard,
+  "fog-on-the-barrow-downs": SAGA.fogCard,
   "a-knife-in-the-dark": SAGA.knifeCard,
   "flight-to-the-ford": SAGA.fordCard,
 };
+/** Old Man Willow's code (The Old Forest). */
+const OLD_FOREST_WILLOW = OF.willow;
+/** Old Man Willow (The Old Forest): 12 damage tokens earn Old Bogey-stories. */
+export const OLD_MAN_WILLOW_DAMAGE = 12;
 /** The Flight to the Ford burden deck (Weight of the Ring … Overcome by Terror). */
 export const FORD_BURDENS = ["141080", "141081", "141082", "141083", "141084"];
 export const SAGA_BOONS: readonly string[] = [
@@ -62,6 +93,8 @@ export const SAGA_BOONS: readonly string[] = [
   SAGA.warrior,
   SAGA.noble,
   SAGA.gildor,
+  SAGA.bogey,
+  SAGA.tom,
 ];
 export const SAGA_BURDENS: readonly string[] = [
   SAGA.delay,
@@ -98,8 +131,30 @@ export function newSagaCampaign(heroes: string[]): CampaignState {
     resolution: null,
   };
 }
+/**
+ * The chapters the players may play next: after A Shadow of the Past they may
+ * include The Old Forest and Fog on the Barrow-downs (in that order, each
+ * optional) before A Knife in the Dark.
+ */
+export function sagaChapterOptions(
+  c: Pick<CampaignState, "completed">,
+): ScenarioId[] {
+  const done = c.completed.map((q) => q.scenarioId);
+  if (!done.length) return [SAGA_CAMPAIGN_ORDER[0]];
+  const main =
+    SAGA_CAMPAIGN_ORDER[done.filter((id) => !SAGA_INSERTS.includes(id)).length];
+  const last = done[done.length - 1];
+  const inserts =
+    last === "a-shadow-of-the-past"
+      ? [...SAGA_INSERTS]
+      : last === "the-old-forest"
+        ? ["fog-on-the-barrow-downs" as ScenarioId]
+        : [];
+  return [...inserts, ...(main ? [main] : [])];
+}
+/** The main chapter that follows (the inserts are chosen explicitly). */
 export const nextSagaChapter = (c: CampaignState) =>
-  SAGA_CAMPAIGN_ORDER[c.completed.length];
+  sagaChapterOptions(c).at(-1);
 export const sagaChapterSupported = (id: ScenarioId | undefined) =>
   !!id && SAGA_CAMPAIGN_SUPPORTED.includes(id);
 export const sagaCampaignCard = (s: GameState) =>
@@ -113,6 +168,11 @@ export const sagaStartingHandPenalty = (s: GameState) =>
     ? 1
     : 0;
 
+/** Cards a campaign Setup added to the hand: kept through a mulligan. */
+export const sagaSetupHandIds = (s: GameState) =>
+  sagaCampaignGame(s)
+    ? s.hand.filter((u) => u.code === SAGA.tom).map((u) => u.id)
+    : [];
 /** Attach a campaign card (a Permanent boon) to a hero. */
 function attachBoon(s: GameState, hero: Unit, code: string) {
   if (hero.attachments.some((a) => a.code === code)) return;
@@ -155,6 +215,23 @@ export function sagaCampaignSetup(s: GameState) {
   }
   if (delay && !s.staging.some((u) => u.code === SAGA.delay))
     s.staging.push(make(s, SAGA.delay));
+  // Old Bogey-stories: the first player attaches it to a hero in play (the
+  // Old Forest's campaign card, or its own Setup once earned).
+  if (s.scenarioId === "the-old-forest" || c!.boons.includes(SAGA.bogey))
+    enqueue(s, fx("sagaBogeySetup", { player: s.table?.first ?? 0 }));
+  // Ho! Tom Bombadil!: the first player adds it to their hand.
+  if (c!.boons.includes(SAGA.tom)) {
+    forOwner(s, s.table?.first ?? 0, () => {
+      const tom = make(s, SAGA.tom);
+      tom.owner = s.table?.first ?? 0;
+      s.hand.push(tom);
+    });
+    log(
+      s,
+      "Ho! Tom Bombadil! (a campaign boon) is added to the first player's hand.",
+      "good",
+    );
+  }
   for (const code of [...new Set(encounter)])
     if (!s.encounterDeck.includes(code)) s.encounterDeck.push(code);
   shuffle(s, s.encounterDeck);
@@ -222,6 +299,16 @@ export function resolveSagaCampaign(s: GameState) {
     rounds: s.round,
   });
   c.resolution = null;
+  // Boons whose cost removed them from the Campaign Pool (Ho! Tom Bombadil!).
+  const spent = (s.sagaCards?.spent ?? []).filter((code) =>
+    c.boons.includes(code),
+  );
+  for (const code of spent) c.boons.splice(c.boons.indexOf(code), 1);
+  if (spent.length)
+    log(
+      s,
+      `${spent.map((code) => card(code).name).join(", ")} ${spent.length === 1 ? "is" : "are"} removed from the Campaign Pool.`,
+    );
   if (s.scenarioId === "flight-to-the-ford") {
     const earned = [...new Set(burdensInPlay(s))].filter(
       (code) => !c.burdens.includes(code),
@@ -232,6 +319,29 @@ export function resolveSagaCampaign(s: GameState) {
       earned.length
         ? `Flight to the Ford · Resolution: ${earned.map((code) => card(code).name).join(", ")} ${earned.length === 1 ? "is" : "are"} added to the Campaign Pool.`
         : "Flight to the Ford · Resolution: no burden card is in play, in the encounter deck or in the discard pile.",
+      "good",
+    );
+  } else if (s.scenarioId === "the-old-forest") {
+    const willow = [
+      ...s.staging,
+      ...seatIndices(s).flatMap((p) => seatView(s, p).engaged),
+    ].find((u) => u.code === OLD_FOREST_WILLOW);
+    const earned =
+      (willow?.damage ?? 0) >= OLD_MAN_WILLOW_DAMAGE &&
+      !c.boons.includes(SAGA.bogey);
+    if (earned) c.boons.push(SAGA.bogey);
+    log(
+      s,
+      earned
+        ? `The Old Forest · Resolution: Old Man Willow has ${willow!.damage} damage; Old Bogey-stories is earned.`
+        : `The Old Forest · Resolution: Old Man Willow has ${willow?.damage ?? 0} damage (12 are needed); Old Bogey-stories is not earned.`,
+      "good",
+    );
+  } else if (s.scenarioId === "fog-on-the-barrow-downs") {
+    if (!c.boons.includes(SAGA.tom)) c.boons.push(SAGA.tom);
+    log(
+      s,
+      "Fog on the Barrow-downs · Resolution: the players have earned the Ho! Tom Bombadil! boon card.",
       "good",
     );
   } else if (sagaResolutionQuestions(s).length) c.resolution = s.scenarioId;
@@ -366,9 +476,11 @@ export function validateSagaCampaign(s: GameState): boolean {
       return false;
     }
   };
-  const index = SAGA_CAMPAIGN_ORDER.indexOf(s.scenarioId);
+  const chapter = [...SAGA_CAMPAIGN_ORDER, ...SAGA_INSERTS].includes(
+    s.scenarioId,
+  );
   return (
-    index >= 0 &&
+    chapter &&
     codes(c.heroes) &&
     c.heroes.length >= 1 &&
     c.heroes.length <= (s.table ? 12 : 3) &&
@@ -395,14 +507,18 @@ export function validateSagaCampaign(s: GameState): boolean {
     c.prisoner === null &&
     typeof c.mendorSaved === "boolean" &&
     Array.isArray(c.completed) &&
-    c.completed.length === index + (s.status === "won" ? 1 : 0) &&
     c.completed.every(
       (q, i) =>
         !!q &&
-        q.scenarioId === SAGA_CAMPAIGN_ORDER[i] &&
+        sagaChapterOptions({ completed: c.completed.slice(0, i) }).includes(
+          q.scenarioId,
+        ) &&
         Number.isSafeInteger(q.score) &&
         integer(q.rounds),
     ) &&
+    (s.status === "won"
+      ? c.completed.at(-1)?.scenarioId === s.scenarioId
+      : sagaChapterOptions(c).includes(s.scenarioId)) &&
     (c.resolution === undefined ||
       c.resolution === null ||
       (s.status === "won" && c.resolution === s.scenarioId))

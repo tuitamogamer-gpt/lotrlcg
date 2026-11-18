@@ -14,9 +14,10 @@ import {
   isSagaCampaign,
   nextSagaChapter,
   resolveSagaCampaign,
+  sagaChapterOptions,
   sagaChapterSupported,
-  SAGA_CAMPAIGN_ORDER,
 } from "./saga-campaign";
+import type { ScenarioId } from "./types";
 
 export function newCampaign(
   heroes: string[],
@@ -89,12 +90,16 @@ export function continueCampaign(
   includeSupport = true,
   seed = Date.now(),
   seatDeckIds?: string[],
+  /** The Lord of the Rings campaign: an optional chapter chosen instead of the next. */
+  nextScenario?: ScenarioId,
 ): GameState {
   const saga = isSagaCampaign(s.campaign);
   requireRule(
     s.status === "won" &&
       s.campaign &&
-      s.campaign.completed.length < (saga ? SAGA_CAMPAIGN_ORDER.length : 3),
+      (saga
+        ? sagaChapterOptions(s.campaign).length > 0
+        : s.campaign.completed.length < 3),
     "Win the current chapter before continuing.",
   );
   requireRule(
@@ -142,7 +147,13 @@ export function continueCampaign(
     );
     return removed;
   });
-  const next = saga ? nextSagaChapter(c) : SCENARIOS[c.completed.length].id;
+  const next = saga
+    ? (nextScenario ?? nextSagaChapter(c)!)
+    : SCENARIOS[c.completed.length].id;
+  requireRule(
+    !saga || sagaChapterOptions(c).includes(next),
+    "The Lord of the Rings campaign follows its chapters in order.",
+  );
   requireRule(
     !saga || sagaChapterSupported(next),
     "The next chapter of The Lord of the Rings campaign is not available yet.",

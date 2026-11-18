@@ -114,7 +114,7 @@ import { newCampaign } from "./campaign";
 import {
   isSagaCampaign,
   newSagaCampaign,
-  nextSagaChapter,
+  sagaChapterOptions,
   sagaCampaignSetup,
   sagaChapterSupported,
   sagaStartingHandPenalty,
@@ -302,11 +302,13 @@ export function createGame(
       CAMPAIGN_CHAPTERS.includes(scenarioId),
     "The Mirkwood Paths campaign covers the three Core Set quests.",
   );
+  // The Old Forest and Fog on the Barrow-downs may follow A Shadow of the Past.
   requireRule(
     !sagaCampaign ||
       (sagaChapterSupported(scenarioId) &&
-        scenarioId ===
-          nextSagaChapter(options.campaign ?? newSagaCampaign([]))),
+        sagaChapterOptions(options.campaign ?? newSagaCampaign([])).includes(
+          scenarioId,
+        )),
     "The Lord of the Rings campaign follows its chapters in order, beginning with A Shadow of the Past.",
   );
   const chosenLine = options.seats?.flatMap((p) => p.heroes) ?? heroCodes;

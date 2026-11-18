@@ -528,6 +528,8 @@ export interface GameState {
   sagaCards?: {
     ringDraws: number;
     underhill: { enemy: string; player: number; round: number }[];
+    /** Boons a cost removed from the Campaign Pool: recorded only after a win. */
+    spent?: string[];
   };
   wrathRuin?: import("./wrath-ruin-types").WrathRuinState;
   burglarContract?: import("./burglar-contract-types").BurglarContractState;

@@ -110,5 +110,53 @@
     "localPath": "/cards/0ee09c42-34c9-41aa-aa98-b582608b15bb.B.jpg",
     "bytes": 125537,
     "sha256": "9fdef5cd9f806a04be67ec7d843f15859b24ae82925015fdcba1653a02117ff0"
+  },
+  {
+    "code": "147024",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4f945fb5-6307-4b31-91c5-5e6459f7e5bd.jpg",
+    "localPath": "/cards/147024.jpg",
+    "bytes": 151629,
+    "sha256": "d9ba001b7e2046a5d0e75591aa413b38f8acecf444f30a898816997498513747"
+  },
+  {
+    "code": "148021",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/381821e5-7bf6-44cd-91d7-e5a5e9ff8066.jpg",
+    "localPath": "/cards/148021.jpg",
+    "bytes": 139443,
+    "sha256": "b8c40bf59ee9c4e84c8eb049210d1343f047a08095441a3e3ed09c6e14df570a"
+  },
+  {
+    "code": "octgn:088b62be-0f26-4a87-805a-277edd463c8c",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/088b62be-0f26-4a87-805a-277edd463c8c.jpg",
+    "localPath": "/cards/088b62be-0f26-4a87-805a-277edd463c8c.jpg",
+    "bytes": 140090,
+    "sha256": "fdf1e489a0f00c48de070459992407ccc5257aa5bf92450d9f694d9df9863d9d"
+  },
+  {
+    "code": "octgn:088b62be-0f26-4a87-805a-277edd463c8c",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/088b62be-0f26-4a87-805a-277edd463c8c.B.jpg",
+    "localPath": "/cards/088b62be-0f26-4a87-805a-277edd463c8c.B.jpg",
+    "bytes": 121236,
+    "sha256": "486e4c46fced0dca01c9975841d8ed899d5c259ea1375794a166cddec9da13b1"
+  },
+  {
+    "code": "octgn:d34c9025-6380-4294-be3f-01c992922830",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d34c9025-6380-4294-be3f-01c992922830.jpg",
+    "localPath": "/cards/d34c9025-6380-4294-be3f-01c992922830.jpg",
+    "bytes": 137474,
+    "sha256": "c75633f0a13a95be5d2f8fe53bceb0ac485f04f7e0a34e9a3b4f4dd16a32feb4"
+  },
+  {
+    "code": "octgn:d34c9025-6380-4294-be3f-01c992922830",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d34c9025-6380-4294-be3f-01c992922830.B.jpg",
+    "localPath": "/cards/d34c9025-6380-4294-be3f-01c992922830.B.jpg",
+    "bytes": 109390,
+    "sha256": "545a2149922789bac71c77330e4dd306c8f922be96487e9856b77788cfb17d48"
   }
 ]

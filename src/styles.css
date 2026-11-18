@@ -3622,6 +3622,20 @@ nav {
   width: 100%;
   max-width: 100%;
 }
+/* The interlude's chapter choice (The Old Forest and Fog on the Barrow-downs). */
+.saga-next-chapter {
+  display: grid;
+  gap: 6px;
+  margin: 4px 0 16px;
+}
+.saga-next-chapter select {
+  width: 100%;
+  max-width: 100%;
+}
+.saga-next-chapter small {
+  color: #8e9a89;
+  font-size: var(--text-small);
+}
 .campaign-kind {
   margin-top: 10px;
 }
@@ -3643,6 +3657,7 @@ nav {
   padding: 6px 0;
   margin-right: 12px;
   font-size: var(--text-small);
+  text-align: left;
   background: transparent;
   border: 0;
   color: #dbd7bf;

@@ -2008,6 +2008,14 @@ body {
 .redbook .campaign-journal footer strong {
   color: #8e6837;
 }
+/* The Campaign Pool on parchment: readable boon and burden names. */
+.redbook .campaign-pool > div > span,
+.redbook .campaign-pool small {
+  color: #7d592d;
+}
+.redbook .campaign-pool button {
+  color: #5f4527;
+}
 .redbook .mobile-action-bar {
   background: #3b2a20ed;
   border-color: #b8935366;

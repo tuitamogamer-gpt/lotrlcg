@@ -4,8 +4,10 @@ A standalone scenario (Gen Con 2014 Fellowship event, print-on-demand recipe
 Q99.04) set between A Shadow of the Past and A Knife in the Dark. It is
 playable in classic solo and with one to four local players, in normal and
 easy mode, with the Ring-bearer rules of The Lord of the Rings Saga. Its
-campaign mode, which continues The Black Riders campaign, is not part of this
-import.
+campaign mode (recipe Q0C.01.1) is part of
+[The Lord of the Rings campaign](SAGA-CAMPAIGN.md): an optional chapter after
+A Shadow of the Past, with Old Bogey-stories attached at setup and earned by 12
+damage on Old Man Willow.
 
 ## Sources and corrections
 
