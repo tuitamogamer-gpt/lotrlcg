@@ -1,4 +1,5 @@
 import {
+  sagaCampaignAttackBonus,
   sagaCampaignAttackDefensePenalty,
   sagaCampaignAttackersDeclared,
   sagaCampaignAttackKilled,
@@ -545,6 +546,7 @@ export function resolvePlayerAttack(
           watcherPlayerAttackBonus(s, u, enemy) +
           Rhudaur.rhudaurAttackBonus(s, enemy, u) +
           (batch4Scenario(s).playerAttackBonus?.(s, u, enemy, attackers) ?? 0) +
+          sagaCampaignAttackBonus(s, u, attackers) +
           FlameWestPlayers.flameWestPlayerAttackBonus(s, u, attackers) +
           (card(enemy.code).traits?.includes("Orc")
             ? u.attachments.filter((a) => !a.blanked && a.code === "01039")

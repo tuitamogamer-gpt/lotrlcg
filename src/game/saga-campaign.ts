@@ -76,6 +76,9 @@ export const SAGA_CAMPAIGN_SUPPORTED: readonly ScenarioId[] = [
   "the-passing-of-the-grey-company",
   "the-siege-of-gondor",
   "the-battle-of-the-pelennor-fields",
+  "the-tower-of-cirith-ungol",
+  "the-black-gate-opens",
+  "mount-doom",
 ];
 /**
  * Chapters whose campaign cards let each player change hero cards without the
@@ -87,6 +90,25 @@ export const SAGA_FREE_CHANGES: readonly ScenarioId[] = [
   "helms-deep",
   "the-passage-of-the-marshes",
   "the-passing-of-the-grey-company",
+  "the-tower-of-cirith-ungol",
+  "the-black-gate-opens",
+  "mount-doom",
+];
+/**
+ * The Mountain of Fire's chapters: Aragorn cannot be used at The Tower of
+ * Cirith Ungol and Mount Doom, Frodo Baggins at The Black Gate Opens.
+ */
+export const MOF_CHAPTERS: readonly ScenarioId[] = [
+  "the-tower-of-cirith-ungol",
+  "the-black-gate-opens",
+  "mount-doom",
+];
+/**
+ * The Black Gate Opens cannot be won: in the campaign, the players' defeat
+ * ends the chapter, and its resolution is recorded.
+ */
+export const SAGA_LOSS_CHAPTERS: readonly ScenarioId[] = [
+  "the-black-gate-opens",
 ];
 /** The Treason of Saruman's chapters: Aragorn leads, without Frodo or his burdens. */
 export const TOS_CHAPTERS: readonly ScenarioId[] = [
@@ -163,6 +185,12 @@ export const SAGA = {
   corsairFleet: "octgn:0140d146-771e-4f19-9de8-d7cf0b4d8268",
   /** The Battle of the Pelennor Fields' Corsair Fleet (Gondor side, campaign mode only). */
   gondorFleet: "pelennor-corsair-fleet",
+  gwaihir: "146041",
+  /** The Tower of Cirith Ungol's Shagrat and Last of the Company. */
+  shagrat: "octgn:a246d29f-f370-4308-828d-c1ff09029b4a",
+  company: "octgn:ad4739ac-fd18-4add-9b83-860c1fcc2b54",
+  /** The Black Gate Opens' Black Gate. */
+  blackGate: "octgn:c6b0a8d2-32fe-4750-9270-7270cd5f062b",
   shadowCard: "octgn:307411f3-4a45-44ae-bc64-4e16deb97d10",
   forestCard: "octgn:088b62be-0f26-4a87-805a-277edd463c8c",
   fogCard: "octgn:d34c9025-6380-4294-be3f-01c992922830",
@@ -180,6 +208,9 @@ export const SAGA = {
   greyCard: "octgn:c444788b-73ea-4729-a07a-593220479639",
   siegeCard: "octgn:949e2607-cbb5-4ae3-af26-f9d7e00e09d2",
   pelennorCard: "octgn:10557685-71b2-4f2e-b831-4b19d023ee46",
+  cirithCard: "octgn:a27a3045-58aa-4cbe-ab36-90bc6e7a5cdb",
+  gateCard: "octgn:9ffc1d82-10b3-4703-91e5-865407f0cc1e",
+  doomCard: "octgn:271fa771-d678-461e-b5c6-483117059ed1",
 } as const;
 /** Each scenario's campaign card. */
 export const SAGA_CAMPAIGN_CARDS: Partial<Record<ScenarioId, string>> = {
@@ -200,6 +231,9 @@ export const SAGA_CAMPAIGN_CARDS: Partial<Record<ScenarioId, string>> = {
   "the-passing-of-the-grey-company": SAGA.greyCard,
   "the-siege-of-gondor": SAGA.siegeCard,
   "the-battle-of-the-pelennor-fields": SAGA.pelennorCard,
+  "the-tower-of-cirith-ungol": SAGA.cirithCard,
+  "the-black-gate-opens": SAGA.gateCard,
+  "mount-doom": SAGA.doomCard,
 };
 /** Old Man Willow's code (The Old Forest). */
 const OLD_FOREST_WILLOW = OF.willow;
@@ -234,6 +268,7 @@ export const SAGA_BOONS: readonly string[] = [
   SAGA.army,
   SAGA.esquireRohan,
   SAGA.esquireGondor,
+  SAGA.gwaihir,
 ];
 export const SAGA_BURDENS: readonly string[] = [
   SAGA.delay,
@@ -305,15 +340,43 @@ export const FOTW_LEFT_BURDENS: readonly string[] = [
   SAGA.searchingEye,
   SAGA.heavy,
 ];
+/**
+ * The burden sets The Tower of Cirith Ungol's and Mount Doom's campaign cards
+ * remove: Helm's Deep, The Road to Isengard and The Passing of the Grey
+ * Company (Overcome by Fear stays off the threat dials).
+ */
+export const MOF_LEFT_BURDENS: readonly string[] = [
+  ...HD_RTI_BURDENS,
+  SAGA.fear,
+];
 /** Is a burden left out of a chapter by its campaign card? */
 export const sagaBurdenLeftOut = (id: ScenarioId, code: string) =>
   (TOS_CHAPTERS.includes(id) && FRODO_BURDENS.includes(code)) ||
   (LOS_CHAPTERS.includes(id) && HD_RTI_BURDENS.includes(code)) ||
-  (FOTW_CHAPTERS.includes(id) && FOTW_LEFT_BURDENS.includes(code));
+  ((FOTW_CHAPTERS.includes(id) || id === "the-black-gate-opens") &&
+    FOTW_LEFT_BURDENS.includes(code)) ||
+  (["the-tower-of-cirith-ungol", "mount-doom"].includes(id) &&
+    MOF_LEFT_BURDENS.includes(code));
+/** Item boons a player may set aside at The Tower of Cirith Ungol (Andúril excluded). */
+export const sagaItemBoons = (c: CampaignState) =>
+  c.boons.filter(
+    (code) =>
+      code !== SAGA.anduril && (card(code).traits ?? "").includes("Item"),
+  );
 /** Boons the players earn copy by copy, each joining a player's deck (Brace of Coneys). */
 export const COPY_BOONS: readonly string[] = [SAGA.coneys];
 /** Burden objectives whose Setup adds them to the staging area (besides Gandalf's Delay). */
 export const STAGED_BURDENS: readonly string[] = [SAGA.grief, SAGA.wound];
+/**
+ * Burdens whose own Setup places them (Gandalf's Delay, A Heavy Burden,
+ * Overcome by Fear, Wraith on Wings): never shuffled into the encounter deck.
+ */
+export const SETUP_BURDENS: readonly string[] = [
+  SAGA.delay,
+  SAGA.heavy,
+  SAGA.fear,
+  SAGA.wraith,
+];
 /** Boons with the Permanent keyword. */
 export const SAGA_PERMANENT: readonly string[] = [
   SAGA.underhill,
@@ -449,7 +512,7 @@ export function sagaCampaignDeckSetup(s: GameState) {
           s.deck = s.deck.filter((code) => card(code).name !== title);
           log(
             s,
-            `${TOS_CHAPTERS.includes(s.scenarioId) ? "The Treason of Saruman" : LOS_CHAPTERS.includes(s.scenarioId) ? "The Land of Shadow" : "The Flame of the West"}: no card titled ${title} can be used in its chapters.`,
+            `${card(SAGA_CAMPAIGN_CARDS[s.scenarioId] ?? "").name || "The Lord of the Rings"}: no card titled ${title} can be used in this chapter.`,
           );
         }
       });
@@ -490,9 +553,13 @@ export function sagaReturnLateDeck(s: GameState, held: readonly string[]) {
 }
 /** The card title a chapter's campaign rules forbid. */
 export const sagaForbiddenTitle = (id: ScenarioId) =>
-  TOS_CHAPTERS.includes(id) || FOTW_CHAPTERS.includes(id)
+  TOS_CHAPTERS.includes(id) ||
+  FOTW_CHAPTERS.includes(id) ||
+  id === "the-black-gate-opens"
     ? "Frodo Baggins"
-    : LOS_CHAPTERS.includes(id)
+    : LOS_CHAPTERS.includes(id) ||
+        id === "the-tower-of-cirith-ungol" ||
+        id === "mount-doom"
       ? "Aragorn"
       : undefined;
 /**
@@ -612,11 +679,11 @@ export function sagaCampaignSetup(s: GameState) {
     for (const code of c!.permanent[ARAGORN_KEY] ?? [])
       attachBoon(s, aragorn, code);
   const encounter = [
-    ...c!.boons.filter((code) => code === SAGA.gildor),
+    // Boons with an encounter card back: Gildor Inglorion and Gwaihir.
+    ...c!.boons.filter((code) => code === SAGA.gildor || code === SAGA.gwaihir),
     ...c!.burdens.filter(
       (code) =>
-        code !== SAGA.delay &&
-        code !== SAGA.heavy &&
+        !SETUP_BURDENS.includes(code) &&
         !STAGED_BURDENS.includes(code) &&
         !DECK_BURDENS.includes(code) &&
         !left(code),
@@ -664,6 +731,24 @@ export function sagaCampaignSetup(s: GameState) {
             exhausted: false,
           });
       });
+  // Wraith on Wings: "Setup: Add Wraith on Wings to the staging area." (each
+  // earned copy).
+  if (
+    c!.burdens.includes(SAGA.wraith) &&
+    !left(SAGA.wraith) &&
+    s.scenarioId !== "the-battle-of-the-pelennor-fields"
+  )
+    for (let i = 0; i < (c!.burdenCopies?.[SAGA.wraith] ?? 1); i++)
+      s.staging.push(make(s, SAGA.wraith));
+  // The Tower of Cirith Ungol: each player sets an Item boon aside.
+  if (s.scenarioId === "the-tower-of-cirith-ungol")
+    for (const player of playerOrder(s))
+      enqueue(s, fx("sagaItemAside", { player }));
+  // Mount Doom: "Place X resource tokens on this card, where X is the number
+  // of resource tokens on The Black Gate, as recorded in the campaign log."
+  if (s.scenarioId === "mount-doom")
+    (s.sagaCards ??= { ringDraws: 0, underhill: [] }).doomTokens =
+      c!.blackGateTokens ?? 0;
   // Army of the Dead: "Setup: The first player takes control of Army of the
   // Dead."
   if (c!.boons.includes(SAGA.army))
@@ -674,12 +759,15 @@ export function sagaCampaignSetup(s: GameState) {
       army.controller = first;
       s.allies.push(army);
     });
-  // The Passing of the Grey Company and The Siege of Gondor: "The first player
-  // may raise each player's threat by 1 to search his deck for Andúril."
+  // The Passing of the Grey Company, The Siege of Gondor and The Black Gate
+  // Opens: "The first player may raise each player's threat by 1 to search
+  // his deck for Andúril."
   if (
-    ["the-passing-of-the-grey-company", "the-siege-of-gondor"].includes(
-      s.scenarioId,
-    ) &&
+    [
+      "the-passing-of-the-grey-company",
+      "the-siege-of-gondor",
+      "the-black-gate-opens",
+    ].includes(s.scenarioId) &&
     seatView(s, first).deck.includes(SAGA.anduril)
   )
     enqueue(s, fx("sagaAndurilSearch", { player: first }));
@@ -800,6 +888,26 @@ export function sagaCampaignSetup(s: GameState) {
   );
 }
 
+/** Is the current chapter over for the campaign: won, or The Black Gate Opens ended? */
+export const sagaChapterComplete = (s: GameState) =>
+  s.status === "won" ||
+  (s.status === "lost" &&
+    isSagaCampaign(s.campaign) &&
+    SAGA_LOSS_CHAPTERS.includes(s.scenarioId) &&
+    s.campaign!.completed.at(-1)?.scenarioId === s.scenarioId);
+/**
+ * The Black Gate Opens in the campaign: the players' defeat ends the chapter
+ * and records its resolution (called after each action).
+ */
+export function sagaCampaignLossCompletion(s: GameState) {
+  if (
+    s.status === "lost" &&
+    isSagaCampaign(s.campaign) &&
+    SAGA_LOSS_CHAPTERS.includes(s.scenarioId) &&
+    !s.campaign!.completed.some((q) => q.scenarioId === s.scenarioId)
+  )
+    resolveSagaCampaign(s);
+}
 /** Burden cards of the Campaign Pool's kind anywhere the Flight to the Ford resolution looks. */
 function burdensInPlay(s: GameState) {
   const units = [
@@ -827,10 +935,15 @@ function burdensInPlay(s: GameState) {
 export function resolveSagaCampaign(s: GameState) {
   const c = s.campaign!;
   if (c.completed.some((q) => q.scenarioId === s.scenarioId)) return;
-  const fallen = seatIndices(s).flatMap((i) => {
-    const p = seatView(s, i);
-    return p.startingHeroes.filter((code) => p.discard.includes(code));
-  });
+  // The Black Gate Opens: "If a hero is in its controller's discard pile, do
+  // not add that hero's name to the list of fallen heroes."
+  const fallen =
+    s.scenarioId === "the-black-gate-opens"
+      ? []
+      : seatIndices(s).flatMap((i) => {
+          const p = seatView(s, i);
+          return p.startingHeroes.filter((code) => p.discard.includes(code));
+        });
   // Breaking of the Fellowship: "If Fallen into Evil is attached to a hero,
   // add that hero to the list of Fallen Heroes in the Campaign Log."
   if (s.scenarioId === "breaking-of-the-fellowship")
@@ -1060,6 +1173,56 @@ export function resolveSagaCampaign(s: GameState) {
       `The Battle of the Pelennor Fields · Resolution: ${copies} ${copies === 1 ? "copy" : "copies"} of Wraith on Wings ${copies === 1 ? "is" : "are"} earned${earned.length ? `; ${earned.join(", ")} ${earned.length === 1 ? "is" : "are"} earned` : ""}.`,
       "good",
     );
+  } else if (s.scenarioId === "the-tower-of-cirith-ungol") {
+    // "If Shagrat is in play, remove each Item boon attached to it from the
+    // campaign pool. (The players have lost those boons.)"
+    const shagrat = [
+      ...s.staging,
+      ...seatIndices(s).flatMap((p) => seatView(s, p).engaged),
+    ].find((u) => u.code === SAGA.shagrat);
+    const lost = (shagrat?.attachments ?? [])
+      .filter((a) => (s.sagaCards?.guarded ?? []).includes(a.id))
+      .map((a) => a.code);
+    c.boons = c.boons.filter((code) => !lost.includes(code));
+    if (c.deckBoons) for (const code of lost) delete c.deckBoons[code];
+    log(
+      s,
+      lost.length
+        ? `The Tower of Cirith Ungol · Resolution: Shagrat still guards ${lost.map((code) => card(code).name).join(", ")}; the players have lost ${lost.length === 1 ? "that boon" : "those boons"}.`
+        : "The Tower of Cirith Ungol · Resolution: no Item boon is lost.",
+      "good",
+    );
+  } else if (s.scenarioId === "the-black-gate-opens") {
+    // "Record the number of resource tokens on The Black Gate ... If a Wraith
+    // on Wings is in the victory display, remove that copy from the campaign
+    // pool. If the first player controls Gwaihir, add him to the campaign
+    // pool."
+    c.blackGateTokens =
+      s.staging.find((u) => u.code === SAGA.blackGate)?.resources ?? 0;
+    const slain = (s.victoryCards ?? []).filter(
+      (code) => code === SAGA.wraith,
+    ).length;
+    if (slain && c.burdens.includes(SAGA.wraith)) {
+      const left = (c.burdenCopies?.[SAGA.wraith] ?? 1) - slain;
+      if (left > 0)
+        c.burdenCopies = { ...(c.burdenCopies ?? {}), [SAGA.wraith]: left };
+      else {
+        c.burdens = c.burdens.filter((code) => code !== SAGA.wraith);
+        if (c.burdenCopies) delete c.burdenCopies[SAGA.wraith];
+        if (c.burdenCopies && !Object.keys(c.burdenCopies).length)
+          delete c.burdenCopies;
+      }
+    }
+    const gwaihir =
+      seatView(s, s.table?.first ?? 0).allies.some(
+        (u) => u.code === SAGA.gwaihir,
+      ) || !!s.sagaCards?.gwaihirAtLoss;
+    if (gwaihir && !c.boons.includes(SAGA.gwaihir)) c.boons.push(SAGA.gwaihir);
+    log(
+      s,
+      `The Black Gate Opens · Resolution: ${c.blackGateTokens} resource ${c.blackGateTokens === 1 ? "token" : "tokens"} on The Black Gate ${c.blackGateTokens === 1 ? "is" : "are"} recorded${slain ? `; ${slain} Wraith on Wings ${slain === 1 ? "leaves" : "leave"} the Campaign Pool` : ""}${gwaihir ? "; the players earn Gwaihir" : ""}.`,
+      "good",
+    );
   } else if (s.scenarioId === "shelobs-lair") {
     if (!c.burdens.includes(SAGA.heavy)) c.burdens.push(SAGA.heavy);
     log(
@@ -1086,6 +1249,43 @@ export function blackGateNote(codes: readonly string[] = []) {
   return [...counts]
     .map(([title, n]) => (n > 1 ? `${title} ×${n}` : title))
     .join(", ");
+}
+/**
+ * The campaign card's state during a chapter, for the quest inspector: Mount
+ * Doom's resource tokens, the Item boons set aside or guarded at The Tower of
+ * Cirith Ungol, and what waits at The Battle of the Pelennor Fields.
+ */
+export function sagaCampaignStatus(s: GameState): string[] {
+  if (!isSagaCampaign(s.campaign)) return [];
+  const q = s.sagaCards;
+  const out: string[] = [];
+  if (s.scenarioId === "mount-doom" && q?.doomTokens !== undefined)
+    out.push(
+      `${q.doomTokens} resource ${q.doomTokens === 1 ? "token remains" : "tokens remain"} on the campaign card: 1 is removed at the end of each round, and the players lose when none remain.`,
+    );
+  if (q?.itemsAside?.length)
+    out.push(
+      `Set aside until stage 3A, then guarded by Shagrat: ${q.itemsAside.map((x) => card(x.code).name).join(", ")}.`,
+    );
+  const guarded = [
+    ...s.staging,
+    ...seatIndices(s).flatMap((p) => seatView(s, p).engaged),
+  ].flatMap((u) =>
+    u.attachments.filter((a) => (q?.guarded ?? []).includes(a.id)),
+  );
+  if (guarded.length)
+    out.push(
+      `Shagrat guards ${guarded.map((a) => card(a.code).name).join(", ")}: defeat him to return ${guarded.length === 1 ? "it to its owner's hand" : "them to their owners' hands"}, or the players lose ${guarded.length === 1 ? "that boon" : "those boons"}.`,
+    );
+  if (q?.aragornAside)
+    out.push(
+      `Aragorn waits${q.aragornAside.attachments.length ? ` with ${q.aragornAside.attachments.map((a) => card(a.code).name).join(" and ")}` : ""} until The Corsair Fleet has no resources.`,
+    );
+  if (q?.haradAside?.length)
+    out.push(
+      `${blackGateNote(q.haradAside)} ${q.haradAside.length === 1 ? "waits" : "wait"} for stage 5B.`,
+    );
+  return out;
 }
 export type SagaQuestion = {
   id: string;
@@ -1219,6 +1419,25 @@ export function sagaResolutionQuestions(s: GameState): SagaQuestion[] {
           code,
           label: card(code).name,
         })),
+      },
+    ];
+  if (s.scenarioId === "mount-doom")
+    return [
+      {
+        id: "ring",
+        label: "Mount Doom · The first player must choose:",
+        options: [
+          {
+            id: "destroy",
+            label:
+              "Destroy The One Ring card and defeat the power of Sauron: the players win the campaign",
+          },
+          {
+            id: "keep",
+            label:
+              "Keep The One Ring card and succumb to the power of Sauron: the players lose the campaign",
+          },
+        ],
       },
     ];
   if (s.scenarioId === "the-passage-of-the-marshes")
@@ -1403,6 +1622,16 @@ export function applySagaResolution(
       );
     }
   }
+  if (s.scenarioId === "mount-doom") {
+    c!.outcome = answers.ring === "destroy" ? "won" : "lost";
+    log(
+      s,
+      c!.outcome === "won"
+        ? "Mount Doom · Resolution: The One Ring is destroyed and the power of Sauron defeated. The players win the campaign."
+        : "Mount Doom · Resolution: The One Ring is kept, and its bearer succumbs to the power of Sauron. The players lose the campaign.",
+      c!.outcome === "won" ? "good" : "danger",
+    );
+  }
   if (s.scenarioId === "the-passage-of-the-marshes") {
     const penalty = [...(c!.playerPenalty ?? [])];
     while (penalty.length < (s.table?.seats.length ?? 1)) penalty.push(0);
@@ -1543,6 +1772,10 @@ export function validateSagaCampaign(s: GameState): boolean {
             seat < (s.table?.seats.length ?? 1),
         ))) &&
     (c.corsairFleet === undefined || integer(c.corsairFleet)) &&
+    (c.blackGateTokens === undefined || integer(c.blackGateTokens)) &&
+    (c.outcome === undefined ||
+      ((c.outcome === "won" || c.outcome === "lost") &&
+        c.completed.at(-1)?.scenarioId === "mount-doom")) &&
     (c.burdenCopies === undefined ||
       (!!c.burdenCopies &&
         typeof c.burdenCopies === "object" &&
@@ -1603,7 +1836,10 @@ export function validateSagaCampaign(s: GameState): boolean {
         Number.isSafeInteger(q.score) &&
         integer(q.rounds),
     ) &&
-    (s.status === "won"
+    (s.status === "won" ||
+    (s.status === "lost" &&
+      SAGA_LOSS_CHAPTERS.includes(s.scenarioId) &&
+      c.completed.at(-1)?.scenarioId === s.scenarioId)
       ? c.completed.at(-1)?.scenarioId === s.scenarioId
       : sagaChapterOptions(c).includes(s.scenarioId)) &&
     (c.resolution === undefined ||

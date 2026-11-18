@@ -363,6 +363,10 @@ export interface CampaignState {
   corsairFleet?: number;
   /** Saga: burdens earned in several copies (Wraith on Wings, one per player): the number of copies. */
   burdenCopies?: Record<string, number>;
+  /** Saga (Notes): the resource tokens on The Black Gate when The Black Gate Opens ended. */
+  blackGateTokens?: number;
+  /** Saga: the campaign's end, chosen at Mount Doom: the One Ring destroyed (won) or kept (lost). */
+  outcome?: "won" | "lost";
 }
 export type Phase =
   | "setup"
@@ -583,6 +587,18 @@ export interface GameState {
     haradAside?: string[];
     /** The Battle of the Pelennor Fields: Aragorn, set aside with Andúril and Banner of Elendil. */
     aragornAside?: Unit;
+    /** The Tower of Cirith Ungol: the Item boons each player set aside (their owners). */
+    itemsAside?: { code: string; owner: number }[];
+    /** The Tower of Cirith Ungol: the Item boons attached to Shagrat as guarded objectives (attachment ids). */
+    guarded?: string[];
+    /** Mount Doom: the resource tokens on the campaign card. */
+    doomTokens?: number;
+    /**
+     * The Black Gate Opens: the first player controlled Gwaihir when the
+     * hot-seat table's last fellowship was eliminated (its cards leave play
+     * before the campaign card's resolution).
+     */
+    gwaihirAtLoss?: boolean;
     /** The Harad enemies of Journey to the Cross-roads in a later chapter: Captain of Harad's and Oliphaunt's round counters. */
     harad?: {
       captain?: { round: number; count: number };

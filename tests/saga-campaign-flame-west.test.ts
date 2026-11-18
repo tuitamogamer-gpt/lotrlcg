@@ -24,6 +24,7 @@ import {
   FOTW_LEFT_BURDENS,
   SAGA,
   SAGA_CAMPAIGN_ORDER,
+  sagaCampaignStatus,
   sagaResolutionQuestions,
 } from "../src/game/saga-campaign";
 import { sagaCampaignFirstPlayerChanged } from "../src/game/saga-campaign-cards";
@@ -119,7 +120,7 @@ test("The Flame of the West campaign cards, the Army of the Dead boon and the Pe
       "The Passing of the Grey Company",
       "The Siege of Gondor",
       "The Battle of the Pelennor Fields",
-      "The Tower of Cirith Ungol",
+      "Intruders in Chetwood",
     ].map((name) => automatedScenarioId({ name, mode: "campaign" })),
     [
       "the-passing-of-the-grey-company",
@@ -319,6 +320,12 @@ test("The Battle of the Pelennor Fields: the recorded Harad enemies wait for sta
     "Andúril leaves the deck",
   );
   assert.deepEqual(pf.sagaCards!.haradAside, [MAN, SOLDIER, CAPTAIN]);
+  assert.deepEqual(sagaCampaignStatus(pf), [
+    `Aragorn waits with ${pf
+      .sagaCards!.aragornAside!.attachments.map((a) => card(a.code).name)
+      .join(" and ")} until The Corsair Fleet has no resources.`,
+    `${[MAN, SOLDIER, CAPTAIN].map((code) => card(code).name).join(", ")} wait for stage 5B.`,
+  ]);
   const fleet = pf.staging.find((u) => u.code === SAGA.gondorFleet)!;
   assert.equal(fleet.resources, 2);
   pf = settle(pf);
@@ -378,10 +385,10 @@ test("The Battle of the Pelennor Fields: the recorded Harad enemies wait for sta
     SAGA.esquireRohan,
   ]);
   assert.ok(valid(done));
-  assert.throws(
-    () => continueCampaign(done, HEROES, d.id, true, 96),
-    /not available yet/,
-  );
+  // The Mountain of Fire follows.
+  const next = continueCampaign(done, HEROES, d.id, true, 96);
+  assert.equal(next.scenarioId, "the-tower-of-cirith-ungol");
+  assert.ok(valid(next));
 });
 
 test("The Fellowship Aragorn: a fallen Aragorn leaves the list with a +1 penalty, and a recorded Aragorn's Permanent cards are transferred to the Fellowship Aragorn", () => {

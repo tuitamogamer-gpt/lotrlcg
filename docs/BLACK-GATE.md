@@ -5,8 +5,11 @@ The second scenario of **The Lord of the Rings: The Mountain of Fire**
 players, in normal and easy mode. Frodo is not used: the first player takes
 control of the box's Fellowship-sphere Aragorn (146002), and the scenario has
 the **Dire** keyword. The players cannot win; their result is the number of
-resources on The Black Gate when they fall. Campaign mode (its campaign card,
-boons and burdens) is not part of this import.
+resources on The Black Gate when they fall. In The Lord of the Rings campaign
+([SAGA-CAMPAIGN.md](SAGA-CAMPAIGN.md)) that defeat completes the chapter: its
+campaign card records the resource tokens on The Black Gate for Mount Doom,
+removes each slain Wraith on Wings from the Campaign Pool and earns Gwaihir
+for a first player who controls him.
 
 ## Sources and corrections
 

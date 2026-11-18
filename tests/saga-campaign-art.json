@@ -558,5 +558,53 @@
     "localPath": "/cards/pelennor-corsair-fleet.jpg",
     "bytes": 1212811,
     "sha256": "d519b972cf4a1b1f05a4c3003c8e5c6f69043c950ef825d431d101f821063afb"
+  },
+  {
+    "code": "octgn:a27a3045-58aa-4cbe-ab36-90bc6e7a5cdb",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a27a3045-58aa-4cbe-ab36-90bc6e7a5cdb.jpg",
+    "localPath": "/cards/a27a3045-58aa-4cbe-ab36-90bc6e7a5cdb.jpg",
+    "bytes": 83283,
+    "sha256": "4f74849c29a0273e352584004729884a883522d8a6c0799ed7c47eeaf3a07ce8"
+  },
+  {
+    "code": "octgn:a27a3045-58aa-4cbe-ab36-90bc6e7a5cdb",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a27a3045-58aa-4cbe-ab36-90bc6e7a5cdb.B.jpg",
+    "localPath": "/cards/a27a3045-58aa-4cbe-ab36-90bc6e7a5cdb.B.jpg",
+    "bytes": 72938,
+    "sha256": "1df1514c50c4ea22b757333baf8aa5f17e640ae7de5756a13d3579e49d9e708b"
+  },
+  {
+    "code": "octgn:9ffc1d82-10b3-4703-91e5-865407f0cc1e",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9ffc1d82-10b3-4703-91e5-865407f0cc1e.jpg",
+    "localPath": "/cards/9ffc1d82-10b3-4703-91e5-865407f0cc1e.jpg",
+    "bytes": 125611,
+    "sha256": "99900d0bafffc1811d190256c41447fccf9a50461dc6464b4ffd4cc81bc1ecab"
+  },
+  {
+    "code": "octgn:9ffc1d82-10b3-4703-91e5-865407f0cc1e",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9ffc1d82-10b3-4703-91e5-865407f0cc1e.B.jpg",
+    "localPath": "/cards/9ffc1d82-10b3-4703-91e5-865407f0cc1e.B.jpg",
+    "bytes": 73647,
+    "sha256": "d227b819532be9b4c5680f228d844c1ee38308a7b816a5e498f694282c423416"
+  },
+  {
+    "code": "octgn:271fa771-d678-461e-b5c6-483117059ed1",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/271fa771-d678-461e-b5c6-483117059ed1.jpg",
+    "localPath": "/cards/271fa771-d678-461e-b5c6-483117059ed1.jpg",
+    "bytes": 83722,
+    "sha256": "c75a5250979f7391c95283a9e2cbd5296d4af7e5ec82db595cc7d68ca3fc2f77"
+  },
+  {
+    "code": "octgn:271fa771-d678-461e-b5c6-483117059ed1",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/271fa771-d678-461e-b5c6-483117059ed1.B.jpg",
+    "localPath": "/cards/271fa771-d678-461e-b5c6-483117059ed1.B.jpg",
+    "bytes": 78431,
+    "sha256": "252f795ffcbb23f18cc4ed339cf59137f125ac3f0984ba8d515ea5aed53ef812"
   }
 ]

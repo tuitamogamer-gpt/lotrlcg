@@ -347,8 +347,10 @@ import {
   SAGA_CAMPAIGN_SUPPORTED,
   SAGA_DECK_BOONS,
   SAGA_INSERTS,
+  sagaChapterComplete,
   sagaChapterNumber,
   sagaChapterOptions,
+  sagaCampaignStatus,
   sagaChapterSupported,
   sagaForbiddenTitle,
   sagaResolutionQuestions,
@@ -4271,6 +4273,31 @@ export default function App() {
               />
             )}
             <QuestGoals s={game} />
+            {game.campaign?.kind === "saga" &&
+              SAGA_CAMPAIGN_CARD_CODES[game.scenarioId] && (
+                <div
+                  className="saga-campaign-status"
+                  aria-label="Campaign card"
+                >
+                  <button
+                    className="text-link"
+                    onClick={() => {
+                      setShowQuest(false);
+                      setDetail(
+                        card(SAGA_CAMPAIGN_CARD_CODES[game.scenarioId]!),
+                      );
+                    }}
+                  >
+                    Campaign card ·{" "}
+                    {card(SAGA_CAMPAIGN_CARD_CODES[game.scenarioId]!).name}
+                  </button>
+                  {sagaCampaignStatus(game).map((line) => (
+                    <p key={line} className="campaign-note">
+                      {line}
+                    </p>
+                  ))}
+                </div>
+              )}
             <p>
               <strong>
                 {currentQuestProgress(game)} /{" "}
@@ -5278,20 +5305,27 @@ export default function App() {
                   }}
                 />
               ) : game.campaign &&
-                game.status === "won" &&
+                (game.status === "won" || sagaChapterComplete(game)) &&
                 nextChapterOf(game.campaign) &&
                 (game.campaign.kind !== "saga" ||
                   sagaChapterSupported(nextChapterOf(game.campaign))) ? (
-                <button className="primary" onClick={prepareNextChapter}>
-                  Continue campaign <ArrowRight />
-                </button>
-              ) : game.campaign?.kind === "saga" &&
-                game.status === "won" &&
-                nextChapterOf(game.campaign) ? (
-                <p className="campaign-note">
-                  The campaign log is recorded. The next chapter,{" "}
-                  {scenario(nextChapterOf(game.campaign)!).name}, is not
-                  available in campaign mode yet.
+                <>
+                  {game.status === "lost" && (
+                    <p className="campaign-note">
+                      The Black Gate Opens cannot be won: in the campaign, the
+                      players' defeat ends the chapter, and the Campaign Log
+                      records the resource tokens on The Black Gate.
+                    </p>
+                  )}
+                  <button className="primary" onClick={prepareNextChapter}>
+                    Continue campaign <ArrowRight />
+                  </button>
+                </>
+              ) : game.campaign?.kind === "saga" && game.campaign.outcome ? (
+                <p className="campaign-note saga-outcome">
+                  {game.campaign.outcome === "won"
+                    ? "The One Ring is destroyed and the power of Sauron defeated: the players win The Lord of the Rings campaign."
+                    : "The One Ring is kept, and its bearer succumbs to the power of Sauron: the players lose The Lord of the Rings campaign."}
                 </p>
               ) : game.status === "lost" ? (
                 <button className="primary" onClick={retry}>
@@ -5506,6 +5540,19 @@ function CampaignJournal({
         <p className="campaign-note">
           Notes · The Corsair Fleet: {c.corsairFleet}{" "}
           {c.corsairFleet === 1 ? "resource" : "resources"}
+        </p>
+      ) : null}
+      {c.blackGateTokens !== undefined ? (
+        <p className="campaign-note">
+          Notes · The Black Gate: {c.blackGateTokens} resource{" "}
+          {c.blackGateTokens === 1 ? "token" : "tokens"}
+        </p>
+      ) : null}
+      {c.outcome ? (
+        <p className="campaign-note">
+          {c.outcome === "won"
+            ? "The campaign is won: The One Ring is destroyed."
+            : "The campaign is lost: The One Ring was kept."}
         </p>
       ) : null}
       {c.blackGateEnemies ? (

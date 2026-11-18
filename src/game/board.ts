@@ -131,8 +131,10 @@ import {
   sagaCampaignCommitted,
   sagaCampaignDamageDealt,
   sagaCampaignEncounter,
+  sagaCampaignAttachmentLeaves,
   sagaCampaignEventPlayed,
   sagaCampaignRemoveCharacter,
+  sagaCampaignPlayerEliminating,
   sagaCampaignRemovedOnLeave,
   sagaCampaignPhaseEnd,
   sagaCampaignShadow,
@@ -1096,6 +1098,7 @@ export function check(s: GameState) {
       if (s.table!.seats[i].eliminated) return;
       batch4Scenario(s).playerEliminating?.(s, i);
       Burglar.burglarContractPlayerEliminating(s, i);
+      sagaCampaignPlayerEliminating(s, i);
       for (const host of [
         ...s.staging,
         ...(s.stormcaller?.area ?? []),
@@ -1210,6 +1213,8 @@ export function check(s: GameState) {
       if (s.choice && activeSeat(s) === i) s.choice = null;
     });
     const alive = globalLivingSeats(s);
+    // The game goes on: an eliminated first player's Gwaihir has left play.
+    if (alive.length && s.sagaCards) delete s.sagaCards.gwaihirAtLoss;
     if (!alive.length) {
       s.status = "lost";
       s.reason = "Every hero’s fellowship has fallen to the shadow.";
@@ -1657,6 +1662,13 @@ export function discardAttachment(
       ))
   )
     return;
+  // The Tower of Cirith Ungol: an Item boon Shagrat guards returns to its
+  // owner's hand.
+  if (sagaCampaignAttachmentLeaves(s, a, leaving)) {
+    u.attachments = u.attachments.filter((x) => x.id !== a.id);
+    syncAttachmentText(s);
+    return;
+  }
   if (landSorrowPlayerAttachmentLeaves(s, u, a, leaving, byCardEffect)) {
     syncAttachmentText(s);
     return;

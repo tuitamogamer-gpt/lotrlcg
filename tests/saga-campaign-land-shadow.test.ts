@@ -176,7 +176,7 @@ test("The Land of Shadow campaign cards, Brace of Coneys, The Searching Eye and 
       "The Passage of the Marshes",
       "Journey to the Cross-roads",
       "Shelob's Lair",
-      "The Tower of Cirith Ungol",
+      "Intruders in Chetwood",
     ].map((name) => automatedScenarioId({ name, mode: "campaign" })),
     [
       "the-passage-of-the-marshes",

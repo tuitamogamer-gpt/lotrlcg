@@ -416,6 +416,10 @@ export function cirithUngolEffect(s: GameState, e: Effect): boolean {
       delete q.company;
       delete q.ring;
       q.ringPlaced = true;
+      // The campaign card: "Attach A Heavy Burden to the hero with Last of
+      // the Company attached."
+      if (s.campaign?.kind === "saga")
+        prepend(s, fx("sagaHeavyAttach", { target: u.id }));
       log(
         s,
         `Last of the Company and The One Ring are attached to ${name(u)}: ${name(u)} is the Ring-bearer.`,
@@ -519,6 +523,10 @@ export function cirithUngolEffect(s: GameState, e: Effect): boolean {
           .filter((player) => player !== first)
           .map((player) => fx("reveal", { player })),
         fx("stageRevealed"),
+        // The campaign card's Forced effect when the players advance to 3A.
+        ...(s.campaign?.kind === "saga"
+          ? [fx("sagaCirithThree", { player: first })]
+          : []),
       );
       return true;
     }

@@ -19,6 +19,7 @@ import {
   nextSagaChapter,
   resolveSagaCampaign,
   SAGA_FREE_CHANGES,
+  sagaChapterComplete,
   sagaChapterOptions,
   sagaForbiddenTitle,
   sagaChapterSupported,
@@ -108,12 +109,14 @@ export function continueCampaign(
 ): GameState {
   const saga = isSagaCampaign(s.campaign);
   requireRule(
-    s.status === "won" &&
-      s.campaign &&
-      (saga
-        ? sagaChapterOptions(s.campaign).length > 0
-        : s.campaign.completed.length < 3),
+    (saga ? sagaChapterComplete(s) : s.status === "won") && s.campaign,
     "Win the current chapter before continuing.",
+  );
+  requireRule(
+    saga
+      ? sagaChapterOptions(s.campaign!).length > 0
+      : s.campaign!.completed.length < 3,
+    "The campaign is complete.",
   );
   requireRule(
     !saga || !s.campaign!.resolution,

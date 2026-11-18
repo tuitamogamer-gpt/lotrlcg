@@ -2,7 +2,10 @@ import { wainridersQuestUnits } from "./wainriders-support";
 import {
   sagaCampaignCannotReady,
   sagaCampaignCardsDrawn,
+  sagaCampaignEngagementBonus,
   sagaCampaignEnemyCannotAttack,
+  sagaCampaignThreatBonus,
+  sagaCampaignWillBonus,
   sagaCampaignWillpowerOverride,
 } from "./saga-campaign-cards";
 import {
@@ -680,6 +683,7 @@ export function stats(s: GameState, u: Unit) {
       (c.willpower ?? 0) +
         [
           batch4Scenario(s).stats?.(s, u).will ?? 0,
+          sagaCampaignWillBonus(s, u),
           BatchSupport.batch4PlayerStats(s, u).will,
           landSorrowPlayerStats(s, u).will,
           eredFinalBonus.will + shadowEastBonus.will,
@@ -1065,6 +1069,7 @@ export const threatOf = (s: GameState, u: Unit) =>
             Race.raceHaradThreatBonus(s, u) +
             Sands.beneathSandsThreatBonus(s, u) +
             (batch4Scenario(s).threatBonus?.(s, u) ?? 0) +
+            sagaCampaignThreatBonus(s, u) +
             Umbar.umbarThreatBonus(s, u) +
             Desert.desertCrossingThreatBonus(s, u) +
             Storm.stormcallerThreatBonus(s, u) +
@@ -1200,6 +1205,7 @@ export const engagementCost = (s: GameState, u: Unit) =>
       Desert.desertCrossingEngagementBonus(s, u) +
       Sands.beneathSandsEngagementBonus(s, u) +
       (batch4Scenario(s).engagementBonus?.(s, u) ?? 0) +
+      sagaCampaignEngagementBonus(s, u) +
       Cobas.cobasEngagementModifier(s, u) +
       Mordor.mordorEngagementModifier(s, u) +
       TempleEncounters.templeEncounterEngagement(s, u) +

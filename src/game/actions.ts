@@ -4,11 +4,13 @@ import {
   sagaCampaignAbility,
   sagaCampaignAbilityLabel,
   sagaCampaignAbilityProblem,
+  sagaCampaignCannotAttach,
   sagaCampaignEventCost,
   sagaCampaignPlayerEvent,
   sagaCampaignPlayProblem,
 } from "./saga-campaign-cards";
 import {
+  sagaCampaignLossCompletion,
   sagaHoldLateDeck,
   sagaReturnLateDeck,
   sagaSetupHandIds,
@@ -1875,6 +1877,7 @@ export function playTargets(
       !playerEffectImmune(s, target, u.code) &&
       (card(u.code).type_code !== "attachment" ||
         (!batch4Scenario(s).cannotAttach?.(s, target, u.code) &&
+          !sagaCampaignCannotAttach(s, target, u.code) &&
           !Dike.dikeCannotAttach(s, target) &&
           !Wastes.wastesCannotAttach(s, target) &&
           !Dread.dreadCannotAttach(s, target) &&
@@ -2995,7 +2998,16 @@ export function gandalfDeckPlayReason(s: GameState): string | null {
       : null)
   );
 }
+/**
+ * Apply a player action. The Black Gate Opens in the campaign: the players'
+ * defeat ends the chapter and records its resolution.
+ */
 export function applyAction(input: GameState, action: Action): GameState {
+  const s = applyActionCore(input, action);
+  sagaCampaignLossCompletion(s);
+  return s;
+}
+function applyActionCore(input: GameState, action: Action): GameState {
   const s = structuredClone(input);
   syncAttachmentText(s);
   if (action.type === "CONTINUE") {

@@ -102,7 +102,7 @@ test("The Treason of Saruman campaign cards, boons and Saruman's Voice are regis
       "The Uruk-hai",
       "Helm's Deep",
       "The Road to Isengard",
-      "The Tower of Cirith Ungol",
+      "Intruders in Chetwood",
     ].map((name) => automatedScenarioId({ name, mode: "campaign" })),
     ["the-uruk-hai", "helms-deep", "the-road-to-isengard", null],
   );

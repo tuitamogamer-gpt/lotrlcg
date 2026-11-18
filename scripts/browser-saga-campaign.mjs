@@ -5,19 +5,21 @@ import { chromium } from "playwright";
 import { win } from "../src/game/board.ts";
 import { flush } from "../src/game/effects.ts";
 import { draw, fx, make } from "../src/game/core.ts";
-import { validateSave } from "../src/game/engine.ts";
-import { syncSeat } from "../src/game/table.ts";
+import { applyAction, validateSave } from "../src/game/engine.ts";
+import { forOwner, syncSeat } from "../src/game/table.ts";
 import { fellowshipAragorn, ringBearer } from "../src/game/lotr-saga.ts";
 import {
   GIFT_BOONS,
   OLD_MAN_WILLOW_DAMAGE,
   RING_BEARER_KEY,
   SAGA,
+  sagaItemBoons,
   sagaResolutionQuestions,
   SOUTH_BOONS,
 } from "../src/game/saga-campaign.ts";
 import { card } from "../src/game/cards.ts";
 import { OF } from "../src/game/old-forest-support.ts";
+import { CU } from "../src/game/cirith-ungol.ts";
 import { reviewedState } from "./browser-review-helpers.mjs";
 import { capture, context, report, url } from "./browser-angmar-helpers.mjs";
 
@@ -172,6 +174,19 @@ async function playFromHand(id) {
 /** The hero carrying a campaign attachment. */
 const carrier = (s, code) =>
   s.heroes.find((h) => h.attachments.some((a) => a.code === code));
+/** Open the quest inspector, wait for a campaign card line and check it. */
+async function campaignCard(text, label, width) {
+  await page.getByRole("button", { name: /^Inspect quest: / }).click();
+  await page
+    .getByLabel("Campaign card", { exact: true })
+    .getByText(text)
+    .waitFor();
+  await checkpoint(label, width);
+  await page
+    .getByRole("button", { name: "Close dialog", exact: true })
+    .last()
+    .click();
+}
 try {
   for (const width of [1280, 390, 320]) {
     const view = await context(
@@ -632,9 +647,153 @@ try {
     });
     assert.deepEqual(s.campaign.burdenCopies, { [SAGA.wraith]: 1 });
     assert.ok(s.campaign.boons.includes(SAGA.esquireRohan));
-    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await page.getByRole("button", { name: /^Continue campaign/ }).waitFor();
     await checkpoint("pelennor-complete", width);
-    assert.ok(ringBearer);
+    // The Mountain of Fire. The Tower of Cirith Ungol: free hero changes and
+    // no Aragorn; each player sets an Item boon (never Andúril) aside.
+    const items = sagaItemBoons(s.campaign);
+    assert.ok(items.length > 0, "an Item boon to set aside");
+    await page.getByRole("button", { name: /^Continue campaign/ }).click();
+    await page
+      .getByText(/lets each player change heroes without the \+1 threat/)
+      .waitFor();
+    await checkpoint("cirith-interlude", width);
+    await page.getByRole("button", { name: /^Begin next chapter/ }).click();
+    await reviewedState(page);
+    s = await campaign();
+    for (let i = 0; i < 12 && !/Item boon$/.test(s.choice?.title ?? ""); i++)
+      s = await choose(s.choice.options[0].id);
+    assert.equal(s.scenarioId, "the-tower-of-cirith-ungol");
+    assert.deepEqual(
+      s.choice.options.map((o) => o.id),
+      items,
+    );
+    await checkpoint("cirith-item", width);
+    s = await choose(items[0]);
+    assert.deepEqual(s.sagaCards.itemsAside, [{ code: items[0], owner: 0 }]);
+    s = await opening();
+    assert.ok(
+      carrier(s, CU.company)?.attachments.some((a) => a.code === SAGA.heavy),
+      "A Heavy Burden on the Last of the Company hero",
+    );
+    assert.equal(s.staging.filter((u) => u.code === SAGA.wraith).length, 1);
+    await campaignCard(/^Set aside until stage 3A/, "cirith-setup", width);
+    // Stage 3A: A Heavy Burden goes to the Ring-bearer and Shagrat guards the
+    // set-aside boon.
+    const three = calmState(s);
+    const tower = three.cirithUngol;
+    const frodo = tower.captive;
+    delete tower.captive;
+    frodo.owner = 0;
+    frodo.controller = 0;
+    forOwner(three, 0, () => three.heroes.push(frodo));
+    tower.setAside = tower.setAside.filter((code) => code !== CU.shagrat);
+    three.staging.push(make(three, CU.shagrat));
+    three.queue.push(fx("cuStageThree", { player: 0 }));
+    flush(three);
+    // The hot-seat table pauses after each resolved effect.
+    let advanced = three;
+    for (let i = 0; i < 20 && advanced.flow?.pending; i++)
+      advanced = applyAction(advanced, {
+        type: "CONTINUE",
+        stepId: advanced.flow.pending.id,
+      });
+    assert.equal(advanced.choice, null);
+    assert.ok(
+      ringBearer(advanced).attachments.some((a) => a.code === SAGA.heavy),
+    );
+    assert.deepEqual(
+      advanced.staging
+        .find((u) => u.code === CU.shagrat)
+        .attachments.map((a) => a.code),
+      [items[0]],
+    );
+    s = await load(advanced);
+    await campaignCard(/^Shagrat guards /, "cirith-shagrat", width);
+    // A victory with Shagrat in play loses the guarded boon.
+    s = await victory(s);
+    assert.ok(!s.campaign.boons.includes(items[0]), "Shagrat kept the boon");
+    await checkpoint("cirith-complete", width);
+    // The Black Gate Opens: Aragorn leads and the first player may search for
+    // Andúril.
+    let searched = false;
+    s = await continueCampaign(undefined, width, undefined, (t) => {
+      if (!/search for Andúril$/.test(t.choice.title)) return undefined;
+      searched = true;
+      return "search";
+    });
+    assert.equal(s.scenarioId, "the-black-gate-opens");
+    assert.ok(fellowshipAragorn(s), "the Fellowship Aragorn leads");
+    if (searched) assert.ok(s.hand.some((u) => u.code === SAGA.anduril));
+    await checkpoint("bgo-setup", width);
+    // At the beginning of the quest phase The Black Gate raises the threat to
+    // 99 (Dire): the defeat completes the chapter.
+    const gate = calmState(s);
+    gate.threat = 98;
+    gate.staging.find((u) => u.code === SAGA.blackGate).resources = 2;
+    gate.victoryCards = [...(gate.victoryCards ?? []), SAGA.wraith];
+    const eagle = make(gate, SAGA.gwaihir);
+    eagle.owner = 0;
+    eagle.controller = 0;
+    forOwner(gate, 0, () => gate.allies.push(eagle));
+    s = await load(gate);
+    await page.getByRole("button", { name: /^Finish planning/ }).click();
+    await reviewedState(page);
+    s = await campaign();
+    assert.equal(s.status, "lost");
+    assert.equal(s.campaign.blackGateTokens, 3);
+    assert.ok(s.campaign.boons.includes(SAGA.gwaihir));
+    assert.ok(
+      !s.campaign.burdens.includes(SAGA.wraith),
+      "the only Wraith on Wings is slain",
+    );
+    await page.getByText(/The Black Gate Opens cannot be won/).waitFor();
+    await page
+      .getByText(/Notes · The Black Gate: 3 resource tokens/)
+      .first()
+      .waitFor();
+    await checkpoint("bgo-complete", width);
+    // Mount Doom: the tokens recorded at The Black Gate.
+    s = await continueCampaign(undefined, width, async () => {
+      await page
+        .getByText(/lets each player change heroes without the \+1 threat/)
+        .waitFor();
+      await checkpoint("doom-interlude", width);
+    });
+    assert.equal(s.scenarioId, "mount-doom");
+    assert.equal(s.sagaCards.doomTokens, 3);
+    assert.ok(!fellowshipAragorn(s));
+    assert.ok(
+      [
+        ...s.encounterDeck,
+        ...s.encounterDiscard,
+        ...s.staging.map((u) => u.code),
+        ...s.allies.map((u) => u.code),
+      ].includes(SAGA.gwaihir),
+      "Gwaihir joins the encounter deck",
+    );
+    await campaignCard(
+      /^3 resource tokens remain on the campaign card/,
+      "doom-setup",
+      width,
+    );
+    // The resolution: the first player destroys The One Ring.
+    s = await victory(s);
+    assert.equal(s.campaign.resolution, "mount-doom");
+    await page.locator("[data-saga-resolution='mount-doom']").waitFor();
+    await checkpoint("doom-resolution", width);
+    s = await record([
+      [/^Mount Doom · The first player must choose/, "destroy"],
+    ]);
+    assert.equal(s.campaign.outcome, "won");
+    await page
+      .getByText(/the players win The Lord of the Rings campaign/)
+      .waitFor();
+    assert.equal(
+      await page.getByRole("button", { name: /^Continue campaign/ }).count(),
+      0,
+    );
+    await checkpoint("doom-complete", width);
     await view.c.close();
   }
   const p = await browser.newPage();

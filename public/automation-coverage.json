@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2101,
+    "encounterCards": 2104,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3352,
-    "pending": 831
+    "scripted": 3355,
+    "pending": 828
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 267
+    "scripted": 270
   },
   "registeredCodes": [
     "01001",
@@ -1433,6 +1433,7 @@
     "octgn:26bb74c2-3c66-4828-8188-404bc42e713e",
     "octgn:26e6135d-df1b-4221-ba45-a501858bafdf",
     "octgn:26eb433a-01e2-4b0e-83c4-680b0e0c4854",
+    "octgn:271fa771-d678-461e-b5c6-483117059ed1",
     "octgn:27299002-f9b0-4f9d-a87b-012a6a6993ca",
     "octgn:2744032b-21e4-4b52-a66e-f4c1926f451b",
     "octgn:275c7232-3671-4092-bb9a-9a62f9538225",
@@ -2748,6 +2749,7 @@
     "octgn:9fdacc4b-5de7-4b03-af30-cee4d09769d7",
     "octgn:9feef7b4-4ca7-4adc-aeb7-56947254588a",
     "octgn:9ff94935-ae08-4d86-859f-f4d0776a66e5",
+    "octgn:9ffc1d82-10b3-4703-91e5-865407f0cc1e",
     "octgn:a0417d08-1905-46f9-bd65-067c1c59f0a3",
     "octgn:a073c291-5f86-4b49-821e-d965baf369fa",
     "octgn:a0b5c990-9acd-499c-befe-9a55e347f075",
@@ -2764,6 +2766,7 @@
     "octgn:a258aec8-a5d9-4194-8612-ac2dd3b8f99e",
     "octgn:a25b4139-f1d0-4466-83f2-f06fa3e0c30b",
     "octgn:a264930c-e083-484a-bbe8-9b615942e83a",
+    "octgn:a27a3045-58aa-4cbe-ab36-90bc6e7a5cdb",
     "octgn:a2b6cb8b-dacf-4c82-9097-2206610192ac",
     "octgn:a305f78f-0d26-4a56-9d5b-7fb0210e6bd4",
     "octgn:a312e181-9209-4460-b6ba-c90c99e011fe",
@@ -4239,7 +4242,7 @@
     {
       "product": "the-mountain-of-fire",
       "total": 81,
-      "scripted": 74,
+      "scripted": 77,
       "player": 13,
       "playerScripted": 13
     },
@@ -16398,7 +16401,7 @@
       "name": "Mount Doom",
       "type": "campaign",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -29334,7 +29337,7 @@
       "name": "The Black Gate Opens",
       "type": "campaign",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -29542,7 +29545,7 @@
       "name": "The Tower of Cirith Ungol",
       "type": "campaign",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -40326,22 +40329,22 @@
       "id": "Q0C.16",
       "name": "The Tower of Cirith Ungol",
       "mode": "campaign",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-tower-of-cirith-ungol",
+      "state": "scripted"
     },
     {
       "id": "Q0C.17",
       "name": "The Black Gate Opens",
       "mode": "campaign",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-black-gate-opens",
+      "state": "scripted"
     },
     {
       "id": "Q0C.18",
       "name": "Mount Doom",
       "mode": "campaign",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "mount-doom",
+      "state": "scripted"
     },
     {
       "id": "Q99.01",

@@ -3,9 +3,11 @@
 The first scenario of **The Lord of the Rings: The Mountain of Fire**
 (August 2017). It is playable in classic solo and with one to four local
 players, in normal and easy mode, with the box's Fellowship-sphere Frodo
-Baggins (146001) as the captive Ring-bearer and the box's The One Ring.
-Campaign mode (its campaign card, boons and burdens) is not part of this
-import.
+Baggins (146001) as the captive Ring-bearer and the box's The One Ring. In The
+Lord of the Rings campaign ([SAGA-CAMPAIGN.md](SAGA-CAMPAIGN.md)) its campaign
+card attaches A Heavy Burden to the Last of the Company hero and, at stage 3A,
+to the Ring-bearer, and Shagrat guards the Item boon each player sets aside:
+the players lose the boons he still guards when they win.
 
 ## Sources and corrections
 

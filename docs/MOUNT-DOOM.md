@@ -5,9 +5,12 @@ The third and last scenario of **The Lord of the Rings: The Mountain of Fire**
 classic solo and with one to four local players, in normal and easy mode, with
 the box's Fellowship-sphere Frodo Baggins (146001) as the Ring-bearer and the
 box's The One Ring. Every stage has the **Dire** keyword, and the box's
-**Fortitude tests** decide the game. Campaign mode (its campaign card, boons
-and burdens, and the resources carried over from The Black Gate Opens) is not
-part of this import.
+**Fortitude tests** decide the game. In The Lord of the Rings campaign
+([SAGA-CAMPAIGN.md](SAGA-CAMPAIGN.md)) its campaign card holds the resource
+tokens recorded at The Black Gate Opens (one leaves at the end of each round,
+and the players lose with none left), and its resolution ends the campaign:
+the first player destroys The One Ring and the players win, or keeps it and
+they lose.
 
 ## Sources and corrections
 

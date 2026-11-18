@@ -52,9 +52,11 @@ import {
   SAGA_BOONS,
   SAGA_BURDENS,
   SAGA_CAMPAIGN_CARDS,
+  sagaItemBoons,
   sagaLateDeckCard,
   SOUTH_BOONS,
 } from "./saga-campaign";
+import { hasTrait } from "./expansion-passives";
 import { isHero } from "./card-types";
 import { playerAttack } from "./combat";
 import { raiseThreat } from "./board";
@@ -90,6 +92,18 @@ export function sagaCampaignEncounter(
       `Gildor Inglorion: ${s.table ? `${who(s, p)} gains` : "the first player gains"} control of him.`,
       "good",
     );
+    return true;
+  }
+  // Gwaihir, earned at The Black Gate Opens and shuffled into a later
+  // encounter deck (The Black Gate Opens scripts its own copy).
+  if (code === SAGA.gwaihir && !s.blackGate && isSagaCampaign(s.campaign)) {
+    if (!fromReveal) {
+      if (!replay) s.encounterDiscard.push(code);
+      return true;
+    }
+    const u = make(s, code);
+    s.staging.push(u);
+    prepend(s, fx("sagaGwaihir", { source: u.id, player: first(s) }));
     return true;
   }
   if (code === SAGA.lust && !s.ringSouth && isSagaCampaign(s.campaign)) {
@@ -308,6 +322,18 @@ export const sagaCampaignWillpowerOverride = (s: GameState, u: Unit) =>
     : undefined;
 /** The burdens' shadow effects. */
 export function sagaCampaignShadow(s: GameState, code: string): boolean {
+  // Gwaihir (a boon card dealt as a shadow outside The Black Gate Opens):
+  // "This attack deals no damage."
+  if (
+    code === SAGA.gwaihir &&
+    !s.blackGate &&
+    isSagaCampaign(s.campaign) &&
+    s.combat
+  ) {
+    s.combat.noDamage = true;
+    log(s, "Gwaihir: this attack deals no damage.", "good");
+    return true;
+  }
   const c = s.combat;
   if (!c || !isSagaCampaign(s.campaign)) return false;
   if (code === SAGA.shadowFear) {
@@ -410,6 +436,11 @@ export function sagaCampaignRoundEnd(s: GameState): Effect[] {
     ...globalCharacters(s)
       .filter((u) => u.code === SAGA.gildor && !u.blanked)
       .map((u) => fx("sagaGildorEnd", { target: u.id, player: first(s) })),
+    // Mount Doom's campaign card: "Forced: At the end of the round, remove 1
+    // resource token from this card."
+    ...(s.sagaCards?.doomTokens !== undefined && s.scenarioId === "mount-doom"
+      ? [fx("sagaDoomToken", { player: first(s) })]
+      : []),
     // Overcome by Fear in the chapters after The Passing of the Grey Company
     // (that scenario resolves its own copies).
     ...(s.greyCompany
@@ -426,9 +457,113 @@ const fearOn = (s: GameState, p: number) =>
   );
 /** The Corsair Fleet (Gondor side): its Forced effect at the beginning of the quest phase. */
 export function sagaCampaignQuestBegin(s: GameState): Effect[] {
-  return s.staging
-    .filter((u) => u.code === SAGA.gondorFleet && !u.blanked)
-    .map((u) => fx("sagaGondorFleet", { target: u.id, player: first(s) }));
+  return [
+    ...s.staging
+      .filter((u) => u.code === SAGA.gondorFleet && !u.blanked)
+      .map((u) => fx("sagaGondorFleet", { target: u.id, player: first(s) })),
+    // Wraith on Wings outside The Battle of the Pelennor Fields: "Forced: At
+    // the beginning of the quest phase, place 1 resource on Wraith on Wings
+    // (Limit 5 resources.)"
+    ...(s.pelennorFields
+      ? []
+      : wraiths(s).map((u) =>
+          fx("sagaWraithResource", { target: u.id, player: first(s) }),
+        )),
+  ];
+}
+/** The earned Wraiths on Wings in play, outside The Battle of the Pelennor Fields. */
+const wraiths = (s: GameState) =>
+  isSagaCampaign(s.campaign) && !s.pelennorFields
+    ? [...s.staging, ...allEngaged(s)].filter(
+        (u) => u.code === SAGA.wraith && !u.blanked,
+      )
+    : [];
+/** Wraith on Wings: +1 threat for each resource on it (outside its own scenario). */
+export const sagaCampaignThreatBonus = (s: GameState, u: Unit) =>
+  u.code === SAGA.wraith &&
+  !u.blanked &&
+  !s.pelennorFields &&
+  isSagaCampaign(s.campaign)
+    ? u.resources
+    : 0;
+/** Wraith on Wings: -1 engagement cost for each resource on it. */
+export const sagaCampaignEngagementBonus = (s: GameState, u: Unit) =>
+  -sagaCampaignThreatBonus(s, u);
+/** Wraith on Wings: "Cannot have non-Morgul attachments." */
+export const sagaCampaignCannotAttach = (s: GameState, u: Unit, code: string) =>
+  u.code === SAGA.wraith &&
+  !u.blanked &&
+  !s.pelennorFields &&
+  isSagaCampaign(s.campaign) &&
+  !(card(code).traits ?? "").includes("Morgul");
+/**
+ * The Esquires outside The Battle of the Pelennor Fields (that scenario
+ * scripts its own): Esquire of Gondor's +1 willpower while committed with
+ * another Gondor character.
+ */
+export function sagaCampaignWillBonus(s: GameState, u: Unit) {
+  if (s.pelennorFields || !isSagaCampaign(s.campaign)) return 0;
+  if (!u.attachments.some((a) => a.code === SAGA.esquireGondor && !a.blanked))
+    return 0;
+  if (!(u.committed || s.committedIds.includes(u.id))) return 0;
+  return globalCharacters(s).some(
+    (x) => x.id !== u.id && x.committed && hasTrait(x, "Gondor"),
+  )
+    ? 1
+    : 0;
+}
+/** Esquire of Rohan: +1 attack while attacking with another Rohan character. */
+export const sagaCampaignAttackBonus = (
+  s: GameState,
+  attacker: Unit,
+  attackers: Unit[],
+) =>
+  !s.pelennorFields &&
+  isSagaCampaign(s.campaign) &&
+  attacker.attachments.some(
+    (a) => a.code === SAGA.esquireRohan && !a.blanked,
+  ) &&
+  attackers.some((x) => x.id !== attacker.id && hasTrait(x, "Rohan"))
+    ? 1
+    : 0;
+/**
+ * The Tower of Cirith Ungol: an Item boon Shagrat guards returns to its
+ * owner's hand when Shagrat leaves play.
+ */
+export function sagaCampaignAttachmentLeaves(
+  s: GameState,
+  a: { id: string; code: string; owner?: number },
+  leaving: boolean,
+) {
+  const guarded = s.sagaCards?.guarded;
+  if (!leaving || !guarded?.includes(a.id)) return false;
+  s.sagaCards!.guarded = guarded.filter((id) => id !== a.id);
+  const owner = a.owner ?? first(s);
+  forOwner(s, owner, () => {
+    const u = make(s, a.code);
+    u.owner = owner;
+    s.hand.push(u);
+  });
+  log(
+    s,
+    `${card(a.code).name}, guarded by Shagrat, returns to ${s.table ? `${seatName(s, owner)}'s` : "your"} hand.`,
+    "good",
+  );
+  return true;
+}
+/**
+ * The Black Gate Opens: an eliminated first player's Gwaihir leaves play with
+ * the rest of their cards. If that elimination ends the game, the campaign
+ * card's resolution still sees him under the first player's control.
+ */
+export function sagaCampaignPlayerEliminating(s: GameState, p: number) {
+  if (
+    isSagaCampaign(s.campaign) &&
+    s.scenarioId === "the-black-gate-opens" &&
+    p === first(s) &&
+    seatView(s, p).allies.some((u) => u.code === SAGA.gwaihir)
+  )
+    state(s).gwaihirAtLoss = true;
 }
 /** Army of the Dead: "The first player gains control of Army of the Dead." */
 export function sagaCampaignFirstPlayerChanged(s: GameState) {
@@ -1025,6 +1160,248 @@ export const sagaCampaignEnemyCannotAttack = (
 
 export function sagaCampaignEffect(s: GameState, e: Effect): boolean {
   switch (e.kind) {
+    case "sagaItemAside": {
+      // The Tower of Cirith Ungol: "Each player chooses an Item boon
+      // (excluding Andúril) from the campaign pool and sets it aside, out of
+      // play."
+      const p = e.player ?? first(s);
+      const taken = (state(s).itemsAside ?? []).map((x) => x.code);
+      const items = sagaItemBoons(s.campaign!).filter(
+        (code) => !taken.includes(code),
+      );
+      if (!items.length) return true;
+      choose(
+        s,
+        `The Tower of Cirith Ungol · ${s.table ? `${seatName(s, p)} sets` : "Set"} aside an Item boon`,
+        items.map((code) => ({
+          id: code,
+          code,
+          label: card(code).name,
+          effects: [fx("sagaItemTake", { code, player: p })],
+        })),
+        card(SAGA.cirithCard).text,
+      );
+      return true;
+    }
+    case "sagaItemTake": {
+      const p = e.player ?? first(s);
+      const code = e.code!;
+      // The physical card leaves the deck, hand or discard pile it is in, or
+      // the hero it is attached to.
+      let found = false;
+      for (const seat of [p, ...playerOrder(s).filter((x) => x !== p)]) {
+        if (found) break;
+        forOwner(s, seat, () => {
+          const h = s.hand.findIndex((u) => u.code === code);
+          const d = s.deck.indexOf(code);
+          const x = s.discard.indexOf(code);
+          if (h >= 0) s.hand.splice(h, 1);
+          else if (d >= 0) s.deck.splice(d, 1);
+          else if (x >= 0) s.discard.splice(x, 1);
+          else
+            for (const u of [...s.heroes, ...s.allies]) {
+              const i = u.attachments.findIndex((a) => a.code === code);
+              if (i < 0) continue;
+              u.attachments.splice(i, 1);
+              found = true;
+              return;
+            }
+          found = found || h >= 0 || d >= 0 || x >= 0;
+        });
+      }
+      (state(s).itemsAside ??= []).push({ code, owner: p });
+      log(
+        s,
+        `The Tower of Cirith Ungol: ${card(code).name} is set aside, out of play.`,
+      );
+      return true;
+    }
+    case "sagaHeavyAttach": {
+      // The Tower of Cirith Ungol: "Attach A Heavy Burden to the hero with
+      // Last of the Company attached."
+      const hero = get(s, e.target);
+      if (!hero || hero.attachments.some((a) => a.code === SAGA.heavy))
+        return true;
+      hero.attachments.push({
+        id: `a${s.nextId++}`,
+        code: SAGA.heavy,
+        exhausted: false,
+      });
+      log(s, `A Heavy Burden is attached to ${name(hero)}.`, "danger");
+      return true;
+    }
+    case "sagaCirithThree": {
+      // "When the players advance to stage 3A, attach A Heavy Burden to the
+      // Ring-bearer. Attach each set aside Item boon to Shagrat as a guarded
+      // objective."
+      const bearer = ringBearer(s);
+      if (bearer) {
+        let heavy: { id: string; code: string; exhausted: boolean } | undefined;
+        for (const u of globalCharacters(s)) {
+          const i = u.attachments.findIndex((a) => a.code === SAGA.heavy);
+          if (i < 0 || u.id === bearer.id) continue;
+          [heavy] = u.attachments.splice(i, 1);
+        }
+        if (!bearer.attachments.some((a) => a.code === SAGA.heavy)) {
+          bearer.attachments.push(
+            heavy ?? {
+              id: `a${s.nextId++}`,
+              code: SAGA.heavy,
+              exhausted: false,
+            },
+          );
+          log(
+            s,
+            `A Heavy Burden is attached to the Ring-bearer, ${name(bearer)}.`,
+            "danger",
+          );
+        }
+      }
+      const shagrat = [...s.staging, ...allEngaged(s)].find(
+        (u) => u.code === SAGA.shagrat,
+      );
+      const items = state(s).itemsAside ?? [];
+      if (shagrat && items.length) {
+        for (const item of items) {
+          const id = `a${s.nextId++}`;
+          shagrat.attachments.push({
+            id,
+            code: item.code,
+            exhausted: false,
+            owner: item.owner,
+          });
+          (state(s).guarded ??= []).push(id);
+        }
+        delete state(s).itemsAside;
+        log(
+          s,
+          `Shagrat guards ${items.map((x) => card(x.code).name).join(", ")}.`,
+          "danger",
+        );
+      }
+      return true;
+    }
+    case "sagaDoomToken": {
+      // Mount Doom: "remove 1 resource token from this card. Then, if there
+      // are no resource tokens here, the players lose the game."
+      const q = state(s);
+      if (q.doomTokens === undefined) return true;
+      q.doomTokens = Math.max(0, q.doomTokens - 1);
+      log(
+        s,
+        `Mount Doom · Campaign: 1 resource token is removed from the campaign card (${q.doomTokens} left).`,
+        "danger",
+      );
+      if (q.doomTokens === 0 && s.status === "playing") {
+        s.status = "lost";
+        s.reason =
+          "Mount Doom: no resource token remains on the campaign card, and the players lose the game.";
+        s.choice = null;
+        s.queue = [];
+      }
+      return true;
+    }
+    case "sagaWraithResource": {
+      const u = [...s.staging, ...allEngaged(s)].find((x) => x.id === e.target);
+      if (!u || u.resources >= 5) return true;
+      u.resources += 1;
+      log(
+        s,
+        `Wraith on Wings: 1 resource is placed on it (${u.resources} in all).`,
+        "danger",
+      );
+      return true;
+    }
+    case "sagaGwaihir": {
+      // Gwaihir: "When Revealed: The first player must choose: either take
+      // control of Gwaihir, or spend 1 [fellowship] resource and discard
+      // Gwaihir to discard a non-unique enemy in the staging area."
+      const p = first(s);
+      const held = s.staging.find((x) => x.id === e.source);
+      if (!held) return true;
+      const payer = seatView(s, p).heroes.find(
+        (h) => hasResourceIcon(h, "fellowship") && h.resources > 0,
+      );
+      const targets = payer
+        ? s.staging.filter(
+            (x) =>
+              ["enemy", "ship-enemy"].includes(card(x.code).type_code) &&
+              !card(x.code).is_unique,
+          )
+        : [];
+      forOwner(s, p, () =>
+        choose(
+          s,
+          `Gwaihir · Choose one${s.table ? ` · ${seatName(s, p)}` : ""}`,
+          [
+            {
+              id: "control",
+              code: SAGA.gwaihir,
+              label: "Take control of Gwaihir",
+              effects: [
+                fx("sagaGwaihirControl", { source: held.id, player: p }),
+              ],
+            },
+            ...targets.map((x) => ({
+              id: `discard-${x.id}`,
+              code: x.code,
+              label: `Spend 1 Fellowship resource and discard Gwaihir to discard ${name(x)}`,
+              effects: [
+                fx("sagaGwaihirDiscard", {
+                  source: held.id,
+                  target: x.id,
+                  player: p,
+                }),
+              ],
+            })),
+          ],
+          card(SAGA.gwaihir).text,
+        ),
+      );
+      return true;
+    }
+    case "sagaGwaihirControl": {
+      const p = first(s);
+      const held = s.staging.find((x) => x.id === e.source);
+      if (!held) return true;
+      s.staging = s.staging.filter((x) => x.id !== held.id);
+      held.owner = p;
+      held.controller = p;
+      forOwner(s, p, () => s.allies.push(held));
+      log(
+        s,
+        `Gwaihir: ${s.table ? `${seatName(s, p)} takes` : "you take"} control of Gwaihir.`,
+        "good",
+      );
+      return true;
+    }
+    case "sagaGwaihirDiscard": {
+      const p = first(s);
+      const held = s.staging.find((x) => x.id === e.source);
+      const target = s.staging.find((x) => x.id === e.target);
+      const payer = seatView(s, p).heroes.find(
+        (h) => hasResourceIcon(h, "fellowship") && h.resources > 0,
+      );
+      if (!held) return true;
+      if (!payer || !target) {
+        prepend(s, fx("sagaGwaihirControl", { source: held.id, player: p }));
+        return true;
+      }
+      forOwner(s, p, () => spendResources(s, payer, 1));
+      s.staging = s.staging.filter(
+        (x) => x.id !== held.id && x.id !== target.id,
+      );
+      s.encounterDiscard.push(held.code, target.code, ...target.shadows);
+      target.shadows = [];
+      for (const a of [...target.attachments])
+        discardAttachment(s, target, a, true);
+      log(
+        s,
+        `Gwaihir: ${name(payer)} spends 1 resource; Gwaihir and ${name(target)} are discarded.`,
+        "good",
+      );
+      return true;
+    }
     case "sagaFearRound": {
       // Overcome by Fear: "Forced: At the end of the round, raise your threat
       // by 1. Then you may spend 1 [fellowship] resource to detach Overcome by
@@ -1077,9 +1454,9 @@ export function sagaCampaignEffect(s: GameState, e: Effect): boolean {
       return true;
     }
     case "sagaAndurilSearch": {
-      // The Passing of the Grey Company and The Siege of Gondor: "The first
-      // player may raise each player's threat by 1 to search his deck for
-      // Andúril and add it to his hand."
+      // The Passing of the Grey Company, The Siege of Gondor and The Black
+      // Gate Opens: "The first player may raise each player's threat by 1 to
+      // search his deck for Andúril and add it to his hand."
       const p = e.player ?? first(s);
       if (!seatView(s, p).deck.includes(SAGA.anduril)) return true;
       choose(
@@ -2360,6 +2737,22 @@ export function validateSagaCards(s: GameState) {
             p >= 0 &&
             p < (s.table?.seats.length ?? 1),
         ))) &&
+    (q.itemsAside === undefined ||
+      (Array.isArray(q.itemsAside) &&
+        q.itemsAside.every(
+          (x) =>
+            !!x &&
+            typeof x.code === "string" &&
+            Number.isSafeInteger(x.owner) &&
+            x.owner >= 0 &&
+            x.owner < (s.table?.seats.length ?? 1),
+        ))) &&
+    (q.guarded === undefined ||
+      (Array.isArray(q.guarded) &&
+        q.guarded.every((id) => typeof id === "string"))) &&
+    (q.doomTokens === undefined ||
+      (Number.isSafeInteger(q.doomTokens) && q.doomTokens >= 0)) &&
+    (q.gwaihirAtLoss === undefined || q.gwaihirAtLoss === true) &&
     (q.haradAside === undefined ||
       (Array.isArray(q.haradAside) &&
         q.haradAside.every((code) => typeof code === "string" && !!code))) &&
@@ -2396,6 +2789,9 @@ export function validateSagaCards(s: GameState) {
         !q.coneys?.length &&
         !q.lateDeck?.length &&
         !q.haradAside?.length &&
-        !q.aragornAside))
+        !q.aragornAside &&
+        !q.itemsAside?.length &&
+        !q.guarded?.length &&
+        q.doomTokens === undefined))
   );
 }

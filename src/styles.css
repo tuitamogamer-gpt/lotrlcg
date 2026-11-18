@@ -3705,6 +3705,19 @@ nav {
   color: #a2ae97;
   line-height: 1.7;
 }
+/* The Lord of the Rings campaign card's state in the quest inspector. */
+.saga-campaign-status {
+  display: grid;
+  gap: 4px;
+  justify-items: start;
+  padding: 10px 12px;
+  border: 1px solid #34422f;
+  border-radius: 8px;
+  text-align: left;
+}
+.saga-campaign-status .campaign-note {
+  margin: 0;
+}
 .prisoner-banner {
   display: flex;
   align-items: center;

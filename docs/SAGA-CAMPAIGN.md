@@ -4,18 +4,18 @@ Campaign mode for the eighteen Lord of the Rings Saga scenarios (recipes
 Q0C.01–Q0C.18) and the two print-on-demand chapters that may follow A Shadow
 of the Past (Q0C.01.1 and Q0C.01.2), played by one fellowship of one to four
 local players. The lobby's campaign mode offers two campaigns: Mirkwood Paths
-(the three Core Set quests) and The Lord of the Rings. The three chapters of
-The Black Riders are supported (A Shadow of the Past, A Knife in the Dark and
+(the three Core Set quests) and The Lord of the Rings. Every chapter is
+supported: The Black Riders' (A Shadow of the Past, A Knife in the Dark and
 Flight to the Ford), the optional Parts 1.1 and 1.2 (The Old Forest and Fog
-on the Barrow-downs), The Road Darkens' three chapters (The Ring Goes South,
-Journey in the Dark and Breaking of the Fellowship), The Treason of
-Saruman's (The Uruk-hai, Helm's Deep and The Road to Isengard), The Land of
-Shadow's (The Passage of the Marshes, Journey to the Cross-roads and Shelob's
-Lair) and The Flame of the West's (The Passing of the Grey Company, The Siege
-of Gondor and The Battle of the Pelennor Fields). The campaign log is kept
-after The Battle of the Pelennor Fields, and the end of the game says that
-the next chapter, The Tower of Cirith Ungol, is not available in campaign
-mode yet.
+on the Barrow-downs), The Road Darkens' (The Ring Goes South, Journey in the
+Dark and Breaking of the Fellowship), The Treason of Saruman's (The Uruk-hai,
+Helm's Deep and The Road to Isengard), The Land of Shadow's (The Passage of
+the Marshes, Journey to the Cross-roads and Shelob's Lair), The Flame of the
+West's (The Passing of the Grey Company, The Siege of Gondor and The Battle
+of the Pelennor Fields) and The Mountain of Fire's (The Tower of Cirith
+Ungol, The Black Gate Opens and Mount Doom). Mount Doom's resolution ends the
+campaign: the first player destroys The One Ring and the players win, or
+keeps it and they lose.
 
 ## Sources
 
@@ -90,6 +90,18 @@ mode yet.
   Aragorn rules: a recorded Aragorn is replaced without the penalty, his
   Permanent cards are transferred to the Fellowship Aragorn, and a fallen
   Aragorn leaves the list of fallen heroes with a +1 penalty for each player.
+- The Mountain of Fire's three campaign cards (both faces) were checked by
+  eye against the scans; with them, all 76 faces are pinned. Gwaihir, the boon
+  The Black Gate Opens earns, was already pinned with that scenario (its
+  Shadow: "This attack deals no damage"), as were Shagrat and Last of the
+  Company with The Tower of Cirith Ungol. The burden set icons of The Tower of
+  Cirith Ungol and Mount Doom are those of Helm's Deep, The Road to Isengard
+  and The Passing of the Grey Company; The Black Gate Opens shows The Flame of
+  the West's five. The Mountain of Fire's rulebook, as transcribed by
+  [RulesPal](https://rulespal.com/the-lord-of-the-rings-the-card-game-the-mountain-of-fire/rulebook),
+  forbids Aragorn at The Tower of Cirith Ungol and Mount Doom and Frodo
+  Baggins at The Black Gate Opens, and offers its Epic Multiplayer Mode as the
+  campaign's grand finale.
 - The two campaign cards are numbered Parts 1.1 and 1.2 of The Lord of the
   Rings: the chapters are played after A Shadow of the Past (Part 1) and
   before A Knife in the Dark (Part 2). Each is optional, and when both are
@@ -99,7 +111,9 @@ mode yet.
 
 - **Chapters**: the scenarios are played in order; the players advance only
   after defeating the current scenario. A lost chapter is replayed with the
-  same campaign log, without a penalty. After A Shadow of the Past, the
+  same campaign log, without a penalty. The Black Gate Opens is the
+  exception: its players cannot win, so their defeat completes the chapter
+  and its resolution is recorded at once. After A Shadow of the Past, the
   interlude's **Next chapter** list offers The Old Forest, Fog on the
   Barrow-downs and A Knife in the Dark (after The Old Forest: Fog on the
   Barrow-downs and A Knife in the Dark). A skipped chapter cannot be played
@@ -113,8 +127,9 @@ mode yet.
   +1 starting threat penalty; another version of the same hero (the same
   title) is not a replacement, and no version of a fallen hero can be chosen
   (an ally version of it is taken out of the decks at setup). The Ring Goes
-  South, Helm's Deep, The Passage of the Marshes and The Passing of the Grey
-  Company let each player change heroes freely, without the penalty. The Passage of the Marshes may also give
+  South, Helm's Deep, The Passage of the Marshes, The Passing of the Grey
+  Company and the three chapters of The Mountain of Fire let each player
+  change heroes freely, without the penalty. The Passage of the Marshes may also give
   a player a **personal** permanent +2 starting threat penalty, recorded in
   the log for that player alone.
 - **The campaign card** of each scenario lies next to the quest deck; its Setup
@@ -181,6 +196,22 @@ mode yet.
   (free at The Passage of the Marshes), and an Aragorn card is taken out of a
   deck at setup. Frodo's burdens (Gandalf's Delay included) return with the
   Ring-bearer.
+- **The Mountain of Fire**: no card titled Aragorn can be used at The Tower
+  of Cirith Ungol and Mount Doom, and none titled Frodo Baggins at The Black
+  Gate Opens, where the Fellowship Aragorn leads as in The Flame of the West.
+  The Tower of Cirith Ungol and Mount Doom leave out the burden sets of
+  Helm's Deep, The Road to Isengard and The Passing of the Grey Company
+  (Poisoned Counsels, Saruman's Voice and Overcome by Fear, which stays off
+  the threat dials); The Black Gate Opens leaves out The Flame of the West's
+  five. Each earned copy of Wraith on Wings enters the staging area at setup
+  and keeps its text: a resource at the beginning of each quest phase (limit
+  5), +1 threat and -1 engagement cost for each, and no non-Morgul
+  attachments. The Esquires keep their bonuses outside The Battle of the
+  Pelennor Fields, and an earned Gwaihir is shuffled into the encounter deck.
+- **The quest inspector** shows the chapter's campaign card (it can be
+  inspected from there) and its state: Mount Doom's resource tokens, the Item
+  boons set aside or guarded by Shagrat at The Tower of Cirith Ungol, and
+  Aragorn and the Harad enemies waiting at The Battle of the Pelennor Fields.
 - **Permanent**: a Permanent attachment cannot be discarded from its hero while
   the hero is in play; when the hero leaves play, it is removed from the game.
 
@@ -243,6 +274,14 @@ first player may remove a burden card in play, in the encounter deck or in the
 discard pile from the game (and, once the scenario is won, from the Campaign
 Pool), and the encounter deck is shuffled.
 
+## The Mountain of Fire chapters
+
+| Chapter                   | Campaign card                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| The Tower of Cirith Ungol | Setup: each player may change heroes without the penalty; A Heavy Burden is attached to the hero with Last of the Company (when the players keep their hands); each player sets an Item boon from the Campaign Pool aside, out of play (never Andúril; the card leaves its deck, hand, discard pile or hero); the three burden sets stay out. Forced: when the players advance to stage 3A, A Heavy Burden moves to the Ring-bearer and Shagrat guards each set-aside boon; when Shagrat leaves play, each guarded boon returns to its owner's hand. Resolution: each boon Shagrat still guards leaves the Campaign Pool. Without Shagrat in play at stage 3A, the set-aside boons stay in the pool. |
+| The Black Gate Opens      | Setup: each player may change heroes without the penalty; the first player may raise each player's threat by 1 to search their deck for Andúril; the five burden sets stay out. The players cannot win (Dire: they fall at 99 threat): their defeat completes the chapter. Resolution: the resource tokens on The Black Gate are recorded in the Notes, each Wraith on Wings in the victory display leaves the Campaign Pool, Gwaihir is earned if the first player controls him, and no hero becomes fallen.                                                                                                                                                                                        |
+| Mount Doom                | Setup: each player may change heroes without the penalty; the campaign card holds as many resource tokens as the Notes record for The Black Gate; the three burden sets stay out. Forced: at the end of each round 1 token is removed, and with none left the players lose the game (the chapter is replayed). Resolution: the first player destroys The One Ring (the players win the campaign) or keeps it (they lose it); the journal and the end of the game record the outcome, and the campaign cannot continue.                                                                                                                                                                               |
+
 ## Boons and burdens
 
 | Card                                                                                | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
@@ -273,23 +312,24 @@ Pool), and the encounter deck is shuffled.
 | A Heavy Burden (burden, objective, Permanent)                                       | Setup: attached to the Ring-bearer. Forced: at the end of the planning phase, the first player chooses: each player raises their threat by 1, or the Ring-bearer exhausts (only while he is ready).                                                                                                                                                                                                                                                              |
 | Overcome by Fear (burden, objective)                                                | Earned for each player whose threat dial carries it after The Passing of the Grey Company; attached to that dial in later chapters: the threat cannot be reduced, and at the end of each round it raises the threat by 1 and may be set aside for 1 [fellowship] resource.                                                                                                                                                                                       |
 | Army of the Dead (boon, objective-ally)                                             | 4 willpower, 6 attack, 2 defense, 8 hit points; immune to player card effects. Setup: the first player takes control of it (it follows the first player token); it leaves the game when it leaves play. The Siege of Gondor's resolution removes it from the pool.                                                                                                                                                                                               |
-| Esquire of Rohan, Esquire of Gondor (boons, Permanent)                              | Earned on the hero they are attached to at the end of The Battle of the Pelennor Fields (that scenario attaches them at its own setup): the Rohan or Gondor trait and +1 attack or willpower alongside another Rohan or Gondor character.                                                                                                                                                                                                                        |
-| Wraith on Wings (burden, enemy)                                                     | 1 copy per player is earned at The Battle of the Pelennor Fields; the log counts the copies for The Mountain of Fire.                                                                                                                                                                                                                                                                                                                                            |
+| Gwaihir (boon, objective-ally)                                                      | Earned at The Black Gate Opens if the first player controls him (also when the last hot-seat fellowship falls, which takes their cards out of play), then shuffled into the encounter deck. When Revealed: the first player takes control of him, or spends 1 [fellowship] resource and discards him to discard a non-unique enemy in the staging area. Shadow: this attack deals no damage.                                                                     |
+| Esquire of Rohan, Esquire of Gondor (boons, Permanent)                              | Earned on the hero they are attached to at the end of The Battle of the Pelennor Fields (that scenario attaches them at its own setup): the Rohan or Gondor trait and +1 attack while attacking with another Rohan character or +1 willpower while committed to the quest with another Gondor character, in every later chapter.                                                                                                                                 |
+| Wraith on Wings (burden, enemy)                                                     | 1 copy per player is earned at The Battle of the Pelennor Fields; the log counts the copies. Setup: each copy is added to the staging area. Forced: at the beginning of each quest phase, 1 resource is placed on it (limit 5); +1 threat and -1 engagement cost for each resource; no non-Morgul attachments. Each copy in the victory display at the end of The Black Gate Opens leaves the Campaign Pool.                                                     |
 | Followed by Night, Ill Fate (burdens, treacheries)                                  | Peril. Surge. Followed by Night puts the topmost enemy of the encounter discard pile into play engaged with you (in the staging area where enemies cannot engage). Ill Fate attaches to a hero you control; after a character you control is destroyed, raise your threat by 2.                                                                                                                                                                                  |
 
 ## Not supported yet
 
-The campaign cards, boons and burdens of The Mountain of Fire follow (they
-read the Notes, A Heavy Burden, Wraith on Wings and the Esquires again; the
-Esquires' bonuses are scripted with The Battle of the Pelennor Fields so far). Saruman's Voice
-does not yet react to its hero's own abilities, and Beyond All Hope does not
-yet stop the other scenarios' treachery attachments. One campaign is saved at a time: starting a new
-campaign replaces the saved one.
+The Mountain of Fire's Epic Multiplayer Mode (The Black Gate Opens and Mount
+Doom played at once by two groups, the Ring-bearer's controller choosing which
+scenario receives each boon and burden) is not offered. Saruman's Voice does
+not yet react to its hero's own abilities, and Beyond All Hope does not yet
+stop the other scenarios' treachery attachments. One campaign is saved at a
+time: starting a new campaign replaces the saved one.
 
 ## Verification
 
 ```sh
-node --import tsx --test tests/saga-campaign.test.ts tests/saga-campaign-road-darkens.test.ts tests/saga-campaign-treason.test.ts tests/saga-campaign-land-shadow.test.ts tests/saga-campaign-flame-west.test.ts
+node --import tsx --test tests/saga-campaign.test.ts tests/saga-campaign-road-darkens.test.ts tests/saga-campaign-treason.test.ts tests/saga-campaign-land-shadow.test.ts tests/saga-campaign-flame-west.test.ts tests/saga-campaign-mountain-fire.test.ts
 npm run build
 npm run test:browser-saga-campaign
 ```
@@ -330,16 +370,29 @@ and resolution, Overcome by Fear in a later chapter (no reduction, the round's
 threat, the Fellowship resource), the Army of the Dead (in play, immune,
 removed from the game, passed to a new first player), The Siege of Gondor's
 resolution, The Battle of the Pelennor Fields' set-aside Aragorn and Harad
-enemies, The Corsair Fleet, the Harad enemies' text, its resolution, and the
-Fellowship Aragorn's rules (a fallen Aragorn, the Permanent transfer). The
-browser suite starts a new Lord of the Rings campaign through the lobby and
-plays its log through A Shadow of the Past, both optional chapters (chosen in
-the interlude), A Knife in the Dark, Flight to the Ford, The Road Darkens'
-three chapters, The Treason of Saruman's three, The Land of Shadow's three and
-The Flame of the West's three at 1280, 390 and 320 pixels (144 checkpoints:
+enemies, The Corsair Fleet, the Harad enemies' text, its resolution, the
+campaign card's status lines, and the Fellowship Aragorn's rules (a fallen
+Aragorn, the Permanent transfer). `tests/saga-campaign-mountain-fire.test.ts`
+(6 tests) covers The Mountain of Fire: its data and scans, the whole
+campaign's support, the burden sets left out and the forbidden titles, The
+Tower of Cirith Ungol's Item boons (never Andúril), A Heavy Burden on the
+Last of the Company hero and then the Ring-bearer at stage 3A, Shagrat's
+guarded boons (lost with him in play, returned when he is defeated), The
+Black Gate Opens' Andúril search, a defeat that completes the chapter
+through a real action (no fallen heroes, the tokens, a slain Wraith on
+Wings, Gwaihir), a hot-seat defeat with and without the first player's
+Gwaihir, Mount Doom's tokens, its loss at 0 and both resolutions (the
+campaign then ends), and Gwaihir, Wraith on Wings and the Esquires outside
+their own scenarios. The browser suite starts a new Lord of the Rings
+campaign through the lobby and plays its log through A Shadow of the Past,
+both optional chapters (chosen in the interlude), A Knife in the Dark, Flight
+to the Ford, The Road Darkens' three chapters, The Treason of Saruman's
+three, The Land of Shadow's three, The Flame of the West's three and The
+Mountain of Fire's three at 1280, 390 and 320 pixels (174 checkpoints:
 each chapter's setup, both interlude choices and the deck assignments, the
 resolution dialogs and journals, Ho! Tom Bombadil!'s Response, the Flight to
 the Ford Response, The Searching Eye, Brace of Coneys played from hand, A
 Heavy Burden, Overcome by Fear's Fellowship resource, The Corsair Fleet
-bringing Aragorn and the recorded end of The Battle of the Pelennor Fields)
-and checks all 70 original faces.
+bringing Aragorn, the Item boon set aside, Shagrat's guarded boon in the
+quest inspector, The Black Gate's defeat ending the chapter, Mount Doom's
+tokens and the won campaign) and checks all 76 original faces.
