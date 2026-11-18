@@ -30,6 +30,7 @@ import { PRANCING_PONY_HOOKS } from "./prancing-pony";
 import { ANNUMINAS_HOOKS } from "./annuminas";
 import { ATTACK_DOL_GULDUR_HOOKS } from "./attack-dol-guldur";
 import { CAVES_HOOKS } from "./caves-nibin-dum";
+import { WIZARDS_QUEST_HOOKS } from "./wizards-quest";
 import { HELMS_DEEP_HOOKS } from "./helms-deep";
 import { ROAD_ISENGARD_HOOKS } from "./road-isengard";
 import { PASSAGE_MARSHES_HOOKS } from "./passage-marshes";
@@ -124,6 +125,8 @@ export function batch4Scenario(s: GameState): Batch4ScenarioHooks {
     case "the-caves-of-nibin-dum":
     case "the-caves-of-nibin-dum-2018":
       return CAVES_HOOKS;
+    case "the-wizards-quest":
+      return WIZARDS_QUEST_HOOKS;
     case "the-ruins-of-belegost":
       return RUINS_BELEGOST_HOOKS;
     case "murder-at-the-prancing-pony":
@@ -230,4 +233,5 @@ export const batch4SharedEffect = (effect: Effect) =>
     ANNUMINAS_HOOKS,
     ATTACK_DOL_GULDUR_HOOKS,
     CAVES_HOOKS,
+    WIZARDS_QUEST_HOOKS,
   ].some((hooks) => hooks.sharedEffect?.(effect));

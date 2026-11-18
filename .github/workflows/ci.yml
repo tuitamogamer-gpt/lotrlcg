@@ -1025,6 +1025,32 @@ jobs:
           path: output/caves-nibin-dum-release/failures
           retention-days: 7
 
+  wizards-quest-simulation:
+    name: The Wizard's Quest complete games (${{ matrix.difficulty }}, ${{ matrix.part }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        difficulty: [normal, easy]
+        part: [full, late]
+    env:
+      WQ_SIMULATION_DIFFICULTY: ${{ matrix.difficulty }}
+      WQ_SIMULATION_PART: ${{ matrix.part }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:wizards-quest-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: wizards-quest-simulation-${{ matrix.difficulty }}-${{ matrix.part }}
+          path: output/wizards-quest-release/failures
+          retention-days: 7
+
   shelob-lair-simulation:
     name: Shelob's Lair complete games (26 games)
     runs-on: ubuntu-latest
@@ -1238,6 +1264,8 @@ jobs:
             suite: test:browser-attack-dol-guldur
           - group: caves-nibin-dum
             suite: test:browser-caves-nibin-dum
+          - group: wizards-quest
+            suite: test:browser-wizards-quest
           - group: treason-saruman-players
             suite: test:browser-treason-saruman-players
           - group: land-shadow-players

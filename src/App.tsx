@@ -67,12 +67,14 @@ import { PP_QUESTS } from "./game/prancing-pony-support";
 import { SA_QUESTS } from "./game/annuminas-support";
 import { ADG_QUESTS } from "./game/attack-dol-guldur-support";
 import { CAVES_QUESTS } from "./game/caves-nibin-dum-support";
+import { WQ_QUESTS } from "./game/wizards-quest-support";
 import { OathState } from "./ui/the-oath-state";
 import { RuinsBelegostState } from "./ui/ruins-belegost-state";
 import { PrancingPonyState } from "./ui/prancing-pony-state";
 import { AnnuminasState } from "./ui/annuminas-state";
 import { AttackDolGuldurState } from "./ui/attack-dol-guldur-state";
 import { CavesState } from "./ui/caves-nibin-dum-state";
+import { WizardsQuestState } from "./ui/wizards-quest-state";
 import { DDCD_QUESTS } from "./game/dungeons-deep-support";
 import {
   discoveredTreasures,
@@ -323,6 +325,7 @@ import {
   SCENARIOS,
   CAMPAIGN_CHAPTERS,
   scenario,
+  scenarioStageCount,
   OBJECTIVES,
 } from "./game/scenarios";
 import {
@@ -2582,11 +2585,19 @@ export default function App() {
               <section className="journey-panel">
                 <div className="section-line">
                   <h3>The path ahead</h3>
-                  <span>{quest.stages.length} quest stages</span>
+                  <span>{scenarioStageCount(quest.id)} quest stages</span>
                 </div>
                 <div className="journey-stages">
                   {quest.stages
                     .map((stage, i) => ({
+                      // A stage's alternative quest cards share its number.
+                      index: "stage" in stage ? stage.stage - 1 : i,
+                      title: stage.name,
+                      text: stage.story,
+                      icon: [Tree, Compass, Mountains][i % 3],
+                    }))
+                    .map((q) => ({
+                      ...q,
                       n:
                         [
                           "I",
@@ -2599,13 +2610,10 @@ export default function App() {
                           "VIII",
                           "IX",
                           "X",
-                        ][i] ?? String(i + 1),
-                      title: stage.name,
-                      text: stage.story,
-                      icon: [Tree, Compass, Mountains][i % 3],
+                        ][q.index] ?? String(q.index + 1),
                     }))
                     .map((q, i) => (
-                      <div className="journey-stage" key={q.n}>
+                      <div className="journey-stage" key={i}>
                         <div
                           className={`stage-emblem ${i === 0 ? "current" : ""}`}
                         >
@@ -3355,6 +3363,7 @@ export default function App() {
             <AnnuminasState s={game} inspect={setDetail} />
             <AttackDolGuldurState s={game} inspect={setDetail} />
             <CavesState s={game} inspect={setDetail} />
+            <WizardsQuestState s={game} inspect={setDetail} />
             <AshMountainsState s={game} inspect={setDetail} />
             <CouncilOfTheWiseState s={game} inspect={setDetail} />
             <WainridersScenarioState s={game} inspect={setDetail} />
@@ -4079,7 +4088,7 @@ export default function App() {
                 {stageInfo(game).quest || "Special objective"}
               </strong>{" "}
               quest progress · Stage {game.stage} of{" "}
-              {scenario(game.scenarioId).stages.length}
+              {scenarioStageCount(game.scenarioId)}
             </p>
             <small>
               {scenarioRelease(game.scenarioId)} · Quest card · Fantasy Flight
@@ -4131,6 +4140,7 @@ export default function App() {
                       ...SA_QUESTS,
                       ...ADG_QUESTS,
                       ...CAVES_QUESTS,
+                      ...WQ_QUESTS,
                       ...(carrockQuestCards as Card[]),
                       ...EMYN_MUIL_QUESTS,
                       ...CITY_QUESTS,

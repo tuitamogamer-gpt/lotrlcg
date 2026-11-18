@@ -135,6 +135,10 @@ export const PLAYMATS = {
     name: "Nibin-Dûm",
     detail: "The Goblins' caves · The captives",
   },
+  "the-wizards-quest": {
+    name: "Rhosgobel",
+    detail: "Radagast's summons · The Necromancer's Tower",
+  },
   "the-ruins-of-belegost": {
     name: "Belegost",
     detail: "The drowned Dwarf city · Naurlhûg's lair",
@@ -582,6 +586,7 @@ export const PLAYMAT_CHOICES = [
   "murder-at-the-prancing-pony",
   "the-siege-of-annuminas",
   "attack-on-dol-guldur",
+  "the-wizards-quest",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

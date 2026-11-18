@@ -62,6 +62,7 @@ export function mainQuestCode(s: GameState): string | undefined {
   if (s.annuminas) return s.annuminas.currentQuest;
   if (s.attackDolGuldur) return s.attackDolGuldur.currentQuest;
   if (s.caves) return s.caves.currentQuest;
+  if (s.wizardsQuest) return s.wizardsQuest.currentQuest;
   if (s.landSorrow) return s.landSorrow.currentQuest;
   if (s.ashMountains) return s.ashMountains.currentQuest;
   if (s.wainriders) return s.wainriders.currentQuest;

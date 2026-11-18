@@ -306,6 +306,7 @@ export type ScenarioId =
   | "attack-on-dol-guldur"
   | "the-caves-of-nibin-dum-2018"
   | "the-caves-of-nibin-dum"
+  | "the-wizards-quest"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -501,6 +502,7 @@ export interface GameState {
   annuminas?: import("./annuminas-types").AnnuminasState;
   attackDolGuldur?: import("./attack-dol-guldur-types").AttackDolGuldurState;
   caves?: import("./caves-nibin-dum-types").CavesState;
+  wizardsQuest?: import("./wizards-quest-types").WizardsQuestState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -944,6 +946,15 @@ export interface GameState {
     cavesReturnOnKill?: boolean;
     /** The Caves of Nibin-Dûm: Collapsed Mine's shadow raises threat by the damage dealt. */
     cavesThreat?: boolean;
+    /** The Wizard's Quest: shadow effects waiting on this attack. */
+    wqNoDefense?: boolean;
+    wqDamagedDefense?: boolean;
+    wqRevealOnKill?: boolean;
+    wqThreatOnKill?: boolean;
+    wqExhaustOnKill?: boolean;
+    wqActiveOnKill?: boolean;
+    wqReturnOnKill?: boolean;
+    wqBats?: boolean;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

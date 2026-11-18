@@ -1,0 +1,410 @@
+[
+  {
+    "name": "Radagast's Request",
+    "code": "octgn:79666b89-ec7b-4bc8-98d9-9c517f8ca6ed",
+    "type": "quest",
+    "set": null,
+    "cost": null,
+    "quantity": 1
+  },
+  {
+    "name": "A Fork in the Road",
+    "code": "octgn:35d72889-370e-4ee3-99c0-b7d0a605ec49",
+    "type": "quest",
+    "set": null,
+    "cost": null,
+    "quantity": 1
+  },
+  {
+    "name": "Carried Away",
+    "code": "octgn:4ce7c4e4-c96c-4ee7-ae98-cfb497303cd0",
+    "type": "quest",
+    "set": null,
+    "cost": null,
+    "quantity": 1
+  },
+  {
+    "name": "A New Terror Abroad",
+    "code": "octgn:b446fa27-d5f8-40e0-8985-fe15478cd79b",
+    "type": "quest",
+    "set": null,
+    "cost": null,
+    "quantity": 1
+  },
+  {
+    "name": "The Tower of Sorcery",
+    "code": "octgn:7d71a43e-a7ae-49bb-930c-437101a12d82",
+    "type": "quest",
+    "set": null,
+    "cost": null,
+    "quantity": 1
+  },
+  {
+    "name": "Dungeons of the Necromancer",
+    "code": "octgn:b717f5f9-cd1a-4852-aa1d-36acd1f8d3b1",
+    "type": "quest",
+    "set": null,
+    "cost": null,
+    "quantity": 1
+  },
+  {
+    "name": "Return to Rhosgobel",
+    "code": "octgn:85409c38-e188-46f7-b844-42716266ea83",
+    "type": "quest",
+    "set": null,
+    "cost": null,
+    "quantity": 1
+  },
+  {
+    "name": "Rhosgobel",
+    "code": "octgn:1a3c69f9-c973-4e4e-aa00-435c1f615393",
+    "type": "location",
+    "set": null,
+    "cost": null,
+    "quantity": 1
+  },
+  {
+    "name": "Nazgûl of Dol Guldur",
+    "code": "octgn:9f29199a-f40a-4198-b355-4d5e75d910e2",
+    "type": "enemy",
+    "set": 15,
+    "cost": 3,
+    "quantity": 1
+  },
+  {
+    "name": "Necromancer's Pass",
+    "code": "octgn:ad36bbe2-646e-4ac1-983b-e2d8a651dd0e",
+    "type": "location",
+    "set": 15,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Pursued by Shadow",
+    "code": "octgn:60fe85d1-4dae-4c74-8776-424b4a306054",
+    "type": "treachery",
+    "set": 15,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Bane of Amon Lanc",
+    "code": "octgn:996158ae-41aa-457e-99c4-97640796d6e0",
+    "type": "enemy",
+    "set": 16,
+    "cost": 3,
+    "quantity": 1
+  },
+  {
+    "name": "Oak-wood Grove",
+    "code": "octgn:678fe922-7c1f-4270-aaec-002d916fc52a",
+    "type": "location",
+    "set": 16,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Smoking Blood",
+    "code": "octgn:826b71a9-3f90-454a-8009-24afa9a94ec8",
+    "type": "treachery",
+    "set": 16,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Forest Flies",
+    "code": "octgn:2899ad24-ba7e-4c24-9d20-dabe8f4fce71",
+    "type": "enemy",
+    "set": 17,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Twilight Hall",
+    "code": "octgn:a662bccc-025c-48dd-9c13-0eb47a91236c",
+    "type": "location",
+    "set": 17,
+    "cost": 3,
+    "quantity": 1
+  },
+  {
+    "name": "Swarming Mosquitoes",
+    "code": "octgn:ad6a6843-b482-43a8-8d1f-771ac69c9ab5",
+    "type": "treachery",
+    "set": 17,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Goblin Sniper",
+    "code": "octgn:d801e97a-0cb8-44f0-a28f-de9546200967",
+    "type": "enemy",
+    "set": 18,
+    "cost": 2,
+    "quantity": 1
+  },
+  {
+    "name": "Pine Slopes",
+    "code": "octgn:14a944ab-8301-4006-8e2a-d607eb614fab",
+    "type": "location",
+    "set": 18,
+    "cost": 0,
+    "quantity": 3
+  },
+  {
+    "name": "Under the Shadow",
+    "code": "octgn:15e06e00-8d82-4590-b2ae-6e615330d78a",
+    "type": "treachery",
+    "set": 18,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "Necromancer's Warg",
+    "code": "octgn:a880b0ab-79d4-42b4-81b1-5ad9a8054c27",
+    "type": "enemy",
+    "set": 19,
+    "cost": 0,
+    "quantity": 1
+  },
+  {
+    "name": "Dol Guldur Beastmaster",
+    "code": "octgn:e7100f6a-bdbd-4605-86e2-67d4479d227d",
+    "type": "enemy",
+    "set": 19,
+    "cost": 2,
+    "quantity": 1
+  },
+  {
+    "name": "Watched Path",
+    "code": "octgn:764c89bc-d212-401f-acfa-a971cd0e5e17",
+    "type": "location",
+    "set": 19,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Evil Storm",
+    "code": "octgn:3f7b681f-f1c0-4771-8e7b-b6e804d0bf88",
+    "type": "treachery",
+    "set": 19,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "Spider of Dol Guldur",
+    "code": "octgn:79a2b4c2-7d0c-41a5-aa5f-1ec29644caab",
+    "type": "enemy",
+    "set": 20,
+    "cost": 2,
+    "quantity": 1
+  },
+  {
+    "name": "Patch of Midnight",
+    "code": "octgn:1b036c00-55cc-4538-a659-6d86aaf8ce20",
+    "type": "location",
+    "set": 20,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "Eyes in the Dark",
+    "code": "octgn:e7a6c9c3-9d45-478c-81e5-7811d43deb0e",
+    "type": "treachery",
+    "set": 20,
+    "cost": 0,
+    "quantity": 3
+  },
+  {
+    "name": "Eastern Crows",
+    "code": "octgn:fd9398a9-9f4f-4134-875b-5527f3533c7d",
+    "type": "enemy",
+    "set": 21,
+    "cost": 0,
+    "quantity": 3
+  },
+  {
+    "name": "The Sorcerer's Tower",
+    "code": "octgn:ac78aadc-9a58-42a6-a328-60dbb1e2191c",
+    "type": "location",
+    "set": 21,
+    "cost": 2,
+    "quantity": 1
+  },
+  {
+    "name": "Power Sevenfold",
+    "code": "octgn:e763a539-7fc8-49ab-8f8f-879070aa0e03",
+    "type": "treachery",
+    "set": 21,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "Hill Troll",
+    "code": "octgn:058c4067-9b8c-4631-ae6b-6cee784e71df",
+    "type": "enemy",
+    "set": 22,
+    "cost": 1,
+    "quantity": 2
+  },
+  {
+    "name": "Troll Cave",
+    "code": "octgn:008bcdb1-bac6-4c45-86c5-6bcfb0bf12cc",
+    "type": "location",
+    "set": 22,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "Befouled Equipment",
+    "code": "octgn:85cf554d-25c5-47f4-96bb-c11f4e764155",
+    "type": "treachery",
+    "set": 22,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Hunting Warg",
+    "code": "octgn:90c7e192-2a1e-480c-96a2-7c643f0562d1",
+    "type": "enemy",
+    "set": 23,
+    "cost": 1,
+    "quantity": 2
+  },
+  {
+    "name": "Hunter's Lookout",
+    "code": "octgn:0b215acb-56e1-4653-9cbf-38171c4af9c9",
+    "type": "location",
+    "set": 23,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "Restless Hunters",
+    "code": "octgn:88efb537-cea8-4c20-8b73-e51f0742f769",
+    "type": "treachery",
+    "set": 23,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Dol Guldur Orcs",
+    "code": "octgn:93e61cb5-2bde-420e-aebd-79a1c4111838",
+    "type": "enemy",
+    "set": 24,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "The Shadow Road",
+    "code": "octgn:6c456def-a38c-409c-a085-37f027e9c7b0",
+    "type": "location",
+    "set": 24,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "The Necromancer's Reach",
+    "code": "octgn:59724478-f4c5-4f9b-99bd-288dd8fc1b43",
+    "type": "treachery",
+    "set": 24,
+    "cost": 1,
+    "quantity": 2
+  },
+  {
+    "name": "Ravenous Spider",
+    "code": "octgn:05119d55-73f5-4973-ada5-d0cc73a2eb4b",
+    "type": "enemy",
+    "set": 25,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "Forest Gate",
+    "code": "octgn:763643f4-fb17-43d0-a165-ae0b0b10bc46",
+    "type": "location",
+    "set": 25,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Nightfall",
+    "code": "octgn:66391b37-52bb-4461-97e7-e24fd3aaa3d5",
+    "type": "treachery",
+    "set": 25,
+    "cost": 1,
+    "quantity": 2
+  },
+  {
+    "name": "Venomous Spider",
+    "code": "octgn:c37069a2-1a82-4a67-a08a-d79f5525c547",
+    "type": "enemy",
+    "set": 26,
+    "cost": 1,
+    "quantity": 2
+  },
+  {
+    "name": "Pitch-dark Thicket",
+    "code": "octgn:2108c366-c09a-4952-9920-398f8d84b5a9",
+    "type": "location",
+    "set": 26,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Fastness of Mirkwood",
+    "code": "octgn:2e005552-a0a2-4a70-bd96-9d1b21601261",
+    "type": "treachery",
+    "set": 26,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "Dark Bats",
+    "code": "octgn:5c4188a5-5767-4c8c-8dfd-0b3f7c55e4a1",
+    "type": "enemy",
+    "set": 27,
+    "cost": 0,
+    "quantity": 2
+  },
+  {
+    "name": "Forest Stream",
+    "code": "octgn:98fe6f91-977f-41a0-b7a4-a89d24836239",
+    "type": "location",
+    "set": 27,
+    "cost": 1,
+    "quantity": 2
+  },
+  {
+    "name": "Treacherous Fog",
+    "code": "octgn:5f2bf8db-d56f-4353-b9be-fd25b7b0650e",
+    "type": "treachery",
+    "set": 27,
+    "cost": 1,
+    "quantity": 1
+  },
+  {
+    "name": "Howling Warg",
+    "code": "octgn:929a0f96-a029-4327-b8e5-03cb78293bdf",
+    "type": "enemy",
+    "set": 28,
+    "cost": 0,
+    "quantity": 3
+  },
+  {
+    "name": "The Wargs' Glade",
+    "code": "octgn:f75180d3-29c9-4184-85ce-8b805b9aa8c6",
+    "type": "location",
+    "set": 28,
+    "cost": 2,
+    "quantity": 1
+  },
+  {
+    "name": "Weighed Down",
+    "code": "octgn:c4aea786-9987-451a-8924-e63c628be505",
+    "type": "treachery",
+    "set": 28,
+    "cost": 1,
+    "quantity": 1
+  }
+]

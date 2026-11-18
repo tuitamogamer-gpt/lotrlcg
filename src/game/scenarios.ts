@@ -34,6 +34,7 @@ import { PRANCING_PONY_ADVENTURES } from "./prancing-pony-scenario-data";
 import { ANNUMINAS_ADVENTURES } from "./annuminas-scenario-data";
 import { ATTACK_DOL_GULDUR_ADVENTURES } from "./attack-dol-guldur-scenario-data";
 import { CAVES_ADVENTURES } from "./caves-nibin-dum-scenario-data";
+import { WIZARDS_QUEST_ADVENTURES } from "./wizards-quest-scenario-data";
 import { LAND_SORROW_ADVENTURES } from "./land-sorrow-scenario-data";
 import { ASH_ADVENTURES } from "./ash-mountains-scenario-data";
 import { WAINRIDERS_ADVENTURES } from "./wainriders-scenario-data";
@@ -1235,6 +1236,7 @@ export const SCENARIOS = [
   ...PRANCING_PONY_ADVENTURES,
   ...ANNUMINAS_ADVENTURES,
   ...ATTACK_DOL_GULDUR_ADVENTURES,
+  ...WIZARDS_QUEST_ADVENTURES,
 ] as const;
 /** The Mirkwood Paths campaign covers the three Core Set quests in order. */
 export const CAMPAIGN_CHAPTERS: readonly ScenarioId[] = [
@@ -1245,6 +1247,14 @@ export const CAMPAIGN_CHAPTERS: readonly ScenarioId[] = [
 /** Signs of Gollum: the Clue objective of The Hunt for Gollum. */
 export const CLUE = "02014";
 export const scenario = (id: ScenarioId) => SCENARIOS.find((s) => s.id === id)!;
+/**
+ * The number of quest stages a game goes through: The Wizard's Quest lists its
+ * 7 quest cards, of which the players use one per stage.
+ */
+export const scenarioStageCount = (id: ScenarioId) => {
+  const s = scenario(id);
+  return "stageCount" in s ? s.stageCount : s.stages.length;
+};
 export const OBJECTIVES = ["01108", "01109", "01110"];
 export const CAMPAIGN_CARDS: Card[] = [
   {

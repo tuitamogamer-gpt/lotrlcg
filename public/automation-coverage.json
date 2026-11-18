@@ -5,8 +5,8 @@
     "playerCards": 860,
     "heroes": 112,
     "deckCards": 744,
-    "encounterCards": 1817,
-    "scenarios": 118,
+    "encounterCards": 1862,
+    "scenarios": 119,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -125,17 +125,18 @@
       "the-ruins-of-belegost",
       "murder-at-the-prancing-pony",
       "the-siege-of-annuminas",
-      "attack-on-dol-guldur"
+      "attack-on-dol-guldur",
+      "the-wizards-quest"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3051,
-    "pending": 1132
+    "scripted": 3102,
+    "pending": 1081
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 245
+    "scripted": 246
   },
   "registeredCodes": [
     "01001",
@@ -1077,6 +1078,7 @@
     "octgn:0002f646-cdaf-40cf-9993-faccb260c583",
     "octgn:001dbc8b-3b8e-4f02-bdbd-7e78c6ecd348",
     "octgn:007721bf-3e80-4857-aaf4-aabb65d1827d",
+    "octgn:008bcdb1-bac6-4c45-86c5-6bcfb0bf12cc",
     "octgn:00d81c85-395e-4990-b0ff-7cbd9908f541",
     "octgn:00e25526-9804-4b05-89d6-557d9ef7ad77",
     "octgn:011a4573-f21a-4897-9b23-8b64391f5136",
@@ -1107,10 +1109,12 @@
     "octgn:04a23a2e-a14f-4c54-b54f-eeef36d3a92b",
     "octgn:04f24d17-9764-4385-b22c-0e45f6fa5654",
     "octgn:0507932f-0030-4763-8478-29bb407103d4",
+    "octgn:05119d55-73f5-4973-ada5-d0cc73a2eb4b",
     "octgn:054189b9-c165-4561-9b62-f0384145da97",
     "octgn:0554f2f9-c578-4644-9c28-b617e846b787",
     "octgn:05738935-2cd4-4ce3-a977-9e4f59689a32",
     "octgn:058a5508-6b20-4305-94ea-53d5d2f33595",
+    "octgn:058c4067-9b8c-4631-ae6b-6cee784e71df",
     "octgn:05a0e539-e140-4dfc-a151-21cd8aaef094",
     "octgn:05bf91b3-8e8e-4a45-a6cf-ac8b936b032d",
     "octgn:0676e5a8-1637-42f8-95fa-37aa6e189070",
@@ -1141,6 +1145,7 @@
     "octgn:0aa98b35-6958-4680-a4ed-b9fc16089126",
     "octgn:0ae0d2d5-b082-4cc7-b227-9b60c60de8b4",
     "octgn:0ae9f4f9-eec9-404f-ae93-7a54287d1bc2",
+    "octgn:0b215acb-56e1-4653-9cbf-38171c4af9c9",
     "octgn:0b3a7155-be2d-4fed-9674-bc696662372f",
     "octgn:0bb77cd5-0340-4411-9e1f-997b1d6cb35a",
     "octgn:0bd34136-ae3d-44aa-b48f-7190c14f4b3b",
@@ -1199,6 +1204,7 @@
     "octgn:138ee2a3-0982-48ab-945e-60fab6f06586",
     "octgn:13a4b435-fa14-42b8-975e-804d3b8b929d",
     "octgn:13b4d81e-1bd7-4a56-a418-b60e58767c12",
+    "octgn:14a944ab-8301-4006-8e2a-d607eb614fab",
     "octgn:14be3661-3f3c-4a89-b27f-ab7c15f92e4e",
     "octgn:14f41245-2616-4358-a8bb-6b9bcf83cf56",
     "octgn:14f7c98c-b425-4fac-850a-729d8fcdaa0c",
@@ -1209,6 +1215,7 @@
     "octgn:1574141b-b11e-4be9-82c9-ddc1fb2f5269",
     "octgn:1589883f-87ae-4f4d-a92b-e5e23c25c8e0",
     "octgn:159f5a8f-1e1f-4282-9936-94b10e348176",
+    "octgn:15e06e00-8d82-4590-b2ae-6e615330d78a",
     "octgn:15ebc613-43fc-4c9b-ac71-91840d853e60",
     "octgn:15f9c6b7-2bb0-48ea-9a5d-b8ec3b1a7e2d",
     "octgn:1600dd03-7b19-4dd2-924c-30c30b09cb9d",
@@ -1236,12 +1243,15 @@
     "octgn:19f36ec5-7ad4-4dab-80a7-4a7a6c716941",
     "octgn:1a0189ae-b9ad-49c2-a217-a9c975536384",
     "octgn:1a06164a-8f54-49b7-a067-52680893f69d",
+    "octgn:1a3c69f9-c973-4e4e-aa00-435c1f615393",
+    "octgn:1a3c69f9-c973-4e4e-aa00-435c1f615393.B",
     "octgn:1a3d3725-9451-4c97-a8c7-5d2fa8e35c4c",
     "octgn:1a55452f-9e4c-4cdc-8ce1-549c862bf96e",
     "octgn:1a96a88c-3715-4419-89b1-a218e838b5b5",
     "octgn:1ab32b8c-b942-4c77-af19-9703fba1dfa9",
     "octgn:1ac7e2b5-aa19-4608-b101-e22390c8a906",
     "octgn:1acf6790-b3bd-4768-b1fd-36d527b64037",
+    "octgn:1b036c00-55cc-4538-a659-6d86aaf8ce20",
     "octgn:1b0de48c-a010-490f-b0e3-0ced635b3b3b",
     "octgn:1b3b1063-e102-4fea-a29b-5692fbfb9cd6",
     "octgn:1b5b129a-0c2c-4750-b1d6-dd3ea82acb84",
@@ -1285,6 +1295,7 @@
     "octgn:20a011e7-0153-45b1-9c6c-a68753683a79",
     "octgn:20c5f7b7-cfc4-44e1-aaf5-0010ceb9a1b9",
     "octgn:20e1ee03-f6c4-4b63-a816-4c9660e51eb0",
+    "octgn:2108c366-c09a-4952-9920-398f8d84b5a9",
     "octgn:21165a65-1296-4664-a880-d85eea19a4ae",
     "octgn:215881a3-df0a-4163-a19d-33b444e7aa95",
     "octgn:2163f5ef-63a3-4afc-8084-fe730774d216",
@@ -1359,6 +1370,7 @@
     "octgn:282bca71-ff04-4447-a4e9-a7e5f70e0083",
     "octgn:286a5206-9ebb-4ec4-a349-2960ccb2f669",
     "octgn:2878bd63-b20b-419a-85a2-dff419864e08",
+    "octgn:2899ad24-ba7e-4c24-9d20-dabe8f4fce71",
     "octgn:28a4721b-3696-4fae-9eea-01b5a250c892",
     "octgn:28b27afb-c966-4960-a4e7-5e5364e45c05",
     "octgn:28ba7c20-b660-40cb-9e2c-bf6ebaec723e",
@@ -1397,6 +1409,7 @@
     "octgn:2d819f76-77dd-47a2-9a3f-ac8b8018f0df",
     "octgn:2dbe66bc-a6bf-42d7-92a5-d186dfe954c6",
     "octgn:2dc216a5-af92-44e5-b225-9cdc7bf47e73",
+    "octgn:2e005552-a0a2-4a70-bd96-9d1b21601261",
     "octgn:2e1bb6cc-2f05-47f1-8ea5-78955cd0cbf2",
     "octgn:2e441298-dafc-41bc-a46f-a0f483ac18bd",
     "octgn:2e5e6e97-003b-4500-8372-495f5ee86051",
@@ -1455,6 +1468,7 @@
     "octgn:3574e1dd-d730-485e-8c2b-16fb7d52f78b",
     "octgn:35787b76-d4d5-4bff-bc05-a270b6e4d98e",
     "octgn:35b3cfde-9964-4173-88c5-e5e5cb8f84ac",
+    "octgn:35d72889-370e-4ee3-99c0-b7d0a605ec49",
     "octgn:35ea4640-1019-409c-b6a4-8a9906def475",
     "octgn:35ed8128-584c-43cc-ae7c-a4430e78940c",
     "octgn:3612e715-a474-4911-a247-58c76f2ef277",
@@ -1507,6 +1521,7 @@
     "octgn:3f24ad57-1c50-47dc-a117-5aee279b8451",
     "octgn:3f736d45-c2b3-429e-9a21-3f8073cdbd48",
     "octgn:3f78ed57-49cc-4886-b84f-3fe886203794",
+    "octgn:3f7b681f-f1c0-4771-8e7b-b6e804d0bf88",
     "octgn:3f8273a2-f64c-407c-97fb-4a4ef0bddb0b",
     "octgn:3f8e889e-db35-4044-ac19-43fd146bffd1",
     "octgn:3f9feb64-e4bd-4da5-b00a-05f58dce5fbf",
@@ -1663,6 +1678,7 @@
     "octgn:4c7d7a31-250d-4e48-a97a-2aebb3b2b47d",
     "octgn:4c9ac5bd-1653-400c-9cd0-4da685da5c15",
     "octgn:4cd62a82-6bc9-4e38-8561-49b5fa2aba7e",
+    "octgn:4ce7c4e4-c96c-4ee7-ae98-cfb497303cd0",
     "octgn:4d31f077-9f08-435b-ad3c-95d5b7967fa4",
     "octgn:4d423c39-09c1-4c0b-b46f-6983fae4c07b",
     "octgn:4d67feae-9070-4ed6-8b1a-3ddc3569e73a",
@@ -2065,6 +2081,7 @@
     "octgn:59314974-a07d-4024-9951-40736209b6b9",
     "octgn:595c34f1-60e3-401a-bd65-df6dda627896",
     "octgn:5963e5c4-0f2e-43c4-afa2-a9b2cfde73d1",
+    "octgn:59724478-f4c5-4f9b-99bd-288dd8fc1b43",
     "octgn:59c6b564-b927-481f-b505-ca9b1fe4f524",
     "octgn:5a0d35ad-e9af-48b1-8454-534753394ed2",
     "octgn:5a3a6917-900b-4878-9545-56c297a50248",
@@ -2081,6 +2098,7 @@
     "octgn:5bcec205-7f6b-44b9-bb4d-9addde372316",
     "octgn:5c0a0aea-af43-441b-9d7f-86a1dfd09f00",
     "octgn:5c31f690-9802-4638-8316-5380ef32575b",
+    "octgn:5c4188a5-5767-4c8c-8dfd-0b3f7c55e4a1",
     "octgn:5c5ce14a-332a-40fe-8f55-cfa2f53e8592",
     "octgn:5ce0a255-9914-4a4f-9630-d1fe8e00bbc0",
     "octgn:5d0085bd-ebb9-46a7-ae28-698da3d11ae6",
@@ -2096,6 +2114,7 @@
     "octgn:5edbdc1f-e177-4a8b-b4f1-8475fe297a4b",
     "octgn:5f18c4ca-fcda-46d2-874b-3a1a73ef7c53",
     "octgn:5f1ef9c5-ccb2-4f1e-bc5b-9a1de708d2ba",
+    "octgn:5f2bf8db-d56f-4353-b9be-fd25b7b0650e",
     "octgn:5fd6638a-3135-460f-bf5e-b3cb0128f939",
     "octgn:5fefdbc7-05e2-4c1b-96fd-46121f87d6b3",
     "octgn:6036efda-3456-45d2-817a-4ef8b310db5a",
@@ -2106,6 +2125,7 @@
     "octgn:60ba0781-d051-46f0-97b1-e02fb637b94e",
     "octgn:60de774d-eafb-4faa-851e-c28ce6d62f9f",
     "octgn:60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b",
+    "octgn:60fe85d1-4dae-4c74-8776-424b4a306054",
     "octgn:610f3112-1123-4956-a955-df9d42b937bf",
     "octgn:611c0811-1810-4b3e-a00e-4d34f1f986b1",
     "octgn:617952b3-1ac2-47a2-866f-302c3f0d8fd7",
@@ -2132,6 +2152,7 @@
     "octgn:65ef76b1-e624-4763-8906-899e4630225f",
     "octgn:65f48337-cec0-41a1-84ff-490c4f563ce4",
     "octgn:6603b3a5-b955-4109-a63d-b8405c86d0b7",
+    "octgn:66391b37-52bb-4461-97e7-e24fd3aaa3d5",
     "octgn:663a47fc-e264-485b-832d-2c327aa1a493",
     "octgn:66489fc6-7074-4cbb-8a60-37acd641f7a6",
     "octgn:6651f8a6-e442-4eba-a8b5-13fab4c1e93c",
@@ -2139,6 +2160,7 @@
     "octgn:6709bafa-87b5-483e-9895-0f2edea7e47a",
     "octgn:67251171-ee5f-46d5-b3c8-10523350c60c",
     "octgn:67455bf8-25ea-453e-9066-58e66fdf0528",
+    "octgn:678fe922-7c1f-4270-aaec-002d916fc52a",
     "octgn:67c97a60-a53c-4624-83ec-2122a74ea730",
     "octgn:67ddffc2-652d-4892-97a6-fe2af59d4616",
     "octgn:6805d08f-84e0-412d-a728-35a42ea9a091",
@@ -2167,6 +2189,7 @@
     "octgn:6b34adb4-b510-4db9-aaba-9a1876626dce",
     "octgn:6b828300-4558-4a8b-a591-a9865202a630",
     "octgn:6b8ca34a-1f6f-4eed-841c-a5d0db80619a",
+    "octgn:6c456def-a38c-409c-a085-37f027e9c7b0",
     "octgn:6c89f835-68f8-4882-90ea-83f84953fabf",
     "octgn:6cb224c2-d164-484e-b20d-fede3dd640d5",
     "octgn:6cfc4fa5-bbcc-4c99-82b7-bb6359d24750",
@@ -2235,6 +2258,8 @@
     "octgn:75c1d9eb-9ade-4c71-a918-74cf5b526ff2",
     "octgn:75ed364b-fa2c-469e-8af2-289643bef9e7",
     "octgn:761f5564-29b7-413e-9e7f-5d3c63c173d7",
+    "octgn:763643f4-fb17-43d0-a165-ae0b0b10bc46",
+    "octgn:764c89bc-d212-401f-acfa-a971cd0e5e17",
     "octgn:76506b8b-4bd1-478f-bc04-512f2b1fc13f",
     "octgn:766735f8-3b17-4b50-aee3-a869837f986c",
     "octgn:768bab66-1707-41a4-adf3-3baad2e7daad",
@@ -2252,9 +2277,11 @@
     "octgn:78f780fd-fcc0-495e-b132-772ce71dbfa9:B",
     "octgn:78fd9e40-f68d-46c9-b6bf-8fec3b77bfcf",
     "octgn:795579db-249d-4c9d-850f-6f39bc96c063",
+    "octgn:79666b89-ec7b-4bc8-98d9-9c517f8ca6ed",
     "octgn:796c0aee-2aea-4999-931d-253fafe7fb26",
     "octgn:797a1805-f347-4eb3-9f77-5c9e6b6a850f",
     "octgn:7991d705-7e2d-4303-abbc-f9999b2d2502",
+    "octgn:79a2b4c2-7d0c-41a5-aa5f-1ec29644caab",
     "octgn:79a32e57-7973-43bb-92d2-a0da9c13c5c6",
     "octgn:79a9dd7a-48c9-4f29-9090-5edde6b5f038",
     "octgn:79b5dd16-2427-4950-94e9-46905eebe56d",
@@ -2289,6 +2316,7 @@
     "octgn:7d0387db-eba6-44e0-8602-b031a2927ca4",
     "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
     "octgn:7d55e738-cc23-4e78-9a88-2a25fa4f3ca4",
+    "octgn:7d71a43e-a7ae-49bb-930c-437101a12d82",
     "octgn:7d71aa09-badb-4ba8-9d08-597a8d814020",
     "octgn:7d9a3914-bc46-40d6-b489-3157d7430382",
     "octgn:7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00",
@@ -2330,6 +2358,7 @@
     "octgn:822ca699-4763-4b8c-baff-d8d828c002a9",
     "octgn:8239e81a-f779-4c7c-b586-cd5ad732f061",
     "octgn:82514713-7cc4-4b76-a5f2-42a69ccff76b",
+    "octgn:826b71a9-3f90-454a-8009-24afa9a94ec8",
     "octgn:8275a439-ebcd-4cc3-907b-1e217d222806",
     "octgn:82c68020-eb2e-4853-9919-df3066d13721",
     "octgn:82ca7902-f8fa-4352-8f54-f5f6a8875c51",
@@ -2349,8 +2378,10 @@
     "octgn:85045e14-3abc-4d58-824f-249b1fb3643d",
     "octgn:8527856a-e0eb-4799-9985-e73f1ee5281a",
     "octgn:8534990f-7384-4667-b7fc-c22dcfdd6bba",
+    "octgn:85409c38-e188-46f7-b844-42716266ea83",
     "octgn:855580e2-87b1-444c-b37a-1062c050d9ee",
     "octgn:857da3db-7159-4dfa-a925-8547fb6df455",
+    "octgn:85cf554d-25c5-47f4-96bb-c11f4e764155",
     "octgn:85d48eb0-3339-4db6-976f-a800213e7eea",
     "octgn:85eb724c-a258-4d94-83ba-5e9f21d82491",
     "octgn:8615beb7-a9f7-4852-bc0a-3d1a5f2c9532",
@@ -2371,6 +2402,7 @@
     "octgn:8830070b-b918-4b74-8dfb-dced3866e53b",
     "octgn:8893eba4-1f9c-4661-bfc2-bb485e023066",
     "octgn:88df7c56-ee11-48f0-b6a0-0486e0a8ce92",
+    "octgn:88efb537-cea8-4c20-8b73-e51f0742f769",
     "octgn:8948aa81-f7fb-4979-9add-555598df529a",
     "octgn:89baec7c-4e60-4b12-9d7d-80b11e786d89",
     "octgn:89cd149f-69d3-4d75-887d-96b45730792a",
@@ -2434,6 +2466,7 @@
     "octgn:90b5e33a-3708-40ab-8d20-5a997237e536",
     "octgn:90ba49e5-142b-4c40-8085-8087342d9b92",
     "octgn:90bdfcd8-0505-4f40-bf51-092f21525ef7",
+    "octgn:90c7e192-2a1e-480c-96a2-7c643f0562d1",
     "octgn:90d620e5-d7be-42e6-9756-b92761ecd8c9",
     "octgn:90fe2776-1001-4871-a5ae-679b91992e7e",
     "octgn:91143aee-41e7-4cac-8ec2-e112689fcc17",
@@ -2441,11 +2474,13 @@
     "octgn:918c4387-bf40-48f1-bf65-5ad5acb91784",
     "octgn:91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8",
     "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+    "octgn:929a0f96-a029-4327-b8e5-03cb78293bdf",
     "octgn:92d8276b-0839-44b4-b7ce-e18e135fe407",
     "octgn:92ef70d1-b46c-454d-ab7d-2ab56227d9be",
     "octgn:92fec8c5-53e7-477a-9c47-8d97578bc1e7",
     "octgn:93008a44-68db-40ea-8b41-81cf5bb2bae8",
     "octgn:93bf98f7-fe0f-4c03-bd93-2f8d5753acce",
+    "octgn:93e61cb5-2bde-420e-aebd-79a1c4111838",
     "octgn:93ece501-fae4-46e8-9720-316383b86688",
     "octgn:944aaafa-17e2-4352-9a04-384673089ee6",
     "octgn:947f8b80-5d96-43eb-89ac-95b7738f2d55",
@@ -2476,9 +2511,11 @@
     "octgn:98bf5fdc-ff74-48e2-88c8-0e4134fd6984",
     "octgn:98cc592d-6e3e-494a-bddf-ef5e0908c279",
     "octgn:98dff367-a068-4aac-a46b-7dc201aff42d",
+    "octgn:98fe6f91-977f-41a0-b7a4-a89d24836239",
     "octgn:990e60bb-a627-4758-8230-81b40a57a382",
     "octgn:9944cbab-1c77-4cb4-87cc-36709f3143b5",
     "octgn:9945fdee-b56e-488d-a5bf-33d5a82afdad",
+    "octgn:996158ae-41aa-457e-99c4-97640796d6e0",
     "octgn:998f6e45-b0d3-42c4-b5ba-fdf301401d90",
     "octgn:99ab7a92-0e3e-4ec2-9a40-0f467920879d",
     "octgn:99b98ca0-1320-4630-8791-984a578685d2",
@@ -2527,6 +2564,7 @@
     "octgn:9eb0298a-cb92-426d-87c6-37749aaae44b",
     "octgn:9ebe2570-4478-45a4-af3b-5ba73a75cff9",
     "octgn:9f1f5ce8-2fa6-40e3-ba7c-34fb94db014b",
+    "octgn:9f29199a-f40a-4198-b355-4d5e75d910e2",
     "octgn:9fa12306-d6ed-4fb8-89ce-8145bb81a58a",
     "octgn:9feef7b4-4ca7-4adc-aeb7-56947254588a",
     "octgn:9ff94935-ae08-4d86-859f-f4d0776a66e5",
@@ -2565,6 +2603,7 @@
     "octgn:a5e60892-b524-43cf-a501-372a624e785e",
     "octgn:a62b42dc-ab4a-4573-a281-53742e2739f5",
     "octgn:a652a7ef-25ad-4e43-94b4-f18c68e34e83",
+    "octgn:a662bccc-025c-48dd-9c13-0eb47a91236c",
     "octgn:a6b39458-b0f1-4b5d-a915-d3921eb35658",
     "octgn:a6dd52d0-375a-41ea-ae77-b0fd9bcb6629",
     "octgn:a6e68650-e413-4e85-b687-b927d5a87821",
@@ -2582,6 +2621,7 @@
     "octgn:a835576b-6a6c-4407-8f40-0151b70f5902",
     "octgn:a837fe8b-6f21-4d20-9897-89a3c4706b40",
     "octgn:a8494d53-c8a4-4f74-b3e1-2e4183aeea2a",
+    "octgn:a880b0ab-79d4-42b4-81b1-5ad9a8054c27",
     "octgn:a8918c80-f092-4649-bb5c-9f7fde3cef75",
     "octgn:a8980fe0-a42b-4de5-a8ab-388bea8038b1",
     "octgn:a917100d-1b9b-4335-a55f-75291e0cab6e",
@@ -2608,6 +2648,7 @@
     "octgn:abfe3930-7bca-4ce8-9594-038ad4846205",
     "octgn:ac4724db-a3cc-4984-bef5-f51b0f4421f8",
     "octgn:ac5a17df-dcd0-4bfb-91fe-a444910f30ec",
+    "octgn:ac78aadc-9a58-42a6-a328-60dbb1e2191c",
     "octgn:ac9fe707-143f-492e-89e3-bdd02973a0f2",
     "octgn:aca1ee7f-ad29-4218-8dd5-f7f7a8e617fe",
     "octgn:acbf7fd1-9f93-4d0b-b18a-8f0854e028f5",
@@ -2615,7 +2656,9 @@
     "octgn:ad09f848-9430-41c8-8723-671f08b79078",
     "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc",
     "octgn:ad3509b5-b4b4-4fe5-bfdc-e655cc2470d3",
+    "octgn:ad36bbe2-646e-4ac1-983b-e2d8a651dd0e",
     "octgn:ad4739ac-fd18-4add-9b83-860c1fcc2b54",
+    "octgn:ad6a6843-b482-43a8-8d1f-771ac69c9ab5",
     "octgn:ad73bb42-f0fb-4732-956d-e921140e99bb",
     "octgn:ad7fc95f-4a8d-4a15-b170-b0db3c3002f0",
     "octgn:adeb3985-c342-4d9e-acd6-2c7cf35dafe6",
@@ -2659,6 +2702,7 @@
     "octgn:b34e79d4-7806-4fd9-b12d-bb291e44f354",
     "octgn:b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8",
     "octgn:b41e6b34-4d6a-47de-9b07-b039013efbc5",
+    "octgn:b446fa27-d5f8-40e0-8985-fe15478cd79b",
     "octgn:b4543d6e-168b-4ac6-ae65-022e13ce4098",
     "octgn:b4769083-91fb-4e9c-9736-17e8c28ff971",
     "octgn:b477d0be-d70a-4eb4-8c35-89c17199cab3",
@@ -2681,6 +2725,7 @@
     "octgn:b69bdceb-a155-4aa6-b7e8-b0265f5d0928",
     "octgn:b6af7b48-e072-45e8-a745-4de2ac8ded8c",
     "octgn:b70846d1-3216-421a-9098-af2a4540b530",
+    "octgn:b717f5f9-cd1a-4852-aa1d-36acd1f8d3b1",
     "octgn:b7431f72-5157-4a6d-a6c0-86bcf88f2669",
     "octgn:b774e6b4-461c-46eb-9398-dcb2af4cfab5",
     "octgn:b77620fa-89a8-4f09-8552-ba4204e472d2",
@@ -2754,6 +2799,7 @@
     "octgn:c34384a8-44de-4c55-8d49-ec68a69fc3f0",
     "octgn:c354e410-e15a-4999-bb14-696b5e89cee9",
     "octgn:c35f2635-fa68-44be-9ce9-80446831f0e0",
+    "octgn:c37069a2-1a82-4a67-a08a-d79f5525c547",
     "octgn:c3907d39-6fd7-4b33-8fe2-215fd9f90be2",
     "octgn:c39c83bf-ee9e-4e4d-9689-b8f7559292bd",
     "octgn:c3aff9c9-640f-4e90-85f3-6e245c2156fe",
@@ -2769,6 +2815,7 @@
     "octgn:c46c37c3-b2e7-4e28-9466-e3a371417c8b",
     "octgn:c472af20-d956-4aec-af6e-319cdea35230",
     "octgn:c49ec585-e306-4fda-a55b-497cb0fd1174",
+    "octgn:c4aea786-9987-451a-8924-e63c628be505",
     "octgn:c5215a42-f064-46cc-a9a2-75ef4d57fcd2",
     "octgn:c5657436-d6c8-400d-ba1f-a723799ac685",
     "octgn:c57661b7-62f9-4906-b2eb-73af91fd8252",
@@ -2885,6 +2932,7 @@
     "octgn:d7d1581c-74a4-4c6f-acf9-e2d598ccb276",
     "octgn:d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41",
     "octgn:d7fd973b-6b4e-4f4b-9fc5-4886dcf80996",
+    "octgn:d801e97a-0cb8-44f0-a28f-de9546200967",
     "octgn:d80a5ca5-20d8-4c4b-814c-0c91bba40d43",
     "octgn:d80da0f8-430e-4a67-91ca-35cc9d3afe8b",
     "octgn:d8694dea-3406-4199-96d5-cd8d0a97f152",
@@ -2989,7 +3037,10 @@
     "octgn:e6fea7ff-7fdf-4938-a57b-6be82af1c152",
     "octgn:e70dc756-86c4-460a-97cd-1d2c65b1e874",
     "octgn:e70fa96c-f4c7-4d6c-ab14-41831a6eb8c8",
+    "octgn:e7100f6a-bdbd-4605-86e2-67d4479d227d",
     "octgn:e7413cb0-3443-40d4-88f4-06d7cfa1ab1d",
+    "octgn:e763a539-7fc8-49ab-8f8f-879070aa0e03",
+    "octgn:e7a6c9c3-9d45-478c-81e5-7811d43deb0e",
     "octgn:e7f523e1-c898-42f8-93c2-889038de230f",
     "octgn:e839fa89-15b4-451f-9fac-6a8f38e31d65",
     "octgn:e83f33da-6723-4730-8691-8d1a48b1f8e0",
@@ -3098,6 +3149,7 @@
     "octgn:f6e8459b-b0d6-4d30-ad8e-6aacfa34ec32",
     "octgn:f6f56327-cc71-458c-bcdb-51ca6dab2fa1",
     "octgn:f7117e07-e8d2-4e7d-a5c3-5dd0f1c0d455",
+    "octgn:f75180d3-29c9-4184-85ce-8b805b9aa8c6",
     "octgn:f77579e7-23f0-4c27-a4e3-e1edcc529e1e",
     "octgn:f77e471a-7dd2-4f05-ac8f-fbb534c66633",
     "octgn:f77ffb66-297c-49e0-8ed5-9cc3bd715926",
@@ -3171,6 +3223,7 @@
     "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93078",
     "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93079",
     "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93080",
+    "octgn:fd9398a9-9f4f-4134-875b-5527f3533c7d",
     "octgn:fdd55ddc-2f18-4ae6-89bb-e54827a1bbdc",
     "octgn:fdf01cb8-5798-43f3-adbd-e2870c53f0cf",
     "octgn:fdfc404e-67b0-44d6-a1e7-a5e568ac0265",
@@ -4136,7 +4189,7 @@
     {
       "product": "the-wizard-s-quest",
       "total": 51,
-      "scripted": 0,
+      "scripted": 51,
       "player": 0,
       "playerScripted": 0
     },
@@ -12966,7 +13019,7 @@
       "name": "Troll Cave",
       "type": "location",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -13326,7 +13379,7 @@
       "name": "Ravenous Spider",
       "type": "enemy",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -13390,7 +13443,7 @@
       "name": "Hill Troll",
       "type": "enemy",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -13750,7 +13803,7 @@
       "name": "Hunter's Lookout",
       "type": "location",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -14454,7 +14507,7 @@
       "name": "Pine Slopes",
       "type": "location",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -14558,7 +14611,7 @@
       "name": "Under the Shadow",
       "type": "treachery",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -14902,7 +14955,7 @@
       "name": "Rhosgobel",
       "type": "location",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -14958,7 +15011,7 @@
       "name": "Patch of Midnight",
       "type": "location",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -15454,7 +15507,7 @@
       "name": "Pitch-dark Thicket",
       "type": "location",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -16230,7 +16283,7 @@
       "name": "Forest Flies",
       "type": "enemy",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -16686,7 +16739,7 @@
       "name": "Fastness of Mirkwood",
       "type": "treachery",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -17478,7 +17531,7 @@
       "name": "Mirkwood Forest",
       "type": "quest",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -18142,7 +18195,7 @@
       "name": "Evil Storm",
       "type": "treachery",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -19710,7 +19763,7 @@
       "name": "Mirkwood Forest",
       "type": "quest",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -23278,7 +23331,7 @@
       "name": "The Necromancer's Reach",
       "type": "treachery",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -23462,7 +23515,7 @@
       "name": "Dark Bats",
       "type": "enemy",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -23694,7 +23747,7 @@
       "name": "Treacherous Fog",
       "type": "treachery",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -23838,7 +23891,7 @@
       "name": "Pursued by Shadow",
       "type": "treachery",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -24102,7 +24155,7 @@
       "name": "Nightfall",
       "type": "treachery",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -24214,7 +24267,7 @@
       "name": "Oak-wood Grove",
       "type": "location",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -24558,7 +24611,7 @@
       "name": "The Shadow Road",
       "type": "location",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -25414,7 +25467,7 @@
       "name": "Forest Gate",
       "type": "location",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -25422,7 +25475,7 @@
       "name": "Watched Path",
       "type": "location",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -25670,7 +25723,7 @@
       "name": "Radagast's Request",
       "type": "quest",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -25710,7 +25763,7 @@
       "name": "Spider of Dol Guldur",
       "type": "enemy",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -26054,7 +26107,7 @@
       "name": "The Necromancer's Tower",
       "type": "quest",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -26574,7 +26627,7 @@
       "name": "Smoking Blood",
       "type": "treachery",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -26782,7 +26835,7 @@
       "name": "The Necromancer's Tower",
       "type": "quest",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -26814,7 +26867,7 @@
       "name": "Befouled Equipment",
       "type": "treachery",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -27118,7 +27171,7 @@
       "name": "Restless Hunters",
       "type": "treachery",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -27838,7 +27891,7 @@
       "name": "Hunting Warg",
       "type": "enemy",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -27950,7 +28003,7 @@
       "name": "Howling Warg",
       "type": "enemy",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -28030,7 +28083,7 @@
       "name": "Dol Guldur Orcs",
       "type": "enemy",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -28414,7 +28467,7 @@
       "name": "Forest Stream",
       "type": "location",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -28454,7 +28507,7 @@
       "name": "Bane of Amon Lanc",
       "type": "enemy",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -28942,7 +28995,7 @@
       "name": "Nazgûl of Dol Guldur",
       "type": "enemy",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -29502,7 +29555,7 @@
       "name": "Twilight Hall",
       "type": "location",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -29694,7 +29747,7 @@
       "name": "Necromancer's Warg",
       "type": "enemy",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -30030,7 +30083,7 @@
       "name": "The Sorcerer's Tower",
       "type": "location",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -30118,7 +30171,7 @@
       "name": "Necromancer's Pass",
       "type": "location",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -30134,7 +30187,7 @@
       "name": "Swarming Mosquitoes",
       "type": "treachery",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -30638,7 +30691,7 @@
       "name": "Mirkwood Forest",
       "type": "quest",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -30910,7 +30963,7 @@
       "name": "The Necromancer's Tower",
       "type": "quest",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -32254,7 +32307,7 @@
       "name": "Venomous Spider",
       "type": "enemy",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -32422,7 +32475,7 @@
       "name": "Weighed Down",
       "type": "treachery",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -33974,7 +34027,7 @@
       "name": "Goblin Sniper",
       "type": "enemy",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -35070,7 +35123,7 @@
       "name": "Dol Guldur Beastmaster",
       "type": "enemy",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -35094,7 +35147,7 @@
       "name": "Power Sevenfold",
       "type": "treachery",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -35110,7 +35163,7 @@
       "name": "Eyes in the Dark",
       "type": "treachery",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -36638,7 +36691,7 @@
       "name": "The Wargs' Glade",
       "type": "location",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -37414,7 +37467,7 @@
       "name": "Eastern Crows",
       "type": "enemy",
       "pack": "The Wizard's Quest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wizard-s-quest"
     },
     {
@@ -40097,8 +40150,8 @@
       "id": "Q99.11",
       "name": "The Wizard's Quest",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-wizards-quest",
+      "state": "scripted"
     },
     {
       "id": "Q99.12",

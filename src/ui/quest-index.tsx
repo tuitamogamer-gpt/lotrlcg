@@ -187,6 +187,10 @@ const HEADLINES: Partial<
     lead: "Storm the fortress",
     em: "of Dol Guldur.",
   },
+  "the-wizards-quest": {
+    lead: "Answer Radagast's",
+    em: "summons.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",
