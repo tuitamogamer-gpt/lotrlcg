@@ -1,4 +1,5 @@
 import { huntersRestrictedBonus } from "./ulfast-player-support";
+import { voyageNoQuestExhaust } from "./perilous-voyage-support";
 import { hobbitPlayerNoQuestExhaust } from "./hobbit-player-cards";
 import * as EredFinalSupport from "./ered-final-player-support";
 import * as EredSupport from "./ered-mithrin-player-support";
@@ -505,6 +506,7 @@ export function questExhausts(s: GameState, u: Unit) {
     return false;
   if (beneathSandsPlayerDoesNotExhaustToQuest(s, u)) return false;
   if (cobasEconomyNoQuestExhaust(s, u)) return false;
+  if (voyageNoQuestExhaust(s, u)) return false;
   if (u.code === "11009" && !u.blanked) return false;
   if (hobbitPlayerNoQuestExhaust(u)) return false;
   if (Realm.realmNoQuestExhaust(s, u)) return false;

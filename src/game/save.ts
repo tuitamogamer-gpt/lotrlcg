@@ -81,6 +81,7 @@ import { shadowEastScenarioUnits } from "./shadow-east-scenario-state";
 import { wrathRuinSavedExtraUnits } from "./wrath-ruin-state";
 import { validateUlfast } from "./ulfast-support";
 import { validateUlfastPlayers } from "./ulfast-player-support";
+import { validatePerilousVoyage } from "./perilous-voyage-support";
 import { validateWrathRuin } from "./wrath-ruin-support";
 import { validateWrathRuinPlayers } from "./wrath-ruin-player-support";
 import { validateBurglarContract } from "./burglar-contract-support";
@@ -1442,6 +1443,7 @@ export function validateSave(
         !validateFortressNurnPlayers(s, validUnit as (v: unknown) => boolean) ||
         !validateWainridersPlayers(s, validUnit as (v: unknown) => boolean) ||
         !validateUlfastPlayers(s, validUnit as (v: unknown) => boolean) ||
+        !validatePerilousVoyage(s, validUnit as (v: unknown) => boolean) ||
         !validateBurglarContract(s, validUnit as (v: unknown) => boolean))
     )
       return false;
@@ -1825,6 +1827,7 @@ export function validateSave(
       ...(s.ashPlayers?.returnedHeroes ?? []),
       ...(s.wainriders?.resolving ?? []),
       ...(s.ulfastPlayers?.contracts.map((c) => c.unit) ?? []),
+      ...(s.perilousVoyage?.contracts.map((c) => c.unit) ?? []),
       ...(s.wainridersPlayers?.contracts.map((c) => c.unit) ?? []),
       ...(s.umbar?.underAlley.flatMap((entry) => entry.enemies) ?? []),
       ...(s.cobas?.capturePending ?? []),

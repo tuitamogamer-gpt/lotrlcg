@@ -1,4 +1,5 @@
 import { sarumanThreatReduction } from "./wainriders-player-support";
+import { voyageThreatReduction } from "./perilous-voyage-support";
 import { blackRidersPlayerThreatReduced } from "./black-riders-player-cards";
 import { batch4Scenario } from "./batch4-scenarios";
 import { CHETWOOD } from "./chetwood-support";
@@ -52,6 +53,13 @@ export function reduceThreat(
   amount =
     batch4Scenario(s).threatReduction?.(s, amount, reason, source) ?? amount;
   amount = sarumanThreatReduction(s, amount, reason);
+  const requested = amount;
+  amount = voyageThreatReduction(s, amount, reason, source);
+  if (requested > 0 && !amount)
+    log(
+      s,
+      "A Perilous Voyage: this threat cannot be reduced by that player card effect.",
+    );
   const reduction = Math.min(s.threat, amount);
   s.threat -= reduction;
   if (reduction) blackRidersPlayerThreatReduced(s, source, reason);

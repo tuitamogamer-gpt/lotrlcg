@@ -41,6 +41,7 @@ import { beginResources } from "./board";
 import { wainridersPlayerEffect } from "./wainriders-player";
 import { wainridersNoEngagement } from "./wainriders-player-support";
 import { ulfastPlayerEffect } from "./ulfast-player";
+import { perilousVoyageEffect, voyageRefresh } from "./perilous-voyage";
 import { finishGameSetup } from "./setup";
 import * as WrathPlayers from "./wrath-ruin-player";
 import * as Burglar from "./burglar-contract";
@@ -655,6 +656,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (MountainFirePlayers.mountainFirePlayerEffect(s, e)) return;
   if (wainridersPlayerEffect(s, e)) return;
   if (ulfastPlayerEffect(s, e)) return;
+  if (perilousVoyageEffect(s, e)) return;
   if (HaradPlayers.handleHaradPlayerEffect(s, e)) return;
   if (MumakPlayers.handleMumakilPlayerEffect(s, e)) return;
   if (RacePlayers.handleRaceHaradPlayerEffect(s, e)) return;
@@ -2109,6 +2111,7 @@ function handleEffect(s: GameState, e: Effect) {
         c.unit.exhausted = false;
       for (const c of s.ulfastPlayers?.contracts ?? [])
         c.unit.exhausted = false;
+      voyageRefresh(s);
       if (s.cobas)
         for (const u of s.staging.filter(
           (u) => card(u.code).type_code === "objective",

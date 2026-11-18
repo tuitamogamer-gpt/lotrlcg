@@ -52,9 +52,10 @@ board the fleet, and then hunts down the Dreadnaught.
 - The atlas rates the scenario 6.
 - **Not supported**: Epic Multiplayer Mode (several groups with an event
   organizer) — one group plays, so each "any group" is this group and the
-  global values count its players; the contract A Perilous Voyage (a player
-  card outside the recipe); and Silent Mist's "your collection" (its Upgraded
-  side's Response takes events from the discard pile only).
+  global values count its players; and Silent Mist's "your collection" (its
+  Upgraded side's Response takes events from the discard pile only). The
+  product's player card, the contract A Perilous Voyage, is supported (see
+  below).
 
 ## Setup
 
@@ -182,6 +183,31 @@ defending ship, Out of the Mist raises your threat by 4 or makes an additional
 attack, Overworked gives +1 attack (+3 with 7 or more allies) and Violent
 Tempest deals 1 damage to the defender.
 
+## The contract A Perilous Voyage
+
+The product's player card (#47, both sides checked against the scans, which
+match the catalog) begins in play on Side A with each player whose deck holds
+it, outside the deck; the contract works in every scenario.
+
+- **Side A**: the deck must hold at least 100 player cards (the engine allows
+  decks of 50 to 100 cards, so such a deck holds exactly 100), and the
+  player's threat cannot be reduced by player card effects (quest card and
+  encounter card effects still reduce it). Action: exhaust the contract and
+  raise your threat by 1 to look at the top 2 cards of your deck, draw 1 and
+  place the other on the bottom; the contract readies in the refresh phase.
+- **Forced**: when the player would be eliminated by reaching their threat
+  elimination level, the contract flips over instead, before any Response to
+  the same elimination (Favor of the Valar).
+- **Side B**: the threat cannot be reduced by non-contract player card
+  effects, and the player's heroes do not exhaust to quest. When the contract
+  flips to this side, the player reduces their threat by 10 and searches their
+  deck for a card: they add it to their hand or play it, reducing its cost by
+  3 (any card the effect could play from the deck with a printed cost; an X
+  cost card can only be added to the hand), paying the rest resource by
+  resource from their heroes and choosing its target. The deck is shuffled
+  once the card has left it. Reaching the elimination level again on Side B
+  eliminates the player.
+
 ## Verification
 
 ```sh
@@ -191,6 +217,14 @@ npm run build
 npm run test:browser-hunt-dreadnaught
 npm run audit:rules
 ```
+
+`tests/perilous-voyage.test.ts` (8 tests) covers the contract's data, faces
+and deck rules, its setup in solo and multiplayer, both threat locks, the
+Action, the flip instead of elimination, the search that adds or plays a card
+(paid, free or with a target), the refresh, elimination and saves, and
+`npm run test:browser-perilous-voyage` checks the contract panel, the Action,
+the flip, the search and a reduced play at 1280, 390 and 320 pixels (15
+checkpoints) and both original faces.
 
 The focused suites (`tests/hunt-dreadnaught.test.ts`, 13 tests, and
 `tests/hunt-dreadnaught-cards.test.ts`, 13 tests) cover the fleet and the

@@ -519,6 +519,7 @@ export interface GameState {
   wainridersPlayers?: import("./wainriders-player-types").WainridersPlayersState;
   ulfast?: import("./ulfast-types").UlfastState;
   ulfastPlayers?: import("./ulfast-player-types").UlfastPlayersState;
+  perilousVoyage?: import("./perilous-voyage-types").PerilousVoyageState;
   wrathRuin?: import("./wrath-ruin-types").WrathRuinState;
   burglarContract?: import("./burglar-contract-types").BurglarContractState;
   wrathRuinPlayers?: import("./wrath-ruin-player-types").WrathRuinPlayersState;

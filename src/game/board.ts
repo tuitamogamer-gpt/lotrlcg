@@ -120,6 +120,10 @@ import { celebrimborProtected } from "./celebrimbor-support";
 import * as Celebrimbor from "./celebrimbor";
 import { NIN } from "./nin-eilph-support";
 import * as Nin from "./nin-eilph";
+import {
+  voyageEliminationCheck,
+  voyagePlayerEliminated,
+} from "./perilous-voyage";
 import { threatElimination } from "./tharbad-support";
 import * as Tharbad from "./tharbad";
 import * as Trials from "./three-trials";
@@ -981,6 +985,8 @@ export function check(s: GameState) {
   }
   // Favor replaces actual dial elimination before a protected companion or
   // prisoner can lose the game because its controlling fellowship is eliminated.
+  // A Perilous Voyage flips (Forced) before Favor of the Valar responds.
+  globalEachSeat(s, () => voyageEliminationCheck(s));
   globalEachSeat(s, () => Angmar.angmarFavor(s, threatElimination(s)));
   rhosgobelCheck(s);
   returnMirkwoodCheck(s);
@@ -1179,6 +1185,7 @@ export function check(s: GameState) {
       }
       ShadowEastPlayers.shadowEastPlayerEliminated(s, i);
       huntersPlayerEliminated(s, i);
+      voyagePlayerEliminated(s, i);
       wainridersPlayerEliminated(s, i);
       ashPlayerEliminated(s, i);
       landSorrowPlayerEliminated(s, i);

@@ -17,6 +17,7 @@ import { bondHeroLimit, bondSetup } from "./fortress-nurn-player";
 import { councilSetup } from "./ash-mountains-player";
 import { wandererSetup } from "./wainriders-player";
 import { huntersSetup } from "./ulfast-player";
+import { perilousVoyageSetup } from "./perilous-voyage";
 import { shadowEastPlayerScenarioProblem } from "./deck-setup";
 import { burglarContractSetup } from "./burglar-contract";
 import * as ShadowEastPlayers from "./shadow-east-player";
@@ -469,6 +470,7 @@ export function createGame(
   councilSetup(s);
   messengerSetup(s);
   bondSetup(s);
+  perilousVoyageSetup(s);
   // The Hunt for the Dreadnaught: each player chooses a ship before drawing.
   huntDreadnaughtFleetSetup(s);
   if (s.choice || s.queue.length) {

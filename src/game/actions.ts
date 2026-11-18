@@ -1,5 +1,7 @@
 import * as FortressPlayers from "./fortress-nurn-player";
 import * as HobbitPlayers from "./hobbit-player-cards";
+import { useVoyageAbility } from "./perilous-voyage";
+import { perilousVoyagePublic } from "./perilous-voyage-support";
 import * as BlackRidersPlayers from "./black-riders-player-cards";
 import * as RoadDarkensPlayers from "./road-darkens-player-cards";
 import * as TreasonPlayers from "./treason-saruman-player-cards";
@@ -3282,6 +3284,7 @@ export function applyAction(input: GameState, action: Action): GameState {
             UlfastPlayers.useHuntersAbility(s, u)
           )
             return;
+          if (u && !action.attachmentId && useVoyageAbility(s, u)) return;
           if (
             u &&
             WainPlayers.useWainridersPlayerAbility(s, u, action.attachmentId)
@@ -3869,6 +3872,7 @@ export function publicState(s: GameState) {
     ashPlayers: AshPlayers.councilPublic(s),
     wainriders: wainridersPublicState(s),
     wainridersPlayers: wainridersPlayerPublic(s),
+    perilousVoyage: perilousVoyagePublic(s),
     ulfastPlayers: s.ulfastPlayers?.contracts.map((c) => ({
       player: c.player,
       id: c.unit.id,

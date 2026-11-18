@@ -109,6 +109,7 @@ import {
 } from "./ui/wainriders-state";
 import { BurglarContractStateView } from "./ui/burglar-contract";
 import { UlfastScenarioState, HuntersContractState } from "./ui/ulfast-state";
+import { PerilousVoyageState } from "./ui/perilous-voyage-state";
 import { WrathRuinScenarioState } from "./ui/wrath-ruin-state";
 import "./ui/save-status.css";
 import { currentQuestInspection } from "./ui/quest-inspection";
@@ -3386,6 +3387,11 @@ export default function App() {
             />
             <UlfastScenarioState s={game} inspect={setDetail} />
             <HuntersContractState
+              s={game}
+              inspect={setDetail}
+              dispatch={dispatch}
+            />
+            <PerilousVoyageState
               s={game}
               inspect={setDetail}
               dispatch={dispatch}

@@ -3,6 +3,7 @@ import { bondDeckProblems, bondHeroLimit } from "./fortress-nurn-player";
 import { councilDeckProblems } from "./ash-mountains-player";
 import { wandererDeckProblems } from "./wainriders-player-support";
 import { huntersDeckProblems } from "./ulfast-player-support";
+import { voyageDeckProblems } from "./perilous-voyage-support";
 import { hasEncounterKeyword } from "./encounter-keyword";
 export { startingThreat } from "./starting-threat";
 import { card, playerCards, SCRIPTED } from "./cards";
@@ -80,6 +81,7 @@ export function deckProblems(
 ) {
   const problems: string[] = [
     ...huntersDeckProblems(deck.cards),
+    ...voyageDeckProblems(deck.cards),
     ...councilDeckProblems(deck.cards),
     ...messengerDeckProblems(deck.heroes, deck.cards),
     ...bondDeckProblems(deck.heroes, deck.cards),

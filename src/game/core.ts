@@ -377,6 +377,7 @@ export const get = (s: GameState, id?: string) =>
   s.ashPlayers?.contracts.find((c) => c.unit.id === id)?.unit ??
   s.wainridersPlayers?.contracts.find((c) => c.unit.id === id)?.unit ??
   s.ulfastPlayers?.contracts.find((c) => c.unit.id === id)?.unit ??
+  s.perilousVoyage?.contracts.find((c) => c.unit.id === id)?.unit ??
   (mainQuestUnit(s)?.id === id ? mainQuestUnit(s) : undefined) ??
   (id &&
   /^threat:[0-3]$/.test(id) &&

@@ -1,0 +1,18 @@
+[
+  {
+    "code": "40047",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/42542310-5f9c-4897-8a12-bb270964087f.jpg",
+    "localPath": "/cards/40047.jpg",
+    "bytes": 153522,
+    "sha256": "282c13e9e9e48369eadd79e421174cec55e1dec56a36b16bce2153a7c97e0db0"
+  },
+  {
+    "code": "40047",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/42542310-5f9c-4897-8a12-bb270964087f.B.jpg",
+    "localPath": "/cards/40047.B.jpg",
+    "bytes": 156451,
+    "sha256": "c60b79f24b1afd5ca220a278786bcb335462e02e213d2be690a1b55887f8e0bc"
+  }
+]

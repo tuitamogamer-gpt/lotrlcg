@@ -1,0 +1,45 @@
+[
+  {
+    "code": "40047",
+    "name": "A Perilous Voyage",
+    "type_code": "contract",
+    "type_name": "Contract",
+    "sphere_code": "neutral",
+    "sphere_name": "Neutral",
+    "text": "Your minimum deck size is 100 cards.\nYour threat cannot be reduced by player card effects.\nAction: Exhaust this card and raise your threat by 1 to look at the top 2 cards of your deck, draw 1, and place the other on the bottom of your deck.\nForced: When you would be eliminated by reaching your threat elimination level, flip this card over instead.",
+    "flavor": "Thus came Aragorn... borne upon a wind from the Sea to the kingdom of Gondor...\n-The Return of the King",
+    "is_unique": false,
+    "deck_limit": 1,
+    "pack_name": "The Hunt for the Dreadnaught",
+    "pack_code": "THftD",
+    "position": 47,
+    "illustrator": "Imad Awan",
+    "imagesrc": "/cards/40047.jpg",
+    "url": "https://ringsdb.com/card/40047",
+    "quantity": 1,
+    "octgnid": "42542310-5f9c-4897-8a12-bb270964087f",
+    "has_errata": false,
+    "packs": [
+      {
+        "pack_code": "THftD",
+        "pack_name": "The Hunt for the Dreadnaught",
+        "position": 47,
+        "quantity": 1,
+        "image_code": "40047",
+        "illustrator": "Imad Awan",
+        "octgnid": "42542310-5f9c-4897-8a12-bb270964087f",
+        "imagesrc": "/bundles/cards/40047.png",
+        "date_release": "2020-12-01"
+      }
+    ],
+    "source": "ringsdb",
+    "source_url": "https://ringsdb.com/card/40047",
+    "official": true,
+    "nightmare": false,
+    "side": "A",
+    "back_name": "A Perilous Voyage",
+    "back_type_code": "contract",
+    "back_imagesrc": "/cards/40047.B.jpg",
+    "back_text": "Your threat cannot be reduced by non-contract player card effects.\nHeroes you control do not exhaust to quest.\nForced: When this card is flipped to this side, reduce your threat by 10. Search your deck for a card and either add it to your hand or play it, reducing its cost by 3. Shuffle your deck."
+  }
+]

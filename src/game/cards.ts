@@ -165,6 +165,7 @@ import {
 } from "./fate-wilderland-scenario-data";
 import eredFinalPlayers from "../data/ered-final-player-cards.json";
 import ulfastPlayers from "../data/ulfast-player-cards.json";
+import dreadnaughtPlayers from "../data/dreadnaught-player-cards.json";
 import { ULFAST_ENCOUNTERS, ULFAST_QUESTS } from "./ulfast-scenario-data";
 import wrathRuinPlayers from "../data/wrath-ruin-player-cards.json";
 import {
@@ -423,6 +424,7 @@ export const playerCards = [
           ...ashPlayers,
           ...landSorrowPlayers,
           ...fortressNurnPlayers,
+          ...dreadnaughtPlayers,
           ...hobbitPlayers,
           ...blackRidersPlayers,
           ...roadDarkensPlayers,

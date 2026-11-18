@@ -2,9 +2,9 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 860,
+    "playerCards": 861,
     "heroes": 112,
-    "deckCards": 744,
+    "deckCards": 745,
     "encounterCards": 2048,
     "scenarios": 123,
     "scenarioIds": [
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3299,
-    "pending": 884
+    "scripted": 3300,
+    "pending": 883
   },
   "scenarioRecipes": {
     "total": 355,
@@ -1073,6 +1073,7 @@
     "22144",
     "22145",
     "22147",
+    "40047",
     "dread:reanimated-dead",
     "drowned-cursed-caverns",
     "drowned-undersea-grotto",
@@ -4101,9 +4102,9 @@
     {
       "product": "the-hunt-for-the-dreadnaught",
       "total": 47,
-      "scripted": 46,
+      "scripted": 47,
       "player": 1,
-      "playerScripted": 0
+      "playerScripted": 1
     },
     {
       "product": "the-land-of-shadow",
@@ -13104,7 +13105,7 @@
       "name": "A Perilous Voyage",
       "type": "contract",
       "pack": "The Hunt for the Dreadnaught",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-hunt-for-the-dreadnaught"
     },
     {
