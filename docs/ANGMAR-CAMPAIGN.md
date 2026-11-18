@@ -4,11 +4,11 @@ Campaign mode for the nine scenarios of the Angmar Awakened cycle, with the
 Angmar Awakened Campaign Expansion's campaign cards, boons and burdens (the
 campaign pool CCC.3, 38 cards). The lobby's campaign mode offers it as the
 third campaign, next to Mirkwood Paths and The Lord of the Rings, for one
-fellowship of one to four local players. Its first five chapters, Intruders
-in Chetwood, The Weather Hills, Deadmen's Dike, The Wastes of Eriador and
-Escape from Mount Gram, are supported; the campaign log is kept after them,
-and the end of the game says that the next chapter, Across the Ettenmoors, is
-not available in campaign mode yet.
+fellowship of one to four local players. Its first six chapters, Intruders in
+Chetwood, The Weather Hills, Deadmen's Dike, The Wastes of Eriador, Escape
+from Mount Gram and Across the Ettenmoors, are supported; the campaign log is
+kept after them, and the end of the game says that the next chapter, The
+Treachery of Rhudaur, is not available in campaign mode yet.
 
 ## Sources
 
@@ -124,12 +124,19 @@ not available in campaign mode yet.
 | Mail of Eärnur (boon attachment, cost 1)                   | Attach to a hero: +2 hit points. Response: after a player's threat is reduced, heal 1 damage from that hero.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | Silverthorn (boon attachment, cost 0)                      | Attach to a hero: +1 attack and +1 defense while attacking or defending against an enemy that shares a Trait with an enemy in the victory display. Response (once per game): after that hero attacks and destroys an enemy, add it to the victory display from the encounter discard pile.                                                                                                                                                                                                                                                                                                                                                   |
 
+## Across the Ettenmoors (Part 6)
+
+| Card                                     | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                               |
+| ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Campaign card                            | Setup: the 5 Losing Time treacheries are set aside, out of play. Forced: at the beginning of each quest phase, 1 resource is placed on the campaign card; at 3, 3 are removed to reveal a set-aside Losing Time (its effects resolve, Iârion's Pendant can cancel them) and place it in the encounter discard pile. Resolution: each copy of Losing Time in the encounter deck or discard pile joins the Campaign Pool. |
+| Losing Time (burden treachery, 5 copies) | Surge. When Revealed: each player chooses to raise their threat by 3 or exhaust a hero they control. Shadow: the defending player gives the attacking enemy +3 attack or +3 defense until the end of the phase. The copies in the pool are shuffled into each later encounter deck.                                                                                                                                     |
+
 ## Not supported yet
 
-Across the Ettenmoors, The Treachery of Rhudaur, The Battle of Carn Dûm and The
-Dread Realm follow, with their boons and burdens (Losing Time, the three Clue
-boons and the four Carn Dûm boons). They also bring Thaurdir's burdens' setup
-in The Treachery of Rhudaur and The Battle of Carn Dûm.
+The Treachery of Rhudaur, The Battle of Carn Dûm and The Dread Realm follow,
+with their boons (the three Clue boons and the four Carn Dûm boons). They also
+bring Thaurdir's burdens' setup in The Treachery of Rhudaur and The Battle of
+Carn Dûm.
 
 ## Verification
 
@@ -139,7 +146,7 @@ npm run build
 npm run test:browser-angmar-campaign
 ```
 
-`tests/angmar-campaign.test.ts` (19 tests) covers the registered cards' texts
+`tests/angmar-campaign.test.ts` (21 tests) covers the registered cards' texts
 and faces, the chapter order and the Amarthiúl rule, Intruders in Chetwood's
 setup (one or two players), Iârion's Pendant on Iârion and its bonus,
 Protect the Innocent's damage, progress and loss, the Pendant's two
@@ -157,12 +164,15 @@ log, Fend off Despair's doomed 1 and its starting threat reduction, and Arnor
 Ravaged's damage; Escape from Mount Gram's captured boons, Loot the Dungeons'
 captures, its place in each staging area (two players), its quest points,
 defeat, rescue and boon choices, the refresh threat, the bans and their later
-decks, and the six boons' scripts. The browser suite starts a new Angmar Awakened
+decks, and the six boons' scripts; Across the Ettenmoors' set-aside Losing
+Time, the campaign card's resources and reveal, Losing Time's two choices and
+its shadow, and the copies pooled. The browser suite starts a new Angmar Awakened
 campaign through the lobby, plays Intruders in Chetwood's setup choice, records
 its resolution, continues into The Weather Hills, attaches Hardy through
 Mysterious Omens' choice, continues into Deadmen's Dike, moves Thaurdir's
 Spite to a hero, answers the resolution's choice in the end-of-game dialog,
 puts Iârion's Pendant in a deck in the interlude, continues into The Wastes
-of Eriador and Escape from Mount Gram and records their resolutions, opens the
-campaign card's state in the quest inspector and checks the journal at 1280,
-390 and 320 pixels (48 checkpoints), and checks the 32 pinned faces.
+of Eriador, Escape from Mount Gram and Across the Ettenmoors and records their
+resolutions, opens the campaign card's state in the quest inspector and checks
+the journal at 1280, 390 and 320 pixels (54 checkpoints), and checks the 35
+pinned faces.

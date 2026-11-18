@@ -40,7 +40,7 @@ import {
   readDamageContext,
   type DamageContext,
 } from "./damage-context";
-import { check, damage, readyCharacter } from "./board";
+import { check, damage, raiseThreat, readyCharacter, revealed } from "./board";
 import { applyCombatDamageConsequences } from "./combat";
 import {
   DIKE_DISCARD_REASON,
@@ -93,6 +93,8 @@ export const ANGMAR = {
   laermuin: "10179",
   mail: "10180",
   silverthorn: "10181",
+  /** Losing Time (burden treachery, five copies). */
+  losing: "10183",
 } as const;
 /** Berelind, Chieftain's Brooch, Coruhaer, Laermuin, Mail of Eärnur and Silverthorn. */
 export const LOOT_BOONS: readonly string[] = [
@@ -136,6 +138,7 @@ export const ANGMAR_CAMPAIGN_SUPPORTED: readonly ScenarioId[] = [
   "deadmens-dike",
   "wastes-of-eriador",
   "escape-from-mount-gram",
+  "across-the-ettenmoors",
 ];
 /** The chapters whose campaign card lets each player change heroes without the +1 threat penalty. */
 export const ANGMAR_FREE_CHANGES: readonly ScenarioId[] = [
@@ -306,6 +309,15 @@ export function angmarCampaignSetup(s: GameState) {
     c!.burdens.includes(ANGMAR.despair)
   ) {
     s.encounterDeck.push(ANGMAR.despair);
+    shuffle(s, s.encounterDeck);
+  }
+  // Across the Ettenmoors: "Setup: Set all 5 Losing Time treacheries aside,
+  // out of play." The copies the Campaign Pool earns join each later deck.
+  if (s.scenarioId === "across-the-ettenmoors")
+    state(s).losing = { aside: 5, clock: 0 };
+  else if (c!.burdens.includes(ANGMAR.losing)) {
+    const copies = c!.burdenCopies?.[ANGMAR.losing] ?? 1;
+    s.encounterDeck.push(...Array<string>(copies).fill(ANGMAR.losing));
     shuffle(s, s.encounterDeck);
   }
   // Arnor Ravaged: "Setup: Add Arnor Ravaged to the staging area with damage
@@ -767,6 +779,62 @@ export function angmarRefreshBase(s: GameState) {
   ).length;
   return completed + sides;
 }
+/**
+ * Across the Ettenmoors: "Forced: At the beginning of the quest phase, place
+ * 1 resource on this card. Then, if there are 3 or more resources on it,
+ * remove 3 resources from it to reveal 1 set-aside copy of Losing Time and
+ * place it in the encounter discard pile."
+ */
+export function angmarCampaignQuestStart(s: GameState) {
+  const clock = s.angmarCards?.losing;
+  if (
+    !isAngmarCampaign(s.campaign) ||
+    s.scenarioId !== "across-the-ettenmoors" ||
+    !clock
+  )
+    return;
+  clock.clock += 1;
+  log(
+    s,
+    `Across the Ettenmoors: 1 resource is placed on the campaign card (${clock.clock}).`,
+  );
+  if (clock.clock < 3 || !clock.aside) return;
+  clock.clock -= 3;
+  clock.aside -= 1;
+  log(
+    s,
+    `Across the Ettenmoors: 3 resources are removed to reveal a set-aside Losing Time (${clock.aside} left).`,
+    "danger",
+  );
+  prepend(s, fx("angmarRevealLosing", { player: globalPlayerOrder(s)[0] }));
+}
+/** Losing Time: "Surge. When Revealed: Each player must either raise their threat by 3 or exhaust a hero they control." */
+export function angmarCampaignEncounter(
+  s: GameState,
+  code: string,
+  replay = false,
+  fromReveal = true,
+) {
+  if (code !== ANGMAR.losing || !isAngmarCampaign(s.campaign)) return false;
+  if (!replay) s.encounterDiscard.push(code);
+  if (!fromReveal) return true;
+  prepend(
+    s,
+    ...playerOrder(s).map((player) => fx("angmarLosingTime", { player })),
+  );
+  return true;
+}
+/** Losing Time: "Shadow: Attacking enemy either gets +3 [attack] or +3 [defense] until the end of the phase." */
+export function angmarCampaignShadow(s: GameState, code: string) {
+  const c = s.combat;
+  if (code !== ANGMAR.losing || !c || !isAngmarCampaign(s.campaign))
+    return false;
+  prepend(
+    s,
+    fx("angmarLosingShadow", { target: c.enemyId, player: activeSeat(s) }),
+  );
+  return true;
+}
 /** Iârion enters play: the campaign card attaches Iârion's Pendant to him. */
 export function angmarIarionEntered(s: GameState, iarion: Unit) {
   if (
@@ -946,6 +1014,22 @@ export function resolveAngmarCampaign(s: GameState) {
       s,
       `Fend off Despair: each player's starting threat is reduced by ${c.threatReduction} in the Campaign Log.`,
       "good",
+    );
+  }
+  if (s.scenarioId === "across-the-ettenmoors") {
+    // "Add each copy of Losing Time in the encounter deck or encounter
+    // discard pile to the Campaign Pool."
+    const copies = [...s.encounterDeck, ...s.encounterDiscard].filter(
+      (code) => code === ANGMAR.losing,
+    ).length;
+    if (copies) {
+      if (!c.burdens.includes(ANGMAR.losing)) c.burdens.push(ANGMAR.losing);
+      c.burdenCopies = { ...(c.burdenCopies ?? {}), [ANGMAR.losing]: copies };
+    }
+    log(
+      s,
+      `Across the Ettenmoors · Resolution: ${copies} ${copies === 1 ? "copy" : "copies"} of Losing Time ${copies === 1 ? "joins" : "join"} the Campaign Pool.`,
+      copies ? "danger" : "good",
     );
   }
   if (s.scenarioId === "escape-from-mount-gram") {
@@ -1130,6 +1214,15 @@ export function angmarCampaignStatus(s: GameState): string[] {
   if (loot)
     out.push(
       `Loot the Dungeons is in each player's staging area (${loot.progress}/${(card(ANGMAR.loot).quest ?? 0) + angmarSideQuestBonus(s, loot)} progress): defeating it rescues the cards captured beneath it and lets each player add Berelind, Chieftain's Brooch, Coruhaer, Laermuin, Mail of Eärnur or Silverthorn to their hand.`,
+    );
+  const clock = s.angmarCards?.losing;
+  if (clock && s.scenarioId === "across-the-ettenmoors")
+    out.push(
+      `Across the Ettenmoors has ${clock.clock} resource${clock.clock === 1 ? "" : "s"}: it gains 1 at the beginning of each quest phase, and at 3 a set-aside Losing Time (${clock.aside} left) is revealed and placed in the encounter discard pile.`,
+    );
+  else if (s.campaign!.burdens.includes(ANGMAR.losing))
+    out.push(
+      `Losing Time (${s.campaign!.burdenCopies?.[ANGMAR.losing] ?? 1} in the Campaign Pool) is shuffled into the encounter deck.`,
     );
   if (isGramCampaign(s))
     out.push(
@@ -1468,6 +1561,76 @@ export function angmarCampaignEffect(s: GameState, e: Effect): boolean {
       );
       return true;
     }
+    case "angmarRevealLosing":
+      revealed(s, ANGMAR.losing, undefined, "encounter");
+      return true;
+    case "angmarLosingTime": {
+      const p = e.player ?? first(s);
+      const heroes = seatView(s, p).heroes.filter((h) => !h.exhausted);
+      forOwner(s, p, () =>
+        choose(
+          s,
+          `Losing Time · ${several(s) ? `${seatName(s, p)} must` : "You must"} raise ${several(s) ? "their" : "your"} threat by 3 or exhaust a hero`,
+          [
+            {
+              id: "threat",
+              label: "Raise your threat by 3",
+              effects: [fx("angmarLosingThreat", { player: p })],
+            },
+            ...heroes.map((h) => ({
+              id: h.id,
+              code: h.code,
+              label: `Exhaust ${name(h)}`,
+              effects: [fx("exhaust", { target: h.id })],
+            })),
+          ],
+          card(ANGMAR.losing).text,
+        ),
+      );
+      return true;
+    }
+    case "angmarLosingThreat": {
+      const p = e.player ?? first(s);
+      forOwner(s, p, () => raiseThreat(s, 3, "encounter"));
+      log(
+        s,
+        `Losing Time: ${who(s, p)} ${several(s) ? "raises" : "raise"} the threat by 3.`,
+        "danger",
+      );
+      return true;
+    }
+    case "angmarLosingShadow": {
+      const enemy = get(s, e.target);
+      if (!enemy) return true;
+      choose(
+        s,
+        `Losing Time · ${name(enemy)} gets +3 attack or +3 defense until the end of the phase`,
+        (["attack", "defense"] as const).map((stat) => ({
+          id: stat,
+          label: `+3 ${stat}`,
+          effects: [fx("angmarLosingBoost", { target: enemy.id, text: stat })],
+        })),
+        card(ANGMAR.losing).text,
+      );
+      return true;
+    }
+    case "angmarLosingBoost": {
+      const enemy = get(s, e.target);
+      if (!enemy || (e.text !== "attack" && e.text !== "defense")) return true;
+      (state(s).boosts ??= []).push({
+        target: enemy.id,
+        phase: angmarPhase(s.phase),
+        round: s.round,
+        stat: e.text,
+        value: 3,
+      });
+      log(
+        s,
+        `Losing Time: ${name(enemy)} gets +3 ${e.text} until the end of the phase.`,
+        "danger",
+      );
+      return true;
+    }
     case "angmarLootSetup": {
       const q = gramState(s);
       if (!q || s.staging.some((u) => u.code === ANGMAR.loot)) return true;
@@ -1614,6 +1777,7 @@ export const ANGMAR_BURDENS: readonly string[] = [
   ANGMAR.omens,
   ...THAURDIR_BURDENS,
   ANGMAR.despair,
+  ANGMAR.losing,
 ];
 /** The Angmar Awakened Campaign Log in a saved game. */
 export function validateAngmarCampaign(s: GameState): boolean {
@@ -1693,6 +1857,18 @@ export function validateAngmarCampaign(s: GameState): boolean {
             integer(seat) &&
             seat < (s.table?.seats.length ?? 1),
         ))) &&
+    (c.burdenCopies === undefined ||
+      (!!c.burdenCopies &&
+        typeof c.burdenCopies === "object" &&
+        !Array.isArray(c.burdenCopies) &&
+        Object.entries(c.burdenCopies).every(
+          ([code, n]) =>
+            code === ANGMAR.losing &&
+            c.burdens.includes(code) &&
+            integer(n) &&
+            n >= 1 &&
+            n <= 5,
+        ))) &&
     (c.boonCopies === undefined ||
       (!!c.boonCopies &&
         typeof c.boonCopies === "object" &&
@@ -1726,6 +1902,12 @@ export function validateAngmarCampaign(s: GameState): boolean {
         (q.thaurdir === undefined || THAURDIR_BURDENS.includes(q.thaurdir)) &&
         (q.despair === undefined || (integer(q.despair) && q.despair > 0)) &&
         (q.setupHand === undefined || codes(q.setupHand)) &&
+        (q.losing === undefined ||
+          (!!q.losing &&
+            integer(q.losing.aside) &&
+            q.losing.aside <= 5 &&
+            integer(q.losing.clock) &&
+            q.losing.clock <= 2)) &&
         (q.loot === undefined ||
           (Array.isArray(q.loot) &&
             q.loot.every(
@@ -1754,7 +1936,11 @@ export function validateAngmarCampaign(s: GameState): boolean {
                 !!b &&
                 typeof b.target === "string" &&
                 typeof b.phase === "string" &&
-                integer(b.round),
+                integer(b.round) &&
+                (b.stat === undefined ||
+                  b.stat === "attack" ||
+                  b.stat === "defense") &&
+                (b.value === undefined || integer(b.value)),
             )))))
   );
 }

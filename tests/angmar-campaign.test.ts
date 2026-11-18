@@ -32,6 +32,8 @@ import {
   ANGMAR_CAMPAIGN_SUPPORTED,
   angmarAmarthiulEntered,
   angmarCampaignAfterReveal,
+  angmarCampaignEncounter,
+  angmarCampaignQuestStart,
   angmarCampaignStatus,
   angmarInnocent,
   angmarRavaged,
@@ -140,6 +142,7 @@ test("The Angmar Awakened campaign: Intruders in Chetwood's campaign card, Iâri
     "deadmens-dike",
     "wastes-of-eriador",
     "escape-from-mount-gram",
+    "across-the-ettenmoors",
   ]);
   const campaignCard = card(ANGMAR_CAMPAIGN_CARDS["intruders-in-chetwood"]!);
   assert.equal(campaignCard.subtitle, "Angmar Awakened Part 1");
@@ -273,7 +276,17 @@ test("The Angmar Awakened campaign: Intruders in Chetwood's campaign card, Iâri
       ["Silverthorn", "attachment"],
     ],
   );
-  assert.equal(art.length, 32);
+  const ettenCard = card(ANGMAR_CAMPAIGN_CARDS["across-the-ettenmoors"]!);
+  assert.equal(ettenCard.subtitle, "Angmar Awakened Part 6");
+  assert.match(
+    ettenCard.text!,
+    /\nForced: At the beginning of the quest phase, place 1 resource on this card\. Then, if there are 3 or more resources on it, remove 3 resources from it to reveal 1 set-aside copy of Losing Time and place it in the encounter discard pile\.$/,
+  );
+  assert.deepEqual(
+    [card(ANGMAR.losing).type_code, card(ANGMAR.losing).quantity],
+    ["treachery", 5],
+  );
+  assert.equal(art.length, 35);
   for (const a of art) {
     const bytes = readFileSync(`public${a.localPath}`);
     assert.equal(bytes.length, a.bytes);
@@ -1376,10 +1389,12 @@ test("Loot the Dungeons: its defeat rescues the cards beneath it (a rescued hero
   assert.equal(c.deckBoons![ANGMAR.silverthorn], 0);
   assert.ok(c.banned![0].includes(unique), JSON.stringify(c.banned));
   assert.ok(valid(s));
-  // The next chapter is not available yet; the ban applies to later decks.
-  assert.throws(
-    () => continueCampaign(s, HEROES, d.id, true, 9),
-    /not available in campaign mode yet/,
+  // The campaign continues with Across the Ettenmoors, without the banned card.
+  const etten = continueCampaign(s, HEROES, d.id, true, 9);
+  assert.equal(etten.scenarioId, "across-the-ettenmoors");
+  assert.ok(
+    ![...etten.deck, ...etten.hand.map((u) => u.code)].includes(unique),
+    "banned from the next deck",
   );
   const replay = gram(6, { ...afterWastes(), banned: { 0: [unique] } });
   assert.ok(
@@ -1509,4 +1524,107 @@ test("Loot the Dungeons' boons: Chieftain's Brooch, Silverthorn's bonus and Resp
   s = choose(s, hero(s, "01006").id);
   for (let k = 0; k < 3 && s.choice; k++) s = choose(s, s.choice.options[0].id);
   assert.equal(hero(s, "01006").damage, 1);
+});
+
+/** The Campaign Log after Escape from Mount Gram. */
+const afterGram = (): CampaignState => ({
+  ...afterWastes(),
+  completed: ANGMAR_CAMPAIGN_ORDER.slice(0, 5).map((scenarioId) => ({
+    scenarioId,
+    score: 0,
+    rounds: 1,
+  })),
+});
+const ettenmoors = (seed = 5, campaign = afterGram()) =>
+  createGame(seed, d.cards, HEROES, d.id, {
+    scenarioId: "across-the-ettenmoors",
+    playMode: "campaign",
+    campaign,
+  });
+
+test("Across the Ettenmoors: the 5 Losing Time wait out of play; each quest phase adds a resource to the campaign card, and at 3 a set-aside Losing Time is revealed and goes to the encounter discard pile; the resolution pools the copies in the encounter deck and discard pile", () => {
+  let s = calm(reload(opening(ettenmoors())));
+  assert.deepEqual(s.angmarCards!.losing, { aside: 5, clock: 0 });
+  assert.ok(
+    ![...s.encounterDeck, ...s.encounterDiscard].includes(ANGMAR.losing),
+  );
+  angmarCampaignQuestStart(s);
+  angmarCampaignQuestStart(s);
+  assert.deepEqual(s.angmarCards!.losing, { aside: 5, clock: 2 });
+  assert.ok(
+    angmarCampaignStatus(s).includes(
+      "Across the Ettenmoors has 2 resources: it gains 1 at the beginning of each quest phase, and at 3 a set-aside Losing Time (5 left) is revealed and placed in the encounter discard pile.",
+    ),
+  );
+  assert.ok(valid(s));
+  const threat = s.threat;
+  angmarCampaignQuestStart(s);
+  assert.deepEqual(s.angmarCards!.losing, { aside: 4, clock: 0 });
+  flush(s);
+  for (
+    let i = 0;
+    i < 6 && s.choice && !s.choice.title.startsWith("Losing Time");
+    i++
+  )
+    s = choose(s, s.choice.options[0].id);
+  assert.equal(
+    s.choice!.title,
+    "Losing Time · You must raise your threat by 3 or exhaust a hero",
+  );
+  assert.deepEqual(
+    s.choice!.options.map((o) => o.id),
+    ["threat", ...s.heroes.filter((h) => !h.exhausted).map((h) => h.id)],
+  );
+  s = choose(s, "threat");
+  assert.equal(s.threat, threat + 3);
+  assert.ok(s.encounterDiscard.includes(ANGMAR.losing));
+  // Exhausting a hero instead.
+  let t = calm(reload(opening(ettenmoors(6))));
+  angmarCampaignEncounter(t, ANGMAR.losing);
+  flush(t);
+  const hero = t.heroes[0];
+  t = choose(t, hero.id);
+  assert.equal(t.heroes[0].exhausted, true);
+  // The resolution pools the copies in the encounter deck and discard pile.
+  t = calm(t);
+  t.encounterDeck.push(ANGMAR.losing);
+  win(t);
+  assert.ok(t.campaign!.burdens.includes(ANGMAR.losing));
+  assert.deepEqual(t.campaign!.burdenCopies, { [ANGMAR.losing]: 2 });
+  assert.ok(valid(t));
+  assert.throws(
+    () => continueCampaign(t, HEROES, d.id, true, 9),
+    /not available in campaign mode yet/,
+  );
+});
+
+test("Losing Time's shadow: the attacking enemy gets +3 attack or +3 defense until the end of the phase", () => {
+  let s = calm(reload(opening(ettenmoors())));
+  const code = s.encounterDeck.find((c) => card(c).type_code === "enemy")!;
+  const enemy = engage(s, code);
+  const before = stats(s, enemy);
+  s.phase = "defense";
+  s.queue.push(fx("angmarLosingShadow", { target: enemy.id, player: 0 }));
+  flush(s);
+  assert.match(
+    s.choice!.title,
+    /gets \+3 attack or \+3 defense until the end of the phase$/,
+  );
+  s = choose(s, "attack");
+  const foe = () => s.engaged.find((u) => u.id === enemy.id)!;
+  assert.equal(stats(s, foe()).attack, before.attack + 3);
+  assert.equal(stats(s, foe()).defense, before.defense);
+  s.phase = "attack";
+  assert.equal(
+    stats(s, foe()).attack,
+    before.attack + 3,
+    "the same combat phase",
+  );
+  s.phase = "refresh";
+  assert.equal(
+    stats(s, foe()).attack,
+    before.attack,
+    "until the end of the phase",
+  );
+  assert.ok(valid(s));
 });

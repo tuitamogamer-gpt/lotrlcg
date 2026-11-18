@@ -578,7 +578,13 @@ export interface GameState {
     /** Attachments whose once-per-game ability has been used. */
     spent?: string[];
     /** Cunning's +2 willpower, attack and defense until the end of the phase. */
-    boosts?: { target: string; phase: string; round: number }[];
+    boosts?: {
+      target: string;
+      phase: string;
+      round: number;
+      stat?: "attack" | "defense";
+      value?: number;
+    }[];
     /** Deadmen's Dike: the burden attached to Thaurdir at random (pooled on a win). */
     thaurdir?: string;
     /** Fend off Despair: how many times it was defeated in this game. */
@@ -587,6 +593,8 @@ export interface GameState {
     setupHand?: string[];
     /** Loot the Dungeons: the boons each player took (pooled on a win). */
     loot?: { code: string; seat: number }[];
+    /** Across the Ettenmoors: the set-aside Losing Time copies and the campaign card's resources. */
+    losing?: { aside: number; clock: number };
   };
   /** The Lord of the Rings campaign: pending The Ring Draws Them engagements and Mr. Underhill marks. */
   sagaCards?: {

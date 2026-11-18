@@ -4,6 +4,8 @@ import {
 } from "./angmar-campaign-loot";
 import {
   angmarCampaignAfterReveal,
+  angmarCampaignEncounter,
+  angmarCampaignQuestStart,
   angmarRefreshBase,
 } from "./angmar-campaign";
 import { bagginsBilboFollowsFirstPlayer } from "./hobbit-saga";
@@ -1693,6 +1695,7 @@ function handleEffect(s: GameState, e: Effect) {
             Dread.dreadEncounter(s, e.code, true) ||
             Cobas.cobasEncounter(s, e.code, true) ||
             sagaCampaignEncounter(s, e.code, true, true) ||
+            angmarCampaignEncounter(s, e.code, true, true) ||
             batch4Scenario(s).encounter?.(s, e.code, true, true) ||
             City.cityEncounter(s, e.code, true) ||
             Umbar.umbarEncounter(s, e.code, true) ||
@@ -1999,6 +2002,7 @@ function handleEffect(s: GameState, e: Effect) {
       // Ettenmoors may first find a missing encounter side quest.
       prepend(s, fx("sideQuestStart", { player: firstPlayer(s) }));
       Etten.ettenQuestStart(s);
+      angmarCampaignQuestStart(s);
       break;
     case "startTravel":
       startPhase(s, "travel");

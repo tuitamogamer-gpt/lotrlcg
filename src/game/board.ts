@@ -144,6 +144,8 @@ import {
 import {
   angmarCampaignAttachmentLeaves,
   angmarCampaignDamageDealt,
+  angmarCampaignEncounter,
+  angmarCampaignShadow,
   angmarEventDoomed,
   angmarOfferResolute,
   angmarPendantRevealOptions,
@@ -3723,6 +3725,7 @@ export function placeEncounter(
     return;
   if (WrathPlayers.wrathRuinPlayerEncounter(s, code, false, fromReveal)) return;
   if (sagaCampaignEncounter(s, code, false, fromReveal)) return;
+  if (angmarCampaignEncounter(s, code, false, fromReveal)) return;
   if (batch4Scenario(s).encounter?.(s, code, false, fromReveal)) return;
   if (City.cityEncounter(s, code)) return;
   if (Umbar.umbarEncounter(s, code)) return;
@@ -4389,6 +4392,7 @@ export function shadow(s: GameState, code: string) {
   const longDarkAttacker = get(s, s.combat?.enemyId);
   if (longDarkAttacker && longDarkShadow(s, longDarkAttacker, code)) return;
   if (sagaCampaignShadow(s, code)) return;
+  if (angmarCampaignShadow(s, code)) return;
   if (watcherWaterShadow(s, code)) return;
   if (roadRivendellShadow(s, code)) return;
   if (redhornShadow(s, code)) return;

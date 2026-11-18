@@ -686,7 +686,7 @@ export function stats(s: GameState, u: Unit) {
         [
           batch4Scenario(s).stats?.(s, u).will ?? 0,
           sagaCampaignWillBonus(s, u),
-          angmarCampaignBoost(s, u),
+          angmarCampaignBoost(s, u, "will"),
           angmarBroochWill(s, u),
           BatchSupport.batch4PlayerStats(s, u).will,
           landSorrowPlayerStats(s, u).will,
@@ -751,7 +751,7 @@ export function stats(s: GameState, u: Unit) {
       ? 0
       : (namelessX ?? c.attack ?? 0) +
         chetwoodBonus.attack +
-        angmarCampaignBoost(s, u) +
+        angmarCampaignBoost(s, u, "attack") +
         GreyPlayers.greyHavensStats(s, u).attack +
         templePlayerBonus.attack +
         templeEncounterBonus.attack +
@@ -834,7 +834,7 @@ export function stats(s: GameState, u: Unit) {
           (c.defense ?? 0) +
             (u.roundDefense ?? 0) +
             chetwoodBonus.defense +
-            angmarCampaignBoost(s, u) +
+            angmarCampaignBoost(s, u, "defense") +
             cobasBonus.defense +
             GreyPlayers.greyHavensStats(s, u).defense +
             templePlayerBonus.defense +

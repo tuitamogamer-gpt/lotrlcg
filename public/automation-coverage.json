@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2134,
+    "encounterCards": 2136,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3385,
-    "pending": 798
+    "scripted": 3387,
+    "pending": 796
   },
   "scenarioRecipes": {
     "total": 355,
@@ -655,6 +655,7 @@
     "10179",
     "10180",
     "10181",
+    "10183",
     "11001",
     "11002",
     "11003",
@@ -3142,6 +3143,7 @@
     "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
     "octgn:cf6114ac-f795-4085-b135-4cca76fb8608",
     "octgn:cf74c777-dfe4-4cea-8b7f-4b09fc1aa5b2",
+    "octgn:cf9443b5-735d-4c8f-bd88-8643345f9632",
     "octgn:cfa94470-c25c-4af3-ba71-941d1fa48a9c",
     "octgn:cfaa761e-c273-451f-bb1e-84d25c4bedbb",
     "octgn:cfcee6c8-9eee-4623-afd1-a49ea77e2322",
@@ -3607,7 +3609,7 @@
     {
       "product": "angmar-awakened-campaign-expansion",
       "total": 38,
-      "scripted": 26,
+      "scripted": 28,
       "player": 21,
       "playerScripted": 14
     },
@@ -8783,7 +8785,7 @@
       "name": "Losing Time",
       "type": "treachery",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {
@@ -33695,7 +33697,7 @@
       "name": "Across the Ettenmoors",
       "type": "campaign",
       "pack": "Angmar Awakened Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "angmar-awakened-campaign-expansion"
     },
     {

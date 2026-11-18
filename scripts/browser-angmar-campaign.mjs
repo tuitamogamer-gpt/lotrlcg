@@ -457,8 +457,28 @@ try {
         .getByText(/Notes · left captured, out of the deck: /)
         .first()
         .waitFor();
-    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await page.getByRole("button", { name: /^Continue campaign/ }).waitFor();
     await checkpoint("gram-complete", width);
+    // Across the Ettenmoors: the campaign card's resources count to Losing Time.
+    s = await continueCampaign(undefined, width);
+    assert.equal(s.scenarioId, "across-the-ettenmoors");
+    assert.deepEqual(s.angmarCards.losing, { aside: 5, clock: 0 });
+    await campaignCard(
+      /^Across the Ettenmoors has 0 resources/,
+      "etten-setup",
+      width,
+    );
+    // The resolution pools the copies of Losing Time left in play.
+    s = await victory(s, (t) => {
+      t.encounterDiscard.push(ANGMAR.losing, ANGMAR.losing);
+    });
+    assert.deepEqual(s.campaign.burdenCopies, { [ANGMAR.losing]: 2 });
+    await page
+      .getByText(/Losing Time ×2/)
+      .first()
+      .waitFor();
+    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await checkpoint("etten-complete", width);
     await view.c.close();
   }
   const p = await browser.newPage();

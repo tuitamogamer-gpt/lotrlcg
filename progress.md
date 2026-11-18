@@ -1268,3 +1268,13 @@ Validation on Node 22: the engine suite passes all 6,779 tests, including 16 for
 Coverage is now 861 player definitions (112 heroes), 2,134 encounters and 123 scenarios. This resolves 3,385 of 4,183 identities and 270 of 355 recipes; 798 identities remain pending.
 
 Validation on Node 22: the engine suite passes all 6,782 tests, including 19 for the Angmar Awakened campaign; the Angmar browser suite passes 48 checkpoints at 1280, 390 and 320 pixels, through Escape from Mount Gram's resolution, and checks the 32 pinned faces; the production build passes.
+
+2026-11-18 The Angmar Awakened campaign, Across the Ettenmoors: continued the user's “Nastavi” after 4ecaf29. The campaign's sixth chapter is supported; the end of the game now reaches The Treachery of Rhudaur's note. See docs/ANGMAR-CAMPAIGN.md.
+
+- Across the Ettenmoors' campaign card and Losing Time are registered with the scans' texts (35 faces pinned in all).
+- The 5 Losing Time wait out of play; at the beginning of each quest phase the campaign card gains a resource, and at 3 a set-aside Losing Time is revealed (its effects resolve with the usual windows) and goes to the encounter discard pile. The resolution pools each copy left in the encounter deck or discard pile; later chapters shuffle that many into their decks.
+- Losing Time: Surge; each player chooses to raise their threat by 3 or exhaust a hero; its shadow gives the attacking enemy +3 attack or +3 defense until the end of the phase. The campaign's phase-long boosts (Cunning's too) now name the stat they raise.
+
+Coverage is now 861 player definitions (112 heroes), 2,136 encounters and 123 scenarios. This resolves 3,387 of 4,183 identities and 270 of 355 recipes; 796 identities remain pending.
+
+Validation on Node 22: the engine suite passes all 6,784 tests, including 21 for the Angmar Awakened campaign; the Angmar browser suite passes 54 checkpoints at 1280, 390 and 320 pixels, through Across the Ettenmoors' resolution, and checks the 35 pinned faces; the production build passes.

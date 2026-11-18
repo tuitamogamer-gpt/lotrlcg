@@ -9,13 +9,22 @@ export const angmarPhase = (phase: string) =>
     : phase === "defense" || phase === "attack"
       ? "combat"
       : phase;
-/** Cunning: "+2 [willpower], +2 [attack], and +2 [defense] until the end of the phase." */
-export const angmarCampaignBoost = (s: GameState, u: Unit) =>
-  s.angmarCards?.boosts?.some(
-    (b) =>
-      b.target === u.id &&
-      b.phase === angmarPhase(s.phase) &&
-      b.round === s.round,
-  )
-    ? 2
-    : 0;
+/**
+ * Boosts until the end of the phase: Cunning's +2 [willpower], +2 [attack]
+ * and +2 [defense] (no stat named), and Losing Time's shadow, +3 [attack] or
+ * +3 [defense] for the attacking enemy.
+ */
+export const angmarCampaignBoost = (
+  s: GameState,
+  u: Unit,
+  stat: "will" | "attack" | "defense",
+) =>
+  (s.angmarCards?.boosts ?? [])
+    .filter(
+      (b) =>
+        b.target === u.id &&
+        b.phase === angmarPhase(s.phase) &&
+        b.round === s.round &&
+        (!b.stat || b.stat === stat),
+    )
+    .reduce((n, b) => n + (b.value ?? 2), 0);
