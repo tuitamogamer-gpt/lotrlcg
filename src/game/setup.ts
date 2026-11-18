@@ -24,6 +24,7 @@ import { eredMithrinPlayerSetup } from "./ered-mithrin-player";
 import { encounterReserveDefaults } from "./encounter-reserves";
 import { batch4PlayerSetup } from "./batch4-player";
 import { batch4Scenario } from "./batch4-scenarios";
+import { huntDreadnaughtFleetSetup } from "./hunt-dreadnaught";
 import * as Sands from "./beneath-sands";
 import * as Race from "./race-harad";
 import * as City from "./city";
@@ -468,6 +469,8 @@ export function createGame(
   councilSetup(s);
   messengerSetup(s);
   bondSetup(s);
+  // The Hunt for the Dreadnaught: each player chooses a ship before drawing.
+  huntDreadnaughtFleetSetup(s);
   if (s.choice || s.queue.length) {
     s.setupPending = true;
     enqueue(s, fx("gameSetupContinue"));
@@ -506,7 +509,7 @@ export function finishGameSetup(s: GameState) {
   }
   eachSeat(s, () => {
     shuffle(s, s.deck);
-    draw(s, 6);
+    draw(s, batch4Scenario(s).startingHandSize?.(s) ?? 6);
   });
   greyHavensSetup(s);
   stormcallerPlayerSetup(s);

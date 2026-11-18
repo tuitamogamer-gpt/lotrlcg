@@ -121,6 +121,7 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
       ...new Set([
         ...rohanDynamicTraits(s, host),
         ...heirsPlayerTraitGrants(s, host.id),
+        ...(batch4Scenario(s).dynamicTraits?.(s, host) ?? []),
       ]),
     ];
     if (traits.length) host.dynamicTraits = traits;
@@ -141,6 +142,7 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
       ...rohanDynamicKeywords(s, host),
       ...Angmar.angmarDynamicKeywords(s, host),
       ...greyHavensDynamicKeywords(s, host),
+      ...(batch4Scenario(s).dynamicKeywords?.(s, host) ?? []),
     ];
     if (keywords.length) host.dynamicKeywords = keywords;
     else delete host.dynamicKeywords;

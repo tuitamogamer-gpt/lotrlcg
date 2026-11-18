@@ -151,6 +151,10 @@ export const PLAYMATS = {
     name: "Khazad-dûm",
     detail: "The Dark Pit · The Bridge of Khazad-dûm",
   },
+  "the-hunt-for-the-dreadnaught": {
+    name: "Belfalas",
+    detail: "The Corsair fleet · The Dreadnaught",
+  },
   "the-ruins-of-belegost": {
     name: "Belegost",
     detail: "The drowned Dwarf city · Naurlhûg's lair",
@@ -602,6 +606,7 @@ export const PLAYMAT_CHOICES = [
   "the-woodland-realm",
   "the-mines-of-moria",
   "escape-from-khazad-dum",
+  "the-hunt-for-the-dreadnaught",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

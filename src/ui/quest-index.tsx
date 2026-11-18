@@ -203,6 +203,10 @@ const HEADLINES: Partial<
     lead: "Fly from",
     em: "the Balrog.",
   },
+  "the-hunt-for-the-dreadnaught": {
+    lead: "Sink the",
+    em: "Dreadnaught.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

@@ -1,0 +1,466 @@
+[
+  {
+    "code": "octgn:01ce9bbd-3f99-47eb-a702-ca40205324fb",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/01ce9bbd-3f99-47eb-a702-ca40205324fb.jpg",
+    "localPath": "/cards/01ce9bbd-3f99-47eb-a702-ca40205324fb.jpg",
+    "bytes": 163031,
+    "sha256": "ca0545494a902b7612afcff7748c674fc4213914df877983af42904138506aee"
+  },
+  {
+    "code": "octgn:049758ee-7fb1-4978-9ed0-1b4de1d5ae14",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/049758ee-7fb1-4978-9ed0-1b4de1d5ae14.jpg",
+    "localPath": "/cards/049758ee-7fb1-4978-9ed0-1b4de1d5ae14.jpg",
+    "bytes": 148936,
+    "sha256": "42361a95ed28e8b8611a5426a8c91bd1b4b2d1e5a9830ec44c1aa8c5d83236d5"
+  },
+  {
+    "code": "octgn:055e0afc-b257-43ef-9b74-02e6ee16d40c",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/055e0afc-b257-43ef-9b74-02e6ee16d40c.jpg",
+    "localPath": "/cards/055e0afc-b257-43ef-9b74-02e6ee16d40c.jpg",
+    "bytes": 137843,
+    "sha256": "5a2816a7ed84bc9839b5a1ced6303ce5fe012a895b411fa2ad6bbb5bcd46c417"
+  },
+  {
+    "code": "octgn:06d3e4c3-d716-4b9a-b1c6-b6835bdd361a",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/06d3e4c3-d716-4b9a-b1c6-b6835bdd361a.jpg",
+    "localPath": "/cards/06d3e4c3-d716-4b9a-b1c6-b6835bdd361a.jpg",
+    "bytes": 157729,
+    "sha256": "05f1aee84546577077a91d150d5c9a5901c37d572e73a1d448194831ae845dd2"
+  },
+  {
+    "code": "octgn:16fc9e92-cbc9-46ff-8312-a9c6491ca70b",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/16fc9e92-cbc9-46ff-8312-a9c6491ca70b.jpg",
+    "localPath": "/cards/16fc9e92-cbc9-46ff-8312-a9c6491ca70b.jpg",
+    "bytes": 128127,
+    "sha256": "c8fd556b89e3998cf231f7896976a7769670b3f791c6e91da32a078f08136f3b"
+  },
+  {
+    "code": "octgn:16fc9e92-cbc9-46ff-8312-a9c6491ca70b",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/16fc9e92-cbc9-46ff-8312-a9c6491ca70b.B.jpg",
+    "localPath": "/cards/16fc9e92-cbc9-46ff-8312-a9c6491ca70b.B.jpg",
+    "bytes": 137874,
+    "sha256": "4842d95e63ff2c57b6030282289eafbc0d00cd3c3bdf330fc727e9f7262fadc0"
+  },
+  {
+    "code": "octgn:2232bb8b-4b21-4315-9c6d-300b3a3ed7f9",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2232bb8b-4b21-4315-9c6d-300b3a3ed7f9.jpg",
+    "localPath": "/cards/2232bb8b-4b21-4315-9c6d-300b3a3ed7f9.jpg",
+    "bytes": 155989,
+    "sha256": "b153ea20cbbe3aaea1517f2ed475573c327655d58f281548d2799c5dfc93b69a"
+  },
+  {
+    "code": "octgn:2232bb8b-4b21-4315-9c6d-300b3a3ed7f9",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2232bb8b-4b21-4315-9c6d-300b3a3ed7f9.B.jpg",
+    "localPath": "/cards/2232bb8b-4b21-4315-9c6d-300b3a3ed7f9.B.jpg",
+    "bytes": 142819,
+    "sha256": "bb7cb268a5e218a656b14a56a5b8b34888102836eb4ee004ede4093c129d2fcf"
+  },
+  {
+    "code": "octgn:244873ca-427f-4358-804d-16bec79fca36",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/244873ca-427f-4358-804d-16bec79fca36.jpg",
+    "localPath": "/cards/244873ca-427f-4358-804d-16bec79fca36.jpg",
+    "bytes": 146494,
+    "sha256": "f33469f3bb5a8b7c8a82ef86c07664e498a1e2753809eb6c7c902ef0c95aee14"
+  },
+  {
+    "code": "octgn:244873ca-427f-4358-804d-16bec79fca36",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/244873ca-427f-4358-804d-16bec79fca36.B.jpg",
+    "localPath": "/cards/244873ca-427f-4358-804d-16bec79fca36.B.jpg",
+    "bytes": 141745,
+    "sha256": "9f4d65ff6c66bc652b78566b0d0bb190ef5b0a8fc1d04f697e5ac4bc2d91a5c2"
+  },
+  {
+    "code": "octgn:2937b3c4-2e60-49a7-87cc-d6b708b6462d",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2937b3c4-2e60-49a7-87cc-d6b708b6462d.jpg",
+    "localPath": "/cards/2937b3c4-2e60-49a7-87cc-d6b708b6462d.jpg",
+    "bytes": 169409,
+    "sha256": "149ed7e861c6f58f5f2985fef85dbf24ca2fc04c8c75f44cca7b08faeedf617c"
+  },
+  {
+    "code": "octgn:33c87224-ad8d-41a0-b08a-931e9205609b",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/33c87224-ad8d-41a0-b08a-931e9205609b.jpg",
+    "localPath": "/cards/33c87224-ad8d-41a0-b08a-931e9205609b.jpg",
+    "bytes": 150200,
+    "sha256": "f3f1f484a741738c38fe042390f0c01ed9b7b5c0f1e83b0d9389d731e072dcf4"
+  },
+  {
+    "code": "octgn:33f456cb-3119-444b-9bbe-a0db4e5e5de1",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/33f456cb-3119-444b-9bbe-a0db4e5e5de1.jpg",
+    "localPath": "/cards/33f456cb-3119-444b-9bbe-a0db4e5e5de1.jpg",
+    "bytes": 146643,
+    "sha256": "27b571f68f3f1fd9dd70e7d8c0904ac605e28b635141f82fa51cfa734ea08ad3"
+  },
+  {
+    "code": "octgn:390c3a3f-a5f2-44f2-bcc7-fbe22e46cbb5",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/390c3a3f-a5f2-44f2-bcc7-fbe22e46cbb5.jpg",
+    "localPath": "/cards/390c3a3f-a5f2-44f2-bcc7-fbe22e46cbb5.jpg",
+    "bytes": 148534,
+    "sha256": "1969f10b56d895827ee6cbe56d7e58d308906541f42458d0e6719df2fcc14046"
+  },
+  {
+    "code": "octgn:3fca46ae-c558-4666-8b0a-8c5c9ee5156a",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3fca46ae-c558-4666-8b0a-8c5c9ee5156a.jpg",
+    "localPath": "/cards/3fca46ae-c558-4666-8b0a-8c5c9ee5156a.jpg",
+    "bytes": 149711,
+    "sha256": "5a162712830bdd7ca8519c53152e542eea7eef14ea554032a6d7b9968f094eae"
+  },
+  {
+    "code": "octgn:413fa654-8c2c-4245-9c6b-78d98db9903e",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/413fa654-8c2c-4245-9c6b-78d98db9903e.jpg",
+    "localPath": "/cards/413fa654-8c2c-4245-9c6b-78d98db9903e.jpg",
+    "bytes": 148273,
+    "sha256": "44a62eb1edaa5efa9fbea1217fc2621af9b90c91f9d3de370b45d1f4844630ad"
+  },
+  {
+    "code": "octgn:4bb271af-6486-4625-bf7e-386c74baec9b",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4bb271af-6486-4625-bf7e-386c74baec9b.jpg",
+    "localPath": "/cards/4bb271af-6486-4625-bf7e-386c74baec9b.jpg",
+    "bytes": 153648,
+    "sha256": "0ba16b043887380ac97b0282bc64b55e0f76309de9380930068c9cf57cb0e0d9"
+  },
+  {
+    "code": "octgn:4d4f814c-57d6-4d19-b147-6ab5e321cdd6",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4d4f814c-57d6-4d19-b147-6ab5e321cdd6.jpg",
+    "localPath": "/cards/4d4f814c-57d6-4d19-b147-6ab5e321cdd6.jpg",
+    "bytes": 152371,
+    "sha256": "57150bdd330ccd6db2d7f9d100c37df6ec234971f328b622ec7f320b391a8ea5"
+  },
+  {
+    "code": "octgn:5666ae7f-838c-4f18-ad78-c40302c444e6",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5666ae7f-838c-4f18-ad78-c40302c444e6.jpg",
+    "localPath": "/cards/5666ae7f-838c-4f18-ad78-c40302c444e6.jpg",
+    "bytes": 147200,
+    "sha256": "5696ed58d35c35ff676e4c3e4d2c7f1b633056e971f7a2436441456dc32a7f4e"
+  },
+  {
+    "code": "octgn:5bca670f-054d-41cd-93d7-0e318dc8c0e1",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5bca670f-054d-41cd-93d7-0e318dc8c0e1.jpg",
+    "localPath": "/cards/5bca670f-054d-41cd-93d7-0e318dc8c0e1.jpg",
+    "bytes": 140910,
+    "sha256": "73357b6cfe8429b2630b713edfb97e38d98fc426ac60ed928fd2381bc1e84c01"
+  },
+  {
+    "code": "octgn:5bca670f-054d-41cd-93d7-0e318dc8c0e1",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5bca670f-054d-41cd-93d7-0e318dc8c0e1.B.jpg",
+    "localPath": "/cards/5bca670f-054d-41cd-93d7-0e318dc8c0e1.B.jpg",
+    "bytes": 140961,
+    "sha256": "5396c57d54a4b0fac009d00be98cccd379e351c4bfc3e373dca63f4460886e08"
+  },
+  {
+    "code": "octgn:666a449f-e103-4d70-932e-48e57c4d662c",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/666a449f-e103-4d70-932e-48e57c4d662c.jpg",
+    "localPath": "/cards/666a449f-e103-4d70-932e-48e57c4d662c.jpg",
+    "bytes": 142519,
+    "sha256": "81234245e9c8ace48d46f70c48ddf86f40a0c804b6f9d19d09c7a82294207ec7"
+  },
+  {
+    "code": "octgn:666a449f-e103-4d70-932e-48e57c4d662c",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/666a449f-e103-4d70-932e-48e57c4d662c.B.jpg",
+    "localPath": "/cards/666a449f-e103-4d70-932e-48e57c4d662c.B.jpg",
+    "bytes": 121761,
+    "sha256": "576b20ad30bfae3ede1cf8eff9491f99fb052efb08db4c3c3d1a50105174032b"
+  },
+  {
+    "code": "octgn:68ba3515-4cbc-4e73-b8f3-69a3ab4b8110",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/68ba3515-4cbc-4e73-b8f3-69a3ab4b8110.jpg",
+    "localPath": "/cards/68ba3515-4cbc-4e73-b8f3-69a3ab4b8110.jpg",
+    "bytes": 155668,
+    "sha256": "3aac6d7d687a171842241fc8916d383a6a6b3b35545fdec91b46a442fc57c3a7"
+  },
+  {
+    "code": "octgn:6c4bf737-20cf-4fc5-b473-8f1540430c45",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6c4bf737-20cf-4fc5-b473-8f1540430c45.jpg",
+    "localPath": "/cards/6c4bf737-20cf-4fc5-b473-8f1540430c45.jpg",
+    "bytes": 153144,
+    "sha256": "64349e90b3957e90871cea868d460ac5c3b490f80f22163a5706b770bc925992"
+  },
+  {
+    "code": "octgn:6c4bf737-20cf-4fc5-b473-8f1540430c45",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6c4bf737-20cf-4fc5-b473-8f1540430c45.B.jpg",
+    "localPath": "/cards/6c4bf737-20cf-4fc5-b473-8f1540430c45.B.jpg",
+    "bytes": 144792,
+    "sha256": "b30b9716d1a72ccd791f1899e57eb56ae89b9417340492747ac17353417a8884"
+  },
+  {
+    "code": "octgn:7869b9ba-7757-4d8e-a201-aaf247ec6f99",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7869b9ba-7757-4d8e-a201-aaf247ec6f99.jpg",
+    "localPath": "/cards/7869b9ba-7757-4d8e-a201-aaf247ec6f99.jpg",
+    "bytes": 162113,
+    "sha256": "5041a88c6f52bf9241e7b56529fbcc35e7c0ab60cd65263b1816574f1466b518"
+  },
+  {
+    "code": "octgn:78d40f21-ce85-4600-8f5e-5159d83c50cb",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/78d40f21-ce85-4600-8f5e-5159d83c50cb.jpg",
+    "localPath": "/cards/78d40f21-ce85-4600-8f5e-5159d83c50cb.jpg",
+    "bytes": 150560,
+    "sha256": "cb378888bb37310b5ddfe9f9a618c1fd0ba4fe826735c03b86501ebf32178e1a"
+  },
+  {
+    "code": "octgn:78d40f21-ce85-4600-8f5e-5159d83c50cb",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/78d40f21-ce85-4600-8f5e-5159d83c50cb.B.jpg",
+    "localPath": "/cards/78d40f21-ce85-4600-8f5e-5159d83c50cb.B.jpg",
+    "bytes": 141737,
+    "sha256": "ceb1fe931f1e3090ee0067ff60ff010bf029261f5c5420dee00fa29ee5342248"
+  },
+  {
+    "code": "octgn:7bb3db62-642f-4ab1-9ce7-a870fad8fecd",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7bb3db62-642f-4ab1-9ce7-a870fad8fecd.jpg",
+    "localPath": "/cards/7bb3db62-642f-4ab1-9ce7-a870fad8fecd.jpg",
+    "bytes": 156244,
+    "sha256": "40aa2ba4e423c8e1318363fcc5765edc0272a426a3d20acbc79b9b40b7536546"
+  },
+  {
+    "code": "octgn:7e6fec55-9dd6-4fdc-96b5-4922aa095544",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7e6fec55-9dd6-4fdc-96b5-4922aa095544.jpg",
+    "localPath": "/cards/7e6fec55-9dd6-4fdc-96b5-4922aa095544.jpg",
+    "bytes": 155157,
+    "sha256": "a2a7894aa80712dfe28128506fdc9f8ba6bd7e8b48a17302cd8b160c3a56b698"
+  },
+  {
+    "code": "octgn:7e8ff46f-2d5a-49e3-bb97-15a3cbc254d6",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7e8ff46f-2d5a-49e3-bb97-15a3cbc254d6.jpg",
+    "localPath": "/cards/7e8ff46f-2d5a-49e3-bb97-15a3cbc254d6.jpg",
+    "bytes": 164303,
+    "sha256": "8e558b2a98dac57ffa7d7b17eb966f380d59d9596a0ff879a71bdf65563ef803"
+  },
+  {
+    "code": "octgn:7fbf49c1-fae7-4968-bc60-503d92f8aa18",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7fbf49c1-fae7-4968-bc60-503d92f8aa18.jpg",
+    "localPath": "/cards/7fbf49c1-fae7-4968-bc60-503d92f8aa18.jpg",
+    "bytes": 141772,
+    "sha256": "5fd2f782abe436e9e5580dae67086379efed9451ad6084f2f30afd1535cf3ed7"
+  },
+  {
+    "code": "octgn:8cfe3fbe-f6bb-43ab-89af-8f9fb6dc2bd6",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8cfe3fbe-f6bb-43ab-89af-8f9fb6dc2bd6.jpg",
+    "localPath": "/cards/8cfe3fbe-f6bb-43ab-89af-8f9fb6dc2bd6.jpg",
+    "bytes": 163394,
+    "sha256": "87d545b1e30deaed256d557dbf10b30cb566d9df29b564d7117f5d0667641da2"
+  },
+  {
+    "code": "octgn:9022960a-30cc-4453-9e5e-00b17ac03efc",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9022960a-30cc-4453-9e5e-00b17ac03efc.jpg",
+    "localPath": "/cards/9022960a-30cc-4453-9e5e-00b17ac03efc.jpg",
+    "bytes": 150487,
+    "sha256": "b30b0588a245525cdff2f249c1bf1c6c44ddb0c091ee24fe019d12ccd16447b9"
+  },
+  {
+    "code": "octgn:9022960a-30cc-4453-9e5e-00b17ac03efc",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9022960a-30cc-4453-9e5e-00b17ac03efc.B.jpg",
+    "localPath": "/cards/9022960a-30cc-4453-9e5e-00b17ac03efc.B.jpg",
+    "bytes": 145649,
+    "sha256": "e9c177e276d23d36236e4298be6957d89659c486e078c23bf19320857fbd4531"
+  },
+  {
+    "code": "octgn:96b6e743-0f7b-4d7f-8623-437911137940",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/96b6e743-0f7b-4d7f-8623-437911137940.jpg",
+    "localPath": "/cards/96b6e743-0f7b-4d7f-8623-437911137940.jpg",
+    "bytes": 148529,
+    "sha256": "9101c679a22f39bf059ae414a25cd4897b98c16911e960d67235304eda185a91"
+  },
+  {
+    "code": "octgn:9fb2a57c-5f37-4427-bb50-fc732194f4f3",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9fb2a57c-5f37-4427-bb50-fc732194f4f3.jpg",
+    "localPath": "/cards/9fb2a57c-5f37-4427-bb50-fc732194f4f3.jpg",
+    "bytes": 143793,
+    "sha256": "c0a1261532ea77b36a060d8a47e23266621c9c4e6d62b41c3769d7f68577080f"
+  },
+  {
+    "code": "octgn:a258aec8-a5d9-4194-8612-ac2dd3b8f99e",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a258aec8-a5d9-4194-8612-ac2dd3b8f99e.jpg",
+    "localPath": "/cards/a258aec8-a5d9-4194-8612-ac2dd3b8f99e.jpg",
+    "bytes": 150620,
+    "sha256": "039b195c109e4f5dc5ddd8b85e6b230a9a2d32d759ad538becdd9ca0cf97f6fd"
+  },
+  {
+    "code": "octgn:a8c911a5-bc2f-4882-8581-c5129d682370",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a8c911a5-bc2f-4882-8581-c5129d682370.jpg",
+    "localPath": "/cards/a8c911a5-bc2f-4882-8581-c5129d682370.jpg",
+    "bytes": 169676,
+    "sha256": "a1546a7d95004bdd135ee5ddd76cffdc96668ed5058cddf4ae9c9b6459ec83de"
+  },
+  {
+    "code": "octgn:a8c911a5-bc2f-4882-8581-c5129d682370",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a8c911a5-bc2f-4882-8581-c5129d682370.B.jpg",
+    "localPath": "/cards/a8c911a5-bc2f-4882-8581-c5129d682370.B.jpg",
+    "bytes": 161133,
+    "sha256": "f678281a4db6327335f11f257dac9598e3372e5d77ceddda694e8c0928daf334"
+  },
+  {
+    "code": "octgn:ad2fdaaa-90d8-4d56-8112-37278e369dbd",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ad2fdaaa-90d8-4d56-8112-37278e369dbd.jpg",
+    "localPath": "/cards/ad2fdaaa-90d8-4d56-8112-37278e369dbd.jpg",
+    "bytes": 154486,
+    "sha256": "d240be580590fe4be8e87ce51f7b08b9376e4c50f07dcc7d1c6609b8deef40c1"
+  },
+  {
+    "code": "octgn:b78d0cf0-c3d3-4bd9-98c5-61d8a4485684",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b78d0cf0-c3d3-4bd9-98c5-61d8a4485684.jpg",
+    "localPath": "/cards/b78d0cf0-c3d3-4bd9-98c5-61d8a4485684.jpg",
+    "bytes": 163102,
+    "sha256": "f743cb825daaa3a19532098b44a2fc50035072c1a4d90b0f8f8a3a43cb7cb76f"
+  },
+  {
+    "code": "octgn:c5b174ae-d1e5-4dac-bedf-7a6c741e26d6",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c5b174ae-d1e5-4dac-bedf-7a6c741e26d6.jpg",
+    "localPath": "/cards/c5b174ae-d1e5-4dac-bedf-7a6c741e26d6.jpg",
+    "bytes": 165421,
+    "sha256": "80576eee0e069fb7526556acaa20563bcf587df706e7bcb703dd5608b7d47629"
+  },
+  {
+    "code": "octgn:cc0e7ed5-1a20-466d-84e7-355d690080cc",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cc0e7ed5-1a20-466d-84e7-355d690080cc.jpg",
+    "localPath": "/cards/cc0e7ed5-1a20-466d-84e7-355d690080cc.jpg",
+    "bytes": 159656,
+    "sha256": "5b6ea95e00b79a69ee2beb56f3784efbfe5b1d764b2530995cab846558f1f266"
+  },
+  {
+    "code": "octgn:d4de89b5-2e86-417a-baf1-81e7e852e5d4",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d4de89b5-2e86-417a-baf1-81e7e852e5d4.jpg",
+    "localPath": "/cards/d4de89b5-2e86-417a-baf1-81e7e852e5d4.jpg",
+    "bytes": 161373,
+    "sha256": "0a0e8d6b41e05ca25aca56c6d05f2a22cfb380eee19878680e76a9e5f595fbbf"
+  },
+  {
+    "code": "octgn:da8951b1-f170-48c4-8c0b-8979e5134aaf",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/da8951b1-f170-48c4-8c0b-8979e5134aaf.jpg",
+    "localPath": "/cards/da8951b1-f170-48c4-8c0b-8979e5134aaf.jpg",
+    "bytes": 152388,
+    "sha256": "617cdbaf2bf3a8bc44e82cc0e8540f9433da66c0dc340719dd63a09ebafdefeb"
+  },
+  {
+    "code": "octgn:e0928dc0-6f67-4611-843c-3354e949d879",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e0928dc0-6f67-4611-843c-3354e949d879.jpg",
+    "localPath": "/cards/e0928dc0-6f67-4611-843c-3354e949d879.jpg",
+    "bytes": 143568,
+    "sha256": "fbfad2db45debb60e58e8388e6e6fb0e4898160dc1b63ffcbe27e010665b38f2"
+  },
+  {
+    "code": "octgn:e0928dc0-6f67-4611-843c-3354e949d879",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e0928dc0-6f67-4611-843c-3354e949d879.B.jpg",
+    "localPath": "/cards/e0928dc0-6f67-4611-843c-3354e949d879.B.jpg",
+    "bytes": 122668,
+    "sha256": "893e7a147a72b474fdde8019c2f071efb9269107595de946d678e17b7c11e43b"
+  },
+  {
+    "code": "octgn:e1c90186-e56e-44c0-ad7d-65c6cc6fbad7",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e1c90186-e56e-44c0-ad7d-65c6cc6fbad7.jpg",
+    "localPath": "/cards/e1c90186-e56e-44c0-ad7d-65c6cc6fbad7.jpg",
+    "bytes": 152029,
+    "sha256": "31a894edf2ffef34bcb3014b872cbb46bb2106969085f7f0a7b4770449e16bc6"
+  },
+  {
+    "code": "octgn:e7b0f67c-ad7e-442a-af9f-188e9cedddde",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e7b0f67c-ad7e-442a-af9f-188e9cedddde.jpg",
+    "localPath": "/cards/e7b0f67c-ad7e-442a-af9f-188e9cedddde.jpg",
+    "bytes": 147520,
+    "sha256": "11b6b3573fafbd574810eb76c2b83631949c04a5c803779f8f64e6c677b0eaea"
+  },
+  {
+    "code": "octgn:eb2b84b4-40b3-4dda-bf87-4f59a78aa6b1",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/eb2b84b4-40b3-4dda-bf87-4f59a78aa6b1.jpg",
+    "localPath": "/cards/eb2b84b4-40b3-4dda-bf87-4f59a78aa6b1.jpg",
+    "bytes": 145208,
+    "sha256": "ba778dba1b2b2c8ecc36a685dfa7d84969e5ccce0278acd94f8ba789b36ba124"
+  },
+  {
+    "code": "octgn:eb2b84b4-40b3-4dda-bf87-4f59a78aa6b1",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/eb2b84b4-40b3-4dda-bf87-4f59a78aa6b1.B.jpg",
+    "localPath": "/cards/eb2b84b4-40b3-4dda-bf87-4f59a78aa6b1.B.jpg",
+    "bytes": 143545,
+    "sha256": "fd62dd2fc178a710e68ae61d0338efe34f9315ec8fa19814c798a96c6eae076e"
+  },
+  {
+    "code": "octgn:ef9c63c3-08f3-4e8a-9156-3887df213550",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ef9c63c3-08f3-4e8a-9156-3887df213550.jpg",
+    "localPath": "/cards/ef9c63c3-08f3-4e8a-9156-3887df213550.jpg",
+    "bytes": 158974,
+    "sha256": "41c6bc58d332c726cda21b083ce4ea5aef1ed2ae156b33e925af4a1bb5406aac"
+  },
+  {
+    "code": "octgn:f071a69f-34e3-4603-a632-80b6b45b0e36",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f071a69f-34e3-4603-a632-80b6b45b0e36.jpg",
+    "localPath": "/cards/f071a69f-34e3-4603-a632-80b6b45b0e36.jpg",
+    "bytes": 159080,
+    "sha256": "b56b0626d4f26951a14361d5973f5b8628cf998c2839a448949533b19f142fb3"
+  },
+  {
+    "code": "octgn:f7babd23-3133-4fdc-ab08-1f863d41ad96",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f7babd23-3133-4fdc-ab08-1f863d41ad96.jpg",
+    "localPath": "/cards/f7babd23-3133-4fdc-ab08-1f863d41ad96.jpg",
+    "bytes": 143538,
+    "sha256": "011dcbf961e2948b961e338fefe5f8157d51f8326200825b7c669945f0199e0e"
+  },
+  {
+    "code": "octgn:f7babd23-3133-4fdc-ab08-1f863d41ad96",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f7babd23-3133-4fdc-ab08-1f863d41ad96.B.jpg",
+    "localPath": "/cards/f7babd23-3133-4fdc-ab08-1f863d41ad96.B.jpg",
+    "bytes": 124294,
+    "sha256": "74bc0c237cef68c6406614197c9ae9290a2f51789566e22d8876f6e4a0f2bebc"
+  },
+  {
+    "code": "octgn:fa9a87c8-ed31-44b9-b5d6-4f42ca6de2c9",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fa9a87c8-ed31-44b9-b5d6-4f42ca6de2c9.jpg",
+    "localPath": "/cards/fa9a87c8-ed31-44b9-b5d6-4f42ca6de2c9.jpg",
+    "bytes": 146831,
+    "sha256": "da591c7f062bd32678a7ccce9eecf714b13f8ea7b3cf086dc5a830e9efd93ad0"
+  }
+]

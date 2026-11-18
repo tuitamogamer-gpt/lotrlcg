@@ -988,7 +988,8 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
                 cobasEconomyCostReduction(s, c.code) -
                 CityPlayers.cityPlayerCostReduction(s, c) -
                 HaradPlayers.haradPlayerCostReduction(s, c) -
-                Drowned.drownedCostReduction(s, c),
+                Drowned.drownedCostReduction(s, c) -
+                (batch4Scenario(s).playCostReduction?.(s, c) ?? 0),
             ) + dwarfAdditionalCost(c.code),
           ),
         ),
@@ -1359,6 +1360,7 @@ export function eligiblePayers(s: GameState, c: Card, target?: Unit) {
         WildsSupport.wildsPlayerPayer(h, c) ||
         MumakSupport.mumakilKahlielPays(h, c) ||
         Mordor.mordorIgnoresResourceMatch(s) ||
+        !!batch4Scenario(s).noResourceMatch?.(s, c) ||
         (c.code === "22062" && hasTrait(h, "Rohan")) ||
         hasResourceIcon(h, c.sphere_code) ||
         RoadDarkensPlayers.gandalfDeckPayer(h, c) ||

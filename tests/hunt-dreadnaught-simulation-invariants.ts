@@ -1,0 +1,184 @@
+import assert from "node:assert/strict";
+import { publicState, restoreSave } from "../src/game/engine";
+import { card } from "../src/game/cards";
+import { shadowEastPlayerUnits } from "../src/game/shadow-east-player-support";
+import { globalCharacters, seatIndices, seatView } from "../src/game/table";
+import {
+  HD,
+  hdPhysical,
+  hdRecipe,
+  hdUnits,
+} from "../src/game/hunt-dreadnaught-support";
+import { isHdSimScenario } from "./hunt-dreadnaught-simulation-policy";
+import type { Effect, GameState } from "../src/game/types";
+
+export function assertHdSaveRestoration(saved: GameState, restored: GameState) {
+  assert.deepEqual(
+    restored,
+    saved,
+    "save restoration preserves exact rules, ownership, RNG and presentation state",
+  );
+}
+/** Cards between zones: being revealed. */
+function pendingPhysicalCards(effects: Effect[]): string[] {
+  return effects.flatMap((e) => [
+    ...(["revealCard", "resolveReveal", "placeEncounter"].includes(e.kind) &&
+    e.code
+      ? [e.code]
+      : []),
+    ...pendingPhysicalCards(e.effects ?? []),
+    ...pendingPhysicalCards(e.costEffects ?? []),
+  ]);
+}
+export function hdPhysicalCards(s: GameState) {
+  const q = s.huntDreadnaught;
+  const units = [
+    ...globalCharacters(s),
+    ...seatIndices(s).flatMap((p) => seatView(s, p).engaged),
+    ...s.staging,
+    ...(s.activeLocation ? [s.activeLocation] : []),
+    ...(s.extraActiveLocations ?? []),
+    ...seatIndices(s).flatMap((p) => seatView(s, p).hand),
+    ...hdUnits(s),
+    ...(s.fortressNurnPlayers?.contracts.map((c) => c.unit) ?? []),
+    ...shadowEastPlayerUnits(s),
+    ...(s.resolvingEvents
+      ?.filter((e) => e.destination !== "spent")
+      .map((e) => e.unit) ?? []),
+    ...(s.pendingPlayerPlays?.map((e) => e.unit) ?? []),
+  ];
+  const attachments = [
+    ...units.flatMap((u) => u.attachments),
+    ...Object.values(s.questAttachments ?? {}).flat(),
+  ];
+  assert.equal(
+    new Set([...units, ...attachments].map((u) => u.id)).size,
+    units.length + attachments.length,
+    "every physical unit and attachment occupies one zone",
+  );
+  const codes = [
+    // The two quest cards; the Corsair deck, its discard pile, the set-aside
+    // and removed cards (the Setup cards not chosen).
+    ...(q
+      ? [
+          q.currentQuest,
+          ...(q.currentQuest === HD.destroy ? [HD.search] : [HD.destroy]),
+          ...q.corsairDeck,
+          ...q.corsairDiscard,
+          ...q.setAside,
+          ...q.removed,
+        ]
+      : []),
+    ...units.map((u) => u.code),
+    ...attachments.map((a) => a.code),
+    ...units.flatMap((u) => u.shadows),
+    ...[s.combat, ...(s.suspendedCombats ?? [])].flatMap(
+      (c) => c?.immediatePreviousShadows ?? [],
+    ),
+    ...pendingPhysicalCards(s.queue),
+    ...pendingPhysicalCards(s.hideTest?.continuation ?? []),
+    ...pendingPhysicalCards(
+      s.choice?.options.find((o) => o.id === "resolve")?.effects ?? [],
+    ),
+    ...s.encounterDeck,
+    ...s.encounterDiscard,
+    ...(s.victoryCards ?? []),
+    ...(s.removedEncounter ?? []),
+    ...seatIndices(s).flatMap((p) => {
+      const v = seatView(s, p);
+      return [...v.discard, ...v.removed];
+    }),
+  ].map(hdPhysical);
+  return { units, attachments, codes };
+}
+
+/** Observe actual phase/seat/stage boundaries without choosing actions or altering game state. */
+export function hdSimulationObserver() {
+  const counts = {
+    boundaryObservations: 0,
+    privacyComparisons: 0,
+    playerViews: 0,
+    physicalChecks: 0,
+    idempotenceChecks: 0,
+    renderPurityChecks: 0,
+  };
+  let priorBoundary: string | undefined;
+  const observe = (s: GameState) => {
+    assert.ok(isHdSimScenario(s));
+    const boundary = `${s.round}/${s.phase}/${s.table?.active ?? 0}/${s.stage}/${s.huntDreadnaught?.currentQuest ?? ""}/${s.status}`;
+    if (boundary === priorBoundary) return;
+    priorBoundary = boundary;
+    counts.boundaryObservations++;
+    const saved = JSON.parse(JSON.stringify(s));
+    const restored = restoreSave(saved);
+    assert.ok(restored, "boundary save restores successfully");
+    assert.deepEqual(
+      restored,
+      saved,
+      "boundary save restoration is idempotent",
+    );
+    counts.idempotenceChecks++;
+    const before = JSON.stringify(s);
+    publicState(s);
+    assert.equal(
+      JSON.stringify(s),
+      before,
+      "public rendering leaves live state unchanged",
+    );
+    counts.renderPurityChecks++;
+    const original = hdRecipe()
+      .cards.flatMap((r) => Array<string>(r.quantity).fill(r.code))
+      .sort();
+    const sourceCodes = new Set(original);
+    const { units, codes } = hdPhysicalCards(s);
+    // The cards are in the box until the Setup card is chosen and resolved.
+    if (s.huntDreadnaught?.mode)
+      assert.deepEqual(
+        codes.filter((c) => sourceCodes.has(c)).sort(),
+        original,
+        "exact original encounter, quest and set-aside quantities across all physical zones",
+      );
+    const heroes = seatIndices(s)
+      .flatMap((p) => seatView(s, p).startingHeroes)
+      .sort();
+    const heroCodes = new Set(heroes);
+    assert.deepEqual(
+      codes
+        .filter((c) => heroCodes.has(c) && card(c).type_code === "hero")
+        .sort(),
+      heroes,
+      "original physical heroes occupy one zone after play, guarding, destruction and elimination",
+    );
+    assert.ok(
+      units.every((u) => Number.isInteger(u.resources) && u.resources >= 0),
+    );
+    counts.physicalChecks++;
+
+    const alternate = structuredClone(s);
+    let changed = false;
+    const swap = <T>(pile: T[], key: (value: T) => string) => {
+      const index = pile.findIndex((x) => key(x) !== key(pile[0]));
+      if (index > 0) {
+        [pile[0], pile[index]] = [pile[index], pile[0]];
+        changed = true;
+      }
+    };
+    swap(alternate.encounterDeck, (x) => x);
+    for (const p of seatIndices(alternate))
+      swap(seatView(alternate, p).deck, (x) => x);
+    for (const viewer of seatIndices(s)) {
+      const projected = publicState(seatView(s, viewer));
+      counts.playerViews++;
+      if (changed) {
+        assert.deepEqual(
+          publicState(seatView(alternate, viewer)),
+          projected,
+          `player ${viewer}: concealed encounter and player deck orders stay private`,
+        );
+        counts.privacyComparisons++;
+      }
+    }
+    assert.equal(JSON.stringify(s), before, "every player projection is pure");
+  };
+  return { observe, counts: () => ({ ...counts }) };
+}

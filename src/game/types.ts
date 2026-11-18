@@ -310,6 +310,7 @@ export type ScenarioId =
   | "the-woodland-realm"
   | "the-mines-of-moria"
   | "escape-from-khazad-dum"
+  | "the-hunt-for-the-dreadnaught"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -509,6 +510,7 @@ export interface GameState {
   woodlandRealm?: import("./woodland-realm-types").WoodlandRealmState;
   minesMoria?: import("./mines-moria-types").MinesMoriaState;
   escapeKhazad?: import("./escape-khazad-types").EscapeKhazadState;
+  huntDreadnaught?: import("./hunt-dreadnaught-types").HuntDreadnaughtState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -975,6 +977,8 @@ export interface GameState {
     mmSavageAttack?: boolean;
     /** Western Hall's shadow: a destroyed character reveals the top encounter card. */
     ekRevealOnKill?: boolean;
+    /** Belfalas Shipyard's shadow: Pillage the attacking enemy gains for this attack. */
+    hdPillage?: number;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

@@ -1129,6 +1129,32 @@ jobs:
           path: output/escape-khazad-release/failures
           retention-days: 7
 
+  hunt-dreadnaught-simulation:
+    name: The Hunt for the Dreadnaught complete games (${{ matrix.mode }}, ${{ matrix.part }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [standard, hard, easy]
+        part: [full, late]
+    env:
+      HD_SIMULATION_MODE: ${{ matrix.mode }}
+      HD_SIMULATION_PART: ${{ matrix.part }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:hunt-dreadnaught-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: hunt-dreadnaught-simulation-${{ matrix.mode }}-${{ matrix.part }}
+          path: output/hunt-dreadnaught-release/failures
+          retention-days: 7
+
   shelob-lair-simulation:
     name: Shelob's Lair complete games (26 games)
     runs-on: ubuntu-latest
@@ -1350,6 +1376,8 @@ jobs:
             suite: test:browser-mines-moria
           - group: escape-khazad
             suite: test:browser-escape-khazad
+          - group: hunt-dreadnaught
+            suite: test:browser-hunt-dreadnaught
           - group: treason-saruman-players
             suite: test:browser-treason-saruman-players
           - group: land-shadow-players

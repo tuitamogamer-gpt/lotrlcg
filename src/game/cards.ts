@@ -108,6 +108,7 @@ import { WQ_ENCOUNTERS, WQ_QUESTS } from "./wizards-quest-scenario-data";
 import { WR_ENCOUNTERS, WR_QUESTS } from "./woodland-realm-scenario-data";
 import { MM_ENCOUNTERS, MM_QUESTS } from "./mines-moria-scenario-data";
 import { EK_ENCOUNTERS, EK_QUESTS } from "./escape-khazad-scenario-data";
+import { HD_ENCOUNTERS, HD_QUESTS } from "./hunt-dreadnaught-scenario-data";
 import mountainFirePlayers from "../data/mountain-fire-player-cards.json";
 import hobbitPlayers from "../data/hobbit-player-cards.json";
 import blackRidersPlayers from "../data/black-riders-player-cards.json";
@@ -627,6 +628,7 @@ export const encounterCards = [
       ...WR_ENCOUNTERS,
       ...MM_ENCOUNTERS,
       ...EK_ENCOUNTERS,
+      ...HD_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -738,6 +740,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...WR_QUESTS,
     ...MM_QUESTS,
     ...EK_QUESTS,
+    ...HD_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -890,6 +893,7 @@ export const SCRIPTED = new Set(
     ...WR_QUESTS,
     ...MM_QUESTS,
     ...EK_QUESTS,
+    ...HD_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

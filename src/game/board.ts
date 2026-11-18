@@ -1962,7 +1962,9 @@ export function destroy(
     } else if (
       ShadowEastPlayers.shadowEastPlayerEnemyDestination(s, u, destruction)
     ) {
-    } else if (batch4Scenario(s).enemyDestination?.(s, u, destruction)) {
+    } else if (
+      batch4Scenario(s).enemyDestination?.(s, u, destruction, wasEngaged)
+    ) {
     } else if (Dread.dreadEnemyLeaves(s, u)) {
     } else if (destruction && u.code === "01115") {
       s.encounterDeck.push(u.code);
@@ -2509,7 +2511,9 @@ export function discardQuestAttachments(
   if (!host || host.code !== code) return [];
   const attachments = [...host.attachments];
   const discarded = attachments.filter(
-    (a) => !Dread.dreadPreserveQuestAttachment(s, code, a),
+    (a) =>
+      !Dread.dreadPreserveQuestAttachment(s, code, a) &&
+      !batch4Scenario(s).preserveQuestAttachment?.(s, code, a),
   );
   for (const a of discarded) discardAttachment(s, host, a);
   if (s.questAttachments && !host.attachments.length)
@@ -3032,7 +3036,7 @@ export function engage(s: GameState, u: Unit, optional = false) {
   MountainFirePlayers.mountainFirePlayerEnemyEngaged(s, u, optional);
   ShadowEastPlayers.shadowEastPlayerEngaged(s, u);
   Umbar.umbarEngaged(s, u);
-  batch4Scenario(s).engaged?.(s, u, optional);
+  batch4Scenario(s).engaged?.(s, u, optional, fromStaging);
   Desert.desertCrossingEngaged(s, u);
   Mordor.mordorEngaged(s, u);
   HaradResponses.haradEnemyEngaged(s, u);

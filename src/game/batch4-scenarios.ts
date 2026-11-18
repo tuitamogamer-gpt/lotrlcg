@@ -34,6 +34,7 @@ import { WIZARDS_QUEST_HOOKS } from "./wizards-quest";
 import { WOODLAND_REALM_HOOKS } from "./woodland-realm";
 import { MINES_MORIA_HOOKS } from "./mines-moria";
 import { ESCAPE_KHAZAD_HOOKS } from "./escape-khazad";
+import { HUNT_DREADNAUGHT_HOOKS } from "./hunt-dreadnaught";
 import { HELMS_DEEP_HOOKS } from "./helms-deep";
 import { ROAD_ISENGARD_HOOKS } from "./road-isengard";
 import { PASSAGE_MARSHES_HOOKS } from "./passage-marshes";
@@ -136,6 +137,8 @@ export function batch4Scenario(s: GameState): Batch4ScenarioHooks {
       return MINES_MORIA_HOOKS;
     case "escape-from-khazad-dum":
       return ESCAPE_KHAZAD_HOOKS;
+    case "the-hunt-for-the-dreadnaught":
+      return HUNT_DREADNAUGHT_HOOKS;
     case "the-ruins-of-belegost":
       return RUINS_BELEGOST_HOOKS;
     case "murder-at-the-prancing-pony":
@@ -246,4 +249,5 @@ export const batch4SharedEffect = (effect: Effect) =>
     WOODLAND_REALM_HOOKS,
     MINES_MORIA_HOOKS,
     ESCAPE_KHAZAD_HOOKS,
+    HUNT_DREADNAUGHT_HOOKS,
   ].some((hooks) => hooks.sharedEffect?.(effect));

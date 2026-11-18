@@ -1,9 +1,30 @@
-import type { Attachment, Effect, GameState, Option, Unit } from "./types";
+import type {
+  Attachment,
+  Card,
+  Effect,
+  GameState,
+  Option,
+  Unit,
+} from "./types";
 import type { DamageContext } from "./damage-context";
 
 type Combat = NonNullable<GameState["combat"]>;
 export interface Batch4ScenarioHooks {
   setup?(s: GameState): void;
+  /** The active player's starting hand size (6 unless a card changes it). */
+  startingHandSize?(s: GameState): number | undefined;
+  /** This card can be played without a resource match. */
+  noResourceMatch?(s: GameState, c: Card): boolean;
+  /** This ally or attachment can be played outside the planning phase now. */
+  playTimingAllowed?(s: GameState, c: Card): boolean;
+  /** Resources this card costs less to play. */
+  playCostReduction?(s: GameState, c: Card): number;
+  /** Traits a character in play gains from the scenario. */
+  dynamicTraits?(s: GameState, u: Unit): string[];
+  /** Keywords a character in play gains from the scenario. */
+  dynamicKeywords?(s: GameState, u: Unit): string[];
+  /** A quest card's attachment stays when the quest card is defeated. */
+  preserveQuestAttachment?(s: GameState, code: string, a: Attachment): boolean;
   /** After a player draws cards; cardEffect is false for the resource phase draw. */
   cardsDrawn?(
     s: GameState,
@@ -125,8 +146,16 @@ export interface Batch4ScenarioHooks {
   endQuest?(s: GameState): void;
   committed?(s: GameState): void;
   missingHeroAllowed?(s: GameState, player: number): boolean;
-  /** After an enemy engages the active player; optional for an optional engagement. */
-  engaged?(s: GameState, u: Unit, optional?: boolean): void;
+  /**
+   * After an enemy engages the active player; optional for an optional
+   * engagement, fromStaging when it engaged from the staging area.
+   */
+  engaged?(
+    s: GameState,
+    u: Unit,
+    optional?: boolean,
+    fromStaging?: boolean,
+  ): void;
   hostLeaves?(s: GameState, u: Unit, defeated?: boolean): void;
   /** Printed replacement effects run before defeat and leave-play reactions. */
   beforeDestroy?(
@@ -317,7 +346,12 @@ export interface Batch4ScenarioHooks {
   handDiscardDestination?(s: GameState, u: Unit): boolean;
   effect?(s: GameState, e: Effect): boolean;
   /** Where a leaving enemy goes instead of the discard pile; destruction is a defeat. */
-  enemyDestination?(s: GameState, u: Unit, destruction?: boolean): boolean;
+  enemyDestination?(
+    s: GameState,
+    u: Unit,
+    destruction?: boolean,
+    wasEngaged?: boolean,
+  ): boolean;
   cannotAttach?(s: GameState, u: Unit, code: string): boolean;
   doesNotExhaustToQuest?(s: GameState, u: Unit): boolean;
   mustTravel?(s: GameState): boolean;

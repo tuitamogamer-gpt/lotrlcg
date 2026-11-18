@@ -10,11 +10,11 @@ type Props = {
 };
 const STAGE_RULES: Record<string, string> = {
   [EK.depths]:
-    "Out of the Depths: 10 quest points; explored, Dark Pit flips over and Durin's Bane is set aside, and each player searches the top 5 cards of his deck for a card. The stage cannot be defeated while Dark Pit is in play.",
+    "Out of the Depths: 10 quest points; explored, Dark Pit flips over and Durin's Bane is set aside, and each player searches the top 5 cards of their deck for a card. The stage cannot be defeated while Dark Pit is in play.",
   [EK.lair]:
     "Old One Lair: 10 quest points; the enemy with a resource is immune to player card effects, and no progress can be placed on the stage while it is in play.",
   [EK.wrongTurn]:
-    "A Wrong Turn: 15 quest points; when revealed, each player kept 1 card in hand and shuffled the rest into his deck.",
+    "A Wrong Turn: 15 quest points; when revealed, each player kept 1 card in hand and shuffled the rest into their deck.",
   [EK.wayUp]:
     "A Way Up: 20 quest points; the active location's threat is added to the staging area, and the players must travel to a location, if able.",
   [EK.bridge]:

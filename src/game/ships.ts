@@ -21,13 +21,21 @@ export const isEnemy = (u: {
   (["enemy", "ship-enemy"].includes(card(u.code).type_code) ||
     hasEnemyCondition(u));
 
+/** Sea Monster: "Ship objectives may attack and defend against Sea Monster." */
+const shipsMayFight = (enemy: Unit) =>
+  !enemy.blanked &&
+  /Ship objectives may attack and defend against/.test(
+    card(enemy.code).text ?? "",
+  );
+
 /** Ordinary characters may attack ships; ships may only attack other ships. */
 export const shipCanAttack = (enemy: Unit, attacker: Unit) =>
-  !isShipObjective(attacker) || isShipEnemy(enemy);
+  !isShipObjective(attacker) || isShipEnemy(enemy) || shipsMayFight(enemy);
 
 /** Neither half of the fleet may defend against the other printed enemy kind. */
 export const shipCanDefend = (enemy: Unit, defender: Unit) =>
-  isShipEnemy(enemy) === isShipObjective(defender);
+  isShipEnemy(enemy) === isShipObjective(defender) ||
+  (isShipObjective(defender) && shipsMayFight(enemy));
 
 /** Undefended ship damage is assigned to one ship of the attacked player. */
 export function shipUndefendedTargets(

@@ -1,0 +1,60 @@
+[
+  {
+    "code": "octgn:2232bb8b-4b21-4315-9c6d-300b3a3ed7f9",
+    "octgnid": "2232bb8b-4b21-4315-9c6d-300b3a3ed7f9",
+    "name": "Searching the High Seas",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "THftD",
+    "pack_name": "The Hunt for the Dreadnaught",
+    "position": 4,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Hunt for the Dreadnaught",
+    "side": "A",
+    "back_name": "Searching the High Seas",
+    "back_text": "*This stage has a global quest point value of 8 per player among all groups.\nNo more than 5 progress per player can be placed on this stage each round.\nThe players can only advance at the end of the quest phase.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/2232bb8b-4b21-4315-9c6d-300b3a3ed7f9.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/2232bb8b-4b21-4315-9c6d-300b3a3ed7f9.jpg",
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:a8c911a5-bc2f-4882-8581-c5129d682370",
+    "octgnid": "a8c911a5-bc2f-4882-8581-c5129d682370",
+    "name": "Destroy the Dreadnaught",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add the set-aside Dreadnaught enemy to the staging area, Elite side faceup.",
+    "is_unique": false,
+    "pack_code": "THftD",
+    "pack_name": "The Hunt for the Dreadnaught",
+    "position": 5,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Hunt for the Dreadnaught",
+    "side": "A",
+    "back_name": "Destroy the Dreadnaught",
+    "back_text": "No more than 5 progress per player can be placed on this stage each round.\nAction: Remove 5 progress per player from this stage to choose any group to shuffle 1 set aside Gondorian Warship card into their encounter deck.\nResponse: When the Dreadnaught attacks you, raise your threat by 4 to cancel the attack.\nWhen the Dreadnaught is destroyed, the players win the game.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/a8c911a5-bc2f-4882-8581-c5129d682370.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/a8c911a5-bc2f-4882-8581-c5129d682370.jpg",
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

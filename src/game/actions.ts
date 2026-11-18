@@ -40,6 +40,7 @@ import { wizardsQuestPublicState } from "./wizards-quest-support";
 import { woodlandRealmPublicState } from "./woodland-realm-support";
 import { minesMoriaPublicState } from "./mines-moria-support";
 import { escapeKhazadPublicState } from "./escape-khazad-support";
+import { huntDreadnaughtPublicState } from "./hunt-dreadnaught-support";
 import { helmsDeepPublicState } from "./helms-deep-support";
 import { roadIsengardPublicState } from "./road-isengard-support";
 import { passageMarshesPublicState } from "./passage-marshes-support";
@@ -1031,8 +1032,10 @@ export function canPlay(
   if (elfProblem) return elfProblem;
   const dwarfProblem = dwarfPlayProblem(s, c.code);
   if (dwarfProblem) return dwarfProblem;
+  const timingAllowed = !!batch4Scenario(s).playTimingAllowed?.(s, c);
   if (
     !options.resolvingEffect &&
+    !timingAllowed &&
     ["ally", "attachment", "player-side-quest"].includes(c.type_code) &&
     s.table &&
     activeSeat(s) !== s.table.turn
@@ -1042,6 +1045,7 @@ export function canPlay(
     return "A matching sphere hero is required.";
   if (
     !options.resolvingEffect &&
+    !timingAllowed &&
     ["ally", "attachment", "player-side-quest"].includes(c.type_code) &&
     s.phase !== "planning"
   )
@@ -3092,7 +3096,7 @@ export function applyAction(input: GameState, action: Action): GameState {
         s.hand = s.hand.filter((u) => kept.has(u.id));
       }
       shuffle(s, s.deck);
-      draw(s, 6);
+      draw(s, batch4Scenario(s).startingHandSize?.(s) ?? 6);
       s.mulled = true;
       log(s, "You take your one mulligan.");
       break;
@@ -3859,6 +3863,7 @@ export function publicState(s: GameState) {
     woodlandRealm: woodlandRealmPublicState(s),
     minesMoria: minesMoriaPublicState(s),
     escapeKhazad: escapeKhazadPublicState(s),
+    huntDreadnaught: huntDreadnaughtPublicState(s),
     fortressNurnPlayers: FortressPlayers.fortressNurnPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),

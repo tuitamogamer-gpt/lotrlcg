@@ -71,6 +71,7 @@ import { WQ_QUESTS } from "./game/wizards-quest-support";
 import { WR_QUESTS } from "./game/woodland-realm-support";
 import { MM_QUESTS } from "./game/mines-moria-support";
 import { EK_QUESTS } from "./game/escape-khazad-support";
+import { HD_QUESTS } from "./game/hunt-dreadnaught-support";
 import { OathState } from "./ui/the-oath-state";
 import { RuinsBelegostState } from "./ui/ruins-belegost-state";
 import { PrancingPonyState } from "./ui/prancing-pony-state";
@@ -81,6 +82,7 @@ import { WizardsQuestState } from "./ui/wizards-quest-state";
 import { WoodlandRealmState } from "./ui/woodland-realm-state";
 import { MinesMoriaState } from "./ui/mines-moria-state";
 import { EscapeKhazadState } from "./ui/escape-khazad-state";
+import { HuntDreadnaughtState } from "./ui/hunt-dreadnaught-state";
 import { DDCD_QUESTS } from "./game/dungeons-deep-support";
 import {
   discoveredTreasures,
@@ -3373,6 +3375,7 @@ export default function App() {
             <WoodlandRealmState s={game} inspect={setDetail} />
             <MinesMoriaState s={game} inspect={setDetail} />
             <EscapeKhazadState s={game} inspect={setDetail} />
+            <HuntDreadnaughtState s={game} inspect={setDetail} />
             <AshMountainsState s={game} inspect={setDetail} />
             <CouncilOfTheWiseState s={game} inspect={setDetail} />
             <WainridersScenarioState s={game} inspect={setDetail} />
@@ -4153,6 +4156,7 @@ export default function App() {
                       ...WR_QUESTS,
                       ...MM_QUESTS,
                       ...EK_QUESTS,
+                      ...HD_QUESTS,
                       ...(carrockQuestCards as Card[]),
                       ...EMYN_MUIL_QUESTS,
                       ...CITY_QUESTS,

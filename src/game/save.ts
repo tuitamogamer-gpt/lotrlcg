@@ -67,6 +67,11 @@ import { validateWizardsQuest, wqUnits } from "./wizards-quest-support";
 import { validateWoodlandRealm, wrUnits } from "./woodland-realm-support";
 import { mmUnits, validateMinesMoria } from "./mines-moria-support";
 import { ekUnits, validateEscapeKhazad } from "./escape-khazad-support";
+import {
+  HD,
+  hdUnits,
+  validateHuntDreadnaught,
+} from "./hunt-dreadnaught-support";
 import { validateHideTest } from "./hide-test";
 import { validateAsh, ashExtraUnits } from "./ash-mountains-support";
 import { validateAshPlayers } from "./ash-mountains-player";
@@ -204,7 +209,9 @@ export function validateSave(
         !s.queue?.some((e) => e.kind === "gameSetupContinue") ||
         (!s.shadowEastPlayers &&
           !s.wainridersPlayers?.contracts.length &&
-          !s.landSorrowPlayers?.contracts.length))
+          !s.landSorrowPlayers?.contracts.length &&
+          // The Hunt for the Dreadnaught: the fleet is chosen before the hands.
+          !(s.huntDreadnaught && !s.huntDreadnaught.mode)))
     )
       return false;
     if (
@@ -692,8 +699,10 @@ export function validateSave(
               ).length >= 3)))) &&
       (u.cobasShipObjective === undefined ||
         (u.cobasShipObjective === true &&
-          s.scenarioId === "a-storm-on-cobas-haven" &&
-          u.code === COBAS.skirmisher)) &&
+          ((s.scenarioId === "a-storm-on-cobas-haven" &&
+            u.code === COBAS.skirmisher) ||
+            (s.scenarioId === "the-hunt-for-the-dreadnaught" &&
+              u.code === HD.skirmisher)))) &&
       (u.raceHaradArea === undefined ||
         (typeof u.raceHaradArea === "boolean" &&
           s.scenarioId === "race-across-harad")) &&
@@ -1058,6 +1067,7 @@ export function validateSave(
         !validateWoodlandRealm(s, validUnit as (v: unknown) => boolean) ||
         !validateMinesMoria(s, validUnit as (v: unknown) => boolean) ||
         !validateEscapeKhazad(s, validUnit as (v: unknown) => boolean) ||
+        !validateHuntDreadnaught(s, validUnit as (v: unknown) => boolean) ||
         !validateLandSorrow(s, validUnit as (v: unknown) => boolean) ||
         !validateAsh(s, validUnit as (v: unknown) => boolean) ||
         !validateWainriders(s, validUnit as (v: unknown) => boolean, (c) =>
@@ -1805,6 +1815,7 @@ export function validateSave(
       ...wrUnits(s),
       ...mmUnits(s),
       ...ekUnits(s),
+      ...hdUnits(s),
       ...(s.fortressNurnPlayers?.contracts.map((c) => c.unit) ?? []),
       ...(s.landSorrowPlayers?.contracts.flatMap((c) =>
         c.unit ? [c.unit] : [],
