@@ -1148,17 +1148,24 @@ export function QuestGoals({ s }: { s: GameState }) {
                     done: s.progress >= 7,
                   },
                 ]
-              : [
-                  { label: "Place 1 quest progress", done: s.progress >= 1 },
-                  {
-                    label: `Trolls remaining · ${[...s.staging, ...allEngaged(s)].filter((u) => card(u.code).type_code === "enemy" && card(u.code).traits?.includes("Troll")).length}`,
-                    done: ![...s.staging, ...allEngaged(s)].some(
-                      (u) =>
-                        card(u.code).type_code === "enemy" &&
-                        card(u.code).traits?.includes("Troll"),
-                    ),
-                  },
-                ]
+              : s.stage === 3
+                ? [
+                    {
+                      label: "Defeat Rob & Bob to rescue Grimbeorn the Old",
+                      done: !!s.nightmare?.robDefeated,
+                    },
+                  ]
+                : [
+                    { label: "Place 1 quest progress", done: s.progress >= 1 },
+                    {
+                      label: `Trolls remaining · ${[...s.staging, ...allEngaged(s)].filter((u) => card(u.code).type_code === "enemy" && card(u.code).traits?.includes("Troll")).length}`,
+                      done: ![...s.staging, ...allEngaged(s)].some(
+                        (u) =>
+                          card(u.code).type_code === "enemy" &&
+                          card(u.code).traits?.includes("Troll"),
+                      ),
+                    },
+                  ]
             : s.scenarioId === "journey-to-rhosgobel"
               ? [
                   {

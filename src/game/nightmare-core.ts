@@ -45,6 +45,7 @@ import {
   seatView,
 } from "./table";
 import {
+  NIGHTMARE_CARROCK_SET_ASIDE,
   NIGHTMARE_CORE as N,
   nightmareCardOf,
   nightmareLive,
@@ -116,6 +117,17 @@ export function nightmareSetup(s: GameState) {
   );
   if (s.scenarioId === "mirkwood")
     enqueue(s, ...playerOrder(s).map((player) => fx("reveal", { player })));
+  // Conflict at the Carrock: "Stage 1A should read, "Remove 5 unique Troll
+  // cards" instead of 4."
+  if (s.scenarioId === "conflict-at-the-carrock") {
+    s.encounterDeck = s.encounterDeck.filter(
+      (c) => !NIGHTMARE_CARROCK_SET_ASIDE.includes(c),
+    );
+    log(
+      s,
+      "Conflict at the Carrock · Nightmare: Rob & Bob, Louis, Morris, Rupert and Stuart are set aside.",
+    );
+  }
 }
 
 // ------------------------------------------------------------- passives

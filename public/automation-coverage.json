@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2322,
+    "encounterCards": 2333,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3544,
-    "pending": 639
+    "scripted": 3555,
+    "pending": 628
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 274
+    "scripted": 275
   },
   "registeredCodes": [
     "01001",
@@ -3120,6 +3120,17 @@
     "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0008",
     "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0009",
     "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0010",
+    "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0041",
+    "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0043",
+    "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0045",
+    "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0046",
+    "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0047",
+    "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0048",
+    "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0049",
+    "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0050",
+    "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0051",
+    "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0052",
+    "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0053",
     "octgn:b922eedf-eea0-471d-bc52-90becc2a0769",
     "octgn:b93c5b70-0655-4577-9f5e-68ca00d4bfc8",
     "octgn:b9b2c1fc-2954-46f3-8b6c-71300a35eb5d",
@@ -3858,7 +3869,7 @@
     {
       "product": "conflict-at-the-carrock-nightmare",
       "total": 11,
-      "scripted": 0,
+      "scripted": 11,
       "player": 0,
       "playerScripted": 0
     },
@@ -31995,7 +32006,7 @@
       "name": "Conflict at the Carrock",
       "type": "nightmare",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "conflict-at-the-carrock-nightmare"
     },
     {
@@ -32003,7 +32014,7 @@
       "name": "Grimbeorn's Folly",
       "type": "quest",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "conflict-at-the-carrock-nightmare"
     },
     {
@@ -32011,7 +32022,7 @@
       "name": "Savage Hill-troll",
       "type": "enemy",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "conflict-at-the-carrock-nightmare"
     },
     {
@@ -32019,7 +32030,7 @@
       "name": "Rob & Bob",
       "type": "enemy",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "conflict-at-the-carrock-nightmare"
     },
     {
@@ -32027,7 +32038,7 @@
       "name": "Louis",
       "type": "enemy",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "conflict-at-the-carrock-nightmare"
     },
     {
@@ -32035,7 +32046,7 @@
       "name": "Morris",
       "type": "enemy",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "conflict-at-the-carrock-nightmare"
     },
     {
@@ -32043,7 +32054,7 @@
       "name": "Rupert",
       "type": "enemy",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "conflict-at-the-carrock-nightmare"
     },
     {
@@ -32051,7 +32062,7 @@
       "name": "Stuart",
       "type": "enemy",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "conflict-at-the-carrock-nightmare"
     },
     {
@@ -32059,7 +32070,7 @@
       "name": "Time for Supper",
       "type": "treachery",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "conflict-at-the-carrock-nightmare"
     },
     {
@@ -32067,7 +32078,7 @@
       "name": "Troll Lair",
       "type": "location",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "conflict-at-the-carrock-nightmare"
     },
     {
@@ -32075,7 +32086,7 @@
       "name": "Hives and Hives",
       "type": "location",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "conflict-at-the-carrock-nightmare"
     },
     {
@@ -39105,8 +39116,8 @@
       "id": "N01.5",
       "name": "Conflict at the Carrock (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "conflict-at-the-carrock",
+      "state": "scripted"
     },
     {
       "id": "N01.6",

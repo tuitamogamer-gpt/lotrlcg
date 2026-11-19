@@ -11,8 +11,9 @@ not offered in campaign mode.
 
 **Supported so far:** the Core Set Nightmare Deck (Passage Through Mirkwood,
 Journey Along the Anduin and Escape from Dol Guldur) and, of Shadows of
-Mirkwood's, The Hunt for Gollum. The other Nightmare Decks follow in
-publication order, beginning with Conflict at the Carrock.
+Mirkwood's, The Hunt for Gollum and Conflict at the Carrock. The other
+Nightmare Decks follow in publication order, beginning with A Journey to
+Rhosgobel.
 
 ## Sources
 
@@ -20,7 +21,8 @@ publication order, beginning with Conflict at the Carrock.
   (`public/catalog.json`), checked by eye against the DragnCards scans; the
   checked cards are written to `src/data/nightmare-encounter-cards.json` and
   their faces pinned in `tests/nightmare-art.json` (9 cards and 10 faces for
-  each scenario so far).
+  each scenario, and 11 cards and 13 faces for Conflict at the Carrock, whose
+  Nightmare Deck adds a stage to the quest deck).
 - The scans correct the catalogue: each setup card's front is the removal
   list ("Begin with the standard quest deck and encounter deck … Remove the
   following cards, in the specified quantities …"), where the catalogue had a
@@ -34,11 +36,14 @@ publication order, beginning with Conflict at the Carrock.
   Catacomb Inspection's shadow closes its parenthesis; The Hunt for Gollum's
   setup card detaches "the encounter guarding it first" (the catalogue had
   "guarding if first") and Hunting Warg searches for "Hunters from Mordor"
-  (the catalogue had "Morder").
+  (the catalogue had "Morder"); Grimbeorn's Folly's stage 3B says the players
+  have "won the game" (the catalogue had "have won"), and keeps its stage
+  number (3).
 - The source recipe of each Nightmare scenario (`public/scenarios.json`,
-  N01.1 to N01.4 so far) is the standard encounter deck without the
+  N01.1 to N01.5 so far) is the standard encounter deck without the
   printed removals plus the Nightmare Deck (Escape from Dol Guldur's Nazgûl
-  set aside in both): a test compares the two.
+  and Conflict at the Carrock's 5 unique Trolls set aside in both, the
+  Carrock's stage 3 in its quest deck): a test compares the two.
 
 ## The framework
 
@@ -57,6 +62,9 @@ publication order, beginning with Conflict at the Carrock.
   encounter cards keep their own scripts. Its lasting effects are saved with
   the game and checked when a save is restored; a Nightmare card's threat
   raise resolves in the affected player's own seat.
+- A Nightmare Deck may add stages to the quest deck (Conflict at the
+  Carrock's stage 3): the stage count a save accepts and the table shows
+  follows it.
 - The quest inspector shows the Nightmare card (its rules side first) and the
   rule it applied; the end-of-game log names the mode.
 - The coverage audit counts a Nightmare recipe as automated once its
@@ -118,10 +126,26 @@ publication order, beginning with Conflict at the Carrock.
 | Hunter's Lookout (location ×2)     | Each Mordor enemy with a Clue gets +2 [defense] for each copy in play. Shadow: the attacking enemy gets +1 [defense] for each Clue in play until the end of the round.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | Dark Pools (location ×3)           | No progress can be placed on it in the staging area. When it becomes the active location, each player discards one of their allies with the highest printed cost (their choice among tied allies).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 
+## Conflict at the Carrock (Nightmare)
+
+| Card                           | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Setup card                     | Removes Grimbeorn the Old ×1, Louis ×1, Morris ×1, Stuart ×1, Rupert ×1, Bee Pastures ×3, Oak-wood Grove ×3, Roasted Slowly ×1, Misty Mountain Goblins ×3, Banks of the Anduin ×2, Wolf Rider ×1, Goblin Sniper ×2, Wargs ×2, Despair ×2, The Brown Lands ×2 and The East Bight ×2 from the standard encounter deck. Stage 1A sets aside 5 unique Trolls (Rob & Bob and the Nightmare Louis, Morris, Rupert and Stuart), and stage 2B places the last four in the staging area. Forced: at the end of the quest phase, if no progress was placed on the current quest this phase (progress on the active location does not count), 1 progress is placed on it, bypassing the active location. Response: after a unique Troll enemy is defeated, the first player may discard 1 Sacked! card from play (the Nightmare Trolls have no such response of their own). Stage 2's end (1 progress and no Troll in play) leads to stage 3 instead of the win. |
+| Grimbeorn's Folly (stage 3)    | When revealed: Rob & Bob enter the staging area; then each player searches the encounter deck, then the discard pile, for a non-unique Troll enemy (their choice among the titles found) and adds it to the staging area, and the encounter deck is shuffled. 3B has no quest points: the players win when Rob & Bob are defeated.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Savage Hill-troll (enemy ×4)   | While it is in the victory display, each Troll enemy gets +1 hit point (each copy). Shadow: if the attacker is a Troll, the defending character does not ready during this round's refresh phase.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Rob & Bob (enemy ×1)           | After its first attack each round, with two or more players, it engages the next player and makes an additional attack, with a new shadow card (the engine's immediate attack; its first shadow card is discarded at the end of combat).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Louis (enemy ×1)               | After his attack, the defending player raises their threat by 3. While he is in the victory display, each Troll enemy's attack raises the defending player's threat by 1.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Morris (enemy ×1)              | Immune to player events. While he is in the victory display, each Troll enemy gets +1 [attack] and is immune to player events.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Rupert (enemy ×1)              | His [defense] cannot be reduced (it stays at least his printed [defense]). While he is in the victory display, each Troll enemy's [defense] cannot be reduced (its printed [defense], +1 while Stuart is in the victory display).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Stuart (enemy ×1)              | Cannot have player attachments. While he is in the victory display, each Troll enemy gets +1 [defense] and cannot have player attachments.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Time for Supper (treachery ×3) | The first player chooses a hero in any player's discard pile, which is removed from the game; then all damage is healed from each Troll enemy in play; if none is healed, it gains surge.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Troll Lair (location ×3)       | While it is in the staging area, players cannot reduce their threat. Shadow: a Troll attacker heals 4 damage.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Hives and Hives (location ×3)  | After any progress is placed on it, each character in play takes 1 damage. Shadow: the attacking enemy gets +2 [attack].                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+
 ## Verification
 
 ```sh
-node --import tsx --test tests/nightmare-core.test.ts tests/nightmare-anduin.test.ts tests/nightmare-dol-guldur.test.ts tests/nightmare-gollum.test.ts
+node --import tsx --test tests/nightmare-core.test.ts tests/nightmare-anduin.test.ts tests/nightmare-dol-guldur.test.ts tests/nightmare-gollum.test.ts tests/nightmare-carrock.test.ts
 npm run build
 npm run test:browser-nightmare
 ```
@@ -157,7 +181,16 @@ recipe; the Clue attached to a Mordor enemy at the end of the refresh phase
 when its enemy leaves play) and the loss at 4; each card's rules and shadow
 (Ravenous Hawk in a stage's look, Hunting Warg at the beginning of the refresh
 phase, Watched Path's draw prohibition); and seeded solo and two-player
-games.
+games. `tests/nightmare-carrock.test.ts` (7 tests) covers Conflict at the
+Carrock's texts, stats and faces; its Nightmare encounter deck against the
+source recipe with the 5 unique Trolls set aside; stage 2B's Trolls, stage 3
+(Rob & Bob, the Troll search and its choice, one Troll per player from the
+discard pile) and the win on Rob & Bob's defeat (the standard game still won
+at stage 2); the quest phase's progress and the Sacked! response; the victory
+display's effects, Morris's immunity, Stuart's attachments, Rupert's
+[defense] and Louis's threat raises; each treachery, location and shadow, and
+Rob & Bob's additional attack in a two-player game; and seeded solo and
+two-player games, from the start and from stage 3.
 
 The browser suite starts Passage Through Mirkwood in Nightmare mode from the
 lobby (easy mode turned off), checks the setup's staging area and reveal, the
@@ -169,5 +202,7 @@ it starts Escape from Dol Guldur in Nightmare mode from the lobby, checks its
 Nightmare card, and a second prisoner in the prison banner with the table's
 “Nightmare mode” label; and it starts The Hunt for Gollum in Nightmare mode
 from the lobby, checks its Nightmare card and a Clue attached to Hunters from
-Mordor, at 1280, 390 and 320 pixels (30 checkpoints); it checks the 40 pinned
-faces.
+Mordor; and it starts Conflict at the Carrock in Nightmare mode from the
+lobby, checks the 5 Trolls set aside and its Nightmare card, and stage 3
+(its face, the 3 / 3 stage count and its goal), at 1280, 390 and 320 pixels
+(36 checkpoints); it checks the 53 pinned faces.

@@ -120,7 +120,7 @@ import {
   WILDS_RHOVANION,
 } from "./wilds-rhovanion-support";
 import { validEredPool } from "./ered-campaign-pool";
-import { nightmareSupported } from "./nightmare";
+import { nightmareStageCount, nightmareSupported } from "./nightmare";
 import { validNightmareCore } from "./nightmare-core";
 import { validNightmareSom } from "./nightmare-som";
 import { COBAS, validateCobas } from "./cobas-support";
@@ -1369,7 +1369,9 @@ export function validateSave(
       s.nextId < 1 ||
       !integer(s.stage) ||
       s.stage < 1 ||
-      s.stage > SCENARIOS.find((q) => q.id === s.scenarioId)!.stages.length ||
+      s.stage >
+        (nightmareStageCount(s) ??
+          SCENARIOS.find((q) => q.id === s.scenarioId)!.stages.length) ||
       !["unknown", "beorn", "spider"].includes(s.branch)
     )
       return false;

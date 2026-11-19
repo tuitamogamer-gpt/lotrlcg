@@ -37,6 +37,7 @@ import { AnimatedNumber, CountChange, tableSpring } from "./motion";
 import carrockQuests from "../data/carrock-quest-cards.json";
 import emynQuests from "../data/emyn-muil-quest-cards.json";
 import { scenarioStageCount } from "../game/scenarios";
+import { nightmareStageCount } from "../game/nightmare";
 import {
   currentQuestUnit,
   currentQuestProgress,
@@ -237,7 +238,8 @@ export function JourneyArea({
       <div className="tabletop-label">
         <Compass size={13} /> THE JOURNEY{" "}
         <span>
-          {s.stage} / {scenarioStageCount(s.scenarioId)}
+          {s.stage} /{" "}
+          {nightmareStageCount(s) ?? scenarioStageCount(s.scenarioId)}
         </span>
       </div>
       {area && (

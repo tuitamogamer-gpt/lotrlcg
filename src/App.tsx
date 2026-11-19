@@ -393,6 +393,7 @@ import {
 } from "./game/ered-campaign";
 import {
   nightmareCardOf,
+  nightmareStageCount,
   nightmareStatus,
   nightmareSupported,
 } from "./game/nightmare";
@@ -4703,7 +4704,7 @@ export default function App() {
                 {stageInfo(game).quest || "Special objective"}
               </strong>{" "}
               quest progress · Stage {game.stage} of{" "}
-              {scenarioStageCount(game.scenarioId)}
+              {nightmareStageCount(game) ?? scenarioStageCount(game.scenarioId)}
             </p>
             <small>
               {scenarioRelease(game.scenarioId)} · Quest card · Fantasy Flight

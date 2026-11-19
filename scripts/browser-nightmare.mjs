@@ -6,7 +6,10 @@ import { card } from "../src/game/cards.ts";
 import { revealed } from "../src/game/board.ts";
 import { flush } from "../src/game/effects.ts";
 import { make } from "../src/game/core.ts";
-import { NIGHTMARE_CORE as N } from "../src/game/nightmare.ts";
+import {
+  NIGHTMARE_CORE as N,
+  NIGHTMARE_SOM as G,
+} from "../src/game/nightmare.ts";
 import { reviewedState } from "./browser-review-helpers.mjs";
 import {
   capture,
@@ -290,6 +293,70 @@ try {
       })
       .waitFor();
     await checkpoint("gollum-clue-hunters", width);
+    // Conflict at the Carrock in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-conflict-at-the-carrock").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await opening(page);
+    assert.equal(s.scenarioId, "conflict-at-the-carrock");
+    assert.equal(s.nightmareMode, true);
+    for (const code of [G.robBob, G.louis, G.morris, G.rupert, G.stuart])
+      assert.ok(!s.encounterDeck.includes(code), code);
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/5 unique Trolls were set aside/)
+      .waitFor();
+    await checkpoint("carrock-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // Stage 3, Grimbeorn's Folly: Rob & Bob in the staging area.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.stage = 3;
+      t.progress = 0;
+      t.staging = [make(t, G.robBob), make(t, G.savage)];
+      t.victoryCards = [G.stuart];
+      t.victory = 2;
+      s = await load(page, t);
+    }
+    const folly = page
+      .getByRole("button", { name: "Inspect quest: Grimbeorn's Folly" })
+      .locator("img");
+    await folly.waitFor();
+    assert.ok(
+      (await folly.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "stage 3's face loads",
+    );
+    await page
+      .locator(".journey-area .tabletop-label")
+      .getByText("3 / 3")
+      .waitFor();
+    await page
+      .locator(".journey-area .quest-goals")
+      .getByText("Defeat Rob & Bob to rescue Grimbeorn the Old")
+      .waitFor();
+    await checkpoint("carrock-grimbeorns-folly", width);
     await view.c.close();
   }
   const p = await browser.newPage();

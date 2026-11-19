@@ -298,7 +298,10 @@ import {
   elfStats,
   elfPlayCost,
 } from "./elf-player-cards";
-import { nightmareRefillsEncounterDeck } from "./nightmare";
+import {
+  nightmareDefenseFloor,
+  nightmareRefillsEncounterDeck,
+} from "./nightmare";
 
 export const observation = (s: GameState) =>
   s.flow ? observe(s, stats, stagingThreat, threatOf) : undefined;
@@ -930,6 +933,9 @@ export function stats(s: GameState, u: Unit) {
     sagaCampaignWillpowerOverride(s, u);
   if (overrideWill !== undefined) result.will = overrideWill;
   result.attack = Math.max(0, result.attack);
+  // Conflict at the Carrock (Nightmare): Rupert's [defense] cannot be reduced.
+  const floor = nightmareDefenseFloor(s, u);
+  if (floor !== undefined) result.defense = Math.max(result.defense, floor);
   return result;
 }
 

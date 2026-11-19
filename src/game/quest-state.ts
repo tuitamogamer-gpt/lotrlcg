@@ -14,6 +14,7 @@ import { fbCurrentQuest } from "./fog-barrow-support";
 import { gramCurrentQuest, gramQuestUnit } from "./mount-gram-support";
 import { voyageCurrentQuest } from "./voyage-belegaer-support";
 import { fasCurrentQuest } from "./flies-spiders-support";
+import { NIGHTMARE_SOM } from "./nightmare";
 
 type QuestAttachmentState = GameState & {
   questAttachments?: Record<string, Attachment[]>;
@@ -111,6 +112,13 @@ export function mainQuestCode(s: GameState): string | undefined {
   if (s.scenarioId === "flight-from-moria") return s.khazad?.activeQuest;
   if (s.scenarioId === "mirkwood" && s.stage === 3)
     return s.branch === "beorn" ? "01122" : "01121";
+  // Conflict at the Carrock (Nightmare): stage 3, Grimbeorn's Folly.
+  if (
+    s.scenarioId === "conflict-at-the-carrock" &&
+    s.stage === 3 &&
+    s.nightmareMode
+  )
+    return NIGHTMARE_SOM.folly;
   const stage = scenario(s.scenarioId).stages[s.stage - 1];
   return stage && "cardCode" in stage
     ? stage.cardCode

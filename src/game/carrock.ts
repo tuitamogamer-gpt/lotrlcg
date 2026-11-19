@@ -41,6 +41,8 @@ import {
   placeEncounter,
 } from "./board";
 import { hasResourceIcon } from "./expansion-passives";
+import { nightmareCarrockTrolls } from "./nightmare";
+import { nightmareCarrockFolly, nightmareCarrockWon } from "./nightmare-som";
 
 export const CARROCK_ENCOUNTERS = definitions as Card[];
 const code = (suffix: string) =>
@@ -160,8 +162,14 @@ export function advanceCarrock(s: GameState) {
         "The first player chooses the single active location discarded by the quest effect.",
       );
     } else carrockStageTwo(s, carrock, active[0]);
-  } else if (s.stage === 2 && s.progress >= 1 && !trollsInPlay(s).length)
-    win(s);
+  } else if (s.stage === 2 && s.progress >= 1 && !trollsInPlay(s).length) {
+    // Nightmare mode: stage 3, Grimbeorn's Folly, follows.
+    if (!nightmareCarrockFolly(s)) win(s);
+  } else if (s.stage === 3 && nightmareCarrockWon(s))
+    win(
+      s,
+      "Rob & Bob are defeated, and Grimbeorn the Old is rescued from certain death.",
+    );
   return true;
 }
 function carrockStageTwo(s: GameState, carrock: Unit, previous?: Unit) {
@@ -179,7 +187,8 @@ function carrockStageTwo(s: GameState, carrock: Unit, previous?: Unit) {
   s.stage = 2;
   s.progress = 0;
   s.stageRevealing = false;
-  for (const code of CARROCK_TROLLS) placeEncounter(s, code, true);
+  for (const code of nightmareCarrockTrolls(s) ?? CARROCK_TROLLS)
+    placeEncounter(s, code, true);
   log(
     s,
     "Against the Trolls · The Carrock becomes active and four unique Trolls enter staging.",

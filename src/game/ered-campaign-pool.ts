@@ -2835,6 +2835,17 @@ export function composeEredPool(
     attachmentLeaves: (s, host, attachment, leaving) =>
       !!p.attachmentLeaves?.(s, host, attachment, leaving) ||
       !!h.attachmentLeaves?.(s, host, attachment, leaving),
+    stageInfo: (s) => p.stageInfo?.(s) ?? h.stageInfo?.(s),
+    questBegin: (s) => [
+      ...(h.questBegin?.(s) ?? []),
+      ...(p.questBegin?.(s) ?? []),
+    ],
+    questProgressPlaced: (s, quest, amount) => {
+      h.questProgressPlaced?.(s, quest, amount);
+      p.questProgressPlaced?.(s, quest, amount);
+    },
+    cannotReduceThreat: (s) =>
+      !!h.cannotReduceThreat?.(s) || !!p.cannotReduceThreat?.(s),
   };
 }
 

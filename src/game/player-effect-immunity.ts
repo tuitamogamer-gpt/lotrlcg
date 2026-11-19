@@ -6,6 +6,7 @@ import { activePlayerAbilityCode } from "./player-ability-triggers";
 import { isEnemy } from "./ships";
 import { allActiveLocations } from "./table";
 import type { GameState, Unit } from "./types";
+import { nightmareEventImmune } from "./nightmare";
 
 const MONUMENT = "octgn:f811f153-81f4-4688-8b4d-400215e6748a";
 let playerCodes: Set<string> | undefined;
@@ -37,6 +38,13 @@ export function playerEffectImmune(
       return false;
   }
   if (playerCardImmune(u)) return true;
+  // Conflict at the Carrock (Nightmare): Morris is immune to player events.
+  if (
+    sourceCode &&
+    card(sourceCode).type_code === "event" &&
+    nightmareEventImmune(s, u)
+  )
+    return true;
   if (
     !sourceCode ||
     card(sourceCode).type_code !== "event" ||

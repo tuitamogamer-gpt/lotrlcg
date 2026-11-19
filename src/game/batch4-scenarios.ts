@@ -80,6 +80,7 @@ const NIGHTMARE_LAYERS: Partial<Record<string, Batch4ScenarioHooks>> = {
   anduin: NIGHTMARE_CORE_HOOKS,
   "dol-guldur": NIGHTMARE_CORE_HOOKS,
   "hunt-for-gollum": NIGHTMARE_SOM_HOOKS,
+  "conflict-at-the-carrock": NIGHTMARE_SOM_HOOKS,
 };
 /**
  * The current scenario's hooks; in an Ered Mithrin campaign chapter from The
