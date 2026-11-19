@@ -7,11 +7,14 @@ import { availableAbilities, validateSave } from "../src/game/engine.ts";
 import { get } from "../src/game/core.ts";
 import { syncSeat } from "../src/game/table.ts";
 import {
+  CIRDAN,
+  COMMAND,
   DC,
   GALDOR,
   backFace,
   dcIs,
 } from "../src/game/dreamchaser-campaign-support.ts";
+import { DROWNED } from "../src/game/drowned-support.ts";
 import { RAID } from "../src/game/raid-grey-havens-support.ts";
 import { STORMCALLER } from "../src/game/stormcaller-support.ts";
 import { DEPTHS } from "../src/game/depths-support.ts";
@@ -485,8 +488,47 @@ try {
     assert.ok(s.campaign.boons.includes(DC.starla));
     assert.ok(s.campaign.burdens.includes(DC.nightmare));
     assert.deepEqual(s.campaign.nightmares, [0]);
-    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await page.getByRole("button", { name: /^Continue campaign/ }).waitFor();
     await checkpoint("temple-complete", width);
+    // The Drowned Ruins: Black Key on Captain Sahír, a copy of Command and of
+    // Círdan's Blessing in hand, and the Recurring Nightmare in the deck.
+    await page.getByRole("button", { name: /^Continue campaign/ }).click();
+    await page.getByRole("button", { name: /^Begin next chapter/ }).click();
+    await reviewedState(page);
+    s = await opening((t) =>
+      /copy of Command/.test(t.choice.title)
+        ? COMMAND[0]
+        : /copy of Círdan's Blessing/.test(t.choice.title)
+          ? CIRDAN[0]
+          : undefined,
+    );
+    assert.equal(s.scenarioId, "the-drowned-ruins");
+    assert.deepEqual(
+      s.allies
+        .find((u) => u.code === DROWNED.sahirAlly)
+        .attachments.map((a) => a.code),
+      [DC.keyBoon],
+    );
+    assert.ok(s.hand.some((h) => h.code === COMMAND[0]));
+    assert.ok(s.hand.some((h) => h.code === CIRDAN[0]));
+    assert.ok(
+      [...s.deck, ...s.staging.map((u) => u.code)].includes(DC.nightmare),
+      "the Recurring Nightmare follows its player",
+    );
+    await campaignCard(
+      /Command copies chosen this game: leadership/,
+      "drowned-setup",
+      width,
+    );
+    // The resolution: the chosen copies join the Campaign Pool.
+    s = await victory(s, (t) => {
+      t.victoryCards = [...(t.victoryCards ?? []), DROWNED.shrine];
+    });
+    assert.equal(s.campaign.completed.length, 7);
+    assert.ok(s.campaign.boons.includes(COMMAND[0]));
+    assert.ok(s.campaign.boons.includes(CIRDAN[0]));
+    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await checkpoint("drowned-complete", width);
     await view.c.close();
   }
   const p = await browser.newPage();

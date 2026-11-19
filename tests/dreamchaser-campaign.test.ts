@@ -8,6 +8,7 @@ import {
   discardCharacter,
   discardPlayerDeck,
   exhaustCharacter,
+  phaseEnd,
   readyCharacter,
   win,
 } from "../src/game/board";
@@ -24,6 +25,8 @@ import { continueCampaign } from "../src/game/campaign";
 import { reduceThreat } from "../src/game/threat-reduction";
 import { sailingCommitCount } from "../src/game/sailing";
 import {
+  CIRDAN,
+  COMMAND,
   DC,
   DREAMCHASER_CAMPAIGN_CARDS,
   DREAMCHASER_CAMPAIGN_ORDER,
@@ -65,6 +68,10 @@ import {
   dreamchaserCampaignEncounter,
   dreamchaserCannotCancel,
   dreamchaserSailingWeight,
+  dreamchaserAttackersDeclared,
+  dreamchaserLocationExplored,
+  dreamchaserPlayerAttackBonus,
+  dreamchaserPlayerAttackResolved,
 } from "../src/game/dreamchaser-campaign-cards";
 import { VOYAGE } from "../src/game/voyage-belegaer-support";
 import { RAID } from "../src/game/raid-grey-havens-support";
@@ -78,6 +85,8 @@ import { fateAbility, fateAbilityLabel } from "../src/game/fate-numenor";
 import { playerCardImmune } from "../src/game/card-immunity";
 import { forOwner, seatView } from "../src/game/table";
 import { shuffleCampaignNightmares } from "../src/game/dreamchaser-temple";
+import { DROWNED } from "../src/game/drowned-support";
+import { questExhausts } from "../src/game/expansion-passives";
 import {
   TEMPLE,
   templeMapUnit,
@@ -155,6 +164,7 @@ test("The Dream-chaser campaign: Voyage Across Belegaer's campaign card and the 
     "flight-of-the-stormcaller",
     "the-thing-in-the-depths",
     "temple-of-the-deceived",
+    "the-drowned-ruins",
   ]);
   const campaignCard = card(
     DREAMCHASER_CAMPAIGN_CARDS["voyage-across-belegaer"]!,
@@ -2193,7 +2203,7 @@ test("Recurring Nightmare: X defense, shuffled into a player's deck when it leav
   assert.ok(valid(s));
 });
 
-test("Temple of the Deceived's resolution: resources on the campaign card, faceup Temple Halls, 4 or fewer Uncharted faces, the Temple Guardian and threat give XP; Starla under control and each Recurring Nightmare no longer a secret join the Campaign Pool", () => {
+test("Temple of the Deceived's resolution: resources on the campaign card, faceup Temple Halls, 4 or fewer Uncharted faces, the Temple Guardian and threat give XP; Starla under control and each Recurring Nightmare no longer a secret join the Campaign Pool, and The Drowned Ruins follows", () => {
   const s = calm(reload(opening(temple())));
   // Turn over every map location but four Lost Islands.
   const lost = templeMapUnits(s).filter((u) => u.code === TEMPLE.lost);
@@ -2223,10 +2233,12 @@ test("Temple of the Deceived's resolution: resources on the campaign card, faceu
   assert.ok(c.burdens.includes(DC.nightmare));
   assert.deepEqual(c.nightmares, [0]);
   assert.equal(c.resolution ?? null, null);
-  assert.throws(
-    () => continueCampaign(s, c.heroes, s.deckId, true, 9),
-    /not available in campaign mode yet/,
-  );
+  // The Drowned Ruins follows: the Recurring Nightmare joins the deck after
+  // the starting hand.
+  const next = continueCampaign(s, c.heroes, s.deckId, true, 9);
+  assert.equal(next.scenarioId, "the-drowned-ruins");
+  assert.equal(next.deck.filter((x) => x === DC.nightmare).length, 1);
+  assert.ok(!next.hand.some((h) => h.code === DC.nightmare));
 });
 
 test("Temple of the Deceived's resolution with several players: each freed Recurring Nightmare is given to a chosen player, who shuffles it into their deck after their starting hand in later chapters; a mulligan holds it out", () => {
@@ -2284,4 +2296,334 @@ test("Temple of the Deceived's resolution with several players: each freed Recur
   fresh = applyAction(fresh, { type: "MULLIGAN" });
   assert.ok(!fresh.hand.some((h) => h.code === DC.nightmare));
   assert.equal(fresh.deck.filter((c) => c === DC.nightmare).length, 2);
+});
+
+// ------------------------------------------------ The Drowned Ruins (Part 7)
+
+/** A Dream-chaser campaign after Temple of the Deceived. */
+function afterTemple(marks: Record<string, number> = {}): CampaignState {
+  const c = afterDepths(marks);
+  return {
+    ...c,
+    completed: [
+      ...c.completed,
+      { scenarioId: "temple-of-the-deceived", score: 20, rounds: 9, xp: 5 },
+    ],
+  };
+}
+const drowned = (campaign = afterTemple(), deck = STARTERS[0], seed = 5) =>
+  createGame(seed, deck.cards, deck.heroes, deck.id, {
+    scenarioId: "the-drowned-ruins",
+    playMode: "campaign",
+    campaign: { ...campaign, heroes: [...deck.heroes] },
+  });
+/** Resolve a copy of Command's choices directly (X is `x`). */
+function command(s: GameState, code: string, x: number) {
+  s.queue = [
+    makeEffect("dcCommandPick", {
+      code,
+      value: x,
+      count: x,
+      ids: [],
+      player: 0,
+    }),
+  ];
+  flush(s);
+  return s;
+}
+/** Attach a Círdan's Blessing (with `tokens` resources) to a unit. */
+function bless(s: GameState, u: Unit, code: string, tokens = 2) {
+  const a = {
+    id: `a${s.nextId++}`,
+    code,
+    exhausted: false,
+    resourceTokens: tokens,
+  };
+  u.attachments.push(a);
+  return a;
+}
+const underwaterCode = "octgn:58f1cb80-d8de-4f96-98d0-0fdf61988da3:B";
+
+test("The Drowned Ruins: its campaign card, the four copies of Command and of Círdan's Blessing are registered with their printed spheres", () => {
+  const campaignCard = card(DC.drownedCard);
+  assert.equal(campaignCard.subtitle, "Dream-chaser Part 7");
+  assert.match(
+    campaignCard.text!,
+    /Each player may choose one copy of Command and add it to their hand\. For this game, X is plus 1 for each of those copies\./,
+  );
+  assert.match(
+    campaignCard.back_text!,
+    /• 2 XP if Shrine to Morgoth \(Grotto side\) is in the victory display\./,
+  );
+  assert.deepEqual(
+    COMMAND.map((code) => [
+      card(code).type_code,
+      card(code).boon_sphere,
+      card(code).victory,
+    ]),
+    [
+      ["event", "leadership", 1],
+      ["event", "lore", 1],
+      ["event", "spirit", 1],
+      ["event", "tactics", 1],
+    ],
+  );
+  assert.deepEqual(
+    CIRDAN.map((code) => [card(code).type_code, card(code).boon_sphere]),
+    [
+      ["attachment", "leadership"],
+      ["attachment", "tactics"],
+      ["attachment", "spirit"],
+      ["attachment", "lore"],
+    ],
+  );
+  assert.match(card(CIRDAN[3]).text!, /^Attach to a hero\./);
+});
+
+test("The Drowned Ruins' setup: Captain Sahír carries Black Key (boon), each player may take a copy of Command (Ominous Fate's X +1 each), one player a copy of Círdan's Blessing, Revenant is shuffled in, and each character may trade 1 damage for 1 threat", () => {
+  let s = opening(
+    drowned(afterTemple({ [COMMAND[0]]: 2, [CIRDAN[0]]: 1 })),
+    (x) => {
+      const t = x.choice!.title;
+      if (/copy of Command/.test(t)) return COMMAND[0];
+      if (/copy of Círdan's Blessing/.test(t)) return CIRDAN[0];
+      return undefined;
+    },
+  );
+  s = calm(reload(s));
+  const sahir = s.allies.find((u) => u.code === DROWNED.sahirAlly)!;
+  assert.deepEqual(
+    sahir.attachments.map((a) => a.code),
+    [DC.keyBoon],
+  );
+  assert.ok(s.hand.some((h) => h.code === COMMAND[0]));
+  assert.ok(s.hand.some((h) => h.code === CIRDAN[0]));
+  assert.deepEqual(s.dreamchaser!.commands, { [COMMAND[0]]: 0 });
+  assert.deepEqual(s.dreamchaser!.cirdan, { [CIRDAN[0]]: 0 });
+  assert.equal(dreamchaserOminousX(s), 8);
+  assert.ok(s.encounterDeck.includes(DC.revenant));
+  assert.match(
+    dreamchaserCampaignStatus(s).join("\n"),
+    /Command copies chosen this game: leadership \(level 2\)/,
+  );
+  assert.ok(valid(s));
+});
+
+test("Command (Leadership): played from hand with its printed sphere, it goes to the victory display (victory 1) and chooses up to X options: +2 defense for a hero, and an ally from the discard pile that is discarded at the end of the phase", () => {
+  let s = calm(reload(opening(drowned(afterTemple({ [COMMAND[0]]: 2 })))));
+  for (const h of s.heroes) h.resources = 1;
+  s.discard.push("01013");
+  const event = make(s, COMMAND[0]);
+  s.hand.push(event);
+  const victory = s.victory;
+  s = applyAction(reload(s), { type: "PLAY", id: event.id });
+  for (
+    let i = 0;
+    i < 4 && s.choice && !/Choose an option/.test(s.choice.title);
+    i++
+  )
+    s = choose(s, s.choice.options[0].id);
+  assert.match(
+    s.choice!.title,
+    /Command \(leadership\) · Choose an option \(2 of 2 left\)/,
+  );
+  const hero = s.heroes[0];
+  const defense = stats(s, hero).defense;
+  s = choose(s, "defense");
+  s = choose(s, hero.id);
+  assert.equal(stats(s, s.heroes[0]).defense, defense + 2);
+  s = choose(s, "ally");
+  s = choose(s, "01013");
+  const scout = s.allies.find((u) => u.code === "01013")!;
+  assert.ok(scout, "the ally enters play");
+  assert.deepEqual(s.dreamchaser!.summoned, [scout.id]);
+  assert.ok(s.victoryCards!.includes(COMMAND[0]));
+  assert.equal(s.victory, victory + 1);
+  assert.ok(valid(s));
+  phaseEnd(s);
+  flush(s);
+  assert.ok(!s.allies.some((u) => u.id === scout.id));
+  assert.ok(s.discard.includes("01013"));
+});
+
+test("Command (Lore, Spirit, Tactics): the bottom card, the encounter deck's top 10, resources off an enemy and onto each Círdan's Blessing; no quest exhaustion for blessed characters, progress, Spyglass; −2 attack, 2 damage and an engagement, and a readied attachment moved to another character", () => {
+  // Lore, level 4.
+  let s = calm(reload(opening(drowned())));
+  s.deck = ["01050", ...s.deck.slice(0, 5), "01051"];
+  const foe = make(s, DROWNED.scorpion);
+  foe.resources = 3;
+  s.engaged.push(foe);
+  const blessing = bless(s, s.heroes[1], CIRDAN[0], 1);
+  const deckSize = s.encounterDeck.length;
+  s = command(s, COMMAND[1], 4);
+  s = choose(s, "bottom");
+  assert.ok(s.hand.some((h) => h.code === "01051"));
+  s = choose(s, "bless");
+  assert.equal(
+    s.heroes[1].attachments.find((a) => a.id === blessing.id)!.resourceTokens,
+    3,
+  );
+  s = choose(s, "strip");
+  s = choose(s, foe.id);
+  assert.equal(s.engaged.find((u) => u.id === foe.id)!.resources, 0);
+  s = choose(s, "scry");
+  assert.match(s.choice!.title, /top 10 cards of the encounter deck/);
+  const discarded = s.encounterDeck[0];
+  s = choose(s, "card-0");
+  assert.equal(s.encounterDiscard.at(-1), discarded);
+  s = choose(s, "skip");
+  assert.equal(s.encounterDeck.length, deckSize - 1);
+  assert.equal(s.choice, null);
+  assert.ok(valid(s));
+  // Spirit, level 3: blessed characters quest without exhausting.
+  let t = calm(reload(opening(drowned())));
+  bless(t, t.heroes[0], CIRDAN[2], 1);
+  t = command(t, COMMAND[2], 3);
+  t = choose(t, "quest");
+  assert.ok(!questExhausts(t, t.heroes[0]));
+  assert.ok(questExhausts(t, t.heroes[1]));
+  t = choose(t, "spyglass");
+  t = choose(t, t.heroes[2].id);
+  assert.ok(t.heroes[2].attachments.some((a) => a.code === DC.spyglass));
+  t = choose(t, "will");
+  const will = stats(t, t.heroes[1]).will;
+  t = choose(t, t.heroes[1].id);
+  assert.equal(stats(t, t.heroes[1]).will, will + 2);
+  assert.ok(valid(t));
+  // Tactics, level 3.
+  let u = calm(reload(opening(drowned())));
+  const scorpion = make(u, DROWNED.scorpion);
+  u.staging.push(scorpion);
+  const spent = bless(u, u.heroes[0], CIRDAN[2], 1);
+  spent.exhausted = true;
+  u = command(u, COMMAND[3], 3);
+  u = choose(u, "blunt");
+  const attack = stats(u, scorpion).attack;
+  u = choose(u, scorpion.id);
+  assert.equal(
+    stats(
+      u,
+      u.staging.find((x) => x.id === scorpion.id)!,
+    ).attack,
+    attack - 2,
+  );
+  u = choose(u, "damage");
+  u = choose(u, scorpion.id);
+  assert.match(u.choice!.title, /Engage/);
+  u = choose(u, "engage");
+  const hit = u.engaged.find((x) => x.id === scorpion.id)!;
+  assert.equal(hit.damage, 2);
+  u = choose(u, "attachment");
+  u = choose(u, spent.id);
+  assert.match(u.choice!.title, /Move Círdan's Blessing/);
+  u = choose(u, u.heroes[1].id);
+  const moved = u.heroes[1].attachments.find((a) => a.id === spent.id)!;
+  assert.equal(moved.exhausted, false);
+  assert.ok(!u.heroes[0].attachments.some((a) => a.id === spent.id));
+  assert.ok(valid(u));
+});
+
+test("Círdan's Blessing: it attaches to a character (the Lore copy to a hero) with 1 more resource than its level, and spends them for +3 defense when defending, +3 attack when attacking, +3 willpower by its Action, or a resource and a heal after the active location is explored", () => {
+  let s = calm(reload(opening(drowned(afterTemple({ [CIRDAN[0]]: 2 })))));
+  for (const h of s.heroes) h.resources = 2;
+  const card0 = make(s, CIRDAN[0]);
+  s.hand.push(card0);
+  const sahir = s.allies.find((u) => u.code === DROWNED.sahirAlly)!;
+  s = applyAction(reload(s), { type: "PLAY", id: card0.id, target: sahir.id });
+  for (let i = 0; i < 4 && s.choice; i++) s = choose(s, s.choice.options[0].id);
+  const held = s.allies
+    .find((u) => u.id === sahir.id)!
+    .attachments.find((a) => a.code === CIRDAN[0])!;
+  assert.equal(held.resourceTokens, 3);
+  assert.ok(valid(s));
+  // Leadership: +3 defense for this attack.
+  const foe = make(s, DROWNED.scorpion);
+  s.engaged.push(foe);
+  const host = s.allies.find((u) => u.id === sahir.id)!;
+  s.combat = {
+    enemyId: foe.id,
+    defenderId: host.id,
+    attackBonus: 0,
+  } as GameState["combat"];
+  s.queue = dreamchaserDefendersDeclared(s, foe, [host]);
+  flush(s);
+  s = choose(s, "use");
+  assert.equal(s.combat!.defenseBonuses![sahir.id], 3);
+  assert.equal(
+    s.allies
+      .find((u) => u.id === sahir.id)!
+      .attachments.find((a) => a.code === CIRDAN[0])!.resourceTokens,
+    2,
+  );
+  // Tactics: +3 attack for this attack.
+  const t = calm(reload(opening(drowned())));
+  const attacker = t.heroes[0];
+  bless(t, attacker, CIRDAN[1], 1);
+  t.queue = dreamchaserAttackersDeclared(t, make(t, DROWNED.scorpion), [
+    attacker,
+  ]);
+  flush(t);
+  const used = choose(t, "use");
+  assert.equal(dreamchaserPlayerAttackBonus(used, used.heroes[0]), 3);
+  dreamchaserPlayerAttackResolved(used, [used.heroes[0].id]);
+  assert.equal(dreamchaserPlayerAttackBonus(used, used.heroes[0]), 0);
+  // Spirit: its Action.
+  let w = calm(reload(opening(drowned())));
+  const spirit = bless(w, w.heroes[0], CIRDAN[2], 1);
+  const will = stats(w, w.heroes[0]).will;
+  const ability = availableAbilities(w, w.heroes[0]).find(
+    (a) => a.id === spirit.id,
+  )!;
+  assert.match(ability.label, /\+3 willpower until the end of the phase/);
+  w = applyAction(reload(w), {
+    type: "ABILITY",
+    id: w.heroes[0].id,
+    attachmentId: spirit.id,
+  });
+  assert.equal(stats(w, w.heroes[0]).will, will + 3);
+  assert.ok(w.heroes[0].attachments.find((a) => a.id === spirit.id)!.exhausted);
+  assert.ok(valid(w));
+  // Lore: after the active location is explored.
+  let l = calm(reload(opening(drowned())));
+  bless(l, l.heroes[0], CIRDAN[3], 1);
+  l.heroes[0].damage = 1;
+  const resources = l.heroes[0].resources;
+  dreamchaserLocationExplored(l, make(l, DROWNED.cave), true);
+  flush(l);
+  l = choose(l, "use");
+  assert.equal(l.heroes[0].resources, resources + 1);
+  assert.equal(l.heroes[0].damage, 0);
+});
+
+test("The Drowned Ruins' resolution: resources on the campaign card, Na'asiyah's resources, no enemies, 5 Underwater locations and the Shrine's Grotto side in the victory display and threat give XP; the chosen Command and Círdan's Blessing copies join the Campaign Pool and their players' decks", () => {
+  const s = calm(reload(opening(drowned())));
+  s.dreamchaser = {
+    ...(s.dreamchaser ?? {}),
+    commands: { [COMMAND[0]]: 0 },
+    cirdan: { [CIRDAN[0]]: 0 },
+    resources: 2,
+  };
+  s.allies.find((u) => u.code === DROWNED.naasiyahAlly)!.resources = 5;
+  s.staging = s.staging.filter((u) => card(u.code).type_code !== "enemy");
+  s.engaged = [];
+  for (let i = 0; i < 5; i++)
+    s.drowned!.victoryLocations.push(make(s, underwaterCode));
+  s.victoryCards = [...(s.victoryCards ?? []), DROWNED.shrine];
+  s.threat = 30;
+  const lines = dreamchaserXpLines(s);
+  assert.deepEqual(
+    lines.map((l) => l.xp),
+    [1, 2, 1, 1, 1, 2, 1, 0],
+  );
+  win(s);
+  const c = s.campaign!;
+  assert.equal(c.completed[6].scenarioId, "the-drowned-ruins");
+  assert.equal(c.completed[6].xp, 9);
+  assert.ok(c.boons.includes(COMMAND[0]) && c.boons.includes(CIRDAN[0]));
+  assert.equal(c.deckBoons![COMMAND[0]], 0);
+  assert.equal(c.deckBoons![CIRDAN[0]], 0);
+  assert.throws(
+    () => continueCampaign(s, c.heroes, s.deckId, true, 9),
+    /not available in campaign mode yet/,
+  );
 });

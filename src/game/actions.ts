@@ -1,5 +1,6 @@
 import * as DreamCards from "./dreamchaser-campaign-cards";
 import * as DreamTemple from "./dreamchaser-temple";
+import * as DreamDrowned from "./dreamchaser-drowned";
 import { angmarCampaignAttachmentPlayed } from "./angmar-campaign-loot";
 import { angmarCampaignCannotCommit } from "./angmar-campaign-support";
 import * as FortressPlayers from "./fortress-nurn-player";
@@ -1685,6 +1686,7 @@ export function resolvePlayerCard(
     roadPlayerAttachmentEntered(s, host, attachment);
     DrownedPlayers.drownedPlayerAttachmentEntered(s, host, attachment);
     cobasReactiveAttachmentEntered(s, host, attachment);
+    DreamCards.dreamchaserAttachmentEntered(s, host, attachment);
     RacePlayers.raceHaradPlayerAttachmentPlayed(
       s,
       host,
@@ -1942,6 +1944,9 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
     WildsPlayers.wildsPlayerPlayTargets(s, c.code) ??
     EredPlayers.eredMithrinPlayerPlayTargets(s, c.code);
   if (batchTargets) return batchTargets;
+  // Círdan's Blessing (the Dream-chaser campaign): "Attach to a character."
+  const dreamTargets = DreamDrowned.dreamchaserPlayTargets(s, c.code);
+  if (dreamTargets) return dreamTargets;
   const greyTargets = GreyPlayers.greyHavensPlayTargets(s, c.code);
   const drownedTargets = DrownedPlayers.drownedPlayerPlayTargets(s, c.code);
   const haradTargets = HaradPlayers.haradPlayerPlayTargets(s, c.code);

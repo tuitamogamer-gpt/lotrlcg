@@ -72,6 +72,20 @@ import {
 } from "./dreamchaser-campaign-support";
 import { dreamchaserOminousX, dreamchaserState } from "./dreamchaser-campaign";
 import {
+  cirdanAbility,
+  cirdanAttackBonus,
+  cirdanAttackers,
+  cirdanAttackResolved,
+  cirdanDefenders,
+  cirdanEntered,
+  cirdanLabel,
+  cirdanLocationExplored,
+  cirdanProblem,
+  dreamchaserCommandPlayed,
+  dreamchaserDrownedEffect,
+  dreamchaserDrownedPhaseEnd,
+} from "./dreamchaser-drowned";
+import {
   dreamchaserTempleArchery,
   dreamchaserTempleEffect,
   dreamchaserTempleStats,
@@ -600,13 +614,14 @@ const attachmentById = (s: GameState, id?: string) =>
     .find((a) => a.id === id);
 /** The campaign boons' attachment Actions: Spyglass. */
 export const dreamchaserAttachmentLabel = (code: string) =>
-  dcIs(code, DC.spyglass)
+  cirdanLabel(code) ??
+  (dcIs(code, DC.spyglass)
     ? `Spyglass · Exhaust: look at a shadow card or a deck, or place progress${dcBackFace(code) ? " (Upgraded)" : ""}`
     : dcIs(code, DC.keyBoon) && dcBackFace(code)
       ? "Black Key · Exhaust and remove 3 resources from attached character to ready them"
       : dcIs(code, DC.axe) && dcBackFace(code)
         ? "Throwing Axe · Deal 1 damage to an enemy, or toss it (once per game)"
-        : undefined;
+        : undefined);
 export function dreamchaserAttachmentProblem(
   s: GameState,
   u: Unit,
@@ -618,6 +633,7 @@ export function dreamchaserAttachmentProblem(
   if (a.blanked) return `${card(a.code).name}'s text is blank.`;
   if (attachmentController(s, u, a) !== activeSeat(s))
     return `${card(a.code).name} is controlled by another player.`;
+  if (cirdanLabel(a.code)) return cirdanProblem(a);
   if (dcIs(a.code, DC.axe)) {
     if ((s.dreamchaser?.spent ?? []).includes(a.id))
       return "Throwing Axe was used this game.";
@@ -651,6 +667,13 @@ export function dreamchaserAttachmentAbility(
   const problem = dreamchaserAttachmentProblem(s, u, attachmentId);
   if (problem) throw new RuleError(problem);
   const p = activeSeat(s);
+  if (cirdanLabel(a.code)) {
+    // Círdan's Blessing (Spirit): "Action: Exhaust Círdan's Blessing and
+    // remove 1 resource from it to give attached character +3 [willpower]
+    // until the end of the phase."
+    cirdanAbility(s, u, a);
+    return true;
+  }
   if (dcIs(a.code, DC.keyBoon)) {
     // "Action: Exhaust Black Key and remove 3 resources from attached
     // character to ready them."
@@ -954,6 +977,34 @@ export function dreamchaserCheck(s: GameState) {
   calphonCheck(s);
   nightmareHandCheck(s);
 }
+/** Círdan's Blessing (Tactics): "Response: When attached character attacks, …" */
+export const dreamchaserAttackersDeclared = (
+  s: GameState,
+  _enemy: Unit,
+  attackers: Unit[],
+): Effect[] => (isDreamchaserGame(s) ? cirdanAttackers(s, attackers) : []);
+/** "+3 [attack] for this attack" (Círdan's Blessing, Tactics). */
+export const dreamchaserPlayerAttackBonus = (s: GameState, u: Unit) =>
+  isDreamchaserGame(s) ? cirdanAttackBonus(s, u) : 0;
+/** Círdan's Blessing (Lore): after the active location is explored. */
+export function dreamchaserLocationExplored(
+  s: GameState,
+  _u: Unit,
+  wasActive: boolean,
+) {
+  cirdanLocationExplored(s, wasActive);
+}
+/** "Círdan's Blessing enters play with X resources on it." */
+export function dreamchaserAttachmentEntered(
+  s: GameState,
+  _host: Unit,
+  a: { id: string; code: string; exhausted: boolean },
+) {
+  cirdanEntered(s, a);
+}
+/** The end of each phase: Command (Leadership)'s allies are discarded. */
+export const dreamchaserPhaseEnd = (s: GameState): Effect[] =>
+  isDreamchaserGame(s) ? dreamchaserDrownedPhaseEnd(s) : [];
 /** Starla: "Response: After Starla exhausts, place 1 progress on a location." */
 export function dreamchaserCharacterExhausted(s: GameState, u: Unit) {
   starlaExhausted(s, u);
@@ -1113,28 +1164,38 @@ export function dreamchaserDefendersDeclared(
   enemy: Unit,
   defenders: Unit[],
 ): Effect[] {
-  if (!isDreamchaserGame(s) || !enemy.resources) return [];
-  return defenders.flatMap((d) =>
-    d.attachments
-      .filter(
-        (a) =>
-          dcIs(a.code, DC.cutlass) &&
-          dcBackFace(a) &&
-          !a.blanked &&
-          !a.exhausted,
-      )
-      .map((a) =>
-        fx("dcCutlassOffer", {
-          target: d.id,
-          source: a.id,
-          ids: [enemy.id],
-          player: ownerOf(s, d),
-        }),
-      ),
-  );
+  if (!isDreamchaserGame(s)) return [];
+  // Círdan's Blessing (Leadership): "Response: When attached character
+  // defends, remove 1 resource from Círdan's Blessing to give that
+  // character +3 [defense] for this attack."
+  const blessings = cirdanDefenders(s, defenders);
+  if (!enemy.resources) return blessings;
+  return [
+    ...blessings,
+    ...defenders.flatMap((d) =>
+      d.attachments
+        .filter(
+          (a) =>
+            dcIs(a.code, DC.cutlass) &&
+            dcBackFace(a) &&
+            !a.blanked &&
+            !a.exhausted,
+        )
+        .map((a) =>
+          fx("dcCutlassOffer", {
+            target: d.id,
+            source: a.id,
+            ids: [enemy.id],
+            player: ownerOf(s, d),
+          }),
+        ),
+    ),
+  ];
 }
 /** Galdor's Counsel: "Action: … X is its level … Add Galdor's Counsel to the victory display." */
 export function dreamchaserPlayerEvent(s: GameState, code: string): boolean {
+  // Command: "Add Command to the victory display to choose up to X options."
+  if (dreamchaserCommandPlayed(s, code)) return true;
   if (isDreamchaserGame(s) && code === DC.together) {
     // Come Together: "Choose up to X characters. X is the level of Come
     // Together, then add it to the victory display."
@@ -1817,6 +1878,7 @@ function raidEffect(s: GameState, e: Effect): boolean {
 
 export function dreamchaserCardEffect(s: GameState, e: Effect): boolean {
   if (dreamchaserTempleEffect(s, e)) return true;
+  if (dreamchaserDrownedEffect(s, e)) return true;
   if (e.kind.startsWith("dcSpy")) return spyglassEffect(s, e);
   if (raidEffect(s, e)) return true;
   switch (e.kind) {
@@ -2205,6 +2267,7 @@ export function dreamchaserEnemyAttackResolved(
 /** Ballista (Upgraded): "After attached Ship attacks, deal 1 damage to a non-unique enemy and remove 1 resource from that enemy." */
 export function dreamchaserPlayerAttackResolved(s: GameState, ids: string[]) {
   if (!isDreamchaserGame(s)) return;
+  cirdanAttackResolved(s, ids);
   for (const id of ids) {
     const ship = get(s, id);
     if (!ship) continue;

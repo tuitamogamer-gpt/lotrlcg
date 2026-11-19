@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2212,
+    "encounterCards": 2221,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3438,
-    "pending": 745
+    "scripted": 3447,
+    "pending": 736
   },
   "scenarioRecipes": {
     "total": 355,
@@ -712,6 +712,14 @@
     "11196.B",
     "11198",
     "11199",
+    "11201",
+    "11202",
+    "11203",
+    "11204",
+    "11205",
+    "11206",
+    "11207",
+    "11208",
     "12001",
     "12002",
     "12003",
@@ -2749,6 +2757,7 @@
     "octgn:94f2aa12-7d4c-4124-a642-a7f3fb2ca414.B",
     "octgn:9511bcf2-9c06-413e-bf09-3bc076eb76d4",
     "octgn:9550172a-c624-40fd-b654-f2430ed93df1",
+    "octgn:95604bc2-d030-4403-b3da-892402a38a39",
     "octgn:95d26956-eda3-43b2-b68b-6f8010d076bd",
     "octgn:95f27b98-6375-48ff-bf2b-3f625b3d1b0d",
     "octgn:95f2f7ac-5d85-43e5-930d-d866b00bef26",
@@ -3769,9 +3778,9 @@
     {
       "product": "dream-chaser-campaign-expansion",
       "total": 60,
-      "scripted": 41,
+      "scripted": 50,
       "player": 26,
-      "playerScripted": 14
+      "playerScripted": 22
     },
     {
       "product": "encounter-at-amon-din",
@@ -9229,7 +9238,7 @@
       "name": "Command",
       "type": "event",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -9237,7 +9246,7 @@
       "name": "Command",
       "type": "event",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -9245,7 +9254,7 @@
       "name": "Command",
       "type": "event",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -9253,7 +9262,7 @@
       "name": "Command",
       "type": "event",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -9261,7 +9270,7 @@
       "name": "Cirdan's Blessing",
       "type": "attachment",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -9269,7 +9278,7 @@
       "name": "Cirdan's Blessing",
       "type": "attachment",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -9277,7 +9286,7 @@
       "name": "Cirdan's Blessing",
       "type": "attachment",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -9285,7 +9294,7 @@
       "name": "Cirdan's Blessing",
       "type": "attachment",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -28581,7 +28590,7 @@
       "name": "The Drowned Ruins",
       "type": "campaign",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {

@@ -2354,6 +2354,7 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
     for (const a of [...u.attachments]) discardAttachment(s, u, a);
   heirsPlayerLocationExplored(s, u, exploredDiscardIndex);
   collectorLocationExplored(s, u, exploredAttachments);
+  DreamCards.dreamchaserLocationExplored(s, u, wasActive);
   Angmar.angmarLocationExplored(
     s,
     u,
@@ -2770,6 +2771,7 @@ export function phaseEnd(s: GameState) {
     .map((u) => fx("allyDeparture", { target: u.id, player: ownerOf(s, u) }));
   const mountainFireEffects = MountainFirePlayers.mountainFirePlayerPhaseEnd(s);
   const sagaCampaignEffects = sagaCampaignPhaseEnd(s);
+  const dreamchaserEffects = DreamCards.dreamchaserPhaseEnd(s);
   globalEachSeat(s, () => phaseEndPlayer(s));
   eachArea(s, () => redhornPhaseEnd(s));
   prepend(
@@ -2780,6 +2782,7 @@ export function phaseEnd(s: GameState) {
     ...treasonEffects,
     ...mountainFireEffects,
     ...sagaCampaignEffects,
+    ...dreamchaserEffects,
     ...cityDepartures,
     ...wainDepartures,
   );

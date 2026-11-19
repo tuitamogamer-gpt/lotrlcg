@@ -1,4 +1,5 @@
 import { huntersRestrictedBonus } from "./ulfast-player-support";
+import { CIRDAN, dcBase } from "./dreamchaser-campaign-support";
 import { voyageNoQuestExhaust } from "./perilous-voyage-support";
 import { hobbitPlayerNoQuestExhaust } from "./hobbit-player-cards";
 import * as EredFinalSupport from "./ered-final-player-support";
@@ -577,6 +578,16 @@ export function questExhausts(s: GameState, u: Unit) {
   )
     return false;
   if (beneathSandsPlayerDoesNotExhaustToQuest(s, u)) return false;
+  // Command (Spirit), the Dream-chaser campaign: "Each character with
+  // Círdan's Blessing on it does not exhaust to commit to a quest this round."
+  if (
+    s.dreamchaser?.blessedQuest === s.round &&
+    u.attachments.some(
+      (a) =>
+        !a.blanked && (CIRDAN as readonly string[]).includes(dcBase(a.code)),
+    )
+  )
+    return false;
   if (cobasEconomyNoQuestExhaust(s, u)) return false;
   if (voyageNoQuestExhaust(s, u)) return false;
   if (u.code === "11009" && !u.blanked) return false;

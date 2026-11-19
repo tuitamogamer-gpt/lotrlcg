@@ -5,10 +5,10 @@ cycle, with the Dream-chaser Campaign Expansion's campaign cards, boons,
 burdens, Upgraded faces and its new rules: experience (XP), scalable and
 upgradable cards, a fleet of six ships and the Hard/Expert Mode card. The
 lobby's campaign mode offers it as the fourth campaign, for one fellowship of
-one to four local players. Its first six chapters, from Voyage Across Belegaer
-through Temple of the Deceived, are supported; the Campaign Log is kept after
-them, and the end of the game says that the next chapter, The Drowned Ruins,
-is not available in campaign mode yet.
+one to four local players. Its first seven chapters, from Voyage Across
+Belegaer through The Drowned Ruins, are supported; the Campaign Log is kept
+after them, and the end of the game says that the next chapter, A Storm on
+Cobas Haven, is not available in campaign mode yet.
 
 ## Sources
 
@@ -160,11 +160,24 @@ The Temple scenario itself now names a turned-over map location by its own
 side (Jagged Cliffs, Temple Halls, …) in the log, its choices and the table,
 instead of the shared Uncharted name on that card's back.
 
+## The Drowned Ruins (Part 7)
+
+The rulebook's campaign setup adds Black Key (boon), Revenant, the four copies
+of Command and of Círdan's Blessing and every card in the Campaign Pool; a
+Recurring Nightmare given to a player at Temple of the Deceived is shuffled
+into their deck after their starting hand.
+
+| Card                                                              | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Campaign card                                                     | Setup, once the scenario's own setup put Captain Sahír into play: Black Key (boon) is attached to him; each player may take one copy of Command into their hand (each raising Ominous Fate's X by 1 this game); one player (chosen first when there are several) may take one copy of Círdan's Blessing; each player may deal 1 damage to each of their characters to reduce their threat by 1. Resolution: each chosen copy joins the Campaign Pool and the deck of the player who chose it; the XP of 1 per surviving player, 1 per resource on the campaign card (at most 3), 1 if Na'asiyah has 5 or more resources, 1 if no enemies are in play, 1 if 5 or more Underwater locations are in the victory display, 2 if Shrine to Morgoth's Grotto side is there, 1 if each surviving threat is 40 or less, −1 for Ominous Fate (and the Hard/Expert Mode card).                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Command (boon events, scalable, 4 checkboxes each)                | Cost 1, paid with its printed sphere; victory 1. Action: add it to the victory display to choose up to X options (its level), each once, one after another. Leadership: a hero gets +2 defense until the end of the round; an enemy gets −2 defense until the end of the round; ready a character with Círdan's Blessing; put an ally with cost X or less from your discard pile into play, discarded at the end of the phase. Lore: remove X resources from a non-unique enemy; add 2 resources to each Círdan's Blessing; add the bottom card of your deck to your hand; look at the top 10 cards of the encounter deck, discard any of them one at a time and shuffle it. Spirit: a hero gets +2 willpower until the end of the round; each character with Círdan's Blessing does not exhaust to commit to a quest this round; place 2 progress on a non-unique location; put Spyglass into play attached to a hero (when it is not in play). Tactics: a hero gets +2 attack until the end of the round; an enemy gets −2 attack until the end of the round; deal 2 damage to an enemy and optionally engage it from the staging area; ready an attachment and optionally move it to a character its own "Attach to …" allows. Enemies immune to player card effects cannot be chosen. |
+| Círdan's Blessing (boon attachments, scalable, 5 checkboxes each) | Cost 1, paid with its printed sphere; attaches to a character (the Lore copy to a hero) and enters play with 1 more resource than its level. Leadership: when its character defends, remove 1 resource for +3 defense for that attack. Tactics: when its character attacks, remove 1 resource for +3 attack for that attack. Spirit: Action, exhaust it and remove 1 resource for +3 willpower until the end of the phase. Lore: after the active location is explored, move 1 resource to its hero's resource pool and heal 1 damage from them.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+
 ## Not supported yet
 
-The Drowned Ruins through The City of Corsairs follow, with their boons and
-burdens (Command, Círdan's Blessing, Gavin, Send for Help and The Black Sword)
-and the "Campaign Mode only" sides of their scenario cards.
+A Storm on Cobas Haven and The City of Corsairs follow, with their boons and
+burdens (Gavin, Send for Help and The Black Sword) and the "Campaign Mode
+only" sides of their scenario cards.
 
 ## Verification
 
@@ -174,7 +187,7 @@ npm run build
 npm run test:browser-dreamchaser-campaign
 ```
 
-`tests/dreamchaser-campaign.test.ts` (40 tests) covers the registered cards'
+`tests/dreamchaser-campaign.test.ts` (45 tests) covers the registered cards'
 texts and faces, the Campaign Log's checkboxes, the chapter order and the
 Na'asiyah rule; Voyage Across Belegaer's fleet of six ships, the Modification
 choices and the damage-for-resource offer; Upgraded ships and Modifications
@@ -214,7 +227,11 @@ the table's ability controls, the Upgraded Gate Key's look at a secret,
 Starla's X and both Responses, Recurring Nightmare's X, its return to a deck
 and its Forced draw, the resolution's XP and Campaign Pool, the several-player
 Nightmare choice, the later chapters' shuffle after the starting hand and the
-mulligan's hold, before the next chapter is refused. The browser suite starts a new
+mulligan's hold; The Drowned Ruins' cards, its setup (Black Key on Captain
+Sahír, the Command and Círdan's Blessing offers, Ominous Fate's X), Command
+played from hand with its sphere and all four copies' options, Círdan's
+Blessing on a character with its resources and its four abilities, and the
+resolution's XP and Campaign Pool, before the next chapter is refused. The browser suite starts a new
 Dream-chaser campaign through the lobby on Hard Mode, prepares the fleet with
 two Modification boons, opens the campaign card's state in the quest
 inspector and records the resolution; the interlude spends 2 XP on Calphon's
@@ -231,5 +248,7 @@ the Campaign Pool through the end-of-game dialog; Temple of the Deceived
 begins with the campaign Temple Guardian, Black Key on Captain Sahír, three
 secrets and Spyglass taken for 4 threat, the Temple map's "Flip the secret"
 button brings Starla into play, and its resolution adds Starla and a Recurring
-Nightmare to the Campaign Pool, at 1280, 390 and 320 pixels (51 checkpoints);
-it checks the 72 pinned faces.
+Nightmare to the Campaign Pool; The Drowned Ruins begins with Black Key on
+Captain Sahír, a Leadership Command and Círdan's Blessing in hand and the
+Recurring Nightmare in the deck, and its resolution adds both copies to the
+Campaign Pool, at 1280, 390 and 320 pixels (57 checkpoints); it checks the 82 pinned faces.

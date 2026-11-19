@@ -40,6 +40,8 @@ import {
   DREAMCHASER_CAMPAIGN_CARDS,
   DREAMCHASER_CAMPAIGN_ORDER,
   DREAMCHASER_LOG,
+  CIRDAN,
+  COMMAND,
   GALDOR,
   MODIFICATIONS,
   backFace,
@@ -58,6 +60,7 @@ import { FATE } from "./fate-numenor-support";
 import { RAID } from "./raid-grey-havens-support";
 import { STORMCALLER } from "./stormcaller-support";
 import { DEPTHS } from "./depths-support";
+import { DROWNED } from "./drowned-support";
 import { TEMPLE, templeMapUnits } from "./temple-support";
 import {
   placeTempleSecrets,
@@ -79,6 +82,7 @@ export const DREAMCHASER_CAMPAIGN_SUPPORTED: readonly ScenarioId[] = [
   "flight-of-the-stormcaller",
   "the-thing-in-the-depths",
   "temple-of-the-deceived",
+  "the-drowned-ruins",
 ];
 /** The chapters whose campaign card shuffles Thunderstruck into the encounter deck and Crowley into the Corsair deck. */
 const CORSAIR_CHAPTERS: readonly ScenarioId[] = [
@@ -192,6 +196,16 @@ export interface DreamchaserGame {
   secrets?: Record<string, string>;
   /** The seats that looked at each secret with the Upgraded Gate Key. */
   secretLooks?: Record<string, number[]>;
+  /** The Drowned Ruins: the copies of Command chosen during setup, by the seat that took each. */
+  commands?: Record<string, number>;
+  /** The Drowned Ruins: the copy of Círdan's Blessing chosen during setup, by its seat. */
+  cirdan?: Record<string, number>;
+  /** Command (Leadership): the allies it put into play, discarded at the end of the phase. */
+  summoned?: string[];
+  /** Command (Spirit): the round characters with Círdan's Blessing do not exhaust to quest. */
+  blessedQuest?: number;
+  /** Círdan's Blessing (Tactics): "+3 [attack] for this attack", by attacker id. */
+  strikes?: Record<string, number>;
 }
 export const dreamchaserState = (s: GameState) => (s.dreamchaser ??= {});
 const several = (s: GameState) => (s.table?.seats.length ?? 1) > 1;
@@ -506,6 +520,35 @@ export function dreamchaserTempleReady(s: GameState): Effect[] {
     fx("dcSpyglassOffer", { player: firstPlayer(s) }),
   ];
 }
+/**
+ * The Drowned Ruins' campaign card, once the scenario's setup put Captain
+ * Sahír into play: "Attach Black Key (boon) to Captain Sahír. … Each player
+ * may choose one copy of Command and add it to their hand. For this game, X
+ * is plus 1 for each of those copies. One player may choose one copy of
+ * Círdan's Blessing and add it to their hand. For each character in play,
+ * its controller may deal 1 damage to it to reduce their threat by 1."
+ */
+export function dreamchaserDrownedReady(s: GameState): Effect[] {
+  const c = s.campaign;
+  if (!isDreamchaserCampaign(c)) return [];
+  const sahir = seatIndices(s)
+    .flatMap((p) => seatView(s, p).allies)
+    .find((u) => u.code === DROWNED.sahirAlly);
+  if (sahir) {
+    const key = dcFace(c, DC.keyBoon);
+    sahir.attachments.push({
+      id: `a${s.nextId++}`,
+      code: key,
+      exhausted: false,
+    });
+    log(s, `${card(key).name} (boon) is attached to Captain Sahír.`, "good");
+  }
+  return [
+    ...playerOrder(s).map((player) => fx("dcCommandOffer", { player })),
+    fx("dcCirdanOffer", { player: firstPlayer(s) }),
+    ...dreamchaserWoundOffers(s),
+  ];
+}
 export function dreamchaserFateReady(s: GameState, calphon: Unit): Effect[] {
   if (!isDreamchaserCampaign(s.campaign)) return [];
   const code = dcFace(s.campaign, DC.spyglass);
@@ -702,6 +745,45 @@ export function dreamchaserXpLines(s: GameState): XpLine[] {
       },
     );
   }
+  if (s.scenarioId === "the-drowned-ruins") {
+    const underwater = (s.drowned?.victoryLocations ?? []).filter((u) =>
+      (card(u.code).traits ?? "").includes("Underwater."),
+    ).length;
+    lines.push(
+      {
+        label: "1 XP for each resource on this card (to a maximum of 3 XP)",
+        xp: Math.min(3, s.dreamchaser?.resources ?? 0),
+      },
+      {
+        label: "1 XP if Na'asiyah has 5 or more resources",
+        xp: allInPlay(s).some(
+          (u) => card(u.code).name === "Na'asiyah" && u.resources >= 5,
+        )
+          ? 1
+          : 0,
+      },
+      {
+        label: "1 XP if no enemies are in play",
+        xp: enemiesInPlay(s) ? 0 : 1,
+      },
+      {
+        label:
+          "1 XP if 5 or more Underwater locations are in the victory display",
+        xp: underwater >= 5 ? 1 : 0,
+      },
+      {
+        label:
+          "2 XP if Shrine to Morgoth (Grotto side) is in the victory display",
+        xp: (s.victoryCards ?? []).includes(DROWNED.shrine) ? 2 : 0,
+      },
+      {
+        label: "1 XP if each surviving player's threat is 40 or less",
+        xp: globalLivingSeats(s).every((p) => seatView(s, p).threat <= 40)
+          ? 1
+          : 0,
+      },
+    );
+  }
   if (s.scenarioId === "raid-on-the-grey-havens") {
     const burned = s.raidGreyHavens?.burned.length ?? 0;
     lines.push(
@@ -821,6 +903,24 @@ export function resolveDreamchaserCampaign(s: GameState) {
         "danger",
       );
     }
+  }
+  if (s.scenarioId === "the-drowned-ruins") {
+    // "Add each copy of Command and Círdan's Blessing chosen during setup to
+    // the Campaign Pool." Each joins the deck of the player who chose it.
+    const chosen = Object.entries({
+      ...(s.dreamchaser?.commands ?? {}),
+      ...(s.dreamchaser?.cirdan ?? {}),
+    });
+    for (const [code, seat] of chosen) {
+      if (!c.boons.includes(code)) c.boons.push(code);
+      c.deckBoons = { ...(c.deckBoons ?? {}), [code]: seat };
+    }
+    if (chosen.length)
+      log(
+        s,
+        `The Drowned Ruins · Resolution: ${chosen.map(([code]) => `${card(code).name} (${card(code).boon_sphere})`).join(", ")} ${chosen.length === 1 ? "joins" : "join"} the Campaign Pool.`,
+        "good",
+      );
   }
   // The Thing in the Depths: "The players may add Come Together to the
   // Campaign Pool." The end-of-game dialog asks.
@@ -1148,6 +1248,112 @@ export function dreamchaserCampaignEffect(s: GameState, e: Effect): boolean {
       );
       return true;
     }
+    case "dcCommandOffer": {
+      const p = e.player ?? firstPlayer(s);
+      const taken = Object.keys(dreamchaserState(s).commands ?? {});
+      const free = COMMAND.filter((code) => !taken.includes(code));
+      if (!free.length) return true;
+      forOwner(s, p, () =>
+        choose(
+          s,
+          `The Drowned Ruins · ${several(s) ? `${seatName(s, p)} may choose` : "Choose"} a copy of Command for ${several(s) ? "their" : "your"} hand?`,
+          [
+            ...free.map((code) => ({
+              id: code,
+              code,
+              label: `${card(code).name} (${card(code).boon_sphere}) · level ${dcMarksOf(s, code)}`,
+              detail: card(code).text,
+              effects: [fx("dcCommandTake", { code, player: p })],
+            })),
+            { id: "skip", label: "Do not take a copy", effects: [] },
+          ],
+          "Each player may choose one copy of Command and add it to their hand. For this game, Ominous Fate's X is plus 1 for each of those copies.",
+        ),
+      );
+      return true;
+    }
+    case "dcCommandTake": {
+      const p = e.player ?? firstPlayer(s);
+      const q = dreamchaserState(s);
+      if (!COMMAND.includes(e.code as (typeof COMMAND)[number])) return true;
+      if (Object.keys(q.commands ?? {}).includes(e.code!)) return true;
+      q.commands = { ...(q.commands ?? {}), [e.code!]: p };
+      q.ominous = (q.ominous ?? 0) + 1;
+      forOwner(s, p, () => {
+        const u = make(s, e.code!);
+        u.owner = p;
+        s.hand.push(u);
+      });
+      log(
+        s,
+        `Command (${card(e.code!).boon_sphere}) is added to ${several(s) ? `${seatName(s, p)}'s` : "your"} hand; Ominous Fate's X is plus ${q.ominous} this game.`,
+        "good",
+      );
+      return true;
+    }
+    case "dcCirdanOffer": {
+      // "One player may choose one copy of Círdan's Blessing and add it to
+      // their hand."
+      const players = playerOrder(s);
+      if (players.length === 1) {
+        prepend(s, fx("dcCirdanCopy", { player: players[0] }));
+        return true;
+      }
+      choose(
+        s,
+        "The Drowned Ruins · Which player may choose a copy of Círdan's Blessing for their hand?",
+        [
+          ...players.map((p) => ({
+            id: `seat-${p}`,
+            label: seatName(s, p),
+            code: CIRDAN[0],
+            effects: [fx("dcCirdanCopy", { player: p })],
+          })),
+          { id: "skip", label: "No one takes a copy", effects: [] },
+        ],
+      );
+      return true;
+    }
+    case "dcCirdanCopy": {
+      const p = e.player ?? firstPlayer(s);
+      if (Object.keys(dreamchaserState(s).cirdan ?? {}).length) return true;
+      forOwner(s, p, () =>
+        choose(
+          s,
+          `The Drowned Ruins · ${several(s) ? `${seatName(s, p)} chooses` : "Choose"} a copy of Círdan's Blessing for ${several(s) ? "their" : "your"} hand?`,
+          [
+            ...CIRDAN.map((code) => ({
+              id: code,
+              code,
+              label: `${card(code).name} (${card(code).boon_sphere}) · level ${dcMarksOf(s, code)}`,
+              detail: card(code).text,
+              effects: [fx("dcCirdanTake", { code, player: p })],
+            })),
+            { id: "skip", label: "Do not take a copy", effects: [] },
+          ],
+          "One player may choose one copy of Círdan's Blessing and add it to their hand.",
+        ),
+      );
+      return true;
+    }
+    case "dcCirdanTake": {
+      const p = e.player ?? firstPlayer(s);
+      const q = dreamchaserState(s);
+      if (!CIRDAN.includes(e.code as (typeof CIRDAN)[number])) return true;
+      if (Object.keys(q.cirdan ?? {}).length) return true;
+      q.cirdan = { [e.code!]: p };
+      forOwner(s, p, () => {
+        const u = make(s, e.code!);
+        u.owner = p;
+        s.hand.push(u);
+      });
+      log(
+        s,
+        `Círdan's Blessing (${card(e.code!).boon_sphere}) is added to ${several(s) ? `${seatName(s, p)}'s` : "your"} hand.`,
+        "good",
+      );
+      return true;
+    }
     case "dcTogetherOffer": {
       const players = playerOrder(s);
       if (players.length === 1) {
@@ -1254,6 +1460,13 @@ export function dreamchaserCampaignStatus(s: GameState): string[] {
     out.push(
       'The Thing in the Depths is on its "Campaign Mode only" side (each destroyed Creature deals it 2 damage). Captain Sahír carries Black Key (burden) as an enemy; when he flips, it becomes the boon, Sea Serpent (Menacing) enters the staging area and a player adds Come Together to their hand.',
     );
+  if (s.scenarioId === "the-drowned-ruins") {
+    const chosen = Object.keys(s.dreamchaser?.commands ?? {});
+    const blessing = Object.keys(s.dreamchaser?.cirdan ?? {});
+    out.push(
+      `Captain Sahír carries Black Key (boon). Command copies chosen this game: ${chosen.length ? chosen.map((code) => `${card(code).boon_sphere} (level ${dcMarksOf(s, code)})`).join(", ") : "none"}; Círdan's Blessing: ${blessing.length ? blessing.map((code) => `${card(code).boon_sphere} (level ${dcMarksOf(s, code)})`).join(", ") : "none"}. They join the Campaign Pool with the resolution.`,
+    );
+  }
   if (s.scenarioId === "temple-of-the-deceived") {
     const left = Object.keys(s.dreamchaser?.secrets ?? {}).length;
     out.push(
@@ -1402,7 +1615,7 @@ export function validateDreamchaserCampaign(s: GameState): boolean {
                 typeof b.phase === "string" &&
                 integer(b.round) &&
                 [b.will, b.attack, b.defense].every(
-                  (n) => n === undefined || integer(n),
+                  (n) => n === undefined || Number.isSafeInteger(n),
                 ),
             ))) &&
         (q.calaerionRound === undefined || integer(q.calaerionRound)) &&
@@ -1431,6 +1644,34 @@ export function validateDreamchaserCampaign(s: GameState): boolean {
             ) &&
             Object.values(q.secrets).filter((code) => code === DC.starla)
               .length <= 1)) &&
+        (q.commands === undefined ||
+          (!!q.commands &&
+            typeof q.commands === "object" &&
+            !Array.isArray(q.commands) &&
+            Object.entries(q.commands).every(
+              ([code, seat]) =>
+                COMMAND.includes(code as (typeof COMMAND)[number]) &&
+                integer(seat) &&
+                seat < seats,
+            ))) &&
+        (q.cirdan === undefined ||
+          (!!q.cirdan &&
+            typeof q.cirdan === "object" &&
+            !Array.isArray(q.cirdan) &&
+            Object.keys(q.cirdan).length <= 1 &&
+            Object.entries(q.cirdan).every(
+              ([code, seat]) =>
+                CIRDAN.includes(code as (typeof CIRDAN)[number]) &&
+                integer(seat) &&
+                seat < seats,
+            ))) &&
+        (q.summoned === undefined || codes(q.summoned)) &&
+        (q.blessedQuest === undefined || integer(q.blessedQuest)) &&
+        (q.strikes === undefined ||
+          (!!q.strikes &&
+            typeof q.strikes === "object" &&
+            !Array.isArray(q.strikes) &&
+            Object.values(q.strikes).every(integer))) &&
         (q.secretLooks === undefined ||
           (!!q.secretLooks &&
             typeof q.secretLooks === "object" &&

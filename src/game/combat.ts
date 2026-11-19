@@ -458,6 +458,7 @@ export function playerAttack(
       attackers as Unit[],
     ),
     ...sagaCampaignAttackersDeclared(s, enemy, attackers as Unit[]),
+    ...DreamCards.dreamchaserAttackersDeclared(s, enemy, attackers as Unit[]),
     fx("resolvePlayerAttack", {
       target: enemy.id,
       ids,
@@ -562,6 +563,7 @@ export function resolvePlayerAttack(
           Rhudaur.rhudaurAttackBonus(s, enemy, u) +
           (batch4Scenario(s).playerAttackBonus?.(s, u, enemy, attackers) ?? 0) +
           sagaCampaignAttackBonus(s, u, attackers) +
+          DreamCards.dreamchaserPlayerAttackBonus(s, u) +
           angmarSilverthornBonus(s, u, enemy) +
           angmarClueUndeadBonus(s, u, enemy, "attack") +
           FlameWestPlayers.flameWestPlayerAttackBonus(s, u, attackers) +

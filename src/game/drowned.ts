@@ -49,6 +49,8 @@ import {
   drownedFront,
   drownedUnderwater,
 } from "./drowned-support";
+import { isDreamchaserGame } from "./dreamchaser-campaign-support";
+import { dreamchaserDrownedReady } from "./dreamchaser-campaign";
 export { drownedUnderwater, drownedState } from "./drowned-support";
 
 const live = (s: GameState) =>
@@ -425,6 +427,8 @@ export function drownedEffect(s: GameState, e: Effect) {
       }
       for (let i = 0; i < (ps.length >= 3 ? 3 : 2); i++) drownedAddGrotto(s);
       q.initialized = true;
+      // The Dream-chaser campaign card's Setup.
+      if (isDreamchaserGame(s)) prepend(s, ...dreamchaserDrownedReady(s));
       break;
     }
     case "drownedResealGrotto":
