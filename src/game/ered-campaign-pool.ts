@@ -2862,6 +2862,15 @@ export function composeEredPool(
     },
     losesKeyword: (s, u, keyword) =>
       !!h.losesKeyword?.(s, u, keyword) || !!p.losesKeyword?.(s, u, keyword),
+    charactersCommitted: (s, units) => {
+      h.charactersCommitted?.(s, units);
+      p.charactersCommitted?.(s, units);
+    },
+    locationProgressCapacity: (s, u) => {
+      const a = h.locationProgressCapacity?.(s, u),
+        b = p.locationProgressCapacity?.(s, u);
+      return a === undefined ? b : b === undefined ? a : Math.min(a, b);
+    },
   };
 }
 

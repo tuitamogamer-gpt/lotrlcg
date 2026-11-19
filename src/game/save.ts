@@ -124,6 +124,7 @@ import { nightmareStageCount, nightmareSupported } from "./nightmare";
 import { validNightmareCore } from "./nightmare-core";
 import { validNightmareSom } from "./nightmare-som";
 import { validNightmareRhos } from "./nightmare-rhosgobel";
+import { validNightmareEmyn } from "./nightmare-emyn";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
 import { validateUmbar } from "./escape-umbar-support";
@@ -1152,6 +1153,7 @@ export function validateSave(
         !validNightmareCore(s, validUnit as (value: unknown) => boolean) ||
         !validNightmareSom(s) ||
         !validNightmareRhos(s) ||
+        !validNightmareEmyn(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,

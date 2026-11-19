@@ -169,7 +169,18 @@ export function autoplay(s: GameState, steps = 1500) {
             }
           : { type: "END_ATTACKS" };
     } else action = { type: "NEXT" };
-    s = applyAction(reload(s), action);
+    try {
+      s = applyAction(reload(s), action);
+    } catch (error) {
+      // A rule that requires every ready character to quest (The Hills of
+      // Emyn Muil's Rauros Falls): commit them all.
+      if (action.type !== "COMMIT") throw error;
+      const rest = characters(s).filter(
+        (u) => canCommit(s, u) && !s.committedIds.includes(u.id),
+      );
+      if (!rest.length) throw error;
+      s = applyAction(reload(s), { type: "TOGGLE_QUEST", id: rest[0].id });
+    }
     assert.ok(valid(s), `a valid save after ${action.type} (${s.phase})`);
   }
   return s;

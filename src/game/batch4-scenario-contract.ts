@@ -123,6 +123,8 @@ export interface Batch4ScenarioHooks {
   extraOptionalEngagements?(s: GameState, player: number): number;
   cannotCancel?(s: GameState, shadow?: boolean, code?: string): boolean;
   cannotReduceThreat?(s: GameState): boolean;
+  /** After characters commit to the quest (each commitment, at any time). */
+  charactersCommitted?(s: GameState, units: Unit[]): void;
   /** The character loses the keyword (as A Journey to Rhosgobel's Pitch-dark Thicket, its ranged). */
   losesKeyword?(s: GameState, u: Unit, keyword: string): boolean;
   /** The hero cannot gain resources from card effects. */

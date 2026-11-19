@@ -11,9 +11,9 @@ not offered in campaign mode.
 
 **Supported so far:** the Core Set Nightmare Deck (Passage Through Mirkwood,
 Journey Along the Anduin and Escape from Dol Guldur) and, of Shadows of
-Mirkwood's, The Hunt for Gollum, Conflict at the Carrock and A Journey to
-Rhosgobel. The other Nightmare Decks follow in publication order, beginning
-with The Hills of Emyn Muil.
+Mirkwood's, The Hunt for Gollum, Conflict at the Carrock, A Journey to
+Rhosgobel and The Hills of Emyn Muil. The other Nightmare Decks follow in
+publication order, beginning with The Dead Marshes.
 
 ## Sources
 
@@ -21,9 +21,10 @@ with The Hills of Emyn Muil.
   (`public/catalog.json`), checked by eye against the DragnCards scans; the
   checked cards are written to `src/data/nightmare-encounter-cards.json` and
   their faces pinned in `tests/nightmare-art.json` (9 cards and 10 faces for
-  the Core Set's scenarios and The Hunt for Gollum, 8 cards and 9 faces for A
-  Journey to Rhosgobel, and 11 cards and 13 faces for Conflict at the Carrock,
-  whose Nightmare Deck adds a stage to the quest deck).
+  the Core Set's scenarios, The Hunt for Gollum and The Hills of Emyn Muil, 8
+  cards and 9 faces for A Journey to Rhosgobel, and 11 cards and 13 faces for
+  Conflict at the Carrock, whose Nightmare Deck adds a stage to the quest
+  deck).
 - The scans correct the catalogue: each setup card's front is the removal
   list ("Begin with the standard quest deck and encounter deck … Remove the
   following cards, in the specified quantities …"), where the catalogue had a
@@ -41,9 +42,10 @@ with The Hills of Emyn Muil.
   have "won the game" (the catalogue had "have won"), and keeps its stage
   number (3); A Journey to Rhosgobel's setup card says "Then, shuffle the
   encounter deck", and its removal list prints "Chieftan Ufthak" (Chieftain
-  Ufthak).
+  Ufthak), as The Hills of Emyn Muil's does; Blast of Savage Wind gives +2
+  [threat] to each "Emyn Muil" location (the catalogue had "Eymn Muil").
 - The source recipe of each Nightmare scenario (`public/scenarios.json`,
-  N01.1 to N01.6 so far) is the standard encounter deck without the
+  N01.1 to N01.7 so far) is the standard encounter deck without the
   printed removals plus the Nightmare Deck (Escape from Dol Guldur's Nazgûl
   and Conflict at the Carrock's 5 unique Trolls set aside in both, the
   Carrock's stage 3 in its quest deck): a test compares the two.
@@ -58,7 +60,8 @@ with The Hills of Emyn Muil.
   setup card's setup rule follows.
 - `src/game/nightmare-core.ts` (the Core Set), `src/game/nightmare-som.ts`
   (The Hunt for Gollum and Conflict at the Carrock) and
-  `src/game/nightmare-rhosgobel.ts` (A Journey to Rhosgobel) script the setup
+  `src/game/nightmare-rhosgobel.ts` (A Journey to Rhosgobel) and
+  `src/game/nightmare-emyn.ts` (The Hills of Emyn Muil) script the setup
   cards' rules and the Nightmare
   encounter cards as a layer, chosen by scenario and composed with its hooks
   (the composition the Ered Mithrin Campaign Pool uses, which also composes
@@ -131,6 +134,20 @@ with The Hills of Emyn Muil.
 | Hunter's Lookout (location ×2)     | Each Mordor enemy with a Clue gets +2 [defense] for each copy in play. Shadow: the attacking enemy gets +1 [defense] for each Clue in play until the end of the round.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | Dark Pools (location ×3)           | No progress can be placed on it in the staging area. When it becomes the active location, each player discards one of their allies with the highest printed cost (their choice among tied allies).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 
+## The Hills of Emyn Muil (Nightmare)
+
+| Card                                | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Setup card                          | Removes The East Wall of Rohan ×1, The North Stair ×1, The Shores of Nen Hithoel ×2, The Highlands ×4, Slick Footing ×2, Impassable Chasm ×2, Dol Guldur Orcs ×2, Chieftain Ufthak ×1 (printed "Chieftan Ufthak"), Dol Guldur Beastmaster ×2, The Necromancer's Reach ×2, Necromancer's Pass ×2, Enchanted Stream ×2, Evil Storm ×3 and Pursued by Shadow ×2 from the standard encounter deck. No more than 1 progress can be placed on each location in the staging area each round (the active location is not limited). |
+| Tunneling Nameless Thing (enemy ×3) | After the players travel to a location, each copy in play engages the first player (from the staging area or another player). While there is no active location, an engaged copy returns to the staging area (its shadow cards discarded), once its attack, if any, is over.                                                                                                                                                                                                                                               |
+| Orc Interceptor (enemy ×2)          | +1 [threat] and +1 [attack] for each resource token on it; after any location is explored (in the staging area or active), each copy in play gets a resource token.                                                                                                                                                                                                                                                                                                                                                        |
+| Brambles and Thorns (location ×3)   | After characters commit to the quest (at any time), each takes 1 damage, once each round whatever the copies in play.                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Sarn Gebir Rapids (location ×2)     | While it is the active location, the "when revealed" effects of Hazard cards (the standard Impassable Chasm, Rockslide and Slick Footing among them) cannot be canceled.                                                                                                                                                                                                                                                                                                                                                   |
+| A Hurrying Darkness (treachery ×2)  | Each player chooses: raise their threat by 5, or reveal an encounter card into the staging area. Shadow: the attacking enemy gets +X [attack], X the active location's [threat].                                                                                                                                                                                                                                                                                                                                           |
+| Blast of Savage Wind (treachery ×3) | Doomed 2. All progress is removed from each Emyn Muil location in play, and each of them (not one entering play later) gets +2 [threat] until the end of the round. Shadow: the progress is removed.                                                                                                                                                                                                                                                                                                                       |
+| Hazardous Terrain (treachery ×2)    | Surge. Doomed 2. Each Hazard card in the encounter discard pile is shuffled into the encounter deck. Shadow: the same, then the attacking enemy is dealt another shadow card for this attack.                                                                                                                                                                                                                                                                                                                              |
+| Retraced Steps (treachery ×2)       | Surge. A random Emyn Muil location leaves the victory display (its victory points lost) for the encounter discard pile.                                                                                                                                                                                                                                                                                                                                                                                                    |
+
 ## A Journey to Rhosgobel (Nightmare)
 
 | Card                             | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
@@ -163,7 +180,7 @@ with The Hills of Emyn Muil.
 ## Verification
 
 ```sh
-node --import tsx --test tests/nightmare-core.test.ts tests/nightmare-anduin.test.ts tests/nightmare-dol-guldur.test.ts tests/nightmare-gollum.test.ts tests/nightmare-carrock.test.ts tests/nightmare-rhosgobel.test.ts
+node --import tsx --test tests/nightmare-core.test.ts tests/nightmare-anduin.test.ts tests/nightmare-dol-guldur.test.ts tests/nightmare-gollum.test.ts tests/nightmare-carrock.test.ts tests/nightmare-rhosgobel.test.ts tests/nightmare-emyn.test.ts
 npm run build
 npm run test:browser-nightmare
 ```
@@ -220,7 +237,16 @@ treatment, not reduced); Shot from the Sky (the Eagle trait lost, the damage on
 readying, its discard and its shadow); Dark-wood Grove's threat, quest points
 and additional attack; Labyrinthine Woods' Creatures and its shadow in a
 two-player game; Pitch-dark Thicket's lost ranged keyword and its shadow; and
-seeded solo and two-player games.
+seeded solo and two-player games. `tests/nightmare-emyn.test.ts` (5 tests)
+covers The Hills of Emyn Muil's texts, stats and faces; its Nightmare
+encounter deck against the source recipe; the staging area's 1 progress per
+location each round; Tunneling Nameless Thing (solo and two-player), Orc
+Interceptor through an explored location, Brambles and Thorns (once each
+round), Sarn Gebir Rapids; each treachery and shadow (A Hurrying Darkness's
+threat or reveal, also in a two-player game, Blast of Savage Wind's lasting
+[threat], Hazardous Terrain's Hazards and extra shadow card, Retraced Steps'
+victory points); and seeded solo and two-player games (whose policy commits
+every character when Rauros Falls requires it).
 
 The browser suite starts Passage Through Mirkwood in Nightmare mode from the
 lobby (easy mode turned off), checks the setup's staging area and reveal, the
@@ -236,5 +262,7 @@ Mordor; and it starts Conflict at the Carrock in Nightmare mode from the
 lobby, checks the 5 Trolls set aside and its Nightmare card, and stage 3
 (its face, the 3 / 3 stage count and its goal); and it starts A Journey to
 Rhosgobel in Nightmare mode from the lobby, checks the setup's Goblin
-Eagle-hunter, its Nightmare card and Noxious Supplies on Wilyador, at 1280, 390
-and 320 pixels (42 checkpoints); it checks the 62 pinned faces.
+Eagle-hunter, its Nightmare card and Noxious Supplies on Wilyador; and it
+starts The Hills of Emyn Muil in Nightmare mode from the lobby, checks its
+Nightmare card and an Orc Interceptor with resource tokens, at 1280, 390 and
+320 pixels (48 checkpoints); it checks the 72 pinned faces.

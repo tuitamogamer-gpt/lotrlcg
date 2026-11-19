@@ -635,6 +635,7 @@ export function charactersCommitted(
     (u) => u.committed && allCharacters(s).some((c) => c.id === u.id),
   );
   shadowFlameCharactersCommitted(s, actual);
+  batch4Scenario(s).charactersCommitted?.(s, actual);
   sagaCampaignCommitted(s, actual);
   angmarLootCommitted(s, actual);
   HaradResponses.haradCharactersCommitted(

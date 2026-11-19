@@ -1599,3 +1599,14 @@ Validation on Node 22: the engine suite passes all 6,986 tests, including 7 for 
 Coverage is now 861 player definitions (112 heroes), 2,341 encounters and 123 scenarios. This resolves 3,563 of 4,183 identities and 276 of 355 recipes; 620 identities remain pending.
 
 Validation on Node 22: the engine suite passes all 6,992 tests, including 6 for A Journey to Rhosgobel's Nightmare Deck (seeded solo and two-player games among them); the Nightmare browser suite passes 42 checkpoints at 1280, 390 and 320 pixels, through A Journey to Rhosgobel's Nightmare card, the setup's Goblin Eagle-hunter and Noxious Supplies on Wilyador, and checks the 62 pinned faces; the production build, the typecheck and the coverage audit pass.
+
+2026-11-19 Nightmare mode, The Hills of Emyn Muil: continued the user's “Nastavi dok ne završis sve” after f67f7d0. The Dead Marshes follows. See docs/NIGHTMARE.md.
+
+- The Hills of Emyn Muil's setup card and its eight Nightmare encounter designs are registered from the DragnCards scans (72 faces pinned in all); the scans give the setup card's removal list (its "Chieftan Ufthak" is Chieftain Ufthak) and Blast of Savage Wind's "Emyn Muil" location (the catalogue had "Eymn"). The source recipe N01.7 equals the standard deck less the printed removals plus the Nightmare Deck.
+- Its scripts live in their own layer (src/game/nightmare-emyn.ts, "nem" effects). The engine gains a hook after characters commit to the quest (each commitment path), and the composition adds a location's progress capacity.
+- The setup card: no more than 1 progress can be placed on each location in the staging area each round.
+- Tunneling Nameless Thing (it engages the first player after each travel and returns to the staging area without an active location), Orc Interceptor, Brambles and Thorns, Sarn Gebir Rapids, A Hurrying Darkness, Blast of Savage Wind, Hazardous Terrain and Retraced Steps are scripted with their shadows. The seeded games' policy commits every character when Rauros Falls requires it.
+
+Coverage is now 861 player definitions (112 heroes), 2,350 encounters and 123 scenarios. This resolves 3,572 of 4,183 identities and 277 of 355 recipes; 611 identities remain pending.
+
+Validation on Node 22: the engine suite passes all 6,997 tests, including 5 for The Hills of Emyn Muil's Nightmare Deck (seeded solo and two-player games among them); the Nightmare browser suite passes 48 checkpoints at 1280, 390 and 320 pixels, through The Hills of Emyn Muil's Nightmare card and an Orc Interceptor with resource tokens, and checks the 72 pinned faces; the production build, the typecheck and the coverage audit pass.

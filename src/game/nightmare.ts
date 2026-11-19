@@ -42,7 +42,8 @@ export const NIGHTMARE_CORE = {
   master: `${P}26`,
 } as const;
 
-const G = "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f00";
+const G = "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f00",
+  E = "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc00";
 /** The Shadows of Mirkwood Nightmare Decks' cards. */
 export const NIGHTMARE_SOM = {
   /** The Hunt for Gollum's setup card and Nightmare Deck. */
@@ -76,6 +77,16 @@ export const NIGHTMARE_SOM = {
   labyrinth: `${G}37`,
   thicket: `${G}38`,
   birdEater: `${G}39`,
+  /** The Hills of Emyn Muil's setup card and Nightmare Deck. */
+  emynCard: `${E}61`,
+  tunneling: `${E}63`,
+  interceptor: `${E}64`,
+  brambles: `${E}65`,
+  rapids: `${E}66`,
+  hurrying: `${E}67`,
+  blast: `${E}68`,
+  hazardous: `${E}69`,
+  retraced: `${E}70`,
 } as const;
 
 interface NightmareDeck {
@@ -182,6 +193,26 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "The Necromancer's Reach": 1,
       "Necromancer's Pass": 2,
       "Enchanted Stream": 2,
+    },
+  },
+  "hills-of-emyn-muil": {
+    card: NIGHTMARE_SOM.emynCard,
+    removals: {
+      "The East Wall of Rohan": 1,
+      "The North Stair": 1,
+      "The Shores of Nen Hithoel": 2,
+      "The Highlands": 4,
+      "Slick Footing": 2,
+      "Impassable Chasm": 2,
+      "Dol Guldur Orcs": 2,
+      // Printed "Chieftan Ufthak".
+      "Chieftain Ufthak": 1,
+      "Dol Guldur Beastmaster": 2,
+      "The Necromancer's Reach": 2,
+      "Necromancer's Pass": 2,
+      "Enchanted Stream": 2,
+      "Evil Storm": 3,
+      "Pursued by Shadow": 2,
     },
   },
 };
@@ -322,6 +353,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "journey-to-rhosgobel")
     return [
       "A Journey to Rhosgobel · Nightmare mode: a Goblin Eagle-hunter began in the staging area; the first Creature enemy revealed during each quest phase gains surge; an Athelas placed in the encounter discard pile may be shuffled back into the encounter deck.",
+    ];
+  if (s.scenarioId === "hills-of-emyn-muil")
+    return [
+      "The Hills of Emyn Muil · Nightmare mode: no more than 1 progress may be placed on each location in the staging area each round.",
     ];
   return [];
 }

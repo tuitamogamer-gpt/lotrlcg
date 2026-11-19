@@ -570,7 +570,8 @@ export interface GameState {
   /** Nightmare mode's lasting card effects. */
   nightmare?: import("./nightmare-core").NightmareCoreState &
     import("./nightmare-som").NightmareSomState &
-    import("./nightmare-rhosgobel").NightmareRhosState;
+    import("./nightmare-rhosgobel").NightmareRhosState &
+    import("./nightmare-emyn").NightmareEmynState;
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;

@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2341,
+    "encounterCards": 2350,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3563,
-    "pending": 620
+    "scripted": 3572,
+    "pending": 611
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 276
+    "scripted": 277
   },
   "registeredCodes": [
     "01001",
@@ -3102,6 +3102,15 @@
     "octgn:b793d1f1-012e-4e13-aad0-d91833f6f8c6",
     "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
     "octgn:b7b62c58-7d5d-483d-807e-f4d7e2869579",
+    "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0061",
+    "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0063",
+    "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0064",
+    "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0065",
+    "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0066",
+    "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0067",
+    "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0068",
+    "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0069",
+    "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0070",
     "octgn:b7c19049-9587-48bc-8807-5cc7334399b9",
     "octgn:b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06",
     "octgn:b81a014a-af32-41a9-abdf-8dbebf29f685",
@@ -4374,7 +4383,7 @@
     {
       "product": "the-hills-of-emyn-muil-nightmare",
       "total": 9,
-      "scripted": 0,
+      "scripted": 9,
       "player": 0,
       "playerScripted": 0
     },
@@ -31558,7 +31567,7 @@
       "name": "The Hills of Emyn Muil",
       "type": "nightmare",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-hills-of-emyn-muil-nightmare"
     },
     {
@@ -31566,7 +31575,7 @@
       "name": "Tunneling Nameless Thing",
       "type": "enemy",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-hills-of-emyn-muil-nightmare"
     },
     {
@@ -31574,7 +31583,7 @@
       "name": "Orc Interceptor",
       "type": "enemy",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-hills-of-emyn-muil-nightmare"
     },
     {
@@ -31582,7 +31591,7 @@
       "name": "Brambles and Thorns",
       "type": "location",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-hills-of-emyn-muil-nightmare"
     },
     {
@@ -31590,7 +31599,7 @@
       "name": "Sarn Gebir Rapids",
       "type": "location",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-hills-of-emyn-muil-nightmare"
     },
     {
@@ -31598,7 +31607,7 @@
       "name": "A Hurrying Darkness",
       "type": "treachery",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-hills-of-emyn-muil-nightmare"
     },
     {
@@ -31606,7 +31615,7 @@
       "name": "Blast of Savage Wind",
       "type": "treachery",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-hills-of-emyn-muil-nightmare"
     },
     {
@@ -31614,7 +31623,7 @@
       "name": "Hazardous Terrain",
       "type": "treachery",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-hills-of-emyn-muil-nightmare"
     },
     {
@@ -31622,7 +31631,7 @@
       "name": "Retraced Steps",
       "type": "treachery",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-hills-of-emyn-muil-nightmare"
     },
     {
@@ -39138,8 +39147,8 @@
       "id": "N01.7",
       "name": "The Hills of Emyn Muil (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "hills-of-emyn-muil",
+      "state": "scripted"
     },
     {
       "id": "N01.8",

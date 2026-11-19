@@ -413,6 +413,49 @@ try {
       })
       .waitFor();
     await checkpoint("rhosgobel-noxious-supplies", width);
+    // The Hills of Emyn Muil in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-hills-of-emyn-muil").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await opening(page);
+    assert.equal(s.scenarioId, "hills-of-emyn-muil");
+    assert.equal(s.nightmareMode, true);
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/no more than 1 progress may be placed on each location/)
+      .waitFor();
+    await checkpoint("emyn-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // Orc Interceptor with resource tokens in the staging area.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const orc = make(t, G.interceptor);
+      orc.resources = 3;
+      t.staging.push(orc);
+      s = await load(page, t);
+    }
+    assert.equal(s.staging.find((u) => u.code === G.interceptor).resources, 3);
+    await page.getByLabel("3 resources", { exact: true }).first().waitFor();
+    await checkpoint("emyn-orc-interceptor", width);
     await view.c.close();
   }
   const p = await browser.newPage();
