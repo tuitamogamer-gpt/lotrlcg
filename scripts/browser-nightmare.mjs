@@ -1432,6 +1432,66 @@ try {
       )
       .waitFor();
     await checkpoint("ithilien-mumak-elite", width);
+    // The Siege of Cair Andros in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-siege-of-cair-andros").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "siege-of-cair-andros");
+    assert.equal(s.nightmareMode, true);
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/contribute no victory points/)
+      .waitFor();
+    await checkpoint("siege-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A Besieged Courtyard with 3 damage and an Orc Saboteur beside the
+    // scenario's Battlegrounds.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const courtyard = make(t, HON.courtyard);
+      courtyard.damage = 3;
+      t.staging = [...t.staging, courtyard, make(t, HON.saboteur)];
+      s = await load(page, t);
+    }
+    const courtyardFace = page
+      .locator(`img[src*="${HON.courtyard.slice("octgn:".length)}"]`)
+      .first();
+    await courtyardFace.waitFor();
+    assert.ok(
+      (await courtyardFace.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "Besieged Courtyard's face loads",
+    );
+    await page
+      .locator(".journey-area .quest-goals")
+      .getByText(
+        "Nightmare Battlegrounds · Besieged Courtyard 3/5 damage before each is discarded",
+        { exact: true },
+      )
+      .waitFor();
+    await checkpoint("siege-besieged-courtyard", width);
     await view.c.close();
   }
   const p = await browser.newPage();

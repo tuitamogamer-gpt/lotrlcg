@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2465,
+    "encounterCards": 2473,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3687,
-    "pending": 496
+    "scripted": 3695,
+    "pending": 488
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 290
+    "scripted": 291
   },
   "registeredCodes": [
     "01001",
@@ -1273,6 +1273,7 @@
     "octgn:048b6a57-f577-4dbe-a090-6eca1f266767",
     "octgn:049758ee-7fb1-4978-9ed0-1b4de1d5ae14",
     "octgn:04a23a2e-a14f-4c54-b54f-eeef36d3a92b",
+    "octgn:04eb1904-64a4-4b89-ae71-38ee175aa093",
     "octgn:04f24d17-9764-4385-b22c-0e45f6fa5654",
     "octgn:0507932f-0030-4763-8478-29bb407103d4",
     "octgn:05119d55-73f5-4973-ada5-d0cc73a2eb4b",
@@ -1625,6 +1626,7 @@
     "octgn:2c21eeec-9aa4-4278-b050-f4297426f89a",
     "octgn:2c32f4b8-83c7-4ac6-9401-3378a4ca530b",
     "octgn:2c3f8a11-c7a5-4709-ab8d-7435763f558b",
+    "octgn:2c7390c5-06a8-451e-9895-88fb705e18e8",
     "octgn:2c7e2c6c-ecaa-48dc-a19e-4477d4fc693d",
     "octgn:2ce0c7c6-e7ae-4847-a02d-2be874afa3d4",
     "octgn:2d14c8ba-a35a-491b-867b-d43b5547f235",
@@ -1741,6 +1743,7 @@
     "octgn:397ef92c-981b-4495-a2a0-681ea886d30c",
     "octgn:39a64a5a-7074-46a5-aacc-a42537fe0ddd",
     "octgn:39df5c92-f79e-4d39-b8a3-f93631e183db",
+    "octgn:3a17475b-3238-4577-9fd5-83b67e2d0aa7",
     "octgn:3a47aa88-5089-435d-b5ab-899dab400c98",
     "octgn:3a8869dc-077e-4b8c-b3d5-474e4f9c14ba",
     "octgn:3ad34bfd-3f2b-4b23-b09d-232f4640ddeb",
@@ -1749,6 +1752,7 @@
     "octgn:3b7c4f67-7de4-4b77-be50-0fd86e4ef2bc",
     "octgn:3b855783-5b90-4788-802e-e7c1e81461d8",
     "octgn:3bc03452-6c37-45e2-9241-e626ea51f382",
+    "octgn:3bd3e9f2-6411-4ea3-9ff4-1ea1d51e202d",
     "octgn:3c1bea1f-80b7-4857-9d0b-489376d4abab",
     "octgn:3c53610e-0126-424f-a4cc-9e7710ebcffe",
     "octgn:3cbe2fe1-e7ab-4213-85dd-fd9b6244479f",
@@ -1920,6 +1924,7 @@
     "octgn:499195c5-389f-4a56-b67e-b6e5b8f2fb91",
     "octgn:49aa4e88-3774-43f7-ab8d-05268ed3fb7e",
     "octgn:49c77ce2-7305-4209-ad6a-f1ed983a556e",
+    "octgn:49d6a591-67b0-4d65-a384-ae0662b09814",
     "octgn:49e857d2-b78f-4b5f-8c07-604af73fd616",
     "octgn:4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a",
     "octgn:4a2696f1-65e1-41d5-8828-38ece23167df",
@@ -2723,6 +2728,7 @@
     "octgn:83d7214f-d8ae-47f8-bd0a-c48f9a187568",
     "octgn:83dd1a59-118c-468d-a47e-e472b066ff3e",
     "octgn:846794c2-be0f-4016-b9fe-fe6266d7fddd",
+    "octgn:846e56e8-ac94-41e0-b29a-aacf7ca8d39e",
     "octgn:8472068c-fdd7-4197-8046-b9da12c29135",
     "octgn:847e6b9c-f795-4625-86d3-4ab6460ccdfe",
     "octgn:84877af6-0720-4ef8-802b-69b792c32e15",
@@ -3378,6 +3384,7 @@
     "octgn:c9b1ad84-a3ea-4ab5-9db1-4addb4ae383d",
     "octgn:c9bd8efc-b0df-4ab9-aeb2-07796818ff7d",
     "octgn:c9c2b094-c895-4714-bb2e-c6558c82a153",
+    "octgn:c9e280a4-06b8-48bb-918d-da247e15157c",
     "octgn:ca18c3fa-ebda-4cf9-99bb-2ce47c9160a1",
     "octgn:ca24cab1-1489-4c4d-8cea-50d076c020b8",
     "octgn:ca41e49b-6bf0-42dc-8f83-83d7c8aaba1c",
@@ -3717,6 +3724,7 @@
     "octgn:f0d30258-7122-4004-a689-9ff50a00b3af:B",
     "octgn:f13a2e94-0ece-45c3-a7ce-0248f9ff92b3",
     "octgn:f16aabcd-6a98-4e4a-89ca-0f0d69407d85",
+    "octgn:f16bf495-bb88-4c5e-9a3f-5ba2d8bb916a",
     "octgn:f18b362f-1669-4743-8802-daf58e638198",
     "octgn:f1a07644-9fe2-4764-9999-091fb8fc05b7",
     "octgn:f1b632df-ecaa-410a-b2c2-e037adc0ef2c",
@@ -4120,7 +4128,7 @@
     {
       "product": "heirs-of-numenor-nightmare",
       "total": 26,
-      "scripted": 18,
+      "scripted": 26,
       "player": 0,
       "playerScripted": 0
     },
@@ -13986,7 +13994,7 @@
       "name": "Orc Ravager",
       "type": "enemy",
       "pack": "Heirs of Numenor - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor-nightmare"
     },
     {
@@ -17258,7 +17266,7 @@
       "name": "Orc Saboteur",
       "type": "enemy",
       "pack": "Heirs of Numenor - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor-nightmare"
     },
     {
@@ -18482,7 +18490,7 @@
       "name": "Walls of Cair Andros",
       "type": "location",
       "pack": "Heirs of Numenor - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor-nightmare"
     },
     {
@@ -18570,7 +18578,7 @@
       "name": "Southron Mounted Archer",
       "type": "enemy",
       "pack": "Heirs of Numenor - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor-nightmare"
     },
     {
@@ -20106,7 +20114,7 @@
       "name": "Ruin and Wroth",
       "type": "treachery",
       "pack": "Heirs of Numenor - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor-nightmare"
     },
     {
@@ -27386,7 +27394,7 @@
       "name": "The Siege of Cair Andros",
       "type": "nightmare",
       "pack": "Heirs of Numenor - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor-nightmare"
     },
     {
@@ -33610,7 +33618,7 @@
       "name": "Besieged Courtyard",
       "type": "location",
       "pack": "Heirs of Numenor - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor-nightmare"
     },
     {
@@ -36818,7 +36826,7 @@
       "name": "Anduin Wharf",
       "type": "location",
       "pack": "Heirs of Numenor - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor-nightmare"
     },
     {
@@ -39360,8 +39368,8 @@
       "id": "N03.3",
       "name": "The Siege of Cair Andros (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "siege-of-cair-andros",
+      "state": "scripted"
     },
     {
       "id": "N03.4",

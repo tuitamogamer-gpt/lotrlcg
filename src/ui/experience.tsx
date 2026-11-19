@@ -93,6 +93,7 @@ import { KHAZAD } from "../game/khazad-dum";
 import { NIGHTMARE_DD, NIGHTMARE_KD, nightmareLive } from "../game/nightmare";
 import { nightmarePelargirGoal } from "../game/nightmare-pelargir";
 import { nightmareIthilienGoal } from "../game/nightmare-ithilien";
+import { nightmareCairAndrosGoal } from "../game/nightmare-cairandros";
 import { returnMirkwoodGuard } from "../game/return-mirkwood";
 
 const requiredQuestSelections = (s: GameState) =>
@@ -1743,7 +1744,18 @@ export function QuestGoals({ s }: { s: GameState }) {
                                                 done: false,
                                               },
                                             ]
-                                          : [];
+                                          : s.scenarioId ===
+                                                "siege-of-cair-andros" &&
+                                              nightmareCairAndrosGoal(s)
+                                            ? [
+                                                // Nightmare mode: the Battlegrounds' damage.
+                                                {
+                                                  label:
+                                                    nightmareCairAndrosGoal(s)!,
+                                                  done: false,
+                                                },
+                                              ]
+                                            : [];
   return goals.length ? (
     <div className="quest-goals">
       {goals.map((g) => (

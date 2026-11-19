@@ -226,6 +226,15 @@ export const NIGHTMARE_HON = {
   cormallen: "octgn:73611bf0-cc37-418a-88bc-ed01624ab33d",
   arrows: "octgn:50dda27b-1bf7-43d4-a6e2-eced8d60515a",
   fray: "octgn:b8caa465-cf1c-4be2-a32a-cab116ff0886",
+  /** The Siege of Cair Andros's setup card and Nightmare Deck. */
+  siegeCard: "octgn:846e56e8-ac94-41e0-b29a-aacf7ca8d39e",
+  archer: "octgn:3bd3e9f2-6411-4ea3-9ff4-1ea1d51e202d",
+  saboteur: "octgn:2c7390c5-06a8-451e-9895-88fb705e18e8",
+  ravager: "octgn:04eb1904-64a4-4b89-ae71-38ee175aa093",
+  courtyard: "octgn:c9e280a4-06b8-48bb-918d-da247e15157c",
+  walls: "octgn:3a17475b-3238-4577-9fd5-83b67e2d0aa7",
+  wharf: "octgn:f16bf495-bb88-4c5e-9a3f-5ba2d8bb916a",
+  ruin: "octgn:49d6a591-67b0-4d65-a384-ae0662b09814",
 } as const;
 
 interface NightmareDeck {
@@ -518,6 +527,18 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Overgrown Trail": 1,
     },
   },
+  "siege-of-cair-andros": {
+    card: NIGHTMARE_HON.siegeCard,
+    // The setup card prints "Orc Arsonists".
+    removals: {
+      "Southron Mercenaries": 3,
+      "Orc Arsonist": 2,
+      "Orc Rabble": 2,
+      "Orc Arbalesters": 3,
+      "The Power of Mordor": 1,
+      "Scourge of Mordor": 2,
+    },
+  },
   "watcher-in-the-water": {
     card: NIGHTMARE_DD.watcherCard,
     removals: {
@@ -748,6 +769,10 @@ export function nightmareStatus(s: GameState): string[] {
       `Into Ithilien · Nightmare mode: both Mûmak Elites were set aside; one enters the staging area as each of stages 2A and 4A is revealed (${aside} still aside).`,
     ];
   }
+  if (s.scenarioId === "siege-of-cair-andros")
+    return [
+      "The Siege of Cair Andros · Nightmare mode: player cards in the victory display contribute no victory points. Besieged Courtyard, Walls of Cair Andros and Anduin Wharf are discarded at 5, 4 and 6 damage, with their effects.",
+    ];
   if (s.scenarioId === "watcher-in-the-water")
     return [
       "The Watcher in the Water · Nightmare mode: while Doors of Durin is in play, The Watcher cannot be engaged; a destroyed Tentacle enemy deals 1 damage to The Watcher; the players cannot win unless both Doors of Durin and The Watcher are in the victory display.",

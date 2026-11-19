@@ -764,7 +764,13 @@ export const SCENARIOS = [
     tagline: "Hold the river fortress",
     description:
       "Defend the island fortress of Cair Andros, battleground by battleground, against the assault from Mordor.",
-    sets: ["The Siege of Cair Andros", "Mordor Elite", "Ravaging Orcs"],
+    // Its quest card shows Ravaging Orcs, Mordor Elite and Southrons.
+    sets: [
+      "The Siege of Cair Andros",
+      "Southrons",
+      "Mordor Elite",
+      "Ravaging Orcs",
+    ],
     stages: [
       {
         name: "The Defense",
