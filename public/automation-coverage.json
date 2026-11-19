@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2192,
+    "encounterCards": 2199,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3425,
-    "pending": 758
+    "scripted": 3429,
+    "pending": 754
   },
   "scenarioRecipes": {
     "total": 355,
@@ -703,6 +703,10 @@
     "11189.B",
     "11190",
     "11190.B",
+    "11192",
+    "11192.B",
+    "11193",
+    "11193.B",
     "12001",
     "12002",
     "12003",
@@ -2268,6 +2272,8 @@
     "octgn:59724478-f4c5-4f9b-99bd-288dd8fc1b43",
     "octgn:59c6b564-b927-481f-b505-ca9b1fe4f524",
     "octgn:5a0d35ad-e9af-48b1-8454-534753394ed2",
+    "octgn:5a19564f-aa1d-4db1-91ee-6123b9d64967",
+    "octgn:5a19564f-aa1d-4db1-91ee-6123b9d64967.B",
     "octgn:5a3a6917-900b-4878-9545-56c297a50248",
     "octgn:5a3d198a-5c72-42ec-b5ae-f183194632cf",
     "octgn:5a4545c3-8b25-4fad-9798-b67921c9e7d3",
@@ -3125,6 +3131,7 @@
     "octgn:c69c1fe9-076a-4a5b-8388-9f653015d84d",
     "octgn:c6adadf8-569a-4943-817b-44bf1418e07e",
     "octgn:c6b0a8d2-32fe-4750-9270-7270cd5f062b",
+    "octgn:c6df8413-6e0a-4ba3-b705-4b9626c66b02",
     "octgn:c6ed1453-51ad-4daf-a1da-d59c78758c3a",
     "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
     "octgn:c71fa40c-524e-43ec-b058-7ea239fdfd1d",
@@ -3749,7 +3756,7 @@
     {
       "product": "dream-chaser-campaign-expansion",
       "total": 60,
-      "scripted": 28,
+      "scripted": 32,
       "player": 26,
       "playerScripted": 12
     },
@@ -9161,7 +9168,7 @@
       "name": "Black Key",
       "type": "objective",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -9169,7 +9176,7 @@
       "name": "Calaerion",
       "type": "objective-ally",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -23713,7 +23720,7 @@
       "name": "Stormcaller",
       "type": "ship-enemy",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -33033,7 +33040,7 @@
       "name": "Flight of the Stormcaller",
       "type": "campaign",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {

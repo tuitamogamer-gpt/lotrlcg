@@ -40,12 +40,14 @@ import {
   dcScenarioFace,
   dcUpgraded,
   dreamchaserPart,
+  fleetShip,
   isDreamchaserCampaign,
   isFleetShip,
 } from "./dreamchaser-campaign-support";
 import { VOYAGE, VOYAGE_STAGE_TWO } from "./voyage-belegaer-support";
 import { FATE } from "./fate-numenor-support";
 import { RAID } from "./raid-grey-havens-support";
+import { STORMCALLER } from "./stormcaller-support";
 
 export {
   DREAMCHASER_CAMPAIGN_CARDS,
@@ -59,6 +61,14 @@ export const DREAMCHASER_CAMPAIGN_SUPPORTED: readonly ScenarioId[] = [
   "voyage-across-belegaer",
   "the-fate-of-numenor",
   "raid-on-the-grey-havens",
+  "flight-of-the-stormcaller",
+];
+/** The chapters whose campaign card shuffles Thunderstruck into the encounter deck and Crowley into the Corsair deck. */
+const CORSAIR_CHAPTERS: readonly ScenarioId[] = [
+  "voyage-across-belegaer",
+  "flight-of-the-stormcaller",
+  "a-storm-on-cobas-haven",
+  "the-city-of-corsairs",
 ];
 /** The chapters whose campaign card shuffles Revenant into the encounter deck. */
 const REVENANT_CHAPTERS: readonly ScenarioId[] = [
@@ -138,6 +148,15 @@ export interface DreamchaserGame {
   attacked?: { round: number; ids: string[] };
   /** Once-per-game abilities used this game (Throwing Axe), by attachment id. */
   spent?: string[];
+  /** Calaerion's stat boosts: "+1 [willpower], +1 [attack], and +1 [defense] until the end of the phase" (or round). */
+  boosts?: {
+    target: string;
+    until: "phase" | "round";
+    phase: string;
+    round: number;
+  }[];
+  /** Calaerion (Upgraded): the round his Response was last used ("Limit once per round"). */
+  calaerionRound?: number;
 }
 export const dreamchaserState = (s: GameState) => (s.dreamchaser ??= {});
 const several = (s: GameState) => (s.table?.seats.length ?? 1) > 1;
@@ -253,8 +272,9 @@ export function dreamchaserCampaignSetup(s: GameState) {
   // The Fate of Númenor (and later chapters): "Shuffle Revenant into the
   // encounter deck."
   if (REVENANT_CHAPTERS.includes(s.scenarioId)) pool.push(DC.revenant);
-  if (s.scenarioId === "voyage-across-belegaer") {
-    if (!pool.includes(DC.ominous)) pool.push(DC.ominous);
+  if (s.scenarioId === "voyage-across-belegaer" && !pool.includes(DC.ominous))
+    pool.push(DC.ominous);
+  if (CORSAIR_CHAPTERS.includes(s.scenarioId)) {
     pool.push(DC.thunderstruck);
     const corsairs = corsairDeck(s);
     if (corsairs) {
@@ -273,13 +293,11 @@ export function dreamchaserCampaignSetup(s: GameState) {
 }
 /** The Corsair deck of the sailing scenarios. */
 function corsairDeck(s: GameState): string[] | undefined {
-  const fleet = (
-    s as GameState & {
-      voyageBelegaer?: { corsairDeck: string[] };
-      stormcaller?: { corsairDeck: string[] };
-    }
-  ).voyageBelegaer;
-  return fleet?.corsairDeck;
+  const fleet = s as GameState & {
+    voyageBelegaer?: { corsairDeck: string[] };
+    stormcaller?: { corsairDeck: string[] };
+  };
+  return (fleet.voyageBelegaer ?? fleet.stormcaller)?.corsairDeck;
 }
 
 /**
@@ -346,6 +364,50 @@ export function dreamchaserRaidReady(s: GameState): Effect[] {
     "good",
   );
   return playerOrder(s).map((player) => fx("dcGaldorOffer", { player }));
+}
+/**
+ * Flight of the Stormcaller's campaign card, once the fleet is prepared:
+ * "Flip the Stormcaller to its 'Campaign Mode only' side, then attach Black
+ * Key (burden) to it. Each player chooses a Modification boon for each of
+ * their ship-objectives … Put Calaerion into play under the control of the
+ * player with the Dream-chaser." (The scenario's setup made the Stormcaller
+ * on its campaign side.)
+ */
+export function dreamchaserFlightReady(s: GameState): Effect[] {
+  const c = s.campaign;
+  if (!isDreamchaserCampaign(c)) return [];
+  const area = s as GameState & { stormcaller?: { area: Unit[] } };
+  const target = [...(area.stormcaller?.area ?? []), ...s.staging].find((u) =>
+    dcIs(u, STORMCALLER.stormcaller),
+  );
+  if (target) {
+    const key = dcFace(c, DC.keyBurden);
+    target.attachments.push({
+      id: `a${s.nextId++}`,
+      code: key,
+      exhausted: false,
+    });
+    log(s, `${card(key).name} is attached to the Stormcaller.`, "danger");
+  }
+  dreamchaserCalaerion(s);
+  return dreamchaserFleetReady(s);
+}
+/** "Put Calaerion into play under the control of the player with the Dream-chaser." */
+export function dreamchaserCalaerion(s: GameState) {
+  const c = s.campaign;
+  if (!isDreamchaserCampaign(c)) return;
+  const p =
+    seatIndices(s).find((x) =>
+      seatView(s, x).allies.some((u) => fleetShip(u.code) === "dream"),
+    ) ?? firstPlayer(s);
+  const u = make(s, dcFace(c, DC.calaerion));
+  u.owner = p;
+  forOwner(s, p, () => s.allies.push(u));
+  log(
+    s,
+    `Calaerion enters play under ${several(s) ? `${seatName(s, p)}'s` : "your"} control.`,
+    "good",
+  );
 }
 export function dreamchaserFateReady(s: GameState, calphon: Unit): Effect[] {
   if (!isDreamchaserCampaign(s.campaign)) return [];
@@ -425,6 +487,37 @@ export function dreamchaserXpLines(s: GameState): XpLine[] {
       {
         label: "1 XP if each surviving player's threat is 40 or less",
         xp: globalLivingSeats(s).every((p) => seatView(s, p).threat <= 40)
+          ? 1
+          : 0,
+      },
+    );
+  if (s.scenarioId === "flight-of-the-stormcaller")
+    lines.push(
+      {
+        label: "1 XP if you ended the game on-course",
+        xp: s.sailing?.heading === 0 ? 1 : 0,
+      },
+      {
+        label: "1 XP if you ended the game on stage 2B",
+        xp: s.stage === 2 ? 1 : 0,
+      },
+      {
+        label: "2 XP if you destroyed the Stormcaller",
+        xp: inVictory(s, STORMCALLER.stormcaller) ? 2 : 0,
+      },
+      {
+        label: "1 XP if Crowley is in the victory display",
+        xp: inVictory(s, DC.crowley) ? 1 : 0,
+      },
+      {
+        label: "2 XP if Thunderstruck is in the victory display",
+        xp: inVictory(s, DC.thunderstruck) ? 2 : 0,
+      },
+      {
+        label: "1 XP if each hero has no damage on it",
+        xp: seatIndices(s).every((p) =>
+          seatView(s, p).heroes.every((h) => !h.damage),
+        )
           ? 1
           : 0,
       },
@@ -847,6 +940,10 @@ export function dreamchaserCampaignStatus(s: GameState): string[] {
         "Calphon is controlled by the first player and carries Spyglass and Black Key; if he leaves play the players lose, until stage 2B removes him from the game.",
       );
   }
+  if (s.scenarioId === "flight-of-the-stormcaller")
+    out.push(
+      'The Stormcaller is on its "Campaign Mode only" side with Black Key (burden) attached: at its stage no more than 9 progress can be placed on your quest each round. Calaerion serves the player with the Dream-chaser.',
+    );
   if (REVENANT_CHAPTERS.includes(s.scenarioId)) {
     const n = s.dreamchaser?.resources ?? 0;
     out.push(
@@ -978,7 +1075,18 @@ export function validateDreamchaserCampaign(s: GameState): boolean {
           (!!q.attacked &&
             integer(q.attacked.round) &&
             codes(q.attacked.ids))) &&
-        (q.spent === undefined || codes(q.spent))))
+        (q.spent === undefined || codes(q.spent)) &&
+        (q.boosts === undefined ||
+          (Array.isArray(q.boosts) &&
+            q.boosts.every(
+              (b) =>
+                !!b &&
+                typeof b.target === "string" &&
+                (b.until === "phase" || b.until === "round") &&
+                typeof b.phase === "string" &&
+                integer(b.round),
+            ))) &&
+        (q.calaerionRound === undefined || integer(q.calaerionRound))))
   );
 }
 export { backFace, dcBase, dcFace };

@@ -5,10 +5,11 @@ cycle, with the Dream-chaser Campaign Expansion's campaign cards, boons,
 burdens, Upgraded faces and its new rules: experience (XP), scalable and
 upgradable cards, a fleet of six ships and the Hard/Expert Mode card. The
 lobby's campaign mode offers it as the fourth campaign, for one fellowship of
-one to four local players. Its first three chapters, Voyage Across Belegaer, The
-Fate of Númenor and Raid on the Grey Havens, are supported; the Campaign Log is
-kept after them, and the end of the game says that the next chapter, Flight of
-the Stormcaller, is not available in campaign mode yet.
+one to four local players. Its first four chapters, Voyage Across Belegaer, The
+Fate of Númenor, Raid on the Grey Havens and Flight of the Stormcaller, are
+supported; the Campaign Log is kept after them, and the end of the game says
+that the next chapter, The Thing in the Depths, is not available in campaign
+mode yet.
 
 ## Sources
 
@@ -119,12 +120,21 @@ the Campaign Pool.
 | Parrying Cutlass, Throwing Axe (Permanent boons)                            | Attached at the start of each later chapter to the hero recorded in the Campaign Log (on their Upgraded sides once all 5 checkboxes are marked). Cutlass: +1 defense, +2 with 2 or more resources in the hero's pool (Upgraded +2/+3; when the hero defends against an enemy with resources, it may exhaust to move 1 resource from that enemy to the hero). Axe: +1 attack, +2 with 2 or more damage on the hero (Upgraded +2/+3; once per game, an Action deals 1 damage to an enemy, or the axe card is tossed across the real table and the players report whether it stopped on an enemy, for 4 damage to one of them).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | The Havens Burn, the Dream-chaser ("Campaign Mode only", 2 checkboxes each) | The Havens Burn's campaign side raises each player's threat by 2 instead of revealing an encounter card when a card goes underneath it, and the players lose with 4 more cards than players underneath it. The Dream-chaser's campaign side is Aflame 15, and at the end of each combat phase the first player may raise each player's threat by 2 to remove 1 damage from a location.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
+## Flight of the Stormcaller (Part 4)
+
+| Card                                   | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Campaign card                          | Setup: the Stormcaller enters on its "Campaign Mode only" side (7 attack, 20 hit points, victory 15) with Black Key (burden) attached; the fleet (six ships, as in Voyage Across Belegaer) takes a different Modification boon on each ship; Thunderstruck and Ominous Fate are shuffled into the encounter deck and Crowley into the Corsair deck; Calaerion enters play under the control of the player with the Dream-chaser. Resolution: the XP of 1 per surviving player, 1 if on-course, 1 if the game ended on stage 2B, 2 for the destroyed Stormcaller (in the victory display), 1 for Crowley there, 2 for Thunderstruck there, 1 if no hero has damage, −1 for Ominous Fate (and the Hard/Expert Mode card). |
+| The Stormcaller ("Campaign Mode only") | At the Stormcaller's stage, no more than 9 progress can be placed on the players' quest each round (together with Full Sail Ahead!'s own limit).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Black Key (burden attachment)          | Attached enemy gets +1 threat, +1 attack and +1 defense and is immune to player card effects; removed from the game when it leaves play. Its front side: at the end of the quest phase, if Captain Sahír is in play, he gains 1 resource per player. Upgraded (5 checkboxes): no Forced effect.                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Calaerion (boon objective-ally)        | Removed from the game when he leaves play. Action: spend 3 resources (chosen one at a time from his controller's heroes) and exhaust him to ready the Dream-chaser with +1 willpower, +1 attack and +1 defense until the end of the phase. Upgraded (5 checkboxes; 2/2/2/4): spend 2 to ready another ally with the same bonus until the end of the round, and once per round, after cards are discarded from the encounter deck (a Sailing test, the Stormcaller's round, Glórinaith), his controller may shuffle one back into it.                                                                                                                                                                                    |
+
 ## Not supported yet
 
-Flight of the Stormcaller through The City of Corsairs follow, with their boons
-and burdens (Black Key's burden, Calaerion, Come Together, Sea Serpent, Starla,
-Recurring Nightmare, Command, Círdan's Blessing, Gavin, Send for Help and The
-Black Sword) and the "Campaign Mode only" sides of their scenario cards.
+The Thing in the Depths through The City of Corsairs follow, with their boons
+and burdens (Come Together, Sea Serpent, Starla, Recurring Nightmare, Command,
+Círdan's Blessing, Gavin, Send for Help and The Black Sword) and the "Campaign
+Mode only" sides of their scenario cards.
 
 ## Verification
 
@@ -134,7 +144,7 @@ npm run build
 npm run test:browser-dreamchaser-campaign
 ```
 
-`tests/dreamchaser-campaign.test.ts` (20 tests) covers the registered cards'
+`tests/dreamchaser-campaign.test.ts` (25 tests) covers the registered cards'
 texts and faces, the Campaign Log's checkboxes, the chapter order and the
 Na'asiyah rule; Voyage Across Belegaer's fleet of six ships, the Modification
 choices and the damage-for-resource offer; Upgraded ships and Modifications
@@ -157,7 +167,12 @@ and the Dream-chaser, Galdor's Counsel played from hand on three spheres
 order), Graxar's immunity, bonuses, shadow resource and attacker limit, Black
 Key's, Parrying Cutlass's and Throwing Axe's Upgraded abilities on recorded
 Permanent boons, and the resolution's XP, pooled copies, Cutlass/Axe choice
-and its record before the next chapter is refused. The browser suite starts a new
+and its record; Flight of the Stormcaller's cards, its setup (the campaign
+Stormcaller with Black Key, the fleet's Modification boons, Thunderstruck,
+Crowley and Calaerion), Black Key's Forced resource for Captain Sahír,
+Calaerion's removal from the game, the Stormcaller's progress limit,
+Calaerion's Actions and Upgraded Response, and the resolution's XP before the
+next chapter is refused. The browser suite starts a new
 Dream-chaser campaign through the lobby on Hard Mode, prepares the fleet with
 two Modification boons, opens the campaign card's state in the quest
 inspector and records the resolution; the interlude spends 2 XP on Calphon's
@@ -166,5 +181,7 @@ Revenant and one hero's damage for threat, Spyglass places 2 progress on a
 Lost Island through its button, and the second resolution is recorded; Raid
 on the Grey Havens begins with Calphon's two boons, Graxar and a Leadership
 Galdor's Counsel in hand, and its resolution records Throwing Axe for a hero
-through the end-of-game dialog, at 1280, 390 and 320 pixels (27 checkpoints);
-it checks the 49 pinned faces.
+through the end-of-game dialog; Flight of the Stormcaller begins with the
+campaign Stormcaller and its Black Key, Calaerion, the fleet and the Throwing
+Axe back on its hero, and its resolution is recorded, at 1280, 390 and 320
+pixels (33 checkpoints); it checks the 57 pinned faces.

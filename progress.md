@@ -1339,3 +1339,15 @@ Validation on Node 22: the engine suite passes all 6,804 tests, including 15 for
 Coverage is now 861 player definitions (112 heroes), 2,192 encounters and 123 scenarios. This resolves 3,425 of 4,183 identities and 270 of 355 recipes; 758 identities remain pending.
 
 Validation on Node 22: the engine suite passes all 6,809 tests, including 20 for the Dream-chaser campaign; the Dream-chaser browser suite passes 27 checkpoints at 1280, 390 and 320 pixels, through Raid on the Grey Havens' resolution dialog, and checks the 49 pinned faces; the production build passes.
+
+2026-11-19 The Dream-chaser campaign, Flight of the Stormcaller: continued the user's “Nastavi dok ne završis sve” after f152779. The campaign's fourth chapter is supported. See docs/DREAMCHASER-CAMPAIGN.md.
+
+- Flight of the Stormcaller's campaign card, the expansion's Stormcaller with its "Campaign Mode only" side, Black Key (burden) and Calaerion (both sides) are registered (53 entries, 57 faces pinned).
+- Setup: the Stormcaller enters on its campaign side (7 attack, 20 hit points, victory 15) with Black Key (burden) attached; the fleet comes from the campaign's six ships and each ship takes a Modification boon; Thunderstruck and Ominous Fate join the encounter deck and Crowley the Corsair deck; Calaerion enters play under the control of the player with the Dream-chaser. The Stormcaller module and its save checks accept the campaign faces, fleet and Crowley.
+- The Stormcaller's campaign side limits the players' quest to 9 progress each round at its stage. Black Key (burden) gives its enemy +1 threat, attack and defense and immunity to player card effects; its front side gives Captain Sahír a resource per player at the end of each quest phase.
+- Calaerion is removed from the game when he leaves play. His Action spends 3 resources, chosen one at a time, to ready the Dream-chaser with +1/+1/+1 until the end of the phase; Upgraded, 2 resources ready another ally until the end of the round, and once per round he may shuffle a card discarded from the encounter deck (Sailing tests, the Stormcaller's round, Glórinaith) back into it.
+- The resolution counts on-course, stage 2B, the destroyed Stormcaller, Crowley, Thunderstruck and undamaged heroes; The Thing in the Depths is not available in campaign mode yet.
+
+Coverage is now 861 player definitions (112 heroes), 2,199 encounters and 123 scenarios. This resolves 3,429 of 4,183 identities and 270 of 355 recipes; 754 identities remain pending.
+
+Validation on Node 22: the engine suite passes all 6,814 tests, including 25 for the Dream-chaser campaign; the Dream-chaser browser suite passes 33 checkpoints at 1280, 390 and 320 pixels, through Flight of the Stormcaller's resolution, and checks the 57 pinned faces; the production build passes.

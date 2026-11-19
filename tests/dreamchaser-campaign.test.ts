@@ -51,6 +51,8 @@ import {
   dreamchaserAttachmentProblem,
   dreamchaserAttackProblem,
   dreamchaserDefendersDeclared,
+  dreamchaserEncounterDiscarded,
+  dreamchaserQuestEnd,
   dreamchaserQuestSucceeded,
   dreamchaserDamageAmount,
   dreamchaserArchery,
@@ -60,6 +62,8 @@ import {
 } from "../src/game/dreamchaser-campaign-cards";
 import { VOYAGE } from "../src/game/voyage-belegaer-support";
 import { RAID } from "../src/game/raid-grey-havens-support";
+import { STORMCALLER } from "../src/game/stormcaller-support";
+import { stormcallerProgress } from "../src/game/stormcaller";
 import { raidAflame } from "../src/game/raid-grey-havens";
 import { FATE } from "../src/game/fate-numenor-support";
 import { fateAbility, fateAbilityLabel } from "../src/game/fate-numenor";
@@ -129,6 +133,7 @@ test("The Dream-chaser campaign: Voyage Across Belegaer's campaign card and the 
     "voyage-across-belegaer",
     "the-fate-of-numenor",
     "raid-on-the-grey-havens",
+    "flight-of-the-stormcaller",
   ]);
   const campaignCard = card(
     DREAMCHASER_CAMPAIGN_CARDS["voyage-across-belegaer"]!,
@@ -1405,15 +1410,274 @@ test("Raid on the Grey Havens' resolution: The Havens Burn, Elven Wave-runners, 
   assert.ok(recorded.campaign!.boons.includes(DC.axe));
   assert.deepEqual(recorded.campaign!.permanent[hero], [DC.axe]);
   assert.ok(valid(recorded));
+  const next = continueCampaign(
+    recorded,
+    recorded.campaign!.heroes,
+    recorded.deckId,
+    true,
+    9,
+  );
+  assert.equal(next.scenarioId, "flight-of-the-stormcaller");
+  assert.ok(valid(next));
+});
+
+// --------------------------------------- Flight of the Stormcaller (Part 4)
+
+/** A Dream-chaser campaign after Raid on the Grey Havens. */
+function afterRaid(marks: Record<string, number> = {}): CampaignState {
+  const c = afterFate(marks);
+  return {
+    ...c,
+    completed: [
+      ...c.completed,
+      { scenarioId: "raid-on-the-grey-havens", score: 25, rounds: 8, xp: 6 },
+    ],
+  };
+}
+const MODS = [DC.armor, DC.ballista, DC.quarters, DC.sails];
+const flight = (campaign = afterRaid(), deck = STARTERS[0]) =>
+  createGame(5, deck.cards, deck.heroes, deck.id, {
+    scenarioId: "flight-of-the-stormcaller",
+    playMode: "campaign",
+    campaign: { ...campaign, heroes: [...deck.heroes] },
+  });
+/** The fleet (the Dream-chaser and Duskbringer) and their Modification boons. */
+const flightOpening = (s: GameState) =>
+  opening(s, (t) =>
+    /^Prepare the fleet/.test(t.choice!.title)
+      ? t.choice!.options.find((o) => card(o.code!).name === "Duskbringer")?.id
+      : /Choose a Modification boon/.test(t.choice!.title)
+        ? t.choice!.options[0].id
+        : undefined,
+  );
+const stormcallerOf = (s: GameState) =>
+  [
+    ...((s as GameState & { stormcaller?: { area: Unit[] } }).stormcaller
+      ?.area ?? []),
+    ...s.staging,
+    ...s.engaged,
+  ].find((u) => dcIs(u, STORMCALLER.stormcaller))!;
+
+test("Flight of the Stormcaller: its campaign card, the Stormcaller's campaign side, Black Key (burden) and Calaerion are registered with the print-and-play texts", () => {
+  const campaignCard = card(DC.flightCard);
+  assert.equal(campaignCard.subtitle, "Dream-chaser Part 4");
+  assert.match(
+    campaignCard.text!,
+    /Flip the Stormcaller to its "Campaign Mode only" side, then attach Black Key \(burden\) to it\..*Put Calaerion into play under the control of the player with the Dream-chaser\.$/s,
+  );
+  assert.match(
+    campaignCard.back_text!,
+    /• 1 XP if you ended the game on stage 2B\.\n• 2 XP if you destroyed the Stormcaller\./,
+  );
+  const ship = card(backFace(DC.stormcaller));
+  assert.deepEqual(
+    [ship.attack, ship.defense, ship.health, ship.victory],
+    [7, 6, 20, 15],
+  );
+  assert.match(
+    ship.text!,
+    /no more than 9 progress can be placed on your quest each round/,
+  );
+  assert.equal(card(backFace(DC.keyBurden)).upgrade_xp, 5);
+  assert.match(
+    card(DC.keyBurden).text!,
+    /Forced: At the end of the quest phase, if Captain Sahír is in play/,
+  );
+  assert.doesNotMatch(card(backFace(DC.keyBurden)).text!, /Forced/);
+  const cal = card(DC.calaerion);
+  assert.deepEqual(
+    [cal.willpower, cal.attack, cal.defense, cal.health],
+    [1, 1, 1, 3],
+  );
+  assert.equal(card(backFace(DC.calaerion)).upgrade_xp, 5);
+  assert.match(
+    card(backFace(DC.calaerion)).text!,
+    /Response: After a card is discarded from the encounter deck, shuffle it into that deck\. \(Limit once per round\.\)/,
+  );
+});
+
+test("Flight of the Stormcaller's setup: the Stormcaller takes its campaign side with Black Key (burden), the fleet takes its Modification boons, Thunderstruck and Crowley join their decks, and Calaerion serves the player with the Dream-chaser", () => {
+  const s = calm(reload(flightOpening(flight())));
+  const boss = stormcallerOf(s);
+  assert.equal(boss.code, backFace(DC.stormcaller));
+  assert.deepEqual(
+    boss.attachments.map((a) => a.code),
+    [DC.keyBurden],
+  );
+  assert.equal(stats(s, boss).attack, 8);
+  assert.equal(stats(s, boss).defense, 7);
+  assert.ok(playerCardImmune(boss));
+  assert.ok(threatOf(s, boss) >= 3);
+  assert.ok(s.encounterDeck.includes(DC.thunderstruck));
+  assert.ok(s.encounterDeck.includes(DC.ominous));
+  assert.ok(
+    (
+      s as GameState & { stormcaller?: { corsairDeck: string[] } }
+    ).stormcaller!.corsairDeck.includes(DC.crowley),
+  );
+  const fleet = ships(s);
+  assert.deepEqual(
+    fleet.map((u) => card(u.code).name),
+    ["Dream-chaser", "Duskbringer"],
+  );
+  assert.ok(
+    fleet.every((u) => u.attachments.some((a) => MODS.includes(a.code))),
+  );
+  const cal = s.allies.find((u) => dcIs(u, DC.calaerion));
+  assert.ok(cal, "Calaerion");
+  assert.ok(
+    dreamchaserCampaignStatus(s).some((l) =>
+      /Calaerion serves the player with the Dream-chaser/.test(l),
+    ),
+  );
+  assert.ok(valid(s));
+  // Black Key (burden): at the end of the quest phase, Captain Sahír gains
+  // a resource for each player.
+  const sahir = engage(s, RAID.sahir);
+  const before = sahir.resources;
+  dreamchaserQuestEnd(s);
+  flush(s);
+  assert.equal(sahir.resources, before + 1);
+  // Calaerion leaving play is removed from the game.
+  const gone = calm(reload(s));
+  discardCharacter(
+    gone,
+    gone.allies.find((u) => dcIs(u, DC.calaerion))!,
+  );
+  assert.ok(!gone.encounterDiscard.includes(DC.calaerion));
+  assert.ok(!gone.discard.includes(DC.calaerion));
+  assert.ok(gone.removed.includes(DC.calaerion));
+});
+
+test("The Stormcaller's campaign side: at its stage no more than 9 progress can be placed on your quest each round", () => {
+  const s = calm(reload(flightOpening(flight())));
+  const q = (
+    s as GameState & {
+      stormcaller?: {
+        currentQuest: string;
+        enemyQuest: string;
+        enemyStage: number;
+        progressThisRound: number;
+        counterRound: number;
+      };
+    }
+  ).stormcaller!;
+  s.stage = 3;
+  q.currentQuest = STORMCALLER.foul;
+  q.enemyStage = 3;
+  q.enemyQuest = STORMCALLER.foulEnemy;
+  q.progressThisRound = 0;
+  q.counterRound = s.round;
+  const quest = make(s, STORMCALLER.foul);
+  assert.equal(stormcallerProgress(s, 12, quest), 9);
+  assert.equal(stormcallerProgress(s, 3, quest), 0);
+  s.round += 1;
+  assert.equal(stormcallerProgress(s, 5, quest), 5);
+  // At another stage there is no campaign limit.
+  q.enemyStage = 4;
+  q.enemyQuest = STORMCALLER.capeEnemy;
+  s.round += 1;
+  assert.equal(stormcallerProgress(s, 12, quest), 12);
+});
+
+test("Calaerion: spend 3 resources and exhaust him to ready the Dream-chaser with +1/+1/+1 until the end of the phase; Upgraded, spend 2 to ready another ally until the end of the round, and once per round shuffle a card discarded from the encounter deck back into it", () => {
+  let s = calm(reload(flightOpening(flight())));
+  const dream = ships(s).find((u) => card(u.code).name === "Dream-chaser")!;
+  dream.exhausted = true;
+  for (const h of s.heroes) h.resources = 1;
+  const cal = s.allies.find((u) => dcIs(u, DC.calaerion))!;
+  const will = stats(s, dream).will;
+  s = applyAction(reload(s), { type: "ABILITY", id: cal.id });
+  for (let i = 0; i < 3; i++) s = choose(s, s.heroes[i].id);
+  const readied = ships(s).find((u) => u.id === dream.id)!;
+  assert.equal(readied.exhausted, false);
+  assert.equal(stats(s, readied).will, will + 1);
+  assert.ok(s.heroes.every((h) => h.resources === 0));
+  assert.ok(s.allies.find((u) => u.id === cal.id)!.exhausted);
+  assert.ok(valid(s));
+  // The boost ends with the phase.
+  s.phase = "travel";
+  assert.equal(
+    stats(
+      s,
+      s.allies.find((u) => u.id === dream.id)!,
+    ).will,
+    will,
+  );
+  // Upgraded: 2/2/2/4; ready another ally until the end of the round.
+  let up = calm(
+    reload(flightOpening(flight(afterRaid({ [DC.calaerion]: 5 })))),
+  );
+  const ucal = up.allies.find((u) => dcIs(u, DC.calaerion))!;
+  assert.equal(ucal.code, backFace(DC.calaerion));
+  assert.equal(stats(up, ucal).will, 2);
+  const ally = make(up, "01016");
+  ally.exhausted = true;
+  up.allies.push(ally);
+  for (const h of up.heroes) h.resources = 1;
+  up = applyAction(reload(up), { type: "ABILITY", id: ucal.id });
+  up = choose(up, up.heroes[0].id);
+  up = choose(up, up.heroes[1].id);
+  if (up.choice) up = choose(up, ally.id);
+  const boosted = up.allies.find((u) => u.id === ally.id)!;
+  assert.equal(boosted.exhausted, false);
+  assert.ok(valid(up));
+  up.phase = "travel";
+  assert.equal(stats(up, boosted).attack, (card("01016").attack ?? 0) + 1);
+  // Its Response, once per round.
+  const r = calm(reload(up));
+  const discarded = r.encounterDeck.shift()!;
+  r.encounterDiscard.push(discarded);
+  dreamchaserEncounterDiscarded(r, [discarded]);
+  flush(r);
+  const back = choose(r, discarded);
+  assert.ok(back.encounterDeck.includes(discarded));
+  assert.ok(!back.encounterDiscard.includes(discarded));
+  const again = calm(reload(back));
+  const second = again.encounterDeck.shift()!;
+  again.encounterDiscard.push(second);
+  dreamchaserEncounterDiscarded(again, [second]);
+  flush(again);
+  assert.equal(again.choice, null);
+  assert.ok(valid(back));
+});
+
+test("Flight of the Stormcaller's resolution: on-course, stage 2B, the destroyed Stormcaller, Crowley, Thunderstruck and undamaged heroes give XP; The Thing in the Depths is not available yet", () => {
+  const s = calm(reload(flightOpening(flight())));
+  s.sailing!.heading = 0;
+  const q = (
+    s as GameState & {
+      stormcaller?: {
+        currentQuest: string;
+        completedQuests: string[];
+        questDeck: string[];
+      };
+    }
+  ).stormcaller!;
+  s.stage = 2;
+  q.completedQuests = [STORMCALLER.departure];
+  q.currentQuest = STORMCALLER.full;
+  q.questDeck = [STORMCALLER.foul, STORMCALLER.cape];
+  for (const h of s.heroes) h.damage = 0;
+  s.victoryCards = [
+    ...(s.victoryCards ?? []),
+    backFace(DC.stormcaller),
+    DC.crowley,
+    DC.thunderstruck,
+  ];
+  const lines = dreamchaserXpLines(s);
+  assert.deepEqual(
+    lines.map((l) => l.xp),
+    [1, 1, 1, 2, 1, 2, 1, 0],
+  );
+  win(s);
+  assert.equal(
+    s.campaign!.completed[3].scenarioId,
+    "flight-of-the-stormcaller",
+  );
+  assert.equal(s.campaign!.completed[3].xp, 9);
   assert.throws(
-    () =>
-      continueCampaign(
-        recorded,
-        recorded.campaign!.heroes,
-        recorded.deckId,
-        true,
-        9,
-      ),
+    () => continueCampaign(s, s.campaign!.heroes, s.deckId, true, 9),
     /not available in campaign mode yet/,
   );
 });

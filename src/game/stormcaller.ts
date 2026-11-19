@@ -44,6 +44,16 @@ import {
 } from "./quest-state";
 import { sailingOnCourse } from "./sailing";
 import {
+  DC,
+  backFace,
+  dcBackFace,
+  dcIs,
+  dreamchaserFleet,
+  isDreamchaserGame,
+} from "./dreamchaser-campaign-support";
+import { dreamchaserFlightReady } from "./dreamchaser-campaign";
+import { dreamchaserEncounterDiscarded } from "./dreamchaser-campaign-cards";
+import {
   STORMCALLER as V,
   STORMCALLER_RECIPES,
   STORMCALLER_SHIPS,
@@ -56,6 +66,8 @@ import {
 } from "./stormcaller-support";
 
 const isStormcaller = (s: GameState) => !!stormcallerState(s);
+/** The Stormcaller, on either face (the campaign flips it to its "Campaign Mode only" side). */
+const isTarget = (u: Unit) => dcIs(u, V.stormcaller);
 const ship = (u: Unit) => card(u.code).type_code === "ship-objective";
 const shipEnemy = (u: Unit) => card(u.code).type_code === "ship-enemy";
 const own = (s: GameState, player: number) =>
@@ -165,7 +177,7 @@ function resetRound(s: GameState) {
 }
 export function stormcallerDamageAmount(s: GameState, u: Unit, amount: number) {
   const q = stormcallerState(s);
-  if (!q || u.code !== V.stormcaller) return amount;
+  if (!q || !isTarget(u)) return amount;
   resetRound(s);
   const limit = q.enemyStage === 2 ? 4 : q.enemyStage === 3 ? 8 : Infinity;
   return Math.max(0, Math.min(amount, limit - q.damageThisRound));
@@ -179,7 +191,7 @@ export const stormcallerStats = (s: GameState, u: Unit) => ({
 });
 export const stormcallerThreatBonus = (s: GameState, u: Unit) =>
   isStormcaller(s) &&
-  u.code === V.stormcaller &&
+  isTarget(u) &&
   off(s) &&
   [2, 3].includes(stormcallerState(s)!.enemyStage)
     ? 2
@@ -187,11 +199,21 @@ export const stormcallerThreatBonus = (s: GameState, u: Unit) =>
 
 export function stormcallerProgress(s: GameState, amount: number, quest: Unit) {
   const q = stormcallerState(s);
-  if (!q || quest.code !== V.full) return amount;
+  if (!q) return amount;
+  // The Stormcaller's campaign side: "If you are at the Stormcaller's stage,
+  // no more than 9 progress can be placed on your quest each round."
+  const target = [...q.area, ...s.staging, ...allEngaged(s)].find(isTarget);
+  const campaignCap =
+    !!target &&
+    dcBackFace(target) &&
+    !target.blanked &&
+    stormcallerSameStage(s);
+  if (quest.code !== V.full && !campaignCap) return amount;
   resetRound(s);
-  const allowed = quest.blanked
-    ? amount
-    : Math.min(amount, Math.max(0, (off(s) ? 4 : 8) - q.progressThisRound));
+  let cap = Infinity;
+  if (quest.code === V.full && !quest.blanked) cap = off(s) ? 4 : 8;
+  if (campaignCap) cap = Math.min(cap, 9);
+  const allowed = Math.min(amount, Math.max(0, cap - q.progressThisRound));
   q.progressThisRound += allowed;
   return allowed;
 }
@@ -234,14 +256,23 @@ export function setupStormcaller(s: GameState) {
     const index = s.encounterDeck.indexOf(V.rolling);
     if (index >= 0) s.encounterDeck.splice(index, 1);
   }
-  const target = make(s, V.stormcaller);
+  // The Dream-chaser campaign: "Flip the Stormcaller to its 'Campaign Mode
+  // only' side."
+  const target = make(
+    s,
+    isDreamchaserGame(s) ? backFace(DC.stormcaller) : V.stormcaller,
+  );
   const q: StormcallerState = {
     initialized: false,
     advancing: false,
     currentQuest: V.departure,
     questDeck: STORMCALLER_MAIN_QUESTS.slice(1),
     completedQuests: [],
-    setAside: STORMCALLER_SHIPS.map((c) => make(s, c)),
+    // The Dream-chaser campaign prepares its fleet from six ships.
+    setAside: (isDreamchaserGame(s)
+      ? dreamchaserFleet(s.campaign)
+      : STORMCALLER_SHIPS
+    ).map((c) => make(s, c)),
     corsairDeck: shuffle(s, pile("sharedEncounterDeck2")),
     corsairDiscard: [],
     area: [target],
@@ -441,7 +472,7 @@ export function stormcallerCharacterLeaves(
   u: Unit,
   _destruction: boolean,
 ) {
-  if (isStormcaller(s) && u.code === V.stormcaller) {
+  if (isStormcaller(s) && isTarget(u)) {
     win(s, "The fleet captures the Stormcaller and recovers the key.");
   }
 }
@@ -452,7 +483,7 @@ export function stormcallerDamageDealt(
   _context: DamageContext,
 ) {
   const q = stormcallerState(s);
-  if (q && u.code === V.stormcaller) {
+  if (q && isTarget(u)) {
     resetRound(s);
     q.damageThisRound += value;
   }
@@ -622,6 +653,7 @@ export function stormcallerEffect(s: GameState, e: Effect) {
       if (!target) break;
       const code = s.encounterDeck.shift();
       if (code) s.encounterDiscard.push(code);
+      if (code) dreamchaserEncounterDiscarded(s, [code]);
       const escort = stormcallerArea(s)
         .filter((a) => a.code === V.escort && !a.blanked)
         .reduce((n, a) => n + threatOf(s, a), 0);
@@ -752,6 +784,8 @@ export function stormcallerEffect(s: GameState, e: Effect) {
       }
       shuffle(s, s.encounterDeck);
       q.initialized = true;
+      // The Dream-chaser campaign: the campaign card's setup.
+      if (isDreamchaserGame(s)) prepend(s, ...dreamchaserFlightReady(s));
       break;
     case "stormcallerThreat":
       raiseThreat(s, e.value ?? 0, "encounter");

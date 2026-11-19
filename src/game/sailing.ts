@@ -1,5 +1,6 @@
 import {
   dreamchaserAnySailing,
+  dreamchaserEncounterDiscarded,
   dreamchaserSailingWeight,
 } from "./dreamchaser-campaign-cards";
 import citySymbols from "../data/city-sailing-icons.json";
@@ -217,6 +218,8 @@ function finishSailing(s: GameState, shifts: number) {
   s.encounterDiscard.push(...(test.looked ?? []));
   delete s.sailing!.test;
   prepend(s, ...test.continuation);
+  // Calaerion (Upgraded) may shuffle one of the discarded cards back.
+  dreamchaserEncounterDiscarded(s, test.looked ?? []);
 }
 
 export function sailingEffect(s: GameState, e: Effect): boolean {

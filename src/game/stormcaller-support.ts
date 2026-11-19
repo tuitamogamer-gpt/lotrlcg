@@ -2,6 +2,7 @@ import encounters from "../data/stormcaller-encounter-cards.json";
 import quests from "../data/stormcaller-quest-cards.json";
 import recipes from "../data/stormcaller-recipes.json";
 import type { Card, GameState, Unit } from "./types";
+import { DC, dcBase, isFleetShip } from "./dreamchaser-campaign-support";
 export const STORMCALLER_ENCOUNTERS = encounters as Card[];
 export const STORMCALLER_QUESTS = quests as Card[];
 export const STORMCALLER_RECIPES = recipes;
@@ -163,8 +164,8 @@ export function validateStormcaller(
     tagged.some(
       (u) =>
         !["ship-enemy", "location"].includes(
-          STORMCALLER_ENCOUNTERS.find((c) => c.code === u.code)?.type_code ??
-            "",
+          STORMCALLER_ENCOUNTERS.find((c) => c.code === dcBase(u.code))
+            ?.type_code ?? "",
         ),
     )
   )
@@ -172,8 +173,8 @@ export function validateStormcaller(
   const physical = [...q.area, ...s.staging, ...external, ...q.setAside];
   if (new Set(physical.map((u) => u.id)).size !== physical.length) return false;
   const target = physical.find((u) => u.id === q.stormcallerId),
-    bosses = physical.filter((u) => u.code === STORMCALLER.stormcaller);
-  if (target && target.code !== STORMCALLER.stormcaller) return false;
+    bosses = physical.filter((u) => dcBase(u.code) === STORMCALLER.stormcaller);
+  if (target && dcBase(target.code) !== STORMCALLER.stormcaller) return false;
   if (s.status === "playing" && (!target || bosses.length !== 1)) return false;
   if (q.counterRound > s.round) return false;
   const main = [...q.completedQuests, q.currentQuest, ...q.questDeck],
@@ -202,7 +203,9 @@ export function validateStormcaller(
     typeof q.stormcallerId === "string" &&
     Array.isArray(q.setAside) &&
     q.setAside.every(
-      (u) => validUnit(u) && STORMCALLER_SHIPS.includes(u.code),
+      (u) =>
+        validUnit(u) &&
+        (STORMCALLER_SHIPS.includes(u.code) || isFleetShip(u.code)),
     ) &&
     new Set(q.setAside.map((u) => u.code)).size === q.setAside.length &&
     Array.isArray(q.area) &&
@@ -210,14 +213,18 @@ export function validateStormcaller(
       (u) =>
         validUnit(u) &&
         ["ship-enemy", "location"].includes(
-          STORMCALLER_ENCOUNTERS.find((c) => c.code === u.code)?.type_code ??
-            "",
+          STORMCALLER_ENCOUNTERS.find((c) => c.code === dcBase(u.code))
+            ?.type_code ?? "",
         ),
     ) &&
     new Set(q.area.map((u) => u.id)).size === q.area.length &&
     Array.isArray(q.corsairDeck) &&
-    q.corsairDeck.every((c) => STORMCALLER_CORSAIRS.includes(c)) &&
+    q.corsairDeck.every(
+      (c) => STORMCALLER_CORSAIRS.includes(c) || c === DC.crowley,
+    ) &&
     Array.isArray(q.corsairDiscard) &&
-    q.corsairDiscard.every((c) => STORMCALLER_CORSAIRS.includes(c))
+    q.corsairDiscard.every(
+      (c) => STORMCALLER_CORSAIRS.includes(c) || c === DC.crowley,
+    )
   );
 }

@@ -183,9 +183,23 @@ export function dreamchaserStats(s: GameState, u: Unit) {
     out.attack += u.damage;
     out.defense += u.resources;
   }
+  // Calaerion: "+1 [willpower], +1 [attack], and +1 [defense] until the end
+  // of the phase" (of the round on his Upgraded side).
+  for (const b of activeBoosts(s))
+    if (b.target === u.id) {
+      out.will += 1;
+      out.attack += 1;
+      out.defense += 1;
+    }
   for (const a of u.attachments) {
     if (a.blanked) continue;
     const code = dcBase(a.code);
+    // Black Key (burden): "Attached enemy gets +1 [threat], +1 [attack], +1
+    // [defense], and gains immune to player card effects."
+    if (code === DC.keyBurden) {
+      out.attack += 1;
+      out.defense += 1;
+    }
     // Black Key: "Attached character gets +1 [willpower], +1 [attack], and +1 [defense]."
     if (code === DC.keyBoon) {
       out.will += 1;
@@ -212,9 +226,21 @@ export function dreamchaserStats(s: GameState, u: Unit) {
   }
   return out;
 }
-/** Crowley's threat: +1 for each resource on him. */
+/** Crowley's threat: +1 for each resource on him; Black Key (burden): +1. */
 export const dreamchaserThreatBonus = (s: GameState, u: Unit) =>
-  isDreamchaserGame(s) && dcIs(u, DC.crowley) && !u.blanked ? u.resources : 0;
+  !isDreamchaserGame(s)
+    ? 0
+    : (dcIs(u, DC.crowley) && !u.blanked ? u.resources : 0) +
+      u.attachments.filter((a) => dcIs(a.code, DC.keyBurden) && !a.blanked)
+        .length;
+const phaseKey = (p: string) => (p === "staging" ? "quest" : p);
+/** Calaerion's boosts still in effect. */
+const activeBoosts = (s: GameState) =>
+  (s.dreamchaser?.boosts ?? []).filter(
+    (b) =>
+      b.round === s.round &&
+      (b.until === "round" || phaseKey(b.phase) === phaseKey(s.phase)),
+  );
 
 /**
  * Thunderstruck "cannot take more than 4 damage each round"; Revenant:
@@ -345,7 +371,11 @@ export const dreamchaserAbilityLabel = (code: string, s?: GameState) =>
       ? dcBackFace(code)
         ? "Exhaust · Look at your bottom 5 cards"
         : "Exhaust · Look at your bottom card"
-      : undefined;
+      : dcIs(code, DC.calaerion)
+        ? dcBackFace(code)
+          ? "Calaerion · Spend 2 resources and exhaust: ready another ally (+1/+1/+1 until the end of the round)"
+          : "Calaerion · Spend 3 resources and exhaust: ready the Dream-chaser (+1/+1/+1 until the end of the phase)"
+        : undefined;
 /** Calphon outside The Fate of Númenor: Raid on the Grey Havens' campaign card. */
 const campaignCalphon = (s: GameState) =>
   isDreamchaserGame(s) && !s.fateNumenor;
@@ -373,6 +403,20 @@ export function dreamchaserAbilityProblem(
     return u.exhausted || !seatView(s, ownerOf(s, u)).deck.length
       ? "Calphon must be ready and your deck must contain a card."
       : null;
+  if (dcIs(u, DC.calaerion)) {
+    if (u.exhausted) return "Calaerion is exhausted.";
+    const cost = dcBackFace(u) ? 2 : 3;
+    const pool = seatView(s, ownerOf(s, u)).heroes.reduce(
+      (n, h) => n + h.resources,
+      0,
+    );
+    if (pool < cost) return `Calaerion needs ${cost} resources.`;
+    if (!calaerionTargets(s, u).length)
+      return dcBackFace(u)
+        ? "No other ally can be readied."
+        : "The Dream-chaser is not in play.";
+    return null;
+  }
   if (s.used.includes(`dc-glorinaith:${s.round}:${u.id}`))
     return `${name(u)}'s Action was used this round.`;
   if (!glorinaithTargets(s, u).length)
@@ -389,6 +433,18 @@ export function dreamchaserAbility(s: GameState, u: Unit): boolean {
   if (dcIs(u, FATE.calphon)) {
     if (exhaustCharacter(s, u))
       prepend(s, fx("dcCalphon", { target: u.id, player: ownerOf(s, u) }));
+    return true;
+  }
+  if (dcIs(u, DC.calaerion)) {
+    prepend(
+      s,
+      fx("dcCalaerionPay", {
+        source: u.id,
+        value: dcBackFace(u) ? 2 : 3,
+        ids: [],
+        player: ownerOf(s, u),
+      }),
+    );
     return true;
   }
   s.used.push(`dc-glorinaith:${s.round}:${u.id}`);
@@ -774,6 +830,73 @@ function spyglassEffect(s: GameState, e: Effect): boolean {
   return false;
 }
 
+// --------------------------------------- Flight of the Stormcaller
+
+/** The allies Calaerion's Action can ready: the Dream-chaser, or (Upgraded) another ally. */
+function calaerionTargets(s: GameState, cal: Unit) {
+  const allies = seatIndices(s).flatMap((p) => seatView(s, p).allies);
+  return dcBackFace(cal)
+    ? allies.filter(
+        (u) =>
+          u.id !== cal.id &&
+          ["ally", "objective-ally"].includes(card(u.code).type_code),
+      )
+    : allies.filter((u) => fleetShip(u.code) === "dream");
+}
+/** Spend a cost's resources from a hero's pool. */
+function spendCardResources(s: GameState, h: Unit, n: number) {
+  const spent = Math.min(n, h.resources);
+  h.resources -= spent;
+  if (spent > 0) h.resourcesSpentRound = s.round;
+}
+/**
+ * Black Key (burden): "Forced: At the end of the quest phase, if Captain
+ * Sahír is in play, place 1 resource on him for each player in the game."
+ * (Not on its Upgraded side.)
+ */
+export function dreamchaserQuestEnd(s: GameState) {
+  if (!isDreamchaserGame(s)) return;
+  const area =
+    (s as GameState & { stormcaller?: { area: Unit[] } }).stormcaller?.area ??
+    [];
+  const keys = [...area, ...s.staging, ...allEngaged(s)].flatMap((u) =>
+    u.attachments.filter(
+      (a) => dcIs(a.code, DC.keyBurden) && !dcBackFace(a) && !a.blanked,
+    ),
+  );
+  if (
+    keys.length &&
+    enemiesInPlay(s).some((x) => card(x.code).name === "Captain Sahír")
+  )
+    prepend(s, ...keys.map(() => fx("dcSahirKey", { player: firstPlayer(s) })));
+}
+/**
+ * Calaerion (Upgraded): "Response: After a card is discarded from the
+ * encounter deck, shuffle it into that deck. (Limit once per round.)"
+ */
+export function dreamchaserEncounterDiscarded(s: GameState, codes: string[]) {
+  if (!isDreamchaserGame(s) || !codes.length) return;
+  if (s.dreamchaser?.calaerionRound === s.round) return;
+  const cal = seatIndices(s)
+    .flatMap((p) => seatView(s, p).allies)
+    .find((u) => dcIs(u, DC.calaerion) && dcBackFace(u) && !u.blanked);
+  if (!cal) return;
+  prepend(
+    s,
+    fx("dcCalaerionOffer", {
+      target: cal.id,
+      text: [...new Set(codes)].join(","),
+      player: ownerOf(s, cal),
+    }),
+  );
+}
+/** "When Calaerion leaves play, remove him from the game." */
+export function dreamchaserRemoveCharacter(s: GameState, u: Unit) {
+  if (!isDreamchaserGame(s) || !dcIs(u, DC.calaerion)) return false;
+  s.removed.push(u.code);
+  return true;
+}
+
 // ------------------------------------------- Raid on the Grey Havens
 
 /**
@@ -954,6 +1077,147 @@ function raidEffect(s: GameState, e: Effect): boolean {
         ),
       );
       return true;
+    case "dcCalaerionPay": {
+      // "Spend 3 resources" (2 on his Upgraded side): one at a time, from the
+      // heroes his controller chooses.
+      const cal = get(s, e.source);
+      if (!cal || cal.exhausted) return true;
+      const left = e.value ?? 0;
+      const chosen = e.ids ?? [];
+      if (left <= 0) {
+        for (const id of new Set(chosen)) {
+          const h = get(s, id);
+          if (h)
+            spendCardResources(s, h, chosen.filter((x) => x === id).length);
+        }
+        exhaustCharacter(s, cal);
+        const targets = calaerionTargets(s, cal);
+        if (targets.length === 1)
+          prepend(
+            s,
+            fx("dcCalaerionReady", {
+              source: cal.id,
+              target: targets[0].id,
+              player: p,
+            }),
+          );
+        else
+          choose(
+            s,
+            dcBackFace(cal)
+              ? "Calaerion · Ready another ally"
+              : "Calaerion · Ready the Dream-chaser",
+            targets.map((x) => ({
+              id: x.id,
+              code: x.code,
+              label: `Ready ${name(x)} (+1 willpower, +1 attack, +1 defense)`,
+              effects: [
+                fx("dcCalaerionReady", {
+                  source: cal.id,
+                  target: x.id,
+                  player: p,
+                }),
+              ],
+            })),
+          );
+        return true;
+      }
+      const payers = seatView(s, p).heroes.filter(
+        (h) => h.resources > chosen.filter((id) => id === h.id).length,
+      );
+      if (!payers.length) return true;
+      choose(
+        s,
+        `Calaerion · Spend ${left} more resource${left === 1 ? "" : "s"}`,
+        payers.map((h) => ({
+          id: h.id,
+          code: h.code,
+          label: `Spend 1 resource from ${name(h)}`,
+          effects: [
+            fx("dcCalaerionPay", {
+              source: cal.id,
+              value: left - 1,
+              ids: [...chosen, h.id],
+              player: p,
+            }),
+          ],
+        })),
+      );
+      return true;
+    }
+    case "dcCalaerionReady": {
+      const cal = get(s, e.source);
+      if (!u) return true;
+      readyCharacter(s, u);
+      const q = dreamchaserState(s);
+      q.boosts = [
+        ...(q.boosts ?? []).filter((b) => b.round === s.round),
+        {
+          target: u.id,
+          until: cal && dcBackFace(cal) ? "round" : "phase",
+          phase: s.phase,
+          round: s.round,
+        },
+      ];
+      log(
+        s,
+        `Calaerion readies ${name(u)}: +1 willpower, +1 attack and +1 defense until the end of the ${cal && dcBackFace(cal) ? "round" : "phase"}.`,
+        "good",
+      );
+      return true;
+    }
+    case "dcCalaerionOffer": {
+      const codes = (e.text ?? "")
+        .split(",")
+        .filter((code) => code && s.encounterDiscard.includes(code));
+      if (!u || !codes.length || s.dreamchaser?.calaerionRound === s.round)
+        return true;
+      forOwner(s, p, () =>
+        choose(
+          s,
+          "Calaerion · Shuffle a discarded encounter card back into the encounter deck?",
+          [
+            ...codes.map((code) => ({
+              id: code,
+              code,
+              label: `Shuffle ${card(code).name} into the encounter deck`,
+              effects: [fx("dcCalaerionShuffle", { code, player: p })],
+            })),
+            { id: "skip", label: "Decline", effects: [] },
+          ],
+          card(u.code).text,
+        ),
+      );
+      return true;
+    }
+    case "dcCalaerionShuffle": {
+      if (!e.code) return true;
+      const i = s.encounterDiscard.lastIndexOf(e.code);
+      if (i < 0) return true;
+      s.encounterDiscard.splice(i, 1);
+      s.encounterDeck.push(e.code);
+      shuffle(s, s.encounterDeck);
+      dreamchaserState(s).calaerionRound = s.round;
+      log(
+        s,
+        `Calaerion shuffles ${card(e.code).name} back into the encounter deck.`,
+        "good",
+      );
+      return true;
+    }
+    case "dcSahirKey": {
+      const sahir = enemiesInPlay(s).find(
+        (x) => card(x.code).name === "Captain Sahír" && !x.blanked,
+      );
+      if (!sahir) return true;
+      sahir.resources += players(s);
+      log(
+        s,
+        `Black Key places ${players(s)} resource${players(s) === 1 ? "" : "s"} on Captain Sahír.`,
+        "danger",
+      );
+      return true;
+    }
     case "dcDreamRepair": {
       const targets = damagedLocations(s);
       if (!targets.length) return true;
@@ -1588,6 +1852,7 @@ function discardTop(s: GameState, id: string, n: number): string[] {
   if (id === "encounter") {
     const cards = s.encounterDeck.splice(0, n);
     s.encounterDiscard.push(...cards);
+    dreamchaserEncounterDiscarded(s, cards);
     return cards;
   }
   const p = Number(id.slice(5));

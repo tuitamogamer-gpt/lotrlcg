@@ -2110,7 +2110,8 @@ export function destroy(
     const removedByScenario =
       Cobas.cobasRemoveCharacter(s, u, destruction, lastKnownBlanked) ||
       heirsRemoveCharacter(s, u) ||
-      sagaCampaignRemoveCharacter(s, u);
+      sagaCampaignRemoveCharacter(s, u) ||
+      DreamCards.dreamchaserRemoveCharacter(s, u);
     s.heroes = s.heroes.filter((x) => x.id !== u.id);
     s.allies = s.allies.filter((x) => x.id !== u.id);
     if (destination === "removed")

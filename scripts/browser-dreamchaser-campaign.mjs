@@ -13,6 +13,7 @@ import {
   dcIs,
 } from "../src/game/dreamchaser-campaign-support.ts";
 import { RAID } from "../src/game/raid-grey-havens-support.ts";
+import { STORMCALLER } from "../src/game/stormcaller-support.ts";
 import { VOYAGE } from "../src/game/voyage-belegaer-support.ts";
 import { FATE } from "../src/game/fate-numenor-support.ts";
 import { card } from "../src/game/cards.ts";
@@ -330,8 +331,50 @@ try {
     assert.equal(s.campaign.resolution, null);
     assert.deepEqual(s.campaign.permanent[hero], [DC.axe]);
     assert.equal(s.campaign.completed.length, 3);
-    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await page.getByRole("button", { name: /^Continue campaign/ }).waitFor();
     await checkpoint("raid-complete", width);
+    // Flight of the Stormcaller: the Stormcaller's campaign side with Black
+    // Key (burden), the fleet's Modification boons, and Calaerion; the Throwing
+    // Axe returns to its hero.
+    await page.getByRole("button", { name: /^Continue campaign/ }).click();
+    await page.getByRole("button", { name: /^Begin next chapter/ }).click();
+    await reviewedState(page);
+    s = await opening((t) =>
+      /^Prepare the fleet/.test(t.choice.title) &&
+      t.choice.options.some((o) => card(o.code).name === "Duskbringer")
+        ? t.choice.options.find((o) => card(o.code).name === "Duskbringer").id
+        : undefined,
+    );
+    assert.equal(s.scenarioId, "flight-of-the-stormcaller");
+    const boss = [...s.stormcaller.area, ...s.staging].find((u) =>
+      dcIs(u, STORMCALLER.stormcaller),
+    );
+    assert.equal(boss.code, backFace(DC.stormcaller));
+    assert.deepEqual(
+      boss.attachments.map((a) => a.code),
+      [DC.keyBurden],
+    );
+    assert.ok(s.allies.some((u) => dcIs(u, DC.calaerion)));
+    assert.ok(s.encounterDeck.includes(DC.thunderstruck));
+    assert.ok(s.stormcaller.corsairDeck.includes(DC.crowley));
+    assert.ok(
+      s.heroes.some(
+        (h) => h.code === hero && h.attachments.some((a) => a.code === DC.axe),
+      ),
+    );
+    await campaignCard(/^Campaign Log: /, "flight-setup", width);
+    // The resolution: the Stormcaller destroyed, on-course.
+    s = await victory(s, (t) => {
+      t.victoryCards = [...(t.victoryCards ?? []), backFace(DC.stormcaller)];
+      t.sailing.heading = 0;
+    });
+    assert.equal(s.campaign.completed.length, 4);
+    assert.ok(
+      s.campaign.completed[3].xp >= 4,
+      `XP ${s.campaign.completed[3].xp}`,
+    );
+    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await checkpoint("flight-complete", width);
     await view.c.close();
   }
   const p = await browser.newPage();

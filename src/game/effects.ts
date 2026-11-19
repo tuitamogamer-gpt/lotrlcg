@@ -715,6 +715,7 @@ function handleEffect(s: GameState, e: Effect) {
       Voyage.voyageEndQuest(s);
       Cobas.cobasQuestEnd(s);
       Storm.stormcallerEndQuest(s);
+      DreamCards.dreamchaserQuestEnd(s);
       Race.raceHaradEndQuest(s);
       Sands.beneathSandsEndQuest(s);
       batch4Scenario(s).endQuest?.(s);
