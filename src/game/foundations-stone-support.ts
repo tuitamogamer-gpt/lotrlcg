@@ -2,6 +2,8 @@
 import encounters from "../data/foundations-stone-encounter-cards.json";
 import quests from "../data/foundations-stone-quest-cards.json";
 import recipes from "../data/foundations-stone-recipes.json";
+import khazad from "../data/khazad-dum-encounter-cards.json";
+import nightmare from "../data/nightmare-encounter-cards.json";
 import type { Card, GameState, Unit } from "./types";
 
 export const FOUNDATIONS_STONE_ENCOUNTERS = encounters as Card[];
@@ -164,16 +166,60 @@ export function foundationsStageInfo(s: GameState) {
       }
     : undefined;
 }
-export function foundationsRecipe(easy = false) {
+/**
+ * The Nightmare setup card's removals, by printed title (it prints "Brancing
+ * Paths"): from the initial encounter deck, and from the set-aside Foundations
+ * of Stone encounter set.
+ */
+export const FOUNDATIONS_NIGHTMARE_REMOVALS: Record<string, number> = {
+  "Goblin Scout": 3,
+  "Goblin Swordsman": 2,
+  "Goblin Follower": 1,
+  "Burning Low": 3,
+  "Branching Paths": 1,
+  "Many Roads": 1,
+  "Cave In": 3,
+  "Drowned Treasury": 3,
+  "Mithril Lode": 1,
+  "Moria Bats": 4,
+};
+const titles = new Map(
+  [...(khazad as Card[]), ...FOUNDATIONS_STONE_ENCOUNTERS].map((c) => [
+    c.code,
+    c.name,
+  ]),
+);
+export function foundationsRecipe(easy = false, nightmareMode = false) {
   const r = easy ? recipes.easy : recipes.standard;
   const copies = (section: Record<string, number>) =>
     Object.entries(section).flatMap(([code, count]) =>
       Array<string>(count).fill(code),
     );
-  return {
-    initial: copies(r.sharedEncounterDeck),
-    setAside: copies(r.sharedEncounterDeck2),
-  };
+  const initial = copies(r.sharedEncounterDeck),
+    setAside = copies(r.sharedEncounterDeck2);
+  if (nightmareMode) {
+    // The Nightmare Deck: its removals, then its cards with the Goblins of
+    // the Deep icon into the encounter deck, and those with the Foundations
+    // of Stone icon into the set-aside set.
+    for (const [title, n] of Object.entries(FOUNDATIONS_NIGHTMARE_REMOVALS))
+      for (let i = 0; i < n; i++) {
+        const pile = initial.some((c) => titles.get(c) === title)
+          ? initial
+          : setAside;
+        const at = pile.findIndex((c) => titles.get(c) === title);
+        if (at >= 0) pile.splice(at, 1);
+      }
+    for (const c of nightmare as (Card & { encounter_set_icon?: string })[])
+      if (
+        c.encounter_set === "Foundations of Stone - Nightmare" &&
+        c.type_code !== "nightmare"
+      )
+        (c.encounter_set_icon === "Foundations of Stone"
+          ? setAside
+          : initial
+        ).push(...Array<string>(c.quantity ?? 1).fill(c.code));
+  }
+  return { initial, setAside };
 }
 
 /** Scenario-only shape validation; the shared save validator owns global ID deduplication. */
@@ -195,7 +241,7 @@ export function validateFoundationsState(
   const tokens = (v: unknown) => Number.isInteger(v) && Number(v) >= 0;
   const strings = (v: unknown): v is string[] =>
     Array.isArray(v) && v.every((c) => typeof c === "string");
-  const r = foundationsRecipe(!!s.easyMode);
+  const r = foundationsRecipe(!!s.easyMode, !!s.nightmareMode);
   const encounterCodes = new Set([...r.initial, ...r.setAside]);
   if (
     !object(d) ||

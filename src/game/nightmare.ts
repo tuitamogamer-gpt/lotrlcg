@@ -6,6 +6,7 @@
  */
 import type { GameState, ScenarioId } from "./types";
 import { card, encounterCards } from "./cards";
+import { FOUNDATIONS_NIGHTMARE_REMOVALS } from "./foundations-stone-support";
 
 const P = "octgn:e84f94bf-201b-4adf-95d2-0012e0bb50";
 /** The Core Set Nightmare Deck's cards (OCTGN ids, as DragnCards keeps them). */
@@ -181,6 +182,15 @@ export const NIGHTMARE_DD = {
   chasm: "octgn:c23266f8-cd28-4e21-8983-1c6180531e18",
   deep: "octgn:c0b9de2b-ada7-468b-9dc5-08bb28c07c3d",
   helpless: "octgn:0c0f7215-3a7f-489c-9edc-4fd5b896e635",
+  /** Foundations of Stone's setup card and Nightmare Deck. */
+  foundationsCard: "octgn:72230f13-1064-464a-aa14-283a1c61e2e6",
+  seeker: "octgn:6e4985a3-5501-41ef-bd15-ec58eadba12c",
+  centipede: "octgn:5afd0c41-3fe9-40a1-bdfc-f5e8bc323958",
+  unspeakable: "octgn:c4efe804-2832-42f1-bebf-45d3072cc70f",
+  primeval: "octgn:53b038f1-01c5-40d9-b583-7501b0d7c8df",
+  nest: "octgn:0a53cafe-3137-4475-98f8-37818d1b91a5",
+  river: "octgn:3f0b92d5-18d9-4a85-8efb-ce6e64172674",
+  chill: "octgn:42d80e7e-8217-48a2-a386-c18b6bff1bf1",
 } as const;
 
 interface NightmareDeck {
@@ -435,6 +445,12 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
     },
     sets: ["The Long Dark", "Twists and Turns", "Deeps of Moria"],
   },
+  "foundations-of-stone": {
+    card: NIGHTMARE_DD.foundationsCard,
+    // Its cards with the Foundations of Stone icon join the set-aside set
+    // (foundationsRecipe); printed "Brancing Paths".
+    removals: FOUNDATIONS_NIGHTMARE_REMOVALS,
+  },
   "watcher-in-the-water": {
     card: NIGHTMARE_DD.watcherCard,
     removals: {
@@ -635,6 +651,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "the-long-dark")
     return [
       "The Long Dark · Nightmare mode: Durin's Greaves gains surge. Lost: the first player chooses and discards an ally in play. The standard encounter deck uses Deeps of Moria, whose cards the setup card removes.",
+    ];
+  if (s.scenarioId === "foundations-of-stone")
+    return [
+      "Foundations of Stone · Nightmare mode: when stage 3B is revealed, all Mount and Artifact cards are discarded from play, and each player discards allies until the total printed cost of their allies is 6 or less. The Nightmare Deck's cards with the Foundations of Stone icon wait in the set-aside encounter set.",
     ];
   if (s.scenarioId === "watcher-in-the-water")
     return [

@@ -1166,6 +1166,72 @@ try {
         .getByText(goal, { exact: true })
         .waitFor();
     await checkpoint("longdark-lost-and-helpless", width);
+    // Foundations of Stone in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-foundations-of-stone").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "foundations-of-stone");
+    assert.equal(s.nightmareMode, true);
+    for (const code of [DW.unspeakable, DW.primeval, DW.nest])
+      assert.ok(s.foundationsStone.setAside.includes(code), code);
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/when stage 3B is revealed/)
+      .waitFor();
+    await checkpoint("foundations-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // An Unspeakable Thing fed two cards, and a Mithril Seeker with a resource.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const thing = make(t, DW.unspeakable);
+      for (const code of t.deck.splice(0, 2))
+        thing.attachments.push({
+          id: `a${t.nextId++}`,
+          code,
+          owner: 0,
+          exhausted: false,
+          namelessCard: true,
+        });
+      const seeker = make(t, DW.seeker);
+      seeker.resources = 1;
+      t.staging = [thing, seeker];
+      s = await load(page, t);
+    }
+    const thingFace = page
+      .locator(`img[src*="${DW.unspeakable.slice("octgn:".length)}"]`)
+      .first();
+    await thingFace.waitFor();
+    assert.ok(
+      (await thingFace.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "Unspeakable Thing's face loads",
+    );
+    await page
+      .getByLabel("Attachments on Unspeakable Thing", { exact: true })
+      .waitFor();
+    await checkpoint("foundations-unspeakable-thing", width);
     await view.c.close();
   }
   const p = await browser.newPage();

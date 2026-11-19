@@ -4,6 +4,10 @@ The original scenario and its official easy recipe are automated for one to four
 players. All eight quest designs and nine Foundations of Stone encounter designs
 are registered. The existing Khazad-dûm encounter implementations supply the
 shared sets and Cave Torch; the pack's player cards were already implemented.
+Its Nightmare Deck is supported too (docs/NIGHTMARE.md): its recipe splits the
+Nightmare cards between the encounter deck and the set-aside set by encounter
+set icon, any Nameless enemy with a printed X takes the cost of its attached
+cards, and the feedings and stage 3B report to its Nightmare layer.
 
 ## Printed pools and sources
 

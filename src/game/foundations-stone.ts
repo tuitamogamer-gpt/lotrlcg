@@ -66,6 +66,7 @@ import { watcherWaterCannotExhaust } from "./watcher-water";
 import { isSacked } from "./carrock";
 import { rohanRevealReduction } from "./rohan-player-cards";
 import { emynPlayerRevealReduction } from "./emyn-player-cards";
+import { batch4Scenario } from "./batch4-scenarios";
 
 const state = (s: GameState): FoundationsStoneState =>
   (s.foundationsStone ??= {
@@ -98,7 +99,9 @@ const objectives = (s: GameState) =>
   );
 
 export function setupFoundationsStone(s: GameState) {
-  const recipe = foundationsRecipe(!!s.easyMode),
+  // Nightmare mode: the setup card's removals and its Nightmare Deck, split
+  // between the encounter deck and the set-aside set by encounter set icon.
+  const recipe = foundationsRecipe(!!s.easyMode, !!s.nightmareMode),
     d = state(s);
   d.setAside = [...recipe.setAside];
   s.encounterDeck = shuffle(s, [...recipe.initial]);
@@ -412,9 +415,21 @@ function shuffleHero(s: GameState, hero: Unit) {
   );
 }
 
-function attachTop(s: GameState, enemy: Unit, player: number, count: number) {
+/**
+ * Cards attached to a Nameless enemy from the top of a player's deck. A
+ * Nightmare Deck may add to them (Nest of Horrors), unless these are already
+ * its additional cards.
+ */
+export function foundationsAttachTop(
+  s: GameState,
+  enemy: Unit,
+  player: number,
+  count: number,
+  additional = false,
+) {
   const previous = activeSeat(s);
   selectSeat(s, player);
+  let attached = 0;
   for (let i = 0; i < count && s.deck.length; i++) {
     const u = takePlayerDeck(s);
     enemy.attachments.push({
@@ -424,9 +439,14 @@ function attachTop(s: GameState, enemy: Unit, player: number, count: number) {
       exhausted: false,
       namelessCard: true,
     });
+    attached++;
   }
   selectSeat(s, previous);
+  if (attached && !additional)
+    batch4Scenario(s).namelessFed?.(s, enemy, player);
+  return attached;
 }
+const attachTop = foundationsAttachTop;
 export function foundationsEngaged(s: GameState, enemy: Unit) {
   if (
     !enemy.blanked &&
@@ -441,12 +461,15 @@ export function foundationsEngaged(s: GameState, enemy: Unit) {
       }),
     );
 }
+/** A Nameless enemy's X ("X is the printed cost of all attached cards on this card"), its Nightmare Deck's too. */
+const NAMELESS_X =
+  /X is the printed cost of all attached cards on this card\. If there are no cards attached, X is (\d+)\./;
 export function foundationsEnemyX(
   _s: GameState,
   enemy: Unit,
 ): number | undefined {
-  if (![F.nameless, F.elder].includes(enemy.code as typeof F.nameless))
-    return undefined;
+  const printed = NAMELESS_X.exec(card(enemy.code).text ?? "");
+  if (!printed) return undefined;
   if (enemy.blanked) return 0;
   return enemy.attachments.length
     ? enemy.attachments.reduce(
@@ -457,9 +480,7 @@ export function foundationsEnemyX(
             : 0),
         0,
       )
-    : enemy.code === F.elder
-      ? 4
-      : 3;
+    : Number(printed[1]);
 }
 export function foundationsCanFight(enemy: Unit, character: Unit): boolean {
   return (
@@ -731,6 +752,8 @@ export function handleFoundationsStoneEffect(s: GameState, e: Effect): boolean {
       d.setAside = [];
       d.removedQuests.push(F.washed);
       splitPlayers(s);
+      // A Nightmare Deck's "When stage 3B is revealed" effects.
+      batch4Scenario(s).stageRevealed?.(s, 3);
       return true;
     }
     case "foundationsStageFourEntry": {

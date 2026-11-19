@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2429,
+    "encounterCards": 2437,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3651,
-    "pending": 532
+    "scripted": 3659,
+    "pending": 524
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 286
+    "scripted": 287
   },
   "registeredCodes": [
     "01001",
@@ -1314,6 +1314,7 @@
     "octgn:0a0e6044-c5ab-43ed-832a-71516c7d035a",
     "octgn:0a1166fb-fb90-4651-a8ae-7d532e41c2b6",
     "octgn:0a42a6ff-e693-484c-860d-3bc7e2780680",
+    "octgn:0a53cafe-3137-4475-98f8-37818d1b91a5",
     "octgn:0a6774e7-f110-4917-84b5-1f81a7aefbf8",
     "octgn:0aa98b35-6958-4680-a4ed-b9fc16089126",
     "octgn:0ade7e4d-f04b-4e65-870e-f5d85e080130",
@@ -1766,6 +1767,7 @@
     "octgn:3e99373a-ce10-4907-acd5-5a4b8dce425c",
     "octgn:3ef4f724-8f91-42d3-9ba2-5d731283c069",
     "octgn:3ef57050-0209-46de-8815-0c4d52b1aaf7",
+    "octgn:3f0b92d5-18d9-4a85-8efb-ce6e64172674",
     "octgn:3f24ad57-1c50-47dc-a117-5aee279b8451",
     "octgn:3f736d45-c2b3-429e-9a21-3f8073cdbd48",
     "octgn:3f78ed57-49cc-4886-b84f-3fe886203794",
@@ -1791,6 +1793,7 @@
     "octgn:42621898-ffe0-435a-a0c2-34ed4383eadb",
     "octgn:4297aa1e-8d53-4bd4-a750-ae5490fbb82b",
     "octgn:42a5a608-0699-4cd5-b69d-f7c3413cd5cd",
+    "octgn:42d80e7e-8217-48a2-a386-c18b6bff1bf1",
     "octgn:42e22482-0281-4811-aa65-2b342319ee07",
     "octgn:4315467f-210f-40c8-aec2-76c09d4bb8c1",
     "octgn:432c306a-7a68-45f9-8621-d7ea2126ae0b",
@@ -2305,6 +2308,7 @@
     "octgn:536cee93-e3d5-42fd-8182-0a939fd19f46",
     "octgn:5388683d-3240-433a-9602-a7367e428406",
     "octgn:53ac8ba6-0487-4b1f-91e9-cf7ca9e7c1d0",
+    "octgn:53b038f1-01c5-40d9-b583-7501b0d7c8df",
     "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376",
     "octgn:53f207b7-6670-4cc1-ad0f-d0190386d2b5",
     "octgn:54014fda-7adc-49b0-96ac-656e849eaf7b",
@@ -2371,6 +2375,7 @@
     "octgn:5abd3a4b-2769-401d-aa3c-c904da21b97a",
     "octgn:5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1",
     "octgn:5af4be18-af74-46ef-a235-9c1002b85338",
+    "octgn:5afd0c41-3fe9-40a1-bdfc-f5e8bc323958",
     "octgn:5b038648-7a06-4014-b207-a5d68c99e76d",
     "octgn:5b3b0e1a-ff08-4d4d-8071-d4de3f3bc9aa",
     "octgn:5bca670f-054d-41cd-93d7-0e318dc8c0e1",
@@ -2507,6 +2512,7 @@
     "octgn:6e193811-584d-4888-a1b8-5296522b5cd1",
     "octgn:6e42b5b8-c708-4f2e-a483-4984db0d1084",
     "octgn:6e449166-50ab-4ec5-875f-3cc8adcbb64e",
+    "octgn:6e4985a3-5501-41ef-bd15-ec58eadba12c",
     "octgn:6e85113d-a2a6-44a7-895c-ca5115f7b7d2",
     "octgn:6f7cdfa5-f61f-44b1-8b6c-2b3f477f7557",
     "octgn:6f9211cc-a523-4a0f-9d44-c757e2f9947b",
@@ -2530,6 +2536,7 @@
     "octgn:72025370-07e1-4797-acb2-1d2371a7f3b0",
     "octgn:720b2482-f69c-4a88-8352-721d854704d2",
     "octgn:721bbc14-f14c-4464-9963-55a77ab2d9bc",
+    "octgn:72230f13-1064-464a-aa14-283a1c61e2e6",
     "octgn:72276508-67e0-4133-8b9f-41fb8d44ffa9",
     "octgn:7271da0e-570b-461c-b632-b6f82ab2c146",
     "octgn:7275de5f-3f2f-47e0-a90a-58fc45c3bdcf",
@@ -3301,6 +3308,7 @@
     "octgn:c472af20-d956-4aec-af6e-319cdea35230",
     "octgn:c49ec585-e306-4fda-a55b-497cb0fd1174",
     "octgn:c4aea786-9987-451a-8924-e63c628be505",
+    "octgn:c4efe804-2832-42f1-bebf-45d3072cc70f",
     "octgn:c5215a42-f064-46cc-a9a2-75ef4d57fcd2",
     "octgn:c5657436-d6c8-400d-ba1f-a723799ac685",
     "octgn:c57661b7-62f9-4906-b2eb-73af91fd8252",
@@ -4070,7 +4078,7 @@
     {
       "product": "foundations-of-stone-nightmare",
       "total": 8,
-      "scripted": 0,
+      "scripted": 8,
       "player": 0,
       "playerScripted": 0
     },
@@ -14334,7 +14342,7 @@
       "name": "Nest of Horrors",
       "type": "location",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "foundations-of-stone-nightmare"
     },
     {
@@ -18758,7 +18766,7 @@
       "name": "Shivering River",
       "type": "location",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "foundations-of-stone-nightmare"
     },
     {
@@ -19038,7 +19046,7 @@
       "name": "Chill of the Roots",
       "type": "treachery",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "foundations-of-stone-nightmare"
     },
     {
@@ -23422,7 +23430,7 @@
       "name": "Primeval Thing",
       "type": "enemy",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "foundations-of-stone-nightmare"
     },
     {
@@ -24046,7 +24054,7 @@
       "name": "Giant Cave Centipede",
       "type": "enemy",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "foundations-of-stone-nightmare"
     },
     {
@@ -25422,7 +25430,7 @@
       "name": "Mithril Seeker",
       "type": "enemy",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "foundations-of-stone-nightmare"
     },
     {
@@ -25686,7 +25694,7 @@
       "name": "Foundations of Stone",
       "type": "nightmare",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "foundations-of-stone-nightmare"
     },
     {
@@ -33086,7 +33094,7 @@
       "name": "Unspeakable Thing",
       "type": "enemy",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "foundations-of-stone-nightmare"
     },
     {
@@ -39296,8 +39304,8 @@
       "id": "N02.8",
       "name": "Foundations of Stone (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "foundations-of-stone",
+      "state": "scripted"
     },
     {
       "id": "N02.9",

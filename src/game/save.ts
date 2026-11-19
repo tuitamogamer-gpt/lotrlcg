@@ -131,6 +131,7 @@ import { validNightmareRedhorn } from "./nightmare-redhorn";
 import { validNightmareRivendell } from "./nightmare-rivendell";
 import { validNightmareWatcher } from "./nightmare-watcher";
 import { validNightmareLongDark } from "./nightmare-longdark";
+import { validNightmareFoundations } from "./nightmare-foundations";
 import { nightmareEscapeTest } from "./nightmare-dead";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
@@ -218,10 +219,7 @@ import {
   validMirkwoodLog,
 } from "./dark-mirkwood-campaign";
 import { DEAD } from "./dead-marshes";
-import {
-  FOUNDATIONS_STONE as F,
-  validateFoundationsState,
-} from "./foundations-stone-support";
+import { validateFoundationsState } from "./foundations-stone-support";
 import { validateStewardFearState } from "./steward-fear-support";
 import { validateHeirsState } from "./heirs-numenor";
 
@@ -848,9 +846,13 @@ export function validateSave(
           (a.resourceTokens === undefined ||
             (integer(a.resourceTokens) && a.resourceTokens >= 0)) &&
           (a.facedown === undefined || typeof a.facedown === "boolean") &&
+          // A card from the top of a player's deck feeds any Nameless enemy
+          // (a Nightmare Deck's too).
           (a.namelessCard === undefined ||
             (a.namelessCard === true &&
-              [F.nameless, F.elder].includes(u.code as typeof F.nameless))) &&
+              (card(u.code).traits ?? "")
+                .split(".")
+                .some((t) => t.trim() === "Nameless"))) &&
           (a.blanked === undefined || typeof a.blanked === "boolean") &&
           (a.owner === undefined ||
             (integer(a.owner) && a.owner >= 0 && a.owner < seatCount)),
@@ -1167,6 +1169,7 @@ export function validateSave(
         !validNightmareRivendell(s, validUnit as (value: unknown) => boolean) ||
         !validNightmareWatcher(s) ||
         !validNightmareLongDark(s) ||
+        !validNightmareFoundations(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,
