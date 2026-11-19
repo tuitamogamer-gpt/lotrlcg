@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2313,
+    "encounterCards": 2322,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3535,
-    "pending": 648
+    "scripted": 3544,
+    "pending": 639
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 273
+    "scripted": 274
   },
   "registeredCodes": [
     "01001",
@@ -3111,6 +3111,15 @@
     "octgn:b89a5a01-88c0-434a-a061-1654c6f84477",
     "octgn:b8c49f35-4f52-48eb-ae3f-456b7daea4a7",
     "octgn:b8d832c5-e9f8-4690-a60c-07c09980ea27",
+    "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0001",
+    "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0003",
+    "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0004",
+    "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0005",
+    "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0006",
+    "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0007",
+    "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0008",
+    "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0009",
+    "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0010",
     "octgn:b922eedf-eea0-471d-bc52-90becc2a0769",
     "octgn:b93c5b70-0655-4577-9f5e-68ca00d4bfc8",
     "octgn:b9b2c1fc-2954-46f3-8b6c-71300a35eb5d",
@@ -4360,7 +4369,7 @@
     {
       "product": "the-hunt-for-gollum-nightmare",
       "total": 9,
-      "scripted": 0,
+      "scripted": 9,
       "player": 0,
       "playerScripted": 0
     },
@@ -31850,7 +31859,7 @@
       "name": "The Hunt for Gollum",
       "type": "nightmare",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-hunt-for-gollum-nightmare"
     },
     {
@@ -31858,7 +31867,7 @@
       "name": "The Enemy's Trail",
       "type": "treachery",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-hunt-for-gollum-nightmare"
     },
     {
@@ -31866,7 +31875,7 @@
       "name": "Restless Hunters",
       "type": "treachery",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-hunt-for-gollum-nightmare"
     },
     {
@@ -31874,7 +31883,7 @@
       "name": "The Trail Goes Cold",
       "type": "treachery",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-hunt-for-gollum-nightmare"
     },
     {
@@ -31882,7 +31891,7 @@
       "name": "Ravenous Hawk",
       "type": "enemy",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-hunt-for-gollum-nightmare"
     },
     {
@@ -31890,7 +31899,7 @@
       "name": "Hunting Warg",
       "type": "enemy",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-hunt-for-gollum-nightmare"
     },
     {
@@ -31898,7 +31907,7 @@
       "name": "Watched Path",
       "type": "location",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-hunt-for-gollum-nightmare"
     },
     {
@@ -31906,7 +31915,7 @@
       "name": "Hunter's Lookout",
       "type": "location",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-hunt-for-gollum-nightmare"
     },
     {
@@ -31914,7 +31923,7 @@
       "name": "Dark Pools",
       "type": "location",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-hunt-for-gollum-nightmare"
     },
     {
@@ -39089,8 +39098,8 @@
       "id": "N01.4",
       "name": "The Hunt for Gollum (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "hunt-for-gollum",
+      "state": "scripted"
     },
     {
       "id": "N01.5",

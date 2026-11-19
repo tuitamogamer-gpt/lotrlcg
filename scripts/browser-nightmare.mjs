@@ -237,6 +237,59 @@ try {
       "Nightmare mode",
     );
     await checkpoint("dol-guldur-prisoners", width);
+    // The Hunt for Gollum in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-hunt-for-gollum").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await opening(page);
+    assert.equal(s.scenarioId, "hunt-for-gollum");
+    assert.equal(s.nightmareMode, true);
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/4 Clues on Mordor enemies/)
+      .waitFor();
+    await checkpoint("gollum-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A Clue attached to (and guarded by) Hunters from Mordor.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.staging = t.staging.filter((u) => u.code !== "02021");
+      const hunters = make(t, "02021");
+      hunters.attachments.push({
+        id: `a${t.nextId++}`,
+        code: "02014",
+        exhausted: false,
+      });
+      t.staging.push(hunters);
+      s = await load(page, t);
+    }
+    await page
+      .getByLabel("Attachments on Hunters from Mordor", { exact: true })
+      .getByRole("button", {
+        name: "Inspect attachment: Signs of Gollum",
+        exact: true,
+      })
+      .waitFor();
+    await checkpoint("gollum-clue-hunters", width);
     await view.c.close();
   }
   const p = await browser.newPage();

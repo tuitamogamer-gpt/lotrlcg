@@ -2164,7 +2164,10 @@ function handleEffect(s: GameState, e: Effect) {
     case "refreshReady":
       if (!e.flag) {
         startPhase(s, "refresh");
-        const effects = Tharbad.tharbadRefreshStart(s);
+        const effects = [
+          ...Tharbad.tharbadRefreshStart(s),
+          ...(batch4Scenario(s).refreshStart?.(s) ?? []),
+        ];
         if (effects.length) {
           prepend(s, ...effects, fx("refreshReady", { flag: true }));
           break;

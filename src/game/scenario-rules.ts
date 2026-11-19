@@ -18,6 +18,7 @@ import {
   nightmareCapturePrisoners,
   nightmareTakePrisoners,
 } from "./nightmare-core";
+import { nightmareRavenousHawks } from "./nightmare-som";
 import { carrockEffect } from "./carrock";
 import { emynMuilEffect } from "./emyn-muil";
 import { rhosgobelEffect } from "./rhosgobel";
@@ -396,7 +397,14 @@ export function scenarioEffect(s: GameState, e: Effect): boolean {
       if (u) beginEnemyAttack(s, u, e.source ? [e.source] : [], true);
       break;
     case "huntLook": {
-      const count = Math.min(e.count ?? 1, s.encounterDeck.length);
+      // The Hunt for Gollum (Nightmare): a looked-at Ravenous Hawk enters
+      // play engaged with the first player instead.
+      const count =
+        Math.min(e.count ?? 1, s.encounterDeck.length) -
+        nightmareRavenousHawks(
+          s,
+          Math.min(e.count ?? 1, s.encounterDeck.length),
+        );
       const top = s.encounterDeck.slice(0, count);
       if (!top.length) break;
       choose(

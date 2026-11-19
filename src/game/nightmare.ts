@@ -42,6 +42,21 @@ export const NIGHTMARE_CORE = {
   master: `${P}26`,
 } as const;
 
+const G = "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f00";
+/** The Shadows of Mirkwood Nightmare Decks' cards. */
+export const NIGHTMARE_SOM = {
+  /** The Hunt for Gollum's setup card and Nightmare Deck. */
+  gollumCard: `${G}01`,
+  enemyTrail: `${G}03`,
+  restless: `${G}04`,
+  trailCold: `${G}05`,
+  hawk: `${G}06`,
+  warg: `${G}07`,
+  watched: `${G}08`,
+  lookout: `${G}09`,
+  pools: `${G}10`,
+} as const;
+
 interface NightmareDeck {
   /** The setup card, flipped next to the quest deck. */
   card: string;
@@ -89,6 +104,21 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Under the Shadow": 2,
       "Tower Gate": 2,
       "Iron Shackles": 1,
+    },
+  },
+  "hunt-for-gollum": {
+    card: NIGHTMARE_SOM.gollumCard,
+    removals: {
+      "River Ninglor": 2,
+      // (Printed "Eaves of Mirkwood".)
+      "The Eaves of Mirkwood": 1,
+      "False Lead": 2,
+      "Misty Mountain Goblins": 2,
+      "Banks of the Anduin": 2,
+      "Gladden Fields": 3,
+      "Eastern Crows": 3,
+      "Treacherous Fog": 2,
+      "Evil Storm": 3,
     },
   },
 };
@@ -151,5 +181,9 @@ export function nightmareStatus(s: GameState): string[] {
       `Escape from Dol Guldur · Nightmare mode: when stage 1B is revealed, ${captured} random ${captured === 1 ? "hero is" : "heroes (of different players) are"} captured as “the prisoner”${held ? ` (${held} held now)` : ""}.`,
     ];
   }
+  if (s.scenarioId === "hunt-for-gollum")
+    return [
+      "The Hunt for Gollum · Nightmare mode: at the end of each refresh phase an unclaimed Clue is attached to a Mordor enemy, which guards it; with 4 Clues on Mordor enemies the players lose.",
+    ];
   return [];
 }

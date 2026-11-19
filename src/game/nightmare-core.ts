@@ -86,19 +86,19 @@ export interface NightmareCoreState {
   /** Torture Master's shadow: the heroes this attack damaged. */
   master?: { enemyId: string; heroIds: string[] }[];
 }
-const state = (s: GameState) => (s.nightmare ??= {});
-const several = (s: GameState) => (s.table?.seats.length ?? 1) > 1;
-const seatLabel = (s: GameState, p: number) =>
+export const state = (s: GameState) => (s.nightmare ??= {});
+export const several = (s: GameState) => (s.table?.seats.length ?? 1) > 1;
+export const seatLabel = (s: GameState, p: number) =>
   several(s) ? ` · ${seatName(s, p)}` : "";
 const own = (s: GameState, p: number) =>
   allCharacters(s).filter((u) => ownerOf(s, u) === p);
-const traitOf = (code: string, t: string) =>
+export const traitOf = (code: string, t: string) =>
   (card(code).traits ?? "").split(".").some((x) => x.trim() === t);
-const live = (s: GameState, u: Unit, code: string) =>
+export const live = (s: GameState, u: Unit, code: string) =>
   u.code === code && !u.blanked && nightmareLive(s);
-const undefended = (s: GameState) =>
+export const undefended = (s: GameState) =>
   !(s.combat?.defenderIds?.length ?? (s.combat?.defenderId ? 1 : 0));
-const defendingPlayer = (s: GameState) =>
+export const defendingPlayer = (s: GameState) =>
   s.combat?.attackPlayer ?? firstPlayer(s);
 
 // ------------------------------------------------------------- setup
@@ -605,7 +605,7 @@ export const nightmareHeld = (s: GameState, code: string) =>
 /** A seat whose hero is held has not lost its last hero. */
 const nmMissingHeroAllowed = (s: GameState, player: number) =>
   nightmarePrisoners(s).some((h) => (h.owner ?? 0) === player);
-function lose(s: GameState, reason: string) {
+export function lose(s: GameState, reason: string) {
   if (s.status !== "playing") return;
   s.status = "lost";
   s.reason = reason;

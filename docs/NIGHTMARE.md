@@ -9,9 +9,10 @@ for each scenario whose Nightmare Deck is supported; the scenario archive's
 Nightmare list of such a scenario offers it too ("Choose adventure"). It is
 not offered in campaign mode.
 
-**Supported so far:** the Core Set Nightmare Deck: Passage Through Mirkwood,
-Journey Along the Anduin and Escape from Dol Guldur. The other Nightmare
-Decks follow in publication order.
+**Supported so far:** the Core Set Nightmare Deck (Passage Through Mirkwood,
+Journey Along the Anduin and Escape from Dol Guldur) and, of Shadows of
+Mirkwood's, The Hunt for Gollum. The other Nightmare Decks follow in
+publication order, beginning with Conflict at the Carrock.
 
 ## Sources
 
@@ -19,7 +20,7 @@ Decks follow in publication order.
   (`public/catalog.json`), checked by eye against the DragnCards scans; the
   checked cards are written to `src/data/nightmare-encounter-cards.json` and
   their faces pinned in `tests/nightmare-art.json` (9 cards and 10 faces for
-  each Core Set scenario).
+  each scenario so far).
 - The scans correct the catalogue: each setup card's front is the removal
   list ("Begin with the standard quest deck and encounter deck … Remove the
   following cards, in the specified quantities …"), where the catalogue had a
@@ -30,9 +31,12 @@ Decks follow in publication order.
   to each enemy engaged with the "defending player" (the catalogue had
   "defending character"); Sentinel of Shadow names the "Nazgul" (the
   catalogue had "Nazul"), Torture Chamber places a "resource token", and
-  Catacomb Inspection's shadow closes its parenthesis.
+  Catacomb Inspection's shadow closes its parenthesis; The Hunt for Gollum's
+  setup card detaches "the encounter guarding it first" (the catalogue had
+  "guarding if first") and Hunting Warg searches for "Hunters from Mordor"
+  (the catalogue had "Morder").
 - The source recipe of each Nightmare scenario (`public/scenarios.json`,
-  N01.1 to N01.3 for the Core Set) is the standard encounter deck without the
+  N01.1 to N01.4 so far) is the standard encounter deck without the
   printed removals plus the Nightmare Deck (Escape from Dol Guldur's Nazgûl
   set aside in both): a test compares the two.
 
@@ -44,8 +48,9 @@ Decks follow in publication order.
 - A game in Nightmare mode keeps `nightmareMode` (never with easy mode); the
   scenario's own setup then runs on the Nightmare encounter deck, and the
   setup card's setup rule follows.
-- `src/game/nightmare-core.ts` scripts the setup cards' rules and the
-  Nightmare encounter cards as a layer composed with the scenario's hooks
+- `src/game/nightmare-core.ts` (the Core Set) and `src/game/nightmare-som.ts`
+  (Shadows of Mirkwood) script the setup cards' rules and the Nightmare
+  encounter cards as a layer, chosen by scenario and composed with its hooks
   (the composition the Ered Mithrin Campaign Pool uses, which also composes
   the doomed and combat-phase hooks, the state check, the indestructible,
   attack and defense prohibitions a Nightmare layer adds), so the standard
@@ -99,10 +104,24 @@ Decks follow in publication order.
 | Torture Chamber (location ×2)      | At 4 resource tokens on it, the players lose. At the end of each round, each Dol Guldur location in play gets 1 resource token (for each Torture Chamber in play).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | Torture Master (enemy ×3)          | When revealed, each Dol Guldur location in play gets 1 resource token. Shadow: after the attack, each hero it damaged and did not destroy is captured as a prisoner (held with the scenario's prisoner, or as it); then, on stage 3, the players return to stage 2B, Through the Caverns (its progress gone).                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 
+## The Hunt for Gollum (Nightmare)
+
+| Card                               | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Setup card                         | Removes River Ninglor ×2, The Eaves of Mirkwood ×1 (printed "Eaves of Mirkwood"), False Lead ×2, Misty Mountain Goblins ×2, Banks of the Anduin ×2, Gladden Fields ×3, Eastern Crows ×3, Treacherous Fog ×2 and Evil Storm ×3 from the standard encounter deck. At the end of each refresh phase (the end of the round), the first player chooses an unclaimed Clue in the staging area (its guard, if any, is detached) and a Mordor enemy in play, which carries it as an attachment and guards it; when that enemy leaves play, the Clue returns to the staging area, unguarded. Clues on Mordor enemies are in play (Hunters from Mordor counts them). With 4 Clues on Mordor enemies at any time, the players lose. |
+| The Enemy's Trail (treachery ×2)   | A Clue from the encounter discard pile is attached to a Mordor enemy in play (the first player chooses among several); if none is, it gains surge. Shadow: the same, without surge.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Restless Hunters (treachery ×3)    | Surge. The first player moves a Clue attached to a hero to a Mordor enemy in play (the Clue does not leave play). Shadow: an undefended attack's damage goes to a hero with a Clue that the defending player controls (their choice among several).                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| The Trail Goes Cold (treachery ×2) | Attached to the active location (1 per location), whose progress is removed; during the quest phase the location's [threat] counts as if it were in the staging area; with no active location (or one already attached), it gains surge.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Ravenous Hawk (enemy ×3)           | When a stage's look (stages 1B and 2B) includes it, it enters play engaged with the first player, and the player reveals one of the other cards looked at (the looks of player cards are not covered).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Hunting Warg (enemy ×2)            | At the beginning of the refresh phase (a hook the engine gains for it), each copy that entered play this round brings 1 Hunters from Mordor from the encounter deck or discard pile into the staging area, and the deck is shuffled.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Watched Path (location ×2)         | While it is in play, a player who controls no Clue cannot draw cards through card effects. Shadow: the defending player without a Clue discards their hand.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Hunter's Lookout (location ×2)     | Each Mordor enemy with a Clue gets +2 [defense] for each copy in play. Shadow: the attacking enemy gets +1 [defense] for each Clue in play until the end of the round.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Dark Pools (location ×3)           | No progress can be placed on it in the staging area. When it becomes the active location, each player discards one of their allies with the highest printed cost (their choice among tied allies).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+
 ## Verification
 
 ```sh
-node --import tsx --test tests/nightmare-core.test.ts tests/nightmare-anduin.test.ts tests/nightmare-dol-guldur.test.ts
+node --import tsx --test tests/nightmare-core.test.ts tests/nightmare-anduin.test.ts tests/nightmare-dol-guldur.test.ts tests/nightmare-gollum.test.ts
 npm run build
 npm run test:browser-nightmare
 ```
@@ -131,6 +150,14 @@ their rescue (the Nazgûl moved rather than doubled); each card's rules and
 shadow (the resource tokens, Torture Chamber's loss, Torture Master's
 prisoners and the return to stage 2B, Dark Interrogation in a two-player
 game); and seeded solo and three-player games played to their end.
+`tests/nightmare-gollum.test.ts` (6 tests) covers The Hunt for Gollum's
+texts, stats and faces; its Nightmare encounter deck against the source
+recipe; the Clue attached to a Mordor enemy at the end of the refresh phase
+(a choice among Clues, the guard detached, the Clue back in the staging area
+when its enemy leaves play) and the loss at 4; each card's rules and shadow
+(Ravenous Hawk in a stage's look, Hunting Warg at the beginning of the refresh
+phase, Watched Path's draw prohibition); and seeded solo and two-player
+games.
 
 The browser suite starts Passage Through Mirkwood in Nightmare mode from the
 lobby (easy mode turned off), checks the setup's staging area and reveal, the
@@ -140,5 +167,7 @@ Nightmare mode from the lobby, checks its Nightmare card, and triggers
 Gladden Marshlands' Action from the staging area through its choice; and
 it starts Escape from Dol Guldur in Nightmare mode from the lobby, checks its
 Nightmare card, and a second prisoner in the prison banner with the table's
-“Nightmare mode” label, at 1280, 390 and 320 pixels (24 checkpoints); it
-checks the 30 pinned faces.
+“Nightmare mode” label; and it starts The Hunt for Gollum in Nightmare mode
+from the lobby, checks its Nightmare card and a Clue attached to Hunters from
+Mordor, at 1280, 390 and 320 pixels (30 checkpoints); it checks the 40 pinned
+faces.

@@ -1566,3 +1566,14 @@ Validation on Node 22: the engine suite passes all 6,966 tests, including 7 for 
 Coverage is now 861 player definitions (112 heroes), 2,313 encounters and 123 scenarios. This resolves 3,535 of 4,183 identities and 273 of 355 recipes; 648 identities remain pending.
 
 Validation on Node 22: the engine suite passes all 6,973 tests, including 7 for Escape from Dol Guldur's Nightmare Deck (seeded solo and three-player games among them); the Nightmare browser suite passes 24 checkpoints at 1280, 390 and 320 pixels, through Escape from Dol Guldur's Nightmare card, a second prisoner in the prison banner and the “Nightmare mode” heading, and checks the 30 pinned faces; the production build, the typecheck and the coverage audit pass.
+
+2026-11-19 Nightmare mode, The Hunt for Gollum: continued the user's “Nastavi dok ne završis sve” after 40822a6. Shadows of Mirkwood's Nightmare Decks begin with their first scenario; Conflict at the Carrock follows. See docs/NIGHTMARE.md.
+
+- The Hunt for Gollum's setup card and its eight Nightmare encounter cards are registered from the DragnCards scans (40 faces pinned in all); the scans give the setup card's removal list (its "Eaves of Mirkwood" is The Eaves of Mirkwood), "the encounter guarding it first" and Hunting Warg's "Hunters from Mordor". The source recipe N01.4 equals the standard deck less the printed removals plus the Nightmare Deck.
+- The Shadows of Mirkwood scripts live in their own layer (src/game/nightmare-som.ts, "nsm" effects); batch4Scenario now chooses each scenario's Nightmare layer, and the composition adds the draw prohibition, the attachment leaving play and a new hook at the beginning of the refresh phase.
+- The setup card: at the end of each refresh phase an unclaimed Clue (its guard detached) is attached to a Mordor enemy of the first player's choice, which guards it; the Clue returns to the staging area when that enemy leaves play, counts as in play for Hunters from Mordor, and 4 such Clues lose the game.
+- The Enemy's Trail, Restless Hunters, The Trail Goes Cold, Ravenous Hawk (in a stage's look: the quest's 1B and 2B), Hunting Warg, Watched Path, Hunter's Lookout and Dark Pools are scripted with their shadows; the looks of player cards do not reveal a Ravenous Hawk.
+
+Coverage is now 861 player definitions (112 heroes), 2,322 encounters and 123 scenarios. This resolves 3,544 of 4,183 identities and 274 of 355 recipes; 639 identities remain pending.
+
+Validation on Node 22: the engine suite passes all 6,979 tests, including 6 for The Hunt for Gollum's Nightmare Deck (seeded solo and two-player games among them); the Nightmare browser suite passes 30 checkpoints at 1280, 390 and 320 pixels, through The Hunt for Gollum's Nightmare card and a Clue attached to Hunters from Mordor, and checks the 40 pinned faces; the production build, the typecheck and the coverage audit pass.

@@ -141,6 +141,8 @@ export interface Batch4ScenarioHooks {
   encounterBegin?(s: GameState): void;
   encounterEnd?(s: GameState): Effect[];
   combatEnd?(s: GameState): void;
+  /** At the beginning of the refresh phase (Forced effects). */
+  refreshStart?(s: GameState): Effect[];
   refreshThreatBonus?(s: GameState): number;
   roundEnd?(s: GameState): Effect[];
   endQuest?(s: GameState): void;

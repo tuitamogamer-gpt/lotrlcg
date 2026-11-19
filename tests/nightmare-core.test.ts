@@ -145,13 +145,13 @@ test("Nightmare: the Nightmare encounter deck is the standard one without the se
   );
   assert.equal(
     automatedScenarioId({
-      name: "The Hunt for Gollum (Nightmare)",
+      name: "The Wizard's Quest (Nightmare)",
       mode: "nightmare",
     }),
     null,
   );
   assert.ok(nightmareSupported("mirkwood"));
-  assert.equal(nightmareSupported("hunt-for-gollum"), false);
+  assert.equal(nightmareSupported("the-wizards-quest"), false);
 });
 
 test("Nightmare: Passage Through Mirkwood's setup reveals 1 card for each player into the staging area", () => {
@@ -183,7 +183,7 @@ test("Nightmare: Passage Through Mirkwood's setup reveals 1 card for each player
   assert.throws(
     () =>
       createGame(5, d.cards, d.heroes, d.id, {
-        scenarioId: "hunt-for-gollum",
+        scenarioId: "the-wizards-quest",
         nightmare: true,
       }),
     /Nightmare Deck is not available/,

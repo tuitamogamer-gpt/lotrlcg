@@ -65,11 +65,22 @@ import {
   eredPoolLive,
 } from "./ered-campaign-pool";
 import { NIGHTMARE_CORE_HOOKS } from "./nightmare-core";
+import { NIGHTMARE_SOM_HOOKS } from "./nightmare-som";
 import { nightmareLive } from "./nightmare";
 
 const empty: Batch4ScenarioHooks = {};
 const pooled = new WeakMap<Batch4ScenarioHooks, Batch4ScenarioHooks>();
-const nightmares = new WeakMap<Batch4ScenarioHooks, Batch4ScenarioHooks>();
+const nightmares = new Map<
+  Batch4ScenarioHooks,
+  WeakMap<Batch4ScenarioHooks, Batch4ScenarioHooks>
+>();
+/** The Nightmare Deck layer of a scenario (by product). */
+const NIGHTMARE_LAYERS: Partial<Record<string, Batch4ScenarioHooks>> = {
+  mirkwood: NIGHTMARE_CORE_HOOKS,
+  anduin: NIGHTMARE_CORE_HOOKS,
+  "dol-guldur": NIGHTMARE_CORE_HOOKS,
+  "hunt-for-gollum": NIGHTMARE_SOM_HOOKS,
+};
 /**
  * The current scenario's hooks; in an Ered Mithrin campaign chapter from The
  * Withered Heath on, composed with the Campaign Pool's foreign cards, and in
@@ -77,13 +88,12 @@ const nightmares = new WeakMap<Batch4ScenarioHooks, Batch4ScenarioHooks>();
  */
 export function batch4Scenario(s: GameState): Batch4ScenarioHooks {
   const hooks = scenarioHooks(s);
-  if (nightmareLive(s)) {
-    let composed = nightmares.get(hooks);
-    if (!composed)
-      nightmares.set(
-        hooks,
-        (composed = composeEredPool(hooks, NIGHTMARE_CORE_HOOKS)),
-      );
+  const layer = nightmareLive(s) ? NIGHTMARE_LAYERS[s.scenarioId] : undefined;
+  if (layer) {
+    let cache = nightmares.get(layer);
+    if (!cache) nightmares.set(layer, (cache = new WeakMap()));
+    let composed = cache.get(hooks);
+    if (!composed) cache.set(hooks, (composed = composeEredPool(hooks, layer)));
     return composed;
   }
   if (!eredPoolLive(s)) return hooks;
@@ -223,6 +233,7 @@ export const batch4SharedEffect = (effect: Effect) =>
   [
     ERED_POOL_HOOKS,
     NIGHTMARE_CORE_HOOKS,
+    NIGHTMARE_SOM_HOOKS,
     BLACK_SERPENT_HOOKS,
     CIRITH_GURAT_HOOKS,
     CROSSINGS_POROS_HOOKS,

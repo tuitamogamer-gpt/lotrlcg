@@ -933,10 +933,14 @@ export function stats(s: GameState, u: Unit) {
   return result;
 }
 
-/** Signs of Gollum in play: in the staging area or attached to heroes. */
+/**
+ * Signs of Gollum in play: in the staging area, attached to heroes, or (The
+ * Hunt for Gollum's Nightmare Deck) attached to the Mordor enemies guarding
+ * them.
+ */
 export const cluesInPlay = (s: GameState) =>
   s.staging.filter((u) => u.code === CLUE).length +
-  allHeroes(s)
+  [...allHeroes(s), ...s.staging, ...allEngaged(s)]
     .flatMap((h) => h.attachments)
     .filter((a) => a.code === CLUE).length;
 export const hasClue = (u: Unit) => u.attachments.some((a) => a.code === CLUE);

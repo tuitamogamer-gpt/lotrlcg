@@ -568,7 +568,8 @@ export interface GameState {
   /** The Ered Mithrin campaign: the Campaign Pool's cards from other scenarios. */
   eredPool?: import("./ered-campaign-pool").EredPoolState;
   /** Nightmare mode's lasting card effects. */
-  nightmare?: import("./nightmare-core").NightmareCoreState;
+  nightmare?: import("./nightmare-core").NightmareCoreState &
+    import("./nightmare-som").NightmareSomState;
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;

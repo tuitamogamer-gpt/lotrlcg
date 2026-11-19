@@ -2827,6 +2827,14 @@ export function composeEredPool(
     missingHeroAllowed: (s, player) =>
       !!h.missingHeroAllowed?.(s, player) ||
       !!p.missingHeroAllowed?.(s, player),
+    cannotDraw: (s) => !!h.cannotDraw?.(s) || !!p.cannotDraw?.(s),
+    refreshStart: (s) => [
+      ...(h.refreshStart?.(s) ?? []),
+      ...(p.refreshStart?.(s) ?? []),
+    ],
+    attachmentLeaves: (s, host, attachment, leaving) =>
+      !!p.attachmentLeaves?.(s, host, attachment, leaving) ||
+      !!h.attachmentLeaves?.(s, host, attachment, leaving),
   };
 }
 
