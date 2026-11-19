@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2274,
+    "encounterCards": 2277,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3496,
-    "pending": 687
+    "scripted": 3499,
+    "pending": 684
   },
   "scenarioRecipes": {
     "total": 355,
@@ -802,6 +802,8 @@
     "12181",
     "12182",
     "12183",
+    "12185",
+    "12186",
     "12196",
     "12197",
     "12198",
@@ -2877,6 +2879,7 @@
     "octgn:9d451960-2db3-43df-9cd8-d525ef58cf55",
     "octgn:9d58de28-c518-4888-8e91-a52bb5c3e663",
     "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+    "octgn:9d60ffd4-34c2-42db-9fb7-474b1410d1aa",
     "octgn:9d65d755-9d41-47d8-84f5-ea725fba1d2f",
     "octgn:9dae9a06-1a90-4a9f-be69-b6451e4a1883",
     "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7",
@@ -3852,7 +3855,7 @@
     {
       "product": "ered-mithrin-campaign-expansion",
       "total": 40,
-      "scripted": 28,
+      "scripted": 31,
       "player": 21,
       "playerScripted": 20
     },
@@ -10003,7 +10006,7 @@
       "name": "Urdug's Cunning",
       "type": "treachery",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -10011,7 +10014,7 @@
       "name": "Misplaced Trust",
       "type": "treachery",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -29315,7 +29318,7 @@
       "name": "Roam Across Rhovanion",
       "type": "campaign",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {

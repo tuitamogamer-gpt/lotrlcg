@@ -131,7 +131,11 @@ test("Ered Mithrin: The Withered Heath's campaign card, its four Accolades and f
       ["event", "1", "Song.", 179 + i],
     );
   }
-  assert.equal(art.length, 32);
+  for (const code of [ERED.heathCard, ...ERED_ACCOLADES, ...ERED_SONGS])
+    assert.ok(
+      art.some((a) => a.code === code),
+      card(code).name,
+    );
 });
 
 test("Ered Mithrin: The Withered Heath's setup returns the Accolades to their heroes, offers the boon ally search, applies the notes and puts Abandoned Ruin into the Caves deck", () => {
@@ -270,12 +274,11 @@ test("Ered Mithrin: The Withered Heath's resolution adds the Accolades in play t
   win(f);
   assert.equal(f.campaign!.permanent[fallen], undefined);
   assert.ok(!f.campaign!.boons.includes(ERED.steadfast));
-  // The campaign continues with Roam Across Rhovanion (not yet available).
+  // The campaign continues with Roam Across Rhovanion.
   const u = applyEredResolution(t, { "song-0": ERED.canny });
-  assert.throws(
-    () => continueCampaign(u, u.campaign!.heroes, u.deckId, true, 9),
-    /not available in campaign mode yet/,
-  );
+  const next = continueCampaign(u, u.campaign!.heroes, u.deckId, true, 9);
+  assert.equal(next.scenarioId, "roam-across-rhovanion");
+  assert.ok(next.campaign!.boons.includes(ERED.canny));
 });
 
 test("Ered Mithrin: in a two-player game each player chooses a different Song", () => {

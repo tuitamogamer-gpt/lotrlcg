@@ -23,6 +23,7 @@ import {
   eredPoolLive,
 } from "../src/game/ered-campaign-pool";
 import { WILDS_RHOVANION as W } from "../src/game/wilds-rhovanion-support";
+import { WITHERED_HEATH as H } from "../src/game/withered-heath-support";
 import { syncAttachmentText } from "../src/game/attachment-text";
 import { seatView } from "../src/game/table";
 import type { GameState, ScenarioId, Unit } from "../src/game/types";
@@ -103,15 +104,15 @@ function shadow(s: GameState, enemy: Unit, code: string, defender?: Unit) {
   return batch4Scenario(s).shadow!(s, code);
 }
 
-test("Ered Mithrin Campaign Pool: the 42 cards of the first three chapters are foreign wherever the later chapters' own modules do not script them", () => {
-  assert.equal(ERED_POOL_PORTABLE.length, 42);
-  assert.equal(new Set(ERED_POOL_PORTABLE).size, 42);
+test("Ered Mithrin Campaign Pool: the 51 cards of the first four chapters are foreign wherever the later chapters' own modules do not script them", () => {
+  assert.equal(ERED_POOL_PORTABLE.length, 51);
+  assert.equal(new Set(ERED_POOL_PORTABLE).size, 51);
   const counts = LATER.map((id) => {
     const s = chapter(id);
     assert.ok(eredPoolLive(s));
     return ERED_POOL_PORTABLE.filter((c) => eredForeign(s, c)).length;
   });
-  assert.deepEqual(counts, [30, 34, 36, 37, 27, 35]);
+  assert.deepEqual(counts, [30, 43, 45, 46, 36, 44]);
   // Every card is foreign in at least one later chapter.
   const heath = chapter("the-withered-heath"),
     roam = chapter("roam-across-rhovanion");
@@ -125,6 +126,9 @@ test("Ered Mithrin Campaign Pool: the 42 cards of the first three chapters are f
   assert.equal(eredForeign(roam, W.armory), true);
   assert.equal(eredForeign(roam, W.troll), false);
   assert.equal(eredForeign(heath, W.troll), true);
+  // The Withered Heath's own cards are foreign from Roam Across Rhovanion on.
+  assert.equal(eredForeign(heath, H.troll), false);
+  assert.equal(eredForeign(roam, H.troll), true);
   // Outside the campaign the layer does nothing.
   const normal = createGame(5, d.cards, d.heroes, d.id, {
     scenarioId: "the-withered-heath",
@@ -793,4 +797,142 @@ test("Ered Mithrin Campaign Pool: in a two-player game each player resolves the 
     1,
   );
   assert.ok(valid(t));
+});
+
+test("Ered Mithrin Campaign Pool: The Withered Heath's nine cards keep their printed text in Roam Across Rhovanion", () => {
+  // Snow-troll: "Cannot have player card attachments. Forced: After
+  // Snow-troll attacks and destroys a character, return it to the staging
+  // area." Shadow: an additional attack.
+  const s = calm(chapter("roam-across-rhovanion"), "defense");
+  const troll = make(s, H.troll);
+  s.engaged.push(troll);
+  assert.equal(batch4Scenario(s).cannotAttach!(s, troll, "01026"), true);
+  const hero = s.heroes[0];
+  assert.equal(shadow(s, troll, H.troll, hero), true);
+  assert.equal((s.combat as never as { extraAttacks: number }).extraAttacks, 1);
+  hero.damage = stats(s, hero).health;
+  batch4Scenario(s).damageDealt!(s, hero, 1, {
+    enemyId: troll.id,
+    combatDamage: true,
+  } as never);
+  assert.equal(s.combat!.returnToStaging, true);
+  // Dragon Hatchling: +1 threat and +1 attack for each Dragon Sign in the
+  // victory display (none outside The Withered Heath); its shadow adds them
+  // to the attacker this phase.
+  const t = calm(chapter("roam-across-rhovanion"), "defense");
+  const hatch = make(t, H.hatchling);
+  t.staging.push(hatch);
+  assert.deepEqual([stats(t, hatch).attack, threatOf(t, hatch)], [2, 2]);
+  t.victoryCards = [H.sign, H.sign];
+  assert.deepEqual([stats(t, hatch).attack, threatOf(t, hatch)], [4, 4]);
+  const orc = make(t, W.stray);
+  t.engaged.push(orc);
+  const [atk, def] = [stats(t, orc).attack, stats(t, orc).defense];
+  shadow(t, orc, H.hatchling, t.heroes[0]);
+  assert.deepEqual(
+    [stats(t, orc).attack, stats(t, orc).defense],
+    [atk + 2, def + 2],
+  );
+  // Mountain Pass: the 'when revealed' effects of Weather treacheries cannot
+  // be canceled while it is in the staging area.
+  const u = calm(chapter("roam-across-rhovanion"), "staging");
+  assert.equal(batch4Scenario(u).cannotCancel!(u, false, H.snow), false);
+  u.staging.push(make(u, H.pass));
+  assert.equal(batch4Scenario(u).cannotCancel!(u, false, H.snow), true);
+  assert.equal(batch4Scenario(u).cannotCancel!(u, false, H.cold), true);
+  assert.equal(batch4Scenario(u).cannotCancel!(u, true, H.snow), false);
+  assert.equal(batch4Scenario(u).cannotCancel!(u, false, W.supplies), false);
+  // Dwarven Door: no progress while it is in the staging area.
+  const door = make(u, H.door);
+  u.staging.push(door);
+  assert.equal(batch4Scenario(u).locationProgressBlocked!(u, door), true);
+  u.staging = u.staging.filter((l) => l.id !== door.id);
+  u.activeLocation = door;
+  assert.equal(batch4Scenario(u).locationProgressBlocked!(u, door), false);
+  // Cave Entrance: +1 threat for each Dragon Sign; Travel: each player
+  // raises their threat by 1.
+  const v = calm(chapter("roam-across-rhovanion"), "travel");
+  const entrance = make(v, H.entrance);
+  v.staging.push(entrance);
+  assert.equal(threatOf(v, entrance), 1);
+  v.victoryCards = [H.sign];
+  assert.equal(threatOf(v, entrance), 2);
+  const threat = v.threat;
+  prepend(v, ...batch4Scenario(v).travelEffects!(v, entrance)!);
+  flush(v);
+  assert.equal(v.threat, threat + 1);
+  // Creature Den's Travel: the discard pile is shuffled in, and the first
+  // enemy discarded from the top is added to the staging area.
+  const w = calm(chapter("roam-across-rhovanion"), "travel");
+  w.staging = w.staging.filter((l) => card(l.code).type_code !== "enemy");
+  w.encounterDeck = [W.mine, W.contested];
+  w.encounterDiscard = [H.hatchling];
+  const den = make(w, H.creatureDen);
+  prepend(w, ...batch4Scenario(w).travelEffects!(w, den)!);
+  flush(w);
+  assert.ok(w.staging.some((e) => e.code === H.hatchling));
+  assert.equal(w.encounterDeck.length + w.encounterDiscard.length, 2);
+  // High Falls: X is the number of staging locations; its Travel cost
+  // assigns X damage among characters in play.
+  let x = calm(chapter("roam-across-rhovanion"), "travel");
+  x.staging = x.staging.filter((l) => card(l.code).type_code !== "location");
+  const falls = make(x, H.falls);
+  x.staging.push(falls, make(x, W.mine), make(x, W.contested));
+  assert.equal(threatOf(x, falls), 3);
+  assert.equal(batch4Scenario(x).travelProblem!(x, falls), null);
+  prepend(x, ...batch4Scenario(x).travelEffects!(x, falls)!);
+  flush(x);
+  for (let i = 0; i < 3 && x.choice; i++)
+    x = choose(x, x.choice!.options[0].id);
+  assert.equal(
+    [...x.heroes, ...x.allies].reduce((n, c) => n + c.damage, 0),
+    3,
+  );
+  assert.ok(valid(x));
+});
+
+test("Ered Mithrin Campaign Pool: Heavy Snow and Deadly Cold resolve as Weather treacheries in Roam Across Rhovanion", () => {
+  // Heavy Snow: "Doomed 1. When Revealed: Exhaust a character. Until the end
+  // of the round, characters cannot be readied by player card effects."
+  const base = chapter("roam-across-rhovanion");
+  const before = base.threat;
+  const s = reveal(calm(structuredClone(base), "staging"), H.snow);
+  assert.equal(s.threat, before + 1);
+  assert.equal([...s.heroes, ...s.allies].filter((c) => c.exhausted).length, 1);
+  assert.equal(batch4Scenario(s).cannotPlayerReady!(s), true);
+  assert.ok(s.encounterDiscard.includes(H.snow));
+  assert.ok(valid(s));
+  // Its shadow: exhaust a character you control.
+  const t = calm(structuredClone(base), "defense");
+  const orc = make(t, W.stray);
+  t.engaged.push(orc);
+  shadow(t, orc, H.snow, t.heroes[0]);
+  flush(t);
+  let u = t;
+  for (let i = 0; i < 3 && u.choice; i++)
+    u = choose(u, u.choice!.options[0].id);
+  assert.equal([...u.heroes, ...u.allies].filter((c) => c.exhausted).length, 1);
+  // Deadly Cold: each player chooses, for each ready character, to exhaust
+  // it or deal 1 damage to it.
+  let v = calm(structuredClone(base), "staging");
+  const ready = [...v.heroes, ...v.allies].filter((c) => !c.exhausted).length;
+  v = reveal(v, H.cold, (x) =>
+    x.choice?.title.startsWith("Deadly Cold")
+      ? x.choice.options.find((o) => o.id === "damage")?.id
+      : undefined,
+  );
+  assert.equal(
+    [...v.heroes, ...v.allies].reduce((n, c) => n + c.damage, 0),
+    ready,
+  );
+  assert.ok(valid(v));
+  // Its shadow: +1 attack, or +2 if the defending character is damaged.
+  const w = calm(structuredClone(base), "defense");
+  const enemy = make(w, W.stray);
+  w.engaged.push(enemy);
+  shadow(w, enemy, H.cold, w.heroes[0]);
+  assert.equal(w.combat!.attackBonus, 1);
+  w.heroes[1].damage = 1;
+  shadow(w, enemy, H.cold, w.heroes[1]);
+  assert.equal(w.combat!.attackBonus, 2);
 });

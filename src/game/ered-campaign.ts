@@ -39,6 +39,7 @@ import {
   WILDS_RHOVANION,
 } from "./wilds-rhovanion-support";
 import { witheredHeathSigns } from "./withered-heath-support";
+import { ROAM_RHOVANION as R } from "./roam-rhovanion-support";
 /** The campaign card's title. */
 const scenarioName = (s: GameState) =>
   ERED_CAMPAIGN_CARDS[s.scenarioId]
@@ -51,6 +52,7 @@ export const ERED = {
   mirkwoodCard: "octgn:28491ce2-ffc5-4f26-ab6d-88b68d59ea63",
   kingsCard: "octgn:3d3d4db9-873a-48a6-8a2d-e50abc5533f5",
   heathCard: "octgn:11d63f9f-a9c6-4e05-9768-8cf2234c277d",
+  roamCard: "octgn:9d60ffd4-34c2-42db-9fb7-474b1410d1aa",
   /** Turayn (unique boon ally, Journey Up the Anduin). */
   turayn: "12166",
   /** Melanwar (unique boon ally, Lost in Mirkwood). */
@@ -73,6 +75,12 @@ export const ERED = {
   tale: "12181",
   lay: "12182",
   rhyme: "12183",
+  /**
+   * Roam Across Rhovanion's burdens: Urdug's Cunning (a treachery, in the
+   * Campaign Pool's encounter cards) and Misplaced Trust (in the players' decks).
+   */
+  cunning: "12185",
+  misplaced: "12186",
   /** The nine treasures. */
   anvil: "12196",
   axe: "12197",
@@ -114,6 +122,7 @@ export const ERED_CAMPAIGN_SUPPORTED: readonly ScenarioId[] = [
   "lost-in-mirkwood",
   "the-kings-quest",
   "the-withered-heath",
+  "roam-across-rhovanion",
 ];
 /** The chapters whose campaign card lets each player change heroes without the +1 threat penalty. */
 export const ERED_FREE_CHANGES: readonly ScenarioId[] = [
@@ -126,6 +135,7 @@ export const ERED_CAMPAIGN_CARDS: Partial<Record<ScenarioId, string>> = {
   "lost-in-mirkwood": ERED.mirkwoodCard,
   "the-kings-quest": ERED.kingsCard,
   "the-withered-heath": ERED.heathCard,
+  "roam-across-rhovanion": ERED.roamCard,
 };
 /** The Withered Heath's Accolades, by the main quest stage that earns them. */
 export const ERED_ACCOLADES: readonly string[] = [
@@ -163,6 +173,7 @@ export const ERED_BURDENS: readonly string[] = [
   ERED.threat,
   ERED.spawn,
   ERED.ruin,
+  ERED.misplaced,
 ];
 /** The burdens shuffled into each encounter deck at setup. */
 const ENCOUNTER_BURDENS: readonly string[] = [ERED.growing, ERED.spawn];
@@ -263,6 +274,13 @@ export interface EredCampaignGame {
   rhyme?: { target: string; round: number; phase: string }[];
   /** The Canny Huntsman: the encounter cards being placed on top or bottom. */
   canny?: { top: string[]; bottom: string[]; left: string[] };
+  /**
+   * Roam Across Rhovanion: the objectives the players control (Urdug, Tiny,
+   * Durin's Key, Urdug's Horn), from the campaign card's Setup on.
+   */
+  claimed?: string[];
+  /** Roam Across Rhovanion: the copies of Urdug's Cunning shuffled into the encounter deck this game. */
+  cunning?: number;
 }
 export const eredState = (s: GameState) => (s.eredCampaign ??= {});
 /** Several players share the table (one seat reads "you"). */
@@ -360,6 +378,23 @@ export function eredCampaignSetup(s: GameState) {
       s,
       fx("emcRemove", { text: "enemy", value: 3, player: firstPlayer(s) }),
     );
+  // Roam Across Rhovanion: "If 'Melanwar has given you guidance on
+  // traversing Wilderland,' search the encounter deck for 3 non-unique
+  // enemies not named Grey Mountain Giant and remove them from the game."
+  // (The first player's trust in Urdug is offered once they control him.)
+  if (
+    s.scenarioId === "roam-across-rhovanion" &&
+    c!.notes?.includes("melanwar")
+  )
+    enqueue(
+      s,
+      fx("emcRemove", {
+        text: "enemy-giant",
+        value: 3,
+        player: firstPlayer(s),
+      }),
+    );
+  misplacedSetup(s);
   if (kings && !pool.includes(ERED.spawn)) pool.push(ERED.spawn);
   if (kings || c!.burdens.includes(ERED.threat)) threatSetup(s);
   if (kings || c!.burdens.includes(ERED.ruin)) ruinSetup(s);
@@ -393,6 +428,39 @@ export function eredCampaignSetup(s: GameState) {
       `${names([...new Set(pool)])} ${pool.length === 1 ? "is" : "are"} shuffled into the encounter deck (${pool.length} ${pool.length === 1 ? "card" : "cards"}).`,
     );
   }
+}
+/**
+ * Misplaced Trust: "Setup: Shuffle Misplaced Trust into your deck. (Do this
+ * after drawing your starting hand.)" Each seat that added a copy to the
+ * Campaign Pool shuffles it in.
+ */
+function misplacedSetup(s: GameState) {
+  const c = s.campaign!;
+  if (!c.burdens.includes(ERED.misplaced)) return;
+  const seats = seatIndices(s).filter((p) => c.misplaced?.includes(p));
+  for (const p of seats)
+    forOwner(s, p, () => {
+      s.deck.push(ERED.misplaced);
+      shuffle(s, s.deck);
+    });
+  if (seats.length)
+    log(
+      s,
+      `Misplaced Trust is shuffled into ${several(s) ? seats.map((p) => `${seatName(s, p)}'s`).join(" and ") : "your"} deck after the starting hand.`,
+      "danger",
+    );
+}
+/** A mulligan holds Misplaced Trust out of the new starting hand. */
+export function eredHoldLateDeck(s: GameState): string[] {
+  if (!isEredCampaign(s.campaign) || !eredChapter(s)) return [];
+  const held = s.deck.filter((code) => code === ERED.misplaced);
+  s.deck = s.deck.filter((code) => code !== ERED.misplaced);
+  return held;
+}
+export function eredReturnLateDeck(s: GameState, held: string[]) {
+  if (!held.length) return;
+  s.deck.push(...held);
+  shuffle(s, s.deck);
 }
 /**
  * The Threat to Wilderland: "Setup: Add The Threat to Wilderland to the
@@ -529,6 +597,7 @@ function guardTreasure(s: GameState, guard: Unit, code: string) {
  */
 export function eredCampaignGuardCheck(s: GameState) {
   heathAccolades(s);
+  roamTrust(s);
   // Abandoned Ruin: "Response: After Abandoned Ruin becomes the active
   // location, look at 3 random undiscovered treasures and attach 1 of them to
   // Abandoned Ruin as a guarded objective. … Limit once per game for the
@@ -605,6 +674,72 @@ function heathAccolades(s: GameState) {
       }),
     );
   }
+}
+
+// ------------------------------------------------------------- Roam Across Rhovanion
+
+/** Urdug, wherever he is in play (an objective-ally, a guarded objective or an enemy). */
+export function urdugUnit(s: GameState): Unit | undefined {
+  return [
+    ...allCharacters(s),
+    ...s.staging,
+    ...seatIndices(s).flatMap((p) => seatView(s, p).engaged),
+    ...(s.roamRhovanion?.guarded.map((g) => g.card) ?? []),
+  ].find((u) => u.code === R.urdug || u.code === R.urdugEnemy);
+}
+/** Roam Across Rhovanion's objectives the players control. */
+function roamClaimed(s: GameState): string[] {
+  const urdug = urdugUnit(s);
+  return [
+    ...[R.urdug, R.tiny].filter((code) =>
+      allCharacters(s).some((u) => u.code === code),
+    ),
+    ...(allHeroes(s).some((h) => h.attachments.some((a) => a.code === R.key))
+      ? [R.key]
+      : []),
+    ...(urdug?.attachments.some((a) => a.code === R.horn) ? [R.horn] : []),
+  ];
+}
+/** The copies of Urdug's Cunning still in the collection for this game. */
+export const cunningLeft = (s: GameState) =>
+  Math.max(
+    0,
+    ownedCopies(ERED.cunning) -
+      (s.campaign?.encounterPool?.[ERED.cunning] ?? 0) -
+      (s.eredCampaign?.cunning ?? 0),
+  );
+/**
+ * Roam Across Rhovanion's campaign card. Setup: "The first player may put
+ * their trust in Urdug by placing a resource on him (from the token pool). If
+ * they don't, shuffle a copy of the Urdug's Cunning burden into the encounter
+ * deck." (Offered once the scenario's setup gives them control of Urdug.)
+ * "Forced: After the first player claims an objective, they may put their
+ * trust in Urdug …"
+ */
+function roamTrust(s: GameState) {
+  if (
+    !eredChapter(s) ||
+    s.scenarioId !== "roam-across-rhovanion" ||
+    !s.roamRhovanion?.initialized ||
+    s.status !== "playing"
+  )
+    return;
+  const q = eredState(s);
+  const now = roamClaimed(s);
+  if (!q.claimed) {
+    q.claimed = now;
+    prepend(s, fx("emcUrdugTrust", { player: firstPlayer(s), text: "setup" }));
+    return;
+  }
+  const claims = now.filter((code) => !q.claimed!.includes(code));
+  q.claimed = now;
+  if (claims.length)
+    prepend(
+      s,
+      ...claims.map((code) =>
+        fx("emcUrdugTrust", { code, player: firstPlayer(s) }),
+      ),
+    );
 }
 
 /**
@@ -776,10 +911,40 @@ export function resolveEredCampaign(s: GameState) {
       eredState(s).looking = shuffle(s, [...pool]).slice(0, 3);
     }
   }
+  if (s.scenarioId === "roam-across-rhovanion") {
+    // "If there are 3 or more resources on Urdug, each player adds a copy of
+    // Misplaced Trust to the campaign pool (and their deck). Otherwise, each
+    // player adds a copy of Urdug's Cunning to the campaign pool."
+    const trust = urdugUnit(s)?.resources ?? 0;
+    const seats = seatIndices(s);
+    if (trust >= 3) {
+      if (!c.burdens.includes(ERED.misplaced)) c.burdens.push(ERED.misplaced);
+      c.misplaced = [...new Set([...(c.misplaced ?? []), ...seats])].sort(
+        (a, b) => a - b,
+      );
+      log(
+        s,
+        `Roam Across Rhovanion · Resolution: Urdug has ${trust} resources, and ${several(s) ? "each player adds" : "you add"} a copy of Misplaced Trust to the Campaign Pool (and ${several(s) ? "their" : "your"} deck).`,
+        "danger",
+      );
+    } else {
+      const added = seats.filter(() => addPoolCopy(c, ERED.cunning)).length;
+      log(
+        s,
+        `Roam Across Rhovanion · Resolution: Urdug has ${trust} ${trust === 1 ? "resource" : "resources"}, and ${added} ${added === 1 ? "copy" : "copies"} of Urdug's Cunning ${added === 1 ? "joins" : "join"} the Campaign Pool.`,
+        "danger",
+      );
+    }
+  }
   // "If the heroes choose to accept his aid / invite him / fight alongside
   // her … add them to the campaign pool … Otherwise, mark in the campaign
-  // log that …" (The Withered Heath: its Accolade, Songs and treasure.)
-  if (RESOLUTION_CHAPTERS.includes(s.scenarioId)) c.resolution = s.scenarioId;
+  // log that …" (The Withered Heath: its Accolade, Songs and treasure. Roam
+  // Across Rhovanion: the staging area's locations.)
+  if (
+    RESOLUTION_CHAPTERS.includes(s.scenarioId) &&
+    (s.scenarioId !== "roam-across-rhovanion" || stagedLocations(s).length)
+  )
+    c.resolution = s.scenarioId;
   c.completed.push({
     scenarioId: s.scenarioId,
     score: score(s),
@@ -793,7 +958,34 @@ const RESOLUTION_CHAPTERS: readonly ScenarioId[] = [
   "lost-in-mirkwood",
   "the-kings-quest",
   "the-withered-heath",
+  "roam-across-rhovanion",
 ];
+/** The locations in the staging area, one code per title. */
+const stagedLocations = (s: GameState) => [
+  ...new Set(
+    s.staging
+      .filter((u) => card(u.code).type_code === "location")
+      .map((u) => u.code),
+  ),
+];
+/**
+ * Roam Across Rhovanion: "Each player chooses a location in the staging area
+ * and adds a copy of it to the campaign pool. Players must choose different
+ * locations, if able."
+ */
+function roamQuestions(s: GameState) {
+  const c = s.campaign!;
+  const codes = stagedLocations(s);
+  return seatIndices(s).map((p) => ({
+    id: `location-${p}`,
+    label: `${several(s) ? `${seatName(s, p)} chooses` : "Choose"} a location in the staging area to add a copy of it to the Campaign Pool${several(s) ? " (players choose different locations, if able)" : ""}.`,
+    options: codes.map((code) => ({
+      id: code,
+      code,
+      label: `${card(code).name}${(c.encounterPool?.[code] ?? 0) >= ownedCopies(code) ? " (no copy is left in the collection)" : ""}`,
+    })),
+  }));
+}
 /** The Withered Heath's resolution choices. */
 function heathQuestions(s: GameState) {
   const c = s.campaign!;
@@ -861,6 +1053,7 @@ export function eredResolutionQuestions(s: GameState): {
   )
     return [];
   if (s.scenarioId === "the-withered-heath") return heathQuestions(s);
+  if (s.scenarioId === "roam-across-rhovanion") return roamQuestions(s);
   const ally = BOON_ALLY[s.scenarioId];
   if (!ally) return [];
   return [
@@ -953,6 +1146,21 @@ export function applyEredResolution(
     c.resolution = null;
     return s;
   }
+  if (s.scenarioId === "roam-across-rhovanion") {
+    const picks = seatIndices(s).map((p) => answers[`location-${p}`]);
+    if (new Set(picks).size < Math.min(picks.length, stagedLocations(s).length))
+      throw new RuleError("Players must choose different locations, if able.");
+    for (const code of picks)
+      log(
+        s,
+        addPoolCopy(c, code)
+          ? `${title} · Resolution: a copy of ${card(code).name} joins the Campaign Pool.`
+          : `${title} · Resolution: no copy of ${card(code).name} is left in the collection for the Campaign Pool.`,
+        "danger",
+      );
+    c.resolution = null;
+    return s;
+  }
   const ally = BOON_ALLY[s.scenarioId]!;
   if (answers[ally.note] === "aid") {
     if (!c.boons.includes(ally.code)) c.boons.push(ally.code);
@@ -1016,6 +1224,20 @@ export function eredCampaignStatus(s: GameState): string[] {
             `${card(a.code).name} (Accolade) is attached to ${name(h)}${c!.boons.includes(a.code) ? "" : ": it joins the Campaign Pool when this chapter is won"}.`,
           );
   }
+  if (s.scenarioId === "roam-across-rhovanion") {
+    const trust = urdugUnit(s)?.resources ?? 0;
+    out.push(
+      `Roam Across Rhovanion: Urdug has ${trust} ${trust === 1 ? "resource" : "resources"} (+${trust} [willpower], [threat], [attack] and [defense]); with 3 or more when this chapter is won, each player adds Misplaced Trust to the Campaign Pool, otherwise Urdug's Cunning.`,
+    );
+    if (q?.cunning)
+      out.push(
+        `${q.cunning} ${q.cunning === 1 ? "copy" : "copies"} of Urdug's Cunning ${q.cunning === 1 ? "was" : "were"} shuffled into the encounter deck this game.`,
+      );
+  }
+  if (c!.burdens.includes(ERED.misplaced) && c!.misplaced?.length)
+    out.push(
+      `Misplaced Trust is in ${several(s) ? c!.misplaced.map((p) => `${seatName(s, p)}'s`).join(" and ") : "your"} deck: when drawn, it attaches to a hero (no player card attachments, immune to player card effects).`,
+    );
   if (q?.immune && q.immune.round === s.round)
     out.push(
       "The Threat to Wilderland: encounter cards are immune to player card effects until the end of the quest phase.",
@@ -1147,6 +1369,64 @@ export function eredCampaignFrameworkEffect(s: GameState, e: Effect): boolean {
       );
       return true;
     }
+    case "emcUrdugTrust": {
+      // "… they may put their trust in Urdug by placing a resource on him
+      // (from the token pool). If they don't, shuffle a copy of the Urdug's
+      // Cunning burden into the encounter deck."
+      const urdug = urdugUnit(s);
+      const left = cunningLeft(s);
+      choose(
+        s,
+        `Roam Across Rhovanion · ${e.text === "setup" ? "Setup" : `${card(e.code!).name} is claimed`}: put your trust in Urdug?${seatLabel(s, p)}`,
+        [
+          ...(urdug
+            ? [
+                {
+                  id: "trust",
+                  code: urdug.code,
+                  label: `Place a resource on Urdug (${urdug.resources + 1} on him)`,
+                  effects: [
+                    fx("emcUrdugResource", { target: urdug.id, player: p }),
+                  ],
+                },
+              ]
+            : []),
+          {
+            id: "cunning",
+            code: ERED.cunning,
+            label: left
+              ? "Shuffle a copy of Urdug's Cunning into the encounter deck"
+              : "Don't (no copy of Urdug's Cunning is left)",
+            effects: [fx("emcCunningShuffle", { player: p })],
+          },
+        ],
+      );
+      return true;
+    }
+    case "emcUrdugResource": {
+      const urdug = urdugUnit(s);
+      if (urdug && urdug.id === e.target) {
+        urdug.resources++;
+        log(
+          s,
+          `The first player puts their trust in Urdug: a resource is placed on him (${urdug.resources}).`,
+          "good",
+        );
+      }
+      return true;
+    }
+    case "emcCunningShuffle":
+      if (cunningLeft(s)) {
+        s.encounterDeck.push(ERED.cunning);
+        shuffle(s, s.encounterDeck);
+        q.cunning = (q.cunning ?? 0) + 1;
+        log(
+          s,
+          "A copy of Urdug's Cunning is shuffled into the encounter deck.",
+          "danger",
+        );
+      } else log(s, "No copy of Urdug's Cunning is left to shuffle in.");
+      return true;
     case "emcRemove": {
       // "Search the encounter deck for N [cards] and remove them from the game."
       const left = e.value ?? 0;
@@ -1155,7 +1435,11 @@ export function eredCampaignFrameworkEffect(s: GameState, e: Effect): boolean {
         const c = card(code);
         return kind === "treachery"
           ? c.type_code === "treachery"
-          : c.type_code === kind && !c.is_unique;
+          : kind === "enemy-giant"
+            ? c.type_code === "enemy" &&
+              !c.is_unique &&
+              c.name !== "Grey Mountain Giant"
+            : c.type_code === kind && !c.is_unique;
       };
       const found = [...new Set(s.encounterDeck.filter(match))];
       if (left <= 0 || !found.length) {
@@ -1165,7 +1449,7 @@ export function eredCampaignFrameworkEffect(s: GameState, e: Effect): boolean {
       }
       choose(
         s,
-        `${scenarioName(s)} · Remove a ${kind === "treachery" ? "treachery" : `non-unique ${kind}`} from the encounter deck (${left} left)${seatLabel(s, p)}`,
+        `${scenarioName(s)} · Remove a ${kind === "treachery" ? "treachery" : kind === "enemy-giant" ? "non-unique enemy not named Grey Mountain Giant" : `non-unique ${kind}`} from the encounter deck (${left} left)${seatLabel(s, p)}`,
         found.map((code) => ({
           id: code,
           code,
@@ -1467,11 +1751,18 @@ export function validateEredCampaign(
         Object.entries(c.encounterPool).every(
           ([code, n]) =>
             known(code) &&
-            card(code).sphere_code !== "burden" &&
+            // Urdug's Cunning is the one burden written with copies.
+            (card(code).sphere_code !== "burden" || code === ERED.cunning) &&
             integer(n) &&
             n >= 1 &&
             n <= ownedCopies(code),
         ))) &&
+    (c.misplaced === undefined ||
+      (Array.isArray(c.misplaced) &&
+        c.burdens.includes(ERED.misplaced) &&
+        c.misplaced.every((n) => integer(n) && n < seatCount) &&
+        new Set(c.misplaced).size === c.misplaced.length &&
+        c.misplaced.length <= ownedCopies(ERED.misplaced))) &&
     (c.deckBoons === undefined ||
       (!!c.deckBoons &&
         typeof c.deckBoons === "object" &&
@@ -1545,6 +1836,12 @@ export function validEredState(s: GameState): boolean {
       (Array.isArray(q.shields) &&
         q.shields.every(
           (x) => !!x && typeof x.target === "string" && integer(x.round),
-        )))
+        ))) &&
+    (q.claimed === undefined ||
+      (codes(q.claimed) &&
+        q.claimed.every((x) => [R.urdug, R.tiny, R.key, R.horn].includes(x)) &&
+        new Set(q.claimed).size === q.claimed.length)) &&
+    (q.cunning === undefined ||
+      (integer(q.cunning) && q.cunning <= ownedCopies(ERED.cunning)))
   );
 }

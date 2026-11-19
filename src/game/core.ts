@@ -1,6 +1,7 @@
 import * as DreamCards from "./dreamchaser-campaign-cards";
 import {
   eredCampaignCostReduction,
+  eredCampaignCardsDrawn,
   eredCampaignStats,
   eredCampaignThreatBonus,
 } from "./ered-campaign-cards";
@@ -1622,6 +1623,7 @@ export function draw(
     batch4Scenario(s).cardsDrawn?.(s, activeSeat(s), n, cardEffect);
     sagaCampaignCardsDrawn(s, n);
     DreamCards.dreamchaserCardsDrawn(s, n);
+    eredCampaignCardsDrawn(s, n);
   }
 }
 

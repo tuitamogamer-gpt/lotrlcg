@@ -3,6 +3,7 @@ import fs from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { chromium } from "playwright";
 import {
+  check,
   exhaustCharacter,
   progressLocation,
   revealed,
@@ -15,6 +16,7 @@ import { syncSeat } from "../src/game/table.ts";
 import { card } from "../src/game/cards.ts";
 import { ERED, ERED_TREASURES } from "../src/game/ered-campaign.ts";
 import { WILDS_RHOVANION } from "../src/game/wilds-rhovanion-support.ts";
+import { ROAM_RHOVANION } from "../src/game/roam-rhovanion-support.ts";
 import { reviewedState } from "./browser-review-helpers.mjs";
 import { capture, context, report, url } from "./browser-angmar-helpers.mjs";
 
@@ -97,11 +99,12 @@ async function choose(id) {
   await reviewedState(page);
   return campaign();
 }
-/** Keep the opening hand and reach the first action window. */
-async function opening() {
+/** Keep the opening hand and reach the first action window (or a choice titled like `stop`). */
+async function opening(stop) {
   for (let i = 0; i < 200; i++) {
     await reviewedState(page);
     const s = await campaign();
+    if (s?.choice && stop?.test(s.choice.title)) return s;
     if (s?.choice) await choose(s.choice.options[0].id);
     else if (s?.phase === "setup")
       await page
@@ -502,15 +505,78 @@ try {
       .getByText(/^Notes · Accolades:/)
       .first()
       .waitFor();
+    await page.getByRole("button", { name: /^Continue campaign/ }).waitFor();
+    await checkpoint("heath-complete", width);
+    // Roam Across Rhovanion (Part 5): the first player's trust in Urdug once
+    // the scenario's setup gives them control of him, again after each
+    // claimed objective, and the resolution's staging location.
+    await page.getByRole("button", { name: /^Continue campaign/ }).click();
+    await page.getByRole("button", { name: /^Begin next chapter/ }).click();
+    await reviewedState(page);
+    s = await opening(/put your trust in Urdug\?/);
+    assert.equal(s.scenarioId, "roam-across-rhovanion");
+    assert.match(
+      s.choice.title,
+      /^Roam Across Rhovanion · Setup: put your trust in Urdug\?/,
+    );
+    await checkpoint("roam-trust", width);
+    await choose("trust");
+    s = await opening();
+    assert.equal(
+      s.allies.find((u) => u.code === ROAM_RHOVANION.urdug).resources,
+      1,
+    );
+    await campaignCard(
+      /^Roam Across Rhovanion: Urdug has 1 resource/,
+      "roam-setup",
+      width,
+    );
+    {
+      // Rescue Tiny: the first player gains control of Tiny (a claim).
+      const t = quiet(s);
+      const q = t.roamRhovanion;
+      const [tiny] = q.setAside.splice(
+        q.setAside.findIndex((u) => u.code === ROAM_RHOVANION.tiny),
+        1,
+      );
+      tiny.owner = 0;
+      t.allies.push(tiny);
+      check(t);
+      flush(t);
+      s = await load(t);
+    }
+    assert.match(s.choice.title, /Tiny is claimed: put your trust in Urdug\?/);
+    await checkpoint("roam-claim", width);
+    s = await choose("cunning");
+    assert.equal(
+      s.encounterDeck.filter((code) => code === ERED.cunning).length,
+      1,
+    );
+    s = await victory(s, (t) => {
+      t.allies.find((u) => u.code === ROAM_RHOVANION.urdug).resources = 3;
+      t.staging = t.staging.filter(
+        (u) => card(u.code).type_code !== "location",
+      );
+      t.staging.push(make(t, ROAM_RHOVANION.slopes));
+    });
+    assert.equal(s.campaign.resolution, "roam-across-rhovanion");
+    assert.ok(s.campaign.burdens.includes(ERED.misplaced));
+    assert.deepEqual(s.campaign.misplaced, [0]);
+    await page
+      .getByLabel(/^Choose a location in the staging area/)
+      .selectOption(ROAM_RHOVANION.slopes);
+    await checkpoint("roam-resolution", width);
+    s = await record();
+    assert.equal(s.campaign.encounterPool[ROAM_RHOVANION.slopes], 1);
     await page
       .getByRole("dialog")
-      .getByText(/Roam Across Rhovanion, is not available in campaign mode yet/)
+      .getByText(/Fire in the Night, is not available in campaign mode yet/)
       .waitFor();
     assert.equal(
       await page.getByRole("button", { name: /^Continue campaign/ }).count(),
       0,
     );
-    await checkpoint("heath-complete", width);
+    await checkpoint("roam-complete", width);
     await view.c.close();
   }
   const p = await browser.newPage();

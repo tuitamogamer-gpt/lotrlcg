@@ -5,6 +5,7 @@ import {
 } from "./dark-mirkwood-campaign";
 import * as DreamCards from "./dreamchaser-campaign-cards";
 import * as EredCards from "./ered-campaign-cards";
+import { eredHoldLateDeck, eredReturnLateDeck } from "./ered-campaign";
 import * as DreamTemple from "./dreamchaser-temple";
 import * as DreamDrowned from "./dreamchaser-drowned";
 import { angmarCampaignAttachmentPlayed } from "./angmar-campaign-loot";
@@ -3238,6 +3239,8 @@ function applyActionCore(input: GameState, action: Action): GameState {
         const held = sagaHoldLateDeck(s);
         // The Dream-chaser campaign's Recurring Nightmares, likewise.
         const nightmares = DreamTemple.dreamchaserHoldLateDeck(s);
+        // The Ered Mithrin campaign's Misplaced Trust, likewise.
+        const misplaced = eredHoldLateDeck(s);
         shuffle(s, s.deck);
         // Gandalf's Delay: the new starting hand also has 1 less card.
         draw(
@@ -3247,6 +3250,7 @@ function applyActionCore(input: GameState, action: Action): GameState {
         );
         sagaReturnLateDeck(s, held);
         DreamTemple.dreamchaserReturnLateDeck(s, nightmares);
+        eredReturnLateDeck(s, misplaced);
       }
       s.mulled = true;
       log(s, "You take your one mulligan.");

@@ -5,10 +5,10 @@ scenarios are played in order with the Revised Core Set's Campaign Log, and
 each campaign card, boon and burden changes the scenario it belongs to. Campaign
 mode offers it as **Ered Mithrin**, next to Mirkwood Paths, The Lord of the
 Rings, Angmar Awakened and Dream-chaser. The campaign begins with Journey Up
-the Anduin; **its first four chapters are supported** (Journey Up the Anduin,
-Lost in Mirkwood, The King's Quest and The Withered Heath), and the next
-chapters follow in publication order (Roam Across Rhovanion is not available in
-campaign mode yet).
+the Anduin; **its first five chapters are supported** (Journey Up the Anduin,
+Lost in Mirkwood, The King's Quest, The Withered Heath and Roam Across
+Rhovanion), and the next chapters follow in publication order (Fire in the Night
+is not available in campaign mode yet).
 
 ## Sources
 
@@ -126,6 +126,14 @@ Permanent boons: the Campaign Log records each with the hero that earned it, it
 returns to that hero at each later setup, and it leaves the game (and the
 Campaign Log) with that hero. The Songs join decks through the interlude.
 
+## Roam Across Rhovanion (Part 5)
+
+| Card                         | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Campaign card                | Setup: a player may search their deck for a unique boon ally; with "Melanwar has given you guidance", the first player removes 3 non-unique enemies not named Grey Mountain Giant from the encounter deck. Once the scenario's setup gives the first player control of Urdug, they may put their trust in him (a resource on him from the token pool); if they don't, a copy of Urdug's Cunning is shuffled into the encounter deck. Forced: after the first player claims an objective (Urdug or Tiny under the players' control, Durin's Key attached to a hero, Urdug's Horn attached to Urdug; passing Urdug to a new first player is no claim), the same choice. Urdug, as an objective-ally or an enemy, gets +1 willpower, threat, attack and defense for each resource on him. The deep keyword is ignored (the scenario has no Caves deck). Resolution: with 3 or more resources on Urdug, each player adds a copy of Misplaced Trust to the Campaign Pool and their deck, otherwise a copy of Urdug's Cunning; each player chooses a location in the staging area (different titles, if able) and a copy joins the Campaign Pool (in the end-of-game dialog, skipped with no location there). |
+| Urdug's Cunning (burden, ×4) | Doomed 1. Surge. When Revealed: the top 5 encounter cards are discarded, and for each enemy among them each player deals 1 damage to a character they control (1 at a time). Shadow: the attacking enemy gets +2 defense this phase. The trust choice can shuffle in only the copies left in the collection (4, less those in the Campaign Pool).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Misplaced Trust (burden, ×4) | Setup: shuffled into its player's deck after the starting hand (held out of a mulligan's new hand) in every later chapter. Forced: after its player draws it, they attach it to a hero they control: the hero's player card attachments are discarded (a Permanent Accolade stays), it cannot have player card attachments and it is immune to player card effects.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+
 ## The treasures
 
 | Treasure             | Behaviour                                                                                                                                                                                                                                                                                           |
@@ -150,13 +158,13 @@ of encounter set, so a card from one scenario must resolve in another scenario's
 module. The three Wilds of Rhovanion chapters share one module, and the Core
 Set's cards (the Evil Creatures enemies, the Spiders of Mirkwood and Dol Guldur
 Orcs cards) resolve in every scenario. For the chapters from The Withered Heath
-on, `src/game/ered-campaign-pool.ts` scripts the 42 cards of Journey Up the
-Anduin, Lost in Mirkwood and The King's Quest that can join the Campaign Pool
-(the non-unique, non-objective, non-burden cards A Growing Threat can set aside):
-each later chapter's hooks are composed with the pool's, which act only on a
-card foreign to that chapter (outside its own recipes; 30, 34, 36, 37, 27 and 35
-of them in chapters 4 to 9). Card text that refers to another scenario's
-components does as much as it can:
+on, `src/game/ered-campaign-pool.ts` scripts the 51 cards of Journey Up the
+Anduin, Lost in Mirkwood, The King's Quest and The Withered Heath that can join
+the Campaign Pool (the non-unique, non-objective, non-burden cards A Growing
+Threat can set aside): each later chapter's hooks are composed with the pool's,
+which act only on a card foreign to that chapter (outside its own recipes; 30,
+43, 45, 46, 36 and 44 of them in chapters 4 to 9). Card text that refers to
+another scenario's components does as much as it can:
 
 - **The Evil Creatures deck** exists only in Journey Up the Anduin: Wooded
   Riverbank's explored effect and Frenzied Creature's When Revealed find nothing
@@ -171,6 +179,13 @@ components does as much as it can:
   from its cost) and returns it to its owner's hand when it leaves play; Mirkwood
   Patrol guards an unguarded objective-location; Unseen Danger's shadow counts a
   card guarded in any of the scenarios' ways.
+- **Dragon Signs** are only The Withered Heath's: elsewhere Dragon Hatchling
+  and Cave Entrance count none in the victory display, and Creature Den's
+  Response finds none to guard (its Travel cost still adds the first enemy
+  discarded from the reshuffled encounter deck). Snow-troll, Mountain Pass,
+  Dwarven Door, High Falls, Heavy Snow and Deadly Cold keep their printed rules;
+  Dwarven Door, Cave Entrance and High Falls use Mount Gundabad's Caves deck for
+  the deep keyword.
 - Lonely Lands keeps events played during the quest phase facedown under it
   (+2 threat each) and discards them when it leaves play; Lost in the Wild sits in
   a hand; the conditions (Weighed Down, Afraid of the Dark, Dragon Breath,
@@ -187,7 +202,7 @@ become portable with their chapters.
 ## Verification
 
 ```sh
-node --import tsx --test tests/ered-campaign.test.ts tests/ered-campaign-pool.test.ts tests/ered-campaign-heath.test.ts
+node --import tsx --test tests/ered-campaign.test.ts tests/ered-campaign-pool.test.ts tests/ered-campaign-heath.test.ts tests/ered-campaign-roam.test.ts
 npm run build
 npm run test:browser-ered-campaign
 ```
@@ -199,11 +214,25 @@ defeated stage (and none for a player who has one), the resolution (the
 Accolades, Dragon-slayer, the Songs, different Songs in a two-player game, the
 treasure with 4 Dragon Signs), and each Accolade and Song.
 
-`tests/ered-campaign-pool.test.ts` (18 tests) covers the foreign cards of each
+`tests/ered-campaign-roam.test.ts` (8 tests) covers Roam Across Rhovanion's
+texts and faces, its setup (Melanwar's removals sparing the Grey Mountain
+Giants, the trust offered once the first player controls Urdug), Urdug's stats
+from his resources (also as an enemy, and none outside the campaign), declining
+the trust and the 4 copies of Urdug's Cunning, the trust offered after each
+claimed objective (Tiny, Durin's Key, Urdug's Horn, Urdug after Sneaking Off)
+but not when Urdug passes to another player, Urdug's Cunning's reveal (Doomed,
+surge, discards and damage) and shadow, Misplaced Trust (after the starting
+hand, out of a mulligan, attached when drawn, its discards, restriction and
+immunity), and the resolution (Misplaced Trust or Urdug's Cunning, the staging
+location, different locations for two players when able, no question without
+a location, the next chapter not yet available).
+
+`tests/ered-campaign-pool.test.ts` (20 tests) covers the foreign cards of each
 later chapter (each one revealed in each chapter where it is foreign, with a
 valid save), their passive values, triggers, shadows and choices, the Caves
-deck through The Withered Heath, the Lost Caves locations in Roam Across
-Rhovanion, the When Revealed fallback, and a two-player game.
+deck through The Withered Heath, the Lost Caves locations and The Withered
+Heath's nine cards in Roam Across Rhovanion, the When Revealed fallback, and a
+two-player game.
 
 `tests/ered-campaign.test.ts` (28 tests) covers the registered texts and
 faces, the uniqueness corrections and the cards kept out of ordinary games;
@@ -244,6 +273,9 @@ offers free hero changes; The King's Quest gives Isolde, resolves The Threat to
 Wilderland's immunity (shown by the inspector) and Dagnir's Spawn's damage, and
 records Isolde and Dagnir's Spawn in the Campaign Pool; The Withered Heath
 shows its Dragon Signs in the inspector, attaches Master of the Hunt after the
-first stage and records it with Lay of Courage, after which Roam Across
-Rhovanion is not available yet; at 1280, 390 and 320 pixels (72 checkpoints);
-it checks the 32 pinned faces.
+first stage and records it with Lay of Courage; Roam Across Rhovanion offers
+the trust in Urdug at setup and again when Tiny is claimed (declined: Urdug's
+Cunning is shuffled in), shows Urdug's resources in the inspector, and records
+Misplaced Trust and a staging location, after which Fire in the Night is not
+available yet; at 1280, 390 and 320 pixels (87 checkpoints); it checks the 36
+pinned faces.

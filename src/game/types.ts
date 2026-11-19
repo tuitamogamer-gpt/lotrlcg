@@ -379,6 +379,12 @@ export interface CampaignState {
    * encounter deck regardless of encounter set.
    */
   encounterPool?: Record<string, number>;
+  /**
+   * Ered Mithrin: the seats whose copy of Misplaced Trust is in the Campaign
+   * Pool (Roam Across Rhovanion); it is shuffled into that player's deck
+   * after the starting hand at each setup.
+   */
+  misplaced?: number[];
   /** Angmar Awakened: the damage noted for Protect the Innocent (and later Arnor Ravaged). */
   innocent?: number;
   /** Angmar Awakened: Protect the Innocent has been flipped to Arnor Ravaged (Deadmen's Dike). */

@@ -50,7 +50,13 @@ import {
 } from "./table";
 import { mainQuestUnit } from "./quest-state";
 import { WILDS_RHOVANION as W } from "./wilds-rhovanion-support";
-import { WITHERED_HEATH_RECIPES } from "./withered-heath-support";
+import {
+  WITHERED_HEATH as H,
+  WITHERED_HEATH_RECIPES,
+  witheredHeathSigns,
+} from "./withered-heath-support";
+import { khazadCannotExhaust } from "./khazad-dum";
+import { watcherWaterCannotExhaust } from "./watcher-water";
 import { ROAM_RHOVANION_RECIPES } from "./roam-rhovanion-support";
 import { FIRE_NIGHT_RECIPES } from "./fire-night-support";
 import { GHOST_FRAMSBURG_RECIPES } from "./ghost-framsburg-support";
@@ -72,6 +78,8 @@ export interface EredPoolState {
   darkPlaces: { round: number; phase: string; amount: number }[];
   /** Group responses limited to once per game (Lost Armory, Ancient Treasury). */
   usedResponses: string[];
+  /** Heavy Snow: the round in which characters cannot be readied by player card effects. */
+  playerReadyBlockedRound?: number;
 }
 
 /** The chapters this layer serves, with their own modules' recipes. */
@@ -90,10 +98,10 @@ const NATIVE: Record<string, Set<string>> = Object.fromEntries(
   ]),
 );
 /**
- * The encounter cards of Journey Up the Anduin, Lost in Mirkwood and The
- * King's Quest that can join the Campaign Pool (A Growing Threat sets aside a
- * non-unique, non-objective, non-burden card), scripted here for later
- * chapters. (The Core Set's cards resolve in every scenario.)
+ * The encounter cards of Journey Up the Anduin, Lost in Mirkwood, The King's
+ * Quest and The Withered Heath that can join the Campaign Pool (A Growing
+ * Threat sets aside a non-unique, non-objective, non-burden card), scripted
+ * here for later chapters. (The Core Set's cards resolve in every scenario.)
  */
 export const ERED_POOL_PORTABLE = [
   W.riverbank,
@@ -138,6 +146,16 @@ export const ERED_POOL_PORTABLE = [
   W.armory,
   W.den,
   W.treasury,
+  // The Withered Heath
+  H.troll,
+  H.hatchling,
+  H.pass,
+  H.door,
+  H.entrance,
+  H.creatureDen,
+  H.falls,
+  H.snow,
+  H.cold,
 ];
 const PORTABLE = new Set(ERED_POOL_PORTABLE);
 
@@ -199,6 +217,10 @@ const phaseMatches = (s: GameState, m: { round: number; phase: string }) =>
   m.round === s.round && m.phase === s.phase;
 const objectiveLocation = (u: Unit) =>
   card(u.code).type_code === "objective-location";
+const canExhaust = (u: Unit) =>
+  !u.exhausted && !khazadCannotExhaust(u) && !watcherWaterCannotExhaust(u);
+const stagedLocations = (s: GameState) =>
+  s.staging.filter((l) => card(l.code).type_code === "location").length;
 /** Add an encounter card to the staging area (an enemy may engage a player). */
 function add(s: GameState, code: string, player?: number) {
   const u = make(s, code);
@@ -330,6 +352,8 @@ function poolStats(s: GameState, u: Unit) {
   attack += frenzy;
   defense += frenzy;
   if (foreignUnit(s, u, W.werewolf)) attack += u.damage;
+  // Dragon Hatchling: +1 [attack] for each Dragon Sign in the victory display.
+  if (foreignUnit(s, u, H.hatchling)) attack += witheredHeathSigns(s);
   // Goblin Troop: each other Goblin enemy engaged with you gets +1/+1.
   if (trait(u, "Goblin") && allEngaged(s).some((e) => e.id === u.id)) {
     const n = allEngaged(s).filter(
@@ -361,6 +385,11 @@ function poolThreatBonus(s: GameState, u: Unit) {
         .filter((c) => c.locationId === u.id)
         .reduce((n, c) => n + c.cards.length, 0) ?? 0);
   if (foreignUnit(s, u, W.twilight)) n += 2 * u.resources;
+  // Dragon Hatchling and Cave Entrance: +1 [threat] for each Dragon Sign in
+  // the victory display; High Falls: X is the number of staging locations.
+  if (foreignUnit(s, u, H.hatchling) || foreignUnit(s, u, H.entrance))
+    n += witheredHeathSigns(s);
+  if (foreignUnit(s, u, H.falls)) n += stagedLocations(s);
   if (foreignUnit(s, u, W.contested))
     n += (s.victoryCards ?? []).filter(
       (c) => card(c).type_code === "location",
@@ -421,16 +450,30 @@ const poolCharacterBlanked = (s: GameState, u: Unit) =>
   eredPoolLive(s) && dark(s) && foreignAttachments(s, u, W.afraid) > 0;
 const poolWillpowerOverride = (s: GameState, u: Unit) =>
   poolCharacterBlanked(s, u) ? 0 : undefined;
-/** Accursed Forest: 'when revealed' effects cannot be canceled. */
-const poolCannotCancel = (s: GameState, shadow = false) =>
-  !shadow && s.staging.some((u) => foreignUnit(s, u, W.accursed));
+/**
+ * Accursed Forest: 'when revealed' effects cannot be canceled. Mountain Pass:
+ * the 'when revealed' effects of Weather treachery cards cannot be canceled.
+ */
+const poolCannotCancel = (s: GameState, shadow = false, code?: string) =>
+  !shadow &&
+  (s.staging.some((u) => foreignUnit(s, u, W.accursed)) ||
+    (!!code &&
+      card(code).type_code === "treachery" &&
+      trait(code, "Weather") &&
+      s.staging.some((u) => foreignUnit(s, u, H.pass))));
+/** Dwarven Door: progress cannot be placed on it while it is in the staging area. */
+const poolLocationProgressBlocked = (s: GameState, u: Unit) =>
+  foreignUnit(s, u, H.door) && s.staging.some((l) => l.id === u.id);
+/** Heavy Snow: until the end of the round, characters cannot be readied by player card effects. */
+const poolCannotPlayerReady = (s: GameState) =>
+  eredPoolLive(s) && s.eredPool?.playerReadyBlockedRound === s.round;
 const poolCannotOptionallyEngage = (s: GameState, u: Unit) =>
   foreignUnit(s, u, W.stray);
 const poolImmune = (s: GameState, u: Unit) =>
   foreignAttachments(s, u, W.frenzied) > 0;
 function poolCannotAttach(s: GameState, u: Unit, code?: string) {
   if (!foreignUnit(s, u, u.code)) return false;
-  if (u.code === W.troop || u.code === W.troll)
+  if (u.code === W.troop || u.code === W.troll || u.code === H.troll)
     return (
       !code ||
       ["hero", "ally", "attachment", "event", "player-side-quest"].includes(
@@ -477,6 +520,14 @@ function poolDamageDealt(
   if (!enemy) return;
   // Giant Spider: the damaged character cannot ready until the end of the round.
   if (foreignUnit(s, enemy, W.giantSpider)) noReady(s, u.id);
+  // Snow-troll: after it attacks and destroys a character, return it to the
+  // staging area.
+  if (
+    foreignUnit(s, enemy, H.troll) &&
+    u.damage >= stats(s, u).health &&
+    s.combat?.enemyId === enemy.id
+  )
+    s.combat.returnToStaging = true;
   // Stone-troll: discard 1 card for each excess point of damage.
   if (foreignUnit(s, enemy, W.troll) && u.damage > stats(s, u).health)
     prepend(
@@ -590,6 +641,15 @@ function poolTravelProblem(s: GameState, u: Unit): string | null {
   if (!eredPoolLive(s)) return null;
   if (foreignUnit(s, u, W.twilight) && u.resources === 0)
     return "Twilight Hall needs at least 1 resource before the players can travel there.";
+  // High Falls' Travel cost: assign X damage among characters in play.
+  if (
+    foreignUnit(s, u, H.falls) &&
+    allCharacters(s).reduce(
+      (sum, c) => sum + Math.max(0, stats(s, c).health - c.damage),
+      0,
+    ) < stagedLocations(s)
+  )
+    return "High Falls requires assigning damage equal to the number of staging locations.";
   if (!s.activeLocation) {
     const chasm = s.staging.find((l) => foreignUnit(s, l, W.chasm));
     if (chasm && u.id !== chasm.id && !foreignUnit(s, u, W.chasm))
@@ -614,6 +674,18 @@ function poolTravelEffects(s: GameState, u: Unit): Effect[] | undefined {
     );
   if (u.code === W.mine)
     return playerOrder(s).map((player) => fx("eredPoolMineCost", { player }));
+  if (u.code === H.entrance)
+    return playerOrder(s).map((player) => fx("threat", { player, value: 1 }));
+  if (u.code === H.falls)
+    return [
+      fx("eredPoolAssignDamage", {
+        player: firstPlayer(s),
+        flag: true,
+        value: stagedLocations(s),
+      }),
+    ];
+  if (u.code === H.creatureDen)
+    return [fx("eredPoolCreatureDen", { player: firstPlayer(s) })];
 }
 /** After the players travel to a foreign location, or it becomes the active location. */
 function poolTravelEntered(s: GameState, u: Unit, actual = true) {
@@ -643,7 +715,13 @@ function poolTravelEntered(s: GameState, u: Unit, actual = true) {
     effects.push(
       fx("eredPoolContested", { target: u.id, player: firstPlayer(s) }),
     );
-  if (actual && [W.chasm, W.tunnel, W.fork].includes(u.code)) {
+  // Creature Den's Response searches the Caves deck for a Dragon Sign.
+  if (actual && u.code === H.creatureDen)
+    log(s, "Creature Den · There is no Dragon Sign in this scenario's decks.");
+  if (
+    actual &&
+    [W.chasm, W.tunnel, W.fork, H.door, H.entrance, H.falls].includes(u.code)
+  ) {
     const keyword = deep(s, u);
     // Forked Passage: "When you travel to Forked Passage (before resolving the
     // deep keyword) …" – its Response needs a Caves deck to look at.
@@ -770,6 +848,8 @@ const TREACHERIES = [
   W.darkPlaces,
   W.breath,
   W.scales,
+  H.snow,
+  H.cold,
 ];
 function poolEncounter(
   s: GameState,
@@ -847,7 +927,24 @@ function poolShadow(s: GameState, code: string) {
     if (dark(s))
       pool(s).noDamage.push({ id: c.enemyId, round: s.round, phase: s.phase });
   } else if (code === W.darkPlaces) c.attackBonus++;
-  else if (code === W.eyes) {
+  // Heavy Snow: exhaust a character you control.
+  else if (code === H.snow) prepend(s, fx("eredPoolExhaust", { player }));
+  // Deadly Cold: +1 [attack] (+2 instead if the defending character is damaged).
+  else if (code === H.cold)
+    c.attackBonus += defenders.some((id) => (get(s, id)?.damage ?? 0) > 0)
+      ? 2
+      : 1;
+  // Snow-troll: attacking enemy makes an additional attack against you.
+  else if (code === H.troll) c.extraAttacks = (c.extraAttacks ?? 0) + 1;
+  // Dragon Hatchling: until the end of the phase, +1 [attack] and +1
+  // [defense] for each Dragon Sign in the victory display.
+  else if (code === H.hatchling) {
+    const n = witheredHeathSigns(s);
+    if (enemy && n) {
+      enemy.tempAttack = (enemy.tempAttack ?? 0) + n;
+      enemy.tempDefense = (enemy.tempDefense ?? 0) + n;
+    }
+  } else if (code === W.eyes) {
     if (!defenders.length) prepend(s, fx("eredPoolDiscardAlly", { player }));
   } else return false;
   return true;
@@ -995,6 +1092,24 @@ function treachery(s: GameState, code: string) {
       const found = discardUntil(s, (c) => card(c).type_code === "location");
       if (found) add(s, found);
     }
+  } else if (code === H.snow) {
+    // "Exhaust a character. Until the end of the round, characters cannot be
+    // readied by player card effects."
+    consume(s, code);
+    q.playerReadyBlockedRound = s.round;
+    prepend(s, fx("eredPoolExhaust", { player: firstPlayer(s), flag: true }));
+  } else if (code === H.cold) {
+    // "For each ready character a player controls, he must choose: either
+    // exhaust that character, or deal 1 damage to it."
+    consume(s, code);
+    prepend(
+      s,
+      ...playerOrder(s).flatMap((player) =>
+        own(s, player)
+          .filter((u) => !u.exhausted)
+          .map((u) => fx("eredPoolColdCharacter", { target: u.id, player })),
+      ),
+    );
   } else if (code === W.breath || code === W.scales) {
     const targets = enemies(s).filter(
       (u) => trait(u, "Dragon") && !u.attachments.some((a) => a.code === code),
@@ -1046,23 +1161,76 @@ export function eredPoolEffect(s: GameState, e: Effect) {
     case "eredPoolAssignDamage": {
       const remaining = e.value ?? 0;
       if (remaining <= 0) break;
-      const targets = own(s, player).filter(
+      // (flag: among all characters in play, as High Falls' Travel cost.)
+      const targets = (e.flag ? allCharacters(s) : own(s, player)).filter(
         (c) => c.damage < stats(s, c).health,
       );
       if (targets.length)
         choose(
           s,
-          `Assign ${remaining} damage among your characters`,
+          `Assign ${remaining} damage ${e.flag ? "among characters in play" : "among your characters"}`,
           targets.map((c) => ({
             id: c.id,
             code: c.code,
             label: `Deal 1 damage to ${name(c)}`,
             effects: [
-              fx("damage", { target: c.id, value: 1, player }),
-              fx("eredPoolAssignDamage", { player, value: remaining - 1 }),
+              fx("damage", { target: c.id, value: 1, player: ownerOf(s, c) }),
+              fx("eredPoolAssignDamage", {
+                player,
+                flag: e.flag,
+                value: remaining - 1,
+              }),
             ],
           })),
         );
+      break;
+    }
+    case "eredPoolExhaust": {
+      // Heavy Snow (flag: any character, as its When Revealed effect).
+      const targets = (e.flag ? allCharacters(s) : own(s, player)).filter(
+        canExhaust,
+      );
+      if (targets.length)
+        choose(
+          s,
+          "Heavy Snow · Exhaust a character",
+          targets.map((c) => ({
+            id: c.id,
+            code: c.code,
+            label: name(c),
+            effects: [fx("exhaust", { target: c.id, player: ownerOf(s, c) })],
+          })),
+        );
+      break;
+    }
+    case "eredPoolColdCharacter":
+      if (u && !u.exhausted && own(s, player).some((c) => c.id === u.id))
+        choose(s, `Deadly Cold · ${name(u)}`, [
+          ...(canExhaust(u)
+            ? [
+                {
+                  id: "exhaust",
+                  label: `Exhaust ${name(u)}`,
+                  effects: [fx("exhaust", { target: u.id, player })],
+                },
+              ]
+            : []),
+          {
+            id: "damage",
+            label: `Deal 1 damage to ${name(u)}`,
+            effects: [fx("damage", { target: u.id, player, value: 1 })],
+          },
+        ]);
+      break;
+    case "eredPoolCreatureDen": {
+      // Creature Den's Travel cost: shuffle the encounter discard pile into
+      // the encounter deck, discard until an enemy, add it to the staging area.
+      shuffleDiscard(s);
+      const found = discardUntil(s, (c) => card(c).type_code === "enemy");
+      if (found) {
+        add(s, found);
+        log(s, `Creature Den adds ${card(found).name} to the staging area.`);
+      } else log(s, "Creature Den · No enemy was discarded.");
       break;
     }
     case "eredPoolSupplies": {
@@ -1600,6 +1768,8 @@ function poolHillsEffect(s: GameState, e: Effect) {
 /** Pool effects a player resolves in their own seat (the rest run in the first player's). */
 const PLAYER_EFFECTS = new Set([
   "eredPoolAssignDamage",
+  "eredPoolExhaust",
+  "eredPoolColdCharacter",
   "eredPoolDiscardHand",
   "eredPoolDiscardAlly",
   "eredPoolDiscardAttachment",
@@ -1614,7 +1784,9 @@ export const ERED_POOL_HOOKS: Batch4ScenarioHooks = {
   stagingThreat: poolStagingThreat,
   locationQuestBonus: poolLocationQuestBonus,
   locationProgressAmount: poolLocationProgressAmount,
+  locationProgressBlocked: poolLocationProgressBlocked,
   cannotReady: poolCannotReady,
+  cannotPlayerReady: poolCannotPlayerReady,
   characterBlanked: poolCharacterBlanked,
   willpowerOverride: poolWillpowerOverride,
   cannotCancel: poolCannotCancel,
@@ -1686,7 +1858,11 @@ export function composeEredPool(
           ? h.locationProgressAmount(s, u, amount)
           : amount,
       ),
+    locationProgressBlocked: (s, u) =>
+      !!h.locationProgressBlocked?.(s, u) || p.locationProgressBlocked!(s, u),
     cannotReady: (s, u) => !!h.cannotReady?.(s, u) || p.cannotReady!(s, u),
+    cannotPlayerReady: (s) =>
+      !!h.cannotPlayerReady?.(s) || p.cannotPlayerReady!(s),
     characterBlanked: (s, u) =>
       !!h.characterBlanked?.(s, u) || p.characterBlanked!(s, u),
     willpowerOverride: (s, u) =>
@@ -1855,7 +2031,9 @@ export function validEredPool(
       (m) => phase(m) && Number.isInteger(m.amount) && m.amount >= 0,
     ) &&
     q.usedResponses.every((c) => [W.armory, W.treasury].includes(c)) &&
-    new Set(q.usedResponses).size === q.usedResponses.length
+    new Set(q.usedResponses).size === q.usedResponses.length &&
+    (q.playerReadyBlockedRound === undefined ||
+      round(q.playerReadyBlockedRound))
   );
 }
 /** The pool's visible state: Lonely Lands' facedown events are counted. */

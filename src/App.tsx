@@ -6120,8 +6120,10 @@ function CampaignJournal({
             [...new Set(c.burdens)].map((code) => {
               const copies = DECK_BURDENS.includes(code)
                 ? (c.deckBurdens?.[code]?.length ?? 1)
-                : (c.burdenCopies?.[code] ??
-                  c.burdens.filter((x) => x === code).length);
+                : code === ERED.misplaced && c.kind === "ered"
+                  ? (c.misplaced?.length ?? 1)
+                  : (c.burdenCopies?.[code] ??
+                    c.burdens.filter((x) => x === code).length);
               return (
                 <button
                   key={code}

@@ -37,6 +37,7 @@ import {
   seatView,
 } from "./table";
 import {
+  discardAttachment,
   discardHandCard,
   engage,
   exhaustCharacter,
@@ -58,7 +59,9 @@ import {
   eredPart,
   eredState,
   growingThreatTarget,
+  isEredCampaign,
 } from "./ered-campaign";
+import { ROAM_RHOVANION as R } from "./roam-rhovanion-support";
 
 const several = (s: GameState) => (s.table?.seats.length ?? 1) > 1;
 const seatLabel = (s: GameState, p: number) =>
@@ -106,6 +109,7 @@ export function eredCampaignEncounter(
   fromReveal = true,
 ) {
   if (code === ERED.spawn) return spawnRevealed(s, fromReveal);
+  if (code === ERED.cunning) return cunningRevealed(s, replay, fromReveal);
   if (code !== ERED.growing) return false;
   if (replay) {
     const i = s.encounterDiscard.lastIndexOf(code);
@@ -133,6 +137,78 @@ export function eredCampaignEncounter(
   log(s, "A Growing Threat is removed from the game.");
   return true;
 }
+
+// ------------------------------------------------------------- Roam Across Rhovanion
+
+/**
+ * Urdug's Cunning: "Doomed 1. Surge. When Revealed: Discard the top 5 cards
+ * of the encounter deck. For each enemy discarded this way, each player must
+ * deal 1 damage to a character they control." (Doomed and Surge are printed
+ * keywords.)
+ */
+function cunningRevealed(s: GameState, replay: boolean, fromReveal: boolean) {
+  if (replay) {
+    const i = s.encounterDiscard.lastIndexOf(ERED.cunning);
+    if (i >= 0) s.encounterDiscard.splice(i, 1);
+  }
+  if (!fromReveal) {
+    s.encounterDiscard.push(ERED.cunning);
+    return true;
+  }
+  const top = s.encounterDeck.splice(0, 5);
+  s.encounterDiscard.push(...top, ERED.cunning);
+  const n = top.filter((code) => card(code).type_code === "enemy").length;
+  log(
+    s,
+    `Urdug's Cunning discards ${top.length ? top.map((code) => card(code).name).join(", ") : "no card"} from the encounter deck: ${n} ${n === 1 ? "enemy" : "enemies"}.`,
+    n ? "danger" : undefined,
+  );
+  if (n)
+    prepend(
+      s,
+      ...playerOrder(s).map((player) =>
+        fx("emcCunningDamage", { player, value: n }),
+      ),
+    );
+  return true;
+}
+/** Urdug's Cunning: "Shadow: Attacking enemy gets +2 [defense] this phase." */
+export function eredCampaignShadow(s: GameState, code: string) {
+  if (code !== ERED.cunning || !s.combat) return false;
+  const enemy = get(s, s.combat.enemyId);
+  if (enemy) enemy.tempDefense = (enemy.tempDefense ?? 0) + 2;
+  log(s, "Urdug's Cunning: the attacking enemy gets +2 [defense] this phase.");
+  return true;
+}
+/** Roam Across Rhovanion: "Urdug gets +1 [willpower], +1 [threat], +1 [attack], and +1 [defense] for each resource on him." */
+const urdugTrust = (s: GameState, u: Unit) =>
+  (u.code === R.urdug || u.code === R.urdugEnemy) &&
+  eredChapter(s) &&
+  s.scenarioId === "roam-across-rhovanion"
+    ? u.resources
+    : 0;
+/**
+ * Misplaced Trust: "Forced: After you draw this card, attach it to a hero
+ * you control."
+ */
+export function eredCampaignCardsDrawn(s: GameState, count: number) {
+  if (!eredChapter(s) || count <= 0) return;
+  const drawn = s.hand.slice(-count).filter((u) => u.code === ERED.misplaced);
+  if (drawn.length)
+    prepend(
+      s,
+      ...drawn.map((u) =>
+        fx("emcMisplacedTrust", { source: u.id, player: activeSeat(s) }),
+      ),
+    );
+}
+/** Misplaced Trust (Condition): "Attached character cannot have player card attachments …" */
+const misplacedHost = (u: Unit) =>
+  u.attachments.some((a) => a.code === ERED.misplaced && !a.blanked);
+/** A player card attachment (boons and treasures included). */
+const playerAttachment = (code: string) =>
+  card(code).type_code === "attachment" &&
+  !["encounter", "burden"].includes(card(code).sphere_code ?? "");
 
 // ------------------------------------------------------------- Turayn
 
@@ -194,6 +270,10 @@ export function eredCampaignStats(s: GameState, u: Unit) {
   const r = { will: 0, attack: 0, defense: 0, health: 0 };
   if (u.code === ERED.isolde && !u.blanked && hasItem(u)) r.will += 2;
   if (u.code === ERED.spawn && !u.blanked) r.defense += spawnX(s);
+  const trust = urdugTrust(s, u);
+  r.will += trust;
+  r.attack += trust;
+  r.defense += trust;
   // Rhyme of the Slayer: "That enemy gets –4 [attack] until the end of the phase."
   if (
     s.eredCampaign?.rhyme?.some(
@@ -220,12 +300,16 @@ export function eredCampaignPlayerAttackBonus(
 }
 /** Dagnir's Spawn's X threat. */
 export const eredCampaignThreatBonus = (s: GameState, u: Unit) =>
-  u.code === ERED.spawn && !u.blanked ? spawnX(s) : 0;
-/** Dagnir's Spawn: "Cannot have non-Dragon attachments." */
+  (u.code === ERED.spawn && !u.blanked ? spawnX(s) : 0) + urdugTrust(s, u);
+/**
+ * Dagnir's Spawn: "Cannot have non-Dragon attachments." Misplaced Trust:
+ * "Attached character cannot have player card attachments."
+ */
 export const eredCampaignCannotAttach = (target: Unit, code: string) =>
-  target.code === ERED.spawn &&
-  !target.blanked &&
-  !traitsOf(code).includes("Dragon");
+  (target.code === ERED.spawn &&
+    !target.blanked &&
+    !traitsOf(code).includes("Dragon")) ||
+  (misplacedHost(target) && playerAttachment(code));
 /**
  * Isolde: "Response: After you engage an enemy, ready Isolde." (It only
  * helps, so it is always used.)
@@ -265,7 +349,11 @@ const encounterCardsInPlay = (s: GameState) =>
  */
 export function eredCampaignImmune(s: GameState, u: Unit) {
   const q = s.eredCampaign?.immune;
-  return !!q && q.round === s.round && q.ids.includes(u.id);
+  // Misplaced Trust: "Attached character … is immune to player card effects."
+  return (
+    (!!q && q.round === s.round && q.ids.includes(u.id)) ||
+    (isEredCampaign(s.campaign) && misplacedHost(u))
+  );
 }
 /** The quest phase's immunity ends with the phase. */
 function clearImmunity(s: GameState) {
@@ -813,6 +901,85 @@ export function eredCampaignEffect(s: GameState, e: Effect): boolean {
   const p = e.player ?? firstPlayer(s);
   const q = eredState(s);
   switch (e.kind) {
+    case "emcCunningDamage": {
+      // Urdug's Cunning: "each player must deal 1 damage to a character they
+      // control" for each enemy discarded.
+      const left = e.value ?? 0;
+      const own = allCharacters(s).filter((u) => ownerOf(s, u) === p);
+      if (left <= 0 || !own.length) return true;
+      choose(
+        s,
+        `Urdug's Cunning · Deal 1 damage to a character you control (${left} left)${several(s) ? ` · ${seatName(s, p)}` : ""}`,
+        own.map((u) => ({
+          id: u.id,
+          code: u.code,
+          label: `Deal 1 damage to ${name(u)}`,
+          effects: [
+            fx("damage", { target: u.id, value: 1, player: p }),
+            fx("emcCunningDamage", { player: p, value: left - 1 }),
+          ],
+        })),
+      );
+      return true;
+    }
+    case "emcMisplacedTrust": {
+      // "Forced: After you draw this card, attach it to a hero you control."
+      const u = seatView(s, p).hand.find((x) => x.id === e.source);
+      if (!u) return true;
+      const heroes = seatView(s, p).heroes;
+      if (!heroes.length) {
+        forOwner(s, p, () => {
+          s.hand = s.hand.filter((x) => x.id !== u.id);
+          s.discard.push(u.code);
+        });
+        log(s, "Misplaced Trust has no hero to attach to and is discarded.");
+        return true;
+      }
+      choose(
+        s,
+        `Misplaced Trust · Attach it to a hero you control${several(s) ? ` · ${seatName(s, p)}` : ""}`,
+        heroes.map((h) => ({
+          id: h.id,
+          code: h.code,
+          label: name(h),
+          effects: [
+            fx("emcMisplacedAttach", { source: u.id, target: h.id, player: p }),
+          ],
+        })),
+        card(ERED.misplaced).text,
+      );
+      return true;
+    }
+    case "emcMisplacedAttach": {
+      const h = get(s, e.target);
+      const u = seatView(s, p).hand.find((x) => x.id === e.source);
+      if (!h || !u) return true;
+      forOwner(s, p, () => {
+        s.hand = s.hand.filter((x) => x.id !== u.id);
+      });
+      h.attachments.push({
+        id: u.id,
+        code: u.code,
+        exhausted: false,
+        owner: p,
+      });
+      log(
+        s,
+        `Misplaced Trust is attached to ${name(h)}: it cannot have player card attachments and is immune to player card effects.`,
+        "danger",
+      );
+      // Its player card attachments are discarded (a Permanent card stays
+      // with its hero).
+      for (const a of h.attachments.filter(
+        (a) =>
+          a.id !== u.id &&
+          playerAttachment(a.code) &&
+          !card(a.code).text?.includes("Permanent"),
+      ))
+        discardAttachment(s, h, a);
+      syncAttachmentText(s);
+      return true;
+    }
     case "emcTurayn": {
       const turayn = get(s, e.source);
       if (!turayn) return true;

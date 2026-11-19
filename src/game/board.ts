@@ -4415,6 +4415,8 @@ export function attachmentChoice(s: GameState, defenderOnly = false) {
 }
 
 export function shadow(s: GameState, code: string) {
+  // The Ered Mithrin campaign's Urdug's Cunning.
+  if (EredCards.eredCampaignShadow(s, code)) return;
   if (
     Drowned.drownedShadow(s, code) ||
     DrownedCompanions.drownedCompanionShadow(s, code)
