@@ -51,6 +51,7 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
     ...(s.raceHarad?.area ?? []),
     ...allActiveLocations(s),
     ...(s.prisoner ? [s.prisoner] : []),
+    ...(s.nightmare?.prisoners ?? []),
     ...(s.captiveMendor ? [s.captiveMendor] : []),
     ...(s.mordor?.captured ?? []),
     ...(s.wrathRuin?.controlled ?? []),

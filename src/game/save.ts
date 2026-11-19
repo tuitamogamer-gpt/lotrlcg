@@ -1147,7 +1147,7 @@ export function validateSave(
         !validateCrossingsPoros(s, validUnit as (value: unknown) => boolean) ||
         !validateWildsRhovanion(s, validUnit as (value: unknown) => boolean) ||
         !validEredPool(s, validUnit as (value: unknown) => boolean) ||
-        !validNightmareCore(s) ||
+        !validNightmareCore(s, validUnit as (value: unknown) => boolean) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,
@@ -1811,6 +1811,7 @@ export function validateSave(
       ...globalUnits(s),
       ...seatIndices(s).flatMap((i) => seatView(s, i).hand),
       ...(s.prisoner ? [s.prisoner] : []),
+      ...(s.nightmare?.prisoners ?? []),
       ...(s.captiveMendor ? [s.captiveMendor] : []),
       ...(s.resolvingEvents
         ?.filter((event) => event.destination !== "spent")

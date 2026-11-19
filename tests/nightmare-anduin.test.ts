@@ -97,7 +97,10 @@ test("Nightmare: Journey Along the Anduin's setup card and Nightmare Deck carry 
     ),
     19,
   );
-  assert.equal(art.length, 20);
+  assert.equal(
+    art.filter((a) => set.some((x) => x.code === a.code)).length,
+    10,
+  );
   for (const x of set)
     assert.ok(
       art.some((a) => a.code === x.code && a.face === "front"),

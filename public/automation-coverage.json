@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2304,
+    "encounterCards": 2313,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3526,
-    "pending": 657
+    "scripted": 3535,
+    "pending": 648
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 272
+    "scripted": 273
   },
   "registeredCodes": [
     "01001",
@@ -3471,19 +3471,28 @@
     "octgn:e83f33da-6723-4730-8691-8d1a48b1f8e0",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5001",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5003",
+    "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5005",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5006",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5007",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5008",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5009",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5010",
+    "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5011",
+    "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5012",
+    "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5013",
+    "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5014",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5015",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5016",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5017",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5018",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5019",
+    "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5020",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5021",
+    "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5022",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5023",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5024",
+    "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5025",
+    "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5026",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5027",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5028",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5029",
@@ -3854,7 +3863,7 @@
     {
       "product": "core-nightmare",
       "total": 27,
-      "scripted": 18,
+      "scripted": 27,
       "player": 0,
       "playerScripted": 0
     },
@@ -35713,7 +35722,7 @@
       "name": "Escape from Dol Guldur",
       "type": "nightmare",
       "pack": "Core Set - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "core-nightmare"
     },
     {
@@ -35761,7 +35770,7 @@
       "name": "Catacomb Inspection",
       "type": "treachery",
       "pack": "Core Set - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "core-nightmare"
     },
     {
@@ -35769,7 +35778,7 @@
       "name": "Crazed Captive",
       "type": "enemy",
       "pack": "Core Set - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "core-nightmare"
     },
     {
@@ -35777,7 +35786,7 @@
       "name": "Dark Interrogation",
       "type": "treachery",
       "pack": "Core Set - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "core-nightmare"
     },
     {
@@ -35785,7 +35794,7 @@
       "name": "Dungeon Labyrinth",
       "type": "location",
       "pack": "Core Set - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "core-nightmare"
     },
     {
@@ -35833,7 +35842,7 @@
       "name": "Sentinel of Shadow",
       "type": "treachery",
       "pack": "Core Set - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "core-nightmare"
     },
     {
@@ -35849,7 +35858,7 @@
       "name": "Spider of Dol Guldur",
       "type": "enemy",
       "pack": "Core Set - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "core-nightmare"
     },
     {
@@ -35873,7 +35882,7 @@
       "name": "Torture Chamber",
       "type": "location",
       "pack": "Core Set - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "core-nightmare"
     },
     {
@@ -35881,7 +35890,7 @@
       "name": "Torture Master",
       "type": "enemy",
       "pack": "Core Set - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "core-nightmare"
     },
     {
@@ -39073,8 +39082,8 @@
       "id": "N01.3",
       "name": "Escape from Dol Guldur (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "dol-guldur",
+      "state": "scripted"
     },
     {
       "id": "N01.4",

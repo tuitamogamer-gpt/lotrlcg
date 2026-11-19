@@ -2815,6 +2815,18 @@ export function composeEredPool(
     cannotDefend: (s, enemy, defender) =>
       !!h.cannotDefend?.(s, enemy, defender) ||
       !!p.cannotDefend?.(s, enemy, defender),
+    roundEnd: (s) => [...(h.roundEnd?.(s) ?? []), ...(p.roundEnd?.(s) ?? [])],
+    combatEnd: (s) => {
+      h.combatEnd?.(s);
+      p.combatEnd?.(s);
+    },
+    failedQuest: (s, amount) => {
+      const handled = !!h.failedQuest?.(s, amount);
+      return !!p.failedQuest?.(s, amount) || handled;
+    },
+    missingHeroAllowed: (s, player) =>
+      !!h.missingHeroAllowed?.(s, player) ||
+      !!p.missingHeroAllowed?.(s, player),
   };
 }
 

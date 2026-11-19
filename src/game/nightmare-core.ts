@@ -15,15 +15,18 @@ import {
   log,
   make,
   prepend,
+  random,
   removeShadowCard,
   shuffle,
   stats,
   threatOf,
 } from "./core";
 import {
+  depositInFlightEncounterCards,
   destroy,
   discardAttachment,
   discardCharacter,
+  discardHandCard,
   enemyAddedToStaging,
   engage,
   exhaustCharacter,
@@ -48,6 +51,8 @@ import {
   nightmareRefillsEncounterDeck,
 } from "./nightmare";
 import { surgeEffects } from "./surge";
+import { OBJECTIVES } from "./scenarios";
+import { threatElimination } from "./threat-elimination";
 import { encodeDamageContext, type DamageContext } from "./damage-context";
 
 type Combat = NonNullable<GameState["combat"]>;
@@ -72,6 +77,14 @@ export interface NightmareCoreState {
     started?: boolean;
     bonus?: number;
   }[];
+  /** Escape from Dol Guldur: heroes captured with the scenario's prisoner (each a "prisoner"). */
+  prisoners?: Unit[];
+  /** Sentinel of Shadow: copies revealed this quest phase. */
+  sentinel?: { round: number; count: number };
+  /** Crazed Captive's shadow: the attacker and defending player, until the end of the phase. */
+  captive?: { enemyId: string; player: number; defeated?: boolean }[];
+  /** Torture Master's shadow: the heroes this attack damaged. */
+  master?: { enemyId: string; heroIds: string[] }[];
 }
 const state = (s: GameState) => (s.nightmare ??= {});
 const several = (s: GameState) => (s.table?.seats.length ?? 1) > 1;
@@ -190,6 +203,10 @@ function nmCardEntered(
   // discarded if its [willpower] is 0."
   if (fromReveal && live(s, u, N.spawn))
     prepend(s, fx("nmSpawn", { player: firstPlayer(s) }));
+  // Torture Master: "When Revealed: Add 1 resource token to each Dol Guldur
+  // location in play."
+  if (fromReveal && live(s, u, N.master))
+    prepend(s, fx("nmMasterTokens", { player: firstPlayer(s) }));
 }
 /** The Spider's Web (Condition): "Each time attached hero readies, deal it 1 damage." */
 function nmCharacterReadied(s: GameState, u: Unit) {
@@ -359,6 +376,7 @@ function staleAttackRecords(s: GameState) {
   if (!q || s.combat) return;
   delete q.smoking;
   delete q.attackThreat;
+  delete q.master;
   if (!q.sweep) return;
   const queued = new Set(
     s.queue
@@ -376,6 +394,7 @@ function nmCheck(s: GameState) {
   staleAttackRecords(s);
   anduinRefill(s);
   ratsCheck(s);
+  dolGuldurCheck(s);
 }
 /** Gladden Marshlands' Action, which any player may trigger. */
 const nmAbilityLabel = (code: string) =>
@@ -516,6 +535,209 @@ function nmAttackFinished(s: GameState, c: Combat): Effect[] {
   return out;
 }
 
+// ------------------------------------------------------------- Escape from Dol Guldur
+
+const dolGuldurLive = (s: GameState) =>
+  nightmareLive(s) && s.scenarioId === "dol-guldur";
+const NAZGUL = "01102";
+/** Locations with the printed Dol Guldur trait in play. */
+const dolGuldurLocations = (s: GameState) =>
+  [...s.staging, ...allActiveLocations(s)].filter(
+    (u) =>
+      card(u.code).type_code === "location" && traitOf(u.code, "Dol Guldur"),
+  );
+function dolGuldurTokens(s: GameState, source: string) {
+  const places = dolGuldurLocations(s);
+  for (const l of places) l.resources += 1;
+  log(
+    s,
+    `${source}: ${places.length ? `${places.map((l) => name(l)).join(", ")} ${places.length === 1 ? "gets" : "each get"} 1 resource token` : "there is no Dol Guldur location in play"}.`,
+    places.length ? "danger" : "normal",
+  );
+}
+const unclaimedObjectives = (s: GameState) =>
+  s.staging.filter((u) => OBJECTIVES.includes(u.code)).length;
+/** The heroes held with the scenario's prisoner (Escape from Dol Guldur, Nightmare). */
+export const nightmarePrisoners = (s: GameState): Unit[] =>
+  s.nightmare?.prisoners ?? [];
+/** A hero turned face down as "the prisoner" (the scenario's own first). */
+function capture(s: GameState, hero: Unit) {
+  const p = ownerOf(s, hero);
+  hero.owner = p;
+  forOwner(s, p, () => {
+    s.heroes = s.heroes.filter((h) => h.id !== hero.id);
+  });
+  if (!s.prisoner) s.prisoner = hero;
+  else (state(s).prisoners ??= []).push(hero);
+  log(s, `${name(hero)} is turned face down as a prisoner.`, "danger");
+}
+/**
+ * The setup card: "When stage 1B is revealed, the number of random heroes
+ * captured is determined by the number of players, as follows: 1-2 players =
+ * 1 hero captured, 3 players = 2 heroes captured, 4 players = 3 heroes
+ * captured. ... (A single player cannot have more than 1 hero captured by this
+ * effect.)" (Called after the scenario's own capture.)
+ */
+export function nightmareCapturePrisoners(s: GameState) {
+  if (!dolGuldurLive(s) || !s.prisoner) return;
+  const seats = s.table?.seats.length ?? 1;
+  const more = (seats >= 4 ? 3 : seats === 3 ? 2 : 1) - 1;
+  const taken = new Set([s.prisoner.owner ?? 0]);
+  for (let i = 0; i < more; i++) {
+    const pool = playerOrder(s)
+      .filter((p) => !taken.has(p))
+      .flatMap((p) => seatView(s, p).heroes);
+    if (!pool.length) return;
+    const hero = pool[Math.floor(random(s) * pool.length)];
+    taken.add(ownerOf(s, hero));
+    capture(s, hero);
+  }
+}
+/** The heroes held with the scenario's prisoner leave with it when it is rescued. */
+export function nightmareTakePrisoners(s: GameState) {
+  const held = s.nightmare?.prisoners ?? [];
+  if (s.nightmare) delete s.nightmare.prisoners;
+  return held;
+}
+/** A hero held with the scenario's prisoner (it is not lost). */
+export const nightmareHeld = (s: GameState, code: string) =>
+  nightmarePrisoners(s).some((h) => h.code === code);
+/** A seat whose hero is held has not lost its last hero. */
+const nmMissingHeroAllowed = (s: GameState, player: number) =>
+  nightmarePrisoners(s).some((h) => (h.owner ?? 0) === player);
+function lose(s: GameState, reason: string) {
+  if (s.status !== "playing") return;
+  s.status = "lost";
+  s.reason = reason;
+  depositInFlightEncounterCards(s);
+  s.choice = null;
+  s.queue = [];
+  log(s, reason, "danger");
+}
+function dolGuldurCheck(s: GameState) {
+  if (!dolGuldurLive(s) || s.status !== "playing") return;
+  // Torture Chamber: "If Torture Chamber has 4 or more resource tokens on
+  // it, all "prisoners" were killed, and the players have lost the game."
+  if (
+    [...s.staging, ...allActiveLocations(s)].some(
+      (u) => live(s, u, N.chamber) && u.resources >= 4,
+    )
+  )
+    return lose(
+      s,
+      "Torture Chamber has 4 resource tokens: all the prisoners were killed, and the players have lost the game.",
+    );
+  // (As the scenario's prisoner: an eliminated fellowship cannot rescue it.)
+  for (const h of nightmarePrisoners(s)) {
+    const p = seatView(s, h.owner ?? 0);
+    if (
+      p.threat >= threatElimination(p) ||
+      (!p.heroes.length &&
+        p.startingHeroes.some(
+          (c) => c !== s.prisoner?.code && !nightmareHeld(s, c),
+        ))
+    )
+      return lose(
+        s,
+        "The prisoner's fellowship has been eliminated. The prisoner cannot be rescued.",
+      );
+  }
+}
+/** Dungeon Labyrinth: "+1 [threat] and +1 quest point for each resource token on it." */
+const labyrinthTokens = (s: GameState, u: Unit) =>
+  live(s, u, N.labyrinth) ? u.resources : 0;
+/** Sentinel of Shadow: "+X [threat] until the end of the phase, where X is twice the number of players." */
+function nmStagingThreat(s: GameState) {
+  const m = s.nightmare?.sentinel;
+  return m && m.round === s.round && ["quest", "staging"].includes(s.phase)
+    ? 2 * playerOrder(s).length * m.count
+    : 0;
+}
+/**
+ * Sentinel of Shadow: "If the players quest unsuccessfully this phase, put
+ * the Nazgul of Dol Guldur into play (from any out of play area), engaged with
+ * the first player."
+ */
+function nmFailedQuest(s: GameState) {
+  const m = s.nightmare?.sentinel;
+  if (dolGuldurLive(s) && m?.round === s.round)
+    prepend(s, fx("nmSentinelNazgul", { player: firstPlayer(s) }));
+  return false;
+}
+/**
+ * Torture Chamber: "Forced: At the end of each round, place 1 resource token
+ * on each Dol Guldur location in play." Dungeon Labyrinth: "Forced: At the end
+ * of each round, place 1 resource token on Dungeon Labyrinth for each player
+ * in the game." (A Crazed Captive's shadow still pending ends with the round.)
+ */
+function nmRoundEnd(s: GameState): Effect[] {
+  if (!dolGuldurLive(s)) return [];
+  const out: Effect[] = [];
+  const places = [...s.staging, ...allActiveLocations(s)];
+  for (const u of places)
+    if (live(s, u, N.chamber))
+      out.push(fx("nmChamberTokens", { target: u.id }));
+  for (const u of places)
+    if (live(s, u, N.labyrinth))
+      out.push(fx("nmLabyrinthTokens", { target: u.id }));
+  out.push(...captiveThreat(s));
+  return out;
+}
+/** Crazed Captive's shadow: "If attacking enemy is not defeated this phase, raise defending player's threat by 7 at the end of the phase." */
+function captiveThreat(s: GameState): Effect[] {
+  const q = s.nightmare;
+  const pending = q?.captive ?? [];
+  if (q) delete q.captive;
+  return pending
+    .filter((m) => !m.defeated)
+    .map((m) => fx("nmThreat", { player: m.player, value: 7 }));
+}
+/** Crazed Captive: "Forced: If Crazed Captive is defeated, raise each player's threat by 7." */
+function nmEnemyDestination(s: GameState, u: Unit, destruction?: boolean) {
+  if (!dolGuldurLive(s) || !destruction) return false;
+  for (const m of s.nightmare?.captive ?? [])
+    if (m.enemyId === u.id) m.defeated = true;
+  if (u.code === N.captive && !u.blanked) {
+    log(
+      s,
+      "Crazed Captive is defeated: each player raises their threat by 7.",
+      "danger",
+    );
+    prepend(
+      s,
+      ...playerOrder(s).map((player) => fx("nmThreat", { player, value: 7 })),
+    );
+  }
+  return false;
+}
+/** Spider of Dol Guldur: "If there are any unclaimed objectives in play, Spider of Dol Guldur gains surge." */
+const spiderSurge = (s: GameState, code: string) =>
+  code === N.spider && dolGuldurLive(s) && unclaimedObjectives(s) > 0;
+/** Torture Master's shadow: the heroes this attack damaged. */
+function masterDamage(s: GameState, u: Unit, context: DamageContext) {
+  if (!context.combatDamage || card(u.code).type_code !== "hero") return;
+  for (const m of s.nightmare?.master ?? [])
+    if (m.enemyId === context.enemyId && !m.heroIds.includes(u.id))
+      m.heroIds.push(u.id);
+}
+/**
+ * Torture Master's shadow: "Any hero damaged (but not defeated) by this
+ * attack is turned face down, as a "prisoner." Then, if the players are on
+ * stage 3, return to stage 2B of the quest."
+ */
+function masterFinished(s: GameState, c: Combat): Effect[] {
+  const q = s.nightmare;
+  const pending = (q?.master ?? []).filter((m) => m.enemyId === c.enemyId);
+  if (!q || !pending.length) return [];
+  q.master = (q.master ?? []).filter((m) => m.enemyId !== c.enemyId);
+  if (!q.master.length) delete q.master;
+  return [
+    fx("nmMasterCapture", {
+      ids: [...new Set(pending.flatMap((m) => m.heroIds))],
+    }),
+  ];
+}
+
 // ------------------------------------------------------------- treacheries
 
 const TREACHERIES: string[] = [
@@ -524,6 +746,9 @@ const TREACHERIES: string[] = [
   N.pursuit,
   N.smoking,
   N.trollAttack,
+  N.catacomb,
+  N.interrogation,
+  N.sentinel,
 ];
 /** Each treachery's When Revealed effect, after it goes to the discard pile. */
 const DISCARDED_FIRST: Record<string, string> = {
@@ -531,6 +756,9 @@ const DISCARDED_FIRST: Record<string, string> = {
   [N.pursuit]: "nmPursuit",
   [N.smoking]: "nmSmoking",
   [N.trollAttack]: "nmTrollAttack",
+  [N.catacomb]: "nmCatacomb",
+  [N.interrogation]: "nmInterrogation",
+  [N.sentinel]: "nmSentinel",
 };
 function nmEncounter(
   s: GameState,
@@ -597,7 +825,83 @@ function nmShadow(s: GameState, code: string) {
   else if (code === N.spawn)
     prepend(s, fx("nmThreat", { player: p, value: undefended(s) ? 10 : 5 }));
   else if (anduinShadow(s, code, p, enemy)) return true;
+  else if (dolGuldurShadow(s, code, p, enemy)) return true;
   else return false;
+  return true;
+}
+/** Escape from Dol Guldur's Nightmare shadows. */
+function dolGuldurShadow(
+  s: GameState,
+  code: string,
+  p: number,
+  enemy: Unit | undefined,
+) {
+  const q = state(s);
+  // Catacomb Inspection: "If there is a Dol Guldur location in the staging
+  // area, move 1 resource token from each of your heroes' resource pools to
+  // that location. (Resolve this effect for each Dol Guldur location.)"
+  if (code === N.catacomb) {
+    const places = dolGuldurLocations(s).filter((l) =>
+      s.staging.some((x) => x.id === l.id),
+    );
+    let moved = 0;
+    for (const l of places)
+      for (const h of seatView(s, p).heroes)
+        if (h.resources > 0) {
+          h.resources--;
+          l.resources++;
+          moved++;
+        }
+    log(
+      s,
+      places.length
+        ? `Catacomb Inspection moves ${moved} resource ${moved === 1 ? "token" : "tokens"} from the defending player's heroes to the Dol Guldur locations in the staging area.`
+        : "Catacomb Inspection · There is no Dol Guldur location in the staging area.",
+      moved ? "danger" : "normal",
+    );
+  }
+  // Crazed Captive: "If attacking enemy is not defeated this phase, raise
+  // defending player's threat by 7 at the end of the phase."
+  else if (code === N.captive) {
+    if (enemy) (q.captive ??= []).push({ enemyId: enemy.id, player: p });
+    log(
+      s,
+      "Crazed Captive: if the attacking enemy is not defeated this phase, the defending player raises their threat by 7 at its end.",
+      "danger",
+    );
+  }
+  // Dark Interrogation: "Discard each card you control that has at least 1
+  // copy of itself in your discard pile. (If this attack is undefended, each
+  // player must resolve this effect.)"
+  else if (code === N.interrogation)
+    prepend(
+      s,
+      ...(undefended(s) ? playerOrder(s) : [p]).map((player) =>
+        fx("nmCopies", { player }),
+      ),
+    );
+  // Spider of Dol Guldur: "Attacking enemy gets +3 [attack] for each
+  // unclaimed objective in play."
+  else if (code === N.spider) {
+    const n = unclaimedObjectives(s);
+    if (s.combat) s.combat.attackBonus += 3 * n;
+    log(
+      s,
+      `Spider of Dol Guldur: ${n} unclaimed ${n === 1 ? "objective gives" : "objectives give"} the attacking enemy +${3 * n} [attack].`,
+      n ? "danger" : "normal",
+    );
+  }
+  // Torture Master: "Any hero damaged (but not defeated) by this attack is
+  // turned face down, as a "prisoner." Then, if the players are on stage 3,
+  // return to stage 2B of the quest."
+  else if (code === N.master) {
+    if (enemy) (q.master ??= []).push({ enemyId: enemy.id, heroIds: [] });
+    log(
+      s,
+      "Torture Master: a hero damaged but not defeated by this attack becomes a prisoner.",
+      "danger",
+    );
+  } else return false;
   return true;
 }
 /** Journey Along the Anduin's Nightmare shadows. */
@@ -1013,6 +1317,155 @@ export function nightmareCoreEffect(s: GameState, e: Effect): boolean {
       }
       return true;
     }
+    case "nmCatacomb":
+      // "Surge. When Revealed: Add 1 resource token to each Dol Guldur
+      // location in play." (Surge is a printed keyword.)
+      dolGuldurTokens(s, "Catacomb Inspection");
+      return true;
+    case "nmMasterTokens":
+      dolGuldurTokens(s, "Torture Master");
+      return true;
+    case "nmChamberTokens":
+      if (get(s, e.target)) dolGuldurTokens(s, "Torture Chamber");
+      return true;
+    case "nmLabyrinthTokens": {
+      const l = get(s, e.target);
+      if (!l) return true;
+      const n = playerOrder(s).length;
+      l.resources += n;
+      log(
+        s,
+        `Dungeon Labyrinth gets ${n} resource ${n === 1 ? "token" : "tokens"} (${l.resources} now: +${l.resources} [threat] and quest points).`,
+        "danger",
+      );
+      return true;
+    }
+    case "nmInterrogation":
+      // "Each player must choose and discard cards from hand until he has
+      // only 2 cards in hand. (Each player with 2 or fewer cards in hand must
+      // instead reveal 1 card from the encounter deck.)"
+      prepend(
+        s,
+        ...playerOrder(s).map((player) =>
+          fx("nmInterrogate", { player, flag: true }),
+        ),
+      );
+      return true;
+    case "nmInterrogate": {
+      if (e.flag && s.hand.length <= 2) {
+        log(
+          s,
+          `Dark Interrogation: ${several(s) ? `${seatName(s, p)} holds` : "you hold"} ${s.hand.length} ${s.hand.length === 1 ? "card" : "cards"} and must reveal 1 card from the encounter deck.`,
+          "danger",
+        );
+        prepend(s, fx("reveal", { player: p }));
+        return true;
+      }
+      if (s.hand.length <= 2) return true;
+      choose(
+        s,
+        `Dark Interrogation · Discard a card from your hand (${s.hand.length - 2} more to discard)${seatLabel(s, p)}`,
+        s.hand.map((h): Option => ({
+          id: h.id,
+          code: h.code,
+          label: name(h),
+          effects: [
+            fx("nmDiscardHand", { target: h.id, player: p }),
+            fx("nmInterrogate", { player: p }),
+          ],
+        })),
+        card(N.interrogation).text,
+      );
+      return true;
+    }
+    case "nmDiscardHand":
+      if (s.hand.some((h) => h.id === e.target)) {
+        const u = discardHandCard(s, e.target!, { encounterEffect: true });
+        log(s, `Dark Interrogation: ${name(u)} is discarded from hand.`);
+      }
+      return true;
+    case "nmCopies": {
+      const titles = new Set(s.discard.map((c) => card(c).name));
+      const own = [...s.heroes, ...s.allies];
+      const attachments = own.flatMap((h) =>
+        h.attachments
+          .filter(
+            (a) =>
+              card(a.code).type_code === "attachment" &&
+              !["encounter", "burden"].includes(
+                card(a.code).sphere_code ?? "",
+              ) &&
+              (a.owner ?? p) === p &&
+              titles.has(card(a.code).name),
+          )
+          .map((a) => ({ h, a })),
+      );
+      const characters = own.filter((u) => titles.has(card(u.code).name));
+      for (const { h, a } of attachments) discardAttachment(s, h, a);
+      for (const u of characters) discardCharacter(s, u);
+      const n = attachments.length + characters.length;
+      log(
+        s,
+        `Dark Interrogation: ${n ? `${[...attachments.map(({ a }) => card(a.code).name), ...characters.map((u) => name(u))].join(", ")} ${n === 1 ? "is" : "are"} discarded (a copy is in the discard pile)` : "no card in play has a copy in the discard pile"}${seatLabel(s, p)}.`,
+        n ? "danger" : "normal",
+      );
+      return true;
+    }
+    case "nmSentinel": {
+      // "The staging area gets +X [threat] until the end of the phase, where X
+      // is twice the number of players in the game. If the players quest
+      // unsuccessfully this phase, put the Nazgul of Dol Guldur into play
+      // (from any out of play area), engaged with the first player. (Cannot
+      // be canceled.)"
+      const q = state(s);
+      q.sentinel = {
+        round: s.round,
+        count: (q.sentinel?.round === s.round ? q.sentinel.count : 0) + 1,
+      };
+      log(
+        s,
+        `Sentinel of Shadow: the staging area gets +${2 * playerOrder(s).length} [threat] until the end of the phase; an unsuccessful quest brings the Nazgûl of Dol Guldur.`,
+        "danger",
+      );
+      return true;
+    }
+    case "nmSentinelNazgul": {
+      if ([...s.staging, ...allEngaged(s)].some((u) => u.code === NAZGUL)) {
+        log(
+          s,
+          "Sentinel of Shadow · The Nazgûl of Dol Guldur is already in play.",
+        );
+        return true;
+      }
+      const at = s.encounterDiscard.lastIndexOf(NAZGUL);
+      if (at >= 0) s.encounterDiscard.splice(at, 1);
+      const u = make(s, NAZGUL);
+      s.staging.push(u);
+      enemyAddedToStaging(s, u);
+      forOwner(s, firstPlayer(s), () => engage(s, u));
+      log(
+        s,
+        `Sentinel of Shadow: the quest failed, and the Nazgûl of Dol Guldur enters play engaged with ${several(s) ? seatName(s, firstPlayer(s)) : "you"}.`,
+        "danger",
+      );
+      return true;
+    }
+    case "nmMasterCapture": {
+      for (const id of e.ids ?? []) {
+        const hero = get(s, id);
+        if (hero && allCharacters(s).some((u) => u.id === id)) capture(s, hero);
+      }
+      if (s.stage === 3) {
+        s.stage = 2;
+        s.progress = 0;
+        log(
+          s,
+          "Torture Master: the players return to stage 2B, Through the Caverns.",
+          "chapter",
+        );
+      }
+      return true;
+    }
     case "nmDiscardAttachments": {
       // "Discard all attachment cards players control."
       const hosts = [
@@ -1097,7 +1550,14 @@ export const NEUTRAL_LAYER: Batch4ScenarioHooks = {
   ability: () => false,
 };
 /** Nightmare effects resolved in a player's own seat (a threat raise is that player's). */
-const PLAYER_EFFECTS = new Set(["nmSpidersShadow", "nmWebAttach", "nmThreat"]);
+const PLAYER_EFFECTS = new Set([
+  "nmSpidersShadow",
+  "nmWebAttach",
+  "nmThreat",
+  "nmInterrogate",
+  "nmDiscardHand",
+  "nmCopies",
+]);
 export const NIGHTMARE_CORE_HOOKS: Batch4ScenarioHooks = {
   ...NEUTRAL_LAYER,
   stats: nmStats,
@@ -1113,18 +1573,35 @@ export const NIGHTMARE_CORE_HOOKS: Batch4ScenarioHooks = {
   // Journey Along the Anduin.
   cannotAttach: nmCannotAttach,
   cannotCancel: (s, shadow, code) =>
-    !shadow && code === N.pursuit && anduinLive(s),
+    !shadow &&
+    ((code === N.pursuit && anduinLive(s)) ||
+      (code === N.sentinel && dolGuldurLive(s))),
   revealedDoomed: nmRevealedDoomed,
-  revealedSurge: nmRevealedSurge,
+  revealedSurge: (s, code) => nmRevealedSurge(s, code) || spiderSurge(s, code),
   combatBegin: nmCombatBegin,
   indestructible: nmIndestructible,
   damageAmount: nmDamageAmount,
-  damageDealt: nmDamageDealt,
+  damageDealt: (s, u, amount, context) => {
+    nmDamageDealt(s, u, amount, context);
+    masterDamage(s, u, context);
+  },
   cannotAttack: nmCannotAttack,
   cannotDefend: nmCannotDefend,
   enemyAttackStarted: nmEnemyAttackStarted,
-  attackFinished: nmAttackFinished,
+  attackFinished: (s, c) => [
+    ...nmAttackFinished(s, c),
+    ...masterFinished(s, c),
+  ],
   check: nmCheck,
+  // Escape from Dol Guldur.
+  threatBonus: (s, u) => labyrinthTokens(s, u),
+  locationQuestBonus: (s, u) => labyrinthTokens(s, u),
+  stagingThreat: nmStagingThreat,
+  failedQuest: nmFailedQuest,
+  roundEnd: nmRoundEnd,
+  combatEnd: (s) => prepend(s, ...captiveThreat(s)),
+  enemyDestination: nmEnemyDestination,
+  missingHeroAllowed: nmMissingHeroAllowed,
   abilityLabel: nmAbilityLabel,
   abilityProblem: nmAbilityProblem,
   ability: nmAbility,
@@ -1133,7 +1610,10 @@ export const NIGHTMARE_CORE_HOOKS: Batch4ScenarioHooks = {
 
 // ------------------------------------------------------------- saves
 
-export function validNightmareCore(s: GameState) {
+export function validNightmareCore(
+  s: GameState,
+  validUnit: (u: unknown) => boolean = () => true,
+) {
   const q = s.nightmare;
   if (q === undefined) return true;
   const round = (n: unknown) =>
@@ -1172,6 +1652,38 @@ export function validNightmareCore(s: GameState) {
               (f) => f === undefined || typeof f === "boolean",
             ) &&
             (m.bonus === undefined || Number.isInteger(m.bonus)),
+        ))) &&
+    (q.prisoners === undefined ||
+      (Array.isArray(q.prisoners) &&
+        !!s.prisoner &&
+        q.prisoners.every(
+          (h) =>
+            validUnit(h) &&
+            card(h.code).type_code === "hero" &&
+            player(h.owner ?? 0),
+        ))) &&
+    (q.sentinel === undefined ||
+      (!!q.sentinel &&
+        round(q.sentinel.round) &&
+        Number.isInteger(q.sentinel.count) &&
+        q.sentinel.count > 0)) &&
+    (q.captive === undefined ||
+      (Array.isArray(q.captive) &&
+        q.captive.every(
+          (m) =>
+            !!m &&
+            typeof m.enemyId === "string" &&
+            player(m.player) &&
+            (m.defeated === undefined || typeof m.defeated === "boolean"),
+        ))) &&
+    (q.master === undefined ||
+      (Array.isArray(q.master) &&
+        q.master.every(
+          (m) =>
+            !!m &&
+            typeof m.enemyId === "string" &&
+            Array.isArray(m.heroIds) &&
+            m.heroIds.every((id) => typeof id === "string"),
         )))
   );
 }

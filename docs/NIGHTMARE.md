@@ -9,9 +9,9 @@ for each scenario whose Nightmare Deck is supported; the scenario archive's
 Nightmare list of such a scenario offers it too ("Choose adventure"). It is
 not offered in campaign mode.
 
-**Supported so far:** Passage Through Mirkwood and Journey Along the Anduin
-(the Core Set Nightmare Deck's first two scenarios). The other Nightmare
-Decks follow in publication order, beginning with Escape from Dol Guldur.
+**Supported so far:** the Core Set Nightmare Deck: Passage Through Mirkwood,
+Journey Along the Anduin and Escape from Dol Guldur. The other Nightmare
+Decks follow in publication order.
 
 ## Sources
 
@@ -19,7 +19,7 @@ Decks follow in publication order, beginning with Escape from Dol Guldur.
   (`public/catalog.json`), checked by eye against the DragnCards scans; the
   checked cards are written to `src/data/nightmare-encounter-cards.json` and
   their faces pinned in `tests/nightmare-art.json` (9 cards and 10 faces for
-  each of Passage Through Mirkwood and Journey Along the Anduin).
+  each Core Set scenario).
 - The scans correct the catalogue: each setup card's front is the removal
   list ("Begin with the standard quest deck and encounter deck … Remove the
   following cards, in the specified quantities …"), where the catalogue had a
@@ -28,11 +28,13 @@ Decks follow in publication order, beginning with Escape from Dol Guldur.
   Ungoliant's Spawn's shadow raises "defending player's threat" (the
   catalogue misspelled "theat"); Gladden Marshlands' shadow gives +1 [attack]
   to each enemy engaged with the "defending player" (the catalogue had
-  "defending character").
+  "defending character"); Sentinel of Shadow names the "Nazgul" (the
+  catalogue had "Nazul"), Torture Chamber places a "resource token", and
+  Catacomb Inspection's shadow closes its parenthesis.
 - The source recipe of each Nightmare scenario (`public/scenarios.json`,
-  N01.1 for Passage Through Mirkwood, N01.2 for Journey Along the Anduin) is
-  the standard encounter deck without the printed removals plus the
-  Nightmare Deck: a test compares the two.
+  N01.1 to N01.3 for the Core Set) is the standard encounter deck without the
+  printed removals plus the Nightmare Deck (Escape from Dol Guldur's Nazgûl
+  set aside in both): a test compares the two.
 
 ## The framework
 
@@ -83,10 +85,24 @@ Decks follow in publication order, beginning with Escape from Dol Guldur.
 | Smoking Blood (treachery ×2)        | All damage leaves every enemy; each player raises their threat by the damage removed from the enemies engaged with them; with none removed, it gains surge. Shadow: the attacker's damage moves to the defending character, or, if the attack is undefended, to the hero the attack damaged (after the attack).                                                                                 |
 | Troll Attack (treachery ×2)         | Each engaged Troll enemy makes an attack against its player (dealt a shadow card, as the engine's other immediate attacks); with none engaged, it gains surge. Shadow: if the attacker is a Troll, the attack then resolves against each other player in turn order, undefended, with the attack's bonus from its shadow cards (no new shadow card).                                            |
 
+## Escape from Dol Guldur (Nightmare)
+
+| Card                               | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Setup card                         | Removes Dol Guldur Orcs ×2, Enchanted Stream ×2, Great Forest Web ×1, Mountains of Mirkwood ×3, Caught in a Web ×2, The Necromancer's Reach ×1, Necromancer's Pass ×1, Under the Shadow ×2, Tower Gate ×2 and Iron Shackles ×1 from the standard encounter deck. When stage 1B is revealed, 1 hero is captured with 1 or 2 players, 2 with 3 players and 3 with 4, each of a different player (the scenario's prisoner, then random heroes of the other players). Every captured hero is “the prisoner”: the prison banner names each, a player whose heroes are all held is not eliminated, and the stage 2 rescue frees each of them with 1 damage. The Nazgûl of Dol Guldur moves into the staging area on a rescue (it enters from out of play only if it never has). |
+| Catacomb Inspection (treachery ×2) | Surge. Each Dol Guldur location in play gets 1 resource token. Shadow: each of the defending player's heroes with a resource moves 1 to each Dol Guldur location in the staging area.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Crazed Captive (enemy ×2)          | Doomed 1. When it is defeated, each player raises their threat by 7. Shadow: unless the attacking enemy is defeated by the end of the phase (the combat phase, or the round for another), the defending player raises their threat by 7.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Dark Interrogation (treachery ×2)  | Each player with more than 2 cards in hand discards cards of their choice down to 2; each player with 2 or fewer reveals 1 card from the encounter deck. Shadow: each character and attachment the defending player controls with a copy (same title) in their discard pile is discarded; each player's if the attack is undefended.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Dungeon Labyrinth (location ×3)    | +1 [threat] and +1 quest point for each resource token on it. At the end of each round, it gets 1 resource token for each player.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Sentinel of Shadow (treachery ×2)  | Cannot be canceled. The staging area gets +2 [threat] for each player until the end of the phase; if the players quest unsuccessfully this phase, the Nazgûl of Dol Guldur enters play engaged with the first player (from the encounter discard pile or set aside), unless it is already in play.                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Spider of Dol Guldur (enemy ×3)    | Gains surge while an objective is unclaimed in the staging area. Shadow: the attacking enemy gets +3 [attack] for each unclaimed objective.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Torture Chamber (location ×2)      | At 4 resource tokens on it, the players lose. At the end of each round, each Dol Guldur location in play gets 1 resource token (for each Torture Chamber in play).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Torture Master (enemy ×3)          | When revealed, each Dol Guldur location in play gets 1 resource token. Shadow: after the attack, each hero it damaged and did not destroy is captured as a prisoner (held with the scenario's prisoner, or as it); then, on stage 3, the players return to stage 2B, Through the Caverns (its progress gone).                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+
 ## Verification
 
 ```sh
-node --import tsx --test tests/nightmare-core.test.ts tests/nightmare-anduin.test.ts
+node --import tsx --test tests/nightmare-core.test.ts tests/nightmare-anduin.test.ts tests/nightmare-dol-guldur.test.ts
 npm run build
 npm run test:browser-nightmare
 ```
@@ -106,13 +122,23 @@ recipe; its setup rules (Trolls and attachments, the refilled deck, a shadow
 card dealt from it); each card's rules and shadow (the Marshlands' Action
 through a restored save, the Outlaws' threat raise and Troll Attack's
 attacks against the other player in two-player games); its save checks; and
-seeded games of both supported scenarios, played to their end with a valid
-save after each action (`tests/nightmare-fixtures.ts`).
+seeded games of Journey Along the Anduin and Passage Through Mirkwood,
+played to their end with a valid save after each action
+(`tests/nightmare-fixtures.ts`). `tests/nightmare-dol-guldur.test.ts` (7
+tests) covers Escape from Dol Guldur's texts, stats and faces; its Nightmare
+encounter deck against the source recipe; the prisoners of 1 to 4 players and
+their rescue (the Nazgûl moved rather than doubled); each card's rules and
+shadow (the resource tokens, Torture Chamber's loss, Torture Master's
+prisoners and the return to stage 2B, Dark Interrogation in a two-player
+game); and seeded solo and three-player games played to their end.
 
 The browser suite starts Passage Through Mirkwood in Nightmare mode from the
 lobby (easy mode turned off), checks the setup's staging area and reveal, the
 Nightmare card in the quest inspector and its rules side, and attaches The
 Spider's Web through its choice; it then starts Journey Along the Anduin in
 Nightmare mode from the lobby, checks its Nightmare card, and triggers
-Gladden Marshlands' Action from the staging area through its choice, at 1280,
-390 and 320 pixels (18 checkpoints); it checks the 20 pinned faces.
+Gladden Marshlands' Action from the staging area through its choice; and
+it starts Escape from Dol Guldur in Nightmare mode from the lobby, checks its
+Nightmare card, and a second prisoner in the prison banner with the table's
+“Nightmare mode” label, at 1280, 390 and 320 pixels (24 checkpoints); it
+checks the 30 pinned faces.

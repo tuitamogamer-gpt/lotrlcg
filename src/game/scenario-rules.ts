@@ -13,6 +13,11 @@ import { rhosgobelHeal } from "./rhosgobel";
 import { card, name } from "./cards";
 import type { Effect, GameState } from "./types";
 import { CLUE, OBJECTIVES } from "./scenarios";
+import { returnToStaging } from "./fellowship-event-lib";
+import {
+  nightmareCapturePrisoners,
+  nightmareTakePrisoners,
+} from "./nightmare-core";
 import { carrockEffect } from "./carrock";
 import { emynMuilEffect } from "./emyn-muil";
 import { rhosgobelEffect } from "./rhosgobel";
@@ -25,6 +30,7 @@ import { watcherWaterEffect } from "./watcher-water";
 
 import {
   allCharacters,
+  allEngaged,
   allHeroes,
   forOwner,
   ownerOf,
@@ -65,18 +71,34 @@ import { cobasPlayerAttackFinished } from "./cobas-player";
 
 export function rescuePrisoner(s: GameState) {
   if (!s.prisoner) return;
-  const hero = s.prisoner;
+  // Escape from Dol Guldur (Nightmare): every captured hero is "the prisoner".
+  const heroes = [s.prisoner, ...nightmareTakePrisoners(s)];
   s.prisoner = null;
-  hero.damage = 1;
-  forOwner(s, hero.owner ?? 0, () => {
-    s.heroes.push(hero);
-  });
-  const nazgul = make(s, "01102");
-  s.staging.push(nazgul);
-  enemyAddedToStaging(s, nazgul);
+  for (const hero of heroes) {
+    hero.damage = 1;
+    forOwner(s, hero.owner ?? 0, () => {
+      s.heroes.push(hero);
+    });
+  }
+  // Nazgûl of Dol Guldur: "Forced: When the prisoner is "rescued", move
+  // Nazgul of Dol Guldur into the staging area." (In Nightmare mode it may
+  // already be in play, or defeated.)
+  const present = [...s.staging, ...allEngaged(s)].find(
+    (u) => u.code === "01102",
+  );
+  let nazgul = " The Nazgûl enters staging.";
+  if (present) {
+    nazgul = returnToStaging(s, present)
+      ? " The Nazgûl moves into the staging area."
+      : "";
+  } else if (!s.nazgulDefeated) {
+    const u = make(s, "01102");
+    s.staging.push(u);
+    enemyAddedToStaging(s, u);
+  } else nazgul = "";
   log(
     s,
-    `${name(hero)} is rescued with 1 damage. The Nazgûl enters staging.`,
+    `${heroes.map((h) => name(h)).join(" and ")} ${heroes.length === 1 ? "is" : "are"} rescued with 1 damage.${nazgul}`,
     "chapter",
   );
 }
@@ -255,6 +277,7 @@ export function scenarioEffect(s: GameState, e: Effect): boolean {
         });
         s.prisoner = hero;
         log(s, `${name(hero)} is the prisoner.`, "danger");
+        nightmareCapturePrisoners(s);
       }
       const m = allCharacters(s).find((a) => a.code === "rc135");
       if (m) {

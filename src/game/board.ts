@@ -451,6 +451,7 @@ import {
   playCost,
 } from "./core";
 import { rescuePrisoner } from "./scenario-rules";
+import { nightmareHeld } from "./nightmare-core";
 import { resolveCampaign } from "./campaign";
 import {
   restrictedSlots,
@@ -1054,7 +1055,10 @@ export function check(s: GameState) {
     const p = seatView(s, s.prisoner.owner ?? 0);
     if (
       p.threat >= threatElimination(p) ||
-      (!p.heroes.length && p.startingHeroes.some((h) => h !== s.prisoner!.code))
+      (!p.heroes.length &&
+        p.startingHeroes.some(
+          (h) => h !== s.prisoner!.code && !nightmareHeld(s, h),
+        ))
     ) {
       s.status = "lost";
       s.reason =

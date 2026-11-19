@@ -3696,7 +3696,9 @@ export default function App() {
                 <span className="game-mode-label">
                   {game.playMode === "campaign"
                     ? `${CAMPAIGN_TITLES[campaignKindOf(game.campaign)]} · Campaign`
-                    : "Normal game"}
+                    : game.nightmareMode
+                      ? "Nightmare mode"
+                      : "Normal game"}
                 </span>
               </div>
               <div className="table-tools">
@@ -3761,12 +3763,14 @@ export default function App() {
                 <div>
                   <strong>
                     {game.prisoner
-                      ? `${name(game.prisoner)} is imprisoned`
+                      ? `${[game.prisoner, ...(game.nightmare?.prisoners ?? [])].map((h) => name(h)).join(" and ")} ${game.nightmare?.prisoners?.length ? "are" : "is"} imprisoned`
                       : "The prisoner is free"}
                   </strong>
                   <p>
                     {game.prisoner
-                      ? "This hero cannot act or collect resources. Add progress to stage 2 to rescue them."
+                      ? game.nightmare?.prisoners?.length
+                        ? "These heroes cannot act or collect resources. Add progress to stage 2 to rescue them."
+                        : "This hero cannot act or collect resources. Add progress to stage 2 to rescue them."
                       : ""}
                     {game.captiveMendor
                       ? " Claim your first objective to free Mendor."

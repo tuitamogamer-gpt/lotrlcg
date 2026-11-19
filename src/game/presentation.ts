@@ -179,6 +179,7 @@ export function observe(
       `Controlled by ${s.table ? seatName(s, location.owner ?? 0) : "your fellowship"}`,
     );
   if (s.prisoner) add(s.prisoner, "Prisoner");
+  for (const hero of s.nightmare?.prisoners ?? []) add(hero, "Prisoner");
   if (s.captiveMendor) add(s.captiveMendor, "Captive");
   if (s.combat) {
     values["Enemy attack · Shadow bonus"] = String(s.combat.attackBonus);

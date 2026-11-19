@@ -187,6 +187,56 @@ try {
     s = await choose(page, s.heroes[0].id);
     assert.equal(s.staging.find((u) => u.code === N.marshlands).tempThreat, -1);
     assert.equal(s.heroes[0].damage, 1);
+    // Escape from Dol Guldur in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-dol-guldur").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await opening(page);
+    assert.equal(s.scenarioId, "dol-guldur");
+    assert.equal(s.nightmareMode, true);
+    assert.ok(s.prisoner);
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/1 random hero is captured/)
+      .waitFor();
+    await checkpoint("dol-guldur-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A second prisoner (Torture Master's shadow) joins the prison banner.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const hero = t.heroes.shift();
+      hero.owner = 0;
+      t.nightmare = { ...(t.nightmare ?? {}), prisoners: [hero] };
+      s = await load(page, t);
+    }
+    await page
+      .locator(".prisoner-banner")
+      .getByText(/ and .+ are imprisoned$/)
+      .waitFor();
+    assert.equal(
+      await page.locator(".game-mode-label").innerText(),
+      "Nightmare mode",
+    );
+    await checkpoint("dol-guldur-prisoners", width);
     await view.c.close();
   }
   const p = await browser.newPage();

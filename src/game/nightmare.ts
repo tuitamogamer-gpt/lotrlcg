@@ -30,6 +30,16 @@ export const NIGHTMARE_CORE = {
   pursuit: `${P}19`,
   smoking: `${P}21`,
   trollAttack: `${P}27`,
+  /** Escape from Dol Guldur's setup card and Nightmare Deck. */
+  dolGuldurCard: `${P}05`,
+  catacomb: `${P}11`,
+  captive: `${P}12`,
+  interrogation: `${P}13`,
+  labyrinth: `${P}14`,
+  sentinel: `${P}20`,
+  spider: `${P}22`,
+  chamber: `${P}25`,
+  master: `${P}26`,
 } as const;
 
 interface NightmareDeck {
@@ -64,6 +74,21 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       Despair: 2,
       "Misty Mountain Goblins": 3,
       "Necromancer's Pass": 2,
+    },
+  },
+  "dol-guldur": {
+    card: NIGHTMARE_CORE.dolGuldurCard,
+    removals: {
+      "Dol Guldur Orcs": 2,
+      "Enchanted Stream": 2,
+      "Great Forest Web": 1,
+      "Mountains of Mirkwood": 3,
+      "Caught in a Web": 2,
+      "The Necromancer's Reach": 1,
+      "Necromancer's Pass": 1,
+      "Under the Shadow": 2,
+      "Tower Gate": 2,
+      "Iron Shackles": 1,
     },
   },
 };
@@ -118,5 +143,13 @@ export function nightmareStatus(s: GameState): string[] {
     return [
       "Journey Along the Anduin · Nightmare mode: Troll enemies cannot have attachments, and an empty encounter deck is refilled from the encounter discard pile at any time.",
     ];
+  if (s.scenarioId === "dol-guldur") {
+    const seats = s.table?.seats.length ?? 1;
+    const captured = seats >= 4 ? 3 : seats === 3 ? 2 : 1;
+    const held = (s.prisoner ? 1 : 0) + (s.nightmare?.prisoners?.length ?? 0);
+    return [
+      `Escape from Dol Guldur · Nightmare mode: when stage 1B is revealed, ${captured} random ${captured === 1 ? "hero is" : "heroes (of different players) are"} captured as “the prisoner”${held ? ` (${held} held now)` : ""}.`,
+    ];
+  }
   return [];
 }
