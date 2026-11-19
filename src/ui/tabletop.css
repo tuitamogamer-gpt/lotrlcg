@@ -670,6 +670,23 @@
   color: #866a44;
   font-size: var(--text-small);
 }
+/* The current quest's attachments sit in a row inside the inspector, not
+   fanned off a table card's edge. */
+.quest-inspector .table-attachments {
+  position: static;
+  width: auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.quest-inspector .table-attachments > button {
+  margin: 0;
+  transform: none;
+}
+.quest-inspector .table-attachments > button:hover,
+.quest-inspector .table-attachments > button:focus-visible {
+  transform: translateY(-2px);
+}
 
 /* Both decks retain hidden order; only the public discard top is face up. */
 .table-decks {

@@ -1621,3 +1621,15 @@ Validation on Node 22: the engine suite passes all 6,997 tests, including 5 for 
 Coverage is now 861 player definitions (112 heroes), 2,360 encounters and 123 scenarios. This resolves 3,582 of 4,183 identities and 278 of 355 recipes; 601 identities remain pending.
 
 Validation on Node 22: the engine suite passes all 7,002 tests, including 5 for The Dead Marshes' Nightmare Deck (seeded solo and two-player games among them); the Nightmare browser suite passes 54 checkpoints at 1280, 390 and 320 pixels, through The Dead Marshes' Nightmare card and Swarming Mosquitoes' escape test counting [defense], and checks the 83 pinned faces; the production build, the typecheck and the coverage audit pass.
+
+2026-11-19 Nightmare mode, Return to Mirkwood: continued the user's “Nastavi dok ne završis sve” after 5bd20f8. All six of Shadows of Mirkwood's Nightmare Decks are now supported; Khazad-dûm's follow. See docs/NIGHTMARE.md.
+
+- Return to Mirkwood's setup card and its eight Nightmare encounter designs are registered from the DragnCards scans (93 faces pinned in all); the scans give the setup card's removal list, Pursuing Warg-rider's "player guarding Gollum", Web-spinner's shadow "The player" and Isolation's "Surge.". The source recipe N01.9 equals the standard deck less the printed removals plus the Nightmare Deck, with Gollum in the staging area.
+- Its scripts live in their own layer (src/game/nightmare-rtm.ts, "nrm" effects). The engine gains hooks for a revealed stage, a change of Gollum's guard, a guard who cannot change, a shadow card that targets each player, and a keyword the characters lose (sentinel defence as well as ranged attacks).
+- The setup card: at the beginning of each quest phase the player guarding Gollum exhausts a hero or resolves the topmost Tantrum card of the encounter discard pile; stage 4A adds Attercop, Attercop to the staging area.
+- Ambushing Orcs, Pursuing Warg-rider, Web-spinner, Deceptive Path, Web-wall, Isolation, Befouled Equipment (attachments on encounter cards too) and Wickedness and Mischief are scripted with their shadows; Wickedness and Mischief is discarded once it has resolved, so it never reveals itself.
+- The quest inspector lists the current quest's attachments in a row instead of fanning them off the dialog's edge, and the Nightmare browser suite resolves an escape test revealed during The Dead Marshes' setup (a seed-dependent stop before).
+
+Coverage is now 861 player definitions (112 heroes), 2,369 encounters and 123 scenarios. This resolves 3,591 of 4,183 identities and 279 of 355 recipes; 592 identities remain pending.
+
+Validation on Node 22: the engine suite passes all 7,008 tests, including 6 for Return to Mirkwood's Nightmare Deck (seeded solo and two-player games among them); the Nightmare browser suite passes 63 checkpoints at 1280, 390 and 320 pixels, through Return to Mirkwood's Nightmare card, Isolation on the current quest and the quest phase's choice for Gollum's guard, and checks the 93 pinned faces; the Passage of the Marshes browser suite still passes after the quest inspector's change; the production build, the typecheck and the coverage audit pass.

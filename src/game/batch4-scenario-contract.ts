@@ -134,6 +134,14 @@ export interface Batch4ScenarioHooks {
   escapeResolved?(s: GameState, escape: EscapeTest, passed: boolean): boolean;
   /** Resource tokens that would be placed on Gollum while he is not in play; true when placed elsewhere. */
   gollumTokens?(s: GameState, amount: number): boolean;
+  /** Return to Mirkwood: the player guarding Gollum cannot change. */
+  guardLocked?(s: GameState): boolean;
+  /** Return to Mirkwood: effects that target the player guarding Gollum target each player. */
+  guardTargetsEveryone?(s: GameState): boolean;
+  /** Return to Mirkwood: after the player guarding Gollum changes. */
+  guardChanged?(s: GameState, from: number, to: number): void;
+  /** After a new quest stage is revealed. */
+  stageRevealed?(s: GameState, stage: number): void;
   /** After characters commit to the quest (each commitment, at any time). */
   charactersCommitted?(s: GameState, units: Unit[]): void;
   /** The character loses the keyword (as A Journey to Rhosgobel's Pitch-dark Thicket, its ranged). */

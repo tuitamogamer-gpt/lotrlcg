@@ -1,4 +1,5 @@
 import { threatElimination } from "./tharbad-support";
+import { batch4Scenario } from "./batch4-scenarios";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { mainQuestCode } from "./quest-state";
 // Original Return to Mirkwood: controlled Gollum, guard transfers and all printed encounters.
@@ -69,7 +70,8 @@ export const returnMirkwoodGuard = (s: GameState) => {
   return g ? ownerOf(s, g) : undefined;
 };
 const lockedGuard = (s: GameState) =>
-  allActiveLocations(s).some((u) => u.code === RETURN.ring);
+  allActiveLocations(s).some((u) => u.code === RETURN.ring) ||
+  !!batch4Scenario(s).guardLocked?.(s);
 function lose(s: GameState, reason: string) {
   if (s.status !== "playing") return;
   s.status = "lost";
@@ -135,6 +137,7 @@ export function advanceReturnMirkwood(s: GameState) {
     if (questDefeated(s, mainQuestCode(s)!)) return true;
     s.stage++;
     s.progress = 0;
+    batch4Scenario(s).stageRevealed?.(s, s.stage);
     log(
       s,
       `A new chapter: ${["", "Escape Attempt", "To the Elvin King's Halls", "Ambush"][s.stage - 1]}.`,
@@ -250,6 +253,7 @@ function transferGollum(s: GameState, to: number) {
     s.allies.push(g);
   });
   log(s, `Gollum is now guarded by ${seatName(s, to)}.`);
+  batch4Scenario(s).guardChanged?.(s, from, to);
 }
 function chooseGuard(
   s: GameState,
@@ -336,7 +340,8 @@ function treacheryTargets(s: GameState) {
   const guard = returnMirkwoodGuard(s);
   return guard === undefined
     ? []
-    : allActiveLocations(s).some((u) => u.code === RETURN.watercourse)
+    : allActiveLocations(s).some((u) => u.code === RETURN.watercourse) ||
+        batch4Scenario(s).guardTargetsEveryone?.(s)
       ? playerOrder(s)
       : [guard];
 }

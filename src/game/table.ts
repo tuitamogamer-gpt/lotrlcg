@@ -325,7 +325,9 @@ export const defendersFor = (s: GameState, enemy?: Unit) =>
           !Desert.desertCrossingCannotDefend(s, enemy) &&
           !Sands.beneathSandsCannotDefend(s, enemy) &&
           !batch4Scenario(s).cannotDefend?.(s, enemy, u))) &&
-      (ownerOf(s, u) === activeSeat(s) || hasKeyword(u, "Sentinel")) &&
+      (ownerOf(s, u) === activeSeat(s) ||
+        (hasKeyword(u, "Sentinel") &&
+          !batch4Scenario(s).losesKeyword?.(s, u, "Sentinel"))) &&
       !u.attachments.some((a) => !a.blanked && a.code === "01108"),
   );
 export const attackersFor = (

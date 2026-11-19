@@ -10,13 +10,14 @@ import {
   NIGHTMARE_CORE as N,
   NIGHTMARE_SOM as G,
 } from "../src/game/nightmare.ts";
+import { mainQuestCode } from "../src/game/quest-state.ts";
+import { RETURN } from "../src/game/return-mirkwood.ts";
 import { reviewedState } from "./browser-review-helpers.mjs";
 import {
   capture,
   choose,
   context,
   load,
-  opening,
   report,
   saved,
   url,
@@ -45,6 +46,33 @@ const browser = await chromium.launch({
     : {}),
 });
 let page;
+/**
+ * The shared helpers' opening, which also resolves an escape test revealed
+ * during setup (The Dead Marshes' The Lights of the Dead, for one).
+ */
+async function nightmareOpening(p) {
+  for (let i = 0; i < 300; i++) {
+    await reviewedState(p);
+    const s = await saved(p);
+    if (s.choice)
+      await choose(
+        p,
+        s.choice.options.find((o) => o.id === "resolve")?.id ??
+          s.choice.options.find((o) => o.id === "skip")?.id ??
+          s.choice.options[0].id,
+      );
+    else if (s.escapeTest && s.escapeTest.phase !== "committing")
+      await p
+        .getByRole("button", { name: /^(Begin|Resolve) escape test/ })
+        .first()
+        .click();
+    else if (s.phase === "setup")
+      await p.getByRole("button", { name: "Keep hand", exact: true }).click();
+    else if (!s.queue.length && !s.flow?.pending) return s;
+    else await p.waitForTimeout(25);
+  }
+  throw Error("The Nightmare opening did not finish");
+}
 async function checkpoint(label, width) {
   await reviewedState(page);
   await capture(page, dir, `${label}-${width}`, screenshots);
@@ -85,7 +113,7 @@ try {
     assert.equal(await page.locator(".easy-toggle input").isChecked(), false);
     await checkpoint("lobby", width);
     await page.locator("#start-btn").click();
-    let s = await opening(page);
+    let s = await nightmareOpening(page);
     assert.equal(s.scenarioId, "mirkwood");
     assert.equal(s.nightmareMode, true);
     assert.equal(s.easyMode, undefined);
@@ -155,7 +183,7 @@ try {
     await page.locator(".mission-anduin").click();
     await page.locator(".nightmare-toggle input").setChecked(true);
     await page.locator("#start-btn").click();
-    s = await opening(page);
+    s = await nightmareOpening(page);
     assert.equal(s.scenarioId, "anduin");
     assert.equal(s.nightmareMode, true);
     await page.getByRole("button", { name: /^Inspect quest: / }).click();
@@ -207,7 +235,7 @@ try {
     await page.locator(".mission-dol-guldur").click();
     await page.locator(".nightmare-toggle input").setChecked(true);
     await page.locator("#start-btn").click();
-    s = await opening(page);
+    s = await nightmareOpening(page);
     assert.equal(s.scenarioId, "dol-guldur");
     assert.equal(s.nightmareMode, true);
     assert.ok(s.prisoner);
@@ -257,7 +285,7 @@ try {
     await page.locator(".mission-hunt-for-gollum").click();
     await page.locator(".nightmare-toggle input").setChecked(true);
     await page.locator("#start-btn").click();
-    s = await opening(page);
+    s = await nightmareOpening(page);
     assert.equal(s.scenarioId, "hunt-for-gollum");
     assert.equal(s.nightmareMode, true);
     await page.getByRole("button", { name: /^Inspect quest: / }).click();
@@ -310,7 +338,7 @@ try {
     await page.locator(".mission-conflict-at-the-carrock").click();
     await page.locator(".nightmare-toggle input").setChecked(true);
     await page.locator("#start-btn").click();
-    s = await opening(page);
+    s = await nightmareOpening(page);
     assert.equal(s.scenarioId, "conflict-at-the-carrock");
     assert.equal(s.nightmareMode, true);
     for (const code of [G.robBob, G.louis, G.morris, G.rupert, G.stuart])
@@ -374,7 +402,7 @@ try {
     await page.locator(".mission-journey-to-rhosgobel").click();
     await page.locator(".nightmare-toggle input").setChecked(true);
     await page.locator("#start-btn").click();
-    s = await opening(page);
+    s = await nightmareOpening(page);
     assert.equal(s.scenarioId, "journey-to-rhosgobel");
     assert.equal(s.nightmareMode, true);
     assert.equal(
@@ -430,7 +458,7 @@ try {
     await page.locator(".mission-hills-of-emyn-muil").click();
     await page.locator(".nightmare-toggle input").setChecked(true);
     await page.locator("#start-btn").click();
-    s = await opening(page);
+    s = await nightmareOpening(page);
     assert.equal(s.scenarioId, "hills-of-emyn-muil");
     assert.equal(s.nightmareMode, true);
     await page.getByRole("button", { name: /^Inspect quest: / }).click();
@@ -473,7 +501,7 @@ try {
     await page.locator(".mission-dead-marshes").click();
     await page.locator(".nightmare-toggle input").setChecked(true);
     await page.locator("#start-btn").click();
-    s = await opening(page);
+    s = await nightmareOpening(page);
     assert.equal(s.scenarioId, "dead-marshes");
     assert.equal(s.nightmareMode, true);
     assert.ok(
@@ -517,6 +545,97 @@ try {
       .waitFor();
     await page.getByLabel("3 resources", { exact: true }).first().waitFor();
     await checkpoint("dead-mosquitoes-escape", width);
+    // Return to Mirkwood in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-return-to-mirkwood").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "return-to-mirkwood");
+    assert.equal(s.nightmareMode, true);
+    assert.ok(
+      s.allies.some((u) => u.code === RETURN.gollum),
+      "Gollum's guard",
+    );
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/exhausts a hero or resolves the topmost Tantrum/)
+      .waitFor();
+    await checkpoint("rtm-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // Isolation on the current quest.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.questAttachments = {
+        [mainQuestCode(t)]: [
+          { id: `a${t.nextId++}`, code: G.isolation, exhausted: false },
+        ],
+      };
+      s = await load(page, t);
+    }
+    await page
+      .getByRole("complementary", { name: "Quest and active location" })
+      .getByLabel("Attachments on Through the Forest", { exact: true })
+      .getByRole("button", {
+        name: "Inspect attachment: Isolation",
+        exact: true,
+      })
+      .waitFor();
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByRole("dialog", { name: "Through the Forest", exact: true })
+      .getByLabel("Attachments on Through the Forest", { exact: true })
+      .getByRole("button", {
+        name: "Inspect attachment: Isolation",
+        exact: true,
+      })
+      .waitFor();
+    await checkpoint("rtm-isolation", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // The quest phase begins: Gollum's guard exhausts a hero or resolves
+    // the topmost Tantrum, Gollum's Anguish.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "quest", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      delete t.questAttachments;
+      t.encounterDiscard = [RETURN.anguish];
+      t.queue.push({ kind: "nrmQuestBegin", player: 0 });
+      flush(t);
+      s = await load(page, t);
+    }
+    await page
+      .getByRole("dialog")
+      .getByRole("button", { name: /^Resolve Gollum's Anguish's / })
+      .waitFor();
+    await checkpoint("rtm-quest-begin", width);
+    {
+      const threat = s.threat;
+      s = await choose(page, "tantrum");
+      assert.equal(s.threat, threat + 8);
+      assert.deepEqual(s.encounterDiscard, [RETURN.anguish]);
+    }
     await view.c.close();
   }
   const p = await browser.newPage();

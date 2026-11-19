@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2360,
+    "encounterCards": 2369,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3582,
-    "pending": 601
+    "scripted": 3591,
+    "pending": 592
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 278
+    "scripted": 279
   },
   "registeredCodes": [
     "01001",
@@ -3121,6 +3121,15 @@
     "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0078",
     "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0079",
     "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0080",
+    "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0081",
+    "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0082",
+    "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0083",
+    "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0084",
+    "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0085",
+    "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0086",
+    "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0087",
+    "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0088",
+    "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0089",
     "octgn:b7c19049-9587-48bc-8807-5cc7334399b9",
     "octgn:b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06",
     "octgn:b81a014a-af32-41a9-abdf-8dbebf29f685",
@@ -4099,7 +4108,7 @@
     {
       "product": "return-to-mirkwood-nightmare",
       "total": 9,
-      "scripted": 0,
+      "scripted": 9,
       "player": 0,
       "playerScripted": 0
     },
@@ -31729,7 +31738,7 @@
       "name": "Return to Mirkwood",
       "type": "nightmare",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "return-to-mirkwood-nightmare"
     },
     {
@@ -31737,7 +31746,7 @@
       "name": "Ambushing Orcs",
       "type": "enemy",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "return-to-mirkwood-nightmare"
     },
     {
@@ -31745,7 +31754,7 @@
       "name": "Pursuing Warg-rider",
       "type": "enemy",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "return-to-mirkwood-nightmare"
     },
     {
@@ -31753,7 +31762,7 @@
       "name": "Web-spinner",
       "type": "enemy",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "return-to-mirkwood-nightmare"
     },
     {
@@ -31761,7 +31770,7 @@
       "name": "Deceptive Path",
       "type": "location",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "return-to-mirkwood-nightmare"
     },
     {
@@ -31769,7 +31778,7 @@
       "name": "Web-wall",
       "type": "location",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "return-to-mirkwood-nightmare"
     },
     {
@@ -31777,7 +31786,7 @@
       "name": "Isolation",
       "type": "treachery",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "return-to-mirkwood-nightmare"
     },
     {
@@ -31785,7 +31794,7 @@
       "name": "Befouled Equipment",
       "type": "treachery",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "return-to-mirkwood-nightmare"
     },
     {
@@ -31793,7 +31802,7 @@
       "name": "Wickedness and Mischief",
       "type": "treachery",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "return-to-mirkwood-nightmare"
     },
     {
@@ -39171,8 +39180,8 @@
       "id": "N01.9",
       "name": "Return to Mirkwood (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "return-to-mirkwood",
+      "state": "scripted"
     },
     {
       "id": "N02.1",

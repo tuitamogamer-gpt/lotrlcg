@@ -98,6 +98,16 @@ export const NIGHTMARE_SOM = {
   candles: `${E}78`,
   mosquitoes: `${E}79`,
   devilry: `${E}80`,
+  /** Return to Mirkwood's setup card and Nightmare Deck. */
+  rtmCard: `${E}81`,
+  ambushing: `${E}82`,
+  wargRider: `${E}83`,
+  webSpinner: `${E}84`,
+  deceptive: `${E}85`,
+  webWall: `${E}86`,
+  isolation: `${E}87`,
+  befouled: `${E}88`,
+  wickedness: `${E}89`,
 } as const;
 
 interface NightmareDeck {
@@ -239,6 +249,20 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Wolf Rider": 1,
       "Hill Troll": 2,
       "Goblin Sniper": 2,
+      Wargs: 2,
+      Despair: 2,
+      "The Brown Lands": 2,
+      "The East Bight": 2,
+    },
+  },
+  "return-to-mirkwood": {
+    card: NIGHTMARE_SOM.rtmCard,
+    removals: {
+      "Woodman's Glade": 3,
+      "Wood Elf Path": 3,
+      "Mountains of Mirkwood": 3,
+      "Goblin Sniper": 2,
+      "Marsh Adder": 1,
       Wargs: 2,
       Despair: 2,
       "The Brown Lands": 2,
@@ -391,6 +415,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "dead-marshes")
     return [
       "The Dead Marshes · Nightmare mode: players cannot reduce their threat; The Mere of Dead Faces began in the staging area and takes Gollum's resource tokens while he is not in play; Gollum placed in the discard pile is shuffled back into the encounter deck.",
+    ];
+  if (s.scenarioId === "return-to-mirkwood")
+    return [
+      "Return to Mirkwood · Nightmare mode: at the beginning of each quest phase the player guarding Gollum exhausts a hero or resolves the topmost Tantrum in the encounter discard pile; stage 4A brings Attercop, Attercop.",
     ];
   return [];
 }

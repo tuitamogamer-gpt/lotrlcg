@@ -2885,6 +2885,17 @@ export function composeEredPool(
       !!p.escapeResolved?.(s, escape, passed),
     gollumTokens: (s, amount) =>
       !!h.gollumTokens?.(s, amount) || !!p.gollumTokens?.(s, amount),
+    guardLocked: (s) => !!h.guardLocked?.(s) || !!p.guardLocked?.(s),
+    guardTargetsEveryone: (s) =>
+      !!h.guardTargetsEveryone?.(s) || !!p.guardTargetsEveryone?.(s),
+    guardChanged: (s, from, to) => {
+      h.guardChanged?.(s, from, to);
+      p.guardChanged?.(s, from, to);
+    },
+    stageRevealed: (s, stage) => {
+      h.stageRevealed?.(s, stage);
+      p.stageRevealed?.(s, stage);
+    },
     locationProgressCapacity: (s, u) => {
       const a = h.locationProgressCapacity?.(s, u),
         b = p.locationProgressCapacity?.(s, u);
