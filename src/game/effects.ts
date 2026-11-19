@@ -143,7 +143,7 @@ import * as Storm from "./stormcaller";
 import * as Depths from "./depths";
 import * as StormPlayers from "./stormcaller-player";
 import * as DepthsPlayers from "./depths-player";
-import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
+import { engagementCheckThreat } from "./threat-read";
 import * as GreyPlayers from "./grey-havens-player";
 import { sailingEffect, sailingQuestStart } from "./sailing";
 import { isEnemy, isShipEnemy, shipUndefendedTargets } from "./ships";
@@ -2397,7 +2397,7 @@ function handleEffect(s: GameState, e: Effect) {
                 u,
                 i,
               ) <=
-              effectiveThreat(s, i),
+              engagementCheckThreat(s, i),
         ),
       );
       if (eligible)
@@ -2458,7 +2458,7 @@ function handleEffect(s: GameState, e: Effect) {
               activeSeat(s),
             ) &&
             !longDarkPlayerIgnoreEngagement(s, u) &&
-            checkCost(s, u) <= effectiveThreat(s),
+            checkCost(s, u) <= engagementCheckThreat(s),
         )
         .sort((a, b) => checkCost(s, b) - checkCost(s, a))[0];
       if (enemy && !s.table?.seats[activeSeat(s)].eliminated) engage(s, enemy);

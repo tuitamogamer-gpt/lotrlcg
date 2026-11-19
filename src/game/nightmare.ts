@@ -153,6 +153,16 @@ export const NIGHTMARE_DD = {
   silverlode: "octgn:fa005422-98d7-4350-b080-b5fe31fce9b0",
   blizzard: "octgn:b79d8300-714b-4699-8a0c-48b12b7ac145",
   cruel: "octgn:8df497f3-7857-4573-8467-8cf2e16fbc3f",
+  /** Road to Rivendell's setup card, its new stage 2 and its Nightmare Deck. */
+  rivendellCard: "octgn:c7777cad-8e18-49b3-bff7-290a241dd84c",
+  night: "octgn:e7faf287-1288-48c2-86be-82449aa05193",
+  stalker: "octgn:abb76690-2b56-4a51-af0d-10c292621697",
+  trapper: "octgn:745919b3-e323-4368-a4ad-25d3bd5baab1",
+  raiding: "octgn:eaeb6bc6-0064-4816-951c-b836e979fe01",
+  trackers: "octgn:8af079b1-fe2f-407e-a66c-0c9421ffe5d6",
+  bluffs: "octgn:2a49f405-1431-44ff-8316-573c23aaffcb",
+  woods: "octgn:77dccc28-9be1-41ec-98c2-8b9099678660",
+  assault: "octgn:8c9df134-1740-42a5-a69e-32cd928e884f",
 } as const;
 
 interface NightmareDeck {
@@ -369,6 +379,22 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Mountain Goblin": 3,
     },
   },
+  "road-to-rivendell": {
+    card: NIGHTMARE_DD.rivendellCard,
+    removals: {
+      "Ruined Road": 2,
+      "Barren Hills": 2,
+      "Goblin Taskmaster": 1,
+      "Black Uruks": 4,
+      "Mountain Warg": 3,
+      "Bitter Wind": 3,
+      "Warg Lair": 2,
+      "Goblin Spearman": 5,
+      "Goblin Archer": 2,
+      "Plundered Armoury": 2,
+    },
+    questRemovals: { "Orc Outpost": 1 },
+  },
 };
 export const nightmareSupported = (id?: ScenarioId) => !!id && id in NIGHTMARE;
 /** A Nightmare mode game of a supported scenario. */
@@ -549,6 +575,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "redhorn-gate")
     return [
       `The Redhorn Gate · Nightmare mode: ${s.stage < 2 ? "Blinding Blizzard is set aside until stage 2B is revealed" : "stage 2B shuffled Blinding Blizzard into the encounter deck"}; player cards in the victory display do not count their victory points.`,
+    ];
+  if (s.scenarioId === "road-to-rivendell")
+    return [
+      "Road to Rivendell · Nightmare mode: an enemy with ambush that engages a player during the quest phase still counts its [threat] in the staging area until the end of the phase; stage 2 is Ambush in the Night.",
     ];
   return [];
 }

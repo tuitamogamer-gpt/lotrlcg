@@ -2934,6 +2934,7 @@ export function composeEredPool(
     consideredEngaged: (s, u, player) =>
       !!h.consideredEngaged?.(s, u, player) ||
       !!p.consideredEngaged?.(s, u, player),
+    advance: (s) => !!h.advance?.(s) || !!p.advance?.(s),
     victoryValue: (s, code) =>
       p.victoryValue?.(s, code) ?? h.victoryValue?.(s, code),
     willpowerGainBlocked: (s, u) =>

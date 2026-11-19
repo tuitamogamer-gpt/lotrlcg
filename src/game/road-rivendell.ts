@@ -1,5 +1,5 @@
 import { threatElimination } from "./tharbad-support";
-import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
+import { engagementCheckThreat } from "./threat-read";
 import { surgeEffects } from "./surge";
 import { wastesCancelAllowed } from "./wastes-eriador";
 import { choosePlayerResponse } from "./player-ability-triggers";
@@ -129,6 +129,10 @@ export function roadRivendellCheck(s: GameState) {
   if (!isRoad(s) || !s.roadRivendell || s.status !== "playing") return;
   const a = arwen(s);
   if (!a) {
+    // Arwen guarded by an encounter card (Road to Rivendell's Nightmare
+    // Deck, Ambush in the Night) is still in play.
+    if (units(s).some((u) => u.attachments.some((x) => x.code === ROAD.arwen)))
+      return;
     lose(s, "Arwen Undómiel has left play. The escort has failed.");
     return;
   }
@@ -455,7 +459,7 @@ export function roadRivendellEffect(s: GameState, e: Effect) {
       const player = playerOrder(s).find(
         (p) =>
           amonPlayerCanEngage(s, u, p) &&
-          effectiveThreat(s, p) >= engagementCost(s, u) &&
+          engagementCheckThreat(s, p) >= engagementCost(s, u) &&
           !longDarkPlayerIgnoreEngagement(s, u),
       );
       if (player !== undefined) forOwner(s, player, () => engage(s, u));

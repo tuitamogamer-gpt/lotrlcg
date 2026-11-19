@@ -1476,10 +1476,39 @@ export function QuestGoals({ s }: { s: GameState }) {
                                   },
                                   {
                                     label: "Keep Arwen Undómiel in play",
-                                    done: allCharacters(s).some(
-                                      (u) => u.code === ROAD.arwen,
-                                    ),
+                                    done:
+                                      allCharacters(s).some(
+                                        (u) => u.code === ROAD.arwen,
+                                      ) ||
+                                      // Nightmare mode: Goblin Gate guards her.
+                                      [
+                                        ...s.staging,
+                                        ...allActiveLocations(s),
+                                      ].some((l) =>
+                                        l.attachments.some(
+                                          (a) => a.code === ROAD.arwen,
+                                        ),
+                                      ),
                                   },
+                                  // Nightmare mode, Ambush in the Night: no
+                                  // progress on the stage until Goblin Gate,
+                                  // which guards Arwen Undómiel, leaves play.
+                                  ...(nightmareLive(s) &&
+                                  s.stage === 2 &&
+                                  [...s.staging, ...allActiveLocations(s)].some(
+                                    (l) =>
+                                      l.attachments.some(
+                                        (a) => a.code === ROAD.arwen,
+                                      ),
+                                  )
+                                    ? [
+                                        {
+                                          label:
+                                            "Explore Goblin Gate to free Arwen Undómiel (no progress on this stage until then)",
+                                          done: false,
+                                        },
+                                      ]
+                                    : []),
                                   ...(allActiveLocations(s).some(
                                     (u) => u.code === ROAD.gate,
                                   )

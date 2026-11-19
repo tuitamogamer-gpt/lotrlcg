@@ -15,6 +15,7 @@ import {
 import { KHAZAD } from "../src/game/khazad-dum.ts";
 import { mainQuestCode } from "../src/game/quest-state.ts";
 import { RETURN } from "../src/game/return-mirkwood.ts";
+import { ROAD } from "../src/game/road-rivendell.ts";
 import { reviewedState } from "./browser-review-helpers.mjs";
 import {
   capture,
@@ -946,6 +947,80 @@ try {
       "Blinding Blizzard's face loads",
     );
     await checkpoint("redhorn-blinding-blizzard", width);
+    // Road to Rivendell in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-road-to-rivendell").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "road-to-rivendell");
+    assert.equal(s.nightmareMode, true);
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/stage 2 is Ambush in the Night/)
+      .waitFor();
+    await checkpoint("rivendell-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // Stage 2B, Ambush in the Night: Goblin Gate guards Arwen Undómiel.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.stage = 2;
+      t.progress = 0;
+      const arwen = t.allies.find((u) => u.code === ROAD.arwen);
+      t.allies = t.allies.filter((u) => u.code !== ROAD.arwen);
+      t.nightmare = { ...(t.nightmare ?? {}), arwen };
+      const gate = make(t, ROAD.gate);
+      gate.attachments.push({
+        id: `a${t.nextId++}`,
+        code: ROAD.arwen,
+        exhausted: false,
+      });
+      t.staging = [gate];
+      s = await load(page, t);
+    }
+    const night = page
+      .getByRole("button", { name: "Inspect quest: Ambush in the Night" })
+      .locator("img");
+    await night.waitFor();
+    assert.ok(
+      (await night.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "Ambush in the Night's face loads",
+    );
+    await page
+      .getByLabel("Attachments on Goblin Gate", { exact: true })
+      .getByRole("button", {
+        name: "Inspect attachment: Arwen Undómiel",
+        exact: true,
+      })
+      .waitFor();
+    await page
+      .locator(".journey-area .quest-goals")
+      .getByText(
+        "Explore Goblin Gate to free Arwen Undómiel (no progress on this stage until then)",
+      )
+      .waitFor();
+    await checkpoint("rivendell-ambush-in-the-night", width);
     await view.c.close();
   }
   const p = await browser.newPage();

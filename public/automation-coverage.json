@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2404,
+    "encounterCards": 2413,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3626,
-    "pending": 557
+    "scripted": 3635,
+    "pending": 548
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 283
+    "scripted": 284
   },
   "registeredCodes": [
     "01001",
@@ -1596,6 +1596,7 @@
     "octgn:29a12054-527c-41a3-9dd8-25565288fb4d",
     "octgn:29f8a182-2e69-47d7-a742-296836371f41",
     "octgn:29fd0721-10ed-4315-b415-5fadeb010051",
+    "octgn:2a49f405-1431-44ff-8316-573c23aaffcb",
     "octgn:2a7b5607-d7ed-4580-b27b-39cf12879297",
     "octgn:2ab79807-7f6b-4b8b-8295-fb8645cdee8a",
     "octgn:2af71d2e-0b70-43a2-b94e-89770992ef9c",
@@ -2544,6 +2545,7 @@
     "octgn:7445051f-ca99-4a2c-8a8c-656f325fa227",
     "octgn:744536a0-0ff0-47e8-b938-ee0f379b1370",
     "octgn:744e45f8-a808-4d9f-96f4-59e26cff5874",
+    "octgn:745919b3-e323-4368-a4ad-25d3bd5baab1",
     "octgn:74c7a9e0-940f-4b66-bc23-c938eef5587f",
     "octgn:74ceb68a-a1c9-41bc-aeb8-41738b34a3bb",
     "octgn:74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc",
@@ -2572,6 +2574,7 @@
     "octgn:779079f4-d3a8-4832-9bd5-12e8ca828ba7",
     "octgn:77a7f095-bd59-45a1-a866-d58e17e3bd6d",
     "octgn:77bcda70-5126-4e58-919e-447c03d7ab02",
+    "octgn:77dccc28-9be1-41ec-98c2-8b9099678660",
     "octgn:77dd117d-b2b6-4324-aa59-09fd1343fde9",
     "octgn:78393d15-048e-40ff-95b8-4dec18a77a8b",
     "octgn:783ecb94-e005-4ff7-8bc3-76196bba9249",
@@ -2754,6 +2757,7 @@
     "octgn:8ab3701c-7814-403c-be93-21cdff4283ed",
     "octgn:8ac2d3ea-7e6d-4e9e-9cc5-70b65b24b835",
     "octgn:8ad1ecf9-3c76-46d6-b65f-9dad403c0960",
+    "octgn:8af079b1-fe2f-407e-a66c-0c9421ffe5d6",
     "octgn:8affd994-f7f5-4341-8437-899f9a31b094",
     "octgn:8b083bb8-0ada-484a-9f83-6c8f431170b5",
     "octgn:8b1a3e3e-903f-4c4d-acf4-c216c2116339",
@@ -2771,6 +2775,7 @@
     "octgn:8bfc0f18-87f6-410b-b3b1-8486ca3627c7",
     "octgn:8c15fd9d-0956-474a-9051-51f36890c7a5",
     "octgn:8c4cc797-13e6-4ee4-a991-7ec76866418a",
+    "octgn:8c9df134-1740-42a5-a69e-32cd928e884f",
     "octgn:8cb63364-11e8-4044-9712-613ccbfcfa5f",
     "octgn:8cc366fb-68f0-4401-9df9-20f9258a728c",
     "octgn:8cfe3fbe-f6bb-43ab-89af-8f9fb6dc2bd6",
@@ -3022,6 +3027,7 @@
     "octgn:ab92ac2e-30e8-4eb2-9818-7d7efd3658aa",
     "octgn:aba39503-0700-40c9-9c06-729e82bf67fe",
     "octgn:aba5ebdb-81d8-4e41-bddd-568f9ab2bd13",
+    "octgn:abb76690-2b56-4a51-af0d-10c292621697",
     "octgn:abc54411-1805-4ef4-8c47-517ffe72312e",
     "octgn:abcc9a29-c485-4f0b-ac1e-c3fb452e0478",
     "octgn:abd56f0e-0238-432b-84b2-7c715d96477b",
@@ -3306,6 +3312,7 @@
     "octgn:c749f16f-1b34-48ce-ba8e-45f36b8b8229",
     "octgn:c75d2227-2fa6-4dba-a48a-64938b632efd",
     "octgn:c760eeaf-d923-4d98-af5c-eb7cb2d2f4d9",
+    "octgn:c7777cad-8e18-49b3-bff7-290a241dd84c",
     "octgn:c792fec6-5840-4aba-8dcd-36b1632d58fa",
     "octgn:c792fec6-5840-4aba-8dcd-36b1632d58fa.B",
     "octgn:c79ff551-f816-4106-9c55-e22d175e544c",
@@ -3553,6 +3560,7 @@
     "octgn:e7a6c9c3-9d45-478c-81e5-7811d43deb0e",
     "octgn:e7b0f67c-ad7e-442a-af9f-188e9cedddde",
     "octgn:e7f523e1-c898-42f8-93c2-889038de230f",
+    "octgn:e7faf287-1288-48c2-86be-82449aa05193",
     "octgn:e839fa89-15b4-451f-9fac-6a8f38e31d65",
     "octgn:e83f33da-6723-4730-8691-8d1a48b1f8e0",
     "octgn:e84369a8-89c8-4866-bd21-7c25ece2ca3f",
@@ -3599,6 +3607,7 @@
     "octgn:eaad2b4a-3ac0-4672-ad43-036152d81322",
     "octgn:eaaececf-9322-43b5-a190-bdfadd7a695e",
     "octgn:ead7703f-43e0-464e-ac09-304b86a54b50",
+    "octgn:eaeb6bc6-0064-4816-951c-b836e979fe01",
     "octgn:eb232287-e39e-4358-b37f-23b2c45ca6a8",
     "octgn:eb2b56e7-d669-405b-b2d3-5d3c30cb3f4e",
     "octgn:eb2b84b4-40b3-4dda-bf87-4f59a78aa6b1",
@@ -4164,7 +4173,7 @@
     {
       "product": "road-to-rivendell-nightmare",
       "total": 9,
-      "scripted": 0,
+      "scripted": 9,
       "player": 0,
       "playerScripted": 0
     },
@@ -16989,7 +16998,7 @@
       "name": "Treacherous Bluffs",
       "type": "location",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "road-to-rivendell-nightmare"
     },
     {
@@ -25885,7 +25894,7 @@
       "name": "Goblin Trapper",
       "type": "enemy",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "road-to-rivendell-nightmare"
     },
     {
@@ -26165,7 +26174,7 @@
       "name": "Concealed Woods",
       "type": "location",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "road-to-rivendell-nightmare"
     },
     {
@@ -27941,7 +27950,7 @@
       "name": "Vicious Trackers",
       "type": "enemy",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "road-to-rivendell-nightmare"
     },
     {
@@ -28133,7 +28142,7 @@
       "name": "Tumultuous Assault",
       "type": "treachery",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "road-to-rivendell-nightmare"
     },
     {
@@ -30541,7 +30550,7 @@
       "name": "Uruk Elf-Stalker",
       "type": "enemy",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "road-to-rivendell-nightmare"
     },
     {
@@ -33317,7 +33326,7 @@
       "name": "Road to Rivendell",
       "type": "nightmare",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "road-to-rivendell-nightmare"
     },
     {
@@ -35757,7 +35766,7 @@
       "name": "Ambush in the Night",
       "type": "quest",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "road-to-rivendell-nightmare"
     },
     {
@@ -36165,7 +36174,7 @@
       "name": "Raiding Party",
       "type": "enemy",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "road-to-rivendell-nightmare"
     },
     {
@@ -39250,8 +39259,8 @@
       "id": "N02.5",
       "name": "Road to Rivendell (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "road-to-rivendell",
+      "state": "scripted"
     },
     {
       "id": "N02.6",
