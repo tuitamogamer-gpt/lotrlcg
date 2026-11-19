@@ -54,10 +54,20 @@ import {
   cobasStageInfo,
   cobasGuardsObjective,
 } from "./cobas-support";
+import {
+  DC,
+  dcIs,
+  dcScenarioFace,
+  dreamchaserFleet,
+  isDreamchaserGame,
+} from "./dreamchaser-campaign-support";
+import { dreamchaserCobasReady } from "./dreamchaser-campaign";
 
 export { cobasGuardIds, cobasGuardsObjective } from "./cobas-support";
 
 const active = (s: GameState) => !!s.cobas;
+/** Dol Amroth Warship on either face (its campaign side once upgraded). */
+const isWarship = (u: { code: string }) => dcIs(u, C.warship);
 const enemies = (s: GameState) =>
   [...s.staging, ...allEngaged(s)].filter(isEnemy);
 const ships = (s: GameState) => allCharacters(s).filter(isShipObjective);
@@ -121,9 +131,7 @@ export const cobasCanAttackEnemy = (s: GameState, enemy: Unit, u: Unit) =>
   isShipObjective(u);
 export const cobasStats = (s: GameState, u: Unit) => {
   const increase =
-    active(s) && u.code === C.warship && !u.blanked && sailingOnCourse(s)
-      ? 2
-      : 0;
+    active(s) && isWarship(u) && !u.blanked && sailingOnCourse(s) ? 2 : 0;
   return {
     will: increase + (u.cobasShipObjective ? (card(u.code).threat ?? 0) : 0),
     attack: increase,
@@ -163,7 +171,7 @@ export function cobasPublicState(s: GameState) {
     }),
     corsairCount: q.corsairDeck.length,
     discardCount: q.corsairDiscard.length,
-    warshipsAvailable: q.setAside.filter((u) => u.code === C.warship).length,
+    warshipsAvailable: q.setAside.filter(isWarship).length,
     belfalas: q.belfalas.map((x) => ({ id: x.enemy.id, code: x.enemy.code })),
     questPoints: cobasStageInfo(s)?.quest ?? 0,
     flagshipDefeated: (s.victoryCards ?? []).includes(C.flagship),
@@ -185,7 +193,16 @@ export function setupCobas(s: GameState) {
     currentQuest: C.outmaneuver,
     questDeck: COBAS_MAIN_QUESTS.slice(1),
     completedQuests: [],
-    setAside: [...COBAS_SHIPS, C.warship, C.warship].map((c) => make(s, c)),
+    // The Dream-chaser campaign prepares its fleet from its six ships, and
+    // the Dol Amroth Warships take their campaign side once upgraded.
+    setAside: [
+      ...(isDreamchaserGame(s) ? dreamchaserFleet(s.campaign) : COBAS_SHIPS),
+      ...Array<string>(2).fill(
+        isDreamchaserGame(s)
+          ? dcScenarioFace(s.campaign, DC.warship)!
+          : C.warship,
+      ),
+    ].map((c) => make(s, c)),
     corsairDeck: shuffle(s, pile("sharedEncounterDeck2")),
     corsairDiscard: [],
     belfalas: [],
@@ -352,7 +369,7 @@ export function cobasRemoveCharacter(
   destruction: boolean,
   lastKnownBlanked = !!u.blanked,
 ) {
-  if (!s.cobas || u.code !== C.warship || !destruction || lastKnownBlanked)
+  if (!s.cobas || !isWarship(u) || !destruction || lastKnownBlanked)
     return false;
   // The physical card returns as a fresh game instance; lasting modifiers do not follow it out of play.
   s.cobas.setAside.push(freshPhysical(s, u));
@@ -427,7 +444,7 @@ export function cobasAbilityProblem(s: GameState, u: Unit) {
   if (u.code === C.beacon) {
     if (s.phase !== "planning")
       return "Use this Planning Action in the planning phase.";
-    if (!s.cobas!.setAside.some((u) => u.code === C.warship))
+    if (!s.cobas!.setAside.some(isWarship))
       return "There is no set-aside Dol Amroth Warship.";
     if (
       allHeroes(s)
@@ -656,6 +673,8 @@ export function cobasEffect(s: GameState, e: Effect) {
       prepend(
         s,
         fx("guardObjective", { target: objective.id, player: firstPlayer(s) }),
+        // The Dream-chaser campaign card's Setup.
+        ...(isDreamchaserGame(s) ? dreamchaserCobasReady(s) : []),
       );
       break;
     }
@@ -922,7 +941,7 @@ export function cobasEffect(s: GameState, e: Effect) {
           })
         )
           break;
-        const index = q.setAside.findIndex((u) => u.code === C.warship);
+        const index = q.setAside.findIndex(isWarship);
         if (index < 0) break;
         for (const [id, n] of payment) spendResources(s, get(s, id)!, n);
         u.exhausted = true;

@@ -72,6 +72,18 @@ import {
 } from "./dreamchaser-campaign-support";
 import { dreamchaserOminousX, dreamchaserState } from "./dreamchaser-campaign";
 import {
+  borrowedHeroRemoved,
+  cobasCampaignEncounter,
+  cobasCampaignShadow,
+  cobasCardEntered,
+  cobasRoundEnd,
+  dreamchaserCobasEffect,
+  gavinAbility,
+  gavinLabel,
+  gavinProblem,
+  gavinRemoved,
+} from "./dreamchaser-cobas";
+import {
   cirdanAbility,
   cirdanAttackBonus,
   cirdanAttackers,
@@ -122,7 +134,10 @@ export function dreamchaserCampaignEncounter(
   replay = false,
   fromReveal = true,
 ) {
-  if (!isDreamchaserGame(s) || code !== DC.ominous) return false;
+  if (!isDreamchaserGame(s)) return false;
+  // Gavin and Send for Help (A Storm on Cobas Haven).
+  if (fromReveal && cobasCampaignEncounter(s, code)) return true;
+  if (code !== DC.ominous) return false;
   if (!replay) s.encounterDiscard.push(code);
   if (!fromReveal) return true;
   prepend(
@@ -136,6 +151,8 @@ export function dreamchaserCampaignEncounter(
 /** Shadow effects: Ominous Fate's reveal and Thunderstruck's choice. */
 export function dreamchaserCampaignShadow(s: GameState, code: string) {
   if (!isDreamchaserGame(s)) return false;
+  // Send for Help: "Shadow: Resolve this card's when revealed effect."
+  if (cobasCampaignShadow(s, code)) return true;
   if (code === DC.ominous) {
     // "Shadow: Reveal an encounter card."
     prepend(s, fx("reveal", { player: firstPlayer(s) }));
@@ -424,7 +441,8 @@ export function dreamchaserCardPlayed(s: GameState, c: Card) {
 
 /** Glórinaith's Action (and its once-per-round limit). */
 export const dreamchaserAbilityLabel = (code: string, s?: GameState) =>
-  dcBase(code) === DC.glorinaith
+  gavinLabel(code) ??
+  (dcBase(code) === DC.glorinaith
     ? dcBackFace(code)
       ? "Glórinaith · Name a card, then discard the top 3 cards of any deck to deal 1 damage to a non-unique enemy (2 if the named card is discarded; once per round)"
       : "Glórinaith · Discard the top 2 cards of any deck to deal 1 damage to an engaged non-unique enemy (once per round)"
@@ -436,7 +454,7 @@ export const dreamchaserAbilityLabel = (code: string, s?: GameState) =>
         ? dcBackFace(code)
           ? "Calaerion · Spend 2 resources and exhaust: ready another ally (+1/+1/+1 until the end of the round)"
           : "Calaerion · Spend 3 resources and exhaust: ready the Dream-chaser (+1/+1/+1 until the end of the phase)"
-        : undefined;
+        : undefined);
 /** Calphon outside The Fate of Númenor: Raid on the Grey Havens' campaign card. */
 const campaignCalphon = (s: GameState) =>
   isDreamchaserGame(s) && !s.fateNumenor;
@@ -460,6 +478,7 @@ export function dreamchaserAbilityProblem(
   if (u.blanked) return `${name(u)}'s text is blank.`;
   if (ownerOf(s, u) !== activeSeat(s))
     return `${name(u)} belongs to another player.`;
+  if (gavinLabel(u.code)) return gavinProblem(s, u);
   if (dcIs(u, FATE.calphon))
     return u.exhausted || !seatView(s, ownerOf(s, u)).deck.length
       ? "Calphon must be ready and your deck must contain a card."
@@ -491,6 +510,10 @@ export function dreamchaserAbility(s: GameState, u: Unit): boolean {
     return false;
   const problem = dreamchaserAbilityProblem(s, u);
   if (problem) throw new RuleError(problem);
+  if (gavinLabel(u.code)) {
+    gavinAbility(s, u);
+    return true;
+  }
   if (dcIs(u, FATE.calphon)) {
     if (exhaustCharacter(s, u))
       prepend(s, fx("dcCalphon", { target: u.id, player: ownerOf(s, u) }));
@@ -962,10 +985,27 @@ export function dreamchaserEncounterDiscarded(s: GameState, codes: string[]) {
 }
 /** "When Calaerion leaves play, remove him from the game." */
 export function dreamchaserRemoveCharacter(s: GameState, u: Unit) {
-  if (!isDreamchaserGame(s) || !dcIs(u, DC.calaerion)) return false;
+  if (!isDreamchaserGame(s)) return false;
+  // Send for Help (Tactics): "… if those heroes leave play, remove them
+  // from the game."
+  if (borrowedHeroRemoved(s, u)) {
+    const q = dreamchaserState(s);
+    q.borrowed = (q.borrowed ?? []).filter((id) => id !== u.id);
+    if (!q.borrowed.length) delete q.borrowed;
+    s.removed.push(u.code);
+    return true;
+  }
+  // Calaerion and Gavin are removed from the game when they leave play.
+  if (!dcIs(u, DC.calaerion) && !gavinRemoved(s, u)) return false;
   s.removed.push(u.code);
   return true;
 }
+/** Gavin and Send for Help are revealed without entering the staging area. */
+export const dreamchaserCardEntered = (
+  s: GameState,
+  u: Unit,
+  cancel: boolean,
+) => cobasCardEntered(s, u, cancel);
 
 // ------------------------------------------- Raid on the Grey Havens
 
@@ -1080,11 +1120,14 @@ function calphonCheck(s: GameState) {
 /** Sea Serpent (Enraged): "Forced: At the end of the round, Sea Serpent makes an attack against the first player." */
 export function dreamchaserRoundEnd(s: GameState): Effect[] {
   if (!isDreamchaserGame(s)) return [];
-  return enemiesInPlay(s)
-    .filter((u) => dcIs(u, DC.serpent) && dcBackFace(u) && !u.blanked)
-    .map((u) =>
-      fx("immediateAttack", { target: u.id, player: firstPlayer(s) }),
-    );
+  return [
+    ...cobasRoundEnd(s),
+    ...enemiesInPlay(s)
+      .filter((u) => dcIs(u, DC.serpent) && dcBackFace(u) && !u.blanked)
+      .map((u) =>
+        fx("immediateAttack", { target: u.id, player: firstPlayer(s) }),
+      ),
+  ];
 }
 /**
  * Sea Serpent: "Forced: After Sea Serpent attacks and destroys an ally, the
@@ -1879,6 +1922,7 @@ function raidEffect(s: GameState, e: Effect): boolean {
 export function dreamchaserCardEffect(s: GameState, e: Effect): boolean {
   if (dreamchaserTempleEffect(s, e)) return true;
   if (dreamchaserDrownedEffect(s, e)) return true;
+  if (dreamchaserCobasEffect(s, e)) return true;
   if (e.kind.startsWith("dcSpy")) return spyglassEffect(s, e);
   if (raidEffect(s, e)) return true;
   switch (e.kind) {

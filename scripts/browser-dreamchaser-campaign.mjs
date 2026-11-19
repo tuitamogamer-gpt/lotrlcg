@@ -15,6 +15,7 @@ import {
   dcIs,
 } from "../src/game/dreamchaser-campaign-support.ts";
 import { DROWNED } from "../src/game/drowned-support.ts";
+import { COBAS } from "../src/game/cobas-support.ts";
 import { RAID } from "../src/game/raid-grey-havens-support.ts";
 import { STORMCALLER } from "../src/game/stormcaller-support.ts";
 import { DEPTHS } from "../src/game/depths-support.ts";
@@ -527,8 +528,58 @@ try {
     assert.equal(s.campaign.completed.length, 7);
     assert.ok(s.campaign.boons.includes(COMMAND[0]));
     assert.ok(s.campaign.boons.includes(CIRDAN[0]));
-    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await page.getByRole("button", { name: /^Continue campaign/ }).waitFor();
     await checkpoint("drowned-complete", width);
+    // A Storm on Cobas Haven: the campaign fleet, Black Key (burden) on
+    // Raider Flagship, Calaerion, Gavin and Send for Help set aside.
+    await page.getByRole("button", { name: /^Continue campaign/ }).click();
+    await page.getByRole("button", { name: /^Begin next chapter/ }).click();
+    await reviewedState(page);
+    s = await opening();
+    assert.equal(s.scenarioId, "a-storm-on-cobas-haven");
+    assert.deepEqual(
+      s.staging
+        .find((u) => u.code === COBAS.flagship)
+        .attachments.map((a) => a.code),
+      [DC.keyBurden],
+    );
+    assert.ok(s.allies.some((u) => u.code === DC.gavin));
+    assert.ok(s.allies.some((u) => dcIs(u, DC.calaerion)));
+    assert.equal(s.dreamchaser.sendForHelp.length, 4);
+    await campaignCard(
+      /Set-aside copies of Send for Help: 4/,
+      "cobas-setup",
+      width,
+    );
+    // Gavin's Planning Action, through his button.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      s = await load(t);
+    }
+    s = await ability(s.allies.find((u) => u.code === DC.gavin));
+    assert.ok(!s.allies.some((u) => u.code === DC.gavin));
+    assert.ok(s.encounterDeck.includes(DC.gavin));
+    assert.equal(s.dreamchaser.sendForHelp.length, 3);
+    await checkpoint("cobas-gavin", width);
+    // The resolution: the players spend 4 XP to record that Gavin returned.
+    s = await victory(s, (t) => {
+      t.victoryCards = [...(t.victoryCards ?? []), COBAS.flagship];
+      t.sailing.heading = 0;
+    });
+    assert.equal(s.campaign.resolution, "a-storm-on-cobas-haven");
+    await page.getByLabel(/Spend 4 XP on Gavin/).selectOption("spend");
+    await checkpoint("cobas-resolution", width);
+    await page
+      .getByRole("button", { name: "Record the resolution", exact: false })
+      .click();
+    await reviewedState(page);
+    s = await campaign();
+    assert.equal(s.campaign.completed.length, 8);
+    assert.equal(s.campaign.marks[DC.gavin], 4);
+    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await checkpoint("cobas-complete", width);
     await view.c.close();
   }
   const p = await browser.newPage();

@@ -5,10 +5,10 @@ cycle, with the Dream-chaser Campaign Expansion's campaign cards, boons,
 burdens, Upgraded faces and its new rules: experience (XP), scalable and
 upgradable cards, a fleet of six ships and the Hard/Expert Mode card. The
 lobby's campaign mode offers it as the fourth campaign, for one fellowship of
-one to four local players. Its first seven chapters, from Voyage Across
-Belegaer through The Drowned Ruins, are supported; the Campaign Log is kept
-after them, and the end of the game says that the next chapter, A Storm on
-Cobas Haven, is not available in campaign mode yet.
+one to four local players. Its first eight chapters, from Voyage Across
+Belegaer through A Storm on Cobas Haven, are supported; the Campaign Log is
+kept after them, and the end of the game says that the last chapter, The City
+of Corsairs, is not available in campaign mode yet.
 
 ## Sources
 
@@ -173,11 +173,25 @@ into their deck after their starting hand.
 | Command (boon events, scalable, 4 checkboxes each)                | Cost 1, paid with its printed sphere; victory 1. Action: add it to the victory display to choose up to X options (its level), each once, one after another. Leadership: a hero gets +2 defense until the end of the round; an enemy gets −2 defense until the end of the round; ready a character with Círdan's Blessing; put an ally with cost X or less from your discard pile into play, discarded at the end of the phase. Lore: remove X resources from a non-unique enemy; add 2 resources to each Círdan's Blessing; add the bottom card of your deck to your hand; look at the top 10 cards of the encounter deck, discard any of them one at a time and shuffle it. Spirit: a hero gets +2 willpower until the end of the round; each character with Círdan's Blessing does not exhaust to commit to a quest this round; place 2 progress on a non-unique location; put Spyglass into play attached to a hero (when it is not in play). Tactics: a hero gets +2 attack until the end of the round; an enemy gets −2 attack until the end of the round; deal 2 damage to an enemy and optionally engage it from the staging area; ready an attachment and optionally move it to a character its own "Attach to …" allows. Enemies immune to player card effects cannot be chosen. |
 | Círdan's Blessing (boon attachments, scalable, 5 checkboxes each) | Cost 1, paid with its printed sphere; attaches to a character (the Lore copy to a hero) and enters play with 1 more resource than its level. Leadership: when its character defends, remove 1 resource for +3 defense for that attack. Tactics: when its character attacks, remove 1 resource for +3 attack for that attack. Spirit: Action, exhaust it and remove 1 resource for +3 willpower until the end of the phase. Lore: after the active location is explored, move 1 resource to its hero's resource pool and heal 1 damage from them.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 
+## A Storm on Cobas Haven (Part 8)
+
+The rulebook's campaign setup adds Black Key (burden), Thunderstruck,
+Crowley, the Modification boons, Calaerion, Gavin, the four copies of Send
+for Help and Círdan's Blessing, and every card in the Campaign Pool; the
+Dol Amroth Warships take their "Campaign Mode only" side once its three
+checkboxes are marked.
+
+| Card                                                                                          | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Campaign card                                                                                 | Setup: the fleet is prepared from the campaign's six ships (one of them the Dream-chaser), and once the scenario's own setup is done Black Key (burden) is attached to Raider Flagship, each player chooses a Modification boon for each of their ship-objectives, Thunderstruck joins the encounter deck and Crowley the Corsair deck (with Ominous Fate from the Campaign Pool), Calaerion enters play under the control of the player with the Dream-chaser, Gavin enters play under a chosen player's control, one player may take a copy of Círdan's Blessing that is not in the Campaign Pool, and the four copies of Send for Help are set aside. Resolution: the chosen Círdan's Blessing joins the Campaign Pool and its player's deck; the end-of-game dialog offers to spend 4 XP to record "Gavin returned" (marking Gavin's four checkboxes) when 4 XP are unspent; the XP of 1 per surviving player, 1 if on-course, 1 for 2 Dol Amroth Warships in play, 1 for 2 captured Corsair Skirmishers, 1 for 4 controlled Dol Amroth objectives, 1 per Corsair Warship, 1 for Crowley, 2 for Raider Flagship and 2 for Thunderstruck in the victory display, −1 for Ominous Fate (and the Hard/Expert Mode card). |
+| Dol Amroth Warship ("Campaign Mode only", 3 checkboxes)                                       | As the original with Sentinel; the Cobas module recognises both faces (its on-course bonus, The Beacon, its return to the set-aside cards).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Gavin (boon objective-ally)                                                                   | 1 willpower, 1 attack, 2 hit points; Surge, Ranged; removed from the game when he leaves play other than by his ability. Planning Action: Gavin and a random set-aside Send for Help are shuffled into the encounter deck. When Revealed (he does not enter the staging area): he enters play under a chosen player's control, committed to the quest during the quest phase, and Lanwyn gains 1 resource.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Send for Help (boon events, upgradable: Leadership 3, Tactics 3, Spirit 4, Lore 2 checkboxes) | Revealed from the encounter deck (never entering the staging area, and removed from the game afterwards; Surge), or as a shadow card (it leaves the attacking enemy). Leadership: a chosen player searches the top 10 cards of their deck for a card, draws it or plays it at no cost from the top, and shuffles (twice upgraded). Tactics: a hero from the players' collections (one per title not in play) enters play under a chosen player's control until the end of the round or until it leaves play, then is removed from the game (twice upgraded). Spirit: an additional resource, planning, combat or refresh phase follows the current phase (two upgraded, in the chosen order); the next phase's start waits until it ends. Lore: Gandalf (Core Set) enters play under a chosen player's control, ignoring uniqueness, with his usual choice, or up to 3 of his options upgraded.                                                                                                                                                                                                                                                                                                                          |
+
 ## Not supported yet
 
-A Storm on Cobas Haven and The City of Corsairs follow, with their boons and
-burdens (Gavin, Send for Help and The Black Sword) and the "Campaign Mode
-only" sides of their scenario cards.
+The City of Corsairs follows, with The Black Sword and the "Campaign Mode
+only" sides of its scenario cards, and the campaign's victory.
 
 ## Verification
 
@@ -187,7 +201,7 @@ npm run build
 npm run test:browser-dreamchaser-campaign
 ```
 
-`tests/dreamchaser-campaign.test.ts` (45 tests) covers the registered cards'
+`tests/dreamchaser-campaign.test.ts` (51 tests) covers the registered cards'
 texts and faces, the Campaign Log's checkboxes, the chapter order and the
 Na'asiyah rule; Voyage Across Belegaer's fleet of six ships, the Modification
 choices and the damage-for-resource offer; Upgraded ships and Modifications
@@ -231,7 +245,13 @@ mulligan's hold; The Drowned Ruins' cards, its setup (Black Key on Captain
 Sahír, the Command and Círdan's Blessing offers, Ominous Fate's X), Command
 played from hand with its sphere and all four copies' options, Círdan's
 Blessing on a character with its resources and its four abilities, and the
-resolution's XP and Campaign Pool, before the next chapter is refused. The browser suite starts a new
+resolution's XP and Campaign Pool; A Storm on Cobas Haven's cards, its setup
+(the campaign fleet and Upgraded Dol Amroth Warships, Black Key on Raider
+Flagship, Calaerion, Gavin, a Círdan's Blessing not in the Campaign Pool,
+Thunderstruck, Crowley and the set-aside Send for Help), Gavin's Planning
+Action, reveal and removal, the four copies of Send for Help (search, lent
+hero, Gandalf, shadow) and the additional phases, and the resolution's XP,
+Campaign Pool and "Gavin returned", before the next chapter is refused. The browser suite starts a new
 Dream-chaser campaign through the lobby on Hard Mode, prepares the fleet with
 two Modification boons, opens the campaign card's state in the quest
 inspector and records the resolution; the interlude spends 2 XP on Calphon's
@@ -251,4 +271,8 @@ button brings Starla into play, and its resolution adds Starla and a Recurring
 Nightmare to the Campaign Pool; The Drowned Ruins begins with Black Key on
 Captain Sahír, a Leadership Command and Círdan's Blessing in hand and the
 Recurring Nightmare in the deck, and its resolution adds both copies to the
-Campaign Pool, at 1280, 390 and 320 pixels (57 checkpoints); it checks the 82 pinned faces.
+Campaign Pool; A Storm on Cobas Haven begins with the campaign fleet, Black Key
+on Raider Flagship, Calaerion, Gavin and four set-aside copies of Send for Help,
+Gavin's Planning Action shuffles him into the encounter deck through his
+button, and its resolution records "Gavin returned" through the end-of-game
+dialog, at 1280, 390 and 320 pixels (69 checkpoints); it checks the 91 pinned faces.

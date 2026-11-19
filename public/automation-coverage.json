@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2221,
+    "encounterCards": 2229,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3447,
-    "pending": 736
+    "scripted": 3454,
+    "pending": 729
   },
   "scenarioRecipes": {
     "total": 355,
@@ -720,6 +720,11 @@
     "11206",
     "11207",
     "11208",
+    "11210",
+    "11211",
+    "11212",
+    "11213",
+    "11214",
     "12001",
     "12002",
     "12003",
@@ -2885,6 +2890,7 @@
     "octgn:a531dc43-7feb-4e63-96ad-a33cdb3b717a",
     "octgn:a53e4587-03e4-4120-8aa5-9601a7069edd",
     "octgn:a54706fb-776c-4c00-b0ef-454b21673bcb",
+    "octgn:a56afdd4-343f-4b66-9bd2-f775d6372cd7",
     "octgn:a56cab99-d482-4aa3-b5e4-b1e5b857515f",
     "octgn:a589eabf-64a6-4400-aa3d-ad30b4f721c3",
     "octgn:a5aef3fe-7bb9-4165-ba0f-91127d8f21e3",
@@ -3449,6 +3455,8 @@
     "octgn:edfb7ef3-dee9-4cf4-986e-5698bb3fb320",
     "octgn:edfe479c-dc2b-43d0-9d4b-708e96320748",
     "octgn:ee118b36-0113-4c74-82b3-14f235914212",
+    "octgn:ee22a40c-9884-4872-988b-f8468e4ac549",
+    "octgn:ee22a40c-9884-4872-988b-f8468e4ac549.B",
     "octgn:ee30a928-cdf8-40c0-87b3-13115bc16cd3",
     "octgn:ee451e81-d7ee-40a6-9079-7f6538a26a26",
     "octgn:ee76f0c0-da20-402c-a1e6-8abd1504b56a",
@@ -3778,9 +3786,9 @@
     {
       "product": "dream-chaser-campaign-expansion",
       "total": 60,
-      "scripted": 50,
+      "scripted": 57,
       "player": 26,
-      "playerScripted": 22
+      "playerScripted": 26
     },
     {
       "product": "encounter-at-amon-din",
@@ -9302,7 +9310,7 @@
       "name": "Gavin",
       "type": "objective-ally",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -9310,7 +9318,7 @@
       "name": "Send for Help",
       "type": "event",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -9318,7 +9326,7 @@
       "name": "Send for Help",
       "type": "event",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -9326,7 +9334,7 @@
       "name": "Send for Help",
       "type": "event",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -9334,7 +9342,7 @@
       "name": "Send for Help",
       "type": "event",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -29854,7 +29862,7 @@
       "name": "A Storm on Cobas Haven",
       "type": "campaign",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -36278,7 +36286,7 @@
       "name": "Dol Amroth Warship",
       "type": "ship-objective",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {

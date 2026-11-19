@@ -3670,7 +3670,8 @@ export function placeEncounter(
     if (
       !Race.raceHaradCardEntered(s, fresh, fromReveal, cancel) &&
       !Storm.stormcallerCardEntered(s, fresh, fromReveal, cancel) &&
-      !Depths.depthsCardEntered(s, fresh, fromReveal, cancel)
+      !Depths.depthsCardEntered(s, fresh, fromReveal, cancel) &&
+      !DreamCards.dreamchaserCardEntered(s, fresh, cancel)
     )
       s.staging.push(fresh);
     Cobas.cobasCardEntered(s, fresh, fromReveal, cancel);

@@ -27,6 +27,7 @@ import { sailingCommitCount } from "../src/game/sailing";
 import {
   CIRDAN,
   COMMAND,
+  SEND_FOR_HELP,
   DC,
   DREAMCHASER_CAMPAIGN_CARDS,
   DREAMCHASER_CAMPAIGN_ORDER,
@@ -35,6 +36,7 @@ import {
   GALDOR,
   HAVENS_BURN,
   backFace,
+  dcBase,
   dcIs,
   dreamchaserFleet,
 } from "../src/game/dreamchaser-campaign-support";
@@ -72,6 +74,8 @@ import {
   dreamchaserLocationExplored,
   dreamchaserPlayerAttackBonus,
   dreamchaserPlayerAttackResolved,
+  dreamchaserCampaignShadow,
+  dreamchaserRemoveCharacter,
 } from "../src/game/dreamchaser-campaign-cards";
 import { VOYAGE } from "../src/game/voyage-belegaer-support";
 import { RAID } from "../src/game/raid-grey-havens-support";
@@ -87,6 +91,9 @@ import { forOwner, seatView } from "../src/game/table";
 import { shuffleCampaignNightmares } from "../src/game/dreamchaser-temple";
 import { DROWNED } from "../src/game/drowned-support";
 import { questExhausts } from "../src/game/expansion-passives";
+import { COBAS } from "../src/game/cobas-support";
+import { hasKeyword } from "../src/game/table";
+import { gavinAbility } from "../src/game/dreamchaser-cobas";
 import {
   TEMPLE,
   templeMapUnit,
@@ -165,6 +172,7 @@ test("The Dream-chaser campaign: Voyage Across Belegaer's campaign card and the 
     "the-thing-in-the-depths",
     "temple-of-the-deceived",
     "the-drowned-ruins",
+    "a-storm-on-cobas-haven",
   ]);
   const campaignCard = card(
     DREAMCHASER_CAMPAIGN_CARDS["voyage-across-belegaer"]!,
@@ -2595,7 +2603,7 @@ test("Círdan's Blessing: it attaches to a character (the Lore copy to a hero) w
   assert.equal(l.heroes[0].damage, 0);
 });
 
-test("The Drowned Ruins' resolution: resources on the campaign card, Na'asiyah's resources, no enemies, 5 Underwater locations and the Shrine's Grotto side in the victory display and threat give XP; the chosen Command and Círdan's Blessing copies join the Campaign Pool and their players' decks", () => {
+test("The Drowned Ruins' resolution: resources on the campaign card, Na'asiyah's resources, no enemies, 5 Underwater locations and the Shrine's Grotto side in the victory display and threat give XP; the chosen Command and Círdan's Blessing copies join the Campaign Pool and their players' decks, and A Storm on Cobas Haven follows", () => {
   const s = calm(reload(opening(drowned())));
   s.dreamchaser = {
     ...(s.dreamchaser ?? {}),
@@ -2622,8 +2630,289 @@ test("The Drowned Ruins' resolution: resources on the campaign card, Na'asiyah's
   assert.ok(c.boons.includes(COMMAND[0]) && c.boons.includes(CIRDAN[0]));
   assert.equal(c.deckBoons![COMMAND[0]], 0);
   assert.equal(c.deckBoons![CIRDAN[0]], 0);
+  const next = continueCampaign(s, c.heroes, s.deckId, true, 9);
+  assert.equal(next.scenarioId, "a-storm-on-cobas-haven");
+});
+
+// ---------------------------------------- A Storm on Cobas Haven (Part 8)
+
+/** A Dream-chaser campaign after The Drowned Ruins. */
+function afterDrowned(marks: Record<string, number> = {}): CampaignState {
+  const c = afterTemple(marks);
+  return {
+    ...c,
+    completed: [
+      ...c.completed,
+      { scenarioId: "the-drowned-ruins", score: 18, rounds: 8, xp: 6 },
+    ],
+  };
+}
+const cobas = (campaign = afterDrowned(), deck = STARTERS[0], seed = 5) =>
+  createGame(seed, deck.cards, deck.heroes, deck.id, {
+    scenarioId: "a-storm-on-cobas-haven",
+    playMode: "campaign",
+    campaign: { ...campaign, heroes: [...deck.heroes] },
+  });
+/** Resolve a copy of Send for Help's When Revealed effect. */
+function help(s: GameState, code: string) {
+  s.queue = [makeEffect("dcHelp", { code, player: 0 })];
+  flush(s);
+  return s;
+}
+
+test("A Storm on Cobas Haven: its campaign card, Gavin, the four copies of Send for Help and the Dol Amroth Warship's campaign side are registered with the print-and-play texts", () => {
+  const campaignCard = card(DC.cobasCard);
+  assert.equal(campaignCard.subtitle, "Dream-chaser Part 8");
+  assert.match(
+    campaignCard.text!,
+    /Put Gavin into play under any player's control\. One player may choose a copy of Círdan's Blessing not in the Campaign Pool and add it to their hand\./,
+  );
+  assert.match(
+    campaignCard.back_text!,
+    /The players may spend 4 XP on Gavin to record in the Campaign Log that "Gavin returned\."/,
+  );
+  const gavin = card(DC.gavin);
+  assert.deepEqual(
+    [
+      gavin.type_code,
+      gavin.willpower,
+      gavin.attack,
+      gavin.defense,
+      gavin.health,
+    ],
+    ["objective-ally", 1, 1, 0, 2],
+  );
+  assert.deepEqual(
+    SEND_FOR_HELP.map(
+      (code) =>
+        /Send for Help \(\[(\w+)\]\) is upgraded/.exec(card(code).text!)?.[1],
+    ),
+    ["leadership", "tactics", "spirit", "lore"],
+  );
+  assert.match(
+    card(backFace(DC.warship)).text!,
+    /Campaign Mode only\.\nImmune to player card effects\. Sentinel\./,
+  );
+});
+
+test("A Storm on Cobas Haven's setup: the fleet comes from the campaign's ships, Raider Flagship carries Black Key (burden), Modifications, Calaerion and Gavin join the players, a copy of Círdan's Blessing not in the Campaign Pool may be taken, Thunderstruck and Crowley are shuffled in, and the four copies of Send for Help are set aside", () => {
+  let s = opening(
+    cobas({
+      ...afterDrowned({ [DC.warship]: 3 }),
+      boons: [CIRDAN[0]],
+      deckBoons: { [CIRDAN[0]]: 0 },
+    }),
+    (x) => {
+      if (/copy of Círdan's Blessing/.test(x.choice!.title)) {
+        assert.ok(
+          !x.choice!.options.some((o) => o.id === CIRDAN[0]),
+          "not a copy in the Campaign Pool",
+        );
+        return CIRDAN[1];
+      }
+      return undefined;
+    },
+  );
+  s = calm(reload(s));
+  const flagship = s.staging.find((u) => u.code === COBAS.flagship)!;
+  assert.deepEqual(
+    flagship.attachments.map((a) => a.code),
+    [DC.keyBurden],
+  );
+  assert.ok(s.allies.some((u) => dcIs(u, DC.calaerion)));
+  assert.ok(s.allies.some((u) => u.code === DC.gavin));
+  assert.ok(
+    s.allies
+      .filter((u) => card(u.code).type_code === "ship-objective")
+      .every((u) =>
+        u.attachments.some((a) =>
+          [DC.armor, DC.ballista, DC.quarters, DC.sails].includes(
+            dcBase(a.code),
+          ),
+        ),
+      ),
+  );
+  assert.ok(s.hand.some((h) => h.code === CIRDAN[1]));
+  assert.ok(s.encounterDeck.includes(DC.thunderstruck));
+  assert.ok(s.cobas!.corsairDeck.includes(DC.crowley));
+  assert.deepEqual(s.dreamchaser!.sendForHelp, [...SEND_FOR_HELP]);
+  // Both Dol Amroth Warships wait on their campaign side (Sentinel).
+  const warships = s.cobas!.setAside.filter((u) => dcIs(u, COBAS.warship));
+  assert.equal(warships.length, 2);
+  assert.ok(warships.every((u) => u.code === backFace(DC.warship)));
+  assert.ok(hasKeyword(warships[0], "Sentinel"));
+  assert.ok(valid(s));
+});
+
+test("Gavin: his Planning Action shuffles him and a random set-aside Send for Help into the encounter deck; revealed, he joins a player committed to the quest with a resource for Lanwyn; leaving play otherwise removes him from the game", () => {
+  let s = calm(reload(opening(cobas())));
+  const gavin = s.allies.find((u) => u.code === DC.gavin)!;
+  assert.match(availableAbilities(s, gavin)[0].label, /Planning Action/);
+  assert.ok(availableAbilities(s, gavin)[0].disabled === false);
+  const deck = s.encounterDeck.length;
+  gavinAbility(s, gavin);
+  assert.ok(!s.allies.some((u) => u.id === gavin.id));
+  assert.equal(s.encounterDeck.length, deck + 2);
+  assert.ok(s.encounterDeck.includes(DC.gavin));
+  assert.equal(s.dreamchaser!.sendForHelp!.length, 3);
+  assert.ok(valid(s));
+  // Revealed during the quest: committed, and Lanwyn gains a resource.
+  s.heroes[0].code = "12030";
+  const lanwyn = s.heroes[0].resources;
+  s.phase = "staging";
+  s.queue = [makeEffect("dcGavinPlace", { player: 0, flag: true })];
+  flush(s);
+  const back = s.allies.find((u) => u.code === DC.gavin)!;
+  assert.ok(back.committed);
+  assert.equal(s.heroes[0].resources, lanwyn + 1);
+  // Destroyed: removed from the game.
+  assert.ok(dreamchaserRemoveCharacter(s, back));
+  assert.ok(s.removed.includes(DC.gavin));
+});
+
+test("Send for Help: revealed from the encounter deck it is removed from the game; Leadership draws or plays a card from the top 10 at no cost (twice upgraded), Tactics lends a hero until the end of the round, Lore brings Gandalf with up to 3 options upgraded, and its Shadow resolves the same effect", () => {
+  // Leadership: search the top 10.
+  let s = calm(reload(opening(cobas())));
+  s.deck = ["01013", ...s.deck];
+  s = help(s, SEND_FOR_HELP[0]);
+  assert.match(s.choice!.title, /Search the top 10 cards/);
+  s = choose(s, "play-0");
+  assert.ok(
+    s.allies.some((u) => u.code === "01013"),
+    "played at no cost",
+  );
+  assert.equal(s.choice, null);
+  assert.ok(valid(s));
+  // Upgraded: twice.
+  let t = calm(reload(opening(cobas(afterDrowned({ [SEND_FOR_HELP[0]]: 3 })))));
+  t = help(t, SEND_FOR_HELP[0]);
+  const first = t.deck[0];
+  t = choose(t, "draw-0");
+  assert.ok(t.hand.some((h) => h.code === first));
+  assert.match(t.choice!.title, /Search the top 10 cards/);
+  t = choose(t, "skip");
+  assert.equal(t.choice, null);
+  // Tactics: a hero from the collection until the end of the round.
+  let u = calm(reload(opening(cobas())));
+  u = help(u, SEND_FOR_HELP[1]);
+  assert.match(u.choice!.title, /hero from the players' collections/);
+  assert.ok(!u.choice!.options.some((o) => o.code === u.heroes[0].code));
+  const pick = u.choice!.options[0].code!;
+  u = choose(u, u.choice!.options[0].id);
+  const lent = u.heroes.find((h) => h.code === pick)!;
+  assert.ok(lent, "the hero enters play");
+  assert.deepEqual(u.dreamchaser!.borrowed, [lent.id]);
+  assert.ok(valid(u));
+  u.queue = dreamchaserRoundEnd(u);
+  flush(u);
+  assert.ok(!u.heroes.some((h) => h.id === lent.id));
+  assert.ok(u.removed.includes(pick));
+  // Lore, upgraded: Gandalf with up to 3 options.
+  let g = calm(reload(opening(cobas(afterDrowned({ [SEND_FOR_HELP[3]]: 2 })))));
+  const threat = g.threat;
+  const hand = g.hand.length;
+  g = help(g, SEND_FOR_HELP[3]);
+  assert.ok(g.allies.some((x) => x.code === "01073"));
+  assert.match(g.choice!.title, /Gandalf · Choose up to 3 options/);
+  g = choose(g, "draw");
+  g = choose(g, "threat");
+  assert.equal(g.hand.length, hand + 3);
+  assert.equal(g.threat, threat - 5);
+  g = choose(g, "skip");
+  // Not upgraded: Gandalf's own single choice.
+  let n = calm(reload(opening(cobas())));
+  n = help(n, SEND_FOR_HELP[3]);
+  assert.match(n.choice!.title, /Gandalf/);
+  // Shadow: the card leaves the attacking enemy and its effect resolves.
+  const m = calm(reload(opening(cobas())));
+  const raider = m.staging.find((x) => x.code === COBAS.flagship)!;
+  raider.shadows = [SEND_FOR_HELP[2]];
+  m.combat = {
+    enemyId: raider.id,
+    defenderId: null,
+    attackBonus: 0,
+  } as GameState["combat"];
+  assert.ok(dreamchaserCampaignShadow(m, SEND_FOR_HELP[2]));
+  assert.deepEqual(raider.shadows, []);
+  assert.equal(m.queue[0].kind, "dcHelp");
+});
+
+test("Send for Help (Spirit): the chosen additional phase follows the current one, and the delayed phase begins when it ends; upgraded, two phases are chosen", () => {
+  let s = calm(reload(opening(cobas(afterDrowned({ [SEND_FOR_HELP[2]]: 4 })))));
+  s = help(s, SEND_FOR_HELP[2]);
+  assert.match(s.choice!.title, /Choose an additional phase \(one of two\)/);
+  s = choose(s, "planning");
+  s = choose(s, "resource");
+  assert.deepEqual(s.dreamchaser!.extraPhases, ["planning", "resource"]);
+  assert.ok(valid(s));
+  // The quest phase ends: an additional planning phase instead of travel.
+  s.phase = "staging";
+  s.queue = [makeEffect("startTravel", { player: 0 })];
+  flush(s);
+  assert.equal(s.phase, "planning");
+  assert.equal(s.dreamchaser!.extraPhase!.phase, "planning");
+  assert.equal(s.dreamchaser!.extraPhase!.resume.kind, "startTravel");
+  assert.ok(valid(s));
+  // The additional planning phase ends: the additional resource phase.
+  s.queue = [makeEffect("startQuest")];
+  flush(s);
+  assert.equal(s.phase, "resource");
+  assert.equal(s.dreamchaser!.extraPhase!.phase, "resource");
+  // It ends too: the delayed travel phase begins.
+  s.queue = [makeEffect("startPlanning")];
+  flush(s);
+  assert.equal(s.phase, "travel");
+  assert.equal(s.dreamchaser!.extraPhase, undefined);
+  assert.equal(s.dreamchaser!.extraPhases, undefined);
+});
+
+test("A Storm on Cobas Haven's resolution: on-course, 2 Dol Amroth Warships, 2 captured Corsair Skirmishers, 4 controlled objectives, Corsair Warships, Crowley, Raider Flagship and Thunderstruck give XP; the chosen Círdan's Blessing joins the Campaign Pool, and the players may spend 4 XP to record that Gavin returned", () => {
+  const s = calm(reload(opening(cobas())));
+  s.dreamchaser = { ...(s.dreamchaser ?? {}), cirdan: { [CIRDAN[1]]: 0 } };
+  s.sailing!.heading = 0;
+  for (const ship of s.cobas!.setAside.filter((u) => dcIs(u, COBAS.warship))) {
+    ship.owner = 0;
+    s.allies.push(ship);
+  }
+  s.cobas!.setAside = s.cobas!.setAside.filter((u) => !dcIs(u, COBAS.warship));
+  for (let i = 0; i < 2; i++) {
+    const skirmisher = make(s, COBAS.skirmisher);
+    skirmisher.cobasShipObjective = true;
+    skirmisher.owner = 0;
+    s.allies.push(skirmisher);
+  }
+  s.victoryCards = [
+    ...(s.victoryCards ?? []),
+    VOYAGE.warship,
+    DC.crowley,
+    COBAS.flagship,
+    DC.thunderstruck,
+  ];
+  const lines = dreamchaserXpLines(s);
+  assert.deepEqual(
+    lines.map((l) => l.xp).slice(1, 9),
+    [1, 1, 1, 0, 1, 1, 2, 2],
+  );
+  win(s);
+  const c = s.campaign!;
+  assert.equal(c.completed[7].scenarioId, "a-storm-on-cobas-haven");
+  assert.ok(c.boons.includes(CIRDAN[1]));
+  assert.equal(c.deckBoons![CIRDAN[1]], 0);
+  assert.equal(c.resolution, "a-storm-on-cobas-haven");
+  const xp = c.xp!;
+  const recorded = applyDreamchaserResolution(s, { gavin: "spend" });
+  assert.equal(recorded.campaign!.xp, xp - 4);
+  assert.equal(recorded.campaign!.marks![DC.gavin], 4);
+  assert.ok(valid(recorded));
   assert.throws(
-    () => continueCampaign(s, c.heroes, s.deckId, true, 9),
+    () =>
+      continueCampaign(
+        recorded,
+        recorded.campaign!.heroes,
+        recorded.deckId,
+        true,
+        9,
+      ),
     /not available in campaign mode yet/,
   );
 });

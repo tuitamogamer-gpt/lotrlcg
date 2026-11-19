@@ -42,6 +42,7 @@ import {
   DREAMCHASER_LOG,
   CIRDAN,
   COMMAND,
+  SEND_FOR_HELP,
   GALDOR,
   MODIFICATIONS,
   backFace,
@@ -61,6 +62,9 @@ import { RAID } from "./raid-grey-havens-support";
 import { STORMCALLER } from "./stormcaller-support";
 import { DEPTHS } from "./depths-support";
 import { DROWNED } from "./drowned-support";
+import { COBAS, COBAS_OBJECTIVES } from "./cobas-support";
+import { cobasObjectiveControlled as cobasControlled } from "./cobas";
+import { dreamchaserPhaseRedirect, gavinPlacement } from "./dreamchaser-cobas";
 import { TEMPLE, templeMapUnits } from "./temple-support";
 import {
   placeTempleSecrets,
@@ -83,6 +87,7 @@ export const DREAMCHASER_CAMPAIGN_SUPPORTED: readonly ScenarioId[] = [
   "the-thing-in-the-depths",
   "temple-of-the-deceived",
   "the-drowned-ruins",
+  "a-storm-on-cobas-haven",
 ];
 /** The chapters whose campaign card shuffles Thunderstruck into the encounter deck and Crowley into the Corsair deck. */
 const CORSAIR_CHAPTERS: readonly ScenarioId[] = [
@@ -206,6 +211,14 @@ export interface DreamchaserGame {
   blessedQuest?: number;
   /** Círdan's Blessing (Tactics): "+3 [attack] for this attack", by attacker id. */
   strikes?: Record<string, number>;
+  /** A Storm on Cobas Haven: the copies of Send for Help still set aside. */
+  sendForHelp?: string[];
+  /** Send for Help (Tactics): the heroes it put into play until the end of the round. */
+  borrowed?: string[];
+  /** Send for Help (Spirit): the additional phases still to come after the current one. */
+  extraPhases?: string[];
+  /** Send for Help (Spirit): the additional phase in progress and the phase start it delays. */
+  extraPhase?: { phase: string; resume: Effect };
 }
 export const dreamchaserState = (s: GameState) => (s.dreamchaser ??= {});
 const several = (s: GameState) => (s.table?.seats.length ?? 1) > 1;
@@ -350,7 +363,7 @@ function corsairDeck(s: GameState): string[] | undefined {
     voyageBelegaer?: { corsairDeck: string[] };
     stormcaller?: { corsairDeck: string[] };
   };
-  return (fleet.voyageBelegaer ?? fleet.stormcaller)?.corsairDeck;
+  return (fleet.voyageBelegaer ?? fleet.stormcaller ?? s.cobas)?.corsairDeck;
 }
 
 /**
@@ -547,6 +560,38 @@ export function dreamchaserDrownedReady(s: GameState): Effect[] {
     ...playerOrder(s).map((player) => fx("dcCommandOffer", { player })),
     fx("dcCirdanOffer", { player: firstPlayer(s) }),
     ...dreamchaserWoundOffers(s),
+  ];
+}
+/**
+ * A Storm on Cobas Haven's campaign card, once the fleet is prepared and the
+ * scenario's setup is done: "Attach Black Key (burden) to Raider Flagship.
+ * Each player chooses a Modification boon for each of their ship-objectives
+ * … Put Calaerion into play under the control of the player with the
+ * Dream-chaser. Put Gavin into play under any player's control. One player
+ * may choose a copy of Círdan's Blessing not in the Campaign Pool and add it
+ * to their hand." The four copies of Send for Help are set aside for Gavin.
+ */
+export function dreamchaserCobasReady(s: GameState): Effect[] {
+  const c = s.campaign;
+  if (!isDreamchaserCampaign(c)) return [];
+  const flagship = s.staging.find((u) => u.code === COBAS.flagship);
+  if (flagship) {
+    const key = dcFace(c, DC.keyBurden);
+    flagship.attachments.push({
+      id: `a${s.nextId++}`,
+      code: key,
+      exhausted: false,
+    });
+    log(s, `${card(key).name} is attached to Raider Flagship.`, "danger");
+  }
+  dreamchaserState(s).sendForHelp = [...SEND_FOR_HELP];
+  dreamchaserCalaerion(s);
+  return [
+    ...dreamchaserFleetReady(s),
+    gavinPlacement(s),
+    ...(CIRDAN.some((code) => !c!.boons.includes(code))
+      ? [fx("dcCirdanOffer", { player: firstPlayer(s) })]
+      : []),
   ];
 }
 export function dreamchaserFateReady(s: GameState, calphon: Unit): Effect[] {
@@ -784,6 +829,46 @@ export function dreamchaserXpLines(s: GameState): XpLine[] {
       },
     );
   }
+  if (s.scenarioId === "a-storm-on-cobas-haven") {
+    const allies = seatIndices(s).flatMap((p) => seatView(s, p).allies);
+    const objectives = s.staging.filter(
+      (u) => COBAS_OBJECTIVES.includes(u.code) && cobasControlled(s, u),
+    );
+    lines.push(
+      {
+        label: "1 XP if you ended the game on-course",
+        xp: s.sailing?.heading === 0 ? 1 : 0,
+      },
+      {
+        label: "1 XP if 2 Dol Amroth Warships are in play",
+        xp: allies.filter((u) => dcIs(u, COBAS.warship)).length >= 2 ? 1 : 0,
+      },
+      {
+        label: "1 XP if the players control 2 Corsair Skirmishers",
+        xp: allies.filter((u) => u.cobasShipObjective).length >= 2 ? 1 : 0,
+      },
+      {
+        label: "1 XP if the players control 4 Dol Amroth objectives",
+        xp: objectives.length >= 4 ? 1 : 0,
+      },
+      {
+        label: "1 XP for each Corsair Warship in the victory display",
+        xp: inVictory(s, VOYAGE.warship),
+      },
+      {
+        label: "1 XP if Crowley is in the victory display",
+        xp: inVictory(s, DC.crowley) ? 1 : 0,
+      },
+      {
+        label: "2 XP if Raider Flagship is in the victory display",
+        xp: inVictory(s, COBAS.flagship) ? 2 : 0,
+      },
+      {
+        label: "2 XP if Thunderstruck is in the victory display",
+        xp: inVictory(s, DC.thunderstruck) ? 2 : 0,
+      },
+    );
+  }
   if (s.scenarioId === "raid-on-the-grey-havens") {
     const burned = s.raidGreyHavens?.burned.length ?? 0;
     lines.push(
@@ -904,6 +989,18 @@ export function resolveDreamchaserCampaign(s: GameState) {
       );
     }
   }
+  if (s.scenarioId === "a-storm-on-cobas-haven") {
+    // "Add the Círdan's Blessing chosen during setup to the Campaign Pool."
+    for (const [code, seat] of Object.entries(s.dreamchaser?.cirdan ?? {})) {
+      if (!c.boons.includes(code)) c.boons.push(code);
+      c.deckBoons = { ...(c.deckBoons ?? {}), [code]: seat };
+      log(
+        s,
+        `A Storm on Cobas Haven · Resolution: Círdan's Blessing (${card(code).boon_sphere}) joins the Campaign Pool.`,
+        "good",
+      );
+    }
+  }
   if (s.scenarioId === "the-drowned-ruins") {
     // "Add each copy of Command and Círdan's Blessing chosen during setup to
     // the Campaign Pool." Each joins the deck of the player who chose it.
@@ -931,6 +1028,14 @@ export function resolveDreamchaserCampaign(s: GameState) {
   )
     c.resolution = s.scenarioId;
   c.xp = Math.max(0, (c.xp ?? 0) + gained);
+  // "The players may spend 4 XP on Gavin to record in the Campaign Log that
+  // 'Gavin returned.'" The end-of-game dialog asks.
+  if (
+    s.scenarioId === "a-storm-on-cobas-haven" &&
+    c.xp >= 4 &&
+    !dcUpgraded(c, DC.gavin)
+  )
+    c.resolution = s.scenarioId;
   log(
     s,
     `${card(DREAMCHASER_CAMPAIGN_CARDS[s.scenarioId]!).name} · Resolution: the players gain ${gained} XP (${c.xp} unspent).`,
@@ -976,6 +1081,17 @@ export function dreamchaserResolutionQuestions(s: GameState): {
         options: c!.heroes
           .filter((h) => !c!.fallen.includes(h))
           .map((h) => ({ id: h, code: h, label: card(h).name })),
+      },
+    ];
+  if (s.scenarioId === "a-storm-on-cobas-haven")
+    return [
+      {
+        id: "gavin",
+        label: `Spend 4 XP on Gavin to record "Gavin returned" (${c!.xp ?? 0} unspent XP)?`,
+        options: [
+          { id: "spend", code: DC.gavin, label: "Spend 4 XP: Gavin returned" },
+          { id: "skip", label: "Keep the XP" },
+        ],
       },
     ];
   if (s.scenarioId === "temple-of-the-deceived")
@@ -1028,6 +1144,15 @@ export function applyDreamchaserResolution(
       "good",
     );
   }
+  if (s.scenarioId === "a-storm-on-cobas-haven" && answers.gavin === "spend") {
+    c.xp = Math.max(0, (c.xp ?? 0) - 4);
+    c.marks = { ...(c.marks ?? {}), [DC.gavin]: 4 };
+    log(
+      s,
+      'A Storm on Cobas Haven · Resolution: the players spend 4 XP; the Campaign Log records "Gavin returned."',
+      "good",
+    );
+  }
   if (s.scenarioId === "temple-of-the-deceived") {
     c.nightmares = questions.map((q) => Number(answers[q.id]));
     log(
@@ -1058,6 +1183,9 @@ export function applyDreamchaserResolution(
 // ----------------------------------------------------------------- effects
 
 export function dreamchaserCampaignEffect(s: GameState, e: Effect): boolean {
+  // Send for Help (Spirit): an additional phase delays the next one.
+  if (isDreamchaserCampaign(s.campaign) && dreamchaserPhaseRedirect(s, e))
+    return true;
   if (!e.kind.startsWith("dc")) return false;
   switch (e.kind) {
     case "dcModification": {
@@ -1322,13 +1450,16 @@ export function dreamchaserCampaignEffect(s: GameState, e: Effect): boolean {
           s,
           `The Drowned Ruins · ${several(s) ? `${seatName(s, p)} chooses` : "Choose"} a copy of Círdan's Blessing for ${several(s) ? "their" : "your"} hand?`,
           [
-            ...CIRDAN.map((code) => ({
-              id: code,
-              code,
-              label: `${card(code).name} (${card(code).boon_sphere}) · level ${dcMarksOf(s, code)}`,
-              detail: card(code).text,
-              effects: [fx("dcCirdanTake", { code, player: p })],
-            })),
+            // A Storm on Cobas Haven: "a copy … not in the Campaign Pool".
+            ...CIRDAN.filter((code) => !s.campaign!.boons.includes(code)).map(
+              (code) => ({
+                id: code,
+                code,
+                label: `${card(code).name} (${card(code).boon_sphere}) · level ${dcMarksOf(s, code)}`,
+                detail: card(code).text,
+                effects: [fx("dcCirdanTake", { code, player: p })],
+              }),
+            ),
             { id: "skip", label: "Do not take a copy", effects: [] },
           ],
           "One player may choose one copy of Círdan's Blessing and add it to their hand.",
@@ -1460,6 +1591,12 @@ export function dreamchaserCampaignStatus(s: GameState): string[] {
     out.push(
       'The Thing in the Depths is on its "Campaign Mode only" side (each destroyed Creature deals it 2 damage). Captain Sahír carries Black Key (burden) as an enemy; when he flips, it becomes the boon, Sea Serpent (Menacing) enters the staging area and a player adds Come Together to their hand.',
     );
+  if (s.scenarioId === "a-storm-on-cobas-haven") {
+    const aside = s.dreamchaser?.sendForHelp?.length ?? 0;
+    out.push(
+      `Raider Flagship carries Black Key (burden); Calaerion serves the player with the Dream-chaser and Gavin is in play. Set-aside copies of Send for Help: ${aside} (Gavin's Planning Action shuffles himself and a random one into the encounter deck).${s.dreamchaser?.extraPhases?.length ? ` Additional phases to come: ${s.dreamchaser.extraPhases.join(", ")}.` : ""}`,
+    );
+  }
   if (s.scenarioId === "the-drowned-ruins") {
     const chosen = Object.keys(s.dreamchaser?.commands ?? {});
     const blessing = Object.keys(s.dreamchaser?.cirdan ?? {});
@@ -1672,6 +1809,23 @@ export function validateDreamchaserCampaign(s: GameState): boolean {
             typeof q.strikes === "object" &&
             !Array.isArray(q.strikes) &&
             Object.values(q.strikes).every(integer))) &&
+        (q.sendForHelp === undefined ||
+          (codes(q.sendForHelp) &&
+            q.sendForHelp.every((code) =>
+              SEND_FOR_HELP.includes(code as (typeof SEND_FOR_HELP)[number]),
+            ) &&
+            new Set(q.sendForHelp).size === q.sendForHelp.length)) &&
+        (q.borrowed === undefined || codes(q.borrowed)) &&
+        (q.extraPhases === undefined ||
+          (codes(q.extraPhases) &&
+            q.extraPhases.every((x) =>
+              ["resource", "planning", "combat", "refresh"].includes(x),
+            ))) &&
+        (q.extraPhase === undefined ||
+          (!!q.extraPhase &&
+            typeof q.extraPhase.phase === "string" &&
+            !!q.extraPhase.resume &&
+            typeof q.extraPhase.resume.kind === "string")) &&
         (q.secretLooks === undefined ||
           (!!q.secretLooks &&
             typeof q.secretLooks === "object" &&

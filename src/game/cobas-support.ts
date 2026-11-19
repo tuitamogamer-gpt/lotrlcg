@@ -2,6 +2,7 @@ import encounters from "../data/cobas-encounter-cards.json";
 import quests from "../data/cobas-quest-cards.json";
 import recipes from "../data/cobas-recipes.json";
 import type { Card, GameState, Unit } from "./types";
+import { DC, dcBase, isFleetShip } from "./dreamchaser-campaign-support";
 export const COBAS_ENCOUNTERS = encounters as Card[];
 export const COBAS_QUESTS = quests as Card[];
 export const COBAS_RECIPES = recipes;
@@ -170,10 +171,17 @@ export function validateCobas(
     quests.length === 3 &&
     quests.every((c, i) => c === COBAS_MAIN_QUESTS[i]) &&
     q.setAside.every(
-      (u) => validUnit(u) && [...COBAS_SHIPS, COBAS.warship].includes(u.code),
+      (u) =>
+        validUnit(u) &&
+        ([...COBAS_SHIPS, COBAS.warship].includes(u.code) ||
+          isFleetShip(u.code) ||
+          dcBase(u.code) === COBAS.warship),
     ) &&
-    q.corsairDeck.every((c) => COBAS_CORSAIRS.includes(c)) &&
-    q.corsairDiscard.every((c) => COBAS_CORSAIRS.includes(c)) &&
+    // The Dream-chaser campaign shuffles Crowley into the Corsair deck.
+    q.corsairDeck.every((c) => [...COBAS_CORSAIRS, DC.crowley].includes(c)) &&
+    q.corsairDiscard.every((c) =>
+      [...COBAS_CORSAIRS, DC.crowley].includes(c),
+    ) &&
     new Set(q.pendingGuarded).size === q.pendingGuarded.length &&
     q.pendingGuarded.every((id) => objectives.some((o) => o.id === id)) &&
     q.capturePending.every(
