@@ -1,0 +1,1874 @@
+/**
+ * The Ered Mithrin campaign's Campaign Pool across scenario modules.
+ *
+ * MEC115: an encounter card in the Campaign Pool is added to each later
+ * encounter deck regardless of encounter set. Each Ered Mithrin scenario
+ * module scripts only the cards of its own recipes, so a card that joined the
+ * Campaign Pool in an earlier chapter would resolve nothing in a later one.
+ * This layer scripts those cards for the chapters from The Withered Heath on:
+ * batch4Scenario composes its hooks with the current chapter's, and each hook
+ * acts only on a card that is foreign to the current chapter (in the Campaign
+ * Pool's portable list, outside the chapter's recipes). Card text that refers
+ * to another scenario's components (the Evil Creatures deck, a Caves deck the
+ * chapter does not have) does as much as it can.
+ */
+import type { Effect, GameState, Option, Unit } from "./types";
+import type { DamageContext } from "./damage-context";
+import type { Batch4ScenarioHooks } from "./batch4-scenario-contract";
+import { card, name } from "./cards";
+import {
+  choose,
+  fx,
+  get,
+  log,
+  make,
+  prepend,
+  removeShadowCard,
+  shuffle,
+  stats,
+  threatOf,
+} from "./core";
+import {
+  discardAttachment,
+  discardCharacter,
+  discardHandCard,
+  engage,
+  enemyAddedToStaging,
+  placeEncounter,
+} from "./board";
+import { isAlly } from "./card-types";
+import {
+  activeSeat,
+  allCharacters,
+  allEngaged,
+  allHeroes,
+  firstPlayer,
+  forOwner,
+  ownerOf,
+  playerOrder,
+  seatView,
+} from "./table";
+import { mainQuestUnit } from "./quest-state";
+import { WILDS_RHOVANION as W } from "./wilds-rhovanion-support";
+import { WITHERED_HEATH_RECIPES } from "./withered-heath-support";
+import { ROAM_RHOVANION_RECIPES } from "./roam-rhovanion-support";
+import { FIRE_NIGHT_RECIPES } from "./fire-night-support";
+import { GHOST_FRAMSBURG_RECIPES } from "./ghost-framsburg-support";
+import { MOUNT_GUNDABAD_RECIPES } from "./mount-gundabad-support";
+import { FATE_WILDERLAND_RECIPES } from "./fate-wilderland-support";
+
+/** Physical cards and lasting effects of the Campaign Pool's foreign cards. */
+export interface EredPoolState {
+  /** Foreign treacheries whose effects are resolving (kept out of the discard pile). */
+  resolving: string[];
+  /** Hobgoblin: the player card it guards, faceup. */
+  guarded: { guardId: string; player: number; card: Unit }[];
+  /** Lonely Lands: the events placed facedown under it. */
+  stored: { locationId: string; player: number; cards: Unit[] }[];
+  noReady: { id: string; round: number }[];
+  noDamage: { id: string; round: number; phase: string }[];
+  locationProgress: { id: string; round: number; amount: number }[];
+  vastness: { round: number; phase: string; amount: number }[];
+  darkPlaces: { round: number; phase: string; amount: number }[];
+  /** Group responses limited to once per game (Lost Armory, Ancient Treasury). */
+  usedResponses: string[];
+}
+
+/** The chapters this layer serves, with their own modules' recipes. */
+const LATER: Record<string, readonly { card_codes: string[] }[]> = {
+  "the-withered-heath": WITHERED_HEATH_RECIPES,
+  "roam-across-rhovanion": ROAM_RHOVANION_RECIPES,
+  "fire-in-the-night": FIRE_NIGHT_RECIPES,
+  "the-ghost-of-framsburg": GHOST_FRAMSBURG_RECIPES,
+  "mount-gundabad": MOUNT_GUNDABAD_RECIPES,
+  "the-fate-of-wilderland": FATE_WILDERLAND_RECIPES,
+};
+const NATIVE: Record<string, Set<string>> = Object.fromEntries(
+  Object.entries(LATER).map(([id, recipes]) => [
+    id,
+    new Set(recipes.flatMap((r) => r.card_codes)),
+  ]),
+);
+/**
+ * The encounter cards of Journey Up the Anduin, Lost in Mirkwood and The
+ * King's Quest that can join the Campaign Pool (A Growing Threat sets aside a
+ * non-unique, non-objective, non-burden card), scripted here for later
+ * chapters. (The Core Set's cards resolve in every scenario.)
+ */
+export const ERED_POOL_PORTABLE = [
+  W.riverbank,
+  W.frenzied,
+  W.crossing,
+  W.troop,
+  W.stray,
+  W.wargs,
+  W.hills,
+  W.lonely,
+  W.supplies,
+  W.lostWild,
+  W.weighed,
+  W.twilight,
+  W.patrol,
+  W.spider,
+  W.unseen,
+  W.vastness,
+  W.accursed,
+  W.darkWoods,
+  W.gloom,
+  W.swarm,
+  W.mine,
+  W.contested,
+  W.chasm,
+  W.denizen,
+  W.troll,
+  W.hobgoblin,
+  W.werewolf,
+  W.giantSpider,
+  W.blackBats,
+  W.tunnel,
+  W.fork,
+  W.darkPlaces,
+  W.eyes,
+  W.afraid,
+  W.breath,
+  W.scales,
+  W.grotto,
+  W.cavern,
+  W.lake,
+  W.armory,
+  W.den,
+  W.treasury,
+];
+const PORTABLE = new Set(ERED_POOL_PORTABLE);
+
+/** An Ered Mithrin campaign game in a chapter this layer serves. */
+export const eredPoolLive = (s: GameState) =>
+  s.campaign?.kind === "ered" && s.scenarioId in NATIVE;
+/** A Campaign Pool card the current chapter's own module does not script. */
+export const eredForeign = (s: GameState, code: string) =>
+  eredPoolLive(s) && PORTABLE.has(code) && !NATIVE[s.scenarioId].has(code);
+const foreignUnit = (s: GameState, u: Unit, code: string) =>
+  u.code === code && !u.blanked && eredForeign(s, code);
+const foreignAttachments = (s: GameState, u: Unit, code: string) =>
+  eredForeign(s, code)
+    ? u.attachments.filter((a) => a.code === code && !a.blanked && !a.facedown)
+        .length
+    : 0;
+
+const fresh = (): EredPoolState => ({
+  resolving: [],
+  guarded: [],
+  stored: [],
+  noReady: [],
+  noDamage: [],
+  locationProgress: [],
+  vastness: [],
+  darkPlaces: [],
+  usedResponses: [],
+});
+const pool = (s: GameState) => (s.eredPool ??= fresh());
+
+type Combat = NonNullable<GameState["combat"]> & {
+  eredPoolBlankShadow?: boolean;
+  eredPoolDiscardAlly?: boolean;
+};
+
+// ------------------------------------------------------------- helpers
+
+const enemies = (s: GameState) =>
+  [...s.staging, ...allEngaged(s)].filter(
+    (u) => card(u.code).type_code === "enemy",
+  );
+const locations = (s: GameState) =>
+  [
+    ...s.staging,
+    ...(s.activeLocation ? [s.activeLocation] : []),
+    ...(s.extraActiveLocations ?? []),
+  ].filter((u) => card(u.code).type_code === "location");
+const own = (s: GameState, p: number) =>
+  allCharacters(s).filter((u) => ownerOf(s, u) === p);
+const trait = (u: Unit | string, t: string) =>
+  (card(typeof u === "string" ? u : u.code).traits ?? "")
+    .split(".")
+    .some((v) => v.trim() === t);
+const dark = (s: GameState) =>
+  !!s.activeLocation && trait(s.activeLocation, "Dark");
+const maxCharacters = (s: GameState) =>
+  Math.max(0, ...playerOrder(s).map((p) => own(s, p).length));
+const phaseMatches = (s: GameState, m: { round: number; phase: string }) =>
+  m.round === s.round && m.phase === s.phase;
+const objectiveLocation = (u: Unit) =>
+  card(u.code).type_code === "objective-location";
+/** Add an encounter card to the staging area (an enemy may engage a player). */
+function add(s: GameState, code: string, player?: number) {
+  const u = make(s, code);
+  s.staging.push(u);
+  if (card(code).type_code === "enemy") {
+    enemyAddedToStaging(s, u);
+    if (player !== undefined) forOwner(s, player, () => engage(s, u));
+  }
+  return u;
+}
+function shuffleDiscard(s: GameState) {
+  s.encounterDeck = shuffle(s, [
+    ...s.encounterDeck,
+    ...s.encounterDiscard.splice(0),
+  ]);
+}
+/** Discard, rather than reveal: keywords and When Revealed effects never fire. */
+function discardUntil(
+  s: GameState,
+  accepts: (code: string) => boolean,
+  reshuffle = false,
+) {
+  let remaining = s.encounterDeck.length + s.encounterDiscard.length;
+  while (remaining-- > 0) {
+    if (!s.encounterDeck.length) {
+      if (!reshuffle || !s.encounterDiscard.length) break;
+      shuffleDiscard(s);
+    }
+    const code = s.encounterDeck.shift();
+    if (!code) break;
+    if (accepts(code)) return code;
+    s.encounterDiscard.push(code);
+  }
+  return undefined;
+}
+function noReady(s: GameState, id: string) {
+  const q = pool(s);
+  q.noReady = q.noReady.filter((m) => m.id !== id);
+  q.noReady.push({ id, round: s.round });
+}
+/** Is this enemy guarding a card (in any of the Ered Mithrin scenarios' ways)? */
+function guardingCard(s: GameState, u: Unit) {
+  return (
+    !!u.guarding ||
+    !!u.cobasGuarding?.length ||
+    !!s.eredPool?.guarded.some((g) => g.guardId === u.id) ||
+    !!s.eredCampaign?.guarded?.some((g) => g.guardId === u.id) ||
+    !!s.witheredHeath?.guards.some((g) => g.guardId === u.id) ||
+    !!s.roamRhovanion?.guarded.some((g) => g.guardId === u.id) ||
+    !!s.roamRhovanion?.guardedPlayerCards.some((g) => g.guardId === u.id) ||
+    !!s.mountGundabad?.guardedPlayerCards.some((g) => g.guardId === u.id) ||
+    !!s.ghostFramsburg?.loot.some((g) => g.guardId === u.id)
+  );
+}
+/** The chapter's Caves deck, if it has one. */
+const cavesDeck = (s: GameState) =>
+  s.witheredHeath?.cavesDeck ?? s.mountGundabad?.cavesDeck;
+/** The Deep keyword (and Contested Depths' replacement), through the chapter's own Caves rule. */
+function deep(s: GameState, u: Unit): Effect | undefined {
+  if (!cavesDeck(s)?.length) return;
+  if (s.witheredHeath) {
+    // The Withered Heath's stage 2 does not resolve the deep keyword.
+    if (s.stage === 2 && !mainQuestUnit(s)?.blanked) return;
+    return fx("heathDeep", { target: u.id, player: firstPlayer(s) });
+  }
+  return fx("gundabadDeep", {
+    target: u.id,
+    code: u.code,
+    player: firstPlayer(s),
+  });
+}
+function characterOptions(
+  s: GameState,
+  p: number,
+  e: Effect,
+  predicate = (_u: Unit) => true,
+): Option[] {
+  return own(s, p)
+    .filter(predicate)
+    .map((u) => ({
+      id: u.id,
+      code: u.code,
+      label: name(u),
+      effects: [{ ...e, target: u.id, player: p }],
+    }));
+}
+function consume(s: GameState, code: string, discard = true) {
+  const q = pool(s),
+    i = q.resolving.indexOf(code);
+  if (i < 0) return false;
+  q.resolving.splice(i, 1);
+  if (discard) s.encounterDiscard.push(code);
+  return true;
+}
+/** A resolving treachery becomes a Condition attachment. */
+function condition(s: GameState, u: Unit, code: string) {
+  if (!consume(s, code, false)) return;
+  const a = make(s, code);
+  u.attachments.push({ id: a.id, code, exhausted: false });
+}
+function discardWholeHand(s: GameState, player: number) {
+  forOwner(s, player, () => {
+    for (const u of [...s.hand]) {
+      if (u.code === W.lostWild && eredForeign(s, u.code)) {
+        s.hand = s.hand.filter((c) => c.id !== u.id);
+        s.encounterDiscard.push(u.code);
+      } else discardHandCard(s, u.id);
+    }
+  });
+}
+/** Lonely Lands' facedown events go to their owners' discard piles when it leaves play. */
+function releaseStored(s: GameState, locationId: string) {
+  const q = s.eredPool;
+  if (!q) return;
+  for (const batch of q.stored.filter((v) => v.locationId === locationId))
+    for (const c of batch.cards)
+      forOwner(s, c.owner ?? batch.player, () => s.discard.push(c.code));
+  q.stored = q.stored.filter((v) => v.locationId !== locationId);
+}
+
+// ------------------------------------------------------------- passives
+
+function poolStats(s: GameState, u: Unit) {
+  let attack = 0,
+    defense = 0;
+  if (!eredPoolLive(s)) return { attack, defense };
+  // Frenzied Creature: +1 [threat], +1 [attack], +1 [defense], immune.
+  const frenzy = foreignAttachments(s, u, W.frenzied);
+  attack += frenzy;
+  defense += frenzy;
+  if (foreignUnit(s, u, W.werewolf)) attack += u.damage;
+  // Goblin Troop: each other Goblin enemy engaged with you gets +1/+1.
+  if (trait(u, "Goblin") && allEngaged(s).some((e) => e.id === u.id)) {
+    const n = allEngaged(s).filter(
+      (e) =>
+        e.id !== u.id &&
+        foreignUnit(s, e, W.troop) &&
+        ownerOf(s, e) === ownerOf(s, u),
+    ).length;
+    attack += n;
+    defense += n;
+  }
+  if (foreignUnit(s, u, W.hobgoblin)) {
+    const g = s.eredPool?.guarded.find((c) => c.guardId === u.id);
+    const n = g ? Number(card(g.card.code).cost) || 0 : 0;
+    attack += n;
+    defense += n;
+  }
+  return { attack, defense };
+}
+function poolThreatBonus(s: GameState, u: Unit) {
+  if (!eredPoolLive(s)) return 0;
+  let n = foreignAttachments(s, u, W.frenzied);
+  if (foreignUnit(s, u, W.hills) || foreignUnit(s, u, W.lake))
+    n += maxCharacters(s);
+  if (foreignUnit(s, u, W.lonely))
+    n +=
+      2 *
+      (s.eredPool?.stored
+        .filter((c) => c.locationId === u.id)
+        .reduce((n, c) => n + c.cards.length, 0) ?? 0);
+  if (foreignUnit(s, u, W.twilight)) n += 2 * u.resources;
+  if (foreignUnit(s, u, W.contested))
+    n += (s.victoryCards ?? []).filter(
+      (c) => card(c).type_code === "location",
+    ).length;
+  if (foreignUnit(s, u, W.hobgoblin)) {
+    const g = s.eredPool?.guarded.find((g) => g.guardId === u.id);
+    if (g) n += Number(card(g.card.code).cost) || 0;
+  }
+  // Vastness of Mirkwood: each non-objective location in the staging area.
+  if (
+    card(u.code).type_code === "location" &&
+    s.staging.some((l) => l.id === u.id)
+  )
+    n += (s.eredPool?.vastness ?? [])
+      .filter((m) => phaseMatches(s, m))
+      .reduce((n, m) => n + m.amount * (u.progress > 0 ? 2 : 1), 0);
+  return n;
+}
+const poolStagingThreat = (s: GameState) =>
+  (s.eredPool?.darkPlaces ?? [])
+    .filter((m) => phaseMatches(s, m))
+    .reduce((n, m) => n + m.amount, 0);
+const poolLocationQuestBonus = (s: GameState, u: Unit) =>
+  foreignUnit(s, u, W.hills) || foreignUnit(s, u, W.lake)
+    ? maxCharacters(s)
+    : 0;
+function poolLocationProgressAmount(s: GameState, u: Unit, amount: number) {
+  if (!eredPoolLive(s) || amount <= 0) return amount;
+  const staged = s.staging.some((l) => l.id === u.id);
+  // Dark Tunnel: progress cannot be placed on Dark locations in the staging area.
+  if (
+    staged &&
+    trait(u, "Dark") &&
+    s.staging.some((l) => foreignUnit(s, l, W.tunnel))
+  )
+    return 0;
+  // Dark Black Woods: no more than 1 progress on each Forest location in the
+  // staging area each round.
+  if (
+    !staged ||
+    !trait(u, "Forest") ||
+    !s.staging.some((l) => foreignUnit(s, l, W.darkWoods))
+  )
+    return amount;
+  const q = pool(s),
+    m = q.locationProgress.find((m) => m.id === u.id && m.round === s.round);
+  const placed = Math.min(amount, Math.max(0, 1 - (m?.amount ?? 0)));
+  if (placed > 0) {
+    if (m) m.amount += placed;
+    else q.locationProgress.push({ id: u.id, round: s.round, amount: placed });
+  }
+  return placed;
+}
+const poolCannotReady = (s: GameState, u: Unit) =>
+  !!s.eredPool?.noReady.some((m) => m.id === u.id && m.round === s.round);
+/** Afraid of the Dark: while the active location is Dark, the hero's text is blank. */
+const poolCharacterBlanked = (s: GameState, u: Unit) =>
+  eredPoolLive(s) && dark(s) && foreignAttachments(s, u, W.afraid) > 0;
+const poolWillpowerOverride = (s: GameState, u: Unit) =>
+  poolCharacterBlanked(s, u) ? 0 : undefined;
+/** Accursed Forest: 'when revealed' effects cannot be canceled. */
+const poolCannotCancel = (s: GameState, shadow = false) =>
+  !shadow && s.staging.some((u) => foreignUnit(s, u, W.accursed));
+const poolCannotOptionallyEngage = (s: GameState, u: Unit) =>
+  foreignUnit(s, u, W.stray);
+const poolImmune = (s: GameState, u: Unit) =>
+  foreignAttachments(s, u, W.frenzied) > 0;
+function poolCannotAttach(s: GameState, u: Unit, code?: string) {
+  if (!foreignUnit(s, u, u.code)) return false;
+  if (u.code === W.troop || u.code === W.troll)
+    return (
+      !code ||
+      ["hero", "ally", "attachment", "event", "player-side-quest"].includes(
+        card(code).type_code,
+      )
+    );
+  return false;
+}
+function poolDamageAmount(
+  s: GameState,
+  u: Unit,
+  amount: number,
+  _context: DamageContext,
+) {
+  if (!eredPoolLive(s) || amount <= 0) return amount;
+  if (s.eredPool?.noDamage.some((m) => m.id === u.id && phaseMatches(s, m)))
+    return 0;
+  if (foreignUnit(s, u, W.blackBats) && dark(s)) return 0;
+  // Dragon Scales: cancel all of that damage, then discard Dragon Scales.
+  const scales = eredForeign(s, W.scales)
+    ? u.attachments.find((a) => a.code === W.scales && !a.blanked)
+    : undefined;
+  if (scales) {
+    discardAttachment(s, u, scales, true);
+    return 0;
+  }
+  return amount;
+}
+function poolDamageDealt(
+  s: GameState,
+  u: Unit,
+  amount: number,
+  context: DamageContext,
+) {
+  if (
+    !eredPoolLive(s) ||
+    amount <= 0 ||
+    !context.combatDamage ||
+    !context.enemyId ||
+    !allCharacters(s).some((c) => c.id === u.id)
+  )
+    return;
+  const enemy = get(s, context.enemyId);
+  if (!enemy) return;
+  // Giant Spider: the damaged character cannot ready until the end of the round.
+  if (foreignUnit(s, enemy, W.giantSpider)) noReady(s, u.id);
+  // Stone-troll: discard 1 card for each excess point of damage.
+  if (foreignUnit(s, enemy, W.troll) && u.damage > stats(s, u).health)
+    prepend(
+      s,
+      fx("eredPoolDiscardHand", {
+        player: ownerOf(s, u),
+        value: u.damage - stats(s, u).health,
+      }),
+    );
+}
+
+// ------------------------------------------------------------- triggers
+
+function poolEngaged(s: GameState, u: Unit) {
+  if (!eredPoolLive(s)) return;
+  const p = ownerOf(s, u);
+  const effects: Effect[] = [];
+  if (foreignUnit(s, u, W.spider))
+    effects.push(fx("immediateAttack", { target: u.id, player: p }));
+  // Stray Goblin: after a player engages an enemy, it engages that player.
+  for (const stray of s.staging.filter(
+    (e) => e.id !== u.id && foreignUnit(s, e, W.stray),
+  ))
+    effects.push(fx("eredPoolStrayEngage", { target: stray.id, player: p }));
+  prepend(s, ...effects);
+}
+function poolEnemyAttackStarted(s: GameState, u: Unit, player: number) {
+  if (!eredPoolLive(s) || u.blanked || !eredForeign(s, W.breath)) return;
+  for (const breath of u.attachments.filter(
+    (a) => a.code === W.breath && !a.blanked,
+  ))
+    prepend(
+      s,
+      ...own(s, player).map((c) =>
+        fx("damage", { target: c.id, value: 1, player }),
+      ),
+      fx("discardAttachment", { target: u.id, source: breath.id, player }),
+    );
+}
+/** Pack of Wargs and Werewolf: a shadow card with no shadow effect. */
+function poolShadowResolved(s: GameState, u: Unit, code: string) {
+  if (!eredPoolLive(s) || u.blanked || !s.combat || card(code).shadow) return;
+  const c = s.combat as Combat;
+  if (foreignUnit(s, u, W.wargs)) c.eredPoolBlankShadow = true;
+  if (foreignUnit(s, u, W.werewolf))
+    prepend(
+      s,
+      fx("damage", { target: u.id, value: 1 }),
+      ...(c.defenderIds ?? (c.defenderId ? [c.defenderId] : [])).map((target) =>
+        fx("damage", { target, value: 1 }),
+      ),
+    );
+}
+function poolAttackFinished(
+  s: GameState,
+  combat: NonNullable<GameState["combat"]>,
+  skipped = false,
+): Effect[] {
+  if (!eredPoolLive(s) || skipped) return [];
+  const c = combat as Combat,
+    u = get(s, c.enemyId),
+    p = c.attackPlayer ?? activeSeat(s),
+    effects: Effect[] = [];
+  if (u && c.eredPoolBlankShadow && foreignUnit(s, u, W.wargs))
+    effects.push(
+      fx("immediateAttack", {
+        target: u.id,
+        player: p,
+        text: "desert-no-shadow",
+      }),
+    );
+  if (
+    c.eredPoolDiscardAlly &&
+    (c.damageDealt ?? 0) > 0 &&
+    c.defenderId &&
+    !get(s, c.defenderId)
+  )
+    effects.push(fx("eredPoolDiscardAlly", { player: p }));
+  return effects;
+}
+function poolHostLeaves(s: GameState, u: Unit) {
+  const q = s.eredPool;
+  if (!q) return;
+  // Hobgoblin: return the card it was guarding to its owner's hand.
+  for (const g of q.guarded.filter((g) => g.guardId === u.id))
+    forOwner(s, g.card.owner ?? g.player, () => {
+      s.hand.push(g.card);
+    });
+  q.guarded = q.guarded.filter((g) => g.guardId !== u.id);
+  releaseStored(s, u.id);
+}
+function poolExplored(s: GameState, u: Unit, wasActive: boolean) {
+  if (!eredPoolLive(s)) return;
+  if (foreignUnit(s, u, W.riverbank))
+    log(
+      s,
+      "Wooded Riverbank · There is no Evil Creatures deck in this scenario.",
+    );
+  if (foreignUnit(s, u, W.mine) && wasActive)
+    prepend(
+      s,
+      ...playerOrder(s).map((player) => fx("eredPoolMineResponse", { player })),
+    );
+  // Twilight Hall: after a Forest location is explored, place 1 resource here.
+  if (trait(u, "Forest"))
+    for (const l of locations(s).filter((l) => foreignUnit(s, l, W.twilight)))
+      l.resources++;
+  releaseStored(s, u.id);
+}
+function poolTravelProblem(s: GameState, u: Unit): string | null {
+  if (!eredPoolLive(s)) return null;
+  if (foreignUnit(s, u, W.twilight) && u.resources === 0)
+    return "Twilight Hall needs at least 1 resource before the players can travel there.";
+  if (!s.activeLocation) {
+    const chasm = s.staging.find((l) => foreignUnit(s, l, W.chasm));
+    if (chasm && u.id !== chasm.id && !foreignUnit(s, u, W.chasm))
+      return "The players must travel to Deep Chasm while there is no active location.";
+  }
+  return null;
+}
+const poolMustTravel = (s: GameState) =>
+  eredPoolLive(s) &&
+  !s.activeLocation &&
+  s.staging.some((l) => foreignUnit(s, l, W.chasm));
+function poolTravelEffects(s: GameState, u: Unit): Effect[] | undefined {
+  if (!eredPoolLive(s) || u.blanked || !eredForeign(s, u.code)) return;
+  if (u.code === W.accursed) return [fx("reveal", { player: firstPlayer(s) })];
+  if (u.code === W.twilight)
+    return playerOrder(s).map((player) =>
+      fx("threat", { player, value: u.resources }),
+    );
+  if (u.code === W.darkWoods)
+    return playerOrder(s).map((player) =>
+      fx("eredPoolDiscardAdd", { player, text: "enemy" }),
+    );
+  if (u.code === W.mine)
+    return playerOrder(s).map((player) => fx("eredPoolMineCost", { player }));
+}
+/** After the players travel to a foreign location, or it becomes the active location. */
+function poolTravelEntered(s: GameState, u: Unit, actual = true) {
+  if (!eredPoolLive(s) || u.blanked || !eredForeign(s, u.code)) return;
+  const q = pool(s),
+    effects: Effect[] = [];
+  if (u.code === W.cavern)
+    effects.push(
+      ...playerOrder(s).map((player) =>
+        fx("eredPoolAssignDamage", { player, value: own(s, player).length }),
+      ),
+    );
+  if (u.code === W.den)
+    effects.push(fx("eredPoolDen", { player: firstPlayer(s) }));
+  if (
+    [W.armory, W.treasury].includes(u.code) &&
+    !q.usedResponses.includes(u.code)
+  )
+    effects.push(
+      fx("eredPoolLocationResponse", {
+        target: u.id,
+        code: u.code,
+        player: firstPlayer(s),
+      }),
+    );
+  if (actual && u.code === W.contested)
+    effects.push(
+      fx("eredPoolContested", { target: u.id, player: firstPlayer(s) }),
+    );
+  if (actual && [W.chasm, W.tunnel, W.fork].includes(u.code)) {
+    const keyword = deep(s, u);
+    // Forked Passage: "When you travel to Forked Passage (before resolving the
+    // deep keyword) …" – its Response needs a Caves deck to look at.
+    if (u.code === W.fork && (cavesDeck(s)?.length ?? 0) > 0)
+      effects.push(
+        fx("eredPoolForkResponse", {
+          target: u.id,
+          code: u.code,
+          flag: !!keyword,
+          player: firstPlayer(s),
+        }),
+      );
+    else if (keyword) effects.push(keyword);
+  }
+  prepend(s, ...effects);
+}
+function poolAllyEntered(s: GameState, u: Unit) {
+  // Underground Lake: after an ally enters play, exhaust it.
+  if (locations(s).some((l) => foreignUnit(s, l, W.lake))) u.exhausted = true;
+  return false;
+}
+/** Lonely Lands: after an event is played during the quest phase, place it facedown under it. */
+function poolEventPlayed(s: GameState, u: Unit) {
+  if (!eredPoolLive(s) || s.phase !== "quest") return;
+  if (!s.staging.some((l) => foreignUnit(s, l, W.lonely))) return;
+  prepend(
+    s,
+    fx("eredPoolCaptureEvent", {
+      source: u.id,
+      code: u.code,
+      player: activeSeat(s),
+    }),
+  );
+}
+/** Lost in the Wild, in a player's hand: after you play a card, discard each card in your hand. */
+function poolPlayerCardPlayed(s: GameState) {
+  if (!eredPoolLive(s) || !eredForeign(s, W.lostWild)) return;
+  const player = activeSeat(s);
+  if (seatView(s, player).hand.some((c) => c.code === W.lostWild))
+    prepend(s, fx("eredPoolDiscardWholeHand", { player }));
+}
+/** Weighed Down: after the attached hero readies, discard an attachment from it. */
+function poolCharacterReadied(s: GameState, u: Unit) {
+  if (foreignAttachments(s, u, W.weighed))
+    prepend(
+      s,
+      fx("eredPoolWeighedDiscard", { target: u.id, player: ownerOf(s, u) }),
+    );
+}
+function poolRevealSurge(s: GameState, code: string) {
+  if (!eredForeign(s, code)) return false;
+  if (code === W.crossing)
+    return !s.activeLocation || threatOf(s, s.activeLocation) < 3;
+  if (code === W.vastness)
+    return (
+      s.staging.filter(
+        (l) => card(l.code).type_code === "location" && !objectiveLocation(l),
+      ).length < playerOrder(s).length
+    );
+  if (code === W.swarm) return allHeroes(s).every((h) => h.resources === 0);
+  if (code === W.denizen)
+    return !s.staging.some((e) => card(e.code).type_code === "enemy");
+  return false;
+}
+function poolCardEntered(
+  s: GameState,
+  u: Unit,
+  _fromReveal = false,
+  cancelled = false,
+) {
+  // Hobgoblin: the first player attaches the top card of their deck to it
+  // faceup as a guarded attachment.
+  if (!cancelled && foreignUnit(s, u, W.hobgoblin))
+    prepend(
+      s,
+      fx("eredPoolHobgoblin", { target: u.id, player: firstPlayer(s) }),
+    );
+}
+/** Lightless Grotto: after the players commit characters to the quest. */
+function poolCommitted(s: GameState) {
+  if (!eredPoolLive(s)) return;
+  prepend(
+    s,
+    ...locations(s)
+      .filter((l) => foreignUnit(s, l, W.grotto))
+      .map(() => fx("eredPoolGrotto", { player: firstPlayer(s) })),
+  );
+}
+/** Mirkwood Patrol: at the end of the encounter phase. */
+const poolEncounterEnd = (s: GameState): Effect[] =>
+  eredPoolLive(s)
+    ? s.staging
+        .filter((u) => foreignUnit(s, u, W.patrol))
+        .map((u) =>
+          fx("eredPoolPatrol", { target: u.id, player: firstPlayer(s) }),
+        )
+    : [];
+const poolCannotDiscardHand = (
+  s: GameState,
+  u: Unit,
+  byPlayerCardEffect = true,
+) => u.code === W.lostWild && eredForeign(s, u.code) && byPlayerCardEffect;
+function poolHandDiscardDestination(s: GameState, u: Unit) {
+  if (u.code !== W.lostWild || !eredForeign(s, u.code)) return false;
+  s.encounterDiscard.push(u.code);
+  return true;
+}
+
+// ------------------------------------------------------------- treacheries
+
+const TREACHERIES = [
+  W.frenzied,
+  W.crossing,
+  W.supplies,
+  W.lostWild,
+  W.weighed,
+  W.unseen,
+  W.vastness,
+  W.gloom,
+  W.swarm,
+  W.denizen,
+  W.afraid,
+  W.eyes,
+  W.darkPlaces,
+  W.breath,
+  W.scales,
+];
+function poolEncounter(
+  s: GameState,
+  code: string,
+  replay = false,
+  fromReveal = true,
+) {
+  if (!TREACHERIES.includes(code) || !eredForeign(s, code)) return false;
+  if (!fromReveal) {
+    if (!replay) s.encounterDiscard.push(code);
+    return true;
+  }
+  if (replay) {
+    const i = s.encounterDiscard.lastIndexOf(code);
+    if (i >= 0) s.encounterDiscard.splice(i, 1);
+  }
+  pool(s).resolving.push(code);
+  prepend(s, fx("eredPoolTreachery", { code, player: firstPlayer(s) }));
+  return true;
+}
+function poolShadow(s: GameState, code: string) {
+  const c = s.combat as Combat | null;
+  if (!c || !eredForeign(s, code)) return false;
+  const player = c.attackPlayer ?? activeSeat(s),
+    defenders = c.defenderIds ?? (c.defenderId ? [c.defenderId] : []),
+    defender = defenders[0] ? get(s, defenders[0]) : undefined;
+  const enemy = get(s, c.enemyId);
+  /** This shadow card leaves the attacking enemy's shadow cards. */
+  const takeShadow = () => {
+    const i = enemy?.shadows
+      .slice(0, enemy.revealedShadowCount ?? 0)
+      .lastIndexOf(code);
+    if (!enemy || i === undefined || i < 0) return false;
+    removeShadowCard(enemy, i);
+    return true;
+  };
+  if (code === W.crossing)
+    c.attackBonus += defender && defender.damage > 0 ? 2 : 1;
+  else if (code === W.troop) c.attackBonus += 2;
+  else if (code === W.stray) {
+    if (takeShadow()) add(s, code);
+  } else if (code === W.wargs) c.returnToStaging = true;
+  else if (code === W.riverbank || code === W.werewolf)
+    prepend(
+      s,
+      ...defenders.map((target) => fx("damage", { target, value: 1, player })),
+    );
+  else if (code === W.frenzied) {
+    if (enemy && takeShadow()) {
+      const a = make(s, code);
+      enemy.attachments.push({ id: a.id, code, exhausted: false });
+    }
+  } else if (code === W.supplies)
+    prepend(
+      s,
+      fx("threat", { player, value: seatView(s, player).engaged.length }),
+    );
+  else if (code === W.unseen) {
+    if (enemy && guardingCard(s, enemy)) {
+      enemy.tempAttack = (enemy.tempAttack ?? 0) + 2;
+      enemy.tempDefense = (enemy.tempDefense ?? 0) + 2;
+    }
+  } else if ([W.patrol, W.giantSpider].includes(code))
+    for (const id of defenders) noReady(s, id);
+  else if ([W.spider, W.denizen].includes(code))
+    c.extraAttacks = (c.extraAttacks ?? 0) + 1;
+  else if (code === W.gloom) {
+    c.attackBonus++;
+    c.eredPoolDiscardAlly = true;
+  } else if (code === W.swarm)
+    c.attackBonus += defender && defender.attachments.length > 0 ? 2 : 1;
+  else if (code === W.troll)
+    prepend(s, fx("eredPoolDiscardAttachment", { player }));
+  else if (code === W.blackBats) {
+    if (dark(s))
+      pool(s).noDamage.push({ id: c.enemyId, round: s.round, phase: s.phase });
+  } else if (code === W.darkPlaces) c.attackBonus++;
+  else if (code === W.eyes) {
+    if (!defenders.length) prepend(s, fx("eredPoolDiscardAlly", { player }));
+  } else return false;
+  return true;
+}
+function treachery(s: GameState, code: string) {
+  const q = pool(s);
+  if (code === W.frenzied) {
+    // "Add the top card of the Evil Creatures deck to the staging area and
+    // attach Frenzied Creature to it": there is no Evil Creatures deck.
+    log(
+      s,
+      "Frenzied Creature · There is no Evil Creatures deck in this scenario.",
+    );
+    consume(s, code);
+  } else if (code === W.crossing) {
+    consume(s, code);
+    prepend(
+      s,
+      ...playerOrder(s).map((player) =>
+        fx("eredPoolAssignDamage", {
+          player,
+          value: s.activeLocation ? threatOf(s, s.activeLocation) : 0,
+        }),
+      ),
+    );
+  } else if (code === W.supplies) {
+    consume(s, code);
+    prepend(
+      s,
+      ...playerOrder(s).map((player) => fx("eredPoolSupplies", { player })),
+    );
+  } else if (code === W.lostWild) {
+    const players = playerOrder(s).filter(
+      (p) => !seatView(s, p).hand.some((c) => c.code === code),
+    );
+    const max = Math.max(-1, ...players.map((p) => seatView(s, p).hand.length));
+    const targets = players.filter((p) => seatView(s, p).hand.length === max);
+    if (targets.length)
+      choose(
+        s,
+        "Lost in the Wild · Choose the player with the most cards",
+        targets.map((p) => ({
+          id: String(p),
+          label: `Player ${p + 1} · ${max} cards`,
+          effects: [fx("eredPoolLostHand", { player: p, code })],
+        })),
+      );
+    else consume(s, code);
+  } else if (code === W.weighed) {
+    const heroes = allHeroes(s).filter(
+        (u) => !u.attachments.some((a) => a.code === code),
+      ),
+      max = Math.max(-1, ...heroes.map((u) => u.attachments.length)),
+      targets = heroes.filter((u) => u.attachments.length === max);
+    if (targets.length)
+      choose(
+        s,
+        "Weighed Down · Choose a hero with the most attachments",
+        targets.map((u) => ({
+          id: u.id,
+          code: u.code,
+          label: name(u),
+          effects: [
+            fx("eredPoolCondition", { target: u.id, code }),
+            fx("exhaust", { target: u.id, player: ownerOf(s, u) }),
+          ],
+        })),
+      );
+    else consume(s, code);
+  } else if (code === W.unseen) {
+    consume(s, code);
+    prepend(
+      s,
+      ...playerOrder(s).map((player) => fx("eredPoolUnseen", { player })),
+    );
+  } else if (code === W.vastness) {
+    consume(s, code);
+    q.vastness.push({ round: s.round, phase: s.phase, amount: 1 });
+  } else if (code === W.gloom) {
+    consume(s, code);
+    prepend(
+      s,
+      ...playerOrder(s).map((player) => fx("eredPoolGloom", { player })),
+    );
+  } else if (code === W.swarm) {
+    consume(s, code);
+    for (const player of playerOrder(s)) {
+      const heroes = seatView(s, player).heroes,
+        n = heroes.reduce((n, h) => n + h.resources, 0);
+      for (const h of heroes) h.resources = 0;
+      if (n) prepend(s, fx("threat", { player, value: n }));
+    }
+  } else if (code === W.denizen) {
+    consume(s, code);
+    const staged = s.staging.filter((u) => card(u.code).type_code === "enemy"),
+      max = Math.max(-1, ...staged.map((u) => stats(s, u).attack)),
+      targets = staged.filter((u) => stats(s, u).attack === max);
+    if (targets.length)
+      choose(
+        s,
+        "Denizen of the Deep · Highest attack enemy",
+        targets.map((u) => ({
+          id: u.id,
+          code: u.code,
+          label: name(u),
+          effects: [
+            fx("immediateAttack", { target: u.id, player: firstPlayer(s) }),
+          ],
+        })),
+      );
+  } else if (code === W.afraid) {
+    const targets = allHeroes(s).filter(
+      (u) => u.committed && !u.attachments.some((a) => a.code === code),
+    );
+    if (targets.length)
+      choose(
+        s,
+        "Afraid of the Dark · Attach to a questing hero",
+        targets.map((u) => ({
+          id: u.id,
+          code: u.code,
+          label: name(u),
+          effects: [
+            fx("eredPoolCondition", { target: u.id, code }),
+            fx("eredPoolRemoveQuest", { target: u.id }),
+          ],
+        })),
+      );
+    else consume(s, code);
+  } else if (code === W.eyes) {
+    consume(s, code);
+    prepend(
+      s,
+      ...playerOrder(s).map((player) => fx("eredPoolEyes", { player })),
+    );
+  } else if (code === W.darkPlaces) {
+    consume(s, code);
+    if (s.activeLocation)
+      q.darkPlaces.push({
+        round: s.round,
+        phase: s.phase,
+        amount: threatOf(s, s.activeLocation),
+      });
+    else {
+      const found = discardUntil(s, (c) => card(c).type_code === "location");
+      if (found) add(s, found);
+    }
+  } else if (code === W.breath || code === W.scales) {
+    const targets = enemies(s).filter(
+      (u) => trait(u, "Dragon") && !u.attachments.some((a) => a.code === code),
+    );
+    if (targets.length)
+      choose(
+        s,
+        `${card(code).name} · Attach to a Dragon`,
+        targets.map((u) => ({
+          id: u.id,
+          code: u.code,
+          label: name(u),
+          effects: [fx("eredPoolCondition", { target: u.id, code })],
+        })),
+      );
+    else consume(s, code);
+  }
+}
+
+// ------------------------------------------------------------- effects
+
+export function eredPoolEffect(s: GameState, e: Effect) {
+  if (!e.kind.startsWith("eredPool")) return false;
+  const q = pool(s),
+    player = e.player ?? firstPlayer(s),
+    u = get(s, e.target);
+  switch (e.kind) {
+    case "eredPoolTreachery":
+      treachery(s, e.code!);
+      break;
+    case "eredPoolCondition":
+      if (u) condition(s, u, e.code!);
+      else consume(s, e.code!);
+      break;
+    case "eredPoolLostHand":
+      if (consume(s, e.code!, false))
+        forOwner(s, player, () => {
+          s.hand.push(make(s, e.code!));
+        });
+      break;
+    case "eredPoolRemoveQuest":
+      if (u) {
+        u.committed = false;
+        forOwner(s, ownerOf(s, u), () => {
+          s.committedIds = s.committedIds.filter((id) => id !== u.id);
+        });
+      }
+      break;
+    case "eredPoolAssignDamage": {
+      const remaining = e.value ?? 0;
+      if (remaining <= 0) break;
+      const targets = own(s, player).filter(
+        (c) => c.damage < stats(s, c).health,
+      );
+      if (targets.length)
+        choose(
+          s,
+          `Assign ${remaining} damage among your characters`,
+          targets.map((c) => ({
+            id: c.id,
+            code: c.code,
+            label: `Deal 1 damage to ${name(c)}`,
+            effects: [
+              fx("damage", { target: c.id, value: 1, player }),
+              fx("eredPoolAssignDamage", { player, value: remaining - 1 }),
+            ],
+          })),
+        );
+      break;
+    }
+    case "eredPoolSupplies": {
+      const allies = own(s, player).filter(isAlly);
+      choose(s, "Ruined Supplies · Choose one", [
+        {
+          id: "threat",
+          label: `Raise your threat by ${allies.length}`,
+          effects: [fx("threat", { player, value: allies.length })],
+        },
+        {
+          id: "damage",
+          label: "Deal 1 damage to each ally you control",
+          effects: allies.map((c) =>
+            fx("damage", { target: c.id, value: 1, player }),
+          ),
+        },
+      ]);
+      break;
+    }
+    case "eredPoolGloom": {
+      const n = own(s, player).filter(isAlly).length;
+      choose(s, "Gathering Gloom · Choose one", [
+        {
+          id: "threat",
+          label: `Raise your threat by ${n}`,
+          effects: [fx("threat", { player, value: n })],
+        },
+        {
+          id: "reveal",
+          label: "Reveal an encounter card",
+          effects: [fx("reveal", { player })],
+        },
+      ]);
+      break;
+    }
+    case "eredPoolUnseen": {
+      const opts = characterOptions(
+        s,
+        player,
+        fx("eredPoolUnseenTake"),
+        (c) => c.committed,
+      );
+      if (opts.length)
+        choose(s, "Unseen Danger · Remove a character from the quest", opts);
+      else {
+        const code = s.encounterDeck.shift();
+        if (code) s.encounterDiscard.push(code);
+      }
+      break;
+    }
+    case "eredPoolUnseenTake": {
+      const code = s.encounterDeck.shift();
+      if (code) s.encounterDiscard.push(code);
+      if (u) {
+        u.committed = false;
+        forOwner(s, player, () => {
+          s.committedIds = s.committedIds.filter((id) => id !== u.id);
+        });
+        if (code && (card(code).threat ?? 0) > stats(s, u).will)
+          discardCharacter(s, u);
+      }
+      break;
+    }
+    case "eredPoolEyes": {
+      const questers = own(s, player).filter((c) => c.committed);
+      choose(s, "Eyes in the Dark · Choose one", [
+        {
+          id: "threat",
+          label: `Raise your threat by ${questers.length}`,
+          effects: [fx("threat", { player, value: questers.length })],
+        },
+        ...questers.map((c) => ({
+          id: c.id,
+          code: c.code,
+          label: `Discard ${name(c)}`,
+          effects: [fx("eredPoolDiscardCharacter", { target: c.id, player })],
+        })),
+      ]);
+      break;
+    }
+    case "eredPoolDiscardCharacter":
+      if (u) discardCharacter(s, u);
+      break;
+    case "eredPoolDiscardWholeHand":
+      discardWholeHand(s, player);
+      break;
+    case "eredPoolDiscardHand": {
+      if ((e.value ?? 1) <= 0) break;
+      const hand = seatView(s, player).hand;
+      if (hand.length)
+        choose(
+          s,
+          `Discard ${e.value ?? 1} card${e.value === 1 ? "" : "s"} from your hand`,
+          hand.map((c) => ({
+            id: c.id,
+            code: c.code,
+            label: name(c),
+            effects: [
+              fx("eredPoolDiscardHandTake", { target: c.id, player }),
+              fx("eredPoolDiscardHand", {
+                player,
+                value: (e.value ?? 1) - 1,
+              }),
+            ],
+          })),
+        );
+      break;
+    }
+    case "eredPoolDiscardHandTake":
+      forOwner(s, player, () => {
+        const c = s.hand.find((c) => c.id === e.target);
+        if (!c) return;
+        if (c.code === W.lostWild && eredForeign(s, c.code)) {
+          s.hand = s.hand.filter((v) => v.id !== c.id);
+          s.encounterDiscard.push(c.code);
+        } else discardHandCard(s, c.id);
+      });
+      break;
+    case "eredPoolDiscardAlly": {
+      const allies = own(s, player).filter(isAlly);
+      if (allies.length)
+        choose(
+          s,
+          "Choose an ally to discard",
+          allies.map((c) => ({
+            id: c.id,
+            code: c.code,
+            label: name(c),
+            effects: [fx("eredPoolDiscardCharacter", { target: c.id, player })],
+          })),
+        );
+      break;
+    }
+    case "eredPoolDiscardAttachment": {
+      const targets = own(s, player).flatMap((c) =>
+        c.attachments
+          .filter((a) => !a.facedown)
+          .map((a) => ({
+            id: a.id,
+            code: a.code,
+            label: `Discard ${card(a.code).name}`,
+            effects: [
+              fx("discardAttachment", { target: c.id, source: a.id, player }),
+            ],
+          })),
+      );
+      if (targets.length)
+        choose(s, "Discard an attachment you control", targets);
+      break;
+    }
+    case "eredPoolWeighedDiscard":
+      if (u) {
+        const other = u.attachments.filter(
+          (a) =>
+            a.code !== W.weighed &&
+            !card(a.code).type_code.startsWith("objective"),
+        );
+        const targets = other.length
+          ? other
+          : u.attachments.filter((a) => a.code === W.weighed);
+        if (targets.length)
+          choose(
+            s,
+            "Weighed Down · Discard an attachment from this hero",
+            targets.map((a) => ({
+              id: a.id,
+              code: a.code,
+              label: card(a.code).name,
+              effects: [
+                fx("discardAttachment", { target: u.id, source: a.id, player }),
+              ],
+            })),
+          );
+      }
+      break;
+    case "eredPoolStrayEngage":
+      if (u && s.staging.some((x) => x.id === u.id))
+        forOwner(s, player, () => engage(s, u));
+      break;
+    case "eredPoolDiscardAdd": {
+      const code = s.encounterDeck.shift();
+      if (code) {
+        if (card(code).type_code === e.text) add(s, code);
+        else s.encounterDiscard.push(code);
+      }
+      break;
+    }
+    case "eredPoolGrotto": {
+      // "Resolve the 'when revealed' effect on that treachery": through every
+      // scenario's scripts, which return it to the discard pile.
+      const code = discardUntil(s, (c) => card(c).type_code === "treachery");
+      if (code) placeEncounter(s, code, false, 0, undefined, true);
+      break;
+    }
+    case "eredPoolHobgoblin":
+      if (u)
+        forOwner(s, player, () => {
+          const code = s.deck.shift();
+          if (!code) return;
+          const physical = make(s, code);
+          physical.owner = player;
+          q.guarded.push({ guardId: u.id, player, card: physical });
+          log(
+            s,
+            `Hobgoblin guards ${card(code).name} from the top of Player ${player + 1}'s deck.`,
+            "danger",
+          );
+        });
+      break;
+    case "eredPoolPatrol": {
+      const patrol = get(s, e.target);
+      if (!patrol || !s.staging.some((x) => x.id === patrol.id)) break;
+      const unguarded = s.staging.filter(
+        (o) =>
+          objectiveLocation(o) &&
+          ![...enemies(s), ...locations(s)].some(
+            (g) => g.guarding === o.id || g.cobasGuarding?.includes(o.id),
+          ),
+      );
+      if (unguarded.length)
+        choose(
+          s,
+          "Mirkwood Patrol · Guard an objective-location",
+          unguarded.map((o) => ({
+            id: o.id,
+            code: o.code,
+            label: name(o),
+            effects: [
+              fx("eredPoolPatrolGuard", { source: patrol.id, target: o.id }),
+            ],
+          })),
+        );
+      break;
+    }
+    case "eredPoolPatrolGuard": {
+      const patrol = get(s, e.source);
+      if (!patrol || !u || !s.staging.some((x) => x.id === patrol.id)) break;
+      if (!patrol.guarding) patrol.guarding = u.id;
+      else if (patrol.guarding !== u.id)
+        patrol.cobasGuarding = [
+          ...new Set([...(patrol.cobasGuarding ?? []), u.id]),
+        ];
+      break;
+    }
+    case "eredPoolCaptureEvent": {
+      const event = s.resolvingEvents?.find((v) => v.unit.id === e.source);
+      if (!event) break;
+      const lands = s.staging.filter((l) => foreignUnit(s, l, W.lonely));
+      if (lands.length)
+        choose(
+          s,
+          "Lonely Lands · Place this event facedown under a location",
+          lands.map((l) => ({
+            id: l.id,
+            code: l.code,
+            label: name(l),
+            effects: [
+              fx("eredPoolCaptureEventTake", {
+                target: l.id,
+                source: e.source,
+                player: event.player,
+              }),
+            ],
+          })),
+        );
+      break;
+    }
+    case "eredPoolCaptureEventTake": {
+      const event = s.resolvingEvents?.find((v) => v.unit.id === e.source);
+      if (u && event) {
+        event.destination = "spent";
+        q.stored.push({
+          locationId: u.id,
+          player: event.player,
+          cards: [event.unit],
+        });
+      }
+      break;
+    }
+    case "eredPoolMineCost":
+      forOwner(s, player, () => {
+        s.discard.push(...s.deck.splice(0, 4));
+      });
+      break;
+    case "eredPoolMineResponse": {
+      const pile = seatView(s, player).discard;
+      if (pile.length)
+        choose(s, "Iron Hills Mine · Return a card from your discard pile?", [
+          ...pile.map((code, i) => ({
+            id: String(i),
+            code,
+            label: card(code).name,
+            effects: [fx("eredPoolReturnDiscard", { player, value: i, code })],
+          })),
+          { id: "skip", label: "Decline", effects: [] },
+        ]);
+      break;
+    }
+    case "eredPoolReturnDiscard":
+      forOwner(s, player, () => {
+        if (s.discard[e.value!] === e.code)
+          s.hand.push(make(s, s.discard.splice(e.value!, 1)[0]));
+      });
+      break;
+    case "eredPoolDen":
+      // Frightful Den: shuffle the discard pile in, then discard until X
+      // enemies are discarded (X is the number of players).
+      shuffleDiscard(s);
+      for (const _p of playerOrder(s)) {
+        const code = discardUntil(s, (c) => card(c).type_code === "enemy");
+        if (code) add(s, code);
+      }
+      break;
+    case "eredPoolLocationResponse":
+      if (!q.usedResponses.includes(e.code!))
+        choose(s, `${card(e.code!).name} · Use the group response?`, [
+          {
+            id: "use",
+            label:
+              e.code === W.armory
+                ? "Each player may search for a Weapon or Armor"
+                : "Each player may reduce threat, draw cards, or gain a resource",
+            effects: [fx("eredPoolLocationUse", { code: e.code })],
+          },
+          { id: "skip", label: "Decline", effects: [] },
+        ]);
+      break;
+    case "eredPoolLocationUse":
+      q.usedResponses.push(e.code!);
+      prepend(
+        s,
+        ...playerOrder(s).map((p) =>
+          fx(e.code === W.armory ? "eredPoolArmory" : "eredPoolTreasury", {
+            player: p,
+          }),
+        ),
+      );
+      break;
+    case "eredPoolArmory": {
+      const deck = seatView(s, player).deck;
+      const options = deck.flatMap((code, i) =>
+        card(code).type_code === "attachment" &&
+        /\b(Weapon|Armor)\./.test(card(code).traits ?? "")
+          ? [
+              {
+                id: String(i),
+                code,
+                label: card(code).name,
+                effects: [fx("eredPoolSearchTake", { player, code, value: i })],
+              },
+            ]
+          : [],
+      );
+      choose(s, "Lost Armory · Search your deck", [
+        ...options,
+        {
+          id: "skip",
+          label: "Decline",
+          effects: [fx("eredPoolSearchShuffle", { player })],
+        },
+      ]);
+      break;
+    }
+    case "eredPoolSearchTake":
+      forOwner(s, player, () => {
+        if (s.deck[e.value!] === e.code)
+          s.hand.push(make(s, s.deck.splice(e.value!, 1)[0]));
+        s.deck = shuffle(s, s.deck);
+      });
+      break;
+    case "eredPoolSearchShuffle":
+      forOwner(s, player, () => {
+        s.deck = shuffle(s, s.deck);
+      });
+      break;
+    case "eredPoolTreasury":
+      choose(s, "Ancient Treasury · Choose a benefit", [
+        {
+          id: "threat",
+          label: "Reduce your threat by 3",
+          effects: [fx("threat", { player, value: -3 })],
+        },
+        {
+          id: "draw",
+          label: "Draw 2 cards",
+          effects: [fx("draw", { player, value: 2 })],
+        },
+        ...seatView(s, player).heroes.map((hero) => ({
+          id: hero.id,
+          code: hero.code,
+          label: `Add 1 resource to ${card(hero.code).name}`,
+          effects: [fx("resource", { target: hero.id, value: 1, player })],
+        })),
+        { id: "skip", label: "Decline", effects: [] },
+      ]);
+      break;
+    case "eredPoolContested": {
+      if (!u) break;
+      const n = (s.victoryCards ?? []).filter(
+        (c) => card(c).type_code === "location",
+      ).length;
+      const replace = deep(s, u);
+      choose(s, "Contested Depths · Raise threat or enter a cave", [
+        {
+          id: "threat",
+          label: `Raise each player's threat by ${n}`,
+          effects: playerOrder(s).map((p) =>
+            fx("threat", { player: p, value: n }),
+          ),
+        },
+        ...(replace
+          ? [
+              {
+                id: "replace",
+                label:
+                  "Discard Contested Depths and replace it with the top card of the Caves deck",
+                effects: [replace],
+              },
+            ]
+          : []),
+      ]);
+      break;
+    }
+    case "eredPoolForkResponse":
+      choose(s, "Forked Passage · Look at the Caves deck?", [
+        {
+          id: "use",
+          label:
+            "Raise each player's threat by 2; choose the next cave; add Forked Passage to the victory display",
+          effects: [
+            ...playerOrder(s).map((p) => fx("threat", { player: p, value: 2 })),
+            fx("eredPoolForkOrder"),
+            // The deep keyword resolves after the Response.
+            ...(e.flag && u ? [deep(s, u)!] : []),
+            fx("eredPoolForkVictory", { target: e.target, code: e.code }),
+          ],
+        },
+        {
+          id: "skip",
+          label: "Continue into the caves",
+          effects: e.flag && u ? [deep(s, u)!] : [],
+        },
+      ]);
+      break;
+    case "eredPoolForkOrder": {
+      const deck = cavesDeck(s);
+      if (!deck || deck.length < 2) break;
+      choose(
+        s,
+        "Caves deck · Choose the card to leave on top",
+        deck.slice(0, 2).map((c, i) => ({
+          id: c.id,
+          code: c.code,
+          label: `Keep ${card(c.code).name} on top`,
+          effects: [fx("eredPoolForkReorder", { value: i })],
+        })),
+      );
+      break;
+    }
+    case "eredPoolForkReorder": {
+      const deck = cavesDeck(s),
+        i = e.value ?? 0;
+      if (deck && i < 2 && deck.length >= 2) {
+        const pair = deck.splice(0, 2);
+        deck.unshift(pair[i]);
+        deck.push(pair[1 - i]);
+      }
+      break;
+    }
+    case "eredPoolForkVictory": {
+      // Add Forked Passage to the victory display (from play, or from the
+      // discard pile where its deep keyword put it).
+      if (u && s.activeLocation?.id === u.id) s.activeLocation = null;
+      else if (!u) {
+        const i = s.encounterDiscard.lastIndexOf(e.code!);
+        if (i < 0) break;
+        s.encounterDiscard.splice(i, 1);
+      } else break;
+      s.victoryCards ??= [];
+      s.victoryCards.push(e.code!);
+      s.victory += card(e.code!).victory ?? 0;
+      log(s, "Forked Passage is added to the victory display.");
+      break;
+    }
+  }
+  return true;
+}
+
+// ------------------------------------------------------------- abilities
+
+const poolAbilityLabel = (code: string) =>
+  code === W.hills ? "Exhaust a character to reduce threat" : undefined;
+function poolAbilityProblem(s: GameState, u: Unit) {
+  if (!foreignUnit(s, u, W.hills)) return null;
+  return s.phase !== "quest"
+    ? "Use Hills of Wilderland during the quest phase."
+    : activeSeat(s) !== firstPlayer(s)
+      ? "Only the first player can trigger this ability."
+      : !own(s, firstPlayer(s)).some((c) => !c.exhausted)
+        ? "Exhaust a ready character to pay this cost."
+        : null;
+}
+function poolAbility(s: GameState, u: Unit) {
+  if (!foreignUnit(s, u, W.hills)) return false;
+  const p = activeSeat(s);
+  const opts = characterOptions(
+    s,
+    p,
+    fx("eredPoolHillsPay", { source: u.id }),
+    (c) => !c.exhausted,
+  );
+  if (opts.length) choose(s, "Hills of Wilderland · Exhaust a character", opts);
+  return true;
+}
+function poolHillsEffect(s: GameState, e: Effect) {
+  if (e.kind === "eredPoolHillsPay") {
+    const c = get(s, e.target);
+    if (c)
+      prepend(
+        s,
+        fx("exhaust", { target: c.id, player: e.player }),
+        fx("eredPoolHillsReduce", { target: e.source, player: e.player }),
+      );
+    return true;
+  }
+  if (e.kind === "eredPoolHillsReduce") {
+    const l = get(s, e.target);
+    if (l) l.tempThreat = (l.tempThreat ?? 0) - 1;
+    return true;
+  }
+  return false;
+}
+
+/** Pool effects a player resolves in their own seat (the rest run in the first player's). */
+const PLAYER_EFFECTS = new Set([
+  "eredPoolAssignDamage",
+  "eredPoolDiscardHand",
+  "eredPoolDiscardAlly",
+  "eredPoolDiscardAttachment",
+  "eredPoolDiscardWholeHand",
+  "eredPoolUnseen",
+  "eredPoolEyes",
+]);
+
+export const ERED_POOL_HOOKS: Batch4ScenarioHooks = {
+  stats: poolStats,
+  threatBonus: poolThreatBonus,
+  stagingThreat: poolStagingThreat,
+  locationQuestBonus: poolLocationQuestBonus,
+  locationProgressAmount: poolLocationProgressAmount,
+  cannotReady: poolCannotReady,
+  characterBlanked: poolCharacterBlanked,
+  willpowerOverride: poolWillpowerOverride,
+  cannotCancel: poolCannotCancel,
+  cannotOptionallyEngage: poolCannotOptionallyEngage,
+  immune: poolImmune,
+  cannotAttach: poolCannotAttach,
+  damageAmount: poolDamageAmount,
+  damageDealt: poolDamageDealt,
+  engaged: poolEngaged,
+  enemyAttackStarted: poolEnemyAttackStarted,
+  shadowResolved: poolShadowResolved,
+  attackFinished: poolAttackFinished,
+  hostLeaves: poolHostLeaves,
+  explored: poolExplored,
+  travelProblem: poolTravelProblem,
+  mustTravel: poolMustTravel,
+  travelEffects: poolTravelEffects,
+  travelEntered: poolTravelEntered,
+  allyEntered: poolAllyEntered,
+  eventPlayed: poolEventPlayed,
+  playerCardPlayed: poolPlayerCardPlayed,
+  characterReadied: poolCharacterReadied,
+  revealedSurge: poolRevealSurge,
+  cardEntered: poolCardEntered,
+  committed: poolCommitted,
+  encounterEnd: poolEncounterEnd,
+  cannotDiscardHand: poolCannotDiscardHand,
+  handDiscardDestination: poolHandDiscardDestination,
+  encounter: poolEncounter,
+  shadow: poolShadow,
+  effect: (s, e) => poolHillsEffect(s, e) || eredPoolEffect(s, e),
+  abilityLabel: poolAbilityLabel,
+  abilityProblem: poolAbilityProblem,
+  ability: poolAbility,
+  sharedEffect: (e) =>
+    e.kind.startsWith("eredPool") && !PLAYER_EFFECTS.has(e.kind),
+};
+
+/**
+ * The current chapter's hooks with the Campaign Pool's: passive values add
+ * up, prohibitions combine, triggers run for both, and a card-keyed hook
+ * goes to the pool first (it handles only foreign cards).
+ */
+export function composeEredPool(
+  h: Batch4ScenarioHooks,
+  p: Batch4ScenarioHooks = ERED_POOL_HOOKS,
+): Batch4ScenarioHooks {
+  return {
+    ...h,
+    stats: (s, u) => {
+      const a = h.stats?.(s, u) ?? {},
+        b = p.stats!(s, u);
+      const out: ReturnType<NonNullable<Batch4ScenarioHooks["stats"]>> = {
+        ...a,
+      };
+      for (const key of ["will", "attack", "defense", "health"] as const)
+        if (b[key] !== undefined) out[key] = (out[key] ?? 0) + b[key]!;
+      return out;
+    },
+    threatBonus: (s, u) => (h.threatBonus?.(s, u) ?? 0) + p.threatBonus!(s, u),
+    stagingThreat: (s) => (h.stagingThreat?.(s) ?? 0) + p.stagingThreat!(s),
+    locationQuestBonus: (s, u) =>
+      (h.locationQuestBonus?.(s, u) ?? 0) + p.locationQuestBonus!(s, u),
+    locationProgressAmount: (s, u, amount) =>
+      p.locationProgressAmount!(
+        s,
+        u,
+        h.locationProgressAmount
+          ? h.locationProgressAmount(s, u, amount)
+          : amount,
+      ),
+    cannotReady: (s, u) => !!h.cannotReady?.(s, u) || p.cannotReady!(s, u),
+    characterBlanked: (s, u) =>
+      !!h.characterBlanked?.(s, u) || p.characterBlanked!(s, u),
+    willpowerOverride: (s, u) =>
+      h.willpowerOverride?.(s, u) ?? p.willpowerOverride!(s, u),
+    cannotCancel: (s, shadow, code) =>
+      !!h.cannotCancel?.(s, shadow, code) || p.cannotCancel!(s, shadow, code),
+    cannotOptionallyEngage: (s, u) =>
+      !!h.cannotOptionallyEngage?.(s, u) || p.cannotOptionallyEngage!(s, u),
+    immune: (s, u) => !!h.immune?.(s, u) || p.immune!(s, u),
+    cannotAttach: (s, u, code) =>
+      !!h.cannotAttach?.(s, u, code) || p.cannotAttach!(s, u, code),
+    damageAmount: (s, u, amount, context) =>
+      p.damageAmount!(
+        s,
+        u,
+        h.damageAmount ? h.damageAmount(s, u, amount, context) : amount,
+        context,
+      ),
+    damageDealt: (s, u, amount, context) => {
+      h.damageDealt?.(s, u, amount, context);
+      p.damageDealt!(s, u, amount, context);
+    },
+    engaged: (s, u, optional, fromStaging) => {
+      h.engaged?.(s, u, optional, fromStaging);
+      p.engaged!(s, u, optional, fromStaging);
+    },
+    enemyAttackStarted: (s, u, player) => {
+      h.enemyAttackStarted?.(s, u, player);
+      p.enemyAttackStarted!(s, u, player);
+    },
+    shadowResolved: (s, u, code) => {
+      h.shadowResolved?.(s, u, code);
+      p.shadowResolved!(s, u, code);
+    },
+    attackFinished: (s, combat, skipped) => [
+      ...(h.attackFinished?.(s, combat, skipped) ?? []),
+      ...p.attackFinished!(s, combat, skipped),
+    ],
+    hostLeaves: (s, u, defeated) => {
+      h.hostLeaves?.(s, u, defeated);
+      p.hostLeaves!(s, u, defeated);
+    },
+    explored: (s, u, wasActive) => {
+      h.explored?.(s, u, wasActive);
+      p.explored!(s, u, wasActive);
+    },
+    travelProblem: (s, u) => h.travelProblem?.(s, u) ?? p.travelProblem!(s, u),
+    mustTravel: (s) => !!h.mustTravel?.(s) || p.mustTravel!(s),
+    travelEffects: (s, u) => h.travelEffects?.(s, u) ?? p.travelEffects!(s, u),
+    travelEntered: (s, u, actual) => {
+      h.travelEntered?.(s, u, actual);
+      p.travelEntered!(s, u, actual);
+    },
+    allyEntered: (s, u, played, fromHand) => {
+      const a = !!h.allyEntered?.(s, u, played, fromHand);
+      return p.allyEntered!(s, u, played, fromHand) || a;
+    },
+    eventPlayed: (s, u) => {
+      h.eventPlayed?.(s, u);
+      p.eventPlayed!(s, u);
+    },
+    playerCardPlayed: (s, u, fromHand) => {
+      h.playerCardPlayed?.(s, u, fromHand);
+      p.playerCardPlayed!(s, u, fromHand);
+    },
+    characterReadied: (s, u) => {
+      h.characterReadied?.(s, u);
+      p.characterReadied!(s, u);
+    },
+    revealedSurge: (s, code) =>
+      !!h.revealedSurge?.(s, code) || p.revealedSurge!(s, code),
+    cardEntered: (s, u, fromReveal, cancelled) => {
+      h.cardEntered?.(s, u, fromReveal, cancelled);
+      p.cardEntered!(s, u, fromReveal, cancelled);
+    },
+    committed: (s) => {
+      h.committed?.(s);
+      p.committed!(s);
+    },
+    encounterEnd: (s) => [
+      ...(h.encounterEnd?.(s) ?? []),
+      ...p.encounterEnd!(s),
+    ],
+    cannotDiscardHand: (s, u, byPlayerCardEffect) =>
+      !!h.cannotDiscardHand?.(s, u, byPlayerCardEffect) ||
+      p.cannotDiscardHand!(s, u, byPlayerCardEffect),
+    handDiscardDestination: (s, u) =>
+      p.handDiscardDestination!(s, u) || !!h.handDiscardDestination?.(s, u),
+    encounter: (s, code, replay, fromReveal) =>
+      p.encounter!(s, code, replay, fromReveal) ||
+      !!h.encounter?.(s, code, replay, fromReveal),
+    shadow: (s, code) => p.shadow!(s, code) || !!h.shadow?.(s, code),
+    effect: (s, e) => p.effect!(s, e) || !!h.effect?.(s, e),
+    abilityLabel: (code) => h.abilityLabel?.(code) ?? p.abilityLabel!(code),
+    abilityProblem: (s, u, attachmentId) =>
+      p.abilityProblem!(s, u, attachmentId) ??
+      h.abilityProblem?.(s, u, attachmentId) ??
+      null,
+    ability: (s, u, attachmentId) =>
+      p.ability!(s, u, attachmentId) || !!h.ability?.(s, u, attachmentId),
+  };
+}
+
+// ------------------------------------------------------------- saves
+
+/** Physical cards held by the Campaign Pool's foreign cards. */
+export const eredPoolUnits = (s: GameState): Unit[] => [
+  ...(s.eredPool?.guarded.map((g) => g.card) ?? []),
+  ...(s.eredPool?.stored.flatMap((g) => g.cards) ?? []),
+];
+export function validEredPool(
+  s: GameState,
+  validUnit: (u: unknown) => boolean,
+) {
+  const q = s.eredPool;
+  if (q === undefined) return true;
+  const seats = s.table?.seats.length ?? 1;
+  const player = (p: unknown) =>
+    Number.isInteger(p) && (p as number) >= 0 && (p as number) < seats;
+  const round = (n: unknown) =>
+    Number.isInteger(n) && (n as number) >= 0 && (n as number) <= s.round;
+  const phase = (m: { round: number; phase: string }) =>
+    !!m && round(m.round) && typeof m.phase === "string";
+  return (
+    !!q &&
+    // (A seat's own view is validated outside campaign mode.)
+    s.scenarioId in NATIVE &&
+    [
+      q.resolving,
+      q.guarded,
+      q.stored,
+      q.noReady,
+      q.noDamage,
+      q.locationProgress,
+      q.vastness,
+      q.darkPlaces,
+      q.usedResponses,
+    ].every(Array.isArray) &&
+    q.resolving.every((c) => TREACHERIES.includes(c)) &&
+    q.guarded.every(
+      (g) =>
+        !!g &&
+        typeof g.guardId === "string" &&
+        player(g.player) &&
+        validUnit(g.card),
+    ) &&
+    q.stored.every(
+      (g) =>
+        !!g &&
+        typeof g.locationId === "string" &&
+        player(g.player) &&
+        Array.isArray(g.cards) &&
+        g.cards.every(validUnit),
+    ) &&
+    q.noReady.every((m) => !!m && typeof m.id === "string" && round(m.round)) &&
+    q.noDamage.every((m) => !!m && typeof m.id === "string" && phase(m)) &&
+    q.locationProgress.every(
+      (m) =>
+        !!m &&
+        typeof m.id === "string" &&
+        round(m.round) &&
+        Number.isInteger(m.amount) &&
+        m.amount >= 0,
+    ) &&
+    [...q.vastness, ...q.darkPlaces].every(
+      (m) => phase(m) && Number.isInteger(m.amount) && m.amount >= 0,
+    ) &&
+    q.usedResponses.every((c) => [W.armory, W.treasury].includes(c)) &&
+    new Set(q.usedResponses).size === q.usedResponses.length
+  );
+}
+/** The pool's visible state: Lonely Lands' facedown events are counted. */
+export const eredPoolPublicState = (s: GameState) =>
+  s.eredPool
+    ? {
+        eredPool: {
+          ...s.eredPool,
+          stored: s.eredPool.stored.map((g) => ({
+            locationId: g.locationId,
+            player: g.player,
+            count: g.cards.length,
+          })),
+        },
+      }
+    : {};

@@ -25,6 +25,7 @@ import {
   discardQuestAttachments,
   enemyAddedToStaging,
   exhaustCharacter,
+  placeEncounter,
   questDefeated,
   removeFromQuest,
   win,
@@ -1277,7 +1278,9 @@ export function mountGundabadEffect(s: GameState, e: Effect) {
       break;
     case "gundabadGrotto": {
       const code = discardUntil(s, (c) => card(c).type_code === "treachery");
-      if (code) mountGundabadEncounter(s, code, false, true);
+      if (code && !mountGundabadEncounter(s, code, false, true))
+        // A treachery from another scenario (a Campaign Pool card).
+        placeEncounter(s, code, false, 0, undefined, true);
       break;
     }
     case "gundabadHobgoblin":

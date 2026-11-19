@@ -59,9 +59,26 @@ import { FATE_WILDERLAND_HOOKS } from "./fate-wilderland";
 import { RIVER_RUNNING_HOOKS } from "./river-running";
 import { DANGER_DORWINION_HOOKS } from "./danger-dorwinion";
 import { TEMPLE_DOOM_HOOKS } from "./temple-doom";
+import {
+  ERED_POOL_HOOKS,
+  composeEredPool,
+  eredPoolLive,
+} from "./ered-campaign-pool";
 
 const empty: Batch4ScenarioHooks = {};
+const pooled = new WeakMap<Batch4ScenarioHooks, Batch4ScenarioHooks>();
+/**
+ * The current scenario's hooks; in an Ered Mithrin campaign chapter from The
+ * Withered Heath on, composed with the Campaign Pool's foreign cards.
+ */
 export function batch4Scenario(s: GameState): Batch4ScenarioHooks {
+  const hooks = scenarioHooks(s);
+  if (!eredPoolLive(s)) return hooks;
+  let composed = pooled.get(hooks);
+  if (!composed) pooled.set(hooks, (composed = composeEredPool(hooks)));
+  return composed;
+}
+function scenarioHooks(s: GameState): Batch4ScenarioHooks {
   switch (s.scenarioId) {
     case "the-fortress-of-nurn":
       return FORTRESS_NURN_HOOKS;
@@ -191,6 +208,7 @@ export function batch4Scenario(s: GameState): Batch4ScenarioHooks {
 }
 export const batch4SharedEffect = (effect: Effect) =>
   [
+    ERED_POOL_HOOKS,
     BLACK_SERPENT_HOOKS,
     CIRITH_GURAT_HOOKS,
     CROSSINGS_POROS_HOOKS,

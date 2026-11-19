@@ -952,7 +952,9 @@ export function roamRhovanionEffect(s: GameState, e: Effect) {
     case "roamRhovanionMoor": {
       shuffleDiscard(s);
       const code = discardUntil(s, (c) => card(c).type_code === "treachery");
-      if (code) roamRhovanionEncounter(s, code, true, true);
+      if (code && !roamRhovanionEncounter(s, code, true, true))
+        // A treachery from another scenario (a Campaign Pool card).
+        placeEncounter(s, code, false, 0, undefined, true);
       break;
     }
     case "roamRhovanionSlopes":

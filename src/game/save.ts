@@ -119,6 +119,7 @@ import {
   validateWildsRhovanion,
   WILDS_RHOVANION,
 } from "./wilds-rhovanion-support";
+import { validEredPool } from "./ered-campaign-pool";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
 import { validateUmbar } from "./escape-umbar-support";
@@ -590,6 +591,8 @@ export function validateSave(
         c.porosPoisonShadow,
         c.wildsBlankShadow,
         c.wildsDiscardAlly,
+        (c as { eredPoolBlankShadow?: boolean }).eredPoolBlankShadow,
+        (c as { eredPoolDiscardAlly?: boolean }).eredPoolDiscardAlly,
         c.wildsCannotReady,
         c.cancelCombatDamage,
         c.ulfastKilled,
@@ -1008,6 +1011,13 @@ export function validateSave(
                   entry.cards.some(
                     (u) => u.id === event.unit.id && u.code === event.unit.code,
                   ),
+              ) ||
+              !!s.eredPool?.stored?.some(
+                (entry) =>
+                  entry.player === event.player &&
+                  entry.cards.some(
+                    (u) => u.id === event.unit.id && u.code === event.unit.code,
+                  ),
               )),
         ))
     )
@@ -1128,6 +1138,7 @@ export function validateSave(
         ) ||
         !validateCrossingsPoros(s, validUnit as (value: unknown) => boolean) ||
         !validateWildsRhovanion(s, validUnit as (value: unknown) => boolean) ||
+        !validEredPool(s, validUnit as (value: unknown) => boolean) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,

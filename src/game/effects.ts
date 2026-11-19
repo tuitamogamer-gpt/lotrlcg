@@ -1699,55 +1699,63 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     }
     case "resolvePrintedWhenRevealed":
-      if (e.code)
-        requireRule(
+      if (
+        e.code &&
+        !(
           Wastes.wastesEncounter(s, e.code, true) ||
-            Gram.gramEncounter(s, e.code, true) ||
-            Etten.ettenEncounter(s, e.code, true) ||
-            Rhudaur.rhudaurEncounter(s, e.code, true) ||
-            Carn.carnEncounter(s, e.code, true) ||
-            Dread.dreadEncounter(s, e.code, true) ||
-            Cobas.cobasEncounter(s, e.code, true) ||
-            sagaCampaignEncounter(s, e.code, true, true) ||
-            angmarCampaignEncounter(s, e.code, true, true) ||
-            darkMirkwoodEncounter(s, e.code, true, true) ||
-            EredCards.eredCampaignEncounter(s, e.code, true, true) ||
-            batch4Scenario(s).encounter?.(s, e.code, true, true) ||
-            City.cityEncounter(s, e.code, true) ||
-            Umbar.umbarEncounter(s, e.code, true) ||
-            Desert.desertCrossingEncounter(s, e.code, true) ||
-            Mordor.mordorEncounter(s, e.code, true) ||
-            Mumakil.mumakilEncounter(s, e.code, true) ||
-            Race.raceHaradEncounter(s, e.code, true) ||
-            Sands.beneathSandsEncounter(s, e.code, true, true) ||
-            Voyage.voyageEncounter(s, e.code, true) ||
-            Storm.stormcallerEncounter(s, e.code, true) ||
-            Depths.depthsEncounter(s, e.code) ||
-            Drowned.drownedEncounter(s, e.code, true) ||
-            DrownedCompanions.drownedCompanionEncounter(s, e.code, true) ||
-            Fate.fateEncounter(s, e.code, true) ||
-            Raid.raidEncounter(s, e.code, true) ||
-            Druadan.druadanForestEncounter(s, e.code, true) ||
-            Amon.amonDinEncounter(s, e.code, true) ||
-            Osgiliath.assaultOsgiliathEncounter(s, e.code, true) ||
-            BloodQuest.bloodGondorEncounter(s, e.code, true) ||
-            MorgulQuest.morgulEncounter(s, e.code, true) ||
-            Fords.fordsEncounter(s, e.code, true) ||
-            Catch.catchEncounter(s, e.code, true) ||
-            Fangorn.fangornEncounter(s, e.code, true) ||
-            DunlandQuest.dunlandEncounter(s, e.code, true) ||
-            Trials.trialsEncounter(s, e.code, true) ||
-            Tharbad.tharbadEncounter(s, e.code, true) ||
-            Nin.ninEncounter(s, e.code, true) ||
-            Celebrimbor.celebrimborEncounter(s, e.code, true) ||
-            Antlered.antleredEncounter(s, e.code, true) ||
-            Chetwood.chetwoodEncounter(s, e.code, true) ||
-            Weather.weatherEncounter(s, e.code, true) ||
-            Dike.dikeEncounter(s, e.code, true) ||
-            heirsEncounter(s, e.code, true) ||
-            stewardFearEncounter(s, e.code, true),
-          "Unsupported repeated When Revealed effect.",
-        );
+          Gram.gramEncounter(s, e.code, true) ||
+          Etten.ettenEncounter(s, e.code, true) ||
+          Rhudaur.rhudaurEncounter(s, e.code, true) ||
+          Carn.carnEncounter(s, e.code, true) ||
+          Dread.dreadEncounter(s, e.code, true) ||
+          Cobas.cobasEncounter(s, e.code, true) ||
+          sagaCampaignEncounter(s, e.code, true, true) ||
+          angmarCampaignEncounter(s, e.code, true, true) ||
+          darkMirkwoodEncounter(s, e.code, true, true) ||
+          EredCards.eredCampaignEncounter(s, e.code, true, true) ||
+          batch4Scenario(s).encounter?.(s, e.code, true, true) ||
+          City.cityEncounter(s, e.code, true) ||
+          Umbar.umbarEncounter(s, e.code, true) ||
+          Desert.desertCrossingEncounter(s, e.code, true) ||
+          Mordor.mordorEncounter(s, e.code, true) ||
+          Mumakil.mumakilEncounter(s, e.code, true) ||
+          Race.raceHaradEncounter(s, e.code, true) ||
+          Sands.beneathSandsEncounter(s, e.code, true, true) ||
+          Voyage.voyageEncounter(s, e.code, true) ||
+          Storm.stormcallerEncounter(s, e.code, true) ||
+          Depths.depthsEncounter(s, e.code) ||
+          Drowned.drownedEncounter(s, e.code, true) ||
+          DrownedCompanions.drownedCompanionEncounter(s, e.code, true) ||
+          Fate.fateEncounter(s, e.code, true) ||
+          Raid.raidEncounter(s, e.code, true) ||
+          Druadan.druadanForestEncounter(s, e.code, true) ||
+          Amon.amonDinEncounter(s, e.code, true) ||
+          Osgiliath.assaultOsgiliathEncounter(s, e.code, true) ||
+          BloodQuest.bloodGondorEncounter(s, e.code, true) ||
+          MorgulQuest.morgulEncounter(s, e.code, true) ||
+          Fords.fordsEncounter(s, e.code, true) ||
+          Catch.catchEncounter(s, e.code, true) ||
+          Fangorn.fangornEncounter(s, e.code, true) ||
+          DunlandQuest.dunlandEncounter(s, e.code, true) ||
+          Trials.trialsEncounter(s, e.code, true) ||
+          Tharbad.tharbadEncounter(s, e.code, true) ||
+          Nin.ninEncounter(s, e.code, true) ||
+          Celebrimbor.celebrimborEncounter(s, e.code, true) ||
+          Antlered.antleredEncounter(s, e.code, true) ||
+          Chetwood.chetwoodEncounter(s, e.code, true) ||
+          Weather.weatherEncounter(s, e.code, true) ||
+          Dike.dikeEncounter(s, e.code, true) ||
+          heirsEncounter(s, e.code, true) ||
+          stewardFearEncounter(s, e.code, true)
+        )
+      ) {
+        // A card no scenario module replays (a Core Set card or a burden from
+        // a Campaign Pool, say) resolves through the ordinary encounter
+        // scripts, which return it to the discard pile.
+        const i = s.encounterDiscard.lastIndexOf(e.code);
+        if (i >= 0) s.encounterDiscard.splice(i, 1);
+        placeEncounter(s, e.code, false, 0, undefined, true);
+      }
       break;
     case "engage":
       if (u) engage(s, u);

@@ -554,6 +554,8 @@ export interface GameState {
   darkMirkwood?: import("./dark-mirkwood-campaign").DarkMirkwoodGame;
   /** The Ered Mithrin campaign's state during a chapter (campaign card, treasures, boons). */
   eredCampaign?: import("./ered-campaign").EredCampaignGame;
+  /** The Ered Mithrin campaign: the Campaign Pool's cards from other scenarios. */
+  eredPool?: import("./ered-campaign-pool").EredPoolState;
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;

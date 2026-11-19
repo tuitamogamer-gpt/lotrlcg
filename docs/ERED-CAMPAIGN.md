@@ -121,23 +121,60 @@ publication order (The Withered Heath is not available in campaign mode yet).
 Treasures attached by a campaign card are not "played", so their "after you
 play" Responses wait until a discovered copy is played from a deck.
 
-## Later chapters
+## The Campaign Pool across scenarios
 
 The Campaign Pool's encounter cards join every later encounter deck regardless
-of encounter set, so a card A Growing Threat sets aside in one scenario must
-resolve in the scenarios after it, which other scenario modules run. The three
-Wilds of Rhovanion chapters share one module, so the cards chapters 1–3 add
-resolve in each of them; the chapters from The Withered Heath on need the
-earlier chapters' cards to resolve outside their own modules, which comes with
-them.
+of encounter set, so a card from one scenario must resolve in another scenario's
+module. The three Wilds of Rhovanion chapters share one module, and the Core
+Set's cards (the Evil Creatures enemies, the Spiders of Mirkwood and Dol Guldur
+Orcs cards) resolve in every scenario. For the chapters from The Withered Heath
+on, `src/game/ered-campaign-pool.ts` scripts the 42 cards of Journey Up the
+Anduin, Lost in Mirkwood and The King's Quest that can join the Campaign Pool
+(the non-unique, non-objective, non-burden cards A Growing Threat can set aside):
+each later chapter's hooks are composed with the pool's, which act only on a
+card foreign to that chapter (outside its own recipes; 30, 34, 36, 37, 27 and 35
+of them in chapters 4 to 9). Card text that refers to another scenario's
+components does as much as it can:
+
+- **The Evil Creatures deck** exists only in Journey Up the Anduin: Wooded
+  Riverbank's explored effect and Frenzied Creature's When Revealed find nothing
+  (Frenzied Creature's shadow still attaches it to the attacking enemy).
+- **The Caves deck** exists in The Withered Heath and Mount Gundabad: there, the
+  deep keyword of Deep Chasm, Dark Tunnel and Forked Passage and Contested
+  Depths' replacement use the chapter's own Caves rule (The Withered Heath's
+  stage 2 ignores the deep keyword); Forked Passage's Response orders the top
+  two cards first, then joins the victory display. Elsewhere Contested Depths
+  can only raise threat, and Forked Passage's Response is not offered.
+- **Guarded cards**: Hobgoblin guards the first player's top card faceup (+X
+  from its cost) and returns it to its owner's hand when it leaves play; Mirkwood
+  Patrol guards an unguarded objective-location; Unseen Danger's shadow counts a
+  card guarded in any of the scenarios' ways.
+- Lonely Lands keeps events played during the quest phase facedown under it
+  (+2 threat each) and discards them when it leaves play; Lost in the Wild sits in
+  a hand; the conditions (Weighed Down, Afraid of the Dark, Dragon Breath,
+  Dragon Scales, Frenzied Creature) and lasting effects (Vastness of Mirkwood,
+  Dark Places, Giant Spider, Black Bats, Dark Black Woods' progress limit) are
+  saved with the game.
+
+"Resolve the 'when revealed' effect" of a discarded treachery (Lightless Grotto,
+Grey Moorland) now resolves a card no scenario module replays (a Core Set card
+or a burden from the Campaign Pool) through the ordinary encounter scripts,
+where it used to stop the game or lose the card. The cards of the later chapters
+become portable with their chapters.
 
 ## Verification
 
 ```sh
-node --import tsx --test tests/ered-campaign.test.ts
+node --import tsx --test tests/ered-campaign.test.ts tests/ered-campaign-pool.test.ts
 npm run build
 npm run test:browser-ered-campaign
 ```
+
+`tests/ered-campaign-pool.test.ts` (18 tests) covers the foreign cards of each
+later chapter (each one revealed in each chapter where it is foreign, with a
+valid save), their passive values, triggers, shadows and choices, the Caves
+deck through The Withered Heath, the Lost Caves locations in Roam Across
+Rhovanion, the When Revealed fallback, and a two-player game.
 
 `tests/ered-campaign.test.ts` (28 tests) covers the registered texts and
 faces, the uniqueness corrections and the cards kept out of ordinary games;

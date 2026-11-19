@@ -13,6 +13,7 @@ import {
   fateWilderlandUnits,
   fateWilderlandPublicState,
 } from "./fate-wilderland-support";
+import { eredPoolPublicState, eredPoolUnits } from "./ered-campaign-pool";
 
 /** Physical cards outside ordinary play zones still participate in save identity checks. */
 export function eredScenarioUnits(s: GameState): Unit[] {
@@ -23,6 +24,7 @@ export function eredScenarioUnits(s: GameState): Unit[] {
   return [
     ...mountGundabadUnits(s),
     ...fateWilderlandUnits(s),
+    ...eredPoolUnits(s),
     ...(h
       ? [
           ...h.setAside,
@@ -56,6 +58,7 @@ export function eredScenarioUnits(s: GameState): Unit[] {
 /** Report counts for unrevealed zones; never expose looked-at cards or hidden order. */
 export function eredScenarioPublicState(s: GameState) {
   return {
+    ...eredPoolPublicState(s),
     ...(s.mountGundabad ? { mountGundabad: mountGundabadPublicState(s) } : {}),
     ...(s.fateWilderland
       ? { fateWilderland: fateWilderlandPublicState(s) }

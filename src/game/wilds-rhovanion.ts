@@ -19,6 +19,7 @@ import {
   discardCharacter,
   discardHandCard,
   engage,
+  placeEncounter,
 } from "./board";
 import { isAlly } from "./card-types";
 import {
@@ -1391,7 +1392,11 @@ export function wildsRhovanionEffect(s: GameState, e: Effect) {
       );
       if (code) {
         s.encounterDiscard.push(code);
-        wildsRhovanionEncounter(s, code, true, true);
+        if (!wildsRhovanionEncounter(s, code, true, true)) {
+          // A treachery from another scenario (a Campaign Pool card).
+          s.encounterDiscard.pop();
+          placeEncounter(s, code, false, 0, undefined, true);
+        }
       }
       break;
     }
