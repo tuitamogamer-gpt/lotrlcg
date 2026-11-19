@@ -17,6 +17,10 @@ The players light the way with Cave Torch, survive the surprise attack led by
 Goblin Chieftain, break Cracked Pillar to cross the chasm and defeat the
 Chieftain at Oathkeepers to rescue the captives.
 
+In campaign mode, The Dark of Mirkwood's version is Part 5 of the Mirkwood
+Paths campaign, or Part 2 of its two-scenario mini campaign, with its campaign
+card, boons and burdens: see [The Dark of Mirkwood campaign](DARK-MIRKWOOD-CAMPAIGN.md).
+
 ## Sources and corrections
 
 - The recipes match

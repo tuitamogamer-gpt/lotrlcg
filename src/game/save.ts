@@ -192,6 +192,13 @@ import { validFlow } from "./presentation";
 import { characters, hasGondor, globalUnits } from "./core";
 import { validateDeckList } from "./setup";
 import { syncAttachmentText } from "./attachment-text";
+import {
+  ADAPTATIONS,
+  DOM,
+  mirkwoodPathsOrder,
+  validDarkMirkwoodState,
+  validMirkwoodLog,
+} from "./dark-mirkwood-campaign";
 import { DEAD } from "./dead-marshes";
 import {
   FOUNDATIONS_STONE as F,
@@ -1247,9 +1254,21 @@ export function validateSave(
         !integer(c.threatPenalty) ||
         c.threatPenalty < 0 ||
         !codes(c.boons) ||
-        !c.boons.every((x) => ["rc132", "rc133", "rc135"].includes(x)) ||
+        !c.boons.every((x) =>
+          ["rc132", "rc133", "rc135", ...ADAPTATIONS].includes(x),
+        ) ||
         !codes(c.burdens) ||
-        !c.burdens.every((x) => ["rc136", "rc137", "rc138"].includes(x)) ||
+        !c.burdens.every((x) =>
+          [
+            "rc136",
+            "rc137",
+            "rc138",
+            DOM.stalking,
+            DOM.shiny,
+            DOM.guilty,
+          ].includes(x),
+        ) ||
+        !validMirkwoodLog(c, seatCount) ||
         !c.permanent ||
         typeof c.permanent !== "object" ||
         Array.isArray(c.permanent) ||
@@ -1264,10 +1283,10 @@ export function validateSave(
             card(c.prisoner).type_code !== "hero")) ||
         typeof c.mendorSaved !== "boolean" ||
         !Array.isArray(c.completed) ||
-        c.completed.length > 3 ||
+        c.completed.length > mirkwoodPathsOrder(c).length ||
         !c.completed.every(
           (q, i) =>
-            q.scenarioId === SCENARIOS[i].id &&
+            q.scenarioId === mirkwoodPathsOrder(c)[i] &&
             integer(q.score) &&
             integer(q.rounds) &&
             q.rounds >= 0,
@@ -1275,11 +1294,13 @@ export function validateSave(
       )
         return false;
     }
+    // Ranger Sense (any campaign) and The Dark of Mirkwood's game state.
+    if (!validDarkMirkwoodState(s, seatCount)) return false;
     if (
       s.campaign &&
       !s.campaign.kind &&
       s.campaign.completed.length !==
-        SCENARIOS.findIndex((q) => q.id === s.scenarioId) +
+        mirkwoodPathsOrder(s.campaign).indexOf(s.scenarioId) +
           (s.status === "won" ? 1 : 0)
     )
       return false;

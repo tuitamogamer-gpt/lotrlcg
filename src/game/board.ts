@@ -1,3 +1,10 @@
+import {
+  darkMirkwoodAttachmentLeaves,
+  darkMirkwoodEncounter,
+  darkMirkwoodEngaged,
+  darkMirkwoodShadow,
+  mendorLossChapter,
+} from "./dark-mirkwood-campaign";
 import * as DreamCards from "./dreamchaser-campaign-cards";
 import {
   angmarLootCommitted,
@@ -1707,6 +1714,11 @@ export function discardAttachment(
     syncAttachmentText(s);
     return;
   }
+  // Guilty Conscience returns to the encounter discard pile.
+  if (darkMirkwoodAttachmentLeaves(s, u, a)) {
+    syncAttachmentText(s);
+    return;
+  }
   if (landSorrowPlayerAttachmentLeaves(s, u, a, leaving, byCardEffect)) {
     syncAttachmentText(s);
     return;
@@ -2124,7 +2136,9 @@ export function destroy(
       seatView(s, u.owner ?? activeSeat(s)).removed.push(u.code);
     else if (u.code === "rc135") {
       s.removed.push(u.code);
-      if (s.campaign && s.scenarioId !== "dol-guldur") {
+      // Parts 1 and 2 of Mirkwood Paths: "If Mendor leaves play, the players
+      // lose the game." (Not Escape from Dol Guldur or The Dark of Mirkwood.)
+      if (mendorLossChapter(s)) {
         s.status = "lost";
         s.reason = "Mendor has left play. The campaign quest is lost.";
         s.choice = null;
@@ -3165,6 +3179,8 @@ export function engage(s: GameState, u: Unit, optional = false) {
   amonPlayerEnemyEngaged(s, u);
   if (u.code === "01096") u.boost = 1;
   if (u.code === "rc136") prepend(s, fx("chooseExhaust", { count: 2 }));
+  // Stalking Goblin (The Dark of Mirkwood's campaign burden).
+  darkMirkwoodEngaged(s, u);
   if (u.code === "01075")
     prepend(s, fx("chooseDamage", { value: 5, flag: true }));
   s.queue.splice(
@@ -3758,6 +3774,7 @@ export function placeEncounter(
   if (angmarCampaignEncounter(s, code, false, fromReveal)) return;
   if (DreamCards.dreamchaserCampaignEncounter(s, code, false, fromReveal))
     return;
+  if (darkMirkwoodEncounter(s, code, false, fromReveal)) return;
   if (batch4Scenario(s).encounter?.(s, code, false, fromReveal)) return;
   if (City.cityEncounter(s, code)) return;
   if (Umbar.umbarEncounter(s, code)) return;
@@ -4426,6 +4443,7 @@ export function shadow(s: GameState, code: string) {
   if (sagaCampaignShadow(s, code)) return;
   if (angmarCampaignShadow(s, code)) return;
   if (DreamCards.dreamchaserCampaignShadow(s, code)) return;
+  if (darkMirkwoodShadow(s, code)) return;
   if (watcherWaterShadow(s, code)) return;
   if (roadRivendellShadow(s, code)) return;
   if (redhornShadow(s, code)) return;

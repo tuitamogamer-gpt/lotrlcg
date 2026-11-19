@@ -1,3 +1,8 @@
+import {
+  darkMirkwoodEffect,
+  darkMirkwoodEncounter,
+  darkMirkwoodRoundEnd,
+} from "./dark-mirkwood-campaign";
 import * as DreamCards from "./dreamchaser-campaign-cards";
 import { dreamchaserCampaignEffect } from "./dreamchaser-campaign";
 import {
@@ -686,6 +691,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (sagaCampaignEffect(s, e)) return;
   if (angmarCampaignEffect(s, e)) return;
   if (dreamchaserCampaignEffect(s, e)) return;
+  if (darkMirkwoodEffect(s, e)) return;
   if (angmarLootEffect(s, e)) return;
   if (HaradPlayers.handleHaradPlayerEffect(s, e)) return;
   if (MumakPlayers.handleMumakilPlayerEffect(s, e)) return;
@@ -1701,6 +1707,7 @@ function handleEffect(s: GameState, e: Effect) {
             Cobas.cobasEncounter(s, e.code, true) ||
             sagaCampaignEncounter(s, e.code, true, true) ||
             angmarCampaignEncounter(s, e.code, true, true) ||
+            darkMirkwoodEncounter(s, e.code, true, true) ||
             batch4Scenario(s).encounter?.(s, e.code, true, true) ||
             City.cityEncounter(s, e.code, true) ||
             Umbar.umbarEncounter(s, e.code, true) ||
@@ -2214,6 +2221,8 @@ function handleEffect(s: GameState, e: Effect) {
       passives.push(...WrathPlayers.wrathRuinPlayerRoundEnd(s));
       forced.push(...MountainFirePlayers.mountainFirePlayerRoundEnd(s));
       forced.push(...sagaCampaignRoundEnd(s));
+      // The Oath's campaign card and Guilty Conscience.
+      forced.push(...darkMirkwoodRoundEnd(s));
       prepend(s, ...passives, ...forced, fx("endRoundAfterCollector"));
       break;
     }

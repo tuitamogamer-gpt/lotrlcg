@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2235,
+    "encounterCards": 2246,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3457,
-    "pending": 726
+    "scripted": 3468,
+    "pending": 715
   },
   "scenarioRecipes": {
     "total": 355,
@@ -1188,6 +1188,15 @@
     "22145",
     "22147",
     "40047",
+    "41041",
+    "41042",
+    "41043",
+    "41044",
+    "41045",
+    "41046",
+    "41047",
+    "41048",
+    "41049",
     "dread:reanimated-dead",
     "drowned-cursed-caverns",
     "drowned-undersea-grotto",
@@ -2262,6 +2271,7 @@
     "octgn:5585680f-0609-4cc4-96b5-37e53992af56",
     "octgn:55d05b39-c993-45bb-874c-3eacbcf49278",
     "octgn:55d8f78d-2dd7-4b44-80db-fb539ff05f00",
+    "octgn:5642b7b9-b194-46e3-bf69-7aa7ec9efc62",
     "octgn:56634de4-2ef2-4739-b549-fa591e7032eb",
     "octgn:5666ae7f-838c-4f18-ad78-c40302c444e6",
     "octgn:566898f1-9e85-4463-b220-6924d5106447",
@@ -2488,6 +2498,7 @@
     "octgn:7562e662-3b3e-4378-9a3f-c45908bc05cf",
     "octgn:75b111c9-fb49-4a53-ac50-729ff2d06abe",
     "octgn:75c1d9eb-9ade-4c71-a918-74cf5b526ff2",
+    "octgn:75c3ac9e-b4e2-4c26-95a3-df99e6f22c6d",
     "octgn:75ed364b-fa2c-469e-8af2-289643bef9e7",
     "octgn:761f5564-29b7-413e-9e7f-5d3c63c173d7",
     "octgn:763643f4-fb17-43d0-a165-ae0b0b10bc46",
@@ -4135,9 +4146,9 @@
     {
       "product": "the-dark-of-mirkwood",
       "total": 15,
-      "scripted": 4,
+      "scripted": 15,
       "player": 6,
-      "playerScripted": 0
+      "playerScripted": 6
     },
     {
       "product": "the-dead-marshes",
@@ -13300,7 +13311,7 @@
       "name": "Stalking Goblin",
       "type": "enemy",
       "pack": "The Dark of Mirkwood",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dark-of-mirkwood"
     },
     {
@@ -13308,7 +13319,7 @@
       "name": "Shiny Distraction",
       "type": "treachery",
       "pack": "The Dark of Mirkwood",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dark-of-mirkwood"
     },
     {
@@ -13316,7 +13327,7 @@
       "name": "Guilty Conscience",
       "type": "treachery",
       "pack": "The Dark of Mirkwood",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dark-of-mirkwood"
     },
     {
@@ -13324,7 +13335,7 @@
       "name": "The Fervor of Lore",
       "type": "attachment",
       "pack": "The Dark of Mirkwood",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dark-of-mirkwood"
     },
     {
@@ -13332,7 +13343,7 @@
       "name": "The Might of Tactics",
       "type": "attachment",
       "pack": "The Dark of Mirkwood",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dark-of-mirkwood"
     },
     {
@@ -13340,7 +13351,7 @@
       "name": "The Power of Spirit",
       "type": "attachment",
       "pack": "The Dark of Mirkwood",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dark-of-mirkwood"
     },
     {
@@ -13348,7 +13359,7 @@
       "name": "The Secret of Leadership",
       "type": "attachment",
       "pack": "The Dark of Mirkwood",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dark-of-mirkwood"
     },
     {
@@ -13356,7 +13367,7 @@
       "name": "\"No Time to Waste!\"",
       "type": "event",
       "pack": "The Dark of Mirkwood",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dark-of-mirkwood"
     },
     {
@@ -13364,7 +13375,7 @@
       "name": "Ranger Sense",
       "type": "event",
       "pack": "The Dark of Mirkwood",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dark-of-mirkwood"
     },
     {
@@ -23452,7 +23463,7 @@
       "name": "The Caves of Nibin-Dûm",
       "type": "campaign",
       "pack": "The Dark of Mirkwood",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dark-of-mirkwood"
     },
     {
@@ -25844,7 +25855,7 @@
       "name": "The Oath",
       "type": "campaign",
       "pack": "The Dark of Mirkwood",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dark-of-mirkwood"
     },
     {

@@ -1,3 +1,8 @@
+import {
+  darkMirkwoodAbility,
+  darkMirkwoodAbilityLabel,
+  darkMirkwoodAbilityProblem,
+} from "./dark-mirkwood-campaign";
 import type { Attachment, Effect, GameState, Option, Unit } from "./types";
 import type { Batch4ScenarioHooks } from "./batch4-scenario-contract";
 import { card, name } from "./cards";
@@ -1206,9 +1211,13 @@ export const CAVES_HOOKS: Batch4ScenarioHooks = {
       ? "Cave Torch · Action: exhaust it to place up to 3 progress on a Dark location"
       : code === CAVES.pillar
         ? "Cracked Pillar · Attack it as if it were an enemy engaged with you"
-        : undefined,
+        : // The Dark of Mirkwood's campaign: the Adaptations and Guilty Conscience.
+          darkMirkwoodAbilityLabel(code),
   abilityProblem: (s, u, attachmentId) => {
     if (!s.caves) return "Not in play.";
+    const held = u.attachments.find((x) => x.id === attachmentId);
+    if (held && darkMirkwoodAbilityLabel(held.code))
+      return darkMirkwoodAbilityProblem(s, u, attachmentId);
     if (u.code === CAVES.pillar && !attachmentId) return pillarProblem(s, u);
     const a = u.attachments.find((x) => x.id === attachmentId);
     if (!a || a.code !== CAVES.torch) return null;
@@ -1223,6 +1232,9 @@ export const CAVES_HOOKS: Batch4ScenarioHooks = {
   },
   ability: (s, u, attachmentId) => {
     if (!s.caves) return false;
+    const held = u.attachments.find((x) => x.id === attachmentId);
+    if (held && darkMirkwoodAbilityLabel(held.code))
+      return darkMirkwoodAbility(s, u, attachmentId);
     const p = activeSeat(s);
     if (u.code === CAVES.pillar && !attachmentId) {
       if (pillarProblem(s, u)) return false;

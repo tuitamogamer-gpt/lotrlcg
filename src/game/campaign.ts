@@ -2,7 +2,6 @@
 import { card, STARTERS } from "./cards";
 import { BUILT_IN_DECKS } from "./built-in-decks";
 import type { GameState, CampaignState } from "./types";
-import { SCENARIOS } from "./scenarios";
 
 import { allCharacters, allHeroes, seatIndices, seatView } from "./table";
 
@@ -37,6 +36,11 @@ import {
   resolveAngmarCampaign,
 } from "./angmar-campaign";
 import {
+  darkMirkwoodRecordSpent,
+  nextMirkwoodChapter,
+  resolveDarkMirkwood,
+} from "./dark-mirkwood-campaign";
+import {
   dreamchaserChapterComplete,
   dreamchaserChapterSupported,
   dreamchaserForbiddenTitle,
@@ -65,6 +69,8 @@ export function newCampaign(
 
 export function resolveCampaign(s: GameState) {
   const c = s.campaign!;
+  // Ranger Sense removed from the game and the Campaign Pool (in any campaign).
+  darkMirkwoodRecordSpent(s);
   if (isSagaCampaign(c)) return resolveSagaCampaign(s);
   if (isAngmarCampaign(c)) return resolveAngmarCampaign(s);
   if (isDreamchaserCampaign(c)) return resolveDreamchaserCampaign(s);
@@ -95,6 +101,8 @@ export function resolveCampaign(s: GameState) {
       `${c.prisoner ? card(c.prisoner).name : "A hero"} will be the prisoner in Dol Guldur.`,
     );
   }
+  // The Dark of Mirkwood: The Oath's and The Caves of Nibin-Dûm's campaign cards.
+  resolveDarkMirkwood(s);
   c.boons = c.boons.filter((code) => code !== "rc133");
   c.burdens = c.burdens.filter((code) => code !== "rc138");
   for (const codes of Object.values(c.permanent))
@@ -158,11 +166,11 @@ export function continueCampaign(
         ? !!nextAngmarChapter(s.campaign!)
         : dream
           ? !!nextDreamchaserChapter(s.campaign!)
-          : s.campaign!.completed.length < 3,
+          : !!nextMirkwoodChapter(s.campaign!),
     "The campaign is complete.",
   );
   requireRule(
-    !logged || !s.campaign!.resolution,
+    !s.campaign!.resolution,
     "Record the campaign card's resolution before continuing.",
   );
   // The Dream-chaser campaign: "Spending 1 XP allows the players to mark any
@@ -177,7 +185,7 @@ export function continueCampaign(
       ? nextAngmarChapter(c)!
       : dream
         ? nextDreamchaserChapter(c)!
-        : SCENARIOS[c.completed.length].id;
+        : nextMirkwoodChapter(c)!;
   // The Treason of Saruman and The Flame of the West: a fallen Aragorn leaves
   // the list of fallen heroes (each player takes a permanent +1 threat
   // penalty), and the Permanent cards of a recorded Aragorn are transferred to

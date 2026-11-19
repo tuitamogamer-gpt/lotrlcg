@@ -1,3 +1,8 @@
+import {
+  darkMirkwoodPlayerEvent,
+  darkMirkwoodPlayProblem,
+  darkMirkwoodSetupHandIds,
+} from "./dark-mirkwood-campaign";
 import * as DreamCards from "./dreamchaser-campaign-cards";
 import * as DreamTemple from "./dreamchaser-temple";
 import * as DreamDrowned from "./dreamchaser-drowned";
@@ -995,6 +1000,8 @@ export function canPlay(
   if (landShadowProblem) return landShadowProblem;
   const sagaCampaignProblem = sagaCampaignPlayProblem(s, u);
   if (sagaCampaignProblem) return sagaCampaignProblem;
+  const darkMirkwoodProblem = darkMirkwoodPlayProblem(s, u);
+  if (darkMirkwoodProblem) return darkMirkwoodProblem;
   const mountainFireProblem = MountainFirePlayers.mountainFirePlayerPlayProblem(
     s,
     u,
@@ -1795,6 +1802,7 @@ export function handlePlayerEventAbilityEffect(
     !sagaCampaignPlayerEvent(s, physical.code) &&
     !angmarCampaignPlayerEvent(s, physical.code) &&
     !DreamCards.dreamchaserPlayerEvent(s, physical.code) &&
+    !darkMirkwoodPlayerEvent(s, physical.code) &&
     !MountainFirePlayers.mountainFirePlayerEvent(s, physical.code) &&
     !WrathPlayers.wrathRuinPlayerEvent(
       s,
@@ -3192,6 +3200,8 @@ function applyActionCore(input: GameState, action: Action): GameState {
           ...(s.shadowEastPlayers?.setupHandIds?.[activeSeat(s)] ?? []),
           ...sagaSetupHandIds(s),
           ...angmarSetupHandIds(s),
+          // The Caves of Nibin-Dûm's "No Time to Waste!".
+          ...darkMirkwoodSetupHandIds(s),
         ]);
         for (const u of s.hand.filter((u) => !kept.has(u.id)))
           putPlayerDeck(s, u);

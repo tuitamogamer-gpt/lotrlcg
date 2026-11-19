@@ -90,12 +90,7 @@ import type {
   SeatConfig,
   ReviewMode,
 } from "./types";
-import {
-  SCENARIOS,
-  scenario,
-  OBJECTIVES,
-  CAMPAIGN_CHAPTERS,
-} from "./scenarios";
+import { SCENARIOS, scenario, OBJECTIVES } from "./scenarios";
 
 import {
   eachSeat,
@@ -121,6 +116,14 @@ import {
   newAngmarCampaign,
   nextAngmarChapter,
 } from "./angmar-campaign";
+import {
+  DARK_MIRKWOOD_CHAPTERS,
+  darkMirkwoodCampaignSetup,
+  darkMirkwoodDeckSetup,
+  mendorStarts,
+  MIRKWOOD_PATHS_ORDER,
+  nextMirkwoodChapter,
+} from "./dark-mirkwood-campaign";
 import {
   dreamchaserCampaignSetup,
   dreamchaserChapterSupported,
@@ -215,6 +218,12 @@ export function createGame(
     hobbitTreasures?: Record<number, string[]>;
     /** The Dream-chaser campaign: the Hard/Expert Mode card's side for this chapter. */
     dreamchaserMode?: "hard" | "expert";
+    /**
+     * A new campaign after The Caves of Nibin-Dûm rescued the Ranger: the
+     * seats that shuffle 1 copy of Ranger Sense into their deck and add it to
+     * the Campaign Pool.
+     */
+    rangerLegacy?: number[];
   } = {},
 ): GameState {
   const starter = BUILT_IN_DECKS.find((d) => d.id === deckId);
@@ -325,22 +334,31 @@ export function createGame(
     (options.campaign
       ? isDreamchaserCampaign(options.campaign)
       : scenarioId === "voyage-across-belegaer");
+  // Mirkwood Paths begins in Mirkwood; The Dark of Mirkwood's mini campaign
+  // begins at The Oath with a blank Campaign Log.
   requireRule(
     playMode !== "campaign" ||
       sagaCampaign ||
       angmarCampaign ||
       dreamchaserCampaign ||
       options.campaign ||
-      scenarioId === "mirkwood",
-    "A campaign begins in Mirkwood.",
+      scenarioId === "mirkwood" ||
+      scenarioId === "the-oath",
+    "A campaign begins in Mirkwood, or at The Oath for The Dark of Mirkwood's mini campaign.",
   );
   requireRule(
     playMode !== "campaign" ||
       sagaCampaign ||
       angmarCampaign ||
       dreamchaserCampaign ||
-      CAMPAIGN_CHAPTERS.includes(scenarioId),
-    "The Mirkwood Paths campaign covers the three Core Set quests.",
+      (MIRKWOOD_PATHS_ORDER.includes(scenarioId) &&
+        nextMirkwoodChapter({
+          completed: options.campaign?.completed ?? [],
+          mini:
+            options.campaign?.mini ??
+            (!options.campaign?.completed.length && scenarioId === "the-oath"),
+        }) === scenarioId),
+    "The Mirkwood Paths campaign follows its chapters in order: the three Core Set quests, then The Oath and The Caves of Nibin-Dûm.",
   );
   requireRule(
     !angmarCampaign ||
@@ -406,6 +424,30 @@ export function createGame(
                   : newCampaign(chosenLine)),
         )
       : null;
+  // The Dark of Mirkwood's mini campaign: The Oath with a blank Campaign Log.
+  if (
+    campaign &&
+    !campaign.kind &&
+    !campaign.completed.length &&
+    scenarioId === "the-oath"
+  )
+    campaign.mini = true;
+  // The Caves of Nibin-Dûm's legacy: "At the start of your next campaign,
+  // each player may also shuffle 1 copy of Ranger Sense into their deck and
+  // add it to the Campaign Pool."
+  if (options.rangerLegacy?.length) {
+    const seatCount = options.seats?.length ?? 1;
+    requireRule(
+      !!campaign &&
+        !campaign.completed.length &&
+        new Set(options.rangerLegacy).size === options.rangerLegacy.length &&
+        options.rangerLegacy.every(
+          (seat) => Number.isSafeInteger(seat) && seat >= 0 && seat < seatCount,
+        ),
+      "Ranger Sense joins a new campaign, one copy for each player at most.",
+    );
+    campaign!.rangerSense = [...options.rangerLegacy].sort((a, b) => a - b);
+  }
   const s: GameState = {
     // The Dream-chaser campaign: the Hard/Expert Mode card for this chapter.
     ...(options.dreamchaserMode
@@ -631,11 +673,14 @@ export function finishGameSetup(s: GameState) {
       "good",
     );
   }
-  // Mirkwood Paths (the campaign without a kind).
+  // Mirkwood Paths (the campaign without a kind). The Dark of Mirkwood's
+  // chapters build their encounter decks from recipes: their Campaign Pool
+  // burdens join after the scenario's setup (darkMirkwoodCampaignSetup).
   if (campaign && !campaign.kind) {
-    s.encounterDeck.push(
-      ...campaign.burdens.filter((c) => ["rc136", "rc137"].includes(c)),
-    );
+    if (!DARK_MIRKWOOD_CHAPTERS.includes(scenarioId))
+      s.encounterDeck.push(
+        ...campaign.burdens.filter((c) => ["rc136", "rc137"].includes(c)),
+      );
     eachSeat(s, () => {
       if (s.includeSupport && campaign.boons.includes("rc132"))
         s.deck.push("rc132");
@@ -643,7 +688,9 @@ export function finishGameSetup(s: GameState) {
         for (const code of campaign.permanent[h.code] ?? [])
           h.attachments.push({ id: `a${s.nextId++}`, code, exhausted: false });
     });
-    s.allies.push(make(s, "rc135"));
+    // Parts 1–3: "Setup: Put Mendor into play." Parts 4 and 5 begin with
+    // Mendor while he is in the Campaign Pool.
+    if (mendorStarts(campaign, scenarioId)) s.allies.push(make(s, "rc135"));
   }
   // The Lord of the Rings campaign: earned player-card boons join their decks.
   sagaCampaignDeckSetup(s);
@@ -651,6 +698,8 @@ export function finishGameSetup(s: GameState) {
   angmarCampaignDeckSetup(s);
   // The Dream-chaser campaign: the Campaign Pool's player cards.
   dreamchaserDeckSetup(s);
+  // Ranger Sense: a copy in the Campaign Pool joins its player's deck.
+  darkMirkwoodDeckSetup(s);
   eachSeat(s, () => {
     shuffle(s, s.deck);
     // Gandalf's Delay (a saga campaign burden): 1 less card.
@@ -813,9 +862,10 @@ export function finishGameSetup(s: GameState) {
   sagaCampaignSetup(s);
   angmarCampaignSetup(s);
   dreamchaserCampaignSetup(s);
+  darkMirkwoodCampaignSetup(s);
   log(
     s,
-    `${scenario(scenarioId).name} · ${playMode === "campaign" ? (isSagaCampaign(campaign) ? "The Lord of the Rings campaign" : isAngmarCampaign(campaign) ? "The Angmar Awakened campaign" : isDreamchaserCampaign(campaign) ? "The Dream-chaser campaign" : "Mirkwood Paths campaign") : "Normal game"}.`,
+    `${scenario(scenarioId).name} · ${playMode === "campaign" ? (isSagaCampaign(campaign) ? "The Lord of the Rings campaign" : isAngmarCampaign(campaign) ? "The Angmar Awakened campaign" : isDreamchaserCampaign(campaign) ? "The Dream-chaser campaign" : campaign?.mini ? "The Dark of Mirkwood mini campaign" : "Mirkwood Paths campaign") : "Normal game"}.`,
     "chapter",
   );
   if (s.flow)

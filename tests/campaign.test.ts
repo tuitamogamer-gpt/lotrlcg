@@ -734,7 +734,7 @@ test("fallen heroes cannot return; replacements and voluntary changes add perman
     /one other hero/,
   );
 });
-test("Dol Guldur completion records Mendor survival and campaign total", () => {
+test("Dol Guldur completion records Mendor survival and campaign total, and The Oath follows as Part 4", () => {
   let s = settle(
     continueCampaign(finishAnduin(), undefined, undefined, true, 42),
   );
@@ -752,7 +752,12 @@ test("Dol Guldur completion records Mendor survival and campaign total", () => {
   assert.equal(s.campaign!.completed.length, 3);
   assert.equal(s.campaign!.mendorSaved, true);
   assert.ok(s.campaign!.boons.includes("rc135"));
-  assert.throws(() => continueCampaign(s));
+  // The Dark of Mirkwood: The Oath follows as Part 4 of Mirkwood Paths, and
+  // Mendor, in the Campaign Pool, begins it in play (a designer's ruling).
+  const next = continueCampaign(s);
+  assert.equal(next.scenarioId, "the-oath");
+  assert.ok(!next.campaign!.mini);
+  assert.ok(next.allies.some((u) => u.code === "rc135"));
 });
 test("burden Swarm exhausts two characters; Venom exhausts damage or hurts the most-damaged hero", () => {
   let s = act(game(), { type: "KEEP" });

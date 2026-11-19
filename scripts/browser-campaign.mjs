@@ -273,7 +273,19 @@ assert.equal(s.mode, "won");
 assert.equal(s.campaign.completed.length, 3);
 assert.equal(s.campaign.mendorSaved, true);
 await screenshot(p, "campaign-complete");
-assert.ok(await p.getByText("Your tale is complete.").isVisible());
+// The Dark of Mirkwood: The Oath follows as Part 4 of Mirkwood Paths, and
+// the surviving Mendor begins it in play.
+assert.ok(await p.getByText(/lies behind you\./).isVisible());
+assert.ok(
+  await p
+    .getByRole("button", { name: "Continue campaign", exact: true })
+    .isVisible(),
+);
+assert.ok(
+  await p
+    .getByText(/Mendor survived: he begins The Oath and The Caves of Nibin-Dûm/)
+    .isVisible(),
+);
 assert.equal(
   await p.evaluate((key) => localStorage.getItem(key), normalKey),
   normal,

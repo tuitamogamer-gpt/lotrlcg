@@ -15,6 +15,10 @@ follow their trail: Mirkwood Forest cannot be defeated until a Goblin Trail is
 in the victory display, and the players win by defeating The Rearguard once
 Goblin Troop has left play.
 
+In campaign mode, The Dark of Mirkwood's version is Part 4 of the Mirkwood
+Paths campaign, or Part 1 of its two-scenario mini campaign, with its campaign
+card, boons and burdens: see [The Dark of Mirkwood campaign](DARK-MIRKWOOD-CAMPAIGN.md).
+
 ## Sources and corrections
 
 - The recipes match

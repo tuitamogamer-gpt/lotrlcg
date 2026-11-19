@@ -3701,6 +3701,17 @@ nav {
     gap: 6px;
   }
 }
+/* The Caves of Nibin-Dûm's legacy: Ranger Sense for each player of the next campaign. */
+.ranger-legacy {
+  border: 0;
+  padding: 0;
+  min-width: 0;
+}
+.ranger-legacy label {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
 /* The interlude's chapter choice (The Old Forest and Fog on the Barrow-downs). */
 .saga-next-chapter {
   display: grid;

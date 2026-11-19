@@ -1,3 +1,8 @@
+import {
+  darkMirkwoodAbility,
+  darkMirkwoodAbilityLabel,
+  darkMirkwoodAbilityProblem,
+} from "./dark-mirkwood-campaign";
 import type { Effect, GameState, Option, Unit } from "./types";
 import type { Batch4ScenarioHooks } from "./batch4-scenario-contract";
 import { card, name } from "./cards";
@@ -653,9 +658,18 @@ export const OATH_HOOKS: Batch4ScenarioHooks = {
   abilityLabel: (code) =>
     code === OATH.den
       ? "Spider Den · Quest Action: put a Spider enemy into play engaged with you to discard Spider Den"
-      : undefined,
-  abilityProblem: (s, u) => (u.code === OATH.den ? denProblem(s, u) : null),
-  ability: (s, u) => {
+      : // The Dark of Mirkwood's campaign: the Adaptations and Guilty Conscience.
+        darkMirkwoodAbilityLabel(code),
+  abilityProblem: (s, u, attachmentId) => {
+    const held = u.attachments.find((x) => x.id === attachmentId);
+    if (held && darkMirkwoodAbilityLabel(held.code))
+      return darkMirkwoodAbilityProblem(s, u, attachmentId);
+    return u.code === OATH.den ? denProblem(s, u) : null;
+  },
+  ability: (s, u, attachmentId) => {
+    const held = u.attachments.find((x) => x.id === attachmentId);
+    if (held && darkMirkwoodAbilityLabel(held.code))
+      return darkMirkwoodAbility(s, u, attachmentId);
     if (u.code !== OATH.den || denProblem(s, u)) return false;
     const p = activeSeat(s);
     const options: Option[] = denSpiders(s).map((title) => ({

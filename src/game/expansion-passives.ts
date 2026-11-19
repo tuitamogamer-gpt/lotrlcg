@@ -34,6 +34,12 @@ const SPHERES: Record<string, string> = {
   "02034": "lore",
   "02081": "spirit",
   "02104": "tactics",
+  // The Dark of Mirkwood's Adaptation boons: "Attached hero gains the
+  // [sphere] resource icon."
+  "41044": "lore",
+  "41045": "tactics",
+  "41046": "spirit",
+  "41047": "leadership",
 };
 type AttachmentRule = {
   type?: "hero" | "ally" | "location";

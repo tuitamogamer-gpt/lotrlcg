@@ -341,6 +341,28 @@ export interface CampaignState {
   marks?: Record<string, number>;
   /** The Dream-chaser campaign: the seat each Recurring Nightmare in the Campaign Pool is shuffled into (one per copy). */
   nightmares?: number[];
+  /**
+   * Mirkwood Paths: The Dark of Mirkwood's two-scenario mini campaign, begun
+   * at The Oath with a blank Campaign Log (without the Core Set's three parts).
+   */
+  mini?: boolean;
+  /**
+   * Mirkwood Paths (The Oath): each Adaptation boon in the Campaign Pool and
+   * the seat of the player who chose it; it attaches to one of that player's
+   * heroes at each later setup.
+   */
+  adaptations?: Record<string, number>;
+  /** Mirkwood Paths: the Adaptation boons whose once-per-campaign Action is recorded as used. */
+  adaptationsUsed?: string[];
+  /** Mirkwood Paths (The Caves of Nibin-Dûm): the seats whose copy of "No Time to Waste!" is in the Campaign Pool. */
+  noTimeToWaste?: number[];
+  /** The Caves of Nibin-Dûm's resolution: the final threat was under 40 and a retired Ranger was rescued. */
+  rangerRescued?: boolean;
+  /**
+   * The seats whose copy of Ranger Sense is in the Campaign Pool: in a later
+   * campaign it is shuffled into that player's deck at each setup.
+   */
+  rangerSense?: number[];
   /** Angmar Awakened: the damage noted for Protect the Innocent (and later Arnor Ravaged). */
   innocent?: number;
   /** Angmar Awakened: Protect the Innocent has been flipped to Arnor Ravaged (Deadmen's Dike). */
@@ -509,6 +531,11 @@ export interface GameState {
   sailing?: import("./sailing").SailingState;
   /** The Dream-chaser campaign's state during a chapter. */
   dreamchaser?: import("./dreamchaser-campaign").DreamchaserGame;
+  /**
+   * The Dark of Mirkwood's campaign chapters (and Ranger Sense in a later
+   * campaign): the state of the campaign card and boons during a game.
+   */
+  darkMirkwood?: import("./dark-mirkwood-campaign").DarkMirkwoodGame;
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;
