@@ -8,6 +8,7 @@ import type {
 } from "./types";
 import type { DamageContext } from "./damage-context";
 import type { HealSource } from "./rhosgobel";
+import type { EscapeTest } from "./dead-marshes";
 
 type Combat = NonNullable<GameState["combat"]>;
 export interface Batch4ScenarioHooks {
@@ -123,6 +124,16 @@ export interface Batch4ScenarioHooks {
   extraOptionalEngagements?(s: GameState, player: number): number;
   cannotCancel?(s: GameState, shadow?: boolean, code?: string): boolean;
   cannotReduceThreat?(s: GameState): boolean;
+  /** The Dead Marshes' escape tests: extra difficulty for each test. */
+  escapeDifficulty?(s: GameState): number;
+  /** The most characters a player can commit to an escape test. */
+  escapeCommitLimit?(s: GameState, player: number): number | undefined;
+  /** After a character commits to an escape test. */
+  escapeCommitted?(s: GameState, u: Unit): void;
+  /** A Nightmare card's own escape test resolved; true when its outcome is handled. */
+  escapeResolved?(s: GameState, escape: EscapeTest, passed: boolean): boolean;
+  /** Resource tokens that would be placed on Gollum while he is not in play; true when placed elsewhere. */
+  gollumTokens?(s: GameState, amount: number): boolean;
   /** After characters commit to the quest (each commitment, at any time). */
   charactersCommitted?(s: GameState, units: Unit[]): void;
   /** The character loses the keyword (as A Journey to Rhosgobel's Pitch-dark Thicket, its ranged). */

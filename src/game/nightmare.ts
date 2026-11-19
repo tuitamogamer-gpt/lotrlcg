@@ -87,6 +87,17 @@ export const NIGHTMARE_SOM = {
   blast: `${E}68`,
   hazardous: `${E}69`,
   retraced: `${E}70`,
+  /** The Dead Marshes' setup card and Nightmare Deck. */
+  deadCard: `${E}71`,
+  mere: `${E}72`,
+  quagmire: `${E}73`,
+  thingsPools: `${E}74`,
+  wight: `${E}75`,
+  lostSoul: `${E}76`,
+  guard: `${E}77`,
+  candles: `${E}78`,
+  mosquitoes: `${E}79`,
+  devilry: `${E}80`,
 } as const;
 
 interface NightmareDeck {
@@ -213,6 +224,25 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Enchanted Stream": 2,
       "Evil Storm": 3,
       "Pursued by Shadow": 2,
+    },
+  },
+  "dead-marshes": {
+    card: NIGHTMARE_SOM.deadCard,
+    removals: {
+      "A Wisp of Pale Sheen": 1,
+      "Through the Mist": 1,
+      "Giant Marsh Worm": 2,
+      "Fens and Mires": 4,
+      "Eastern Crows": 3,
+      "Pursued by Shadow": 2,
+      "Treacherous Fog": 2,
+      "Wolf Rider": 1,
+      "Hill Troll": 2,
+      "Goblin Sniper": 2,
+      Wargs: 2,
+      Despair: 2,
+      "The Brown Lands": 2,
+      "The East Bight": 2,
     },
   },
 };
@@ -357,6 +387,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "hills-of-emyn-muil")
     return [
       "The Hills of Emyn Muil · Nightmare mode: no more than 1 progress may be placed on each location in the staging area each round.",
+    ];
+  if (s.scenarioId === "dead-marshes")
+    return [
+      "The Dead Marshes · Nightmare mode: players cannot reduce their threat; The Mere of Dead Faces began in the staging area and takes Gollum's resource tokens while he is not in play; Gollum placed in the discard pile is shuffled back into the encounter deck.",
     ];
   return [];
 }

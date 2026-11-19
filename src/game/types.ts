@@ -497,6 +497,10 @@ export interface EscapeTest {
   attack: boolean;
   capture: boolean;
   continuation: Effect[];
+  /** A test counting [defense] instead of [willpower] (The Dead Marshes' Nightmare Swarming Mosquitoes). */
+  stat?: "defense";
+  /** The card a Nightmare test's outcome concerns. */
+  target?: string;
 }
 export interface Option {
   ability?: import("./player-ability-triggers").PlayerAbilityTrigger;

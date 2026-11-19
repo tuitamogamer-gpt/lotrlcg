@@ -2866,6 +2866,25 @@ export function composeEredPool(
       h.charactersCommitted?.(s, units);
       p.charactersCommitted?.(s, units);
     },
+    cannotLeave: (s, u, destruction) =>
+      !!h.cannotLeave?.(s, u, destruction) ||
+      !!p.cannotLeave?.(s, u, destruction),
+    escapeDifficulty: (s) =>
+      (h.escapeDifficulty?.(s) ?? 0) + (p.escapeDifficulty?.(s) ?? 0),
+    escapeCommitLimit: (s, player) => {
+      const a = h.escapeCommitLimit?.(s, player),
+        b = p.escapeCommitLimit?.(s, player);
+      return a === undefined ? b : b === undefined ? a : Math.min(a, b);
+    },
+    escapeCommitted: (s, u) => {
+      h.escapeCommitted?.(s, u);
+      p.escapeCommitted?.(s, u);
+    },
+    escapeResolved: (s, escape, passed) =>
+      !!h.escapeResolved?.(s, escape, passed) ||
+      !!p.escapeResolved?.(s, escape, passed),
+    gollumTokens: (s, amount) =>
+      !!h.gollumTokens?.(s, amount) || !!p.gollumTokens?.(s, amount),
     locationProgressCapacity: (s, u) => {
       const a = h.locationProgressCapacity?.(s, u),
         b = p.locationProgressCapacity?.(s, u);

@@ -456,6 +456,67 @@ try {
     assert.equal(s.staging.find((u) => u.code === G.interceptor).resources, 3);
     await page.getByLabel("3 resources", { exact: true }).first().waitFor();
     await checkpoint("emyn-orc-interceptor", width);
+    // The Dead Marshes in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-dead-marshes").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await opening(page);
+    assert.equal(s.scenarioId, "dead-marshes");
+    assert.equal(s.nightmareMode, true);
+    assert.ok(
+      s.staging.some((u) => u.code === G.mere),
+      "The Mere of Dead Faces",
+    );
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/players cannot reduce their threat/)
+      .waitFor();
+    await checkpoint("dead-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // Swarming Mosquitoes' escape test counts [defense]; the Mere holds 3
+    // tokens.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "staging", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.staging.find((u) => u.code === G.mere).resources = 3;
+      t.escapeTest = {
+        phase: "actions",
+        source: G.mosquitoes,
+        participants: [0],
+        cursor: 1,
+        committedIds: [],
+        count: 2,
+        attack: false,
+        capture: false,
+        continuation: [],
+        stat: "defense",
+      };
+      s = await load(page, t);
+    }
+    await page
+      .getByLabel("Escape test", { exact: true })
+      .getByText(/committed defense · 2 escape cards/)
+      .waitFor();
+    await page.getByLabel("3 resources", { exact: true }).first().waitFor();
+    await checkpoint("dead-mosquitoes-escape", width);
     await view.c.close();
   }
   const p = await browser.newPage();

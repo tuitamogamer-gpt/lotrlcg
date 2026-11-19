@@ -1610,3 +1610,14 @@ Validation on Node 22: the engine suite passes all 6,992 tests, including 6 for 
 Coverage is now 861 player definitions (112 heroes), 2,350 encounters and 123 scenarios. This resolves 3,572 of 4,183 identities and 277 of 355 recipes; 611 identities remain pending.
 
 Validation on Node 22: the engine suite passes all 6,997 tests, including 5 for The Hills of Emyn Muil's Nightmare Deck (seeded solo and two-player games among them); the Nightmare browser suite passes 48 checkpoints at 1280, 390 and 320 pixels, through The Hills of Emyn Muil's Nightmare card and an Orc Interceptor with resource tokens, and checks the 72 pinned faces; the production build, the typecheck and the coverage audit pass.
+
+2026-11-19 Nightmare mode, The Dead Marshes: continued the user's “Nastavi dok ne završis sve” after ecd5d42. Return to Mirkwood follows. See docs/NIGHTMARE.md.
+
+- The Dead Marshes' setup card and its nine Nightmare encounter designs are registered from the DragnCards scans (83 faces pinned in all); the scans give the setup card's removal list and "Then, shuffle", Marsh-wight's "makes", Lost Soul of Lórien's accent and "Condition", and Ill-fated Guard's "character". The source recipe N01.8 equals the standard deck less the printed removals plus the Nightmare Deck, with The Mere of Dead Faces in the staging area.
+- Its scripts live in their own layer (src/game/nightmare-dead.ts, "ndm" effects). The scenario's escape tests gain hooks for extra difficulty, a commitment limit, the commitment itself and a Nightmare card's outcome; a test may count [defense], and its panel names the stat. The tokens meant for Gollum while he is away have a hook too; the composition adds them and the leave-play prohibition.
+- The setup card: players cannot reduce their threat; The Mere of Dead Faces starts in the staging area; Gollum placed in the discard pile is shuffled back into the encounter deck.
+- The Mere of Dead Faces, Stagnant Quagmire, Things in the Pools, Marsh-wight, Lost Soul of Lórien, Ill-fated Guard, Candles of Corpses, Swarming Mosquitoes and Devilry of the Dark Land are scripted with their shadows; the seeded games' policy resolves escape tests through their action.
+
+Coverage is now 861 player definitions (112 heroes), 2,360 encounters and 123 scenarios. This resolves 3,582 of 4,183 identities and 278 of 355 recipes; 601 identities remain pending.
+
+Validation on Node 22: the engine suite passes all 7,002 tests, including 5 for The Dead Marshes' Nightmare Deck (seeded solo and two-player games among them); the Nightmare browser suite passes 54 checkpoints at 1280, 390 and 320 pixels, through The Dead Marshes' Nightmare card and Swarming Mosquitoes' escape test counting [defense], and checks the 83 pinned faces; the production build, the typecheck and the coverage audit pass.

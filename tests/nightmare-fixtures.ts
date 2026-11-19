@@ -114,6 +114,8 @@ export function autoplay(s: GameState, steps = 1500) {
     if (s.flow?.pending)
       action = { type: "CONTINUE", stepId: s.flow.pending.id };
     else if (s.choice) action = { type: "CHOOSE", id: s.choice.options[0].id };
+    // The Dead Marshes' escape tests resolve through their own action.
+    else if (s.escapeTest) action = { type: "RESOLVE_ESCAPE" };
     else if (s.phase === "setup") action = { type: "KEEP" };
     else if (s.phase === "quest") {
       const ready = characters(s)

@@ -18,6 +18,7 @@ import {
   stats,
 } from "./core";
 import { questDefeated, check, raiseThreat, win } from "./board";
+import { batch4Scenario } from "./batch4-scenarios";
 import { hasResourceIcon } from "./expansion-passives";
 import {
   activeSeat,
@@ -62,7 +63,16 @@ export interface EscapeTest {
   attack: boolean;
   capture: boolean;
   continuation: Effect[];
+  /** A test counting [defense] instead of [willpower] (The Dead Marshes' Nightmare Swarming Mosquitoes). */
+  stat?: "defense";
+  /** The card a test's outcome concerns (a Nightmare test's defending character or enemy). */
+  target?: string;
 }
+/** The stat an escape test counts. */
+export const escapeStat = (e: EscapeTest) =>
+  e.stat ?? (e.attack ? "attack" : "will");
+export const escapeStatLabel = (e: EscapeTest) =>
+  escapeStat(e) === "will" ? "willpower" : escapeStat(e);
 const gollum = (s: GameState) => s.staging.find((u) => u.code === DEAD.gollum);
 
 export function setupDeadMarshes(s: GameState) {
@@ -96,7 +106,11 @@ export function deadMarshesCheck(s: GameState) {
 }
 export function deadMarshesAddResources(s: GameState, amount: number) {
   const objective = gollum(s);
-  if (!objective) return;
+  // The Dead Marshes (Nightmare): The Mere of Dead Faces takes them instead.
+  if (!objective) {
+    batch4Scenario(s).gollumTokens?.(s, amount);
+    return;
+  }
   objective.resources += amount;
   log(
     s,
@@ -172,6 +186,13 @@ export function deadMarshesEscapeCandidates(
 ) {
   const selected = s.escapeTest?.committedIds ?? [];
   const p = seatView(s, player);
+  const limit = batch4Scenario(s).escapeCommitLimit?.(s, player);
+  if (
+    limit !== undefined &&
+    [...p.heroes, ...p.allies].filter((u) => selected.includes(u.id)).length >=
+      limit
+  )
+    return [];
   return [...p.heroes, ...p.allies].filter(
     (u) => !u.exhausted && !selected.includes(u.id),
   );
@@ -180,7 +201,7 @@ export function deadMarshesEscapeStrength(s: GameState) {
   return (s.escapeTest?.committedIds ?? []).reduce((total, id) => {
     const u = get(s, id);
     return (
-      total + (u ? stats(s, u)[s.escapeTest?.attack ? "attack" : "will"] : 0)
+      total + (u && s.escapeTest ? stats(s, u)[escapeStat(s.escapeTest)] : 0)
     );
   }, 0);
 }
@@ -195,13 +216,12 @@ function chooseCommitment(s: GameState) {
   selectSeat(s, player);
   choose(
     s,
-    `Escape test · Commit ${escape.attack ? "attack" : "willpower"}`,
+    `Escape test · Commit ${escapeStatLabel(escape)}`,
     [
       ...opts(
         deadMarshesEscapeCandidates(s, player),
         (u) => [fx("deadEscapeCommit", { target: u.id, player })],
-        (u) =>
-          `Exhaust to contribute ${stats(s, u)[escape.attack ? "attack" : "will"]}`,
+        (u) => `Exhaust to contribute ${stats(s, u)[escapeStat(escape)]}`,
       ),
       {
         id: "done",
@@ -224,7 +244,7 @@ function finishCommitment(s: GameState) {
   selectSeat(s, s.table?.first ?? escape.participants[0]);
   log(
     s,
-    `Escape commitment finished: ${deadMarshesEscapeStrength(s)} ${escape.attack ? "attack" : "willpower"}. Use actions or events, then resolve the test.`,
+    `Escape commitment finished: ${deadMarshesEscapeStrength(s)} ${escapeStatLabel(escape)}. Use actions or events, then resolve the test.`,
   );
 }
 function beginEscape(s: GameState, e: Effect) {
@@ -245,6 +265,8 @@ function beginEscape(s: GameState, e: Effect) {
     attack: source === DEAD.mist,
     capture: source === DEAD.capture,
     continuation: s.queue.splice(0),
+    ...(e.text === "defense" ? { stat: "defense" as const } : {}),
+    ...(e.target ? { target: e.target } : {}),
   };
   if (s.escapeTest.phase === "committing") chooseCommitment(s);
   else
@@ -283,20 +305,28 @@ export function deadMarshesContinueEscape(s: GameState) {
   const heart = allActiveLocations(s).filter(
     (u) => u.code === DEAD.heart,
   ).length;
-  const difficulty = dealt.reduce(
-    (total, c) =>
-      total +
-      (Number(/Escape:\s*(\d+)/i.exec(card(c).text ?? "")?.[1]) || 0) +
-      heart,
-    0,
-  );
+  const difficulty =
+    dealt.reduce(
+      (total, c) =>
+        total +
+        (Number(/Escape:\s*(\d+)/i.exec(card(c).text ?? "")?.[1]) || 0) +
+        heart,
+      0,
+    ) + (batch4Scenario(s).escapeDifficulty?.(s) ?? 0);
   const passed = strength > difficulty;
   log(
     s,
-    `Escape test: ${strength} ${escape.attack ? "attack" : "willpower"} against ${difficulty} Escape from ${dealt.length} card${dealt.length === 1 ? "" : "s"} · ${passed ? "passed" : "failed"}.`,
+    `Escape test: ${strength} ${escapeStatLabel(escape)} against ${difficulty} Escape from ${dealt.length} card${dealt.length === 1 ? "" : "s"} · ${passed ? "passed" : "failed"}.`,
     passed ? "good" : "danger",
   );
   delete s.escapeTest;
+  // A Nightmare card's own escape test.
+  if (batch4Scenario(s).escapeResolved?.(s, escape, passed)) {
+    s.encounterDiscard.push(...dealt);
+    s.queue.push(...escape.continuation);
+    check(s);
+    return;
+  }
   if (escape.capture) {
     s.stageRevealing = false;
     if (passed && gollum(s)) {
@@ -441,6 +471,7 @@ export function deadMarshesEffect(s: GameState, e: Effect) {
       u.exhausted = true;
       escape.committedIds.push(u.id);
       log(s, `${name(u)} exhausts for the escape test.`);
+      batch4Scenario(s).escapeCommitted?.(s, u);
       chooseCommitment(s);
       break;
     }

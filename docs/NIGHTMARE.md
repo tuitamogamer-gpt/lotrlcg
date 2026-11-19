@@ -12,8 +12,8 @@ not offered in campaign mode.
 **Supported so far:** the Core Set Nightmare Deck (Passage Through Mirkwood,
 Journey Along the Anduin and Escape from Dol Guldur) and, of Shadows of
 Mirkwood's, The Hunt for Gollum, Conflict at the Carrock, A Journey to
-Rhosgobel and The Hills of Emyn Muil. The other Nightmare Decks follow in
-publication order, beginning with The Dead Marshes.
+Rhosgobel, The Hills of Emyn Muil and The Dead Marshes. The other Nightmare
+Decks follow in publication order, beginning with Return to Mirkwood.
 
 ## Sources
 
@@ -24,7 +24,7 @@ publication order, beginning with The Dead Marshes.
   the Core Set's scenarios, The Hunt for Gollum and The Hills of Emyn Muil, 8
   cards and 9 faces for A Journey to Rhosgobel, and 11 cards and 13 faces for
   Conflict at the Carrock, whose Nightmare Deck adds a stage to the quest
-  deck).
+  deck, and 10 cards and 11 faces for The Dead Marshes).
 - The scans correct the catalogue: each setup card's front is the removal
   list ("Begin with the standard quest deck and encounter deck … Remove the
   following cards, in the specified quantities …"), where the catalogue had a
@@ -43,9 +43,13 @@ publication order, beginning with The Dead Marshes.
   number (3); A Journey to Rhosgobel's setup card says "Then, shuffle the
   encounter deck", and its removal list prints "Chieftan Ufthak" (Chieftain
   Ufthak), as The Hills of Emyn Muil's does; Blast of Savage Wind gives +2
-  [threat] to each "Emyn Muil" location (the catalogue had "Eymn Muil").
+  [threat] to each "Emyn Muil" location (the catalogue had "Eymn Muil"); The
+  Dead Marshes' setup card says "Then, shuffle the encounter deck", Marsh-wight
+  "makes" its immediate attack, Lost Soul of Lórien keeps its accent and
+  "Condition", and Ill-fated Guard's shadow names each "character" (the
+  catalogue had "characater").
 - The source recipe of each Nightmare scenario (`public/scenarios.json`,
-  N01.1 to N01.7 so far) is the standard encounter deck without the
+  N01.1 to N01.8 so far) is the standard encounter deck without the
   printed removals plus the Nightmare Deck (Escape from Dol Guldur's Nazgûl
   and Conflict at the Carrock's 5 unique Trolls set aside in both, the
   Carrock's stage 3 in its quest deck): a test compares the two.
@@ -61,8 +65,9 @@ publication order, beginning with The Dead Marshes.
 - `src/game/nightmare-core.ts` (the Core Set), `src/game/nightmare-som.ts`
   (The Hunt for Gollum and Conflict at the Carrock) and
   `src/game/nightmare-rhosgobel.ts` (A Journey to Rhosgobel) and
-  `src/game/nightmare-emyn.ts` (The Hills of Emyn Muil) script the setup
-  cards' rules and the Nightmare
+  `src/game/nightmare-emyn.ts` (The Hills of Emyn Muil) and
+  `src/game/nightmare-dead.ts` (The Dead Marshes) script the setup cards'
+  rules and the Nightmare
   encounter cards as a layer, chosen by scenario and composed with its hooks
   (the composition the Ered Mithrin Campaign Pool uses, which also composes
   the doomed and combat-phase hooks, the state check, the indestructible,
@@ -134,6 +139,26 @@ publication order, beginning with The Dead Marshes.
 | Hunter's Lookout (location ×2)     | Each Mordor enemy with a Clue gets +2 [defense] for each copy in play. Shadow: the attacking enemy gets +1 [defense] for each Clue in play until the end of the round.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | Dark Pools (location ×3)           | No progress can be placed on it in the staging area. When it becomes the active location, each player discards one of their allies with the highest printed cost (their choice among tied allies).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 
+## The Dead Marshes (Nightmare)
+
+| Card                                    | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Setup card                              | Removes A Wisp of Pale Sheen ×1, Through the Mist ×1, Giant Marsh Worm ×2, Fens and Mires ×4, Eastern Crows ×3, Pursued by Shadow ×2, Treacherous Fog ×2, Wolf Rider ×1, Hill Troll ×2, Goblin Sniper ×2, Wargs ×2, Despair ×2, The Brown Lands ×2 and The East Bight ×2 from the standard encounter deck. Players cannot reduce their threat. Setup: The Mere of Dead Faces is added to the staging area. Gollum placed in the encounter discard pile (an escape card, a shadow card) is shuffled back into the encounter deck at the next state check. |
+| The Mere of Dead Faces (location ×1)    | Unique. [threat] X, its resource tokens; it cannot leave the staging area (no travel, no progress). The resource tokens meant for Gollum while he is not in play are placed on it; when Gollum enters play again (revealed), he gets 2 tokens and all of the Mere's (and escapes again at 8).                                                                                                                                                                                                                                                            |
+| Stagnant Quagmire (location ×3)         | Each copy in play adds its Escape value (2) to every escape test. Shadow: the defending player makes a 1-card escape test; failed, the defending character is discarded.                                                                                                                                                                                                                                                                                                                                                                                 |
+| Things in the Pools (enemy ×3)          | After a character commits to an escape test, it takes 1 damage for each copy in play. Shadow: the attacking enemy gets +1 [attack] (+2 if it is Undead).                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Marsh-wight (enemy ×2)                  | After it engages a player, that player makes a 3-card escape test; failed, Gollum (or the Mere) gets 2 resource tokens and Marsh-wight makes an immediate attack against that player.                                                                                                                                                                                                                                                                                                                                                                    |
+| Lost Soul of Lórien (enemy ×3)          | When destroyed, it is attached to a hero with 1 or more [willpower] (the first player chooses; limit 1 per hero), whose [willpower] becomes 0; with no such hero, it is discarded.                                                                                                                                                                                                                                                                                                                                                                       |
+| Ill-fated Guard (enemy ×3)              | While it is engaged with a player, that player commits no more than 1 character to each escape test. Shadow: every attachment is discarded from each character of the defending player with 3 or more [willpower].                                                                                                                                                                                                                                                                                                                                       |
+| Candles of Corpses (treachery ×1)       | Each player makes a 1-card escape test in turn; each who fails discards a hero they control or raises their threat by 5 (their choice).                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Swarming Mosquitoes (treachery ×2)      | The first player makes a 2-card escape test counting [defense] instead of [willpower]; failed, Gollum (or the Mere) gets 1 resource token and each character in play takes 1 damage.                                                                                                                                                                                                                                                                                                                                                                     |
+| Devilry of the Dark Land (treachery ×1) | The top X Undead enemies of the encounter discard pile (X the number of players) return to the staging area; with none, it gains surge.                                                                                                                                                                                                                                                                                                                                                                                                                  |
+
+The escape tests of these cards use the scenario's own (commitment, action
+window, dealt cards); the engine gains hooks for an escape test's extra
+difficulty, a commitment limit, the commitment itself and a Nightmare test's
+outcome, and an escape test may count [defense].
+
 ## The Hills of Emyn Muil (Nightmare)
 
 | Card                                | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
@@ -180,7 +205,7 @@ publication order, beginning with The Dead Marshes.
 ## Verification
 
 ```sh
-node --import tsx --test tests/nightmare-core.test.ts tests/nightmare-anduin.test.ts tests/nightmare-dol-guldur.test.ts tests/nightmare-gollum.test.ts tests/nightmare-carrock.test.ts tests/nightmare-rhosgobel.test.ts tests/nightmare-emyn.test.ts
+node --import tsx --test tests/nightmare-core.test.ts tests/nightmare-anduin.test.ts tests/nightmare-dol-guldur.test.ts tests/nightmare-gollum.test.ts tests/nightmare-carrock.test.ts tests/nightmare-rhosgobel.test.ts tests/nightmare-emyn.test.ts tests/nightmare-dead.test.ts
 npm run build
 npm run test:browser-nightmare
 ```
@@ -246,7 +271,17 @@ round), Sarn Gebir Rapids; each treachery and shadow (A Hurrying Darkness's
 threat or reveal, also in a two-player game, Blast of Savage Wind's lasting
 [threat], Hazardous Terrain's Hazards and extra shadow card, Retraced Steps'
 victory points); and seeded solo and two-player games (whose policy commits
-every character when Rauros Falls requires it).
+every character when Rauros Falls requires it). `tests/nightmare-dead.test.ts`
+(5 tests) covers The Dead Marshes' texts, stats and faces; its Nightmare
+encounter deck against the source recipe; the threat that cannot be reduced;
+The Mere of Dead Faces (its [threat], Gollum's tokens, travel and progress,
+Gollum entering play) and Gollum shuffled back from the discard pile; the
+escape tests through restored saves (Swarming Mosquitoes' [defense], failed
+and passed, Stagnant Quagmire's difficulty, Things in the Pools' damage, Ill-fated
+Guard's limit, Candles of Corpses' threat or hero); Marsh-wight (also in a
+two-player game), Lost Soul of Lórien, Devilry of the Dark Land and the
+shadows; and seeded solo and two-player games (the escape tests resolved by
+their action).
 
 The browser suite starts Passage Through Mirkwood in Nightmare mode from the
 lobby (easy mode turned off), checks the setup's staging area and reveal, the
@@ -264,5 +299,8 @@ lobby, checks the 5 Trolls set aside and its Nightmare card, and stage 3
 Rhosgobel in Nightmare mode from the lobby, checks the setup's Goblin
 Eagle-hunter, its Nightmare card and Noxious Supplies on Wilyador; and it
 starts The Hills of Emyn Muil in Nightmare mode from the lobby, checks its
-Nightmare card and an Orc Interceptor with resource tokens, at 1280, 390 and
-320 pixels (48 checkpoints); it checks the 72 pinned faces.
+Nightmare card and an Orc Interceptor with resource tokens; and it starts The
+Dead Marshes in Nightmare mode from the lobby, checks The Mere of Dead Faces,
+its Nightmare card, and Swarming Mosquitoes' escape test counting [defense]
+with 3 tokens on the Mere, at 1280, 390 and 320 pixels (54 checkpoints); it
+checks the 83 pinned faces.

@@ -125,6 +125,7 @@ import { validNightmareCore } from "./nightmare-core";
 import { validNightmareSom } from "./nightmare-som";
 import { validNightmareRhos } from "./nightmare-rhosgobel";
 import { validNightmareEmyn } from "./nightmare-emyn";
+import { nightmareEscapeTest } from "./nightmare-dead";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
 import { validateUmbar } from "./escape-umbar-support";
@@ -1605,26 +1606,33 @@ export function validateSave(
       return false;
     if (s.escapeTest !== undefined) {
       const e = s.escapeTest;
+      // The Dead Marshes (Nightmare): its cards' own escape tests.
+      const nightmareTest = e ? nightmareEscapeTest(s, e.source) : undefined;
       if (
         !e ||
         s.scenarioId !== "dead-marshes" ||
         !["preparing", "committing", "actions"].includes(e.phase) ||
-        ![
+        (![
           DEAD.gollum,
           DEAD.nightfall,
           DEAD.mist,
           DEAD.lights,
           DEAD.capture,
-        ].includes(e.source as typeof DEAD.gollum) ||
+        ].includes(e.source as typeof DEAD.gollum) &&
+          !nightmareTest) ||
         !SCRIPTED.has(e.source) ||
         !integer(e.count) ||
         e.count < 0 ||
         e.count > 7 ||
         e.attack !== (e.source === DEAD.mist) ||
         e.capture !== (e.source === DEAD.capture) ||
-        (e.source === DEAD.gollum
-          ? e.count < 1 || e.count > 4
-          : e.source !== DEAD.capture && e.count !== 2) ||
+        (nightmareTest
+          ? e.count !== nightmareTest.count
+          : e.source === DEAD.gollum
+            ? e.count < 1 || e.count > 4
+            : e.source !== DEAD.capture && e.count !== 2) ||
+        e.stat !== nightmareTest?.stat ||
+        (e.target !== undefined && typeof e.target !== "string") ||
         (e.phase === "preparing" &&
           (e.source !== DEAD.gollum || e.cursor !== 0)) ||
         !Array.isArray(e.participants) ||

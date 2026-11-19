@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2350,
+    "encounterCards": 2360,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3572,
-    "pending": 611
+    "scripted": 3582,
+    "pending": 601
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 277
+    "scripted": 278
   },
   "registeredCodes": [
     "01001",
@@ -3111,6 +3111,16 @@
     "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0068",
     "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0069",
     "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0070",
+    "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0071",
+    "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0072",
+    "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0073",
+    "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0074",
+    "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0075",
+    "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0076",
+    "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0077",
+    "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0078",
+    "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0079",
+    "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0080",
     "octgn:b7c19049-9587-48bc-8807-5cc7334399b9",
     "octgn:b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06",
     "octgn:b81a014a-af32-41a9-abdf-8dbebf29f685",
@@ -4264,7 +4274,7 @@
     {
       "product": "the-dead-marshes-nightmare",
       "total": 10,
-      "scripted": 0,
+      "scripted": 10,
       "player": 0,
       "playerScripted": 0
     },
@@ -31639,7 +31649,7 @@
       "name": "The Dead Marshes",
       "type": "nightmare",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dead-marshes-nightmare"
     },
     {
@@ -31647,7 +31657,7 @@
       "name": "The Mere of Dead Faces",
       "type": "location",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dead-marshes-nightmare"
     },
     {
@@ -31655,7 +31665,7 @@
       "name": "Stagnant Quagmire",
       "type": "location",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dead-marshes-nightmare"
     },
     {
@@ -31663,7 +31673,7 @@
       "name": "Things in the Pools",
       "type": "enemy",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dead-marshes-nightmare"
     },
     {
@@ -31671,7 +31681,7 @@
       "name": "Marsh-wight",
       "type": "enemy",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dead-marshes-nightmare"
     },
     {
@@ -31679,7 +31689,7 @@
       "name": "Lost Soul of Lórien",
       "type": "enemy",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dead-marshes-nightmare"
     },
     {
@@ -31687,7 +31697,7 @@
       "name": "Ill-fated Guard",
       "type": "enemy",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dead-marshes-nightmare"
     },
     {
@@ -31695,7 +31705,7 @@
       "name": "Candles of Corpses",
       "type": "treachery",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dead-marshes-nightmare"
     },
     {
@@ -31703,7 +31713,7 @@
       "name": "Swarming Mosquitoes",
       "type": "treachery",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dead-marshes-nightmare"
     },
     {
@@ -31711,7 +31721,7 @@
       "name": "Devilry of the Dark Land",
       "type": "treachery",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dead-marshes-nightmare"
     },
     {
@@ -39154,8 +39164,8 @@
       "id": "N01.8",
       "name": "The Dead Marshes (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "dead-marshes",
+      "state": "scripted"
     },
     {
       "id": "N01.9",

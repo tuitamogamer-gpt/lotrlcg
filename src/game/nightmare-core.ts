@@ -146,6 +146,20 @@ export function nightmareSetup(s: GameState) {
     }
     shuffle(s, s.encounterDeck);
   }
+  // The Dead Marshes: "Setup: Search the encounter deck for The Mere of Dead
+  // Faces, and add it to the staging area. Then, shuffle the encounter deck."
+  if (s.scenarioId === "dead-marshes") {
+    const at = s.encounterDeck.indexOf(NIGHTMARE_SOM.mere);
+    if (at >= 0) {
+      s.encounterDeck.splice(at, 1);
+      s.staging.push(make(s, NIGHTMARE_SOM.mere));
+      log(
+        s,
+        "The Dead Marshes · Nightmare: The Mere of Dead Faces is added to the staging area.",
+      );
+    }
+    shuffle(s, s.encounterDeck);
+  }
 }
 
 // ------------------------------------------------------------- passives

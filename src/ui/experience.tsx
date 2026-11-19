@@ -83,7 +83,12 @@ import { emynMuilMustCommit } from "../game/emyn-muil";
 import { RHOS } from "../game/rhosgobel";
 import { ROAD } from "../game/road-rivendell";
 import { WATCHER_WATER } from "../game/watcher-water";
-import { DEAD, deadMarshesEscapeStrength } from "../game/dead-marshes";
+import {
+  DEAD,
+  deadMarshesEscapeStrength,
+  escapeStat,
+  escapeStatLabel,
+} from "../game/dead-marshes";
 import { KHAZAD } from "../game/khazad-dum";
 import { returnMirkwoodGuard } from "../game/return-mirkwood";
 
@@ -484,16 +489,15 @@ export function EscapeTestSummary({ s }: { s: GameState }) {
       <div>
         <strong>{card(test.source).name} · Escape test</strong>
         <span>
-          {deadMarshesEscapeStrength(s)} committed{" "}
-          {test.attack ? "attack" : "willpower"} · {test.count} escape{" "}
-          {test.count === 1 ? "card" : "cards"}
+          {deadMarshesEscapeStrength(s)} committed {escapeStatLabel(test)} ·{" "}
+          {test.count} escape {test.count === 1 ? "card" : "cards"}
         </span>
       </div>
       <div className="escape-participants">
         {test.participants.map((player) => {
           const characters = committed.filter((u) => ownerOf(s, u) === player);
           const strength = characters.reduce(
-            (sum, u) => sum + stats(s, u)[test.attack ? "attack" : "will"],
+            (sum, u) => sum + stats(s, u)[escapeStat(test)],
             0,
           );
           return (
@@ -501,8 +505,7 @@ export function EscapeTestSummary({ s }: { s: GameState }) {
               <strong>
                 {s.table ? `Player ${player + 1}` : "Your fellowship"}
               </strong>
-              {characters.length} committed · {strength}{" "}
-              {test.attack ? "attack" : "willpower"}
+              {characters.length} committed · {strength} {escapeStatLabel(test)}
             </span>
           );
         })}

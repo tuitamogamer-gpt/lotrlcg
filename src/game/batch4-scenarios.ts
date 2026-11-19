@@ -68,6 +68,7 @@ import { NIGHTMARE_CORE_HOOKS } from "./nightmare-core";
 import { NIGHTMARE_SOM_HOOKS } from "./nightmare-som";
 import { NIGHTMARE_RHOS_HOOKS } from "./nightmare-rhosgobel";
 import { NIGHTMARE_EMYN_HOOKS } from "./nightmare-emyn";
+import { NIGHTMARE_DEAD_HOOKS } from "./nightmare-dead";
 import { nightmareLive } from "./nightmare";
 
 const empty: Batch4ScenarioHooks = {};
@@ -85,6 +86,7 @@ const NIGHTMARE_LAYERS: Partial<Record<string, Batch4ScenarioHooks>> = {
   "conflict-at-the-carrock": NIGHTMARE_SOM_HOOKS,
   "journey-to-rhosgobel": NIGHTMARE_RHOS_HOOKS,
   "hills-of-emyn-muil": NIGHTMARE_EMYN_HOOKS,
+  "dead-marshes": NIGHTMARE_DEAD_HOOKS,
 };
 /**
  * The current scenario's hooks; in an Ered Mithrin campaign chapter from The
@@ -241,6 +243,7 @@ export const batch4SharedEffect = (effect: Effect) =>
     NIGHTMARE_SOM_HOOKS,
     NIGHTMARE_RHOS_HOOKS,
     NIGHTMARE_EMYN_HOOKS,
+    NIGHTMARE_DEAD_HOOKS,
     BLACK_SERPENT_HOOKS,
     CIRITH_GURAT_HOOKS,
     CROSSINGS_POROS_HOOKS,
