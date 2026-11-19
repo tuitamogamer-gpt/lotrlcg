@@ -24,6 +24,8 @@ Wrapped! only attaches to a first-player hero without another copy, prevents act
 
 Stagnant Creek puts a discarded Tentacle enemy into staging, rather than revealing it, before raising each player's threat. Ill Purpose completes all staging-enemy engagements before its Then threat calculation and counts only remaining staging cards. Stair Falls pays its first-player exhaustion costs before travel; Makeshift Passage's after-travel progress bypasses the active buffer. The Watcher regenerates while in play and deals its end-combat damage only while in staging.
 
+In Nightmare mode (docs/NIGHTMARE.md), the Nightmare Deck's The Watcher replaces the standard one: The Seething Lake stages whichever The Watcher is set aside, and the end-of-combat damage follows The Watcher by title.
+
 ## Verification and interpretation
 
 The focused suite has 48 tests covering exact recipes for one to four players in normal/easy mode, printed abilities and shadows, multiplayer choices, both victory routes, blanking, mandatory attack completion, and persisted decisions. Complete ordinary, guided, hidden and decisions-mode simulations pass with all four Core starters; the campaign-only case is skipped because campaign support covers Core chapters. Type checking passes. These results describe local validation and imply no deployment.

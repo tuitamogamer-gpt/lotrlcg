@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2413,
+    "encounterCards": 2421,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3635,
-    "pending": 548
+    "scripted": 3643,
+    "pending": 540
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 284
+    "scripted": 285
   },
   "registeredCodes": [
     "01001",
@@ -1330,6 +1330,7 @@
     "octgn:0c44ed2b-976a-4b17-b7e7-e64b20f74fd7",
     "octgn:0c6923ad-efbd-46b0-b5fc-93f90334ecf5",
     "octgn:0c7a9790-0c68-47c0-bcf8-ed4e04b14a25",
+    "octgn:0ca1652a-2733-4a38-9eff-53b527fb94a9",
     "octgn:0cb6d866-50dd-4eb0-a86a-8ed84bfeae0e",
     "octgn:0cdc4034-738d-487d-9a8c-8ef364772076",
     "octgn:0d30fbf1-6e8f-480f-9f2f-3196777f6e11",
@@ -1642,6 +1643,7 @@
     "octgn:2f7770cd-3102-4f35-a3bc-bd9afcab8303",
     "octgn:2fb27cc8-c3f5-4172-8ff0-456907f9b111",
     "octgn:2fd16de8-3286-4003-9978-574738b2a337",
+    "octgn:2fd9f511-463b-42c8-bc6f-9bd1b3b91057",
     "octgn:2fe95d8c-0f30-4c20-b926-d92e4feea8e2",
     "octgn:303b01b8-2d61-4c20-81a0-50800e18d617",
     "octgn:3043df29-f8e9-426e-bd14-5cb720ed8f10",
@@ -1755,6 +1757,7 @@
     "octgn:3dfaab4d-04b1-49a6-bd17-63c184784985",
     "octgn:3e0619e9-ffd1-4c1b-8b65-f603202cde4f",
     "octgn:3e0e63ba-d11b-4c8a-aab6-047f19013ca7",
+    "octgn:3e1b7378-6be8-4e19-aacb-16cd61a90693",
     "octgn:3e471bd0-5ee5-4846-815d-fd6a5cd5f921",
     "octgn:3e8eaee9-6fdb-4207-864f-151f0f98807b",
     "octgn:3e905158-737c-45c4-a32d-e88061e94564",
@@ -2390,6 +2393,7 @@
     "octgn:5eb195bb-390f-48be-97fa-0ec09d6c807b",
     "octgn:5ed5e5a0-8924-424a-a49f-527fe91c6374",
     "octgn:5edbdc1f-e177-4a8b-b4f1-8475fe297a4b",
+    "octgn:5ee5fd66-eb6f-4958-a5a0-cc8dbb54142c",
     "octgn:5f18c4ca-fcda-46d2-874b-3a1a73ef7c53",
     "octgn:5f1ef9c5-ccb2-4f1e-bc5b-9a1de708d2ba",
     "octgn:5f2bf8db-d56f-4353-b9be-fd25b7b0650e",
@@ -3058,6 +3062,7 @@
     "octgn:adf2480a-644a-47ee-8deb-bd08ff32bf31",
     "octgn:ae16b39f-ed64-4aa9-b6b8-1fbfbda70e6f",
     "octgn:ae20c7c6-9950-4799-a88e-d0b394879af2",
+    "octgn:ae32eeef-ea88-48f7-9563-0eff62d02499",
     "octgn:ae435070-552a-43a9-816f-9f23f1a6dbba",
     "octgn:ae49e8e5-98f1-4562-935f-5e1ab64631e0",
     "octgn:ae4a4129-ed5d-4902-92e3-ae89e2795fb1",
@@ -3119,6 +3124,7 @@
     "octgn:b640a0b7-f23e-4859-96fb-b558274b90a8",
     "octgn:b645ea89-caa8-44ee-b290-fcd93204e838",
     "octgn:b64d2e55-f304-4356-a491-7ee80e149c5c",
+    "octgn:b658345f-6282-440d-9004-35fd6ef2e0b7",
     "octgn:b659e2a1-55b1-4562-ab2c-0e36772d8183",
     "octgn:b66a9091-9fa2-48a8-8353-1c1716b9bf4d",
     "octgn:b69bdceb-a155-4aa6-b7e8-b0265f5d0928",
@@ -3448,6 +3454,7 @@
     "octgn:da109a2a-65fe-410e-93b4-e09695966fe5",
     "octgn:da177cbd-31e7-42ea-b051-e61f28dbb749",
     "octgn:da46fcb3-2810-4c21-9070-43969532ef9b",
+    "octgn:da69a930-1102-4f2d-80ff-257354f3f701",
     "octgn:da6d1bd2-575b-4292-9757-3792b79a4b78",
     "octgn:da8951b1-f170-48c4-8c0b-8979e5134aaf",
     "octgn:da95d039-0f3f-452b-9ff5-60c03432facc",
@@ -3591,6 +3598,7 @@
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5027",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5028",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5029",
+    "octgn:e86c303c-eefb-448d-bbac-87ceb702f837",
     "octgn:e8b7ad31-b448-42ac-9f72-defcbe2303e9",
     "octgn:e8c78f25-00d0-4b3b-8cac-03e533edfe41",
     "octgn:e8d205e0-5951-403b-b36e-f992e1b9de7e",
@@ -4747,7 +4755,7 @@
     {
       "product": "the-watcher-in-the-water-nightmare",
       "total": 8,
-      "scripted": 0,
+      "scripted": 8,
       "player": 0,
       "playerScripted": 0
     },
@@ -14486,7 +14494,7 @@
       "name": "Writhing Tentacle",
       "type": "enemy",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-watcher-in-the-water-nightmare"
     },
     {
@@ -17486,7 +17494,7 @@
       "name": "Banks of Sirannon",
       "type": "location",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-watcher-in-the-water-nightmare"
     },
     {
@@ -18686,7 +18694,7 @@
       "name": "The Watcher in the Water",
       "type": "nightmare",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-watcher-in-the-water-nightmare"
     },
     {
@@ -24302,7 +24310,7 @@
       "name": "The Watcher",
       "type": "enemy",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-watcher-in-the-water-nightmare"
     },
     {
@@ -30830,7 +30838,7 @@
       "name": "Choking Tentacle",
       "type": "enemy",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-watcher-in-the-water-nightmare"
     },
     {
@@ -31486,7 +31494,7 @@
       "name": "Pulled Under",
       "type": "treachery",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-watcher-in-the-water-nightmare"
     },
     {
@@ -34758,7 +34766,7 @@
       "name": "Hideous Depths",
       "type": "location",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-watcher-in-the-water-nightmare"
     },
     {
@@ -36022,7 +36030,7 @@
       "name": "Rippling From Beneath",
       "type": "treachery",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-watcher-in-the-water-nightmare"
     },
     {
@@ -39266,8 +39274,8 @@
       "id": "N02.6",
       "name": "The Watcher in the Water (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "watcher-in-the-water",
+      "state": "scripted"
     },
     {
       "id": "N02.7",

@@ -160,6 +160,16 @@ export function nightmareSetup(s: GameState) {
       "Flight from Moria · Nightmare: Ghâsh!, Blocked by Flame and Pursued by Shadow are shuffled into the quest deck in place of Blocked by Shadow.",
     );
   }
+  // The Watcher in the Water: its Nightmare Deck's The Watcher is set aside
+  // with Doors of Durin (To the West-door's Setup), in place of the standard
+  // one.
+  if (s.scenarioId === "watcher-in-the-water") {
+    s.encounterDeck = s.encounterDeck.filter((c) => c !== NIGHTMARE_DD.watcher);
+    const w = (s as GameState & { watcherWater?: { setAside: string[] } })
+      .watcherWater;
+    if (w && !w.setAside.includes(NIGHTMARE_DD.watcher))
+      w.setAside.push(NIGHTMARE_DD.watcher);
+  }
   // The Redhorn Gate: "Setup: Remove all copies of Blinding Blizzard from the
   // encounter deck and set them aside, out of play."
   if (s.scenarioId === "redhorn-gate") {

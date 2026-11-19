@@ -163,6 +163,15 @@ export const NIGHTMARE_DD = {
   bluffs: "octgn:2a49f405-1431-44ff-8316-573c23aaffcb",
   woods: "octgn:77dccc28-9be1-41ec-98c2-8b9099678660",
   assault: "octgn:8c9df134-1740-42a5-a69e-32cd928e884f",
+  /** The Watcher in the Water's setup card and Nightmare Deck. */
+  watcherCard: "octgn:3e1b7378-6be8-4e19-aacb-16cd61a90693",
+  watcher: "octgn:5ee5fd66-eb6f-4958-a5a0-cc8dbb54142c",
+  writhing: "octgn:0ca1652a-2733-4a38-9eff-53b527fb94a9",
+  choking: "octgn:ae32eeef-ea88-48f7-9563-0eff62d02499",
+  banks: "octgn:2fd9f511-463b-42c8-bc6f-9bd1b3b91057",
+  depths: "octgn:da69a930-1102-4f2d-80ff-257354f3f701",
+  pulled: "octgn:b658345f-6282-440d-9004-35fd6ef2e0b7",
+  rippling: "octgn:e86c303c-eefb-448d-bbac-87ceb702f837",
 } as const;
 
 interface NightmareDeck {
@@ -395,6 +404,16 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
     },
     questRemovals: { "Orc Outpost": 1 },
   },
+  "watcher-in-the-water": {
+    card: NIGHTMARE_DD.watcherCard,
+    removals: {
+      "The Watcher": 1,
+      "Makeshift Passage": 2,
+      "Black Uruks": 4,
+      "Mountain Warg": 3,
+      "Warg Lair": 2,
+    },
+  },
 };
 export const nightmareSupported = (id?: ScenarioId) => !!id && id in NIGHTMARE;
 /** A Nightmare mode game of a supported scenario. */
@@ -579,6 +598,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "road-to-rivendell")
     return [
       "Road to Rivendell · Nightmare mode: an enemy with ambush that engages a player during the quest phase still counts its [threat] in the staging area until the end of the phase; stage 2 is Ambush in the Night.",
+    ];
+  if (s.scenarioId === "watcher-in-the-water")
+    return [
+      "The Watcher in the Water · Nightmare mode: while Doors of Durin is in play, The Watcher cannot be engaged; a destroyed Tentacle enemy deals 1 damage to The Watcher; the players cannot win unless both Doors of Durin and The Watcher are in the victory display.",
     ];
   return [];
 }

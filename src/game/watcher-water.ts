@@ -324,7 +324,8 @@ export function watcherWaterTravelEntered(s: GameState, u: Unit) {
     prepend(s, fx("watcherWaterPassage", { player: s.table?.first ?? 0 }));
 }
 export function watcherWaterCombatEnd(s: GameState) {
-  if (s.staging.some((u) => u.code === WATCHER_WATER.watcher && !u.blanked))
+  // The Watcher (a Nightmare Deck's own too).
+  if (s.staging.some((u) => card(u.code).name === "The Watcher" && !u.blanked))
     prepend(
       s,
       ...playerOrder(s).map((player) =>
@@ -525,8 +526,12 @@ export function watcherWaterEffect(s: GameState, e: Effect): boolean {
       for (const old of allActiveLocations(s)) s.staging.push(old);
       s.activeLocation = null;
       s.extraActiveLocations = [];
-      if (w.setAside.includes(WATCHER_WATER.watcher)) {
-        const enemy = make(s, WATCHER_WATER.watcher);
+      // The Watcher set aside (a Nightmare Deck's own, in Nightmare mode).
+      const watcherCode = w.setAside.find(
+        (c) => card(c).name === "The Watcher",
+      );
+      if (watcherCode) {
+        const enemy = make(s, watcherCode);
         s.staging.push(enemy);
         enemyAddedToStaging(s, enemy);
       }
@@ -536,7 +541,7 @@ export function watcherWaterEffect(s: GameState, e: Effect): boolean {
         watcherPlayerLocationEntered(s, doors);
       }
       w.setAside = w.setAside.filter(
-        (c) => ![WATCHER_WATER.watcher, WATCHER_WATER.doors].includes(c),
+        (c) => c !== watcherCode && c !== WATCHER_WATER.doors,
       );
       const recovered = s.encounterDiscard.filter(tentacleCode);
       s.encounterDiscard = s.encounterDiscard.filter((c) => !tentacleCode(c));

@@ -16,6 +16,7 @@ import { KHAZAD } from "../src/game/khazad-dum.ts";
 import { mainQuestCode } from "../src/game/quest-state.ts";
 import { RETURN } from "../src/game/return-mirkwood.ts";
 import { ROAD } from "../src/game/road-rivendell.ts";
+import { WATCHER_WATER } from "../src/game/watcher-water-support.ts";
 import { reviewedState } from "./browser-review-helpers.mjs";
 import {
   capture,
@@ -55,15 +56,22 @@ let page;
  * during setup (The Dead Marshes' The Lights of the Dead, for one).
  */
 async function nightmareOpening(p) {
+  // A setup choice spares the escorted Arwen Undómiel (her loss ends Road to
+  // Rivendell and The Redhorn Gate) when another option is offered.
+  const spare = (o) =>
+    !o.code ||
+    card(o.code)?.type_code !== "objective-ally" ||
+    !card(o.code).name.startsWith("Arwen");
   for (let i = 0; i < 300; i++) {
     await reviewedState(p);
     const s = await saved(p);
+    assert.equal(s.status, "playing", "The Nightmare opening keeps the game");
     if (s.choice)
       await choose(
         p,
         s.choice.options.find((o) => o.id === "resolve")?.id ??
           s.choice.options.find((o) => o.id === "skip")?.id ??
-          s.choice.options[0].id,
+          (s.choice.options.find(spare) ?? s.choice.options[0]).id,
       );
     else if (s.escapeTest && s.escapeTest.phase !== "committing")
       await p
@@ -1021,6 +1029,79 @@ try {
       )
       .waitFor();
     await checkpoint("rivendell-ambush-in-the-night", width);
+    // The Watcher in the Water in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-watcher-in-the-water").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "watcher-in-the-water");
+    assert.equal(s.nightmareMode, true);
+    assert.deepEqual(
+      s.watcherWater.setAside.slice().sort(),
+      [DW.watcher, WATCHER_WATER.doors].sort(),
+    );
+    assert.ok(!s.encounterDeck.includes(DW.watcher), "The Watcher set aside");
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/The Watcher cannot be engaged/)
+      .waitFor();
+    await checkpoint("watcher-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // Stage 2, The Seething Lake: the Nightmare Deck's The Watcher in the
+    // staging area, Doors of Durin active, a Writhing Tentacle on a hero.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.stage = 2;
+      t.progress = 0;
+      t.watcherWater.setAside = [];
+      t.activeLocation = make(t, WATCHER_WATER.doors);
+      t.staging = [make(t, DW.watcher), make(t, DW.banks)];
+      t.heroes[0].attachments.push({
+        id: `a${t.nextId++}`,
+        code: DW.writhing,
+        exhausted: false,
+      });
+      s = await load(page, t);
+    }
+    const watcherFace = page
+      .locator(`img[src*="${DW.watcher.slice("octgn:".length)}"]`)
+      .first();
+    await watcherFace.waitFor();
+    assert.ok(
+      (await watcherFace.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "The Watcher's face loads",
+    );
+    for (const goal of [
+      "Open Doors of Durin, then defeat The Watcher (both in the victory display)",
+      "Writhing Tentacle: its character cannot commit to the quest",
+    ])
+      await page
+        .locator(".journey-area .quest-goals")
+        .getByText(goal, { exact: true })
+        .waitFor();
+    await checkpoint("watcher-seething-lake", width);
     await view.c.close();
   }
   const p = await browser.newPage();

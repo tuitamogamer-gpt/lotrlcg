@@ -1596,18 +1596,36 @@ export function QuestGoals({ s }: { s: GameState }) {
                                                 label: `Victory points · ${s.victory}/3`,
                                                 done: s.victory >= 3,
                                               },
-                                              {
-                                                label:
-                                                  "Defeat The Watcher or open Doors of Durin",
-                                                done: (
-                                                  s.victoryCards ?? []
-                                                ).some((code) =>
-                                                  [
-                                                    WATCHER_WATER.watcher,
-                                                    WATCHER_WATER.doors,
-                                                  ].includes(code),
-                                                ),
-                                              },
+                                              // Nightmare mode: both Doors of
+                                              // Durin and The Watcher in the
+                                              // victory display, and The
+                                              // Watcher cannot be engaged
+                                              // while Doors is in play.
+                                              nightmareLive(s)
+                                                ? {
+                                                    label:
+                                                      "Open Doors of Durin, then defeat The Watcher (both in the victory display)",
+                                                    done: [
+                                                      WATCHER_WATER.doors,
+                                                      NIGHTMARE_DD.watcher,
+                                                    ].every((code) =>
+                                                      (
+                                                        s.victoryCards ?? []
+                                                      ).includes(code),
+                                                    ),
+                                                  }
+                                                : {
+                                                    label:
+                                                      "Defeat The Watcher or open Doors of Durin",
+                                                    done: (
+                                                      s.victoryCards ?? []
+                                                    ).some((code) =>
+                                                      [
+                                                        WATCHER_WATER.watcher,
+                                                        WATCHER_WATER.doors,
+                                                      ].includes(code),
+                                                    ),
+                                                  },
                                               {
                                                 label:
                                                   "Doors: discard cards matching the encounter card's first letter",
@@ -1629,6 +1647,29 @@ export function QuestGoals({ s }: { s: GameState }) {
                                               },
                                             ]
                                           : []),
+                                        // Nightmare mode: Writhing and
+                                        // Choking Tentacle attachments.
+                                        ...[
+                                          [
+                                            NIGHTMARE_DD.writhing,
+                                            "Writhing Tentacle: its character cannot commit to the quest",
+                                          ],
+                                          [
+                                            NIGHTMARE_DD.choking,
+                                            "Choking Tentacle: its character takes 1 damage after it readies",
+                                          ],
+                                        ]
+                                          .filter(([code]) =>
+                                            allCharacters(s).some((u) =>
+                                              u.attachments.some(
+                                                (a) => a.code === code,
+                                              ),
+                                            ),
+                                          )
+                                          .map(([, label]) => ({
+                                            label,
+                                            done: false,
+                                          })),
                                       ]
                                     : s.scenarioId === "mirkwood" &&
                                         s.stage === 3
