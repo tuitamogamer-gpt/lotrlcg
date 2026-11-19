@@ -72,6 +72,17 @@ import {
 } from "./dreamchaser-campaign-support";
 import { dreamchaserOminousX, dreamchaserState } from "./dreamchaser-campaign";
 import {
+  citySahirCheck,
+  cityStormcallerDamageCap,
+  citySwordAbility,
+  citySwordAttack,
+  citySwordAttacked,
+  citySwordIndestructible,
+  citySwordLabel,
+  citySwordProblem,
+  dreamchaserCityEffect,
+} from "./dreamchaser-city";
+import {
   borrowedHeroRemoved,
   cobasCampaignEncounter,
   cobasCampaignShadow,
@@ -244,6 +255,8 @@ export function dreamchaserStats(s: GameState, u: Unit) {
   // Sea Serpent: "X is the number of players in the game" (twice the number
   // on its Enraged side) for its defense.
   if (dcIs(u, DC.serpent) && !u.blanked) out.defense += serpentX(s, u);
+  // The Black Sword: "Captain Sahír gets +2 [attack]."
+  out.attack += citySwordAttack(u);
   // Starla, Recurring Nightmare and the Temple Guardian's campaign side.
   const temple = dreamchaserTempleStats(s, u);
   out.will += temple.will;
@@ -312,13 +325,21 @@ const activeBoosts = (s: GameState) =>
 export function dreamchaserDamageAmount(s: GameState, u: Unit, value: number) {
   if (!isDreamchaserGame(s) || u.blanked) return value;
   if (dcIs(u, DC.revenant)) return value >= 3 ? 2 : value;
-  if (!dcIs(u, DC.thunderstruck)) return value;
+  // The Stormcaller's campaign side (The City of Corsairs): "cannot take
+  // more than 10 damage each round."
+  const cap = dcIs(u, DC.thunderstruck) ? 4 : cityStormcallerDamageCap(u);
+  if (cap === undefined) return value;
   const q = dreamchaserState(s);
   const taken = q.damage?.round === s.round ? (q.damage.byId[u.id] ?? 0) : 0;
-  return Math.min(value, Math.max(0, 4 - taken));
+  return Math.min(value, Math.max(0, cap - taken));
 }
 export function dreamchaserDamageDealt(s: GameState, u: Unit, value: number) {
-  if (!isDreamchaserGame(s) || !dcIs(u, DC.thunderstruck) || value <= 0) return;
+  if (
+    !isDreamchaserGame(s) ||
+    (!dcIs(u, DC.thunderstruck) && cityStormcallerDamageCap(u) === undefined) ||
+    value <= 0
+  )
+    return;
   const q = dreamchaserState(s);
   if (q.damage?.round !== s.round) q.damage = { round: s.round, byId: {} };
   q.damage.byId[u.id] = (q.damage.byId[u.id] ?? 0) + value;
@@ -442,6 +463,7 @@ export function dreamchaserCardPlayed(s: GameState, c: Card) {
 /** Glórinaith's Action (and its once-per-round limit). */
 export const dreamchaserAbilityLabel = (code: string, s?: GameState) =>
   gavinLabel(code) ??
+  (s ? citySwordLabel(s, { code } as Unit) : undefined) ??
   (dcBase(code) === DC.glorinaith
     ? dcBackFace(code)
       ? "Glórinaith · Name a card, then discard the top 3 cards of any deck to deal 1 damage to a non-unique enemy (2 if the named card is discarded; once per round)"
@@ -479,6 +501,7 @@ export function dreamchaserAbilityProblem(
   if (ownerOf(s, u) !== activeSeat(s))
     return `${name(u)} belongs to another player.`;
   if (gavinLabel(u.code)) return gavinProblem(s, u);
+  if (citySwordLabel(s, u)) return citySwordProblem(s, u);
   if (dcIs(u, FATE.calphon))
     return u.exhausted || !seatView(s, ownerOf(s, u)).deck.length
       ? "Calphon must be ready and your deck must contain a card."
@@ -512,6 +535,10 @@ export function dreamchaserAbility(s: GameState, u: Unit): boolean {
   if (problem) throw new RuleError(problem);
   if (gavinLabel(u.code)) {
     gavinAbility(s, u);
+    return true;
+  }
+  if (citySwordLabel(s, u)) {
+    citySwordAbility(s, u);
     return true;
   }
   if (dcIs(u, FATE.calphon)) {
@@ -1016,7 +1043,11 @@ export function dreamchaserCheck(s: GameState) {
   grantsCleanup(s);
   calphonCheck(s);
   nightmareHandCheck(s);
+  citySahirCheck(s);
 }
+/** The Black Sword: "Captain Sahír … gains indestructible." */
+export const dreamchaserIndestructible = (s: GameState, u: Unit) =>
+  citySwordIndestructible(s, u);
 /** Círdan's Blessing (Tactics): "Response: When attached character attacks, …" */
 export const dreamchaserAttackersDeclared = (
   s: GameState,
@@ -1923,6 +1954,7 @@ export function dreamchaserCardEffect(s: GameState, e: Effect): boolean {
   if (dreamchaserTempleEffect(s, e)) return true;
   if (dreamchaserDrownedEffect(s, e)) return true;
   if (dreamchaserCobasEffect(s, e)) return true;
+  if (dreamchaserCityEffect(s, e)) return true;
   if (e.kind.startsWith("dcSpy")) return spyglassEffect(s, e);
   if (raidEffect(s, e)) return true;
   switch (e.kind) {
@@ -2290,6 +2322,8 @@ export function dreamchaserEnemyAttackResolved(
   defenderIds: string[],
 ) {
   if (!isDreamchaserGame(s)) return;
+  // The Black Sword: after Captain Sahír's first attack each round.
+  citySwordAttacked(s, enemy);
   for (const id of defenderIds) {
     const ship = get(s, id);
     if (!ship) continue;

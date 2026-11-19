@@ -74,6 +74,7 @@ import {
   selectedSideQuestUnit,
   sideQuestArea,
 } from "./side-quest-support";
+import { cityCampaignQuestProgress } from "./dreamchaser-city";
 
 export function sideQuestStart(s: GameState) {
   delete s.sideQuestSelections;
@@ -141,6 +142,9 @@ export function addQuestProgress(s: GameState, quest: Unit, amount: number) {
   placed = Race.raceHaradProgress(s, placed, physical);
   placed = Sands.beneathSandsProgress(s, placed, physical);
   placed = batch4Scenario(s).progress?.(s, placed, physical) ?? placed;
+  // The Stormcaller's campaign side (the Dream-chaser campaign's The City of
+  // Corsairs): no more than 10 progress on the quest each round.
+  if (isMain) placed = cityCampaignQuestProgress(s, placed);
   if (placed <= 0) return;
   if (isMain && templeQuestProgress(s, placed)) return;
   if (isMain && raidQuestProgress(s, placed)) return;

@@ -5,10 +5,9 @@ cycle, with the Dream-chaser Campaign Expansion's campaign cards, boons,
 burdens, Upgraded faces and its new rules: experience (XP), scalable and
 upgradable cards, a fleet of six ships and the Hard/Expert Mode card. The
 lobby's campaign mode offers it as the fourth campaign, for one fellowship of
-one to four local players. Its first eight chapters, from Voyage Across
-Belegaer through A Storm on Cobas Haven, are supported; the Campaign Log is
-kept after them, and the end of the game says that the last chapter, The City
-of Corsairs, is not available in campaign mode yet.
+one to four local players. All nine chapters, from Voyage Across Belegaer
+through The City of Corsairs, are supported: the Campaign Log is kept between
+them, and winning The City of Corsairs wins the campaign.
 
 ## Sources
 
@@ -188,10 +187,21 @@ checkboxes are marked.
 | Gavin (boon objective-ally)                                                                   | 1 willpower, 1 attack, 2 hit points; Surge, Ranged; removed from the game when he leaves play other than by his ability. Planning Action: Gavin and a random set-aside Send for Help are shuffled into the encounter deck. When Revealed (he does not enter the staging area): he enters play under a chosen player's control, committed to the quest during the quest phase, and Lanwyn gains 1 resource.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | Send for Help (boon events, upgradable: Leadership 3, Tactics 3, Spirit 4, Lore 2 checkboxes) | Revealed from the encounter deck (never entering the staging area, and removed from the game afterwards; Surge), or as a shadow card (it leaves the attacking enemy). Leadership: a chosen player searches the top 10 cards of their deck for a card, draws it or plays it at no cost from the top, and shuffles (twice upgraded). Tactics: a hero from the players' collections (one per title not in play) enters play under a chosen player's control until the end of the round or until it leaves play, then is removed from the game (twice upgraded). Spirit: an additional resource, planning, combat or refresh phase follows the current phase (two upgraded, in the chosen order); the next phase's start waits until it ends. Lore: Gandalf (Core Set) enters play under a chosen player's control, ignoring uniqueness, with his usual choice, or up to 3 of his options upgraded.                                                                                                                                                                                                                                                                                                                          |
 
-## Not supported yet
+## The City of Corsairs (Part 9)
 
-The City of Corsairs follows, with The Black Sword and the "Campaign Mode
-only" sides of its scenario cards, and the campaign's victory.
+The rulebook's campaign setup adds Black Key (burden), Thunderstruck,
+Crowley, The Black Sword, the Modification boons, Calaerion, Gavin (if he
+returned), Círdan's Blessing and every card in the Campaign Pool, and uses the
+Stormcaller's "Campaign Mode only" side (printed on its back in the
+print-and-play file) and The Shattered Monument's Upgraded side once its two
+checkboxes are marked.
+
+| Card                                                         | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Campaign card                                                | Setup: the fleet is prepared from the campaign's six ships and the Stormcaller enters on its campaign side; once the scenario's setup is done Black Key (burden) is attached to the Stormcaller, each ship takes a Modification boon, Thunderstruck joins the encounter deck and Crowley the Corsair deck, Calaerion enters play under the control of the player with the Dream-chaser, one player may take a copy of Círdan's Blessing not in the Campaign Pool, Gavin enters play under a chosen player's control if "Gavin returned" is recorded, and the card is flipped over. Its other side: when stage 2B is revealed, every boon and non-Ship burden in the encounter deck and discard pile is shuffled into the second encounter deck; when Captain Sahír enters play, Black Key (burden) and The Black Sword are attached to him; Refresh Action (group limit once per round, offered on each hero while The Black Sword is in play): exhaust a hero to move 1 resource from The Black Sword to that hero's pool, removing the sword from the game when it has none left. Resolution: the players win the campaign; the XP of 1 per surviving player, 1 each for Corsair Warship, Shattered Monument, Crowley and the Stormcaller in the victory display, 2 for Thunderstruck there, −1 for Ominous Fate (and the Hard/Expert Mode card). |
+| The Stormcaller ("Campaign Mode only")                       | 7 attack, 6 defense, 20 hit points, victory 15; it can take Black Key; it cannot take more than 10 damage each round, and no more than 10 progress can be placed on the quest each round while it is in play. The City module recognises both faces (its stage-1 destruction, its end-of-round choice).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| The Black Sword (burden objective, upgradable, 5 checkboxes) | Enters play with 3 resources (2 Upgraded); Captain Sahír gets +2 attack (not Upgraded) and gains indestructible; after his first attack each round he attacks each other player in turn order.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| The Shattered Monument (Upgraded, 2 checkboxes)              | Victory 3, 3 threat; it still places 1 resource on each Raider enemy at the beginning of the resource phase, but no longer makes them immune to player events.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
 ## Verification
 
@@ -201,7 +211,7 @@ npm run build
 npm run test:browser-dreamchaser-campaign
 ```
 
-`tests/dreamchaser-campaign.test.ts` (51 tests) covers the registered cards'
+`tests/dreamchaser-campaign.test.ts` (58 tests) covers the registered cards'
 texts and faces, the Campaign Log's checkboxes, the chapter order and the
 Na'asiyah rule; Voyage Across Belegaer's fleet of six ships, the Modification
 choices and the damage-for-resource offer; Upgraded ships and Modifications
@@ -251,7 +261,15 @@ Flagship, Calaerion, Gavin, a Círdan's Blessing not in the Campaign Pool,
 Thunderstruck, Crowley and the set-aside Send for Help), Gavin's Planning
 Action, reveal and removal, the four copies of Send for Help (search, lent
 hero, Gandalf, shadow) and the additional phases, and the resolution's XP,
-Campaign Pool and "Gavin returned", before the next chapter is refused. The browser suite starts a new
+Campaign Pool and "Gavin returned"; The City of Corsairs' cards, its setup
+(the campaign Stormcaller with Black Key, the fleet's Modification boons,
+Calaerion for the Dream-chaser's player, a Círdan's Blessing not in the
+Campaign Pool, the returned Gavin, Thunderstruck and Crowley), the
+Stormcaller's damage and progress limits, the flipped campaign card's stage-2B
+search, Captain Sahír with Black Key and The Black Sword (its attack bonus,
+indestructible, the attacks against each other player in turn order and a
+hero's Refresh Action), the Upgraded Shattered Monument, and the resolution's
+XP, which wins the campaign; no chapter follows it. The browser suite starts a new
 Dream-chaser campaign through the lobby on Hard Mode, prepares the fleet with
 two Modification boons, opens the campaign card's state in the quest
 inspector and records the resolution; the interlude spends 2 XP on Calphon's
@@ -275,4 +293,9 @@ Campaign Pool; A Storm on Cobas Haven begins with the campaign fleet, Black Key
 on Raider Flagship, Calaerion, Gavin and four set-aside copies of Send for Help,
 Gavin's Planning Action shuffles him into the encounter deck through his
 button, and its resolution records "Gavin returned" through the end-of-game
-dialog, at 1280, 390 and 320 pixels (69 checkpoints); it checks the 91 pinned faces.
+dialog; The City of Corsairs begins with the campaign Stormcaller and its Black
+Key and the returned Gavin, Captain Sahír enters play with The Black Sword, a
+hero takes a resource from it through the hero's Refresh Action button, and the
+resolution wins the campaign through the end-of-game dialog with no Continue
+campaign button left, at 1280, 390 and 320 pixels (78 checkpoints); it checks
+the 98 pinned faces.

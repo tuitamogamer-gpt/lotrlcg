@@ -1083,6 +1083,7 @@ export function check(s: GameState) {
         !Carn.carnIndestructible(s, u) &&
         !Depths.depthsIndestructible(s, u) &&
         !City.cityIndestructible(s, u) &&
+        !DreamCards.dreamchaserIndestructible(s, u) &&
         !Mumakil.mumakilIndestructible(s, u) &&
         !DunlandQuest.dunlandCannotLeave(u) &&
         !Trials.trialsCannotLeave(s, u) &&
@@ -1885,6 +1886,7 @@ export function destroy(
       Carn.carnIndestructible(s, u) ||
       Depths.depthsIndestructible(s, u) ||
       City.cityIndestructible(s, u) ||
+      DreamCards.dreamchaserIndestructible(s, u) ||
       Mumakil.mumakilIndestructible(s, u) ||
       batch4Scenario(s).indestructible?.(s, u))
   )

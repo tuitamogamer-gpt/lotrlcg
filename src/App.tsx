@@ -5504,6 +5504,12 @@ export default function App() {
                   The Dread Realm · Resolution: the players win the Angmar
                   Awakened campaign!
                 </p>
+              ) : game.campaign?.kind === "dreamchaser" &&
+                game.campaign.outcome === "won" ? (
+                <p className="campaign-note saga-outcome">
+                  The City of Corsairs · Resolution: the players win the
+                  Dream-chaser campaign!
+                </p>
               ) : (game.campaign?.kind === "angmar"
                   ? angmarChapterComplete(game)
                   : game.campaign?.kind === "dreamchaser" &&
@@ -5922,9 +5928,11 @@ function CampaignJournal({
         <p className="campaign-note">
           {c.kind === "angmar"
             ? "The campaign is won: The Dread Realm is complete."
-            : c.outcome === "won"
-              ? "The campaign is won: The One Ring is destroyed."
-              : "The campaign is lost: The One Ring was kept."}
+            : c.kind === "dreamchaser"
+              ? "The campaign is won: The City of Corsairs is complete."
+              : c.outcome === "won"
+                ? "The campaign is won: The One Ring is destroyed."
+                : "The campaign is lost: The One Ring was kept."}
         </p>
       ) : null}
       {c.blackGateEnemies ? (

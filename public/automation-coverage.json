@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2229,
+    "encounterCards": 2235,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3454,
-    "pending": 729
+    "scripted": 3457,
+    "pending": 726
   },
   "scenarioRecipes": {
     "total": 355,
@@ -725,6 +725,8 @@
     "11212",
     "11213",
     "11214",
+    "11216",
+    "11216.B",
     "12001",
     "12002",
     "12003",
@@ -2542,6 +2544,7 @@
     "octgn:7b9dd852-ed19-4a00-b09e-f6c2cee549fa",
     "octgn:7bae4f1a-42b7-46ab-bfbb-0078ed0842a4",
     "octgn:7bb3db62-642f-4ab1-9ce7-a870fad8fecd",
+    "octgn:7be3bdf4-dc81-4a3d-8fb1-08bfe4c9b1b5",
     "octgn:7c069b32-99b8-42b7-a310-893d925c8ca7",
     "octgn:7c463bf7-9a1a-4d8a-879b-f966f19d0695",
     "octgn:7c5f503a-61aa-4f12-acdf-e52fc51e295f",
@@ -3137,6 +3140,7 @@
     "octgn:c444788b-73ea-4729-a07a-593220479639",
     "octgn:c459cbdb-9831-4803-91b0-e791e349ace8",
     "octgn:c45dc401-bb07-42ec-ba4c-ee9105a3f349",
+    "octgn:c45dc401-bb07-42ec-ba4c-ee9105a3f349.B",
     "octgn:c460b9c0-0239-4a74-99cb-3c302429db44",
     "octgn:c46688bb-24ac-4ee9-a23e-2bd481e8e56c",
     "octgn:c46c37c3-b2e7-4e28-9466-e3a371417c8b",
@@ -3276,6 +3280,8 @@
     "octgn:d71de165-8632-4628-94ea-793a1c20e6f8",
     "octgn:d760ba6c-e377-4d22-ac46-04bfb2b3c65f",
     "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
+    "octgn:d777af13-989a-40b7-8825-61a7dc8e793c",
+    "octgn:d777af13-989a-40b7-8825-61a7dc8e793c.B",
     "octgn:d7885efa-3af6-48e6-8eb1-5750892fdb34",
     "octgn:d7a51190-1d0e-4363-b71d-6bb44a133e1b",
     "octgn:d7d1581c-74a4-4c6f-acf9-e2d598ccb276",
@@ -3786,7 +3792,7 @@
     {
       "product": "dream-chaser-campaign-expansion",
       "total": 60,
-      "scripted": 57,
+      "scripted": 60,
       "player": 26,
       "playerScripted": 26
     },
@@ -9350,7 +9356,7 @@
       "name": "The Black Sword",
       "type": "objective",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -26374,7 +26380,7 @@
       "name": "The City of Corsairs",
       "type": "campaign",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -34374,7 +34380,7 @@
       "name": "The Shattered Monument",
       "type": "location",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {

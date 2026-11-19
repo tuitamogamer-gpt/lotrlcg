@@ -2,6 +2,10 @@ import encounters from "../data/city-encounter-cards.json";
 import quests from "../data/city-quest-cards.json";
 import recipes from "../data/city-recipes.json";
 import type { Card, GameState, Unit } from "./types";
+import campaignCards from "../data/dreamchaser-campaign-cards.json";
+import { DC, dcBase, isFleetShip } from "./dreamchaser-campaign-support";
+/** The Dream-chaser campaign's card faces. */
+const CAMPAIGN_CODES = new Set(campaignCards.map((c) => c.code));
 
 export const CITY_ENCOUNTERS = encounters as Card[];
 export const CITY_QUESTS = quests as Card[];
@@ -133,14 +137,20 @@ export function validateCity(s: GameState, validUnit: (u: unknown) => boolean) {
     q.setAside.every(
       (u) =>
         validUnit(u) &&
-        [...CITY_SHIPS, CITY.sahir, CITY.monument].includes(u.code),
+        ([...CITY_SHIPS, CITY.sahir, CITY.monument].includes(u.code) ||
+          isFleetShip(u.code) ||
+          dcBase(u.code) === CITY.monument),
     ) &&
     new Set(all.map((u) => u.id)).size === all.length &&
+    // The Dream-chaser campaign adds its own cards (the Upgraded Monument,
+    // boons, burdens and Crowley).
     [q.secondDeck, q.inactiveDeck, q.inactiveDiscard].every((p) =>
-      p.every((c) => definitions.has(c)),
+      p.every((c) => definitions.has(c) || CAMPAIGN_CODES.has(c)),
     ) &&
-    q.corsairDeck.every((c) => CITY_CORSAIRS.includes(c)) &&
-    q.corsairDiscard.every((c) => CITY_CORSAIRS.includes(c)) &&
+    q.corsairDeck.every((c) => CITY_CORSAIRS.includes(c) || c === DC.crowley) &&
+    q.corsairDiscard.every(
+      (c) => CITY_CORSAIRS.includes(c) || c === DC.crowley,
+    ) &&
     (s.stage < 3 ||
       (q.secondDeck.length === 0 &&
         q.corsairDeck.length === 0 &&

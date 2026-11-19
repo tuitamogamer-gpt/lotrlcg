@@ -33,6 +33,7 @@ import {
   DREAMCHASER_CAMPAIGN_ORDER,
   DREAMCHASER_LOG,
   DREAM_LOCATION,
+  CITY_STORMCALLER,
   GALDOR,
   HAVENS_BURN,
   backFace,
@@ -76,6 +77,8 @@ import {
   dreamchaserPlayerAttackResolved,
   dreamchaserCampaignShadow,
   dreamchaserRemoveCharacter,
+  dreamchaserEnemyAttackResolved,
+  dreamchaserIndestructible,
 } from "../src/game/dreamchaser-campaign-cards";
 import { VOYAGE } from "../src/game/voyage-belegaer-support";
 import { RAID } from "../src/game/raid-grey-havens-support";
@@ -94,6 +97,10 @@ import { questExhausts } from "../src/game/expansion-passives";
 import { COBAS } from "../src/game/cobas-support";
 import { hasKeyword } from "../src/game/table";
 import { gavinAbility } from "../src/game/dreamchaser-cobas";
+import { CITY } from "../src/game/city-support";
+import { addQuestProgress } from "../src/game/side-quests";
+import { mainQuestUnit } from "../src/game/quest-state";
+import { cityImmuneToEvents } from "../src/game/city";
 import {
   TEMPLE,
   templeMapUnit,
@@ -173,6 +180,7 @@ test("The Dream-chaser campaign: Voyage Across Belegaer's campaign card and the 
     "temple-of-the-deceived",
     "the-drowned-ruins",
     "a-storm-on-cobas-haven",
+    "the-city-of-corsairs",
   ]);
   const campaignCard = card(
     DREAMCHASER_CAMPAIGN_CARDS["voyage-across-belegaer"]!,
@@ -2866,7 +2874,7 @@ test("Send for Help (Spirit): the chosen additional phase follows the current on
   assert.equal(s.dreamchaser!.extraPhases, undefined);
 });
 
-test("A Storm on Cobas Haven's resolution: on-course, 2 Dol Amroth Warships, 2 captured Corsair Skirmishers, 4 controlled objectives, Corsair Warships, Crowley, Raider Flagship and Thunderstruck give XP; the chosen Círdan's Blessing joins the Campaign Pool, and the players may spend 4 XP to record that Gavin returned", () => {
+test("A Storm on Cobas Haven's resolution: on-course, 2 Dol Amroth Warships, 2 captured Corsair Skirmishers, 4 controlled objectives, Corsair Warships, Crowley, Raider Flagship and Thunderstruck give XP; the chosen Círdan's Blessing joins the Campaign Pool, the players may spend 4 XP to record that Gavin returned, and The City of Corsairs follows", () => {
   const s = calm(reload(opening(cobas())));
   s.dreamchaser = { ...(s.dreamchaser ?? {}), cirdan: { [CIRDAN[1]]: 0 } };
   s.sailing!.heading = 0;
@@ -2904,15 +2912,268 @@ test("A Storm on Cobas Haven's resolution: on-course, 2 Dol Amroth Warships, 2 c
   assert.equal(recorded.campaign!.xp, xp - 4);
   assert.equal(recorded.campaign!.marks![DC.gavin], 4);
   assert.ok(valid(recorded));
+  const next = continueCampaign(
+    recorded,
+    recorded.campaign!.heroes,
+    recorded.deckId,
+    true,
+    9,
+  );
+  assert.equal(next.scenarioId, "the-city-of-corsairs");
+});
+
+// ------------------------------------------- The City of Corsairs (Part 9)
+
+/** A Dream-chaser campaign after A Storm on Cobas Haven. */
+function afterCobas(marks: Record<string, number> = {}): CampaignState {
+  const c = afterDrowned(marks);
+  return {
+    ...c,
+    completed: [
+      ...c.completed,
+      { scenarioId: "a-storm-on-cobas-haven", score: 22, rounds: 7, xp: 7 },
+    ],
+  };
+}
+const city = (campaign = afterCobas(), deck = STARTERS[0], seed = 5) =>
+  createGame(seed, deck.cards, deck.heroes, deck.id, {
+    scenarioId: "the-city-of-corsairs",
+    playMode: "campaign",
+    campaign: { ...campaign, heroes: [...deck.heroes] },
+  });
+/** Captain Sahír enters play engaged with the first player. */
+function sahirIn(s: GameState) {
+  const sahir = make(s, CITY.sahir);
+  s.engaged.push(sahir);
+  dreamchaserCheck(s);
+  return s.engaged.find((u) => u.id === sahir.id)!;
+}
+
+test("The City of Corsairs: its campaign card's two sides, The Black Sword, The Shattered Monument's Upgraded side and the Stormcaller's campaign side are registered with the print-and-play texts", () => {
+  const campaignCard = card(DC.cityCard);
+  assert.equal(campaignCard.subtitle, "Dream-chaser Part 9");
+  assert.match(
+    campaignCard.text!,
+    /If "Gavin returned," put him into play under any player's control\. Flip this card over\./,
+  );
+  assert.match(
+    campaignCard.back_text!,
+    /Resolution: The players win the campaign!/,
+  );
+  assert.match(
+    card(DC.sword).text!,
+    /enters play with 3 resources on it\.\nCaptain Sahír gets \+2 \[attack\] and gains indestructible\./,
+  );
+  assert.match(
+    card(backFace(DC.sword)).text!,
+    /enters play with 2 resources on it\.\nCaptain Sahír gains indestructible\./,
+  );
+  assert.match(
+    card(backFace(DC.monument)).text!,
+    /^Campaign Mode only\.\nForced: At the beginning of the resource phase/,
+  );
+  const stormcaller = card(backFace(CITY_STORMCALLER));
+  assert.deepEqual(
+    [
+      stormcaller.attack,
+      stormcaller.defense,
+      stormcaller.health,
+      stormcaller.victory,
+    ],
+    [7, 6, 20, 15],
+  );
+  assert.match(
+    stormcaller.text!,
+    /cannot take more than 10 damage each round\. No more than 10 progress can be placed on the quest each round\./,
+  );
+});
+
+test("The City of Corsairs' setup: the Stormcaller takes its campaign side with Black Key (burden), the fleet takes its Modification boons, Calaerion serves the Dream-chaser's player, a Círdan's Blessing not in the Campaign Pool may be taken, Gavin returns if recorded, and Thunderstruck and Crowley are shuffled in", () => {
+  let s = opening(
+    city({
+      ...afterCobas({ [DC.gavin]: 4 }),
+      boons: [CIRDAN[0], CIRDAN[1]],
+      deckBoons: { [CIRDAN[0]]: 0, [CIRDAN[1]]: 0 },
+    }),
+    (x) =>
+      /copy of Círdan's Blessing/.test(x.choice!.title) ? CIRDAN[2] : undefined,
+  );
+  s = calm(reload(s));
+  const stormcaller = s.staging.find((u) => dcIs(u, CITY.stormcaller))!;
+  assert.equal(stormcaller.code, backFace(CITY_STORMCALLER));
+  assert.deepEqual(
+    stormcaller.attachments.map((a) => a.code),
+    [DC.keyBurden],
+  );
+  assert.ok(s.allies.some((u) => dcIs(u, DC.calaerion)));
+  assert.ok(s.allies.some((u) => u.code === DC.gavin));
+  assert.ok(s.hand.some((h) => h.code === CIRDAN[2]));
+  assert.ok(s.encounterDeck.includes(DC.thunderstruck));
+  assert.ok(s.city!.corsairDeck.includes(DC.crowley));
+  assert.ok(valid(s));
+  // Without "Gavin returned", no Gavin.
+  const plain = calm(reload(opening(city())));
+  assert.ok(!plain.allies.some((u) => u.code === DC.gavin));
+  // The Shattered Monument's Upgraded side waits in the second deck.
+  const upgraded = calm(
+    reload(opening(city(afterCobas({ [DC.monument]: 2 })))),
+  );
+  assert.ok(upgraded.city!.secondDeck.includes(backFace(DC.monument)));
+  assert.ok(valid(upgraded));
+});
+
+test("The Stormcaller's campaign side: at most 10 damage each round and at most 10 progress on the quest each round", () => {
+  const s = calm(reload(opening(city())));
+  const stormcaller = s.staging.find((u) => dcIs(u, CITY.stormcaller))!;
+  assert.equal(dreamchaserDamageAmount(s, stormcaller, 12), 10);
+  damage(s, stormcaller.id, 8);
+  assert.equal(dreamchaserDamageAmount(s, stormcaller, 5), 2);
+  s.progress = 0;
+  addQuestProgress(s, mainQuestUnit(s)!, 7);
+  addQuestProgress(s, mainQuestUnit(s)!, 6);
+  assert.equal(s.progress, 10);
+  s.round += 1;
+  addQuestProgress(s, mainQuestUnit(s)!, 4);
+  assert.equal(s.progress, 14);
+});
+
+test("The City of Corsairs' flipped campaign card: stage 2B moves the boons and non-Ship burdens into the second encounter deck; Captain Sahír enters play with Black Key (burden) and The Black Sword (+2 attack, indestructible, an attack against each other player after his first, and its resources taken by a hero's Refresh Action)", () => {
+  const s = calm(reload(opening(city())));
+  s.encounterDeck.push(DC.ominous, SEND_FOR_HELP[0]);
+  s.encounterDiscard.push(DC.gavin, DC.thunderstruck);
+  s.queue = [makeEffect("dcCityStageTwo")];
+  flush(s);
+  for (const code of [DC.ominous, SEND_FOR_HELP[0], DC.gavin])
+    assert.ok(s.city!.secondDeck.includes(code), card(code).name);
+  assert.ok(!s.encounterDeck.includes(DC.ominous));
+  assert.ok(
+    s.encounterDiscard.includes(DC.thunderstruck),
+    "a Ship burden stays",
+  );
+  // Captain Sahír enters play.
+  const sahir = sahirIn(s);
+  assert.deepEqual(
+    sahir.attachments.map((a) => a.code),
+    [DC.keyBurden, DC.sword],
+  );
+  assert.equal(sahir.attachments[1].resourceTokens, 3);
+  const plainAttack = card(CITY.sahir).attack ?? 0;
+  assert.equal(stats(s, sahir).attack, plainAttack + 1 + 2);
+  assert.ok(dreamchaserIndestructible(s, sahir));
+  // The Refresh Action: a hero takes a resource.
+  const hero = s.heroes[0];
+  const ability = availableAbilities(s, hero).find((a) =>
+    /Black Sword/.test(a.label),
+  )!;
+  assert.ok(ability.disabled, "only in the refresh phase");
+  s.phase = "refresh";
+  const before = hero.resources;
+  let t = applyAction(reload(s), { type: "ABILITY", id: hero.id });
+  assert.equal(t.heroes[0].resources, before + 1);
+  assert.ok(t.heroes[0].exhausted);
+  assert.equal(
+    t.engaged.find((u) => u.id === sahir.id)!.attachments[1].resourceTokens,
+    2,
+  );
+  assert.match(
+    availableAbilities(t, t.heroes[1]).find((a) => /Black Sword/.test(a.label))!
+      .label,
+    /Refresh Action/,
+  );
+  assert.ok(
+    availableAbilities(t, t.heroes[1]).find((a) => /Black Sword/.test(a.label))!
+      .disabled,
+    "group limit once per round",
+  );
+  // The last resource removes it from the game.
+  t.engaged.find((u) => u.id === sahir.id)!.attachments[1].resourceTokens = 1;
+  t.round += 1;
+  t = applyAction(reload(t), { type: "ABILITY", id: t.heroes[1].id });
+  assert.ok(
+    !t.engaged
+      .find((u) => u.id === sahir.id)!
+      .attachments.some((a) => dcIs(a.code, DC.sword)),
+  );
+  assert.ok(
+    !dreamchaserIndestructible(
+      t,
+      t.engaged.find((u) => u.id === sahir.id)!,
+    ),
+  );
+  // The Upgraded Black Sword: 2 resources and no attack bonus.
+  const u = calm(reload(opening(city(afterCobas({ [DC.sword]: 5 })))));
+  const armed = sahirIn(u);
+  assert.equal(armed.attachments[1].code, backFace(DC.sword));
+  assert.equal(armed.attachments[1].resourceTokens, 2);
+  assert.equal(stats(u, armed).attack, plainAttack + 1);
+});
+
+test("The Black Sword with several players: after Captain Sahír's first attack each round he attacks each other player in turn order", () => {
+  const seats = STARTERS.slice(0, 2).map((x) => ({
+    deckId: x.id,
+    heroes: [...x.heroes],
+  }));
+  let s = createGame(5, d.cards, HEROES, d.id, {
+    scenarioId: "the-city-of-corsairs",
+    playMode: "campaign",
+    campaign: {
+      ...afterCobas(),
+      heroes: seats.flatMap((x) => x.heroes),
+      seatHeroes: [3, 3],
+    },
+    seats,
+  });
+  s = calm(reload(opening(s)));
+  const sahir = sahirIn(s);
+  s.queue = [];
+  dreamchaserEnemyAttackResolved(s, sahir, []);
+  assert.deepEqual(
+    s.queue.map((e) => [e.kind, e.player]),
+    [["immediateAttack", 1]],
+  );
+  s.queue = [];
+  dreamchaserEnemyAttackResolved(s, sahir, []);
+  assert.equal(s.queue.length, 0, "only after the first attack each round");
+});
+
+test("The Shattered Monument's Upgraded side keeps its resources but loses the immunity to player events", () => {
+  const s = calm(reload(opening(city())));
+  const raider = make(s, CITY.patrol);
+  raider.resources = 1;
+  s.staging.push(raider);
+  const monument = make(s, backFace(DC.monument));
+  s.staging.push(monument);
+  assert.ok(!cityImmuneToEvents(s, raider));
+  s.staging = s.staging.filter((u) => u.id !== monument.id);
+  s.staging.push(make(s, CITY.monument));
+  assert.equal(
+    cityImmuneToEvents(s, raider),
+    (card(CITY.patrol).traits ?? "").includes("Raider"),
+  );
+});
+
+test("The City of Corsairs' resolution: the players win the campaign and no chapter follows; Corsair Warship, Shattered Monument, Crowley and Stormcaller give 1 XP each and Thunderstruck 2 XP", () => {
+  const s = calm(reload(opening(city())));
+  const warship = VOYAGE.warship;
+  s.victoryCards = [
+    ...(s.victoryCards ?? []),
+    warship,
+    backFace(DC.monument),
+    DC.crowley,
+    backFace(CITY_STORMCALLER),
+    DC.thunderstruck,
+  ];
+  const lines = dreamchaserXpLines(s);
+  assert.deepEqual(lines.map((l) => l.xp).slice(1, 6), [1, 1, 1, 1, 2]);
+  win(s);
+  const c = s.campaign!;
+  assert.equal(c.completed.length, 9);
+  assert.equal(c.completed[8].scenarioId, "the-city-of-corsairs");
+  assert.equal(c.outcome, "won");
+  assert.ok(valid(s));
+  // The campaign is complete: no chapter follows.
   assert.throws(
-    () =>
-      continueCampaign(
-        recorded,
-        recorded.campaign!.heroes,
-        recorded.deckId,
-        true,
-        9,
-      ),
-    /not available in campaign mode yet/,
+    () => continueCampaign(s, c.heroes, s.deckId, true, 9),
+    /The campaign is complete/,
   );
 });

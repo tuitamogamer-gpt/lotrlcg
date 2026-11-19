@@ -16,6 +16,8 @@ import {
 } from "../src/game/dreamchaser-campaign-support.ts";
 import { DROWNED } from "../src/game/drowned-support.ts";
 import { COBAS } from "../src/game/cobas-support.ts";
+import { CITY } from "../src/game/city-support.ts";
+import { dreamchaserCheck } from "../src/game/dreamchaser-campaign-cards.ts";
 import { RAID } from "../src/game/raid-grey-havens-support.ts";
 import { STORMCALLER } from "../src/game/stormcaller-support.ts";
 import { DEPTHS } from "../src/game/depths-support.ts";
@@ -578,8 +580,88 @@ try {
     s = await campaign();
     assert.equal(s.campaign.completed.length, 8);
     assert.equal(s.campaign.marks[DC.gavin], 4);
-    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await page.getByRole("button", { name: /^Continue campaign/ }).waitFor();
     await checkpoint("cobas-complete", width);
+    // The City of Corsairs: the Stormcaller's campaign side with Black Key,
+    // Calaerion and the returned Gavin; Captain Sahír's Black Sword; the
+    // players win the campaign.
+    await page.getByRole("button", { name: /^Continue campaign/ }).click();
+    await page.getByRole("button", { name: /^Begin next chapter/ }).click();
+    await reviewedState(page);
+    s = await opening();
+    assert.equal(s.scenarioId, "the-city-of-corsairs");
+    const storm = s.staging.find((u) => dcIs(u, CITY.stormcaller));
+    assert.ok(storm.code.endsWith(".B"), "the Stormcaller's campaign side");
+    assert.deepEqual(
+      storm.attachments.map((a) => a.code),
+      [DC.keyBurden],
+    );
+    assert.ok(
+      s.allies.some((u) => u.code === DC.gavin),
+      "Gavin returned",
+    );
+    await campaignCard(
+      /Winning this chapter wins the campaign/,
+      "city-setup",
+      width,
+    );
+    // Captain Sahír with The Black Sword: a hero's Refresh Action.
+    {
+      const t = structuredClone(s);
+      t.engaged.push({
+        id: `c${t.nextId++}`,
+        code: CITY.sahir,
+        exhausted: false,
+        damage: 0,
+        progress: 0,
+        resources: 0,
+        committed: false,
+        attachments: [],
+        boost: 0,
+        attacked: false,
+        shadows: [],
+      });
+      Object.assign(t, { phase: "refresh", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      // "When Captain Sahír enters play, attach Black Key (burden) and The
+      // Black Sword to him."
+      dreamchaserCheck(t);
+      s = await load(t);
+    }
+    const sahir = s.engaged.find((u) => u.code === CITY.sahir);
+    assert.ok(sahir.attachments.some((a) => dcIs(a.code, DC.sword)));
+    const resources = s.heroes[0].resources;
+    {
+      const hero = s.heroes[0];
+      const sword = availableAbilities(s, get(s, hero.id)).find(
+        (a) => /Black Sword/.test(a.label) && !a.disabled,
+      );
+      assert.ok(sword, "The Black Sword's Refresh Action");
+      await page
+        .locator(`[data-motion-card="${hero.id}"]`)
+        .getByRole("button", { name: sword.label, exact: true })
+        .click();
+      await reviewedState(page);
+      s = await campaign();
+    }
+    assert.equal(s.heroes[0].resources, resources + 1);
+    await checkpoint("city-sword", width);
+    // The resolution: the campaign is won.
+    s = await victory(s, (t) => {
+      t.victoryCards = [...(t.victoryCards ?? []), DC.thunderstruck];
+    });
+    assert.equal(s.campaign.completed.length, 9);
+    assert.equal(s.campaign.outcome, "won");
+    await page
+      .getByRole("dialog")
+      .getByText(/the players win the Dream-chaser campaign!/)
+      .waitFor();
+    // The campaign is complete: no chapter follows.
+    assert.equal(
+      await page.getByRole("button", { name: /^Continue campaign/ }).count(),
+      0,
+    );
+    await checkpoint("campaign-won", width);
     await view.c.close();
   }
   const p = await browser.newPage();

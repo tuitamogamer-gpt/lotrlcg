@@ -43,6 +43,19 @@ import {
   CITY_SHIPS,
 } from "./city-support";
 import * as Encounters from "./city-encounters";
+import {
+  CITY_STORMCALLER,
+  DC,
+  backFace,
+  dcBase,
+  dcScenarioFace,
+  dreamchaserFleet,
+  isDreamchaserGame,
+} from "./dreamchaser-campaign-support";
+import { dreamchaserCityReady } from "./dreamchaser-campaign";
+/** The Stormcaller and The Shattered Monument on either face (their campaign sides). */
+const isStormcaller = (u: { code: string }) => dcBase(u.code) === C.stormcaller;
+const isMonument = (u: { code: string }) => dcBase(u.code) === C.monument;
 
 export * from "./city-encounters";
 const enemies = (s: GameState) =>
@@ -70,13 +83,20 @@ export function setupCity(s: GameState) {
     currentQuest: C.coast,
     questDeck: CITY_MAIN_QUESTS.slice(1),
     completedQuests: [],
-    setAside: CITY_SHIPS.map((code) => make(s, code)),
+    // The Dream-chaser campaign prepares its fleet from its six ships.
+    setAside: (isDreamchaserGame(s)
+      ? dreamchaserFleet(s.campaign)
+      : CITY_SHIPS
+    ).map((code) => make(s, code)),
     corsairDeck: shuffle(s, pile("sharedEncounterDeck2")),
     corsairDiscard: [],
     secondDeck: shuffle(s, [
       ...pile("sharedEncounterDeck3"),
       C.sahir,
-      C.monument,
+      // The Shattered Monument's Upgraded side once its checkboxes are marked.
+      isDreamchaserGame(s)
+        ? dcScenarioFace(s.campaign, DC.monument)!
+        : C.monument,
     ]),
     inactiveDeck: [],
     inactiveDiscard: [],
@@ -174,8 +194,7 @@ export const cityIndestructible = (s: GameState, u: Unit) =>
 /** Called only for an actual destruction, before its resource tokens leave play. */
 export function cityDestroyed(s: GameState, u: Unit, destruction = true) {
   if (!s.city || !destruction) return;
-  if (u.code === C.stormcaller && s.stage === 1)
-    s.city.stormcallerDestroyed = true;
+  if (isStormcaller(u) && s.stage === 1) s.city.stormcallerDestroyed = true;
   if (!stageLive(s, 4) || (!isHero(u) && !isEnemy(u))) return;
   const sahir = enemies(s).find((e) => e.code === C.sahir && e.id !== u.id);
   if (sahir && u.resources > 0) {
@@ -219,7 +238,7 @@ export function cityResourcesSpent(
 export function cityResourcesBegin(s: GameState): Effect[] {
   if (!s.city) return [];
   return [...s.staging, ...allActiveLocations(s)]
-    .filter((u) => u.code === C.monument && !u.blanked)
+    .filter((u) => isMonument(u) && !u.blanked)
     .map((u) =>
       fx("cityMonumentResources", { source: u.id, player: firstPlayer(s) }),
     );
@@ -278,7 +297,7 @@ export function cityPrepareAttack(s: GameState, u: Unit) {
 export function cityRoundEnd(s: GameState): Effect[] {
   if (!s.city || s.stage !== 1) return [];
   return allEngaged(s)
-    .filter((u) => u.code === C.stormcaller && !u.blanked)
+    .filter((u) => isStormcaller(u) && !u.blanked)
     .map((u) =>
       fx("cityStormcallerEnd", { target: u.id, player: ownerOf(s, u) }),
     );
@@ -357,9 +376,13 @@ function nextStage(s: GameState, stage: number) {
     "chapter",
   );
 }
-function takeAside(s: GameState, code: string) {
+function takeAside(
+  s: GameState,
+  code: string,
+  is: (u: Unit) => boolean = (u) => u.code === code,
+) {
   const q = s.city!;
-  const index = q.setAside.findIndex((u) => u.code === code);
+  const index = q.setAside.findIndex(is);
   return index < 0 ? undefined : q.setAside.splice(index, 1)[0];
 }
 export function cityEffect(s: GameState, e: Effect) {
@@ -371,7 +394,9 @@ export function cityEffect(s: GameState, e: Effect) {
   switch (e.kind) {
     case "citySetup":
       for (const code of [
-        C.stormcaller,
+        // The Dream-chaser campaign flips the Stormcaller to its "Campaign
+        // Mode only" side.
+        isDreamchaserGame(s) ? backFace(CITY_STORMCALLER) : C.stormcaller,
         ...Array<string>(playerOrder(s).length >= 3 ? 2 : 1).fill(C.belfalas),
       ]) {
         const unit = make(s, code);
@@ -381,12 +406,17 @@ export function cityEffect(s: GameState, e: Effect) {
       }
       shuffle(s, s.encounterDeck);
       q.initialized = true;
+      // The Dream-chaser campaign card's Setup.
+      if (isDreamchaserGame(s)) prepend(s, ...dreamchaserCityReady(s));
       break;
     case "cityAdvance":
       if (s.stage === 1) {
         nextStage(s, 2);
         prepend(
           s,
+          // The Dream-chaser campaign card's flipped side: "When stage 2B is
+          // revealed, search … for each boon and non-Ship burden."
+          ...(isDreamchaserGame(s) ? [fx("dcCityStageTwo")] : []),
           ...playerOrder(s).map((player) =>
             fx("cityAssignDamage", {
               player,
@@ -401,7 +431,7 @@ export function cityEffect(s: GameState, e: Effect) {
         );
       } else if (s.stage === 3) {
         nextStage(s, 4);
-        const monument = takeAside(s, C.monument),
+        const monument = takeAside(s, C.monument, isMonument),
           sahir = takeAside(s, C.sahir);
         if (monument) s.staging.push(monument);
         if (sahir) {
@@ -486,7 +516,7 @@ export function cityEffect(s: GameState, e: Effect) {
       nextStage(s, 3);
       // These physical cards are searched from the newly active City deck.
       for (const code of [C.monument, C.sahir]) {
-        const index = s.encounterDeck.indexOf(code);
+        const index = s.encounterDeck.findIndex((c) => dcBase(c) === code);
         if (index >= 0)
           q.setAside.push(make(s, s.encounterDeck.splice(index, 1)[0]));
       }
@@ -543,7 +573,7 @@ export function cityEffect(s: GameState, e: Effect) {
       const source = [...s.staging, ...allActiveLocations(s)].find(
         (u) => u.id === e.source,
       );
-      if (source?.code === C.monument && !source.blanked)
+      if (source && isMonument(source) && !source.blanked)
         for (const enemy of enemies(s).filter((u) => trait(u, "Raider")))
           enemy.resources++;
       break;
@@ -551,7 +581,7 @@ export function cityEffect(s: GameState, e: Effect) {
     case "cityStormcallerEnd":
       if (
         u &&
-        u.code === C.stormcaller &&
+        isStormcaller(u) &&
         allEngaged(s).some((x) => x.id === u.id) &&
         !u.blanked
       )

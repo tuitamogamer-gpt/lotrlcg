@@ -1401,3 +1401,14 @@ Validation on Node 22: the engine suite passes all 6,834 tests, including 45 for
 Coverage is now 861 player definitions (112 heroes), 2,229 encounters and 123 scenarios. This resolves 3,454 of 4,183 identities and 270 of 355 recipes; 729 identities remain pending.
 
 Validation on Node 22: the engine suite passes all 6,840 tests, including 51 for the Dream-chaser campaign and the focused Cobas tests; the Dream-chaser browser suite passes 69 checkpoints at 1280, 390 and 320 pixels, through Gavin's Planning Action and A Storm on Cobas Haven's "Gavin returned" resolution, and checks the 91 pinned faces; the production build passes.
+
+2026-11-19 The Dream-chaser campaign, The City of Corsairs: continued the user's “Nastavi dok ne završis sve” after e372b59. The campaign's ninth chapter is supported and the Dream-chaser campaign is complete. See docs/DREAMCHASER-CAMPAIGN.md.
+
+- The City of Corsairs' campaign card (both sides), The Black Sword (both sides), The Shattered Monument with its Upgraded side and the print-and-play campaign side of the City's Stormcaller are registered; every one of the expansion's 89 entries (98 faces) is now registered and pinned.
+- Setup: the fleet comes from the campaign's six ships, the Stormcaller enters on its campaign side with Black Key (burden), the ships take Modification boons, Thunderstruck and Crowley are shuffled in, Calaerion serves the Dream-chaser's player, one player may take a Círdan's Blessing not in the Campaign Pool, and Gavin returns if recorded. The City module and its save checks recognise the campaign faces and the campaign's cards in its decks.
+- The Stormcaller's campaign side takes at most 10 damage each round and limits the quest to 10 progress each round. When stage 2B is revealed, the boons and non-Ship burdens move into the second encounter deck. Captain Sahír enters play with Black Key (burden) and The Black Sword (3 resources, 2 Upgraded): +2 attack (not Upgraded), indestructible, and an attack against each other player after his first each round; a hero's Refresh Action (group limit once per round) takes its resources and removes it once empty. The Upgraded Shattered Monument loses its immunity clause.
+- The resolution wins the campaign and counts Corsair Warship, Shattered Monument, Crowley, the Stormcaller and Thunderstruck; the end-of-game screen and the Campaign Log say the Dream-chaser campaign is won.
+
+Coverage is now 861 player definitions (112 heroes), 2,235 encounters and 123 scenarios. This resolves 3,457 of 4,183 identities and 270 of 355 recipes; 726 identities remain pending.
+
+Validation on Node 22: the engine suite passes all 6,847 tests, including 58 for the Dream-chaser campaign and the focused City tests; the Dream-chaser browser suite passes 78 checkpoints at 1280, 390 and 320 pixels, through The Black Sword's Refresh Action and the campaign's win with no chapter after it, and checks the 98 pinned faces; the production build passes.

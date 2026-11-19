@@ -65,6 +65,7 @@ import { DROWNED } from "./drowned-support";
 import { COBAS, COBAS_OBJECTIVES } from "./cobas-support";
 import { cobasObjectiveControlled as cobasControlled } from "./cobas";
 import { dreamchaserPhaseRedirect, gavinPlacement } from "./dreamchaser-cobas";
+import { CITY } from "./city-support";
 import { TEMPLE, templeMapUnits } from "./temple-support";
 import {
   placeTempleSecrets,
@@ -88,6 +89,7 @@ export const DREAMCHASER_CAMPAIGN_SUPPORTED: readonly ScenarioId[] = [
   "temple-of-the-deceived",
   "the-drowned-ruins",
   "a-storm-on-cobas-haven",
+  "the-city-of-corsairs",
 ];
 /** The chapters whose campaign card shuffles Thunderstruck into the encounter deck and Crowley into the Corsair deck. */
 const CORSAIR_CHAPTERS: readonly ScenarioId[] = [
@@ -219,6 +221,14 @@ export interface DreamchaserGame {
   extraPhases?: string[];
   /** Send for Help (Spirit): the additional phase in progress and the phase start it delays. */
   extraPhase?: { phase: string; resume: Effect };
+  /** The City of Corsairs: the Captain Sahír enemies Black Key (burden) and The Black Sword were attached to. */
+  armed?: string[];
+  /** The Black Sword: the round Captain Sahír attacked each other player. */
+  swordRound?: number;
+  /** The Black Sword: the round its Refresh Action was used (group limit). */
+  swordRefresh?: number;
+  /** The Stormcaller's campaign side (The City of Corsairs): the progress placed this round. */
+  questProgress?: { round: number; placed: number };
 }
 export const dreamchaserState = (s: GameState) => (s.dreamchaser ??= {});
 const several = (s: GameState) => (s.table?.seats.length ?? 1) > 1;
@@ -363,7 +373,8 @@ function corsairDeck(s: GameState): string[] | undefined {
     voyageBelegaer?: { corsairDeck: string[] };
     stormcaller?: { corsairDeck: string[] };
   };
-  return (fleet.voyageBelegaer ?? fleet.stormcaller ?? s.cobas)?.corsairDeck;
+  return (fleet.voyageBelegaer ?? fleet.stormcaller ?? s.cobas ?? s.city)
+    ?.corsairDeck;
 }
 
 /**
@@ -591,6 +602,46 @@ export function dreamchaserCobasReady(s: GameState): Effect[] {
     gavinPlacement(s),
     ...(CIRDAN.some((code) => !c!.boons.includes(code))
       ? [fx("dcCirdanOffer", { player: firstPlayer(s) })]
+      : []),
+  ];
+}
+/**
+ * The City of Corsairs' campaign card, once the fleet is prepared and the
+ * scenario's setup is done: "Flip the Stormcaller to its 'Campaign Mode
+ * only' side, then attach Black Key (burden) to it. Each player chooses a
+ * Modification boon for each of their ship-objectives … Put Calaerion into
+ * play under the control of the player with the Dream-chaser. One player
+ * may choose a copy of Círdan's Blessing not in the Campaign Pool and add it
+ * to their hand. If 'Gavin returned,' put him into play under any player's
+ * control. Flip this card over." (The scenario's setup made the Stormcaller
+ * on its campaign side.)
+ */
+export function dreamchaserCityReady(s: GameState): Effect[] {
+  const c = s.campaign;
+  if (!isDreamchaserCampaign(c)) return [];
+  const stormcaller = s.staging.find((u) => dcIs(u, CITY.stormcaller));
+  if (stormcaller) {
+    const key = dcFace(c, DC.keyBurden);
+    stormcaller.attachments.push({
+      id: `a${s.nextId++}`,
+      code: key,
+      exhausted: false,
+    });
+    log(s, `${card(key).name} is attached to the Stormcaller.`, "danger");
+  }
+  dreamchaserCalaerion(s);
+  log(
+    s,
+    "The City of Corsairs: the campaign card is flipped over (Captain Sahír will bring Black Key and The Black Sword).",
+    "chapter",
+  );
+  return [
+    ...dreamchaserFleetReady(s),
+    ...(CIRDAN.some((code) => !c!.boons.includes(code))
+      ? [fx("dcCirdanOffer", { player: firstPlayer(s) })]
+      : []),
+    ...(gavinReturned(c)
+      ? [fx("dcCityGavin", { player: firstPlayer(s) })]
       : []),
   ];
 }
@@ -829,6 +880,32 @@ export function dreamchaserXpLines(s: GameState): XpLine[] {
       },
     );
   }
+  if (s.scenarioId === "the-city-of-corsairs") {
+    const named = (n: string) =>
+      (s.victoryCards ?? []).some((code) => card(code).name === n);
+    lines.push(
+      {
+        label: "1 XP if Corsair Warship is in the victory display",
+        xp: named("Corsair Warship") ? 1 : 0,
+      },
+      {
+        label: "1 XP if Shattered Monument is in the victory display",
+        xp: inVictory(s, CITY.monument) ? 1 : 0,
+      },
+      {
+        label: "1 XP if Crowley is in the victory display",
+        xp: inVictory(s, DC.crowley) ? 1 : 0,
+      },
+      {
+        label: "1 XP if Stormcaller is in the victory display",
+        xp: inVictory(s, CITY.stormcaller) ? 1 : 0,
+      },
+      {
+        label: "2 XP if Thunderstruck is in the victory display",
+        xp: inVictory(s, DC.thunderstruck) ? 2 : 0,
+      },
+    );
+  }
   if (s.scenarioId === "a-storm-on-cobas-haven") {
     const allies = seatIndices(s).flatMap((p) => seatView(s, p).allies);
     const objectives = s.staging.filter(
@@ -988,6 +1065,15 @@ export function resolveDreamchaserCampaign(s: GameState) {
         "danger",
       );
     }
+  }
+  if (s.scenarioId === "the-city-of-corsairs") {
+    // "Resolution: The players win the campaign!"
+    c.outcome = "won";
+    log(
+      s,
+      "The City of Corsairs · Resolution: the players win the Dream-chaser campaign!",
+      "good",
+    );
   }
   if (s.scenarioId === "a-storm-on-cobas-haven") {
     // "Add the Círdan's Blessing chosen during setup to the Campaign Pool."
@@ -1429,7 +1515,7 @@ export function dreamchaserCampaignEffect(s: GameState, e: Effect): boolean {
       }
       choose(
         s,
-        "The Drowned Ruins · Which player may choose a copy of Círdan's Blessing for their hand?",
+        `${card(DREAMCHASER_CAMPAIGN_CARDS[s.scenarioId]!).name} · Which player may choose a copy of Círdan's Blessing for their hand?`,
         [
           ...players.map((p) => ({
             id: `seat-${p}`,
@@ -1448,7 +1534,7 @@ export function dreamchaserCampaignEffect(s: GameState, e: Effect): boolean {
       forOwner(s, p, () =>
         choose(
           s,
-          `The Drowned Ruins · ${several(s) ? `${seatName(s, p)} chooses` : "Choose"} a copy of Círdan's Blessing for ${several(s) ? "their" : "your"} hand?`,
+          `${card(DREAMCHASER_CAMPAIGN_CARDS[s.scenarioId]!).name} · ${several(s) ? `${seatName(s, p)} chooses` : "Choose"} a copy of Círdan's Blessing for ${several(s) ? "their" : "your"} hand?`,
           [
             // A Storm on Cobas Haven: "a copy … not in the Campaign Pool".
             ...CIRDAN.filter((code) => !s.campaign!.boons.includes(code)).map(
@@ -1590,6 +1676,10 @@ export function dreamchaserCampaignStatus(s: GameState): string[] {
   if (s.scenarioId === "the-thing-in-the-depths")
     out.push(
       'The Thing in the Depths is on its "Campaign Mode only" side (each destroyed Creature deals it 2 damage). Captain Sahír carries Black Key (burden) as an enemy; when he flips, it becomes the boon, Sea Serpent (Menacing) enters the staging area and a player adds Come Together to their hand.',
+    );
+  if (s.scenarioId === "the-city-of-corsairs")
+    out.push(
+      'The Stormcaller is on its "Campaign Mode only" side with Black Key (burden): it takes at most 10 damage and the quest at most 10 progress each round. When stage 2B is revealed, the boons and non-Ship burdens move into the second encounter deck; Captain Sahír enters play with Black Key (burden) and The Black Sword, whose resources a hero may take in the refresh phase (once per round). Winning this chapter wins the campaign.',
     );
   if (s.scenarioId === "a-storm-on-cobas-haven") {
     const aside = s.dreamchaser?.sendForHelp?.length ?? 0;
@@ -1826,6 +1916,13 @@ export function validateDreamchaserCampaign(s: GameState): boolean {
             typeof q.extraPhase.phase === "string" &&
             !!q.extraPhase.resume &&
             typeof q.extraPhase.resume.kind === "string")) &&
+        (q.armed === undefined || codes(q.armed)) &&
+        (q.swordRound === undefined || integer(q.swordRound)) &&
+        (q.swordRefresh === undefined || integer(q.swordRefresh)) &&
+        (q.questProgress === undefined ||
+          (!!q.questProgress &&
+            integer(q.questProgress.round) &&
+            integer(q.questProgress.placed))) &&
         (q.secretLooks === undefined ||
           (!!q.secretLooks &&
             typeof q.secretLooks === "object" &&
