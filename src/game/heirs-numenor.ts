@@ -134,6 +134,10 @@ function attachScroll(s: GameState, host?: Unit) {
     log(s, "Alcaron's Scroll returns to the staging area.");
   }
 }
+/** Move the one physical Scroll for a Nightmare Deck's effects (src/game/nightmare-pelargir.ts). */
+export function heirsMoveScroll(s: GameState, host?: Unit) {
+  attachScroll(s, host);
+}
 export function heirsAttachmentLeaves(
   s: GameState,
   _host: Unit,

@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2447,
+    "encounterCards": 2456,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3669,
-    "pending": 514
+    "scripted": 3678,
+    "pending": 505
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 288
+    "scripted": 289
   },
   "registeredCodes": [
     "01001",
@@ -1596,6 +1596,7 @@
     "octgn:2937b3c4-2e60-49a7-87cc-d6b708b6462d",
     "octgn:29562ee1-56d9-4a46-ba4b-1af24f85deb6",
     "octgn:29662c71-2f27-405c-ae5a-db519ed91f33",
+    "octgn:298c3181-5f6f-487c-adbd-741bb202b8e0",
     "octgn:29a12054-527c-41a3-9dd8-25565288fb4d",
     "octgn:29f8a182-2e69-47d7-a742-296836371f41",
     "octgn:29fd0721-10ed-4315-b415-5fadeb010051",
@@ -1721,6 +1722,7 @@
     "octgn:36e1a766-7b31-4bb4-be01-4995a9f9c2f3",
     "octgn:37153373-7a82-484e-9aca-7ed47a6a7703",
     "octgn:3733b627-08bd-4d12-a2ec-dadfcbfc6695",
+    "octgn:377d8e17-1c0d-4871-86a5-a69b9dee40d2",
     "octgn:379415fb-39c8-4cb8-aa19-ac54c46bcb4a",
     "octgn:37f0bdca-11d8-40ba-97cd-bbe2b8190cd5",
     "octgn:37f205e5-5144-4987-8764-46909460797b",
@@ -1901,6 +1903,7 @@
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9088",
     "octgn:48384e79-d397-4dcd-9862-8a72acb448d0",
     "octgn:4858bd5a-6d80-4351-849b-532fc2bc4ffe",
+    "octgn:486a95af-e3af-4513-ae9a-d705d8557db6",
     "octgn:486f9475-98e1-42d9-ac90-e6190545a5b9",
     "octgn:48893e0f-bc7c-46f4-a5f7-18bd0d758d49",
     "octgn:4893d105-fada-4bee-a4bb-d26463b97b63",
@@ -2322,6 +2325,7 @@
     "octgn:54a26608-eebd-4bd6-855a-ceccb4507bab",
     "octgn:54c734a4-b6a9-4c51-a69d-aaa0b7fc2147",
     "octgn:54c8ecae-73b1-4c42-84ed-0411551c363a",
+    "octgn:54e3ccfe-4e9b-4593-a3ef-e045b1a0c4a9",
     "octgn:54ed3453-1df4-458d-bc7d-e1f7c10de237",
     "octgn:550e9f11-14bb-4fac-806a-3f43035b30c9",
     "octgn:552b11aa-b91e-44aa-8e54-1bad1aa74bbd",
@@ -2439,6 +2443,7 @@
     "octgn:63f46289-b5ef-44d1-b6cb-ce382031a768",
     "octgn:63f46289-b5ef-44d1-b6cb-ce382031a768:B",
     "octgn:6458d002-326f-45a6-af65-38025d301f07",
+    "octgn:647578d4-8c8d-44d7-8ef5-9c5d962369f0",
     "octgn:64813258-1533-420c-9fce-4d4c1f13c99d",
     "octgn:64a91e39-51e9-42d4-9445-d8bbaca95314",
     "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
@@ -2517,6 +2522,7 @@
     "octgn:6e449166-50ab-4ec5-875f-3cc8adcbb64e",
     "octgn:6e4985a3-5501-41ef-bd15-ec58eadba12c",
     "octgn:6e85113d-a2a6-44a7-895c-ca5115f7b7d2",
+    "octgn:6f300089-29ce-42e7-9bd4-2dda667cdd4a",
     "octgn:6f7cdfa5-f61f-44b1-8b6c-2b3f477f7557",
     "octgn:6f9211cc-a523-4a0f-9d44-c757e2f9947b",
     "octgn:6f999889-bd70-42c9-ad2a-b159a5e2f73c",
@@ -2839,6 +2845,7 @@
     "octgn:91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8",
     "octgn:92058ab4-7e65-4c78-9124-7338bca432fd",
     "octgn:9221e69b-0649-4585-9ee2-2dd2890531ea",
+    "octgn:92576b76-6b3a-4bee-84dc-82f927e1caa1",
     "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
     "octgn:929a0f96-a029-4327-b8e5-03cb78293bdf",
     "octgn:92d8276b-0839-44b4-b7ce-e18e135fe407",
@@ -3493,6 +3500,7 @@
     "octgn:dbf55659-b4ea-4a8a-82d1-20c0f2e4405e",
     "octgn:dc074506-e478-4b63-88e4-9d6e4f8eb6d4",
     "octgn:dc074506-e478-4b63-88e4-9d6e4f8eb6d4:B",
+    "octgn:dc5c51d1-7528-46b4-b438-aae0cb744e29",
     "octgn:dc8f31b6-73af-4aec-be26-8d297909d14d",
     "octgn:dce8ff38-bcc7-49b4-ba27-ae3e2cac1d32",
     "octgn:dd394c76-c2b9-4b1c-8948-a056de97b779",
@@ -3798,6 +3806,7 @@
     "octgn:fba9d635-eeba-4cc1-b9fb-d6666a3a1cdf",
     "octgn:fbc99604-7183-41fe-b37c-d5a8f54bea0e",
     "octgn:fbfee53c-fec3-4b55-a8b4-c7329f8f973e",
+    "octgn:fbff9077-b7c2-4670-92ea-8ebaed5fc477",
     "octgn:fc145eae-9671-4697-8d28-473f3b138295",
     "octgn:fc2ed0de-aba1-49ad-94b3-94024116eeeb",
     "octgn:fc351b81-fc50-40a5-9f94-7ab885cb7a8c",
@@ -4102,7 +4111,7 @@
     {
       "product": "heirs-of-numenor-nightmare",
       "total": 26,
-      "scripted": 0,
+      "scripted": 9,
       "player": 0,
       "playerScripted": 0
     },
@@ -16992,7 +17001,7 @@
       "name": "Cunning Informant",
       "type": "enemy",
       "pack": "Heirs of Numenor - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor-nightmare"
     },
     {
@@ -18296,7 +18305,7 @@
       "name": "The Thieves' Ploy",
       "type": "treachery",
       "pack": "Heirs of Numenor - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor-nightmare"
     },
     {
@@ -19968,7 +19977,7 @@
       "name": "Peril in Pelargir",
       "type": "nightmare",
       "pack": "Heirs of Numenor - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor-nightmare"
     },
     {
@@ -23544,7 +23553,7 @@
       "name": "Dockside Street",
       "type": "location",
       "pack": "Heirs of Numenor - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor-nightmare"
     },
     {
@@ -24680,7 +24689,7 @@
       "name": "They're Getting Away!",
       "type": "treachery",
       "pack": "Heirs of Numenor - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor-nightmare"
     },
     {
@@ -25488,7 +25497,7 @@
       "name": "Pelargir Ringleader",
       "type": "enemy",
       "pack": "Heirs of Numenor - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor-nightmare"
     },
     {
@@ -28600,7 +28609,7 @@
       "name": "Harbor Brute",
       "type": "enemy",
       "pack": "Heirs of Numenor - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor-nightmare"
     },
     {
@@ -34928,7 +34937,7 @@
       "name": "Bedlam In The Streets",
       "type": "treachery",
       "pack": "Heirs of Numenor - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor-nightmare"
     },
     {
@@ -37768,7 +37777,7 @@
       "name": "Pelargir Alley",
       "type": "location",
       "pack": "Heirs of Numenor - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor-nightmare"
     },
     {
@@ -39328,8 +39337,8 @@
       "id": "N03.1",
       "name": "Peril in Pelargir (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "peril-in-pelargir",
+      "state": "scripted"
     },
     {
       "id": "N03.2",

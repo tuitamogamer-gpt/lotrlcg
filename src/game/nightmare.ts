@@ -7,6 +7,7 @@
 import type { GameState, ScenarioId } from "./types";
 import { card, encounterCards } from "./cards";
 import { FOUNDATIONS_NIGHTMARE_REMOVALS } from "./foundations-stone-support";
+import { HEIRS_NUMENOR } from "./heirs-numenor-support";
 
 const P = "octgn:e84f94bf-201b-4adf-95d2-0012e0bb50";
 /** The Core Set Nightmare Deck's cards (OCTGN ids, as DragnCards keeps them). */
@@ -202,6 +203,19 @@ export const NIGHTMARE_DD = {
   captain: "octgn:bb81a9e4-3458-4893-bb85-788ef3f02184",
   fiery: "octgn:ed12d29f-d8f8-4689-8097-417b4d31f214",
   stairs: "octgn:ce3322ab-b890-40e0-852a-a4638796a122",
+} as const;
+/** The Heirs of Númenor Nightmare Deck's cards (OCTGN ids, as DragnCards keeps them). */
+export const NIGHTMARE_HON = {
+  /** Peril in Pelargir's setup card and Nightmare Deck. */
+  pelargirCard: "octgn:486a95af-e3af-4513-ae9a-d705d8557db6",
+  informant: "octgn:298c3181-5f6f-487c-adbd-741bb202b8e0",
+  brute: "octgn:92576b76-6b3a-4bee-84dc-82f927e1caa1",
+  ringleader: "octgn:6f300089-29ce-42e7-9bd4-2dda667cdd4a",
+  dockside: "octgn:54e3ccfe-4e9b-4593-a3ef-e045b1a0c4a9",
+  alley: "octgn:fbff9077-b7c2-4670-92ea-8ebaed5fc477",
+  bedlam: "octgn:dc5c51d1-7528-46b4-b438-aae0cb744e29",
+  ploy: "octgn:377d8e17-1c0d-4871-86a5-a69b9dee40d2",
+  away: "octgn:647578d4-8c8d-44d7-8ef5-9c5d962369f0",
 } as const;
 
 interface NightmareDeck {
@@ -474,6 +488,15 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
     // (foundationsRecipe); printed "Brancing Paths".
     removals: FOUNDATIONS_NIGHTMARE_REMOVALS,
   },
+  "peril-in-pelargir": {
+    card: NIGHTMARE_HON.pelargirCard,
+    removals: {
+      "Collateral Damage": 4,
+      "Harbor Storehouse": 2,
+      Pickpocket: 3,
+      "Harbor Thug": 1,
+    },
+  },
   "watcher-in-the-water": {
     card: NIGHTMARE_DD.watcherCard,
     removals: {
@@ -683,6 +706,21 @@ export function nightmareStatus(s: GameState): string[] {
     return [
       "Foundations of Stone · Nightmare mode: when stage 3B is revealed, all Mount and Artifact cards are discarded from play, and each player discards allies until the total printed cost of their allies is 6 or less. The Nightmare Deck's cards with the Foundations of Stone icon wait in the set-aside encounter set.",
     ];
+  if (s.scenarioId === "peril-in-pelargir") {
+    const engaged = s.table
+      ? s.table.seats.flatMap((seat, i) =>
+          i === s.table!.active ? s.engaged : seat.engaged,
+        )
+      : s.engaged;
+    const foe = [...s.staging, ...engaged].find(
+      (u) =>
+        card(u.code).type_code === "enemy" &&
+        u.attachments.some((a) => a.code === HEIRS_NUMENOR.scroll),
+    );
+    return [
+      `Peril in Pelargir · Nightmare mode: at the end of the combat phase, Alcaron's Scroll in the staging area attaches to the enemy in play with the highest [defense]; at the beginning of the refresh phase, the enemy it is attached to gets 1 progress token${foe ? ` (${foe.progress} on ${card(foe.code).name})` : ""}; an enemy with 3 or more progress tokens escapes with the scroll, and the players lose.`,
+    ];
+  }
   if (s.scenarioId === "watcher-in-the-water")
     return [
       "The Watcher in the Water · Nightmare mode: while Doors of Durin is in play, The Watcher cannot be engaged; a destroyed Tentacle enemy deals 1 damage to The Watcher; the players cannot win unless both Doors of Durin and The Watcher are in the victory display.",

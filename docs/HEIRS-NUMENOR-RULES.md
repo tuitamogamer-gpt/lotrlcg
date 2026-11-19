@@ -1,6 +1,6 @@
 # Heirs of Númenor original and easy quests
 
-The original/easy versions of Peril in Pelargir, Into Ithilien and The Siege of Cair Andros use twelve printed quest definitions and 46 encounter designs. `heirs-numenor-encounter-cards.json` owns 41 definitions; the five Streets of Gondor definitions are shared with The Steward's Fear. Nightmare versions remain catalog-only.
+The original/easy versions of Peril in Pelargir, Into Ithilien and The Siege of Cair Andros use twelve printed quest definitions and 46 encounter designs. `heirs-numenor-encounter-cards.json` owns 41 definitions; the five Streets of Gondor definitions are shared with The Steward's Fear. Peril in Pelargir's Nightmare Deck is supported (docs/NIGHTMARE.md), its effects moving the module's one physical Scroll; the other two Nightmare versions remain catalog-only.
 
 ## Printed sources and errata
 

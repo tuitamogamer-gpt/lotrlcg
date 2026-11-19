@@ -91,6 +91,7 @@ import {
 } from "../game/dead-marshes";
 import { KHAZAD } from "../game/khazad-dum";
 import { NIGHTMARE_DD, NIGHTMARE_KD, nightmareLive } from "../game/nightmare";
+import { nightmarePelargirGoal } from "../game/nightmare-pelargir";
 import { returnMirkwoodGuard } from "../game/return-mirkwood";
 
 const requiredQuestSelections = (s: GameState) =>
@@ -1722,7 +1723,16 @@ export function QuestGoals({ s }: { s: GameState }) {
                                                     ),
                                           },
                                         ]
-                                      : [];
+                                      : s.scenarioId === "peril-in-pelargir" &&
+                                          nightmarePelargirGoal(s)
+                                        ? [
+                                            // Nightmare mode: the Scroll's escape.
+                                            {
+                                              label: nightmarePelargirGoal(s)!,
+                                              done: false,
+                                            },
+                                          ]
+                                        : [];
   return goals.length ? (
     <div className="quest-goals">
       {goals.map((g) => (

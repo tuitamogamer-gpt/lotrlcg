@@ -9,6 +9,7 @@ import { make } from "../src/game/core.ts";
 import {
   NIGHTMARE_CORE as N,
   NIGHTMARE_DD as DW,
+  NIGHTMARE_HON as HON,
   NIGHTMARE_KD as K,
   NIGHTMARE_SOM as G,
 } from "../src/game/nightmare.ts";
@@ -1296,6 +1297,78 @@ try {
       )
       .waitFor();
     await checkpoint("shadowflame-balrog-deck", width);
+    // Peril in Pelargir in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-peril-in-pelargir").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "peril-in-pelargir");
+    assert.equal(s.nightmareMode, true);
+    const SCROLL = "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9001";
+    assert.ok(
+      s.heroes.some((h) => h.attachments.some((a) => a.code === SCROLL)),
+      "Alcaron's Scroll on a hero",
+    );
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/escapes with the scroll, and the players lose/)
+      .waitFor();
+    await checkpoint("pelargir-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // Alcaron's Scroll on a Harbor Brute with 2 progress tokens, a Cunning
+    // Informant beside it.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const bearer = t.heroes.find((h) =>
+        h.attachments.some((a) => a.code === SCROLL),
+      );
+      const scroll = bearer.attachments.find((a) => a.code === SCROLL);
+      bearer.attachments = bearer.attachments.filter((a) => a !== scroll);
+      delete scroll.owner;
+      const brute = make(t, HON.brute);
+      brute.attachments.push(scroll);
+      brute.progress = 2;
+      t.staging = [...t.staging, brute, make(t, HON.informant)];
+      s = await load(page, t);
+    }
+    const bruteFace = page
+      .locator(`img[src*="${HON.brute.slice("octgn:".length)}"]`)
+      .first();
+    await bruteFace.waitFor();
+    assert.ok(
+      (await bruteFace.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "Harbor Brute's face loads",
+    );
+    await page
+      .locator(".journey-area .quest-goals")
+      .getByText(
+        "Alcaron’s Scroll · Harbor Brute has 2 of 3 progress tokens (at 3 it escapes and the players lose)",
+        { exact: true },
+      )
+      .waitFor();
+    await checkpoint("pelargir-escaping-scroll", width);
     await view.c.close();
   }
   const p = await browser.newPage();
