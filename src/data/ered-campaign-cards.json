@@ -960,5 +960,30 @@
     "illustrator": "Sebastian Giacobino",
     "imagesrc": "/cards/12194.jpg",
     "printed_stats": {}
+  },
+  {
+    "code": "octgn:c31219da-1e72-4a0a-9ab0-117433a2c478",
+    "name": "The Fate of Wilderland",
+    "is_unique": false,
+    "quantity": 1,
+    "official": true,
+    "nightmare": false,
+    "source": "dragncards",
+    "pack_code": "EMCE",
+    "pack_name": "Ered Mithrin Campaign Expansion",
+    "octgnid": "c31219da-1e72-4a0a-9ab0-117433a2c478",
+    "type_code": "campaign",
+    "sphere_code": "encounter",
+    "traits": "",
+    "subtitle": "Ered Mithrin Part 9",
+    "position": 194,
+    "encounter_set": "Ered Mithrin Campaign",
+    "text": "You are playing campaign mode.\nSetup: Each player may search their deck for a boon or treasure card and add it to their hand. If “Turayn has taken an oath of vigilance,” search the encounter deck for 3 non-unique enemies and remove them from the game. If “Beldis's care has bolstered the heroes' spirits,” search the encounter deck for 3 treacheries and remove them from the game.\nIgnore the deep and discover keywords.",
+    "back_name": "The Fate of Wilderland",
+    "back_type_code": "campaign",
+    "back_text": "Resolution: The players win the campaign!",
+    "imagesrc": "/cards/c31219da-1e72-4a0a-9ab0-117433a2c478.jpg",
+    "back_imagesrc": "/cards/c31219da-1e72-4a0a-9ab0-117433a2c478.B.jpg",
+    "printed_stats": {}
   }
 ]

@@ -56,6 +56,7 @@ export const ERED = {
   fireCard: "octgn:497b0bd9-1b46-49d4-9722-930914d8a4d7",
   ghostCard: "octgn:280e4dce-aef9-4472-94a6-94b114be5a4e",
   gundabadCard: "octgn:6d8f614d-ccd1-4416-aeee-6d30824cbbda",
+  fateCard: "octgn:c31219da-1e72-4a0a-9ab0-117433a2c478",
   /** Turayn (unique boon ally, Journey Up the Anduin). */
   turayn: "12166",
   /** Melanwar (unique boon ally, Lost in Mirkwood). */
@@ -140,6 +141,7 @@ export const ERED_CAMPAIGN_SUPPORTED: readonly ScenarioId[] = [
   "fire-in-the-night",
   "the-ghost-of-framsburg",
   "mount-gundabad",
+  "the-fate-of-wilderland",
 ];
 /** The chapters whose campaign card lets each player change heroes without the +1 threat penalty. */
 export const ERED_FREE_CHANGES: readonly ScenarioId[] = [
@@ -156,6 +158,7 @@ export const ERED_CAMPAIGN_CARDS: Partial<Record<ScenarioId, string>> = {
   "fire-in-the-night": ERED.fireCard,
   "the-ghost-of-framsburg": ERED.ghostCard,
   "mount-gundabad": ERED.gundabadCard,
+  "the-fate-of-wilderland": ERED.fateCard,
 };
 /** The Withered Heath's Accolades, by the main quest stage that earns them. */
 export const ERED_ACCOLADES: readonly string[] = [
@@ -490,6 +493,31 @@ export function eredCampaignSetup(s: GameState) {
       fx("emcRemoveCave", { value: 1, player: firstPlayer(s) }),
     );
   if (gundabad && c!.notes?.includes("beldis"))
+    enqueue(
+      s,
+      fx("emcRemove", { text: "treachery", value: 3, player: firstPlayer(s) }),
+    );
+  // The Fate of Wilderland: "Each player may search their deck for a boon or
+  // treasure card and add it to their hand. If 'Turayn has taken an oath of
+  // vigilance,' search the encounter deck for 3 non-unique enemies and remove
+  // them from the game. If 'Beldis's care has bolstered the heroes' spirits,'
+  // search the encounter deck for 3 treacheries and remove them from the
+  // game. Ignore the deep and discover keywords." (The scenario has no Caves
+  // deck, and only The Ghost of Framsburg resolves the discover keyword.)
+  const fate = s.scenarioId === "the-fate-of-wilderland";
+  if (fate)
+    enqueue(
+      s,
+      ...playerOrder(s).map((player) =>
+        fx("emcBoonTreasureSearch", { player }),
+      ),
+    );
+  if (fate && c!.notes?.includes("turayn"))
+    enqueue(
+      s,
+      fx("emcRemove", { text: "enemy", value: 3, player: firstPlayer(s) }),
+    );
+  if (fate && c!.notes?.includes("beldis"))
     enqueue(
       s,
       fx("emcRemove", { text: "treachery", value: 3, player: firstPlayer(s) }),
@@ -919,10 +947,12 @@ export function resolveEredCampaign(s: GameState) {
     c.boons = c.boons.filter((x) => !lost.includes(x));
   }
   const q = s.eredCampaign;
-  // "The players discover each treasure they control."
-  const found = treasuresInPlay(s).filter(
-    (code) => !c.treasures?.includes(code),
-  );
+  // "The players discover each treasure they control." (The Fate of
+  // Wilderland's resolution only ends the campaign.)
+  const found =
+    s.scenarioId === "the-fate-of-wilderland"
+      ? []
+      : treasuresInPlay(s).filter((code) => !c.treasures?.includes(code));
   if (found.length) {
     c.treasures = [...(c.treasures ?? []), ...found];
     log(
@@ -1057,6 +1087,15 @@ export function resolveEredCampaign(s: GameState) {
       );
     }
     dragonSickness(s, c, "Mount Gundabad");
+  }
+  if (s.scenarioId === "the-fate-of-wilderland") {
+    // "Resolution: The players win the campaign!"
+    c.outcome = "won";
+    log(
+      s,
+      "The Fate of Wilderland · Resolution: the players win the Ered Mithrin campaign!",
+      "good",
+    );
   }
   if (s.scenarioId === "fire-in-the-night" && s.progress >= 5) {
     // "If there is at least 5 progress on Hrogar's Hill, the players look at
@@ -1605,6 +1644,10 @@ export function eredCampaignStatus(s: GameState): string[] {
       `Mount Gundabad: the discover keyword is ignored, and unique locations cannot be discarded from play by encounter card effects. ${recorded} ${recorded === 1 ? "treasure is" : "treasures are"} recorded in the Campaign Log${c!.burdens.includes(ERED.sickness) ? "" : `; with ${DRAGON_SICKNESS_TREASURES} or more when this chapter is won, Dragon-sickness joins the Campaign Pool`}.`,
     );
   }
+  if (s.scenarioId === "the-fate-of-wilderland")
+    out.push(
+      "The Fate of Wilderland: the deep and discover keywords are ignored. Winning this chapter wins the Ered Mithrin campaign.",
+    );
   if (s.scenarioId === "fire-in-the-night")
     out.push(
       `Fire in the Night: ${s.progress} progress on Hrogar's Hill${s.progress >= 5 ? " (the resolution offers a treasure)" : "; with 5 or more the resolution offers a treasure"}.`,
@@ -1909,6 +1952,30 @@ export function eredCampaignFrameworkEffect(s: GameState, e: Effect): boolean {
         );
       return true;
     }
+    case "emcBoonTreasureSearch": {
+      // The Fate of Wilderland: "Each player may search their deck for a boon
+      // or treasure card and add it to their hand."
+      const codes = [...new Set(seatView(s, p).deck)].filter(
+        (code) =>
+          card(code).sphere_code === "boon" || ERED_TREASURES.includes(code),
+      );
+      if (codes.length)
+        choose(
+          s,
+          `${scenarioName(s)} · You may search your deck for a boon or treasure card${seatLabel(s, p)}`,
+          [
+            ...codes.map((code) => ({
+              id: code,
+              code,
+              label: `Take ${card(code).name}`,
+              effects: [fx("emcBoonAllyTake", { code, player: p })],
+            })),
+            { id: "decline", label: "Do not search", effects: [] },
+          ],
+          card(ERED.fateCard).text,
+        );
+      return true;
+    }
     case "emcBoonAllyTake":
       forOwner(s, p, () => {
         const i = s.deck.indexOf(e.code!);
@@ -2112,6 +2179,9 @@ export function validateEredCampaign(
       Object.values(c.permanent).flat().length &&
     c.prisoner === null &&
     typeof c.mendorSaved === "boolean" &&
+    (c.outcome === undefined ||
+      (c.outcome === "won" &&
+        c.completed.at(-1)?.scenarioId === "the-fate-of-wilderland")) &&
     (c.resolution === undefined ||
       c.resolution === null ||
       (c.resolution === s.scenarioId &&

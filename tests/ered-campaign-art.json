@@ -374,5 +374,21 @@
     "localPath": "/cards/12194.jpg",
     "bytes": 244921,
     "sha256": "5493445de27ca21da88ecca5f3dd3850313e129625831688a1944be5b4f6027f"
+  },
+  {
+    "code": "octgn:c31219da-1e72-4a0a-9ab0-117433a2c478",
+    "face": "front",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c31219da-1e72-4a0a-9ab0-117433a2c478.jpg",
+    "localPath": "/cards/c31219da-1e72-4a0a-9ab0-117433a2c478.jpg",
+    "bytes": 191985,
+    "sha256": "1de5816446ef8336dcab659fef5457f6948bcf400567a9f1995fc8ce096d35cf"
+  },
+  {
+    "code": "octgn:c31219da-1e72-4a0a-9ab0-117433a2c478",
+    "face": "back",
+    "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c31219da-1e72-4a0a-9ab0-117433a2c478.B.jpg",
+    "localPath": "/cards/c31219da-1e72-4a0a-9ab0-117433a2c478.B.jpg",
+    "bytes": 193223,
+    "sha256": "59339683fb534644f766ad4986ced016889478cf240007b733f0f2a6c540afc8"
   }
 ]

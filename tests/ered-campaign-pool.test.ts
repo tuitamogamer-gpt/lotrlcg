@@ -34,6 +34,7 @@ import { WITHERED_HEATH as H } from "../src/game/withered-heath-support";
 import { ROAM_RHOVANION as R } from "../src/game/roam-rhovanion-support";
 import { FIRE_NIGHT as F } from "../src/game/fire-night-support";
 import { GHOST_FRAMSBURG as G } from "../src/game/ghost-framsburg-support";
+import { GUNDABAD as GB } from "../src/game/mount-gundabad-support";
 import { syncAttachmentText } from "../src/game/attachment-text";
 import { seatView } from "../src/game/table";
 import type { GameState, ScenarioId, Unit } from "../src/game/types";
@@ -114,15 +115,15 @@ function shadow(s: GameState, enemy: Unit, code: string, defender?: Unit) {
   return batch4Scenario(s).shadow!(s, code);
 }
 
-test("Ered Mithrin Campaign Pool: the 78 cards of the first seven chapters are foreign wherever the later chapters' own modules do not script them", () => {
-  assert.equal(ERED_POOL_PORTABLE.length, 78);
-  assert.equal(new Set(ERED_POOL_PORTABLE).size, 78);
+test("Ered Mithrin Campaign Pool: the 87 cards of the first eight chapters are foreign wherever the later chapters' own modules do not script them", () => {
+  assert.equal(ERED_POOL_PORTABLE.length, 87);
+  assert.equal(new Set(ERED_POOL_PORTABLE).size, 87);
   const counts = LATER.map((id) => {
     const s = chapter(id);
     assert.ok(eredPoolLive(s));
     return ERED_POOL_PORTABLE.filter((c) => eredForeign(s, c)).length;
   });
-  assert.deepEqual(counts, [57, 61, 64, 63, 63, 71]);
+  assert.deepEqual(counts, [66, 70, 73, 71, 64, 80]);
   // Every card is foreign in at least one later chapter.
   const heath = chapter("the-withered-heath"),
     roam = chapter("roam-across-rhovanion");
@@ -151,6 +152,10 @@ test("Ered Mithrin Campaign Pool: the 78 cards of the first seven chapters are f
   const gundabad = chapter("mount-gundabad");
   assert.equal(eredForeign(ghost, G.stalker), false);
   assert.equal(eredForeign(gundabad, G.stalker), true);
+  // Mount Gundabad's own cards are foreign in The Fate of Wilderland.
+  const fate = chapter("the-fate-of-wilderland");
+  assert.equal(eredForeign(gundabad, GB.dweller), false);
+  assert.equal(eredForeign(fate, GB.dweller), true);
   // Outside the campaign the layer does nothing.
   const normal = createGame(5, d.cards, d.heroes, d.id, {
     scenarioId: "the-withered-heath",
@@ -1347,6 +1352,14 @@ test("Ered Mithrin Campaign Pool: The Ghost of Framsburg's enemies and locations
   assert.ok(z.encounterDiscard.includes(W.scales));
   assert.ok(z.log.some((l) => /no Loot objective/.test(l.text)));
   assert.ok(valid(z));
+  // Fram's Shade (a Hazard the resolution can add): no Loot objective to
+  // count, and only objectives can be attached to it.
+  const shade = make(z, G.shade);
+  z.staging.push(shade);
+  assert.equal(threatOf(z, shade), 3);
+  assert.deepEqual([stats(z, shade).attack, stats(z, shade).defense], [3, 3]);
+  assert.ok(batch4Scenario(z).cannotAttach!(z, shade, "01026"));
+  assert.ok(!batch4Scenario(z).cannotAttach!(z, shade, ERED.threat));
 });
 
 test("Ered Mithrin Campaign Pool: Terrible Shadows, Abandoned Ruins and Slammed Shut resolve in Mount Gundabad", () => {
@@ -1375,9 +1388,7 @@ test("Ered Mithrin Campaign Pool: Terrible Shadows, Abandoned Ruins and Slammed 
     (u.combat as never as { eredPoolTerrible: number }).eredPoolTerrible,
     3,
   );
-  (
-    u.combat as never as { eredPoolTerribleKill: boolean }
-  ).eredPoolTerribleKill = true;
+  (u.combat as never as { eredPoolKill: boolean }).eredPoolKill = true;
   const finished = batch4Scenario(u).attackFinished!(u, u.combat!, false);
   assert.ok(finished.some((e) => e.kind === "threat" && e.value === 3));
   // Abandoned Ruins: no Discover keyword to resolve, so it gains surge and
@@ -1406,4 +1417,120 @@ test("Ered Mithrin Campaign Pool: Terrible Shadows, Abandoned Ruins and Slammed 
   z.round++;
   assert.equal(batch4Scenario(z).cannotPlayerReady!(z), false);
   assert.ok(valid(z));
+});
+
+test("Ered Mithrin Campaign Pool: Mount Gundabad's cards keep their printed text in The Fate of Wilderland, without Dagnir or a Caves deck", () => {
+  const quests = (x: GameState, n: number) => {
+    x.victoryCards = [
+      ...(x.victoryCards ?? []),
+      ...[GB.door, GB.upper, GB.lower, GB.warriors, GB.wrath].slice(0, n),
+    ];
+  };
+  // Desecrated Ruins and Guardian of Gundabad: +2 [threat] or [defense] with
+  // 3 or more quest cards in the victory display.
+  const s = calm(chapter("the-fate-of-wilderland"), "staging");
+  const ruins = make(s, GB.ruins),
+    guardian = make(s, GB.guardian);
+  s.staging.push(ruins, guardian);
+  const [t0, d0] = [threatOf(s, ruins), stats(s, guardian).defense];
+  quests(s, 3);
+  assert.equal(threatOf(s, ruins), t0 + 2);
+  assert.equal(stats(s, guardian).defense, d0 + 2);
+  // Deep-dweller: its engagement makes an immediate attack; damaged and
+  // surviving, it returns to the staging area.
+  const t = calm(chapter("the-fate-of-wilderland"), "encounter");
+  const dweller = make(t, GB.dweller);
+  t.staging.push(dweller);
+  engage(t, dweller);
+  flush(t);
+  assert.ok(
+    !!t.combat ||
+      !!t.choice ||
+      t.queue.some((e) => e.kind === "immediateAttack"),
+  );
+  const u = calm(chapter("the-fate-of-wilderland"), "combat");
+  const spider = make(u, GB.dweller);
+  u.engaged.push(spider);
+  damage(u, spider.id, 1);
+  flush(u);
+  assert.ok(u.staging.some((e) => e.id === spider.id));
+  assert.ok(!u.engaged.some((e) => e.id === spider.id));
+  // Narrow Stair: the players must travel to it; its shadow keeps the
+  // defending character from being readied by player card effects.
+  const v = calm(chapter("the-fate-of-wilderland"), "travel");
+  v.activeLocation = null;
+  const stair = make(v, GB.stairs),
+    other = make(v, GB.mines);
+  v.staging.push(stair, other);
+  assert.equal(
+    batch4Scenario(v).travelProblem!(v, other),
+    "The players must travel to Narrow Stair.",
+  );
+  assert.equal(batch4Scenario(v).travelProblem!(v, stair), null);
+  assert.equal(batch4Scenario(v).mustTravel!(v), true);
+  const w = calm(chapter("the-fate-of-wilderland"), "defense");
+  const orc = make(w, W.troll);
+  w.engaged.push(orc);
+  shadow(w, orc, GB.stairs, w.heroes[0]);
+  assert.equal(
+    batch4Scenario(w).cannotPlayerReadyCharacter!(w, w.heroes[0]),
+    true,
+  );
+  assert.equal(
+    batch4Scenario(w).cannotPlayerReadyCharacter!(w, w.heroes[1]),
+    false,
+  );
+  assert.ok(valid(w));
+  // The other shadows: Desecrated Ruins +1 (a random discard after a kill),
+  // Guardian of Gundabad +2 [defense], Dagnir's Slave +1, Wilderland's Bane
+  // an additional attack, Suffocating Shadows +1 (+3 with 3 quest cards),
+  // Mines of Gundabad nothing without Dagnir.
+  const x = calm(chapter("the-fate-of-wilderland"), "defense");
+  const enemy = make(x, W.troll);
+  x.engaged.push(enemy);
+  shadow(x, enemy, GB.ruins, x.heroes[0]);
+  assert.equal(x.combat!.attackBonus, 1);
+  (x.combat as never as { eredPoolKill: boolean }).eredPoolKill = true;
+  assert.ok(
+    batch4Scenario(x).attackFinished!(x, x.combat!, false).some(
+      (e) => e.kind === "eredPoolRandomDiscard",
+    ),
+  );
+  const defense = enemy.tempDefense ?? 0;
+  shadow(x, enemy, GB.guardian, x.heroes[0]);
+  assert.equal(enemy.tempDefense, defense + 2);
+  shadow(x, enemy, GB.slave, x.heroes[0]);
+  assert.equal(x.combat!.attackBonus, 1);
+  shadow(x, enemy, GB.bane, x.heroes[0]);
+  assert.equal((x.combat as never as { extraAttacks: number }).extraAttacks, 1);
+  shadow(x, enemy, GB.shadows, x.heroes[0]);
+  assert.equal(x.combat!.attackBonus, 1);
+  quests(x, 3);
+  shadow(x, enemy, GB.shadows, x.heroes[0]);
+  assert.equal(x.combat!.attackBonus, 3);
+  assert.ok(shadow(x, enemy, GB.mines, x.heroes[0]));
+  assert.equal(x.combat!.attackBonus, 0);
+});
+
+test("Ered Mithrin Campaign Pool: Wilderland's Bane and Suffocating Shadows resolve in The Fate of Wilderland", () => {
+  // Wilderland's Bane finds no Dagnir.
+  const s = reveal(calm(chapter("the-fate-of-wilderland"), "staging"), GB.bane);
+  assert.ok(s.encounterDiscard.includes(GB.bane));
+  assert.ok(s.log.some((l) => /There is no Dagnir/.test(l.text)));
+  assert.equal(s.combat ?? null, null);
+  // Suffocating Shadows: each player assigns X damage among their allies (X
+  // is 1 more than the quest cards in the victory display).
+  const t = calm(chapter("the-fate-of-wilderland"), "staging");
+  const ally = make(t, "01013");
+  ally.owner = 0;
+  t.allies.push(ally);
+  const u = reveal(t, GB.shadows, (x) =>
+    x.choice?.title.startsWith("Assign")
+      ? x.choice.options.find((o) => o.code === "01013")?.id
+      : undefined,
+  );
+  assert.equal(u.allies.find((a) => a.id === ally.id)?.damage ?? 0, 1);
+  assert.ok(u.heroes.every((h) => h.damage === 0));
+  assert.ok(u.encounterDiscard.includes(GB.shadows));
+  assert.ok(valid(calm(u)));
 });

@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2285,
+    "encounterCards": 2286,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3507,
-    "pending": 676
+    "scripted": 3508,
+    "pending": 675
   },
   "scenarioRecipes": {
     "total": 355,
@@ -3172,6 +3172,7 @@
     "octgn:c29c98de-5660-498c-a5cc-a1800985d221",
     "octgn:c2d8cd64-a1dc-4bf2-9e61-0336170e73af",
     "octgn:c2ff668a-6174-47d4-bbab-46f9c91403eb",
+    "octgn:c31219da-1e72-4a0a-9ab0-117433a2c478",
     "octgn:c319315a-e506-45a2-8ec0-c98e4bd9bad5",
     "octgn:c33f8472-2563-438e-94d3-77490d7c2175",
     "octgn:c34384a8-44de-4c55-8d49-ec68a69fc3f0",
@@ -3863,7 +3864,7 @@
     {
       "product": "ered-mithrin-campaign-expansion",
       "total": 40,
-      "scripted": 39,
+      "scripted": 40,
       "player": 21,
       "playerScripted": 21
     },
@@ -32710,7 +32711,7 @@
       "name": "The Fate of Wilderland",
       "type": "campaign",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {

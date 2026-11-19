@@ -5,11 +5,10 @@ scenarios are played in order with the Revised Core Set's Campaign Log, and
 each campaign card, boon and burden changes the scenario it belongs to. Campaign
 mode offers it as **Ered Mithrin**, next to Mirkwood Paths, The Lord of the
 Rings, Angmar Awakened and Dream-chaser. The campaign begins with Journey Up
-the Anduin; **its first eight chapters are supported** (Journey Up the
-Anduin, Lost in Mirkwood, The King's Quest, The Withered Heath, Roam Across
-Rhovanion, Fire in the Night, The Ghost of Framsburg and Mount Gundabad), and
-the last chapter follows (The Fate of Wilderland is not available in campaign
-mode yet).
+the Anduin; **all nine chapters are supported** (Journey Up the Anduin, Lost
+in Mirkwood, The King's Quest, The Withered Heath, Roam Across Rhovanion, Fire
+in the Night, The Ghost of Framsburg, Mount Gundabad and The Fate of
+Wilderland), and winning The Fate of Wilderland wins the campaign.
 
 ## Sources
 
@@ -51,6 +50,9 @@ mode yet).
   collector number 192) and Dragon-sickness (193) were checked the same way;
   the scan adds "Surge." to Dragon-sickness. With them 39 cards and 47 faces
   are pinned.
+- The Fate of Wilderland's campaign card (both faces, "Ered Mithrin Part 9",
+  collector number 194) was checked the same way: 40 cards and 49 faces are
+  pinned in all.
 - The scans also correct the Wilds of Rhovanion data: The Old Ford, Woodmen
   Village, Bare Hilltop, Overgrown Path, Forest Clearing, Abandoned Village,
   Dragon Hoard and the Fire-drake carry the unique symbol (the campaign card
@@ -162,6 +164,12 @@ Campaign Log) with that hero. The Songs join decks through the interlude.
 | Campaign card                      | Setup: with 6 or more treasures recorded in the Campaign Log, Dragon-sickness is shuffled into the encounter deck; a player may search their deck for a unique boon ally; with "Melanwar has given you guidance on traversing Wilderland" the first player removes 2 non-unique locations from the encounter deck and 1 location from the Caves deck, with "Beldis's care has bolstered the heroes' spirits" 3 treacheries (Abandoned Ruin joins the Caves deck from the Campaign Pool). The discover keyword is ignored (it is only The Ghost of Framsburg's). Unique locations cannot be discarded from play by encounter card effects: the encounter effect leaves them in play (Powerful in Wrath still surges), while player card effects may discard them. Resolution: the treasures the players control are discovered; the players may choose 1 of 3 random undiscovered treasures, discovered at once ("Take no treasure" is offered, and the question warns when a 6th treasure would add Dragon-sickness); A Growing Threat leaves the Campaign Pool; with 6 or more treasures recorded, Dragon-sickness joins the Campaign Pool (with every treasure discovered there is nothing to look at). |
 | Dragon-sickness (burden treachery) | Surge. When Revealed: the first player attaches it to a character with 1 or more treasures attached, and every unguarded treasure in play moves to that character (Dwarf-Lord's Crown only to a hero; the Restricted limit then applies). With no such character it is discarded. As a Condition: after the attached character exhausts, its controller raises their threat by 1 for each treasure attached to it. It goes to the encounter discard pile when it leaves play.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 
+## The Fate of Wilderland (Part 9)
+
+| Card          | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Campaign card | Setup: each player, in turn order, may search their deck for a boon or treasure card (the boon allies and Songs of the Campaign Pool, and the discovered treasures the interlude put there) and add it to their hand, the deck shuffled; with "Turayn has taken an oath of vigilance" the first player removes 3 non-unique enemies from the encounter deck, with "Beldis's care has bolstered the heroes' spirits" 3 treacheries. The deep and discover keywords are ignored (the scenario has no Caves deck). Resolution: the players win the campaign: the Campaign Log records the victory, the end-of-game dialog says so and no chapter follows (the card does not discover treasures). |
+
 ## The treasures
 
 | Treasure             | Behaviour                                                                                                                                                                                                                                                                                           |
@@ -186,14 +194,15 @@ of encounter set, so a card from one scenario must resolve in another scenario's
 module. The three Wilds of Rhovanion chapters share one module, and the Core
 Set's cards (the Evil Creatures enemies, the Spiders of Mirkwood and Dol Guldur
 Orcs cards) resolve in every scenario. For the chapters from The Withered Heath
-on, `src/game/ered-campaign-pool.ts` scripts the 78 cards of Journey Up the
+on, `src/game/ered-campaign-pool.ts` scripts the 87 cards of Journey Up the
 Anduin, Lost in Mirkwood, The King's Quest, The Withered Heath, Roam Across
-Rhovanion, Fire in the Night and The Ghost of Framsburg that can join the
-Campaign Pool (the
-non-unique, non-objective, non-burden cards A Growing Threat can set aside, and
-Roam Across Rhovanion's staging locations): each later chapter's hooks are
+Rhovanion, Fire in the Night, The Ghost of Framsburg and Mount Gundabad that
+can join the Campaign Pool (the
+non-unique, non-objective, non-burden cards A Growing Threat can set aside, Roam
+Across Rhovanion's staging locations and The Ghost of Framsburg's Hazard cards,
+Fram's Shade among them): each later chapter's hooks are
 composed with the pool's, which act only on a card foreign to that chapter
-(outside its own recipes; 57, 61, 64, 63, 63 and 71 of them in chapters 4 to
+(outside its own recipes; 66, 70, 73, 71, 64 and 80 of them in chapters 4 to
 9). Card text that refers to another scenario's components does as much as it
 can:
 
@@ -239,7 +248,17 @@ can:
   discarded to the staging area and finds no Loot objective to guard. Crypt
   Stalker (X from the first player's threat), Evil Spectre (shuffled back when
   destroyed at a Dark active location), Haunted Hall, Moonlit Passage, Cursed
-  Tower, Terrible Shadows and Slammed Shut keep their printed rules.
+  Tower, Terrible Shadows and Slammed Shut keep their printed rules; Fram's
+  Shade counts no Loot objective and can only have objective attachments.
+- **Dagnir** is only Mount Gundabad's (and Fire in the Night's): in The Fate of
+  Wilderland, Wilderland's Bane's When Revealed, Dagnir's Slave's text and
+  Mines of Gundabad's text and shadow find no Dagnir, and the deep keyword of
+  Desecrated Ruins, Mines of Gundabad and Narrow Stair is ignored. Desecrated
+  Ruins, Guardian of Gundabad and Suffocating Shadows count the quest cards in
+  the victory display; Deep-dweller (its immediate attack, its return to the
+  staging area when damaged), Narrow Stair (the players must travel to it; its
+  shadow keeps the defender from being readied by player card effects) and the
+  other shadows keep their printed rules.
 - Lonely Lands keeps events played during the quest phase facedown under it
   (+2 threat each) and discards them when it leaves play; Lost in the Wild sits in
   a hand; the conditions (Weighed Down, Afraid of the Dark, Dragon Breath,
@@ -250,13 +269,13 @@ can:
 "Resolve the 'when revealed' effect" of a discarded treachery (Lightless Grotto,
 Grey Moorland) now resolves a card no scenario module replays (a Core Set card
 or a burden from the Campaign Pool) through the ordinary encounter scripts,
-where it used to stop the game or lose the card. The cards of the later chapters
-become portable with their chapters.
+where it used to stop the game or lose the card. Every encounter card that can
+join the Campaign Pool is portable.
 
 ## Verification
 
 ```sh
-node --import tsx --test tests/ered-campaign.test.ts tests/ered-campaign-pool.test.ts tests/ered-campaign-heath.test.ts tests/ered-campaign-roam.test.ts tests/ered-campaign-fire.test.ts tests/ered-campaign-ghost.test.ts tests/ered-campaign-gundabad.test.ts
+node --import tsx --test tests/ered-campaign.test.ts tests/ered-campaign-pool.test.ts tests/ered-campaign-heath.test.ts tests/ered-campaign-roam.test.ts tests/ered-campaign-fire.test.ts tests/ered-campaign-ghost.test.ts tests/ered-campaign-gundabad.test.ts tests/ered-campaign-fate.test.ts
 npm run build
 npm run test:browser-ered-campaign
 ```
@@ -311,16 +330,25 @@ attached character exhausts, the discard pile when it leaves play, the
 controller's threat in a two-player game), and the resolution (the optional
 treasure, A Growing Threat removed, Dragon-sickness at a 6th treasure and not
 without it, a controlled treasure discovered first, nothing to look at with
-every treasure discovered, the next chapter not yet available).
+every treasure discovered, the next chapter).
 
-`tests/ered-campaign-pool.test.ts` (27 tests) covers the foreign cards of each
+`tests/ered-campaign-fate.test.ts` (3 tests) covers The Fate of Wilderland's
+texts and faces, its setup (the search for a boon or treasure card taken or
+declined, one search for each of two players, Turayn's and Beldis's
+removals, the inspector's line), and the resolution (the campaign won and
+recorded, no question, no treasure discovered, no chapter after it, the
+outcome refused before the last chapter).
+
+`tests/ered-campaign-pool.test.ts` (29 tests) covers the foreign cards of each
 later chapter (each one revealed in each chapter where it is foreign, with a
 valid save), their passive values, triggers, shadows and choices, the Caves
 deck through The Withered Heath, the Lost Caves locations and The Withered
 Heath's nine cards in Roam Across Rhovanion, Roam Across Rhovanion's nine cards
 in Fire in the Night, Fire in the Night's eight cards in The Ghost of Framsburg,
-The Ghost of Framsburg's ten cards in Mount Gundabad (the discover keyword
-ignored), the When Revealed fallback, and a two-player game.
+The Ghost of Framsburg's ten cards and Fram's Shade in Mount Gundabad (the
+discover keyword ignored), Mount Gundabad's eight cards in The Fate of
+Wilderland (without Dagnir), the When Revealed fallback, and a two-player
+game.
 
 `tests/ered-campaign.test.ts` (28 tests) covers the registered texts and
 faces, the uniqueness corrections and the cards kept out of ordinary games;
@@ -372,6 +400,8 @@ the campaign card's Action from the quest inspector and records Gundabad
 Stalker and a Hazard card; Mount Gundabad puts Abandoned Ruin in the Caves
 deck, shows its campaign card's rules in the inspector, attaches
 Dragon-sickness to a hero with the treasures gathered on it (its exhaustion
-raises the threat by 2) and records a treasure from the resolution, after
-which The Fate of Wilderland is not available yet; at 1280, 390 and 320 pixels
-(123 checkpoints); it checks the 47 pinned faces.
+raises the threat by 2) and records a treasure from the resolution; The Fate
+of Wilderland offers the search for a boon or treasure card, shows its
+campaign card's rules in the inspector and records the campaign's victory
+(the end-of-game dialog and the Campaign Log say so, and no chapter follows);
+at 1280, 390 and 320 pixels (132 checkpoints); it checks the 49 pinned faces.

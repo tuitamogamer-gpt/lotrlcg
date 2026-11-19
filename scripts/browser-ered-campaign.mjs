@@ -736,15 +736,23 @@ try {
     const free = ERED_TREASURES.filter(
       (code) => !s.campaign.treasures?.includes(code),
     );
+    // (Two heroes that can have player card attachments: not one with
+    // Misplaced Trust.)
+    const bearers = s.heroes
+      .filter((h) => !h.attachments.some((a) => a.code === ERED.misplaced))
+      .map((h) => h.id);
+    const bearer = (x) => x.heroes.find((h) => h.id === bearers[0]);
     {
       const t = quiet(s, "staging");
       for (const [i, code] of free.slice(0, 2).entries())
-        t.heroes[i].attachments.push({
-          id: `a${t.nextId++}`,
-          code,
-          exhausted: false,
-          owner: 0,
-        });
+        t.heroes
+          .find((h) => h.id === bearers[i])
+          .attachments.push({
+            id: `a${t.nextId++}`,
+            code,
+            exhausted: false,
+            owner: 0,
+          });
       // (Dragon-sickness surges into a quiet location.)
       t.encounterDeck.unshift(GUNDABAD.stairs);
       revealed(t, ERED.sickness);
@@ -756,11 +764,11 @@ try {
       /^Dragon-sickness · Attach it to a character with 1 or more treasures attached/,
     );
     await checkpoint("gundabad-sickness", width);
-    s = await choose(s.heroes[0].id);
-    assert.ok(s.heroes[0].attachments.some((a) => a.code === ERED.sickness));
+    s = await choose(bearers[0]);
+    assert.ok(bearer(s).attachments.some((a) => a.code === ERED.sickness));
     assert.deepEqual(
-      s.heroes[0].attachments
-        .filter((a) => ERED_TREASURES.includes(a.code))
+      bearer(s)
+        .attachments.filter((a) => ERED_TREASURES.includes(a.code))
         .map((a) => a.code)
         .sort(),
       free.slice(0, 2).sort(),
@@ -768,8 +776,8 @@ try {
     {
       const t = quiet(s);
       const before = t.threat;
-      t.heroes[0].exhausted = false;
-      exhaustCharacter(t, t.heroes[0]);
+      bearer(t).exhausted = false;
+      exhaustCharacter(t, bearer(t));
       flush(t);
       assert.equal(t.threat, before + 2);
       s = await load(t);
@@ -797,17 +805,66 @@ try {
       s.campaign.treasures.length >= 6,
     );
     assert.equal(s.campaign.resolution, null);
+    await page.getByRole("button", { name: /^Continue campaign/ }).waitFor();
+    await checkpoint("gundabad-complete", width);
+    // The Fate of Wilderland (Part 9): each player may search their deck for
+    // a boon or treasure card; the campaign card's rules in the inspector;
+    // winning the chapter wins the campaign.
+    await page.getByRole("button", { name: /^Continue campaign/ }).click();
+    await page.getByRole("button", { name: /^Begin next chapter/ }).click();
+    await reviewedState(page);
+    s = await opening(/search your deck for a boon or treasure/);
+    if (!s.choice) {
+      // (The opening hand drew every boon and treasure: offer the search
+      // with a discovered treasure in the deck.)
+      const t = quiet(s);
+      const held = new Set([
+        ...t.deck,
+        ...t.hand.map((u) => u.code),
+        ...t.heroes.flatMap((h) => h.attachments.map((a) => a.code)),
+      ]);
+      const extra = t.campaign.treasures.find((code) => !held.has(code));
+      if (extra) t.deck.push(extra);
+      prepend(t, fx("emcBoonTreasureSearch", { player: 0 }));
+      flush(t);
+      s = await load(t);
+    }
+    assert.match(
+      s.choice.title,
+      /^The Fate of Wilderland · You may search your deck for a boon or treasure card/,
+    );
+    await checkpoint("fate-search", width);
+    const take = s.choice.options.find((o) => o.id !== "decline");
+    s = await choose(take.id);
+    assert.ok(
+      s.hand.some((u) => u.code === take.id),
+      card(take.id).name,
+    );
+    s = await opening();
+    assert.equal(s.scenarioId, "the-fate-of-wilderland");
+    await campaignCard(
+      /^The Fate of Wilderland: the deep and discover keywords are ignored\. Winning this chapter wins the Ered Mithrin campaign\./,
+      "fate-setup",
+      width,
+    );
+    s = await victory(s);
+    assert.equal(s.campaign.outcome, "won");
+    assert.equal(s.campaign.completed.length, 9);
     await page
       .getByRole("dialog")
       .getByText(
-        /The Fate of Wilderland, is not available in campaign mode yet/,
+        /The Fate of Wilderland · Resolution: the players win the Ered Mithrin campaign!/,
       )
+      .waitFor();
+    await page
+      .getByText(/^The campaign is won: The Fate of Wilderland is complete\./)
+      .first()
       .waitFor();
     assert.equal(
       await page.getByRole("button", { name: /^Continue campaign/ }).count(),
       0,
     );
-    await checkpoint("gundabad-complete", width);
+    await checkpoint("fate-complete", width);
     await view.c.close();
   }
   const p = await browser.newPage();

@@ -76,7 +76,11 @@ import {
   GHOST_FRAMSBURG_RECIPES,
   ghostLoot,
 } from "./ghost-framsburg-support";
-import { MOUNT_GUNDABAD_RECIPES } from "./mount-gundabad-support";
+import {
+  GUNDABAD as GB,
+  MOUNT_GUNDABAD_RECIPES,
+  gundabadQuestCount,
+} from "./mount-gundabad-support";
 import { FATE_WILDERLAND_RECIPES } from "./fate-wilderland-support";
 
 /** Physical cards and lasting effects of the Campaign Pool's foreign cards. */
@@ -102,6 +106,8 @@ export interface EredPoolState {
   shadows?: { id: string; round: number; amount: number }[];
   /** Moonlit Passage: each player's threat reduced by player card effects this round. */
   threatReduced?: { player: number; round: number; amount: number }[];
+  /** Narrow Stair's shadow: characters that cannot be readied by player card effects this round. */
+  noPlayerReady?: { id: string; round: number }[];
 }
 
 /** The chapters this layer serves, with their own modules' recipes. */
@@ -121,8 +127,8 @@ const NATIVE: Record<string, Set<string>> = Object.fromEntries(
 );
 /**
  * The encounter cards of Journey Up the Anduin, Lost in Mirkwood, The King's
- * Quest, The Withered Heath, Roam Across Rhovanion, Fire in the Night and The
- * Ghost of Framsburg that can join the Campaign Pool (A Growing Threat sets aside a non-unique,
+ * Quest, The Withered Heath, Roam Across Rhovanion, Fire in the Night, The
+ * Ghost of Framsburg and Mount Gundabad that can join the Campaign Pool (A Growing Threat sets aside a non-unique,
  * non-objective, non-burden card; Roam Across Rhovanion's resolution adds
  * staging locations), scripted here for later chapters. (The Core Set's cards
  * resolve in every scenario.)
@@ -210,6 +216,19 @@ export const ERED_POOL_PORTABLE = [
   G.moonlit,
   G.tower,
   G.slammed,
+  // (Fram's Shade, a unique Hazard, can join through The Ghost of Framsburg's
+  // resolution.)
+  G.shade,
+  // Mount Gundabad (the deep and discover keywords are ignored in The Fate of
+  // Wilderland)
+  GB.ruins,
+  GB.guardian,
+  GB.slave,
+  GB.bane,
+  GB.mines,
+  GB.dweller,
+  GB.stairs,
+  GB.shadows,
 ];
 const PORTABLE = new Set(ERED_POOL_PORTABLE);
 
@@ -247,7 +266,10 @@ type Combat = NonNullable<GameState["combat"]> & {
   eredPoolWeatherKill?: boolean;
   /** Terrible Shadows' shadow: the threat raised if this attack destroys a character. */
   eredPoolTerrible?: number;
-  eredPoolTerribleKill?: boolean;
+  /** Desecrated Ruins' shadow: each player discards a random card if this attack destroys a character. */
+  eredPoolRuins?: number;
+  /** This attack destroyed a character (Terrible Shadows, Desecrated Ruins). */
+  eredPoolKill?: boolean;
 };
 
 // ------------------------------------------------------------- helpers
@@ -413,6 +435,10 @@ function poolStats(s: GameState, u: Unit) {
     attack = 0,
     defense = 0;
   if (!eredPoolLive(s)) return { attack, defense };
+  // Guardian of Gundabad: +2 [defense] while there are 3 or more quest cards
+  // in the victory display.
+  if (foreignUnit(s, u, GB.guardian) && gundabadQuestCount(s) >= 3)
+    defense += 2;
   // Crypt Stalker: X [attack] and [defense].
   if (foreignUnit(s, u, G.stalker)) {
     attack += tens(s);
@@ -475,6 +501,9 @@ function poolThreatBonus(s: GameState, u: Unit) {
   // player's threat.
   if (foreignUnit(s, u, G.stalker) || foreignUnit(s, u, G.staircase))
     n += tens(s);
+  // Desecrated Ruins: +2 [threat] while there are 3 or more quest cards in
+  // the victory display.
+  if (foreignUnit(s, u, GB.ruins) && gundabadQuestCount(s) >= 3) n += 2;
   if (foreignUnit(s, u, W.contested))
     n += (s.victoryCards ?? []).filter(
       (c) => card(c).type_code === "location",
@@ -556,6 +585,11 @@ const poolLocationProgressBlocked = (s: GameState, u: Unit) =>
 /** Heavy Snow: until the end of the round, characters cannot be readied by player card effects. */
 const poolCannotPlayerReady = (s: GameState) =>
   eredPoolLive(s) && s.eredPool?.playerReadyBlockedRound === s.round;
+/** Narrow Stair's shadow: the defending character cannot be readied by player card effects this round. */
+const poolCannotPlayerReadyCharacter = (s: GameState, u: Unit) =>
+  !!s.eredPool?.noPlayerReady?.some(
+    (m) => m.id === u.id && m.round === s.round,
+  );
 const poolCannotOptionallyEngage = (s: GameState, u: Unit) =>
   foreignUnit(s, u, W.stray) || foreignUnit(s, u, R.eagle);
 /** Frenzied Creature's host; Forgotten Crypt: "Immune to player card effects." */
@@ -563,8 +597,9 @@ const poolImmune = (s: GameState, u: Unit) =>
   foreignAttachments(s, u, W.frenzied) > 0 || foreignUnit(s, u, G.crypt);
 function poolCannotAttach(s: GameState, u: Unit, code?: string) {
   if (!foreignUnit(s, u, u.code)) return false;
-  // Grey Mountain Giant: "Cannot have non-objective attachments."
-  if (u.code === R.giant)
+  // Grey Mountain Giant and Fram's Shade: "Cannot have non-objective
+  // attachments." (Fram's Shade's Loot bonuses find no Loot objective.)
+  if (u.code === R.giant || u.code === G.shade)
     return !code || !card(code).type_code.startsWith("objective");
   if (u.code === W.troop || u.code === W.troll || u.code === H.troll)
     return (
@@ -601,6 +636,14 @@ function poolDamageDealt(
   amount: number,
   context: DamageContext,
 ) {
+  // Deep-dweller: "Forced: When Deep-dweller takes any amount of damage (and
+  // survives), return it to the staging area."
+  if (
+    amount > 0 &&
+    foreignUnit(s, u, GB.dweller) &&
+    u.damage < stats(s, u).health
+  )
+    prepend(s, fx("eredPoolReturnEnemy", { target: u.id }));
   if (
     !eredPoolLive(s) ||
     amount <= 0 ||
@@ -638,7 +681,9 @@ function poolEngaged(s: GameState, u: Unit) {
   if (!eredPoolLive(s)) return;
   const p = ownerOf(s, u);
   const effects: Effect[] = [];
-  if (foreignUnit(s, u, W.spider))
+  // Ravenous Spider; Deep-dweller: "Forced: When Deep-dweller engages you, it
+  // makes an immediate attack."
+  if (foreignUnit(s, u, W.spider) || foreignUnit(s, u, GB.dweller))
     effects.push(fx("immediateAttack", { target: u.id, player: p }));
   // Grey Mountain Giant: "Forced: When Grey Mountain Giant engages you,
   // discard the top 5 cards of your deck. Assign damage among characters you
@@ -694,8 +739,12 @@ function poolCharacterDestroyed(
 ) {
   const c = s.combat as Combat | null;
   if (c?.eredPoolWeather) c.eredPoolWeatherKill = true;
-  if (c?.eredPoolTerrible && context.combatDamage)
-    c.eredPoolTerribleKill = true;
+  if (
+    (c?.eredPoolTerrible || c?.eredPoolRuins) &&
+    context.combatDamage &&
+    context.enemyId === c.enemyId
+  )
+    c.eredPoolKill = true;
 }
 /** Pack of Wargs and Werewolf: a shadow card with no shadow effect. */
 function poolShadowResolved(s: GameState, u: Unit, code: string) {
@@ -750,8 +799,17 @@ function poolAttackFinished(
     );
   // Terrible Shadows' shadow: "If this attack destroys a character, raise the
   // defending player's threat by 3."
-  if (c.eredPoolTerrible && c.eredPoolTerribleKill)
+  if (c.eredPoolTerrible && c.eredPoolKill)
     effects.push(fx("threat", { player: p, value: c.eredPoolTerrible }));
+  // Desecrated Ruins' shadow: "If this attack destroys a character, each
+  // player discards a random card from his hand."
+  if (c.eredPoolRuins && c.eredPoolKill)
+    for (let i = 0; i < c.eredPoolRuins; i++)
+      effects.push(
+        ...playerOrder(s).map((player) =>
+          fx("eredPoolRandomDiscard", { player }),
+        ),
+      );
   return effects;
 }
 function poolHostLeaves(s: GameState, u: Unit) {
@@ -801,12 +859,18 @@ function poolTravelProblem(s: GameState, u: Unit): string | null {
     if (chasm && u.id !== chasm.id && !foreignUnit(s, u, W.chasm))
       return "The players must travel to Deep Chasm while there is no active location.";
   }
+  // Narrow Stair: "When faced with the option to travel, the players must
+  // travel to Narrow Stair."
+  if (u.code !== GB.stairs && stagedForeign(s, GB.stairs))
+    return "The players must travel to Narrow Stair.";
   return null;
 }
 const poolMustTravel = (s: GameState) =>
   eredPoolLive(s) &&
   !s.activeLocation &&
-  s.staging.some((l) => foreignUnit(s, l, W.chasm));
+  s.staging.some(
+    (l) => foreignUnit(s, l, W.chasm) || foreignUnit(s, l, GB.stairs),
+  );
 function poolTravelEffects(s: GameState, u: Unit): Effect[] | undefined {
   if (!eredPoolLive(s) || u.blanked || !eredForeign(s, u.code)) return;
   if (u.code === W.accursed) return [fx("reveal", { player: firstPlayer(s) })];
@@ -1135,6 +1199,8 @@ const TREACHERIES = [
   G.terrible,
   G.ruins,
   G.slammed,
+  GB.bane,
+  GB.shadows,
 ];
 function poolEncounter(
   s: GameState,
@@ -1278,6 +1344,39 @@ function poolShadow(s: GameState, code: string) {
   // Abandoned Ruins: "Attacking enemy makes an additional attack against you
   // after this one."
   else if (code === G.ruins) c.extraAttacks = (c.extraAttacks ?? 0) + 1;
+  // Desecrated Ruins: +1 [attack]; if this attack destroys a character, each
+  // player discards a random card from his hand.
+  else if (code === GB.ruins) {
+    c.attackBonus++;
+    c.eredPoolRuins = (c.eredPoolRuins ?? 0) + 1;
+  }
+  // Guardian of Gundabad: attacking enemy gets +2 [defense] until the end of
+  // the phase.
+  else if (code === GB.guardian) {
+    if (enemy) enemy.tempDefense = (enemy.tempDefense ?? 0) + 2;
+  }
+  // Dagnir's Slave: +1 [attack] (+2 with Dagnir engaged with you, only in
+  // Mount Gundabad).
+  else if (code === GB.slave) c.attackBonus++;
+  // Wilderland's Bane: the attacking enemy makes an additional attack.
+  else if (code === GB.bane) c.extraAttacks = (c.extraAttacks ?? 0) + 1;
+  // Mines of Gundabad: only an attacking Dagnir makes the defending player
+  // assign damage.
+  else if (code === GB.mines)
+    log(s, "Mines of Gundabad · The attacking enemy is not Dagnir.");
+  // Narrow Stair: until the end of the round, the defending character cannot
+  // be readied by player card effects.
+  else if (code === GB.stairs) {
+    const q = pool(s);
+    q.noPlayerReady = [
+      ...(q.noPlayerReady ?? []).filter((m) => m.round === s.round),
+      ...defenders.map((id) => ({ id, round: s.round })),
+    ];
+  }
+  // Suffocating Shadows: +1 [attack] (+3 instead with 3 or more quest cards
+  // in the victory display).
+  else if (code === GB.shadows)
+    c.attackBonus += gundabadQuestCount(s) >= 3 ? 3 : 1;
   else return false;
   return true;
 }
@@ -1550,6 +1649,26 @@ function treachery(s: GameState, code: string) {
       s,
       ...playerOrder(s).map((player) => fx("threat", { player, value: 2 })),
     );
+  } else if (code === GB.bane) {
+    // "Dagnir makes an immediate attack against each engaged player. If no
+    // attacks were made this way, Dagnir gets -30 engagement cost until the
+    // end of the round." (Dagnir is only Mount Gundabad's.)
+    consume(s, code);
+    log(s, "Wilderland's Bane · There is no Dagnir in this scenario.");
+  } else if (code === GB.shadows) {
+    // "Each player assigns X damage among allies he controls, where X is 1
+    // more than the number of quest cards in the victory display."
+    consume(s, code);
+    prepend(
+      s,
+      ...playerOrder(s).map((player) =>
+        fx("eredPoolAssignDamage", {
+          player,
+          text: "ally",
+          value: 1 + gundabadQuestCount(s),
+        }),
+      ),
+    );
   } else if (code === G.slammed) {
     // "Each player chooses and exhausts a character he controls. Until the
     // end of the round, characters cannot be readied by player card effects."
@@ -1597,14 +1716,16 @@ export function eredPoolEffect(s: GameState, e: Effect) {
     case "eredPoolAssignDamage": {
       const remaining = e.value ?? 0;
       if (remaining <= 0) break;
-      // (flag: among all characters in play, as High Falls' Travel cost.)
+      // (flag: among all characters in play, as High Falls' Travel cost;
+      // text "ally": among your allies, as Suffocating Shadows.)
       const targets = (e.flag ? allCharacters(s) : own(s, player)).filter(
-        (c) => c.damage < stats(s, c).health,
+        (c) =>
+          c.damage < stats(s, c).health && (e.text !== "ally" || isAlly(c)),
       );
       if (targets.length)
         choose(
           s,
-          `Assign ${remaining} damage ${e.flag ? "among characters in play" : "among your characters"}`,
+          `Assign ${remaining} damage ${e.flag ? "among characters in play" : e.text === "ally" ? "among your allies" : "among your characters"}`,
           targets.map((c) => ({
             id: c.id,
             code: c.code,
@@ -1614,6 +1735,7 @@ export function eredPoolEffect(s: GameState, e: Effect) {
               fx("eredPoolAssignDamage", {
                 player,
                 flag: e.flag,
+                text: e.text,
                 value: remaining - 1,
               }),
             ],
@@ -2458,6 +2580,7 @@ export const ERED_POOL_HOOKS: Batch4ScenarioHooks = {
   locationProgressBlocked: poolLocationProgressBlocked,
   cannotReady: poolCannotReady,
   cannotPlayerReady: poolCannotPlayerReady,
+  cannotPlayerReadyCharacter: poolCannotPlayerReadyCharacter,
   characterBlanked: poolCharacterBlanked,
   willpowerOverride: poolWillpowerOverride,
   cannotCancel: poolCannotCancel,
@@ -2540,6 +2663,9 @@ export function composeEredPool(
     cannotReady: (s, u) => !!h.cannotReady?.(s, u) || p.cannotReady!(s, u),
     cannotPlayerReady: (s) =>
       !!h.cannotPlayerReady?.(s) || p.cannotPlayerReady!(s),
+    cannotPlayerReadyCharacter: (s, u) =>
+      !!h.cannotPlayerReadyCharacter?.(s, u) ||
+      p.cannotPlayerReadyCharacter!(s, u),
     characterBlanked: (s, u) =>
       !!h.characterBlanked?.(s, u) || p.characterBlanked!(s, u),
     willpowerOverride: (s, u) =>
@@ -2750,6 +2876,11 @@ export function validEredPool(
             round(m.round) &&
             Number.isInteger(m.amount) &&
             m.amount > 0,
+        ))) &&
+    (q.noPlayerReady === undefined ||
+      (Array.isArray(q.noPlayerReady) &&
+        q.noPlayerReady.every(
+          (m) => !!m && typeof m.id === "string" && round(m.round),
         ))) &&
     (q.threatReduced === undefined ||
       (Array.isArray(q.threatReduced) &&

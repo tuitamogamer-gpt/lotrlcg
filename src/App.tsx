@@ -5706,6 +5706,12 @@ export default function App() {
                   The City of Corsairs · Resolution: the players win the
                   Dream-chaser campaign!
                 </p>
+              ) : game.campaign?.kind === "ered" &&
+                game.campaign.outcome === "won" ? (
+                <p className="campaign-note saga-outcome">
+                  The Fate of Wilderland · Resolution: the players win the Ered
+                  Mithrin campaign!
+                </p>
               ) : (game.campaign?.kind === "angmar"
                   ? angmarChapterComplete(game)
                   : game.campaign?.kind === "dreamchaser"
@@ -6276,9 +6282,11 @@ function CampaignJournal({
             ? "The campaign is won: The Dread Realm is complete."
             : c.kind === "dreamchaser"
               ? "The campaign is won: The City of Corsairs is complete."
-              : c.outcome === "won"
-                ? "The campaign is won: The One Ring is destroyed."
-                : "The campaign is lost: The One Ring was kept."}
+              : c.kind === "ered"
+                ? "The campaign is won: The Fate of Wilderland is complete."
+                : c.outcome === "won"
+                  ? "The campaign is won: The One Ring is destroyed."
+                  : "The campaign is lost: The One Ring was kept."}
         </p>
       ) : null}
       {c.blackGateEnemies ? (
