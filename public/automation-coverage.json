@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2387,
+    "encounterCards": 2396,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3609,
-    "pending": 574
+    "scripted": 3618,
+    "pending": 565
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 281
+    "scripted": 282
   },
   "registeredCodes": [
     "01001",
@@ -1300,6 +1300,7 @@
     "octgn:0771f1dc-4baa-4181-9344-4ddd1e59136b",
     "octgn:07a8f60f-926c-4342-bf04-e3af9a24df10",
     "octgn:080f86b2-8cea-4134-8e79-de6312b51ed6",
+    "octgn:0834d564-c1f1-4f16-8bc7-d7249d665d5c",
     "octgn:0856a4b4-ec02-4586-8147-93fbadf544cd",
     "octgn:088b62be-0f26-4a87-805a-277edd463c8c",
     "octgn:08a094d3-de00-4ea3-9dc3-141da9944763",
@@ -1452,6 +1453,7 @@
     "octgn:1b5b129a-0c2c-4750-b1d6-dd3ea82acb84",
     "octgn:1b9e02cc-d46e-4816-bdbd-9daa05590173",
     "octgn:1ba09574-9d2a-4687-bd58-ca37ceadb023",
+    "octgn:1bac61b0-ee27-43eb-bb39-85f64c6b4c94",
     "octgn:1c028523-9f37-4e16-83cf-c9ea1cfbc9d3",
     "octgn:1c240b63-841f-4b76-9808-13c0ee0f986e",
     "octgn:1c65b78b-6b68-458f-9510-a00a9576a042",
@@ -1805,6 +1807,7 @@
     "octgn:4530258b-c362-4efe-a0c0-92a4f74c75b3",
     "octgn:456329e9-c7c4-42ac-9edd-e769aea198ea",
     "octgn:4576db5c-fdc2-45f2-ac8b-d1edb8150678",
+    "octgn:45c91742-29a2-4409-a7e5-1f6234d73908",
     "octgn:460a1e18-8a57-44a5-bd06-f0c1b13c86b5",
     "octgn:460b83ed-986a-496b-9b38-627c77a836e9",
     "octgn:463d0c53-2275-410f-b311-139f19561b46",
@@ -1923,6 +1926,7 @@
     "octgn:4be4e706-1bd2-455a-a712-833c1bbcea55:B",
     "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
     "octgn:4c1e8a5c-db6b-4d36-8202-bf0960870914",
+    "octgn:4c495965-946e-472f-841c-72f388a7ce65",
     "octgn:4c653b80-0b0e-4383-b0bb-aa31f12b3e74",
     "octgn:4c68d3ef-2309-47db-ba21-08bf2f7336b9",
     "octgn:4c7d7a31-250d-4e48-a97a-2aebb3b2b47d",
@@ -2380,6 +2384,7 @@
     "octgn:5e7c36de-a2bb-44e3-951b-80123788d571",
     "octgn:5e8714e3-0581-4b6f-bf45-414098819626",
     "octgn:5eb195bb-390f-48be-97fa-0ec09d6c807b",
+    "octgn:5ed5e5a0-8924-424a-a49f-527fe91c6374",
     "octgn:5edbdc1f-e177-4a8b-b4f1-8475fe297a4b",
     "octgn:5f18c4ca-fcda-46d2-874b-3a1a73ef7c53",
     "octgn:5f1ef9c5-ccb2-4f1e-bc5b-9a1de708d2ba",
@@ -2474,6 +2479,7 @@
     "octgn:6c4bf737-20cf-4fc5-b473-8f1540430c45",
     "octgn:6c4bf737-20cf-4fc5-b473-8f1540430c45:B",
     "octgn:6c89f835-68f8-4882-90ea-83f84953fabf",
+    "octgn:6c9419b0-e016-4ba8-b90a-575d4378984e",
     "octgn:6c97c646-1952-4080-ae56-ab7caeafb28f",
     "octgn:6cb224c2-d164-484e-b20d-fede3dd640d5",
     "octgn:6cfc4fa5-bbcc-4c99-82b7-bb6359d24750",
@@ -2711,6 +2717,7 @@
     "octgn:874c52e0-e186-49dd-bb4b-7289bf1ecc6f",
     "octgn:87539fa5-677d-4163-aff5-321841981cd4",
     "octgn:877a0217-9708-4139-b305-14c1b83c1d14",
+    "octgn:877df84f-3f61-41e0-96ad-aab2aae56048",
     "octgn:87c33692-599d-4914-a513-4353906fc6d4",
     "octgn:87c80644-57bb-4c66-8df6-c60cadc32d32",
     "octgn:87ca18e7-934a-4da9-bbb0-3a66f3d1b4c3",
@@ -2974,6 +2981,7 @@
     "octgn:a727d1ec-2bbf-452b-9e7d-92fffc39acd2",
     "octgn:a7280ef5-7a73-4c34-bc7e-e7aef7e4f3df",
     "octgn:a750ab9c-9b29-4ca4-8221-8fa27cd74fe2",
+    "octgn:a78c13d9-8acb-42eb-82a0-a216de3ed87a",
     "octgn:a7907eca-8205-40a3-95ba-f30e31aaad82",
     "octgn:a7a8a783-8a22-49fd-a1b7-42e92a44f78c",
     "octgn:a7ac2b78-52a7-4bd9-b37f-3d424876c7d8",
@@ -3689,6 +3697,7 @@
     "octgn:f6578eb7-1b94-458b-aba1-82b406507a4d",
     "octgn:f672b4f9-6ce8-4be0-95ab-fb5d2091f4ca",
     "octgn:f6e8459b-b0d6-4d30-ad8e-6aacfa34ec32",
+    "octgn:f6f49c59-637f-4ca2-b51f-e00c4332d33b",
     "octgn:f6f56327-cc71-458c-bcdb-51ca6dab2fa1",
     "octgn:f7117e07-e8d2-4e7d-a5c3-5dd0f1c0d455",
     "octgn:f75180d3-29c9-4184-85ce-8b805b9aa8c6",
@@ -4056,7 +4065,7 @@
     {
       "product": "khazad-dum-nightmare",
       "total": 27,
-      "scripted": 18,
+      "scripted": 27,
       "player": 0,
       "playerScripted": 0
     },
@@ -14156,7 +14165,7 @@
       "name": "Coal-Black Orc",
       "type": "enemy",
       "pack": "Khazad-dum - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "khazad-dum-nightmare"
     },
     {
@@ -15636,7 +15645,7 @@
       "name": "Flight from Moria",
       "type": "nightmare",
       "pack": "Khazad-dum - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "khazad-dum-nightmare"
     },
     {
@@ -19220,7 +19229,7 @@
       "name": "Search for an Exit",
       "type": "quest",
       "pack": "Khazad-dum - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "khazad-dum-nightmare"
     },
     {
@@ -20268,7 +20277,7 @@
       "name": "Shadowed Corridor",
       "type": "location",
       "pack": "Khazad-dum - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "khazad-dum-nightmare"
     },
     {
@@ -24260,7 +24269,7 @@
       "name": "Search for an Exit",
       "type": "quest",
       "pack": "Khazad-dum - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "khazad-dum-nightmare"
     },
     {
@@ -25196,7 +25205,7 @@
       "name": "Search for an Exit",
       "type": "quest",
       "pack": "Khazad-dum - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "khazad-dum-nightmare"
     },
     {
@@ -27596,7 +27605,7 @@
       "name": "Swarming Goblins",
       "type": "enemy",
       "pack": "Khazad-dum - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "khazad-dum-nightmare"
     },
     {
@@ -30196,7 +30205,7 @@
       "name": "An Evil Fortune",
       "type": "treachery",
       "pack": "Khazad-dum - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "khazad-dum-nightmare"
     },
     {
@@ -37220,7 +37229,7 @@
       "name": "Dismay and Fear",
       "type": "treachery",
       "pack": "Khazad-dum - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "khazad-dum-nightmare"
     },
     {
@@ -39219,8 +39228,8 @@
       "id": "N02.3",
       "name": "Flight from Moria (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "flight-from-moria",
+      "state": "scripted"
     },
     {
       "id": "N02.4",

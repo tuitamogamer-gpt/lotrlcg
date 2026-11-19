@@ -150,6 +150,14 @@ export interface Batch4ScenarioHooks {
   attachmentExhausted?(s: GameState, host: Unit, a: Attachment): Effect[];
   /** The enemy makes no engagement checks. */
   noEngagementCheck?(s: GameState, u: Unit): boolean;
+  /** Defeating this quest card wins the game (a Nightmare Deck's Flight from Moria route). */
+  winningStage?(s: GameState, code: string): boolean;
+  /** Bypassing the active quest card: the option's label and its additional cost. */
+  bypass?(s: GameState): { label: string; cost: Effect[] } | undefined;
+  /** After a quest card is bypassed into the quest deck: the effects that follow. */
+  questBypassed?(s: GameState, code: string): Effect[];
+  /** The ability on this card can be used once each round. */
+  abilityOncePerRound?(s: GameState, code: string): boolean;
   /** After characters commit to the quest (each commitment, at any time). */
   charactersCommitted?(s: GameState, units: Unit[]): void;
   /** The character loses the keyword (as A Journey to Rhosgobel's Pitch-dark Thicket, its ranged). */

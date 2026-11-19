@@ -169,8 +169,10 @@ const active = (s: GameState, code: string) =>
   allActiveLocations(s).some((u) => u.code === code);
 const immune = (u: Unit) =>
   /Immune to (?:player )?card effects/i.test(card(u.code).text ?? "");
+/** A quest card: the scenario's own, or a Nightmare Deck's (Flight from Moria's new routes). */
 const questDefinition = (questCode: string) =>
-  KHAZAD_QUESTS.find((q) => q.code === questCode)!;
+  KHAZAD_QUESTS.find((q) => q.code === questCode) ??
+  (card(questCode) as (typeof KHAZAD_QUESTS)[number]);
 
 export function khazadVictory(s: GameState, cardCode: string) {
   if (isKhazad(s)) state(s).victoryCards.push(cardCode);
@@ -297,8 +299,16 @@ export function advanceKhazad(s: GameState) {
       q = k.activeQuest;
     if (k.questSide !== "B" || !q || s.stage !== 2) return true;
     const threshold = questDefinition(q).back_quest;
-    if (threshold === undefined || s.progress < threshold) return true;
-    if (q === KHAZAD.blocked || q === KHAZAD.darkness) win(s);
+    const defeated =
+      batch4Scenario(s).stageDefeated?.(s) ??
+      (threshold !== undefined && s.progress >= threshold);
+    if (!defeated) return true;
+    if (
+      q === KHAZAD.blocked ||
+      q === KHAZAD.darkness ||
+      batch4Scenario(s).winningStage?.(s, q)
+    )
+      win(s);
     else {
       if (questDefeated(s, q)) return true;
       addQuestVictory(s, q);
@@ -666,6 +676,8 @@ export function khazadQuestProgress(s: GameState, n: number) {
   }
   return false;
 }
+/** Abandoned Tools' Refresh Action this round (a round key: it clears with the round). */
+const TOOLS_ROUND = "round:khazad:tools";
 export function khazadAbilityProblem(
   s: GameState,
   u: Unit,
@@ -691,7 +703,10 @@ export function khazadAbilityProblem(
       ? "Use Abandoned Tools during refresh on Escape from Darkness."
       : u.exhausted || khazadCannotExhaust(u)
         ? "The attached hero must be ready and able to exhaust."
-        : null;
+        : batch4Scenario(s).abilityOncePerRound?.(s, a.code) &&
+            s.used.includes(TOOLS_ROUND)
+          ? "Abandoned Tools' Refresh Action can be used once each round."
+          : null;
   if (a?.code === KHAZAD.fear)
     return u.resources < 3
       ? "Spend three resources from this hero to discard Shadow of Fear."
@@ -743,6 +758,8 @@ export function khazadAbility(s: GameState, u: Unit, attachmentId?: string) {
         exhaustCharacter(s, u),
         "This hero cannot exhaust Abandoned Tools.",
       );
+      if (batch4Scenario(s).abilityOncePerRound?.(s, a.code))
+        s.used.push(TOOLS_ROUND);
       addCurrentQuestProgress(s, 1);
     } else {
       spendResources(s, u, 3);
@@ -799,6 +816,8 @@ function flipFlightQuest(s: GameState) {
       );
       break;
   }
+  // A Nightmare Deck's routes resolve their own "When Revealed" effects.
+  batch4Scenario(s).stageRevealed?.(s, 2);
   enqueue(s, fx("khazadStageReady"));
 }
 function fearAttack(s: GameState) {
@@ -1617,20 +1636,27 @@ export function khazadEffect(s: GameState, e: Effect) {
         ![KHAZAD.presence, KHAZAD.council].includes(
           state(s).activeQuest as typeof KHAZAD.presence,
         )
-      )
+      ) {
+        // A Nightmare Deck may change where the route goes and add a cost.
+        const bypass = batch4Scenario(s).bypass?.(s);
         choose(s, "Search for an Exit · Bypass this route?", [
           {
             id: "bypass",
-            label: "Put this route beneath the quest deck",
-            effects: [fx("khazadBypass")],
+            label: bypass?.label ?? "Put this route beneath the quest deck",
+            effects: [...(bypass?.cost ?? []), fx("khazadBypass")],
           },
           skip,
         ]);
+      }
       break;
-    case "khazadBypass":
-      state(s).questDeck.push(state(s).activeQuest!);
+    case "khazadBypass": {
+      const route = state(s).activeQuest!;
+      state(s).questDeck.push(route);
+      const after = batch4Scenario(s).questBypassed?.(s, route) ?? [];
       newFlightQuest(s);
+      prepend(s, ...after);
       break;
+    }
     case "khazadBlockedChoice":
       choose(s, "Blocked by Shadow · Choose an escape", [
         {

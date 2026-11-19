@@ -2922,6 +2922,18 @@ export function composeEredPool(
     replaceDamage: (s, u, amount, context) =>
       !!h.replaceDamage?.(s, u, amount, context) ||
       !!p.replaceDamage?.(s, u, amount, context),
+    winningStage: (s, code) =>
+      !!h.winningStage?.(s, code) || !!p.winningStage?.(s, code),
+    bypass: (s) => p.bypass?.(s) ?? h.bypass?.(s),
+    questBypassed: (s, code) => [
+      ...(h.questBypassed?.(s, code) ?? []),
+      ...(p.questBypassed?.(s, code) ?? []),
+    ],
+    abilityOncePerRound: (s, code) =>
+      !!h.abilityOncePerRound?.(s, code) || !!p.abilityOncePerRound?.(s, code),
+    consideredEngaged: (s, u, player) =>
+      !!h.consideredEngaged?.(s, u, player) ||
+      !!p.consideredEngaged?.(s, u, player),
     locationProgressCapacity: (s, u) => {
       const a = h.locationProgressCapacity?.(s, u),
         b = p.locationProgressCapacity?.(s, u);

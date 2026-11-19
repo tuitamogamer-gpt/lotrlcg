@@ -786,6 +786,101 @@ try {
       .getByRole("button", { name: "Close dialog", exact: true })
       .last()
       .click();
+    // Flight from Moria in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-flight-from-moria").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "flight-from-moria");
+    assert.equal(s.nightmareMode, true);
+    {
+      const routes = [s.khazad.activeQuest, ...s.khazad.questDeck];
+      for (const code of [K.ghash, K.flame, K.pursued])
+        assert.ok(routes.includes(code), code);
+      assert.ok(!routes.includes(KHAZAD.blocked), "Blocked by Shadow");
+    }
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/replace Blocked by Shadow in the quest deck/)
+      .waitFor();
+    await checkpoint("flight-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    /** The board on route `code`, turned to side 2B. */
+    const flightRoute = (code, change) => {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const k = t.khazad;
+      k.questDeck = [k.activeQuest, ...k.questDeck].filter((c) => c !== code);
+      k.activeQuest = code;
+      k.questSide = "B";
+      t.stage = 2;
+      t.progress = 0;
+      t.staging = t.staging.filter((u) => u.code === KHAZAD.nameless);
+      change(t);
+      return t;
+    };
+    // Blocked by Flame: The Nameless Fear has 4 damage; a Coal-Black Orc.
+    s = await load(
+      page,
+      flightRoute(K.flame, (t) => {
+        t.staging[0].damage = 4;
+        t.staging.push(make(t, K.coalBlack));
+      }),
+    );
+    const flame = page
+      .getByRole("button", { name: "Inspect quest: Blocked by Flame" })
+      .locator("img");
+    await flame.waitFor();
+    assert.ok(
+      (await flame.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "Blocked by Flame's face loads",
+    );
+    await page
+      .locator(".journey-area .quest-goals")
+      .getByText("Blocked by Flame · The Nameless Fear has 4/10 damage")
+      .waitFor();
+    await checkpoint("flight-blocked-by-flame", width);
+    // Pursued by Shadow: 1 progress placed this round.
+    s = await load(
+      page,
+      flightRoute(K.pursued, (t) => {
+        t.progress = 1;
+        t.nightmare = {
+          ...(t.nightmare ?? {}),
+          pursued: { round: t.round, amount: 1 },
+        };
+      }),
+    );
+    await page
+      .getByLabel("Quest progress: 1 of 5", { exact: true })
+      .first()
+      .waitFor();
+    await page
+      .locator(".journey-area .quest-goals")
+      .getByText("Escape at 5 progress · no more than 1 each round")
+      .waitFor();
+    await checkpoint("flight-pursued-by-shadow", width);
     await view.c.close();
   }
   const p = await browser.newPage();

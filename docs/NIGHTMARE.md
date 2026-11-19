@@ -13,8 +13,9 @@ not offered in campaign mode.
 Journey Along the Anduin and Escape from Dol Guldur) and all six of Shadows of
 Mirkwood's (The Hunt for Gollum, Conflict at the Carrock, A Journey to
 Rhosgobel, The Hills of Emyn Muil, The Dead Marshes and Return to Mirkwood),
-and, of Khazad-dûm's, Into the Pit and The Seventh Level. The other Nightmare
-Decks follow in publication order, beginning with Flight from Moria.
+and all three of Khazad-dûm's (Into the Pit, The Seventh Level and Flight from
+Moria). The other Nightmare Decks follow in publication order, beginning with
+The Redhorn Gate.
 
 ## Sources
 
@@ -28,7 +29,8 @@ Decks follow in publication order, beginning with Flight from Moria.
   Conflict at the Carrock, whose Nightmare Deck adds a stage to the quest
   deck, 10 cards and 11 faces for The Dead Marshes and The Seventh Level, and 8
   cards and 10 faces for Into the Pit, whose Nightmare Deck replaces stage
-  2).
+  2, and 9 cards and 13 faces for Flight from Moria, whose Nightmare Deck adds
+  three stage 2 quest cards).
 - The scans correct the catalogue: each setup card's front is the removal
   list ("Begin with the standard quest deck and encounter deck … Remove the
   following cards, in the specified quantities …"), where the catalogue had a
@@ -60,14 +62,19 @@ Decks follow in publication order, beginning with Flight from Moria.
   Shadow-Fall's quoted text ends "+3 quest points."; The Seventh Level's setup
   card and Overseer Maurûl keep the accent of "Maurûl" (the catalogue had
   "Maurul" and "Marul"), and Deep-Mines' shadow reads "Then, if attacking
-  enemy is a Goblin".
+  enemy is a Goblin"; Flight from Moria's Ghâsh! keeps its circumflex (the
+  catalogue had "Ghash!"), Blocked by Flame's text is printed once (the
+  catalogue repeated it after "Side B:"), Pursued by Shadow's first paragraph
+  ends with its period, Coal-Black Orc's shadow counts the "victory points"
+  (the catalogue had "points"), and An Evil Fortune is a Shadow. Flame. card
+  with Victory 1 (the catalogue had neither).
 - The source recipe of each Nightmare scenario (`public/scenarios.json`,
-  N01.1 to N01.9, N02.1 and N02.2) is the standard encounter deck without the
-  printed removals plus the Nightmare Deck (Escape from Dol Guldur's Nazgûl,
-  Conflict at the Carrock's 5 unique Trolls and The Seventh Level's Overseer
-  Maurûl and Chamber of Records set aside in both, the
-  Carrock's stage 3 and Into the Pit's Goblin Ambush in their quest decks): a
-  test compares the two. Into the Pit's recipe lacks the 2 Goblin Followers
+  N01.1 to N01.9 and N02.1 to N02.3) is the standard encounter deck without
+  the printed removals plus the Nightmare Deck (Escape from Dol Guldur's
+  Nazgûl, Conflict at the Carrock's 5 unique Trolls and The Seventh Level's
+  Overseer Maurûl and Chamber of Records set aside in both, the Carrock's
+  stage 3, Into the Pit's Goblin Ambush and Flight from Moria's three routes,
+  without Blocked by Shadow, in their quest decks): a test compares the two. Into the Pit's recipe lacks the 2 Goblin Followers
   its setup card keeps (it removes 2 of the 4); the deck follows the printed
   card.
 
@@ -86,7 +93,8 @@ Decks follow in publication order, beginning with Flight from Moria.
   `src/game/nightmare-dead.ts` (The Dead Marshes) and
   `src/game/nightmare-rtm.ts` (Return to Mirkwood) and
   `src/game/nightmare-pit.ts` (Into the Pit) and
-  `src/game/nightmare-seventh.ts` (The Seventh Level) script the setup cards'
+  `src/game/nightmare-seventh.ts` (The Seventh Level) and
+  `src/game/nightmare-flight.ts` (Flight from Moria) script the setup cards'
   rules and the Nightmare
   encounter cards as a layer, chosen by scenario and composed with its hooks
   (the composition the Ered Mithrin Campaign Pool uses, which also composes
@@ -100,7 +108,9 @@ Decks follow in publication order, beginning with Flight from Moria.
   follows it. It may also replace a stage (Into the Pit's Goblin Ambush, in
   place of Goblin Patrol): the table, the quest inspector and the quest's
   attachments follow the new stage, whose own revealing effects and defeat
-  condition replace the printed stage's.
+  condition replace the printed stage's. Or it may add quest cards to a quest
+  deck of routes (Flight from Moria's, in place of Blocked by Shadow): a
+  route's face, quest points and victory come from its own card.
 - The quest inspector shows the Nightmare card (its rules side first) and the
   rule it applied; the end-of-game log names the mode.
 - The coverage audit counts a Nightmare recipe as automated once its
@@ -284,10 +294,30 @@ Stage 2B's reveal and the final stage's condition use the stage hooks Into the
 Pit's Nightmare Deck added; the composition also passes on an enemy entering
 the staging area and a cancelled damage.
 
+## Flight from Moria (Nightmare)
+
+| Card                            | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Setup card                      | Removes Blocked by Shadow from the quest deck, and New Devilry ×1, Stray Goblin ×3, The Mountains' Roots ×2, Chance Encounter ×3, Goblin Archer ×2, Goblin Spearman ×1, Plundered Armoury ×2, Cave In ×3 and Dark and Dreadful ×2 from the standard encounter deck; Ghâsh!, Blocked by Flame and Pursued by Shadow are shuffled into the quest deck with the other stage 2 routes. A bypassed route is shuffled into the quest deck instead of placed beneath it (the next route revealed may be the same one). While Escape from Darkness is in play, Abandoned Tools' Refresh Action can be used once each round. |
+| Ghâsh! (stage 2)                | When revealed, 1 damage to each questing character. 1 quest point; Victory 1. It may be bypassed at the end of the combat phase.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Blocked by Flame (stage 2)      | The Nameless Fear is considered engaged with each player: it attacks each player in turn order during the combat phase (a new shadow card dealt and discarded for each attack), and characters may attack it in the staging area. With 10 or more damage on it, all its damage is removed and the stage is defeated (Victory 1). No quest points; it may be bypassed.                                                                                                                                                                                                                                               |
+| Pursued by Shadow (stage 2)     | No more than 1 progress is placed on it each round. Forced: at the end of the round, the encounter discard pile is shuffled into the encounter deck and its top 5 cards are discarded; each A Foe Beyond discarded resolves its "When Revealed" effect. 5 quest points: defeating it wins the game. It may be bypassed.                                                                                                                                                                                                                                                                                             |
+| Swarming Goblins (enemy ×3)     | Surge. While a player is engaged with it, when a quest card is bypassed, a Goblin Spearman from the encounter discard pile enters play engaged with that player.                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Coal-Black Orc (enemy ×3)       | [threat] and [attack] X, the victory points in the victory display. Shadow: +X [attack] to the attacking enemy.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Shadowed Corridor (location ×4) | Each copy in play (in the staging area or active) makes each player raise their threat by 2 as an additional cost to bypass a quest card. Shadow: a hero defender discards all its resources, and the attacking enemy is dealt another shadow card for each.                                                                                                                                                                                                                                                                                                                                                        |
+| Dismay and Fear (treachery ×3)  | The first player removes characters from the quest, one at a time, until the [willpower] removed reaches The Nameless Fear's [threat]. Shadow: the defending player discards each attachment they control costing less than The Nameless Fear's [threat].                                                                                                                                                                                                                                                                                                                                                           |
+| An Evil Fortune (treachery ×3)  | Surge. Doomed 1. It enters the victory display (Victory 1). Shadow: if the attack destroys a character, it enters the victory display.                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+
+The scenario's routes gain hooks for a route whose defeat wins the game, for
+the bypass (its label and additional cost, and what follows it) and for an
+ability usable once each round; a new route's revealing effects and defeat
+condition use the stage hooks Into the Pit's Nightmare Deck added. The
+composition also passes on an enemy considered engaged from the staging area.
+
 ## Verification
 
 ```sh
-node --import tsx --test tests/nightmare-core.test.ts tests/nightmare-anduin.test.ts tests/nightmare-dol-guldur.test.ts tests/nightmare-gollum.test.ts tests/nightmare-carrock.test.ts tests/nightmare-rhosgobel.test.ts tests/nightmare-emyn.test.ts tests/nightmare-dead.test.ts tests/nightmare-rtm.test.ts tests/nightmare-pit.test.ts tests/nightmare-seventh.test.ts
+node --import tsx --test tests/nightmare-core.test.ts tests/nightmare-anduin.test.ts tests/nightmare-dol-guldur.test.ts tests/nightmare-gollum.test.ts tests/nightmare-carrock.test.ts tests/nightmare-rhosgobel.test.ts tests/nightmare-emyn.test.ts tests/nightmare-dead.test.ts tests/nightmare-rtm.test.ts tests/nightmare-pit.test.ts tests/nightmare-seventh.test.ts tests/nightmare-flight.test.ts
 npm run build
 npm run test:browser-nightmare
 ```
@@ -374,7 +404,7 @@ new guard engaged and attacked), Ambushing Orcs' shadows on each player
 sentinel keywords, the locked guard, discarded as the quest advances);
 Web-spinner, Web-wall and Deceptive Path; Befouled Equipment (an enemy's attachment too, the discard pile removed from the game, its surge, its shadow) and Wickedness and Mischief (its
 choice, never revealing itself, its shadow's new shadow card); and seeded solo
-and two-player games. `tests/nightmare-pit.test.ts` (6 tests) covers Into the Pit's texts, stats and faces; its Nightmare encounter deck against the source recipe (with the 2 Goblin Followers its setup card keeps); Cave Torch's damage tokens (through Lightless Passage's cost and its Action), Patrol Sentry's immediate attack and Cave Torch removed at 5; Goblin Ambush (Patrol Sentry and Patrol Leader found, a choice among the Orc enemies of the deck and discard pile in a two-player game, X quest points, progress only from defeated enemies, revealed enemies kept, the stage defeated at X); Goblin Lurker, Shadow Dweller (no engagement checks while Cave Torch is in play) and the shadows; Twisting Shadows, Narrow Fissure and Shadow-Fall (the Dark trait it gives); and seeded solo and two-player games, from the start and from stage 2. `tests/nightmare-seventh.test.ts` (5 tests) covers The Seventh Level's texts, stats and faces; its Nightmare encounter deck against the source recipe; Overseer Maurûl and Chamber of Records set aside, then stage 2B (Chamber of Records active, the previous active location staged with its progress, Overseer Maurûl staged, Balin's Doom returned) and the win held until Overseer Maurûl is in the victory display; the resources (Pit Goblin, Orc Taskmaster, Balin's Doom and its surge, Deep-Mines for each copy, Chamber of Records' engagement and event immunity, Western Hall's [threat] and Travel, Goblin Skirmisher's [attack], neither stacking, Overseer Maurûl's X, Orc Taskmaster's cancelled damage); Beats and Echoes (solo, engaged with a Goblin, two players) and the shadows; and seeded solo and two-player games, from the start and from stage 2B.
+and two-player games. `tests/nightmare-pit.test.ts` (6 tests) covers Into the Pit's texts, stats and faces; its Nightmare encounter deck against the source recipe (with the 2 Goblin Followers its setup card keeps); Cave Torch's damage tokens (through Lightless Passage's cost and its Action), Patrol Sentry's immediate attack and Cave Torch removed at 5; Goblin Ambush (Patrol Sentry and Patrol Leader found, a choice among the Orc enemies of the deck and discard pile in a two-player game, X quest points, progress only from defeated enemies, revealed enemies kept, the stage defeated at X); Goblin Lurker, Shadow Dweller (no engagement checks while Cave Torch is in play) and the shadows; Twisting Shadows, Narrow Fissure and Shadow-Fall (the Dark trait it gives); and seeded solo and two-player games, from the start and from stage 2. `tests/nightmare-seventh.test.ts` (5 tests) covers The Seventh Level's texts, stats and faces; its Nightmare encounter deck against the source recipe; Overseer Maurûl and Chamber of Records set aside, then stage 2B (Chamber of Records active, the previous active location staged with its progress, Overseer Maurûl staged, Balin's Doom returned) and the win held until Overseer Maurûl is in the victory display; the resources (Pit Goblin, Orc Taskmaster, Balin's Doom and its surge, Deep-Mines for each copy, Chamber of Records' engagement and event immunity, Western Hall's [threat] and Travel, Goblin Skirmisher's [attack], neither stacking, Overseer Maurûl's X, Orc Taskmaster's cancelled damage); Beats and Echoes (solo, engaged with a Goblin, two players) and the shadows; and seeded solo and two-player games, from the start and from stage 2B. `tests/nightmare-flight.test.ts` (8 tests) covers Flight from Moria's texts, stats and faces; its Nightmare encounter deck and quest deck against the source recipe (the three new routes in place of Blocked by Shadow); the bypassed route shuffled into the quest deck (its label, not always beneath, Shadowed Corridor's cost for each copy, a declined bypass at no cost, Swarming Goblins' Goblin Spearman engaging its player in a two-player game, or none); Abandoned Tools' Refresh Action once each round; Ghâsh!'s damage and victory; Blocked by Flame (The Nameless Fear's attacks on each player with a new shadow card, attacked in the staging area, its damage removed at 10 and the stage defeated); Pursued by Shadow (1 progress each round, the round's 5 discarded cards with A Foe Beyond resolved, the win at 5); Coal-Black Orc's X, the shadows, Dismay and Fear and An Evil Fortune (Doomed 1, surge, the victory display, and its shadow on a destroyed character); and seeded solo and two-player games, from the start and from each new route.
 
 The browser suite starts Passage Through Mirkwood in Nightmare mode from the
 lobby (easy mode turned off), checks the setup's staging area and reveal, the
@@ -399,4 +429,4 @@ with 3 tokens on the Mere (an escape test revealed during the setup is
 resolved first); and it starts Return to Mirkwood in Nightmare mode from the
 lobby, checks Gollum's guard, its Nightmare card, Isolation on the current
 quest (on the table and in the quest inspector), and the quest phase's choice
-for Gollum's guard, resolving Gollum's Anguish from the discard pile; and it starts Into the Pit in Nightmare mode from the lobby, checks Cave Torch, its Nightmare card, and stage 2 (Goblin Ambush's face, its 1 of 2 progress and goal, Shadow-Fall on First Hall); and it starts The Seventh Level in Nightmare mode from the lobby, checks Overseer Maurûl and Chamber of Records set aside, its Nightmare card, and stage 2B (Chamber of Records active, a Pit Goblin with 3 resources, the Nightmare card's win condition), at 1280, 390 and 320 pixels (75 checkpoints); it checks the 114 pinned faces.
+for Gollum's guard, resolving Gollum's Anguish from the discard pile; and it starts Into the Pit in Nightmare mode from the lobby, checks Cave Torch, its Nightmare card, and stage 2 (Goblin Ambush's face, its 1 of 2 progress and goal, Shadow-Fall on First Hall); and it starts The Seventh Level in Nightmare mode from the lobby, checks Overseer Maurûl and Chamber of Records set aside, its Nightmare card, and stage 2B (Chamber of Records active, a Pit Goblin with 3 resources, the Nightmare card's win condition); and it starts Flight from Moria in Nightmare mode from the lobby, checks the three new routes in its quest deck, its Nightmare card, Blocked by Flame (its face, The Nameless Fear's 4 of 10 damage) and Pursued by Shadow (its 1 of 5 progress and goal), at 1280, 390 and 320 pixels (84 checkpoints); it checks the 127 pinned faces.

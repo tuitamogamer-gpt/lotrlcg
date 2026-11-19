@@ -1398,6 +1398,30 @@ export function QuestGoals({ s }: { s: GameState }) {
                                     },
                                   ]
                                 : []),
+                              // Nightmare mode's routes: Blocked by Flame is
+                              // defeated by 10 damage on The Nameless Fear,
+                              // Pursued by Shadow takes 1 progress each round.
+                              ...(s.khazad?.activeQuest ===
+                                NIGHTMARE_KD.flame && s.khazad.questSide === "B"
+                                ? [
+                                    {
+                                      label: `Blocked by Flame · The Nameless Fear has ${Math.min(10, fear?.damage ?? 0)}/10 damage`,
+                                      done:
+                                        !!s.nightmare?.flameDefeated ||
+                                        (fear?.damage ?? 0) >= 10,
+                                    },
+                                  ]
+                                : []),
+                              ...(s.khazad?.activeQuest ===
+                                NIGHTMARE_KD.pursued &&
+                              s.khazad.questSide === "B"
+                                ? [
+                                    {
+                                      label: `Escape at ${stageInfo(s).quest} progress · no more than 1 each round`,
+                                      done: s.progress >= stageInfo(s).quest,
+                                    },
+                                  ]
+                                : []),
                             ]
                           : s.scenarioId === "redhorn-gate"
                             ? [

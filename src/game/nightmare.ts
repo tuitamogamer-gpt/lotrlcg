@@ -131,6 +131,16 @@ export const NIGHTMARE_KD = {
   westernHall: "octgn:5277b186-0c76-4ec6-9615-20cdceb49241",
   balinsDoom: "octgn:6c97c646-1952-4080-ae56-ab7caeafb28f",
   beats: "octgn:c6b1e2eb-9ce9-419c-a210-723f3891720d",
+  /** Flight from Moria's setup card, its new stage 2 quest cards and its Nightmare Deck. */
+  flightCard: "octgn:1bac61b0-ee27-43eb-bb39-85f64c6b4c94",
+  ghash: "octgn:45c91742-29a2-4409-a7e5-1f6234d73908",
+  flame: "octgn:5ed5e5a0-8924-424a-a49f-527fe91c6374",
+  pursued: "octgn:6c9419b0-e016-4ba8-b90a-575d4378984e",
+  swarming: "octgn:877df84f-3f61-41e0-96ad-aab2aae56048",
+  coalBlack: "octgn:0834d564-c1f1-4f16-8bc7-d7249d665d5c",
+  corridor: "octgn:4c495965-946e-472f-841c-72f388a7ce65",
+  dismay: "octgn:f6f49c59-637f-4ca2-b51f-e00c4332d33b",
+  fortune: "octgn:a78c13d9-8acb-42eb-82a0-a216de3ed87a",
 } as const;
 
 interface NightmareDeck {
@@ -318,6 +328,21 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Goblin Spearman": 2,
     },
   },
+  "flight-from-moria": {
+    card: NIGHTMARE_KD.flightCard,
+    removals: {
+      "New Devilry": 1,
+      "Stray Goblin": 3,
+      "The Mountains' Roots": 2,
+      "Chance Encounter": 3,
+      "Goblin Archer": 2,
+      "Goblin Spearman": 1,
+      "Plundered Armoury": 2,
+      "Cave In": 3,
+      "Dark and Dreadful": 2,
+    },
+    questRemovals: { "Blocked by Shadow": 1 },
+  },
 };
 export const nightmareSupported = (id?: ScenarioId) => !!id && id in NIGHTMARE;
 /** A Nightmare mode game of a supported scenario. */
@@ -490,6 +515,10 @@ export function nightmareStatus(s: GameState): string[] {
       s.stage < 2
         ? "The Seventh Level · Nightmare mode: Overseer Maurûl and Chamber of Records are set aside until stage 2B is revealed."
         : "The Seventh Level · Nightmare mode: Chamber of Records and Overseer Maurûl came into play with stage 2B; the players cannot win unless Overseer Maurûl is in the victory display.",
+    ];
+  if (s.scenarioId === "flight-from-moria")
+    return [
+      "Flight from Moria · Nightmare mode: Ghâsh!, Blocked by Flame and Pursued by Shadow replace Blocked by Shadow in the quest deck; a bypassed quest card is shuffled into the quest deck; while Escape from Darkness is in play, Abandoned Tools' Refresh Action works once each round.",
     ];
   return [];
 }

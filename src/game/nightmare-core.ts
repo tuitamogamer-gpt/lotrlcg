@@ -54,6 +54,7 @@ import {
   nightmareRefillsEncounterDeck,
 } from "./nightmare";
 import { surgeEffects } from "./surge";
+import { KHAZAD } from "./khazad-dum";
 import { OBJECTIVES } from "./scenarios";
 import { threatElimination } from "./threat-elimination";
 import { encodeDamageContext, type DamageContext } from "./damage-context";
@@ -139,6 +140,23 @@ export function nightmareSetup(s: GameState) {
     log(
       s,
       "The Seventh Level · Nightmare: Overseer Maurûl and Chamber of Records are set aside.",
+    );
+  }
+  // Flight from Moria: "Shuffle the new stage 2 quest cards in this Nightmare
+  // Deck into the quest deck along with the rest of the scenario's stage 2
+  // quest cards" (Blocked by Shadow removed).
+  if (s.scenarioId === "flight-from-moria" && s.khazad) {
+    const k = s.khazad;
+    k.questDeck = k.questDeck.filter((c) => c !== KHAZAD.blocked);
+    k.questDeck.push(
+      NIGHTMARE_KD.ghash,
+      NIGHTMARE_KD.flame,
+      NIGHTMARE_KD.pursued,
+    );
+    shuffle(s, k.questDeck);
+    log(
+      s,
+      "Flight from Moria · Nightmare: Ghâsh!, Blocked by Flame and Pursued by Shadow are shuffled into the quest deck in place of Blocked by Shadow.",
     );
   }
   // A Journey to Rhosgobel: "Setup: Search the encounter deck for 1 copy of

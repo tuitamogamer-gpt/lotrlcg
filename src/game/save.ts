@@ -126,6 +126,7 @@ import { validNightmareSom } from "./nightmare-som";
 import { validNightmareRhos } from "./nightmare-rhosgobel";
 import { validNightmareEmyn } from "./nightmare-emyn";
 import { validNightmarePit } from "./nightmare-pit";
+import { validNightmareFlight } from "./nightmare-flight";
 import { nightmareEscapeTest } from "./nightmare-dead";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
@@ -1157,6 +1158,7 @@ export function validateSave(
         !validNightmareRhos(s) ||
         !validNightmareEmyn(s) ||
         !validNightmarePit(s) ||
+        !validNightmareFlight(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,
