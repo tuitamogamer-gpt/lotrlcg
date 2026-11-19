@@ -279,7 +279,7 @@ import carrockQuestCards from "./data/carrock-quest-cards.json";
 import { CARROCK, isSacked } from "./game/carrock";
 import { EMYN_MUIL_QUESTS, emynMuilMustCommit } from "./game/emyn-muil";
 import { eligiblePayers, engagementCost, get } from "./game/core";
-import { currentQuestUnit } from "./game/quest-state";
+import { currentQuestUnit, mainQuestUnit } from "./game/quest-state";
 import { RHOS } from "./game/rhosgobel";
 import { KHAZAD, khazadCannotExhaust } from "./game/khazad-dum";
 import { DEAD } from "./game/dead-marshes";
@@ -370,6 +370,10 @@ import {
   applyAngmarResolution,
   nextAngmarChapter,
 } from "./game/angmar-campaign";
+import {
+  eredCampaignUnitAbilityLabel,
+  eredCampaignUnitAbilityProblem,
+} from "./game/ered-campaign-cards";
 import {
   ERED,
   ERED_CAMPAIGN_CARDS,
@@ -4600,6 +4604,30 @@ export default function App() {
                     {line}
                   </p>
                 ))}
+                {(() => {
+                  // A campaign card's Action, triggered from the main quest
+                  // (The Ghost of Framsburg).
+                  const quest = mainQuestUnit(game);
+                  const label =
+                    quest && game.campaign?.kind === "ered"
+                      ? eredCampaignUnitAbilityLabel(quest.code, game)
+                      : undefined;
+                  if (!quest || !label) return null;
+                  const problem = eredCampaignUnitAbilityProblem(game, quest);
+                  return (
+                    <button
+                      className="secondary campaign-card-action"
+                      disabled={!!problem}
+                      title={problem ?? undefined}
+                      onClick={() => {
+                        setShowQuest(false);
+                        dispatch({ type: "ABILITY", id: quest.id });
+                      }}
+                    >
+                      {label}
+                    </button>
+                  );
+                })()}
               </div>
             )}
             <p>

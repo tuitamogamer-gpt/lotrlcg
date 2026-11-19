@@ -106,15 +106,15 @@ function shadow(s: GameState, enemy: Unit, code: string, defender?: Unit) {
   return batch4Scenario(s).shadow!(s, code);
 }
 
-test("Ered Mithrin Campaign Pool: the 60 cards of the first five chapters are foreign wherever the later chapters' own modules do not script them", () => {
-  assert.equal(ERED_POOL_PORTABLE.length, 60);
-  assert.equal(new Set(ERED_POOL_PORTABLE).size, 60);
+test("Ered Mithrin Campaign Pool: the 68 cards of the first six chapters are foreign wherever the later chapters' own modules do not script them", () => {
+  assert.equal(ERED_POOL_PORTABLE.length, 68);
+  assert.equal(new Set(ERED_POOL_PORTABLE).size, 68);
   const counts = LATER.map((id) => {
     const s = chapter(id);
     assert.ok(eredPoolLive(s));
     return ERED_POOL_PORTABLE.filter((c) => eredForeign(s, c)).length;
   });
-  assert.deepEqual(counts, [39, 43, 54, 55, 45, 53]);
+  assert.deepEqual(counts, [47, 51, 54, 63, 53, 61]);
   // Every card is foreign in at least one later chapter.
   const heath = chapter("the-withered-heath"),
     roam = chapter("roam-across-rhovanion");
@@ -135,6 +135,10 @@ test("Ered Mithrin Campaign Pool: the 60 cards of the first five chapters are fo
   const fire = chapter("fire-in-the-night");
   assert.equal(eredForeign(roam, R.giant), false);
   assert.equal(eredForeign(fire, R.giant), true);
+  // Fire in the Night's own cards are foreign from The Ghost of Framsburg on.
+  const ghost = chapter("the-ghost-of-framsburg");
+  assert.equal(eredForeign(fire, F.thrall), false);
+  assert.equal(eredForeign(ghost, F.thrall), true);
   // Outside the campaign the layer does nothing.
   const normal = createGame(5, d.cards, d.heroes, d.id, {
     scenarioId: "the-withered-heath",
@@ -1118,4 +1122,98 @@ test("Ered Mithrin Campaign Pool: Sneaking Off, Harsh Weather and Wild Creatures
   assert.ok(w.staging.some((e) => e.code === F.dagnir));
   assert.ok(w.encounterDiscard.includes(W.mine));
   assert.ok(valid(w));
+});
+
+test("Ered Mithrin Campaign Pool: Fire in the Night's cards keep their printed text in The Ghost of Framsburg, without Hrogar's Hill or Dagnir", () => {
+  const damage = (x: GameState) =>
+    [...x.heroes, ...x.allies].reduce((n, c) => n + c.damage, 0);
+  // The Dragon's Thrall: no Hrogar's Hill to damage, so it attacks the
+  // player it engages.
+  const s = calm(chapter("the-ghost-of-framsburg"), "encounter");
+  const thrall = make(s, F.thrall);
+  s.staging.push(thrall);
+  engage(s, thrall);
+  flush(s);
+  assert.ok(
+    !!s.combat || !!s.choice,
+    "an immediate attack against the engaged player",
+  );
+  // Orc of the Flame: the first player deals 2 damage to a hero they control;
+  // its shadow gives +1 attack.
+  let t = calm(chapter("the-ghost-of-framsburg"), "staging");
+  const before = damage(t);
+  t = reveal(t, F.orc, (x) =>
+    x.choice?.title.startsWith("Orc of the Flame")
+      ? x.choice.options[0].id
+      : undefined,
+  );
+  assert.ok(damage(t) >= before + 2);
+  const u = calm(chapter("the-ghost-of-framsburg"), "defense");
+  const enemy = make(u, W.stray);
+  u.engaged.push(enemy);
+  shadow(u, enemy, F.orc, u.heroes[0]);
+  assert.equal(u.combat!.attackBonus, 1);
+  shadow(u, enemy, F.fury, u.heroes[0]);
+  assert.equal((u.combat as never as { extraAttacks: number }).extraAttacks, 1);
+  shadow(u, enemy, F.flames, u.heroes[0]);
+  assert.equal(u.combat!.attackBonus, 0);
+  // Town Gate: a resource at the end of each quest phase; at 3 it is
+  // discarded.
+  const v = calm(chapter("the-ghost-of-framsburg"), "quest");
+  const gate = make(v, F.gate);
+  v.staging.push(gate);
+  for (let i = 0; i < 3; i++) {
+    batch4Scenario(v).endQuest!(v);
+    flush(v);
+  }
+  assert.ok(!v.staging.some((l) => l.id === gate.id));
+  assert.ok(v.encounterDiscard.includes(F.gate));
+  // Wooden Palisade readies a hero; Burning Watchtower (X = 1 with no side
+  // quest in the victory display) makes each player assign 1 damage.
+  let w = calm(chapter("the-ghost-of-framsburg"), "travel");
+  w.heroes[0].exhausted = true;
+  const palisade = make(w, F.palisade);
+  prepend(w, ...batch4Scenario(w).travelEffects!(w, palisade)!);
+  flush(w);
+  w = choose(w, w.heroes[0].id);
+  assert.equal(w.heroes[0].exhausted, false);
+  let x = calm(chapter("the-ghost-of-framsburg"), "travel");
+  const tower = make(x, F.tower);
+  x.staging.push(tower);
+  assert.equal(threatOf(x, tower), 1);
+  const hurt = damage(x);
+  prepend(x, ...batch4Scenario(x).travelEffects!(x, tower)!);
+  flush(x);
+  for (let i = 0; i < 3 && x.choice; i++)
+    x = choose(x, x.choice!.options[0].id);
+  assert.equal(damage(x), hurt + 1);
+  assert.ok(valid(x));
+});
+
+test("Ered Mithrin Campaign Pool: Powerful in Wrath, The Dragon's Fury and Bright Flames resolve in The Ghost of Framsburg", () => {
+  // Powerful in Wrath discards the active location and, with no Hrogar's
+  // Hill to damage, surges.
+  const base = chapter("the-ghost-of-framsburg");
+  let s = calm(structuredClone(base), "staging");
+  const active = make(s, W.mine);
+  s.activeLocation = active;
+  const deck = s.encounterDeck.length;
+  s = reveal(s, F.wrath);
+  assert.equal(s.activeLocation?.id === active.id, false);
+  assert.ok(s.encounterDiscard.includes(W.mine));
+  assert.ok(s.encounterDeck.length < deck, "it surged");
+  assert.ok(valid(s));
+  // The Dragon's Fury finds no Dagnir.
+  const t = reveal(calm(structuredClone(base), "staging"), F.fury);
+  assert.ok(t.encounterDiscard.includes(F.fury));
+  assert.equal(t.combat ?? null, null);
+  // Bright Flames: each player assigns 1 damage (no side quest in the
+  // victory display).
+  const damage = (x: GameState) =>
+    [...x.heroes, ...x.allies].reduce((n, c) => n + c.damage, 0);
+  const u = calm(structuredClone(base), "staging");
+  const before = damage(u);
+  const v = reveal(u, F.flames);
+  assert.equal(damage(v), before + 1);
+  assert.ok(valid(v));
 });

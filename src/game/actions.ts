@@ -765,6 +765,8 @@ export function optionalEngagementProblem(
     return "Umbar Patrol prevents optional engagements this round.";
   if (Mordor.mordorCannotOptionallyEngage(s, u))
     return "Uruk Chieftain cannot be optionally engaged.";
+  if (EredCards.eredCampaignCannotOptionallyEngage(s, u))
+    return "Gundabad Stalker cannot be optionally engaged except by a player who is engaged with a unique enemy.";
   if (
     batch4Scenario(s).cannotEngage?.(s, u) ||
     batch4Scenario(s).cannotLeave?.(s, u) ||
@@ -2497,7 +2499,7 @@ function printedAbilities(s: GameState, u: Unit) {
   // The Ered Mithrin campaign's Beldis (any player may trigger her Action).
   const eredLabel =
     s.campaign?.kind === "ered"
-      ? EredCards.eredCampaignUnitAbilityLabel(u.code)
+      ? EredCards.eredCampaignUnitAbilityLabel(u.code, s)
       : undefined;
   if (eredLabel)
     results.push({

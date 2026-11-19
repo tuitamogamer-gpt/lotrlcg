@@ -43,6 +43,15 @@ export const GHOST_FRAMSBURG_LOOT = [
   GHOST_FRAMSBURG.lantern,
   GHOST_FRAMSBURG.teeth,
 ];
+/**
+ * Ashen Brazier: the Ered Mithrin campaign's boon objective, shuffled into
+ * this scenario's encounter deck by its campaign card, has the Loot keyword.
+ */
+export const ASHEN_BRAZIER = "12190";
+/** A Loot objective (Ashen Brazier only in the Ered Mithrin campaign). */
+export const ghostLoot = (s: GameState, code: string) =>
+  GHOST_FRAMSBURG_LOOT.includes(code) ||
+  (code === ASHEN_BRAZIER && s.campaign?.kind === "ered");
 export function ghostFramsburgStageInfo(s: GameState) {
   const c = GHOST_FRAMSBURG_QUESTS.find(
     (c) => c.code === s.ghostFramsburg?.currentQuest,
@@ -126,7 +135,9 @@ export function validateGhostFramsburg(
   ];
   const allowed = new Set(GHOST_FRAMSBURG_RECIPES.flatMap((r) => r.card_codes));
   if (
-    !all.every((u) => validUnit(u) && allowed.has(u.code)) ||
+    !all.every(
+      (u) => validUnit(u) && (allowed.has(u.code) || ghostLoot(s, u.code)),
+    ) ||
     new Set(all.map((u) => u.id)).size !== all.length
   )
     return false;
@@ -146,16 +157,14 @@ export function validateGhostFramsburg(
   ]
     .filter((u, i, a) => a.findIndex((v) => v.id === u.id) === i)
     .flatMap((u) =>
-      u.attachments
-        .filter((a) => GHOST_FRAMSBURG_LOOT.includes(a.code))
-        .map((a) => a.code),
+      u.attachments.filter((a) => ghostLoot(s, a.code)).map((a) => a.code),
     );
   const lootCodes = [...inPlayLoot, ...q.loot.map((v) => v.unit.code)];
   if (new Set(lootCodes).size !== lootCodes.length) return false;
   return (
     q.loot.every(
       (v) =>
-        GHOST_FRAMSBURG_LOOT.includes(v.unit.code) &&
+        ghostLoot(s, v.unit.code) &&
         typeof v.guardId === "string" &&
         (!v.guardId || guardIds.has(v.guardId)),
     ) &&

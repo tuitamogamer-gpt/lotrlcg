@@ -27,6 +27,7 @@ import {
 import {
   activeSeat,
   allCharacters,
+  allEngaged,
   allHeroes,
   attachmentController,
   firstPlayer,
@@ -59,10 +60,16 @@ import {
   eredPart,
   eredState,
   BELDIS_USES,
+  eredTreasureOffer,
   growingThreatTarget,
   isEredCampaign,
 } from "./ered-campaign";
 import { ROAM_RHOVANION as R } from "./roam-rhovanion-support";
+import {
+  GHOST_FRAMSBURG as G,
+  GHOST_FRAMSBURG_QUEST_CHAIN,
+} from "./ghost-framsburg-support";
+import { mainQuestUnit } from "./quest-state";
 
 const several = (s: GameState) => (s.table?.seats.length ?? 1) > 1;
 const seatLabel = (s: GameState, p: number) =>
@@ -173,9 +180,28 @@ function cunningRevealed(s: GameState, replay: boolean, fromReveal: boolean) {
     );
   return true;
 }
-/** Urdug's Cunning: "Shadow: Attacking enemy gets +2 [defense] this phase." */
+/**
+ * Urdug's Cunning: "Shadow: Attacking enemy gets +2 [defense] this phase."
+ * Gundabad Hunter: "Shadow: If attacking enemy is unique, it makes an
+ * additional attack after this one." Gundabad Stalker: "Shadow: If attacking
+ * enemy is unique, return it to the staging area after this attack."
+ */
 export function eredCampaignShadow(s: GameState, code: string) {
-  if (code !== ERED.cunning || !s.combat) return false;
+  if (!s.combat) return false;
+  if (code === ERED.hunter || code === ERED.stalker) {
+    const attacker = get(s, s.combat.enemyId);
+    if (attacker && card(attacker.code).is_unique) {
+      if (code === ERED.hunter)
+        s.combat.extraAttacks = (s.combat.extraAttacks ?? 0) + 1;
+      else s.combat.returnToStaging = true;
+    }
+    log(
+      s,
+      `${card(code).name}: ${attacker && card(attacker.code).is_unique ? (code === ERED.hunter ? "the unique attacker makes an additional attack after this one" : "the unique attacker returns to the staging area after this attack") : "the attacking enemy is not unique"}.`,
+    );
+    return true;
+  }
+  if (code !== ERED.cunning) return false;
   const enemy = get(s, s.combat.enemyId);
   if (enemy) enemy.tempDefense = (enemy.tempDefense ?? 0) + 2;
   log(s, "Urdug's Cunning: the attacking enemy gets +2 [defense] this phase.");
@@ -203,6 +229,15 @@ export function eredCampaignCardsDrawn(s: GameState, count: number) {
       ),
     );
 }
+/** A player engaged with a unique enemy (Gundabad Hunter and Stalker). */
+const engagedWithUnique = (s: GameState, p: number) =>
+  seatView(s, p).engaged.some((e) => card(e.code).is_unique);
+/**
+ * Gundabad Stalker: "Cannot be optionally engaged except by a player who is
+ * engaged with a unique enemy."
+ */
+export const eredCampaignCannotOptionallyEngage = (s: GameState, u: Unit) =>
+  u.code === ERED.stalker && !u.blanked && !engagedWithUnique(s, activeSeat(s));
 /** Misplaced Trust (Condition): "Attached character cannot have player card attachments …" */
 const misplacedHost = (u: Unit) =>
   u.attachments.some((a) => a.code === ERED.misplaced && !a.blanked);
@@ -315,8 +350,27 @@ export const eredCampaignCannotAttach = (target: Unit, code: string) =>
  * Isolde: "Response: After you engage an enemy, ready Isolde." (It only
  * helps, so it is always used.)
  */
-export function eredCampaignEnemyEngaged(s: GameState, _enemy: Unit) {
+export function eredCampaignEnemyEngaged(s: GameState, enemy: Unit) {
   if (!s.campaign) return;
+  // The Ghost of Framsburg's campaign card: "Response: After Fram's Shade
+  // engages a player while the players are at stage 1B or 2B, look at 3
+  // random undiscovered treasures and attach 1 of them to Fram's Shade as a
+  // guarded objective. … (Group limit once per game.)" (It only helps, so it
+  // is always used.)
+  if (
+    eredChapter(s) &&
+    s.scenarioId === "the-ghost-of-framsburg" &&
+    enemy.code === G.shade &&
+    (s.stage === 1 || s.stage === 2) &&
+    !s.eredCampaign?.shadeTreasure
+  ) {
+    eredState(s).shadeTreasure = true;
+    log(
+      s,
+      "Fram's Shade engages a player: the players look at 3 random undiscovered treasures to attach 1 to it as a guarded objective.",
+    );
+    prepend(s, eredTreasureOffer(s, ERED.ghostCard, enemy.id));
+  }
   for (const u of s.allies)
     if (u.code === ERED.isolde && u.exhausted && !u.blanked) {
       readyCharacter(s, u);
@@ -364,7 +418,23 @@ function clearImmunity(s: GameState) {
   syncAttachmentText(s);
 }
 /** An encounter card entering play while The Threat to Wilderland's immunity lasts. */
-export function eredCampaignCardEntered(s: GameState, u: Unit) {
+export function eredCampaignCardEntered(
+  s: GameState,
+  u: Unit,
+  fromReveal = false,
+  cancelled = false,
+) {
+  // Gundabad Hunter: "When Revealed: Choose a player that is engaged with a
+  // unique enemy, if able. Gundabad Hunter makes an immediate attack against
+  // that player."
+  if (
+    fromReveal &&
+    !cancelled &&
+    u.code === ERED.hunter &&
+    !u.blanked &&
+    isEredCampaign(s.campaign)
+  )
+    prepend(s, fx("emcHunter", { target: u.id, player: firstPlayer(s) }));
   const q = s.eredCampaign;
   if (
     !q?.immune ||
@@ -757,7 +827,18 @@ const ABILITY: Record<string, string> = {
     "Exhaust Dwarf-Lord's Crown · Allies sharing a Trait get +1 each",
   [ERED.jewels]: "Exhaust Jewels of Wilderland · Discard a card to draw a card",
   [ERED.unbroken]: "Unbroken · Discard a card to heal 1 damage from this hero",
+  [ERED.brazier]: "Exhaust Ashen Brazier · Look at a facedown shadow card",
 };
+/** The facedown shadow cards dealt to enemies. */
+const facedownShadows = (s: GameState) =>
+  allEngaged(s).flatMap((enemy) =>
+    enemy.shadows.flatMap((code, index) =>
+      enemy.faceupShadows?.[index] ||
+      (!enemy.faceupShadows && index < (enemy.revealedShadowCount ?? 0))
+        ? []
+        : [{ enemy, code, index }],
+    ),
+  );
 export const eredCampaignAbilityLabel = (code: string) => ABILITY[code];
 
 /**
@@ -769,14 +850,32 @@ export const beldisUsesLeft = (s: GameState, p: number) =>
   BELDIS_USES - (s.campaign?.beldis?.[p] ?? 0);
 const beldisTargets = (s: GameState) =>
   allCharacters(s).filter((c) => c.damage > 0 && !playerCardImmune(c));
-export const eredCampaignUnitAbilityLabel = (code: string) =>
+/** The Ghost of Framsburg's campaign card Action, on its main quest card. */
+const ghostAction = (s: GameState | undefined, code: string) =>
+  !!s &&
+  eredChapter(s) &&
+  s.scenarioId === "the-ghost-of-framsburg" &&
+  GHOST_FRAMSBURG_QUEST_CHAIN.includes(code);
+export const eredCampaignUnitAbilityLabel = (code: string, s?: GameState) =>
   code === ERED.beldis
     ? "Beldis · Spend 1 resource to heal 3 damage (marks a use)"
-    : undefined;
+    : ghostAction(s, code)
+      ? "The Ghost of Framsburg · Raise each player's threat by 1 to shuffle the encounter discard pile into the encounter deck"
+      : undefined;
 export function eredCampaignUnitAbilityProblem(
   s: GameState,
   u: Unit,
 ): string | null {
+  if (ghostAction(s, u.code)) {
+    // "(Any player may trigger this ability.)"
+    if (u.id !== mainQuestUnit(s)?.id)
+      return "Trigger the campaign card's Action from the main quest.";
+    if (s.phase === "setup") return "Continue to the next action window.";
+    if (s.choice || s.flow?.pending) return "Resolve the current choice first.";
+    if (!s.encounterDiscard.length)
+      return "The encounter discard pile is empty.";
+    return null;
+  }
   if (u.code !== ERED.beldis) return null;
   if (!isEredCampaign(s.campaign))
     return "Beldis's uses are marked in the Ered Mithrin Campaign Log.";
@@ -791,8 +890,22 @@ export function eredCampaignUnitAbilityProblem(
   if (!beldisTargets(s).length) return "No character has damage to heal.";
   return null;
 }
-/** Trigger Beldis's Action (any player may). */
+/** Trigger Beldis's Action or the Ghost of Framsburg's campaign card Action (any player may). */
 export function eredCampaignUnitAbility(s: GameState, u: Unit): boolean {
+  if (ghostAction(s, u.code)) {
+    const problem = eredCampaignUnitAbilityProblem(s, u);
+    requireRule(!problem, problem ?? "");
+    log(
+      s,
+      "The Ghost of Framsburg: each player raises their threat by 1 to shuffle the encounter discard pile into the encounter deck.",
+    );
+    prepend(
+      s,
+      ...playerOrder(s).map((player) => fx("threat", { player, value: 1 })),
+      fx("emcGhostShuffle", { player: activeSeat(s) }),
+    );
+    return true;
+  }
   if (u.code !== ERED.beldis) return false;
   const problem = eredCampaignUnitAbilityProblem(s, u);
   requireRule(!problem, problem ?? "");
@@ -877,6 +990,8 @@ export function eredCampaignAbilityProblem(
   }
   if (a.code === ERED.jewels && !s.hand.length)
     return "Discard a card from your hand to use Jewels of Wilderland.";
+  if (a.code === ERED.brazier && !facedownShadows(s).length)
+    return "No enemy has a facedown shadow card.";
   return null;
 }
 /** Use a treasure's Action (true when this module handled it). */
@@ -902,6 +1017,29 @@ export function eredCampaignAbility(
         effects: [fx("emcUnbroken", { source: u.id, target: h.id, player: p })],
       })),
       card(ERED.unbroken).text,
+    );
+    return true;
+  }
+  if (a.code === ERED.brazier) {
+    // "Action: Exhaust Ashen Brazier to look at a facedown shadow card."
+    a.exhausted = true;
+    choose(
+      s,
+      `Ashen Brazier · Choose a facedown shadow card to look at${seatLabel(s, p)}`,
+      facedownShadows(s).map(({ enemy, code, index }) => ({
+        id: `${enemy.id}:${index}`,
+        code: enemy.code,
+        label: `${name(enemy)} · Facedown shadow ${index + 1}`,
+        effects: [
+          fx("emcBrazierLook", {
+            target: enemy.id,
+            code,
+            count: index,
+            player: p,
+          }),
+        ],
+      })),
+      card(ERED.brazier).text,
     );
     return true;
   }
@@ -1625,6 +1763,52 @@ export function eredCampaignEffect(s: GameState, e: Effect): boolean {
       );
       return true;
     }
+    case "emcHunter": {
+      const hunter = get(s, e.target);
+      if (!hunter) return true;
+      const engaged = playerOrder(s).filter((x) => engagedWithUnique(s, x));
+      const players = engaged.length ? engaged : playerOrder(s);
+      if (players.length === 1)
+        prepend(
+          s,
+          fx("immediateAttack", { target: hunter.id, player: players[0] }),
+        );
+      else
+        choose(
+          s,
+          `Gundabad Hunter · Choose a player${engaged.length ? " engaged with a unique enemy" : ""} for its immediate attack`,
+          players.map((x) => ({
+            id: `p${x}`,
+            label: seatName(s, x),
+            effects: [fx("immediateAttack", { target: hunter.id, player: x })],
+          })),
+        );
+      return true;
+    }
+    case "emcBrazierLook": {
+      const enemy = get(s, e.target);
+      const still = facedownShadows(s).some(
+        (x) =>
+          x.enemy.id === e.target && x.index === e.count && x.code === e.code,
+      );
+      if (!enemy || !still) return true;
+      choose(s, "Ashen Brazier · The facedown shadow card", [
+        {
+          id: "continue",
+          code: e.code,
+          label: `Continue · ${card(e.code!).name} stays facedown`,
+          effects: [],
+        },
+      ]);
+      return true;
+    }
+    case "emcGhostShuffle":
+      s.encounterDeck = shuffle(s, [
+        ...s.encounterDeck,
+        ...s.encounterDiscard.splice(0),
+      ]);
+      log(s, "The encounter discard pile is shuffled into the encounter deck.");
+      return true;
     case "emcBeldisPay": {
       const h = get(s, e.source);
       if (!h || h.resources <= 0 || !s.campaign) return true;

@@ -41,9 +41,9 @@ import { watcherWaterCannotExhaust } from "./watcher-water";
 import {
   GHOST_FRAMSBURG as G,
   GHOST_FRAMSBURG_RECIPES,
-  GHOST_FRAMSBURG_LOOT,
   GHOST_FRAMSBURG_QUEST_CHAIN,
   ghostFramsburgStageInfo,
+  ghostLoot,
 } from "./ghost-framsburg-support";
 export * from "./ghost-framsburg-support";
 const live = (s: GameState) =>
@@ -73,7 +73,7 @@ const phaseKey = (s: GameState) =>
 export const ghostControlledLoot = (s: GameState) =>
   allCharacters(s).flatMap((host) =>
     host.attachments
-      .filter((a) => GHOST_FRAMSBURG_LOOT.includes(a.code))
+      .filter((a) => ghostLoot(s, a.code))
       .map((a) => ({ host, a })),
   );
 const lootCount = (s: GameState) => ghostControlledLoot(s).length;
@@ -331,7 +331,7 @@ export function ghostFramsburgEncounter(
   fromReveal = true,
 ) {
   if (!live(s)) return false;
-  if (GHOST_FRAMSBURG_LOOT.includes(code)) return true;
+  if (ghostLoot(s, code)) return true;
   if (![G.ruins, G.terrible, G.slammed, G.afraid, G.eyes].includes(code))
     return false;
   if (!replay) s.encounterDiscard.push(code);
@@ -363,7 +363,7 @@ export function ghostFramsburgCardEntered(
       delete q.revealing;
     }
   }
-  if (fromReveal && GHOST_FRAMSBURG_LOOT.includes(u.code)) {
+  if (fromReveal && ghostLoot(s, u.code)) {
     s.staging = s.staging.filter((c) => c.id !== u.id);
     s.encounterDiscard.push(u.code);
     prepend(s, fx("reveal", { player: activeSeat(s) }));
@@ -671,9 +671,7 @@ export function ghostFramsburgEffect(s: GameState, e: Effect) {
         ]);
       q.discoverCards = s.encounterDeck.splice(0, n).map((c) => make(s, c));
       const looked = `Looked at: ${q.discoverCards.map((c) => name(c)).join(", ") || "no cards"}. After the Loot choice, reveal one random Hazard and discard the other cards.`;
-      const loot = q.discoverCards.filter((c) =>
-        GHOST_FRAMSBURG_LOOT.includes(c.code),
-      );
+      const loot = q.discoverCards.filter((c) => ghostLoot(s, c.code));
       if (loot.length)
         choose(
           s,
@@ -790,11 +788,7 @@ export function ghostFramsburgEffect(s: GameState, e: Effect) {
       if (code) {
         const enemy = add(s, code),
           loot = [
-            ...new Set(
-              s.encounterDiscard.filter((c) =>
-                GHOST_FRAMSBURG_LOOT.includes(c),
-              ),
-            ),
+            ...new Set(s.encounterDiscard.filter((c) => ghostLoot(s, c))),
           ];
         choose(
           s,

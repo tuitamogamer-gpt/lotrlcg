@@ -3735,7 +3735,7 @@ export function placeEncounter(
     if (fromReveal && BatchPlayers.batch4PlayerWindRevealed(s, fresh)) return;
     Sands.beneathSandsCardEntered(s, fresh, fromReveal, cancel);
     batch4Scenario(s).cardEntered?.(s, fresh, fromReveal, cancel);
-    EredCards.eredCampaignCardEntered(s, fresh);
+    EredCards.eredCampaignCardEntered(s, fresh, fromReveal, cancel);
     if (
       fromReveal &&
       revealOrigin === "encounter" &&

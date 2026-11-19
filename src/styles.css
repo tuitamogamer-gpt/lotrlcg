@@ -3790,6 +3790,12 @@ nav {
 .saga-campaign-status .campaign-note {
   margin: 0;
 }
+/* A campaign card's Action (The Ghost of Framsburg) wraps inside the panel. */
+.saga-campaign-status .campaign-card-action {
+  max-width: 100%;
+  white-space: normal;
+  text-align: left;
+}
 .prisoner-banner {
   display: flex;
   align-items: center;

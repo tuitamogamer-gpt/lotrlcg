@@ -136,7 +136,6 @@ test("Ered Mithrin: Fire in the Night's campaign card and Beldis carry their sca
     b.text!,
     /^Action: Spend 1 resource and mark a use in the campaign log to heal 3 damage from a character\. Any player may trigger this ability\. \(Each player has 4 uses for the campaign\.\)$/,
   );
-  assert.equal(art.length, 39);
   for (const code of [ERED.fireCard, ERED.beldis])
     assert.ok(
       art.some((a) => a.code === code),
@@ -283,11 +282,9 @@ test("Ered Mithrin: Fire in the Night's resolution offers Beldis, a treasure for
   assert.ok(u.campaign!.notes!.includes("beldis"));
   assert.ok(!u.campaign!.boons.includes(ERED.beldis));
   assert.equal(u.campaign!.encounterPool![W.troll], undefined);
-  // The campaign continues with The Ghost of Framsburg (not yet available).
-  assert.throws(
-    () => continueCampaign(u, u.campaign!.heroes, u.deckId, true, 9),
-    /not available in campaign mode yet/,
-  );
+  // The campaign continues with The Ghost of Framsburg.
+  const next = continueCampaign(u, u.campaign!.heroes, u.deckId, true, 9);
+  assert.equal(next.scenarioId, "the-ghost-of-framsburg");
 });
 
 test("Ered Mithrin: in a two-player Fire in the Night each player may remove a card, but not more copies than the Campaign Pool holds", () => {

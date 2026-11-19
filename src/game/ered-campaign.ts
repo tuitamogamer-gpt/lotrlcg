@@ -54,6 +54,7 @@ export const ERED = {
   heathCard: "octgn:11d63f9f-a9c6-4e05-9768-8cf2234c277d",
   roamCard: "octgn:9d60ffd4-34c2-42db-9fb7-474b1410d1aa",
   fireCard: "octgn:497b0bd9-1b46-49d4-9722-930914d8a4d7",
+  ghostCard: "octgn:280e4dce-aef9-4472-94a6-94b114be5a4e",
   /** Turayn (unique boon ally, Journey Up the Anduin). */
   turayn: "12166",
   /** Melanwar (unique boon ally, Lost in Mirkwood). */
@@ -84,6 +85,13 @@ export const ERED = {
    */
   cunning: "12185",
   misplaced: "12186",
+  /**
+   * The Ghost of Framsburg: Ashen Brazier (boon objective, Loot) and the
+   * Hazard burdens Gundabad Hunter and Gundabad Stalker.
+   */
+  brazier: "12190",
+  hunter: "12191",
+  stalker: "12192",
   /** The nine treasures. */
   anvil: "12196",
   axe: "12197",
@@ -127,6 +135,7 @@ export const ERED_CAMPAIGN_SUPPORTED: readonly ScenarioId[] = [
   "the-withered-heath",
   "roam-across-rhovanion",
   "fire-in-the-night",
+  "the-ghost-of-framsburg",
 ];
 /** The chapters whose campaign card lets each player change heroes without the +1 threat penalty. */
 export const ERED_FREE_CHANGES: readonly ScenarioId[] = [
@@ -141,6 +150,7 @@ export const ERED_CAMPAIGN_CARDS: Partial<Record<ScenarioId, string>> = {
   "the-withered-heath": ERED.heathCard,
   "roam-across-rhovanion": ERED.roamCard,
   "fire-in-the-night": ERED.fireCard,
+  "the-ghost-of-framsburg": ERED.ghostCard,
 };
 /** The Withered Heath's Accolades, by the main quest stage that earns them. */
 export const ERED_ACCOLADES: readonly string[] = [
@@ -181,9 +191,16 @@ export const ERED_BURDENS: readonly string[] = [
   ERED.spawn,
   ERED.ruin,
   ERED.misplaced,
+  ERED.hunter,
+  ERED.stalker,
 ];
 /** The burdens shuffled into each encounter deck at setup. */
-const ENCOUNTER_BURDENS: readonly string[] = [ERED.growing, ERED.spawn];
+const ENCOUNTER_BURDENS: readonly string[] = [
+  ERED.growing,
+  ERED.spawn,
+  ERED.hunter,
+  ERED.stalker,
+];
 /** The Campaign Log's notes and their printed wording. */
 export const ERED_NOTES: Record<string, string> = {
   turayn: "Turayn has taken an oath of vigilance",
@@ -292,6 +309,10 @@ export interface EredCampaignGame {
   claimed?: string[];
   /** Roam Across Rhovanion: the copies of Urdug's Cunning shuffled into the encounter deck this game. */
   cunning?: number;
+  /** The Ghost of Framsburg: Fram's Shade's treasure Response was used (group limit once per game). */
+  shadeTreasure?: boolean;
+  /** The Ghost of Framsburg's resolution: the Hazard cards discarded for the group's choice. */
+  hazards?: string[];
 }
 export const eredState = (s: GameState) => (s.eredCampaign ??= {});
 /** Several players share the table (one seat reads "you"). */
@@ -415,6 +436,25 @@ export function eredCampaignSetup(s: GameState) {
     enqueue(
       s,
       fx("emcRemove", { text: "treachery", value: 3, player: firstPlayer(s) }),
+    );
+  // The Ghost of Framsburg: "Shuffle Ashen Brazier, Gundabad Hunter, and
+  // Gundabad Stalker into the encounter deck. … If 'Isolde is on the hunt,'
+  // search the encounter deck for 3 treacheries and remove them from the
+  // game. If 'Beldis's care has bolstered the heroes' spirits,' search the
+  // encounter deck for 3 non-unique locations and remove them from the game."
+  const ghost = s.scenarioId === "the-ghost-of-framsburg";
+  if (ghost)
+    for (const code of [ERED.brazier, ERED.hunter, ERED.stalker])
+      if (!pool.includes(code)) pool.push(code);
+  if (ghost && c!.notes?.includes("isolde"))
+    enqueue(
+      s,
+      fx("emcRemove", { text: "treachery", value: 3, player: firstPlayer(s) }),
+    );
+  if (ghost && c!.notes?.includes("beldis"))
+    enqueue(
+      s,
+      fx("emcRemove", { text: "location", value: 3, player: firstPlayer(s) }),
     );
   // Fire in the Night: "If 'Turayn has taken an oath of vigilance,' search
   // the encounter deck for 3 non-unique locations and remove them from the
@@ -939,6 +979,28 @@ export function resolveEredCampaign(s: GameState) {
       eredState(s).looking = shuffle(s, [...pool]).slice(0, 3);
     }
   }
+  if (s.scenarioId === "the-ghost-of-framsburg") {
+    // "Shuffle the encounter discard pile into the encounter deck and discard
+    // cards from the top until 2 Hazard cards are discarded."
+    s.encounterDeck = shuffle(s, [
+      ...s.encounterDeck,
+      ...s.encounterDiscard.splice(0),
+    ]);
+    const hazards: string[] = [];
+    while (hazards.length < 2 && s.encounterDeck.length) {
+      const code = s.encounterDeck.shift()!;
+      s.encounterDiscard.push(code);
+      if (
+        (card(code).traits ?? "").split(".").some((t) => t.trim() === "Hazard")
+      )
+        hazards.push(code);
+    }
+    eredState(s).hazards = hazards;
+    log(
+      s,
+      `The Ghost of Framsburg · Resolution: ${hazards.length ? names(hazards) : "no Hazard card"} ${hazards.length === 1 ? "is" : "are"} discarded for the group's choice.`,
+    );
+  }
   if (s.scenarioId === "fire-in-the-night" && s.progress >= 5) {
     // "If there is at least 5 progress on Hrogar's Hill, the players look at
     // 3 random undiscovered treasures and and choose 1 to attach to an
@@ -996,6 +1058,7 @@ const RESOLUTION_CHAPTERS: readonly ScenarioId[] = [
   "the-withered-heath",
   "roam-across-rhovanion",
   "fire-in-the-night",
+  "the-ghost-of-framsburg",
 ];
 /** The locations in the staging area, one code per title. */
 const stagedLocations = (s: GameState) => [
@@ -1005,6 +1068,41 @@ const stagedLocations = (s: GameState) => [
       .map((u) => u.code),
   ),
 ];
+/**
+ * The Ghost of Framsburg: "Add either Gundabad Hunter or Gundabad Stalker to
+ * the campaign pool. … The players, as a group, must choose 1 of those cards
+ * and add it to the campaign pool."
+ */
+function ghostQuestions(s: GameState) {
+  const c = s.campaign!;
+  const hazards = [...new Set(s.eredCampaign?.hazards ?? [])];
+  return [
+    {
+      id: "burden",
+      label:
+        "Add either Gundabad Hunter or Gundabad Stalker to the Campaign Pool.",
+      options: [ERED.hunter, ERED.stalker].map((code) => ({
+        id: code,
+        code,
+        label: card(code).name,
+      })),
+    },
+    ...(hazards.length
+      ? [
+          {
+            id: "hazard",
+            label:
+              "The players, as a group, choose 1 of the Hazard cards discarded and add it to the Campaign Pool.",
+            options: hazards.map((code) => ({
+              id: code,
+              code,
+              label: `${card(code).name}${card(code).sphere_code !== "burden" && (c.encounterPool?.[code] ?? 0) >= ownedCopies(code) ? " (no copy is left in the collection)" : ""}`,
+            })),
+          },
+        ]
+      : []),
+  ];
+}
 /**
  * Roam Across Rhovanion: "Each player chooses a location in the staging area
  * and adds a copy of it to the campaign pool. Players must choose different
@@ -1091,6 +1189,7 @@ export function eredResolutionQuestions(s: GameState): {
     return [];
   if (s.scenarioId === "the-withered-heath") return heathQuestions(s);
   if (s.scenarioId === "roam-across-rhovanion") return roamQuestions(s);
+  if (s.scenarioId === "the-ghost-of-framsburg") return ghostQuestions(s);
   const ally = BOON_ALLY[s.scenarioId];
   if (!ally) return [];
   return [
@@ -1233,6 +1332,32 @@ export function applyEredResolution(
     c.resolution = null;
     return s;
   }
+  if (s.scenarioId === "the-ghost-of-framsburg") {
+    const join = (code: string) => {
+      if (card(code).sphere_code === "burden") {
+        if (!c.burdens.includes(code)) c.burdens.push(code);
+        return true;
+      }
+      return addPoolCopy(c, code);
+    };
+    join(answers.burden);
+    log(
+      s,
+      `${title} · Resolution: ${card(answers.burden).name} joins the Campaign Pool.`,
+      "danger",
+    );
+    if (answers.hazard)
+      log(
+        s,
+        join(answers.hazard)
+          ? `${title} · Resolution: ${card(answers.hazard).name} joins the Campaign Pool.`
+          : `${title} · Resolution: no copy of ${card(answers.hazard).name} is left in the collection for the Campaign Pool.`,
+        "danger",
+      );
+    if (s.eredCampaign) delete s.eredCampaign.hazards;
+    c.resolution = null;
+    return s;
+  }
   if (s.scenarioId === "roam-across-rhovanion") {
     const picks = seatIndices(s).map((p) => answers[`location-${p}`]);
     if (new Set(picks).size < Math.min(picks.length, stagedLocations(s).length))
@@ -1353,6 +1478,10 @@ export function eredCampaignStatus(s: GameState): string[] {
         `${q.cunning} ${q.cunning === 1 ? "copy" : "copies"} of Urdug's Cunning ${q.cunning === 1 ? "was" : "were"} shuffled into the encounter deck this game.`,
       );
   }
+  if (s.scenarioId === "the-ghost-of-framsburg")
+    out.push(
+      `The Ghost of Framsburg: ${q?.shadeTreasure ? "Fram's Shade's treasure was looked at (once per game)" : "after Fram's Shade engages a player at stage 1 or 2, the players attach 1 of 3 random undiscovered treasures to it as a guarded objective"}. Action (any player, on the quest card): raise each player's threat by 1 to shuffle the encounter discard pile into the encounter deck.`,
+    );
   if (s.scenarioId === "fire-in-the-night")
     out.push(
       `Fire in the Night: ${s.progress} progress on Hrogar's Hill${s.progress >= 5 ? " (the resolution offers a treasure)" : "; with 5 or more the resolution offers a treasure"}.`,
@@ -1981,6 +2110,8 @@ export function validEredState(s: GameState): boolean {
         q.claimed.every((x) => [R.urdug, R.tiny, R.key, R.horn].includes(x)) &&
         new Set(q.claimed).size === q.claimed.length)) &&
     (q.cunning === undefined ||
-      (integer(q.cunning) && q.cunning <= ownedCopies(ERED.cunning)))
+      (integer(q.cunning) && q.cunning <= ownedCopies(ERED.cunning))) &&
+    (q.shadeTreasure === undefined || typeof q.shadeTreasure === "boolean") &&
+    (q.hazards === undefined || (codes(q.hazards) && q.hazards.length <= 2))
   );
 }

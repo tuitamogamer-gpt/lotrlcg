@@ -34,6 +34,7 @@ import {
   discardAttachment,
   discardCharacter,
   discardHandCard,
+  discardLocation,
   discardPlayerDeck,
   engage,
   enemyAddedToStaging,
@@ -65,7 +66,11 @@ import {
   ROAM_RHOVANION as R,
   ROAM_RHOVANION_RECIPES,
 } from "./roam-rhovanion-support";
-import { FIRE_NIGHT_RECIPES } from "./fire-night-support";
+import {
+  FIRE_NIGHT as F,
+  FIRE_NIGHT_RECIPES,
+  fireNightSideCount,
+} from "./fire-night-support";
 import { GHOST_FRAMSBURG_RECIPES } from "./ghost-framsburg-support";
 import { MOUNT_GUNDABAD_RECIPES } from "./mount-gundabad-support";
 import { FATE_WILDERLAND_RECIPES } from "./fate-wilderland-support";
@@ -108,11 +113,11 @@ const NATIVE: Record<string, Set<string>> = Object.fromEntries(
 );
 /**
  * The encounter cards of Journey Up the Anduin, Lost in Mirkwood, The King's
- * Quest, The Withered Heath and Roam Across Rhovanion that can join the
- * Campaign Pool (A Growing Threat sets aside a non-unique, non-objective,
- * non-burden card; Roam Across Rhovanion's resolution adds staging
- * locations), scripted here for later chapters. (The Core Set's cards resolve
- * in every scenario.)
+ * Quest, The Withered Heath, Roam Across Rhovanion and Fire in the Night that
+ * can join the Campaign Pool (A Growing Threat sets aside a non-unique,
+ * non-objective, non-burden card; Roam Across Rhovanion's resolution adds
+ * staging locations), scripted here for later chapters. (The Core Set's cards
+ * resolve in every scenario.)
  */
 export const ERED_POOL_PORTABLE = [
   W.riverbank,
@@ -177,6 +182,15 @@ export const ERED_POOL_PORTABLE = [
   R.sneaking,
   R.weather,
   R.creatures,
+  // Fire in the Night
+  F.thrall,
+  F.orc,
+  F.gate,
+  F.palisade,
+  F.tower,
+  F.wrath,
+  F.fury,
+  F.flames,
 ];
 const PORTABLE = new Set(ERED_POOL_PORTABLE);
 
@@ -413,6 +427,8 @@ function poolThreatBonus(s: GameState, u: Unit) {
   if (foreignUnit(s, u, H.hatchling) || foreignUnit(s, u, H.entrance))
     n += witheredHeathSigns(s);
   if (foreignUnit(s, u, H.falls)) n += stagedLocations(s);
+  // Burning Watchtower: X is 1 more than the side quests in the victory display.
+  if (foreignUnit(s, u, F.tower)) n += 1 + fireNightSideCount(s);
   if (foreignUnit(s, u, W.contested))
     n += (s.victoryCards ?? []).filter(
       (c) => card(c).type_code === "location",
@@ -582,6 +598,11 @@ function poolEngaged(s: GameState, u: Unit) {
   // control equal to the number of allies discarded by this effect."
   if (foreignUnit(s, u, R.giant))
     effects.push(fx("eredPoolGiant", { player: p }));
+  // The Dragon's Thrall: "Forced: After The Dragon's Thrall engages you,
+  // either deal 3 damage to Hrogar's Hill, or it makes an immediate attack
+  // against you." (Hrogar's Hill is only Fire in the Night's.)
+  if (foreignUnit(s, u, F.thrall))
+    effects.push(fx("immediateAttack", { target: u.id, player: p }));
   // Stray Goblin: after a player engages an enemy, it engages that player.
   for (const stray of s.staging.filter(
     (e) => e.id !== u.id && foreignUnit(s, e, W.stray),
@@ -755,6 +776,20 @@ function poolTravelEffects(s: GameState, u: Unit): Effect[] | undefined {
   // Rhovanion's.)
   if (u.code === R.ravine)
     return playerOrder(s).map((player) => fx("threat", { player, value: 2 }));
+  // Wooden Palisade: "Travel: The first player readies a hero he controls."
+  if (u.code === F.palisade)
+    return [fx("eredPoolPalisade", { player: firstPlayer(s) })];
+  // Burning Watchtower: "Travel: Each player assigns X damage among
+  // characters he controls."
+  if (u.code === F.tower)
+    return playerOrder(s).map((player) =>
+      fx("eredPoolAssignDamage", {
+        player,
+        value: 1 + fireNightSideCount(s),
+      }),
+    );
+  // Town Gate's Travel (Dagnir attacks) finds no Dagnir outside Fire in the
+  // Night.
 }
 /** After the players travel to a foreign location, or it becomes the active location. */
 function poolTravelEntered(s: GameState, u: Unit, actual = true) {
@@ -863,6 +898,9 @@ function poolRevealSurge(s: GameState, code: string) {
   if (code === W.swarm) return allHeroes(s).every((h) => h.resources === 0);
   if (code === W.denizen)
     return !s.staging.some((e) => card(e.code).type_code === "enemy");
+  // Powerful in Wrath: "If no damage is dealt this way, Powerful in Wrath
+  // gains surge." (Hrogar's Hill is only Fire in the Night's.)
+  if (code === F.wrath) return true;
   return false;
 }
 function poolCardEntered(
@@ -876,6 +914,11 @@ function poolCardEntered(
   // discards 1 random card from his hand."
   if (fromReveal && !cancelled && foreignUnit(s, u, R.bear))
     prepend(s, fx("eredPoolBear", { target: u.id, player: firstPlayer(s) }));
+  // Orc of the Flame: "When Revealed: The first player must either deal 2
+  // damage to a hero he controls, or deal 3 damage to Hrogar's Hill." (No
+  // Hrogar's Hill here: the hero takes it.)
+  if (fromReveal && !cancelled && foreignUnit(s, u, F.orc))
+    prepend(s, fx("eredPoolOrcFlame", { player: firstPlayer(s) }));
   // Hobgoblin: the first player attaches the top card of their deck to it
   // faceup as a guarded attachment.
   if (!cancelled && foreignUnit(s, u, W.hobgoblin))
@@ -892,6 +935,20 @@ function poolCommitted(s: GameState) {
     ...locations(s)
       .filter((l) => foreignUnit(s, l, W.grotto))
       .map(() => fx("eredPoolGrotto", { player: firstPlayer(s) })),
+  );
+}
+/**
+ * Town Gate (in the staging area): "Forced: At the end of the quest phase,
+ * place 1 resource here. Then, if there are 3 resources here, discard Town
+ * Gate and deal 4 damage to Hrogar's Hill."
+ */
+function poolEndQuest(s: GameState) {
+  if (!eredPoolLive(s)) return;
+  prepend(
+    s,
+    ...s.staging
+      .filter((u) => foreignUnit(s, u, F.gate))
+      .map((u) => fx("eredPoolGate", { target: u.id, player: firstPlayer(s) })),
   );
 }
 /** Mirkwood Patrol: at the end of the encounter phase. */
@@ -937,6 +994,9 @@ const TREACHERIES = [
   R.sneaking,
   R.weather,
   R.creatures,
+  F.wrath,
+  F.fury,
+  F.flames,
 ];
 function poolEncounter(
   s: GameState,
@@ -1036,6 +1096,17 @@ function poolShadow(s: GameState, code: string) {
   }
   // Grey Moorland: return the attacking enemy to the staging area.
   else if (code === R.moor) c.returnToStaging = true;
+  // Orc of the Flame: +1 [attack] (+2 at 25 damage on Hrogar's Hill, only
+  // Fire in the Night's).
+  else if (code === F.orc) c.attackBonus++;
+  // Bright Flames: +1 [attack] for each side quest in the victory display.
+  else if (code === F.flames) c.attackBonus += fireNightSideCount(s);
+  // The Dragon's Fury: attacking enemy makes an additional attack.
+  else if (code === F.fury) c.extraAttacks = (c.extraAttacks ?? 0) + 1;
+  // The Dragon's Thrall and Powerful in Wrath send damage to Hrogar's Hill,
+  // only Fire in the Night's.
+  else if (code === F.thrall || code === F.wrath)
+    log(s, `${card(code).name} · There is no Hrogar's Hill in this scenario.`);
   // Snow-troll: attacking enemy makes an additional attack against you.
   else if (code === H.troll) c.extraAttacks = (c.extraAttacks ?? 0) + 1;
   // Dragon Hatchling: until the end of the phase, +1 [attack] and +1
@@ -1232,6 +1303,34 @@ function treachery(s: GameState, code: string) {
       ...playerOrder(s).map((player) => fx("eredPoolWildEngage", { player })),
       fx("eredPoolWildFinish", { player: firstPlayer(s) }),
     );
+  } else if (code === F.wrath) {
+    // "Doomed 1. When Revealed: Discard the active location and deal X damage
+    // to Hrogar's Hill, where X is that location's [threat]." (No Hrogar's
+    // Hill here; it surges.)
+    consume(s, code);
+    const loc = s.activeLocation;
+    if (loc) {
+      discardLocation(s, loc, true);
+      log(s, `Powerful in Wrath discards ${name(loc)}.`, "danger");
+    }
+  } else if (code === F.fury) {
+    // "Dagnir makes an immediate attack against the first player." (Dagnir is
+    // only Fire in the Night's.)
+    consume(s, code);
+    log(s, "The Dragon's Fury · There is no Dagnir in this scenario.");
+  } else if (code === F.flames) {
+    // "Each player assigns X damage among characters he controls, where X is
+    // 1 more than the number of side quests in the victory display."
+    consume(s, code);
+    prepend(
+      s,
+      ...playerOrder(s).map((player) =>
+        fx("eredPoolAssignDamage", {
+          player,
+          value: 1 + fireNightSideCount(s),
+        }),
+      ),
+    );
   } else if (code === H.snow) {
     // "Exhaust a character. Until the end of the round, characters cannot be
     // readied by player card effects."
@@ -1362,6 +1461,47 @@ export function eredPoolEffect(s: GameState, e: Effect) {
             effects: [fx("damage", { target: u.id, player, value: 1 })],
           },
         ]);
+      break;
+    case "eredPoolOrcFlame": {
+      const heroes = seatView(s, player).heroes;
+      if (heroes.length)
+        choose(
+          s,
+          "Orc of the Flame · Deal 2 damage to a hero you control",
+          heroes.map((h) => ({
+            id: h.id,
+            code: h.code,
+            label: name(h),
+            effects: [fx("damage", { target: h.id, value: 2, player })],
+          })),
+        );
+      break;
+    }
+    case "eredPoolPalisade": {
+      const heroes = seatView(s, player).heroes.filter(
+        (h) => h.exhausted && !cannotReady(h, s),
+      );
+      if (heroes.length)
+        choose(
+          s,
+          "Wooden Palisade · Ready a hero you control",
+          heroes.map((h) => ({
+            id: h.id,
+            code: h.code,
+            label: name(h),
+            effects: [fx("ready", { target: h.id, player })],
+          })),
+        );
+      break;
+    }
+    case "eredPoolGate":
+      if (u && s.staging.some((x) => x.id === u.id)) {
+        u.resources++;
+        if (u.resources >= 3) {
+          discardLocation(s, u, true);
+          log(s, "Town Gate has 3 resources and is discarded.");
+        }
+      }
       break;
     case "eredPoolGiant": {
       const n = discardPlayerDeck(s, 5, player).filter(
@@ -2064,6 +2204,7 @@ export const ERED_POOL_HOOKS: Batch4ScenarioHooks = {
   damageDealt: poolDamageDealt,
   engaged: poolEngaged,
   encounterBegin: poolEncounterBegin,
+  endQuest: poolEndQuest,
   characterDestroyed: poolCharacterDestroyed,
   enemyAttackStarted: poolEnemyAttackStarted,
   shadowResolved: poolShadowResolved,
@@ -2161,6 +2302,10 @@ export function composeEredPool(
     encounterBegin: (s) => {
       h.encounterBegin?.(s);
       p.encounterBegin!(s);
+    },
+    endQuest: (s) => {
+      h.endQuest?.(s);
+      p.endQuest!(s);
     },
     characterDestroyed: (s, u, context) => {
       h.characterDestroyed?.(s, u, context);

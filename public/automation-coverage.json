@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2279,
+    "encounterCards": 2283,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3501,
-    "pending": 682
+    "scripted": 3505,
+    "pending": 678
   },
   "scenarioRecipes": {
     "total": 355,
@@ -805,6 +805,9 @@
     "12185",
     "12186",
     "12188",
+    "12190",
+    "12191",
+    "12192",
     "12196",
     "12197",
     "12198",
@@ -1567,6 +1570,7 @@
     "octgn:27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb",
     "octgn:27da4ea2-7892-409e-b6e0-38ad215d5d0c",
     "octgn:2809f147-b000-419c-bbb2-39e6221d72de",
+    "octgn:280e4dce-aef9-4472-94a6-94b114be5a4e",
     "octgn:282bca71-ff04-4447-a4e9-a7e5f70e0083",
     "octgn:28491ce2-ffc5-4f26-ab6d-88b68d59ea63",
     "octgn:286a5206-9ebb-4ec4-a349-2960ccb2f669",
@@ -3857,7 +3861,7 @@
     {
       "product": "ered-mithrin-campaign-expansion",
       "total": 40,
-      "scripted": 33,
+      "scripted": 37,
       "player": 21,
       "playerScripted": 21
     },
@@ -10032,7 +10036,7 @@
       "name": "Ashen Brazier",
       "type": "objective",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -10040,7 +10044,7 @@
       "name": "Gundabad Hunter",
       "type": "enemy",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -10048,7 +10052,7 @@
       "name": "Gundabad Stalker",
       "type": "enemy",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -16680,7 +16684,7 @@
       "name": "The Ghost of Framsburg",
       "type": "campaign",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {

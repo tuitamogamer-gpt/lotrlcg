@@ -5,10 +5,11 @@ scenarios are played in order with the Revised Core Set's Campaign Log, and
 each campaign card, boon and burden changes the scenario it belongs to. Campaign
 mode offers it as **Ered Mithrin**, next to Mirkwood Paths, The Lord of the
 Rings, Angmar Awakened and Dream-chaser. The campaign begins with Journey Up
-the Anduin; **its first six chapters are supported** (Journey Up the Anduin,
-Lost in Mirkwood, The King's Quest, The Withered Heath, Roam Across Rhovanion
-and Fire in the Night), and the next chapters follow in publication order (The
-Ghost of Framsburg is not available in campaign mode yet).
+the Anduin; **its first seven chapters are supported** (Journey Up the
+Anduin, Lost in Mirkwood, The King's Quest, The Withered Heath, Roam Across
+Rhovanion, Fire in the Night and The Ghost of Framsburg), and the next chapters
+follow in publication order (Mount Gundabad is not available in campaign mode
+yet).
 
 ## Sources
 
@@ -141,6 +142,15 @@ Campaign Log) with that hero. The Songs join decks through the interlude.
 | Campaign card             | Setup: the first player gains control of Beldis; with "Turayn has taken an oath of vigilance", the first player removes 3 non-unique locations from the encounter deck; with "Isolde is on the hunt", 3 non-unique enemies. The deep keyword is ignored (the scenario has no Caves deck). Resolution: Beldis joins the Campaign Pool or the Campaign Log notes that "Beldis's care has bolstered the heroes' spirits"; with at least 5 progress on Hrogar's Hill (the main quest) the players choose 1 of 3 random undiscovered treasures, discovered at once; the treasures the players control are discovered; each player may remove a non-burden encounter card from the Campaign Pool (1 copy each, never more copies than it holds; "Remove nothing" is the default, and the boons, whose removal never helps, are not offered). |
 | Beldis (unique boon ally) | Action, which any player may trigger: spend 1 resource from a hero you control and mark one of your uses in the Campaign Log to heal 3 damage from a character (not one immune to player card effects). Each player has 4 uses for the campaign, shown in the Campaign Log's notes and the quest inspector.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 
+## The Ghost of Framsburg (Part 7)
+
+| Card                            | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Campaign card                   | Setup: each player may change heroes without the +1 threat penalty (the interlude says so); Ashen Brazier, Gundabad Hunter and Gundabad Stalker are shuffled into the encounter deck; a player may search their deck for a unique boon ally; with "Isolde is on the hunt" the first player removes 3 treacheries, with "Beldis's care has bolstered the heroes' spirits" 3 non-unique locations. The deep keyword is ignored (no Caves deck). Response: after Fram's Shade engages a player at stage 1 or 2, the players look at 3 random undiscovered treasures and attach 1 to it as a guarded objective, claimed when it leaves play (always used, once per game). Action, which any player may trigger from the quest inspector's campaign card panel (or the main quest card's ability): raise each player's threat by 1 to shuffle the encounter discard pile into the encounter deck. Resolution: the treasures the players control are discovered; Gundabad Hunter or Gundabad Stalker joins the Campaign Pool; the discard pile is shuffled in and cards are discarded until 2 Hazard cards are, and the group adds 1 of them to the Campaign Pool (a Gundabad burden as a burden, another card as a copy). |
+| Ashen Brazier (boon objective)  | Loot: in this chapter the scenario module treats it as one of its Loot objectives (revealed, it is discarded and another card revealed; Discover and Forgotten Crypt can guard it; free, the first player attaches it to a hero; it counts for the stages and The Cursed Tomb). Action: exhaust it to look at a facedown shadow card (it stays facedown).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Gundabad Hunter (burden enemy)  | When Revealed: it makes an immediate attack against a player engaged with a unique enemy (the first player chooses among them; with none, among all players). Shadow: a unique attacker makes an additional attack.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Gundabad Stalker (burden enemy) | Cannot be optionally engaged except by a player engaged with a unique enemy. Shadow: a unique attacker returns to the staging area after the attack.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+
 ## The treasures
 
 | Treasure             | Behaviour                                                                                                                                                                                                                                                                                           |
@@ -165,14 +175,15 @@ of encounter set, so a card from one scenario must resolve in another scenario's
 module. The three Wilds of Rhovanion chapters share one module, and the Core
 Set's cards (the Evil Creatures enemies, the Spiders of Mirkwood and Dol Guldur
 Orcs cards) resolve in every scenario. For the chapters from The Withered Heath
-on, `src/game/ered-campaign-pool.ts` scripts the 60 cards of Journey Up the
-Anduin, Lost in Mirkwood, The King's Quest, The Withered Heath and Roam Across
-Rhovanion that can join the Campaign Pool (the non-unique, non-objective,
-non-burden cards A Growing Threat can set aside, and Roam Across Rhovanion's
-staging locations): each later chapter's hooks are composed with the pool's,
-which act only on a card foreign to that chapter (outside its own recipes; 39,
-43, 54, 55, 45 and 53 of them in chapters 4 to 9). Card text that refers to
-another scenario's components does as much as it can:
+on, `src/game/ered-campaign-pool.ts` scripts the 68 cards of Journey Up the
+Anduin, Lost in Mirkwood, The King's Quest, The Withered Heath, Roam Across
+Rhovanion and Fire in the Night that can join the Campaign Pool (the
+non-unique, non-objective, non-burden cards A Growing Threat can set aside, and
+Roam Across Rhovanion's staging locations): each later chapter's hooks are
+composed with the pool's, which act only on a card foreign to that chapter
+(outside its own recipes; 47, 51, 54, 63, 53 and 61 of them in chapters 4 to
+9). Card text that refers to another scenario's components does as much as it
+can:
 
 - **The Evil Creatures deck** exists only in Journey Up the Anduin: Wooded
   Riverbank's explored effect and Frenzied Creature's When Revealed find nothing
@@ -201,6 +212,13 @@ another scenario's components does as much as it can:
   Eagle, Wilderland Bear, Grey Moorland, Harsh Weather and Wild Creatures keep
   their printed rules (Wild Creatures offers only enemies the chapter lets a
   player engage, so not Fire in the Night's Dagnir).
+- **Hrogar's Hill and Dagnir** are only Fire in the Night's: elsewhere The
+  Dragon's Thrall attacks the player it engages, Orc of the Flame makes the
+  first player deal 2 damage to a hero, Town Gate gains a resource at the end
+  of each quest phase and is discarded at 3, Powerful in Wrath discards the
+  active location and surges, and The Dragon's Fury and Town Gate's Travel find
+  no Dagnir; Wooden Palisade readies a hero, Burning Watchtower and Bright
+  Flames count the side quests in the victory display.
 - Lonely Lands keeps events played during the quest phase facedown under it
   (+2 threat each) and discards them when it leaves play; Lost in the Wild sits in
   a hand; the conditions (Weighed Down, Afraid of the Dark, Dragon Breath,
@@ -217,7 +235,7 @@ become portable with their chapters.
 ## Verification
 
 ```sh
-node --import tsx --test tests/ered-campaign.test.ts tests/ered-campaign-pool.test.ts tests/ered-campaign-heath.test.ts tests/ered-campaign-roam.test.ts tests/ered-campaign-fire.test.ts
+node --import tsx --test tests/ered-campaign.test.ts tests/ered-campaign-pool.test.ts tests/ered-campaign-heath.test.ts tests/ered-campaign-roam.test.ts tests/ered-campaign-fire.test.ts tests/ered-campaign-ghost.test.ts
 npm run build
 npm run test:browser-ered-campaign
 ```
@@ -248,14 +266,26 @@ Isolde's removals), Beldis's Action (its cost, the use marked, a target immune
 to player card effects, the 4 uses, another player triggering it), and the
 resolution (Beldis or the note, the treasure at 5 progress and none below, the
 removals, a burden never offered, two players and the copies held, the next
-chapter not yet available).
+chapter).
 
-`tests/ered-campaign-pool.test.ts` (23 tests) covers the foreign cards of each
+`tests/ered-campaign-ghost.test.ts` (7 tests) covers The Ghost of Framsburg's
+texts and faces, its setup (the three cards shuffled in, the boon ally search,
+Isolde's and Beldis's removals), Ashen Brazier as a Loot objective (discarded
+and replaced when revealed, claimed when its guard leaves, counted as a Loot
+objective, its Action), Gundabad Hunter's attack (one player, the player
+engaged with a unique enemy, the first player's choice), Gundabad Stalker's
+engagement limit, both shadows, Fram's Shade's treasure (once, not at stage
+3), the campaign card's Action (an empty discard pile, another player), and
+the resolution (the burden, the 2 Hazard cards, the next chapter not yet
+available).
+
+`tests/ered-campaign-pool.test.ts` (25 tests) covers the foreign cards of each
 later chapter (each one revealed in each chapter where it is foreign, with a
 valid save), their passive values, triggers, shadows and choices, the Caves
 deck through The Withered Heath, the Lost Caves locations and The Withered
 Heath's nine cards in Roam Across Rhovanion, Roam Across Rhovanion's nine cards
-in Fire in the Night, the When Revealed fallback, and a two-player game.
+in Fire in the Night, Fire in the Night's eight cards in The Ghost of Framsburg,
+the When Revealed fallback, and a two-player game.
 
 `tests/ered-campaign.test.ts` (28 tests) covers the registered texts and
 faces, the uniqueness corrections and the cards kept out of ordinary games;
@@ -301,6 +331,8 @@ the trust in Urdug at setup and again when Tiny is claimed (declined: Urdug's
 Cunning is shuffled in), shows Urdug's resources in the inspector, and records
 Misplaced Trust and a staging location; Fire in the Night gives Beldis, uses her
 Action through its button (a use marked in the Campaign Log), and records
-Beldis, a treasure for 5 progress and a removal from the Campaign Pool, after
-which The Ghost of Framsburg is not available yet; at 1280, 390 and 320 pixels
-(99 checkpoints); it checks the 39 pinned faces.
+Beldis, a treasure for 5 progress and a removal from the Campaign Pool; The
+Ghost of Framsburg offers free hero changes, shuffles in its three cards, uses
+the campaign card's Action from the quest inspector and records Gundabad
+Stalker and a Hazard card, after which Mount Gundabad is not available yet; at
+1280, 390 and 320 pixels (111 checkpoints); it checks the 44 pinned faces.

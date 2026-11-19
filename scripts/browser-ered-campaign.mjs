@@ -440,7 +440,11 @@ try {
     // back into the encounter deck.
     {
       const t = quiet(s, "staging");
+      // (It may already have been revealed in this game.)
       t.encounterDeck = t.encounterDeck.filter((x) => x !== ERED.spawn);
+      t.encounterDiscard = t.encounterDiscard.filter((x) => x !== ERED.spawn);
+      t.staging = t.staging.filter((u) => u.code !== ERED.spawn);
+      t.engaged = t.engaged.filter((u) => u.code !== ERED.spawn);
       revealed(t, ERED.spawn);
       flush(t);
       s = await load(t);
@@ -643,17 +647,74 @@ try {
       .getByText(/^Notes · Beldis's uses marked: 1 of 4/)
       .first()
       .waitFor();
+    await page.getByRole("button", { name: /^Continue campaign/ }).waitFor();
+    await checkpoint("fire-complete", width);
+    // The Ghost of Framsburg (Part 7): free hero changes; Ashen Brazier and
+    // the Gundabad Hunter and Stalker shuffled in; the campaign card's Action
+    // from the quest inspector; the resolution's burden and Hazard card.
+    await page.getByRole("button", { name: /^Continue campaign/ }).click();
+    await page
+      .getByText(
+        /This chapter's campaign card lets each player change heroes without the \+1 threat penalty\./,
+      )
+      .waitFor();
+    await checkpoint("ghost-interlude", width);
+    await page.getByRole("button", { name: /^Begin next chapter/ }).click();
+    await reviewedState(page);
+    s = await opening();
+    assert.equal(s.scenarioId, "the-ghost-of-framsburg");
+    for (const code of [ERED.brazier, ERED.hunter, ERED.stalker])
+      assert.ok(
+        [...s.encounterDeck, ...s.encounterDiscard].includes(code) ||
+          [...s.staging, ...s.engaged].some((u) => u.code === code) ||
+          s.ghostFramsburg.loot.some((l) => l.unit.code === code),
+        card(code).name,
+      );
+    {
+      const t = quiet(s);
+      t.encounterDiscard.push(t.encounterDeck.shift());
+      s = await load(t);
+    }
+    const threat = s.threat;
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Campaign card", { exact: true })
+      .getByText(/^The Ghost of Framsburg: after Fram's Shade engages/)
+      .waitFor();
+    await checkpoint("ghost-action", width);
+    await page
+      .getByRole("button", {
+        name: /^The Ghost of Framsburg · Raise each player's threat by 1/,
+      })
+      .click();
+    await reviewedState(page);
+    s = await campaign();
+    assert.deepEqual(s.encounterDiscard, []);
+    assert.equal(s.threat, threat + 1);
+    s = await victory(s);
+    assert.equal(s.campaign.resolution, "the-ghost-of-framsburg");
+    const hazards = s.eredCampaign.hazards;
+    assert.equal(hazards.length, 2);
+    await page
+      .getByLabel(/^Add either Gundabad Hunter or Gundabad Stalker/)
+      .selectOption(ERED.stalker);
+    await checkpoint("ghost-resolution", width);
+    s = await record();
+    assert.ok(s.campaign.burdens.includes(ERED.stalker));
+    assert.ok(
+      s.campaign.burdens.includes(hazards[0]) ||
+        (s.campaign.encounterPool[hazards[0]] ?? 0) >= 1,
+      "the first Hazard card joined the Campaign Pool",
+    );
     await page
       .getByRole("dialog")
-      .getByText(
-        /The Ghost of Framsburg, is not available in campaign mode yet/,
-      )
+      .getByText(/Mount Gundabad, is not available in campaign mode yet/)
       .waitFor();
     assert.equal(
       await page.getByRole("button", { name: /^Continue campaign/ }).count(),
       0,
     );
-    await checkpoint("fire-complete", width);
+    await checkpoint("ghost-complete", width);
     await view.c.close();
   }
   const p = await browser.newPage();
