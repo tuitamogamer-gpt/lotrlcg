@@ -120,6 +120,8 @@ import {
   WILDS_RHOVANION,
 } from "./wilds-rhovanion-support";
 import { validEredPool } from "./ered-campaign-pool";
+import { nightmareSupported } from "./nightmare";
+import { validNightmareCore } from "./nightmare-core";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
 import { validateUmbar } from "./escape-umbar-support";
@@ -1033,6 +1035,12 @@ export function validateSave(
       (!BUILT_IN_DECKS.some((d) => d.id === s.deckId) &&
         s.deckId !== "custom") ||
       (s.easyMode !== undefined && typeof s.easyMode !== "boolean") ||
+      // Nightmare mode: a supported Nightmare Deck, never with easy mode.
+      (s.nightmareMode !== undefined &&
+        (s.nightmareMode !== true ||
+          !nightmareSupported(s.scenarioId) ||
+          !!s.easyMode ||
+          s.playMode === "campaign")) ||
       (s.customDeck !== undefined && !customList(s.customDeck)) ||
       (s.earlyAttackPlayers !== undefined &&
         (s.phase !== "attack" ||
@@ -1139,6 +1147,7 @@ export function validateSave(
         !validateCrossingsPoros(s, validUnit as (value: unknown) => boolean) ||
         !validateWildsRhovanion(s, validUnit as (value: unknown) => boolean) ||
         !validEredPool(s, validUnit as (value: unknown) => boolean) ||
+        !validNightmareCore(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,

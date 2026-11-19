@@ -172,6 +172,7 @@ import angmarCampaignCards from "../data/angmar-campaign-cards.json";
 import dreamchaserCampaignCards from "../data/dreamchaser-campaign-cards.json";
 import darkMirkwoodCampaignCards from "../data/dark-mirkwood-campaign-cards.json";
 import eredCampaignCards from "../data/ered-campaign-cards.json";
+import nightmareCards from "../data/nightmare-encounter-cards.json";
 import { ULFAST_ENCOUNTERS, ULFAST_QUESTS } from "./ulfast-scenario-data";
 import wrathRuinPlayers from "../data/wrath-ruin-player-cards.json";
 import {
@@ -643,6 +644,9 @@ export const encounterCards = [
       ...(dreamchaserCampaignCards as Card[]),
       ...(darkMirkwoodCampaignCards as Card[]),
       ...(eredCampaignCards as Card[]),
+      // Nightmare mode: each Nightmare Deck's setup card and encounter cards
+      // (their "X - Nightmare" encounter sets keep them out of standard decks).
+      ...(nightmareCards as Card[]),
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),

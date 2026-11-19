@@ -567,6 +567,8 @@ export interface GameState {
   eredCampaign?: import("./ered-campaign").EredCampaignGame;
   /** The Ered Mithrin campaign: the Campaign Pool's cards from other scenarios. */
   eredPool?: import("./ered-campaign-pool").EredPoolState;
+  /** Nightmare mode's lasting card effects. */
+  nightmare?: import("./nightmare-core").NightmareCoreState;
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;
@@ -860,6 +862,8 @@ export interface GameState {
   customDeck?: Record<string, number>;
   /** Official easy mode: each hero began with one extra resource. */
   easyMode?: boolean;
+  /** Nightmare mode: the scenario's Nightmare Deck and setup card (docs/NIGHTMARE.md). */
+  nightmareMode?: boolean;
   used: string[];
   standTogether: boolean;
   peek: string | null;

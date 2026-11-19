@@ -64,15 +64,28 @@ import {
   composeEredPool,
   eredPoolLive,
 } from "./ered-campaign-pool";
+import { NIGHTMARE_CORE_HOOKS } from "./nightmare-core";
+import { nightmareLive } from "./nightmare";
 
 const empty: Batch4ScenarioHooks = {};
 const pooled = new WeakMap<Batch4ScenarioHooks, Batch4ScenarioHooks>();
+const nightmares = new WeakMap<Batch4ScenarioHooks, Batch4ScenarioHooks>();
 /**
  * The current scenario's hooks; in an Ered Mithrin campaign chapter from The
- * Withered Heath on, composed with the Campaign Pool's foreign cards.
+ * Withered Heath on, composed with the Campaign Pool's foreign cards, and in
+ * Nightmare mode with the Nightmare Deck's cards (the same composition).
  */
 export function batch4Scenario(s: GameState): Batch4ScenarioHooks {
   const hooks = scenarioHooks(s);
+  if (nightmareLive(s)) {
+    let composed = nightmares.get(hooks);
+    if (!composed)
+      nightmares.set(
+        hooks,
+        (composed = composeEredPool(hooks, NIGHTMARE_CORE_HOOKS)),
+      );
+    return composed;
+  }
   if (!eredPoolLive(s)) return hooks;
   let composed = pooled.get(hooks);
   if (!composed) pooled.set(hooks, (composed = composeEredPool(hooks)));
@@ -209,6 +222,7 @@ function scenarioHooks(s: GameState): Batch4ScenarioHooks {
 export const batch4SharedEffect = (effect: Effect) =>
   [
     ERED_POOL_HOOKS,
+    NIGHTMARE_CORE_HOOKS,
     BLACK_SERPENT_HOOKS,
     CIRITH_GURAT_HOOKS,
     CROSSINGS_POROS_HOOKS,

@@ -82,6 +82,8 @@ import { syncAttachmentText } from "./attachment-text";
 import { setupKhazad } from "./khazad-dum";
 // Game creation and scenario setup.
 import { card, HEROES, DECK, SCRIPTED, encounterCards } from "./cards";
+import { nightmareEncounterDeck, nightmareSupported } from "./nightmare";
+import { nightmareSetup } from "./nightmare-core";
 import type {
   GameState,
   ScenarioId,
@@ -216,6 +218,8 @@ export function createGame(
     reviewMode?: ReviewMode;
     /** Official easy mode: each hero starts with one additional resource. */
     easy?: boolean;
+    /** Nightmare mode, for a scenario with a supported Nightmare Deck (never with easy mode). */
+    nightmare?: boolean;
     rangerReserves?: Record<number, number>;
     /** Each Encounter design has an independent zero-to-three reserve. */
     batch4WindReserves?: Record<number, number>;
@@ -478,6 +482,13 @@ export function createGame(
     );
     campaign!.rangerSense = [...options.rangerLegacy].sort((a, b) => a - b);
   }
+  // Nightmare mode replaces easy mode, outside campaign mode.
+  requireRule(
+    !options.nightmare ||
+      (nightmareSupported(scenarioId) && playMode !== "campaign"),
+    "This scenario's Nightmare Deck is not available in this game mode.",
+  );
+  const nightmare = !!options.nightmare;
   const s: GameState = {
     // The Dream-chaser campaign: the Hard/Expert Mode card for this chapter.
     ...(options.dreamchaserMode
@@ -511,7 +522,11 @@ export function createGame(
     suspendedCombats: [],
     deckId,
     ...(original ? {} : { customDeck: { ...deck } }),
-    ...(options.easy ? { easyMode: true } : {}),
+    ...(nightmare
+      ? { nightmareMode: true }
+      : options.easy
+        ? { easyMode: true }
+        : {}),
     used: [],
     standTogether: false,
     peek: null,
@@ -531,21 +546,27 @@ export function createGame(
     removed: [],
     // A campaign card lies next to the quest deck, never in the encounter
     // deck, even when it shares the scenario's encounter set.
-    encounterDeck: encounterCards
-      .filter(
-        (c) =>
-          c.type_code !== "campaign" &&
-          (scenario(scenarioId).sets as readonly string[]).includes(
-            c.encounter_set ?? "",
-          ),
-      )
-      .flatMap((c) =>
-        Array(
-          options.easy && c.easy_quantity !== undefined
-            ? c.easy_quantity
-            : c.quantity,
-        ).fill(c.code),
-      ),
+    encounterDeck: (() => {
+      const standard = encounterCards
+        .filter(
+          (c) =>
+            c.type_code !== "campaign" &&
+            (scenario(scenarioId).sets as readonly string[]).includes(
+              c.encounter_set ?? "",
+            ),
+        )
+        .flatMap((c) =>
+          Array(
+            options.easy && !nightmare && c.easy_quantity !== undefined
+              ? c.easy_quantity
+              : c.quantity,
+          ).fill(c.code),
+        );
+      // Nightmare mode: the setup card's removals and its Nightmare Deck.
+      return nightmare
+        ? nightmareEncounterDeck(scenarioId, standard)
+        : standard;
+    })(),
     encounterDiscard: [],
     staging: [],
     engaged: [],
@@ -896,9 +917,10 @@ export function finishGameSetup(s: GameState) {
   dreamchaserCampaignSetup(s);
   darkMirkwoodCampaignSetup(s);
   eredCampaignSetup(s);
+  nightmareSetup(s);
   log(
     s,
-    `${scenario(scenarioId).name} · ${playMode === "campaign" ? (isSagaCampaign(campaign) ? "The Lord of the Rings campaign" : isAngmarCampaign(campaign) ? "The Angmar Awakened campaign" : isDreamchaserCampaign(campaign) ? "The Dream-chaser campaign" : isEredCampaign(campaign) ? "The Ered Mithrin campaign" : campaign?.mini ? "The Dark of Mirkwood mini campaign" : "Mirkwood Paths campaign") : "Normal game"}.`,
+    `${scenario(scenarioId).name} · ${playMode === "campaign" ? (isSagaCampaign(campaign) ? "The Lord of the Rings campaign" : isAngmarCampaign(campaign) ? "The Angmar Awakened campaign" : isDreamchaserCampaign(campaign) ? "The Dream-chaser campaign" : isEredCampaign(campaign) ? "The Ered Mithrin campaign" : campaign?.mini ? "The Dark of Mirkwood mini campaign" : "Mirkwood Paths campaign") : s.nightmareMode ? "Nightmare mode" : "Normal game"}.`,
     "chapter",
   );
   if (s.flow)

@@ -392,6 +392,11 @@ import {
   nextEredChapter,
 } from "./game/ered-campaign";
 import {
+  nightmareCardOf,
+  nightmareStatus,
+  nightmareSupported,
+} from "./game/nightmare";
+import {
   DREAMCHASER_CAMPAIGN_CARDS,
   DREAMCHASER_CAMPAIGN_ORDER,
   DREAMCHASER_CAMPAIGN_SUPPORTED,
@@ -1212,6 +1217,7 @@ export default function App() {
       if (saved.table) setSeats(savedSeats(saved, recovered));
       setSelectedDeck(savedDeckId(saved, recovered));
       setEasyMode(saved.easyMode ? "on" : "off");
+      setNightmareMode(saved.nightmareMode ? "on" : "off");
     }
     setSelectedScenario(saved?.scenarioId ?? "mirkwood");
     setHistory([]);
@@ -1472,6 +1478,12 @@ export default function App() {
     "off",
     "on",
   ] as const);
+  // Nightmare mode (never with easy mode), for a supported Nightmare Deck.
+  const [nightmareMode, setNightmareMode] = usePreference(
+    "nightmare-mode",
+    "off",
+    ["off", "on"] as const,
+  );
   const [showRecords, setShowRecords] = useState(false);
   const [records, setRecords] = useState(readRecords);
   const resumable =
@@ -1846,7 +1858,11 @@ export default function App() {
           wrathBombadilReserves,
           burglarLoot,
           hobbitTreasures: selectedTreasures(style),
-          easy: easyMode === "on",
+          ...(playMode !== "campaign" &&
+          nightmareMode === "on" &&
+          nightmareSupported(selectedScenario)
+            ? { nightmare: true }
+            : { easy: easyMode === "on" }),
           scenarioId:
             playMode === "campaign" ? campaignStart : selectedScenario,
           playMode,
@@ -2188,6 +2204,7 @@ export default function App() {
     setSelectedScenario(s.scenarioId);
     setSelectedDeck(savedDeckId(s, recovered));
     setEasyMode(s.easyMode ? "on" : "off");
+    setNightmareMode(s.nightmareMode ? "on" : "off");
     setHistory([]);
     setPage("table");
     const shelfIssue = deckStorageProblem(recovered);
@@ -2963,12 +2980,36 @@ export default function App() {
                     <input
                       type="checkbox"
                       checked={easyMode === "on"}
-                      onChange={(e) =>
-                        setEasyMode(e.target.checked ? "on" : "off")
-                      }
+                      onChange={(e) => {
+                        setEasyMode(e.target.checked ? "on" : "off");
+                        if (e.target.checked) setNightmareMode("off");
+                      }}
                     />
                   </label>
                 )}
+                {!(resumable && game?.status === "playing") &&
+                  playMode !== "campaign" &&
+                  nightmareSupported(selectedScenario) && (
+                    <label className="preference-check nightmare-toggle">
+                      <div>
+                        <strong>Nightmare mode</strong>
+                        <small>
+                          The scenario's Nightmare Deck: its setup card removes
+                          standard encounter cards and shuffles in its own, and
+                          its rules stay active for the whole game (never with
+                          easy mode).
+                        </small>
+                      </div>
+                      <input
+                        type="checkbox"
+                        checked={nightmareMode === "on"}
+                        onChange={(e) => {
+                          setNightmareMode(e.target.checked ? "on" : "off");
+                          if (e.target.checked) setEasyMode("off");
+                        }}
+                      />
+                    </label>
+                  )}
                 <button
                   className="primary hero-cta"
                   id="start-btn"
@@ -3242,6 +3283,7 @@ export default function App() {
                 setSeats(chosenSeats);
                 setSelectedScenario(id);
                 setEasyMode(mode === "easy" ? "on" : "off");
+                setNightmareMode(mode === "nightmare" ? "on" : "off");
                 nav("adventures");
               }}
             />
@@ -4582,6 +4624,27 @@ export default function App() {
               />
             )}
             <QuestGoals s={game} />
+            {nightmareCardOf(game) && (
+              <div className="saga-campaign-status" aria-label="Nightmare card">
+                <button
+                  className="text-link"
+                  onClick={() => {
+                    setShowQuest(false);
+                    setDetail({
+                      ...card(nightmareCardOf(game)!),
+                      initialReverse: true,
+                    } as Card);
+                  }}
+                >
+                  Nightmare card · {card(nightmareCardOf(game)!).name}
+                </button>
+                {nightmareStatus(game).map((line) => (
+                  <p key={line} className="campaign-note">
+                    {line}
+                  </p>
+                ))}
+              </div>
+            )}
             {campaignCardOf(game) && (
               <div className="saga-campaign-status" aria-label="Campaign card">
                 <button

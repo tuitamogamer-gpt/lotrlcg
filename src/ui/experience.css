@@ -2779,7 +2779,8 @@ kbd {
 .records-table .is-lost {
   color: #b8543a;
 }
-.easy-toggle {
+.easy-toggle,
+.nightmare-toggle {
   margin-top: 12px;
 }
 .adventure-to-catch-an-orc .forest-bg,

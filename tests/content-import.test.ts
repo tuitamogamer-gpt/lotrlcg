@@ -245,8 +245,16 @@ test("Core fixtures remain unchanged and reference imports do not enable unscrip
   // mode (saga-campaign-land-shadow.test.ts).
   assert.ok(SCRIPTED.has("144014"));
   assert.ok(!SCRIPTED.has("01132"));
+  // Nightmare cards are scripted only in the supported Nightmare Decks
+  // (docs/NIGHTMARE.md).
+  const nightmareDecks = new Set(
+    (read("src/data/nightmare-encounter-cards.json") as Card[]).map(
+      (c) => c.code,
+    ),
+  );
+  assert.ok(nightmareDecks.size >= 9);
   for (const c of catalogue.filter((c) => c.nightmare))
-    assert.ok(!SCRIPTED.has(c.code));
+    assert.equal(SCRIPTED.has(c.code), nightmareDecks.has(c.code), c.code);
   const quest = byCode.get("01119")!;
   assert.equal(quest.name, "Flies and Spiders");
   assert.equal(quest.back_quest, 8);

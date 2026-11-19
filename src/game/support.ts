@@ -2,6 +2,7 @@ import { hasEncounterKeyword } from "./encounter-keyword";
 import { SCRIPTED, playerCards, encounterCards } from "./cards";
 import { SAGA_CAMPAIGN_SUPPORTED } from "./saga-campaign";
 import { SCENARIOS, CAMPAIGN_CHAPTERS } from "./scenarios";
+import { nightmareSupported } from "./nightmare";
 import type { Card } from "./types";
 import { EMYN_MUIL_QUESTS, RHOSGOBEL_QUESTS } from "./encounter-definitions";
 
@@ -48,9 +49,8 @@ export const automationSummary = () => ({
   scenarioIds: SCENARIOS.map((s) => s.id),
 });
 export function automatedScenarioId(reference: { name: string; mode: string }) {
-  if (reference.mode === "nightmare") return null;
   const name = reference.name
-    .replace(/\s*\((?:Easy|Campaign)\)\s*$/i, "")
+    .replace(/\s*\((?:Easy|Campaign|Nightmare)\)\s*$/i, "")
     .trim();
   // The frozen source recipe drops the article printed in the MEC77 title,
   // and names The Siege of Annúminas' standard game mode after its setup card
@@ -75,7 +75,9 @@ export function automatedScenarioId(reference: { name: string; mode: string }) {
     !match ||
     (reference.mode === "campaign" &&
       !CAMPAIGN_CHAPTERS.includes(match.id) &&
-      !SAGA_CAMPAIGN_SUPPORTED.includes(match.id))
+      !SAGA_CAMPAIGN_SUPPORTED.includes(match.id)) ||
+    // Nightmare mode: only the scenarios whose Nightmare Decks are supported.
+    (reference.mode === "nightmare" && !nightmareSupported(match.id))
   )
     return null;
   return match.id;

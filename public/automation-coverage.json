@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2286,
+    "encounterCards": 2295,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3508,
-    "pending": 675
+    "scripted": 3517,
+    "pending": 666
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 270
+    "scripted": 271
   },
   "registeredCodes": [
     "01001",
@@ -3469,6 +3469,15 @@
     "octgn:e7f523e1-c898-42f8-93c2-889038de230f",
     "octgn:e839fa89-15b4-451f-9fac-6a8f38e31d65",
     "octgn:e83f33da-6723-4730-8691-8d1a48b1f8e0",
+    "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5001",
+    "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5006",
+    "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5009",
+    "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5015",
+    "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5017",
+    "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5023",
+    "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5024",
+    "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5028",
+    "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5029",
     "octgn:e8c78f25-00d0-4b3b-8cac-03e533edfe41",
     "octgn:e8d205e0-5951-403b-b36e-f992e1b9de7e",
     "octgn:e8db9cc7-d53f-4ce9-991d-31078b2d507a",
@@ -3836,7 +3845,7 @@
     {
       "product": "core-nightmare",
       "total": 27,
-      "scripted": 0,
+      "scripted": 9,
       "player": 0,
       "playerScripted": 0
     },
@@ -35679,7 +35688,7 @@
       "name": "Passage Through Mirkwood",
       "type": "nightmare",
       "pack": "Core Set - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "core-nightmare"
     },
     {
@@ -35703,7 +35712,7 @@
       "name": "Abandoned Camp",
       "type": "location",
       "pack": "Core Set - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "core-nightmare"
     },
     {
@@ -35727,7 +35736,7 @@
       "name": "Backtrack!",
       "type": "treachery",
       "pack": "Core Set - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "core-nightmare"
     },
     {
@@ -35775,7 +35784,7 @@
       "name": "Forest Flies",
       "type": "enemy",
       "pack": "Core Set - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "core-nightmare"
     },
     {
@@ -35791,7 +35800,7 @@
       "name": "Glade of the Spawn",
       "type": "location",
       "pack": "Core Set - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "core-nightmare"
     },
     {
@@ -35839,7 +35848,7 @@
       "name": "Spiders of Mirkwood",
       "type": "enemy",
       "pack": "Core Set - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "core-nightmare"
     },
     {
@@ -35847,7 +35856,7 @@
       "name": "The Spider's Web",
       "type": "treachery",
       "pack": "Core Set - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "core-nightmare"
     },
     {
@@ -35879,7 +35888,7 @@
       "name": "Ungoliant's Brood",
       "type": "enemy",
       "pack": "Core Set - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "core-nightmare"
     },
     {
@@ -35887,7 +35896,7 @@
       "name": "Ungoliant's Spawn",
       "type": "enemy",
       "pack": "Core Set - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "core-nightmare"
     },
     {
@@ -39041,8 +39050,8 @@
       "id": "N01.1",
       "name": "Passage Through Mirkwood (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "mirkwood",
+      "state": "scripted"
     },
     {
       "id": "N01.2",
