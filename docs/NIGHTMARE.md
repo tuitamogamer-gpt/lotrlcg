@@ -13,9 +13,9 @@ not offered in campaign mode.
 Journey Along the Anduin and Escape from Dol Guldur) and all six of Shadows of
 Mirkwood's (The Hunt for Gollum, Conflict at the Carrock, A Journey to
 Rhosgobel, The Hills of Emyn Muil, The Dead Marshes and Return to Mirkwood),
-and all three of Khazad-dûm's (Into the Pit, The Seventh Level and Flight from
-Moria). The other Nightmare Decks follow in publication order, beginning with
-The Redhorn Gate.
+all three of Khazad-dûm's (Into the Pit, The Seventh Level and Flight from
+Moria) and, of Dwarrowdelf's, The Redhorn Gate. The other Nightmare Decks
+follow in publication order, beginning with Road to Rivendell.
 
 ## Sources
 
@@ -29,8 +29,8 @@ The Redhorn Gate.
   Conflict at the Carrock, whose Nightmare Deck adds a stage to the quest
   deck, 10 cards and 11 faces for The Dead Marshes and The Seventh Level, and 8
   cards and 10 faces for Into the Pit, whose Nightmare Deck replaces stage
-  2, and 9 cards and 13 faces for Flight from Moria, whose Nightmare Deck adds
-  three stage 2 quest cards).
+  2, 9 cards and 13 faces for Flight from Moria, whose Nightmare Deck adds
+  three stage 2 quest cards, and 8 cards and 9 faces for The Redhorn Gate).
 - The scans correct the catalogue: each setup card's front is the removal
   list ("Begin with the standard quest deck and encounter deck … Remove the
   following cards, in the specified quantities …"), where the catalogue had a
@@ -67,16 +67,23 @@ The Redhorn Gate.
   catalogue repeated it after "Side B:"), Pursued by Shadow's first paragraph
   ends with its period, Coal-Black Orc's shadow counts the "victory points"
   (the catalogue had "points"), and An Evil Fortune is a Shadow. Flame. card
-  with Victory 1 (the catalogue had neither).
+  with Victory 1 (the catalogue had neither); The Redhorn Gate's setup card
+  says "You are playing Nightmare mode" (the catalogue had "playing in"),
+  Wolfpelt Goblin keeps the period of "Surge." and loses the space before its
+  comma, Silvertine Marauder's text and shadow lose their stray spaces, and the
+  encounter set has 2 Snow-Giants (it is numbered 1 to 19; the catalogue had
+  3).
 - The source recipe of each Nightmare scenario (`public/scenarios.json`,
-  N01.1 to N01.9 and N02.1 to N02.3) is the standard encounter deck without
+  N01.1 to N01.9 and N02.1 to N02.4) is the standard encounter deck without
   the printed removals plus the Nightmare Deck (Escape from Dol Guldur's
   Nazgûl, Conflict at the Carrock's 5 unique Trolls and The Seventh Level's
-  Overseer Maurûl and Chamber of Records set aside in both, the Carrock's
+  Overseer Maurûl and Chamber of Records and The Redhorn Gate's Blinding
+  Blizzard set aside in both, the Carrock's
   stage 3, Into the Pit's Goblin Ambush and Flight from Moria's three routes,
   without Blocked by Shadow, in their quest decks): a test compares the two. Into the Pit's recipe lacks the 2 Goblin Followers
   its setup card keeps (it removes 2 of the 4); the deck follows the printed
-  card.
+  card. The Redhorn Gate's recipe lists 3 Snow-Giants where the printed set has
+  2; the deck follows the printed set.
 
 ## The framework
 
@@ -94,7 +101,8 @@ The Redhorn Gate.
   `src/game/nightmare-rtm.ts` (Return to Mirkwood) and
   `src/game/nightmare-pit.ts` (Into the Pit) and
   `src/game/nightmare-seventh.ts` (The Seventh Level) and
-  `src/game/nightmare-flight.ts` (Flight from Moria) script the setup cards'
+  `src/game/nightmare-flight.ts` (Flight from Moria) and
+  `src/game/nightmare-redhorn.ts` (The Redhorn Gate) script the setup cards'
   rules and the Nightmare
   encounter cards as a layer, chosen by scenario and composed with its hooks
   (the composition the Ered Mithrin Campaign Pool uses, which also composes
@@ -314,10 +322,30 @@ ability usable once each round; a new route's revealing effects and defeat
 condition use the stage hooks Into the Pit's Nightmare Deck added. The
 composition also passes on an enemy considered engaged from the staging area.
 
+## The Redhorn Gate (Nightmare)
+
+| Card                               | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Setup card                         | Removes Black Uruks ×1, Mountain Warg ×3, Knees of the Mountain ×1, Turbulent Waters ×2, Warg Lair ×2, The Dimrill Stair ×1, Fell Voices ×2, Fallen Stones ×2 and Mountain Goblin ×3 from the standard encounter deck. Setup: Blinding Blizzard's 2 copies are set aside; player cards in the victory display (a player side quest) count no victory points, for The Mountains' Peaks' 5 too. Forced: when stage 2B is revealed, the set-aside copies are shuffled into the encounter deck. |
+| Wolfpelt Goblin (enemy ×3)         | Surge. Forced: after it engages a player, that player deals X damage to a character they control (X is the active location's remaining quest points; none without one), then 2 progress is removed from the active location.                                                                                                                                                                                                                                                                |
+| Silvertine Marauder (enemy ×4)     | While attacking, +2 [attack] if the defending character has less than 2 [willpower]. Shadow: the same for the attacking enemy (checked as the damage is dealt).                                                                                                                                                                                                                                                                                                                             |
+| Snow-Giant (enemy ×2)              | In the staging area, it attacks the first player during the combat phase (a new shadow card for the attack); characters cannot attack it there. Forced: after it engages a player, that player discards the ally they control with the highest [willpower] (their choice among equals; Arwen Undómiel, an objective ally, among them). Victory 1.                                                                                                                                           |
+| Icy Cavern (location ×3)           | [threat] X, the Snow cards in the staging area (itself among them). Travel: a Freezing Cold from the encounter deck or discard pile is revealed (it cannot be travelled to without one), and the encounter deck is shuffled. Shadow: the defending character gets -1 [willpower] until the end of the phase; the attacking enemy is dealt another shadow card.                                                                                                                              |
+| Frozen Silverlode (location ×3)    | While it is in the staging area, characters cannot gain [willpower] from player card effects (their positive [willpower] modifiers are ignored; reductions still apply). Shadow: as Icy Cavern's.                                                                                                                                                                                                                                                                                           |
+| Blinding Blizzard (treachery ×2)   | Added to the staging area. While it is in play, heroes collect no resources in the resource phase, and the progress that would be placed on the current quest or on a Snow location is placed on it (the first copy); at its 5th progress it is discarded, and the progress beyond is lost with it.                                                                                                                                                                                         |
+| Caradhras the Cruel (treachery ×2) | The Snow cards of the encounter discard pile return to the top of the encounter deck in random order, and its top card is revealed (its top 2 cards with 3 or 4 players).                                                                                                                                                                                                                                                                                                                   |
+
+The victory display gains a hook for the victory points a card counts, and the
+characters' [willpower] one for gains a card blocks; the composition also
+passes on the heroes who collect no resources. An enemy that attacks from the
+staging area during the combat phase only (Snow-Giant) uses the considered
+engagement Blocked by Flame's Nameless Fear uses, limited to the enemies'
+attacks.
+
 ## Verification
 
 ```sh
-node --import tsx --test tests/nightmare-core.test.ts tests/nightmare-anduin.test.ts tests/nightmare-dol-guldur.test.ts tests/nightmare-gollum.test.ts tests/nightmare-carrock.test.ts tests/nightmare-rhosgobel.test.ts tests/nightmare-emyn.test.ts tests/nightmare-dead.test.ts tests/nightmare-rtm.test.ts tests/nightmare-pit.test.ts tests/nightmare-seventh.test.ts tests/nightmare-flight.test.ts
+node --import tsx --test tests/nightmare-core.test.ts tests/nightmare-anduin.test.ts tests/nightmare-dol-guldur.test.ts tests/nightmare-gollum.test.ts tests/nightmare-carrock.test.ts tests/nightmare-rhosgobel.test.ts tests/nightmare-emyn.test.ts tests/nightmare-dead.test.ts tests/nightmare-rtm.test.ts tests/nightmare-pit.test.ts tests/nightmare-seventh.test.ts tests/nightmare-flight.test.ts tests/nightmare-redhorn.test.ts
 npm run build
 npm run test:browser-nightmare
 ```
@@ -404,7 +432,7 @@ new guard engaged and attacked), Ambushing Orcs' shadows on each player
 sentinel keywords, the locked guard, discarded as the quest advances);
 Web-spinner, Web-wall and Deceptive Path; Befouled Equipment (an enemy's attachment too, the discard pile removed from the game, its surge, its shadow) and Wickedness and Mischief (its
 choice, never revealing itself, its shadow's new shadow card); and seeded solo
-and two-player games. `tests/nightmare-pit.test.ts` (6 tests) covers Into the Pit's texts, stats and faces; its Nightmare encounter deck against the source recipe (with the 2 Goblin Followers its setup card keeps); Cave Torch's damage tokens (through Lightless Passage's cost and its Action), Patrol Sentry's immediate attack and Cave Torch removed at 5; Goblin Ambush (Patrol Sentry and Patrol Leader found, a choice among the Orc enemies of the deck and discard pile in a two-player game, X quest points, progress only from defeated enemies, revealed enemies kept, the stage defeated at X); Goblin Lurker, Shadow Dweller (no engagement checks while Cave Torch is in play) and the shadows; Twisting Shadows, Narrow Fissure and Shadow-Fall (the Dark trait it gives); and seeded solo and two-player games, from the start and from stage 2. `tests/nightmare-seventh.test.ts` (5 tests) covers The Seventh Level's texts, stats and faces; its Nightmare encounter deck against the source recipe; Overseer Maurûl and Chamber of Records set aside, then stage 2B (Chamber of Records active, the previous active location staged with its progress, Overseer Maurûl staged, Balin's Doom returned) and the win held until Overseer Maurûl is in the victory display; the resources (Pit Goblin, Orc Taskmaster, Balin's Doom and its surge, Deep-Mines for each copy, Chamber of Records' engagement and event immunity, Western Hall's [threat] and Travel, Goblin Skirmisher's [attack], neither stacking, Overseer Maurûl's X, Orc Taskmaster's cancelled damage); Beats and Echoes (solo, engaged with a Goblin, two players) and the shadows; and seeded solo and two-player games, from the start and from stage 2B. `tests/nightmare-flight.test.ts` (8 tests) covers Flight from Moria's texts, stats and faces; its Nightmare encounter deck and quest deck against the source recipe (the three new routes in place of Blocked by Shadow); the bypassed route shuffled into the quest deck (its label, not always beneath, Shadowed Corridor's cost for each copy, a declined bypass at no cost, Swarming Goblins' Goblin Spearman engaging its player in a two-player game, or none); Abandoned Tools' Refresh Action once each round; Ghâsh!'s damage and victory; Blocked by Flame (The Nameless Fear's attacks on each player with a new shadow card, attacked in the staging area, its damage removed at 10 and the stage defeated); Pursued by Shadow (1 progress each round, the round's 5 discarded cards with A Foe Beyond resolved, the win at 5); Coal-Black Orc's X, the shadows, Dismay and Fear and An Evil Fortune (Doomed 1, surge, the victory display, and its shadow on a destroyed character); and seeded solo and two-player games, from the start and from each new route.
+and two-player games. `tests/nightmare-pit.test.ts` (6 tests) covers Into the Pit's texts, stats and faces; its Nightmare encounter deck against the source recipe (with the 2 Goblin Followers its setup card keeps); Cave Torch's damage tokens (through Lightless Passage's cost and its Action), Patrol Sentry's immediate attack and Cave Torch removed at 5; Goblin Ambush (Patrol Sentry and Patrol Leader found, a choice among the Orc enemies of the deck and discard pile in a two-player game, X quest points, progress only from defeated enemies, revealed enemies kept, the stage defeated at X); Goblin Lurker, Shadow Dweller (no engagement checks while Cave Torch is in play) and the shadows; Twisting Shadows, Narrow Fissure and Shadow-Fall (the Dark trait it gives); and seeded solo and two-player games, from the start and from stage 2. `tests/nightmare-seventh.test.ts` (5 tests) covers The Seventh Level's texts, stats and faces; its Nightmare encounter deck against the source recipe; Overseer Maurûl and Chamber of Records set aside, then stage 2B (Chamber of Records active, the previous active location staged with its progress, Overseer Maurûl staged, Balin's Doom returned) and the win held until Overseer Maurûl is in the victory display; the resources (Pit Goblin, Orc Taskmaster, Balin's Doom and its surge, Deep-Mines for each copy, Chamber of Records' engagement and event immunity, Western Hall's [threat] and Travel, Goblin Skirmisher's [attack], neither stacking, Overseer Maurûl's X, Orc Taskmaster's cancelled damage); Beats and Echoes (solo, engaged with a Goblin, two players) and the shadows; and seeded solo and two-player games, from the start and from stage 2B. `tests/nightmare-flight.test.ts` (8 tests) covers Flight from Moria's texts, stats and faces; its Nightmare encounter deck and quest deck against the source recipe (the three new routes in place of Blocked by Shadow); the bypassed route shuffled into the quest deck (its label, not always beneath, Shadowed Corridor's cost for each copy, a declined bypass at no cost, Swarming Goblins' Goblin Spearman engaging its player in a two-player game, or none); Abandoned Tools' Refresh Action once each round; Ghâsh!'s damage and victory; Blocked by Flame (The Nameless Fear's attacks on each player with a new shadow card, attacked in the staging area, its damage removed at 10 and the stage defeated); Pursued by Shadow (1 progress each round, the round's 5 discarded cards with A Foe Beyond resolved, the win at 5); Coal-Black Orc's X, the shadows, Dismay and Fear and An Evil Fortune (Doomed 1, surge, the victory display, and its shadow on a destroyed character); and seeded solo and two-player games, from the start and from each new route. `tests/nightmare-redhorn.test.ts` (6 tests) covers The Redhorn Gate's texts, stats and faces; its Nightmare encounter deck against the source recipe (with the printed 2 Snow-Giants); Blinding Blizzard set aside and shuffled in as stage 2B is revealed; the victory display (Snow-Giant's point counted, a player side quest's not, unlike a standard game); Blinding Blizzard (the resource phase, the current quest's progress, discarded at 5, a Snow location's progress and not another's); Wolfpelt Goblin's damage and progress removal (and none without an active location) and its surge; Snow-Giant's discarded ally (a choice among equals, Arwen Undómiel's loss) and its attack from the staging area (only against the first player in a two-player game, not attacked there); Silvertine Marauder and its shadow; Icy Cavern's X and its Travel cost (refused without a Freezing Cold); the two shadows; Frozen Silverlode's blocked [willpower] gains; Caradhras the Cruel (one card revealed, two with three players); and seeded solo and two-player games, from the start and from stage 2B.
 
 The browser suite starts Passage Through Mirkwood in Nightmare mode from the
 lobby (easy mode turned off), checks the setup's staging area and reveal, the
@@ -429,4 +457,4 @@ with 3 tokens on the Mere (an escape test revealed during the setup is
 resolved first); and it starts Return to Mirkwood in Nightmare mode from the
 lobby, checks Gollum's guard, its Nightmare card, Isolation on the current
 quest (on the table and in the quest inspector), and the quest phase's choice
-for Gollum's guard, resolving Gollum's Anguish from the discard pile; and it starts Into the Pit in Nightmare mode from the lobby, checks Cave Torch, its Nightmare card, and stage 2 (Goblin Ambush's face, its 1 of 2 progress and goal, Shadow-Fall on First Hall); and it starts The Seventh Level in Nightmare mode from the lobby, checks Overseer Maurûl and Chamber of Records set aside, its Nightmare card, and stage 2B (Chamber of Records active, a Pit Goblin with 3 resources, the Nightmare card's win condition); and it starts Flight from Moria in Nightmare mode from the lobby, checks the three new routes in its quest deck, its Nightmare card, Blocked by Flame (its face, The Nameless Fear's 4 of 10 damage) and Pursued by Shadow (its 1 of 5 progress and goal), at 1280, 390 and 320 pixels (84 checkpoints); it checks the 127 pinned faces.
+for Gollum's guard, resolving Gollum's Anguish from the discard pile; and it starts Into the Pit in Nightmare mode from the lobby, checks Cave Torch, its Nightmare card, and stage 2 (Goblin Ambush's face, its 1 of 2 progress and goal, Shadow-Fall on First Hall); and it starts The Seventh Level in Nightmare mode from the lobby, checks Overseer Maurûl and Chamber of Records set aside, its Nightmare card, and stage 2B (Chamber of Records active, a Pit Goblin with 3 resources, the Nightmare card's win condition); and it starts Flight from Moria in Nightmare mode from the lobby, checks the three new routes in its quest deck, its Nightmare card, Blocked by Flame (its face, The Nameless Fear's 4 of 10 damage) and Pursued by Shadow (its 1 of 5 progress and goal); and it starts The Redhorn Gate in Nightmare mode from the lobby, checks Blinding Blizzard set aside, its Nightmare card, and stage 2B (Blinding Blizzard's face and its 3 of 5 progress goal, with a Snow-Giant and an Icy Cavern in the staging area), at 1280, 390 and 320 pixels (90 checkpoints); it checks the 136 pinned faces.

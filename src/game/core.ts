@@ -690,6 +690,11 @@ export function stats(s: GameState, u: Unit) {
   const templeEncounterBonus = TempleEncounters.templeEncounterStats(s, u);
   const cobasBonus = cobasPlayerStats(s, u);
   const blackRidersBonus = BlackRidersPlayers.blackRidersPlayerStats(s, u);
+  // A willpower reduction a card protects against, and a gain a scenario blocks
+  // (The Redhorn Gate's Nightmare Deck, Frozen Silverlode: "characters cannot
+  // gain [willpower] from player card effects").
+  const willProtected = Realm.realmWillProtected(s, u);
+  const willGainBlocked = !!batch4Scenario(s).willpowerGainBlocked?.(s, u);
   const result = {
     will: Math.max(
       0,
@@ -754,11 +759,10 @@ export function stats(s: GameState, u: Unit) {
           -Nin.ninStatPenalty(s, u),
           u.code === "01007" ? u.boost : 0,
           -(u.committed ? s.questDebuff : 0),
-        ].reduce(
-          (sum, value) =>
-            sum + (Realm.realmWillProtected(s, u) ? Math.max(0, value) : value),
-          0,
-        ),
+        ].reduce((sum, value) => {
+          const v = willProtected ? Math.max(0, value) : value;
+          return sum + (willGainBlocked ? Math.min(0, v) : v);
+        }, 0),
     ),
     attack: watcherWaterZeroCombatStats(u)
       ? 0

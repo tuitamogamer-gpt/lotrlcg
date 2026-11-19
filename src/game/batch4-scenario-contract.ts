@@ -158,6 +158,10 @@ export interface Batch4ScenarioHooks {
   questBypassed?(s: GameState, code: string): Effect[];
   /** The ability on this card can be used once each round. */
   abilityOncePerRound?(s: GameState, code: string): boolean;
+  /** The victory points a card counts as it enters the victory display (The Redhorn Gate's Nightmare Deck: none for player cards). */
+  victoryValue?(s: GameState, code: string): number | undefined;
+  /** Characters cannot gain [willpower] from player card effects (their positive [willpower] modifiers are ignored). */
+  willpowerGainBlocked?(s: GameState, u: Unit): boolean;
   /** After characters commit to the quest (each commitment, at any time). */
   charactersCommitted?(s: GameState, units: Unit[]): void;
   /** The character loses the keyword (as A Journey to Rhosgobel's Pitch-dark Thicket, its ranged). */

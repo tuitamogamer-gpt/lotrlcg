@@ -8,6 +8,7 @@ import { flush } from "../src/game/effects.ts";
 import { make } from "../src/game/core.ts";
 import {
   NIGHTMARE_CORE as N,
+  NIGHTMARE_DD as DW,
   NIGHTMARE_KD as K,
   NIGHTMARE_SOM as G,
 } from "../src/game/nightmare.ts";
@@ -881,6 +882,70 @@ try {
       .getByText("Escape at 5 progress · no more than 1 each round")
       .waitFor();
     await checkpoint("flight-pursued-by-shadow", width);
+    // The Redhorn Gate in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-redhorn-gate").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "redhorn-gate");
+    assert.equal(s.nightmareMode, true);
+    assert.equal(s.nightmare?.blizzards, 2);
+    assert.ok(!s.encounterDeck.includes(DW.blizzard), "Blinding Blizzard");
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/Blinding Blizzard is set aside until stage 2B/)
+      .waitFor();
+    await checkpoint("redhorn-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // Stage 2B: a Blinding Blizzard with 3 progress, a Snow-Giant and an Icy
+    // Cavern in the staging area.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.stage = 2;
+      t.progress = 0;
+      delete t.nightmare.blizzards;
+      const blizzard = make(t, DW.blizzard);
+      blizzard.progress = 3;
+      t.staging = [blizzard, make(t, DW.giant), make(t, DW.cavern)];
+      s = await load(page, t);
+    }
+    await page
+      .locator(".journey-area .quest-goals")
+      .getByText(
+        "Blinding Blizzard · 3/5 progress (it takes the progress for the quest and Snow locations)",
+      )
+      .waitFor();
+    const blizzardFace = page
+      .locator(`img[src*="${DW.blizzard.slice("octgn:".length)}"]`)
+      .first();
+    await blizzardFace.waitFor();
+    assert.ok(
+      (await blizzardFace.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "Blinding Blizzard's face loads",
+    );
+    await checkpoint("redhorn-blinding-blizzard", width);
     await view.c.close();
   }
   const p = await browser.newPage();

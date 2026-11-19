@@ -90,7 +90,7 @@ import {
   escapeStatLabel,
 } from "../game/dead-marshes";
 import { KHAZAD } from "../game/khazad-dum";
-import { NIGHTMARE_KD, nightmareLive } from "../game/nightmare";
+import { NIGHTMARE_DD, NIGHTMARE_KD, nightmareLive } from "../game/nightmare";
 import { returnMirkwoodGuard } from "../game/return-mirkwood";
 
 const requiredQuestSelections = (s: GameState) =>
@@ -1441,10 +1441,23 @@ export function QuestGoals({ s }: { s: GameState }) {
                                         "objective-ally",
                                   ),
                                 },
+                                // Nightmare mode, Blinding Blizzard: it takes
+                                // the progress for the current quest and Snow
+                                // locations until its 5th.
+                                ...s.staging
+                                  .filter(
+                                    (u) =>
+                                      u.code === NIGHTMARE_DD.blizzard &&
+                                      nightmareLive(s),
+                                  )
+                                  .map((u) => ({
+                                    label: `Blinding Blizzard · ${Math.min(5, u.progress)}/5 progress (it takes the progress for the quest and Snow locations)`,
+                                    done: false,
+                                  })),
                                 ...(s.stage === 3
                                   ? [
                                       {
-                                        label: `Victory points · ${s.victory}/5`,
+                                        label: `Victory points · ${s.victory}/5${nightmareLive(s) ? " (player cards count none)" : ""}`,
                                         done: s.victory >= 5,
                                       },
                                       {

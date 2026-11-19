@@ -48,6 +48,7 @@ import {
   NIGHTMARE_CARROCK_SET_ASIDE,
   NIGHTMARE_CORE as N,
   NIGHTMARE_KD,
+  NIGHTMARE_DD,
   NIGHTMARE_SOM,
   nightmareCardOf,
   nightmareLive,
@@ -157,6 +158,19 @@ export function nightmareSetup(s: GameState) {
     log(
       s,
       "Flight from Moria · Nightmare: Ghâsh!, Blocked by Flame and Pursued by Shadow are shuffled into the quest deck in place of Blocked by Shadow.",
+    );
+  }
+  // The Redhorn Gate: "Setup: Remove all copies of Blinding Blizzard from the
+  // encounter deck and set them aside, out of play."
+  if (s.scenarioId === "redhorn-gate") {
+    const n = s.encounterDeck.filter((c) => c === NIGHTMARE_DD.blizzard).length;
+    s.encounterDeck = s.encounterDeck.filter(
+      (c) => c !== NIGHTMARE_DD.blizzard,
+    );
+    (s.nightmare ??= {}).blizzards = n;
+    log(
+      s,
+      `The Redhorn Gate · Nightmare: ${n} copies of Blinding Blizzard are set aside until stage 2B.`,
     );
   }
   // A Journey to Rhosgobel: "Setup: Search the encounter deck for 1 copy of

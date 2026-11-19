@@ -142,6 +142,18 @@ export const NIGHTMARE_KD = {
   dismay: "octgn:f6f49c59-637f-4ca2-b51f-e00c4332d33b",
   fortune: "octgn:a78c13d9-8acb-42eb-82a0-a216de3ed87a",
 } as const;
+/** The Dwarrowdelf Nightmare Decks' cards (OCTGN ids, as DragnCards keeps them). */
+export const NIGHTMARE_DD = {
+  /** The Redhorn Gate's setup card and Nightmare Deck. */
+  redhornCard: "octgn:1ff3c8f4-e472-4c48-a1d4-5c239f5bb119",
+  wolfpelt: "octgn:55c8245d-e0f3-4d11-90f5-617caf78f079",
+  marauder: "octgn:abe7a278-0c8e-4b1b-b45a-4da86dd3a3db",
+  giant: "octgn:d77287d1-d4d2-49bd-93c1-ae9d2590b8f7",
+  cavern: "octgn:5a6f59a4-5beb-4281-898e-f4607056a160",
+  silverlode: "octgn:fa005422-98d7-4350-b080-b5fe31fce9b0",
+  blizzard: "octgn:b79d8300-714b-4699-8a0c-48b12b7ac145",
+  cruel: "octgn:8df497f3-7857-4573-8467-8cf2e16fbc3f",
+} as const;
 
 interface NightmareDeck {
   /** The setup card, flipped next to the quest deck. */
@@ -343,6 +355,20 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
     },
     questRemovals: { "Blocked by Shadow": 1 },
   },
+  "redhorn-gate": {
+    card: NIGHTMARE_DD.redhornCard,
+    removals: {
+      "Black Uruks": 1,
+      "Mountain Warg": 3,
+      "Knees of the Mountain": 1,
+      "Turbulent Waters": 2,
+      "Warg Lair": 2,
+      "The Dimrill Stair": 1,
+      "Fell Voices": 2,
+      "Fallen Stones": 2,
+      "Mountain Goblin": 3,
+    },
+  },
 };
 export const nightmareSupported = (id?: ScenarioId) => !!id && id in NIGHTMARE;
 /** A Nightmare mode game of a supported scenario. */
@@ -519,6 +545,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "flight-from-moria")
     return [
       "Flight from Moria · Nightmare mode: Ghâsh!, Blocked by Flame and Pursued by Shadow replace Blocked by Shadow in the quest deck; a bypassed quest card is shuffled into the quest deck; while Escape from Darkness is in play, Abandoned Tools' Refresh Action works once each round.",
+    ];
+  if (s.scenarioId === "redhorn-gate")
+    return [
+      `The Redhorn Gate · Nightmare mode: ${s.stage < 2 ? "Blinding Blizzard is set aside until stage 2B is revealed" : "stage 2B shuffled Blinding Blizzard into the encounter deck"}; player cards in the victory display do not count their victory points.`,
     ];
   return [];
 }

@@ -1478,7 +1478,8 @@ export function win(s: GameState, reason?: string) {
 export function addVictoryCard(s: GameState, code: string) {
   s.victoryCards ??= [];
   s.victoryCards.push(code);
-  s.victory += card(code).victory ?? 0;
+  s.victory +=
+    batch4Scenario(s).victoryValue?.(s, code) ?? card(code).victory ?? 0;
   if (s.khazad) s.khazad.victoryCards.push(code);
   EredSupport.eredMithrinPlayerRefresh(s);
 }

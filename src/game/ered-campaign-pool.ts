@@ -2934,6 +2934,13 @@ export function composeEredPool(
     consideredEngaged: (s, u, player) =>
       !!h.consideredEngaged?.(s, u, player) ||
       !!p.consideredEngaged?.(s, u, player),
+    victoryValue: (s, code) =>
+      p.victoryValue?.(s, code) ?? h.victoryValue?.(s, code),
+    willpowerGainBlocked: (s, u) =>
+      !!h.willpowerGainBlocked?.(s, u) || !!p.willpowerGainBlocked?.(s, u),
+    cannotCollectResources: (s, hero) =>
+      !!h.cannotCollectResources?.(s, hero) ||
+      !!p.cannotCollectResources?.(s, hero),
     locationProgressCapacity: (s, u) => {
       const a = h.locationProgressCapacity?.(s, u),
         b = p.locationProgressCapacity?.(s, u);

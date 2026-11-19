@@ -73,6 +73,7 @@ import { NIGHTMARE_RTM_HOOKS } from "./nightmare-rtm";
 import { NIGHTMARE_PIT_HOOKS } from "./nightmare-pit";
 import { NIGHTMARE_SEVENTH_HOOKS } from "./nightmare-seventh";
 import { NIGHTMARE_FLIGHT_HOOKS } from "./nightmare-flight";
+import { NIGHTMARE_REDHORN_HOOKS } from "./nightmare-redhorn";
 import { nightmareLive } from "./nightmare";
 
 const empty: Batch4ScenarioHooks = {};
@@ -95,6 +96,7 @@ const NIGHTMARE_LAYERS: Partial<Record<string, Batch4ScenarioHooks>> = {
   "into-the-pit": NIGHTMARE_PIT_HOOKS,
   "the-seventh-level": NIGHTMARE_SEVENTH_HOOKS,
   "flight-from-moria": NIGHTMARE_FLIGHT_HOOKS,
+  "redhorn-gate": NIGHTMARE_REDHORN_HOOKS,
 };
 /**
  * The current scenario's hooks; in an Ered Mithrin campaign chapter from The
@@ -256,6 +258,7 @@ export const batch4SharedEffect = (effect: Effect) =>
     NIGHTMARE_PIT_HOOKS,
     NIGHTMARE_SEVENTH_HOOKS,
     NIGHTMARE_FLIGHT_HOOKS,
+    NIGHTMARE_REDHORN_HOOKS,
     BLACK_SERPENT_HOOKS,
     CIRITH_GURAT_HOOKS,
     CROSSINGS_POROS_HOOKS,
