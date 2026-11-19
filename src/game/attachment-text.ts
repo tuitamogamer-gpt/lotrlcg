@@ -126,6 +126,10 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
         ...rohanDynamicTraits(s, host),
         ...heirsPlayerTraitGrants(s, host.id),
         ...(batch4Scenario(s).dynamicTraits?.(s, host) ?? []),
+        // The Dream-chaser campaign's Come Together: a Trait until the end of the round.
+        ...(s.dreamchaser?.grants ?? [])
+          .filter((g) => g.target === host.id && g.round === s.round)
+          .map((g) => g.trait),
       ]),
     ];
     if (traits.length) host.dynamicTraits = traits;

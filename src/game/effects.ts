@@ -2191,6 +2191,7 @@ function handleEffect(s: GameState, e: Effect) {
         forced.push(...Dread.dreadRoundEnd(s));
         forced.push(...Raid.raidRoundEnd(s));
         forced.push(...Storm.stormcallerRoundEnd(s));
+        forced.push(...DreamCards.dreamchaserRoundEnd(s));
         forced.push(...City.cityRoundEnd(s));
         forced.push(...Umbar.umbarRoundEnd(s));
         forced.push(...Desert.desertCrossingRoundEnd(s));

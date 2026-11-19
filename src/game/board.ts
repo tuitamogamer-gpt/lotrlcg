@@ -1594,6 +1594,7 @@ export function damage(
   if (u.damage >= stats(s, u).health) {
     Fate.fateCharacterDestroyed(s, u, context);
     Raid.raidCharacterDestroyed(s, u, context);
+    DreamCards.dreamchaserCharacterDestroyed(s, u, context);
   }
   Etten.ettenDamageDealt(s, u, value, context);
   Rhudaur.rhudaurDamageDealt(s, u, value, context);

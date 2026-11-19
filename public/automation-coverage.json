@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2199,
+    "encounterCards": 2205,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3429,
-    "pending": 754
+    "scripted": 3433,
+    "pending": 750
   },
   "scenarioRecipes": {
     "total": 355,
@@ -707,6 +707,9 @@
     "11192.B",
     "11193",
     "11193.B",
+    "11195",
+    "11196",
+    "11196.B",
     "12001",
     "12002",
     "12003",
@@ -2726,6 +2729,8 @@
     "octgn:93008a44-68db-40ea-8b41-81cf5bb2bae8",
     "octgn:935b596a-4e20-434c-89f5-8b3c20fcd241",
     "octgn:93bf98f7-fe0f-4c03-bd93-2f8d5753acce",
+    "octgn:93c87689-1400-4b1d-8076-a22e9736919c",
+    "octgn:93c87689-1400-4b1d-8076-a22e9736919c.B",
     "octgn:93e61cb5-2bde-420e-aebd-79a1c4111838",
     "octgn:93ece501-fae4-46e8-9720-316383b86688",
     "octgn:944aaafa-17e2-4352-9a04-384673089ee6",
@@ -3090,6 +3095,7 @@
     "octgn:c2181617-ad55-4bf7-a6f3-60979d112ce6",
     "octgn:c2237ebe-c98f-49b1-9e6e-1e33d39f815d",
     "octgn:c2720938-450b-4017-9ac3-f3130164bdf9",
+    "octgn:c281bdda-e8d3-408c-bd5d-d7673b092576",
     "octgn:c29c98de-5660-498c-a5cc-a1800985d221",
     "octgn:c2d8cd64-a1dc-4bf2-9e61-0336170e73af",
     "octgn:c2ff668a-6174-47d4-bbab-46f9c91403eb",
@@ -3756,9 +3762,9 @@
     {
       "product": "dream-chaser-campaign-expansion",
       "total": 60,
-      "scripted": 32,
+      "scripted": 36,
       "player": 26,
-      "playerScripted": 12
+      "playerScripted": 13
     },
     {
       "product": "encounter-at-amon-din",
@@ -9184,7 +9190,7 @@
       "name": "Come Together",
       "type": "event",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -9192,7 +9198,7 @@
       "name": "Sea Serpent",
       "type": "enemy",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -28440,7 +28446,7 @@
       "name": "The Thing in the Depths",
       "type": "enemy",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -32584,7 +32590,7 @@
       "name": "The Thing in the Depths",
       "type": "campaign",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {

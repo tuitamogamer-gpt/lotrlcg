@@ -14,6 +14,7 @@ import {
 } from "../src/game/dreamchaser-campaign-support.ts";
 import { RAID } from "../src/game/raid-grey-havens-support.ts";
 import { STORMCALLER } from "../src/game/stormcaller-support.ts";
+import { DEPTHS } from "../src/game/depths-support.ts";
 import { VOYAGE } from "../src/game/voyage-belegaer-support.ts";
 import { FATE } from "../src/game/fate-numenor-support.ts";
 import { card } from "../src/game/cards.ts";
@@ -373,8 +374,54 @@ try {
       s.campaign.completed[3].xp >= 4,
       `XP ${s.campaign.completed[3].xp}`,
     );
-    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await page.getByRole("button", { name: /^Continue campaign/ }).waitFor();
     await checkpoint("flight-complete", width);
+    // The Thing in the Depths: the Thing's campaign side; Come Together after
+    // Captain Sahír flips, offered to the Campaign Pool at the end.
+    await page.getByRole("button", { name: /^Continue campaign/ }).click();
+    await page.getByRole("button", { name: /^Begin next chapter/ }).click();
+    await reviewedState(page);
+    s = await opening();
+    assert.equal(s.scenarioId, "the-thing-in-the-depths");
+    assert.ok(
+      s.depths.setAside.some((u) => u.code === backFace(DC.thing)),
+      "the Thing's campaign side",
+    );
+    await campaignCard(
+      /The Thing in the Depths is on its "Campaign Mode only" side/,
+      "depths-setup",
+      width,
+    );
+    s = await victory(s, (t) => {
+      t.dreamchaser = { ...(t.dreamchaser ?? {}), together: 0 };
+      t.staging.push({
+        id: `c${t.nextId++}`,
+        code: backFace(DC.serpent),
+        exhausted: false,
+        damage: 0,
+        progress: 0,
+        resources: 0,
+        committed: false,
+        attachments: [],
+        boost: 0,
+        attacked: false,
+        shadows: [],
+      });
+    });
+    assert.equal(s.campaign.resolution, "the-thing-in-the-depths");
+    await page
+      .getByLabel(/Add Come Together to the Campaign Pool/)
+      .selectOption("add");
+    await checkpoint("depths-resolution", width);
+    await page
+      .getByRole("button", { name: "Record the resolution", exact: false })
+      .click();
+    await reviewedState(page);
+    s = await campaign();
+    assert.ok(s.campaign.boons.includes(DC.together));
+    assert.equal(s.campaign.completed.length, 5);
+    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await checkpoint("depths-complete", width);
     await view.c.close();
   }
   const p = await browser.newPage();

@@ -37,6 +37,7 @@ import {
   DREAMCHASER_CAMPAIGN_SUPPORTED,
   applyDreamchaserResolution,
   dreamchaserOminousX,
+  dreamchaserSahirFlipped,
   dreamchaserResolutionQuestions,
   dreamchaserCampaignStatus,
   dreamchaserForbiddenTitle,
@@ -51,8 +52,11 @@ import {
   dreamchaserAttachmentProblem,
   dreamchaserAttackProblem,
   dreamchaserDefendersDeclared,
+  dreamchaserCharacterDestroyed,
+  dreamchaserCheck,
   dreamchaserEncounterDiscarded,
   dreamchaserQuestEnd,
+  dreamchaserRoundEnd,
   dreamchaserQuestSucceeded,
   dreamchaserDamageAmount,
   dreamchaserArchery,
@@ -64,6 +68,8 @@ import { VOYAGE } from "../src/game/voyage-belegaer-support";
 import { RAID } from "../src/game/raid-grey-havens-support";
 import { STORMCALLER } from "../src/game/stormcaller-support";
 import { stormcallerProgress } from "../src/game/stormcaller";
+import { DEPTHS } from "../src/game/depths-support";
+import { depthsEnemyDestroyed } from "../src/game/depths";
 import { raidAflame } from "../src/game/raid-grey-havens";
 import { FATE } from "../src/game/fate-numenor-support";
 import { fateAbility, fateAbilityLabel } from "../src/game/fate-numenor";
@@ -134,6 +140,7 @@ test("The Dream-chaser campaign: Voyage Across Belegaer's campaign card and the 
     "the-fate-of-numenor",
     "raid-on-the-grey-havens",
     "flight-of-the-stormcaller",
+    "the-thing-in-the-depths",
   ]);
   const campaignCard = card(
     DREAMCHASER_CAMPAIGN_CARDS["voyage-across-belegaer"]!,
@@ -1642,7 +1649,7 @@ test("Calaerion: spend 3 resources and exhaust him to ready the Dream-chaser wit
   assert.ok(valid(back));
 });
 
-test("Flight of the Stormcaller's resolution: on-course, stage 2B, the destroyed Stormcaller, Crowley, Thunderstruck and undamaged heroes give XP; The Thing in the Depths is not available yet", () => {
+test("Flight of the Stormcaller's resolution: on-course, stage 2B, the destroyed Stormcaller, Crowley, Thunderstruck and undamaged heroes give XP, and The Thing in the Depths follows", () => {
   const s = calm(reload(flightOpening(flight())));
   s.sailing!.heading = 0;
   const q = (
@@ -1676,8 +1683,218 @@ test("Flight of the Stormcaller's resolution: on-course, stage 2B, the destroyed
     "flight-of-the-stormcaller",
   );
   assert.equal(s.campaign!.completed[3].xp, 9);
+  const next = continueCampaign(s, s.campaign!.heroes, s.deckId, true, 9);
+  assert.equal(next.scenarioId, "the-thing-in-the-depths");
+});
+
+// --------------------------------------- The Thing in the Depths (Part 5)
+
+/** A Dream-chaser campaign after Flight of the Stormcaller. */
+function afterFlight(marks: Record<string, number> = {}): CampaignState {
+  const c = afterRaid(marks);
+  return {
+    ...c,
+    completed: [
+      ...c.completed,
+      { scenarioId: "flight-of-the-stormcaller", score: 30, rounds: 7, xp: 7 },
+    ],
+  };
+}
+const depths = (campaign = afterFlight(), deck = STARTERS[0]) =>
+  createGame(5, deck.cards, deck.heroes, deck.id, {
+    scenarioId: "the-thing-in-the-depths",
+    playMode: "campaign",
+    campaign: { ...campaign, heroes: [...deck.heroes] },
+  });
+const depthsState = (s: GameState) =>
+  (s as GameState & { depths?: { setAside: Unit[] } }).depths!;
+
+test("The Thing in the Depths: its campaign card, the Thing's campaign side, Come Together and Sea Serpent are registered with the print-and-play texts", () => {
+  const campaignCard = card(DC.thingCard);
+  assert.equal(campaignCard.subtitle, "Dream-chaser Part 5");
+  assert.match(
+    campaignCard.text!,
+    /Forced: After Captain Sahír \(enemy\) enters play, attach Black Key \(burden\) to him\./,
+  );
+  assert.match(
+    campaignCard.back_text!,
+    /• 1 XP if each surviving player's threat is 40 or less \(2 XP instead if their threat is 30 or less\)\./,
+  );
+  const thing = card(backFace(DC.thing));
+  assert.deepEqual(
+    [thing.attack, thing.health, thing.threat, thing.victory],
+    [6, 4, 3, 15],
+  );
+  assert.match(thing.text!, /deal 2 damage to The Thing in the Depths\.$/);
+  assert.equal(card(DC.together).sphere_code, "boon");
+  assert.match(card(DC.together).text!, /X is the level of Come Together/);
+  const serpent = card(DC.serpent);
+  assert.deepEqual(
+    [serpent.attack, serpent.health, serpent.engagement],
+    [6, 6, 40],
+  );
+  assert.deepEqual(
+    [card(backFace(DC.serpent)).attack, card(backFace(DC.serpent)).victory],
+    [8, 8],
+  );
+});
+
+test("The Thing in the Depths' campaign: the Thing takes its campaign side (2 damage per destroyed Creature), Captain Sahír gets Black Key (burden) when he enters play, and his flip brings Black Key (boon), Sea Serpent and Come Together", () => {
+  let s = calm(reload(opening(depths())));
+  const thing = depthsState(s).setAside.find((u) => dcIs(u, DEPTHS.thing))!;
+  assert.equal(thing.code, backFace(DC.thing));
+  assert.ok(s.encounterDeck.includes(DC.ominous));
+  assert.ok(valid(s));
+  // The Thing's campaign side: a destroyed Creature deals it 2 damage.
+  s.staging.push(thing);
+  depthsState(s).setAside = depthsState(s).setAside.filter(
+    (u) => u.id !== thing.id,
+  );
+  depthsEnemyDestroyed(s, make(s, DEPTHS.eye), 5);
+  assert.equal(s.staging.find((u) => u.id === thing.id)!.damage, 2);
+  // Captain Sahír (enemy) enters play: Black Key (burden).
+  const sahir = depthsState(s).setAside.find((u) => u.code === DEPTHS.sahir)!;
+  s.staging.push(sahir);
+  depthsState(s).setAside = depthsState(s).setAside.filter(
+    (u) => u.id !== sahir.id,
+  );
+  dreamchaserCheck(s);
+  assert.deepEqual(
+    s.staging.find((u) => u.id === sahir.id)!.attachments.map((a) => a.code),
+    [DC.keyBurden],
+  );
+  assert.ok(playerCardImmune(s.staging.find((u) => u.id === sahir.id)!));
+  dreamchaserCheck(s);
+  assert.equal(s.staging.find((u) => u.id === sahir.id)!.attachments.length, 1);
+  // He flips: Black Key (boon), Sea Serpent (Menacing), Come Together.
+  const ally = make(s, DEPTHS.sahirAlly);
+  s.allies.push(ally);
+  s.queue = dreamchaserSahirFlipped(s);
+  flush(s);
+  assert.deepEqual(
+    s.allies.find((u) => u.id === ally.id)!.attachments.map((a) => a.code),
+    [DC.keyBoon],
+  );
+  const serpent = s.staging.find((u) => u.code === DC.serpent)!;
+  assert.ok(serpent, "Sea Serpent");
+  assert.ok(s.hand.some((h) => h.code === DC.together));
+  assert.equal(s.dreamchaser!.together, 0);
+  assert.equal(dreamchaserOminousX(s), 6);
+  assert.ok(valid(s));
+});
+
+test("Sea Serpent: X threat and defense (twice X Enraged), flips to its Enraged side when destroyed, divides X damage when its attack destroys an ally, and attacks the first player at the end of the round once Enraged", () => {
+  const s = calm(reload(opening(depths())));
+  const serpent = make(s, DC.serpent);
+  s.staging.push(serpent);
+  assert.equal(threatOf(s, serpent), 1);
+  assert.equal(stats(s, serpent).defense, 1);
+  assert.ok(playerCardImmune(serpent));
+  assert.equal(dreamchaserRoundEnd(s).length, 0);
+  damage(s, serpent.id, 6);
+  flush(s);
+  const enraged = s.staging.find((u) => u.code === backFace(DC.serpent))!;
+  assert.ok(enraged, "Enraged Sea Serpent");
+  assert.ok(!s.staging.some((u) => u.code === DC.serpent));
+  assert.equal(threatOf(s, enraged), 2);
+  assert.equal(stats(s, enraged).defense, 2);
+  const attacks = dreamchaserRoundEnd(s);
+  assert.equal(attacks.length, 1);
+  assert.equal(attacks[0].kind, "immediateAttack");
+  // Its attack destroys an ally: the defending player divides X damage.
+  const ally = make(s, "01016");
+  s.allies.push(ally);
+  dreamchaserCharacterDestroyed(s, ally, {
+    combatDamage: true,
+    enemyId: enraged.id,
+  });
+  assert.equal(s.queue[0].kind, "dcDivideDamage");
+  assert.equal(s.queue[0].value, 2);
+});
+
+test("Come Together: choose up to X characters (its level); each gets +2 defense, attack or willpower for the player's Leadership, Tactics or Spirit heroes until the end of the round, and with a Lore hero heals 2 and gains a chosen Trait; it goes to the victory display", () => {
+  let s = calm(reload(opening(depths(afterFlight({ [DC.together]: 2 })))));
+  for (const h of s.heroes) h.resources = 1;
+  const event = make(s, DC.together);
+  s.hand.push(event);
+  const [a, b] = s.heroes;
+  const defense = stats(s, a).defense;
+  s = applyAction(reload(s), { type: "PLAY", id: event.id });
+  for (
+    let i = 0;
+    i < 4 && s.choice && !/Choose up to/.test(s.choice.title);
+    i++
+  )
+    s = choose(s, s.choice.options[0].id);
+  s = choose(s, a.id);
+  s = choose(s, b.id);
+  assert.equal(stats(s, s.heroes[0]).defense, defense + 2);
+  assert.ok(s.victoryCards!.includes(DC.together));
+  assert.ok(valid(s));
+  // A Lore hero: heal 2 and a Trait of the player's choice.
+  let l = calm(
+    reload(opening(depths(afterFlight({ [DC.together]: 1 }), STARTERS[3]))),
+  );
+  for (const h of l.heroes) h.resources = 1;
+  l.heroes[0].damage = 2;
+  const lore = make(l, DC.together);
+  l.hand.push(lore);
+  l = applyAction(reload(l), { type: "PLAY", id: lore.id });
+  for (
+    let i = 0;
+    i < 4 && l.choice && !/Choose up to/.test(l.choice.title);
+    i++
+  )
+    l = choose(l, l.choice.options[0].id);
+  l = choose(l, l.heroes[0].id);
+  for (
+    let i = 0;
+    i < 3 && l.choice && !/Choose a Trait/.test(l.choice.title);
+    i++
+  )
+    l = choose(l, l.choice.options[0].id);
+  assert.match(l.choice!.title, /Choose a Trait/);
+  const trait = l.choice!.options[0].id.slice("trait-".length);
+  l = choose(l, l.choice!.options[0].id);
+  assert.equal(l.heroes[0].damage, 0);
+  assert.ok(l.heroes[0].dynamicTraits!.includes(trait));
+  assert.ok(valid(l));
+  // The Trait lasts until the end of the round.
+  l.round += 1;
+  dreamchaserCheck(l);
+  assert.ok(!(l.heroes[0].dynamicTraits ?? []).includes(trait));
+});
+
+test("The Thing in the Depths' resolution: Captain Sahír's and Na'asiyah's resources, the Enraged Sea Serpent, undamaged heroes and threat give XP; Come Together may join the Campaign Pool; Temple of the Deceived is not available yet", () => {
+  const s = calm(reload(opening(depths())));
+  const sahir = make(s, DEPTHS.sahirAlly);
+  sahir.resources = 5;
+  s.allies.push(sahir);
+  s.staging.push(make(s, backFace(DC.serpent)));
+  s.dreamchaser = { ...(s.dreamchaser ?? {}), together: 0 };
+  for (const h of s.heroes) h.damage = 0;
+  s.threat = 30;
+  const lines = dreamchaserXpLines(s);
+  assert.deepEqual(
+    lines.map((l) => l.xp),
+    [1, 1, 0, 1, 1, 2, 0],
+  );
+  win(s);
+  assert.equal(s.campaign!.completed[4].scenarioId, "the-thing-in-the-depths");
+  assert.equal(s.campaign!.completed[4].xp, 6);
+  assert.equal(s.campaign!.resolution, "the-thing-in-the-depths");
+  const recorded = applyDreamchaserResolution(s, { together: "add" });
+  assert.ok(recorded.campaign!.boons.includes(DC.together));
+  assert.equal(recorded.campaign!.deckBoons![DC.together], 0);
   assert.throws(
-    () => continueCampaign(s, s.campaign!.heroes, s.deckId, true, 9),
+    () =>
+      continueCampaign(
+        recorded,
+        recorded.campaign!.heroes,
+        recorded.deckId,
+        true,
+        9,
+      ),
     /not available in campaign mode yet/,
   );
 });

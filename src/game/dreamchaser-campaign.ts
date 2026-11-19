@@ -9,7 +9,16 @@ import type {
   Unit,
 } from "./types";
 import { card, name } from "./cards";
-import { choose, fx, get, log, make, RuleError, shuffle } from "./core";
+import {
+  choose,
+  fx,
+  get,
+  log,
+  make,
+  prepend,
+  RuleError,
+  shuffle,
+} from "./core";
 import {
   activeSeat,
   allCharacters,
@@ -21,7 +30,7 @@ import {
   seatName,
   seatView,
 } from "./table";
-import { raiseThreat } from "./board";
+import { enemyAddedToStaging, raiseThreat } from "./board";
 import { reduceThreat } from "./threat-reduction";
 import { score } from "./actions";
 import { dreamchaserCardEffect } from "./dreamchaser-campaign-cards";
@@ -48,6 +57,7 @@ import { VOYAGE, VOYAGE_STAGE_TWO } from "./voyage-belegaer-support";
 import { FATE } from "./fate-numenor-support";
 import { RAID } from "./raid-grey-havens-support";
 import { STORMCALLER } from "./stormcaller-support";
+import { DEPTHS } from "./depths-support";
 
 export {
   DREAMCHASER_CAMPAIGN_CARDS,
@@ -62,6 +72,7 @@ export const DREAMCHASER_CAMPAIGN_SUPPORTED: readonly ScenarioId[] = [
   "the-fate-of-numenor",
   "raid-on-the-grey-havens",
   "flight-of-the-stormcaller",
+  "the-thing-in-the-depths",
 ];
 /** The chapters whose campaign card shuffles Thunderstruck into the encounter deck and Crowley into the Corsair deck. */
 const CORSAIR_CHAPTERS: readonly ScenarioId[] = [
@@ -154,9 +165,19 @@ export interface DreamchaserGame {
     until: "phase" | "round";
     phase: string;
     round: number;
+    /** The amounts (without them, +1 willpower, +1 attack and +1 defense). */
+    will?: number;
+    attack?: number;
+    defense?: number;
   }[];
   /** Calaerion (Upgraded): the round his Response was last used ("Limit once per round"). */
   calaerionRound?: number;
+  /** The Thing in the Depths: the Captain Sahír enemies Black Key (burden) was attached to. */
+  keyed?: string[];
+  /** The Thing in the Depths: the seat that added Come Together to their hand. */
+  together?: number;
+  /** Come Together: the Traits granted until the end of the round. */
+  grants?: { target: string; trait: string; round: number }[];
 }
 export const dreamchaserState = (s: GameState) => (s.dreamchaser ??= {});
 const several = (s: GameState) => (s.table?.seats.length ?? 1) > 1;
@@ -409,6 +430,34 @@ export function dreamchaserCalaerion(s: GameState) {
     "good",
   );
 }
+/**
+ * The Thing in the Depths' campaign card: "Forced: After Captain Sahír flips
+ * over, remove Black Key (burden) from the game and attach Black Key (boon)
+ * to him. Add Sea Serpent (Menacing side) to the staging area. One player
+ * adds Come Together to their hand. For this game, X is plus 1 for Come
+ * Together." (Flipping discarded the burden, which leaves the game.)
+ */
+export function dreamchaserSahirFlipped(s: GameState): Effect[] {
+  const c = s.campaign;
+  if (!isDreamchaserCampaign(c)) return [];
+  const sahir = seatIndices(s)
+    .flatMap((p) => seatView(s, p).allies)
+    .find((u) => u.code === DEPTHS.sahirAlly);
+  if (sahir) {
+    const key = dcFace(c, DC.keyBoon);
+    sahir.attachments.push({
+      id: `a${s.nextId++}`,
+      code: key,
+      exhausted: false,
+    });
+    log(s, `${card(key).name} (boon) is attached to Captain Sahír.`, "good");
+  }
+  const serpent = make(s, DC.serpent);
+  s.staging.push(serpent);
+  enemyAddedToStaging(s, serpent);
+  log(s, "Sea Serpent (Menacing) is added to the staging area.", "danger");
+  return [fx("dcTogetherOffer", { player: firstPlayer(s) })];
+}
 export function dreamchaserFateReady(s: GameState, calphon: Unit): Effect[] {
   if (!isDreamchaserCampaign(s.campaign)) return [];
   const code = dcFace(s.campaign, DC.spyglass);
@@ -426,6 +475,14 @@ export interface XpLine {
 }
 const inVictory = (s: GameState, code: string) =>
   (s.victoryCards ?? []).filter((c) => dcBase(c) === dcBase(code)).length;
+/** Every card in play: the staging area, each seat's characters and engaged enemies. */
+const allInPlay = (s: GameState) => [
+  ...s.staging,
+  ...seatIndices(s).flatMap((p) => {
+    const v = seatView(s, p);
+    return [...v.heroes, ...v.allies, ...v.engaged];
+  }),
+];
 const enemiesInPlay = (s: GameState) =>
   [...s.staging, ...seatIndices(s).flatMap((p) => seatView(s, p).engaged)].some(
     (u) => ["enemy", "ship-enemy"].includes(card(u.code).type_code),
@@ -522,6 +579,50 @@ export function dreamchaserXpLines(s: GameState): XpLine[] {
           : 0,
       },
     );
+  if (s.scenarioId === "the-thing-in-the-depths") {
+    const named = (n: string) =>
+      allInPlay(s).filter((u) => card(u.code).name === n);
+    const serpents = allInPlay(s).filter(
+      (u) => dcIs(u, DC.serpent) && u.code.endsWith(".B"),
+    );
+    const threats = globalLivingSeats(s).map((p) => seatView(s, p).threat);
+    lines.push(
+      {
+        label: "1 XP if Captain Sahír has 5 or more resources",
+        xp: named("Captain Sahír").some((u) => u.resources >= 5) ? 1 : 0,
+      },
+      {
+        label: "1 XP if Na'asiyah has 5 or more resources",
+        xp: named("Na'asiyah").some((u) => u.resources >= 5) ? 1 : 0,
+      },
+      {
+        label:
+          "1 XP if Sea Serpent (Enraged side) is in play (2 XP instead if it is in the victory display)",
+        xp: (s.victoryCards ?? []).includes(backFace(DC.serpent))
+          ? 2
+          : serpents.length
+            ? 1
+            : 0,
+      },
+      {
+        label: "1 XP if each hero has no damage on it",
+        xp: seatIndices(s).every((p) =>
+          seatView(s, p).heroes.every((h) => !h.damage),
+        )
+          ? 1
+          : 0,
+      },
+      {
+        label:
+          "1 XP if each surviving player's threat is 40 or less (2 XP instead if their threat is 30 or less)",
+        xp: threats.every((n) => n <= 30)
+          ? 2
+          : threats.every((n) => n <= 40)
+            ? 1
+            : 0,
+      },
+    );
+  }
   if (s.scenarioId === "raid-on-the-grey-havens") {
     const burned = s.raidGreyHavens?.burned.length ?? 0;
     lines.push(
@@ -604,6 +705,14 @@ export function resolveDreamchaserCampaign(s: GameState) {
     // attach it to." The end-of-game dialog asks.
     if (inVictory(s, DC.graxar)) c.resolution = s.scenarioId;
   }
+  // The Thing in the Depths: "The players may add Come Together to the
+  // Campaign Pool." The end-of-game dialog asks.
+  if (
+    s.scenarioId === "the-thing-in-the-depths" &&
+    s.dreamchaser?.together !== undefined &&
+    !c.boons.includes(DC.together)
+  )
+    c.resolution = s.scenarioId;
   c.xp = Math.max(0, (c.xp ?? 0) + gained);
   log(
     s,
@@ -652,6 +761,17 @@ export function dreamchaserResolutionQuestions(s: GameState): {
           .map((h) => ({ id: h, code: h, label: card(h).name })),
       },
     ];
+  if (s.scenarioId === "the-thing-in-the-depths")
+    return [
+      {
+        id: "together",
+        label: "Add Come Together to the Campaign Pool?",
+        options: [
+          { id: "add", code: DC.together, label: "Add Come Together" },
+          { id: "skip", label: "Do not add it" },
+        ],
+      },
+    ];
   return [];
 }
 /** Record the resolution's choices in the Campaign Log. */
@@ -678,6 +798,21 @@ export function applyDreamchaserResolution(
     log(
       s,
       `Raid on the Grey Havens · Resolution: ${card(code).name} joins the Campaign Pool, attached to ${card(hero).name}.`,
+      "good",
+    );
+  }
+  if (
+    s.scenarioId === "the-thing-in-the-depths" &&
+    answers.together === "add"
+  ) {
+    if (!c.boons.includes(DC.together)) c.boons.push(DC.together);
+    c.deckBoons = {
+      ...(c.deckBoons ?? {}),
+      [DC.together]: s.dreamchaser?.together ?? 0,
+    };
+    log(
+      s,
+      "The Thing in the Depths · Resolution: Come Together joins the Campaign Pool.",
       "good",
     );
   }
@@ -878,6 +1013,42 @@ export function dreamchaserCampaignEffect(s: GameState, e: Effect): boolean {
       );
       return true;
     }
+    case "dcTogetherOffer": {
+      const players = playerOrder(s);
+      if (players.length === 1) {
+        prepend(s, fx("dcTogetherTake", { player: players[0] }));
+        return true;
+      }
+      choose(
+        s,
+        "The Thing in the Depths · Which player adds Come Together to their hand?",
+        players.map((p) => ({
+          id: `seat-${p}`,
+          label: seatName(s, p),
+          code: DC.together,
+          effects: [fx("dcTogetherTake", { player: p })],
+        })),
+      );
+      return true;
+    }
+    case "dcTogetherTake": {
+      const p = e.player ?? firstPlayer(s);
+      const q = dreamchaserState(s);
+      if (q.together !== undefined) return true;
+      q.together = p;
+      q.ominous = (q.ominous ?? 0) + 1;
+      forOwner(s, p, () => {
+        const u = make(s, DC.together);
+        u.owner = p;
+        s.hand.push(u);
+      });
+      log(
+        s,
+        `Come Together is added to ${several(s) ? `${seatName(s, p)}'s` : "your"} hand; Ominous Fate's X is plus ${q.ominous} this game.`,
+        "good",
+      );
+      return true;
+    }
     case "dcCalphonGone": {
       // "Remove Calphon and each attachment on him from the game, ignoring
       // his 'leaves play' ability."
@@ -943,6 +1114,10 @@ export function dreamchaserCampaignStatus(s: GameState): string[] {
   if (s.scenarioId === "flight-of-the-stormcaller")
     out.push(
       'The Stormcaller is on its "Campaign Mode only" side with Black Key (burden) attached: at its stage no more than 9 progress can be placed on your quest each round. Calaerion serves the player with the Dream-chaser.',
+    );
+  if (s.scenarioId === "the-thing-in-the-depths")
+    out.push(
+      'The Thing in the Depths is on its "Campaign Mode only" side (each destroyed Creature deals it 2 damage). Captain Sahír carries Black Key (burden) as an enemy; when he flips, it becomes the boon, Sea Serpent (Menacing) enters the staging area and a player adds Come Together to their hand.',
     );
   if (REVENANT_CHAPTERS.includes(s.scenarioId)) {
     const n = s.dreamchaser?.resources ?? 0;
@@ -1084,9 +1259,25 @@ export function validateDreamchaserCampaign(s: GameState): boolean {
                 typeof b.target === "string" &&
                 (b.until === "phase" || b.until === "round") &&
                 typeof b.phase === "string" &&
-                integer(b.round),
+                integer(b.round) &&
+                [b.will, b.attack, b.defense].every(
+                  (n) => n === undefined || integer(n),
+                ),
             ))) &&
-        (q.calaerionRound === undefined || integer(q.calaerionRound))))
+        (q.calaerionRound === undefined || integer(q.calaerionRound)) &&
+        (q.keyed === undefined || codes(q.keyed)) &&
+        (q.together === undefined ||
+          (integer(q.together) && q.together < seats)) &&
+        (q.grants === undefined ||
+          (Array.isArray(q.grants) &&
+            q.grants.every(
+              (g) =>
+                !!g &&
+                typeof g.target === "string" &&
+                typeof g.trait === "string" &&
+                !!g.trait &&
+                integer(g.round),
+            )))))
   );
 }
 export { backFace, dcBase, dcFace };

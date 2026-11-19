@@ -5,11 +5,10 @@ cycle, with the Dream-chaser Campaign Expansion's campaign cards, boons,
 burdens, Upgraded faces and its new rules: experience (XP), scalable and
 upgradable cards, a fleet of six ships and the Hard/Expert Mode card. The
 lobby's campaign mode offers it as the fourth campaign, for one fellowship of
-one to four local players. Its first four chapters, Voyage Across Belegaer, The
-Fate of Númenor, Raid on the Grey Havens and Flight of the Stormcaller, are
-supported; the Campaign Log is kept after them, and the end of the game says
-that the next chapter, The Thing in the Depths, is not available in campaign
-mode yet.
+one to four local players. Its first five chapters, from Voyage Across Belegaer
+through The Thing in the Depths, are supported; the Campaign Log is kept after
+them, and the end of the game says that the next chapter, Temple of the
+Deceived, is not available in campaign mode yet.
 
 ## Sources
 
@@ -129,12 +128,25 @@ the Campaign Pool.
 | Black Key (burden attachment)          | Attached enemy gets +1 threat, +1 attack and +1 defense and is immune to player card effects; removed from the game when it leaves play. Its front side: at the end of the quest phase, if Captain Sahír is in play, he gains 1 resource per player. Upgraded (5 checkboxes): no Forced effect.                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | Calaerion (boon objective-ally)        | Removed from the game when he leaves play. Action: spend 3 resources (chosen one at a time from his controller's heroes) and exhaust him to ready the Dream-chaser with +1 willpower, +1 attack and +1 defense until the end of the phase. Upgraded (5 checkboxes; 2/2/2/4): spend 2 to ready another ally with the same bonus until the end of the round, and once per round, after cards are discarded from the encounter deck (a Sailing test, the Stormcaller's round, Glórinaith), his controller may shuffle one back into it.                                                                                                                                                                                    |
 
+## The Thing in the Depths (Part 5)
+
+The rulebook's campaign setup adds Black Key (boon), Black Key (burden), Sea
+Serpent, Come Together and every card in the Campaign Pool, and uses The Thing
+in the Depths' "Campaign Mode only" side.
+
+| Card                                           | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Campaign card                                  | Forced: after Captain Sahír (enemy) enters play, Black Key (burden) is attached to him (once for each Sahír card). Forced: after he flips over, the burden leaves the game, Black Key (boon) is attached to him, Sea Serpent (Menacing) enters the staging area, and one player (chosen when there are several) adds Come Together to their hand, raising Ominous Fate's X by 1. Resolution: the end-of-game dialog asks whether Come Together joins the Campaign Pool (and the deck of the player who took it); the XP of 1 per surviving player, 1 if Captain Sahír has 5 or more resources, 1 if Na'asiyah has, 1 for the Enraged Sea Serpent in play (2 in the victory display), 1 if no hero has damage, 1 if each surviving threat is 40 or less (2 for 30 or less), −1 for Ominous Fate (and the Hard/Expert Mode card). |
+| The Thing in the Depths ("Campaign Mode only") | 6 attack, 4 hit points (+3 per player), 3 threat, victory 15; each destroyed Creature enemy deals it 2 damage.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Sea Serpent (burden enemy, Creature)           | Immune to player card effects; X threat and X defense, X the number of players (Menacing; 6 attack, 6 hit points) or twice that (Enraged; 8 attack, 8 hit points, victory 8). When its attack destroys an ally, the defending player divides X damage among their characters. The Menacing side flips into play in the staging area when destroyed; the Enraged side attacks the first player at the end of each round.                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Come Together (boon event, scalable, neutral)  | Choose up to X characters (its level), one at a time, and add it to the victory display; until the end of the round each gets +2 defense if the player controls a Leadership hero, +2 attack for a Tactics hero, +2 willpower for a Spirit hero, and with a Lore hero heals 2 damage and gains a Trait chosen from the players' cards.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+
 ## Not supported yet
 
-The Thing in the Depths through The City of Corsairs follow, with their boons
-and burdens (Come Together, Sea Serpent, Starla, Recurring Nightmare, Command,
-Círdan's Blessing, Gavin, Send for Help and The Black Sword) and the "Campaign
-Mode only" sides of their scenario cards.
+Temple of the Deceived through The City of Corsairs follow, with their boons
+and burdens (Starla, Recurring Nightmare, Command, Círdan's Blessing, Gavin,
+Send for Help and The Black Sword) and the "Campaign Mode only" sides of their
+scenario cards.
 
 ## Verification
 
@@ -144,7 +156,7 @@ npm run build
 npm run test:browser-dreamchaser-campaign
 ```
 
-`tests/dreamchaser-campaign.test.ts` (25 tests) covers the registered cards'
+`tests/dreamchaser-campaign.test.ts` (30 tests) covers the registered cards'
 texts and faces, the Campaign Log's checkboxes, the chapter order and the
 Na'asiyah rule; Voyage Across Belegaer's fleet of six ships, the Modification
 choices and the damage-for-resource offer; Upgraded ships and Modifications
@@ -171,7 +183,11 @@ and its record; Flight of the Stormcaller's cards, its setup (the campaign
 Stormcaller with Black Key, the fleet's Modification boons, Thunderstruck,
 Crowley and Calaerion), Black Key's Forced resource for Captain Sahír,
 Calaerion's removal from the game, the Stormcaller's progress limit,
-Calaerion's Actions and Upgraded Response, and the resolution's XP before the
+Calaerion's Actions and Upgraded Response, and the resolution's XP; The Thing
+in the Depths' cards, the Thing's campaign side and its 2 damage per Creature,
+Black Key on Captain Sahír before and after his flip, Sea Serpent's X, flip,
+divided damage and round-end attack, Come Together on three spheres with its
+Trait and heal, and the resolution's XP and Come Together choice before the
 next chapter is refused. The browser suite starts a new
 Dream-chaser campaign through the lobby on Hard Mode, prepares the fleet with
 two Modification boons, opens the campaign card's state in the quest
@@ -183,5 +199,7 @@ on the Grey Havens begins with Calphon's two boons, Graxar and a Leadership
 Galdor's Counsel in hand, and its resolution records Throwing Axe for a hero
 through the end-of-game dialog; Flight of the Stormcaller begins with the
 campaign Stormcaller and its Black Key, Calaerion, the fleet and the Throwing
-Axe back on its hero, and its resolution is recorded, at 1280, 390 and 320
-pixels (33 checkpoints); it checks the 57 pinned faces.
+Axe back on its hero, and its resolution is recorded; The Thing in the Depths
+begins with the Thing's campaign side and its resolution adds Come Together to
+the Campaign Pool through the end-of-game dialog, at 1280, 390 and 320 pixels
+(42 checkpoints); it checks the 64 pinned faces.

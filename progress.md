@@ -1351,3 +1351,16 @@ Validation on Node 22: the engine suite passes all 6,809 tests, including 20 for
 Coverage is now 861 player definitions (112 heroes), 2,199 encounters and 123 scenarios. This resolves 3,429 of 4,183 identities and 270 of 355 recipes; 754 identities remain pending.
 
 Validation on Node 22: the engine suite passes all 6,814 tests, including 25 for the Dream-chaser campaign; the Dream-chaser browser suite passes 33 checkpoints at 1280, 390 and 320 pixels, through Flight of the Stormcaller's resolution, and checks the 57 pinned faces; the production build passes.
+
+2026-11-19 The Dream-chaser campaign, The Thing in the Depths: continued the user's “Nastavi dok ne završis sve” after b7ce3a7. The campaign's fifth chapter is supported. See docs/DREAMCHASER-CAMPAIGN.md.
+
+- The Thing in the Depths' campaign card, the Thing's "Campaign Mode only" side, Come Together and Sea Serpent (both sides) are registered (59 entries, 64 faces pinned).
+- The Thing takes its campaign side in campaign mode (6 attack, 4 hit points plus 3 per player, 3 threat, victory 15), and each destroyed Creature deals it 2 damage. The Depths module and its save checks accept it.
+- Captain Sahír (enemy) receives Black Key (burden) when he enters play; when he flips, the burden leaves the game, Black Key (boon) is attached to him, Sea Serpent (Menacing) enters the staging area and a player adds Come Together to their hand (Ominous Fate's X +1).
+- Sea Serpent: immune to player card effects, X threat and defense (X the number of players, twice it Enraged); a destroyed Menacing side flips into play Enraged, an ally destroyed by its attack makes the defending player divide X damage, and the Enraged side attacks the first player at the end of each round.
+- Come Together chooses up to its level in characters and goes to the victory display; until the end of the round they gain +2 defense, attack or willpower for the player's Leadership, Tactics or Spirit heroes, and with a Lore hero heal 2 damage and gain a chosen Trait (kept through the attachment-text sync until the round ends).
+- The resolution counts Sahír's and Na'asiyah's resources, the Enraged Sea Serpent, undamaged heroes and threat (30 or less doubles it), and asks in the end-of-game dialog whether Come Together joins the Campaign Pool; Temple of the Deceived is not available in campaign mode yet.
+
+Coverage is now 861 player definitions (112 heroes), 2,205 encounters and 123 scenarios. This resolves 3,433 of 4,183 identities and 270 of 355 recipes; 750 identities remain pending.
+
+Validation on Node 22: the engine suite passes all 6,819 tests, including 30 for the Dream-chaser campaign; the Dream-chaser browser suite passes 42 checkpoints at 1280, 390 and 320 pixels, through The Thing in the Depths' Come Together choice, and checks the 64 pinned faces; the production build passes.

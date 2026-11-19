@@ -2,6 +2,7 @@ import encounters from "../data/depths-encounter-cards.json";
 import quests from "../data/depths-quest-cards.json";
 import recipes from "../data/depths-recipes.json";
 import type { Card, Effect, GameState, Unit } from "./types";
+import { dcBase } from "./dreamchaser-campaign-support";
 export { DEPTHS_ADVENTURES } from "./depths-scenario-data";
 
 export const DEPTHS_ENCOUNTERS = encounters as Card[];
@@ -158,7 +159,9 @@ export function validateDepths(
     ...(!q.initialized ? [DEPTHS.helm, DEPTHS.raider] : []),
   ];
   if (
-    !q.setAside.every((u) => validUnit(u) && allowedAside.includes(u.code)) ||
+    !q.setAside.every(
+      (u) => validUnit(u) && allowedAside.includes(dcBase(u.code)),
+    ) ||
     new Set(q.setAside.map((u) => u.code)).size !== q.setAside.length
   )
     return false;

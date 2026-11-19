@@ -49,6 +49,9 @@ import {
   type CalphonKinds,
 } from "./calphon";
 import { FATE } from "./fate-numenor-support";
+import { DEPTHS } from "./depths-support";
+import { effectiveTraits } from "./expansion-passives";
+import type { DamageContext } from "./damage-context";
 import { returnToStaging } from "./fellowship-event-lib";
 import { isShipObjective } from "./ships";
 import { activePlayerAbilityCode } from "./player-ability-triggers";
@@ -187,10 +190,17 @@ export function dreamchaserStats(s: GameState, u: Unit) {
   // of the phase" (of the round on his Upgraded side).
   for (const b of activeBoosts(s))
     if (b.target === u.id) {
-      out.will += 1;
-      out.attack += 1;
-      out.defense += 1;
+      const plain =
+        b.will === undefined &&
+        b.attack === undefined &&
+        b.defense === undefined;
+      out.will += plain ? 1 : (b.will ?? 0);
+      out.attack += plain ? 1 : (b.attack ?? 0);
+      out.defense += plain ? 1 : (b.defense ?? 0);
     }
+  // Sea Serpent: "X is the number of players in the game" (twice the number
+  // on its Enraged side) for its defense.
+  if (dcIs(u, DC.serpent) && !u.blanked) out.defense += serpentX(s, u);
   for (const a of u.attachments) {
     if (a.blanked) continue;
     const code = dcBase(a.code);
@@ -226,11 +236,15 @@ export function dreamchaserStats(s: GameState, u: Unit) {
   }
   return out;
 }
-/** Crowley's threat: +1 for each resource on him; Black Key (burden): +1. */
+/** Sea Serpent's X: the number of players (twice it on the Enraged side). */
+const serpentX = (s: GameState, u: Unit) =>
+  (dcBackFace(u) ? 2 : 1) * players(s);
+/** Crowley's threat: +1 for each resource on him; Black Key (burden): +1; Sea Serpent: X. */
 export const dreamchaserThreatBonus = (s: GameState, u: Unit) =>
   !isDreamchaserGame(s)
     ? 0
     : (dcIs(u, DC.crowley) && !u.blanked ? u.resources : 0) +
+      (dcIs(u, DC.serpent) && !u.blanked ? serpentX(s, u) : 0) +
       u.attachments.filter((a) => dcIs(a.code, DC.keyBurden) && !a.blanked)
         .length;
 const phaseKey = (p: string) => (p === "staging" ? "quest" : p);
@@ -303,6 +317,19 @@ export function dreamchaserEnemyDestination(
     addVictoryCard(s, u.code);
     s.victory += 3;
     log(s, "Crowley goes to the victory display (victory 3).", "good");
+    return true;
+  }
+  // Sea Serpent (Menacing): "Forced: After Sea Serpent is destroyed, flip it
+  // over and put it into play in the staging area."
+  if (dcIs(u, DC.serpent) && !dcBackFace(u) && destruction && !u.blanked) {
+    const enraged = make(s, backFace(DC.serpent));
+    s.staging.push(enraged);
+    enemyAddedToStaging(s, enraged);
+    log(
+      s,
+      "Sea Serpent flips to its Enraged side in the staging area.",
+      "danger",
+    );
     return true;
   }
   // Revenant: "Forced: After Revenant is destroyed, shuffle it into the
@@ -899,14 +926,55 @@ export function dreamchaserRemoveCharacter(s: GameState, u: Unit) {
 
 // ------------------------------------------- Raid on the Grey Havens
 
+/** The campaign's checks after each step. */
+export function dreamchaserCheck(s: GameState) {
+  if (!isDreamchaserGame(s) || s.status !== "playing") return;
+  depthsKeyCheck(s);
+  grantsCleanup(s);
+  calphonCheck(s);
+}
+/**
+ * The Thing in the Depths' campaign card: "Forced: After Captain Sahír
+ * (enemy) enters play, attach Black Key (burden) to him."
+ */
+function depthsKeyCheck(s: GameState) {
+  if (s.scenarioId !== "the-thing-in-the-depths") return;
+  const q = dreamchaserState(s);
+  for (const sahir of enemiesInPlay(s).filter((u) => u.code === DEPTHS.sahir)) {
+    if ((q.keyed ?? []).includes(sahir.id)) continue;
+    q.keyed = [...(q.keyed ?? []), sahir.id];
+    const key =
+      (s.campaign?.marks?.[DC.keyBurden] ?? 0) >= 5
+        ? backFace(DC.keyBurden)
+        : DC.keyBurden;
+    sahir.attachments.push({
+      id: `a${s.nextId++}`,
+      code: key,
+      exhausted: false,
+    });
+    log(s, "Black Key (burden) is attached to Captain Sahír.", "danger");
+  }
+}
+/** Come Together's Traits last until the end of the round. */
+function grantsCleanup(s: GameState) {
+  const q = s.dreamchaser;
+  if (!q?.grants?.some((g) => g.round !== s.round)) return;
+  for (const g of q.grants.filter((g) => g.round !== s.round)) {
+    const u = get(s, g.target);
+    if (u?.dynamicTraits) {
+      const i = u.dynamicTraits.indexOf(g.trait);
+      if (i >= 0) u.dynamicTraits.splice(i, 1);
+    }
+  }
+  q.grants = q.grants.filter((g) => g.round === s.round);
+}
 /**
  * Raid on the Grey Havens' campaign card: the first player controls Calphon,
  * and "If Calphon leaves play, the players lose the game" until stage 2B
  * removes him from the game.
  */
-export function dreamchaserCheck(s: GameState) {
-  if (!campaignCalphon(s) || !s.dreamchaser?.calphon || s.status !== "playing")
-    return;
+function calphonCheck(s: GameState) {
+  if (!campaignCalphon(s) || !s.dreamchaser?.calphon) return;
   const guide = allCharacters(s).find((u) => dcIs(u, FATE.calphon));
   if (!guide) {
     s.status = "lost";
@@ -925,6 +993,38 @@ export function dreamchaserCheck(s: GameState) {
   );
   guide.owner = first;
   forOwner(s, first, () => s.allies.push(guide));
+}
+/** Sea Serpent (Enraged): "Forced: At the end of the round, Sea Serpent makes an attack against the first player." */
+export function dreamchaserRoundEnd(s: GameState): Effect[] {
+  if (!isDreamchaserGame(s)) return [];
+  return enemiesInPlay(s)
+    .filter((u) => dcIs(u, DC.serpent) && dcBackFace(u) && !u.blanked)
+    .map((u) =>
+      fx("immediateAttack", { target: u.id, player: firstPlayer(s) }),
+    );
+}
+/**
+ * Sea Serpent: "Forced: After Sea Serpent attacks and destroys an ally, the
+ * defending player deals X damage divided among characters they control."
+ */
+export function dreamchaserCharacterDestroyed(
+  s: GameState,
+  u: Unit,
+  context: DamageContext,
+) {
+  if (!isDreamchaserGame(s) || !context.combatDamage || !context.enemyId)
+    return;
+  if (card(u.code).type_code !== "ally") return;
+  const enemy = get(s, context.enemyId);
+  if (!enemy || !dcIs(enemy, DC.serpent) || enemy.blanked) return;
+  prepend(
+    s,
+    fx("dcDivideDamage", {
+      value: serpentX(s, enemy),
+      player: ownerOf(s, u),
+      text: "Sea Serpent",
+    }),
+  );
 }
 /** Graxar: "No more than 1 character can attack Graxar each round." */
 export function dreamchaserAttackProblem(
@@ -1003,6 +1103,19 @@ export function dreamchaserDefendersDeclared(
 }
 /** Galdor's Counsel: "Action: … X is its level … Add Galdor's Counsel to the victory display." */
 export function dreamchaserPlayerEvent(s: GameState, code: string): boolean {
+  if (isDreamchaserGame(s) && code === DC.together) {
+    // Come Together: "Choose up to X characters. X is the level of Come
+    // Together, then add it to the victory display."
+    const x = dcLevel(s, code);
+    putPlayedEventInVictory(s, code);
+    log(s, `Come Together: X is ${x}.`);
+    if (x > 0)
+      prepend(
+        s,
+        fx("dcTogetherPick", { value: x, ids: [], player: activeSeat(s) }),
+      );
+    return true;
+  }
   if (
     !isDreamchaserGame(s) ||
     !GALDOR.includes(code as (typeof GALDOR)[number])
@@ -1215,6 +1328,146 @@ function raidEffect(s: GameState, e: Effect): boolean {
         s,
         `Black Key places ${players(s)} resource${players(s) === 1 ? "" : "s"} on Captain Sahír.`,
         "danger",
+      );
+      return true;
+    }
+    case "dcTogetherPick": {
+      const chosen = e.ids ?? [];
+      const left = (e.value ?? 0) - chosen.length;
+      const characters = seatIndices(s)
+        .flatMap((x) => [...seatView(s, x).heroes, ...seatView(s, x).allies])
+        .filter(
+          (c) =>
+            !chosen.includes(c.id) &&
+            ["hero", "ally", "objective-ally"].includes(
+              card(c.code).type_code,
+            ) &&
+            !playerCardImmune(c),
+        );
+      if (left <= 0 || !characters.length) {
+        prepend(s, fx("dcTogetherApply", { ids: chosen, player: p }));
+        return true;
+      }
+      choose(
+        s,
+        `Come Together · Choose up to ${left} more character${left === 1 ? "" : "s"}`,
+        [
+          ...characters.map((c) => ({
+            id: c.id,
+            code: c.code,
+            label: `Choose ${name(c)}`,
+            effects: [
+              fx("dcTogetherPick", {
+                value: e.value,
+                ids: [...chosen, c.id],
+                player: p,
+              }),
+            ],
+          })),
+          {
+            id: "done",
+            label: chosen.length ? "Done choosing" : "Choose no characters",
+            effects: [fx("dcTogetherApply", { ids: chosen, player: p })],
+          },
+        ],
+        card(DC.together).text,
+      );
+      return true;
+    }
+    case "dcTogetherApply": {
+      // "Until the end of the round, each of those characters... get +2
+      // [defense] if you control a [leadership] hero, +2 [attack] if you
+      // control a [tactics] hero, +2 [willpower] if you control a [spirit]
+      // hero, gain a Trait of your choice and heal 2 damage from each of them
+      // if you control a [lore] hero."
+      const spheres = new Set(
+        seatView(s, p).heroes.map((h) => card(h.code).sphere_code),
+      );
+      const targets = (e.ids ?? [])
+        .map((id) => get(s, id))
+        .filter((x): x is Unit => !!x);
+      const q = dreamchaserState(s);
+      const amounts = {
+        will: spheres.has("spirit") ? 2 : 0,
+        attack: spheres.has("tactics") ? 2 : 0,
+        defense: spheres.has("leadership") ? 2 : 0,
+      };
+      if (amounts.will || amounts.attack || amounts.defense)
+        q.boosts = [
+          ...(q.boosts ?? []).filter((b) => b.round === s.round),
+          ...targets.map((x) => ({
+            target: x.id,
+            until: "round" as const,
+            phase: s.phase,
+            round: s.round,
+            ...amounts,
+          })),
+        ];
+      log(
+        s,
+        `Come Together: ${targets.map((x) => name(x)).join(", ") || "no characters"}${amounts.will ? ", +2 willpower" : ""}${amounts.attack ? ", +2 attack" : ""}${amounts.defense ? ", +2 defense" : ""} until the end of the round.`,
+        "good",
+      );
+      if (spheres.has("lore"))
+        prepend(
+          s,
+          ...targets.flatMap((x) => [
+            fx("heal", {
+              target: x.id,
+              value: 2,
+              player: p,
+              code: DC.together,
+            }),
+            fx("dcTogetherTrait", { target: x.id, player: p }),
+          ]),
+        );
+      return true;
+    }
+    case "dcTogetherTrait": {
+      if (!u) return true;
+      const own = new Set(effectiveTraits(u));
+      const pool = new Set<string>();
+      for (const x of seatIndices(s)) {
+        const v = seatView(s, x);
+        for (const code of [
+          ...v.deck,
+          ...v.discard,
+          ...v.hand.map((h) => h.code),
+          ...v.heroes.map((h) => h.code),
+          ...v.allies.map((a) => a.code),
+        ])
+          for (const trait of (card(code).traits ?? "").split("."))
+            if (trait.trim()) pool.add(trait.trim());
+      }
+      const traits = [...pool].filter((trait) => !own.has(trait)).sort();
+      if (!traits.length) return true;
+      choose(
+        s,
+        `Come Together · Choose a Trait for ${name(u)}`,
+        traits.map((trait) => ({
+          id: `trait-${trait}`,
+          label: trait,
+          code: u.code,
+          effects: [
+            fx("dcTogetherGrant", { target: u.id, text: trait, player: p }),
+          ],
+        })),
+        "The character gains a Trait of your choice until the end of the round.",
+      );
+      return true;
+    }
+    case "dcTogetherGrant": {
+      if (!u || !e.text) return true;
+      u.dynamicTraits = [...(u.dynamicTraits ?? []), e.text];
+      const q = dreamchaserState(s);
+      q.grants = [
+        ...(q.grants ?? []),
+        { target: u.id, trait: e.text, round: s.round },
+      ];
+      log(
+        s,
+        `Come Together: ${name(u)} gains the ${e.text} Trait until the end of the round.`,
+        "good",
       );
       return true;
     }

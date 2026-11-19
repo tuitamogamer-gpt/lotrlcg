@@ -1,4 +1,12 @@
 import type { Effect, GameState, Option, Unit } from "./types";
+import {
+  DC,
+  backFace,
+  dcBackFace,
+  dcIs,
+  isDreamchaserGame,
+} from "./dreamchaser-campaign-support";
+import { dreamchaserSahirFlipped } from "./dreamchaser-campaign";
 import { encounterCharacterEntered } from "./encounter-character-uniqueness";
 import { card, name } from "./cards";
 import {
@@ -77,10 +85,14 @@ const own = (s: GameState, player: number) =>
 const ready = (u: Unit) =>
   !u.exhausted && !khazadCannotExhaust(u) && !watcherWaterCannotExhaust(u);
 const questLive = (s: GameState) => !mainQuestUnit(s)?.blanked;
-const boss = (s: GameState) => s.staging.find((u) => u.code === D.thing);
+/** The Thing in the Depths, on either face (the campaign uses its "Campaign Mode only" side). */
+const isThing = (u: Unit) => dcIs(u, D.thing);
+const boss = (s: GameState) => s.staging.find(isThing);
 const aside = (s: GameState, code: string) => {
   const q = depthsState(s)!;
-  const u = q.setAside.find((u) => u.code === code);
+  const u = q.setAside.find((u) =>
+    code === D.thing ? isThing(u) : u.code === code,
+  );
   q.setAside = q.setAside.filter((x) => x.id !== u?.id);
   return u;
 };
@@ -118,8 +130,11 @@ export function setupDepths(s: GameState) {
     currentQuest: D.take,
     questDeck: DEPTHS_MAIN_QUESTS.slice(1),
     completedQuests: [],
+    // The Dream-chaser campaign: "Use The Thing in the Depths' 'Campaign
+    // Mode only' side."
     setAside: [...pile("sharedSetAside"), ...pile("sharedStagingArea")].map(
-      (c) => make(s, c),
+      (c) =>
+        make(s, c === D.thing && isDreamchaserGame(s) ? backFace(DC.thing) : c),
     ),
     beastDeck: pile("sharedEncounterDeck2"),
     grappled: [],
@@ -162,15 +177,14 @@ export const depthsStats = (s: GameState, u: Unit) => ({
       ? allActiveLocations(s).filter((l) => l.code === D.cargo && !l.blanked)
           .length
       : 0,
-  health:
-    live(s) && u.code === D.thing && !u.blanked ? 3 * playerOrder(s).length : 0,
+  health: live(s) && isThing(u) && !u.blanked ? 3 * playerOrder(s).length : 0,
 });
 export const depthsCannotLeave = (s: GameState, u: Unit) =>
   live(s) &&
   (depthsState(s)!.grappled.some((g) => g.enemy.id === u.id) ||
     depthsState(s)!.pendingEnemies.some((x) => x.id === u.id));
 export const depthsCannotEngage = (s: GameState, u: Unit) =>
-  depthsCannotLeave(s, u) || (live(s) && u.code === D.thing && !u.blanked);
+  depthsCannotLeave(s, u) || (live(s) && isThing(u) && !u.blanked);
 export const depthsCannotAttack = (s: GameState, u: Unit) =>
   live(s) && u.code === D.eye && !u.blanked;
 export const depthsIndestructible = (s: GameState, u: Unit) =>
@@ -297,7 +311,7 @@ export function depthsCharacterLeaves(
     }
   }
   if (!destruction) return;
-  if (u.code === D.thing && s.stage === 3 && questLive(s)) {
+  if (isThing(u) && s.stage === 3 && questLive(s)) {
     win(
       s,
       "The Thing in the Depths is destroyed and the Stormcaller is saved.",
@@ -313,7 +327,9 @@ export function depthsEnemyDestroyed(
 ) {
   if (!live(s) || s.status !== "playing" || !trait(u, "Creature")) return;
   const thing = boss(s);
-  if (thing && !thing.blanked) damage(s, thing.id, lastKnownThreat);
+  // Its campaign side: "deal 2 damage to The Thing in the Depths".
+  if (thing && !thing.blanked)
+    damage(s, thing.id, dcBackFace(thing) ? 2 : lastKnownThreat);
 }
 export function depthsFirstPlayerChanged(s: GameState) {
   if (!live(s)) return;
@@ -1347,4 +1363,6 @@ function stageTwo(s: GameState) {
     ...q.beastDeck.splice(0),
   ]);
   prepend(s, fx("depthsStageThree", { player: firstPlayer(s) }));
+  // The campaign card: "Forced: After Captain Sahír flips over, …"
+  if (isDreamchaserGame(s)) prepend(s, ...dreamchaserSahirFlipped(s));
 }
