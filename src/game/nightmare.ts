@@ -20,6 +20,16 @@ export const NIGHTMARE_CORE = {
   web: `${P}24`,
   brood: `${P}28`,
   spawn: `${P}29`,
+  /** Journey Along the Anduin's setup card and Nightmare Deck. */
+  anduinCard: `${P}03`,
+  ford: `${P}07`,
+  trollSpawn: `${P}08`,
+  rats: `${P}10`,
+  marshlands: `${P}16`,
+  outlaws: `${P}18`,
+  pursuit: `${P}19`,
+  smoking: `${P}21`,
+  trollAttack: `${P}27`,
 } as const;
 
 interface NightmareDeck {
@@ -43,6 +53,19 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Caught in a Web": 2,
     },
   },
+  anduin: {
+    card: NIGHTMARE_CORE.anduinCard,
+    removals: {
+      "Evil Storm": 3,
+      "Treacherous Fog": 2,
+      "Banks of the Anduin": 2,
+      "Dol Guldur Orcs": 3,
+      "Enchanted Stream": 2,
+      Despair: 2,
+      "Misty Mountain Goblins": 3,
+      "Necromancer's Pass": 2,
+    },
+  },
 };
 export const nightmareSupported = (id?: ScenarioId) => !!id && id in NIGHTMARE;
 /** A Nightmare mode game of a supported scenario. */
@@ -51,6 +74,13 @@ export const nightmareLive = (s: GameState) =>
 /** The setup card flipped next to the quest deck. */
 export const nightmareCardOf = (s: GameState) =>
   nightmareLive(s) ? NIGHTMARE[s.scenarioId]!.card : undefined;
+/**
+ * Journey Along the Anduin (Nightmare): "If the encounter deck is empty (at
+ * any time), shuffle the encounter discard pile back into the encounter
+ * deck."
+ */
+export const nightmareRefillsEncounterDeck = (s: GameState) =>
+  nightmareLive(s) && s.scenarioId === "anduin";
 /** The Nightmare Deck's encounter set ("Passage Through Mirkwood - Nightmare"). */
 const nightmareSet = (id: ScenarioId) =>
   card(NIGHTMARE[id]!.card).encounter_set;
@@ -83,6 +113,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "mirkwood")
     return [
       "Passage Through Mirkwood · Nightmare mode: during setup, each player revealed 1 card from the encounter deck and added it to the staging area.",
+    ];
+  if (s.scenarioId === "anduin")
+    return [
+      "Journey Along the Anduin · Nightmare mode: Troll enemies cannot have attachments, and an empty encounter deck is refilled from the encounter discard pile at any time.",
     ];
   return [];
 }

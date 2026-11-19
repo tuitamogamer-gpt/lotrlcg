@@ -298,6 +298,7 @@ import {
   elfStats,
   elfPlayCost,
 } from "./elf-player-cards";
+import { nightmareRefillsEncounterDeck } from "./nightmare";
 
 export const observation = (s: GameState) =>
   s.flow ? observe(s, stats, stagingThreat, threatOf) : undefined;
@@ -1632,9 +1633,10 @@ export function encounterDraw(s: GameState, shadow = false) {
   Rhu.rhudaurBeforeEncounterReset(s);
   if (
     !s.encounterDeck.length &&
-    !shadow &&
-    ["quest", "staging"].includes(s.phase) &&
-    s.encounterDiscard.length
+    s.encounterDiscard.length &&
+    // Journey Along the Anduin (Nightmare) refills the deck at any time.
+    ((!shadow && ["quest", "staging"].includes(s.phase)) ||
+      nightmareRefillsEncounterDeck(s))
   ) {
     s.encounterDeck = shuffle(s, s.encounterDiscard.splice(0));
     if (s.rhudaur) s.rhudaur.deckEmptyHandled = false;

@@ -1,23 +1,16 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { card, encounterCards, STARTERS } from "../src/game/cards";
+import { card, encounterCards } from "../src/game/cards";
 import {
   discardLocation,
   engage,
   exhaustCharacter,
   readyCharacter,
-  revealed,
 } from "../src/game/board";
 import { flush } from "../src/game/effects";
 import { make, stats } from "../src/game/core";
-import {
-  applyAction,
-  createGame,
-  restoreSave,
-  validateSave,
-} from "../src/game/engine";
-import { batch4Scenario } from "../src/game/batch4-scenarios";
+import { createGame } from "../src/game/engine";
 import {
   NIGHTMARE,
   NIGHTMARE_CORE as N,
@@ -28,84 +21,23 @@ import {
 import { playerCardImmune } from "../src/game/card-immunity";
 import { automatedScenarioId } from "../src/game/support";
 import { scenario } from "../src/game/scenarios";
-import { seatView } from "../src/game/table";
-import type { GameState, Unit } from "../src/game/types";
+import { forOwner, seatView } from "../src/game/table";
 import art from "./nightmare-art.json";
+import {
+  calm,
+  d,
+  damageOf,
+  nightmareForTwo,
+  nightmareGame,
+  opening,
+  pick,
+  reveal,
+  shadow,
+  valid,
+} from "./nightmare-fixtures";
 
-const d = STARTERS[0];
-const reload = (s: GameState) => restoreSave(JSON.parse(JSON.stringify(s)))!;
-const choose = (s: GameState, id: string) =>
-  applyAction(reload(s), { type: "CHOOSE", id });
-const valid = (s: GameState) => validateSave(JSON.parse(JSON.stringify(s)));
-function calm(s: GameState, phase: GameState["phase"] = "planning") {
-  Object.assign(s, { phase, choice: null, queue: [] });
-  if (s.flow) s.flow.pending = null;
-  return s;
-}
-function opening(s: GameState) {
-  for (let i = 0; i < 120; i++) {
-    if (s.choice) s = choose(s, s.choice.options[0].id);
-    else if (s.flow?.pending)
-      s = applyAction(reload(s), {
-        type: "CONTINUE",
-        stepId: s.flow.pending.id,
-      });
-    else if (s.phase === "setup") s = applyAction(reload(s), { type: "KEEP" });
-    else break;
-  }
-  return s;
-}
-const mirkwood = (seed = 5) =>
-  createGame(seed, d.cards, d.heroes, d.id, {
-    scenarioId: "mirkwood",
-    nightmare: true,
-  });
-function forTwo() {
-  const seats = [STARTERS[0], STARTERS[1]].map((deck) => ({
-    heroes: [...deck.heroes],
-    deckId: deck.id,
-  }));
-  return createGame(5, d.cards, d.heroes, d.id, {
-    scenarioId: "mirkwood",
-    nightmare: true,
-    seats,
-  });
-}
-/** An encounter card revealed from the encounter deck (choices answered by `pick`). */
-function reveal(
-  s: GameState,
-  code: string,
-  pick: (s: GameState) => string | undefined = () => undefined,
-) {
-  revealed(s, code);
-  flush(s);
-  for (let i = 0; i < 40 && s.choice; i++)
-    s = choose(s, pick(s) ?? s.choice!.options[0].id);
-  return s;
-}
-/** An attack against `defender` (undefended without one), with a shadow card's effect resolved. */
-function shadow(s: GameState, enemy: Unit, code: string, defender?: Unit) {
-  s.combat = {
-    enemyId: enemy.id,
-    defenderId: defender?.id,
-    defenderIds: defender ? [defender.id] : [],
-    attackBonus: 0,
-    attackPlayer: 0,
-  } as never;
-  enemy.shadows = [code];
-  enemy.revealedShadowCount = 1;
-  return batch4Scenario(s).shadow!(s, code);
-}
-/** Answer the current choice in place (a combat fixture is not a saved game). */
-function pick(s: GameState, id: string) {
-  const o = s.choice!.options.find((x) => x.id === id)!;
-  s.choice = null;
-  s.queue.unshift(...o.effects);
-  flush(s);
-  return s;
-}
-const damageOf = (s: GameState) =>
-  [...s.heroes, ...s.allies].reduce((n, u) => n + u.damage, 0);
+const mirkwood = (seed = 5) => nightmareGame("mirkwood", seed);
+const forTwo = () => nightmareForTwo("mirkwood");
 
 test("Nightmare: Passage Through Mirkwood's setup card and Nightmare Deck carry their scans' texts", () => {
   const c = card(N.mirkwoodCard);
@@ -160,7 +92,10 @@ test("Nightmare: Passage Through Mirkwood's setup card and Nightmare Deck carry 
     ),
     19,
   );
-  assert.equal(art.length, 10);
+  assert.equal(
+    art.filter((a) => set.some((x) => x.code === a.code)).length,
+    10,
+  );
   for (const x of set)
     assert.ok(
       art.some((a) => a.code === x.code && a.face === "front"),
@@ -430,4 +365,16 @@ test("Nightmare: The Spider's Web exhausts the highest-threat player's heroes an
   flush(t);
   assert.equal(host.damage, before + 1);
   assert.ok(valid(t));
+});
+
+test("Nightmare: a Nightmare card's threat raise is the defending player's own (Ungoliant's Spawn's shadow in a two-player game)", () => {
+  const s = calm(opening(forTwo()), "defense");
+  const spawn = make(s, N.spawn);
+  forOwner(s, 1, () => s.engaged.push(spawn));
+  const [first, second] = [seatView(s, 0).threat, seatView(s, 1).threat];
+  shadow(s, spawn, N.spawn, undefined, 1);
+  flush(s);
+  assert.equal(seatView(s, 1).threat, second + 10);
+  assert.equal(seatView(s, 0).threat, first);
+  assert.ok(valid(s));
 });

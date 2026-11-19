@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2295,
+    "encounterCards": 2304,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3517,
-    "pending": 666
+    "scripted": 3526,
+    "pending": 657
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 271
+    "scripted": 272
   },
   "registeredCodes": [
     "01001",
@@ -3470,12 +3470,21 @@
     "octgn:e839fa89-15b4-451f-9fac-6a8f38e31d65",
     "octgn:e83f33da-6723-4730-8691-8d1a48b1f8e0",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5001",
+    "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5003",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5006",
+    "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5007",
+    "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5008",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5009",
+    "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5010",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5015",
+    "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5016",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5017",
+    "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5018",
+    "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5019",
+    "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5021",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5023",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5024",
+    "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5027",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5028",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5029",
     "octgn:e8c78f25-00d0-4b3b-8cac-03e533edfe41",
@@ -3845,7 +3854,7 @@
     {
       "product": "core-nightmare",
       "total": 27,
-      "scripted": 9,
+      "scripted": 18,
       "player": 0,
       "playerScripted": 0
     },
@@ -35696,7 +35705,7 @@
       "name": "Journey Along the Anduin",
       "type": "nightmare",
       "pack": "Core Set - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "core-nightmare"
     },
     {
@@ -35720,7 +35729,7 @@
       "name": "A Flooded Ford",
       "type": "location",
       "pack": "Core Set - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "core-nightmare"
     },
     {
@@ -35728,7 +35737,7 @@
       "name": "Anduin Troll Spawn",
       "type": "enemy",
       "pack": "Core Set - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "core-nightmare"
     },
     {
@@ -35744,7 +35753,7 @@
       "name": "Brown Water Rats",
       "type": "enemy",
       "pack": "Core Set - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "core-nightmare"
     },
     {
@@ -35792,7 +35801,7 @@
       "name": "Gladden Marshlands",
       "type": "location",
       "pack": "Core Set - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "core-nightmare"
     },
     {
@@ -35808,7 +35817,7 @@
       "name": "Marshland Outlaws",
       "type": "enemy",
       "pack": "Core Set - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "core-nightmare"
     },
     {
@@ -35816,7 +35825,7 @@
       "name": "Pursuit on the Shore",
       "type": "treachery",
       "pack": "Core Set - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "core-nightmare"
     },
     {
@@ -35832,7 +35841,7 @@
       "name": "Smoking Blood",
       "type": "treachery",
       "pack": "Core Set - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "core-nightmare"
     },
     {
@@ -35880,7 +35889,7 @@
       "name": "Troll Attack",
       "type": "treachery",
       "pack": "Core Set - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "core-nightmare"
     },
     {
@@ -39057,8 +39066,8 @@
       "id": "N01.2",
       "name": "Journey Along the Anduin (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "anduin",
+      "state": "scripted"
     },
     {
       "id": "N01.3",

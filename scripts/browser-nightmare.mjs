@@ -5,6 +5,7 @@ import { chromium } from "playwright";
 import { card } from "../src/game/cards.ts";
 import { revealed } from "../src/game/board.ts";
 import { flush } from "../src/game/effects.ts";
+import { make } from "../src/game/core.ts";
 import { NIGHTMARE_CORE as N } from "../src/game/nightmare.ts";
 import { reviewedState } from "./browser-review-helpers.mjs";
 import {
@@ -88,7 +89,11 @@ try {
     const names = s.staging.map((u) => card(u.code).name);
     assert.ok(names.includes("Forest Spider"), names.join());
     assert.ok(names.includes("Old Forest Road"), names.join());
-    assert.ok(s.staging.length >= 3, "the setup card's reveal");
+    // The setup card's reveal (a revealed treachery leaves the staging area).
+    assert.ok(
+      s.log.some((l) => /^Revealed /.test(l.text)),
+      "the setup card's reveal",
+    );
     // The Nightmare card in the quest inspector, its rules side first.
     await page.getByRole("button", { name: /^Inspect quest: / }).click();
     await page
@@ -130,6 +135,58 @@ try {
     s = await choose(page, s.heroes[0].id);
     assert.ok(s.heroes[0].attachments.some((a) => a.code === N.web));
     assert.ok(s.heroes.every((h) => h.exhausted));
+    // Journey Along the Anduin in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-anduin").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await opening(page);
+    assert.equal(s.scenarioId, "anduin");
+    assert.equal(s.nightmareMode, true);
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/Troll enemies cannot have attachments/)
+      .waitFor();
+    await checkpoint("anduin-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // Gladden Marshlands' Action: a hero takes 1 damage, and its threat drops
+    // by 1 until the end of the phase.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.staging = t.staging.filter((u) => u.code !== N.marshlands);
+      t.staging.push(make(t, N.marshlands));
+      s = await load(page, t);
+    }
+    await page
+      .getByRole("button", {
+        name: "Deal 1 damage to a hero to reduce its threat",
+        exact: true,
+      })
+      .click();
+    s = await saved(page);
+    assert.match(s.choice.title, /^Gladden Marshlands · Deal 1 damage/);
+    await checkpoint("gladden-marshlands", width);
+    s = await choose(page, s.heroes[0].id);
+    assert.equal(s.staging.find((u) => u.code === N.marshlands).tempThreat, -1);
+    assert.equal(s.heroes[0].damage, 1);
     await view.c.close();
   }
   const p = await browser.newPage();

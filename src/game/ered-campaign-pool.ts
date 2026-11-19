@@ -2794,6 +2794,27 @@ export function composeEredPool(
       null,
     ability: (s, u, attachmentId) =>
       p.ability!(s, u, attachmentId) || !!h.ability?.(s, u, attachmentId),
+    // Hooks only a Nightmare Deck's layer defines (the Campaign Pool's
+    // layer leaves them out).
+    revealedDoomed: (s, code, revealOrigin) =>
+      (h.revealedDoomed?.(s, code, revealOrigin) ?? 0) +
+      (p.revealedDoomed?.(s, code, revealOrigin) ?? 0),
+    combatBegin: (s) => {
+      h.combatBegin?.(s);
+      p.combatBegin?.(s);
+    },
+    check: (s) => {
+      h.check?.(s);
+      p.check?.(s);
+    },
+    indestructible: (s, u) =>
+      !!h.indestructible?.(s, u) || !!p.indestructible?.(s, u),
+    cannotAttack: (s, character, enemy) =>
+      !!h.cannotAttack?.(s, character, enemy) ||
+      !!p.cannotAttack?.(s, character, enemy),
+    cannotDefend: (s, enemy, defender) =>
+      !!h.cannotDefend?.(s, enemy, defender) ||
+      !!p.cannotDefend?.(s, enemy, defender),
   };
 }
 
