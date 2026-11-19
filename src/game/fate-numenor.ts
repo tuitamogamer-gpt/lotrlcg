@@ -50,11 +50,21 @@ import {
   FATE_RECIPES,
   FATE_UNCHARTED,
 } from "./fate-numenor-support";
+import {
+  DC,
+  dcBackFace,
+  dcIs,
+  dcScenarioFace,
+  isDreamchaserGame,
+} from "./dreamchaser-campaign-support";
+import { dreamchaserFateReady } from "./dreamchaser-campaign";
 import { khazadCannotExhaust } from "./khazad-dum";
 import { watcherWaterCannotExhaust } from "./watcher-water";
 import { unitType } from "./card-types";
 
 const isFate = (s: GameState) => !!s.fateNumenor;
+/** Calphon, on either face (the campaign's Upgraded side is "Campaign Mode only"). */
+const isCalphon = (u: Unit) => dcIs(u, F.calphon);
 const undead = (code: string) =>
   card(code).type_code === "enemy" &&
   /(?:^|\.\s*)Undead\./.test(card(code).traits ?? "");
@@ -266,14 +276,14 @@ export function fateCheck(s: GameState) {
         shuffle(s, q.unchartedDeck);
       }
   }
-  if (!allCharacters(s).some((u) => u.code === F.calphon)) {
+  if (!allCharacters(s).some(isCalphon)) {
     s.status = "lost";
     s.reason = "Calphon has left play. The expedition is lost.";
     s.queue = [];
     s.choice = null;
     return;
   }
-  const guide = allCharacters(s).find((u) => u.code === F.calphon);
+  const guide = allCharacters(s).find(isCalphon);
   if (guide && ownerOf(s, guide) !== firstPlayer(s)) {
     const prior = ownerOf(s, guide);
     forOwner(
@@ -356,17 +366,16 @@ export function fateAbilityLabel(s: GameState, u: Unit) {
   if (!isFate(s) || u.blanked) return null;
   if (u.code === F.lost && s.staging.some((l) => l.id === u.id))
     return "Remove 4 progress · Look at this island";
-  if (u.code === F.calphon && ownerOf(s, u) === activeSeat(s))
-    return "Exhaust · Look at your bottom card";
+  if (isCalphon(u) && ownerOf(s, u) === activeSeat(s))
+    return dcBackFace(u)
+      ? "Exhaust · Look at your bottom 5 cards"
+      : "Exhaust · Look at your bottom card";
   return null;
 }
 export function fateAbilityProblem(s: GameState, u: Unit) {
   if (u.code === F.lost && u.progress < 4)
     return "Looking at Lost Island costs 4 progress.";
-  if (
-    u.code === F.calphon &&
-    (u.exhausted || !seatView(s, ownerOf(s, u)).deck.length)
-  )
+  if (isCalphon(u) && (u.exhausted || !seatView(s, ownerOf(s, u)).deck.length))
     return "Calphon must be ready and your deck must contain a card.";
   return null;
 }
@@ -493,11 +502,20 @@ export function fateEffect(s: GameState, e: Effect) {
   switch (e.kind) {
     case "fateSetup": {
       q.initialized = true;
-      const guide = make(s, F.calphon);
+      // A Dream-chaser campaign uses Calphon's Upgraded side once its
+      // checkboxes are all marked.
+      const guide = make(
+        s,
+        isDreamchaserGame(s)
+          ? dcScenarioFace(s.campaign, DC.calphon)
+          : F.calphon,
+      );
       guide.owner = firstPlayer(s);
       forOwner(s, firstPlayer(s), () => s.allies.push(guide));
       for (let i = 0; i < (playerOrder(s).length >= 3 ? 3 : 2); i++)
         fateAddIsland(s);
+      // The campaign card's setup follows the scenario's.
+      if (isDreamchaserGame(s)) prepend(s, ...dreamchaserFateReady(s, guide));
       break;
     }
     case "fateStageTwo":
@@ -880,6 +898,38 @@ export function fateEffect(s: GameState, e: Effect) {
     case "fateCalphon": {
       const bottom = s.deck.at(-1);
       if (!bottom) break;
+      if (u && dcBackFace(u)) {
+        // Upgraded: "look at the bottom 5 cards of your deck. Then, you may
+        // switch one of them with a card in your hand."
+        const seen = s.deck.slice(-5);
+        choose(
+          s,
+          "Calphon · Your bottom 5 cards",
+          [
+            ...seen.map((code, i) => {
+              const fromBottom = seen.length - 1 - i;
+              return {
+                id: `bottom-${fromBottom}`,
+                label: `Switch ${card(code).name} (${fromBottom ? `${fromBottom + 1} from the bottom` : "bottom card"}) with a card in your hand`,
+                code,
+                effects: [
+                  fx("fateCalphonPick", { code, count: fromBottom, player }),
+                ],
+              };
+            }),
+            {
+              id: "skip",
+              label: "Leave the bottom cards where they are",
+              effects: [],
+            },
+          ],
+          `From the bottom: ${[...seen]
+            .reverse()
+            .map((code) => card(code).name)
+            .join(", ")}.`,
+        );
+        break;
+      }
       choose(s, "Calphon · Bottom card", [
         ...s.hand.map((h) => ({
           id: h.id,
@@ -894,6 +944,47 @@ export function fateEffect(s: GameState, e: Effect) {
           effects: [],
         },
       ]);
+      break;
+    }
+    case "fateCalphonPick": {
+      const at = s.deck.length - 1 - (e.count ?? 0);
+      if (s.deck[at] !== e.code || !s.hand.length) break;
+      choose(s, `Calphon · Switch ${card(e.code!).name} with`, [
+        ...s.hand.map((h) => ({
+          id: h.id,
+          label: `Switch ${card(e.code!).name} with ${name(h)}`,
+          code: h.code,
+          effects: [
+            fx("fateCalphonSwap", {
+              target: h.id,
+              code: e.code,
+              count: e.count,
+              player,
+            }),
+          ],
+        })),
+        {
+          id: "skip",
+          label: `Leave ${card(e.code!).name} in your deck`,
+          code: e.code,
+          effects: [],
+        },
+      ]);
+      break;
+    }
+    case "fateCalphonSwap": {
+      const at = s.deck.length - 1 - (e.count ?? 0);
+      if (u && s.hand.some((h) => h.id === u.id) && s.deck[at] === e.code) {
+        const taken = takePlayerDeck(s, at);
+        s.hand = s.hand.filter((h) => h.id !== u.id);
+        putPlayerDeck(s, u, at);
+        s.hand.push(taken);
+        log(
+          s,
+          `Calphon switches a card in hand with ${card(e.code!).name} from the bottom of the deck.`,
+          "good",
+        );
+      }
       break;
     }
     case "fateCalphonSwitch":

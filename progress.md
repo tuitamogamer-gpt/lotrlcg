@@ -1313,3 +1313,16 @@ Validation on Node 22: the engine suite passes all 6,789 tests, including 26 for
 Coverage is now 861 player definitions (112 heroes), 2,172 encounters and 123 scenarios. This resolves 3,412 of 4,183 identities and 270 of 355 recipes; 771 identities remain pending.
 
 Validation on Node 22: the engine suite passes all 6,799 tests, including 10 for the Dream-chaser campaign; the Dream-chaser browser suite passes 9 checkpoints at 1280, 390 and 320 pixels, from the lobby's Hard Mode through Voyage Across Belegaer's resolution, and checks the 27 pinned faces; the Angmar browser suite still passes its 75 checkpoints; the production build passes.
+
+2026-11-19 The Dream-chaser campaign, The Fate of Númenor: continued the user's “Nastavi dok ne završis sve” after 6b02214. The campaign's second chapter is supported, and the interlude's XP panel now leads into it. See docs/DREAMCHASER-CAMPAIGN.md.
+
+- The Fate of Númenor's campaign card, the expansion's Calphon (with his Upgraded "Campaign Mode only" side), Spyglass (both sides) and Revenant are registered from the print-and-play texts (32 entries, 34 faces pinned).
+- Setup, after the scenario's: Spyglass is attached to Calphon, Revenant and the pooled Ominous Fate are shuffled into the encounter deck, and each player in turn order may deal 1 damage to each of their characters to reduce their threat by 1 per character (the Hard/Expert Mode limits apply).
+- Calphon takes his Upgraded side (2/1/2/4) once both checkboxes are marked: his Action looks at the bottom 5 cards and may switch one with a hand card in its place. He still follows the first player and losing him loses the game; the Fate module now recognises him on either face.
+- Spyglass, exhausted by Calphon's controller: look at a facedown shadow card, the top and bottom card of your deck, or place 1 progress on a location (2 on an Uncharted Lost Island); the Upgraded side may discard the shadow card, looks at any player deck or the encounter deck and places 4 on an Uncharted location. Calphon's table controls list it beside his own Action.
+- Revenant: immune to player card effects, +2 attack and +2 defense per resource on the campaign card, 3 or more damage becomes 2, and when destroyed it is shuffled back into the encounter deck and places a resource on the campaign card (shown in the quest inspector).
+- The resolution counts the surviving players, Lush Jungle and Drowned Graves in the victory display, the campaign card's resources (at most 3), threat at 40 or less and Ominous Fate; Raid on the Grey Havens is not available in campaign mode yet.
+
+Coverage is now 861 player definitions (112 heroes), 2,178 encounters and 123 scenarios. This resolves 3,416 of 4,183 identities and 270 of 355 recipes; 767 identities remain pending.
+
+Validation on Node 22: the engine suite passes all 6,804 tests, including 15 for the Dream-chaser campaign; the Dream-chaser browser suite passes 18 checkpoints at 1280, 390 and 320 pixels, through the interlude's XP and The Fate of Númenor's resolution, and checks the 34 pinned faces; the production build passes.

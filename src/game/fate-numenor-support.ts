@@ -2,6 +2,7 @@ import encounters from "../data/fate-numenor-encounter-cards.json";
 import quests from "../data/fate-numenor-quest-cards.json";
 import recipes from "../data/fate-numenor-recipes.json";
 import type { Card, GameState, Phase, Unit } from "./types";
+import { dcIs } from "./dreamchaser-campaign-support";
 
 export const FATE_ENCOUNTERS = encounters as Card[];
 export const FATE_QUESTS = quests as Card[];
@@ -121,7 +122,7 @@ export function validateFateNumenor(
     (!q.initialized ||
       s.status === "lost" ||
       [...s.allies, ...(s.table?.seats.flatMap((p) => p.allies) ?? [])].some(
-        (u) => u.code === FATE.calphon,
+        (u) => dcIs(u, FATE.calphon),
       )) &&
     (s.stage !== 2 || q.setAside.length === 0 || !!s.stageRevealing)
   );

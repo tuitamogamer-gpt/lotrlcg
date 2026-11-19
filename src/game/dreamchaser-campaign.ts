@@ -1,7 +1,13 @@
 // The Dream-chaser campaign (its Campaign Expansion): the Campaign Log with
 // its XP and checkboxes, the Campaign Pool, Hard and Expert Mode, the fleet's
 // Modification boons and each scenario's campaign card.
-import type { CampaignState, Effect, GameState, ScenarioId } from "./types";
+import type {
+  CampaignState,
+  Effect,
+  GameState,
+  ScenarioId,
+  Unit,
+} from "./types";
 import { card, name } from "./cards";
 import { choose, fx, get, log, shuffle } from "./core";
 import {
@@ -16,6 +22,7 @@ import {
   seatView,
 } from "./table";
 import { raiseThreat } from "./board";
+import { reduceThreat } from "./threat-reduction";
 import { score } from "./actions";
 import { dreamchaserCardEffect } from "./dreamchaser-campaign-cards";
 import { isShipEnemy } from "./ships";
@@ -34,6 +41,7 @@ import {
   isFleetShip,
 } from "./dreamchaser-campaign-support";
 import { VOYAGE, VOYAGE_STAGE_TWO } from "./voyage-belegaer-support";
+import { FATE } from "./fate-numenor-support";
 
 export {
   DREAMCHASER_CAMPAIGN_CARDS,
@@ -45,6 +53,13 @@ export {
 /** The chapters supported in campaign mode so far. */
 export const DREAMCHASER_CAMPAIGN_SUPPORTED: readonly ScenarioId[] = [
   "voyage-across-belegaer",
+  "the-fate-of-numenor",
+];
+/** The chapters whose campaign card shuffles Revenant into the encounter deck. */
+const REVENANT_CHAPTERS: readonly ScenarioId[] = [
+  "the-fate-of-numenor",
+  "temple-of-the-deceived",
+  "the-drowned-ruins",
 ];
 /** The campaign's sailing chapters: their setups prepare the fleet. */
 const FLEET_CHAPTERS: readonly ScenarioId[] = [
@@ -197,6 +212,9 @@ export function dreamchaserCampaignSetup(s: GameState) {
   const pool: string[] = c!.burdens.filter((code) => code === DC.ominous);
   // Voyage Across Belegaer: "Shuffle Ominous Fate and Thunderstruck into the
   // encounter deck. Shuffle Crowley into the Corsair deck."
+  // The Fate of Númenor (and later chapters): "Shuffle Revenant into the
+  // encounter deck."
+  if (REVENANT_CHAPTERS.includes(s.scenarioId)) pool.push(DC.revenant);
   if (s.scenarioId === "voyage-across-belegaer") {
     if (!pool.includes(DC.ominous)) pool.push(DC.ominous);
     pool.push(DC.thunderstruck);
@@ -252,6 +270,26 @@ export function dreamchaserFleetReady(s: GameState): Effect[] {
 const fleetShips = (s: GameState, p: number) =>
   seatView(s, p).allies.filter((u) => isFleetShip(u.code));
 
+/**
+ * "For each character in play, its controller may deal 1 damage to it to
+ * reduce their threat by 1" (The Fate of Númenor, Temple of the Deceived and
+ * The Drowned Ruins): one offer for each player, in turn order.
+ */
+export const dreamchaserWoundOffers = (s: GameState): Effect[] =>
+  playerOrder(s).map((player) => fx("dcWound", { player }));
+/**
+ * The Fate of Númenor's campaign card, once the scenario's setup put Calphon
+ * into play: "Attach Spyglass to Calphon. … For each character in play, its
+ * controller may deal 1 damage to it to reduce their threat by 1."
+ */
+export function dreamchaserFateReady(s: GameState, calphon: Unit): Effect[] {
+  if (!isDreamchaserCampaign(s.campaign)) return [];
+  const code = dcFace(s.campaign, DC.spyglass);
+  calphon.attachments.push({ id: `a${s.nextId++}`, code, exhausted: false });
+  log(s, `${card(code).name} is attached to ${name(calphon)}.`, "good");
+  return dreamchaserWoundOffers(s);
+}
+
 // --------------------------------------------------------------- resolution
 
 /** One bullet of the campaign card's XP list, as resolved at the end of the game. */
@@ -304,6 +342,24 @@ export function dreamchaserXpLines(s: GameState): XpLine[] {
       },
     );
   }
+  if (s.scenarioId === "the-fate-of-numenor")
+    lines.push(
+      {
+        label:
+          "1 XP for each Lush Jungle and Drowned Graves in the victory display",
+        xp: inVictory(s, FATE.jungle) + inVictory(s, FATE.graves),
+      },
+      {
+        label: "1 XP for each resource on this card (to a maximum of 3 XP)",
+        xp: Math.min(3, s.dreamchaser?.resources ?? 0),
+      },
+      {
+        label: "1 XP if each surviving player's threat is 40 or less",
+        xp: globalLivingSeats(s).every((p) => seatView(s, p).threat <= 40)
+          ? 1
+          : 0,
+      },
+    );
   lines.push({
     label: "–1 XP if Ominous Fate is in the victory display",
     xp: inVictory(s, DC.ominous) ? -1 : 0,
@@ -467,6 +523,48 @@ export function dreamchaserCampaignEffect(s: GameState, e: Effect): boolean {
         raiseThreat(s, e.value ?? 0, "encounter"),
       );
       return true;
+    case "dcWound": {
+      const p = e.player ?? firstPlayer(s);
+      const done = (e.text ?? "").split(",").filter(Boolean);
+      const view = seatView(s, p);
+      const chars = [...view.heroes, ...view.allies].filter(
+        (u) =>
+          !done.includes(u.id) &&
+          ["hero", "ally", "objective-ally"].includes(card(u.code).type_code),
+      );
+      if (!chars.length || !view.threat) return true;
+      const campaignCard = card(DREAMCHASER_CAMPAIGN_CARDS[s.scenarioId]!);
+      forOwner(s, p, () =>
+        choose(
+          s,
+          `${campaignCard.name} · ${several(s) ? `${seatName(s, p)}: deal` : "Deal"} 1 damage to a character to reduce your threat by 1?`,
+          [
+            ...chars.map((u) => {
+              const health = card(u.code).health ?? 0;
+              const lethal = health > 0 && u.damage + 1 >= health;
+              return {
+                id: u.id,
+                code: u.code,
+                label: `Deal 1 damage to ${name(u)}${lethal ? " (it is destroyed)" : ""}; threat −1`,
+                effects: [
+                  fx("damage", { target: u.id, value: 1, player: p }),
+                  fx("dcThreatDown", { value: 1, player: p }),
+                  fx("dcWound", { player: p, text: [...done, u.id].join(",") }),
+                ],
+              };
+            }),
+            { id: "skip", label: "Done", effects: [] },
+          ],
+          "For each character in play, its controller may deal 1 damage to it to reduce their threat by 1.",
+        ),
+      );
+      return true;
+    }
+    case "dcThreatDown":
+      forOwner(s, e.player ?? activeSeat(s), () =>
+        reduceThreat(s, e.value ?? 0, undefined, "quest-card"),
+      );
+      return true;
     default:
       return dreamchaserCardEffect(s, e);
   }
@@ -497,6 +595,12 @@ export function dreamchaserCampaignStatus(s: GameState): string[] {
     out.push(
       "Expert Mode: threat cannot be reduced, drawing cards raises threat by that number, and a character healed or readied by a player card effect raises its controller's threat by 1 (2 XP if you win).",
     );
+  if (REVENANT_CHAPTERS.includes(s.scenarioId)) {
+    const n = s.dreamchaser?.resources ?? 0;
+    out.push(
+      `Resources on the campaign card: ${n}. Revenant is shuffled into the encounter deck; it gets +${2 * n} attack and +${2 * n} defense, takes at most 2 damage at a time, and returns to the encounter deck when destroyed, placing 1 resource here.`,
+    );
+  }
   if (
     c.burdens.includes(DC.ominous) ||
     s.scenarioId === "voyage-across-belegaer"

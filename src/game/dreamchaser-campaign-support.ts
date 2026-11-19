@@ -301,6 +301,19 @@ export function dcFace(
   return isDreamchaserCampaign(c) && dcUpgraded(c, key) ? backFace(code) : code;
 }
 
+/**
+ * The code a reprinted scenario card takes in this game: its Upgraded or
+ * "Campaign Mode only" side once all of its checkboxes are marked (in a
+ * Dream-chaser campaign), otherwise the original card.
+ */
+export const dcScenarioFace = (
+  c: CampaignState | null | undefined,
+  reprint: string,
+) => (dcUpgraded(c, reprint) ? backFace(reprint) : DC_ORIGINAL[reprint]);
+/** Is this location Uncharted (a Lost Island, faceup)? */
+export const isUncharted = (text?: string | null) =>
+  /(^|\n)Uncharted\./.test(text ?? "");
+
 /** The fleet's six ships: the four original Grey Havens ships and the expansion's two. */
 export const FLEET: readonly { id: string; code: string; key: string }[] = [
   { id: "dream", code: DC_ORIGINAL[DC.dream], key: DC.dream },

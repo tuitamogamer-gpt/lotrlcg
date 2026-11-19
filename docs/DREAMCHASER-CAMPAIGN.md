@@ -5,9 +5,10 @@ cycle, with the Dream-chaser Campaign Expansion's campaign cards, boons,
 burdens, Upgraded faces and its new rules: experience (XP), scalable and
 upgradable cards, a fleet of six ships and the Hard/Expert Mode card. The
 lobby's campaign mode offers it as the fourth campaign, for one fellowship of
-one to four local players. Its first chapter, Voyage Across Belegaer, is
-supported; the Campaign Log is kept after it, and the end of the game says that
-the next chapter, The Fate of Númenor, is not available in campaign mode yet.
+one to four local players. Its first two chapters, Voyage Across Belegaer and
+The Fate of Númenor, are supported; the Campaign Log is kept after them, and the
+end of the game says that the next chapter, Raid on the Grey Havens, is not
+available in campaign mode yet.
 
 ## Sources
 
@@ -91,14 +92,25 @@ the next chapter, The Fate of Númenor, is not available in campaign mode yet.
 | Crowley (burden enemy, in the Corsair deck) | +1 threat, attack, defense and hit points for each resource on him; a resource each time he engages; he returns to the staging area at the end of the combat phase; with 3 or more resources he goes to the victory display for 3 points (otherwise to the Corsair discard pile).                                                                                                                                                                      |
 | A Modification boon leaving play            | It is removed from the game.                                                                                                                                                                                                                                                                                                                                                                                                                           |
 
+## The Fate of Númenor (Part 2)
+
+The rulebook's campaign setup adds Spyglass, Revenant and every card in the
+Campaign Pool (Ominous Fate, its X now 2).
+
+| Card                                                   | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Campaign card                                          | Setup, after the scenario's (once Calphon is in play): Spyglass is attached to Calphon, Revenant and Ominous Fate are shuffled into the encounter deck, and each player in turn order may deal 1 damage to any of their characters (each once) to reduce their threat by 1 per character (the Hard/Expert Mode limits still apply). Resolution: the XP of 1 per surviving player, 1 per Lush Jungle and Drowned Graves in the victory display, 1 per resource on the campaign card (at most 3), 1 if each surviving player's threat is 40 or less, −1 for Ominous Fate in the victory display (and the Hard/Expert Mode card). |
+| Calphon (Upgraded, "Campaign Mode only", 2 checkboxes) | 2 willpower, 1 attack, 2 defense, 4 hit points; his Action looks at the bottom 5 cards of his controller's deck and may switch one of them with a card in hand (the hand card takes its place). He still follows the first player, and the game is lost if he leaves play.                                                                                                                                                                                                                                                                                                                                                     |
+| Spyglass (boon attachment on Calphon)                  | Action, exhausting it, for Calphon's controller: look at a facedown shadow card (a private dialog; it stays facedown), look at the top and bottom card of your deck, or place 1 progress on a location (2 on an Uncharted Lost Island). Upgraded (3 checkboxes): the shadow card may be discarded, any player deck or the encounter deck may be looked at, and an Uncharted location takes 4 progress. Leaving play, it is removed from the game.                                                                                                                                                                              |
+| Revenant (burden enemy)                                | Immune to player card effects; +2 attack and +2 defense for each resource on the campaign card; 3 or more damage placed on it becomes 2; destroyed, it is shuffled back into the encounter deck and 1 resource is placed on the campaign card (the quest inspector's campaign card shows the count).                                                                                                                                                                                                                                                                                                                           |
+
 ## Not supported yet
 
-The Fate of Númenor through The City of Corsairs follow, with their boons and
-burdens (Spyglass, Revenant, Calphon's Upgraded side, Black Key, Galdor's
-Counsel, Graxar, Parrying Cutlass and Throwing Axe, Calaerion, Come Together,
-Sea Serpent, Starla, Recurring Nightmare, Command, Círdan's Blessing, Gavin,
-Send for Help and The Black Sword) and the "Campaign Mode only" sides of their
-scenario cards.
+Raid on the Grey Havens through The City of Corsairs follow, with their boons
+and burdens (Black Key, Galdor's Counsel, Graxar, Parrying Cutlass and Throwing
+Axe, Calaerion, Come Together, Sea Serpent, Starla, Recurring Nightmare,
+Command, Círdan's Blessing, Gavin, Send for Help and The Black Sword) and the
+"Campaign Mode only" sides of their scenario cards.
 
 ## Verification
 
@@ -108,7 +120,7 @@ npm run build
 npm run test:browser-dreamchaser-campaign
 ```
 
-`tests/dreamchaser-campaign.test.ts` (10 tests) covers the registered cards'
+`tests/dreamchaser-campaign.test.ts` (15 tests) covers the registered cards'
 texts and faces, the Campaign Log's checkboxes, the chapter order and the
 Na'asiyah rule; Voyage Across Belegaer's fleet of six ships, the Modification
 choices and the damage-for-resource offer; Upgraded ships and Modifications
@@ -118,8 +130,16 @@ archery, damage limit and shadow; Crowley's engagement, return and victory;
 Duskbringer and Glórinaith; the Upgraded Modification boons' Responses and
 their removal from the game; Hard and Expert Mode; the resolution's XP, the
 pooled Ominous Fate, spending XP and its checks, saves, and a two-player
-fleet. The browser suite starts a new Dream-chaser campaign through the lobby
-on Hard Mode, prepares the fleet with two Modification boons, opens the
-campaign card's state in the quest inspector, records the resolution and
-checks the journal's XP at 1280, 390 and 320 pixels (9 checkpoints), and
-checks the 27 pinned faces.
+fleet; The Fate of Númenor's cards, its setup (Spyglass on Calphon, Revenant
+and Ominous Fate shuffled in, the damage-for-threat offers), the Upgraded
+Calphon's bottom-5 switch and his loss condition, Spyglass's three choices on
+both sides through the table's ability controls, Revenant's immunity,
+bonuses, damage limit and return with a resource, and the resolution's XP
+lines before the next chapter is refused. The browser suite starts a new
+Dream-chaser campaign through the lobby on Hard Mode, prepares the fleet with
+two Modification boons, opens the campaign card's state in the quest
+inspector and records the resolution; the interlude spends 2 XP on Calphon's
+checkboxes, The Fate of Númenor begins with the Upgraded Calphon, Spyglass and
+Revenant and one hero's damage for threat, Spyglass places 2 progress on a
+Lost Island through its button, and the second resolution is recorded, at
+1280, 390 and 320 pixels (18 checkpoints); it checks the 34 pinned faces.

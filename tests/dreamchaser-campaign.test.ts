@@ -3,11 +3,17 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { card, STARTERS } from "../src/game/cards";
-import { damage, readyCharacter, win } from "../src/game/board";
+import {
+  damage,
+  discardCharacter,
+  readyCharacter,
+  win,
+} from "../src/game/board";
 import { flush } from "../src/game/effects";
 import { make, stats, threatOf } from "../src/game/core";
 import {
   applyAction,
+  availableAbilities,
   createGame,
   restoreSave,
   validateSave,
@@ -21,6 +27,7 @@ import {
   DREAMCHASER_CAMPAIGN_ORDER,
   DREAMCHASER_LOG,
   backFace,
+  dcIs,
   dreamchaserFleet,
 } from "../src/game/dreamchaser-campaign-support";
 import {
@@ -35,12 +42,17 @@ import {
 import {
   dreamchaserAbility,
   dreamchaserAbilityProblem,
+  dreamchaserAttachmentProblem,
+  dreamchaserDamageAmount,
   dreamchaserArchery,
   dreamchaserCampaignEncounter,
   dreamchaserCannotCancel,
   dreamchaserSailingWeight,
 } from "../src/game/dreamchaser-campaign-cards";
 import { VOYAGE } from "../src/game/voyage-belegaer-support";
+import { FATE } from "../src/game/fate-numenor-support";
+import { fateAbility, fateAbilityLabel } from "../src/game/fate-numenor";
+import { playerCardImmune } from "../src/game/card-immunity";
 import { seatView } from "../src/game/table";
 import type { CampaignState, GameState, Unit } from "../src/game/types";
 import art from "./dreamchaser-campaign-art.json";
@@ -102,7 +114,10 @@ function engage(s: GameState, code: string) {
 
 test("The Dream-chaser campaign: Voyage Across Belegaer's campaign card and the fleet, Modification and burden cards are registered with the print-and-play texts, every face is pinned, and the Campaign Log lists its checkboxes", () => {
   assert.equal(DREAMCHASER_CAMPAIGN_ORDER.length, 9);
-  assert.deepEqual(DREAMCHASER_CAMPAIGN_SUPPORTED, ["voyage-across-belegaer"]);
+  assert.deepEqual(DREAMCHASER_CAMPAIGN_SUPPORTED, [
+    "voyage-across-belegaer",
+    "the-fate-of-numenor",
+  ]);
   const campaignCard = card(
     DREAMCHASER_CAMPAIGN_CARDS["voyage-across-belegaer"]!,
   );
@@ -464,22 +479,22 @@ test("The resolution: Ominous Fate joins the Campaign Pool, the campaign card's 
     () => spendDreamchaserXp(spent, { [DC.armor]: 1 }),
     /stay marked/,
   );
-  // The next chapter waits for its campaign card.
-  assert.throws(
-    () =>
-      continueCampaign(
-        s,
-        HEROES,
-        d.id,
-        true,
-        9,
-        undefined,
-        undefined,
-        undefined,
-        { marks: { [DC.armor]: 2 } },
-      ),
-    /not available in campaign mode yet/,
+  // The next chapter, The Fate of Númenor, begins with the marked checkboxes.
+  const next = continueCampaign(
+    s,
+    HEROES,
+    d.id,
+    true,
+    9,
+    undefined,
+    undefined,
+    undefined,
+    { marks: { [DC.armor]: 2 } },
   );
+  assert.equal(next.scenarioId, "the-fate-of-numenor");
+  assert.equal(next.campaign!.marks![DC.armor], 2);
+  assert.equal(next.campaign!.xp, total - 2);
+  assert.ok(valid(next));
   // Two players prepare a fleet of two ships.
   const seats = [
     { heroes: HEROES.slice(0, 2), deckId: STARTERS[1].id },
@@ -637,4 +652,354 @@ test("Thunderstruck's shadow, Crowley's engagement and return, Duskbringer's res
       !leaving.encounterDiscard.includes(backFace(DC.armor)),
   );
   assert.ok(valid(leaving));
+});
+
+// ------------------------------------------------- The Fate of Númenor (Part 2)
+
+/** A Dream-chaser campaign after Voyage Across Belegaer. */
+function afterVoyage(marks: Record<string, number> = {}): CampaignState {
+  return {
+    ...newDreamchaserCampaign([...HEROES]),
+    burdens: [DC.ominous],
+    completed: [
+      { scenarioId: "voyage-across-belegaer", score: 12, rounds: 6, xp: 4 },
+    ],
+    xp: 1,
+    marks,
+  };
+}
+const fate = (
+  campaign = afterVoyage(),
+  extra: { dreamchaserMode?: "hard" | "expert" } = {},
+) =>
+  createGame(5, d.cards, HEROES, d.id, {
+    scenarioId: "the-fate-of-numenor",
+    playMode: "campaign",
+    campaign,
+    ...extra,
+  });
+const calphonOf = (s: GameState) =>
+  s.allies.find((u) => dcIs(u, FATE.calphon))!;
+const wounding = (s: GameState) =>
+  /Deal 1 damage to a character to reduce your threat by 1/.test(
+    s.choice?.title ?? "",
+  );
+
+test("The Fate of Númenor: its campaign card, Calphon's Upgraded side, Spyglass and Revenant are registered with the print-and-play texts", () => {
+  const campaignCard = card(DC.fateCard);
+  assert.equal(campaignCard.subtitle, "Dream-chaser Part 2");
+  assert.equal(
+    campaignCard.text,
+    "You are playing Campaign Mode.\nSetup: Attach Spyglass to Calphon. Shuffle Revenant into the encounter deck. For each character in play, its controller may deal 1 damage to it to reduce their threat by 1.",
+  );
+  assert.match(
+    campaignCard.back_text!,
+    /• 1 XP for each Lush Jungle and Drowned Graves in the victory display\.\n• 1 XP for each resource on this card \(to a maximum of 3 XP\)\.\n• 1 XP if each surviving player's threat is 40 or less\./,
+  );
+  const calphon = card(backFace(DC.calphon));
+  assert.deepEqual(
+    [calphon.willpower, calphon.attack, calphon.defense, calphon.health],
+    [2, 1, 2, 4],
+  );
+  assert.equal(calphon.upgrade_xp, 2);
+  assert.match(calphon.text!, /^Campaign Mode only\./);
+  assert.match(calphon.text!, /look at the bottom 5 cards of your deck/);
+  // The reprint's front is the original Calphon.
+  for (const stat of ["willpower", "attack", "defense", "health"] as const)
+    assert.equal(card(DC.calphon)[stat], card(FATE.calphon)[stat]);
+  assert.equal(card(DC.calphon).name, card(FATE.calphon).name);
+  const spyglass = card(DC.spyglass);
+  assert.equal(spyglass.sphere_code, "boon");
+  assert.match(spyglass.text!, /\(2 progress instead if it is Uncharted\)\.$/);
+  assert.equal(card(backFace(DC.spyglass)).upgrade_xp, 3);
+  assert.match(
+    card(backFace(DC.spyglass)).text!,
+    /You may discard it\.\n• Look at the top and bottom card of any deck\.\n• Place 1 progress on a location \(4 progress instead if it is Uncharted\)\.$/,
+  );
+  const revenant = card(DC.revenant);
+  assert.equal(revenant.sphere_code, "burden");
+  assert.deepEqual(
+    [
+      revenant.engagement,
+      revenant.threat,
+      revenant.attack,
+      revenant.defense,
+      revenant.health,
+    ],
+    [43, 3, 3, 3, 3],
+  );
+  assert.ok(revenant.is_unique);
+  for (const [code, face] of [
+    [DC.fateCard, "front"],
+    [DC.fateCard, "back"],
+    [DC.calphon, "front"],
+    [DC.calphon, "back"],
+    [DC.spyglass, "front"],
+    [DC.spyglass, "back"],
+    [DC.revenant, "front"],
+  ])
+    assert.ok(
+      art.some(
+        (a: { code: string; face: string }) =>
+          a.code === code && a.face === face,
+      ),
+      `${code} (${face}) is pinned`,
+    );
+});
+
+test("The Fate of Númenor's setup: Spyglass is attached to Calphon, Revenant and Ominous Fate are shuffled in, each character may take 1 damage to reduce its controller's threat by 1, and Calphon takes his Upgraded side once both checkboxes are marked", () => {
+  // Skip the offers: Calphon carries Spyglass, the burdens join the deck.
+  const plain = calm(reload(opening(fate())));
+  const guide = calphonOf(plain);
+  assert.equal(guide.code, FATE.calphon);
+  assert.deepEqual(
+    guide.attachments.map((a) => a.code),
+    [DC.spyglass],
+  );
+  assert.ok(plain.encounterDeck.includes(DC.revenant));
+  assert.ok(plain.encounterDeck.includes(DC.ominous));
+  assert.ok(
+    dreamchaserCampaignStatus(plain).some((l) =>
+      /^Resources on the campaign card: 0\. Revenant/.test(l),
+    ),
+  );
+  assert.ok(valid(plain));
+  // Two characters take 1 damage each: the threat drops by 2.
+  let s = fate();
+  let start = -1;
+  const wounded: string[] = [];
+  s = opening(s, (t) => {
+    if (!wounding(t)) return undefined;
+    if (start < 0) start = t.threat;
+    const pick = t.choice!.options.find(
+      (o) => o.id !== "skip" && t.heroes.some((h) => h.id === o.id),
+    );
+    if (!pick || wounded.length >= 2) return "skip";
+    wounded.push(pick.id);
+    return pick.id;
+  });
+  assert.equal(wounded.length, 2);
+  assert.equal(s.threat, start - 2);
+  for (const id of wounded)
+    assert.equal(s.heroes.find((h) => h.id === id)!.damage, 1);
+  // Upgraded Calphon (2 checkboxes) and Spyglass (3 checkboxes).
+  const up = calm(
+    reload(opening(fate(afterVoyage({ [DC.calphon]: 2, [DC.spyglass]: 3 })))),
+  );
+  const upgraded = calphonOf(up);
+  assert.equal(upgraded.code, backFace(DC.calphon));
+  assert.equal(stats(up, upgraded).will, 2);
+  assert.equal(stats(up, upgraded).health, 4);
+  assert.equal(upgraded.attachments[0].code, backFace(DC.spyglass));
+  assert.equal(
+    fateAbilityLabel(up, upgraded),
+    "Exhaust · Look at your bottom 5 cards",
+  );
+  // "Look at the bottom 5 cards … switch one of them with a card in your hand."
+  up.deck = ["01050", "01073", "01051", "01052", "01053", "01054"];
+  const h = make(up, "01055");
+  up.hand = [h];
+  assert.ok(fateAbility(up, upgraded));
+  flush(up);
+  let t = choose(up, "bottom-3");
+  t = choose(t, h.id);
+  assert.deepEqual(t.deck, [
+    "01050",
+    "01073",
+    "01055",
+    "01052",
+    "01053",
+    "01054",
+  ]);
+  assert.deepEqual(
+    t.hand.map((x) => x.code),
+    ["01051"],
+  );
+  assert.ok(calphonOf(t).exhausted);
+  assert.ok(valid(t));
+  // Losing the Upgraded Calphon still loses the game.
+  const lose = calm(reload(up));
+  discardCharacter(lose, calphonOf(lose));
+  assert.equal(lose.status, "lost");
+  assert.match(lose.reason, /Calphon/);
+});
+
+test("Spyglass: exhaust to look at a facedown shadow card, the top and bottom card of your deck, or place progress (2 on an Uncharted Lost Island); its Upgraded side discards the shadow, looks at any deck and places 4", () => {
+  let s = calm(reload(opening(fate())));
+  const guide = calphonOf(s);
+  const spy = guide.attachments[0];
+  assert.equal(dreamchaserAttachmentProblem(s, guide, spy.id), null);
+  // Calphon's table controls offer both his Action and Spyglass's.
+  assert.deepEqual(
+    availableAbilities(s, guide).map((a) => [a.id, a.disabled]),
+    [
+      [undefined, false],
+      [spy.id, false],
+    ],
+  );
+  // Progress on a Lost Island (Uncharted): 2.
+  s = applyAction(reload(s), {
+    type: "ABILITY",
+    id: guide.id,
+    attachmentId: spy.id,
+  });
+  assert.equal(s.choice!.title, "Spyglass · Choose one");
+  assert.deepEqual(
+    s.choice!.options.map((o) => o.id),
+    ["deck", "progress"],
+  );
+  s = choose(s, "progress");
+  const island = s.staging.find((u) => u.code === FATE.lost)!;
+  s = choose(s, island.id);
+  assert.equal(s.staging.find((u) => u.id === island.id)!.progress, 2);
+  assert.ok(calphonOf(s).attachments[0].exhausted);
+  assert.match(
+    dreamchaserAttachmentProblem(s, calphonOf(s), spy.id)!,
+    /exhausted/,
+  );
+  // The top and bottom card of your deck.
+  let look = calm(reload(opening(fate())));
+  look.deck = ["01050", "01073", "01051"];
+  look = applyAction(reload(look), {
+    type: "ABILITY",
+    id: calphonOf(look).id,
+    attachmentId: calphonOf(look).attachments[0].id,
+  });
+  look = choose(look, "deck");
+  assert.deepEqual(
+    look.choice!.options.map((o) => o.code),
+    ["01050", "01051"],
+  );
+  look = choose(look, "top");
+  assert.deepEqual(look.deck, ["01050", "01073", "01051"]);
+  // A facedown shadow card.
+  let shade = calm(reload(opening(fate())));
+  const enemy = engage(shade, FATE.drowned);
+  enemy.shadows = [FATE.fog];
+  shade = applyAction(reload(shade), {
+    type: "ABILITY",
+    id: calphonOf(shade).id,
+    attachmentId: calphonOf(shade).attachments[0].id,
+  });
+  assert.deepEqual(
+    shade.choice!.options.map((o) => o.id),
+    ["shadow", "deck", "progress"],
+  );
+  shade = choose(shade, "shadow");
+  shade = choose(shade, `${enemy.id}:0`);
+  assert.equal(shade.choice!.title, "Spyglass · The shadow card");
+  assert.deepEqual(
+    shade.choice!.options.map((o) => o.id),
+    ["continue"],
+  );
+  shade = choose(shade, "continue");
+  assert.deepEqual(shade.engaged.find((u) => u.id === enemy.id)!.shadows, [
+    FATE.fog,
+  ]);
+  // Upgraded: discard the shadow, look at the encounter deck, 4 progress.
+  const marks = { [DC.spyglass]: 3 };
+  let up = calm(reload(opening(fate(afterVoyage(marks)))));
+  const foe = engage(up, FATE.drowned);
+  foe.shadows = [FATE.fog];
+  const use = (x: GameState) =>
+    applyAction(reload(x), {
+      type: "ABILITY",
+      id: calphonOf(x).id,
+      attachmentId: calphonOf(x).attachments[0].id,
+    });
+  let a = choose(use(up), "shadow");
+  a = choose(a, `${foe.id}:0`);
+  a = choose(a, "discard");
+  assert.deepEqual(a.engaged.find((u) => u.id === foe.id)!.shadows, []);
+  assert.ok(a.encounterDiscard.includes(FATE.fog));
+  let b = choose(use(up), "deck");
+  assert.deepEqual(
+    b.choice!.options.map((o) => o.id),
+    ["player:0", "encounter"],
+  );
+  b = choose(b, "encounter");
+  assert.equal(b.choice!.options[0].code, up.encounterDeck[0]);
+  assert.equal(b.choice!.options.at(-1)!.code, up.encounterDeck.at(-1));
+  let c = choose(use(up), "progress");
+  const lostIsland = c.staging.find((u) => u.code === FATE.lost)!;
+  c = choose(c, lostIsland.id);
+  assert.equal(c.staging.find((u) => u.id === lostIsland.id)!.progress, 4);
+  assert.ok(valid(a) && valid(b) && valid(c));
+});
+
+test("Revenant: immune to player card effects, +2 attack and +2 defense for each resource on the campaign card, at most 2 damage at a time, and shuffled back into the encounter deck with a resource on the campaign card when destroyed", () => {
+  const s = calm(reload(opening(fate())));
+  const revenant = engage(s, DC.revenant);
+  assert.ok(playerCardImmune(revenant));
+  assert.equal(stats(s, revenant).attack, 3);
+  assert.equal(dreamchaserDamageAmount(s, revenant, 5), 2);
+  assert.equal(dreamchaserDamageAmount(s, revenant, 2), 2);
+  assert.equal(dreamchaserDamageAmount(s, revenant, 1), 1);
+  damage(s, revenant.id, 6);
+  assert.equal(revenant.damage, 2);
+  damage(s, revenant.id, 1);
+  flush(s);
+  assert.ok(!s.engaged.some((u) => u.id === revenant.id));
+  assert.ok(s.encounterDeck.includes(DC.revenant));
+  assert.ok(!s.encounterDiscard.includes(DC.revenant));
+  assert.equal(s.dreamchaser!.resources, 1);
+  const again = engage(s, DC.revenant);
+  assert.equal(stats(s, again).attack, 5);
+  assert.equal(stats(s, again).defense, 5);
+  assert.ok(
+    dreamchaserCampaignStatus(s).some((l) =>
+      /^Resources on the campaign card: 1\. .*\+2 attack and \+2 defense/.test(
+        l,
+      ),
+    ),
+  );
+  assert.ok(valid(s));
+});
+
+test("The Fate of Númenor's resolution: Lush Jungle and Drowned Graves in the victory display, resources on the campaign card (at most 3) and every surviving threat at 40 or less give XP; the next chapter is not available yet", () => {
+  const s = calm(
+    reload(opening(fate(afterVoyage(), { dreamchaserMode: "hard" }))),
+  );
+  s.victoryCards = [
+    ...(s.victoryCards ?? []),
+    FATE.jungle,
+    FATE.graves,
+    FATE.jungle,
+  ];
+  s.dreamchaser!.resources = 4;
+  s.threat = 40;
+  const lines = dreamchaserXpLines(s);
+  assert.deepEqual(
+    lines.map((l) => l.xp),
+    [1, 3, 3, 1, 0, 1],
+  );
+  s.threat = 41;
+  assert.equal(
+    dreamchaserXpLines(s).find((l) => /40 or less/.test(l.label))!.xp,
+    0,
+  );
+  s.threat = 40;
+  const before = s.campaign!.xp!;
+  win(s);
+  const c = s.campaign!;
+  assert.equal(c.completed.length, 2);
+  assert.equal(c.completed[1].scenarioId, "the-fate-of-numenor");
+  assert.equal(c.completed[1].xp, 9);
+  assert.equal(c.xp, before + 9);
+  assert.ok(valid(s));
+  assert.throws(
+    () =>
+      continueCampaign(
+        s,
+        HEROES,
+        d.id,
+        true,
+        9,
+        undefined,
+        undefined,
+        undefined,
+        {},
+      ),
+    /not available in campaign mode yet/,
+  );
 });

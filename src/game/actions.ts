@@ -2287,6 +2287,24 @@ function printedAbilities(s: GameState, u: Unit) {
           !!s.sailing?.test ||
           !!Fate.fateAbilityProblem(s, u),
       },
+      // A Dream-chaser campaign attaches Spyglass to Calphon.
+      ...u.attachments.flatMap((a) => {
+        const label =
+          s.campaign?.kind === "dreamchaser"
+            ? DreamCards.dreamchaserAttachmentLabel(a.code)
+            : undefined;
+        return label
+          ? [
+              {
+                id: a.id,
+                label,
+                disabled:
+                  s.phase === "setup" ||
+                  !!DreamCards.dreamchaserAttachmentProblem(s, u, a.id),
+              },
+            ]
+          : [];
+      }),
     ];
   const rhudaurLabel = Rhudaur.rhudaurAbilityLabel(s, u);
   if (rhudaurLabel)
@@ -2639,6 +2657,12 @@ function printedAbilities(s: GameState, u: Unit) {
       [
         angmarCampaignAbilityLabel(a.code),
         angmarCampaignAbilityProblem(s, u, a.id),
+      ],
+      [
+        s.campaign?.kind === "dreamchaser"
+          ? DreamCards.dreamchaserAttachmentLabel(a.code)
+          : undefined,
+        DreamCards.dreamchaserAttachmentProblem(s, u, a.id),
       ],
       [
         LandSorrowPlayers.landSorrowPlayerAbilityLabel(a.code),
@@ -3394,6 +3418,13 @@ function applyActionCore(input: GameState, action: Action): GameState {
             u &&
             action.attachmentId &&
             angmarCampaignAbility(s, u, action.attachmentId)
+          )
+            return;
+          if (
+            u &&
+            action.attachmentId &&
+            s.campaign?.kind === "dreamchaser" &&
+            DreamCards.dreamchaserAttachmentAbility(s, u, action.attachmentId)
           )
             return;
           if (

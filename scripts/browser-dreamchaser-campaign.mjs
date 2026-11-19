@@ -3,10 +3,12 @@ import fs from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { chromium } from "playwright";
 import { win } from "../src/game/board.ts";
-import { validateSave } from "../src/game/engine.ts";
+import { availableAbilities, validateSave } from "../src/game/engine.ts";
+import { get } from "../src/game/core.ts";
 import { syncSeat } from "../src/game/table.ts";
-import { DC } from "../src/game/dreamchaser-campaign-support.ts";
+import { DC, backFace } from "../src/game/dreamchaser-campaign-support.ts";
 import { VOYAGE } from "../src/game/voyage-belegaer-support.ts";
+import { FATE } from "../src/game/fate-numenor-support.ts";
 import { card } from "../src/game/cards.ts";
 import { reviewedState } from "./browser-review-helpers.mjs";
 import { capture, context, report, url } from "./browser-angmar-helpers.mjs";
@@ -116,6 +118,21 @@ async function victory(s, before = () => {}) {
   win(t);
   return load(t);
 }
+/** Use a card's ability through its button on the table. */
+async function ability(unit, attachmentId) {
+  const s = await campaign(),
+    u = get(s, unit.id);
+  const selected = availableAbilities(s, u).find(
+    (a) => a.id === attachmentId && !a.disabled,
+  );
+  assert.ok(selected, "an enabled card ability");
+  await page
+    .locator(`[data-motion-card="${unit.id}"]`)
+    .getByRole("button", { name: selected.label, exact: true })
+    .click();
+  await reviewedState(page);
+  return campaign();
+}
 /** Open the quest inspector, wait for a campaign card line and check it. */
 async function campaignCard(text, label, width) {
   await page.getByRole("button", { name: /^Inspect quest: / }).click();
@@ -205,8 +222,63 @@ try {
       .first()
       .waitFor();
     await page.getByText("Ominous Fate", { exact: true }).first().waitFor();
-    await page.getByText(/is not available in campaign mode yet/).waitFor();
     await checkpoint("voyage-complete", width);
+    // The interlude: 2 XP mark Calphon's checkboxes (his Upgraded side).
+    const xp = s.campaign.xp;
+    await page.getByRole("button", { name: /^Continue campaign/ }).click();
+    const mark = page.getByRole("button", {
+      name: "Mark a checkbox: Calphon",
+      exact: true,
+    });
+    await mark.click();
+    await mark.click();
+    await page.getByText(`Campaign Log · ${xp - 2} unspent XP`).waitFor();
+    await page.getByLabel("2 of 2 checkboxes").first().waitFor();
+    await checkpoint("fate-interlude", width);
+    await page.getByRole("button", { name: /^Begin next chapter/ }).click();
+    await reviewedState(page);
+    // The Fate of Númenor: one hero takes 1 damage to reduce the threat by 1.
+    let wounded = 0;
+    s = await opening((t) => {
+      if (!/Deal 1 damage to a character/.test(t.choice.title)) return;
+      if (wounded++) return "skip";
+      return t.choice.options.find((o) => t.heroes.some((h) => h.id === o.id))
+        .id;
+    });
+    assert.equal(s.scenarioId, "the-fate-of-numenor");
+    assert.equal(s.campaign.marks[DC.calphon], 2);
+    assert.equal(s.campaign.xp, xp - 2);
+    assert.equal(s.heroes.filter((h) => h.damage === 1).length, 1);
+    assert.ok(s.encounterDeck.includes(DC.revenant));
+    assert.ok(s.encounterDeck.includes(DC.ominous));
+    const calphon = s.allies.find((u) => u.code === backFace(DC.calphon));
+    assert.ok(calphon, "the Upgraded Calphon");
+    const spyglass = calphon.attachments.find((a) => a.code === DC.spyglass);
+    assert.ok(spyglass, "Spyglass on Calphon");
+    // Spyglass places 2 progress on a Lost Island (Uncharted).
+    s = await ability(calphon, spyglass.id);
+    assert.equal(s.choice.title, "Spyglass · Choose one");
+    s = await choose("progress");
+    const island = s.staging.find((u) => u.code === FATE.lost);
+    s = await choose(island.id);
+    assert.equal(s.staging.find((u) => u.id === island.id).progress, 2);
+    await campaignCard(
+      /^Resources on the campaign card: 0\. Revenant/,
+      "fate-setup",
+      width,
+    );
+    // The resolution: a Lush Jungle in the victory display, Revenant's resource.
+    s = await victory(s, (t) => {
+      t.victoryCards = [...(t.victoryCards ?? []), FATE.jungle];
+      t.dreamchaser = { ...(t.dreamchaser ?? {}), resources: 1 };
+    });
+    assert.equal(s.campaign.completed.length, 2);
+    assert.ok(
+      s.campaign.completed[1].xp >= 4,
+      `XP ${s.campaign.completed[1].xp}`,
+    );
+    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await checkpoint("fate-complete", width);
     await view.c.close();
   }
   const p = await browser.newPage();

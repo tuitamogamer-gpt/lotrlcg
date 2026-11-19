@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2172,
+    "encounterCards": 2178,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3412,
-    "pending": 771
+    "scripted": 3416,
+    "pending": 767
   },
   "scenarioRecipes": {
     "total": 355,
@@ -689,6 +689,9 @@
     "11176",
     "11177",
     "11178",
+    "11180",
+    "11180.B",
+    "11181",
     "12001",
     "12002",
     "12003",
@@ -2204,6 +2207,7 @@
     "octgn:5388683d-3240-433a-9602-a7367e428406",
     "octgn:53ac8ba6-0487-4b1f-91e9-cf7ca9e7c1d0",
     "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376",
+    "octgn:53f207b7-6670-4cc1-ad0f-d0190386d2b5",
     "octgn:54014fda-7adc-49b0-96ac-656e849eaf7b",
     "octgn:540e3fbc-a066-4dc6-a156-598f1b2751c0",
     "octgn:54665391-02fa-4402-b7ea-2f8b5aa95a57",
@@ -2988,6 +2992,8 @@
     "octgn:b659e2a1-55b1-4562-ab2c-0e36772d8183",
     "octgn:b66a9091-9fa2-48a8-8353-1c1716b9bf4d",
     "octgn:b69bdceb-a155-4aa6-b7e8-b0265f5d0928",
+    "octgn:b69c7813-2319-49d4-b4a6-157a044ac73c",
+    "octgn:b69c7813-2319-49d4-b4a6-157a044ac73c.B",
     "octgn:b6af7b48-e072-45e8-a745-4de2ac8ded8c",
     "octgn:b70846d1-3216-421a-9098-af2a4540b530",
     "octgn:b717f5f9-cd1a-4852-aa1d-36acd1f8d3b1",
@@ -3729,9 +3735,9 @@
     {
       "product": "dream-chaser-campaign-expansion",
       "total": 60,
-      "scripted": 15,
+      "scripted": 19,
       "player": 26,
-      "playerScripted": 4
+      "playerScripted": 5
     },
     {
       "product": "encounter-at-amon-din",
@@ -9061,7 +9067,7 @@
       "name": "Spyglass",
       "type": "attachment",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -9069,7 +9075,7 @@
       "name": "Revenant",
       "type": "enemy",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -23189,7 +23195,7 @@
       "name": "The Fate of Numenor",
       "type": "campaign",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -31277,7 +31283,7 @@
       "name": "Calphon",
       "type": "objective-ally",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {

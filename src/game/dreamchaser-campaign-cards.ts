@@ -10,12 +10,17 @@ import {
   log,
   make,
   prepend,
+  removePlayerShadowCard,
   removeShadowCard,
   RuleError,
+  shuffle,
 } from "./core";
 import {
   activeSeat,
+  allActiveLocations,
+  allCharacters,
   allEngaged,
+  attachmentController,
   firstPlayer,
   forOwner,
   globalLivingSeats,
@@ -35,6 +40,7 @@ import { returnToStaging } from "./fellowship-event-lib";
 import { isShipObjective } from "./ships";
 import { activePlayerAbilityCode } from "./player-ability-triggers";
 import { isPlayerCardSource } from "./player-effect-immunity";
+import { playerCardImmune } from "./card-immunity";
 import {
   DC,
   backFace,
@@ -43,6 +49,7 @@ import {
   dcIs,
   fleetShip,
   isDreamchaserGame,
+  isUncharted,
 } from "./dreamchaser-campaign-support";
 import { dreamchaserOminousX, dreamchaserState } from "./dreamchaser-campaign";
 
@@ -147,6 +154,13 @@ export function dreamchaserStats(s: GameState, u: Unit) {
     out.defense += u.resources;
     out.health += u.resources;
   }
+  // Revenant "gets +2 [attack] and +2 [defense] for each resource on the
+  // campaign card".
+  if (dcIs(u, DC.revenant) && !u.blanked) {
+    const n = s.dreamchaser?.resources ?? 0;
+    out.attack += 2 * n;
+    out.defense += 2 * n;
+  }
   // The Modification boons on a Ship.
   for (const a of u.attachments) {
     if (a.blanked || !isShipObjective(u)) continue;
@@ -162,10 +176,15 @@ export function dreamchaserStats(s: GameState, u: Unit) {
 export const dreamchaserThreatBonus = (s: GameState, u: Unit) =>
   isDreamchaserGame(s) && dcIs(u, DC.crowley) && !u.blanked ? u.resources : 0;
 
-/** Thunderstruck "cannot take more than 4 damage each round". */
+/**
+ * Thunderstruck "cannot take more than 4 damage each round"; Revenant:
+ * "Forced: When 3 or more damage would be placed on Revenant, place 2 damage
+ * instead."
+ */
 export function dreamchaserDamageAmount(s: GameState, u: Unit, value: number) {
-  if (!isDreamchaserGame(s) || !dcIs(u, DC.thunderstruck) || u.blanked)
-    return value;
+  if (!isDreamchaserGame(s) || u.blanked) return value;
+  if (dcIs(u, DC.revenant)) return value >= 3 ? 2 : value;
+  if (!dcIs(u, DC.thunderstruck)) return value;
   const q = dreamchaserState(s);
   const taken = q.damage?.round === s.round ? (q.damage.byId[u.id] ?? 0) : 0;
   return Math.min(value, Math.max(0, 4 - taken));
@@ -204,6 +223,20 @@ export function dreamchaserEnemyDestination(
     addVictoryCard(s, u.code);
     s.victory += 3;
     log(s, "Crowley goes to the victory display (victory 3).", "good");
+    return true;
+  }
+  // Revenant: "Forced: After Revenant is destroyed, shuffle it into the
+  // encounter deck. Place 1 resource on the campaign card."
+  if (dcIs(u, DC.revenant) && destruction && !u.blanked) {
+    s.encounterDeck.push(u.code);
+    shuffle(s, s.encounterDeck);
+    const q = dreamchaserState(s);
+    q.resources = (q.resources ?? 0) + 1;
+    log(
+      s,
+      `Revenant is shuffled back into the encounter deck; the campaign card has ${q.resources} resource${q.resources === 1 ? "" : "s"}.`,
+      "danger",
+    );
     return true;
   }
   return false;
@@ -364,7 +397,256 @@ export function dreamchaserPlayerCardHealedOrReadied(
 
 // --------------------------------------------------------------- effects
 
+// ------------------------------------------------------------- Spyglass
+
+/** The facedown shadow cards dealt to enemies. */
+const facedownShadows = (s: GameState) =>
+  allEngaged(s).flatMap((enemy) =>
+    enemy.shadows.flatMap((code, index) =>
+      enemy.faceupShadows?.[index] ||
+      (!enemy.faceupShadows && index < (enemy.revealedShadowCount ?? 0))
+        ? []
+        : [{ enemy, code, index }],
+    ),
+  );
+/** The locations in play a player card effect can place progress on. */
+const locationsInPlay = (s: GameState) =>
+  [...s.staging, ...allActiveLocations(s)].filter(
+    (u) => card(u.code).type_code === "location" && !playerCardImmune(u),
+  );
+/** The attachment with this id, wherever it is attached. */
+const attachmentById = (s: GameState, id?: string) =>
+  [...allCharacters(s), ...s.staging, ...allActiveLocations(s)]
+    .flatMap((u) => u.attachments)
+    .find((a) => a.id === id);
+/** The campaign boons' attachment Actions: Spyglass. */
+export const dreamchaserAttachmentLabel = (code: string) =>
+  dcIs(code, DC.spyglass)
+    ? `Spyglass · Exhaust: look at a shadow card or a deck, or place progress${dcBackFace(code) ? " (Upgraded)" : ""}`
+    : undefined;
+export function dreamchaserAttachmentProblem(
+  s: GameState,
+  u: Unit,
+  attachmentId?: string,
+): string | null {
+  const a = u.attachments.find((x) => x.id === attachmentId);
+  if (!a || !dreamchaserAttachmentLabel(a.code))
+    return "No campaign card ability.";
+  if (a.blanked) return `${card(a.code).name}'s text is blank.`;
+  if (attachmentController(s, u, a) !== activeSeat(s))
+    return `${card(a.code).name} is controlled by another player.`;
+  if (a.exhausted) return `${card(a.code).name} is exhausted.`;
+  return null;
+}
+/**
+ * Spyglass: "Action: Exhaust Spyglass to choose one: • Look at a shadow card.
+ * • Look at the top and bottom card of your deck. • Place 1 progress on a
+ * location (2 progress instead if it is Uncharted)." Upgraded: the shadow
+ * card may be discarded, any deck may be looked at, and an Uncharted
+ * location takes 4 progress.
+ */
+export function dreamchaserAttachmentAbility(
+  s: GameState,
+  u: Unit,
+  attachmentId?: string,
+): boolean {
+  const a = u.attachments.find((x) => x.id === attachmentId);
+  if (!a || !dreamchaserAttachmentLabel(a.code)) return false;
+  const problem = dreamchaserAttachmentProblem(s, u, attachmentId);
+  if (problem) throw new RuleError(problem);
+  a.exhausted = true;
+  const p = activeSeat(s);
+  const upgraded = dcBackFace(a);
+  const options: Option[] = [];
+  if (facedownShadows(s).length)
+    options.push({
+      id: "shadow",
+      label: upgraded
+        ? "Look at a shadow card (you may discard it)"
+        : "Look at a shadow card",
+      effects: [fx("dcSpyShadow", { source: a.id, player: p })],
+    });
+  options.push({
+    id: "deck",
+    label: upgraded
+      ? "Look at the top and bottom card of any deck"
+      : "Look at the top and bottom card of your deck",
+    effects: [fx("dcSpyDeck", { source: a.id, player: p })],
+  });
+  if (locationsInPlay(s).length)
+    options.push({
+      id: "progress",
+      label: `Place 1 progress on a location (${upgraded ? 4 : 2} if it is Uncharted)`,
+      effects: [fx("dcSpyProgress", { source: a.id, player: p })],
+    });
+  log(s, `${name(u)}'s Spyglass is exhausted.`);
+  choose(s, "Spyglass · Choose one", options, card(a.code).text);
+  return true;
+}
+/** Spyglass's choices after it is exhausted. */
+function spyglassEffect(s: GameState, e: Effect): boolean {
+  const p = e.player ?? activeSeat(s);
+  const upgraded = dcBackFace(attachmentById(s, e.source)?.code ?? "");
+  switch (e.kind) {
+    case "dcSpyShadow":
+      choose(
+        s,
+        "Spyglass · Choose a facedown shadow card",
+        facedownShadows(s).map(({ enemy, code, index }) => ({
+          id: `${enemy.id}:${index}`,
+          code: enemy.code,
+          label: `${name(enemy)} · Facedown shadow ${index + 1}`,
+          effects: [
+            fx("dcSpyShadowLook", {
+              source: e.source,
+              target: enemy.id,
+              code,
+              count: index,
+              player: p,
+            }),
+          ],
+        })),
+      );
+      return true;
+    case "dcSpyShadowLook": {
+      const enemy = get(s, e.target);
+      const still = facedownShadows(s).some(
+        (x) =>
+          x.enemy.id === e.target && x.index === e.count && x.code === e.code,
+      );
+      if (!enemy || !still) return true;
+      choose(
+        s,
+        "Spyglass · The shadow card",
+        [
+          {
+            id: "continue",
+            code: e.code,
+            label: "Continue · The shadow card stays facedown",
+            effects: [],
+          },
+          ...(upgraded
+            ? [
+                {
+                  id: "discard",
+                  code: e.code,
+                  label: `Discard ${card(e.code!).name}`,
+                  effects: [
+                    fx("dcSpyShadowDiscard", {
+                      target: enemy.id,
+                      code: e.code,
+                      count: e.count,
+                      player: p,
+                    }),
+                  ],
+                },
+              ]
+            : []),
+        ],
+        card(e.code!).shadow || "This card has no shadow effect.",
+      );
+      log(
+        s,
+        `Spyglass looks at a facedown shadow card dealt to ${name(enemy)}.`,
+      );
+      return true;
+    }
+    case "dcSpyShadowDiscard": {
+      const enemy = get(s, e.target);
+      if (!enemy || enemy.shadows[e.count ?? -1] !== e.code) return true;
+      const code = removePlayerShadowCard(s, enemy, e.count!);
+      if (code) {
+        s.encounterDiscard.push(code);
+        log(s, `Spyglass discards a shadow card from ${name(enemy)}.`, "good");
+      }
+      return true;
+    }
+    case "dcSpyDeck": {
+      if (!upgraded) {
+        prepend(s, fx("dcSpyShow", { text: `player:${p}`, player: p }));
+        return true;
+      }
+      choose(s, "Spyglass · Choose a deck", [
+        ...playerOrder(s).map((seat) => ({
+          id: `player:${seat}`,
+          label: seat === p ? "Your deck" : `${seatName(s, seat)}'s deck`,
+          effects: [fx("dcSpyShow", { text: `player:${seat}`, player: p })],
+        })),
+        {
+          id: "encounter",
+          label: "The encounter deck",
+          effects: [fx("dcSpyShow", { text: "encounter", player: p })],
+        },
+      ]);
+      return true;
+    }
+    case "dcSpyShow": {
+      const key = e.text ?? `player:${p}`;
+      const deck =
+        key === "encounter"
+          ? s.encounterDeck
+          : seatView(s, Number(key.slice("player:".length))).deck;
+      const label =
+        key === "encounter"
+          ? "the encounter deck"
+          : Number(key.slice(7)) === p
+            ? "your deck"
+            : `${seatName(s, Number(key.slice(7)))}'s deck`;
+      if (!deck.length) {
+        log(s, `Spyglass: ${label} is empty.`);
+        return true;
+      }
+      const top = deck[0],
+        bottom = deck.at(-1)!;
+      choose(
+        s,
+        `Spyglass · The top and bottom card of ${label}`,
+        [
+          {
+            id: "top",
+            code: top,
+            label: `Top: ${card(top).name}`,
+            effects: [],
+          },
+          ...(deck.length > 1
+            ? [
+                {
+                  id: "bottom",
+                  code: bottom,
+                  label: `Bottom: ${card(bottom).name}`,
+                  effects: [],
+                },
+              ]
+            : []),
+        ],
+        deck.length > 1
+          ? `The top card is ${card(top).name}; the bottom card is ${card(bottom).name}.`
+          : `${card(top).name} is the only card.`,
+      );
+      log(s, `Spyglass looks at the top and bottom card of ${label}.`);
+      return true;
+    }
+    case "dcSpyProgress":
+      choose(
+        s,
+        "Spyglass · Choose a location",
+        locationsInPlay(s).map((l) => {
+          const n = isUncharted(card(l.code).text) ? (upgraded ? 4 : 2) : 1;
+          return {
+            id: l.id,
+            code: l.code,
+            label: `Place ${n} progress on ${name(l)}`,
+            effects: [fx("locationProgress", { target: l.id, value: n })],
+          };
+        }),
+      );
+      return true;
+  }
+  return false;
+}
+
 export function dreamchaserCardEffect(s: GameState, e: Effect): boolean {
+  if (e.kind.startsWith("dcSpy")) return spyglassEffect(s, e);
   switch (e.kind) {
     case "dcOminous": {
       const p = e.player ?? firstPlayer(s);
