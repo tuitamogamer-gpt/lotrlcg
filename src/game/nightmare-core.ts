@@ -49,6 +49,7 @@ import {
   NIGHTMARE_CORE as N,
   NIGHTMARE_KD,
   NIGHTMARE_DD,
+  NIGHTMARE_HON,
   NIGHTMARE_SOM,
   nightmareCardOf,
   nightmareLive,
@@ -130,6 +131,17 @@ export function nightmareSetup(s: GameState) {
     log(
       s,
       "Conflict at the Carrock · Nightmare: Rob & Bob, Louis, Morris, Rupert and Stuart are set aside.",
+    );
+  }
+  // Into Ithilien: "Setup: Set both copies of Mûmak Elite aside, out of
+  // play."
+  if (s.scenarioId === "into-ithilien") {
+    const aside = s.encounterDeck.filter((c) => c === NIGHTMARE_HON.elite);
+    s.encounterDeck = s.encounterDeck.filter((c) => c !== NIGHTMARE_HON.elite);
+    (s.nightmare ??= {}).eliteAside = aside.length;
+    log(
+      s,
+      "Into Ithilien · Nightmare: both copies of Mûmak Elite are set aside.",
     );
   }
   // The Seventh Level: "Setup: Set Overseer Maurûl and Chamber of Records

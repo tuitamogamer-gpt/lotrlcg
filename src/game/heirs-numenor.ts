@@ -251,6 +251,7 @@ export function advanceHeirs(s: GameState): boolean {
   }
   s.progress = 0;
   s.stageRevealing = true;
+  batch4Scenario(s).stageRevealed?.(s, s.stage);
   if (isIthilien(s)) {
     log(
       s,
@@ -336,7 +337,10 @@ export function heirsQuestStat(
   return null;
 }
 function questKeyword(s: GameState, keyword: string) {
-  const stat = selectedSideQuest(s) ? null : heirsQuestStat(s),
+  // A Nightmare layer may switch the current quest's keyword (Savage Fray).
+  const stat = selectedSideQuest(s)
+      ? null
+      : (batch4Scenario(s).questStat?.(s) ?? heirsQuestStat(s)),
     code = currentQuestCode(s);
   if (stat) return stat === (keyword === "Battle" ? "attack" : "defense");
   return (
@@ -354,6 +358,9 @@ function questKeyword(s: GameState, keyword: string) {
 }
 const heirsBattleOrSiege = (s: GameState) =>
   questKeyword(s, "Battle") || questKeyword(s, "Siege");
+/** Whether the current quest has battle or siege (for a Nightmare Deck's cards). */
+export const heirsQuestKeyword = (s: GameState, keyword: "Battle" | "Siege") =>
+  questKeyword(s, keyword);
 export const heirsStagingQuestCharacters = (s: GameState) =>
   s.staging.filter(
     (u) => [H.celador, H.guardian].includes(u.code) && !u.blanked,
@@ -635,6 +642,12 @@ export function heirsEngaged(
 }
 export function heirsCombatStart(s: GameState) {
   syncAttachmentText(s);
+  const amount = heirsArcheryTotal(s);
+  if (amount)
+    prepend(s, fx("heirsArchery", { value: amount, player: first(s) }));
+}
+/** The archery total at the beginning of the combat phase (a Nightmare layer adds its own). */
+export function heirsArcheryTotal(s: GameState) {
   let amount =
     active(s, H.assassin).length * 2 +
     assaultOsgiliathArcheryBonus(s) +
@@ -645,8 +658,7 @@ export function heirsCombatStart(s: GameState) {
   ).length;
   amount += active(s, H.arbalesters).length * icons;
   if (isIthilien(s) && s.stage === 2) amount += playerOrder(s).length;
-  if (amount)
-    prepend(s, fx("heirsArchery", { value: amount, player: first(s) }));
+  return amount + (batch4Scenario(s).archeryBonus?.(s) ?? 0);
 }
 type ScrollCombat = NonNullable<GameState["combat"]> & {
   heirsScrollDamage?: boolean;
@@ -1230,15 +1242,21 @@ export function handleHeirsEffect(s: GameState, e: Effect): boolean {
         s,
         liveCharacters(s).filter((u) => u.damage < stats(s, u).health),
       );
+      // The character the previous point was assigned to (Ithilien Overlook).
+      const last = e.target ? get(s, e.target) : undefined;
       const characters =
-        batch4Scenario(s).archeryTargets?.(s, eligible) ?? eligible;
+        batch4Scenario(s).archeryTargets?.(s, eligible, last) ?? eligible;
       if (characters.length)
         choose(
           s,
           `Assign Archery damage · ${remaining} remaining`,
           opts(characters, (u) => [
             fx("damage", { target: u.id, value: 1 }),
-            fx("heirsArchery", { value: remaining - 1, player: first(s) }),
+            fx("heirsArchery", {
+              value: remaining - 1,
+              player: first(s),
+              target: u.id,
+            }),
           ]),
           "Divide this damage among characters in play. Defense does not reduce Archery damage.",
         );

@@ -2947,6 +2947,14 @@ export function composeEredPool(
       !!h.lostResolve?.(s, id) || !!p.lostResolve?.(s, id),
     playCostReduction: (s, c) =>
       (h.playCostReduction?.(s, c) ?? 0) + (p.playCostReduction?.(s, c) ?? 0),
+    archeryBonus: (s) =>
+      (h.archeryBonus?.(s) ?? 0) + (p.archeryBonus?.(s) ?? 0),
+    archeryTargets: (s, characters, last) => {
+      const own = h.archeryTargets?.(s, characters, last) ?? characters;
+      return p.archeryTargets?.(s, own, last) ?? own;
+    },
+    // A layer's switched quest keyword (Savage Fray) takes precedence.
+    questStat: (s) => p.questStat?.(s) ?? h.questStat?.(s),
     shadowDraw: (s, u) => {
       const code = h.shadowDraw?.(s, u);
       return code !== undefined ? code : p.shadowDraw?.(s, u);

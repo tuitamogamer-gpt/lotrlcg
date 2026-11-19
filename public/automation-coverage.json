@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2456,
+    "encounterCards": 2465,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3678,
-    "pending": 505
+    "scripted": 3687,
+    "pending": 496
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 289
+    "scripted": 290
   },
   "registeredCodes": [
     "01001",
@@ -1270,6 +1270,7 @@
     "octgn:041e412b-4d21-421a-a029-e1fdcb62e76d",
     "octgn:044a7b39-8ef6-41c7-bb99-ce209f700b09",
     "octgn:047ca6cd-733d-46aa-b2db-48a9c63bfc24",
+    "octgn:048b6a57-f577-4dbe-a090-6eca1f266767",
     "octgn:049758ee-7fb1-4978-9ed0-1b4de1d5ae14",
     "octgn:04a23a2e-a14f-4c54-b54f-eeef36d3a92b",
     "octgn:04f24d17-9764-4385-b22c-0e45f6fa5654",
@@ -1286,6 +1287,7 @@
     "octgn:05bf91b3-8e8e-4a45-a6cf-ac8b936b032d",
     "octgn:05ecd24a-f18c-4c11-8cf7-1d021e380751",
     "octgn:05ecd24a-f18c-4c11-8cf7-1d021e380751.B",
+    "octgn:066ed12c-00f8-4a8c-bb38-0acd926ccf51",
     "octgn:0676e5a8-1637-42f8-95fa-37aa6e189070",
     "octgn:06b1e27e-6493-4f05-9203-1835058073df",
     "octgn:06badf71-8e85-479e-8ddf-1dec7a40e325",
@@ -1542,6 +1544,7 @@
     "octgn:244873ca-427f-4358-804d-16bec79fca36:B",
     "octgn:246b941e-f8a7-46ba-966d-d0515111ab46",
     "octgn:24772594-75f3-4789-aeec-41526d845e11",
+    "octgn:2491fe6d-38e2-4767-8e09-0174deb85ff8",
     "octgn:24a816f2-172f-4945-8d9b-21eb7fb68263",
     "octgn:24a841df-854e-444b-9b2f-0214f0e26002",
     "octgn:24e431be-cde9-4f93-943a-de5e5ca9108b",
@@ -1978,6 +1981,7 @@
     "octgn:5073c7a3-a3f6-4aca-b2a2-e0b830af3985",
     "octgn:50950a5b-0002-432a-b6d6-4ac2ca12e501",
     "octgn:509f3e41-385c-4b84-ad28-7cc2eed8028c",
+    "octgn:50dda27b-1bf7-43d4-a6e2-eced8d60515a",
     "octgn:50e62ade-1958-439d-9314-383d8621ecf5",
     "octgn:50f294ff-ee4b-4685-b7e1-86cd7f2e0a59",
     "octgn:5100f009-8c78-4f2a-b77e-1bd9ccbfef77",
@@ -2555,6 +2559,7 @@
     "octgn:72b4cfd3-457b-4574-b638-c0fcce49dd68",
     "octgn:734fd50d-e708-4cc7-82e1-53809f6e7867",
     "octgn:73515869-890b-4169-9104-b2e882d921ae",
+    "octgn:73611bf0-cc37-418a-88bc-ed01624ab33d",
     "octgn:7367d16a-2b23-4a95-9050-266e93d8ab50",
     "octgn:736cf1d8-54bd-4bb1-8901-8b6f348a0355",
     "octgn:7371cfea-03d0-4bc0-98a1-d99e0acdbf88",
@@ -2930,6 +2935,7 @@
     "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664",
     "octgn:9be86dec-0c44-4468-ac29-260dedaca54b",
     "octgn:9c3c6e43-7548-4eaf-8225-2f51ecafbc4a",
+    "octgn:9c5bec2f-cd2d-4d22-b8d3-b5dfb4e3345b",
     "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b",
     "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b:B",
     "octgn:9c6c003c-b9c7-4240-9e59-414d31b4be3c",
@@ -3002,6 +3008,7 @@
     "octgn:a56afdd4-343f-4b66-9bd2-f775d6372cd7",
     "octgn:a56cab99-d482-4aa3-b5e4-b1e5b857515f",
     "octgn:a589eabf-64a6-4400-aa3d-ad30b4f721c3",
+    "octgn:a58dc702-4b9f-41ee-be83-136eda08906d",
     "octgn:a5aef3fe-7bb9-4165-ba0f-91127d8f21e3",
     "octgn:a5e60892-b524-43cf-a501-372a624e785e",
     "octgn:a62b42dc-ab4a-4573-a281-53742e2739f5",
@@ -3107,6 +3114,7 @@
     "octgn:b0b64e9f-0a9f-42f1-9ad0-0e54db93dc47",
     "octgn:b0b77537-0c91-42c0-b111-647bc445a419",
     "octgn:b0d31a1c-2155-4a97-a5ff-912e32a4809e",
+    "octgn:b0e4169e-0dd1-4abc-a021-e6b16ebc0bd2",
     "octgn:b1217b87-40bd-442d-b7c8-0d9b7d262b04",
     "octgn:b1612370-142d-4557-8884-b3da12b4baca",
     "octgn:b1662195-6d46-474c-9ee9-ccbf14c7b70e",
@@ -3201,6 +3209,7 @@
     "octgn:b899f859-3c09-4cb3-9adf-7fb57e46e7ad",
     "octgn:b89a5a01-88c0-434a-a061-1654c6f84477",
     "octgn:b8c49f35-4f52-48eb-ae3f-456b7daea4a7",
+    "octgn:b8caa465-cf1c-4be2-a32a-cab116ff0886",
     "octgn:b8d832c5-e9f8-4690-a60c-07c09980ea27",
     "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0001",
     "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0003",
@@ -4111,7 +4120,7 @@
     {
       "product": "heirs-of-numenor-nightmare",
       "total": 26,
-      "scripted": 9,
+      "scripted": 18,
       "player": 0,
       "playerScripted": 0
     },
@@ -13945,7 +13954,7 @@
       "name": "Mûmak Elite",
       "type": "enemy",
       "pack": "Heirs of Numenor - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor-nightmare"
     },
     {
@@ -14097,7 +14106,7 @@
       "name": "Haradrim Marksman",
       "type": "enemy",
       "pack": "Heirs of Numenor - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor-nightmare"
     },
     {
@@ -16497,7 +16506,7 @@
       "name": "Into Ithilien",
       "type": "nightmare",
       "pack": "Heirs of Numenor - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor-nightmare"
     },
     {
@@ -20673,7 +20682,7 @@
       "name": "Obsidian Arrows",
       "type": "treachery",
       "pack": "Heirs of Numenor - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor-nightmare"
     },
     {
@@ -25817,7 +25826,7 @@
       "name": "Cormallen Fields",
       "type": "location",
       "pack": "Heirs of Numenor - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor-nightmare"
     },
     {
@@ -29377,7 +29386,7 @@
       "name": "Ithilien Overlook",
       "type": "location",
       "pack": "Heirs of Numenor - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor-nightmare"
     },
     {
@@ -30121,7 +30130,7 @@
       "name": "Haradrim Captain",
       "type": "enemy",
       "pack": "Heirs of Numenor - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor-nightmare"
     },
     {
@@ -31097,7 +31106,7 @@
       "name": "Dense Thickets",
       "type": "location",
       "pack": "Heirs of Numenor - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor-nightmare"
     },
     {
@@ -31977,7 +31986,7 @@
       "name": "Savage Fray",
       "type": "treachery",
       "pack": "Heirs of Numenor - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor-nightmare"
     },
     {
@@ -39344,8 +39353,8 @@
       "id": "N03.2",
       "name": "Into Ithilien (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "into-ithilien",
+      "state": "scripted"
     },
     {
       "id": "N03.3",

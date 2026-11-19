@@ -216,6 +216,16 @@ export const NIGHTMARE_HON = {
   bedlam: "octgn:dc5c51d1-7528-46b4-b438-aae0cb744e29",
   ploy: "octgn:377d8e17-1c0d-4871-86a5-a69b9dee40d2",
   away: "octgn:647578d4-8c8d-44d7-8ef5-9c5d962369f0",
+  /** Into Ithilien's setup card and Nightmare Deck (its Mûmak Elites set aside). */
+  ithilienCard: "octgn:2491fe6d-38e2-4767-8e09-0174deb85ff8",
+  elite: "octgn:048b6a57-f577-4dbe-a090-6eca1f266767",
+  marksman: "octgn:066ed12c-00f8-4a8c-bb38-0acd926ccf51",
+  captain: "octgn:a58dc702-4b9f-41ee-be83-136eda08906d",
+  overlook: "octgn:9c5bec2f-cd2d-4d22-b8d3-b5dfb4e3345b",
+  thickets: "octgn:b0e4169e-0dd1-4abc-a021-e6b16ebc0bd2",
+  cormallen: "octgn:73611bf0-cc37-418a-88bc-ed01624ab33d",
+  arrows: "octgn:50dda27b-1bf7-43d4-a6e2-eced8d60515a",
+  fray: "octgn:b8caa465-cf1c-4be2-a32a-cab116ff0886",
 } as const;
 
 interface NightmareDeck {
@@ -497,6 +507,17 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Harbor Thug": 1,
     },
   },
+  "into-ithilien": {
+    card: NIGHTMARE_HON.ithilienCard,
+    removals: {
+      "Blocking Wargs": 1,
+      "Watcher in the Wood": 2,
+      "Secluded Glade": 3,
+      "Forest Bat": 3,
+      "Southron Mercenaries": 3,
+      "Overgrown Trail": 1,
+    },
+  },
   "watcher-in-the-water": {
     card: NIGHTMARE_DD.watcherCard,
     removals: {
@@ -719,6 +740,12 @@ export function nightmareStatus(s: GameState): string[] {
     );
     return [
       `Peril in Pelargir · Nightmare mode: at the end of the combat phase, Alcaron's Scroll in the staging area attaches to the enemy in play with the highest [defense]; at the beginning of the refresh phase, the enemy it is attached to gets 1 progress token${foe ? ` (${foe.progress} on ${card(foe.code).name})` : ""}; an enemy with 3 or more progress tokens escapes with the scroll, and the players lose.`,
+    ];
+  }
+  if (s.scenarioId === "into-ithilien") {
+    const aside = s.nightmare?.eliteAside ?? 0;
+    return [
+      `Into Ithilien · Nightmare mode: both Mûmak Elites were set aside; one enters the staging area as each of stages 2A and 4A is revealed (${aside} still aside).`,
     ];
   }
   if (s.scenarioId === "watcher-in-the-water")

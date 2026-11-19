@@ -1369,6 +1369,69 @@ try {
       )
       .waitFor();
     await checkpoint("pelargir-escaping-scroll", width);
+    // Into Ithilien in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-into-ithilien").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "into-ithilien");
+    assert.equal(s.nightmareMode, true);
+    assert.equal(s.nightmare.eliteAside, 2, "both Mûmak Elites set aside");
+    assert.ok(!s.encounterDeck.includes(HON.elite));
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/both Mûmak Elites were set aside/)
+      .waitFor();
+    await checkpoint("ithilien-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // Stage 2: a Mûmak Elite in the staging area with a Haradrim Marksman,
+    // the other still set aside.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.stage = 2;
+      t.progress = 0;
+      t.nightmare.eliteAside = 1;
+      t.staging = [...t.staging, make(t, HON.elite), make(t, HON.marksman)];
+      s = await load(page, t);
+    }
+    const eliteFace = page
+      .locator(`img[src*="${HON.elite.slice("octgn:".length)}"]`)
+      .first();
+    await eliteFace.waitFor();
+    assert.ok(
+      (await eliteFace.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "Mûmak Elite's face loads",
+    );
+    await page
+      .locator(".journey-area .quest-goals")
+      .getByText(
+        "Mûmak Elite · 1 set aside (one enters the staging area as each of stages 2A and 4A is revealed)",
+        { exact: true },
+      )
+      .waitFor();
+    await checkpoint("ithilien-mumak-elite", width);
     await view.c.close();
   }
   const p = await browser.newPage();

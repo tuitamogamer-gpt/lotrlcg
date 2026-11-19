@@ -37,7 +37,14 @@ export interface Batch4ScenarioHooks {
   /** No card can be drawn at all, the resource phase draw included. */
   drawBlocked?(s: GameState): boolean;
   /** The characters that archery damage must be assigned to, if able. */
-  archeryTargets?(s: GameState, characters: Unit[]): Unit[] | undefined;
+  /** The characters archery damage may be assigned to; `last` took the previous point. */
+  archeryTargets?(
+    s: GameState,
+    characters: Unit[],
+    last?: Unit,
+  ): Unit[] | undefined;
+  /** Archery a layer adds to the beginning of the combat phase's total. */
+  archeryBonus?(s: GameState): number;
   /** After damage is healed from a unit (by the effect `source`, when known). */
   healed?(s: GameState, u: Unit, amount: number, source?: HealSource): void;
   /** The most damage that can be healed from this unit now (a per-round cap, or the healing effect's). */

@@ -92,6 +92,7 @@ import {
 import { KHAZAD } from "../game/khazad-dum";
 import { NIGHTMARE_DD, NIGHTMARE_KD, nightmareLive } from "../game/nightmare";
 import { nightmarePelargirGoal } from "../game/nightmare-pelargir";
+import { nightmareIthilienGoal } from "../game/nightmare-ithilien";
 import { returnMirkwoodGuard } from "../game/return-mirkwood";
 
 const requiredQuestSelections = (s: GameState) =>
@@ -1732,7 +1733,17 @@ export function QuestGoals({ s }: { s: GameState }) {
                                               done: false,
                                             },
                                           ]
-                                        : [];
+                                        : s.scenarioId === "into-ithilien" &&
+                                            nightmareIthilienGoal(s)
+                                          ? [
+                                              // Nightmare mode: the set-aside Mûmak Elites.
+                                              {
+                                                label:
+                                                  nightmareIthilienGoal(s)!,
+                                                done: false,
+                                              },
+                                            ]
+                                          : [];
   return goals.length ? (
     <div className="quest-goals">
       {goals.map((g) => (
