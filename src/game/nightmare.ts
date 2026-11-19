@@ -120,6 +120,17 @@ export const NIGHTMARE_KD = {
   twisting: "octgn:0f939a7b-8a2e-4358-b3b1-e50b3eef7c0b",
   fissure: "octgn:573eebae-82fc-4e41-a3a8-343194c893bc",
   shadowFall: "octgn:e84369a8-89c8-4866-bd21-7c25ece2ca3f",
+  /** The Seventh Level's setup card and Nightmare Deck. */
+  seventhCard: "octgn:804e57bd-26e8-495b-9676-2e39f009baba",
+  maurul: "octgn:6d1eb802-0cb1-427a-9aa3-4e0c3b403681",
+  chamber: "octgn:78393d15-048e-40ff-95b8-4dec18a77a8b",
+  taskmaster: "octgn:8657c425-d50d-4a14-b7c8-b528463376e6",
+  skirmisher: "octgn:750a1952-58d9-4ab7-aa3f-8cc5fd2ea040",
+  pitGoblin: "octgn:e8b7ad31-b448-42ac-9f72-defcbe2303e9",
+  deepMines: "octgn:874c52e0-e186-49dd-bb4b-7289bf1ecc6f",
+  westernHall: "octgn:5277b186-0c76-4ec6-9615-20cdceb49241",
+  balinsDoom: "octgn:6c97c646-1952-4080-ae56-ab7caeafb28f",
+  beats: "octgn:c6b1e2eb-9ce9-419c-a210-723f3891720d",
 } as const;
 
 interface NightmareDeck {
@@ -296,6 +307,17 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
     },
     questRemovals: { "Goblin Patrol": 1 },
   },
+  "the-seventh-level": {
+    card: NIGHTMARE_KD.seventhCard,
+    removals: {
+      "Plundered Armoury": 2,
+      "Hidden Threat": 2,
+      "Upper Hall": 2,
+      "Goblin Scout": 2,
+      "Goblin Swordsman": 2,
+      "Goblin Spearman": 2,
+    },
+  },
 };
 export const nightmareSupported = (id?: ScenarioId) => !!id && id in NIGHTMARE;
 /** A Nightmare mode game of a supported scenario. */
@@ -344,13 +366,23 @@ const inVictory = (s: GameState, code: string) =>
  */
 export const nightmareEventImmune = (
   s: GameState,
-  u: { code: string; blanked?: boolean },
+  u: { code: string; blanked?: boolean; resources?: number },
 ) =>
-  carrockNightmare(s) &&
-  ((u.code === NIGHTMARE_SOM.morris && !u.blanked) ||
-    (inVictory(s, NIGHTMARE_SOM.morris) &&
-      card(u.code).type_code === "enemy" &&
-      trollCode(u.code)));
+  (carrockNightmare(s) &&
+    ((u.code === NIGHTMARE_SOM.morris && !u.blanked) ||
+      (inVictory(s, NIGHTMARE_SOM.morris) &&
+        card(u.code).type_code === "enemy" &&
+        trollCode(u.code)))) ||
+  // The Seventh Level (Nightmare), Chamber of Records: "Each Goblin enemy
+  // with at least 1 resource on it is immune to player events."
+  (nightmareLive(s) &&
+    s.scenarioId === "the-seventh-level" &&
+    (u.resources ?? 0) > 0 &&
+    card(u.code).type_code === "enemy" &&
+    (card(u.code).traits ?? "").split(".").some((t) => t.trim() === "Goblin") &&
+    [...s.staging, s.activeLocation, ...(s.extraActiveLocations ?? [])].some(
+      (l) => l?.code === NIGHTMARE_KD.chamber && !l.blanked,
+    ));
 /**
  * Rupert: "Rupert's [defense] cannot be reduced." While Rupert is in the
  * victory display, each Troll enemy's cannot. (Its [defense] stays at least
@@ -453,5 +485,11 @@ export function nightmareStatus(s: GameState): string[] {
       `Into the Pit · Nightmare mode: ${n} of 5 damage tokens on the setup card (1 each time Cave Torch exhausts; at 5, Cave Torch is removed from the game); stage 2 is Goblin Ambush.`,
     ];
   }
+  if (s.scenarioId === "the-seventh-level")
+    return [
+      s.stage < 2
+        ? "The Seventh Level · Nightmare mode: Overseer Maurûl and Chamber of Records are set aside until stage 2B is revealed."
+        : "The Seventh Level · Nightmare mode: Chamber of Records and Overseer Maurûl came into play with stage 2B; the players cannot win unless Overseer Maurûl is in the victory display.",
+    ];
   return [];
 }

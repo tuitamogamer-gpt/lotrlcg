@@ -286,7 +286,12 @@ export function advanceKhazad(s: GameState) {
         "The Fate of Balin · Reveal extra encounter cards at the end of each staging step.",
         "chapter",
       );
-    } else if (s.stage === 2 && s.progress >= 17) win(s);
+      batch4Scenario(s).stageRevealed?.(s, 2);
+    } else if (
+      s.stage === 2 &&
+      (batch4Scenario(s).stageDefeated?.(s) ?? s.progress >= 17)
+    )
+      win(s);
   } else {
     const k = state(s),
       q = k.activeQuest;

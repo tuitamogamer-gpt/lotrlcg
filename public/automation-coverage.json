@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2377,
+    "encounterCards": 2387,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3599,
-    "pending": 584
+    "scripted": 3609,
+    "pending": 574
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 280
+    "scripted": 281
   },
   "registeredCodes": [
     "01001",
@@ -2283,6 +2283,7 @@
     "octgn:522c612d-5f3c-4a02-a1a7-7d87191922e0",
     "octgn:526faef8-5db5-48ab-ab22-109916e9fda7",
     "octgn:52754c5f-30b8-4d55-b9c2-5dfa8020ead3",
+    "octgn:5277b186-0c76-4ec6-9615-20cdceb49241",
     "octgn:528afc17-e78f-4b02-8080-e936955a77b9",
     "octgn:529bb9e4-36c3-45bd-bac0-1ce5de6a581d",
     "octgn:52b0bc28-37bb-4097-b96a-cc7dc4af8721",
@@ -2473,9 +2474,11 @@
     "octgn:6c4bf737-20cf-4fc5-b473-8f1540430c45",
     "octgn:6c4bf737-20cf-4fc5-b473-8f1540430c45:B",
     "octgn:6c89f835-68f8-4882-90ea-83f84953fabf",
+    "octgn:6c97c646-1952-4080-ae56-ab7caeafb28f",
     "octgn:6cb224c2-d164-484e-b20d-fede3dd640d5",
     "octgn:6cfc4fa5-bbcc-4c99-82b7-bb6359d24750",
     "octgn:6d012dfd-07bb-40d5-8da7-2e4d9bad9bcd",
+    "octgn:6d1eb802-0cb1-427a-9aa3-4e0c3b403681",
     "octgn:6d2cbe18-4504-46df-821c-d3ce588bcb3f",
     "octgn:6d485bbc-6876-4160-8111-77f3935123c9",
     "octgn:6d4c7a3b-e0e7-4267-8f53-6ba99054892c",
@@ -2539,6 +2542,7 @@
     "octgn:74f40d23-068a-40ea-9965-81df44294490",
     "octgn:74f47fcd-31fb-4034-924c-034e1615a3c4",
     "octgn:74fc62c2-b1b6-4338-819a-1f00f871312c",
+    "octgn:750a1952-58d9-4ab7-aa3f-8cc5fd2ea040",
     "octgn:7562e662-3b3e-4378-9a3f-c45908bc05cf",
     "octgn:75b111c9-fb49-4a53-ac50-729ff2d06abe",
     "octgn:75c1d9eb-9ade-4c71-a918-74cf5b526ff2",
@@ -2560,6 +2564,7 @@
     "octgn:77a7f095-bd59-45a1-a866-d58e17e3bd6d",
     "octgn:77bcda70-5126-4e58-919e-447c03d7ab02",
     "octgn:77dd117d-b2b6-4324-aa59-09fd1343fde9",
+    "octgn:78393d15-048e-40ff-95b8-4dec18a77a8b",
     "octgn:783ecb94-e005-4ff7-8bc3-76196bba9249",
     "octgn:78520dc7-5891-47f3-8782-ca930c434374",
     "octgn:78689e20-d52f-4495-accc-b2cc39bb9ddc",
@@ -2638,6 +2643,7 @@
     "octgn:8042f7de-6fed-49cf-95be-450f0fae1601",
     "octgn:8043cc1b-caa1-4f12-8abb-61322c9e9499",
     "octgn:8043cc1b-caa1-4f12-8abb-61322c9e9499.B",
+    "octgn:804e57bd-26e8-495b-9676-2e39f009baba",
     "octgn:807175bd-1d09-41ff-a3ab-560a935eb259",
     "octgn:80764232-a3c9-47f1-9034-9c9ac82002e4",
     "octgn:808f60ad-a63f-4504-9b67-4fd45d630add",
@@ -2694,6 +2700,7 @@
     "octgn:85eb724c-a258-4d94-83ba-5e9f21d82491",
     "octgn:8615beb7-a9f7-4852-bc0a-3d1a5f2c9532",
     "octgn:86180e01-76fb-4103-977c-0d55bbfc2250",
+    "octgn:8657c425-d50d-4a14-b7c8-b528463376e6",
     "octgn:867b61a1-4e23-4426-ad94-b912e89055b8",
     "octgn:86e8724b-32cb-4d63-b918-5754d39d2249",
     "octgn:86fe0f99-d978-40be-8f39-136bec2a3d58",
@@ -2701,6 +2708,7 @@
     "octgn:87379a08-2fe2-4e32-9341-d78fb4e0298b",
     "octgn:87464aa2-e890-4151-8a93-55c2be3e44b2",
     "octgn:874a98ba-9b90-49b3-9cd4-c06464696b5b",
+    "octgn:874c52e0-e186-49dd-bb4b-7289bf1ecc6f",
     "octgn:87539fa5-677d-4163-aff5-321841981cd4",
     "octgn:877a0217-9708-4139-b305-14c1b83c1d14",
     "octgn:87c33692-599d-4914-a513-4353906fc6d4",
@@ -3274,6 +3282,7 @@
     "octgn:c69c1fe9-076a-4a5b-8388-9f653015d84d",
     "octgn:c6adadf8-569a-4943-817b-44bf1418e07e",
     "octgn:c6b0a8d2-32fe-4750-9270-7270cd5f062b",
+    "octgn:c6b1e2eb-9ce9-419c-a210-723f3891720d",
     "octgn:c6df8413-6e0a-4ba3-b705-4b9626c66b02",
     "octgn:c6ed1453-51ad-4daf-a1da-d59c78758c3a",
     "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
@@ -3559,6 +3568,7 @@
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5027",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5028",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5029",
+    "octgn:e8b7ad31-b448-42ac-9f72-defcbe2303e9",
     "octgn:e8c78f25-00d0-4b3b-8cac-03e533edfe41",
     "octgn:e8d205e0-5951-403b-b36e-f992e1b9de7e",
     "octgn:e8db9cc7-d53f-4ce9-991d-31078b2d507a",
@@ -4046,7 +4056,7 @@
     {
       "product": "khazad-dum-nightmare",
       "total": 27,
-      "scripted": 8,
+      "scripted": 18,
       "player": 0,
       "playerScripted": 0
     },
@@ -23274,7 +23284,7 @@
       "name": "Western Hall",
       "type": "location",
       "pack": "Khazad-dum - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "khazad-dum-nightmare"
     },
     {
@@ -25194,7 +25204,7 @@
       "name": "Balin's Doom",
       "type": "treachery",
       "pack": "Khazad-dum - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "khazad-dum-nightmare"
     },
     {
@@ -25234,7 +25244,7 @@
       "name": "Overseer Maurûl",
       "type": "enemy",
       "pack": "Khazad-dum - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "khazad-dum-nightmare"
     },
     {
@@ -25938,7 +25948,7 @@
       "name": "Goblin Skirmisher",
       "type": "enemy",
       "pack": "Khazad-dum - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "khazad-dum-nightmare"
     },
     {
@@ -26162,7 +26172,7 @@
       "name": "Chamber of Records",
       "type": "location",
       "pack": "Khazad-dum - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "khazad-dum-nightmare"
     },
     {
@@ -26914,7 +26924,7 @@
       "name": "The Seventh Level",
       "type": "nightmare",
       "pack": "Khazad-dum - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "khazad-dum-nightmare"
     },
     {
@@ -27466,7 +27476,7 @@
       "name": "Orc Taskmaster",
       "type": "enemy",
       "pack": "Khazad-dum - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "khazad-dum-nightmare"
     },
     {
@@ -27562,7 +27572,7 @@
       "name": "Deep-Mines",
       "type": "location",
       "pack": "Khazad-dum - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "khazad-dum-nightmare"
     },
     {
@@ -33210,7 +33220,7 @@
       "name": "Beats and Echoes",
       "type": "treachery",
       "pack": "Khazad-dum - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "khazad-dum-nightmare"
     },
     {
@@ -35994,7 +36004,7 @@
       "name": "Pit Goblin",
       "type": "enemy",
       "pack": "Khazad-dum - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "khazad-dum-nightmare"
     },
     {
@@ -39202,8 +39212,8 @@
       "id": "N02.2",
       "name": "The Seventh Level (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-seventh-level",
+      "state": "scripted"
     },
     {
       "id": "N02.3",

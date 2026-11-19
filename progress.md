@@ -1644,3 +1644,14 @@ Validation on Node 22: the engine suite passes all 7,008 tests, including 6 for 
 Coverage is now 861 player definitions (112 heroes), 2,377 encounters and 123 scenarios. This resolves 3,599 of 4,183 identities and 280 of 355 recipes; 584 identities remain pending.
 
 Validation on Node 22: the engine suite passes all 7,014 tests, including 6 for Into the Pit's Nightmare Deck (seeded solo and two-player games among them, and a game from stage 2); the Nightmare browser suite passes 69 checkpoints at 1280, 390 and 320 pixels, through Into the Pit's Nightmare card and Goblin Ambush with Shadow-Fall on First Hall, and checks the 103 pinned faces; the production build, the typecheck and the coverage audit pass.
+
+2026-11-19 Nightmare mode, The Seventh Level: continued the user's “Nastavi dok ne završis sve” after 8ce6f01. Flight from Moria follows. See docs/NIGHTMARE.md.
+
+- The Seventh Level's setup card and its nine Nightmare encounter designs are registered from the DragnCards scans (114 faces pinned in all); the scans give the setup card's removal list and its "Does not stack" note, Overseer Maurûl's accent (on the setup card too) and Deep-Mines' "Then, if". The source recipe N02.2 equals the standard deck less the printed removals plus the Nightmare Deck, with Overseer Maurûl and Chamber of Records set aside.
+- Its scripts live in their own layer (src/game/nightmare-seventh.ts, "nsl" effects), using the stage hooks Into the Pit's added; the composition now also passes on an enemy entering the staging area and a cancelled damage.
+- The setup card: Overseer Maurûl and Chamber of Records are set aside; stage 2B makes Chamber of Records the active location, adds Overseer Maurûl to the staging area and shuffles Balin's Doom back in; the players cannot win until Overseer Maurûl is in the victory display, which the table's goals show.
+- Overseer Maurûl, Chamber of Records (with the Goblin enemies' immunity to player events), Orc Taskmaster, Goblin Skirmisher, Pit Goblin, Deep-Mines, Western Hall, Balin's Doom and Beats and Echoes are scripted with their shadows; the resources on Goblin enemies are their resource tokens, and the non-stacking abilities apply once.
+
+Coverage is now 861 player definitions (112 heroes), 2,387 encounters and 123 scenarios. This resolves 3,609 of 4,183 identities and 281 of 355 recipes; 574 identities remain pending.
+
+Validation on Node 22: the engine suite passes all 7,019 tests, including 5 for The Seventh Level's Nightmare Deck (seeded solo and two-player games among them, and a game from stage 2B); the Nightmare browser suite passes 75 checkpoints at 1280, 390 and 320 pixels, through The Seventh Level's Nightmare card and stage 2B with Chamber of Records and a Pit Goblin with 3 resources, and checks the 114 pinned faces; the production build, the typecheck and the coverage audit pass.

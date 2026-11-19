@@ -47,6 +47,7 @@ import {
 import {
   NIGHTMARE_CARROCK_SET_ASIDE,
   NIGHTMARE_CORE as N,
+  NIGHTMARE_KD,
   NIGHTMARE_SOM,
   nightmareCardOf,
   nightmareLive,
@@ -127,6 +128,17 @@ export function nightmareSetup(s: GameState) {
     log(
       s,
       "Conflict at the Carrock · Nightmare: Rob & Bob, Louis, Morris, Rupert and Stuart are set aside.",
+    );
+  }
+  // The Seventh Level: "Setup: Set Overseer Maurûl and Chamber of Records
+  // aside, out of play."
+  if (s.scenarioId === "the-seventh-level") {
+    s.encounterDeck = s.encounterDeck.filter(
+      (c) => c !== NIGHTMARE_KD.maurul && c !== NIGHTMARE_KD.chamber,
+    );
+    log(
+      s,
+      "The Seventh Level · Nightmare: Overseer Maurûl and Chamber of Records are set aside.",
     );
   }
   // A Journey to Rhosgobel: "Setup: Search the encounter deck for 1 copy of

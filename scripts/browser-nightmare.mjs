@@ -716,6 +716,76 @@ try {
       })
       .waitFor();
     await checkpoint("pit-goblin-ambush", width);
+    // The Seventh Level in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-the-seventh-level").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "the-seventh-level");
+    assert.equal(s.nightmareMode, true);
+    for (const code of [K.maurul, K.chamber])
+      assert.ok(!s.encounterDeck.includes(code), code);
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/set aside until stage 2B is revealed/)
+      .waitFor();
+    await checkpoint("seventh-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // Stage 2B: Chamber of Records, Overseer Maurûl and a Pit Goblin with 3
+    // resources.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.stage = 2;
+      t.progress = 0;
+      t.activeLocation = make(t, K.chamber);
+      delete t.extraActiveLocations;
+      const goblin = make(t, K.pitGoblin);
+      goblin.resources = 3;
+      t.staging = [make(t, K.maurul), goblin];
+      for (const h of t.heroes)
+        h.attachments = h.attachments.filter((a) => a.code !== KHAZAD.book);
+      s = await load(page, t);
+    }
+    await page
+      .getByRole("button", {
+        name: "Inspect active location: Chamber of Records",
+        exact: true,
+      })
+      .waitFor();
+    await page.getByLabel("3 resources", { exact: true }).first().waitFor();
+    await page
+      .locator(".journey-area .quest-goals")
+      .getByText("Overseer Maurûl in the victory display")
+      .waitFor();
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/cannot win unless Overseer Maurûl is in the victory display/)
+      .waitFor();
+    await checkpoint("seventh-chamber-of-records", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
     await view.c.close();
   }
   const p = await browser.newPage();

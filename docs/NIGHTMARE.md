@@ -13,8 +13,8 @@ not offered in campaign mode.
 Journey Along the Anduin and Escape from Dol Guldur) and all six of Shadows of
 Mirkwood's (The Hunt for Gollum, Conflict at the Carrock, A Journey to
 Rhosgobel, The Hills of Emyn Muil, The Dead Marshes and Return to Mirkwood),
-and, of Khazad-dûm's, Into the Pit. The other Nightmare Decks follow in
-publication order, beginning with The Seventh Level.
+and, of Khazad-dûm's, Into the Pit and The Seventh Level. The other Nightmare
+Decks follow in publication order, beginning with Flight from Moria.
 
 ## Sources
 
@@ -26,8 +26,9 @@ publication order, beginning with The Seventh Level.
   Return to Mirkwood, 8
   cards and 9 faces for A Journey to Rhosgobel, and 11 cards and 13 faces for
   Conflict at the Carrock, whose Nightmare Deck adds a stage to the quest
-  deck, 10 cards and 11 faces for The Dead Marshes, and 8 cards and 10 faces
-  for Into the Pit, whose Nightmare Deck replaces stage 2).
+  deck, 10 cards and 11 faces for The Dead Marshes and The Seventh Level, and 8
+  cards and 10 faces for Into the Pit, whose Nightmare Deck replaces stage
+  2).
 - The scans correct the catalogue: each setup card's front is the removal
   list ("Begin with the standard quest deck and encounter deck … Remove the
   following cards, in the specified quantities …"), where the catalogue had a
@@ -56,11 +57,15 @@ publication order, beginning with The Seventh Level.
   "Surge." with its period; Into the Pit's Goblin Lurker's shadow reads "+1
   [attack]. (+3 [attack] instead if the active location is a Dark location.)"
   (the catalogue lost the period and the closing parenthesis), and
-  Shadow-Fall's quoted text ends "+3 quest points.".
+  Shadow-Fall's quoted text ends "+3 quest points."; The Seventh Level's setup
+  card and Overseer Maurûl keep the accent of "Maurûl" (the catalogue had
+  "Maurul" and "Marul"), and Deep-Mines' shadow reads "Then, if attacking
+  enemy is a Goblin".
 - The source recipe of each Nightmare scenario (`public/scenarios.json`,
-  N01.1 to N01.9 and N02.1) is the standard encounter deck without the
-  printed removals plus the Nightmare Deck (Escape from Dol Guldur's Nazgûl
-  and Conflict at the Carrock's 5 unique Trolls set aside in both, the
+  N01.1 to N01.9, N02.1 and N02.2) is the standard encounter deck without the
+  printed removals plus the Nightmare Deck (Escape from Dol Guldur's Nazgûl,
+  Conflict at the Carrock's 5 unique Trolls and The Seventh Level's Overseer
+  Maurûl and Chamber of Records set aside in both, the
   Carrock's stage 3 and Into the Pit's Goblin Ambush in their quest decks): a
   test compares the two. Into the Pit's recipe lacks the 2 Goblin Followers
   its setup card keeps (it removes 2 of the 4); the deck follows the printed
@@ -80,7 +85,8 @@ publication order, beginning with The Seventh Level.
   `src/game/nightmare-emyn.ts` (The Hills of Emyn Muil) and
   `src/game/nightmare-dead.ts` (The Dead Marshes) and
   `src/game/nightmare-rtm.ts` (Return to Mirkwood) and
-  `src/game/nightmare-pit.ts` (Into the Pit) script the setup cards'
+  `src/game/nightmare-pit.ts` (Into the Pit) and
+  `src/game/nightmare-seventh.ts` (The Seventh Level) script the setup cards'
   rules and the Nightmare
   encounter cards as a layer, chosen by scenario and composed with its hooks
   (the composition the Ered Mithrin Campaign Pool uses, which also composes
@@ -259,10 +265,29 @@ also passes a Nightmare layer's quest progress, dynamic traits (Shadow-Fall's
 Dark, which Cave Torch, Branching Paths and Burning Low see) and engagement
 costs on.
 
+## The Seventh Level (Nightmare)
+
+| Card                             | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Setup card                       | Removes Plundered Armoury ×2, Hidden Threat ×2, Upper Hall ×2, Goblin Scout ×2, Goblin Swordsman ×2 and Goblin Spearman ×2 from the standard encounter deck. Setup: Overseer Maurûl and Chamber of Records are set aside. Forced: when stage 2B is revealed, Chamber of Records becomes the active location (the active location returns to the staging area with its progress), Overseer Maurûl enters the staging area, and each Balin's Doom in the encounter discard pile is shuffled back into the encounter deck. "Does not stack": of several copies of such an ability, only one applies. |
+| Overseer Maurûl (enemy ×1)       | Unique. +X [threat], +X [attack] and +X [defense], X the most resources on a Goblin enemy in play. The players cannot win (stage 2B's 17 progress) until it is in the victory display. Victory 5.                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Chamber of Records (location ×1) | Unique. Immune to player card effects. Each Goblin enemy with 1 or more resources on it is immune to player events. When a Goblin enemy engages a player, it takes 2 resources. Victory 5.                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Orc Taskmaster (enemy ×2)        | When revealed, 1 resource on each Goblin enemy in play. When a Goblin enemy with a resource on it is dealt damage, it loses 1 resource and the damage is cancelled (once, whatever the number of copies).                                                                                                                                                                                                                                                                                                                                                                                         |
+| Goblin Skirmisher (enemy ×3)     | Each Goblin enemy gets +1 [attack] for each resource on it (it does not stack). Shadow: X damage to the defending character, X the resources on the attacking enemy.                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Pit Goblin (enemy ×2)            | When revealed, it takes 2 resources. Shadow: a Goblin attacking enemy takes 1 resource.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Deep-Mines (location ×3)         | When a Goblin enemy enters play, it takes 1 resource for each copy in the staging area. Shadow: +1 [attack] to the attacking enemy; a Goblin is dealt another shadow card.                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Western Hall (location ×2)       | Each Goblin enemy gets +1 [threat] for each resource on it (it does not stack). Travel: 1 resource on each Goblin enemy in play.                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Balin's Doom (treachery ×3)      | Surge. Doomed 1. 1 resource on each Goblin enemy in play. Shadow: a Goblin attacking enemy takes 1 resource.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Beats and Echoes (treachery ×2)  | The top X cards of the encounter deck are revealed (X is 2 plus the players not engaged with a Goblin enemy): the enemies are revealed into the staging area, the other cards discarded without resolving.                                                                                                                                                                                                                                                                                                                                                                                        |
+
+Stage 2B's reveal and the final stage's condition use the stage hooks Into the
+Pit's Nightmare Deck added; the composition also passes on an enemy entering
+the staging area and a cancelled damage.
+
 ## Verification
 
 ```sh
-node --import tsx --test tests/nightmare-core.test.ts tests/nightmare-anduin.test.ts tests/nightmare-dol-guldur.test.ts tests/nightmare-gollum.test.ts tests/nightmare-carrock.test.ts tests/nightmare-rhosgobel.test.ts tests/nightmare-emyn.test.ts tests/nightmare-dead.test.ts tests/nightmare-rtm.test.ts tests/nightmare-pit.test.ts
+node --import tsx --test tests/nightmare-core.test.ts tests/nightmare-anduin.test.ts tests/nightmare-dol-guldur.test.ts tests/nightmare-gollum.test.ts tests/nightmare-carrock.test.ts tests/nightmare-rhosgobel.test.ts tests/nightmare-emyn.test.ts tests/nightmare-dead.test.ts tests/nightmare-rtm.test.ts tests/nightmare-pit.test.ts tests/nightmare-seventh.test.ts
 npm run build
 npm run test:browser-nightmare
 ```
@@ -349,7 +374,7 @@ new guard engaged and attacked), Ambushing Orcs' shadows on each player
 sentinel keywords, the locked guard, discarded as the quest advances);
 Web-spinner, Web-wall and Deceptive Path; Befouled Equipment (an enemy's attachment too, the discard pile removed from the game, its surge, its shadow) and Wickedness and Mischief (its
 choice, never revealing itself, its shadow's new shadow card); and seeded solo
-and two-player games. `tests/nightmare-pit.test.ts` (6 tests) covers Into the Pit's texts, stats and faces; its Nightmare encounter deck against the source recipe (with the 2 Goblin Followers its setup card keeps); Cave Torch's damage tokens (through Lightless Passage's cost and its Action), Patrol Sentry's immediate attack and Cave Torch removed at 5; Goblin Ambush (Patrol Sentry and Patrol Leader found, a choice among the Orc enemies of the deck and discard pile in a two-player game, X quest points, progress only from defeated enemies, revealed enemies kept, the stage defeated at X); Goblin Lurker, Shadow Dweller (no engagement checks while Cave Torch is in play) and the shadows; Twisting Shadows, Narrow Fissure and Shadow-Fall (the Dark trait it gives); and seeded solo and two-player games, from the start and from stage 2.
+and two-player games. `tests/nightmare-pit.test.ts` (6 tests) covers Into the Pit's texts, stats and faces; its Nightmare encounter deck against the source recipe (with the 2 Goblin Followers its setup card keeps); Cave Torch's damage tokens (through Lightless Passage's cost and its Action), Patrol Sentry's immediate attack and Cave Torch removed at 5; Goblin Ambush (Patrol Sentry and Patrol Leader found, a choice among the Orc enemies of the deck and discard pile in a two-player game, X quest points, progress only from defeated enemies, revealed enemies kept, the stage defeated at X); Goblin Lurker, Shadow Dweller (no engagement checks while Cave Torch is in play) and the shadows; Twisting Shadows, Narrow Fissure and Shadow-Fall (the Dark trait it gives); and seeded solo and two-player games, from the start and from stage 2. `tests/nightmare-seventh.test.ts` (5 tests) covers The Seventh Level's texts, stats and faces; its Nightmare encounter deck against the source recipe; Overseer Maurûl and Chamber of Records set aside, then stage 2B (Chamber of Records active, the previous active location staged with its progress, Overseer Maurûl staged, Balin's Doom returned) and the win held until Overseer Maurûl is in the victory display; the resources (Pit Goblin, Orc Taskmaster, Balin's Doom and its surge, Deep-Mines for each copy, Chamber of Records' engagement and event immunity, Western Hall's [threat] and Travel, Goblin Skirmisher's [attack], neither stacking, Overseer Maurûl's X, Orc Taskmaster's cancelled damage); Beats and Echoes (solo, engaged with a Goblin, two players) and the shadows; and seeded solo and two-player games, from the start and from stage 2B.
 
 The browser suite starts Passage Through Mirkwood in Nightmare mode from the
 lobby (easy mode turned off), checks the setup's staging area and reveal, the
@@ -374,4 +399,4 @@ with 3 tokens on the Mere (an escape test revealed during the setup is
 resolved first); and it starts Return to Mirkwood in Nightmare mode from the
 lobby, checks Gollum's guard, its Nightmare card, Isolation on the current
 quest (on the table and in the quest inspector), and the quest phase's choice
-for Gollum's guard, resolving Gollum's Anguish from the discard pile; and it starts Into the Pit in Nightmare mode from the lobby, checks Cave Torch, its Nightmare card, and stage 2 (Goblin Ambush's face, its 1 of 2 progress and goal, Shadow-Fall on First Hall), at 1280, 390 and 320 pixels (69 checkpoints); it checks the 103 pinned faces.
+for Gollum's guard, resolving Gollum's Anguish from the discard pile; and it starts Into the Pit in Nightmare mode from the lobby, checks Cave Torch, its Nightmare card, and stage 2 (Goblin Ambush's face, its 1 of 2 progress and goal, Shadow-Fall on First Hall); and it starts The Seventh Level in Nightmare mode from the lobby, checks Overseer Maurûl and Chamber of Records set aside, its Nightmare card, and stage 2B (Chamber of Records active, a Pit Goblin with 3 resources, the Nightmare card's win condition), at 1280, 390 and 320 pixels (75 checkpoints); it checks the 114 pinned faces.

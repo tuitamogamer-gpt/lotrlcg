@@ -90,6 +90,7 @@ import {
   escapeStatLabel,
 } from "../game/dead-marshes";
 import { KHAZAD } from "../game/khazad-dum";
+import { NIGHTMARE_KD, nightmareLive } from "../game/nightmare";
 import { returnMirkwoodGuard } from "../game/return-mirkwood";
 
 const requiredQuestSelections = (s: GameState) =>
@@ -1339,6 +1340,20 @@ export function QuestGoals({ s }: { s: GameState }) {
                                       h.attachments.some(
                                         (a) => a.code === KHAZAD.book,
                                       ),
+                                    ),
+                                  },
+                                ]
+                              : []),
+                            // Nightmare mode, Overseer Maurûl: "The players
+                            // cannot win the game unless Overseer Maurûl is in
+                            // the victory display."
+                            ...(s.stage === 2 && nightmareLive(s)
+                              ? [
+                                  {
+                                    label:
+                                      "Overseer Maurûl in the victory display",
+                                    done: !!s.victoryCards?.includes(
+                                      NIGHTMARE_KD.maurul,
                                     ),
                                   },
                                 ]

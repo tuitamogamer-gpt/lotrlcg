@@ -2915,6 +2915,13 @@ export function composeEredPool(
     ],
     engagementBonus: (s, u) =>
       (h.engagementBonus?.(s, u) ?? 0) + (p.engagementBonus?.(s, u) ?? 0),
+    enemyEntered: (s, u) => {
+      h.enemyEntered?.(s, u);
+      p.enemyEntered?.(s, u);
+    },
+    replaceDamage: (s, u, amount, context) =>
+      !!h.replaceDamage?.(s, u, amount, context) ||
+      !!p.replaceDamage?.(s, u, amount, context),
     locationProgressCapacity: (s, u) => {
       const a = h.locationProgressCapacity?.(s, u),
         b = p.locationProgressCapacity?.(s, u);
