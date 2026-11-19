@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2437,
+    "encounterCards": 2447,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3659,
-    "pending": 524
+    "scripted": 3669,
+    "pending": 514
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 287
+    "scripted": 288
   },
   "registeredCodes": [
     "01001",
@@ -1739,6 +1739,7 @@
     "octgn:3a47aa88-5089-435d-b5ab-899dab400c98",
     "octgn:3a8869dc-077e-4b8c-b3d5-474e4f9c14ba",
     "octgn:3ad34bfd-3f2b-4b23-b09d-232f4640ddeb",
+    "octgn:3b1df5e8-ce5e-4c66-a12b-25a322cfb0ba",
     "octgn:3b26d048-24cb-4978-86f9-d255048426d8",
     "octgn:3b7c4f67-7de4-4b77-be50-0fd86e4ef2bc",
     "octgn:3b855783-5b90-4788-802e-e7c1e81461d8",
@@ -1789,6 +1790,7 @@
     "octgn:41928f89-4736-42f9-b789-9ea670d26639",
     "octgn:41b47c87-94c4-47ff-b8c6-3f25dba0ca49",
     "octgn:41c3779a-a28a-44db-8b9b-bc5e81d1111a",
+    "octgn:41cf7fb0-1194-4654-b23a-0b49259faf63",
     "octgn:4233fe0f-ba63-4947-8c3c-f732ab09c472",
     "octgn:42621898-ffe0-435a-a0c2-34ed4383eadb",
     "octgn:4297aa1e-8d53-4bd4-a750-ae5490fbb82b",
@@ -1898,6 +1900,7 @@
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9086",
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9088",
     "octgn:48384e79-d397-4dcd-9862-8a72acb448d0",
+    "octgn:4858bd5a-6d80-4351-849b-532fc2bc4ffe",
     "octgn:486f9475-98e1-42d9-ac90-e6190545a5b9",
     "octgn:48893e0f-bc7c-46f4-a5f7-18bd0d758d49",
     "octgn:4893d105-fada-4bee-a4bb-d26463b97b63",
@@ -2982,6 +2985,7 @@
     "octgn:a4cd5ce9-fc29-44b6-9bee-eafbbd431c49",
     "octgn:a4df63d1-cb3d-4510-9e26-3b734632f456",
     "octgn:a4e02843-7689-484e-8e58-0b869717aeba",
+    "octgn:a4e67c29-716e-4221-b300-e7c03f339a96",
     "octgn:a4e9aa38-54a7-4e99-bab6-330804b24a6e",
     "octgn:a4ffb8cd-fd95-4b47-95d1-637bd2bd78a1",
     "octgn:a516b400-b53f-4c21-8e44-c0a889caa8d5",
@@ -3221,6 +3225,7 @@
     "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0053",
     "octgn:b922eedf-eea0-471d-bc52-90becc2a0769",
     "octgn:b93c5b70-0655-4577-9f5e-68ca00d4bfc8",
+    "octgn:b94e993e-27a6-4ef4-b6f6-a7719928aceb",
     "octgn:b9b2c1fc-2954-46f3-8b6c-71300a35eb5d",
     "octgn:ba090102-5f80-4dbc-aefd-2f965685e954",
     "octgn:ba2e4a33-edc6-4638-a3f5-b818b080aea8",
@@ -3236,6 +3241,7 @@
     "octgn:bb5afc96-9b41-4a8d-933d-1906e550243b",
     "octgn:bb5d1d76-663f-4261-94ec-7a9bfc025acf",
     "octgn:bb6dd4a6-a72c-400a-9cc6-903d7260ea1b",
+    "octgn:bb81a9e4-3458-4893-bb85-788ef3f02184",
     "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
     "octgn:bc041e0b-dd7f-4b82-8eb0-d155b1b08398",
     "octgn:bc43ae57-6010-4924-919c-b37d1e33b958",
@@ -3386,6 +3392,7 @@
     "octgn:ce14480c-dfc0-4b30-8f8d-e878e003f4cd",
     "octgn:ce1cf93c-68d9-4613-af3a-a08671152358",
     "octgn:ce23920a-4b87-4015-88bf-8687a6d3f180",
+    "octgn:ce3322ab-b890-40e0-852a-a4638796a122",
     "octgn:ce5c7298-f5ff-478f-b70a-9efa27bd071e",
     "octgn:ceb5ede8-0acc-40b6-ac43-b9f1ff006d9e",
     "octgn:cedfcb4c-9f28-46c6-b6ec-7986be79f7b1",
@@ -3430,6 +3437,7 @@
     "octgn:d4686e4d-2d50-4ffd-9b95-7bcdf9b2a494",
     "octgn:d47ece86-2645-4d35-8ab7-c439d12abe65",
     "octgn:d4a5f505-6cc6-4669-b9b9-8f5ad2a6e5df",
+    "octgn:d4b4c172-dec4-4d31-91f8-24f3e3127713",
     "octgn:d4de89b5-2e86-417a-baf1-81e7e852e5d4",
     "octgn:d4e4ab9d-d5ea-4d33-89f1-d8d24d166002",
     "octgn:d5134ddf-8c78-4e68-a603-7df5d48f5016",
@@ -3652,6 +3660,7 @@
     "octgn:ecb91fb3-6ae6-4a96-9bb7-71abeb0a7ec5.B",
     "octgn:ecc8fd11-b2b9-4adc-91eb-6fcc1212e7ce",
     "octgn:eccef05c-0f43-4cfa-91c6-e9eaf0eff7c9",
+    "octgn:ed12d29f-d8f8-4689-8097-417b4d31f214",
     "octgn:ed3c4835-2741-406c-b43e-0ad72f6b2496",
     "octgn:ed68974c-45ea-4378-9fe3-818cae03f9ea",
     "octgn:ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d",
@@ -3709,6 +3718,7 @@
     "octgn:f330efb5-6263-48a1-9f08-0911f214bd96",
     "octgn:f35e7236-2e03-4e03-aa92-7c4803e79acf",
     "octgn:f36b6f95-59bc-4d1f-9f03-be1645fe3b58",
+    "octgn:f376de21-bb3f-49dc-94e5-ce57216963e7",
     "octgn:f388bf8b-461c-4478-8155-74775bf27714",
     "octgn:f38caab3-61dc-45e2-9b31-533ba3b9fbd9",
     "octgn:f3bc3759-1f94-4983-bebb-66c7d9e3e0b3",
@@ -4218,7 +4228,7 @@
     {
       "product": "shadow-and-flame-nightmare",
       "total": 10,
-      "scripted": 0,
+      "scripted": 10,
       "player": 0,
       "playerScripted": 0
     },
@@ -18486,7 +18496,7 @@
       "name": "Blazing Grip",
       "type": "treachery",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "shadow-and-flame-nightmare"
     },
     {
@@ -18998,7 +19008,7 @@
       "name": "The Dark Fire",
       "type": "treachery",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "shadow-and-flame-nightmare"
     },
     {
@@ -19950,7 +19960,7 @@
       "name": "Flame of Udún",
       "type": "treachery",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "shadow-and-flame-nightmare"
     },
     {
@@ -30014,7 +30024,7 @@
       "name": "Shadow and Flame",
       "type": "nightmare",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "shadow-and-flame-nightmare"
     },
     {
@@ -32214,7 +32224,7 @@
       "name": "Terrible Strength",
       "type": "treachery",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "shadow-and-flame-nightmare"
     },
     {
@@ -32374,7 +32384,7 @@
       "name": "Captain of Mordor",
       "type": "enemy",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "shadow-and-flame-nightmare"
     },
     {
@@ -33870,7 +33880,7 @@
       "name": "Crumbling Stairs",
       "type": "location",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "shadow-and-flame-nightmare"
     },
     {
@@ -34382,7 +34392,7 @@
       "name": "Servant of Flame",
       "type": "enemy",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "shadow-and-flame-nightmare"
     },
     {
@@ -36406,7 +36416,7 @@
       "name": "Fiery Depths",
       "type": "location",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "shadow-and-flame-nightmare"
     },
     {
@@ -36990,7 +37000,7 @@
       "name": "Morgoth's Bidding",
       "type": "treachery",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "shadow-and-flame-nightmare"
     },
     {
@@ -39311,8 +39321,8 @@
       "id": "N02.9",
       "name": "Shadow and Flame (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "shadow-and-flame",
+      "state": "scripted"
     },
     {
       "id": "N03.1",

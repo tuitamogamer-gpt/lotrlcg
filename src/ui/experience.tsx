@@ -1546,6 +1546,16 @@ export function QuestGoals({ s }: { s: GameState }) {
                                         "Durin’s Bane is considered engaged with each player at threat 1 or higher",
                                       done: false,
                                     },
+                                    // Nightmare mode: the Balrog deck.
+                                    ...(nightmareLive(s) &&
+                                    s.nightmare?.balrogDeck
+                                      ? [
+                                          {
+                                            label: `Balrog deck · ${s.nightmare.balrogDeck.length} shadow ${s.nightmare.balrogDeck.length === 1 ? "card" : "cards"} for Durin’s Bane, ${s.nightmare.balrogDiscard?.length ?? 0} in its discard pile`,
+                                            done: false,
+                                          },
+                                        ]
+                                      : []),
                                     ...(s.stage === 3
                                       ? [
                                           {

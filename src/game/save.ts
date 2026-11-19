@@ -132,6 +132,7 @@ import { validNightmareRivendell } from "./nightmare-rivendell";
 import { validNightmareWatcher } from "./nightmare-watcher";
 import { validNightmareLongDark } from "./nightmare-longdark";
 import { validNightmareFoundations } from "./nightmare-foundations";
+import { validNightmareShadowFlame } from "./nightmare-shadowflame";
 import { nightmareEscapeTest } from "./nightmare-dead";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
@@ -1170,6 +1171,7 @@ export function validateSave(
         !validNightmareWatcher(s) ||
         !validNightmareLongDark(s) ||
         !validNightmareFoundations(s) ||
+        !validNightmareShadowFlame(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,

@@ -191,6 +191,17 @@ export const NIGHTMARE_DD = {
   nest: "octgn:0a53cafe-3137-4475-98f8-37818d1b91a5",
   river: "octgn:3f0b92d5-18d9-4a85-8efb-ce6e64172674",
   chill: "octgn:42d80e7e-8217-48a2-a386-c18b6bff1bf1",
+  /** Shadow and Flame's setup card and Nightmare Deck (its Attack cards form the Balrog deck). */
+  shadowFlameCard: "octgn:a4e67c29-716e-4221-b300-e7c03f339a96",
+  terrible: "octgn:b94e993e-27a6-4ef4-b6f6-a7719928aceb",
+  darkFire: "octgn:41cf7fb0-1194-4654-b23a-0b49259faf63",
+  grip: "octgn:3b1df5e8-ce5e-4c66-a12b-25a322cfb0ba",
+  bidding: "octgn:f376de21-bb3f-49dc-94e5-ce57216963e7",
+  udun: "octgn:4858bd5a-6d80-4351-849b-532fc2bc4ffe",
+  servant: "octgn:d4b4c172-dec4-4d31-91f8-24f3e3127713",
+  captain: "octgn:bb81a9e4-3458-4893-bb85-788ef3f02184",
+  fiery: "octgn:ed12d29f-d8f8-4689-8097-417b4d31f214",
+  stairs: "octgn:ce3322ab-b890-40e0-852a-a4638796a122",
 } as const;
 
 interface NightmareDeck {
@@ -445,6 +456,18 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
     },
     sets: ["The Long Dark", "Twists and Turns", "Deeps of Moria"],
   },
+  "shadow-and-flame": {
+    card: NIGHTMARE_DD.shadowFlameCard,
+    removals: {
+      "Goblin Scout": 3,
+      "Goblin Tunnels": 2,
+      "Stray Goblin": 3,
+      "The Mountains' Roots": 3,
+      "Ranging Goblin": 3,
+      "Fiery Sword": 1,
+      "Many Thonged Whip": 1,
+    },
+  },
   "foundations-of-stone": {
     card: NIGHTMARE_DD.foundationsCard,
     // Its cards with the Foundations of Stone icon join the set-aside set
@@ -651,6 +674,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "the-long-dark")
     return [
       "The Long Dark · Nightmare mode: Durin's Greaves gains surge. Lost: the first player chooses and discards an ally in play. The standard encounter deck uses Deeps of Moria, whose cards the setup card removes.",
+    ];
+  if (s.scenarioId === "shadow-and-flame")
+    return [
+      `Shadow and Flame · Nightmare mode: Durin's Bane's shadow cards come from the Balrog deck (${s.nightmare?.balrogDeck?.length ?? 0} ${(s.nightmare?.balrogDeck?.length ?? 0) === 1 ? "card" : "cards"}; ${s.nightmare?.balrogDiscard?.length ?? 0} in its discard pile), reshuffled at the beginning of each combat phase.`,
     ];
   if (s.scenarioId === "foundations-of-stone")
     return [

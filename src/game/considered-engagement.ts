@@ -22,7 +22,10 @@ export function dealEnemyShadows(s: GameState, u: Unit, amount = 1): string[] {
   const count = batch4Scenario(s).shadowCards?.(s, u, amount) ?? amount;
   const dealt: string[] = [];
   for (let i = 0; i < count; i++) {
-    const code = encounterDraw(s, true);
+    // A scenario may deal this enemy's shadow cards from another deck (Shadow
+    // and Flame's Nightmare Deck: Durin's Bane's Balrog deck); null deals none.
+    const replaced = batch4Scenario(s).shadowDraw?.(s, u);
+    const code = replaced === undefined ? encounterDraw(s, true) : replaced;
     if (!code) break;
     u.shadows.push(code);
     if (u.faceupShadows) u.faceupShadows.push(false);

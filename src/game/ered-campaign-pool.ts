@@ -2945,6 +2945,12 @@ export function composeEredPool(
     ],
     lostResolve: (s, id) =>
       !!h.lostResolve?.(s, id) || !!p.lostResolve?.(s, id),
+    playCostReduction: (s, c) =>
+      (h.playCostReduction?.(s, c) ?? 0) + (p.playCostReduction?.(s, c) ?? 0),
+    shadowDraw: (s, u) => {
+      const code = h.shadowDraw?.(s, u);
+      return code !== undefined ? code : p.shadowDraw?.(s, u);
+    },
     namelessFed: (s, u, player) => {
       h.namelessFed?.(s, u, player);
       p.namelessFed?.(s, u, player);

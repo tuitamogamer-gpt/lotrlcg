@@ -351,6 +351,8 @@ export interface Batch4ScenarioHooks {
   lostSources?(s: GameState): { id: string; code: string; label?: string }[];
   /** The Long Dark: resolves one of those "Lost:" abilities; true when it was one. */
   lostResolve?(s: GameState, id: string): boolean;
+  /** The shadow card this enemy is dealt, from a deck other than the encounter deck (null: none); undefined to deal from the encounter deck. */
+  shadowDraw?(s: GameState, u: Unit): string | null | undefined;
   /** Foundations of Stone: cards were attached to a Nameless enemy from the top of a player's deck. */
   namelessFed?(s: GameState, enemy: Unit, player: number): void;
   cannotDiscardShadow?(s: GameState, u: Unit, code: string): boolean;

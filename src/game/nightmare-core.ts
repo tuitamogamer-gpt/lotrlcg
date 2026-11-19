@@ -160,6 +160,16 @@ export function nightmareSetup(s: GameState) {
       "Flight from Moria · Nightmare: Ghâsh!, Blocked by Flame and Pursued by Shadow are shuffled into the quest deck in place of Blocked by Shadow.",
     );
   }
+  // Shadow and Flame: "Setup: Shuffle the 10 encounter cards with the Attack
+  // trait into a separate "Balrog deck.""
+  if (s.scenarioId === "shadow-and-flame") {
+    const attack = (code: string) =>
+      (card(code).traits ?? "").split(".").some((t) => t.trim() === "Attack");
+    const balrog = s.encounterDeck.filter(attack);
+    s.encounterDeck = s.encounterDeck.filter((c) => !attack(c));
+    (s.nightmare ??= {}).balrogDeck = shuffle(s, balrog);
+    s.nightmare.balrogDiscard = [];
+  }
   // The Watcher in the Water: its Nightmare Deck's The Watcher is set aside
   // with Doors of Durin (To the West-door's Setup), in place of the standard
   // one.

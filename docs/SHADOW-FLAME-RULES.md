@@ -1,6 +1,6 @@
 # Shadow and Flame rules support
 
-The original scenario implements thirteen encounter designs, three double-sided quests and the shared Deeps of Moria / Goblins of the Deep sets. Its physical encounter pool contains 56 cards in normal mode and 42 in easy mode. Setup places one Durin's Bane in staging and sets aside Dark Pit, leaving 54 / 40 cards before the additional setup revelations. Nightmare remains reference content.
+The original scenario implements thirteen encounter designs, three double-sided quests and the shared Deeps of Moria / Goblins of the Deep sets. Its physical encounter pool contains 56 cards in normal mode and 42 in easy mode. Setup places one Durin's Bane in staging and sets aside Dark Pit, leaving 54 / 40 cards before the additional setup revelations. Its Nightmare Deck is supported (docs/NIGHTMARE.md): Durin's Bane's shadow cards then come from the Balrog deck of the 10 Attack cards.
 
 ## Sources
 

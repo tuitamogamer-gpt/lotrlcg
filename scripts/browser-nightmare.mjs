@@ -1232,6 +1232,70 @@ try {
       .getByLabel("Attachments on Unspeakable Thing", { exact: true })
       .waitFor();
     await checkpoint("foundations-unspeakable-thing", width);
+    // Shadow and Flame in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-shadow-and-flame").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "shadow-and-flame");
+    assert.equal(s.nightmareMode, true);
+    assert.equal(s.nightmare.balrogDeck.length, 10, "the Balrog deck");
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/shadow cards come from the Balrog deck/)
+      .waitFor();
+    await checkpoint("shadowflame-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A Servant of Flame and a Captain of Mordor with Durin's Bane, two cards
+    // in the Balrog discard pile.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.nightmare.balrogDiscard = t.nightmare.balrogDeck.splice(0, 2);
+      t.staging = [
+        ...t.staging.filter((u) => card(u.code).name === "Durin's Bane"),
+        make(t, DW.servant),
+        make(t, DW.captain),
+      ];
+      s = await load(page, t);
+    }
+    const servantFace = page
+      .locator(`img[src*="${DW.servant.slice("octgn:".length)}"]`)
+      .first();
+    await servantFace.waitFor();
+    assert.ok(
+      (await servantFace.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "Servant of Flame's face loads",
+    );
+    await page
+      .locator(".journey-area .quest-goals")
+      .getByText(
+        "Balrog deck · 8 shadow cards for Durin’s Bane, 2 in its discard pile",
+        { exact: true },
+      )
+      .waitFor();
+    await checkpoint("shadowflame-balrog-deck", width);
     await view.c.close();
   }
   const p = await browser.newPage();

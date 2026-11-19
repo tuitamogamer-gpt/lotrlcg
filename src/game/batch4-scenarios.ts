@@ -78,6 +78,7 @@ import { NIGHTMARE_RIVENDELL_HOOKS } from "./nightmare-rivendell";
 import { NIGHTMARE_WATCHER_HOOKS } from "./nightmare-watcher";
 import { NIGHTMARE_LONG_DARK_HOOKS } from "./nightmare-longdark";
 import { NIGHTMARE_FOUNDATIONS_HOOKS } from "./nightmare-foundations";
+import { NIGHTMARE_SHADOW_FLAME_HOOKS } from "./nightmare-shadowflame";
 import { nightmareLive } from "./nightmare";
 
 const empty: Batch4ScenarioHooks = {};
@@ -105,6 +106,7 @@ const NIGHTMARE_LAYERS: Partial<Record<string, Batch4ScenarioHooks>> = {
   "watcher-in-the-water": NIGHTMARE_WATCHER_HOOKS,
   "the-long-dark": NIGHTMARE_LONG_DARK_HOOKS,
   "foundations-of-stone": NIGHTMARE_FOUNDATIONS_HOOKS,
+  "shadow-and-flame": NIGHTMARE_SHADOW_FLAME_HOOKS,
 };
 /**
  * The current scenario's hooks; in an Ered Mithrin campaign chapter from The
@@ -271,6 +273,7 @@ export const batch4SharedEffect = (effect: Effect) =>
     NIGHTMARE_WATCHER_HOOKS,
     NIGHTMARE_LONG_DARK_HOOKS,
     NIGHTMARE_FOUNDATIONS_HOOKS,
+    NIGHTMARE_SHADOW_FLAME_HOOKS,
     BLACK_SERPENT_HOOKS,
     CIRITH_GURAT_HOOKS,
     CROSSINGS_POROS_HOOKS,
