@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2258,
+    "encounterCards": 2265,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3480,
-    "pending": 703
+    "scripted": 3487,
+    "pending": 696
   },
   "scenarioRecipes": {
     "total": 355,
@@ -789,6 +789,11 @@
     "12146",
     "12166",
     "12167",
+    "12169",
+    "12171",
+    "12172",
+    "12173",
+    "12174",
     "12196",
     "12197",
     "12198",
@@ -1551,6 +1556,7 @@
     "octgn:27da4ea2-7892-409e-b6e0-38ad215d5d0c",
     "octgn:2809f147-b000-419c-bbb2-39e6221d72de",
     "octgn:282bca71-ff04-4447-a4e9-a7e5f70e0083",
+    "octgn:28491ce2-ffc5-4f26-ab6d-88b68d59ea63",
     "octgn:286a5206-9ebb-4ec4-a349-2960ccb2f669",
     "octgn:2878bd63-b20b-419a-85a2-dff419864e08",
     "octgn:287fb255-d104-450c-8159-4fa36e37ca93",
@@ -1715,6 +1721,7 @@
     "octgn:3d19de02-b3a9-4612-a90a-30b37bd1e9b1",
     "octgn:3d1a7e6f-382a-49cb-9873-e6e5e86d12d2",
     "octgn:3d25a41e-6a10-4fd7-a159-2b25bfc54454",
+    "octgn:3d3d4db9-873a-48a6-8a2d-e50abc5533f5",
     "octgn:3d7adc18-c9cb-4e93-8b1e-1574747ba8ce",
     "octgn:3d948840-8118-4d63-b782-ba017e1cf5d5",
     "octgn:3d9db37c-4b51-4da8-be2b-25cd2d48e28b",
@@ -3836,9 +3843,9 @@
     {
       "product": "ered-mithrin-campaign-expansion",
       "total": 40,
-      "scripted": 12,
+      "scripted": 19,
       "player": 21,
-      "playerScripted": 10
+      "playerScripted": 12
     },
     {
       "product": "escape-from-khazad-dum",
@@ -9883,7 +9890,7 @@
       "name": "Melanwar",
       "type": "ally",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -9891,7 +9898,7 @@
       "name": "Isolde",
       "type": "ally",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -9899,7 +9906,7 @@
       "name": "The Threat to Wilderland",
       "type": "objective",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -9907,7 +9914,7 @@
       "name": "Dagnir's Spawn",
       "type": "enemy",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -9915,7 +9922,7 @@
       "name": "Abandoned Ruin",
       "type": "location",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -16675,7 +16682,7 @@
       "name": "Lost In Mirkwood",
       "type": "campaign",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -18427,7 +18434,7 @@
       "name": "The King's Quest",
       "type": "campaign",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {

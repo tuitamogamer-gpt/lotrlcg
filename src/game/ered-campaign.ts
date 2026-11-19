@@ -33,13 +33,31 @@ import {
 } from "./table";
 import { score } from "./actions";
 import { expansionPlayTargets } from "./expansion-passives";
-import { WILDS_EVIL_CREATURES } from "./wilds-rhovanion-support";
+import {
+  WILDS_EVIL_CREATURES,
+  WILDS_RHOVANION,
+} from "./wilds-rhovanion-support";
+/** The campaign card's title. */
+const scenarioName = (s: GameState) =>
+  ERED_CAMPAIGN_CARDS[s.scenarioId]
+    ? card(ERED_CAMPAIGN_CARDS[s.scenarioId]!).name
+    : "Ered Mithrin";
 
 /** The campaign's cards (RingsDB codes; the campaign cards by OCTGN id). */
 export const ERED = {
   anduinCard: "octgn:12da9483-0fce-43c6-ae47-4cc2aea9cde9",
+  mirkwoodCard: "octgn:28491ce2-ffc5-4f26-ab6d-88b68d59ea63",
+  kingsCard: "octgn:3d3d4db9-873a-48a6-8a2d-e50abc5533f5",
   /** Turayn (unique boon ally, Journey Up the Anduin). */
   turayn: "12166",
+  /** Melanwar (unique boon ally, Lost in Mirkwood). */
+  melanwar: "12169",
+  /** Isolde (unique boon ally, The King's Quest). */
+  isolde: "12171",
+  /** The King's Quest's burdens: The Threat to Wilderland (objective), Dagnir's Spawn (enemy) and Abandoned Ruin (location). */
+  threat: "12172",
+  spawn: "12173",
+  ruin: "12174",
   /** A Growing Threat (burden treachery, Journey Up the Anduin). */
   growing: "12167",
   /** The nine treasures. */
@@ -80,6 +98,8 @@ export const ERED_CAMPAIGN_ORDER: readonly ScenarioId[] = [
 /** The chapters whose campaign cards are scripted so far. */
 export const ERED_CAMPAIGN_SUPPORTED: readonly ScenarioId[] = [
   "journey-up-the-anduin",
+  "lost-in-mirkwood",
+  "the-kings-quest",
 ];
 /** The chapters whose campaign card lets each player change heroes without the +1 threat penalty. */
 export const ERED_FREE_CHANGES: readonly ScenarioId[] = [
@@ -89,16 +109,37 @@ export const ERED_FREE_CHANGES: readonly ScenarioId[] = [
 /** Each scripted chapter's campaign card. */
 export const ERED_CAMPAIGN_CARDS: Partial<Record<ScenarioId, string>> = {
   "journey-up-the-anduin": ERED.anduinCard,
+  "lost-in-mirkwood": ERED.mirkwoodCard,
+  "the-kings-quest": ERED.kingsCard,
 };
 /** The boons in the Campaign Pool that a player may add to their deck. */
-export const ERED_DECK_BOONS: readonly string[] = [ERED.turayn];
-export const ERED_BOONS: readonly string[] = [ERED.turayn];
-export const ERED_BURDENS: readonly string[] = [ERED.growing];
+export const ERED_DECK_BOONS: readonly string[] = [
+  ERED.turayn,
+  ERED.melanwar,
+  ERED.isolde,
+];
+export const ERED_BOONS: readonly string[] = [...ERED_DECK_BOONS];
+export const ERED_BURDENS: readonly string[] = [
+  ERED.growing,
+  ERED.threat,
+  ERED.spawn,
+  ERED.ruin,
+];
 /** The burdens shuffled into each encounter deck at setup. */
-const ENCOUNTER_BURDENS: readonly string[] = [ERED.growing];
+const ENCOUNTER_BURDENS: readonly string[] = [ERED.growing, ERED.spawn];
 /** The Campaign Log's notes and their printed wording. */
 export const ERED_NOTES: Record<string, string> = {
   turayn: "Turayn has taken an oath of vigilance",
+  melanwar: "Melanwar has given you guidance on traversing Wilderland",
+  isolde: "Isolde is on the hunt",
+};
+/** The encounter sets Lost in Mirkwood's resolution adds to the Campaign Pool. */
+const SPIDERS_AND_ORCS = ["Spiders of Mirkwood", "Dol Guldur Orcs"];
+/** Each chapter's boon ally: "Any player gains control of …" and the resolution's choice. */
+const BOON_ALLY: Partial<Record<ScenarioId, { code: string; note: string }>> = {
+  "journey-up-the-anduin": { code: ERED.turayn, note: "turayn" },
+  "lost-in-mirkwood": { code: ERED.melanwar, note: "melanwar" },
+  "the-kings-quest": { code: ERED.isolde, note: "isolde" },
 };
 export const isEredCampaign = (c?: CampaignState | null) => c?.kind === "ered";
 /** A chapter of the Ered Mithrin campaign is being played. */
@@ -163,6 +204,16 @@ export interface EredCampaignGame {
   shields?: { target: string; round: number }[];
   /** Anvil of Gundabad: the Item attachment it is playing with its cost reduced by 1. */
   anvil?: string;
+  /** Treasures attached to encounter cards as guarded objectives (claimed when free). */
+  guarded?: { guardId: string; code: string }[];
+  /** The round the players quested unsuccessfully (Melanwar). */
+  failedRound?: number;
+  /** Abandoned Ruin's Response was used this game (limit once per game). */
+  ruinUsed?: boolean;
+  /** The Threat to Wilderland: the encounter cards made immune to player card effects for this quest phase. */
+  immune?: { ids: string[]; round: number };
+  /** Dagnir's Spawn: the players who took its X damage this reveal. */
+  spawn?: { id: string; accepted: number[]; asked: number[] };
 }
 export const eredState = (s: GameState) => (s.eredCampaign ??= {});
 /** Several players share the table (one seat reads "you"). */
@@ -218,15 +269,38 @@ export function eredCampaignSetup(s: GameState) {
   // written in the Campaign Log join the encounter deck "regardless of
   // encounter set" (MEC115).
   const pool = poolEncounterCards(c!);
-  if (s.scenarioId === "journey-up-the-anduin") {
-    // "Shuffle A Growing Threat into the encounter deck."
-    if (!pool.includes(ERED.growing)) pool.push(ERED.growing);
-    // "Any player gains control of Turayn."
+  // "Shuffle A Growing Threat into the encounter deck."
+  if (s.scenarioId === "journey-up-the-anduin" && !pool.includes(ERED.growing))
+    pool.push(ERED.growing);
+  // The King's Quest: "Add The Threat to Wilderland to the staging area,
+  // shuffle Dagnir's Spawn into the encounter deck, and shuffle Abandoned
+  // Ruin into the Caves deck."
+  const kings = s.scenarioId === "the-kings-quest";
+  if (kings && !pool.includes(ERED.spawn)) pool.push(ERED.spawn);
+  if (kings || c!.burdens.includes(ERED.threat)) threatSetup(s);
+  if (kings || c!.burdens.includes(ERED.ruin)) ruinSetup(s);
+  // "If 'Turayn has taken an oath of vigilance,' search the encounter deck
+  // for 3 treacheries and remove them from the game."
+  if (kings && c!.notes?.includes("turayn"))
+    enqueue(
+      s,
+      fx("emcRemove", { text: "treachery", value: 3, player: firstPlayer(s) }),
+    );
+  // "Any player gains control of Turayn/Melanwar."
+  const ally = BOON_ALLY[s.scenarioId];
+  if (ally) {
     const seats = playerOrder(s);
     if (seats.length > 1)
-      enqueue(s, fx("emcTuraynSeat", { player: firstPlayer(s) }));
-    else gainTurayn(s, seats[0] ?? 0);
+      enqueue(
+        s,
+        fx("emcAllySeat", { code: ally.code, player: firstPlayer(s) }),
+      );
+    else gainAlly(s, ally.code, seats[0] ?? 0);
   }
+  // Lost in Mirkwood: "The first player may search the encounter deck for a
+  // copy of Twilight Hall and add it to the staging area."
+  if (s.scenarioId === "lost-in-mirkwood")
+    enqueue(s, fx("emcTwilightSearch", { player: firstPlayer(s) }));
   if (pool.length) {
     s.encounterDeck.push(...pool);
     shuffle(s, s.encounterDeck);
@@ -236,14 +310,50 @@ export function eredCampaignSetup(s: GameState) {
     );
   }
 }
-/** "Any player gains control of Turayn." */
-function gainTurayn(s: GameState, p: number) {
-  const u = make(s, ERED.turayn);
+/**
+ * The Threat to Wilderland: "Setup: Add The Threat to Wilderland to the
+ * staging area with X resources on it. X is the campaign card's part number."
+ */
+function threatSetup(s: GameState) {
+  const u = make(s, ERED.threat);
+  u.resources = eredPart(s.scenarioId);
+  s.staging.push(u);
+  log(
+    s,
+    `The Threat to Wilderland is added to the staging area with ${u.resources} resources.`,
+    "danger",
+  );
+}
+/** The scenario's Caves deck, if it has one. */
+const cavesDeck = (s: GameState): Unit[] | undefined =>
+  s.wildsRhovanion?.cavesDeck && s.scenarioId === "the-kings-quest"
+    ? s.wildsRhovanion.cavesDeck
+    : undefined;
+/**
+ * Abandoned Ruin: "Setup: Shuffle Abandoned Ruin into the Caves deck, if
+ * able. Otherwise, remove it from the game."
+ */
+function ruinSetup(s: GameState) {
+  const deck = cavesDeck(s);
+  if (!deck) {
+    log(
+      s,
+      "Abandoned Ruin has no Caves deck to join and is removed from the game.",
+    );
+    return;
+  }
+  deck.push(make(s, ERED.ruin));
+  shuffle(s, deck);
+  log(s, "Abandoned Ruin is shuffled into the Caves deck.");
+}
+/** "Any player gains control of Turayn" (or Melanwar, or Isolde). */
+function gainAlly(s: GameState, code: string, p: number) {
+  const u = make(s, code);
   u.owner = p;
   forOwner(s, p, () => s.allies.push(u));
   log(
     s,
-    `${several(s) ? `${seatName(s, p)} gains` : "You gain"} control of Turayn.`,
+    `${several(s) ? `${seatName(s, p)} gains` : "You gain"} control of ${card(code).name}.`,
     "good",
   );
 }
@@ -279,12 +389,21 @@ export const treasuresInPlay = (s: GameState) => [
  * "The players look at 3 random undiscovered treasures and choose 1 to attach
  * to an eligible character."
  */
-export const eredTreasureOffer = (s: GameState, source: string) =>
-  fx("emcTreasureLook", { player: firstPlayer(s), text: source });
+export const eredTreasureOffer = (
+  s: GameState,
+  source: string,
+  guardId?: string,
+) =>
+  fx("emcTreasureLook", {
+    player: firstPlayer(s),
+    text: source,
+    ...(guardId ? { target: guardId } : {}),
+  });
 function attachTreasure(s: GameState, host: Unit, code: string) {
   const p = ownerOf(s, host);
+  const id = `a${s.nextId++}`;
   host.attachments.push({
-    id: `a${s.nextId++}`,
+    id,
     code,
     exhausted: false,
     ...(s.table ? { owner: p } : {}),
@@ -296,6 +415,60 @@ function attachTreasure(s: GameState, host: Unit, code: string) {
     `${card(code).name} (a treasure) is attached to ${name(host)}${several(s) ? ` (${seatName(s, p)})` : ""}.`,
     "good",
   );
+  return id;
+}
+/**
+ * A treasure attached to an encounter card as a guarded objective. It is kept
+ * beside its guard (it gives the guard no bonus or ability) and shown by the
+ * quest inspector.
+ */
+function guardTreasure(s: GameState, guard: Unit, code: string) {
+  const q = eredState(s);
+  q.taken = [...new Set([...(q.taken ?? []), code])];
+  q.guarded = [...(q.guarded ?? []), { guardId: guard.id, code }];
+  log(
+    s,
+    `${card(code).name} (a treasure) is attached to ${name(guard)} as a guarded objective.`,
+    "good",
+  );
+}
+/**
+ * "When that treasure is free of encounters, the players claim it": once its
+ * guard has left play (explored, defeated or discarded), it is claimed.
+ */
+export function eredCampaignGuardCheck(s: GameState) {
+  // Abandoned Ruin: "Response: After Abandoned Ruin becomes the active
+  // location, look at 3 random undiscovered treasures and attach 1 of them to
+  // Abandoned Ruin as a guarded objective. … Limit once per game for the
+  // group." (It only helps, so it is always used.)
+  const ruin = s.activeLocation;
+  if (
+    ruin?.code === ERED.ruin &&
+    !ruin.blanked &&
+    eredChapter(s) &&
+    s.status === "playing" &&
+    !s.eredCampaign?.ruinUsed
+  ) {
+    eredState(s).ruinUsed = true;
+    log(s, "Abandoned Ruin becomes the active location.");
+    prepend(s, eredTreasureOffer(s, ERED.ruin, ruin.id));
+  }
+  const q = s.eredCampaign;
+  if (!q?.guarded?.length || s.status !== "playing") return;
+  const freed = q.guarded.filter((g) => !get(s, g.guardId));
+  if (!freed.length) return;
+  q.guarded = q.guarded.filter((g) => !freed.includes(g));
+  for (const g of freed) {
+    log(
+      s,
+      `${card(g.code).name} is free of encounters: the players claim it.`,
+      "good",
+    );
+    prepend(
+      s,
+      fx("emcTreasureClaim", { code: g.code, player: firstPlayer(s) }),
+    );
+  }
 }
 
 // ------------------------------------------------------------- the campaign card
@@ -308,6 +481,8 @@ function attachTreasure(s: GameState, host: Unit, code: string) {
  * the game." (It only helps, so it is always used.)
  */
 export function eredCampaignLocationExplored(s: GameState, u: Unit) {
+  // An explored guard frees its treasure at once.
+  eredCampaignGuardCheck(s);
   if (!eredChapter(s) || s.scenarioId !== "journey-up-the-anduin") return;
   const c = card(u.code);
   if (c.type_code !== "location" || c.is_unique) return;
@@ -396,11 +571,48 @@ export function resolveEredCampaign(s: GameState) {
       `Journey Up the Anduin · Resolution: A Growing Threat${evil.length ? ` and ${names(evil)}` : ""} ${evil.length ? "join" : "joins"} the Campaign Pool.`,
       "danger",
     );
-    // "If the heroes choose to accept his aid, add Turayn to the campaign
-    // pool … Otherwise, mark in the campaign log that 'Turayn has taken an
-    // oath of vigilance'."
-    c.resolution = s.scenarioId;
   }
+  if (s.scenarioId === "lost-in-mirkwood") {
+    // "Discard cards from the encounter deck until X cards from either the
+    // Spiders of Mirkwood or Dol Guldur Orcs encounter set have been
+    // discarded and add those cards to the campaign pool. X is equal to the
+    // number of players in the game."
+    const x = s.table?.seats.length ?? 1;
+    const hits: string[] = [];
+    let reshuffled = false;
+    for (let n = 0; hits.length < x && n < 500; n++) {
+      if (!s.encounterDeck.length) {
+        // An empty encounter deck is replenished from the discard pile once.
+        if (reshuffled || !s.encounterDiscard.length) break;
+        s.encounterDeck = shuffle(s, s.encounterDiscard.splice(0));
+        reshuffled = true;
+      }
+      const code = s.encounterDeck.shift()!;
+      s.encounterDiscard.push(code);
+      if (SPIDERS_AND_ORCS.includes(card(code).encounter_set ?? ""))
+        hits.push(code);
+    }
+    const added = hits.filter((code) => addPoolCopy(c, code));
+    log(
+      s,
+      `Lost in Mirkwood · Resolution: ${hits.length ? names(hits) : "no card"} ${hits.length === 1 ? "is" : "are"} discarded from the Spiders of Mirkwood and Dol Guldur Orcs sets${added.length ? `; ${names(added)} ${added.length === 1 ? "joins" : "join"} the Campaign Pool` : ""}.`,
+      "danger",
+    );
+  }
+  if (s.scenarioId === "the-kings-quest") {
+    // "Add Abandoned Ruin to the campaign pool." (The first player then
+    // chooses The Threat to Wilderland or Dagnir's Spawn.)
+    if (!c.burdens.includes(ERED.ruin)) c.burdens.push(ERED.ruin);
+    log(
+      s,
+      "The King's Quest · Resolution: Abandoned Ruin joins the Campaign Pool.",
+      "danger",
+    );
+  }
+  // "If the heroes choose to accept his aid / invite him / fight alongside
+  // her … add them to the campaign pool … Otherwise, mark in the campaign
+  // log that …"
+  if (BOON_ALLY[s.scenarioId]) c.resolution = s.scenarioId;
   c.completed.push({
     scenarioId: s.scenarioId,
     score: score(s),
@@ -421,24 +633,47 @@ export function eredResolutionQuestions(s: GameState): {
     c!.resolution !== s.scenarioId
   )
     return [];
-  if (s.scenarioId === "journey-up-the-anduin")
-    return [
-      {
-        id: "turayn",
-        label:
-          "The heroes' selfless valor has inspired Turayn. Do the heroes accept his aid?",
-        options: [
+  const ally = BOON_ALLY[s.scenarioId];
+  if (!ally) return [];
+  return [
+    {
+      id: ally.note,
+      label: ALLY_QUESTION[ally.note],
+      options: [
+        {
+          id: "aid",
+          code: ally.code,
+          label: `Add ${card(ally.code).name} to the Campaign Pool`,
+        },
+        { id: "note", label: `“${ERED_NOTES[ally.note]}”` },
+      ],
+    },
+    // The King's Quest: "The first player chooses either Threat to
+    // Wilderland or Dagnir's Spawn and add it to the campaign pool."
+    ...(s.scenarioId === "the-kings-quest"
+      ? [
           {
-            id: "aid",
-            code: ERED.turayn,
-            label: "Add Turayn to the Campaign Pool",
+            id: "burden",
+            label:
+              "The first player chooses either The Threat to Wilderland or Dagnir's Spawn and adds it to the Campaign Pool.",
+            options: [ERED.threat, ERED.spawn].map((code) => ({
+              id: code,
+              code,
+              label: card(code).name,
+            })),
           },
-          { id: "oath", label: `“${ERED_NOTES.turayn}”` },
-        ],
-      },
-    ];
-  return [];
+        ]
+      : []),
+  ];
 }
+const ALLY_QUESTION: Record<string, string> = {
+  turayn:
+    "The heroes' selfless valor has inspired Turayn. Do the heroes accept his aid?",
+  melanwar:
+    "Melanwar pledged his friendship to the heroes. Do the heroes invite him to join their quest?",
+  isolde:
+    "Isolde has resolved to continue the hunt. Do the heroes choose to fight alongside her?",
+};
 /** Record the players' resolution choices in the Campaign Log. */
 export function applyEredResolution(
   input: GameState,
@@ -452,22 +687,30 @@ export function applyEredResolution(
   for (const q of questions)
     if (!q.options.some((o) => o.id === answers[q.id]))
       throw new RuleError(`Answer: ${q.label}`);
-  if (s.scenarioId === "journey-up-the-anduin") {
-    if (answers.turayn === "aid") {
-      if (!c.boons.includes(ERED.turayn)) c.boons.push(ERED.turayn);
-      log(
-        s,
-        "Journey Up the Anduin · Resolution: Turayn joins the Campaign Pool (any player may add him to their deck).",
-        "good",
-      );
-    } else {
-      c.notes = [...new Set([...(c.notes ?? []), "turayn"])];
-      log(
-        s,
-        `Journey Up the Anduin · Resolution: the Campaign Log notes that “${ERED_NOTES.turayn}”.`,
-        "good",
-      );
-    }
+  const ally = BOON_ALLY[s.scenarioId]!;
+  const title = card(ERED_CAMPAIGN_CARDS[s.scenarioId]!).name;
+  if (answers[ally.note] === "aid") {
+    if (!c.boons.includes(ally.code)) c.boons.push(ally.code);
+    log(
+      s,
+      `${title} · Resolution: ${card(ally.code).name} joins the Campaign Pool (any player may add ${ally.code === ERED.isolde ? "her" : "him"} to their deck).`,
+      "good",
+    );
+  } else {
+    c.notes = [...new Set([...(c.notes ?? []), ally.note])];
+    log(
+      s,
+      `${title} · Resolution: the Campaign Log notes that “${ERED_NOTES[ally.note]}”.`,
+      "good",
+    );
+  }
+  if (s.scenarioId === "the-kings-quest") {
+    if (!c.burdens.includes(answers.burden)) c.burdens.push(answers.burden);
+    log(
+      s,
+      `${title} · Resolution: ${card(answers.burden).name} joins the Campaign Pool.`,
+      "danger",
+    );
   }
   c.resolution = null;
   return s;
@@ -489,6 +732,17 @@ export function eredCampaignStatus(s: GameState): string[] {
         : `Journey Up the Anduin has ${q?.tokens ?? 0} of ${x} resources: each explored non-unique location adds 1, and at ${x} the players look at 3 random undiscovered treasures and attach 1 to an eligible character.`,
     );
   }
+  for (const g of q?.guarded ?? []) {
+    const guard = get(s, g.guardId);
+    if (guard)
+      out.push(
+        `${card(g.code).name} is guarded by ${name(guard)}: when ${name(guard)} leaves play, the players claim it and attach it to a character.`,
+      );
+  }
+  if (q?.immune && q.immune.round === s.round)
+    out.push(
+      "The Threat to Wilderland: encounter cards are immune to player card effects until the end of the quest phase.",
+    );
   const unrecorded = treasuresInPlay(s).filter(
     (code) => !c!.treasures?.includes(code),
   );
@@ -533,21 +787,23 @@ export function eredCampaignFrameworkEffect(s: GameState, e: Effect): boolean {
   const p = e.player ?? firstPlayer(s);
   const q = eredState(s);
   switch (e.kind) {
-    case "emcTuraynSeat":
+    case "emcAllySeat": {
+      const code = e.code!;
       choose(
         s,
-        "Journey Up the Anduin · Any player gains control of Turayn",
+        `${scenarioName(s)} · Any player gains control of ${card(code).name}`,
         playerOrder(s).map((seat) => ({
           id: `seat-${seat}`,
-          code: ERED.turayn,
+          code,
           label: seatName(s, seat),
-          effects: [fx("emcTuraynGain", { player: seat })],
+          effects: [fx("emcAllyGain", { code, player: seat })],
         })),
-        card(ERED.anduinCard).text,
+        card(ERED_CAMPAIGN_CARDS[s.scenarioId]!).text,
       );
       return true;
-    case "emcTuraynGain":
-      gainTurayn(s, p);
+    }
+    case "emcAllyGain":
+      gainAlly(s, e.code!, p);
       return true;
     case "emcTreasureLook": {
       const pile = undiscoveredTreasures(s);
@@ -561,17 +817,137 @@ export function eredCampaignFrameworkEffect(s: GameState, e: Effect): boolean {
         q.looking = deck.slice(0, 3);
       }
       const source = e.text && card(e.text) ? card(e.text).name : "Treasure";
+      const guard = get(s, e.target);
       choose(
         s,
-        `${source} · The players look at ${q.looking.length} random undiscovered treasure${q.looking.length === 1 ? "" : "s"} and choose 1${seatLabel(s, p)}`,
+        `${source} · The players look at ${q.looking.length} random undiscovered treasure${q.looking.length === 1 ? "" : "s"} and choose 1${guard ? ` to guard on ${name(guard)}` : ""}${seatLabel(s, p)}`,
         q.looking.map((code): Option => ({
           id: code,
           code,
           label: card(code).name,
-          effects: [fx("emcTreasureHost", { code, player: p })],
+          effects: [
+            guard
+              ? fx("emcTreasureGuard", { code, target: guard.id, player: p })
+              : fx("emcTreasureHost", { code, player: p }),
+          ],
         })),
-        "The others return to the undiscovered treasures.",
+        guard
+          ? `It is attached to ${name(guard)} as a guarded objective; the players claim it when ${name(guard)} leaves play. The others return to the undiscovered treasures.`
+          : "The others return to the undiscovered treasures.",
       );
+      return true;
+    }
+    case "emcTreasureGuard": {
+      q.looking = [];
+      const guard = get(s, e.target);
+      if (guard && e.code) guardTreasure(s, guard, e.code);
+      return true;
+    }
+    case "emcTreasureClaim": {
+      const code = e.code!;
+      const hosts = treasureHosts(s, code);
+      if (!hosts.length) {
+        log(s, `${card(code).name} has no eligible character to attach to.`);
+        return true;
+      }
+      choose(
+        s,
+        `${card(code).name} · The players claim the treasure and attach it to a character${seatLabel(s, p)}`,
+        hosts.map((h) => ({
+          id: h.id,
+          code: h.code,
+          label: `${name(h)}${several(s) ? ` · ${seatName(s, ownerOf(s, h))}` : ""}`,
+          effects: [
+            fx("emcTreasureAttach", {
+              code,
+              target: h.id,
+              player: p,
+              flag: true,
+            }),
+          ],
+        })),
+        card(code).text,
+      );
+      return true;
+    }
+    case "emcRemove": {
+      // "Search the encounter deck for N [cards] and remove them from the game."
+      const left = e.value ?? 0;
+      const kind = e.text ?? "treachery";
+      const match = (code: string) => {
+        const c = card(code);
+        return kind === "treachery"
+          ? c.type_code === "treachery"
+          : c.type_code === kind && !c.is_unique;
+      };
+      const found = [...new Set(s.encounterDeck.filter(match))];
+      if (left <= 0 || !found.length) {
+        shuffle(s, s.encounterDeck);
+        log(s, "The encounter deck is shuffled after the search.");
+        return true;
+      }
+      choose(
+        s,
+        `${scenarioName(s)} · Remove a ${kind === "treachery" ? "treachery" : `non-unique ${kind}`} from the encounter deck (${left} left)${seatLabel(s, p)}`,
+        found.map((code) => ({
+          id: code,
+          code,
+          label: `${card(code).name} (${s.encounterDeck.filter((x) => x === code).length} in the deck)`,
+          effects: [
+            fx("emcRemoveCard", { code, text: kind, value: left, player: p }),
+          ],
+        })),
+      );
+      return true;
+    }
+    case "emcRemoveCard": {
+      const i = s.encounterDeck.indexOf(e.code!);
+      if (i >= 0) {
+        s.encounterDeck.splice(i, 1);
+        s.removed.push(e.code!);
+        log(s, `${card(e.code!).name} is removed from the game.`, "good");
+      }
+      prepend(
+        s,
+        fx("emcRemove", { text: e.text, value: (e.value ?? 1) - 1, player: p }),
+      );
+      return true;
+    }
+    case "emcTwilightSearch": {
+      const hall = WILDS_RHOVANION.twilight;
+      choose(
+        s,
+        `Lost in Mirkwood · Search the encounter deck for a copy of Twilight Hall?${seatLabel(s, p)}`,
+        [
+          {
+            id: "search",
+            code: hall,
+            label: "Search for Twilight Hall",
+            effects: [fx("emcTwilightAdd", { player: p })],
+          },
+          { id: "decline", label: "Do not search", effects: [] },
+        ],
+        card(ERED.mirkwoodCard).text,
+      );
+      return true;
+    }
+    case "emcTwilightAdd": {
+      const hall = WILDS_RHOVANION.twilight;
+      const found = s.encounterDeck.includes(hall);
+      if (found) s.encounterDeck.splice(s.encounterDeck.indexOf(hall), 1);
+      // A searched deck is shuffled.
+      shuffle(s, s.encounterDeck);
+      if (!found) {
+        log(
+          s,
+          "Lost in Mirkwood: no Twilight Hall is left in the encounter deck.",
+        );
+        return true;
+      }
+      const u = make(s, hall);
+      s.staging.push(u);
+      log(s, "Lost in Mirkwood: Twilight Hall is added to the staging area.");
+      prepend(s, eredTreasureOffer(s, ERED.mirkwoodCard, u.id));
       return true;
     }
     case "emcTreasureHost": {
@@ -597,7 +973,14 @@ export function eredCampaignFrameworkEffect(s: GameState, e: Effect): boolean {
     }
     case "emcTreasureAttach": {
       const host = get(s, e.target);
-      if (host && e.code) attachTreasure(s, host, e.code);
+      if (!host || !e.code) return true;
+      const id = attachTreasure(s, host, e.code);
+      // Anvil of Gundabad: "After you claim or play Anvil of Gundabad …"
+      if (e.flag && e.code === ERED.anvil)
+        prepend(
+          s,
+          fx("emcAnvilSearch", { source: id, player: ownerOf(s, host) }),
+        );
       return true;
     }
   }
@@ -658,7 +1041,7 @@ export function validateEredCampaign(
       (c.resolution === s.scenarioId &&
         s.status === "won" &&
         c.completed.at(-1)?.scenarioId === s.scenarioId &&
-        s.scenarioId === "journey-up-the-anduin")) &&
+        !!BOON_ALLY[s.scenarioId])) &&
     (c.seatHeroes === undefined ||
       (Array.isArray(c.seatHeroes) &&
         c.seatHeroes.length === seatCount &&
@@ -734,6 +1117,25 @@ export function validEredState(s: GameState): boolean {
         q.looking.every((x) => ERED_TREASURES.includes(x)))) &&
     (q.growing === undefined || codes(q.growing)) &&
     (q.anvil === undefined || typeof q.anvil === "string") &&
+    (q.failedRound === undefined || integer(q.failedRound)) &&
+    (q.ruinUsed === undefined || typeof q.ruinUsed === "boolean") &&
+    (q.immune === undefined ||
+      (!!q.immune && codes(q.immune.ids) && integer(q.immune.round))) &&
+    (q.spawn === undefined ||
+      (!!q.spawn &&
+        typeof q.spawn.id === "string" &&
+        Array.isArray(q.spawn.accepted) &&
+        q.spawn.accepted.every(integer) &&
+        Array.isArray(q.spawn.asked) &&
+        q.spawn.asked.every(integer))) &&
+    (q.guarded === undefined ||
+      (Array.isArray(q.guarded) &&
+        q.guarded.every(
+          (g) =>
+            !!g &&
+            typeof g.guardId === "string" &&
+            ERED_TREASURES.includes(g.code),
+        ))) &&
     (q.shields === undefined ||
       (Array.isArray(q.shields) &&
         q.shields.every(

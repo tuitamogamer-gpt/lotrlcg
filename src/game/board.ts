@@ -7,7 +7,10 @@ import {
 } from "./dark-mirkwood-campaign";
 import * as DreamCards from "./dreamchaser-campaign-cards";
 import * as EredCards from "./ered-campaign-cards";
-import { eredCampaignLocationExplored } from "./ered-campaign";
+import {
+  eredCampaignGuardCheck,
+  eredCampaignLocationExplored,
+} from "./ered-campaign";
 import {
   angmarLootCommitted,
   angmarLootEnemyEngaged,
@@ -995,6 +998,8 @@ export function check(s: GameState) {
   Fate.fateCheck(s);
   Raid.raidCheck(s);
   DreamCards.dreamchaserCheck(s);
+  // An Ered Mithrin treasure whose guard left play is claimed.
+  eredCampaignGuardCheck(s);
   Depths.depthsCheck(s);
   Temple.templeCheck(s);
   Drowned.drownedCheck(s);
@@ -3142,6 +3147,7 @@ export function engage(s: GameState, u: Unit, optional = false) {
   EredPlayers.eredMithrinPlayerEnemyEngaged(s, u, activeSeat(s));
   angmarLootEnemyEngaged(s, u, activeSeat(s));
   DreamCards.dreamchaserEnemyEngaged(s, u);
+  EredCards.eredCampaignEnemyEngaged(s, u);
   BatchPlayers.batch4PlayerEnemyEngaged(s, u, activeSeat(s));
   BlackRidersPlayers.blackRidersPlayerEnemyEngaged(s, u);
   LandShadowPlayers.landShadowPlayerEnemyEngaged(s, u);
@@ -3712,6 +3718,7 @@ export function placeEncounter(
     if (fromReveal && BatchPlayers.batch4PlayerWindRevealed(s, fresh)) return;
     Sands.beneathSandsCardEntered(s, fresh, fromReveal, cancel);
     batch4Scenario(s).cardEntered?.(s, fresh, fromReveal, cancel);
+    EredCards.eredCampaignCardEntered(s, fresh);
     if (
       fromReveal &&
       revealOrigin === "encounter" &&

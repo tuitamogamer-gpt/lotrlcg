@@ -4,6 +4,7 @@ import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { card, STARTERS } from "../src/game/cards";
 import {
+  check,
   damage,
   engage,
   exhaustCharacter,
@@ -12,9 +13,9 @@ import {
   win,
 } from "../src/game/board";
 import { flush } from "../src/game/effects";
-import { make, prepend, stats } from "../src/game/core";
+import { fx, make, prepend, stats, threatOf } from "../src/game/core";
 import { playerAttackKilled } from "../src/game/combat";
-import { replayEventProblem } from "../src/game/actions";
+import { playTargets, replayEventProblem } from "../src/game/actions";
 import {
   applyAction,
   availableAbilities,
@@ -39,7 +40,10 @@ import {
   undiscoveredTreasures,
 } from "../src/game/ered-campaign";
 import { eredCampaignShadowOptions } from "../src/game/ered-campaign-cards";
-import { WILDS_EVIL_CREATURES } from "../src/game/wilds-rhovanion-support";
+import {
+  WILDS_EVIL_CREATURES,
+  WILDS_RHOVANION,
+} from "../src/game/wilds-rhovanion-support";
 import type { CampaignState, GameState, Unit } from "../src/game/types";
 import art from "./ered-campaign-art.json";
 
@@ -137,8 +141,8 @@ test("Ered Mithrin: Journey Up the Anduin's campaign card, Turayn, A Growing Thr
     ERED_TREASURES.map((code) => card(code).cost),
     ["0", "0", "1", "2", "0", "0", "0", "0", "0"],
   );
-  // 12 cards, 13 faces (the campaign card has a back).
-  assert.equal(art.length, 13);
+  // Every face is pinned (each campaign card has a back).
+  assert.ok(art.length >= 13);
   for (const pin of art) {
     const bytes = readFileSync(`public${pin.localPath}`);
     assert.equal(bytes.length, pin.bytes, pin.localPath);
@@ -379,14 +383,50 @@ test("Ered Mithrin: Journey Up the Anduin's resolution discovers the treasures i
   assert.equal(aid.campaign!.notes, undefined);
   assert.equal(aid.campaign!.resolution, null);
   assert.ok(valid(aid));
-  const oath = applyEredResolution(s, { turayn: "oath" });
+  const oath = applyEredResolution(s, { turayn: "note" });
   assert.deepEqual(oath.campaign!.boons, []);
   assert.deepEqual(oath.campaign!.notes, ["turayn"]);
   assert.ok(valid(oath));
-  // Lost in Mirkwood is not available in campaign mode yet.
+  // The interlude continues with Lost in Mirkwood; Turayn may join a deck.
+  const next = continueCampaign(
+    aid,
+    aid.campaign!.heroes,
+    aid.deckId,
+    true,
+    9,
+    undefined,
+    undefined,
+    { [ERED.turayn]: 0, [ERED.helm]: 0 },
+  );
+  assert.equal(next.scenarioId, "lost-in-mirkwood");
+  assert.deepEqual(next.campaign!.deckBoons, {
+    [ERED.turayn]: 0,
+    [ERED.helm]: 0,
+  });
+  const cards = [...next.deck, ...next.hand.map((u) => u.code)];
+  assert.ok(cards.includes(ERED.turayn) && cards.includes(ERED.helm));
+  // A Growing Threat and the pool's encounter cards join its encounter deck.
+  const deck = [
+    ...next.encounterDeck,
+    ...next.encounterDiscard,
+    ...next.staging.map((u) => u.code),
+  ];
+  assert.ok(deck.includes(ERED.growing));
+  assert.ok(deck.includes(WILDS_EVIL_CREATURES[1]));
+  // A treasure not yet discovered cannot join a deck.
   assert.throws(
-    () => continueCampaign(aid, aid.campaign!.heroes, aid.deckId, true, 9),
-    /not available in campaign mode yet/,
+    () =>
+      continueCampaign(
+        aid,
+        aid.campaign!.heroes,
+        aid.deckId,
+        true,
+        9,
+        undefined,
+        undefined,
+        { [ERED.bow]: 0 },
+      ),
+    /Choose a player's deck for each boon or discovered treasure/,
   );
 });
 
@@ -735,4 +775,421 @@ test("Ered Mithrin: the UI's discard play accepts Durin's Dagger, and malformed 
     }),
     true,
   );
+});
+
+/** Journey Up the Anduin is recorded: the campaign continues with Lost in Mirkwood. */
+function afterAnduin(): CampaignState {
+  const c = newEredCampaign(d.heroes);
+  c.completed = [{ scenarioId: "journey-up-the-anduin", score: 10, rounds: 6 }];
+  c.burdens = [ERED.growing];
+  return c;
+}
+const mirkwood = (campaign = afterAnduin(), seed = 5) =>
+  createGame(seed, d.cards, d.heroes, d.id, {
+    scenarioId: "lost-in-mirkwood",
+    playMode: "campaign",
+    campaign,
+  });
+/** Answer the Twilight Hall search (and keep the first treasure that is not the Crown). */
+const twilight =
+  (answer: "search" | "decline", treasure?: string) => (s: GameState) =>
+    /Search the encounter deck for a copy of Twilight Hall/.test(
+      s.choice!.title,
+    )
+      ? answer
+      : /random undiscovered treasure/.test(s.choice!.title)
+        ? (treasure ?? s.choice!.options.find((o) => o.code !== ERED.crown)!.id)
+        : undefined;
+
+test("Ered Mithrin: Lost in Mirkwood's campaign card and Melanwar carry their scans' texts", () => {
+  const campaignCard = card(ERED.mirkwoodCard);
+  assert.deepEqual(
+    [campaignCard.name, campaignCard.subtitle, campaignCard.position],
+    ["Lost in Mirkwood", "Ered Mithrin Part 2", 167],
+  );
+  assert.match(
+    campaignCard.text!,
+    /^You are playing campaign mode\.\nSetup: Any player gains control of Melanwar\. The first player may search the encounter deck for a copy of Twilight Hall/,
+  );
+  assert.match(
+    campaignCard.back_text!,
+    /“Melanwar has given you guidance on traversing Wilderland”.*\nThe players discover each treasure they control\.\nDiscard cards from the encounter deck until X cards from either the Spiders of Mirkwood or Dol Guldur Orcs encounter set have been discarded/s,
+  );
+  const melanwar = card(ERED.melanwar);
+  assert.deepEqual(
+    [
+      melanwar.cost,
+      melanwar.willpower,
+      melanwar.attack,
+      melanwar.defense,
+      melanwar.health,
+      melanwar.traits,
+    ],
+    ["1", 2, 2, 0, 3, "Silvan. Ranger."],
+  );
+  assert.match(
+    melanwar.text!,
+    /^Ranged\.\nResponse: After the travel phase begins/,
+  );
+  assert.ok(art.length >= 16);
+});
+
+test("Ered Mithrin: Lost in Mirkwood gives Melanwar to a player, and Twilight Hall guards a treasure the players claim once it is explored", () => {
+  let s = calm(opening(mirkwood(), twilight("search")));
+  assert.ok(s.allies.some((u) => u.code === ERED.melanwar));
+  assert.ok(
+    effectiveKeyword(
+      s.allies.find((u) => u.code === ERED.melanwar)!,
+      "Ranged",
+    ),
+  );
+  const hall = s.staging.find((u) => u.code === WILDS_RHOVANION.twilight)!;
+  assert.ok(hall, "Twilight Hall in the staging area");
+  const g = s.eredCampaign!.guarded!;
+  assert.equal(g.length, 1);
+  assert.equal(g[0].guardId, hall.id);
+  const code = g[0].code;
+  assert.ok(ERED_TREASURES.includes(code));
+  assert.ok(s.eredCampaign!.taken!.includes(code));
+  // The guarded treasure gives its guard nothing and is shown by the inspector.
+  assert.ok(!hall.attachments.some((a) => a.code === code));
+  assert.match(
+    eredCampaignStatus(s).join(" "),
+    new RegExp(
+      `${card(code).name.replace(/'/g, ".")} is guarded by Twilight Hall`,
+    ),
+  );
+  assert.ok(valid(s));
+  // Explored, Twilight Hall frees the treasure: the players claim it.
+  hall.resources = 1;
+  progressLocation(s, hall, 20);
+  flush(s);
+  assert.match(s.choice!.title, /claim the treasure and attach it/);
+  s = choose(s, s.heroes[0].id);
+  assert.ok(s.heroes[0].attachments.some((a) => a.code === code));
+  assert.deepEqual(s.eredCampaign!.guarded, []);
+  assert.ok(valid(s));
+  // Declining the search adds no Twilight Hall and no treasure.
+  const t = calm(opening(mirkwood(), twilight("decline")));
+  assert.ok(!t.staging.some((u) => u.code === WILDS_RHOVANION.twilight));
+  assert.equal(t.eredCampaign?.guarded, undefined);
+});
+
+test("Ered Mithrin: a claimed Anvil of Gundabad resolves its search Response", () => {
+  const c = afterAnduin();
+  c.treasures = ERED_TREASURES.filter((x) => x !== ERED.anvil);
+  let s = calm(opening(mirkwood(c), twilight("search", ERED.anvil)));
+  const hall = s.staging.find((u) => u.code === WILDS_RHOVANION.twilight)!;
+  assert.deepEqual(
+    s.eredCampaign!.guarded!.map((g) => g.code),
+    [ERED.anvil],
+  );
+  hall.resources = 1;
+  progressLocation(s, hall, 20);
+  flush(s);
+  s = choose(s, s.heroes[1].id);
+  assert.match(s.choice!.title, /Anvil of Gundabad · Search the top 5 cards/);
+});
+
+test("Ered Mithrin: Melanwar's Response places 1 progress on the active location when the travel phase begins, 3 after an unsuccessful quest", () => {
+  const s = calm(opening(mirkwood(), twilight("decline")), "staging");
+  const lands = make(s, "01114");
+  s.activeLocation = lands;
+  prepend(s, fx("startTravel", {}));
+  flush(s);
+  assert.match(s.choice!.title, /Melanwar · Exhaust him to place 1 progress/);
+  let t = choose(s, "use");
+  assert.equal(t.activeLocation!.progress, 1);
+  assert.equal(t.allies.find((u) => u.code === ERED.melanwar)!.exhausted, true);
+  // After an unsuccessful quest this round: 3 progress.
+  const u = calm(opening(mirkwood(), twilight("decline")), "staging");
+  // Lonely Lands (5 quest points) stays in play with 3 progress.
+  u.activeLocation = make(u, "octgn:74fc62c2-b1b6-4338-819a-1f00f871312c");
+  u.eredCampaign = { ...(u.eredCampaign ?? {}), failedRound: u.round };
+  prepend(u, fx("startTravel", {}));
+  flush(u);
+  t = choose(u, "use");
+  assert.equal(t.activeLocation!.progress, 3);
+  // Declined, he stays ready.
+  const v = calm(opening(mirkwood(), twilight("decline")), "staging");
+  v.activeLocation = make(v, "01114");
+  prepend(v, fx("startTravel", {}));
+  flush(v);
+  const w = choose(v, "decline");
+  assert.equal(
+    w.allies.find((x) => x.code === ERED.melanwar)!.exhausted,
+    false,
+  );
+});
+
+test("Ered Mithrin: Lost in Mirkwood's resolution adds the discarded Spiders of Mirkwood or Dol Guldur Orcs cards to the Campaign Pool and asks about Melanwar", () => {
+  const s = calm(opening(mirkwood(), twilight("decline")));
+  // The top of the encounter deck: a Wilds card, then a Hummerhorns.
+  s.encounterDeck.unshift(
+    "octgn:a4e9aa38-54a7-4e99-bab6-330804b24a6e",
+    "01075",
+  );
+  win(s);
+  const c = s.campaign!;
+  assert.deepEqual(c.encounterPool, { "01075": 1 });
+  assert.ok(s.encounterDiscard.includes("01075"));
+  assert.equal(c.resolution, "lost-in-mirkwood");
+  assert.deepEqual(
+    eredResolutionQuestions(s).map((q) => q.id),
+    ["melanwar"],
+  );
+  const aid = applyEredResolution(s, { melanwar: "aid" });
+  assert.deepEqual(aid.campaign!.boons, [ERED.melanwar]);
+  assert.ok(valid(aid));
+  const note = applyEredResolution(s, { melanwar: "note" });
+  assert.deepEqual(note.campaign!.notes, ["melanwar"]);
+  assert.ok(valid(note));
+  // The campaign continues with The King's Quest; the Spiders card stays in
+  // the Campaign Pool.
+  const next = continueCampaign(aid, aid.campaign!.heroes, aid.deckId, true, 9);
+  assert.equal(next.scenarioId, "the-kings-quest");
+  assert.deepEqual(next.campaign!.encounterPool, { "01075": 1 });
+});
+
+/** Journey Up the Anduin and Lost in Mirkwood are recorded: The King's Quest is next. */
+function afterMirkwood(): CampaignState {
+  const c = afterAnduin();
+  c.completed.push({ scenarioId: "lost-in-mirkwood", score: 10, rounds: 6 });
+  return c;
+}
+const kings = (campaign = afterMirkwood(), seed = 5) =>
+  createGame(seed, d.cards, d.heroes, d.id, {
+    scenarioId: "the-kings-quest",
+    playMode: "campaign",
+    campaign,
+  });
+
+test("Ered Mithrin: The King's Quest's campaign card, Isolde and its three burdens carry their scans' texts", () => {
+  const campaignCard = card(ERED.kingsCard);
+  assert.deepEqual(
+    [campaignCard.subtitle, campaignCard.position],
+    ["Ered Mithrin Part 3", 169],
+  );
+  assert.match(
+    campaignCard.text!,
+    /Haldan may be included among a player's heroes\. Any player gains control of Isolde\./,
+  );
+  assert.match(
+    campaignCard.back_text!,
+    /“Isolde is on the hunt”.*\nThe players discover each treasure they control\.\nAdd Abandoned Ruin to the campaign pool\./s,
+  );
+  const isolde = card(ERED.isolde);
+  assert.deepEqual(
+    [
+      isolde.cost,
+      isolde.willpower,
+      isolde.attack,
+      isolde.defense,
+      isolde.health,
+    ],
+    ["2", 1, 3, 1, 3],
+  );
+  assert.equal(card(ERED.threat).type_code, "objective");
+  assert.equal(card(ERED.threat).traits, "Doom.");
+  const spawn = card(ERED.spawn);
+  assert.deepEqual(
+    [
+      spawn.engagement,
+      spawn.attack,
+      spawn.health,
+      spawn.victory,
+      spawn.is_unique,
+    ],
+    [40, 6, 12, 9, true],
+  );
+  assert.deepEqual(
+    [spawn.printed_stats?.threat, spawn.printed_stats?.defense],
+    ["X", "X"],
+  );
+  const ruin = card(ERED.ruin);
+  assert.deepEqual(
+    [ruin.threat, ruin.quest, ruin.victory, ruin.traits],
+    [6, 9, 1, "Underground. Dark."],
+  );
+  assert.equal(art.length, 22);
+});
+
+test("Ered Mithrin: The King's Quest allows Haldan, gives Isolde to a player, adds The Threat to Wilderland with 3 resources, Dagnir's Spawn and Abandoned Ruin, and Turayn's oath removes 3 treacheries", () => {
+  const s = kings();
+  assert.ok(s.allies.some((u) => u.code === ERED.isolde));
+  const threat = s.staging.find((u) => u.code === ERED.threat)!;
+  assert.equal(threat.resources, 3);
+  assert.ok(s.encounterDeck.includes(ERED.spawn));
+  assert.ok(s.wildsRhovanion!.cavesDeck.some((u) => u.code === ERED.ruin));
+  assert.ok(valid(s));
+  // Haldan may be included among a player's heroes.
+  assert.doesNotThrow(() =>
+    createGame(5, d.cards, d.heroes, d.id, {
+      scenarioId: "the-kings-quest",
+      playMode: "campaign",
+      campaign: afterMirkwood(),
+      seats: [
+        { heroes: ["19026"], deckId: STARTERS[0].id },
+        { heroes: [STARTERS[1].heroes[0]], deckId: STARTERS[1].id },
+      ],
+    }),
+  );
+  // "If 'Turayn has taken an oath of vigilance,' search the encounter deck
+  // for 3 treacheries and remove them from the game."
+  const c = afterMirkwood();
+  c.notes = ["turayn"];
+  let t = kings(c);
+  const treacheries = t.encounterDeck.filter(
+    (x) => card(x).type_code === "treachery",
+  ).length;
+  for (let i = 0; i < 3; i++) {
+    assert.match(t.choice!.title, /Remove a treachery from the encounter deck/);
+    t = choose(t, t.choice!.options[0].id);
+  }
+  assert.equal(
+    t.encounterDeck.filter((x) => card(x).type_code === "treachery").length,
+    treacheries - 3,
+  );
+  assert.equal(t.removed.length, 3);
+  assert.ok(valid(t));
+});
+
+test("Ered Mithrin: The Threat to Wilderland removes a resource each quest phase and raises threat or makes encounter cards immune until the phase ends", () => {
+  let s = calm(opening(kings()), "planning");
+  prepend(s, fx("startQuest", {}));
+  flush(s);
+  assert.match(s.choice!.title, /The Threat to Wilderland/);
+  assert.equal(s.staging.find((u) => u.code === ERED.threat)!.resources, 2);
+  const before = s.threat;
+  const raised = choose(s, "threat");
+  assert.equal(raised.threat, before + 2);
+  const immune = choose(s, "immune");
+  const encounter = immune.staging.filter(
+    (u) => u.code !== ERED.threat && card(u.code).type_code !== "objective",
+  );
+  assert.ok(encounter.length);
+  assert.ok(encounter.every((u) => u.immuneToPlayerEffects));
+  assert.ok(valid(immune));
+  assert.ok(valid(reload(immune)));
+  // An encounter card revealed during the phase is immune as well.
+  calm(immune, "staging");
+  revealed(immune, "01111");
+  flush(immune);
+  const late = immune.staging.find((u) => u.code === "01111")!;
+  assert.equal(late.immuneToPlayerEffects, true);
+  // The immunity ends with the quest phase.
+  calm(immune, "staging");
+  prepend(immune, fx("startTravel", {}));
+  flush(immune);
+  assert.ok(
+    !immune.staging.some(
+      (u) =>
+        [...encounter, late].some((e) => e.id === u.id) &&
+        u.immuneToPlayerEffects,
+    ),
+  );
+  assert.equal(immune.eredCampaign!.immune, undefined);
+  // With no resource left, nothing happens.
+  const t = calm(opening(kings()), "planning");
+  t.staging.find((u) => u.code === ERED.threat)!.resources = 0;
+  prepend(t, fx("startQuest", {}));
+  flush(t);
+  assert.ok(!t.choice || !/The Threat to Wilderland/.test(t.choice.title));
+});
+
+test("Ered Mithrin: Dagnir's Spawn has X threat and defense, takes only Dragon attachments, and is shuffled away when every player distributes X damage", () => {
+  const s = calm(opening(kings()), "staging");
+  s.encounterDeck = s.encounterDeck.filter((x) => x !== ERED.spawn);
+  revealed(s, ERED.spawn);
+  flush(s);
+  const spawn = s.staging.find((u) => u.code === ERED.spawn)!;
+  assert.equal(stats(s, spawn).defense, 3);
+  assert.equal(threatOf(s, spawn), 3);
+  assert.match(s.choice!.title, /Dagnir's Spawn · Distribute 3 damage/);
+  // Declined: it stays in the staging area.
+  const kept = choose(s, "decline");
+  assert.ok(kept.staging.some((u) => u.code === ERED.spawn));
+  // Accepted: 3 damage among your characters, then it is shuffled away.
+  let t = choose(s, "accept");
+  for (let i = 0; i < 3; i++) {
+    assert.match(t.choice!.title, /Deal 1 damage to a character you control/);
+    t = choose(t, t.heroes[i].id);
+  }
+  assert.ok(!t.staging.some((u) => u.code === ERED.spawn));
+  assert.ok(t.encounterDeck.includes(ERED.spawn));
+  assert.deepEqual(
+    t.heroes.map((h) => h.damage),
+    [1, 1, 1],
+  );
+  assert.ok(valid(t));
+  // Forest Snare (not a Dragon) cannot attach to it.
+  const u = calm(opening(kings()));
+  const enemy = make(u, ERED.spawn);
+  u.engaged.push(enemy);
+  const snare = inHand(u, "01069");
+  assert.ok(!playTargets(u, snare).some((x) => x.id === enemy.id));
+});
+
+test("Ered Mithrin: Isolde gets +2 willpower with an Item attachment and readies after you engage an enemy", () => {
+  const s = calm(opening(kings()));
+  const isolde = s.allies.find((u) => u.code === ERED.isolde)!;
+  const base = stats(s, isolde).will;
+  attached(s, ERED.dagger, isolde);
+  assert.equal(stats(s, isolde).will, base + 2);
+  isolde.exhausted = true;
+  const goblin = make(s, "01111");
+  s.staging.push(goblin);
+  engage(s, goblin);
+  assert.equal(isolde.exhausted, false);
+});
+
+test("Ered Mithrin: Abandoned Ruin, once active, guards a random treasure the players claim when it is explored (once per game)", () => {
+  let s = calm(opening(kings()));
+  const ruin = make(s, ERED.ruin);
+  s.activeLocation = ruin;
+  check(s);
+  flush(s);
+  assert.match(s.choice!.title, /to guard on Abandoned Ruin/);
+  s = choose(s, s.choice!.options.find((o) => o.code !== ERED.crown)!.id);
+  assert.equal(s.eredCampaign!.guarded!.length, 1);
+  assert.equal(s.eredCampaign!.ruinUsed, true);
+  const code = s.eredCampaign!.guarded![0].code;
+  progressLocation(s, s.activeLocation!, 9);
+  flush(s);
+  assert.match(s.choice!.title, /claim the treasure/);
+  s = choose(s, s.heroes[0].id);
+  assert.ok(s.heroes[0].attachments.some((a) => a.code === code));
+  assert.ok(valid(s));
+});
+
+test("Ered Mithrin: The King's Quest's resolution adds Abandoned Ruin and the chosen Threat or Spawn to the Campaign Pool, and asks about Isolde", () => {
+  const s = calm(opening(kings()));
+  win(s);
+  assert.ok(s.campaign!.burdens.includes(ERED.ruin));
+  assert.deepEqual(
+    eredResolutionQuestions(s).map((q) => q.id),
+    ["isolde", "burden"],
+  );
+  const r = applyEredResolution(s, { isolde: "note", burden: ERED.spawn });
+  assert.deepEqual(r.campaign!.notes, ["isolde"]);
+  assert.ok(r.campaign!.burdens.includes(ERED.spawn));
+  assert.ok(!r.campaign!.burdens.includes(ERED.threat));
+  assert.ok(valid(r));
+  const a = applyEredResolution(s, { isolde: "aid", burden: ERED.threat });
+  assert.ok(a.campaign!.boons.includes(ERED.isolde));
+  assert.ok(a.campaign!.burdens.includes(ERED.threat));
+  assert.throws(
+    () => continueCampaign(a, a.campaign!.heroes, a.deckId, true, 9),
+    /not available in campaign mode yet/,
+  );
+});
+
+test("Ered Mithrin: the interlude before The King's Quest lets each player change heroes without the +1 threat penalty", () => {
+  const s = calm(opening(mirkwood(), twilight("decline")));
+  win(s);
+  const r = applyEredResolution(s, { melanwar: "aid" });
+  const heroes = STARTERS[1].heroes;
+  const next = continueCampaign(r, [...heroes], r.deckId, true, 9);
+  assert.equal(next.scenarioId, "the-kings-quest");
+  assert.equal(next.campaign!.threatPenalty, 0);
 });

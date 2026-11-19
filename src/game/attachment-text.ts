@@ -1,5 +1,6 @@
 import { angmarCampaignCharacterBlanked } from "./angmar-campaign-support";
 import * as EredSupport from "./ered-mithrin-player-support";
+import { eredCampaignImmune } from "./ered-campaign-cards";
 import { burglarGuardedObjective } from "./burglar-contract-support";
 import { batch4Scenario } from "./batch4-scenarios";
 import * as Sands from "./beneath-sands";
@@ -64,6 +65,7 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
       Mordor.mordorImmune(s, host) ||
       Mumakil.mumakilImmune(s, host) ||
       Race.raceHaradAreaImmune(s, host) ||
+      eredCampaignImmune(s, host) ||
       batch4Scenario(s).immune?.(s, host)
     )
       host.immuneToPlayerEffects = true;

@@ -318,7 +318,11 @@ export function validateWildsRhovanion(
     q.evilDiscard.every((c) => WILDS_EVIL_CREATURES.includes(c)) &&
     q.cavesDeck.every(
       (u) =>
-        cardSet(u.code) === "Lost Caves" || u.code === WILDS_RHOVANION.hoard,
+        cardSet(u.code) === "Lost Caves" ||
+        u.code === WILDS_RHOVANION.hoard ||
+        // The Ered Mithrin campaign shuffles Abandoned Ruin (a burden from
+        // its Campaign Pool) into The King's Quest's Caves deck.
+        (u.code === "12174" && s.campaign?.kind === "ered"),
     ) &&
     q.resolving.every((c) => known.has(c)) &&
     q.storedCards.every(

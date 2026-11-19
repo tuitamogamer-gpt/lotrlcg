@@ -2,13 +2,19 @@ import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { chromium } from "playwright";
-import { exhaustCharacter, progressLocation, win } from "../src/game/board.ts";
+import {
+  exhaustCharacter,
+  progressLocation,
+  revealed,
+  win,
+} from "../src/game/board.ts";
 import { flush } from "../src/game/effects.ts";
-import { make } from "../src/game/core.ts";
+import { fx, make, prepend } from "../src/game/core.ts";
 import { validateSave } from "../src/game/engine.ts";
 import { syncSeat } from "../src/game/table.ts";
 import { card } from "../src/game/cards.ts";
 import { ERED, ERED_TREASURES } from "../src/game/ered-campaign.ts";
+import { WILDS_RHOVANION } from "../src/game/wilds-rhovanion-support.ts";
 import { reviewedState } from "./browser-review-helpers.mjs";
 import { capture, context, report, url } from "./browser-angmar-helpers.mjs";
 
@@ -105,6 +111,21 @@ async function opening() {
     else await page.waitForTimeout(25);
   }
   throw Error("The campaign opening did not finish");
+}
+/** Win the chapter from a quiet copy of the state and open its end-of-game dialog. */
+async function victory(s, prepare = () => {}) {
+  const t = quiet(s);
+  prepare(t);
+  win(t);
+  return load(t);
+}
+/** Record the resolution answers already selected in the end-of-game dialog. */
+async function record() {
+  await page
+    .getByRole("button", { name: "Record the resolution", exact: false })
+    .click();
+  await reviewedState(page);
+  return campaign();
 }
 /** Open the quest inspector, wait for a campaign card line and check it. */
 async function campaignCard(text, label, width) {
@@ -249,12 +270,7 @@ try {
     assert.ok(!s.discard.includes(ERED.dagger));
     // The resolution: the treasure is discovered; A Growing Threat and the
     // Evil Creatures enemy in play join the Campaign Pool; Turayn joins it.
-    {
-      const t = quiet(s);
-      t.staging.push(make(t, "01082"));
-      win(t);
-      s = await load(t);
-    }
+    s = await victory(s, (t) => t.staging.push(make(t, "01082")));
     assert.deepEqual(s.campaign.treasures, [ERED.dagger, pick]);
     assert.deepEqual(s.campaign.burdens, [ERED.growing]);
     assert.equal(s.campaign.encounterPool["01082"], 1);
@@ -263,11 +279,7 @@ try {
       .getByLabel(/^The heroes' selfless valor has inspired Turayn/)
       .selectOption("aid");
     await checkpoint("anduin-resolution", width);
-    await page
-      .getByRole("button", { name: "Record the resolution", exact: false })
-      .click();
-    await reviewedState(page);
-    s = await campaign();
+    s = await record();
     assert.deepEqual(s.campaign.boons, [ERED.turayn]);
     assert.equal(s.campaign.resolution, null);
     await page
@@ -278,15 +290,174 @@ try {
       .getByText(/Notes · encounter cards in the Campaign Pool:/)
       .first()
       .waitFor();
+    await page.getByRole("button", { name: /^Continue campaign/ }).waitFor();
+    await checkpoint("anduin-complete", width);
+    // Lost in Mirkwood (Part 2): the interlude puts Turayn in the deck.
+    await page.getByRole("button", { name: /^Continue campaign/ }).click();
+    await page
+      .getByRole("group", {
+        name: "Boons and discovered treasures in your decks",
+      })
+      .waitFor();
+    await page.getByLabel("Turayn: deck", { exact: true }).selectOption("0");
+    await checkpoint("mirkwood-interlude", width);
+    await page.getByRole("button", { name: /^Begin next chapter/ }).click();
+    await reviewedState(page);
+    // The setup: Melanwar for the player; the first player searches for
+    // Twilight Hall, which guards 1 of 3 random undiscovered treasures.
+    s = await opening();
+    assert.equal(s.scenarioId, "lost-in-mirkwood");
+    assert.ok(s.allies.some((u) => u.code === ERED.melanwar));
+    assert.ok(
+      [...s.deck, ...s.hand.map((u) => u.code)].includes(ERED.turayn),
+      "Turayn joins the deck",
+    );
+    const hall = s.staging.find((u) => u.code === WILDS_RHOVANION.twilight);
+    assert.ok(hall, "Twilight Hall in the staging area");
+    assert.deepEqual(
+      s.eredCampaign.guarded.map((g) => g.guardId),
+      [hall.id],
+    );
+    const guarded = s.eredCampaign.guarded[0].code;
+    assert.ok(ERED_TREASURES.includes(guarded));
+    await campaignCard(
+      / is guarded by Twilight Hall: when Twilight Hall leaves play/,
+      "mirkwood-setup",
+      width,
+    );
+    // Melanwar's Response when the travel phase begins.
+    {
+      const t = quiet(s, "staging");
+      t.activeLocation = make(t, "01114");
+      prepend(t, fx("startTravel", {}));
+      flush(t);
+      s = await load(t);
+    }
+    assert.match(s.choice.title, /Melanwar · Exhaust him to place 1 progress/);
+    await checkpoint("melanwar-response", width);
+    s = await choose("use");
+    assert.equal(s.activeLocation.progress, 1);
+    // Explored, Twilight Hall frees its treasure: the players claim it.
+    {
+      const t = quiet(s);
+      const guard = t.staging.find((u) => u.id === hall.id);
+      progressLocation(t, guard, 20);
+      flush(t);
+      s = await load(t);
+    }
+    assert.match(s.choice.title, /claim the treasure and attach it/);
+    s = await choose(s.heroes[0].id);
+    while (s.choice) s = await choose(s.choice.options.at(-1).id);
+    assert.ok(s.heroes[0].attachments.some((a) => a.code === guarded));
+    await campaignCard(
+      new RegExp(
+        `^${card(guarded).name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}: discovered if`,
+      ),
+      "twilight-claim",
+      width,
+    );
+    // The resolution: Melanwar's note.
+    s = await victory(s);
+    assert.equal(s.campaign.resolution, "lost-in-mirkwood");
+    assert.ok(s.campaign.treasures.includes(guarded));
+    await page
+      .getByLabel(/^Melanwar pledged his friendship to the heroes/)
+      .selectOption("note");
+    await checkpoint("mirkwood-resolution", width);
+    s = await record();
+    assert.deepEqual(s.campaign.notes, ["melanwar"]);
+    await page
+      .getByText(/^Notes · “Melanwar has given you guidance on traversing/)
+      .first()
+      .waitFor();
+    // The King's Quest (Part 3): heroes change without the threat penalty.
+    await page.getByRole("button", { name: /^Continue campaign/ }).click();
+    await page
+      .getByText(
+        /This chapter's campaign card lets each player change heroes without the \+1 threat penalty\./,
+      )
+      .waitFor();
+    await page
+      .getByText(
+        /Heroes may be changed without adding to your permanent starting threat penalty\./,
+      )
+      .waitFor();
+    await checkpoint("kings-interlude", width);
+    await page.getByRole("button", { name: /^Begin next chapter/ }).click();
+    await reviewedState(page);
+    s = await opening();
+    assert.equal(s.scenarioId, "the-kings-quest");
+    assert.ok(s.allies.some((u) => u.code === ERED.isolde));
+    assert.equal(s.staging.find((u) => u.code === ERED.threat).resources, 3);
+    assert.ok(
+      [...s.encounterDeck, ...s.encounterDiscard].includes(ERED.spawn) ||
+        s.staging.some((u) => u.code === ERED.spawn),
+      "Dagnir's Spawn",
+    );
+    assert.ok(s.wildsRhovanion.cavesDeck.some((u) => u.code === ERED.ruin));
+    await campaignCard(
+      /^Treasures in the Campaign Log: /,
+      "kings-setup",
+      width,
+    );
+    // The Threat to Wilderland at the beginning of the quest phase.
+    {
+      const t = quiet(s);
+      prepend(t, fx("startQuest", {}));
+      flush(t);
+      s = await load(t);
+    }
+    assert.match(s.choice.title, /The Threat to Wilderland/);
+    await checkpoint("threat-to-wilderland", width);
+    s = await choose("immune");
+    assert.equal(s.staging.find((u) => u.code === ERED.threat).resources, 2);
+    assert.ok(s.eredCampaign.immune.ids.length > 0);
+    s = await load(quiet(s, "quest"));
+    await campaignCard(
+      /^The Threat to Wilderland: encounter cards are immune/,
+      "kings-immune",
+      width,
+    );
+    // Dagnir's Spawn, revealed: the player distributes 3 damage to shuffle it
+    // back into the encounter deck.
+    {
+      const t = quiet(s, "staging");
+      t.encounterDeck = t.encounterDeck.filter((x) => x !== ERED.spawn);
+      revealed(t, ERED.spawn);
+      flush(t);
+      s = await load(t);
+    }
+    assert.match(s.choice.title, /Dagnir's Spawn · Distribute 3 damage/);
+    await checkpoint("dagnirs-spawn", width);
+    s = await choose("accept");
+    for (let i = 0; i < 3; i++) s = await choose(s.heroes[i].id);
+    assert.ok(!s.staging.some((u) => u.code === ERED.spawn));
+    assert.ok(s.encounterDeck.includes(ERED.spawn));
+    // The resolution: Isolde joins the Campaign Pool, with Abandoned Ruin and
+    // the first player's choice of Dagnir's Spawn.
+    s = await victory(s);
+    assert.equal(s.campaign.resolution, "the-kings-quest");
+    assert.ok(s.campaign.burdens.includes(ERED.ruin));
+    await page
+      .getByLabel(/^Isolde has resolved to continue the hunt/)
+      .selectOption("aid");
+    await page
+      .getByLabel(/^The first player chooses either The Threat to Wilderland/)
+      .selectOption({ label: "Dagnir's Spawn" });
+    await checkpoint("kings-resolution", width);
+    s = await record();
+    assert.deepEqual(s.campaign.boons, [ERED.turayn, ERED.isolde]);
+    assert.ok(s.campaign.burdens.includes(ERED.spawn));
+    assert.ok(!s.campaign.burdens.includes(ERED.threat));
     await page
       .getByRole("dialog")
-      .getByText(/Lost in Mirkwood, is not available in campaign mode yet/)
+      .getByText(/The Withered Heath, is not available in campaign mode yet/)
       .waitFor();
     assert.equal(
       await page.getByRole("button", { name: /^Continue campaign/ }).count(),
       0,
     );
-    await checkpoint("anduin-complete", width);
+    await checkpoint("kings-complete", width);
     await view.c.close();
   }
   const p = await browser.newPage();

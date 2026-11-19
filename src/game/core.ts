@@ -1,5 +1,9 @@
 import * as DreamCards from "./dreamchaser-campaign-cards";
-import { eredCampaignCostReduction } from "./ered-campaign-cards";
+import {
+  eredCampaignCostReduction,
+  eredCampaignStats,
+  eredCampaignThreatBonus,
+} from "./ered-campaign-cards";
 import { angmarBroochWill } from "./angmar-campaign-loot";
 import { wainridersQuestUnits } from "./wainriders-support";
 import { angmarCampaignBoost } from "./angmar-campaign-boost";
@@ -710,6 +714,7 @@ export function stats(s: GameState, u: Unit) {
           Cobas.cobasStats(s, u).will,
           angmarBonus.will,
           DreamCards.dreamchaserStats(s, u).will,
+          eredCampaignStats(s, u).will,
           Wastes.wastesWillBonus(s, u),
           Etten.ettenWillPenalty(s, u),
           Dread.dreadStats(s, u).will,
@@ -785,6 +790,7 @@ export function stats(s: GameState, u: Unit) {
         Raid.raidStats(s, u).attack +
         angmarBonus.attack +
         DreamCards.dreamchaserStats(s, u).attack +
+        eredCampaignStats(s, u).attack +
         Wastes.wastesAttackBonus(s, u) +
         Gram.gramStats(s, u).attack +
         Etten.ettenStats(s, u).attack +
@@ -863,6 +869,7 @@ export function stats(s: GameState, u: Unit) {
             Raid.raidStats(s, u).defense +
             angmarBonus.defense +
             DreamCards.dreamchaserStats(s, u).defense +
+            eredCampaignStats(s, u).defense +
             Etten.ettenStats(s, u).defense +
             Dread.dreadStats(s, u).defense +
             Carn.carnStats(s, u).defense +
@@ -907,6 +914,7 @@ export function stats(s: GameState, u: Unit) {
       WildsSupport.wildsPlayerStats(s, u).health +
       Dread.dreadStats(s, u).health +
       DreamCards.dreamchaserStats(s, u).health +
+      eredCampaignStats(s, u).health +
       Depths.depthsStats(s, u).health +
       stewardBonus.health +
       blackRidersBonus.health +
@@ -1076,6 +1084,7 @@ export const threatOf = (s: GameState, u: Unit) =>
             Chetwood.chetwoodThreatBonus(s, u) +
             Voyage.voyageThreatBonus(s, u) +
             DreamCards.dreamchaserThreatBonus(s, u) +
+            eredCampaignThreatBonus(s, u) +
             Cobas.cobasThreatBonus(s, u) +
             City.cityThreatBonus(s, u) +
             Mordor.mordorThreatBonus(s, u) +

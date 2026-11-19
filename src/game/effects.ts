@@ -1163,6 +1163,7 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     }
     case "failedQuest":
+      EredCards.eredCampaignQuestFailed(s);
       if (batch4Scenario(s).failedQuest?.(s, e.value ?? 0)) break;
       Sands.beneathSandsQuestFailed(s);
       if (Angmar.angmarPreventQuestThreat(s)) {
@@ -2018,6 +2019,7 @@ function handleEffect(s: GameState, e: Effect) {
       prepend(s, fx("sideQuestStart", { player: firstPlayer(s) }));
       Etten.ettenQuestStart(s);
       angmarCampaignQuestStart(s);
+      EredCards.eredCampaignQuestStart(s);
       break;
     case "startTravel":
       startPhase(s, "travel");
@@ -2026,6 +2028,7 @@ function handleEffect(s: GameState, e: Effect) {
       Depths.depthsTravelStart(s);
       Temple.templeTravelStart(s);
       batch4Scenario(s).travelBegin?.(s);
+      EredCards.eredCampaignTravelBegin(s);
       break;
     case "startEncounter":
       if (batch4Scenario(s).skipPhase?.(s, "encounter")) {

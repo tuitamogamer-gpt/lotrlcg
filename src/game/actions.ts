@@ -1932,6 +1932,7 @@ export function playTargets(
           !Temple.templeCannotAttach(s, target) &&
           !Drowned.drownedCannotAttach(s, target) &&
           !heirsCannotHaveAttachments(target) &&
+          !EredCards.eredCampaignCannotAttach(target, u.code) &&
           EredFinalSupport.eredFinalPlayerCanHaveAttachments(target) &&
           ShadowEastSupport.shadowEastPlayerCanHaveAttachments(target) &&
           Trials.trialsCanAttach(target, u.code))) &&

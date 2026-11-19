@@ -36,14 +36,23 @@ import {
   seatName,
   seatView,
 } from "./table";
-import { discardHandCard, exhaustCharacter, takePlayerDiscard } from "./board";
+import {
+  discardHandCard,
+  exhaustCharacter,
+  raiseThreat,
+  readyCharacter,
+  takePlayerDiscard,
+} from "./board";
 import { reduceThreat } from "./threat-reduction";
 import { canPlay, playTargets, resolvePaidPlayerCard } from "./actions";
 import { effectiveTraits } from "./expansion-passives";
 import { playerCardImmune } from "./card-immunity";
+import { syncAttachmentText } from "./attachment-text";
 import {
   ERED,
   eredCampaignFrameworkEffect,
+  eredChapter,
+  eredPart,
   eredState,
   growingThreatTarget,
 } from "./ered-campaign";
@@ -73,6 +82,11 @@ function findAttachment(s: GameState, id?: string) {
 }
 /** The engaged enemies of a player. */
 const engagedWith = (s: GameState, p: number) => seatView(s, p).engaged;
+/** The characters a player controls. */
+const ownCharacters = (s: GameState, p: number) => [
+  ...seatView(s, p).heroes,
+  ...seatView(s, p).allies,
+];
 
 // ------------------------------------------------------------- A Growing Threat
 
@@ -88,6 +102,7 @@ export function eredCampaignEncounter(
   replay = false,
   fromReveal = true,
 ) {
+  if (code === ERED.spawn) return spawnRevealed(s, fromReveal);
   if (code !== ERED.growing) return false;
   if (replay) {
     const i = s.encounterDiscard.lastIndexOf(code);
@@ -144,6 +159,128 @@ export function eredCampaignDamageAmount(
   const n = Math.min(value, mine.length);
   log(s, `Turayn: ${n} of the damage dealt to ${name(u)} is canceled.`, "good");
   return value - n;
+}
+
+// ------------------------------------------------------------- The King's Quest
+
+const hasItem = (u: Unit) =>
+  u.attachments.some((a) => !a.blanked && traitsOf(a.code).includes("Item"));
+/** X on Dagnir's Spawn: the campaign card's part number. */
+const spawnX = (s: GameState) => (eredChapter(s) ? eredPart(s.scenarioId) : 0);
+/** Isolde's willpower (+2 with an Item attachment); Dagnir's Spawn's X defense. */
+export function eredCampaignStats(s: GameState, u: Unit) {
+  const r = { will: 0, attack: 0, defense: 0, health: 0 };
+  if (u.code === ERED.isolde && !u.blanked && hasItem(u)) r.will += 2;
+  if (u.code === ERED.spawn && !u.blanked) r.defense += spawnX(s);
+  return r;
+}
+/** Dagnir's Spawn's X threat. */
+export const eredCampaignThreatBonus = (s: GameState, u: Unit) =>
+  u.code === ERED.spawn && !u.blanked ? spawnX(s) : 0;
+/** Dagnir's Spawn: "Cannot have non-Dragon attachments." */
+export const eredCampaignCannotAttach = (target: Unit, code: string) =>
+  target.code === ERED.spawn &&
+  !target.blanked &&
+  !traitsOf(code).includes("Dragon");
+/**
+ * Isolde: "Response: After you engage an enemy, ready Isolde." (It only
+ * helps, so it is always used.)
+ */
+export function eredCampaignEnemyEngaged(s: GameState, _enemy: Unit) {
+  if (!s.campaign) return;
+  for (const u of s.allies)
+    if (u.code === ERED.isolde && u.exhausted && !u.blanked) {
+      readyCharacter(s, u);
+      if (!u.exhausted)
+        log(s, "Isolde readies after you engage an enemy.", "good");
+    }
+}
+/**
+ * The Threat to Wilderland: "Forced: At the beginning of the quest phase,
+ * remove a resource from The Threat to Wilderland. Then, either raise each
+ * player's threat by 2 or all encounter cards are immune to player card
+ * effects until the end of the phase."
+ */
+export function eredCampaignQuestStart(s: GameState) {
+  clearImmunity(s);
+  for (const u of s.staging)
+    if (u.code === ERED.threat && u.resources > 0 && !u.blanked)
+      prepend(s, fx("emcThreatTick", { target: u.id, player: firstPlayer(s) }));
+}
+/** Encounter cards in play (the staging area, engaged enemies and active locations). */
+const encounterCardsInPlay = (s: GameState) =>
+  [
+    ...s.staging,
+    ...playerOrder(s).flatMap((p) => engagedWith(s, p)),
+    ...(s.activeLocation ? [s.activeLocation] : []),
+  ].filter((u) => card(u.code).sphere_code !== "neutral");
+/**
+ * The Threat to Wilderland's lasting effect: the encounter cards it covers are
+ * immune to player card effects until the quest phase ends (the attachment
+ * text sync keeps their flags while it lasts).
+ */
+export function eredCampaignImmune(s: GameState, u: Unit) {
+  const q = s.eredCampaign?.immune;
+  return !!q && q.round === s.round && q.ids.includes(u.id);
+}
+/** The quest phase's immunity ends with the phase. */
+function clearImmunity(s: GameState) {
+  const q = s.eredCampaign;
+  if (!q?.immune) return;
+  delete q.immune;
+  syncAttachmentText(s);
+}
+/** An encounter card entering play while The Threat to Wilderland's immunity lasts. */
+export function eredCampaignCardEntered(s: GameState, u: Unit) {
+  const q = s.eredCampaign;
+  if (
+    !q?.immune ||
+    q.immune.round !== s.round ||
+    !["quest", "staging"].includes(s.phase) ||
+    u.immuneToPlayerEffects
+  )
+    return;
+  u.immuneToPlayerEffects = true;
+  q.immune.ids.push(u.id);
+}
+/**
+ * Dagnir's Spawn: "When Revealed: Each player may distribute X damage among
+ * characters they control. If they do, shuffle Dagnir's Spawn into the
+ * encounter deck." (It is shuffled away when every player does.)
+ */
+function spawnRevealed(s: GameState, fromReveal: boolean) {
+  if (!fromReveal) return false;
+  const u = [...s.staging].reverse().find((x) => x.code === ERED.spawn);
+  if (!u) return true;
+  eredState(s).spawn = { id: u.id, accepted: [], asked: [] };
+  prepend(
+    s,
+    ...playerOrder(s).map((player) =>
+      fx("emcSpawnOffer", { target: u.id, player }),
+    ),
+    fx("emcSpawnResult", { target: u.id, player: firstPlayer(s) }),
+  );
+  return true;
+}
+
+// ------------------------------------------------------------- Melanwar
+
+/**
+ * Melanwar: "Response: After the travel phase begins, exhaust Melanwar to
+ * place 1 progress on the active location. If you quested unsuccessfully this
+ * round, place 3 progress on the active location instead."
+ */
+export function eredCampaignTravelBegin(s: GameState) {
+  // The quest phase has ended: The Threat to Wilderland's immunity ends.
+  clearImmunity(s);
+  if (!s.campaign || !s.activeLocation) return;
+  for (const u of allCharacters(s))
+    if (u.code === ERED.melanwar && !u.exhausted && !u.blanked)
+      prepend(s, fx("emcMelanwar", { source: u.id, player: ownerOf(s, u) }));
+}
+/** The players quested unsuccessfully this round (Melanwar's 3 progress). */
+export function eredCampaignQuestFailed(s: GameState) {
+  if (s.campaign?.kind === "ered") eredState(s).failedRound = s.round;
 }
 
 // ------------------------------------------------------------- treasures
@@ -459,6 +596,177 @@ export function eredCampaignEffect(s: GameState, e: Effect): boolean {
           decline("Do not use Turayn's Response"),
         ],
         card(ERED.turayn).text,
+      );
+      return true;
+    }
+    case "emcThreatTick": {
+      const u = get(s, e.target);
+      if (!u || u.resources <= 0) return true;
+      u.resources--;
+      log(
+        s,
+        `The Threat to Wilderland: a resource is removed (${u.resources} left).`,
+        "danger",
+      );
+      choose(
+        s,
+        `The Threat to Wilderland · Raise each player's threat by 2, or all encounter cards are immune to player card effects this phase${seatLabel(s, p)}`,
+        [
+          {
+            id: "threat",
+            code: ERED.threat,
+            label: "Raise each player's threat by 2",
+            effects: [fx("emcThreatRaise", { player: p })],
+          },
+          {
+            id: "immune",
+            code: ERED.threat,
+            label: "Encounter cards are immune to player card effects",
+            effects: [fx("emcThreatImmune", { player: p })],
+          },
+        ],
+        card(ERED.threat).text,
+      );
+      return true;
+    }
+    case "emcThreatRaise":
+      for (const player of playerOrder(s))
+        forOwner(s, player, () => raiseThreat(s, 2, "encounter"));
+      log(
+        s,
+        "The Threat to Wilderland: each player raises their threat by 2.",
+        "danger",
+      );
+      return true;
+    case "emcThreatImmune": {
+      const ids: string[] = [];
+      for (const u of encounterCardsInPlay(s))
+        if (!u.immuneToPlayerEffects) {
+          u.immuneToPlayerEffects = true;
+          ids.push(u.id);
+        }
+      q.immune = { ids, round: s.round };
+      log(
+        s,
+        "The Threat to Wilderland: all encounter cards are immune to player card effects until the end of the quest phase.",
+        "danger",
+      );
+      return true;
+    }
+    case "emcSpawnOffer": {
+      const spawn = get(s, e.target);
+      const own = ownCharacters(s, p);
+      const x = spawnX(s);
+      if (!spawn || !own.length || x <= 0) return true;
+      (q.spawn ??= { id: spawn.id, accepted: [], asked: [] }).asked.push(p);
+      choose(
+        s,
+        `Dagnir's Spawn · Distribute ${x} damage among characters you control to shuffle it into the encounter deck?${seatLabel(s, p)}`,
+        [
+          {
+            id: "accept",
+            code: ERED.spawn,
+            label: `Distribute ${x} damage`,
+            effects: [
+              fx("emcSpawnAccept", { target: spawn.id, player: p }),
+              fx("emcSpawnDamage", { target: spawn.id, value: x, player: p }),
+            ],
+          },
+          decline("Take no damage"),
+        ],
+        card(ERED.spawn).text,
+      );
+      return true;
+    }
+    case "emcSpawnAccept":
+      if (q.spawn && !q.spawn.accepted.includes(p)) q.spawn.accepted.push(p);
+      return true;
+    case "emcSpawnDamage": {
+      const left = e.value ?? 0;
+      const own = ownCharacters(s, p);
+      if (left <= 0 || !own.length) return true;
+      choose(
+        s,
+        `Dagnir's Spawn · Deal 1 damage to a character you control (${left} left)${seatLabel(s, p)}`,
+        own.map((u) => ({
+          id: u.id,
+          code: u.code,
+          label: name(u),
+          effects: [
+            fx("damage", { target: u.id, value: 1, player: p }),
+            fx("emcSpawnDamage", {
+              target: e.target,
+              value: left - 1,
+              player: p,
+            }),
+          ],
+        })),
+        card(ERED.spawn).text,
+      );
+      return true;
+    }
+    case "emcSpawnResult": {
+      const spawn = get(s, e.target);
+      const r = q.spawn;
+      delete q.spawn;
+      const all = playerOrder(s);
+      if (
+        spawn &&
+        r &&
+        all.length &&
+        all.every((player) => r.accepted.includes(player)) &&
+        s.staging.some((u) => u.id === spawn.id)
+      ) {
+        s.staging = s.staging.filter((u) => u.id !== spawn.id);
+        s.encounterDeck.push(spawn.code);
+        shuffle(s, s.encounterDeck);
+        log(s, "Dagnir's Spawn is shuffled into the encounter deck.", "good");
+      }
+      return true;
+    }
+    case "emcMelanwar": {
+      const melanwar = get(s, e.source);
+      const location = s.activeLocation;
+      if (!melanwar || melanwar.exhausted || !location) return true;
+      const n = q.failedRound === s.round ? 3 : 1;
+      choose(
+        s,
+        `Melanwar · Exhaust him to place ${n} progress on ${name(location)}?${seatLabel(s, p)}`,
+        [
+          {
+            id: "use",
+            code: ERED.melanwar,
+            label: `Exhaust Melanwar · ${n} progress`,
+            effects: [
+              fx("emcMelanwarProgress", {
+                source: melanwar.id,
+                target: location.id,
+                value: n,
+                player: p,
+              }),
+            ],
+          },
+          decline("Do not use Melanwar's Response"),
+        ],
+        card(ERED.melanwar).text,
+      );
+      return true;
+    }
+    case "emcMelanwarProgress": {
+      const melanwar = get(s, e.source);
+      if (!melanwar || !exhaustCharacter(s, melanwar)) return true;
+      log(
+        s,
+        `Melanwar places ${e.value} progress on the active location.`,
+        "good",
+      );
+      prepend(
+        s,
+        fx("locationProgress", {
+          target: e.target,
+          value: e.value ?? 1,
+          player: p,
+        }),
       );
       return true;
     }

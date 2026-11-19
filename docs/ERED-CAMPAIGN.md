@@ -5,8 +5,9 @@ scenarios are played in order with the Revised Core Set's Campaign Log, and
 each campaign card, boon and burden changes the scenario it belongs to. Campaign
 mode offers it as **Ered Mithrin**, next to Mirkwood Paths, The Lord of the
 Rings, Angmar Awakened and Dream-chaser. The campaign begins with Journey Up
-the Anduin; **its first chapter is supported**, and the next chapters follow in
-publication order (Lost in Mirkwood is not available in campaign mode yet).
+the Anduin; **its first three chapters are supported** (Journey Up the Anduin,
+Lost in Mirkwood and The King's Quest), and the next chapters follow in
+publication order (The Withered Heath is not available in campaign mode yet).
 
 ## Sources
 
@@ -32,9 +33,15 @@ publication order (Lost in Mirkwood is not available in campaign mode yet).
   are added to `src/data/ered-campaign-cards.json` and pinned in
   `tests/ered-campaign-art.json`. Their encounter set ("Ered Mithrin
   Campaign") keeps them out of ordinary games.
+- Lost in Mirkwood's and The King's Quest's campaign cards, Melanwar, Isolde,
+  The Threat to Wilderland, Dagnir's Spawn and Abandoned Ruin (7 cards, 9
+  faces) were checked the same way; all 19 cards and 22 faces are pinned.
 - The scans correct the catalog: Turayn's text begins with "Sentinel." and A
   Growing Threat's with "Surge."; the treasures carry the TREASURE type line
-  and the unique symbol. Their collector numbers (164–166 and 195–203) are one
+  and the unique symbol. The second campaign card's title, printed in small
+  capitals, is the scenario's "Lost in Mirkwood" (the catalog has "Lost In
+  Mirkwood"). Dagnir's Spawn prints X threat and defense (X is the campaign
+  card's part number). Their collector numbers (164–173 and 195–203) are one
   lower than the RingsDB codes, which the data keeps.
 - The scans also correct the Wilds of Rhovanion data: The Old Ford, Woodmen
   Village, Bare Hilltop, Overgrown Path, Forest Clearing, Abandoned Village,
@@ -65,6 +72,12 @@ publication order (Lost in Mirkwood is not available in campaign mode yet).
   saved, so reloading shows the same three. At the resolution, "the players
   discover each treasure they control": each treasure attached to a character
   in play is recorded in the Campaign Log.
+- **Guarded treasures.** A treasure a campaign card attaches "to a location as
+  a guarded objective" (Twilight Hall, Abandoned Ruin) is kept beside its
+  guard, not attached, so the location gains nothing from it; the quest
+  inspector names it. "When free of encounters" (when the guard leaves play,
+  explored), the players claim it: the first player attaches it to an eligible
+  character. A guarded treasure counts as taken for the next random look.
 
 ## Journey Up the Anduin (Part 1)
 
@@ -73,6 +86,23 @@ publication order (Lost in Mirkwood is not available in campaign mode yet).
 | Campaign card                       | Setup: Turayn enters play under a player's control (the first player chooses the player when several play); A Growing Threat is shuffled into the encounter deck. Response: after a non-unique location is explored (active or in the staging area), a resource goes on the campaign card; at 3 more than the number of players, the players look at 3 random undiscovered treasures and attach 1 (the Response only helps, so it is always used; the quest inspector shows the count). Resolution: the end-of-game dialog asks whether the heroes accept Turayn's aid (he joins the Campaign Pool; any player may add him to their deck) or the Campaign Log notes that "Turayn has taken an oath of vigilance"; the treasures the players control are discovered; A Growing Threat and each Evil Creatures enemy in play (the Wilderlands enemies of the Evil Creatures deck) join the Campaign Pool. |
 | Turayn (unique boon ally)           | Sentinel. Response: after Turayn exhausts (for any reason), his controller may choose another character; the next time it would be dealt damage this round, 1 of that damage is canceled (not damage paid as a cost).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | A Growing Threat (burden treachery) | Surge. When Revealed: the topmost non-unique, non-objective, non-burden card of the encounter discard pile is set aside, and a copy joins the Campaign Pool if the chapter is won (if a copy is left in the collection); A Growing Threat is removed from the game. It stays in the Campaign Pool for later chapters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+
+## Lost in Mirkwood (Part 2)
+
+| Card                        | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Campaign card               | Setup: Melanwar enters play under a player's control (the first player chooses the player when several play). The first player may search the encounter deck for a copy of Twilight Hall (the deck is shuffled) and add it to the staging area; if they do, the players look at 3 random undiscovered treasures and 1 is guarded by Twilight Hall until it is explored. Resolution: Melanwar joins the Campaign Pool or the Campaign Log notes that "Melanwar has given you guidance on traversing Wilderland"; the treasures the players control are discovered; cards are discarded from the encounter deck (reshuffling the discard pile once if the deck runs out) until X cards of the Spiders of Mirkwood or Dol Guldur Orcs set are discarded (X is the number of players), and they join the Campaign Pool. |
+| Melanwar (unique boon ally) | Ranged. Response, when the travel phase begins with an active location: exhaust him to place 1 progress on it, or 3 if the players quested unsuccessfully this round (his controller chooses whether to use it).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+
+## The King's Quest (Part 3)
+
+| Card                                        | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Campaign card                               | Setup: each player may change heroes without the +1 threat penalty (the interlude says so) and Haldan may be chosen; Isolde enters play under a player's control; The Threat to Wilderland enters the staging area, Dagnir's Spawn is shuffled into the encounter deck and Abandoned Ruin into the Caves deck. If "Turayn has taken an oath of vigilance", the first player chooses 3 treacheries in the encounter deck to remove from the game (then it is shuffled). Resolution: Isolde joins the Campaign Pool or the Campaign Log notes that "Isolde is on the hunt"; the treasures the players control are discovered; Abandoned Ruin joins the Campaign Pool, and the first player chooses The Threat to Wilderland or Dagnir's Spawn to join it too (both in the end-of-game dialog). |
+| Isolde (unique boon ally)                   | +2 willpower while she has an Item attachment. Response: after her controller engages an enemy, she readies (always used: it only helps).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| The Threat to Wilderland (burden objective) | Setup: X resources, X the campaign card's part number. Forced: at the beginning of the quest phase, a resource is removed (with none left, nothing happens); then the first player chooses: each player's threat is raised by 2, or the encounter cards in play are immune to player card effects until the end of the quest phase (encounter cards entering play during the quest phase are too; the quest inspector says so).                                                                                                                                                                                                                                                                                                                                                              |
+| Dagnir's Spawn (burden enemy)               | X threat and defense (the part number). It cannot have non-Dragon attachments. When Revealed: each player in turn may distribute X damage among the characters they control, 1 at a time; if every player does, it is shuffled into the encounter deck.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Abandoned Ruin (burden location)            | Setup: shuffled into the Caves deck if the scenario has one (The King's Quest's), otherwise removed from the game. Response: after it becomes the active location, the players look at 3 random undiscovered treasures and 1 is guarded by it, claimed when it is explored (always used, once per game for the group).                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 
 ## The treasures
 
@@ -95,10 +125,11 @@ play" Responses wait until a discovered copy is played from a deck.
 
 The Campaign Pool's encounter cards join every later encounter deck regardless
 of encounter set, so a card A Growing Threat sets aside in one scenario must
-resolve in the scenarios after it, which other scenario modules run. That
-support comes with the later chapters: the three Wilds of Rhovanion chapters
-share one module, and the chapters from The Withered Heath on need the earlier
-chapters' cards to resolve outside their own modules.
+resolve in the scenarios after it, which other scenario modules run. The three
+Wilds of Rhovanion chapters share one module, so the cards chapters 1–3 add
+resolve in each of them; the chapters from The Withered Heath on need the
+earlier chapters' cards to resolve outside their own modules, which comes with
+them.
 
 ## Verification
 
@@ -108,7 +139,7 @@ npm run build
 npm run test:browser-ered-campaign
 ```
 
-`tests/ered-campaign.test.ts` (15 tests) covers the registered texts and
+`tests/ered-campaign.test.ts` (28 tests) covers the registered texts and
 faces, the uniqueness corrections and the cards kept out of ordinary games;
 the chapter order and the Haldan rule; the setup (Turayn for one player or a
 chosen player of two, A Growing Threat); the campaign card's resources (unique
@@ -121,13 +152,30 @@ available); the Campaign Pool and deck assignments at a later setup; Turayn's
 Response; Axe of the Edain, Glittering Lute and Anvil of Gundabad when played;
 Anvil's discounted play, Dwarf-Lord's Crown and Jewels of Wilderland; Durin's
 Dagger from the discard pile; Gondolin Shield, Helm of Heroes and Masterwork
-Bow in combat; a look at fewer treasures; and malformed Campaign Logs.
+Bow in combat; a look at fewer treasures; and malformed Campaign Logs. For
+Lost in Mirkwood it covers the texts, Melanwar for the player, the Twilight
+Hall search, its guarded treasure and its claim (and a claimed Anvil of
+Gundabad's search), Melanwar's 1 or 3 progress, and the resolution (the
+Spiders card in the Campaign Pool, both answers, the next chapter). For The
+King's Quest it covers the texts, the setup (Isolde, The Threat to Wilderland's
+3 resources, Dagnir's Spawn, Abandoned Ruin in the Caves deck, Haldan, the 3
+removed treacheries), The Threat to Wilderland's threat and immunity (also for
+a card revealed during the phase, and ending with the phase), Dagnir's Spawn's
+X stats, its Dragon-only attachments and its shuffle, Isolde's willpower and
+readying, Abandoned Ruin's guarded treasure, the resolution's two questions,
+and the interlude's free hero changes.
 
 The browser suite begins the campaign from the lobby, checks the campaign card
 in the quest inspector, answers Turayn's Response, chooses a treasure from the
 three looked at and attaches it, plays a discovered Durin's Dagger from the
 discard pile through its button, records the resolution through the
 end-of-game dialog (Turayn joins the Campaign Pool; the Campaign Log shows the
-treasures and the Hill Troll), and checks that no Continue campaign button
-follows, at 1280, 390 and 320 pixels (24 checkpoints); it checks the 13 pinned
-faces.
+treasures and the Hill Troll), then continues: the interlude puts Turayn in the
+deck; Lost in Mirkwood gives Melanwar, searches for Twilight Hall (the
+inspector names its guarded treasure), resolves Melanwar's Response, claims the
+treasure and records Melanwar's note; the interlude before The King's Quest
+offers free hero changes; The King's Quest gives Isolde, resolves The Threat to
+Wilderland's immunity (shown by the inspector) and Dagnir's Spawn's damage, and
+records Isolde and Dagnir's Spawn in the Campaign Pool, after which The
+Withered Heath is not available yet; at 1280, 390 and 320 pixels (60
+checkpoints); it checks the 22 pinned faces.

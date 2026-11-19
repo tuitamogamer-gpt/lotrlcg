@@ -5323,8 +5323,10 @@ export default function App() {
                 return next ? scenario(next).name : "Campaign complete";
               })()}
             </strong>
-            . Heroes recover their damage and begin with a fresh deck. Each
-            replaced hero adds +1 to your permanent starting threat penalty.
+            . Heroes recover their damage and begin with a fresh deck.{" "}
+            {freeHeroChange(game, nextChapter)
+              ? "Heroes may be changed without adding to your permanent starting threat penalty."
+              : "Each replaced hero adds +1 to your permanent starting threat penalty."}
           </p>
           {game.campaign.kind === "saga" &&
             sagaChapterOptions(game.campaign).length > 1 && (
