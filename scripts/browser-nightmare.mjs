@@ -1102,6 +1102,70 @@ try {
         .getByText(goal, { exact: true })
         .waitFor();
     await checkpoint("watcher-seething-lake", width);
+    // The Long Dark in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-the-long-dark").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "the-long-dark");
+    assert.equal(s.nightmareMode, true);
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/Durin's Greaves gains surge/)
+      .waitFor();
+    await checkpoint("longdark-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // Lost and Helpless on a hero, Trapdoor Spider and Eastern Mines in the
+    // staging area.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.staging = [make(t, DW.trapdoor), make(t, DW.mines)];
+      t.heroes[1].attachments.push({
+        id: `a${t.nextId++}`,
+        code: DW.helpless,
+        exhausted: false,
+      });
+      s = await load(page, t);
+    }
+    const spiderFace = page
+      .locator(`img[src*="${DW.trapdoor.slice("octgn:".length)}"]`)
+      .first();
+    await spiderFace.waitFor();
+    assert.ok(
+      (await spiderFace.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "Trapdoor Spider's face loads",
+    );
+    for (const goal of [
+      "Lost: the first player discards an ally in play (the Nightmare setup card)",
+      `Lost and Helpless: Lost discards ${card(s.heroes[1].code).name}`,
+    ])
+      await page
+        .locator(".journey-area .quest-goals")
+        .getByText(goal, { exact: true })
+        .waitFor();
+    await checkpoint("longdark-lost-and-helpless", width);
     await view.c.close();
   }
   const p = await browser.newPage();

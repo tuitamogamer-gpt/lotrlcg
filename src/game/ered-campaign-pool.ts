@@ -2939,6 +2939,16 @@ export function composeEredPool(
       !!h.cannotEngage?.(s, u) || !!p.cannotEngage?.(s, u),
     cannotCommit: (s, u) =>
       !!h.cannotCommit?.(s, u) || !!p.cannotCommit?.(s, u),
+    lostSources: (s) => [
+      ...(h.lostSources?.(s) ?? []),
+      ...(p.lostSources?.(s) ?? []),
+    ],
+    lostResolve: (s, id) =>
+      !!h.lostResolve?.(s, id) || !!p.lostResolve?.(s, id),
+    shadowDealt: (s, u, code) => {
+      h.shadowDealt?.(s, u, code);
+      p.shadowDealt?.(s, u, code);
+    },
     victoryValue: (s, code) =>
       p.victoryValue?.(s, code) ?? h.victoryValue?.(s, code),
     willpowerGainBlocked: (s, u) =>

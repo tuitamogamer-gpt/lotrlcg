@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2421,
+    "encounterCards": 2429,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3643,
-    "pending": 540
+    "scripted": 3651,
+    "pending": 532
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 285
+    "scripted": 286
   },
   "registeredCodes": [
     "01001",
@@ -1324,6 +1324,7 @@
     "octgn:0b3a7155-be2d-4fed-9674-bc696662372f",
     "octgn:0bb77cd5-0340-4411-9e1f-997b1d6cb35a",
     "octgn:0bd34136-ae3d-44aa-b48f-7190c14f4b3b",
+    "octgn:0c0f7215-3a7f-489c-9edc-4fd5b896e635",
     "octgn:0c0fdef7-f55a-4bcf-91f9-317cd7a00777",
     "octgn:0c15f99d-9066-4e7c-b364-104a0083d997",
     "octgn:0c320479-0992-4d16-9ce1-3aeeca8be57c",
@@ -1756,6 +1757,7 @@
     "octgn:3de80480-6316-4c43-824c-44d3ad424a7b",
     "octgn:3dfaab4d-04b1-49a6-bd17-63c184784985",
     "octgn:3e0619e9-ffd1-4c1b-8b65-f603202cde4f",
+    "octgn:3e0b01f7-0870-4585-be26-4cd1860d3137",
     "octgn:3e0e63ba-d11b-4c8a-aab6-047f19013ca7",
     "octgn:3e1b7378-6be8-4e19-aacb-16cd61a90693",
     "octgn:3e471bd0-5ee5-4846-815d-fd6a5cd5f921",
@@ -2695,6 +2697,7 @@
     "octgn:836a759d-d768-4119-929f-cfe874ba944a",
     "octgn:83818038-5291-4d4b-acec-1937c5b787e0",
     "octgn:838eebac-81db-4f00-aaba-024d70a1582d",
+    "octgn:83a77d46-89f5-4eeb-970b-8c1cd7d5eb4a",
     "octgn:83a8586f-bb6d-4e90-84c7-3909034dad16",
     "octgn:83d7214f-d8ae-47f8-bd0a-c48f9a187568",
     "octgn:83dd1a59-118c-468d-a47e-e472b066ff3e",
@@ -2766,6 +2769,7 @@
     "octgn:8b083bb8-0ada-484a-9f83-6c8f431170b5",
     "octgn:8b1a3e3e-903f-4c4d-acf4-c216c2116339",
     "octgn:8b203ead-9fb6-4734-9109-3633fc24d1a9",
+    "octgn:8b225bb2-a809-45ce-af4a-aa98f1d53e82",
     "octgn:8b4dd0c5-3847-46f6-a69b-a4c7ee2b21c8",
     "octgn:8b7c17f3-09d1-45a4-93ff-3b17a3285f35",
     "octgn:8ba47620-aead-42a5-a057-41cb038f5234",
@@ -3085,6 +3089,7 @@
     "octgn:b0b64e9f-0a9f-42f1-9ad0-0e54db93dc47",
     "octgn:b0b77537-0c91-42c0-b111-647bc445a419",
     "octgn:b0d31a1c-2155-4a97-a5ff-912e32a4809e",
+    "octgn:b1217b87-40bd-442d-b7c8-0d9b7d262b04",
     "octgn:b1612370-142d-4557-8884-b3da12b4baca",
     "octgn:b1662195-6d46-474c-9ee9-ccbf14c7b70e",
     "octgn:b171f1fa-a603-43ab-97c9-f950ee3b3599",
@@ -3251,6 +3256,7 @@
     "octgn:c07b0737-1a39-45b9-a08a-879e741e2526",
     "octgn:c08310b6-5201-4c70-975e-61a2e7ff329b",
     "octgn:c084e998-a5c8-4efd-a6ed-441f9f912c99",
+    "octgn:c0b9de2b-ada7-468b-9dc5-08bb28c07c3d",
     "octgn:c0c522b2-5f5c-45a0-b6fc-e05c8bb835d8",
     "octgn:c0d85826-dc42-4ac8-851c-4ed671917e9d",
     "octgn:c0fd82d5-1d87-4120-9b4b-37f81c1b2c9c",
@@ -3263,6 +3269,7 @@
     "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
     "octgn:c2181617-ad55-4bf7-a6f3-60979d112ce6",
     "octgn:c2237ebe-c98f-49b1-9e6e-1e33d39f815d",
+    "octgn:c23266f8-cd28-4e21-8983-1c6180531e18",
     "octgn:c2720938-450b-4017-9ac3-f3130164bdf9",
     "octgn:c281bdda-e8d3-408c-bd5d-d7673b092576",
     "octgn:c29c98de-5660-498c-a5cc-a1800985d221",
@@ -3776,6 +3783,7 @@
     "octgn:fc145eae-9671-4697-8d28-473f3b138295",
     "octgn:fc2ed0de-aba1-49ad-94b3-94024116eeeb",
     "octgn:fc351b81-fc50-40a5-9f94-7ab885cb7a8c",
+    "octgn:fc3ec643-ec75-4d49-beca-57f11d6b641a",
     "octgn:fc45fcc9-65b1-4c1f-ac9a-e392d86d93fd",
     "octgn:fc4f9f69-7870-4449-b89b-cd7b4dc158d0",
     "octgn:fc54b033-56cc-4ca9-8e0f-7f1c7b82bd6a",
@@ -4510,7 +4518,7 @@
     {
       "product": "the-long-dark-nightmare",
       "total": 8,
-      "scripted": 0,
+      "scripted": 8,
       "player": 0,
       "playerScripted": 0
     },
@@ -14438,7 +14446,7 @@
       "name": "Lost and Helpless",
       "type": "treachery",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-long-dark-nightmare"
     },
     {
@@ -18678,7 +18686,7 @@
       "name": "Goblin Stalker",
       "type": "enemy",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-long-dark-nightmare"
     },
     {
@@ -27302,7 +27310,7 @@
       "name": "Sentinel of the Deep",
       "type": "enemy",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-long-dark-nightmare"
     },
     {
@@ -27998,7 +28006,7 @@
       "name": "Eastern Mines",
       "type": "location",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-long-dark-nightmare"
     },
     {
@@ -31078,7 +31086,7 @@
       "name": "The Long Dark",
       "type": "nightmare",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-long-dark-nightmare"
     },
     {
@@ -32662,7 +32670,7 @@
       "name": "Dreadful Deep",
       "type": "treachery",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-long-dark-nightmare"
     },
     {
@@ -32790,7 +32798,7 @@
       "name": "Bottomless Chasm",
       "type": "location",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-long-dark-nightmare"
     },
     {
@@ -37782,7 +37790,7 @@
       "name": "Trapdoor Spider",
       "type": "enemy",
       "pack": "Dwarrowdelf - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-long-dark-nightmare"
     },
     {
@@ -39281,8 +39289,8 @@
       "id": "N02.7",
       "name": "The Long Dark (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-long-dark",
+      "state": "scripted"
     },
     {
       "id": "N02.8",

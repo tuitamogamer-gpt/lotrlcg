@@ -1,6 +1,6 @@
 # The Long Dark rules support
 
-The original scenario implements thirteen encounter designs, two double-sided quests and the shared Twists and Turns / Hazards of the Pit sets. Its physical encounter pool contains 59 cards in normal mode and 43 in easy mode, including Cave Torch. Removing the Torch leaves 58 / 42 cards before setup moves locations to staging. The two quest cards are separate components. Nightmare remains reference content.
+The original scenario implements thirteen encounter designs, two double-sided quests and the shared Twists and Turns / Hazards of the Pit sets. Its physical encounter pool contains 59 cards in normal mode and 43 in easy mode, including Cave Torch. Removing the Torch leaves 58 / 42 cards before setup moves locations to staging. The two quest cards are separate components. Its Nightmare Deck is supported (docs/NIGHTMARE.md): a Nightmare game builds its standard deck on Deeps of Moria, whose cards the setup card removes, and adds its Lost effects and PASS cards to the ones here.
 
 ## Sources
 

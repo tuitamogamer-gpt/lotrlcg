@@ -82,7 +82,11 @@ import { syncAttachmentText } from "./attachment-text";
 import { setupKhazad } from "./khazad-dum";
 // Game creation and scenario setup.
 import { card, HEROES, DECK, SCRIPTED, encounterCards } from "./cards";
-import { nightmareEncounterDeck, nightmareSupported } from "./nightmare";
+import {
+  nightmareEncounterDeck,
+  nightmareStandardSets,
+  nightmareSupported,
+} from "./nightmare";
 import { nightmareSetup } from "./nightmare-core";
 import type {
   GameState,
@@ -547,13 +551,14 @@ export function createGame(
     // A campaign card lies next to the quest deck, never in the encounter
     // deck, even when it shares the scenario's encounter set.
     encounterDeck: (() => {
+      // A Nightmare Deck may assume other standard sets (The Long Dark's).
+      const sets: readonly string[] =
+        (nightmare && nightmareStandardSets(scenarioId)) ||
+        scenario(scenarioId).sets;
       const standard = encounterCards
         .filter(
           (c) =>
-            c.type_code !== "campaign" &&
-            (scenario(scenarioId).sets as readonly string[]).includes(
-              c.encounter_set ?? "",
-            ),
+            c.type_code !== "campaign" && sets.includes(c.encounter_set ?? ""),
         )
         .flatMap((c) =>
           Array(

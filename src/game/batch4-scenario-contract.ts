@@ -347,6 +347,10 @@ export interface Batch4ScenarioHooks {
   ): void;
   enemyAttackStarted?(s: GameState, enemy: Unit, player: number): void;
   attackFinished?(s: GameState, combat: Combat, skipped?: boolean): Effect[];
+  /** The Long Dark: "Lost:" abilities in play beyond the scenario's own (a Nightmare Deck's setup card, enemies and attachments). */
+  lostSources?(s: GameState): { id: string; code: string; label?: string }[];
+  /** The Long Dark: resolves one of those "Lost:" abilities; true when it was one. */
+  lostResolve?(s: GameState, id: string): boolean;
   cannotDiscardShadow?(s: GameState, u: Unit, code: string): boolean;
   usesExistingShadows?(s: GameState, u: Unit): boolean;
   immediateShadows?(s: GameState, u: Unit, noDeal: boolean): boolean;

@@ -172,6 +172,15 @@ export const NIGHTMARE_DD = {
   depths: "octgn:da69a930-1102-4f2d-80ff-257354f3f701",
   pulled: "octgn:b658345f-6282-440d-9004-35fd6ef2e0b7",
   rippling: "octgn:e86c303c-eefb-448d-bbac-87ceb702f837",
+  /** The Long Dark's setup card and Nightmare Deck. */
+  longDarkCard: "octgn:b1217b87-40bd-442d-b7c8-0d9b7d262b04",
+  goblinStalker: "octgn:3e0b01f7-0870-4585-be26-4cd1860d3137",
+  trapdoor: "octgn:fc3ec643-ec75-4d49-beca-57f11d6b641a",
+  sentinel: "octgn:83a77d46-89f5-4eeb-970b-8c1cd7d5eb4a",
+  mines: "octgn:8b225bb2-a809-45ce-af4a-aa98f1d53e82",
+  chasm: "octgn:c23266f8-cd28-4e21-8983-1c6180531e18",
+  deep: "octgn:c0b9de2b-ada7-468b-9dc5-08bb28c07c3d",
+  helpless: "octgn:0c0f7215-3a7f-489c-9edc-4fd5b896e635",
 } as const;
 
 interface NightmareDeck {
@@ -183,6 +192,12 @@ interface NightmareDeck {
   stages?: number;
   /** Stages the setup card removes from the quest deck, by printed title, replaced by the Nightmare Deck's (Into the Pit's Goblin Patrol). */
   questRemovals?: Record<string, number>;
+  /**
+   * The standard encounter sets the setup card's removals assume, when they
+   * differ from the scenario's: The Long Dark's removes Deeps of Moria cards,
+   * where its rulesheet names Hazards of the Pit.
+   */
+  sets?: readonly string[];
 }
 /** The scenarios whose Nightmare Decks are supported, in publication order. */
 export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
@@ -404,6 +419,22 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
     },
     questRemovals: { "Orc Outpost": 1 },
   },
+  "the-long-dark": {
+    card: NIGHTMARE_DD.longDarkCard,
+    removals: {
+      "Goblin Follower": 4,
+      "Branching Paths": 1,
+      "Burning Low": 3,
+      "Stray Goblin": 2,
+      "Chance Encounter": 2,
+      "The Mountains' Roots": 2,
+      "Abandoned Mine": 1,
+      Fatigue: 2,
+      "Goblin Sneak": 4,
+      "Rock Adder": 3,
+    },
+    sets: ["The Long Dark", "Twists and Turns", "Deeps of Moria"],
+  },
   "watcher-in-the-water": {
     card: NIGHTMARE_DD.watcherCard,
     removals: {
@@ -511,6 +542,8 @@ const plainTitle = (name: string) => name.replace(/’/g, "'");
  * removed cards, with the Nightmare Deck's encounter cards shuffled in (the
  * caller shuffles).
  */
+/** The standard encounter sets of a Nightmare game, when its setup card assumes others. */
+export const nightmareStandardSets = (id: ScenarioId) => NIGHTMARE[id]?.sets;
 export function nightmareEncounterDeck(id: ScenarioId, standard: string[]) {
   const deck = NIGHTMARE[id];
   if (!deck) return standard;
@@ -598,6 +631,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "road-to-rivendell")
     return [
       "Road to Rivendell · Nightmare mode: an enemy with ambush that engages a player during the quest phase still counts its [threat] in the staging area until the end of the phase; stage 2 is Ambush in the Night.",
+    ];
+  if (s.scenarioId === "the-long-dark")
+    return [
+      "The Long Dark · Nightmare mode: Durin's Greaves gains surge. Lost: the first player chooses and discards an ally in play. The standard encounter deck uses Deeps of Moria, whose cards the setup card removes.",
     ];
   if (s.scenarioId === "watcher-in-the-water")
     return [

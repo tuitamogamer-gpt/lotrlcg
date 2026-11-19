@@ -1582,6 +1582,29 @@ export function QuestGoals({ s }: { s: GameState }) {
                                           : "Locate: discard one own hand card per attempt; an encounter card marked PASS passes",
                                         done: false,
                                       },
+                                      // Nightmare mode: the setup card's Lost
+                                      // and Lost and Helpless' heroes.
+                                      ...(nightmareLive(s)
+                                        ? [
+                                            {
+                                              label:
+                                                "Lost: the first player discards an ally in play (the Nightmare setup card)",
+                                              done: false,
+                                            },
+                                            ...allCharacters(s)
+                                              .filter((u) =>
+                                                u.attachments.some(
+                                                  (a) =>
+                                                    a.code ===
+                                                    NIGHTMARE_DD.helpless,
+                                                ),
+                                              )
+                                              .map((u) => ({
+                                                label: `Lost and Helpless: Lost discards ${card(u.code).name}`,
+                                                done: false,
+                                              })),
+                                          ]
+                                        : []),
                                     ]
                                   : s.scenarioId === "watcher-in-the-water"
                                     ? [

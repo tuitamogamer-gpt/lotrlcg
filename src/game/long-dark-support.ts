@@ -1,6 +1,7 @@
 // Printed Long Dark definitions do not import encounter runtime hooks.
 import encounters from "../data/long-dark-encounter-cards.json";
 import quests from "../data/long-dark-quest-cards.json";
+import nightmare from "../data/nightmare-encounter-cards.json";
 import type { Card } from "./types";
 export const LONG_DARK_ENCOUNTERS = encounters as Card[];
 export const LONG_DARK_QUESTS = quests as Card[];
@@ -49,3 +50,10 @@ export const LONG_DARK = Object.fromEntries(
 export const LONG_DARK_PASS = encounters
   .filter((c) => c.corner_text === "PASS")
   .map((c) => c.code);
+/** The Nightmare Deck's cards that print PASS (Goblin Stalker, Trapdoor Spider). */
+export const LONG_DARK_NIGHTMARE_PASS = nightmare
+  .filter((c) => (c as { corner_text?: string }).corner_text === "PASS")
+  .map((c) => c.code);
+/** A locate test passes on a printed PASS (the Nightmare Deck's too). */
+export const longDarkPass = (code: string) =>
+  LONG_DARK_PASS.includes(code) || LONG_DARK_NIGHTMARE_PASS.includes(code);

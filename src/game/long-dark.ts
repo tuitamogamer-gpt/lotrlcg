@@ -2,7 +2,7 @@ import { mainQuestCode } from "./quest-state";
 import { surgeEffects } from "./surge";
 // Original Long Dark: locate choices and explicitly triggered Lost abilities.
 import type { Effect, GameState, Unit } from "./types";
-import { LONG_DARK as L, LONG_DARK_PASS } from "./long-dark-support";
+import { LONG_DARK as L, longDarkPass } from "./long-dark-support";
 export {
   LONG_DARK,
   LONG_DARK_ENCOUNTERS,
@@ -50,6 +50,7 @@ import {
 import { khazadCannotExhaust, KHAZAD } from "./khazad-dum";
 import { watcherWaterCannotExhaust } from "./watcher-water";
 import { syncAttachmentText } from "./attachment-text";
+import { batch4Scenario } from "./batch4-scenarios";
 
 export interface LongDarkState {
   adderDamagedIds: string[];
@@ -61,8 +62,6 @@ const state = (s: GameState) =>
   });
 const isLong = (s: GameState) => (s.scenarioId as string) === "the-long-dark";
 const first = (s: GameState) => s.table?.first ?? 0;
-const sourceUnit = (s: GameState, id?: string) =>
-  units(s).find((u) => u.id === id);
 const readyForExhaustion = (s: GameState, player: number) => {
   syncAttachmentText(s);
   return allCharacters(s).filter(
@@ -74,12 +73,27 @@ const readyForExhaustion = (s: GameState, player: number) => {
   );
 };
 const lostCodes = [L.mine, L.forge, L.warlord, L.caverns];
+/**
+ * The "Lost:" abilities in play: the scenario's unblanked encounter cards and
+ * those a Nightmare Deck adds (its setup card, enemies and attachments).
+ */
+export function longDarkLostSources(
+  s: GameState,
+): { id: string; code: string; label: string }[] {
+  syncAttachmentText(s);
+  return [
+    ...units(s)
+      .filter((u) => lostCodes.includes(u.code) && !u.blanked)
+      .map((u) => ({ id: u.id, code: u.code, label: card(u.code).name })),
+    ...(batch4Scenario(s).lostSources?.(s) ?? []).map((x) => ({
+      ...x,
+      label: x.label ?? card(x.code).name,
+    })),
+  ];
+}
 /** Only an explicitly requesting effect starts Lost; new arrivals do not join the snapshot. */
 export function longDarkLost(s: GameState) {
-  syncAttachmentText(s);
-  const ids = units(s)
-    .filter((u) => lostCodes.includes(u.code) && !u.blanked)
-    .map((u) => u.id);
+  const ids = longDarkLostSources(s).map((x) => x.id);
   if (ids.length)
     prepend(s, fx("longDarkLostOrder", { ids, player: first(s) }));
 }
@@ -180,6 +194,16 @@ export function longDarkEngaged(s: GameState, enemy: Unit) {
       s,
       fx("longDarkSneak", { target: enemy.id, player: ownerOf(s, enemy) }),
     );
+}
+/** A locate test (a Nightmare Deck's cards make them too), with its pass and fail continuations. */
+export function longDarkLocate(
+  s: GameState,
+  source: string,
+  pass: Effect[],
+  fail: Effect[],
+  player = first(s),
+) {
+  beginLocate(s, source, pass, fail, player);
 }
 function beginLocate(
   s: GameState,
@@ -461,10 +485,10 @@ export function longDarkEffect(s: GameState, e: Effect): boolean {
         s.encounterDiscard.push(code);
         log(
           s,
-          `Locate discards ${card(code).name}${LONG_DARK_PASS.includes(code) ? " · PASS" : ""}.`,
+          `Locate discards ${card(code).name}${longDarkPass(code) ? " · PASS" : ""}.`,
         );
       }
-      if (code && LONG_DARK_PASS.includes(code)) finishLocate(s, true);
+      if (code && longDarkPass(code)) finishLocate(s, true);
       else prepend(s, fx("longDarkLocate", { player: locate.player }));
       break;
     }
@@ -485,10 +509,10 @@ export function longDarkEffect(s: GameState, e: Effect): boolean {
       longDarkLost(s);
       break;
     case "longDarkLostOrder": {
-      const remaining = (e.ids ?? []).filter((id) => {
-        const source = sourceUnit(s, id);
-        return source && !source.blanked;
-      });
+      const live = longDarkLostSources(s);
+      const remaining = (e.ids ?? []).filter((id) =>
+        live.some((x) => x.id === id),
+      );
       if (!remaining.length) break;
       if (remaining.length === 1)
         prepend(
@@ -506,8 +530,8 @@ export function longDarkEffect(s: GameState, e: Effect): boolean {
           "Lost effects · Choose the next printed effect",
           remaining.map((id) => ({
             id,
-            label: card(sourceUnit(s, id)!.code).name,
-            code: sourceUnit(s, id)!.code,
+            label: live.find((x) => x.id === id)!.label,
+            code: live.find((x) => x.id === id)!.code,
             effects: [
               fx("longDarkLostResolve", {
                 target: id,
@@ -523,6 +547,8 @@ export function longDarkEffect(s: GameState, e: Effect): boolean {
     }
     case "longDarkLostResolve": {
       prepend(s, fx("longDarkLostOrder", { ids: e.ids, player: first(s) }));
+      // A Nightmare Deck's "Lost:" ability.
+      if (e.target && batch4Scenario(s).lostResolve?.(s, e.target)) break;
       if (!u || u.blanked) break;
       if (u.code === L.mine)
         atomicLost(s, () => {
