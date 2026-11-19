@@ -6,7 +6,13 @@ import { win } from "../src/game/board.ts";
 import { availableAbilities, validateSave } from "../src/game/engine.ts";
 import { get } from "../src/game/core.ts";
 import { syncSeat } from "../src/game/table.ts";
-import { DC, backFace } from "../src/game/dreamchaser-campaign-support.ts";
+import {
+  DC,
+  GALDOR,
+  backFace,
+  dcIs,
+} from "../src/game/dreamchaser-campaign-support.ts";
+import { RAID } from "../src/game/raid-grey-havens-support.ts";
 import { VOYAGE } from "../src/game/voyage-belegaer-support.ts";
 import { FATE } from "../src/game/fate-numenor-support.ts";
 import { card } from "../src/game/cards.ts";
@@ -277,8 +283,55 @@ try {
       s.campaign.completed[1].xp >= 4,
       `XP ${s.campaign.completed[1].xp}`,
     );
-    await page.getByText(/is not available in campaign mode yet/).waitFor();
     await checkpoint("fate-complete", width);
+    // Raid on the Grey Havens: Calphon with Spyglass and Black Key, Graxar,
+    // and a copy of Galdor's Counsel for the hand.
+    await page.getByRole("button", { name: /^Continue campaign/ }).click();
+    await page.getByRole("button", { name: /^Begin next chapter/ }).click();
+    await reviewedState(page);
+    s = await opening((t) =>
+      /copy of Galdor's Counsel/.test(t.choice.title) ? GALDOR[0] : undefined,
+    );
+    assert.equal(s.scenarioId, "raid-on-the-grey-havens");
+    const guide = s.allies.find((u) => dcIs(u, FATE.calphon));
+    assert.ok(guide, "Calphon");
+    assert.deepEqual(
+      guide.attachments.map((a) => a.code),
+      [DC.spyglass, DC.keyBoon],
+    );
+    assert.ok(s.encounterDeck.includes(DC.graxar));
+    assert.ok(s.hand.some((h) => h.code === GALDOR[0]));
+    assert.equal(s.dreamchaser.ominous, 1);
+    await campaignCard(
+      /^Galdor's Counsel chosen this game: leadership/,
+      "raid-setup",
+      width,
+    );
+    // The resolution: Graxar in the victory display adds Throwing Axe for a hero.
+    s = await victory(s, (t) => {
+      t.victoryCards = [...(t.victoryCards ?? []), DC.graxar, RAID.runner];
+      t.raidGreyHavens.burned = [];
+    });
+    assert.equal(s.campaign.resolution, "raid-on-the-grey-havens");
+    assert.ok(s.campaign.boons.includes(GALDOR[0]));
+    const hero = s.campaign.heroes[0];
+    await page
+      .getByLabel(/add Parrying Cutlass or Throwing Axe/)
+      .selectOption(DC.axe);
+    await page
+      .getByLabel(/Record the hero it is attached to/)
+      .selectOption(hero);
+    await checkpoint("raid-resolution", width);
+    await page
+      .getByRole("button", { name: "Record the resolution", exact: false })
+      .click();
+    await reviewedState(page);
+    s = await campaign();
+    assert.equal(s.campaign.resolution, null);
+    assert.deepEqual(s.campaign.permanent[hero], [DC.axe]);
+    assert.equal(s.campaign.completed.length, 3);
+    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await checkpoint("raid-complete", width);
     await view.c.close();
   }
   const p = await browser.newPage();

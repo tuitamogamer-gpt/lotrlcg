@@ -38,9 +38,25 @@ import {
   playerOrder,
   seatView,
 } from "./table";
+import {
+  DREAM_LOCATION,
+  HAVENS_BURN,
+  dcBackFace,
+  dcCampaignSide,
+  dcIs,
+  isDreamchaserGame,
+} from "./dreamchaser-campaign-support";
+import { dreamchaserRaidReady } from "./dreamchaser-campaign";
 
 const isRaid = (s: GameState) =>
   s.scenarioId === "raid-on-the-grey-havens" && !!s.raidGreyHavens;
+/** The Dream-chaser location and The Havens Burn, on either face. */
+const isDream = (u: Unit) => dcIs(u, R.dream);
+const isBurn = (u: Unit) => dcIs(u, R.burn);
+/** The Havens Burn's limit: "X is 3 more than the number of players" (4 on its campaign side). */
+const havensLimit = (s: GameState) =>
+  (s.table?.seats.length ?? 1) +
+  (s.staging.some((l) => isBurn(l) && dcBackFace(l) && !l.blanked) ? 4 : 3);
 const corsairRules = (s: GameState) =>
   [
     "voyage-across-belegaer",
@@ -90,7 +106,9 @@ function ordered(s: GameState, effects: Effect[], text: string) {
     ],
     raidHavensBurn: [
       R.burn,
-      "The Havens Burn · reveal the next encounter card",
+      s.staging.some((l) => isBurn(l) && dcBackFace(l) && !l.blanked)
+        ? "The Havens Burn · raise each player's threat by 2"
+        : "The Havens Burn · reveal the next encounter card",
     ],
     raidDamageAllLocations: [
       R.fires,
@@ -187,7 +205,7 @@ export const raidLocationThreat = (s: GameState, u: Unit) =>
 export function raidLocationProgressBlocked(s: GameState, u: Unit) {
   return (
     !!isRaid(s) &&
-    (u.code === R.dream ||
+    (isDream(u) ||
       (!active(s, u) &&
         s.staging.some((l) => l.code === R.harbor && !l.blanked)))
   );
@@ -215,7 +233,7 @@ function raidBurn(s: GameState, u: Unit) {
     "danger",
   );
   const effects: Effect[] = [];
-  if (u.code === R.dream && !u.blanked)
+  if (isDream(u) && !u.blanked)
     effects.push(fx("raidDreamLost", { player: firstPlayer(s) }));
   else if (u.code === R.piers && !u.blanked)
     effects.push(fx("raidPiersBurn", { player: firstPlayer(s) }));
@@ -223,7 +241,7 @@ function raidBurn(s: GameState, u: Unit) {
     effects.push(fx("raidWhiteBurn", { player: firstPlayer(s) }));
   else if (u.code === R.caravel && !u.blanked)
     effects.push(fx("raidCaravelBurn", { player: firstPlayer(s) }));
-  if (s.staging.some((l) => l.code === R.burn && !l.blanked))
+  if (s.staging.some((l) => isBurn(l) && !l.blanked))
     effects.push(fx("raidHavensBurn", { player: firstPlayer(s) }));
   ordered(s, effects, "Choose the next burning-location Forced effect");
 }
@@ -413,7 +431,7 @@ export function raidCheck(s: GameState) {
 }
 export function raidTravelProblem(s: GameState, u: Unit) {
   if (!isRaid(s)) return null;
-  if (u.code === R.dream && !u.blanked)
+  if (isDream(u) && !u.blanked)
     return "The players cannot travel to Dream-chaser.";
   if (
     u.code === R.white &&
@@ -591,6 +609,14 @@ export function raidEffect(s: GameState, e: Effect) {
         const index = q.setAside.findIndex((u) => u.code === co);
         if (index >= 0) {
           const v = q.setAside.splice(index, 1)[0];
+          // A Dream-chaser campaign uses the "Campaign Mode only" sides of
+          // The Havens Burn and the Dream-chaser once their checkboxes are
+          // all marked.
+          if (isDreamchaserGame(s) && (co === R.burn || co === R.dream))
+            v.code = dcCampaignSide(
+              s.campaign,
+              co === R.burn ? HAVENS_BURN : DREAM_LOCATION,
+            );
           s.staging.push(v);
           if (card(co).type_code === "enemy") enemyAddedToStaging(s, v);
         }
@@ -607,6 +633,8 @@ export function raidEffect(s: GameState, e: Effect) {
       }
       s.encounterDeck.push(...s.encounterDiscard.splice(0));
       shuffle(s, s.encounterDeck);
+      // The campaign card's setup follows the scenario's.
+      if (isDreamchaserGame(s)) prepend(s, ...dreamchaserRaidReady(s));
       break;
     }
     case "raidStageTwo":
@@ -617,6 +645,12 @@ export function raidEffect(s: GameState, e: Effect) {
           s,
           ...playerOrder(s).map((player) => fx("reveal", { player })),
           fx("raidStageTwoResources", { player: firstPlayer(s) }),
+          // The campaign card: "Forced: After stage 2B is revealed, remove
+          // Calphon and each attachment on him from the game, ignoring his
+          // 'leaves play' ability."
+          ...(isDreamchaserGame(s)
+            ? [fx("dcCalphonGone", { player: firstPlayer(s) })]
+            : []),
           fx("raidStageReady", { player: firstPlayer(s) }),
         );
         // Both enemies enter together. The first player orders their entry
@@ -640,7 +674,7 @@ export function raidEffect(s: GameState, e: Effect) {
       if (u && s.staging.some((v) => v.id === u.id)) enemyAddedToStaging(s, u);
       break;
     case "raidStageTwoResources": {
-      const fire = locations(s).find((u) => u.code === R.dream)?.damage ?? 0;
+      const fire = locations(s).find(isDream)?.damage ?? 0;
       for (const v of raiders(s))
         v.resources += [R.sahir, R.naasiyah].includes(v.code) ? fire : 1;
       break;
@@ -707,7 +741,7 @@ export function raidEffect(s: GameState, e: Effect) {
       }
       break;
     case "raidPiersBurn": {
-      const dream = locations(s).find((u) => u.code === R.dream);
+      const dream = locations(s).find(isDream);
       if (dream)
         prepend(
           s,
@@ -734,14 +768,25 @@ export function raidEffect(s: GameState, e: Effect) {
       lose(s, "Dream-chaser has burned. The Elven fleet is lost.");
       break;
     case "raidHavensBurn":
-      prepend(
-        s,
-        fx("reveal", { player: firstPlayer(s) }),
-        fx("raidHavensCheck", { player: firstPlayer(s) }),
-      );
+      // Its campaign side: "raise each player's threat by 2" instead of
+      // revealing an encounter card.
+      if (s.staging.some((l) => isBurn(l) && dcBackFace(l) && !l.blanked))
+        prepend(
+          s,
+          ...playerOrder(s).map((player) =>
+            fx("dcThreat", { value: 2, player }),
+          ),
+          fx("raidHavensCheck", { player: firstPlayer(s) }),
+        );
+      else
+        prepend(
+          s,
+          fx("reveal", { player: firstPlayer(s) }),
+          fx("raidHavensCheck", { player: firstPlayer(s) }),
+        );
       break;
     case "raidHavensCheck":
-      if (q && q.burned.length >= (s.table?.seats.length ?? 1) + 3)
+      if (q && q.burned.length >= havensLimit(s))
         lose(s, "The Corsairs have destroyed the Elven fleet.");
       break;
     case "raidRemoveFire": {

@@ -1391,7 +1391,7 @@ export function eligiblePayers(s: GameState, c: Card, target?: Unit) {
         Mordor.mordorIgnoresResourceMatch(s) ||
         !!batch4Scenario(s).noResourceMatch?.(s, c) ||
         (c.code === "22062" && hasTrait(h, "Rohan")) ||
-        hasResourceIcon(h, c.sphere_code) ||
+        hasResourceIcon(h, c.boon_sphere ?? c.sphere_code) ||
         RoadDarkensPlayers.gandalfDeckPayer(h, c) ||
         (actualCost > 0 &&
           c.type_code === "ally" &&

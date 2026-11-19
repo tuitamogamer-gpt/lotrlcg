@@ -310,6 +310,15 @@ export const dcScenarioFace = (
   c: CampaignState | null | undefined,
   reprint: string,
 ) => (dcUpgraded(c, reprint) ? backFace(reprint) : DC_ORIGINAL[reprint]);
+/**
+ * An original card whose campaign side is printed on its back (The Havens
+ * Burn, the Dream-chaser location, the Stormcaller of The City of Corsairs):
+ * that side once all of its checkboxes are marked.
+ */
+export const dcCampaignSide = (
+  c: CampaignState | null | undefined,
+  original: string,
+) => (dcUpgraded(c, original) ? backFace(original) : original);
 /** Is this location Uncharted (a Lost Island, faceup)? */
 export const isUncharted = (text?: string | null) =>
   /(^|\n)Uncharted\./.test(text ?? "");

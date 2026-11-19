@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2178,
+    "encounterCards": 2192,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3416,
-    "pending": 767
+    "scripted": 3425,
+    "pending": 758
   },
   "scenarioRecipes": {
     "total": 355,
@@ -692,6 +692,17 @@
     "11180",
     "11180.B",
     "11181",
+    "11183",
+    "11183.B",
+    "11184",
+    "11185",
+    "11186",
+    "11187",
+    "11188",
+    "11189",
+    "11189.B",
+    "11190",
+    "11190.B",
     "12001",
     "12002",
     "12003",
@@ -2317,6 +2328,7 @@
     "octgn:62d814e4-e0cf-437b-8ee7-b26478beb721",
     "octgn:62dea330-3ec7-4db0-bea7-382cb3454f83",
     "octgn:6302e603-fade-43b3-a6b3-235af412fdfa",
+    "octgn:6302e603-fade-43b3-a6b3-235af412fdfa.B",
     "octgn:63284aea-d814-4ceb-bb8e-57f402edc54d",
     "octgn:63b0498f-9180-4e62-83c1-b9aa29f24712",
     "octgn:63f46289-b5ef-44d1-b6cb-ce382031a768",
@@ -2469,6 +2481,7 @@
     "octgn:78520dc7-5891-47f3-8782-ca930c434374",
     "octgn:78689e20-d52f-4495-accc-b2cc39bb9ddc",
     "octgn:7869b9ba-7757-4d8e-a201-aaf247ec6f99",
+    "octgn:78a03d01-99f6-4c8c-9251-ec20f85ec609",
     "octgn:78d40f21-ce85-4600-8f5e-5159d83c50cb",
     "octgn:78d40f21-ce85-4600-8f5e-5159d83c50cb:B",
     "octgn:78f780fd-fcc0-495e-b132-772ce71dbfa9",
@@ -3121,6 +3134,7 @@
     "octgn:c75d2227-2fa6-4dba-a48a-64938b632efd",
     "octgn:c760eeaf-d923-4d98-af5c-eb7cb2d2f4d9",
     "octgn:c792fec6-5840-4aba-8dcd-36b1632d58fa",
+    "octgn:c792fec6-5840-4aba-8dcd-36b1632d58fa.B",
     "octgn:c79ff551-f816-4106-9c55-e22d175e544c",
     "octgn:c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da",
     "octgn:c7bcb6fc-dde8-4df0-bd0e-3791b0fef4d0",
@@ -3735,9 +3749,9 @@
     {
       "product": "dream-chaser-campaign-expansion",
       "total": 60,
-      "scripted": 19,
+      "scripted": 28,
       "player": 26,
-      "playerScripted": 5
+      "playerScripted": 12
     },
     {
       "product": "encounter-at-amon-din",
@@ -9083,7 +9097,7 @@
       "name": "Black Key",
       "type": "attachment",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -9091,7 +9105,7 @@
       "name": "Galdor's Counsel",
       "type": "event",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -9099,7 +9113,7 @@
       "name": "Galdor's Counsel",
       "type": "event",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -9107,7 +9121,7 @@
       "name": "Galdor's Counsel",
       "type": "event",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -9115,7 +9129,7 @@
       "name": "Galdor's Counsel",
       "type": "event",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -9123,7 +9137,7 @@
       "name": "Graxar",
       "type": "enemy",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -9131,7 +9145,7 @@
       "name": "Parrying Cutlass",
       "type": "attachment",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -9139,7 +9153,7 @@
       "name": "Throwing Axe",
       "type": "attachment",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -26019,7 +26033,7 @@
       "name": "Raid on the Grey Havens",
       "type": "campaign",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {

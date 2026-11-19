@@ -12,8 +12,10 @@ import {
   prepend,
   removePlayerShadowCard,
   removeShadowCard,
+  reorderPlayerDeck,
   RuleError,
   shuffle,
+  takePlayerDeck,
 } from "./core";
 import {
   activeSeat,
@@ -34,8 +36,19 @@ import {
   addVictoryCard,
   discardPlayerDeck,
   enemyAddedToStaging,
+  exhaustCharacter,
   raiseThreat,
+  readyCharacter,
 } from "./board";
+import { putPlayedEventInVictory } from "./event-resolution";
+import {
+  calphonLook,
+  calphonPick,
+  calphonSwap,
+  calphonSwitch,
+  type CalphonKinds,
+} from "./calphon";
+import { FATE } from "./fate-numenor-support";
 import { returnToStaging } from "./fellowship-event-lib";
 import { isShipObjective } from "./ships";
 import { activePlayerAbilityCode } from "./player-ability-triggers";
@@ -43,10 +56,13 @@ import { isPlayerCardSource } from "./player-effect-immunity";
 import { playerCardImmune } from "./card-immunity";
 import {
   DC,
+  GALDOR,
   backFace,
   dcBackFace,
   dcBase,
   dcIs,
+  dcLevel,
+  DREAM_LOCATION,
   fleetShip,
   isDreamchaserGame,
   isUncharted,
@@ -161,6 +177,30 @@ export function dreamchaserStats(s: GameState, u: Unit) {
     out.attack += 2 * n;
     out.defense += 2 * n;
   }
+  // Graxar "gets +1 [attack] for each damage on him and +1 [defense] for each
+  // resource on him".
+  if (dcIs(u, DC.graxar) && !u.blanked) {
+    out.attack += u.damage;
+    out.defense += u.resources;
+  }
+  for (const a of u.attachments) {
+    if (a.blanked) continue;
+    const code = dcBase(a.code);
+    // Black Key: "Attached character gets +1 [willpower], +1 [attack], and +1 [defense]."
+    if (code === DC.keyBoon) {
+      out.will += 1;
+      out.attack += 1;
+      out.defense += 1;
+    }
+    // Parrying Cutlass: +1 [defense] (+2 with 2 or more resources in its
+    // hero's pool); +2 (+3) on its Upgraded side.
+    if (code === DC.cutlass)
+      out.defense += (dcBackFace(a) ? 2 : 1) + (u.resources >= 2 ? 1 : 0);
+    // Throwing Axe: +1 [attack] (+2 with 2 or more damage on its hero); +2
+    // (+3) on its Upgraded side.
+    if (code === DC.axe)
+      out.attack += (dcBackFace(a) ? 2 : 1) + (u.damage >= 2 ? 1 : 0);
+  }
   // The Modification boons on a Ship.
   for (const a of u.attachments) {
     if (a.blanked || !isShipObjective(u)) continue;
@@ -205,10 +245,24 @@ export function dreamchaserEnemyEngaged(s: GameState, u: Unit) {
 /** Crowley: "At the end of the combat phase, return him to the staging area." */
 export function dreamchaserCombatEnd(s: GameState): Effect[] {
   if (!isDreamchaserGame(s)) return [];
-  return allEngaged(s)
-    .filter((u) => dcIs(u, DC.crowley) && !u.blanked)
-    .map((u) => fx("dcCrowleyReturn", { target: u.id }));
+  return [
+    ...allEngaged(s)
+      .filter((u) => dcIs(u, DC.crowley) && !u.blanked)
+      .map((u) => fx("dcCrowleyReturn", { target: u.id })),
+    // The Dream-chaser location's campaign side: "Response: At the end of
+    // the combat phase, raise each player's threat by 2 to remove 1 damage
+    // from a location."
+    ...([...s.staging, ...allActiveLocations(s)].some(
+      (u) => dcIs(u, DREAM_LOCATION) && dcBackFace(u) && !u.blanked,
+    ) && damagedLocations(s).length
+      ? [fx("dcDreamRepair", { player: firstPlayer(s) })]
+      : []),
+  ];
 }
+const damagedLocations = (s: GameState) =>
+  [...s.staging, ...allActiveLocations(s)].filter(
+    (u) => card(u.code).type_code === "location" && u.damage > 0,
+  );
 /**
  * The campaign's enemies leaving play. Crowley "gains victory 3" with 3 or
  * more resources; otherwise he returns to the Corsair discard pile.
@@ -282,12 +336,24 @@ export function dreamchaserCardPlayed(s: GameState, c: Card) {
 }
 
 /** Glórinaith's Action (and its once-per-round limit). */
-export const dreamchaserAbilityLabel = (code: string) =>
+export const dreamchaserAbilityLabel = (code: string, s?: GameState) =>
   dcBase(code) === DC.glorinaith
     ? dcBackFace(code)
       ? "Glórinaith · Name a card, then discard the top 3 cards of any deck to deal 1 damage to a non-unique enemy (2 if the named card is discarded; once per round)"
       : "Glórinaith · Discard the top 2 cards of any deck to deal 1 damage to an engaged non-unique enemy (once per round)"
-    : undefined;
+    : s && campaignCalphon(s) && dcIs(code, FATE.calphon)
+      ? dcBackFace(code)
+        ? "Exhaust · Look at your bottom 5 cards"
+        : "Exhaust · Look at your bottom card"
+      : undefined;
+/** Calphon outside The Fate of Númenor: Raid on the Grey Havens' campaign card. */
+const campaignCalphon = (s: GameState) =>
+  isDreamchaserGame(s) && !s.fateNumenor;
+const CALPHON_KINDS: CalphonKinds = {
+  pick: "dcCalphonPick",
+  swap: "dcCalphonSwap",
+  switch: "dcCalphonSwitch",
+};
 const glorinaithTargets = (s: GameState, u: Unit) =>
   (dcBackFace(u) ? enemiesInPlay(s) : allEngaged(s)).filter(
     (e) => !card(e.code).is_unique && !isImmune(e),
@@ -298,11 +364,15 @@ export function dreamchaserAbilityProblem(
   s: GameState,
   u: Unit,
 ): string | null {
-  if (!isDreamchaserGame(s) || !dreamchaserAbilityLabel(u.code))
+  if (!isDreamchaserGame(s) || !dreamchaserAbilityLabel(u.code, s))
     return "No campaign ability.";
   if (u.blanked) return `${name(u)}'s text is blank.`;
   if (ownerOf(s, u) !== activeSeat(s))
     return `${name(u)} belongs to another player.`;
+  if (dcIs(u, FATE.calphon))
+    return u.exhausted || !seatView(s, ownerOf(s, u)).deck.length
+      ? "Calphon must be ready and your deck must contain a card."
+      : null;
   if (s.used.includes(`dc-glorinaith:${s.round}:${u.id}`))
     return `${name(u)}'s Action was used this round.`;
   if (!glorinaithTargets(s, u).length)
@@ -312,9 +382,15 @@ export function dreamchaserAbilityProblem(
   return null;
 }
 export function dreamchaserAbility(s: GameState, u: Unit): boolean {
-  if (!isDreamchaserGame(s) || !dreamchaserAbilityLabel(u.code)) return false;
+  if (!isDreamchaserGame(s) || !dreamchaserAbilityLabel(u.code, s))
+    return false;
   const problem = dreamchaserAbilityProblem(s, u);
   if (problem) throw new RuleError(problem);
+  if (dcIs(u, FATE.calphon)) {
+    if (exhaustCharacter(s, u))
+      prepend(s, fx("dcCalphon", { target: u.id, player: ownerOf(s, u) }));
+    return true;
+  }
   s.used.push(`dc-glorinaith:${s.round}:${u.id}`);
   prepend(s, fx("dcGlorinaithDeck", { source: u.id, player: activeSeat(s) }));
   return true;
@@ -423,7 +499,11 @@ const attachmentById = (s: GameState, id?: string) =>
 export const dreamchaserAttachmentLabel = (code: string) =>
   dcIs(code, DC.spyglass)
     ? `Spyglass · Exhaust: look at a shadow card or a deck, or place progress${dcBackFace(code) ? " (Upgraded)" : ""}`
-    : undefined;
+    : dcIs(code, DC.keyBoon) && dcBackFace(code)
+      ? "Black Key · Exhaust and remove 3 resources from attached character to ready them"
+      : dcIs(code, DC.axe) && dcBackFace(code)
+        ? "Throwing Axe · Deal 1 damage to an enemy, or toss it (once per game)"
+        : undefined;
 export function dreamchaserAttachmentProblem(
   s: GameState,
   u: Unit,
@@ -435,9 +515,22 @@ export function dreamchaserAttachmentProblem(
   if (a.blanked) return `${card(a.code).name}'s text is blank.`;
   if (attachmentController(s, u, a) !== activeSeat(s))
     return `${card(a.code).name} is controlled by another player.`;
+  if (dcIs(a.code, DC.axe)) {
+    if ((s.dreamchaser?.spent ?? []).includes(a.id))
+      return "Throwing Axe was used this game.";
+    if (!axeTargets(s).length) return "No enemy can take the damage.";
+    return null;
+  }
   if (a.exhausted) return `${card(a.code).name} is exhausted.`;
+  if (dcIs(a.code, DC.keyBoon)) {
+    if (u.resources < 3) return `${name(u)} needs 3 resources.`;
+    if (!u.exhausted) return `${name(u)} is already ready.`;
+  }
   return null;
 }
+/** The enemies a boon's damage can target (not immune to player card effects). */
+const axeTargets = (s: GameState) =>
+  enemiesInPlay(s).filter((e) => !playerCardImmune(e));
 /**
  * Spyglass: "Action: Exhaust Spyglass to choose one: • Look at a shadow card.
  * • Look at the top and bottom card of your deck. • Place 1 progress on a
@@ -454,8 +547,44 @@ export function dreamchaserAttachmentAbility(
   if (!a || !dreamchaserAttachmentLabel(a.code)) return false;
   const problem = dreamchaserAttachmentProblem(s, u, attachmentId);
   if (problem) throw new RuleError(problem);
-  a.exhausted = true;
   const p = activeSeat(s);
+  if (dcIs(a.code, DC.keyBoon)) {
+    // "Action: Exhaust Black Key and remove 3 resources from attached
+    // character to ready them."
+    a.exhausted = true;
+    u.resources -= 3;
+    readyCharacter(s, u);
+    log(s, `Black Key: ${name(u)} spends 3 resources and readies.`, "good");
+    return true;
+  }
+  if (dcIs(a.code, DC.axe)) {
+    // "Action: Either deal 1 damage to an enemy, or toss Throwing Axe. If it
+    // travels at least two feet across the playing area and stops on any
+    // enemies, deal 4 damage to one of them. Reattach Throwing Axe to its
+    // hero. (Limit once per game.)" The toss is made on the real table and
+    // its result reported here.
+    const q = dreamchaserState(s);
+    q.spent = [...(q.spent ?? []), a.id];
+    choose(
+      s,
+      "Throwing Axe · Choose one",
+      [
+        {
+          id: "damage",
+          label: "Deal 1 damage to an enemy",
+          effects: [fx("dcAxeHit", { value: 1, player: p, source: a.id })],
+        },
+        {
+          id: "toss",
+          label: "Toss Throwing Axe across the table",
+          effects: [fx("dcAxeToss", { player: p, source: a.id })],
+        },
+      ],
+      card(a.code).text,
+    );
+    return true;
+  }
+  a.exhausted = true;
   const upgraded = dcBackFace(a);
   const options: Option[] = [];
   if (facedownShadows(s).length)
@@ -645,8 +774,501 @@ function spyglassEffect(s: GameState, e: Effect): boolean {
   return false;
 }
 
+// ------------------------------------------- Raid on the Grey Havens
+
+/**
+ * Raid on the Grey Havens' campaign card: the first player controls Calphon,
+ * and "If Calphon leaves play, the players lose the game" until stage 2B
+ * removes him from the game.
+ */
+export function dreamchaserCheck(s: GameState) {
+  if (!campaignCalphon(s) || !s.dreamchaser?.calphon || s.status !== "playing")
+    return;
+  const guide = allCharacters(s).find((u) => dcIs(u, FATE.calphon));
+  if (!guide) {
+    s.status = "lost";
+    s.reason = "Calphon has left play. The players lose the game.";
+    s.queue = [];
+    s.choice = null;
+    return;
+  }
+  const first = firstPlayer(s),
+    prior = ownerOf(s, guide);
+  if (prior === first) return;
+  forOwner(
+    s,
+    prior,
+    () => (s.allies = s.allies.filter((u) => u.id !== guide.id)),
+  );
+  guide.owner = first;
+  forOwner(s, first, () => s.allies.push(guide));
+}
+/** Graxar: "No more than 1 character can attack Graxar each round." */
+export function dreamchaserAttackProblem(
+  s: GameState,
+  enemy: Unit,
+  ids: string[],
+): string | null {
+  if (!isDreamchaserGame(s) || !dcIs(enemy, DC.graxar) || enemy.blanked)
+    return null;
+  const marked = s.dreamchaser?.attacked;
+  if (
+    ids.length > 1 ||
+    (marked?.round === s.round && marked.ids.includes(enemy.id))
+  )
+    return "No more than 1 character can attack Graxar each round.";
+  return null;
+}
+export function dreamchaserAttackDeclared(
+  s: GameState,
+  enemy: Unit,
+  ids: string[],
+) {
+  if (!isDreamchaserGame(s) || !dcIs(enemy, DC.graxar) || !ids.length) return;
+  const q = dreamchaserState(s);
+  const ids0 = q.attacked?.round === s.round ? q.attacked.ids : [];
+  q.attacked = { round: s.round, ids: [...ids0, enemy.id] };
+}
+/**
+ * Black Key (Upgraded): "Response: After attached character quests
+ * successfully, place 1 resource on them."
+ */
+export function dreamchaserQuestSucceeded(s: GameState) {
+  if (!isDreamchaserGame(s)) return;
+  prepend(
+    s,
+    ...allCharacters(s)
+      .filter(
+        (u) =>
+          u.committed &&
+          u.attachments.some(
+            (a) => dcIs(a.code, DC.keyBoon) && dcBackFace(a) && !a.blanked,
+          ),
+      )
+      .map((u) => fx("dcKeyOffer", { target: u.id, player: ownerOf(s, u) })),
+  );
+}
+/**
+ * Parrying Cutlass (Upgraded): "Response: When attached hero defends against
+ * an enemy, exhaust Parrying Cutlass to move 1 resource from that enemy to
+ * attached hero's resource pool."
+ */
+export function dreamchaserDefendersDeclared(
+  s: GameState,
+  enemy: Unit,
+  defenders: Unit[],
+): Effect[] {
+  if (!isDreamchaserGame(s) || !enemy.resources) return [];
+  return defenders.flatMap((d) =>
+    d.attachments
+      .filter(
+        (a) =>
+          dcIs(a.code, DC.cutlass) &&
+          dcBackFace(a) &&
+          !a.blanked &&
+          !a.exhausted,
+      )
+      .map((a) =>
+        fx("dcCutlassOffer", {
+          target: d.id,
+          source: a.id,
+          ids: [enemy.id],
+          player: ownerOf(s, d),
+        }),
+      ),
+  );
+}
+/** Galdor's Counsel: "Action: … X is its level … Add Galdor's Counsel to the victory display." */
+export function dreamchaserPlayerEvent(s: GameState, code: string): boolean {
+  if (
+    !isDreamchaserGame(s) ||
+    !GALDOR.includes(code as (typeof GALDOR)[number])
+  )
+    return false;
+  const p = activeSeat(s);
+  const level = dcLevel(s, code);
+  putPlayedEventInVictory(s, code);
+  const kind = [
+    "dcGaldorLeadership",
+    "dcGaldorTactics",
+    "dcGaldorSpirit",
+    "dcGaldorLore",
+  ][GALDOR.indexOf(code as (typeof GALDOR)[number])];
+  // Leadership and Lore: "X is half the level …, rounded up."
+  const x =
+    code === GALDOR[0] || code === GALDOR[3] ? Math.ceil(level / 2) : level;
+  log(s, `${card(code).name} (${card(code).boon_sphere}): X is ${x}.`);
+  prepend(s, fx(kind, { value: x, player: p, code }));
+  return true;
+}
+/** The current Galdor's Counsel (Lore) window: the cards looked at, still in the deck. */
+function loreWindow(s: GameState, side: string, count: number) {
+  const n = s.deck.length;
+  const start = side === "top" ? 0 : Math.max(0, n - count);
+  return Array.from({ length: Math.min(count, n) }, (_, i) => ({
+    index: start + i,
+    code: s.deck[start + i],
+  }));
+}
+function raidEffect(s: GameState, e: Effect): boolean {
+  const p = e.player ?? activeSeat(s);
+  const u = get(s, e.target);
+  switch (e.kind) {
+    case "dcCalphon":
+      calphonLook(s, u, p, CALPHON_KINDS);
+      return true;
+    case "dcCalphonPick":
+      calphonPick(s, e, p, CALPHON_KINDS);
+      return true;
+    case "dcCalphonSwap":
+      calphonSwap(
+        s,
+        e,
+        s.hand.find((h) => h.id === e.target),
+      );
+      return true;
+    case "dcCalphonSwitch":
+      calphonSwitch(
+        s,
+        e,
+        s.hand.find((h) => h.id === e.target),
+        p,
+      );
+      return true;
+    case "dcKeyOffer":
+      if (!u) return true;
+      forOwner(s, p, () =>
+        choose(
+          s,
+          `Black Key · ${name(u)} quested successfully`,
+          [
+            {
+              id: "resource",
+              label: `Place 1 resource on ${name(u)}`,
+              code: u.code,
+              effects: [fx("dcKeyResource", { target: u.id, player: p })],
+            },
+            { id: "skip", label: "Decline", effects: [] },
+          ],
+          card(backFace(DC.keyBoon)).text,
+        ),
+      );
+      return true;
+    case "dcDreamRepair": {
+      const targets = damagedLocations(s);
+      if (!targets.length) return true;
+      choose(
+        s,
+        "Dream-chaser · Raise each player's threat by 2 to remove 1 damage from a location?",
+        [
+          ...targets.map((l) => ({
+            id: l.id,
+            code: l.code,
+            label: `Remove 1 damage from ${name(l)} (each player raises their threat by 2)`,
+            effects: [
+              ...playerOrder(s).map((player) =>
+                fx("dcThreat", { value: 2, player }),
+              ),
+              fx("dcDreamRepairDo", { target: l.id, player: p }),
+            ],
+          })),
+          { id: "skip", label: "Decline", effects: [] },
+        ],
+        card(backFace(DREAM_LOCATION)).text,
+      );
+      return true;
+    }
+    case "dcDreamRepairDo":
+      if (u && u.damage > 0) {
+        u.damage -= 1;
+        log(
+          s,
+          `The Dream-chaser's crew removes 1 damage from ${name(u)}.`,
+          "good",
+        );
+      }
+      return true;
+    case "dcKeyResource":
+      if (u) {
+        u.resources += 1;
+        log(s, `Black Key places 1 resource on ${name(u)}.`, "good");
+      }
+      return true;
+    case "dcCutlassOffer": {
+      const enemy = get(s, e.ids?.[0]);
+      const a = u?.attachments.find((x) => x.id === e.source);
+      if (!u || !enemy || !a || a.exhausted || !enemy.resources) return true;
+      forOwner(s, p, () =>
+        choose(
+          s,
+          `Parrying Cutlass · ${name(u)} defends against ${name(enemy)}`,
+          [
+            {
+              id: "move",
+              label: `Exhaust Parrying Cutlass to move 1 resource from ${name(enemy)} to ${name(u)}`,
+              code: a.code,
+              effects: [
+                fx("dcCutlassMove", {
+                  target: u.id,
+                  source: a.id,
+                  ids: [enemy.id],
+                  player: p,
+                }),
+              ],
+            },
+            { id: "skip", label: "Do not use Parrying Cutlass", effects: [] },
+          ],
+          card(a.code).text,
+        ),
+      );
+      return true;
+    }
+    case "dcCutlassMove": {
+      const enemy = get(s, e.ids?.[0]);
+      const a = u?.attachments.find((x) => x.id === e.source);
+      if (!u || !enemy || !a || a.exhausted || !enemy.resources) return true;
+      a.exhausted = true;
+      enemy.resources -= 1;
+      u.resources += 1;
+      log(
+        s,
+        `Parrying Cutlass moves 1 resource from ${name(enemy)} to ${name(u)}.`,
+        "good",
+      );
+      return true;
+    }
+    case "dcAxeToss":
+      choose(
+        s,
+        "Throwing Axe · Did it travel at least two feet and stop on an enemy?",
+        [
+          {
+            id: "hit",
+            label: "It stopped on an enemy: deal 4 damage to one of them",
+            effects: [
+              fx("dcAxeHit", { value: 4, player: p, source: e.source }),
+            ],
+          },
+          {
+            id: "miss",
+            label: "It missed",
+            effects: [],
+          },
+        ],
+        "Toss the Throwing Axe card on the real table; it is reattached to its hero either way.",
+      );
+      return true;
+    case "dcAxeHit": {
+      const targets = axeTargets(s);
+      if (!targets.length) return true;
+      choose(
+        s,
+        `Throwing Axe · Deal ${e.value} damage to an enemy`,
+        targets.map((enemy) => ({
+          id: enemy.id,
+          code: enemy.code,
+          label: `Deal ${e.value} damage to ${name(enemy)}`,
+          effects: [
+            fx("damage", { target: enemy.id, value: e.value, player: p }),
+          ],
+        })),
+      );
+      return true;
+    }
+    case "dcGaldorLeadership": {
+      const heroes = seatIndices(s).flatMap((x) => seatView(s, x).heroes);
+      if (!(e.value ?? 0) || !heroes.length) return true;
+      choose(
+        s,
+        `Galdor's Counsel · Add ${e.value} resource${e.value === 1 ? "" : "s"} to a hero's resource pool`,
+        heroes.map((h) => ({
+          id: h.id,
+          code: h.code,
+          label: `${name(h)} gains ${e.value}`,
+          effects: [
+            fx("dcAddResource", { target: h.id, value: e.value, player: p }),
+          ],
+        })),
+      );
+      return true;
+    }
+    case "dcGaldorTactics": {
+      const targets = axeTargets(s).filter((x) => !card(x.code).is_unique);
+      if (!(e.value ?? 0) || !targets.length) return true;
+      choose(
+        s,
+        `Galdor's Counsel · Deal ${e.value} damage to a non-unique enemy`,
+        targets.map((x) => ({
+          id: x.id,
+          code: x.code,
+          label: `Deal ${e.value} damage to ${name(x)}`,
+          effects: [fx("damage", { target: x.id, value: e.value, player: p })],
+        })),
+      );
+      return true;
+    }
+    case "dcGaldorSpirit": {
+      const targets = s.staging.filter(
+        (l) =>
+          card(l.code).type_code === "location" &&
+          !card(l.code).is_unique &&
+          !playerCardImmune(l),
+      );
+      if (!(e.value ?? 0) || !targets.length) return true;
+      choose(
+        s,
+        `Galdor's Counsel · Place ${e.value} progress on a non-unique location in the staging area`,
+        targets.map((l) => ({
+          id: l.id,
+          code: l.code,
+          label: `Place ${e.value} progress on ${name(l)}`,
+          effects: [fx("locationProgress", { target: l.id, value: e.value })],
+        })),
+      );
+      return true;
+    }
+    case "dcGaldorLore":
+      if (!(e.value ?? 0) || !s.deck.length) return true;
+      choose(s, `Galdor's Counsel · Look at ${e.value} cards of your deck`, [
+        {
+          id: "top",
+          label: `The top ${Math.min(e.value!, s.deck.length)}`,
+          effects: [
+            fx("dcGaldorLook", { text: "top", count: e.value, player: p }),
+          ],
+        },
+        {
+          id: "bottom",
+          label: `The bottom ${Math.min(e.value!, s.deck.length)}`,
+          effects: [
+            fx("dcGaldorLook", { text: "bottom", count: e.value, player: p }),
+          ],
+        },
+      ]);
+      return true;
+    case "dcGaldorLook": {
+      // "… add any number of them to your hand …"
+      const side = e.text === "bottom" ? "bottom" : "top";
+      const looked = loreWindow(s, side, e.count ?? 0);
+      if (!looked.length) return true;
+      choose(
+        s,
+        `Galdor's Counsel · Add any number of the ${side} ${looked.length} cards to your hand`,
+        [
+          ...looked.map((x) => ({
+            id: `take-${x.index}`,
+            code: x.code,
+            label: `Add ${card(x.code).name} to your hand`,
+            effects: [
+              fx("dcGaldorLookOne", {
+                text: side,
+                count: looked.length,
+                value: x.index,
+                code: x.code,
+                player: p,
+              }),
+            ],
+          })),
+          {
+            id: "done",
+            label: "Put the rest back",
+            effects: [
+              fx("dcGaldorArrange", {
+                text: `${side}|`,
+                count: looked.length,
+                player: p,
+              }),
+            ],
+          },
+        ],
+      );
+      return true;
+    }
+    case "dcGaldorLookOne": {
+      const side = e.text === "bottom" ? "bottom" : "top";
+      if (s.deck[e.value ?? -1] !== e.code) return true;
+      s.hand.push(takePlayerDeck(s, e.value!));
+      log(
+        s,
+        `Galdor's Counsel adds ${card(e.code!).name} to your hand.`,
+        "good",
+      );
+      prepend(
+        s,
+        fx("dcGaldorLook", {
+          text: side,
+          count: (e.count ?? 1) - 1,
+          player: p,
+        }),
+      );
+      return true;
+    }
+    case "dcGaldorArrange": {
+      // "… and put the rest on the top and/or bottom of your deck in any
+      // order." Cards are assigned one at a time: the top sequence from the
+      // top down, the bottom sequence from the bottom up.
+      const [rawSide, placed = ""] = (e.text ?? "top|").split("|");
+      const side = rawSide === "bottom" ? "bottom" : "top";
+      const looked = loreWindow(s, side, e.count ?? 0);
+      const assigned = placed ? placed.split(",") : [];
+      const used = assigned.map((x) => Number(x.slice(2)));
+      const left = looked.filter((_, i) => !used.includes(i));
+      if (!left.length) {
+        const n = s.deck.length;
+        const block = looked.map((x) => x.index);
+        const rest = Array.from({ length: n }, (_, i) => i).filter(
+          (i) => !block.includes(i),
+        );
+        const top = assigned
+          .filter((x) => x.startsWith("t:"))
+          .map((x) => block[Number(x.slice(2))]);
+        const bottom = assigned
+          .filter((x) => x.startsWith("b:"))
+          .map((x) => block[Number(x.slice(2))])
+          .reverse();
+        reorderPlayerDeck(s, 0, [...top, ...rest, ...bottom]);
+        log(
+          s,
+          `Galdor's Counsel puts ${top.length} card${top.length === 1 ? "" : "s"} on top and ${bottom.length} on the bottom of the deck.`,
+        );
+        return true;
+      }
+      choose(
+        s,
+        "Galdor's Counsel · Put the rest on the top and/or bottom of your deck",
+        left.flatMap((x) => {
+          const i = looked.indexOf(x);
+          const next = (tag: string) =>
+            fx("dcGaldorArrange", {
+              text: `${side}|${[...assigned, `${tag}:${i}`].join(",")}`,
+              count: looked.length,
+              player: p,
+            });
+          return [
+            {
+              id: `t:${i}`,
+              code: x.code,
+              label: `${card(x.code).name}: next card from the top`,
+              effects: [next("t")],
+            },
+            {
+              id: `b:${i}`,
+              code: x.code,
+              label: `${card(x.code).name}: next card from the bottom`,
+              effects: [next("b")],
+            },
+          ];
+        }),
+      );
+      return true;
+    }
+  }
+  return false;
+}
+
 export function dreamchaserCardEffect(s: GameState, e: Effect): boolean {
   if (e.kind.startsWith("dcSpy")) return spyglassEffect(s, e);
+  if (raidEffect(s, e)) return true;
   switch (e.kind) {
     case "dcOminous": {
       const p = e.player ?? firstPlayer(s);

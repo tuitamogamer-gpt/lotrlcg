@@ -58,6 +58,13 @@ import {
   isDreamchaserGame,
 } from "./dreamchaser-campaign-support";
 import { dreamchaserFateReady } from "./dreamchaser-campaign";
+import {
+  calphonLook,
+  calphonPick,
+  calphonSwap,
+  calphonSwitch,
+  type CalphonKinds,
+} from "./calphon";
 import { khazadCannotExhaust } from "./khazad-dum";
 import { watcherWaterCannotExhaust } from "./watcher-water";
 import { unitType } from "./card-types";
@@ -65,6 +72,11 @@ import { unitType } from "./card-types";
 const isFate = (s: GameState) => !!s.fateNumenor;
 /** Calphon, on either face (the campaign's Upgraded side is "Campaign Mode only"). */
 const isCalphon = (u: Unit) => dcIs(u, F.calphon);
+const CALPHON_KINDS: CalphonKinds = {
+  pick: "fateCalphonPick",
+  swap: "fateCalphonSwap",
+  switch: "fateCalphonSwitch",
+};
 const undead = (code: string) =>
   card(code).type_code === "enemy" &&
   /(?:^|\.\s*)Undead\./.test(card(code).traits ?? "");
@@ -895,104 +907,17 @@ export function fateEffect(s: GameState, e: Effect) {
         forOwner(s, p, () => raiseThreat(s, 2, "encounter"));
       chooseLook(s, "Aimless Wandering · Choose an island");
       break;
-    case "fateCalphon": {
-      const bottom = s.deck.at(-1);
-      if (!bottom) break;
-      if (u && dcBackFace(u)) {
-        // Upgraded: "look at the bottom 5 cards of your deck. Then, you may
-        // switch one of them with a card in your hand."
-        const seen = s.deck.slice(-5);
-        choose(
-          s,
-          "Calphon · Your bottom 5 cards",
-          [
-            ...seen.map((code, i) => {
-              const fromBottom = seen.length - 1 - i;
-              return {
-                id: `bottom-${fromBottom}`,
-                label: `Switch ${card(code).name} (${fromBottom ? `${fromBottom + 1} from the bottom` : "bottom card"}) with a card in your hand`,
-                code,
-                effects: [
-                  fx("fateCalphonPick", { code, count: fromBottom, player }),
-                ],
-              };
-            }),
-            {
-              id: "skip",
-              label: "Leave the bottom cards where they are",
-              effects: [],
-            },
-          ],
-          `From the bottom: ${[...seen]
-            .reverse()
-            .map((code) => card(code).name)
-            .join(", ")}.`,
-        );
-        break;
-      }
-      choose(s, "Calphon · Bottom card", [
-        ...s.hand.map((h) => ({
-          id: h.id,
-          label: `Switch ${card(bottom).name} with ${name(h)}`,
-          code: h.code,
-          effects: [fx("fateCalphonSwitch", { target: h.id, code: bottom })],
-        })),
-        {
-          id: "skip",
-          label: `Leave ${card(bottom).name} on the bottom`,
-          code: bottom,
-          effects: [],
-        },
-      ]);
+    case "fateCalphon":
+      calphonLook(s, u, player, CALPHON_KINDS);
       break;
-    }
-    case "fateCalphonPick": {
-      const at = s.deck.length - 1 - (e.count ?? 0);
-      if (s.deck[at] !== e.code || !s.hand.length) break;
-      choose(s, `Calphon · Switch ${card(e.code!).name} with`, [
-        ...s.hand.map((h) => ({
-          id: h.id,
-          label: `Switch ${card(e.code!).name} with ${name(h)}`,
-          code: h.code,
-          effects: [
-            fx("fateCalphonSwap", {
-              target: h.id,
-              code: e.code,
-              count: e.count,
-              player,
-            }),
-          ],
-        })),
-        {
-          id: "skip",
-          label: `Leave ${card(e.code!).name} in your deck`,
-          code: e.code,
-          effects: [],
-        },
-      ]);
+    case "fateCalphonPick":
+      calphonPick(s, e, player, CALPHON_KINDS);
       break;
-    }
-    case "fateCalphonSwap": {
-      const at = s.deck.length - 1 - (e.count ?? 0);
-      if (u && s.hand.some((h) => h.id === u.id) && s.deck[at] === e.code) {
-        const taken = takePlayerDeck(s, at);
-        s.hand = s.hand.filter((h) => h.id !== u.id);
-        putPlayerDeck(s, u, at);
-        s.hand.push(taken);
-        log(
-          s,
-          `Calphon switches a card in hand with ${card(e.code!).name} from the bottom of the deck.`,
-          "good",
-        );
-      }
+    case "fateCalphonSwap":
+      calphonSwap(s, e, u);
       break;
-    }
     case "fateCalphonSwitch":
-      if (u && s.hand.some((h) => h.id === u.id) && s.deck.at(-1) === e.code) {
-        const bottom = takePlayerDeck(s, s.deck.length - 1);
-        handToBottom(s, u, player);
-        s.hand.push(bottom);
-      }
+      calphonSwitch(s, e, u, player);
       break;
     default:
       return false;

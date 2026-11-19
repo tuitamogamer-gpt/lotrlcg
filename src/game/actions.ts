@@ -1791,6 +1791,7 @@ export function handlePlayerEventAbilityEffect(
     !LandShadowPlayers.landShadowPlayerEvent(s, physical.code) &&
     !sagaCampaignPlayerEvent(s, physical.code) &&
     !angmarCampaignPlayerEvent(s, physical.code) &&
+    !DreamCards.dreamchaserPlayerEvent(s, physical.code) &&
     !MountainFirePlayers.mountainFirePlayerEvent(s, physical.code) &&
     !WrathPlayers.wrathRuinPlayerEvent(
       s,
@@ -2450,7 +2451,7 @@ function printedAbilities(s: GameState, u: Unit) {
     });
   const dreamLabel =
     s.campaign?.kind === "dreamchaser"
-      ? DreamCards.dreamchaserAbilityLabel(u.code)
+      ? DreamCards.dreamchaserAbilityLabel(u.code, s)
       : undefined;
   if (dreamLabel)
     results.push({

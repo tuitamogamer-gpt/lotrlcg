@@ -43,6 +43,11 @@ export interface Card {
   sauron_eyes?: number;
   /** The Dream-chaser campaign: the XP cost printed on an upgradable card's face. */
   upgrade_xp?: number;
+  /**
+   * The Dream-chaser campaign: the sphere icon printed on a boon (Galdor's
+   * Counsel, Command, …); its cost is paid with that sphere's resources.
+   */
+  boon_sphere?: Sphere;
   /** Printed mark in the lower right corner of Beneath the Sands encounter cards. */
   on_track?: boolean;
   /** Printed Track keyword value used after travel while Search is Off Track. */

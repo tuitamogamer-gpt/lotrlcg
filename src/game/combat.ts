@@ -340,6 +340,14 @@ export function playerAttack(
     ids,
   );
   requireRule(!scenarioAttackProblem, scenarioAttackProblem ?? "");
+  // Graxar (the Dream-chaser campaign): one attacker each round.
+  const campaignAttackProblem = DreamCards.dreamchaserAttackProblem(
+    s,
+    enemy,
+    ids,
+  );
+  requireRule(!campaignAttackProblem, campaignAttackProblem ?? "");
+  DreamCards.dreamchaserAttackDeclared(s, enemy, ids);
   requireRule(
     batch4Scenario(s).playerAttackDeclared?.(s, enemy, ids) !== false,
     "This attack cannot pay the scenario's progress cost.",
@@ -1065,6 +1073,11 @@ export function beginEnemyAttack(
       enemy,
       defenders.filter((d): d is Unit => !!d),
       actuallyExhausted,
+    ),
+    ...DreamCards.dreamchaserDefendersDeclared(
+      s,
+      enemy,
+      defenders.filter((d): d is Unit => !!d),
     ),
     ...(holdLine === "declared"
       ? [

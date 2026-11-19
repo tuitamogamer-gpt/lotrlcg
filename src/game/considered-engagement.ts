@@ -9,6 +9,7 @@ import { SHADOW_FLAME } from "./shadow-flame-support";
 import { activeSeat, playerOrder, seatView } from "./table";
 import { encounterDraw } from "./core";
 import { heirsShadowDealt } from "./heirs-numenor";
+import { DC, dcIs, isDreamchaserGame } from "./dreamchaser-campaign-support";
 import {
   carnConsideredEngaged,
   carnShadowDealt,
@@ -28,6 +29,9 @@ export function dealEnemyShadows(s: GameState, u: Unit, amount = 1): string[] {
     heirsShadowDealt(s, u);
     carnShadowDealt(s, u);
     batch4Scenario(s).shadowDealt?.(s, u, code);
+    // Graxar: "Forced: When Graxar is dealt a shadow card, place 1 resource on him."
+    if (isDreamchaserGame(s) && dcIs(u, DC.graxar) && !u.blanked)
+      u.resources += 1;
     dealt.push(code);
   }
   return dealt;

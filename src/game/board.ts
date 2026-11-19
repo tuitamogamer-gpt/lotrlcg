@@ -981,6 +981,7 @@ export function check(s: GameState) {
   }
   Fate.fateCheck(s);
   Raid.raidCheck(s);
+  DreamCards.dreamchaserCheck(s);
   Depths.depthsCheck(s);
   Temple.templeCheck(s);
   Drowned.drownedCheck(s);

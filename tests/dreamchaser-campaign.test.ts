@@ -10,7 +10,7 @@ import {
   win,
 } from "../src/game/board";
 import { flush } from "../src/game/effects";
-import { make, stats, threatOf } from "../src/game/core";
+import { fx as makeEffect, make, stats, threatOf } from "../src/game/core";
 import {
   applyAction,
   availableAbilities,
@@ -26,12 +26,18 @@ import {
   DREAMCHASER_CAMPAIGN_CARDS,
   DREAMCHASER_CAMPAIGN_ORDER,
   DREAMCHASER_LOG,
+  DREAM_LOCATION,
+  GALDOR,
+  HAVENS_BURN,
   backFace,
   dcIs,
   dreamchaserFleet,
 } from "../src/game/dreamchaser-campaign-support";
 import {
   DREAMCHASER_CAMPAIGN_SUPPORTED,
+  applyDreamchaserResolution,
+  dreamchaserOminousX,
+  dreamchaserResolutionQuestions,
   dreamchaserCampaignStatus,
   dreamchaserForbiddenTitle,
   dreamchaserMarksProblem,
@@ -43,6 +49,9 @@ import {
   dreamchaserAbility,
   dreamchaserAbilityProblem,
   dreamchaserAttachmentProblem,
+  dreamchaserAttackProblem,
+  dreamchaserDefendersDeclared,
+  dreamchaserQuestSucceeded,
   dreamchaserDamageAmount,
   dreamchaserArchery,
   dreamchaserCampaignEncounter,
@@ -50,6 +59,8 @@ import {
   dreamchaserSailingWeight,
 } from "../src/game/dreamchaser-campaign-cards";
 import { VOYAGE } from "../src/game/voyage-belegaer-support";
+import { RAID } from "../src/game/raid-grey-havens-support";
+import { raidAflame } from "../src/game/raid-grey-havens";
 import { FATE } from "../src/game/fate-numenor-support";
 import { fateAbility, fateAbilityLabel } from "../src/game/fate-numenor";
 import { playerCardImmune } from "../src/game/card-immunity";
@@ -117,6 +128,7 @@ test("The Dream-chaser campaign: Voyage Across Belegaer's campaign card and the 
   assert.deepEqual(DREAMCHASER_CAMPAIGN_SUPPORTED, [
     "voyage-across-belegaer",
     "the-fate-of-numenor",
+    "raid-on-the-grey-havens",
   ]);
   const campaignCard = card(
     DREAMCHASER_CAMPAIGN_CARDS["voyage-across-belegaer"]!,
@@ -956,7 +968,7 @@ test("Revenant: immune to player card effects, +2 attack and +2 defense for each
   assert.ok(valid(s));
 });
 
-test("The Fate of Númenor's resolution: Lush Jungle and Drowned Graves in the victory display, resources on the campaign card (at most 3) and every surviving threat at 40 or less give XP; the next chapter is not available yet", () => {
+test("The Fate of Númenor's resolution: Lush Jungle and Drowned Graves in the victory display, resources on the campaign card (at most 3) and every surviving threat at 40 or less give XP, and Raid on the Grey Havens follows", () => {
   const s = calm(
     reload(opening(fate(afterVoyage(), { dreamchaserMode: "hard" }))),
   );
@@ -987,18 +999,420 @@ test("The Fate of Númenor's resolution: Lush Jungle and Drowned Graves in the v
   assert.equal(c.completed[1].xp, 9);
   assert.equal(c.xp, before + 9);
   assert.ok(valid(s));
+  // Raid on the Grey Havens follows.
+  const next = continueCampaign(
+    s,
+    HEROES,
+    d.id,
+    true,
+    9,
+    undefined,
+    undefined,
+    undefined,
+    {},
+  );
+  assert.equal(next.scenarioId, "raid-on-the-grey-havens");
+  assert.ok(valid(next));
+});
+
+// ------------------------------------------ Raid on the Grey Havens (Part 3)
+
+/** A Dream-chaser campaign after The Fate of Númenor. */
+function afterFate(marks: Record<string, number> = {}): CampaignState {
+  return {
+    ...afterVoyage(marks),
+    completed: [
+      { scenarioId: "voyage-across-belegaer", score: 12, rounds: 6, xp: 4 },
+      { scenarioId: "the-fate-of-numenor", score: 20, rounds: 7, xp: 5 },
+    ],
+  };
+}
+const raid = (
+  campaign = afterFate(),
+  deck = STARTERS[1],
+  extra: { dreamchaserMode?: "hard" | "expert" } = {},
+) =>
+  createGame(5, deck.cards, deck.heroes, deck.id, {
+    scenarioId: "raid-on-the-grey-havens",
+    playMode: "campaign",
+    campaign: { ...campaign, heroes: [...deck.heroes] },
+    ...extra,
+  });
+const galdorOffer = (s: GameState) =>
+  /copy of Galdor's Counsel/.test(s.choice?.title ?? "");
+
+test("Raid on the Grey Havens: its campaign card, Black Key, Galdor's Counsel, Graxar, Parrying Cutlass, Throwing Axe and the campaign sides of The Havens Burn and the Dream-chaser are registered with the print-and-play texts", () => {
+  const campaignCard = card(DC.raidCard);
+  assert.equal(campaignCard.subtitle, "Dream-chaser Part 3");
+  assert.match(
+    campaignCard.text!,
+    /Setup: The first player takes control of Calphon and attaches Spyglass and Black Key \(boon\) to him\. Shuffle Graxar into the encounter deck\. Each player may choose one copy of Galdor's Counsel and add it to their hand\. For this game, X is plus 1 for each of those copies\.\nForced: After stage 2B is revealed, remove Calphon and each attachment on him from the game, ignoring his "leaves play" ability\.$/,
+  );
+  assert.match(
+    campaignCard.back_text!,
+    /• 1 XP if 2 or fewer cards are underneath The Havens Burn \(2 XP instead if no cards are underneath it\)\.\n• 1 XP for each Elven Wave-runner in the victory display\.\n• 1 XP if Na'asiyah is in the victory display\.\n• 1 XP if no enemies are in play\./,
+  );
+  assert.equal(card(backFace(DC.keyBoon)).upgrade_xp, 4);
+  assert.match(
+    card(backFace(DC.keyBoon)).text!,
+    /Action: Exhaust Black Key and remove 3 resources from attached character to ready them\.$/,
+  );
+  assert.deepEqual(
+    GALDOR.map((code) => [card(code).boon_sphere, String(card(code).cost)]),
+    [
+      ["leadership", "0"],
+      ["tactics", "1"],
+      ["spirit", "1"],
+      ["lore", "1"],
+    ],
+  );
+  const graxar = card(DC.graxar);
+  assert.deepEqual(
+    [
+      graxar.engagement,
+      graxar.threat,
+      graxar.attack,
+      graxar.defense,
+      graxar.health,
+      graxar.victory,
+    ],
+    [47, 3, 3, 0, 10, 8],
+  );
+  assert.equal(card(backFace(DC.cutlass)).upgrade_xp, 5);
+  assert.equal(card(backFace(DC.axe)).upgrade_xp, 5);
+  assert.match(card(DC.cutlass).text!, /^Permanent\. Restricted\./);
+  assert.match(
+    card(backFace(HAVENS_BURN)).text!,
+    /raise each player's threat by 2\.\n.*X is 4 more than the number of players/s,
+  );
+  assert.equal(card(backFace(DREAM_LOCATION)).upgrade_xp, 2);
+  assert.match(card(backFace(DREAM_LOCATION)).text!, /Aflame 15\./);
+  for (const [code, face] of [
+    [DC.raidCard, "front"],
+    [DC.raidCard, "back"],
+    [DC.keyBoon, "back"],
+    [GALDOR[3], "front"],
+    [DC.graxar, "front"],
+    [DC.cutlass, "back"],
+    [DC.axe, "back"],
+    [backFace(HAVENS_BURN), "front"],
+    [backFace(DREAM_LOCATION), "front"],
+  ])
+    assert.ok(
+      art.some(
+        (a: { code: string; face: string }) =>
+          (a.code === code && a.face === face) ||
+          (a.code === code.replace(/\.B$/, "") && a.face === "back"),
+      ),
+      `${code} (${face}) is pinned`,
+    );
+});
+
+test("Raid on the Grey Havens' setup: the first player controls Calphon with Spyglass and Black Key, Graxar and Ominous Fate are shuffled in, each player may take a copy of Galdor's Counsel (Ominous Fate's X +1 each), stage 2B removes Calphon from the game, and the campaign sides of The Havens Burn and the Dream-chaser apply", async () => {
+  let s = opening(raid(), (t) => (galdorOffer(t) ? GALDOR[1] : undefined));
+  s = calm(reload(s));
+  const guide = s.allies.find((u) => dcIs(u, FATE.calphon))!;
+  assert.ok(guide, "Calphon");
+  assert.deepEqual(
+    guide.attachments.map((a) => a.code),
+    [DC.spyglass, DC.keyBoon],
+  );
+  // Black Key: +1 willpower, +1 attack, +1 defense.
+  assert.deepEqual(
+    [stats(s, guide).will, stats(s, guide).attack, stats(s, guide).defense],
+    [2, 1, 2],
+  );
+  assert.equal(s.dreamchaser!.calphon, true);
+  assert.ok(s.encounterDeck.includes(DC.graxar));
+  assert.ok(s.encounterDeck.includes(DC.ominous));
+  assert.ok(s.hand.some((h) => h.code === GALDOR[1]));
+  assert.deepEqual(s.dreamchaser!.galdor, { [GALDOR[1]]: 0 });
+  assert.equal(dreamchaserOminousX(s), 4);
+  assert.ok(
+    dreamchaserCampaignStatus(s).some((l) =>
+      /^Galdor's Counsel chosen this game: tactics \(level 0\)/.test(l),
+    ),
+  );
+  assert.ok(valid(s));
+  // Calphon's own Action outside The Fate of Númenor.
+  assert.equal(
+    availableAbilities(s, guide)[0].label,
+    "Exhaust · Look at your bottom card",
+  );
+  s.deck = ["01050", "01073"];
+  const swap = make(s, "01051");
+  s.hand = [swap];
+  s = applyAction(reload(s), { type: "ABILITY", id: guide.id });
+  s = choose(s, swap.id);
+  assert.deepEqual(s.deck, ["01050", "01051"]);
+  assert.equal(s.hand[0].code, "01073");
+  // Losing Calphon loses the game, until stage 2B removes him.
+  const lose = calm(reload(s));
+  discardCharacter(
+    lose,
+    lose.allies.find((u) => dcIs(u, FATE.calphon))!,
+  );
+  assert.equal(lose.status, "lost");
+  assert.match(lose.reason, /Calphon/);
+  const removed = calm(reload(s));
+  removed.queue = [makeEffect("dcCalphonGone", { player: 0 })];
+  flush(removed);
+  assert.ok(!removed.allies.some((u) => dcIs(u, FATE.calphon)));
+  assert.equal(removed.status, "playing");
+  assert.equal(removed.dreamchaser!.calphon, false);
+  assert.ok(valid(removed));
+  // Upgraded campaign sides of The Havens Burn and the Dream-chaser.
+  const up = calm(
+    reload(opening(raid(afterFate({ [HAVENS_BURN]: 2, [DREAM_LOCATION]: 2 })))),
+  );
+  const burn = up.staging.find((u) => dcIs(u, RAID.burn))!;
+  const dream = up.staging.find((u) => dcIs(u, RAID.dream))!;
+  assert.equal(burn.code, backFace(HAVENS_BURN));
+  assert.equal(dream.code, backFace(DREAM_LOCATION));
+  assert.equal(raidAflame(dream), 15);
+  assert.ok(valid(up));
+  // Its Response: at the end of the combat phase, each player raises their
+  // threat by 2 to remove 1 damage from a location.
+  const { dreamchaserCombatEnd } =
+    await import("../src/game/dreamchaser-campaign-cards");
+  dream.damage = 3;
+  const threat = up.threat;
+  up.queue = dreamchaserCombatEnd(up);
+  assert.equal(up.queue.length, 1);
+  flush(up);
+  const repaired = choose(up, dream.id);
+  assert.equal(repaired.staging.find((u) => u.id === dream.id)!.damage, 2);
+  assert.equal(repaired.threat, threat + 2);
+});
+
+test("Galdor's Counsel: each copy's X follows its level and its cost needs its printed sphere; it adds resources, deals damage to a non-unique enemy, places progress, or looks at the top or bottom of the deck, and goes to the victory display", () => {
+  const marks = {
+    [GALDOR[0]]: 3,
+    [GALDOR[1]]: 2,
+    [GALDOR[2]]: 2,
+    [GALDOR[3]]: 5,
+  };
+  const start = (deck: (typeof STARTERS)[number]) => {
+    const s = calm(reload(opening(raid(afterFate(marks), deck))));
+    for (const h of s.heroes) h.resources = 1;
+    return s;
+  };
+  const give = (s: GameState, code: string) => {
+    const u = make(s, code);
+    s.hand.push(u);
+    return u;
+  };
+  const until = (s: GameState, title: RegExp) => {
+    for (let i = 0; i < 4 && s.choice && !title.test(s.choice.title); i++)
+      s = choose(s, s.choice.options[0].id);
+    return s;
+  };
+  // Tactics (cost 1, Tactics resources): 2 damage to a non-unique enemy.
+  let s = start(STARTERS[1]);
+  const foe = engage(s, RAID.raider);
+  const tactics = give(s, GALDOR[1]);
+  // A Leadership copy cannot be played without a Leadership hero.
+  const wrong = give(s, GALDOR[0]);
+  assert.throws(
+    () => applyAction(reload(s), { type: "PLAY", id: wrong.id }),
+    /matching sphere/,
+  );
+  s = until(
+    applyAction(reload(s), { type: "PLAY", id: tactics.id }),
+    /non-unique enemy/,
+  );
+  assert.match(s.choice!.title, /Deal 2 damage to a non-unique enemy/);
+  s = choose(s, foe.id);
+  assert.equal(s.engaged.find((u) => u.id === foe.id)?.damage ?? 2, 2);
+  assert.ok(s.victoryCards!.includes(GALDOR[1]));
+  // Leadership: X is half the level rounded up (2 resources).
+  s = start(STARTERS[0]);
+  const leadership = give(s, GALDOR[0]);
+  s = until(
+    applyAction(reload(s), { type: "PLAY", id: leadership.id }),
+    /resource/,
+  );
+  const before = s.heroes[0].resources;
+  s = choose(s, s.heroes[0].id);
+  assert.equal(s.heroes[0].resources, before + 2);
+  assert.ok(s.victoryCards!.includes(GALDOR[0]));
+  // Lore (level 5, X 3): the top 3 cards; one to hand, the rest on the top
+  // and the bottom in a chosen order.
+  s = start(STARTERS[3]);
+  s.deck = ["01050", "01051", "01052", "01053", "01054"];
+  const lore = give(s, GALDOR[3]);
+  s = until(
+    applyAction(reload(s), { type: "PLAY", id: lore.id }),
+    /Look at 3 cards/,
+  );
+  s = choose(s, "top");
+  s = choose(s, "take-1");
+  assert.ok(s.hand.some((h) => h.code === "01051"));
+  s = choose(s, "done");
+  // 01050 next from the top, 01052 next from the bottom.
+  s = choose(s, "t:0");
+  s = choose(s, "b:1");
+  assert.deepEqual(s.deck, ["01050", "01053", "01054", "01052"]);
+  assert.ok(valid(s));
+});
+
+test("Graxar: immune to player card effects, +1 attack per damage and +1 defense per resource, a resource when dealt a shadow card, and no more than 1 attacker each round; Black Key's and Parrying Cutlass's Upgraded Responses and Throwing Axe's Upgraded Action", async () => {
+  const { dealEnemyShadows } =
+    await import("../src/game/considered-engagement");
+  const s = calm(reload(opening(raid())));
+  const graxar = engage(s, DC.graxar);
+  assert.ok(playerCardImmune(graxar));
+  graxar.damage = 2;
+  graxar.resources = 1;
+  assert.equal(stats(s, graxar).attack, 5);
+  assert.equal(stats(s, graxar).defense, 1);
+  dealEnemyShadows(s, graxar);
+  assert.equal(graxar.resources, 2);
+  assert.match(
+    dreamchaserAttackProblem(s, graxar, [s.heroes[0].id, s.heroes[1].id])!,
+    /No more than 1 character/,
+  );
+  assert.equal(dreamchaserAttackProblem(s, graxar, [s.heroes[0].id]), null);
+  // Black Key (Upgraded): a resource after its character quests successfully.
+  const k = calm(
+    reload(
+      opening(raid(afterFate({ [DC.keyBoon]: 4 })), (t) =>
+        galdorOffer(t) ? "skip" : undefined,
+      ),
+    ),
+  );
+  const guide = k.allies.find((u) => dcIs(u, FATE.calphon))!;
+  assert.equal(guide.attachments[1].code, backFace(DC.keyBoon));
+  guide.committed = true;
+  dreamchaserQuestSucceeded(k);
+  flush(k);
+  let key = choose(k, "resource");
+  assert.equal(key.allies.find((u) => dcIs(u, FATE.calphon))!.resources, 1);
+  // Its Action: exhaust and remove 3 resources to ready Calphon.
+  const ready = calm(reload(key));
+  const c2 = ready.allies.find((u) => dcIs(u, FATE.calphon))!;
+  c2.resources = 3;
+  c2.exhausted = true;
+  key = applyAction(reload(ready), {
+    type: "ABILITY",
+    id: c2.id,
+    attachmentId: c2.attachments[1].id,
+  });
+  const readied = key.allies.find((u) => dcIs(u, FATE.calphon))!;
+  assert.equal(readied.exhausted, false);
+  assert.equal(readied.resources, 0);
+  assert.ok(readied.attachments[1].exhausted);
+  // Parrying Cutlass (Upgraded), recorded for a hero in the Campaign Log:
+  // +2 defense (+3 with 2 resources), and a resource from the enemy it
+  // defends against.
+  const deck = STARTERS[1];
+  const permanent = (code: string, hero = deck.heroes[0]): CampaignState => ({
+    ...afterFate({ [code]: 5 }),
+    boons: [code],
+    permanent: { [hero]: [code] },
+  });
+  const c = calm(reload(opening(raid(permanent(DC.cutlass)))));
+  const h = c.heroes[0];
+  assert.deepEqual(
+    h.attachments.map((a) => a.code),
+    [backFace(DC.cutlass)],
+  );
+  const baseDefense = card(h.code).defense ?? 0;
+  h.resources = 0;
+  assert.equal(stats(c, h).defense, baseDefense + 2);
+  h.resources = 2;
+  assert.equal(stats(c, h).defense, baseDefense + 3);
+  const raider = engage(c, RAID.raider);
+  raider.resources = 1;
+  const offers = dreamchaserDefendersDeclared(c, raider, [h]);
+  assert.equal(offers.length, 1);
+  c.queue = offers;
+  flush(c);
+  const parried = choose(c, "move");
+  assert.equal(parried.heroes[0].resources, 3);
+  assert.equal(parried.engaged.find((u) => u.id === raider.id)!.resources, 0);
+  assert.ok(parried.heroes[0].attachments[0].exhausted);
+  // Throwing Axe (Upgraded): +2 attack (+3 with 2 damage); once per game,
+  // 1 damage, or a toss reported from the table for 4 damage.
+  // Legolas carries it (Gimli's own attack grows with his damage).
+  const a = calm(reload(opening(raid(permanent(DC.axe, deck.heroes[1])))));
+  const thrower = a.heroes[1];
+  const axe = thrower.attachments[0];
+  assert.equal(axe.code, backFace(DC.axe));
+  thrower.damage = 0;
+  assert.equal(stats(a, thrower).attack, (card(thrower.code).attack ?? 0) + 2);
+  thrower.damage = 2;
+  assert.equal(stats(a, thrower).attack, (card(thrower.code).attack ?? 0) + 3);
+  thrower.damage = 0;
+  const target = engage(a, RAID.raider);
+  let t = applyAction(reload(a), {
+    type: "ABILITY",
+    id: thrower.id,
+    attachmentId: axe.id,
+  });
+  t = choose(t, "toss");
+  t = choose(t, "hit");
+  t = choose(t, target.id);
+  assert.ok(
+    !t.engaged.some((u) => u.id === target.id) ||
+      t.engaged.find((u) => u.id === target.id)!.damage === 4,
+  );
+  assert.match(
+    dreamchaserAttachmentProblem(t, t.heroes[1], axe.id)!,
+    /used this game/,
+  );
+  assert.ok(valid(t));
+});
+
+test("Raid on the Grey Havens' resolution: The Havens Burn, Elven Wave-runners, Na'asiyah, no enemies and threat give XP; the chosen Galdor's Counsel copies join the Campaign Pool and their players' decks, and Graxar's defeat adds Parrying Cutlass or Throwing Axe for a recorded hero, attached in later chapters", () => {
+  let s = opening(raid(), (t) => (galdorOffer(t) ? GALDOR[2] : undefined));
+  s = calm(reload(s));
+  s.raidGreyHavens!.burned = [];
+  s.staging = s.staging.filter(
+    (u) => !["enemy", "ship-enemy"].includes(card(u.code).type_code),
+  );
+  s.victoryCards = [
+    ...(s.victoryCards ?? []),
+    RAID.runner,
+    RAID.naasiyah,
+    DC.graxar,
+  ];
+  s.threat = 35;
+  const lines = dreamchaserXpLines(s);
+  assert.deepEqual(
+    lines.map((l) => l.xp),
+    [1, 2, 1, 1, 1, 1, 0],
+  );
+  win(s);
+  const c = s.campaign!;
+  assert.equal(c.completed[2].scenarioId, "raid-on-the-grey-havens");
+  assert.equal(c.completed[2].xp, 7);
+  assert.ok(c.boons.includes(GALDOR[2]));
+  assert.deepEqual(c.deckBoons, { [GALDOR[2]]: 0 });
+  assert.equal(c.resolution, "raid-on-the-grey-havens");
+  const questions = dreamchaserResolutionQuestions(s);
+  assert.deepEqual(
+    questions.map((q) => q.id),
+    ["boon", "hero"],
+  );
+  assert.throws(
+    () => continueCampaign(s, s.campaign!.heroes, s.deckId, true, 9),
+    /Record the campaign card's resolution/,
+  );
+  const hero = c.heroes[1];
+  const recorded = applyDreamchaserResolution(s, { boon: DC.axe, hero });
+  assert.equal(recorded.campaign!.resolution, null);
+  assert.ok(recorded.campaign!.boons.includes(DC.axe));
+  assert.deepEqual(recorded.campaign!.permanent[hero], [DC.axe]);
+  assert.ok(valid(recorded));
   assert.throws(
     () =>
       continueCampaign(
-        s,
-        HEROES,
-        d.id,
+        recorded,
+        recorded.campaign!.heroes,
+        recorded.deckId,
         true,
         9,
-        undefined,
-        undefined,
-        undefined,
-        {},
       ),
     /not available in campaign mode yet/,
   );

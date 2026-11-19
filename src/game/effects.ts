@@ -1081,6 +1081,7 @@ function handleEffect(s: GameState, e: Effect) {
       fortressNurnPlayerQuestSucceeded(s);
       otdPlayerQuestSucceeded(s);
       LandShadowPlayers.landShadowPlayerQuestSucceeded(s);
+      DreamCards.dreamchaserQuestSucceeded(s);
       break;
     case "successfulQuestProgress": {
       const before = s.progress,

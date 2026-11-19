@@ -2,6 +2,7 @@ import encounters from "../data/raid-grey-havens-encounter-cards.json";
 import quests from "../data/raid-grey-havens-quest-cards.json";
 import recipes from "../data/raid-grey-havens-recipes.json";
 import type { Card, GameState, Unit } from "./types";
+import { dcBase, dcIs } from "./dreamchaser-campaign-support";
 
 export const RAID_ENCOUNTERS = encounters as Card[];
 export const RAID_QUESTS = quests as Card[];
@@ -58,14 +59,14 @@ export function validateRaidGreyHavens(
           RAID.burn,
           RAID.dream,
           RAID.ravager,
-        ].includes(u.code),
+        ].includes(dcBase(u.code)),
     ) ||
     new Set(q.setAside.map((u) => u.code)).size !== q.setAside.length ||
     !q.burned.every(
       (u) =>
         validUnit(u) &&
         /Aflame\s+\d+/.test(
-          encounters.find((c) => c.code === u.code)?.text ?? "",
+          encounters.find((c) => c.code === dcBase(u.code))?.text ?? "",
         ),
     ) ||
     new Set([...q.setAside, ...q.burned].map((u) => u.id)).size !==
@@ -76,6 +77,6 @@ export function validateRaidGreyHavens(
     !q.initialized ||
     (q.setAside.every((u) => [RAID.sahir, RAID.naasiyah].includes(u.code)) &&
       (s.stage === 1 || q.setAside.length === 0) &&
-      s.staging.filter((u) => u.code === RAID.burn).length === 1)
+      s.staging.filter((u) => dcIs(u, RAID.burn)).length === 1)
   );
 }

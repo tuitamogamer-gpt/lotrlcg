@@ -9,7 +9,7 @@ import type {
   Unit,
 } from "./types";
 import { card, name } from "./cards";
-import { choose, fx, get, log, shuffle } from "./core";
+import { choose, fx, get, log, make, RuleError, shuffle } from "./core";
 import {
   activeSeat,
   allCharacters,
@@ -31,10 +31,13 @@ import {
   DREAMCHASER_CAMPAIGN_CARDS,
   DREAMCHASER_CAMPAIGN_ORDER,
   DREAMCHASER_LOG,
+  GALDOR,
   MODIFICATIONS,
   backFace,
   dcBase,
   dcFace,
+  dcIs,
+  dcScenarioFace,
   dcUpgraded,
   dreamchaserPart,
   isDreamchaserCampaign,
@@ -42,6 +45,7 @@ import {
 } from "./dreamchaser-campaign-support";
 import { VOYAGE, VOYAGE_STAGE_TWO } from "./voyage-belegaer-support";
 import { FATE } from "./fate-numenor-support";
+import { RAID } from "./raid-grey-havens-support";
 
 export {
   DREAMCHASER_CAMPAIGN_CARDS,
@@ -54,6 +58,7 @@ export {
 export const DREAMCHASER_CAMPAIGN_SUPPORTED: readonly ScenarioId[] = [
   "voyage-across-belegaer",
   "the-fate-of-numenor",
+  "raid-on-the-grey-havens",
 ];
 /** The chapters whose campaign card shuffles Revenant into the encounter deck. */
 const REVENANT_CHAPTERS: readonly ScenarioId[] = [
@@ -122,9 +127,23 @@ export interface DreamchaserGame {
   reduced?: Record<string, number>;
   /** Thunderstruck: the damage each copy took this round. */
   damage?: { round: number; byId: Record<string, number> };
+  /**
+   * Raid on the Grey Havens: Calphon is in play under the campaign card
+   * (his loss loses the game until stage 2B removes him).
+   */
+  calphon?: boolean;
+  /** Raid on the Grey Havens: the copies of Galdor's Counsel chosen during setup, by the seat that took each. */
+  galdor?: Record<string, number>;
+  /** Graxar: the enemies attacked this round ("No more than 1 character can attack Graxar each round"). */
+  attacked?: { round: number; ids: string[] };
+  /** Once-per-game abilities used this game (Throwing Axe), by attachment id. */
+  spent?: string[];
 }
 export const dreamchaserState = (s: GameState) => (s.dreamchaser ??= {});
 const several = (s: GameState) => (s.table?.seats.length ?? 1) > 1;
+/** A scalable card's level in this game. */
+const dcMarksOf = (s: GameState, key: string) =>
+  Math.max(0, s.campaign?.marks?.[key] ?? 0);
 
 /** Ominous Fate's X: "the campaign card's part number", plus this game's additions. */
 export const dreamchaserOminousX = (s: GameState) =>
@@ -208,8 +227,27 @@ export function dreamchaserCampaignSetup(s: GameState) {
       "danger",
     );
   }
+  // The Permanent boons recorded in the Campaign Log return to their heroes
+  // (Parrying Cutlass, Throwing Axe), on their Upgraded sides once all of
+  // their checkboxes are marked.
+  for (const p of seatIndices(s))
+    forOwner(s, p, () => {
+      for (const h of s.heroes)
+        for (const code of c!.permanent[h.code] ?? []) {
+          if (h.attachments.some((a) => dcBase(a.code) === code)) continue;
+          h.attachments.push({
+            id: `a${s.nextId++}`,
+            code: dcFace(c, code),
+            exhausted: false,
+            owner: p,
+          });
+          log(s, `${card(code).name} is attached to ${name(h)}.`, "good");
+        }
+    });
   // The Campaign Pool's encounter burdens are shuffled into the encounter deck.
   const pool: string[] = c!.burdens.filter((code) => code === DC.ominous);
+  // Raid on the Grey Havens: "Shuffle Graxar into the encounter deck."
+  if (s.scenarioId === "raid-on-the-grey-havens") pool.push(DC.graxar);
   // Voyage Across Belegaer: "Shuffle Ominous Fate and Thunderstruck into the
   // encounter deck. Shuffle Crowley into the Corsair deck."
   // The Fate of Númenor (and later chapters): "Shuffle Revenant into the
@@ -282,6 +320,33 @@ export const dreamchaserWoundOffers = (s: GameState): Effect[] =>
  * into play: "Attach Spyglass to Calphon. … For each character in play, its
  * controller may deal 1 damage to it to reduce their threat by 1."
  */
+/**
+ * Raid on the Grey Havens' campaign card, after the scenario's setup: "The
+ * first player takes control of Calphon and attaches Spyglass and Black Key
+ * (boon) to him. … Each player may choose one copy of Galdor's Counsel and
+ * add it to their hand. For this game, X is plus 1 for each of those copies."
+ */
+export function dreamchaserRaidReady(s: GameState): Effect[] {
+  const c = s.campaign;
+  if (!isDreamchaserCampaign(c)) return [];
+  const p = firstPlayer(s);
+  const calphon = make(s, dcScenarioFace(c, DC.calphon));
+  calphon.owner = p;
+  for (const code of [DC.spyglass, DC.keyBoon])
+    calphon.attachments.push({
+      id: `a${s.nextId++}`,
+      code: dcFace(c, code),
+      exhausted: false,
+    });
+  forOwner(s, p, () => s.allies.push(calphon));
+  dreamchaserState(s).calphon = true;
+  log(
+    s,
+    `${several(s) ? `${seatName(s, p)} takes` : "You take"} control of Calphon, with Spyglass and Black Key attached.`,
+    "good",
+  );
+  return playerOrder(s).map((player) => fx("dcGaldorOffer", { player }));
+}
 export function dreamchaserFateReady(s: GameState, calphon: Unit): Effect[] {
   if (!isDreamchaserCampaign(s.campaign)) return [];
   const code = dcFace(s.campaign, DC.spyglass);
@@ -299,6 +364,10 @@ export interface XpLine {
 }
 const inVictory = (s: GameState, code: string) =>
   (s.victoryCards ?? []).filter((c) => dcBase(c) === dcBase(code)).length;
+const enemiesInPlay = (s: GameState) =>
+  [...s.staging, ...seatIndices(s).flatMap((p) => seatView(s, p).engaged)].some(
+    (u) => ["enemy", "ship-enemy"].includes(card(u.code).type_code),
+  );
 const shipEnemiesInPlay = (s: GameState) =>
   [...s.staging, ...seatIndices(s).flatMap((p) => seatView(s, p).engaged)].some(
     (u) => isShipEnemy(u),
@@ -360,6 +429,34 @@ export function dreamchaserXpLines(s: GameState): XpLine[] {
           : 0,
       },
     );
+  if (s.scenarioId === "raid-on-the-grey-havens") {
+    const burned = s.raidGreyHavens?.burned.length ?? 0;
+    lines.push(
+      {
+        label:
+          "1 XP if 2 or fewer cards are underneath The Havens Burn (2 XP instead if no cards are underneath it)",
+        xp: burned === 0 ? 2 : burned <= 2 ? 1 : 0,
+      },
+      {
+        label: "1 XP for each Elven Wave-runner in the victory display",
+        xp: inVictory(s, RAID.runner),
+      },
+      {
+        label: "1 XP if Na'asiyah is in the victory display",
+        xp: inVictory(s, RAID.naasiyah) ? 1 : 0,
+      },
+      {
+        label: "1 XP if no enemies are in play",
+        xp: enemiesInPlay(s) ? 0 : 1,
+      },
+      {
+        label: "1 XP if each surviving player's threat is 40 or less",
+        xp: globalLivingSeats(s).every((p) => seatView(s, p).threat <= 40)
+          ? 1
+          : 0,
+      },
+    );
+  }
   lines.push({
     label: "–1 XP if Ominous Fate is in the victory display",
     xp: inVictory(s, DC.ominous) ? -1 : 0,
@@ -395,6 +492,25 @@ export function resolveDreamchaserCampaign(s: GameState) {
   )
     // "Add Ominous Fate to the Campaign Pool."
     c.burdens.push(DC.ominous);
+  if (s.scenarioId === "raid-on-the-grey-havens") {
+    // "Add the copies of Galdor's Counsel chosen during setup to the
+    // Campaign Pool." Each joins the deck of the player who chose it.
+    const chosen = Object.entries(s.dreamchaser?.galdor ?? {});
+    for (const [code, seat] of chosen) {
+      if (!c.boons.includes(code)) c.boons.push(code);
+      c.deckBoons = { ...(c.deckBoons ?? {}), [code]: seat };
+    }
+    if (chosen.length)
+      log(
+        s,
+        `Raid on the Grey Havens · Resolution: ${chosen.map(([code]) => card(code).name + (card(code).boon_sphere ? ` (${card(code).boon_sphere})` : "")).join(", ")} ${chosen.length === 1 ? "joins" : "join"} the Campaign Pool.`,
+        "good",
+      );
+    // "If Graxar is in the victory display, choose either Parrying Cutlass
+    // or Throwing Axe, add it to the Campaign Pool, and record which hero you
+    // attach it to." The end-of-game dialog asks.
+    if (inVictory(s, DC.graxar)) c.resolution = s.scenarioId;
+  }
   c.xp = Math.max(0, (c.xp ?? 0) + gained);
   log(
     s,
@@ -408,6 +524,72 @@ export function resolveDreamchaserCampaign(s: GameState) {
     xp: gained,
   });
   log(s, "The Campaign Log has been updated.", "good");
+}
+
+/** The choices a campaign card's resolution waits for in the end-of-game dialog. */
+export function dreamchaserResolutionQuestions(s: GameState): {
+  id: string;
+  label: string;
+  options: { id: string; code?: string; label: string }[];
+}[] {
+  const c = s.campaign;
+  if (
+    !isDreamchaserCampaign(c) ||
+    s.status !== "won" ||
+    c!.resolution !== s.scenarioId
+  )
+    return [];
+  if (s.scenarioId === "raid-on-the-grey-havens")
+    return [
+      {
+        id: "boon",
+        label:
+          "Graxar is in the victory display: add Parrying Cutlass or Throwing Axe to the Campaign Pool",
+        options: [DC.cutlass, DC.axe].map((code) => ({
+          id: code,
+          code,
+          label: card(code).name,
+        })),
+      },
+      {
+        id: "hero",
+        label: "Record the hero it is attached to (Permanent)",
+        options: c!.heroes
+          .filter((h) => !c!.fallen.includes(h))
+          .map((h) => ({ id: h, code: h, label: card(h).name })),
+      },
+    ];
+  return [];
+}
+/** Record the resolution's choices in the Campaign Log. */
+export function applyDreamchaserResolution(
+  input: GameState,
+  answers: Record<string, string>,
+): GameState {
+  const s = structuredClone(input);
+  const c = s.campaign!;
+  const questions = dreamchaserResolutionQuestions(s);
+  if (!questions.length)
+    throw new RuleError("This campaign card has no resolution waiting.");
+  for (const q of questions)
+    if (!q.options.some((o) => o.id === answers[q.id]))
+      throw new RuleError(`Answer: ${q.label}`);
+  if (s.scenarioId === "raid-on-the-grey-havens") {
+    const code = answers.boon,
+      hero = answers.hero;
+    if (!c.boons.includes(code)) c.boons.push(code);
+    c.permanent = {
+      ...c.permanent,
+      [hero]: [...(c.permanent[hero] ?? []).filter((x) => x !== code), code],
+    };
+    log(
+      s,
+      `Raid on the Grey Havens · Resolution: ${card(code).name} joins the Campaign Pool, attached to ${card(hero).name}.`,
+      "good",
+    );
+  }
+  c.resolution = null;
+  return s;
 }
 
 // ----------------------------------------------------------------- effects
@@ -560,6 +742,66 @@ export function dreamchaserCampaignEffect(s: GameState, e: Effect): boolean {
       );
       return true;
     }
+    case "dcGaldorOffer": {
+      const p = e.player ?? firstPlayer(s);
+      const taken = Object.keys(dreamchaserState(s).galdor ?? {});
+      const free = GALDOR.filter((code) => !taken.includes(code));
+      if (!free.length) return true;
+      forOwner(s, p, () =>
+        choose(
+          s,
+          `Raid on the Grey Havens · ${several(s) ? `${seatName(s, p)} may choose` : "Choose"} a copy of Galdor's Counsel for ${several(s) ? "their" : "your"} hand?`,
+          [
+            ...free.map((code) => ({
+              id: code,
+              code,
+              label: `${card(code).name} (${card(code).boon_sphere}) · level ${dcMarksOf(s, code)}`,
+              detail: card(code).text,
+              effects: [fx("dcGaldorTake", { code, player: p })],
+            })),
+            { id: "skip", label: "Do not take a copy", effects: [] },
+          ],
+          "Each player may choose one copy of Galdor's Counsel and add it to their hand. For this game, Ominous Fate's X is plus 1 for each of those copies.",
+        ),
+      );
+      return true;
+    }
+    case "dcGaldorTake": {
+      const p = e.player ?? firstPlayer(s);
+      const q = dreamchaserState(s);
+      if (!GALDOR.includes(e.code as (typeof GALDOR)[number])) return true;
+      if (Object.keys(q.galdor ?? {}).includes(e.code!)) return true;
+      q.galdor = { ...(q.galdor ?? {}), [e.code!]: p };
+      q.ominous = (q.ominous ?? 0) + 1;
+      forOwner(s, p, () => {
+        const u = make(s, e.code!);
+        u.owner = p;
+        s.hand.push(u);
+      });
+      log(
+        s,
+        `${card(e.code!).name} (${card(e.code!).boon_sphere}) is added to ${several(s) ? `${seatName(s, p)}'s` : "your"} hand; Ominous Fate's X is plus ${q.ominous} this game.`,
+        "good",
+      );
+      return true;
+    }
+    case "dcCalphonGone": {
+      // "Remove Calphon and each attachment on him from the game, ignoring
+      // his 'leaves play' ability."
+      const q = dreamchaserState(s);
+      q.calphon = false;
+      for (const p of seatIndices(s))
+        forOwner(s, p, () => {
+          for (const u of s.allies.filter((x) => dcIs(x, FATE.calphon)))
+            log(
+              s,
+              `${name(u)}${u.attachments.length ? ` and ${u.attachments.map((a) => card(a.code).name).join(" and ")}` : ""} ${u.attachments.length ? "are" : "is"} removed from the game.`,
+              "chapter",
+            );
+          s.allies = s.allies.filter((x) => !dcIs(x, FATE.calphon));
+        });
+      return true;
+    }
     case "dcThreatDown":
       forOwner(s, e.player ?? activeSeat(s), () =>
         reduceThreat(s, e.value ?? 0, undefined, "quest-card"),
@@ -595,6 +837,16 @@ export function dreamchaserCampaignStatus(s: GameState): string[] {
     out.push(
       "Expert Mode: threat cannot be reduced, drawing cards raises threat by that number, and a character healed or readied by a player card effect raises its controller's threat by 1 (2 XP if you win).",
     );
+  if (s.scenarioId === "raid-on-the-grey-havens") {
+    const chosen = Object.keys(s.dreamchaser?.galdor ?? {});
+    out.push(
+      `Galdor's Counsel chosen this game: ${chosen.length ? chosen.map((code) => `${card(code).boon_sphere} (level ${dcMarksOf(s, code)})`).join(", ") : "none"}. Graxar is shuffled into the encounter deck; with Graxar in the victory display the resolution adds Parrying Cutlass or Throwing Axe to the Campaign Pool.`,
+    );
+    if (s.dreamchaser?.calphon)
+      out.push(
+        "Calphon is controlled by the first player and carries Spyglass and Black Key; if he leaves play the players lose, until stage 2B removes him from the game.",
+      );
+  }
   if (REVENANT_CHAPTERS.includes(s.scenarioId)) {
     const n = s.dreamchaser?.resources ?? 0;
     out.push(
@@ -710,7 +962,23 @@ export function validateDreamchaserCampaign(s: GameState): boolean {
           (!!q.reduced &&
             typeof q.reduced === "object" &&
             !Array.isArray(q.reduced) &&
-            Object.values(q.reduced).every(integer)))))
+            Object.values(q.reduced).every(integer))) &&
+        (q.calphon === undefined || typeof q.calphon === "boolean") &&
+        (q.galdor === undefined ||
+          (!!q.galdor &&
+            typeof q.galdor === "object" &&
+            !Array.isArray(q.galdor) &&
+            Object.entries(q.galdor).every(
+              ([code, seat]) =>
+                GALDOR.includes(code as (typeof GALDOR)[number]) &&
+                integer(seat) &&
+                seat < seats,
+            ))) &&
+        (q.attacked === undefined ||
+          (!!q.attacked &&
+            integer(q.attacked.round) &&
+            codes(q.attacked.ids))) &&
+        (q.spent === undefined || codes(q.spent))))
   );
 }
 export { backFace, dcBase, dcFace };

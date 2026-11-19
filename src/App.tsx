@@ -379,7 +379,9 @@ import {
   dreamchaserChapterComplete,
   dreamchaserChapterSupported,
   dreamchaserForbiddenTitle,
+  applyDreamchaserResolution,
   dreamchaserMarksProblem,
+  dreamchaserResolutionQuestions,
   nextDreamchaserChapter,
 } from "./game/dreamchaser-campaign";
 import {
@@ -5457,7 +5459,9 @@ export default function App() {
                       setGame(
                         game.campaign?.kind === "angmar"
                           ? applyAngmarResolution(game, answers)
-                          : applySagaResolution(game, answers),
+                          : game.campaign?.kind === "dreamchaser"
+                            ? applyDreamchaserResolution(game, answers)
+                            : applySagaResolution(game, answers),
                       );
                     } catch (e) {
                       notify((e as Error).message);
@@ -5556,7 +5560,9 @@ function SagaResolution({
   const questions =
     game.campaign?.kind === "angmar"
       ? angmarResolutionQuestions(game)
-      : sagaResolutionQuestions(game);
+      : game.campaign?.kind === "dreamchaser"
+        ? dreamchaserResolutionQuestions(game)
+        : sagaResolutionQuestions(game);
   const [answers, setAnswers] = useState<Record<string, string>>(() =>
     Object.fromEntries(questions.map((q) => [q.id, q.options[0]?.id ?? ""])),
   );

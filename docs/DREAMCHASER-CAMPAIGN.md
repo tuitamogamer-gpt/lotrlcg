@@ -5,10 +5,10 @@ cycle, with the Dream-chaser Campaign Expansion's campaign cards, boons,
 burdens, Upgraded faces and its new rules: experience (XP), scalable and
 upgradable cards, a fleet of six ships and the Hard/Expert Mode card. The
 lobby's campaign mode offers it as the fourth campaign, for one fellowship of
-one to four local players. Its first two chapters, Voyage Across Belegaer and
-The Fate of Númenor, are supported; the Campaign Log is kept after them, and the
-end of the game says that the next chapter, Raid on the Grey Havens, is not
-available in campaign mode yet.
+one to four local players. Its first three chapters, Voyage Across Belegaer, The
+Fate of Númenor and Raid on the Grey Havens, are supported; the Campaign Log is
+kept after them, and the end of the game says that the next chapter, Flight of
+the Stormcaller, is not available in campaign mode yet.
 
 ## Sources
 
@@ -104,13 +104,27 @@ Campaign Pool (Ominous Fate, its X now 2).
 | Spyglass (boon attachment on Calphon)                  | Action, exhausting it, for Calphon's controller: look at a facedown shadow card (a private dialog; it stays facedown), look at the top and bottom card of your deck, or place 1 progress on a location (2 on an Uncharted Lost Island). Upgraded (3 checkboxes): the shadow card may be discarded, any player deck or the encounter deck may be looked at, and an Uncharted location takes 4 progress. Leaving play, it is removed from the game.                                                                                                                                                                              |
 | Revenant (burden enemy)                                | Immune to player card effects; +2 attack and +2 defense for each resource on the campaign card; 3 or more damage placed on it becomes 2; destroyed, it is shuffled back into the encounter deck and 1 resource is placed on the campaign card (the quest inspector's campaign card shows the count).                                                                                                                                                                                                                                                                                                                           |
 
+## Raid on the Grey Havens (Part 3)
+
+The rulebook's campaign setup adds Spyglass, Black Key (boon), Graxar, all
+copies of Galdor's Counsel, Parrying Cutlass, Throwing Axe and every card in
+the Campaign Pool.
+
+| Card                                                                        | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Campaign card                                                               | Setup, after the scenario's: the first player takes control of Calphon (his Upgraded side once both checkboxes are marked) with Spyglass and Black Key attached, Graxar and Ominous Fate are shuffled into the encounter deck, and each player in turn order may take one copy of Galdor's Counsel into their hand (each copy once; Ominous Fate's X is plus 1 for each). Calphon follows the first player, his Action works as in The Fate of Númenor, and the game is lost if he leaves play, until the Forced effect after stage 2B is revealed removes him and his attachments from the game. Resolution: the chosen copies of Galdor's Counsel join the Campaign Pool and the deck of the player who chose each; with Graxar in the victory display, the end-of-game dialog asks for Parrying Cutlass or Throwing Axe and the hero it is recorded with; and the XP of 1 per surviving player, 1 for 2 or fewer cards underneath The Havens Burn (2 for none), 1 per Elven Wave-runner in the victory display, 1 for Na'asiyah there, 1 if no enemies are in play, 1 if each surviving threat is 40 or less, −1 for Ominous Fate (and the Hard/Expert Mode card). |
+| Black Key (boon attachment)                                                 | Attached character gets +1 willpower, +1 attack and +1 defense; removed from the game when it leaves play. Upgraded (4 checkboxes): after its character quests successfully its controller may place 1 resource on that character, and its Action exhausts it and removes 3 resources from the character to ready them.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Galdor's Counsel (four boon events, scalable)                               | Each is paid with the resources of its printed sphere and goes to the victory display (victory 1). Leadership (cost 0): X resources to any hero, X half its level rounded up. Tactics: X damage to a non-unique enemy. Spirit: X progress on a non-unique location in the staging area. Lore: look at the top or bottom X cards (half the level, rounded up), add any of them to the hand and put the rest on the top and/or bottom in a chosen order, one card at a time.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Graxar (burden enemy)                                                       | Immune to player card effects; +1 attack per damage and +1 defense per resource on him; a resource each time he is dealt a shadow card; no more than 1 character can attack him each round (a second attacker, or a second attack in the round, is refused). Victory 8.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Parrying Cutlass, Throwing Axe (Permanent boons)                            | Attached at the start of each later chapter to the hero recorded in the Campaign Log (on their Upgraded sides once all 5 checkboxes are marked). Cutlass: +1 defense, +2 with 2 or more resources in the hero's pool (Upgraded +2/+3; when the hero defends against an enemy with resources, it may exhaust to move 1 resource from that enemy to the hero). Axe: +1 attack, +2 with 2 or more damage on the hero (Upgraded +2/+3; once per game, an Action deals 1 damage to an enemy, or the axe card is tossed across the real table and the players report whether it stopped on an enemy, for 4 damage to one of them).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| The Havens Burn, the Dream-chaser ("Campaign Mode only", 2 checkboxes each) | The Havens Burn's campaign side raises each player's threat by 2 instead of revealing an encounter card when a card goes underneath it, and the players lose with 4 more cards than players underneath it. The Dream-chaser's campaign side is Aflame 15, and at the end of each combat phase the first player may raise each player's threat by 2 to remove 1 damage from a location.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+
 ## Not supported yet
 
-Raid on the Grey Havens through The City of Corsairs follow, with their boons
-and burdens (Black Key, Galdor's Counsel, Graxar, Parrying Cutlass and Throwing
-Axe, Calaerion, Come Together, Sea Serpent, Starla, Recurring Nightmare,
-Command, Círdan's Blessing, Gavin, Send for Help and The Black Sword) and the
-"Campaign Mode only" sides of their scenario cards.
+Flight of the Stormcaller through The City of Corsairs follow, with their boons
+and burdens (Black Key's burden, Calaerion, Come Together, Sea Serpent, Starla,
+Recurring Nightmare, Command, Círdan's Blessing, Gavin, Send for Help and The
+Black Sword) and the "Campaign Mode only" sides of their scenario cards.
 
 ## Verification
 
@@ -120,7 +134,7 @@ npm run build
 npm run test:browser-dreamchaser-campaign
 ```
 
-`tests/dreamchaser-campaign.test.ts` (15 tests) covers the registered cards'
+`tests/dreamchaser-campaign.test.ts` (20 tests) covers the registered cards'
 texts and faces, the Campaign Log's checkboxes, the chapter order and the
 Na'asiyah rule; Voyage Across Belegaer's fleet of six ships, the Modification
 choices and the damage-for-resource offer; Upgraded ships and Modifications
@@ -135,11 +149,22 @@ and Ominous Fate shuffled in, the damage-for-threat offers), the Upgraded
 Calphon's bottom-5 switch and his loss condition, Spyglass's three choices on
 both sides through the table's ability controls, Revenant's immunity,
 bonuses, damage limit and return with a resource, and the resolution's XP
-lines before the next chapter is refused. The browser suite starts a new
+lines; Raid on the Grey Havens' cards, its setup (Calphon with Spyglass and
+Black Key, Graxar, the Galdor's Counsel offers and Ominous Fate's X), Calphon's
+Action, loss and removal after stage 2B, the campaign sides of The Havens Burn
+and the Dream-chaser, Galdor's Counsel played from hand on three spheres
+(including a refused play without its sphere and the Lore copy's take and
+order), Graxar's immunity, bonuses, shadow resource and attacker limit, Black
+Key's, Parrying Cutlass's and Throwing Axe's Upgraded abilities on recorded
+Permanent boons, and the resolution's XP, pooled copies, Cutlass/Axe choice
+and its record before the next chapter is refused. The browser suite starts a new
 Dream-chaser campaign through the lobby on Hard Mode, prepares the fleet with
 two Modification boons, opens the campaign card's state in the quest
 inspector and records the resolution; the interlude spends 2 XP on Calphon's
 checkboxes, The Fate of Númenor begins with the Upgraded Calphon, Spyglass and
 Revenant and one hero's damage for threat, Spyglass places 2 progress on a
-Lost Island through its button, and the second resolution is recorded, at
-1280, 390 and 320 pixels (18 checkpoints); it checks the 34 pinned faces.
+Lost Island through its button, and the second resolution is recorded; Raid
+on the Grey Havens begins with Calphon's two boons, Graxar and a Leadership
+Galdor's Counsel in hand, and its resolution records Throwing Axe for a hero
+through the end-of-game dialog, at 1280, 390 and 320 pixels (27 checkpoints);
+it checks the 49 pinned faces.
