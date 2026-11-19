@@ -5988,6 +5988,25 @@ function EredNotes({
           Notes · “{ERED_NOTES[note] ?? note}”
         </p>
       ))}
+      {Object.keys(c.permanent ?? {}).length ? (
+        <p className="campaign-note" data-ered-accolades>
+          Notes · Accolades:{" "}
+          {Object.entries(c.permanent).flatMap(([hero, codes], i) =>
+            codes.map((code, j) => (
+              <span key={code}>
+                {i || j ? ", " : ""}
+                <button
+                  className="text-link"
+                  onClick={() => inspect(card(code))}
+                >
+                  {card(code).name}
+                </button>{" "}
+                ({card(hero).name})
+              </span>
+            )),
+          )}
+        </p>
+      ) : null}
       {pool.length ? (
         <p className="campaign-note" data-ered-pool>
           Notes · encounter cards in the Campaign Pool:{" "}

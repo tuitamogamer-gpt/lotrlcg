@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2265,
+    "encounterCards": 2274,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3487,
-    "pending": 696
+    "scripted": 3496,
+    "pending": 687
   },
   "scenarioRecipes": {
     "total": 355,
@@ -794,6 +794,14 @@
     "12172",
     "12173",
     "12174",
+    "12176",
+    "12177",
+    "12178",
+    "12179",
+    "12180",
+    "12181",
+    "12182",
+    "12183",
     "12196",
     "12197",
     "12198",
@@ -1362,6 +1370,7 @@
     "octgn:11c67697-29da-4c76-bf89-985c2c036940",
     "octgn:11cb3eda-b7fa-493f-a9fd-cd31e5ae41f2",
     "octgn:11d44754-de69-4ecf-997e-593ef87521a9",
+    "octgn:11d63f9f-a9c6-4e05-9768-8cf2234c277d",
     "octgn:11e8544f-fe65-4365-8f51-10a3ef267dc8",
     "octgn:1208f735-6984-4c4d-ab8c-429664e4e060",
     "octgn:123bc772-2c27-4f26-a7f2-a3c4928a9dc4",
@@ -3843,9 +3852,9 @@
     {
       "product": "ered-mithrin-campaign-expansion",
       "total": 40,
-      "scripted": 19,
+      "scripted": 28,
       "player": 21,
-      "playerScripted": 12
+      "playerScripted": 20
     },
     {
       "product": "escape-from-khazad-dum",
@@ -9930,7 +9939,7 @@
       "name": "Master of the Hunt",
       "type": "attachment",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -9938,7 +9947,7 @@
       "name": "Unbroken",
       "type": "attachment",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -9946,7 +9955,7 @@
       "name": "The Steadfast",
       "type": "attachment",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -9954,7 +9963,7 @@
       "name": "Dragon-slayer",
       "type": "attachment",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -9962,7 +9971,7 @@
       "name": "The Canny Huntsman",
       "type": "event",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -9970,7 +9979,7 @@
       "name": "A Tale of Victories",
       "type": "event",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -9978,7 +9987,7 @@
       "name": "Lay of Courage",
       "type": "event",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -9986,7 +9995,7 @@
       "name": "Rhyme of the Slayer",
       "type": "event",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -14778,7 +14787,7 @@
       "name": "The Withered Heath",
       "type": "campaign",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {

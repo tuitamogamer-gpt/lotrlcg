@@ -1003,6 +1003,8 @@ export function canPlay(
   if (sagaCampaignProblem) return sagaCampaignProblem;
   const darkMirkwoodProblem = darkMirkwoodPlayProblem(s, u);
   if (darkMirkwoodProblem) return darkMirkwoodProblem;
+  const eredProblem = EredCards.eredCampaignPlayProblem(s, u);
+  if (eredProblem) return eredProblem;
   const mountainFireProblem = MountainFirePlayers.mountainFirePlayerPlayProblem(
     s,
     u,
@@ -1820,6 +1822,7 @@ export function handlePlayerEventAbilityEffect(
     !angmarCampaignPlayerEvent(s, physical.code) &&
     !DreamCards.dreamchaserPlayerEvent(s, physical.code) &&
     !darkMirkwoodPlayerEvent(s, physical.code) &&
+    !EredCards.eredCampaignPlayerEvent(s, physical.code) &&
     !MountainFirePlayers.mountainFirePlayerEvent(s, physical.code) &&
     !WrathPlayers.wrathRuinPlayerEvent(
       s,

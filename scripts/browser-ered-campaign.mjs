@@ -451,13 +451,66 @@ try {
     assert.ok(!s.campaign.burdens.includes(ERED.threat));
     await page
       .getByRole("dialog")
-      .getByText(/The Withered Heath, is not available in campaign mode yet/)
+      .getByText(/^Notes · encounter cards in the Campaign Pool:/)
+      .first()
+      .waitFor();
+    await page.getByRole("button", { name: /^Continue campaign/ }).waitFor();
+    await checkpoint("kings-complete", width);
+    // The Withered Heath (Part 4): the setup's searches, then an Accolade
+    // after the first stage and the Songs with the resolution.
+    await page.getByRole("button", { name: /^Continue campaign/ }).click();
+    await page.getByRole("button", { name: /^Begin next chapter/ }).click();
+    await reviewedState(page);
+    s = await opening();
+    assert.equal(s.scenarioId, "the-withered-heath");
+    // Abandoned Ruin joined the Caves deck (Melanwar's note may remove it).
+    assert.ok(
+      s.witheredHeath.cavesDeck.some((u) => u.code === ERED.ruin) ||
+        s.removed.includes(ERED.ruin),
+    );
+    await campaignCard(
+      /^The Withered Heath: 0 of 4 Dragon Signs are in the victory display/,
+      "heath-setup",
+      width,
+    );
+    // (The engine tests cover the stage's defeat; the dialog is offered here.)
+    {
+      const t = quiet(s);
+      t.eredCampaign = { ...(t.eredCampaign ?? {}), accolades: [1] };
+      prepend(
+        t,
+        fx("emcAccoladeOffer", { code: ERED.hunt, value: 1, player: 0 }),
+      );
+      flush(t);
+      s = await load(t);
+    }
+    assert.match(s.choice.title, /Stage 1 is defeated/);
+    await checkpoint("heath-accolade", width);
+    s = await choose(s.heroes[0].id);
+    assert.ok(s.heroes[0].attachments.some((a) => a.code === ERED.hunt));
+    s = await victory(s);
+    assert.equal(s.campaign.resolution, "the-withered-heath");
+    await page
+      .getByLabel(/^Choose a Song to add to the Campaign Pool/)
+      .selectOption(ERED.lay);
+    await checkpoint("heath-resolution", width);
+    s = await record();
+    assert.ok(s.campaign.boons.includes(ERED.hunt));
+    assert.ok(s.campaign.boons.includes(ERED.lay));
+    assert.deepEqual(s.campaign.permanent[s.heroes[0].code], [ERED.hunt]);
+    await page
+      .getByText(/^Notes · Accolades:/)
+      .first()
+      .waitFor();
+    await page
+      .getByRole("dialog")
+      .getByText(/Roam Across Rhovanion, is not available in campaign mode yet/)
       .waitFor();
     assert.equal(
       await page.getByRole("button", { name: /^Continue campaign/ }).count(),
       0,
     );
-    await checkpoint("kings-complete", width);
+    await checkpoint("heath-complete", width);
     await view.c.close();
   }
   const p = await browser.newPage();

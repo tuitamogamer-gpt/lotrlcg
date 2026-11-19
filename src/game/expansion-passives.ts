@@ -205,6 +205,11 @@ const rules: Record<string, AttachmentRule> = {
   "12202": { restricted: 1, defense: 2 },
   "12203": { will: 1 },
   "12204": { restricted: 1, attack: 1, keywords: ["Ranged"] },
+  // The Withered Heath's Accolades (Permanent; "Setup: Attach to a hero").
+  "12176": { type: "hero", health: 1 },
+  "12177": { type: "hero", defense: 1 },
+  "12178": { type: "hero", will: 1 },
+  "12179": { type: "hero", attack: 1 },
   // The Battle of Carn Dûm's Raiment of the Second Age (its draw is in angmar-campaign-loot.ts).
   "10191": { attack: 2, health: 2, restricted: 1 },
   // The Battle of the Pelennor Fields' boons (Esquire of Rohan, Esquire of Gondor).

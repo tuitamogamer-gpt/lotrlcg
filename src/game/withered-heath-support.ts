@@ -140,7 +140,13 @@ export function validateWitheredHeath(
     q.setAside.every((u) =>
       [WITHERED_HEATH.sign, WITHERED_HEATH.drake].includes(u.code),
     ) &&
-    q.cavesDeck.every((u) => legalCaves.includes(u.code)) &&
+    q.cavesDeck.every(
+      (u) =>
+        legalCaves.includes(u.code) ||
+        // The Ered Mithrin campaign shuffles Abandoned Ruin (a burden from
+        // its Campaign Pool) into the Caves deck.
+        (u.code === "12174" && s.campaign?.kind === "ered"),
+    ) &&
     q.removed.every((u) => u.code === WITHERED_HEATH.sign) &&
     q.resolving.every((u) =>
       [WITHERED_HEATH.weighed, WITHERED_HEATH.lost].includes(u.code),

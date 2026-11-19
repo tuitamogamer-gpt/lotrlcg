@@ -563,6 +563,7 @@ export function resolvePlayerAttack(
           watcherPlayerAttackBonus(s, u, enemy) +
           Rhudaur.rhudaurAttackBonus(s, enemy, u) +
           (batch4Scenario(s).playerAttackBonus?.(s, u, enemy, attackers) ?? 0) +
+          EredCards.eredCampaignPlayerAttackBonus(s, u, enemy) +
           sagaCampaignAttackBonus(s, u, attackers) +
           DreamCards.dreamchaserPlayerAttackBonus(s, u) +
           angmarSilverthornBonus(s, u, enemy) +

@@ -1221,6 +1221,7 @@ function handleEffect(s: GameState, e: Effect) {
       Race.raceHaradCharactersCommitted(s);
       SandsPlayers.beneathSandsPlayersCommitted(s);
       batch4Scenario(s).committed?.(s);
+      EredCards.eredCampaignCommitted(s);
       if (Gram.gramBeginStaging(s)) break;
       if (foundationsBeginStaging(s)) break;
       if (batch4Scenario(s).beginStaging?.(s)) break;

@@ -23,6 +23,7 @@ import {
 } from "./core";
 import {
   allCharacters,
+  allHeroes,
   firstPlayer,
   forOwner,
   ownerOf,
@@ -37,6 +38,7 @@ import {
   WILDS_EVIL_CREATURES,
   WILDS_RHOVANION,
 } from "./wilds-rhovanion-support";
+import { witheredHeathSigns } from "./withered-heath-support";
 /** The campaign card's title. */
 const scenarioName = (s: GameState) =>
   ERED_CAMPAIGN_CARDS[s.scenarioId]
@@ -48,6 +50,7 @@ export const ERED = {
   anduinCard: "octgn:12da9483-0fce-43c6-ae47-4cc2aea9cde9",
   mirkwoodCard: "octgn:28491ce2-ffc5-4f26-ab6d-88b68d59ea63",
   kingsCard: "octgn:3d3d4db9-873a-48a6-8a2d-e50abc5533f5",
+  heathCard: "octgn:11d63f9f-a9c6-4e05-9768-8cf2234c277d",
   /** Turayn (unique boon ally, Journey Up the Anduin). */
   turayn: "12166",
   /** Melanwar (unique boon ally, Lost in Mirkwood). */
@@ -60,6 +63,16 @@ export const ERED = {
   ruin: "12174",
   /** A Growing Threat (burden treachery, Journey Up the Anduin). */
   growing: "12167",
+  /** The Withered Heath's Accolade boons (Permanent attachments). */
+  hunt: "12176",
+  unbroken: "12177",
+  steadfast: "12178",
+  slayer: "12179",
+  /** The Withered Heath's Song boons (events). */
+  canny: "12180",
+  tale: "12181",
+  lay: "12182",
+  rhyme: "12183",
   /** The nine treasures. */
   anvil: "12196",
   axe: "12197",
@@ -100,6 +113,7 @@ export const ERED_CAMPAIGN_SUPPORTED: readonly ScenarioId[] = [
   "journey-up-the-anduin",
   "lost-in-mirkwood",
   "the-kings-quest",
+  "the-withered-heath",
 ];
 /** The chapters whose campaign card lets each player change heroes without the +1 threat penalty. */
 export const ERED_FREE_CHANGES: readonly ScenarioId[] = [
@@ -111,14 +125,39 @@ export const ERED_CAMPAIGN_CARDS: Partial<Record<ScenarioId, string>> = {
   "journey-up-the-anduin": ERED.anduinCard,
   "lost-in-mirkwood": ERED.mirkwoodCard,
   "the-kings-quest": ERED.kingsCard,
+  "the-withered-heath": ERED.heathCard,
 };
+/** The Withered Heath's Accolades, by the main quest stage that earns them. */
+export const ERED_ACCOLADES: readonly string[] = [
+  ERED.hunt,
+  ERED.unbroken,
+  ERED.steadfast,
+  ERED.slayer,
+];
+/** The Withered Heath's Songs (each player may add one to the Campaign Pool). */
+export const ERED_SONGS: readonly string[] = [
+  ERED.canny,
+  ERED.tale,
+  ERED.lay,
+  ERED.rhyme,
+];
 /** The boons in the Campaign Pool that a player may add to their deck. */
 export const ERED_DECK_BOONS: readonly string[] = [
   ERED.turayn,
   ERED.melanwar,
   ERED.isolde,
+  ...ERED_SONGS,
 ];
-export const ERED_BOONS: readonly string[] = [...ERED_DECK_BOONS];
+/** The unique boon allies ("A player may search their deck for a unique boon ally"). */
+const BOON_ALLIES: readonly string[] = [
+  ERED.turayn,
+  ERED.melanwar,
+  ERED.isolde,
+];
+export const ERED_BOONS: readonly string[] = [
+  ...ERED_DECK_BOONS,
+  ...ERED_ACCOLADES,
+];
 export const ERED_BURDENS: readonly string[] = [
   ERED.growing,
   ERED.threat,
@@ -214,6 +253,16 @@ export interface EredCampaignGame {
   immune?: { ids: string[]; round: number };
   /** Dagnir's Spawn: the players who took its X damage this reveal. */
   spawn?: { id: string; accepted: number[]; asked: number[] };
+  /** The Withered Heath: the main quest stages whose Accolade was offered. */
+  accolades?: number[];
+  /** Unbroken: the players who used its Action this round. */
+  unbroken?: { player: number; round: number }[];
+  /** A Tale of Victories: the hero whose next damage this phase is reduced by 3. */
+  tale?: { target: string; round: number; phase: string };
+  /** Rhyme of the Slayer: the enemy at -4 attack this phase (+4 for Dragon-slayer's hero against it). */
+  rhyme?: { target: string; round: number; phase: string }[];
+  /** The Canny Huntsman: the encounter cards being placed on top or bottom. */
+  canny?: { top: string[]; bottom: string[]; left: string[] };
 }
 export const eredState = (s: GameState) => (s.eredCampaign ??= {});
 /** Several players share the table (one seat reads "you"). */
@@ -276,6 +325,41 @@ export function eredCampaignSetup(s: GameState) {
   // shuffle Dagnir's Spawn into the encounter deck, and shuffle Abandoned
   // Ruin into the Caves deck."
   const kings = s.scenarioId === "the-kings-quest";
+  const heath = s.scenarioId === "the-withered-heath";
+  // The Accolades (Permanent): "Setup: Attach to a hero" – each returns to
+  // the hero it was earned with.
+  for (const p of seatIndices(s))
+    forOwner(s, p, () => {
+      for (const h of s.heroes)
+        for (const code of c!.permanent[h.code] ?? [])
+          if (!h.attachments.some((a) => a.code === code))
+            h.attachments.push({
+              id: `a${s.nextId++}`,
+              code,
+              exhausted: false,
+              owner: p,
+            });
+    });
+  // "A player may search their deck for a unique boon ally and add it to
+  // their hand."
+  if (BOON_ALLY_SEARCH.includes(s.scenarioId))
+    enqueue(s, fx("emcBoonAllySearch", { player: firstPlayer(s) }));
+  // The Withered Heath: "If 'Melanwar has given you guidance on traversing
+  // Wilderland,' search the encounter deck for 2 non-unique locations and the
+  // Caves deck for 1 location and remove them from the game. If 'Isolde is on
+  // the hunt,' search the encounter deck for 3 non-unique enemies and remove
+  // them from the game."
+  if (heath && c!.notes?.includes("melanwar"))
+    enqueue(
+      s,
+      fx("emcRemove", { text: "location", value: 2, player: firstPlayer(s) }),
+      fx("emcRemoveCave", { value: 1, player: firstPlayer(s) }),
+    );
+  if (heath && c!.notes?.includes("isolde"))
+    enqueue(
+      s,
+      fx("emcRemove", { text: "enemy", value: 3, player: firstPlayer(s) }),
+    );
   if (kings && !pool.includes(ERED.spawn)) pool.push(ERED.spawn);
   if (kings || c!.burdens.includes(ERED.threat)) threatSetup(s);
   if (kings || c!.burdens.includes(ERED.ruin)) ruinSetup(s);
@@ -328,7 +412,14 @@ function threatSetup(s: GameState) {
 const cavesDeck = (s: GameState): Unit[] | undefined =>
   s.wildsRhovanion?.cavesDeck && s.scenarioId === "the-kings-quest"
     ? s.wildsRhovanion.cavesDeck
-    : undefined;
+    : (s.witheredHeath?.cavesDeck ?? s.mountGundabad?.cavesDeck);
+/** The chapters whose campaign card lets a player search their deck for a unique boon ally. */
+const BOON_ALLY_SEARCH: readonly ScenarioId[] = [
+  "the-withered-heath",
+  "roam-across-rhovanion",
+  "the-ghost-of-framsburg",
+  "mount-gundabad",
+];
 /**
  * Abandoned Ruin: "Setup: Shuffle Abandoned Ruin into the Caves deck, if
  * able. Otherwise, remove it from the game."
@@ -437,6 +528,7 @@ function guardTreasure(s: GameState, guard: Unit, code: string) {
  * guard has left play (explored, defeated or discarded), it is claimed.
  */
 export function eredCampaignGuardCheck(s: GameState) {
+  heathAccolades(s);
   // Abandoned Ruin: "Response: After Abandoned Ruin becomes the active
   // location, look at 3 random undiscovered treasures and attach 1 of them to
   // Abandoned Ruin as a guarded objective. … Limit once per game for the
@@ -472,6 +564,48 @@ export function eredCampaignGuardCheck(s: GameState) {
 }
 
 // ------------------------------------------------------------- the campaign card
+
+/** A player controls an Accolade boon. */
+const hasAccolade = (s: GameState, p: number) =>
+  seatView(s, p).heroes.some((h) =>
+    h.attachments.some((a) => ERED_ACCOLADES.includes(a.code)),
+  );
+/** The heroes a stage's Accolade may be attached to: those of players without an Accolade. */
+export const accoladeHosts = (s: GameState) =>
+  seatIndices(s).flatMap((p) =>
+    hasAccolade(s, p) ? [] : seatView(s, p).heroes,
+  );
+/**
+ * The Withered Heath's campaign card: "Forced: After a main quest stage is
+ * defeated, any player who does not control an Accolade boon may attach one
+ * of the following boons to one of their heroes … Stage 1: Master of the
+ * Hunt. Stage 2: Unbroken. Stage 3: The Steadfast. Stage 4: Dragon-slayer."
+ * (Defeating stage 4 wins the game: its Accolade is offered with the
+ * resolution.)
+ */
+function heathAccolades(s: GameState) {
+  if (
+    !eredChapter(s) ||
+    s.scenarioId !== "the-withered-heath" ||
+    !s.witheredHeath ||
+    s.status !== "playing"
+  )
+    return;
+  const defeated = Math.min(3, s.witheredHeath.completedQuests.length);
+  const q = eredState(s);
+  for (let stage = 1; stage <= defeated; stage++) {
+    if (q.accolades?.includes(stage)) continue;
+    q.accolades = [...(q.accolades ?? []), stage];
+    prepend(
+      s,
+      fx("emcAccoladeOffer", {
+        code: ERED_ACCOLADES[stage - 1],
+        value: stage,
+        player: firstPlayer(s),
+      }),
+    );
+  }
+}
 
 /**
  * Journey Up the Anduin's campaign card: "Response: After you explore a
@@ -537,6 +671,12 @@ export function resolveEredCampaign(s: GameState) {
     return p.startingHeroes.filter((code) => p.discard.includes(code));
   });
   c.fallen = [...new Set([...c.fallen, ...fallen])];
+  // Permanent: an Accolade leaves the campaign with its fallen hero.
+  for (const code of fallen) {
+    const lost = c.permanent[code] ?? [];
+    delete c.permanent[code];
+    c.boons = c.boons.filter((x) => !lost.includes(x));
+  }
   const q = s.eredCampaign;
   // "The players discover each treasure they control."
   const found = treasuresInPlay(s).filter(
@@ -609,16 +749,103 @@ export function resolveEredCampaign(s: GameState) {
       "danger",
     );
   }
+  if (s.scenarioId === "the-withered-heath") {
+    // "Add each Accolade boon in play to the campaign pool." (Permanent: each
+    // stays with its hero.)
+    const earned: string[] = [];
+    for (const h of allHeroes(s))
+      for (const a of h.attachments)
+        if (ERED_ACCOLADES.includes(a.code) && !c.boons.includes(a.code)) {
+          c.boons.push(a.code);
+          c.permanent[h.code] = [
+            ...new Set([...(c.permanent[h.code] ?? []), a.code]),
+          ];
+          earned.push(`${card(a.code).name} (${name(h)})`);
+        }
+    if (earned.length)
+      log(
+        s,
+        `The Withered Heath · Resolution: ${earned.join(", ")} ${earned.length === 1 ? "joins" : "join"} the Campaign Pool.`,
+        "good",
+      );
+    // "If there are 4 Dragon Sign objectives in the victory display, the
+    // players also look at 3 random undiscovered treasures and choose 1"
+    // (chosen with the resolution, it is discovered at once).
+    if (witheredHeathSigns(s) >= 4) {
+      const pool = ERED_TREASURES.filter((x) => !c.treasures?.includes(x));
+      eredState(s).looking = shuffle(s, [...pool]).slice(0, 3);
+    }
+  }
   // "If the heroes choose to accept his aid / invite him / fight alongside
   // her … add them to the campaign pool … Otherwise, mark in the campaign
-  // log that …"
-  if (BOON_ALLY[s.scenarioId]) c.resolution = s.scenarioId;
+  // log that …" (The Withered Heath: its Accolade, Songs and treasure.)
+  if (RESOLUTION_CHAPTERS.includes(s.scenarioId)) c.resolution = s.scenarioId;
   c.completed.push({
     scenarioId: s.scenarioId,
     score: score(s),
     rounds: s.round,
   });
   log(s, "The Campaign Log has been updated.", "good");
+}
+/** The chapters whose resolution asks the players to choose. */
+const RESOLUTION_CHAPTERS: readonly ScenarioId[] = [
+  "journey-up-the-anduin",
+  "lost-in-mirkwood",
+  "the-kings-quest",
+  "the-withered-heath",
+];
+/** The Withered Heath's resolution choices. */
+function heathQuestions(s: GameState) {
+  const c = s.campaign!;
+  const questions: {
+    id: string;
+    label: string;
+    options: { id: string; code?: string; label: string }[];
+  }[] = [];
+  // Stage 4 is defeated: Dragon-slayer, for a player without an Accolade.
+  const hosts = c.boons.includes(ERED.slayer) ? [] : accoladeHosts(s);
+  if (hosts.length)
+    questions.push({
+      id: "slayer",
+      label:
+        "Stage 4 is defeated: a player who does not control an Accolade may attach Dragon-slayer to one of their heroes (it joins the Campaign Pool with the other Accolades in play).",
+      options: [
+        ...hosts.map((h) => ({
+          id: h.code,
+          code: ERED.slayer,
+          label: `Attach Dragon-slayer to ${name(h)}`,
+        })),
+        { id: "none", label: "No one attaches Dragon-slayer" },
+      ],
+    });
+  // "Each player may choose one of the following boons and add it to the
+  // campaign pool."
+  for (const p of seatIndices(s))
+    questions.push({
+      id: `song-${p}`,
+      label: `${several(s) ? `${seatName(s, p)} chooses` : "Choose"} a Song to add to the Campaign Pool (each player a different one).`,
+      options: [
+        ...ERED_SONGS.filter((x) => !c.boons.includes(x)).map((code) => ({
+          id: code,
+          code,
+          label: card(code).name,
+        })),
+        { id: "none", label: "No Song" },
+      ],
+    });
+  const looking = s.eredCampaign?.looking ?? [];
+  if (looking.length)
+    questions.push({
+      id: "treasure",
+      label:
+        "4 Dragon Signs are in the victory display: the players look at 3 random undiscovered treasures and choose 1 (it is discovered).",
+      options: looking.map((code) => ({
+        id: code,
+        code,
+        label: card(code).name,
+      })),
+    });
+  return questions;
 }
 /** The choices a campaign card's resolution asks of the players. */
 export function eredResolutionQuestions(s: GameState): {
@@ -633,6 +860,7 @@ export function eredResolutionQuestions(s: GameState): {
     c!.resolution !== s.scenarioId
   )
     return [];
+  if (s.scenarioId === "the-withered-heath") return heathQuestions(s);
   const ally = BOON_ALLY[s.scenarioId];
   if (!ally) return [];
   return [
@@ -687,8 +915,45 @@ export function applyEredResolution(
   for (const q of questions)
     if (!q.options.some((o) => o.id === answers[q.id]))
       throw new RuleError(`Answer: ${q.label}`);
-  const ally = BOON_ALLY[s.scenarioId]!;
   const title = card(ERED_CAMPAIGN_CARDS[s.scenarioId]!).name;
+  if (s.scenarioId === "the-withered-heath") {
+    const songs = Object.entries(answers)
+      .filter(([id, v]) => id.startsWith("song-") && v !== "none")
+      .map(([, v]) => v);
+    if (new Set(songs).size !== songs.length)
+      throw new RuleError("Each player chooses a different Song.");
+    if (answers.slayer && answers.slayer !== "none") {
+      c.boons.push(ERED.slayer);
+      c.permanent[answers.slayer] = [
+        ...new Set([...(c.permanent[answers.slayer] ?? []), ERED.slayer]),
+      ];
+      log(
+        s,
+        `${title} · Resolution: Dragon-slayer is attached to ${card(answers.slayer).name} and joins the Campaign Pool.`,
+        "good",
+      );
+    }
+    for (const code of songs) {
+      c.boons.push(code);
+      log(
+        s,
+        `${title} · Resolution: ${card(code).name} joins the Campaign Pool.`,
+        "good",
+      );
+    }
+    if (answers.treasure && !c.treasures?.includes(answers.treasure)) {
+      c.treasures = [...(c.treasures ?? []), answers.treasure];
+      log(
+        s,
+        `${title} · Resolution: ${card(answers.treasure).name} is discovered and recorded in the Campaign Log.`,
+        "good",
+      );
+    }
+    if (s.eredCampaign) delete s.eredCampaign.looking;
+    c.resolution = null;
+    return s;
+  }
+  const ally = BOON_ALLY[s.scenarioId]!;
   if (answers[ally.note] === "aid") {
     if (!c.boons.includes(ally.code)) c.boons.push(ally.code);
     log(
@@ -738,6 +1003,18 @@ export function eredCampaignStatus(s: GameState): string[] {
       out.push(
         `${card(g.code).name} is guarded by ${name(guard)}: when ${name(guard)} leaves play, the players claim it and attach it to a character.`,
       );
+  }
+  if (s.scenarioId === "the-withered-heath") {
+    const signs = witheredHeathSigns(s);
+    out.push(
+      `The Withered Heath: ${signs} of 4 Dragon Signs are in the victory display${signs >= 4 ? " (the resolution offers a treasure)" : "; with all 4 the resolution offers a treasure"}.`,
+    );
+    for (const h of allHeroes(s))
+      for (const a of h.attachments)
+        if (ERED_ACCOLADES.includes(a.code))
+          out.push(
+            `${card(a.code).name} (Accolade) is attached to ${name(h)}${c!.boons.includes(a.code) ? "" : ": it joins the Campaign Pool when this chapter is won"}.`,
+          );
   }
   if (q?.immune && q.immune.round === s.round)
     out.push(
@@ -900,6 +1177,125 @@ export function eredCampaignFrameworkEffect(s: GameState, e: Effect): boolean {
       );
       return true;
     }
+    case "emcRemoveCave": {
+      // "… and the Caves deck for 1 location and remove them from the game."
+      const deck = cavesDeck(s);
+      const found = (deck ?? []).filter(
+        (u) => card(u.code).type_code === "location",
+      );
+      if ((e.value ?? 0) <= 0 || !deck || !found.length) {
+        if (deck) shuffle(s, deck);
+        return true;
+      }
+      choose(
+        s,
+        `${scenarioName(s)} · Remove a location from the Caves deck${seatLabel(s, p)}`,
+        [...new Map(found.map((u) => [u.code, u])).values()].map((u) => ({
+          id: u.id,
+          code: u.code,
+          label: card(u.code).name,
+          effects: [
+            fx("emcRemoveCaveCard", {
+              target: u.id,
+              value: e.value,
+              player: p,
+            }),
+          ],
+        })),
+      );
+      return true;
+    }
+    case "emcRemoveCaveCard": {
+      const deck = cavesDeck(s);
+      const i = deck?.findIndex((u) => u.id === e.target) ?? -1;
+      if (deck && i >= 0) {
+        const [u] = deck.splice(i, 1);
+        s.removed.push(u.code);
+        log(s, `${card(u.code).name} is removed from the game.`, "good");
+      }
+      prepend(s, fx("emcRemoveCave", { value: (e.value ?? 1) - 1, player: p }));
+      return true;
+    }
+    case "emcBoonAllySearch": {
+      // "A player may search their deck for a unique boon ally and add it to
+      // their hand."
+      const options: Option[] = seatIndices(s).flatMap((seat) =>
+        [...new Set(seatView(s, seat).deck)]
+          .filter((code) => BOON_ALLIES.includes(code))
+          .map((code) => ({
+            id: `${seat}:${code}`,
+            code,
+            label: `${several(s) ? `${seatName(s, seat)}: ` : ""}Take ${card(code).name}`,
+            effects: [fx("emcBoonAllyTake", { code, player: seat })],
+          })),
+      );
+      if (options.length)
+        choose(
+          s,
+          `${scenarioName(s)} · A player may search their deck for a unique boon ally`,
+          [...options, { id: "decline", label: "Do not search", effects: [] }],
+          card(ERED_CAMPAIGN_CARDS[s.scenarioId] ?? ERED.heathCard).text,
+        );
+      return true;
+    }
+    case "emcBoonAllyTake":
+      forOwner(s, p, () => {
+        const i = s.deck.indexOf(e.code!);
+        if (i < 0) return;
+        s.deck.splice(i, 1);
+        const u = make(s, e.code!);
+        u.owner = p;
+        s.hand.push(u);
+        shuffle(s, s.deck);
+        log(
+          s,
+          `${several(s) ? `${seatName(s, p)} adds` : "You add"} ${card(e.code!).name} to ${several(s) ? "their" : "your"} hand; the deck is shuffled.`,
+          "good",
+        );
+      });
+      return true;
+    case "emcAccoladeOffer": {
+      const code = e.code!;
+      const hosts = accoladeHosts(s);
+      if (!hosts.length) return true;
+      choose(
+        s,
+        `The Withered Heath · Stage ${e.value} is defeated: a player without an Accolade may attach ${card(code).name} to a hero`,
+        [
+          ...hosts.map((h) => ({
+            id: h.id,
+            code: h.code,
+            label: `Attach ${card(code).name} to ${name(h)}`,
+            effects: [
+              fx("emcAccoladeAttach", {
+                target: h.id,
+                code,
+                player: ownerOf(s, h),
+              }),
+            ],
+          })),
+          { id: "decline", label: "No one attaches it", effects: [] },
+        ],
+        card(code).text,
+      );
+      return true;
+    }
+    case "emcAccoladeAttach": {
+      const h = get(s, e.target);
+      if (!h) return true;
+      h.attachments.push({
+        id: `a${s.nextId++}`,
+        code: e.code!,
+        exhausted: false,
+        owner: p,
+      });
+      log(
+        s,
+        `${card(e.code!).name} is attached to ${name(h)}: its valorous deeds are memorialized.`,
+        "good",
+      );
+      return true;
+    }
     case "emcRemoveCard": {
       const i = s.encounterDeck.indexOf(e.code!);
       if (i >= 0) {
@@ -1033,7 +1429,16 @@ export function validateEredCampaign(
     !!c.permanent &&
     typeof c.permanent === "object" &&
     !Array.isArray(c.permanent) &&
-    !Object.keys(c.permanent).length &&
+    // The Accolades (Permanent) stay with the heroes that earned them.
+    Object.entries(c.permanent).every(
+      ([hero, boons]) =>
+        known(hero) &&
+        codes(boons) &&
+        boons.length >= 1 &&
+        boons.every((x) => ERED_ACCOLADES.includes(x) && c.boons.includes(x)),
+    ) &&
+    new Set(Object.values(c.permanent).flat()).size ===
+      Object.values(c.permanent).flat().length &&
     c.prisoner === null &&
     typeof c.mendorSaved === "boolean" &&
     (c.resolution === undefined ||
@@ -1041,7 +1446,7 @@ export function validateEredCampaign(
       (c.resolution === s.scenarioId &&
         s.status === "won" &&
         c.completed.at(-1)?.scenarioId === s.scenarioId &&
-        !!BOON_ALLY[s.scenarioId])) &&
+        RESOLUTION_CHAPTERS.includes(s.scenarioId))) &&
     (c.seatHeroes === undefined ||
       (Array.isArray(c.seatHeroes) &&
         c.seatHeroes.length === seatCount &&

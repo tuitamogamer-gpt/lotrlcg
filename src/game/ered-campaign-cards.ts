@@ -38,11 +38,14 @@ import {
 } from "./table";
 import {
   discardHandCard,
+  engage,
   exhaustCharacter,
   raiseThreat,
   readyCharacter,
   takePlayerDiscard,
 } from "./board";
+import { addCurrentQuestProgress } from "./side-quests";
+import { putPlayedEventInVictory } from "./event-resolution";
 import { reduceThreat } from "./threat-reduction";
 import { canPlay, playTargets, resolvePaidPlayerCard } from "./actions";
 import { effectiveTraits } from "./expansion-passives";
@@ -151,6 +154,25 @@ export function eredCampaignDamageAmount(
   context: { cost?: boolean } = {},
 ) {
   const q = s.eredCampaign;
+  // A Tale of Victories: "The next time that hero would be dealt damage this
+  // phase, cancel 3 of that damage."
+  if (
+    q?.tale &&
+    value > 0 &&
+    !context.cost &&
+    q.tale.target === u.id &&
+    q.tale.round === s.round &&
+    q.tale.phase === s.phase
+  ) {
+    const n = Math.min(3, value);
+    delete q.tale;
+    log(
+      s,
+      `A Tale of Victories: ${n} of the damage dealt to ${name(u)} is canceled.`,
+      "good",
+    );
+    value -= n;
+  }
   if (!q?.shields?.length || value <= 0 || context.cost) return value;
   q.shields = q.shields.filter((x) => x.round === s.round);
   const mine = q.shields.filter((x) => x.target === u.id);
@@ -172,7 +194,29 @@ export function eredCampaignStats(s: GameState, u: Unit) {
   const r = { will: 0, attack: 0, defense: 0, health: 0 };
   if (u.code === ERED.isolde && !u.blanked && hasItem(u)) r.will += 2;
   if (u.code === ERED.spawn && !u.blanked) r.defense += spawnX(s);
+  // Rhyme of the Slayer: "That enemy gets –4 [attack] until the end of the phase."
+  if (
+    s.eredCampaign?.rhyme?.some(
+      (x) => x.target === u.id && x.round === s.round && x.phase === s.phase,
+    )
+  )
+    r.attack -= 4;
   return r;
+}
+/**
+ * Rhyme of the Slayer: "The hero with Dragon-slayer attached gets +4
+ * [attack] while attacking that enemy this phase."
+ */
+export function eredCampaignPlayerAttackBonus(
+  s: GameState,
+  attacker: Unit,
+  enemy: Unit,
+) {
+  return s.eredCampaign?.rhyme?.some(
+    (x) => x.target === enemy.id && x.round === s.round && x.phase === s.phase,
+  ) && attacker.attachments.some((a) => a.code === ERED.slayer && !a.blanked)
+    ? 4
+    : 0;
 }
 /** Dagnir's Spawn's X threat. */
 export const eredCampaignThreatBonus = (s: GameState, u: Unit) =>
@@ -456,6 +500,166 @@ export function eredCampaignCostReduction(s: GameState, c: Card) {
   return s.eredCampaign?.anvil === c.code && isItemAttachment(c.code) ? 1 : 0;
 }
 
+// ------------------------------------------------------------- The Withered Heath
+
+/** The hero with this Accolade attached (its text not blank). */
+const accoladeHero = (s: GameState, code: string) =>
+  allHeroes(s).find((h) =>
+    h.attachments.some((a) => a.code === code && !a.blanked),
+  );
+/**
+ * Master of the Hunt and The Steadfast: "Response: After attached hero
+ * commits to the quest, …" (The Steadfast only helps, so it is always used.)
+ */
+export function eredCampaignCommitted(s: GameState) {
+  if (!s.campaign) return;
+  for (const h of allHeroes(s)) {
+    if (!h.committed) continue;
+    const p = ownerOf(s, h);
+    if (h.attachments.some((a) => a.code === ERED.hunt && !a.blanked))
+      prepend(s, fx("emcHunt", { source: h.id, player: p }));
+    if (
+      h.attachments.some((a) => a.code === ERED.steadfast && !a.blanked) &&
+      seatView(s, p).threat >= 40
+    )
+      prepend(s, fx("emcSteadfast", { source: h.id, player: p }));
+  }
+}
+/**
+ * Dragon-slayer: "Response: After a non-unique enemy is added to the staging
+ * area, exhaust Dragon-slayer to engage that enemy. It makes an immediate
+ * attack against you."
+ */
+export function eredCampaignEnemyStaged(s: GameState, enemy: Unit) {
+  if (!s.campaign || card(enemy.code).is_unique || s.status !== "playing")
+    return;
+  for (const h of allHeroes(s))
+    for (const a of h.attachments)
+      if (a.code === ERED.slayer && !a.blanked && !a.exhausted)
+        prepend(
+          s,
+          fx("emcSlayer", {
+            target: enemy.id,
+            source: a.id,
+            player: ownerOf(s, h),
+          }),
+        );
+}
+const SONG_TIMING: Record<string, { phases: string[]; label: string }> = {
+  [ERED.canny]: { phases: ["quest", "staging"], label: "a Quest Action" },
+  [ERED.tale]: { phases: ["defense", "attack"], label: "a Combat Action" },
+  [ERED.rhyme]: { phases: ["defense", "attack"], label: "a Combat Action" },
+};
+/** The Songs' timing (Lay of Courage answers a card revealed from the encounter deck). */
+export function eredCampaignPlayProblem(s: GameState, u: Unit): string | null {
+  if (u.code === ERED.lay)
+    return "Lay of Courage is played when a card is revealed from the encounter deck during the quest phase.";
+  const t = SONG_TIMING[u.code];
+  if (t && !t.phases.includes(s.phase))
+    return `${card(u.code).name} is ${t.label}.`;
+  return null;
+}
+/** The Songs' effects. */
+export function eredCampaignPlayerEvent(s: GameState, code: string): boolean {
+  const p = activeSeat(s);
+  if (code === ERED.lay) return true; // its effects follow its Response window
+  if (code === ERED.canny) {
+    prepend(s, fx("emcCannyTake", { player: p }));
+    return true;
+  }
+  if (code === ERED.tale) {
+    // "Draw a card for each enemy engaged with you. Heal 3 damage from the
+    // hero with Unbroken attached. The next time that hero would be dealt
+    // damage this phase, cancel 3 of that damage."
+    const n = engagedWith(s, p).length;
+    if (n) draw(s, n);
+    const hero = accoladeHero(s, ERED.unbroken);
+    if (hero) {
+      prepend(s, fx("heal", { target: hero.id, value: 3, player: p }));
+      eredState(s).tale = { target: hero.id, round: s.round, phase: s.phase };
+    }
+    log(
+      s,
+      `A Tale of Victories: ${n} ${n === 1 ? "card is" : "cards are"} drawn${hero ? `; ${name(hero)} heals 3 damage and cancels 3 of the next damage dealt to it this phase` : ""}.`,
+      "good",
+    );
+    return true;
+  }
+  if (code === ERED.rhyme) {
+    const enemies = [
+      ...s.staging,
+      ...playerOrder(s).flatMap((x) => engagedWith(s, x)),
+    ].filter((u) => card(u.code).type_code === "enemy");
+    if (enemies.length)
+      choose(
+        s,
+        `Rhyme of the Slayer · Choose an enemy${seatLabel(s, p)}`,
+        enemies.map((u) => ({
+          id: u.id,
+          code: u.code,
+          label: name(u),
+          effects: [fx("emcRhyme", { target: u.id, player: p })],
+        })),
+        card(ERED.rhyme).text,
+      );
+    return true;
+  }
+  return false;
+}
+/**
+ * Lay of Courage: "Quest Response: Cancel the 'when revealed' effects of a
+ * card that was just revealed from the encounter deck. Ready the hero with The
+ * Steadfast attached. Add Lay of Courage to the victory display."
+ */
+export function eredLayOfCourageOptions(
+  s: GameState,
+  continuation: Effect,
+): Option[] {
+  if (!s.campaign || !["quest", "staging"].includes(s.phase)) return [];
+  return playerOrder(s).flatMap((player) => {
+    const lay = seatView(s, player).hand.find((u) => u.code === ERED.lay);
+    if (!lay) return [];
+    return [
+      {
+        id: s.table ? `lay-${player}` : "lay",
+        label: `Play Lay of Courage${s.table ? ` · ${seatName(s, player)}` : ""}`,
+        code: ERED.lay,
+        ability: {
+          player,
+          source: lay.id,
+          code: ERED.lay,
+          type: "response" as const,
+        },
+        effects: [
+          fx("eventPlay", {
+            code: ERED.lay,
+            source: lay.id,
+            player,
+            effects: [
+              fx("afterPlayerAbility", {
+                effects: [{ ...continuation, flag: true }],
+              }),
+            ],
+            cancelledEffects: [continuation],
+          }),
+        ],
+      },
+    ];
+  });
+}
+/** Lay of Courage: the Steadfast hero readies; the event goes to the victory display. */
+export function eredCampaignEventPlayed(s: GameState, u: Unit) {
+  if (u.code !== ERED.lay) return;
+  putPlayedEventInVictory(s, u.code);
+  const hero = accoladeHero(s, ERED.steadfast);
+  if (hero?.exhausted) readyCharacter(s, hero);
+  log(
+    s,
+    `Lay of Courage is added to the victory display${hero ? `, and ${name(hero)} readies` : ""}.`,
+    "good",
+  );
+}
+
 // ------------------------------------------------------------- abilities
 
 const ABILITY: Record<string, string> = {
@@ -463,6 +667,7 @@ const ABILITY: Record<string, string> = {
   [ERED.crown]:
     "Exhaust Dwarf-Lord's Crown · Allies sharing a Trait get +1 each",
   [ERED.jewels]: "Exhaust Jewels of Wilderland · Discard a card to draw a card",
+  [ERED.unbroken]: "Unbroken · Discard a card to heal 1 damage from this hero",
 };
 export const eredCampaignAbilityLabel = (code: string) => ABILITY[code];
 /** The Item attachments in hand Anvil of Gundabad can play, with their targets. */
@@ -491,6 +696,20 @@ export function eredCampaignAbilityProblem(
   const a = u.attachments.find((x) => x.id === attachmentId);
   if (!a || !ABILITY[a.code]) return null;
   if (a.blanked) return "This attachment's text is blank.";
+  // Unbroken: "This ability may be triggered by each player once each round."
+  if (a.code === ERED.unbroken) {
+    if (s.phase === "setup") return "Continue to the next action window.";
+    if (s.choice || s.flow?.pending) return "Resolve the current choice first.";
+    if (u.damage <= 0) return "The attached hero has no damage to heal.";
+    if (!s.hand.length) return "Discard a card from your hand to use Unbroken.";
+    if (
+      s.eredCampaign?.unbroken?.some(
+        (x) => x.player === activeSeat(s) && x.round === s.round,
+      )
+    )
+      return "Each player may trigger Unbroken once each round.";
+    return null;
+  }
   if (attachmentController(s, u, a) !== activeSeat(s))
     return "Choose an attachment you control.";
   if (s.phase === "setup") return "Continue to the next action window.";
@@ -527,6 +746,21 @@ export function eredCampaignAbility(
   const problem = eredCampaignAbilityProblem(s, u, attachmentId);
   requireRule(!problem, problem ?? "");
   const p = activeSeat(s);
+  if (a.code === ERED.unbroken) {
+    // Cost: discard a card from your hand.
+    choose(
+      s,
+      `Unbroken · Discard a card from your hand to heal 1 damage from ${name(u)}${seatLabel(s, p)}`,
+      s.hand.map((h) => ({
+        id: h.id,
+        code: h.code,
+        label: name(h),
+        effects: [fx("emcUnbroken", { source: u.id, target: h.id, player: p })],
+      })),
+      card(ERED.unbroken).text,
+    );
+    return true;
+  }
   if (a.code === ERED.anvil) {
     // Cost: exhaust Anvil of Gundabad and the attached character.
     a.exhausted = true;
@@ -1088,6 +1322,208 @@ export function eredCampaignEffect(s: GameState, e: Effect): boolean {
           "good",
         );
       });
+      return true;
+    }
+    case "emcHunt": {
+      // Master of the Hunt: "choose a player to look at the top 3 cards of
+      // their deck".
+      const seats = playerOrder(s).filter((x) => seatView(s, x).deck.length);
+      if (!seats.length) return true;
+      choose(
+        s,
+        `Master of the Hunt · Choose a player to look at the top 3 cards of their deck${seatLabel(s, p)}`,
+        [
+          ...seats.map((x) => ({
+            id: String(x),
+            label: several(s) ? seatName(s, x) : "Your deck",
+            effects: [fx("emcHuntLook", { player: x })],
+          })),
+          decline(),
+        ],
+        card(ERED.hunt).text,
+      );
+      return true;
+    }
+    case "emcHuntLook": {
+      const top = seatView(s, p).deck.slice(0, 3);
+      if (!top.length) return true;
+      choose(
+        s,
+        `Master of the Hunt · Put 1 of these cards on top of your deck${seatLabel(s, p)}`,
+        top.map((code, i) => ({
+          id: String(i),
+          code,
+          label: `Keep ${card(code).name} on top`,
+          effects: [fx("emcHuntTop", { value: i, player: p })],
+        })),
+      );
+      return true;
+    }
+    case "emcHuntTop":
+      forOwner(s, p, () => {
+        const top = s.deck.splice(0, Math.min(3, s.deck.length));
+        const [kept] = top.splice(e.value ?? 0, 1);
+        // The rest go to the bottom (the next choice orders two of them).
+        s.deck.unshift(kept);
+        s.deck.push(...top);
+        log(
+          s,
+          `Master of the Hunt: 1 card stays on top of the deck and ${top.length} ${top.length === 1 ? "goes" : "go"} to the bottom.`,
+          "good",
+        );
+        if (top.length === 2)
+          choose(
+            s,
+            `Master of the Hunt · Choose the card at the very bottom of your deck${seatLabel(s, p)}`,
+            top.map((code, i) => ({
+              id: String(i),
+              code,
+              label: card(code).name,
+              effects: [fx("emcHuntBottom", { value: i, player: p })],
+            })),
+          );
+      });
+      return true;
+    case "emcHuntBottom":
+      forOwner(s, p, () => {
+        if (s.deck.length < 2 || (e.value ?? 1) !== 0) return;
+        const n = s.deck.length;
+        [s.deck[n - 2], s.deck[n - 1]] = [s.deck[n - 1], s.deck[n - 2]];
+      });
+      return true;
+    case "emcSteadfast": {
+      const hero = get(s, e.source);
+      if (!hero || seatView(s, p).threat < 40) return true;
+      addCurrentQuestProgress(s, 1);
+      log(
+        s,
+        `The Steadfast: ${name(hero)} commits with your threat at 40 or higher, placing 1 progress on the current quest.`,
+        "good",
+      );
+      return true;
+    }
+    case "emcUnbroken":
+      forOwner(s, p, () => {
+        if (!s.hand.some((h) => h.id === e.target)) return;
+        discardHandCard(s, e.target!);
+      });
+      q.unbroken = [
+        ...(q.unbroken ?? []).filter((x) => x.round === s.round),
+        { player: p, round: s.round },
+      ];
+      prepend(s, fx("heal", { target: e.source, value: 1, player: p }));
+      log(s, "Unbroken: a card is discarded to heal 1 damage.", "good");
+      return true;
+    case "emcSlayer": {
+      const enemy = get(s, e.target);
+      const found = findAttachment(s, e.source);
+      if (!enemy || !found || found.a.exhausted) return true;
+      if (!s.staging.some((u) => u.id === enemy.id)) return true;
+      choose(
+        s,
+        `Dragon-slayer · Exhaust it to engage ${name(enemy)} (it makes an immediate attack against you)?${seatLabel(s, p)}`,
+        [
+          {
+            id: "use",
+            code: ERED.slayer,
+            label: `Engage ${name(enemy)}`,
+            effects: [
+              fx("emcSlayerUse", {
+                target: enemy.id,
+                source: found.a.id,
+                player: p,
+              }),
+            ],
+          },
+          decline(),
+        ],
+        card(ERED.slayer).text,
+      );
+      return true;
+    }
+    case "emcSlayerUse": {
+      const enemy = get(s, e.target);
+      const found = findAttachment(s, e.source);
+      if (!enemy || !found || found.a.exhausted) return true;
+      found.a.exhausted = true;
+      if (!s.staging.some((u) => u.id === enemy.id)) return true;
+      forOwner(s, p, () => engage(s, enemy));
+      prepend(s, fx("immediateAttack", { target: enemy.id, player: p }));
+      return true;
+    }
+    case "emcCannyTake": {
+      // The Canny Huntsman: the top 5 cards of the encounter deck are looked at.
+      const looked = s.encounterDeck.splice(0, 5);
+      q.canny = { top: [], bottom: [], left: looked };
+      prepend(s, fx("emcCannyPlace", { player: p }));
+      const hunt = accoladeHero(s, ERED.hunt);
+      if (hunt) {
+        hunt.tempWill = (hunt.tempWill ?? 0) + 3;
+        log(
+          s,
+          `The Canny Huntsman: ${name(hunt)} gets +3 willpower until the end of the phase.`,
+          "good",
+        );
+      }
+      return true;
+    }
+    case "emcCannyPlace": {
+      const c = q.canny;
+      if (!c) return true;
+      if (!c.left.length) {
+        s.encounterDeck = [...c.top, ...s.encounterDeck, ...c.bottom];
+        log(
+          s,
+          `The Canny Huntsman: ${c.top.length} ${c.top.length === 1 ? "card goes" : "cards go"} back on top of the encounter deck and ${c.bottom.length} to the bottom.`,
+          "good",
+        );
+        delete q.canny;
+        return true;
+      }
+      choose(
+        s,
+        `The Canny Huntsman · Place the looked-at encounter cards (${c.left.length} left; the first put on top is the topmost)${seatLabel(s, p)}`,
+        c.left.flatMap((code, i) => [
+          {
+            id: `top:${i}`,
+            code,
+            label: `${card(code).name} · next on top`,
+            effects: [fx("emcCannyPut", { value: i, text: "top", player: p })],
+          },
+          {
+            id: `bottom:${i}`,
+            code,
+            label: `${card(code).name} · on the bottom`,
+            effects: [
+              fx("emcCannyPut", { value: i, text: "bottom", player: p }),
+            ],
+          },
+        ]),
+      );
+      return true;
+    }
+    case "emcCannyPut": {
+      const c = q.canny;
+      if (!c) return true;
+      const [code] = c.left.splice(e.value ?? 0, 1);
+      if (code) (e.text === "top" ? c.top : c.bottom).push(code);
+      prepend(s, fx("emcCannyPlace", { player: p }));
+      return true;
+    }
+    case "emcRhyme": {
+      const enemy = get(s, e.target);
+      if (!enemy) return true;
+      q.rhyme = [
+        ...(q.rhyme ?? []).filter(
+          (x) => x.round === s.round && x.phase === s.phase,
+        ),
+        { target: enemy.id, round: s.round, phase: s.phase },
+      ];
+      log(
+        s,
+        `Rhyme of the Slayer: ${name(enemy)} gets −4 attack until the end of the phase.`,
+        "good",
+      );
       return true;
     }
   }

@@ -5,9 +5,10 @@ scenarios are played in order with the Revised Core Set's Campaign Log, and
 each campaign card, boon and burden changes the scenario it belongs to. Campaign
 mode offers it as **Ered Mithrin**, next to Mirkwood Paths, The Lord of the
 Rings, Angmar Awakened and Dream-chaser. The campaign begins with Journey Up
-the Anduin; **its first three chapters are supported** (Journey Up the Anduin,
-Lost in Mirkwood and The King's Quest), and the next chapters follow in
-publication order (The Withered Heath is not available in campaign mode yet).
+the Anduin; **its first four chapters are supported** (Journey Up the Anduin,
+Lost in Mirkwood, The King's Quest and The Withered Heath), and the next
+chapters follow in publication order (Roam Across Rhovanion is not available in
+campaign mode yet).
 
 ## Sources
 
@@ -35,7 +36,9 @@ publication order (The Withered Heath is not available in campaign mode yet).
   Campaign") keeps them out of ordinary games.
 - Lost in Mirkwood's and The King's Quest's campaign cards, Melanwar, Isolde,
   The Threat to Wilderland, Dagnir's Spawn and Abandoned Ruin (7 cards, 9
-  faces) were checked the same way; all 19 cards and 22 faces are pinned.
+  faces), and The Withered Heath's campaign card with its four Accolades and
+  four Songs (9 cards, 10 faces) were checked the same way; all 28 cards and 32
+  faces are pinned. The scans add "Permanent." to each Accolade.
 - The scans correct the catalog: Turayn's text begins with "Sentinel." and A
   Growing Threat's with "Surge."; the treasures carry the TREASURE type line
   and the unique symbol. The second campaign card's title, printed in small
@@ -104,6 +107,25 @@ publication order (The Withered Heath is not available in campaign mode yet).
 | Dagnir's Spawn (burden enemy)               | X threat and defense (the part number). It cannot have non-Dragon attachments. When Revealed: each player in turn may distribute X damage among the characters they control, 1 at a time; if every player does, it is shuffled into the encounter deck.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | Abandoned Ruin (burden location)            | Setup: shuffled into the Caves deck if the scenario has one (The King's Quest's), otherwise removed from the game. Response: after it becomes the active location, the players look at 3 random undiscovered treasures and 1 is guarded by it, claimed when it is explored (always used, once per game for the group).                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 
+## The Withered Heath (Part 4)
+
+| Card                          | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Campaign card                 | Setup: a player may search their deck for a unique boon ally (the deck is shuffled); with "Melanwar has given you guidance", the first player removes 2 non-unique locations from the encounter deck and 1 location from the Caves deck; with "Isolde is on the hunt", 3 non-unique enemies. Abandoned Ruin, in the Campaign Pool, joins the Caves deck. Forced: after main quest stage 1, 2 or 3 is defeated, a player who does not control an Accolade may attach that stage's Accolade to one of their heroes; stage 4's defeat wins the game, so Dragon-slayer is offered with the resolution. Resolution: each Accolade in play joins the Campaign Pool, recorded with its hero; each player may add a different Song to the Campaign Pool; with 4 Dragon Signs in the victory display, the players choose 1 of 3 random undiscovered treasures, discovered at once; the treasures the players control are discovered. |
+| Master of the Hunt (Accolade) | Permanent. +1 hit point. Response: after its hero commits to the quest, a chosen player looks at the top 3 cards of their deck, keeps 1 on top and puts the others on the bottom in the order they choose.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Unbroken (Accolade)           | Permanent. +1 defense. Action: discard a card from your hand to heal 1 damage from its hero (each player once each round).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| The Steadfast (Accolade)      | Permanent. +1 willpower. Response: after its hero commits to the quest, with your threat at 40 or more, 1 progress on the current quest (always used: it only helps).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Dragon-slayer (Accolade)      | Permanent. +1 attack. Response: after a non-unique enemy is added to the staging area, exhaust it to engage that enemy, which makes an immediate attack against you.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| The Canny Huntsman (Song)     | Quest Action: look at the top 5 encounter cards and put each on top (in the chosen order) or on the bottom; the Master of the Hunt hero gets +3 willpower this phase.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| A Tale of Victories (Song)    | Combat Action: draw a card for each enemy engaged with you; the Unbroken hero heals 3 damage and cancels 3 of the next damage dealt to it this phase.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Lay of Courage (Song)         | Quest Response, offered when a card is revealed from the encounter deck in the quest phase: cancel its when-revealed effects; the Steadfast hero readies; Lay of Courage goes to the victory display.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Rhyme of the Slayer (Song)    | Combat Action: an enemy gets −4 attack this phase; the Dragon-slayer hero gets +4 attack while attacking it.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+
+The Accolades are Permanent, like the Revised Core's and Angmar Awakened's
+Permanent boons: the Campaign Log records each with the hero that earned it, it
+returns to that hero at each later setup, and it leaves the game (and the
+Campaign Log) with that hero. The Songs join decks through the interlude.
+
 ## The treasures
 
 | Treasure             | Behaviour                                                                                                                                                                                                                                                                                           |
@@ -165,10 +187,17 @@ become portable with their chapters.
 ## Verification
 
 ```sh
-node --import tsx --test tests/ered-campaign.test.ts tests/ered-campaign-pool.test.ts
+node --import tsx --test tests/ered-campaign.test.ts tests/ered-campaign-pool.test.ts tests/ered-campaign-heath.test.ts
 npm run build
 npm run test:browser-ered-campaign
 ```
+
+`tests/ered-campaign-heath.test.ts` (8 tests) covers The Withered Heath's
+texts, its setup (the Accolades back on their heroes, the boon ally search,
+both notes' removals, Abandoned Ruin in the Caves deck), the Accolade after a
+defeated stage (and none for a player who has one), the resolution (the
+Accolades, Dragon-slayer, the Songs, different Songs in a two-player game, the
+treasure with 4 Dragon Signs), and each Accolade and Song.
 
 `tests/ered-campaign-pool.test.ts` (18 tests) covers the foreign cards of each
 later chapter (each one revealed in each chapter where it is foreign, with a
@@ -213,6 +242,8 @@ inspector names its guarded treasure), resolves Melanwar's Response, claims the
 treasure and records Melanwar's note; the interlude before The King's Quest
 offers free hero changes; The King's Quest gives Isolde, resolves The Threat to
 Wilderland's immunity (shown by the inspector) and Dagnir's Spawn's damage, and
-records Isolde and Dagnir's Spawn in the Campaign Pool, after which The
-Withered Heath is not available yet; at 1280, 390 and 320 pixels (60
-checkpoints); it checks the 22 pinned faces.
+records Isolde and Dagnir's Spawn in the Campaign Pool; The Withered Heath
+shows its Dragon Signs in the inspector, attaches Master of the Hunt after the
+first stage and records it with Lay of Courage, after which Roam Across
+Rhovanion is not available yet; at 1280, 390 and 320 pixels (72 checkpoints);
+it checks the 32 pinned faces.

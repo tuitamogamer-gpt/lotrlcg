@@ -601,6 +601,7 @@ export function enemyAddedToStaging(s: GameState, u: Unit) {
   bloodPlayerEnemyAddedToStaging(s, u);
   longDarkPlayerEnemyAddedToStaging(s, u);
   LandShadowPlayers.landShadowPlayerEnemyAddedToStaging(s, u, attachedBefore);
+  EredCards.eredCampaignEnemyStaged(s, u);
 }
 
 /** Put a new enemy directly into play engaged, without staging-only Trap triggers. */
@@ -3611,6 +3612,22 @@ export function resolveReveal(
         }),
       ),
     );
+  // Lay of Courage (an Ered Mithrin campaign boon).
+  if (when && revealOrigin === "encounter")
+    options.push(
+      ...EredCards.eredLayOfCourageOptions(
+        s,
+        fx("placeEncounter", {
+          text: "revealed",
+          code,
+          player: revealingPlayer,
+          value: thalin ? 1 : 0,
+          count: initialProgress,
+          source: guarding,
+          revealOrigin,
+        }),
+      ),
+    );
   if (canCancelWhenRevealed && revealOrigin === "encounter")
     options.push(
       ...HaradResponses.haradWhenRevealedOptions(
@@ -4353,6 +4370,7 @@ export function spendEvent(
   if (s.ninEilph) s.used.push("nin:played");
   holdPlayedEvent(s, u);
   sagaCampaignEventPlayed(s, u);
+  EredCards.eredCampaignEventPlayed(s, u);
   wainridersPlayerCardPlayed(s, card(u.code));
   batch4Scenario(s).playerCardPlayed?.(s, u);
   Isengard.isengardPlayerPlayed(
