@@ -55,6 +55,7 @@ import { playerCardImmune } from "./card-immunity";
 import { syncAttachmentText } from "./attachment-text";
 import {
   ERED,
+  ERED_TREASURES,
   eredCampaignFrameworkEffect,
   eredChapter,
   eredPart,
@@ -63,6 +64,7 @@ import {
   eredTreasureOffer,
   growingThreatTarget,
   isEredCampaign,
+  treasureHosts,
 } from "./ered-campaign";
 import { ROAM_RHOVANION as R } from "./roam-rhovanion-support";
 import {
@@ -118,6 +120,7 @@ export function eredCampaignEncounter(
 ) {
   if (code === ERED.spawn) return spawnRevealed(s, fromReveal);
   if (code === ERED.cunning) return cunningRevealed(s, replay, fromReveal);
+  if (code === ERED.sickness) return sicknessRevealed(s, replay, fromReveal);
   if (code !== ERED.growing) return false;
   if (replay) {
     const i = s.encounterDiscard.lastIndexOf(code);
@@ -145,6 +148,55 @@ export function eredCampaignEncounter(
   log(s, "A Growing Threat is removed from the game.");
   return true;
 }
+
+// ------------------------------------------------------------- Mount Gundabad
+
+/** The treasures attached to a character. */
+const treasuresOn = (u: Unit) =>
+  u.attachments.filter((a) => ERED_TREASURES.includes(a.code));
+/** A character with 1 or more treasures attached. */
+const treasureHolders = (s: GameState) =>
+  allCharacters(s).filter((u) => treasuresOn(u).length > 0);
+/**
+ * Dragon-sickness: "Surge. When Revealed: Attach to a character with 1 or
+ * more treasures attached, then attach all unguarded treasures in play to
+ * that character." (Surge is a printed keyword; with no such character it is
+ * discarded.)
+ */
+function sicknessRevealed(s: GameState, replay: boolean, fromReveal: boolean) {
+  if (replay) {
+    const i = s.encounterDiscard.lastIndexOf(ERED.sickness);
+    if (i >= 0) s.encounterDiscard.splice(i, 1);
+  }
+  if (!fromReveal) {
+    s.encounterDiscard.push(ERED.sickness);
+    return true;
+  }
+  prepend(s, fx("emcSickness", { player: firstPlayer(s) }));
+  return true;
+}
+
+/** Dragon-sickness leaves play to the encounter discard pile. */
+export function eredCampaignAttachmentLeaves(
+  s: GameState,
+  u: Unit,
+  a: Attachment,
+) {
+  if (a.code !== ERED.sickness) return false;
+  u.attachments = u.attachments.filter((x) => x.id !== a.id);
+  s.encounterDiscard.push(a.code);
+  log(s, `Dragon-sickness is discarded from ${name(u)}.`);
+  return true;
+}
+/**
+ * Mount Gundabad (campaign card): "Unique locations cannot be discarded from
+ * play by encounter card effects."
+ */
+export const eredCampaignLocationProtected = (s: GameState, u: Unit) =>
+  eredChapter(s) &&
+  s.scenarioId === "mount-gundabad" &&
+  card(u.code).type_code === "location" &&
+  !!card(u.code).is_unique;
 
 // ------------------------------------------------------------- Roam Across Rhovanion
 
@@ -254,6 +306,21 @@ const playerAttachment = (code: string) =>
  * damage."
  */
 export function eredCampaignCharacterExhausted(s: GameState, u: Unit) {
+  // Dragon-sickness (Condition): "Forced: After attached character exhausts,
+  // raise your threat by 1 for each treasure attached to it."
+  if (
+    isEredCampaign(s.campaign) &&
+    u.attachments.some((a) => a.code === ERED.sickness && !a.blanked) &&
+    treasuresOn(u).length
+  )
+    prepend(
+      s,
+      fx("emcSicknessThreat", {
+        target: u.id,
+        value: treasuresOn(u).length,
+        player: ownerOf(s, u),
+      }),
+    );
   if (u.code !== ERED.turayn || u.blanked || !s.campaign) return;
   if (!allCharacters(s).some((x) => x.id !== u.id)) return;
   prepend(s, fx("emcTurayn", { source: u.id, player: ownerOf(s, u) }));
@@ -1760,6 +1827,77 @@ export function eredCampaignEffect(s: GameState, e: Effect): boolean {
         s,
         `The Steadfast: ${name(hero)} commits with your threat at 40 or higher, placing 1 progress on the current quest.`,
         "good",
+      );
+      return true;
+    }
+    case "emcSickness": {
+      // Dragon-sickness: "Attach to a character with 1 or more treasures
+      // attached …"
+      const hosts = treasureHolders(s);
+      if (!hosts.length) {
+        s.encounterDiscard.push(ERED.sickness);
+        log(
+          s,
+          "Dragon-sickness: no character has a treasure attached, and it is discarded.",
+        );
+        return true;
+      }
+      choose(
+        s,
+        `Dragon-sickness · Attach it to a character with 1 or more treasures attached${seatLabel(s, p)}`,
+        hosts.map((h) => ({
+          id: h.id,
+          code: h.code,
+          label: `${name(h)} (${treasuresOn(h)
+            .map((a) => card(a.code).name)
+            .join(", ")})`,
+          effects: [fx("emcSicknessAttach", { target: h.id, player: p })],
+        })),
+        card(ERED.sickness).text,
+      );
+      return true;
+    }
+    case "emcSicknessAttach": {
+      const h = get(s, e.target);
+      if (!h || !allCharacters(s).some((x) => x.id === h.id)) {
+        s.encounterDiscard.push(ERED.sickness);
+        return true;
+      }
+      h.attachments.push({
+        id: `a${s.nextId++}`,
+        code: ERED.sickness,
+        exhausted: false,
+      });
+      // "… then attach all unguarded treasures in play to that character."
+      // (Treasures guarded by encounter cards stay; Dwarf-Lord's Crown can
+      // only be attached to a hero.)
+      const moved: string[] = [];
+      for (const from of allCharacters(s)) {
+        if (from.id === h.id) continue;
+        for (const a of treasuresOn(from)) {
+          if (!treasureHosts(s, a.code).some((x) => x.id === h.id)) continue;
+          from.attachments = from.attachments.filter((x) => x.id !== a.id);
+          h.attachments.push(a);
+          moved.push(card(a.code).name);
+        }
+      }
+      log(
+        s,
+        `Dragon-sickness is attached to ${name(h)}${moved.length ? `, and ${moved.join(", ")} ${moved.length === 1 ? "is" : "are"} attached to it` : ""}: after it exhausts, its controller raises their threat by 1 for each treasure attached to it.`,
+        "danger",
+      );
+      syncAttachmentText(s);
+      return true;
+    }
+    case "emcSicknessThreat": {
+      const n = e.value ?? 0;
+      if (n <= 0) return true;
+      raiseThreat(s, n, "encounter");
+      const h = get(s, e.target);
+      log(
+        s,
+        `Dragon-sickness: ${h ? name(h) : "the attached character"} exhausted, and ${several(s) ? `${seatName(s, p)} raises their` : "you raise your"} threat by ${n}.`,
+        "danger",
       );
       return true;
     }

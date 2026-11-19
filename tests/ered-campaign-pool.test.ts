@@ -1,7 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { card, STARTERS } from "../src/game/cards";
-import { damage, engage, revealed } from "../src/game/board";
+import {
+  damage,
+  destroy,
+  engage,
+  progressLocation,
+  revealed,
+} from "../src/game/board";
+import { reduceThreat } from "../src/game/threat-reduction";
 import { flush } from "../src/game/effects";
 import { make, prepend, stats, threatOf } from "../src/game/core";
 import {
@@ -26,6 +33,7 @@ import { WILDS_RHOVANION as W } from "../src/game/wilds-rhovanion-support";
 import { WITHERED_HEATH as H } from "../src/game/withered-heath-support";
 import { ROAM_RHOVANION as R } from "../src/game/roam-rhovanion-support";
 import { FIRE_NIGHT as F } from "../src/game/fire-night-support";
+import { GHOST_FRAMSBURG as G } from "../src/game/ghost-framsburg-support";
 import { syncAttachmentText } from "../src/game/attachment-text";
 import { seatView } from "../src/game/table";
 import type { GameState, ScenarioId, Unit } from "../src/game/types";
@@ -106,15 +114,15 @@ function shadow(s: GameState, enemy: Unit, code: string, defender?: Unit) {
   return batch4Scenario(s).shadow!(s, code);
 }
 
-test("Ered Mithrin Campaign Pool: the 68 cards of the first six chapters are foreign wherever the later chapters' own modules do not script them", () => {
-  assert.equal(ERED_POOL_PORTABLE.length, 68);
-  assert.equal(new Set(ERED_POOL_PORTABLE).size, 68);
+test("Ered Mithrin Campaign Pool: the 78 cards of the first seven chapters are foreign wherever the later chapters' own modules do not script them", () => {
+  assert.equal(ERED_POOL_PORTABLE.length, 78);
+  assert.equal(new Set(ERED_POOL_PORTABLE).size, 78);
   const counts = LATER.map((id) => {
     const s = chapter(id);
     assert.ok(eredPoolLive(s));
     return ERED_POOL_PORTABLE.filter((c) => eredForeign(s, c)).length;
   });
-  assert.deepEqual(counts, [47, 51, 54, 63, 53, 61]);
+  assert.deepEqual(counts, [57, 61, 64, 63, 63, 71]);
   // Every card is foreign in at least one later chapter.
   const heath = chapter("the-withered-heath"),
     roam = chapter("roam-across-rhovanion");
@@ -139,6 +147,10 @@ test("Ered Mithrin Campaign Pool: the 68 cards of the first six chapters are for
   const ghost = chapter("the-ghost-of-framsburg");
   assert.equal(eredForeign(fire, F.thrall), false);
   assert.equal(eredForeign(ghost, F.thrall), true);
+  // The Ghost of Framsburg's own cards are foreign from Mount Gundabad on.
+  const gundabad = chapter("mount-gundabad");
+  assert.equal(eredForeign(ghost, G.stalker), false);
+  assert.equal(eredForeign(gundabad, G.stalker), true);
   // Outside the campaign the layer does nothing.
   const normal = createGame(5, d.cards, d.heroes, d.id, {
     scenarioId: "the-withered-heath",
@@ -1216,4 +1228,182 @@ test("Ered Mithrin Campaign Pool: Powerful in Wrath, The Dragon's Fury and Brigh
   const v = reveal(u, F.flames);
   assert.equal(damage(v), before + 1);
   assert.ok(valid(v));
+});
+
+test("Ered Mithrin Campaign Pool: The Ghost of Framsburg's enemies and locations keep their printed text in Mount Gundabad, the discover keyword ignored", () => {
+  // Crypt Stalker: X [threat], [attack] and [defense], the tens digit of the
+  // first player's threat; its attack raises the defending player's threat.
+  const s = calm(chapter("mount-gundabad"), "encounter");
+  s.threat = 34;
+  const stalker = make(s, G.stalker);
+  s.staging.push(stalker);
+  assert.equal(threatOf(s, stalker), 3);
+  assert.deepEqual(
+    [stats(s, stalker).attack, stats(s, stalker).defense],
+    [3, 3],
+  );
+  const staircase = make(s, G.staircase);
+  s.staging.push(staircase);
+  assert.equal(threatOf(s, staircase), 3);
+  batch4Scenario(s).enemyAttackStarted!(s, stalker, 0);
+  flush(s);
+  assert.equal(s.threat, 35);
+  // Its shadow: raise your threat by 2, or return the attacker to staging.
+  let t = calm(chapter("mount-gundabad"), "defense");
+  const orc = make(t, W.troll);
+  t.engaged.push(orc);
+  shadow(t, orc, G.stalker, t.heroes[0]);
+  flush(t);
+  assert.match(t.choice!.title, /^Crypt Stalker · Choose one/);
+  const before = t.threat;
+  const raised = choose(structuredClone(t), "threat");
+  assert.equal(raised.threat, before + 2);
+  t = choose(t, "return");
+  assert.ok(t.staging.some((u) => u.id === orc.id));
+  assert.ok(!t.engaged.some((u) => u.id === orc.id));
+  // Evil Spectre: shuffled back into the encounter deck when destroyed while
+  // the active location is Dark; its shadow gives +1 (+2 if Dark).
+  const u = calm(chapter("mount-gundabad"), "combat");
+  u.activeLocation = make(u, G.hall);
+  const spectre = make(u, G.spectre);
+  u.engaged.push(spectre);
+  const deck = u.encounterDeck.length;
+  destroy(u, spectre);
+  flush(u);
+  assert.equal(u.encounterDeck.length, deck + 1);
+  assert.ok(u.encounterDeck.includes(G.spectre));
+  assert.ok(!u.encounterDiscard.includes(G.spectre));
+  const other = make(u, W.troll);
+  u.engaged.push(other);
+  shadow(u, other, G.spectre, u.heroes[0]);
+  assert.equal(u.combat!.attackBonus, 2);
+  u.activeLocation = null;
+  shadow(u, other, G.spectre, u.heroes[0]);
+  assert.equal(u.combat!.attackBonus, 1);
+  // Haunted Hall: progress on a Dark location in the staging area raises the
+  // placing player's threat by 1 for each Haunted Hall there.
+  const v = calm(chapter("mount-gundabad"), "quest");
+  v.staging = v.staging.filter((x) => card(x.code).type_code !== "location");
+  const hall = make(v, G.hall),
+    tower = make(v, G.tower);
+  v.staging.push(hall, tower);
+  const threat = v.threat;
+  progressLocation(v, tower, 1);
+  flush(v);
+  assert.equal(v.threat, threat + 1);
+  // Moonlit Passage: each player's threat cannot be reduced by more than 1
+  // via player card effects each round.
+  const w = calm(chapter("mount-gundabad"), "planning");
+  w.threat = 30;
+  w.staging.push(make(w, G.moonlit));
+  reduceThreat(w, 3);
+  assert.equal(w.threat, 29);
+  reduceThreat(w, 2);
+  assert.equal(w.threat, 29);
+  // (Encounter effects are not capped.)
+  reduceThreat(w, 2, undefined, "encounter");
+  assert.equal(w.threat, 27);
+  assert.ok(valid(w));
+  // Cursed Tower: after a player plays an event, they raise their threat by 1.
+  const x = calm(chapter("mount-gundabad"), "planning");
+  x.staging.push(make(x, G.tower));
+  const event = make(x, "01020");
+  const t0 = x.threat;
+  batch4Scenario(x).eventPlayed!(x, event);
+  flush(x);
+  assert.equal(x.threat, t0 + 1);
+  // Its shadow discards a non-objective attachment.
+  const y = calm(chapter("mount-gundabad"), "defense");
+  const attacker = make(y, W.troll);
+  y.engaged.push(attacker);
+  y.heroes[0].attachments.push({
+    id: `a${y.nextId++}`,
+    code: "01026",
+    exhausted: false,
+    owner: 0,
+  });
+  shadow(y, attacker, G.tower, y.heroes[0]);
+  flush(y);
+  assert.match(
+    y.choice!.title,
+    /^Cursed Tower · Discard a non-objective attachment/,
+  );
+  const steward = choose(y, y.choice!.options[0].id);
+  assert.ok(!steward.heroes[0].attachments.some((a) => a.code === "01026"));
+  // Forgotten Crypt: immune to player card effects; when it becomes the
+  // active location, cards are discarded until an Undead enemy is, and that
+  // enemy is added to the staging area (no Loot objective to guard).
+  let z = calm(chapter("mount-gundabad"), "travel");
+  const crypt = make(z, G.crypt);
+  assert.ok(batch4Scenario(z).immune!(z, crypt));
+  z.encounterDeck = [W.troll, W.scales, G.spectre, ...z.encounterDeck];
+  z.activeLocation = crypt;
+  batch4Scenario(z).travelEntered!(z, crypt, true);
+  flush(z);
+  for (let i = 0; i < 5 && z.choice; i++)
+    z = choose(z, z.choice!.options[0].id);
+  assert.ok(z.staging.some((e) => e.code === G.spectre));
+  assert.ok(z.encounterDiscard.includes(W.troll));
+  assert.ok(z.encounterDiscard.includes(W.scales));
+  assert.ok(z.log.some((l) => /no Loot objective/.test(l.text)));
+  assert.ok(valid(z));
+});
+
+test("Ered Mithrin Campaign Pool: Terrible Shadows, Abandoned Ruins and Slammed Shut resolve in Mount Gundabad", () => {
+  // Terrible Shadows: each character gets -1 [willpower], [attack] and
+  // [defense] until the end of the round.
+  const s = calm(chapter("mount-gundabad"), "staging");
+  const hero = s.heroes[0];
+  const before = stats(s, hero);
+  const t = reveal(s, G.terrible);
+  const after = stats(t, t.heroes[0]);
+  assert.deepEqual(
+    [after.will, after.attack, after.defense],
+    [before.will - 1, before.attack - 1, before.defense - 1],
+  );
+  assert.ok(t.encounterDiscard.includes(G.terrible));
+  assert.ok(valid(t));
+  t.round++;
+  assert.equal(stats(t, t.heroes[0]).will, before.will);
+  // Its shadow: +1 [attack], and +3 threat if this attack destroys a character.
+  const u = calm(chapter("mount-gundabad"), "defense");
+  const enemy = make(u, W.troll);
+  u.engaged.push(enemy);
+  shadow(u, enemy, G.terrible, u.heroes[0]);
+  assert.equal(u.combat!.attackBonus, 1);
+  assert.equal(
+    (u.combat as never as { eredPoolTerrible: number }).eredPoolTerrible,
+    3,
+  );
+  (
+    u.combat as never as { eredPoolTerribleKill: boolean }
+  ).eredPoolTerribleKill = true;
+  const finished = batch4Scenario(u).attackFinished!(u, u.combat!, false);
+  assert.ok(finished.some((e) => e.kind === "threat" && e.value === 3));
+  // Abandoned Ruins: no Discover keyword to resolve, so it gains surge and
+  // doomed 2.
+  const v = calm(chapter("mount-gundabad"), "staging");
+  const threat = v.threat,
+    deck = v.encounterDeck.length;
+  const w = reveal(v, G.ruins);
+  assert.ok(w.threat >= threat + 2);
+  assert.ok(w.encounterDeck.length < deck, "it surged");
+  assert.ok(w.encounterDiscard.includes(G.ruins));
+  // Its shadow: the attacker makes an additional attack.
+  const x = calm(chapter("mount-gundabad"), "defense");
+  const orc = make(x, W.troll);
+  x.engaged.push(orc);
+  shadow(x, orc, G.ruins, x.heroes[0]);
+  assert.equal((x.combat as never as { extraAttacks: number }).extraAttacks, 1);
+  // Slammed Shut: Doomed 1; each player exhausts a character, and characters
+  // cannot be readied by player card effects until the end of the round.
+  const y = calm(chapter("mount-gundabad"), "staging");
+  const t0 = y.threat;
+  const z = reveal(y, G.slammed);
+  assert.ok(z.threat >= t0 + 1);
+  assert.ok(z.heroes.some((h) => h.exhausted));
+  assert.equal(batch4Scenario(z).cannotPlayerReady!(z), true);
+  z.round++;
+  assert.equal(batch4Scenario(z).cannotPlayerReady!(z), false);
+  assert.ok(valid(z));
 });

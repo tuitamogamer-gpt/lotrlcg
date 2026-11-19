@@ -63,6 +63,8 @@ export const MOUNT_GUNDABAD_ALL_QUESTS = [
   GUNDABAD.door,
   ...MOUNT_GUNDABAD_STAGE_TWOS,
 ];
+/** Abandoned Ruin: the Ered Mithrin campaign's burden location (Caves deck). */
+const ABANDONED_RUIN = "12174";
 export const MOUNT_GUNDABAD_CAVES = [
   GUNDABAD.armory,
   GUNDABAD.treasury,
@@ -195,7 +197,12 @@ export function validateMountGundabad(
     owner = (p: number) => Number.isInteger(p) && p >= 0 && p < seats;
   const round = (n: number) =>
     Number.isSafeInteger(n) && n >= 0 && n <= s.round;
+  // The Ered Mithrin campaign shuffles Abandoned Ruin (a burden) into the
+  // Caves deck.
+  const ruin = (code: string) =>
+    code === ABANDONED_RUIN && s.campaign?.kind === "ered";
   const allowed = new Set(MOUNT_GUNDABAD_RECIPES.flatMap((r) => r.card_codes));
+  if (s.campaign?.kind === "ered") allowed.add(ABANDONED_RUIN);
   const physical = [
     ...q.cavesDeck,
     ...q.setAside,
@@ -236,7 +243,9 @@ export function validateMountGundabad(
     board.filter((u) => u.code === GUNDABAD.hobgoblin).map((u) => u.id),
   );
   return (
-    q.cavesDeck.every((u) => MOUNT_GUNDABAD_CAVES.includes(u.code)) &&
+    q.cavesDeck.every(
+      (u) => MOUNT_GUNDABAD_CAVES.includes(u.code) || ruin(u.code),
+    ) &&
     q.setAside.every(
       (u) => u.code === GUNDABAD.forge || u.code === GUNDABAD.sword,
     ) &&

@@ -55,6 +55,7 @@ export const ERED = {
   roamCard: "octgn:9d60ffd4-34c2-42db-9fb7-474b1410d1aa",
   fireCard: "octgn:497b0bd9-1b46-49d4-9722-930914d8a4d7",
   ghostCard: "octgn:280e4dce-aef9-4472-94a6-94b114be5a4e",
+  gundabadCard: "octgn:6d8f614d-ccd1-4416-aeee-6d30824cbbda",
   /** Turayn (unique boon ally, Journey Up the Anduin). */
   turayn: "12166",
   /** Melanwar (unique boon ally, Lost in Mirkwood). */
@@ -92,6 +93,8 @@ export const ERED = {
   brazier: "12190",
   hunter: "12191",
   stalker: "12192",
+  /** Mount Gundabad's burden: Dragon-sickness (a treachery). */
+  sickness: "12194",
   /** The nine treasures. */
   anvil: "12196",
   axe: "12197",
@@ -136,6 +139,7 @@ export const ERED_CAMPAIGN_SUPPORTED: readonly ScenarioId[] = [
   "roam-across-rhovanion",
   "fire-in-the-night",
   "the-ghost-of-framsburg",
+  "mount-gundabad",
 ];
 /** The chapters whose campaign card lets each player change heroes without the +1 threat penalty. */
 export const ERED_FREE_CHANGES: readonly ScenarioId[] = [
@@ -151,6 +155,7 @@ export const ERED_CAMPAIGN_CARDS: Partial<Record<ScenarioId, string>> = {
   "roam-across-rhovanion": ERED.roamCard,
   "fire-in-the-night": ERED.fireCard,
   "the-ghost-of-framsburg": ERED.ghostCard,
+  "mount-gundabad": ERED.gundabadCard,
 };
 /** The Withered Heath's Accolades, by the main quest stage that earns them. */
 export const ERED_ACCOLADES: readonly string[] = [
@@ -193,6 +198,7 @@ export const ERED_BURDENS: readonly string[] = [
   ERED.misplaced,
   ERED.hunter,
   ERED.stalker,
+  ERED.sickness,
 ];
 /** The burdens shuffled into each encounter deck at setup. */
 const ENCOUNTER_BURDENS: readonly string[] = [
@@ -200,7 +206,14 @@ const ENCOUNTER_BURDENS: readonly string[] = [
   ERED.spawn,
   ERED.hunter,
   ERED.stalker,
+  ERED.sickness,
 ];
+/**
+ * Mount Gundabad: "If there are 6 or more treasures recorded in the campaign
+ * log" (its Setup shuffles Dragon-sickness into the encounter deck, and its
+ * Resolution adds it to the Campaign Pool).
+ */
+export const DRAGON_SICKNESS_TREASURES = 6;
 /** The Campaign Log's notes and their printed wording. */
 export const ERED_NOTES: Record<string, string> = {
   turayn: "Turayn has taken an oath of vigilance",
@@ -455,6 +468,31 @@ export function eredCampaignSetup(s: GameState) {
     enqueue(
       s,
       fx("emcRemove", { text: "location", value: 3, player: firstPlayer(s) }),
+    );
+  // Mount Gundabad: "If there are 6 or more treasures recorded in the
+  // campaign log, shuffle Dragon-sickness into the encounter deck. … If
+  // 'Melanwar has given you guidance on traversing Wilderland,' search the
+  // encounter deck for 2 non-unique locations and the Caves deck for 1
+  // location and remove them from the game. If 'Beldis's care has bolstered
+  // the heroes' spirits,' search the encounter deck for 3 treacheries and
+  // remove them from the game."
+  const gundabad = s.scenarioId === "mount-gundabad";
+  if (
+    gundabad &&
+    (c!.treasures?.length ?? 0) >= DRAGON_SICKNESS_TREASURES &&
+    !pool.includes(ERED.sickness)
+  )
+    pool.push(ERED.sickness);
+  if (gundabad && c!.notes?.includes("melanwar"))
+    enqueue(
+      s,
+      fx("emcRemove", { text: "location", value: 2, player: firstPlayer(s) }),
+      fx("emcRemoveCave", { value: 1, player: firstPlayer(s) }),
+    );
+  if (gundabad && c!.notes?.includes("beldis"))
+    enqueue(
+      s,
+      fx("emcRemove", { text: "treachery", value: 3, player: firstPlayer(s) }),
     );
   // Fire in the Night: "If 'Turayn has taken an oath of vigilance,' search
   // the encounter deck for 3 non-unique locations and remove them from the
@@ -1001,6 +1039,25 @@ export function resolveEredCampaign(s: GameState) {
       `The Ghost of Framsburg · Resolution: ${hazards.length ? names(hazards) : "no Hazard card"} ${hazards.length === 1 ? "is" : "are"} discarded for the group's choice.`,
     );
   }
+  if (s.scenarioId === "mount-gundabad") {
+    // "The players may, as a group, look at 3 random undiscovered treasures
+    // and choose 1 to attach to an eligible character" (chosen with the
+    // resolution, it is discovered at once). "Remove A Growing Threat from
+    // the campaign pool. If there are 6 or more treasures recorded in the
+    // campaign log, add Dragon-sickness to the campaign pool." (A treasure
+    // chosen with the resolution counts.)
+    const pool = ERED_TREASURES.filter((x) => !c.treasures?.includes(x));
+    eredState(s).looking = shuffle(s, [...pool]).slice(0, 3);
+    if (c.burdens.includes(ERED.growing)) {
+      c.burdens = c.burdens.filter((x) => x !== ERED.growing);
+      log(
+        s,
+        "Mount Gundabad · Resolution: A Growing Threat is removed from the Campaign Pool.",
+        "good",
+      );
+    }
+    dragonSickness(s, c, "Mount Gundabad");
+  }
   if (s.scenarioId === "fire-in-the-night" && s.progress >= 5) {
     // "If there is at least 5 progress on Hrogar's Hill, the players look at
     // 3 random undiscovered treasures and and choose 1 to attach to an
@@ -1040,7 +1097,8 @@ export function resolveEredCampaign(s: GameState) {
   // Across Rhovanion: the staging area's locations.)
   if (
     RESOLUTION_CHAPTERS.includes(s.scenarioId) &&
-    (s.scenarioId !== "roam-across-rhovanion" || stagedLocations(s).length)
+    (s.scenarioId !== "roam-across-rhovanion" || stagedLocations(s).length) &&
+    (s.scenarioId !== "mount-gundabad" || !!s.eredCampaign?.looking?.length)
   )
     c.resolution = s.scenarioId;
   c.completed.push({
@@ -1059,7 +1117,50 @@ const RESOLUTION_CHAPTERS: readonly ScenarioId[] = [
   "roam-across-rhovanion",
   "fire-in-the-night",
   "the-ghost-of-framsburg",
+  "mount-gundabad",
 ];
+/**
+ * Mount Gundabad's Resolution: "If there are 6 or more treasures recorded in
+ * the campaign log, add Dragon-sickness to the campaign pool."
+ */
+function dragonSickness(s: GameState, c: CampaignState, title: string) {
+  if (
+    (c.treasures?.length ?? 0) < DRAGON_SICKNESS_TREASURES ||
+    c.burdens.includes(ERED.sickness)
+  )
+    return;
+  c.burdens.push(ERED.sickness);
+  log(
+    s,
+    `${title} · Resolution: ${c.treasures!.length} treasures are recorded in the Campaign Log, and Dragon-sickness joins the Campaign Pool.`,
+    "danger",
+  );
+}
+/**
+ * Mount Gundabad: "The players may, as a group, look at 3 random undiscovered
+ * treasures and choose 1 to attach to an eligible character."
+ */
+function gundabadQuestions(s: GameState) {
+  const c = s.campaign!;
+  const looking = s.eredCampaign?.looking ?? [];
+  const recorded = c.treasures?.length ?? 0;
+  return looking.length
+    ? [
+        {
+          id: "treasure",
+          label: `The players may, as a group, look at 3 random undiscovered treasures and choose 1 (it is discovered).${!c.burdens.includes(ERED.sickness) && recorded === DRAGON_SICKNESS_TREASURES - 1 ? ` ${recorded} treasures are recorded in the Campaign Log: a ${DRAGON_SICKNESS_TREASURES}th adds Dragon-sickness to the Campaign Pool.` : ""}`,
+          options: [
+            ...looking.map((code) => ({
+              id: code,
+              code,
+              label: card(code).name,
+            })),
+            { id: "none", label: "Take no treasure" },
+          ],
+        },
+      ]
+    : [];
+}
 /** The locations in the staging area, one code per title. */
 const stagedLocations = (s: GameState) => [
   ...new Set(
@@ -1190,6 +1291,7 @@ export function eredResolutionQuestions(s: GameState): {
   if (s.scenarioId === "the-withered-heath") return heathQuestions(s);
   if (s.scenarioId === "roam-across-rhovanion") return roamQuestions(s);
   if (s.scenarioId === "the-ghost-of-framsburg") return ghostQuestions(s);
+  if (s.scenarioId === "mount-gundabad") return gundabadQuestions(s);
   const ally = BOON_ALLY[s.scenarioId];
   if (!ally) return [];
   return [
@@ -1358,6 +1460,21 @@ export function applyEredResolution(
     c.resolution = null;
     return s;
   }
+  if (s.scenarioId === "mount-gundabad") {
+    const pick = answers.treasure;
+    if (pick && pick !== "none" && !c.treasures?.includes(pick)) {
+      c.treasures = [...(c.treasures ?? []), pick];
+      log(
+        s,
+        `${title} · Resolution: ${card(pick).name} is discovered and recorded in the Campaign Log.`,
+        "good",
+      );
+    }
+    if (s.eredCampaign) delete s.eredCampaign.looking;
+    dragonSickness(s, c, title);
+    c.resolution = null;
+    return s;
+  }
   if (s.scenarioId === "roam-across-rhovanion") {
     const picks = seatIndices(s).map((p) => answers[`location-${p}`]);
     if (new Set(picks).size < Math.min(picks.length, stagedLocations(s).length))
@@ -1482,6 +1599,12 @@ export function eredCampaignStatus(s: GameState): string[] {
     out.push(
       `The Ghost of Framsburg: ${q?.shadeTreasure ? "Fram's Shade's treasure was looked at (once per game)" : "after Fram's Shade engages a player at stage 1 or 2, the players attach 1 of 3 random undiscovered treasures to it as a guarded objective"}. Action (any player, on the quest card): raise each player's threat by 1 to shuffle the encounter discard pile into the encounter deck.`,
     );
+  if (s.scenarioId === "mount-gundabad") {
+    const recorded = c!.treasures?.length ?? 0;
+    out.push(
+      `Mount Gundabad: the discover keyword is ignored, and unique locations cannot be discarded from play by encounter card effects. ${recorded} ${recorded === 1 ? "treasure is" : "treasures are"} recorded in the Campaign Log${c!.burdens.includes(ERED.sickness) ? "" : `; with ${DRAGON_SICKNESS_TREASURES} or more when this chapter is won, Dragon-sickness joins the Campaign Pool`}.`,
+    );
+  }
   if (s.scenarioId === "fire-in-the-night")
     out.push(
       `Fire in the Night: ${s.progress} progress on Hrogar's Hill${s.progress >= 5 ? " (the resolution offers a treasure)" : "; with 5 or more the resolution offers a treasure"}.`,

@@ -5,11 +5,11 @@ scenarios are played in order with the Revised Core Set's Campaign Log, and
 each campaign card, boon and burden changes the scenario it belongs to. Campaign
 mode offers it as **Ered Mithrin**, next to Mirkwood Paths, The Lord of the
 Rings, Angmar Awakened and Dream-chaser. The campaign begins with Journey Up
-the Anduin; **its first seven chapters are supported** (Journey Up the
+the Anduin; **its first eight chapters are supported** (Journey Up the
 Anduin, Lost in Mirkwood, The King's Quest, The Withered Heath, Roam Across
-Rhovanion, Fire in the Night and The Ghost of Framsburg), and the next chapters
-follow in publication order (Mount Gundabad is not available in campaign mode
-yet).
+Rhovanion, Fire in the Night, The Ghost of Framsburg and Mount Gundabad), and
+the last chapter follows (The Fate of Wilderland is not available in campaign
+mode yet).
 
 ## Sources
 
@@ -47,6 +47,10 @@ yet).
   Mirkwood"). Dagnir's Spawn prints X threat and defense (X is the campaign
   card's part number). Their collector numbers (164–173 and 195–203) are one
   lower than the RingsDB codes, which the data keeps.
+- Mount Gundabad's campaign card (both faces, "Ered Mithrin Part 8",
+  collector number 192) and Dragon-sickness (193) were checked the same way;
+  the scan adds "Surge." to Dragon-sickness. With them 39 cards and 47 faces
+  are pinned.
 - The scans also correct the Wilds of Rhovanion data: The Old Ford, Woodmen
   Village, Bare Hilltop, Overgrown Path, Forest Clearing, Abandoned Village,
   Dragon Hoard and the Fire-drake carry the unique symbol (the campaign card
@@ -151,6 +155,13 @@ Campaign Log) with that hero. The Songs join decks through the interlude.
 | Gundabad Hunter (burden enemy)  | When Revealed: it makes an immediate attack against a player engaged with a unique enemy (the first player chooses among them; with none, among all players). Shadow: a unique attacker makes an additional attack.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | Gundabad Stalker (burden enemy) | Cannot be optionally engaged except by a player engaged with a unique enemy. Shadow: a unique attacker returns to the staging area after the attack.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 
+## Mount Gundabad (Part 8)
+
+| Card                               | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Campaign card                      | Setup: with 6 or more treasures recorded in the Campaign Log, Dragon-sickness is shuffled into the encounter deck; a player may search their deck for a unique boon ally; with "Melanwar has given you guidance on traversing Wilderland" the first player removes 2 non-unique locations from the encounter deck and 1 location from the Caves deck, with "Beldis's care has bolstered the heroes' spirits" 3 treacheries (Abandoned Ruin joins the Caves deck from the Campaign Pool). The discover keyword is ignored (it is only The Ghost of Framsburg's). Unique locations cannot be discarded from play by encounter card effects: the encounter effect leaves them in play (Powerful in Wrath still surges), while player card effects may discard them. Resolution: the treasures the players control are discovered; the players may choose 1 of 3 random undiscovered treasures, discovered at once ("Take no treasure" is offered, and the question warns when a 6th treasure would add Dragon-sickness); A Growing Threat leaves the Campaign Pool; with 6 or more treasures recorded, Dragon-sickness joins the Campaign Pool (with every treasure discovered there is nothing to look at). |
+| Dragon-sickness (burden treachery) | Surge. When Revealed: the first player attaches it to a character with 1 or more treasures attached, and every unguarded treasure in play moves to that character (Dwarf-Lord's Crown only to a hero; the Restricted limit then applies). With no such character it is discarded. As a Condition: after the attached character exhausts, its controller raises their threat by 1 for each treasure attached to it. It goes to the encounter discard pile when it leaves play.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+
 ## The treasures
 
 | Treasure             | Behaviour                                                                                                                                                                                                                                                                                           |
@@ -175,13 +186,14 @@ of encounter set, so a card from one scenario must resolve in another scenario's
 module. The three Wilds of Rhovanion chapters share one module, and the Core
 Set's cards (the Evil Creatures enemies, the Spiders of Mirkwood and Dol Guldur
 Orcs cards) resolve in every scenario. For the chapters from The Withered Heath
-on, `src/game/ered-campaign-pool.ts` scripts the 68 cards of Journey Up the
+on, `src/game/ered-campaign-pool.ts` scripts the 78 cards of Journey Up the
 Anduin, Lost in Mirkwood, The King's Quest, The Withered Heath, Roam Across
-Rhovanion and Fire in the Night that can join the Campaign Pool (the
+Rhovanion, Fire in the Night and The Ghost of Framsburg that can join the
+Campaign Pool (the
 non-unique, non-objective, non-burden cards A Growing Threat can set aside, and
 Roam Across Rhovanion's staging locations): each later chapter's hooks are
 composed with the pool's, which act only on a card foreign to that chapter
-(outside its own recipes; 47, 51, 54, 63, 53 and 61 of them in chapters 4 to
+(outside its own recipes; 57, 61, 64, 63, 63 and 71 of them in chapters 4 to
 9). Card text that refers to another scenario's components does as much as it
 can:
 
@@ -219,6 +231,15 @@ can:
   active location and surges, and The Dragon's Fury and Town Gate's Travel find
   no Dagnir; Wooden Palisade readies a hero, Burning Watchtower and Bright
   Flames count the side quests in the victory display.
+- **Discover and Loot** are only The Ghost of Framsburg's, and Mount
+  Gundabad's and The Fate of Wilderland's campaign cards ignore the discover
+  keyword: Hidden Staircase's Forced never triggers, Abandoned Ruins always
+  gains surge and doomed 2 (each player raises their threat by 2), and
+  Forgotten Crypt (immune to player card effects) adds the first Undead enemy
+  discarded to the staging area and finds no Loot objective to guard. Crypt
+  Stalker (X from the first player's threat), Evil Spectre (shuffled back when
+  destroyed at a Dark active location), Haunted Hall, Moonlit Passage, Cursed
+  Tower, Terrible Shadows and Slammed Shut keep their printed rules.
 - Lonely Lands keeps events played during the quest phase facedown under it
   (+2 threat each) and discards them when it leaves play; Lost in the Wild sits in
   a hand; the conditions (Weighed Down, Afraid of the Dark, Dragon Breath,
@@ -235,7 +256,7 @@ become portable with their chapters.
 ## Verification
 
 ```sh
-node --import tsx --test tests/ered-campaign.test.ts tests/ered-campaign-pool.test.ts tests/ered-campaign-heath.test.ts tests/ered-campaign-roam.test.ts tests/ered-campaign-fire.test.ts tests/ered-campaign-ghost.test.ts
+node --import tsx --test tests/ered-campaign.test.ts tests/ered-campaign-pool.test.ts tests/ered-campaign-heath.test.ts tests/ered-campaign-roam.test.ts tests/ered-campaign-fire.test.ts tests/ered-campaign-ghost.test.ts tests/ered-campaign-gundabad.test.ts
 npm run build
 npm run test:browser-ered-campaign
 ```
@@ -276,16 +297,30 @@ objective, its Action), Gundabad Hunter's attack (one player, the player
 engaged with a unique enemy, the first player's choice), Gundabad Stalker's
 engagement limit, both shadows, Fram's Shade's treasure (once, not at stage
 3), the campaign card's Action (an empty discard pile, another player), and
-the resolution (the burden, the 2 Hazard cards, the next chapter not yet
-available).
+the resolution (the burden, the 2 Hazard cards, the next chapter).
 
-`tests/ered-campaign-pool.test.ts` (25 tests) covers the foreign cards of each
+`tests/ered-campaign-gundabad.test.ts` (5 tests) covers Mount Gundabad's texts
+and faces, its setup (Dragon-sickness at 6 treasures and not at 5, Melanwar's
+removals with the Caves deck's, Beldis's removals, Abandoned Ruin in the Caves
+deck, the inspector's line), the protected unique locations (Powerful in Wrath
+leaves Throat of the Mountain and surges, a non-unique location is discarded,
+player card effects and games outside the campaign are unaffected),
+Dragon-sickness (discarded without a treasure in play, the treasures gathered
+on an ally with Dwarf-Lord's Crown staying on its hero, the threat when the
+attached character exhausts, the discard pile when it leaves play, the
+controller's threat in a two-player game), and the resolution (the optional
+treasure, A Growing Threat removed, Dragon-sickness at a 6th treasure and not
+without it, a controlled treasure discovered first, nothing to look at with
+every treasure discovered, the next chapter not yet available).
+
+`tests/ered-campaign-pool.test.ts` (27 tests) covers the foreign cards of each
 later chapter (each one revealed in each chapter where it is foreign, with a
 valid save), their passive values, triggers, shadows and choices, the Caves
 deck through The Withered Heath, the Lost Caves locations and The Withered
 Heath's nine cards in Roam Across Rhovanion, Roam Across Rhovanion's nine cards
 in Fire in the Night, Fire in the Night's eight cards in The Ghost of Framsburg,
-the When Revealed fallback, and a two-player game.
+The Ghost of Framsburg's ten cards in Mount Gundabad (the discover keyword
+ignored), the When Revealed fallback, and a two-player game.
 
 `tests/ered-campaign.test.ts` (28 tests) covers the registered texts and
 faces, the uniqueness corrections and the cards kept out of ordinary games;
@@ -334,5 +369,9 @@ Action through its button (a use marked in the Campaign Log), and records
 Beldis, a treasure for 5 progress and a removal from the Campaign Pool; The
 Ghost of Framsburg offers free hero changes, shuffles in its three cards, uses
 the campaign card's Action from the quest inspector and records Gundabad
-Stalker and a Hazard card, after which Mount Gundabad is not available yet; at
-1280, 390 and 320 pixels (111 checkpoints); it checks the 44 pinned faces.
+Stalker and a Hazard card; Mount Gundabad puts Abandoned Ruin in the Caves
+deck, shows its campaign card's rules in the inspector, attaches
+Dragon-sickness to a hero with the treasures gathered on it (its exhaustion
+raises the threat by 2) and records a treasure from the resolution, after
+which The Fate of Wilderland is not available yet; at 1280, 390 and 320 pixels
+(123 checkpoints); it checks the 47 pinned faces.

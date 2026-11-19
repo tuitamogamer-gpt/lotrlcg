@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2283,
+    "encounterCards": 2285,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3505,
-    "pending": 678
+    "scripted": 3507,
+    "pending": 676
   },
   "scenarioRecipes": {
     "total": 355,
@@ -808,6 +808,7 @@
     "12190",
     "12191",
     "12192",
+    "12194",
     "12196",
     "12197",
     "12198",
@@ -2473,6 +2474,7 @@
     "octgn:6d485bbc-6876-4160-8111-77f3935123c9",
     "octgn:6d4c7a3b-e0e7-4267-8f53-6ba99054892c",
     "octgn:6d6d2d0f-7672-4f92-bb07-6a764f655306",
+    "octgn:6d8f614d-ccd1-4416-aeee-6d30824cbbda",
     "octgn:6da65b9b-39a7-425d-baa1-00b406bcae36",
     "octgn:6da909d1-c3e0-4c13-8986-4b3a066e67b5",
     "octgn:6def55a1-ee80-4570-831b-d591e6effc11",
@@ -3861,7 +3863,7 @@
     {
       "product": "ered-mithrin-campaign-expansion",
       "total": 40,
-      "scripted": 37,
+      "scripted": 39,
       "player": 21,
       "playerScripted": 21
     },
@@ -10060,7 +10062,7 @@
       "name": "Dragon-sickness",
       "type": "treachery",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -25196,7 +25198,7 @@
       "name": "Mount Gundabad",
       "type": "campaign",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {

@@ -1730,6 +1730,11 @@ export function discardAttachment(
     syncAttachmentText(s);
     return;
   }
+  // Dragon-sickness (an Ered Mithrin burden) goes to the encounter discard pile.
+  if (EredCards.eredCampaignAttachmentLeaves(s, u, a)) {
+    syncAttachmentText(s);
+    return;
+  }
   if (landSorrowPlayerAttachmentLeaves(s, u, a, leaving, byCardEffect)) {
     syncAttachmentText(s);
     return;
@@ -2212,11 +2217,12 @@ export const discardCharacter = (s: GameState, u: Unit) => destroy(s, u, false);
 
 /** Discard a physical location without exploring it or claiming its victory points. */
 /** Discard a location; an encounter card effect ignores immunity to player cards. */
+/** Discard a location from play; false when it stays in play. */
 export function discardLocation(
   s: GameState,
   u: Unit,
   encounterEffect = false,
-) {
+): boolean {
   requireRule(
     !Temple.templeCannotLeave(s, u) && !Drowned.drownedIsDoubleSided(s, u),
     "Island Map locations cannot be discarded or moved.",
@@ -2225,7 +2231,14 @@ export function discardLocation(
     encounterEffect || !playerCardImmune(u),
     "This location is immune to player card effects.",
   );
-  if (batch4Scenario(s).cannotLeave?.(s, u)) return;
+  if (encounterEffect && EredCards.eredCampaignLocationProtected(s, u)) {
+    log(
+      s,
+      `${name(u)} is unique: it cannot be discarded from play by encounter card effects (Mount Gundabad's campaign card).`,
+    );
+    return false;
+  }
+  if (batch4Scenario(s).cannotLeave?.(s, u)) return false;
   Burglar.burglarContractLocationLeaving(
     s,
     u,
@@ -2239,7 +2252,8 @@ export function discardLocation(
   const wasActive = allActiveLocations(s).some(
     (location) => location.id === u.id,
   );
-  if (!wasActive && !s.staging.some((location) => location.id === u.id)) return;
+  if (!wasActive && !s.staging.some((location) => location.id === u.id))
+    return false;
   if (wasActive) removeActiveLocation(s, u.id);
   else s.staging = s.staging.filter((location) => location.id !== u.id);
   Storm.stormcallerAreaLeft(s, u);
@@ -2254,6 +2268,7 @@ export function discardLocation(
   Fate.fateLocationLeft(s, u);
   Depths.depthsLocationLeft(s, u, false, wasActive);
   log(s, `${name(u)} is discarded.`);
+  return true;
 }
 
 /** Exploration on the Island Map keeps the physical location and attachments. */

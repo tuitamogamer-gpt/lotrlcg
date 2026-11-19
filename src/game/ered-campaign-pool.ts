@@ -71,7 +71,11 @@ import {
   FIRE_NIGHT_RECIPES,
   fireNightSideCount,
 } from "./fire-night-support";
-import { GHOST_FRAMSBURG_RECIPES } from "./ghost-framsburg-support";
+import {
+  GHOST_FRAMSBURG as G,
+  GHOST_FRAMSBURG_RECIPES,
+  ghostLoot,
+} from "./ghost-framsburg-support";
 import { MOUNT_GUNDABAD_RECIPES } from "./mount-gundabad-support";
 import { FATE_WILDERLAND_RECIPES } from "./fate-wilderland-support";
 
@@ -94,6 +98,10 @@ export interface EredPoolState {
   playerReadyBlockedRound?: number;
   /** Wild Creatures: the players who engaged an enemy in the staging area. */
   wildEngaged?: number[];
+  /** Terrible Shadows: each character's -1 [willpower], [attack] and [defense] until the end of the round. */
+  shadows?: { id: string; round: number; amount: number }[];
+  /** Moonlit Passage: each player's threat reduced by player card effects this round. */
+  threatReduced?: { player: number; round: number; amount: number }[];
 }
 
 /** The chapters this layer serves, with their own modules' recipes. */
@@ -113,8 +121,8 @@ const NATIVE: Record<string, Set<string>> = Object.fromEntries(
 );
 /**
  * The encounter cards of Journey Up the Anduin, Lost in Mirkwood, The King's
- * Quest, The Withered Heath, Roam Across Rhovanion and Fire in the Night that
- * can join the Campaign Pool (A Growing Threat sets aside a non-unique,
+ * Quest, The Withered Heath, Roam Across Rhovanion, Fire in the Night and The
+ * Ghost of Framsburg that can join the Campaign Pool (A Growing Threat sets aside a non-unique,
  * non-objective, non-burden card; Roam Across Rhovanion's resolution adds
  * staging locations), scripted here for later chapters. (The Core Set's cards
  * resolve in every scenario.)
@@ -191,6 +199,17 @@ export const ERED_POOL_PORTABLE = [
   F.wrath,
   F.fury,
   F.flames,
+  // The Ghost of Framsburg (the discover keyword is ignored in later chapters)
+  G.crypt,
+  G.stalker,
+  G.staircase,
+  G.spectre,
+  G.hall,
+  G.terrible,
+  G.ruins,
+  G.moonlit,
+  G.tower,
+  G.slammed,
 ];
 const PORTABLE = new Set(ERED_POOL_PORTABLE);
 
@@ -226,6 +245,9 @@ type Combat = NonNullable<GameState["combat"]> & {
   eredPoolDiscardAlly?: boolean;
   eredPoolWeather?: boolean;
   eredPoolWeatherKill?: boolean;
+  /** Terrible Shadows' shadow: the threat raised if this attack destroys a character. */
+  eredPoolTerrible?: number;
+  eredPoolTerribleKill?: boolean;
 };
 
 // ------------------------------------------------------------- helpers
@@ -258,6 +280,12 @@ const canExhaust = (u: Unit) =>
   !u.exhausted && !khazadCannotExhaust(u) && !watcherWaterCannotExhaust(u);
 const stagedLocations = (s: GameState) =>
   s.staging.filter((l) => card(l.code).type_code === "location").length;
+/** Crypt Stalker and Hidden Staircase: "X is the tens digit of the first player's threat." */
+const tens = (s: GameState) =>
+  Math.floor(seatView(s, firstPlayer(s)).threat / 10);
+/** The foreign copies of a location in the staging area. */
+const stagedForeign = (s: GameState, code: string) =>
+  s.staging.filter((l) => foreignUnit(s, l, code)).length;
 /** Add an encounter card to the staging area (an enemy may engage a player). */
 function add(s: GameState, code: string, player?: number) {
   const u = make(s, code);
@@ -381,9 +409,23 @@ function releaseStored(s: GameState, locationId: string) {
 // ------------------------------------------------------------- passives
 
 function poolStats(s: GameState, u: Unit) {
-  let attack = 0,
+  let will = 0,
+    attack = 0,
     defense = 0;
   if (!eredPoolLive(s)) return { attack, defense };
+  // Crypt Stalker: X [attack] and [defense].
+  if (foreignUnit(s, u, G.stalker)) {
+    attack += tens(s);
+    defense += tens(s);
+  }
+  // Terrible Shadows: -1 [willpower], [attack] and [defense] until the end of
+  // the round.
+  const shade = (s.eredPool?.shadows ?? [])
+    .filter((m) => m.id === u.id && m.round === s.round)
+    .reduce((n, m) => n + m.amount, 0);
+  will -= shade;
+  attack -= shade;
+  defense -= shade;
   // Frenzied Creature: +1 [threat], +1 [attack], +1 [defense], immune.
   const frenzy = foreignAttachments(s, u, W.frenzied);
   attack += frenzy;
@@ -408,7 +450,7 @@ function poolStats(s: GameState, u: Unit) {
     attack += n;
     defense += n;
   }
-  return { attack, defense };
+  return will ? { will, attack, defense } : { attack, defense };
 }
 function poolThreatBonus(s: GameState, u: Unit) {
   if (!eredPoolLive(s)) return 0;
@@ -429,6 +471,10 @@ function poolThreatBonus(s: GameState, u: Unit) {
   if (foreignUnit(s, u, H.falls)) n += stagedLocations(s);
   // Burning Watchtower: X is 1 more than the side quests in the victory display.
   if (foreignUnit(s, u, F.tower)) n += 1 + fireNightSideCount(s);
+  // Crypt Stalker and Hidden Staircase: X is the tens digit of the first
+  // player's threat.
+  if (foreignUnit(s, u, G.stalker) || foreignUnit(s, u, G.staircase))
+    n += tens(s);
   if (foreignUnit(s, u, W.contested))
     n += (s.victoryCards ?? []).filter(
       (c) => card(c).type_code === "location",
@@ -512,8 +558,9 @@ const poolCannotPlayerReady = (s: GameState) =>
   eredPoolLive(s) && s.eredPool?.playerReadyBlockedRound === s.round;
 const poolCannotOptionallyEngage = (s: GameState, u: Unit) =>
   foreignUnit(s, u, W.stray) || foreignUnit(s, u, R.eagle);
+/** Frenzied Creature's host; Forgotten Crypt: "Immune to player card effects." */
 const poolImmune = (s: GameState, u: Unit) =>
-  foreignAttachments(s, u, W.frenzied) > 0;
+  foreignAttachments(s, u, W.frenzied) > 0 || foreignUnit(s, u, G.crypt);
 function poolCannotAttach(s: GameState, u: Unit, code?: string) {
   if (!foreignUnit(s, u, u.code)) return false;
   // Grey Mountain Giant: "Cannot have non-objective attachments."
@@ -611,6 +658,10 @@ function poolEngaged(s: GameState, u: Unit) {
   prepend(s, ...effects);
 }
 function poolEnemyAttackStarted(s: GameState, u: Unit, player: number) {
+  // Crypt Stalker: "Forced: When Crypt Stalker attacks, raise the defending
+  // player's threat by 1."
+  if (foreignUnit(s, u, G.stalker))
+    prepend(s, fx("threat", { player, value: 1 }));
   if (!eredPoolLive(s) || u.blanked || !eredForeign(s, W.breath)) return;
   for (const breath of u.attachments.filter(
     (a) => a.code === W.breath && !a.blanked,
@@ -635,10 +686,16 @@ function poolEncounterBegin(s: GameState) {
       ),
   );
 }
-/** Harsh Weather's shadow: a character destroyed by this attack. */
-function poolCharacterDestroyed(s: GameState, _u: Unit) {
+/** Harsh Weather's and Terrible Shadows' shadows: a character destroyed by this attack. */
+function poolCharacterDestroyed(
+  s: GameState,
+  _u: Unit,
+  context: DamageContext = {},
+) {
   const c = s.combat as Combat | null;
   if (c?.eredPoolWeather) c.eredPoolWeatherKill = true;
+  if (c?.eredPoolTerrible && context.combatDamage)
+    c.eredPoolTerribleKill = true;
 }
 /** Pack of Wargs and Werewolf: a shadow card with no shadow effect. */
 function poolShadowResolved(s: GameState, u: Unit, code: string) {
@@ -691,6 +748,10 @@ function poolAttackFinished(
     effects.push(
       fx("eredPoolExhaust", { player: p, text: card(R.weather).name }),
     );
+  // Terrible Shadows' shadow: "If this attack destroys a character, raise the
+  // defending player's threat by 3."
+  if (c.eredPoolTerrible && c.eredPoolTerribleKill)
+    effects.push(fx("threat", { player: p, value: c.eredPoolTerrible }));
   return effects;
 }
 function poolHostLeaves(s: GameState, u: Unit) {
@@ -829,6 +890,12 @@ function poolTravelEntered(s: GameState, u: Unit, actual = true) {
   // Ered Mithrin, the first player may ready a character he controls."
   if (actual && u.code === R.slopes)
     effects.push(fx("eredPoolSlopes", { player: firstPlayer(s) }));
+  // Forgotten Crypt: "Forced: After Forgotten Crypt becomes the active
+  // location, discard cards from the encounter deck until an Undead enemy is
+  // discarded and add it to the staging area. Then, attach a Loot objective
+  // in the encounter discard pile to that enemy as a guarded objective."
+  if (u.code === G.crypt)
+    effects.push(fx("eredPoolCrypt", { player: firstPlayer(s) }));
   // Creature Den's Response searches the Caves deck for a Dragon Sign.
   if (actual && u.code === H.creatureDen)
     log(s, "Creature Den · There is no Dragon Sign in this scenario's decks.");
@@ -857,9 +924,17 @@ function poolAllyEntered(s: GameState, u: Unit) {
   if (locations(s).some((l) => foreignUnit(s, l, W.lake))) u.exhausted = true;
   return false;
 }
-/** Lonely Lands: after an event is played during the quest phase, place it facedown under it. */
+/**
+ * Cursed Tower (in the staging area): "Forced: After a player plays an
+ * event, raise his threat by 1." Lonely Lands: after an event is played
+ * during the quest phase, place it facedown under it.
+ */
 function poolEventPlayed(s: GameState, u: Unit) {
-  if (!eredPoolLive(s) || s.phase !== "quest") return;
+  if (!eredPoolLive(s)) return;
+  const towers = stagedForeign(s, G.tower);
+  if (towers)
+    prepend(s, fx("threat", { player: ownerOf(s, u), value: towers }));
+  if (s.phase !== "quest") return;
   if (!s.staging.some((l) => foreignUnit(s, l, W.lonely))) return;
   prepend(
     s,
@@ -901,6 +976,10 @@ function poolRevealSurge(s: GameState, code: string) {
   // Powerful in Wrath: "If no damage is dealt this way, Powerful in Wrath
   // gains surge." (Hrogar's Hill is only Fire in the Night's.)
   if (code === F.wrath) return true;
+  // Abandoned Ruins: "If they cannot [resolve the Discover keyword of the
+  // active location], Abandoned Ruins gains surge and doomed 2." (The
+  // discover keyword is ignored.)
+  if (code === G.ruins) return true;
   return false;
 }
 function poolCardEntered(
@@ -951,6 +1030,62 @@ function poolEndQuest(s: GameState) {
       .map((u) => fx("eredPoolGate", { target: u.id, player: firstPlayer(s) })),
   );
 }
+/**
+ * Haunted Hall (in the staging area): "Forced: After a player places any
+ * amount of progress on a Dark location in the staging area, he raises his
+ * threat by 1."
+ */
+function poolLocationProgressPlaced(s: GameState, u: Unit, amount: number) {
+  if (
+    !eredPoolLive(s) ||
+    amount <= 0 ||
+    !trait(u, "Dark") ||
+    !s.staging.some((l) => l.id === u.id)
+  )
+    return;
+  const halls = stagedForeign(s, G.hall);
+  if (halls) prepend(s, fx("threat", { player: activeSeat(s), value: halls }));
+}
+/**
+ * Moonlit Passage (in the staging area): "Each player's threat cannot be
+ * reduced by more than 1 via player card effects each round."
+ */
+function poolThreatReduction(s: GameState, amount: number, reason?: string) {
+  if (!eredPoolLive(s) || reason !== "player-card" || amount <= 0)
+    return amount;
+  if (!eredForeign(s, G.moonlit)) return amount;
+  const q = pool(s),
+    p = activeSeat(s);
+  q.threatReduced = (q.threatReduced ?? []).filter((m) => m.round === s.round);
+  const record = q.threatReduced.find((m) => m.player === p);
+  const n = stagedForeign(s, G.moonlit)
+    ? Math.min(amount, Math.max(0, 1 - (record?.amount ?? 0)))
+    : amount;
+  if (n > 0) {
+    if (record) record.amount += n;
+    else q.threatReduced.push({ player: p, round: s.round, amount: n });
+  }
+  if (n < amount)
+    log(
+      s,
+      `Moonlit Passage: each player's threat cannot be reduced by more than 1 via player card effects each round (${n} of ${amount} is reduced).`,
+    );
+  return n;
+}
+/**
+ * Evil Spectre: "Forced: When Evil Spectre is destroyed, shuffle it back into
+ * the encounter deck if the active location has the Dark trait."
+ */
+function poolEnemyDestination(s: GameState, u: Unit, destruction = false) {
+  if (!destruction || !foreignUnit(s, u, G.spectre) || !dark(s)) return false;
+  s.encounterDeck = shuffle(s, [...s.encounterDeck, u.code]);
+  log(
+    s,
+    "Evil Spectre is destroyed while the active location is Dark: it is shuffled back into the encounter deck.",
+    "danger",
+  );
+  return true;
+}
 /** Mirkwood Patrol: at the end of the encounter phase. */
 const poolEncounterEnd = (s: GameState): Effect[] =>
   eredPoolLive(s)
@@ -997,6 +1132,9 @@ const TREACHERIES = [
   F.wrath,
   F.fury,
   F.flames,
+  G.terrible,
+  G.ruins,
+  G.slammed,
 ];
 function poolEncounter(
   s: GameState,
@@ -1119,7 +1257,28 @@ function poolShadow(s: GameState, code: string) {
     }
   } else if (code === W.eyes) {
     if (!defenders.length) prepend(s, fx("eredPoolDiscardAlly", { player }));
-  } else return false;
+  }
+  // Crypt Stalker: "Either raise your threat by 2, or return attacking enemy
+  // to the staging area."
+  else if (code === G.stalker)
+    prepend(s, fx("eredPoolStalkerShadow", { target: c.enemyId, player }));
+  // Evil Spectre: +1 [attack] (+2 instead if the active location is Dark).
+  else if (code === G.spectre) c.attackBonus += dark(s) ? 2 : 1;
+  // Moonlit Passage: "Raise your threat by 1."
+  else if (code === G.moonlit) prepend(s, fx("threat", { player, value: 1 }));
+  // Cursed Tower: "Discard a non-objective attachment you control."
+  else if (code === G.tower)
+    prepend(s, fx("eredPoolDiscardAttachment", { player, flag: true }));
+  // Terrible Shadows: +1 [attack]; if this attack destroys a character, the
+  // defending player raises their threat by 3.
+  else if (code === G.terrible) {
+    c.attackBonus++;
+    c.eredPoolTerrible = (c.eredPoolTerrible ?? 0) + 3;
+  }
+  // Abandoned Ruins: "Attacking enemy makes an additional attack against you
+  // after this one."
+  else if (code === G.ruins) c.extraAttacks = (c.extraAttacks ?? 0) + 1;
+  else return false;
   return true;
 }
 function treachery(s: GameState, code: string) {
@@ -1309,10 +1468,8 @@ function treachery(s: GameState, code: string) {
     // Hill here; it surges.)
     consume(s, code);
     const loc = s.activeLocation;
-    if (loc) {
-      discardLocation(s, loc, true);
+    if (loc && discardLocation(s, loc, true))
       log(s, `Powerful in Wrath discards ${name(loc)}.`, "danger");
-    }
   } else if (code === F.fury) {
     // "Dagnir makes an immediate attack against the first player." (Dagnir is
     // only Fire in the Night's.)
@@ -1365,6 +1522,46 @@ function treachery(s: GameState, code: string) {
         })),
       );
     else consume(s, code);
+  } else if (code === G.terrible) {
+    // "Each character gets -1 [willpower], -1 [attack], and -1 [defense]
+    // until the end of the round."
+    consume(s, code);
+    q.shadows = [
+      ...(q.shadows ?? []).filter((m) => m.round === s.round),
+      ...allCharacters(s).map((u) => ({ id: u.id, round: s.round, amount: 1 })),
+    ];
+    log(
+      s,
+      "Terrible Shadows: each character gets -1 [willpower], -1 [attack] and -1 [defense] until the end of the round.",
+      "danger",
+    );
+  } else if (code === G.ruins) {
+    // "Each player resolves the Discover keyword of the active location in
+    // turn order. If they cannot, Abandoned Ruins gains surge and doomed 2."
+    // (The discover keyword is ignored: each player raises their threat by 2,
+    // and it surges.)
+    consume(s, code);
+    log(
+      s,
+      "Abandoned Ruins · The discover keyword is ignored: it gains surge and doomed 2.",
+      "danger",
+    );
+    prepend(
+      s,
+      ...playerOrder(s).map((player) => fx("threat", { player, value: 2 })),
+    );
+  } else if (code === G.slammed) {
+    // "Each player chooses and exhausts a character he controls. Until the
+    // end of the round, characters cannot be readied by player card effects."
+    // (Doomed 1 is a printed keyword.)
+    consume(s, code);
+    q.playerReadyBlockedRound = s.round;
+    prepend(
+      s,
+      ...playerOrder(s).map((player) =>
+        fx("eredPoolExhaust", { player, text: card(G.slammed).name }),
+      ),
+    );
   }
 }
 
@@ -1497,10 +1694,8 @@ export function eredPoolEffect(s: GameState, e: Effect) {
     case "eredPoolGate":
       if (u && s.staging.some((x) => x.id === u.id)) {
         u.resources++;
-        if (u.resources >= 3) {
-          discardLocation(s, u, true);
+        if (u.resources >= 3 && discardLocation(s, u, true))
           log(s, "Town Gate has 3 resources and is discarded.");
-        }
       }
       break;
     case "eredPoolGiant": {
@@ -1768,9 +1963,14 @@ export function eredPoolEffect(s: GameState, e: Effect) {
       break;
     }
     case "eredPoolDiscardAttachment": {
+      // (flag: Cursed Tower's "non-objective attachment".)
       const targets = own(s, player).flatMap((c) =>
         c.attachments
-          .filter((a) => !a.facedown)
+          .filter(
+            (a) =>
+              !a.facedown &&
+              (!e.flag || !card(a.code).type_code.startsWith("objective")),
+          )
           .map((a) => ({
             id: a.id,
             code: a.code,
@@ -1781,7 +1981,70 @@ export function eredPoolEffect(s: GameState, e: Effect) {
           })),
       );
       if (targets.length)
-        choose(s, "Discard an attachment you control", targets);
+        choose(
+          s,
+          e.flag
+            ? "Cursed Tower · Discard a non-objective attachment you control"
+            : "Discard an attachment you control",
+          targets,
+        );
+      break;
+    }
+    case "eredPoolStalkerShadow":
+      // Crypt Stalker's shadow.
+      choose(s, "Crypt Stalker · Choose one", [
+        {
+          id: "threat",
+          label: "Raise your threat by 2",
+          effects: [fx("threat", { player, value: 2 })],
+        },
+        ...(u
+          ? [
+              {
+                id: "return",
+                label: `Return ${name(u)} to the staging area`,
+                effects: [fx("eredPoolReturnEnemy", { target: u.id, player })],
+              },
+            ]
+          : []),
+      ]);
+      break;
+    case "eredPoolReturnEnemy":
+      if (u && allEngaged(s).some((x) => x.id === u.id)) {
+        for (const p of playerOrder(s))
+          forOwner(s, p, () => {
+            s.engaged = s.engaged.filter((x) => x.id !== u.id);
+          });
+        s.staging.push(u);
+        enemyAddedToStaging(s, u);
+        log(s, `${name(u)} returns to the staging area.`);
+      }
+      break;
+    case "eredPoolCrypt": {
+      // Forgotten Crypt: an Undead enemy from the encounter deck, then a Loot
+      // objective from the discard pile (none outside The Ghost of Framsburg).
+      const code = discardUntil(
+        s,
+        (c) => card(c).type_code === "enemy" && trait(c, "Undead"),
+      );
+      if (!code) {
+        log(
+          s,
+          "Forgotten Crypt · No Undead enemy is discarded from the encounter deck.",
+        );
+        break;
+      }
+      const enemy = add(s, code);
+      log(
+        s,
+        `Forgotten Crypt adds ${name(enemy)} to the staging area.`,
+        "danger",
+      );
+      if (!s.encounterDiscard.some((c) => ghostLoot(s, c)))
+        log(
+          s,
+          "Forgotten Crypt · There is no Loot objective in the encounter discard pile.",
+        );
       break;
     }
     case "eredPoolWeighedDiscard":
@@ -2183,6 +2446,7 @@ const PLAYER_EFFECTS = new Set([
   "eredPoolDiscardWholeHand",
   "eredPoolUnseen",
   "eredPoolEyes",
+  "eredPoolStalkerShadow",
 ]);
 
 export const ERED_POOL_HOOKS: Batch4ScenarioHooks = {
@@ -2225,6 +2489,9 @@ export const ERED_POOL_HOOKS: Batch4ScenarioHooks = {
   encounterEnd: poolEncounterEnd,
   cannotDiscardHand: poolCannotDiscardHand,
   handDiscardDestination: poolHandDiscardDestination,
+  locationProgressPlaced: poolLocationProgressPlaced,
+  threatReduction: poolThreatReduction,
+  enemyDestination: poolEnemyDestination,
   encounter: poolEncounter,
   shadow: poolShadow,
   effect: (s, e) => poolHillsEffect(s, e) || eredPoolEffect(s, e),
@@ -2373,6 +2640,22 @@ export function composeEredPool(
       p.cannotDiscardHand!(s, u, byPlayerCardEffect),
     handDiscardDestination: (s, u) =>
       p.handDiscardDestination!(s, u) || !!h.handDiscardDestination?.(s, u),
+    locationProgressPlaced: (s, u, amount) => {
+      h.locationProgressPlaced?.(s, u, amount);
+      p.locationProgressPlaced!(s, u, amount);
+    },
+    threatReduction: (s, amount, reason, source) =>
+      p.threatReduction!(
+        s,
+        h.threatReduction
+          ? h.threatReduction(s, amount, reason, source)
+          : amount,
+        reason,
+        source,
+      ),
+    enemyDestination: (s, u, destruction, wasEngaged) =>
+      !!h.enemyDestination?.(s, u, destruction, wasEngaged) ||
+      p.enemyDestination!(s, u, destruction, wasEngaged),
     encounter: (s, code, replay, fromReveal) =>
       p.encounter!(s, code, replay, fromReveal) ||
       !!h.encounter?.(s, code, replay, fromReveal),
@@ -2457,7 +2740,27 @@ export function validEredPool(
     (q.playerReadyBlockedRound === undefined ||
       round(q.playerReadyBlockedRound)) &&
     (q.wildEngaged === undefined ||
-      (Array.isArray(q.wildEngaged) && q.wildEngaged.every(player)))
+      (Array.isArray(q.wildEngaged) && q.wildEngaged.every(player))) &&
+    (q.shadows === undefined ||
+      (Array.isArray(q.shadows) &&
+        q.shadows.every(
+          (m) =>
+            !!m &&
+            typeof m.id === "string" &&
+            round(m.round) &&
+            Number.isInteger(m.amount) &&
+            m.amount > 0,
+        ))) &&
+    (q.threatReduced === undefined ||
+      (Array.isArray(q.threatReduced) &&
+        q.threatReduced.every(
+          (m) =>
+            !!m &&
+            player(m.player) &&
+            round(m.round) &&
+            Number.isInteger(m.amount) &&
+            m.amount >= 0,
+        )))
   );
 }
 /** The pool's visible state: Lonely Lands' facedown events are counted. */

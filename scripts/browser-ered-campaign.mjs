@@ -17,6 +17,7 @@ import { card } from "../src/game/cards.ts";
 import { ERED, ERED_TREASURES } from "../src/game/ered-campaign.ts";
 import { WILDS_RHOVANION } from "../src/game/wilds-rhovanion-support.ts";
 import { ROAM_RHOVANION } from "../src/game/roam-rhovanion-support.ts";
+import { GUNDABAD } from "../src/game/mount-gundabad-support.ts";
 import { reviewedState } from "./browser-review-helpers.mjs";
 import { capture, context, report, url } from "./browser-angmar-helpers.mjs";
 
@@ -706,15 +707,107 @@ try {
         (s.campaign.encounterPool[hazards[0]] ?? 0) >= 1,
       "the first Hazard card joined the Campaign Pool",
     );
+    await page.getByRole("button", { name: /^Continue campaign/ }).waitFor();
+    await checkpoint("ghost-complete", width);
+    // Mount Gundabad (Part 8): Abandoned Ruin in the Caves deck; the campaign
+    // card's rules in the quest inspector; Dragon-sickness gathers the
+    // treasures on one character; the resolution's optional treasure, and A
+    // Growing Threat leaves the Campaign Pool.
+    await page.getByRole("button", { name: /^Continue campaign/ }).click();
+    await page.getByRole("button", { name: /^Begin next chapter/ }).click();
+    await reviewedState(page);
+    s = await opening();
+    assert.equal(s.scenarioId, "mount-gundabad");
+    assert.ok(
+      s.mountGundabad.cavesDeck.some((u) => u.code === ERED.ruin) ||
+        s.removed.includes(ERED.ruin),
+      "Abandoned Ruin joined the Caves deck",
+    );
+    assert.ok(
+      [...s.encounterDeck, ...s.encounterDiscard].includes(ERED.stalker) ||
+        [...s.staging, ...s.engaged].some((u) => u.code === ERED.stalker),
+      "Gundabad Stalker joined the encounter deck",
+    );
+    await campaignCard(
+      /^Mount Gundabad: the discover keyword is ignored, and unique locations cannot be discarded from play by encounter card effects\./,
+      "gundabad-setup",
+      width,
+    );
+    const free = ERED_TREASURES.filter(
+      (code) => !s.campaign.treasures?.includes(code),
+    );
+    {
+      const t = quiet(s, "staging");
+      for (const [i, code] of free.slice(0, 2).entries())
+        t.heroes[i].attachments.push({
+          id: `a${t.nextId++}`,
+          code,
+          exhausted: false,
+          owner: 0,
+        });
+      // (Dragon-sickness surges into a quiet location.)
+      t.encounterDeck.unshift(GUNDABAD.stairs);
+      revealed(t, ERED.sickness);
+      flush(t);
+      s = await load(t);
+    }
+    assert.match(
+      s.choice.title,
+      /^Dragon-sickness · Attach it to a character with 1 or more treasures attached/,
+    );
+    await checkpoint("gundabad-sickness", width);
+    s = await choose(s.heroes[0].id);
+    assert.ok(s.heroes[0].attachments.some((a) => a.code === ERED.sickness));
+    assert.deepEqual(
+      s.heroes[0].attachments
+        .filter((a) => ERED_TREASURES.includes(a.code))
+        .map((a) => a.code)
+        .sort(),
+      free.slice(0, 2).sort(),
+    );
+    {
+      const t = quiet(s);
+      const before = t.threat;
+      t.heroes[0].exhausted = false;
+      exhaustCharacter(t, t.heroes[0]);
+      flush(t);
+      assert.equal(t.threat, before + 2);
+      s = await load(t);
+    }
+    s = await victory(s);
+    assert.equal(s.campaign.resolution, "mount-gundabad");
+    assert.ok(!s.campaign.burdens.includes(ERED.growing));
+    for (const code of free.slice(0, 2))
+      assert.ok(s.campaign.treasures.includes(code), card(code).name);
+    const offered = s.eredCampaign.looking;
+    assert.equal(
+      offered.length,
+      Math.min(3, ERED_TREASURES.length - s.campaign.treasures.length),
+    );
+    await page
+      .getByLabel(
+        /^The players may, as a group, look at 3 random undiscovered treasures/,
+      )
+      .selectOption(offered[0]);
+    await checkpoint("gundabad-resolution", width);
+    s = await record();
+    assert.ok(s.campaign.treasures.includes(offered[0]));
+    assert.equal(
+      s.campaign.burdens.includes(ERED.sickness),
+      s.campaign.treasures.length >= 6,
+    );
+    assert.equal(s.campaign.resolution, null);
     await page
       .getByRole("dialog")
-      .getByText(/Mount Gundabad, is not available in campaign mode yet/)
+      .getByText(
+        /The Fate of Wilderland, is not available in campaign mode yet/,
+      )
       .waitFor();
     assert.equal(
       await page.getByRole("button", { name: /^Continue campaign/ }).count(),
       0,
     );
-    await checkpoint("ghost-complete", width);
+    await checkpoint("gundabad-complete", width);
     await view.c.close();
   }
   const p = await browser.newPage();

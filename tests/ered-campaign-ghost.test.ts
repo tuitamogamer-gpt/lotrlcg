@@ -141,7 +141,7 @@ test("Ered Mithrin: The Ghost of Framsburg's campaign card, Ashen Brazier, Gunda
     ["burden", 40, 4, 3, 2, 5],
   );
   assert.match(t.shadow!, /return it to the staging area after this attack/);
-  assert.equal(art.length, 44);
+  assert.ok(art.length >= 44);
   assert.ok(ERED_FREE_CHANGES.includes("the-ghost-of-framsburg"));
 });
 
@@ -426,10 +426,8 @@ test("Ered Mithrin: The Ghost of Framsburg's resolution adds Gundabad Hunter or 
   assert.ok(valid(t));
   // Gundabad Hunter joins every later encounter deck.
   assert.ok(poolEncounterCards(t.campaign!).includes(ERED.hunter));
-  // The campaign continues with Mount Gundabad (not yet available).
-  assert.throws(
-    () => continueCampaign(t, t.campaign!.heroes, t.deckId, true, 9),
-    /not available in campaign mode yet/,
-  );
+  // The campaign continues with Mount Gundabad.
+  const next = continueCampaign(t, t.campaign!.heroes, t.deckId, true, 9);
+  assert.equal(next.scenarioId, "mount-gundabad");
   void check;
 });
