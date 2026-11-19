@@ -14,7 +14,7 @@ import { fbCurrentQuest } from "./fog-barrow-support";
 import { gramCurrentQuest, gramQuestUnit } from "./mount-gram-support";
 import { voyageCurrentQuest } from "./voyage-belegaer-support";
 import { fasCurrentQuest } from "./flies-spiders-support";
-import { NIGHTMARE_SOM } from "./nightmare";
+import { NIGHTMARE_KD, NIGHTMARE_SOM } from "./nightmare";
 
 type QuestAttachmentState = GameState & {
   questAttachments?: Record<string, Attachment[]>;
@@ -119,6 +119,9 @@ export function mainQuestCode(s: GameState): string | undefined {
     s.nightmareMode
   )
     return NIGHTMARE_SOM.folly;
+  // Into the Pit (Nightmare): stage 2, Goblin Ambush.
+  if (s.scenarioId === "into-the-pit" && s.stage === 2 && s.nightmareMode)
+    return NIGHTMARE_KD.ambush;
   const stage = scenario(s.scenarioId).stages[s.stage - 1];
   return stage && "cardCode" in stage
     ? stage.cardCode

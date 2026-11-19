@@ -23,7 +23,7 @@ import { RaceHaradQuestGoals } from "./race-harad-state";
 import { BeneathSandsQuestGoals } from "./beneath-sands-state";
 import { depthsState } from "../game/depths-support";
 import { DIKE } from "../game/deadmens-dike-support";
-import { currentQuestProgress } from "../game/quest-state";
+import { currentQuestProgress, mainQuestCode } from "../game/quest-state";
 import { TRIALS } from "../game/three-trials-support";
 import { fangornCarrier } from "../game/fangorn";
 import { fordsMandatoryTravel } from "../game/fords-isen";
@@ -1289,10 +1289,18 @@ export function QuestGoals({ s }: { s: GameState }) {
                     : s.scenarioId === "into-the-pit"
                       ? [
                           {
-                            label: `Place ${stageInfo(s).quest} quest progress${s.stage === 2 ? " or defeat every enemy" : ""}`,
+                            // Goblin Patrol, or a Nightmare Deck's Goblin
+                            // Ambush, whose progress comes from defeated
+                            // enemies only.
+                            label:
+                              s.stage === 2 &&
+                              mainQuestCode(s) !== KHAZAD.patrolQuest
+                                ? `Defeat ${stageInfo(s).quest} enemies (1 quest progress each)`
+                                : `Place ${stageInfo(s).quest} quest progress${s.stage === 2 ? " or defeat every enemy" : ""}`,
                             done:
                               s.progress >= stageInfo(s).quest ||
                               (s.stage === 2 &&
+                                mainQuestCode(s) === KHAZAD.patrolQuest &&
                                 ![...s.staging, ...allEngaged(s)].some(
                                   (u) => card(u.code).type_code === "enemy",
                                 )),

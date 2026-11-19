@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2369,
+    "encounterCards": 2377,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3591,
-    "pending": 592
+    "scripted": 3599,
+    "pending": 584
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 279
+    "scripted": 280
   },
   "registeredCodes": [
     "01001",
@@ -1358,6 +1358,7 @@
     "octgn:0f3c746e-2d23-4cb9-a481-f919ffc8cdee",
     "octgn:0f5ffc36-fe0f-4097-ad67-dafda700d96f",
     "octgn:0f7ce386-9510-4fd5-93aa-145190f8d1de",
+    "octgn:0f939a7b-8a2e-4358-b3b1-e50b3eef7c0b",
     "octgn:0fc7db5e-c389-4636-8c34-3d1dee3508ce",
     "octgn:0fd5a1d7-0791-4ab4-a50b-c5b2634ed94b",
     "octgn:0fffdddc-d9f9-498a-9669-e840304ebb9b",
@@ -1413,6 +1414,7 @@
     "octgn:16b71211-85c1-4ad4-8879-831bc7b50ac4",
     "octgn:16fc9e92-cbc9-46ff-8312-a9c6491ca70b",
     "octgn:16fc9e92-cbc9-46ff-8312-a9c6491ca70b:B",
+    "octgn:17039c31-d3fd-4730-8b74-8f08458071fe",
     "octgn:1733be6c-2101-4f83-816b-f730b4afc183",
     "octgn:174507ac-5617-4e3c-998b-75eeceb9db33",
     "octgn:178fd61d-ebb3-40b1-b854-4c7bc43c121e",
@@ -1486,6 +1488,7 @@
     "octgn:205f938d-8dc8-4366-adc0-35897aaef600",
     "octgn:206a9350-41f1-48ba-adf2-241d07a90885",
     "octgn:207b12bd-20b4-470d-81cc-7896904334d5",
+    "octgn:207b3e48-c42c-42a8-b1ac-20950e6588d9",
     "octgn:2087cb2d-ce6f-4d3a-befc-01859ec82e6c",
     "octgn:20a011e7-0153-45b1-9c6c-a68753683a79",
     "octgn:20c5f7b7-cfc4-44e1-aaf5-0010ceb9a1b9",
@@ -1619,6 +1622,7 @@
     "octgn:2d34a913-e212-42c4-859b-2db9b2056276",
     "octgn:2d4b1381-467e-4bb4-9265-d26dec6125ea",
     "octgn:2d819f76-77dd-47a2-9a3f-ac8b8018f0df",
+    "octgn:2d85efc7-b619-4376-a7ac-be797b874fba",
     "octgn:2dbe66bc-a6bf-42d7-92a5-d186dfe954c6",
     "octgn:2dc216a5-af92-44e5-b225-9cdc7bf47e73",
     "octgn:2dc57c6f-fab3-4689-9398-332a22c13fa9",
@@ -2318,6 +2322,7 @@
     "octgn:56e98bd5-c952-436e-b552-832031d4bb20",
     "octgn:57107fd1-0092-41d3-ae9d-8ff6c06933eb",
     "octgn:572ba251-0abb-4a81-b38b-d695123b7219",
+    "octgn:573eebae-82fc-4e41-a3a8-343194c893bc",
     "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
     "octgn:576f96a4-fb04-43d6-9786-a0884668a08f",
     "octgn:5775b97c-4047-4dc2-b148-b852bad4f9bb",
@@ -2362,6 +2367,7 @@
     "octgn:5c4188a5-5767-4c8c-8dfd-0b3f7c55e4a1",
     "octgn:5c5ce14a-332a-40fe-8f55-cfa2f53e8592",
     "octgn:5ce0a255-9914-4a4f-9630-d1fe8e00bbc0",
+    "octgn:5ce149ca-3cca-41ce-9756-bf137d910966",
     "octgn:5d0085bd-ebb9-46a7-ae28-698da3d11ae6",
     "octgn:5d811a82-3729-4b54-8748-e0abffd96e90",
     "octgn:5d8db3c0-31da-4981-af11-1da3c6585bd8",
@@ -3525,6 +3531,7 @@
     "octgn:e7f523e1-c898-42f8-93c2-889038de230f",
     "octgn:e839fa89-15b4-451f-9fac-6a8f38e31d65",
     "octgn:e83f33da-6723-4730-8691-8d1a48b1f8e0",
+    "octgn:e84369a8-89c8-4866-bd21-7c25ece2ca3f",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5001",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5003",
     "octgn:e84f94bf-201b-4adf-95d2-0012e0bb5005",
@@ -3578,6 +3585,7 @@
     "octgn:ebd1944a-928c-40ff-88de-dfebdfcf633c",
     "octgn:ebde9bba-fd89-4098-ad60-9d1d4e746d23",
     "octgn:ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef",
+    "octgn:ec1a2268-5e9d-4875-8089-2692d22fa180",
     "octgn:ec2049ab-c950-46f7-9f1b-30ada69db857",
     "octgn:ec2f100d-22c8-4cc6-82d9-fb4f07446b0f",
     "octgn:ec97b3a4-4904-42ac-beb0-9d4d935241fb",
@@ -4038,7 +4046,7 @@
     {
       "product": "khazad-dum-nightmare",
       "total": 27,
-      "scripted": 0,
+      "scripted": 8,
       "player": 0,
       "playerScripted": 0
     },
@@ -14714,7 +14722,7 @@
       "name": "Twisting Shadows",
       "type": "location",
       "pack": "Khazad-dum - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "khazad-dum-nightmare"
     },
     {
@@ -15234,7 +15242,7 @@
       "name": "Goblin Ambush",
       "type": "quest",
       "pack": "Khazad-dum - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "khazad-dum-nightmare"
     },
     {
@@ -15994,7 +16002,7 @@
       "name": "Into the Pit",
       "type": "nightmare",
       "pack": "Khazad-dum - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "khazad-dum-nightmare"
     },
     {
@@ -17242,7 +17250,7 @@
       "name": "Shadow Dweller",
       "type": "enemy",
       "pack": "Khazad-dum - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "khazad-dum-nightmare"
     },
     {
@@ -23682,7 +23690,7 @@
       "name": "Narrow Fissure",
       "type": "location",
       "pack": "Khazad-dum - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "khazad-dum-nightmare"
     },
     {
@@ -24090,7 +24098,7 @@
       "name": "Patrol Sentry",
       "type": "enemy",
       "pack": "Khazad-dum - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "khazad-dum-nightmare"
     },
     {
@@ -35754,7 +35762,7 @@
       "name": "Shadow-Fall",
       "type": "treachery",
       "pack": "Khazad-dum - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "khazad-dum-nightmare"
     },
     {
@@ -36250,7 +36258,7 @@
       "name": "Goblin Lurker",
       "type": "enemy",
       "pack": "Khazad-dum - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "khazad-dum-nightmare"
     },
     {
@@ -39187,8 +39195,8 @@
       "id": "N02.1",
       "name": "Into the Pit (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "into-the-pit",
+      "state": "scripted"
     },
     {
       "id": "N02.2",

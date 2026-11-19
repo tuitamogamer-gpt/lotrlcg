@@ -109,6 +109,18 @@ export const NIGHTMARE_SOM = {
   befouled: `${E}88`,
   wickedness: `${E}89`,
 } as const;
+/** The Khazad-dûm Nightmare Deck's cards (OCTGN ids, as DragnCards keeps them). */
+export const NIGHTMARE_KD = {
+  /** Into the Pit's setup card, its new stage 2 and its Nightmare Deck. */
+  pitCard: "octgn:207b3e48-c42c-42a8-b1ac-20950e6588d9",
+  ambush: "octgn:17039c31-d3fd-4730-8b74-8f08458071fe",
+  sentry: "octgn:5ce149ca-3cca-41ce-9756-bf137d910966",
+  lurker: "octgn:ec1a2268-5e9d-4875-8089-2692d22fa180",
+  dweller: "octgn:2d85efc7-b619-4376-a7ac-be797b874fba",
+  twisting: "octgn:0f939a7b-8a2e-4358-b3b1-e50b3eef7c0b",
+  fissure: "octgn:573eebae-82fc-4e41-a3a8-343194c893bc",
+  shadowFall: "octgn:e84369a8-89c8-4866-bd21-7c25ece2ca3f",
+} as const;
 
 interface NightmareDeck {
   /** The setup card, flipped next to the quest deck. */
@@ -117,6 +129,8 @@ interface NightmareDeck {
   removals: Record<string, number>;
   /** The quest deck's stage count when a Nightmare Deck adds stages to it. */
   stages?: number;
+  /** Stages the setup card removes from the quest deck, by printed title, replaced by the Nightmare Deck's (Into the Pit's Goblin Patrol). */
+  questRemovals?: Record<string, number>;
 }
 /** The scenarios whose Nightmare Decks are supported, in publication order. */
 export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
@@ -269,6 +283,19 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "The East Bight": 2,
     },
   },
+  "into-the-pit": {
+    card: NIGHTMARE_KD.pitCard,
+    removals: {
+      "Stairs of Náin": 2,
+      "Goblin Follower": 2,
+      "Crumbling Ruin": 2,
+      "Cave In": 3,
+      "Fouled Well": 2,
+      "Goblin Tunnels": 2,
+      "Goblin Swordsman": 5,
+    },
+    questRemovals: { "Goblin Patrol": 1 },
+  },
 };
 export const nightmareSupported = (id?: ScenarioId) => !!id && id in NIGHTMARE;
 /** A Nightmare mode game of a supported scenario. */
@@ -420,5 +447,11 @@ export function nightmareStatus(s: GameState): string[] {
     return [
       "Return to Mirkwood · Nightmare mode: at the beginning of each quest phase the player guarding Gollum exhausts a hero or resolves the topmost Tantrum in the encounter discard pile; stage 4A brings Attercop, Attercop.",
     ];
+  if (s.scenarioId === "into-the-pit") {
+    const n = s.nightmare?.torchDamage ?? 0;
+    return [
+      `Into the Pit · Nightmare mode: ${n} of 5 damage tokens on the setup card (1 each time Cave Torch exhausts; at 5, Cave Torch is removed from the game); stage 2 is Goblin Ambush.`,
+    ];
+  }
   return [];
 }

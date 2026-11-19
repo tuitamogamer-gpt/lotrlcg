@@ -12,9 +12,9 @@ not offered in campaign mode.
 **Supported so far:** the Core Set Nightmare Deck (Passage Through Mirkwood,
 Journey Along the Anduin and Escape from Dol Guldur) and all six of Shadows of
 Mirkwood's (The Hunt for Gollum, Conflict at the Carrock, A Journey to
-Rhosgobel, The Hills of Emyn Muil, The Dead Marshes and Return to Mirkwood).
-The other Nightmare Decks follow in publication order, beginning with
-Khazad-dûm's (Into the Pit, The Seventh Level and Flight from Moria).
+Rhosgobel, The Hills of Emyn Muil, The Dead Marshes and Return to Mirkwood),
+and, of Khazad-dûm's, Into the Pit. The other Nightmare Decks follow in
+publication order, beginning with The Seventh Level.
 
 ## Sources
 
@@ -26,7 +26,8 @@ Khazad-dûm's (Into the Pit, The Seventh Level and Flight from Moria).
   Return to Mirkwood, 8
   cards and 9 faces for A Journey to Rhosgobel, and 11 cards and 13 faces for
   Conflict at the Carrock, whose Nightmare Deck adds a stage to the quest
-  deck, and 10 cards and 11 faces for The Dead Marshes).
+  deck, 10 cards and 11 faces for The Dead Marshes, and 8 cards and 10 faces
+  for Into the Pit, whose Nightmare Deck replaces stage 2).
 - The scans correct the catalogue: each setup card's front is the removal
   list ("Begin with the standard quest deck and encounter deck … Remove the
   following cards, in the specified quantities …"), where the catalogue had a
@@ -52,12 +53,18 @@ Khazad-dûm's (Into the Pit, The Seventh Level and Flight from Moria).
   catalogue had "characater"); Return to Mirkwood's Pursuing Warg-rider engages
   "the player guarding Gollum" (the catalogue had "Guarding"), Web-spinner's
   shadow begins "The player guarding Gollum", and Isolation's keyword is
-  "Surge." with its period.
+  "Surge." with its period; Into the Pit's Goblin Lurker's shadow reads "+1
+  [attack]. (+3 [attack] instead if the active location is a Dark location.)"
+  (the catalogue lost the period and the closing parenthesis), and
+  Shadow-Fall's quoted text ends "+3 quest points.".
 - The source recipe of each Nightmare scenario (`public/scenarios.json`,
-  N01.1 to N01.9) is the standard encounter deck without the
+  N01.1 to N01.9 and N02.1) is the standard encounter deck without the
   printed removals plus the Nightmare Deck (Escape from Dol Guldur's Nazgûl
   and Conflict at the Carrock's 5 unique Trolls set aside in both, the
-  Carrock's stage 3 in its quest deck): a test compares the two.
+  Carrock's stage 3 and Into the Pit's Goblin Ambush in their quest decks): a
+  test compares the two. Into the Pit's recipe lacks the 2 Goblin Followers
+  its setup card keeps (it removes 2 of the 4); the deck follows the printed
+  card.
 
 ## The framework
 
@@ -72,7 +79,8 @@ Khazad-dûm's (Into the Pit, The Seventh Level and Flight from Moria).
   `src/game/nightmare-rhosgobel.ts` (A Journey to Rhosgobel) and
   `src/game/nightmare-emyn.ts` (The Hills of Emyn Muil) and
   `src/game/nightmare-dead.ts` (The Dead Marshes) and
-  `src/game/nightmare-rtm.ts` (Return to Mirkwood) script the setup cards'
+  `src/game/nightmare-rtm.ts` (Return to Mirkwood) and
+  `src/game/nightmare-pit.ts` (Into the Pit) script the setup cards'
   rules and the Nightmare
   encounter cards as a layer, chosen by scenario and composed with its hooks
   (the composition the Ered Mithrin Campaign Pool uses, which also composes
@@ -83,7 +91,10 @@ Khazad-dûm's (Into the Pit, The Seventh Level and Flight from Moria).
   raise resolves in the affected player's own seat.
 - A Nightmare Deck may add stages to the quest deck (Conflict at the
   Carrock's stage 3): the stage count a save accepts and the table shows
-  follows it.
+  follows it. It may also replace a stage (Into the Pit's Goblin Ambush, in
+  place of Goblin Patrol): the table, the quest inspector and the quest's
+  attachments follow the new stage, whose own revealing effects and defeat
+  condition replace the printed stage's.
 - The quest inspector shows the Nightmare card (its rules side first) and the
   rule it applied; the end-of-game log names the mode.
 - The coverage audit counts a Nightmare recipe as automated once its
@@ -228,10 +239,30 @@ gains hooks for a revealed stage, a change of Gollum's guard, a guard who
 cannot be changed, a shadow card targeting each player, and a keyword the
 characters lose (ranged attacks and sentinel defence).
 
+## Into the Pit (Nightmare)
+
+| Card                           | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Setup card                     | Removes Goblin Patrol (stage 2) from the quest deck, and Stairs of Náin ×2, Goblin Follower ×2, Crumbling Ruin ×2, Cave In ×3, Fouled Well ×2, Goblin Tunnels ×2 and Goblin Swordsman ×5 from the standard encounter deck. Forced: each time Cave Torch exhausts (its Action, Lightless Passage's travel cost or Burning Low's cancellation), 1 damage token is placed on the setup card (the quest inspector counts them); at 5, Cave Torch is removed from the game.               |
+| Goblin Ambush (stage 2)        | In place of Goblin Patrol. When revealed, the first player searches the encounter deck and discard pile for X Orc enemies (X is 1 plus the number of players) and adds them to the staging area: Patrol Sentry and Patrol Leader, if able, then the first player's choices. X quest points; progress is placed on it only as enemies are defeated (1 for each), and Goblin Patrol's rules (each revealed enemy discarded, the stage defeated with no enemy in play) no longer apply. |
+| Patrol Sentry (enemy ×4)       | After Cave Torch exhausts, each copy engaged with a player makes an immediate attack against that player. Shadow: it is added to the staging area.                                                                                                                                                                                                                                                                                                                                   |
+| Goblin Lurker (enemy ×3)       | Cannot be optionally engaged. While the active location is a Dark location, +3 [attack] and -40 engagement cost. Shadow: +1 [attack] to the attacking enemy (+3 while the active location is a Dark location).                                                                                                                                                                                                                                                                       |
+| Shadow Dweller (enemy ×2)      | Surge. It makes no engagement checks while Cave Torch is in play. Shadow: it is shuffled into the encounter deck.                                                                                                                                                                                                                                                                                                                                                                    |
+| Twisting Shadows (location ×3) | [threat] and quest points X, the number of Dark locations in play (itself among them). When revealed, all progress is removed from each Dark location in play. Shadow: +1 [attack] to the attacking enemy for each Dark location in play.                                                                                                                                                                                                                                            |
+| Narrow Fissure (location ×3)   | Doomed 1. Each Dark location in play gets +2 quest points. No progress can be placed on it while Cave Torch is ready.                                                                                                                                                                                                                                                                                                                                                                |
+| Shadow-Fall (treachery ×3)     | Surge. Attached to a non-Dark location in play (the first player's choice; discarded with none), which gains the Dark trait and +3 quest points. Shadow: +3 [defense] to the attacking enemy this phase.                                                                                                                                                                                                                                                                             |
+
+The scenario's stages gain hooks for a stage's revealing effects and its
+defeat condition (a Nightmare Deck's new stage); Cave Torch exhausting has a
+hook, and so has an enemy that makes no engagement checks. The composition
+also passes a Nightmare layer's quest progress, dynamic traits (Shadow-Fall's
+Dark, which Cave Torch, Branching Paths and Burning Low see) and engagement
+costs on.
+
 ## Verification
 
 ```sh
-node --import tsx --test tests/nightmare-core.test.ts tests/nightmare-anduin.test.ts tests/nightmare-dol-guldur.test.ts tests/nightmare-gollum.test.ts tests/nightmare-carrock.test.ts tests/nightmare-rhosgobel.test.ts tests/nightmare-emyn.test.ts tests/nightmare-dead.test.ts tests/nightmare-rtm.test.ts
+node --import tsx --test tests/nightmare-core.test.ts tests/nightmare-anduin.test.ts tests/nightmare-dol-guldur.test.ts tests/nightmare-gollum.test.ts tests/nightmare-carrock.test.ts tests/nightmare-rhosgobel.test.ts tests/nightmare-emyn.test.ts tests/nightmare-dead.test.ts tests/nightmare-rtm.test.ts tests/nightmare-pit.test.ts
 npm run build
 npm run test:browser-nightmare
 ```
@@ -318,7 +349,7 @@ new guard engaged and attacked), Ambushing Orcs' shadows on each player
 sentinel keywords, the locked guard, discarded as the quest advances);
 Web-spinner, Web-wall and Deceptive Path; Befouled Equipment (an enemy's attachment too, the discard pile removed from the game, its surge, its shadow) and Wickedness and Mischief (its
 choice, never revealing itself, its shadow's new shadow card); and seeded solo
-and two-player games.
+and two-player games. `tests/nightmare-pit.test.ts` (6 tests) covers Into the Pit's texts, stats and faces; its Nightmare encounter deck against the source recipe (with the 2 Goblin Followers its setup card keeps); Cave Torch's damage tokens (through Lightless Passage's cost and its Action), Patrol Sentry's immediate attack and Cave Torch removed at 5; Goblin Ambush (Patrol Sentry and Patrol Leader found, a choice among the Orc enemies of the deck and discard pile in a two-player game, X quest points, progress only from defeated enemies, revealed enemies kept, the stage defeated at X); Goblin Lurker, Shadow Dweller (no engagement checks while Cave Torch is in play) and the shadows; Twisting Shadows, Narrow Fissure and Shadow-Fall (the Dark trait it gives); and seeded solo and two-player games, from the start and from stage 2.
 
 The browser suite starts Passage Through Mirkwood in Nightmare mode from the
 lobby (easy mode turned off), checks the setup's staging area and reveal, the
@@ -343,5 +374,4 @@ with 3 tokens on the Mere (an escape test revealed during the setup is
 resolved first); and it starts Return to Mirkwood in Nightmare mode from the
 lobby, checks Gollum's guard, its Nightmare card, Isolation on the current
 quest (on the table and in the quest inspector), and the quest phase's choice
-for Gollum's guard, resolving Gollum's Anguish from the discard pile, at 1280,
-390 and 320 pixels (63 checkpoints); it checks the 93 pinned faces.
+for Gollum's guard, resolving Gollum's Anguish from the discard pile; and it starts Into the Pit in Nightmare mode from the lobby, checks Cave Torch, its Nightmare card, and stage 2 (Goblin Ambush's face, its 1 of 2 progress and goal, Shadow-Fall on First Hall), at 1280, 390 and 320 pixels (69 checkpoints); it checks the 103 pinned faces.

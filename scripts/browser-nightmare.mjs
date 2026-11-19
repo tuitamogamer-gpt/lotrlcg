@@ -8,8 +8,10 @@ import { flush } from "../src/game/effects.ts";
 import { make } from "../src/game/core.ts";
 import {
   NIGHTMARE_CORE as N,
+  NIGHTMARE_KD as K,
   NIGHTMARE_SOM as G,
 } from "../src/game/nightmare.ts";
+import { KHAZAD } from "../src/game/khazad-dum.ts";
 import { mainQuestCode } from "../src/game/quest-state.ts";
 import { RETURN } from "../src/game/return-mirkwood.ts";
 import { reviewedState } from "./browser-review-helpers.mjs";
@@ -636,6 +638,84 @@ try {
       assert.equal(s.threat, threat + 8);
       assert.deepEqual(s.encounterDiscard, [RETURN.anguish]);
     }
+    // Into the Pit in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-into-the-pit").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "into-the-pit");
+    assert.equal(s.nightmareMode, true);
+    assert.ok(
+      s.heroes.some((h) => h.attachments.some((a) => a.code === KHAZAD.torch)),
+      "Cave Torch",
+    );
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/0 of 5 damage tokens on the setup card/)
+      .waitFor();
+    await checkpoint("pit-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // Stage 2, Goblin Ambush: Shadow-Fall on First Hall, 3 damage tokens.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.stage = 2;
+      t.progress = 1;
+      t.nightmare = { ...(t.nightmare ?? {}), torchDamage: 3 };
+      const hall = make(t, KHAZAD.hall);
+      hall.attachments.push({
+        id: `a${t.nextId++}`,
+        code: K.shadowFall,
+        exhausted: false,
+      });
+      t.staging = [hall, make(t, K.sentry)];
+      s = await load(page, t);
+    }
+    const ambush = page
+      .getByRole("button", { name: "Inspect quest: Goblin Ambush" })
+      .locator("img");
+    await ambush.waitFor();
+    assert.ok(
+      (await ambush.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "Goblin Ambush's face loads",
+    );
+    await page
+      .getByLabel("Quest progress: 1 of 2", { exact: true })
+      .first()
+      .waitFor();
+    await page
+      .locator(".journey-area .quest-goals")
+      .getByText("Defeat 2 enemies (1 quest progress each)")
+      .waitFor();
+    await page
+      .getByLabel("Attachments on First Hall", { exact: true })
+      .getByRole("button", {
+        name: "Inspect attachment: Shadow-Fall",
+        exact: true,
+      })
+      .waitFor();
+    await checkpoint("pit-goblin-ambush", width);
     await view.c.close();
   }
   const p = await browser.newPage();

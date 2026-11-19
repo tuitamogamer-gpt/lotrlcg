@@ -2381,6 +2381,7 @@ function handleEffect(s: GameState, e: Effect) {
             amonPlayerCanEngage(s, u, i) &&
             shadowFlameCanMove(s, u) &&
             khazadAutoEngageAllowed(s, u) &&
+            !batch4Scenario(s).noEngagementCheck?.(s, u) &&
             !wainridersNoEngagement(s, u, i) &&
             !heirsPlayerNoEngagementCheck(u) &&
             u.noEngagementRound !== s.round &&
@@ -2447,6 +2448,7 @@ function handleEffect(s: GameState, e: Effect) {
             !celebrimborProtected(s, u) &&
             shadowFlameCanMove(s, u) &&
             khazadAutoEngageAllowed(s, u) &&
+            !batch4Scenario(s).noEngagementCheck?.(s, u) &&
             !wainridersNoEngagement(s, u, activeSeat(s)) &&
             !heirsPlayerNoEngagementCheck(u) &&
             u.noEngagementRound !== s.round &&

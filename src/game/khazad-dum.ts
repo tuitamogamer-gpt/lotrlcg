@@ -3,6 +3,7 @@ import { surgeEffects } from "./surge";
 import { removeCurrentQuestProgress } from "./side-quests";
 import { addCurrentQuestProgress } from "./side-quests";
 import { mainQuestCode } from "./quest-state";
+import { batch4Scenario } from "./batch4-scenarios";
 import { hasSilverLamp } from "./voice-isengard";
 import { heirsShadowDealt } from "./heirs-numenor";
 // Original Khazad-dûm encounter sets and the three printed scenarios.
@@ -248,19 +249,22 @@ export function advanceKhazad(s: GameState) {
       s.stage = 2;
       s.progress = 0;
       s.stageRevealing = true;
+      // A Nightmare Deck's Goblin Ambush replaces Goblin Patrol's search.
       prepend(
         s,
-        ...playerOrder(s).map((player, index) =>
-          fx("khazadPatrolSearch", {
-            player,
-            flag: index === playerOrder(s).length - 1,
-          }),
-        ),
+        ...(batch4Scenario(s).stageEffects?.(s, 2) ??
+          playerOrder(s).map((player, index) =>
+            fx("khazadPatrolSearch", {
+              player,
+              flag: index === playerOrder(s).length - 1,
+            }),
+          )),
         fx("khazadStageReady"),
       );
     } else if (
       s.stage === 2 &&
-      (s.progress >= 11 || allEnemies(s).length === 0)
+      (batch4Scenario(s).stageDefeated?.(s) ??
+        (s.progress >= 11 || allEnemies(s).length === 0))
     ) {
       if (questDefeated(s, mainQuestCode(s)!)) return true;
       s.stage = 3;
@@ -414,6 +418,7 @@ export function khazadDiscardRevealedEnemy(s: GameState, u: Unit) {
   if (
     s.scenarioId !== "into-the-pit" ||
     s.stage !== 2 ||
+    mainQuestCode(s) !== KHAZAD.patrolQuest ||
     card(u.code).type_code !== "enemy"
   )
     return false;
@@ -1214,7 +1219,11 @@ export function khazadEffect(s: GameState, e: Effect) {
       );
       if (a && !a.exhausted) {
         a.exhausted = true;
-        prepend(s, fx("khazadTorchDiscard"));
+        prepend(
+          s,
+          fx("khazadTorchDiscard"),
+          ...(batch4Scenario(s).attachmentExhausted?.(s, u!, a) ?? []),
+        );
       }
       break;
     }
@@ -1228,7 +1237,11 @@ export function khazadEffect(s: GameState, e: Effect) {
         "Use a ready Cave Torch on a Dark location.",
       );
       a.exhausted = true;
-      prepend(s, fx("khazadTorchDiscard"));
+      prepend(
+        s,
+        fx("khazadTorchDiscard"),
+        ...(batch4Scenario(s).attachmentExhausted?.(s, host!, a) ?? []),
+      );
       if (e.value) progressLocation(s, u, e.value);
       break;
     }

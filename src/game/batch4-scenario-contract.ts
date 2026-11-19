@@ -142,6 +142,14 @@ export interface Batch4ScenarioHooks {
   guardChanged?(s: GameState, from: number, to: number): void;
   /** After a new quest stage is revealed. */
   stageRevealed?(s: GameState, stage: number): void;
+  /** The effects revealing a quest stage, in place of the printed stage's (a Nightmare Deck's new stage). */
+  stageEffects?(s: GameState, stage: number): Effect[] | undefined;
+  /** Whether the current stage is defeated, in place of the printed stage's condition. */
+  stageDefeated?(s: GameState): boolean | undefined;
+  /** After an attachment exhausts (Into the Pit's Cave Torch): the effects that follow. */
+  attachmentExhausted?(s: GameState, host: Unit, a: Attachment): Effect[];
+  /** The enemy makes no engagement checks. */
+  noEngagementCheck?(s: GameState, u: Unit): boolean;
   /** After characters commit to the quest (each commitment, at any time). */
   charactersCommitted?(s: GameState, units: Unit[]): void;
   /** The character loses the keyword (as A Journey to Rhosgobel's Pitch-dark Thicket, its ranged). */

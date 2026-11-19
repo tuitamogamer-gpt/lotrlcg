@@ -2896,6 +2896,25 @@ export function composeEredPool(
       h.stageRevealed?.(s, stage);
       p.stageRevealed?.(s, stage);
     },
+    stageEffects: (s, stage) =>
+      h.stageEffects?.(s, stage) ?? p.stageEffects?.(s, stage),
+    stageDefeated: (s) => h.stageDefeated?.(s) ?? p.stageDefeated?.(s),
+    attachmentExhausted: (s, u, a) => [
+      ...(h.attachmentExhausted?.(s, u, a) ?? []),
+      ...(p.attachmentExhausted?.(s, u, a) ?? []),
+    ],
+    noEngagementCheck: (s, u) =>
+      !!h.noEngagementCheck?.(s, u) || !!p.noEngagementCheck?.(s, u),
+    progress: (s, amount, quest) => {
+      const a = h.progress ? h.progress(s, amount, quest) : amount;
+      return p.progress ? p.progress(s, a, quest) : a;
+    },
+    dynamicTraits: (s, u) => [
+      ...(h.dynamicTraits?.(s, u) ?? []),
+      ...(p.dynamicTraits?.(s, u) ?? []),
+    ],
+    engagementBonus: (s, u) =>
+      (h.engagementBonus?.(s, u) ?? 0) + (p.engagementBonus?.(s, u) ?? 0),
     locationProgressCapacity: (s, u) => {
       const a = h.locationProgressCapacity?.(s, u),
         b = p.locationProgressCapacity?.(s, u);
