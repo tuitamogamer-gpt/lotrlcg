@@ -171,6 +171,7 @@ import coreCampaignCards from "../data/core-campaign-cards.json";
 import angmarCampaignCards from "../data/angmar-campaign-cards.json";
 import dreamchaserCampaignCards from "../data/dreamchaser-campaign-cards.json";
 import darkMirkwoodCampaignCards from "../data/dark-mirkwood-campaign-cards.json";
+import eredCampaignCards from "../data/ered-campaign-cards.json";
 import { ULFAST_ENCOUNTERS, ULFAST_QUESTS } from "./ulfast-scenario-data";
 import wrathRuinPlayers from "../data/wrath-ruin-player-cards.json";
 import {
@@ -641,6 +642,7 @@ export const encounterCards = [
       ...(angmarCampaignCards as Card[]),
       ...(dreamchaserCampaignCards as Card[]),
       ...(darkMirkwoodCampaignCards as Card[]),
+      ...(eredCampaignCards as Card[]),
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),

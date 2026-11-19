@@ -4,6 +4,7 @@ import {
   darkMirkwoodSetupHandIds,
 } from "./dark-mirkwood-campaign";
 import * as DreamCards from "./dreamchaser-campaign-cards";
+import * as EredCards from "./ered-campaign-cards";
 import * as DreamTemple from "./dreamchaser-temple";
 import * as DreamDrowned from "./dreamchaser-drowned";
 import { angmarCampaignAttachmentPlayed } from "./angmar-campaign-loot";
@@ -1277,6 +1278,21 @@ export function replayEventProblem(
   amount?: number,
 ): string | null {
   if (dikeCannotLeaveDiscard(s)) return DIKE_DISCARD_REASON;
+  // Durin's Dagger: "You may play Durin's Dagger from your discard pile."
+  if (u.code === "12198") {
+    const index = Number(u.id.split(":").at(-1));
+    const problem = EredCards.eredDaggerDiscardProblem(
+      s,
+      Number.isSafeInteger(index) ? index : s.discard.lastIndexOf(u.code),
+      target,
+    );
+    return (
+      problem ??
+      (eventReplayPayments(s, u).length
+        ? null
+        : "The card's resource payment cannot be made.")
+    );
+  }
   if (u.code === "12006") {
     const problem = canPlay(s, u, {
       resolvingEffect: true,
@@ -1674,6 +1690,7 @@ export function resolvePlayerCard(
     if (played)
       LandShadowPlayers.landShadowPlayerAttachmentPlayed(s, host, attachment);
     if (played) angmarCampaignAttachmentPlayed(s, host, attachment);
+    if (played) EredCards.eredCampaignAttachmentPlayed(s, host, attachment);
     if (played)
       redhornPlayerAttachmentPlayed(s, host, attachment, activeSeat(s));
     BatchPlayers.batch4PlayerAttachmentPlayed(
@@ -2680,6 +2697,10 @@ function printedAbilities(s: GameState, u: Unit) {
         DreamCards.dreamchaserAttachmentProblem(s, u, a.id),
       ],
       [
+        EredCards.eredCampaignAbilityLabel(a.code),
+        EredCards.eredCampaignAbilityProblem(s, u, a.id),
+      ],
+      [
         LandSorrowPlayers.landSorrowPlayerAbilityLabel(a.code),
         LandSorrowPlayers.landSorrowPlayerAbilityProblem(s, u, a.id),
       ],
@@ -3319,6 +3340,16 @@ function applyActionCore(input: GameState, action: Action): GameState {
         )
       )
         break;
+      // Durin's Dagger (an Ered Mithrin campaign treasure).
+      if (
+        EredCards.eredPlayDaggerFromDiscard(
+          s,
+          action.index,
+          action.target,
+          action.payment,
+        )
+      )
+        break;
       requireRule(
         Number.isSafeInteger(action.index) &&
           action.index >= 0 &&
@@ -3445,6 +3476,13 @@ function applyActionCore(input: GameState, action: Action): GameState {
             action.attachmentId &&
             s.campaign?.kind === "dreamchaser" &&
             DreamCards.dreamchaserAttachmentAbility(s, u, action.attachmentId)
+          )
+            return;
+          // The Ered Mithrin campaign's treasures.
+          if (
+            u &&
+            action.attachmentId &&
+            EredCards.eredCampaignAbility(s, u, action.attachmentId)
           )
             return;
           if (

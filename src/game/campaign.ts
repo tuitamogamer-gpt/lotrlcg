@@ -49,6 +49,17 @@ import {
   resolveDreamchaserCampaign,
   spendDreamchaserXp,
 } from "./dreamchaser-campaign";
+import {
+  ERED_DECK_BOONS,
+  ERED_FREE_CHANGES,
+  ERED_TREASURES,
+  eredChapterComplete,
+  eredChapterSupported,
+  eredForbiddenTitle,
+  isEredCampaign,
+  nextEredChapter,
+  resolveEredCampaign,
+} from "./ered-campaign";
 
 export function newCampaign(
   heroes: string[],
@@ -74,6 +85,7 @@ export function resolveCampaign(s: GameState) {
   if (isSagaCampaign(c)) return resolveSagaCampaign(s);
   if (isAngmarCampaign(c)) return resolveAngmarCampaign(s);
   if (isDreamchaserCampaign(c)) return resolveDreamchaserCampaign(s);
+  if (isEredCampaign(c)) return resolveEredCampaign(s);
   if (c.completed.some((q) => q.scenarioId === s.scenarioId)) return;
   const fallen = seatIndices(s).flatMap((i) => {
     const p = seatView(s, i);
@@ -147,8 +159,9 @@ export function continueCampaign(
   const saga = isSagaCampaign(s.campaign);
   const angmar = isAngmarCampaign(s.campaign);
   const dream = isDreamchaserCampaign(s.campaign);
-  // The two newer campaigns keep the saga's Campaign Log rules.
-  const logged = saga || angmar || dream;
+  const ered = isEredCampaign(s.campaign);
+  // The newer campaigns keep the saga's Campaign Log rules.
+  const logged = saga || angmar || dream || ered;
   requireRule(
     (saga
       ? sagaChapterComplete(s)
@@ -156,7 +169,9 @@ export function continueCampaign(
         ? angmarChapterComplete(s)
         : dream
           ? dreamchaserChapterComplete(s)
-          : s.status === "won") && s.campaign,
+          : ered
+            ? eredChapterComplete(s)
+            : s.status === "won") && s.campaign,
     "Win the current chapter before continuing.",
   );
   requireRule(
@@ -166,7 +181,9 @@ export function continueCampaign(
         ? !!nextAngmarChapter(s.campaign!)
         : dream
           ? !!nextDreamchaserChapter(s.campaign!)
-          : !!nextMirkwoodChapter(s.campaign!),
+          : ered
+            ? !!nextEredChapter(s.campaign!)
+            : !!nextMirkwoodChapter(s.campaign!),
     "The campaign is complete.",
   );
   requireRule(
@@ -185,7 +202,9 @@ export function continueCampaign(
       ? nextAngmarChapter(c)!
       : dream
         ? nextDreamchaserChapter(c)!
-        : nextMirkwoodChapter(c)!;
+        : ered
+          ? nextEredChapter(c)!
+          : nextMirkwoodChapter(c)!;
   // The Treason of Saruman and The Flame of the West: a fallen Aragorn leaves
   // the list of fallen heroes (each player takes a permanent +1 threat
   // penalty), and the Permanent cards of a recorded Aragorn are transferred to
@@ -236,7 +255,8 @@ export function continueCampaign(
   // Passage of the Marshes' campaign cards say the same.
   const free =
     (saga && SAGA_FREE_CHANGES.includes(next)) ||
-    (angmar && ANGMAR_FREE_CHANGES.includes(next));
+    (angmar && ANGMAR_FREE_CHANGES.includes(next)) ||
+    (ered && ERED_FREE_CHANGES.includes(next));
   // The Treason of Saruman and The Flame of the West: no card titled "Frodo
   // Baggins" can be used, and a recorded Aragorn gives way to the Fellowship
   // Aragorn without the penalty. The Land of Shadow: no card titled
@@ -247,14 +267,18 @@ export function continueCampaign(
       ? angmarForbiddenTitle(next)
       : dream
         ? dreamchaserForbiddenTitle(next)
-        : undefined;
+        : ered
+          ? eredForbiddenTitle(next)
+          : undefined;
   requireRule(
     !title || !heroes.some((h) => card(h).name === title),
     angmar
       ? "The Amarthiúl hero cannot be used until a campaign card allows it (The Battle of Carn Dûm)."
       : dream
         ? "The Na'asiyah hero cannot be used in scenarios 1 through 7 of the Dream-chaser campaign."
-        : `No card titled ${title} can be used in ${TOS_CHAPTERS.includes(next) ? "The Treason of Saruman" : LOS_CHAPTERS.includes(next) ? "The Land of Shadow" : "The Flame of the West"}'s chapters.`,
+        : ered
+          ? "Haldan cannot be used as a hero in the Ered Mithrin campaign until The King's Quest allows him."
+          : `No card titled ${title} can be used in ${TOS_CHAPTERS.includes(next) ? "The Treason of Saruman" : LOS_CHAPTERS.includes(next) ? "The Land of Shadow" : "The Flame of the West"}'s chapters.`,
   );
   const aragornFree =
     saga && (!!fellowshipAragornCode(next) || LOS_CHAPTERS.includes(next));
@@ -324,6 +348,10 @@ export function continueCampaign(
     "The next chapter of the Dream-chaser campaign is not available in campaign mode yet.",
   );
   requireRule(
+    !ered || eredChapterSupported(next),
+    "The next chapter of the Ered Mithrin campaign is not available in campaign mode yet.",
+  );
+  requireRule(
     next !== "dol-guldur" || !c.prisoner || heroes.includes(c.prisoner),
     "The recorded prisoner must remain in this fellowship.",
   );
@@ -359,6 +387,26 @@ export function continueCampaign(
             (Number.isSafeInteger(seat) && seat >= 0 && seat < seatCount)),
       ),
       "Choose a player's deck for each earned boon card.",
+    );
+    c.deckBoons = Object.fromEntries(
+      Object.entries(deckBoons).filter(
+        (entry): entry is [string, number] => entry[1] !== null,
+      ),
+    );
+  }
+  // The Ered Mithrin campaign: a boon ally in the Campaign Pool and each
+  // discovered treasure may join one player's deck (one copy of each).
+  if (ered && deckBoons) {
+    const seatCount = s.table?.seats.length ?? 1;
+    requireRule(
+      Object.entries(deckBoons).every(
+        ([code, seat]) =>
+          ((ERED_DECK_BOONS.includes(code) && c.boons.includes(code)) ||
+            (ERED_TREASURES.includes(code) && !!c.treasures?.includes(code))) &&
+          (seat === null ||
+            (Number.isSafeInteger(seat) && seat >= 0 && seat < seatCount)),
+      ),
+      "Choose a player's deck for each boon or discovered treasure.",
     );
     c.deckBoons = Object.fromEntries(
       Object.entries(deckBoons).filter(

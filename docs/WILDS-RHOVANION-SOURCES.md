@@ -48,6 +48,13 @@ The runtime Haldan record is a reverse-face view of that same physical card.
 
 The generated King's Quest snapshot retains its import tool's literal
 `the-king-s-quest` slug. Runtime uses the canonical `the-kings-quest` ID.
+
+**Uniqueness, corrected 19 November 2026.** The DragnCards scans print the
+unique symbol on The Old Ford, Woodmen Village, Bare Hilltop, Overgrown Path,
+Forest Clearing, Abandoned Village, Dragon Hoard and the Fire-drake, which the
+runtime data had marked non-unique (only Haldan was unique). The Ered Mithrin
+campaign relies on it: its first campaign card counts only non-unique explored
+locations, and A Growing Threat sets aside only non-unique cards.
 No upstream catalog or reference recipe is rewritten.
 
 | Original recipe   | Quests | Initial encounter deck |       Auxiliary deck |  Set aside / setup | Total |

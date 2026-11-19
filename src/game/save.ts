@@ -84,6 +84,11 @@ import { validateUlfastPlayers } from "./ulfast-player-support";
 import { isSagaCampaign, validateSagaCampaign } from "./saga-campaign";
 import { isAngmarCampaign, validateAngmarCampaign } from "./angmar-campaign";
 import {
+  isEredCampaign,
+  validEredState,
+  validateEredCampaign,
+} from "./ered-campaign";
+import {
   isDreamchaserCampaign,
   validateDreamchaserCampaign,
 } from "./dreamchaser-campaign";
@@ -1240,6 +1245,8 @@ export function validateSave(
       if (!validateAngmarCampaign(s)) return false;
     } else if (s.playMode === "campaign" && isDreamchaserCampaign(s.campaign)) {
       if (!validateDreamchaserCampaign(s)) return false;
+    } else if (s.playMode === "campaign" && isEredCampaign(s.campaign)) {
+      if (!validateEredCampaign(s, seatCount)) return false;
     } else if (s.playMode === "campaign") {
       const c = s.campaign;
       if (
@@ -1296,6 +1303,8 @@ export function validateSave(
     }
     // Ranger Sense (any campaign) and The Dark of Mirkwood's game state.
     if (!validDarkMirkwoodState(s, seatCount)) return false;
+    // The Ered Mithrin campaign's state during a chapter.
+    if (!validEredState(s)) return false;
     if (
       s.campaign &&
       !s.campaign.kind &&

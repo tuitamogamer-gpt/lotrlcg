@@ -6,6 +6,8 @@ import {
   mendorLossChapter,
 } from "./dark-mirkwood-campaign";
 import * as DreamCards from "./dreamchaser-campaign-cards";
+import * as EredCards from "./ered-campaign-cards";
+import { eredCampaignLocationExplored } from "./ered-campaign";
 import {
   angmarLootCommitted,
   angmarLootEnemyEngaged,
@@ -581,6 +583,7 @@ export function exhaustCharacter(s: GameState, u: Unit): boolean {
   batch4Scenario(s).characterExhausted?.(s, u);
   sagaCampaignCharacterExhausted(s, u);
   DreamCards.dreamchaserCharacterExhausted(s, u);
+  EredCards.eredCampaignCharacterExhausted(s, u);
   return true;
 }
 /** Every addition to staging shares the response timing, including a return from engagement. */
@@ -1523,6 +1526,7 @@ export function damage(
   value = Race.raceHaradDamageAmount(s, u, value);
   value = Sands.beneathSandsDamageAmount(s, u, value);
   value = DreamCards.dreamchaserDamageAmount(s, u, value);
+  value = EredCards.eredCampaignDamageAmount(s, u, value, context);
   if (batch4Scenario(s).replaceDamage?.(s, u, value, context)) return false;
   value = batch4Scenario(s).damageAmount?.(s, u, value, context) ?? value;
   if (value <= 0) return false;
@@ -1589,6 +1593,7 @@ export function damage(
   sagaCampaignDamageDealt(s, u, value);
   angmarCampaignDamageDealt(s, u, value, context);
   DreamCards.dreamchaserDamageDealt(s, u, value);
+  EredCards.eredCampaignDamageDealt(s, u, value, context);
   if (u.damage >= stats(s, u).health)
     City.cityCharacterDestroyed(s, u, context);
   if (u.damage >= stats(s, u).health)
@@ -2371,6 +2376,7 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   heirsPlayerLocationExplored(s, u, exploredDiscardIndex);
   collectorLocationExplored(s, u, exploredAttachments);
   DreamCards.dreamchaserLocationExplored(s, u, wasActive);
+  eredCampaignLocationExplored(s, u);
   Angmar.angmarLocationExplored(
     s,
     u,
@@ -3775,6 +3781,7 @@ export function placeEncounter(
   if (DreamCards.dreamchaserCampaignEncounter(s, code, false, fromReveal))
     return;
   if (darkMirkwoodEncounter(s, code, false, fromReveal)) return;
+  if (EredCards.eredCampaignEncounter(s, code, false, fromReveal)) return;
   if (batch4Scenario(s).encounter?.(s, code, false, fromReveal)) return;
   if (City.cityEncounter(s, code)) return;
   if (Umbar.umbarEncounter(s, code)) return;

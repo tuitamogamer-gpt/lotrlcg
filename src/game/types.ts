@@ -334,7 +334,7 @@ export interface CampaignState {
    * The Lord of the Rings saga campaign or the Angmar Awakened campaign;
    * absent for Mirkwood Paths.
    */
-  kind?: "saga" | "angmar" | "dreamchaser";
+  kind?: "saga" | "angmar" | "dreamchaser" | "ered";
   /** The Dream-chaser campaign: unspent XP. */
   xp?: number;
   /** The Dream-chaser campaign: the checkboxes marked next to each scalable or upgradable card's title. */
@@ -363,6 +363,22 @@ export interface CampaignState {
    * campaign it is shuffled into that player's deck at each setup.
    */
   rangerSense?: number[];
+  /**
+   * Ered Mithrin: the treasures recorded in the Campaign Log (discovered); a
+   * player may add each to their deck before a game.
+   */
+  treasures?: string[];
+  /**
+   * Ered Mithrin: the notes marked in the Campaign Log ("turayn": Turayn has
+   * taken an oath of vigilance; later "melanwar", "isolde", "beldis").
+   */
+  notes?: string[];
+  /**
+   * Ered Mithrin: the encounter cards in the Campaign Pool other than burdens,
+   * with the number of copies written in the Campaign Log; they join each
+   * encounter deck regardless of encounter set.
+   */
+  encounterPool?: Record<string, number>;
   /** Angmar Awakened: the damage noted for Protect the Innocent (and later Arnor Ravaged). */
   innocent?: number;
   /** Angmar Awakened: Protect the Innocent has been flipped to Arnor Ravaged (Deadmen's Dike). */
@@ -536,6 +552,8 @@ export interface GameState {
    * campaign): the state of the campaign card and boons during a game.
    */
   darkMirkwood?: import("./dark-mirkwood-campaign").DarkMirkwoodGame;
+  /** The Ered Mithrin campaign's state during a chapter (campaign card, treasures, boons). */
+  eredCampaign?: import("./ered-campaign").EredCampaignGame;
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;

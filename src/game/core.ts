@@ -1,4 +1,5 @@
 import * as DreamCards from "./dreamchaser-campaign-cards";
+import { eredCampaignCostReduction } from "./ered-campaign-cards";
 import { angmarBroochWill } from "./angmar-campaign-loot";
 import { wainridersQuestUnits } from "./wainriders-support";
 import { angmarCampaignBoost } from "./angmar-campaign-boost";
@@ -1014,6 +1015,7 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
                 CityPlayers.cityPlayerCostReduction(s, c) -
                 HaradPlayers.haradPlayerCostReduction(s, c) -
                 Drowned.drownedCostReduction(s, c) -
+                eredCampaignCostReduction(s, c) -
                 (batch4Scenario(s).playCostReduction?.(s, c) ?? 0),
             ) + dwarfAdditionalCost(c.code),
           ),

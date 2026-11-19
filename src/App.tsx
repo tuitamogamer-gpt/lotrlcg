@@ -371,6 +371,22 @@ import {
   nextAngmarChapter,
 } from "./game/angmar-campaign";
 import {
+  ERED,
+  ERED_CAMPAIGN_CARDS,
+  ERED_CAMPAIGN_ORDER,
+  ERED_CAMPAIGN_SUPPORTED,
+  ERED_DECK_BOONS,
+  ERED_FREE_CHANGES,
+  ERED_NOTES,
+  applyEredResolution,
+  eredCampaignStatus,
+  eredChapterComplete,
+  eredChapterSupported,
+  eredForbiddenTitle,
+  eredResolutionQuestions,
+  nextEredChapter,
+} from "./game/ered-campaign";
+import {
   DREAMCHASER_CAMPAIGN_CARDS,
   DREAMCHASER_CAMPAIGN_ORDER,
   DREAMCHASER_CAMPAIGN_SUPPORTED,
@@ -481,11 +497,14 @@ const SAVE_KEY = "there-and-back-again.save.v1",
 const CAMPAIGN_KEY = "there-and-back-again.campaign.v1";
 const MODE_KEY = "there-and-back-again.mode.v1";
 const CAMPAIGN_KIND_KEY = "there-and-back-again.campaign-kind.v1";
-type CampaignKind = "mirkwood" | "saga" | "angmar" | "dreamchaser";
+type CampaignKind = "mirkwood" | "saga" | "angmar" | "dreamchaser" | "ered";
 const readCampaignKind = (): CampaignKind => {
   try {
     const kind = localStorage.getItem(CAMPAIGN_KIND_KEY);
-    return kind === "saga" || kind === "angmar" || kind === "dreamchaser"
+    return kind === "saga" ||
+      kind === "angmar" ||
+      kind === "dreamchaser" ||
+      kind === "ered"
       ? kind
       : "mirkwood";
   } catch {
@@ -499,7 +518,9 @@ const campaignKindOf = (c?: CampaignState | null): CampaignKind =>
       ? "angmar"
       : c?.kind === "dreamchaser"
         ? "dreamchaser"
-        : "mirkwood";
+        : c?.kind === "ered"
+          ? "ered"
+          : "mirkwood";
 /**
  * The chapters of a campaign, in order (with the saga's optional inserts);
  * Mirkwood Paths adds The Dark of Mirkwood's Parts 4 and 5, or is The Dark of
@@ -512,7 +533,9 @@ const chaptersOf = (c: CampaignState): readonly ScenarioId[] =>
       ? ANGMAR_CAMPAIGN_ORDER
       : c.kind === "dreamchaser"
         ? DREAMCHASER_CAMPAIGN_ORDER
-        : mirkwoodPathsOrder(c);
+        : c.kind === "ered"
+          ? ERED_CAMPAIGN_ORDER
+          : mirkwoodPathsOrder(c);
 /** Each seat's hero count in the Campaign Log (a set-aside Aragorn still counts). */
 const campaignSeatCounts = (g: GameState): number[] =>
   (g.campaign?.kind ? g.campaign.seatHeroes : undefined) ??
@@ -537,12 +560,15 @@ const campaignProgress = (c: CampaignState) =>
       ? `${c.completed.length} / ${ANGMAR_CAMPAIGN_ORDER.length}`
       : c.kind === "dreamchaser"
         ? `${c.completed.length} / ${DREAMCHASER_CAMPAIGN_ORDER.length}`
-        : `${c.completed.length} / ${mirkwoodPathsOrder(c).length}`;
+        : c.kind === "ered"
+          ? `${c.completed.length} / ${ERED_CAMPAIGN_ORDER.length}`
+          : `${c.completed.length} / ${mirkwoodPathsOrder(c).length}`;
 const CAMPAIGN_TITLES: Record<CampaignKind, string> = {
   mirkwood: "Mirkwood Paths",
   saga: "The Lord of the Rings",
   angmar: "Angmar Awakened",
   dreamchaser: "Dream-chaser",
+  ered: "Ered Mithrin",
 };
 /** The chapter a campaign continues with, or undefined when it is complete. */
 const nextChapterOf = (c: CampaignState): ScenarioId | undefined =>
@@ -552,7 +578,9 @@ const nextChapterOf = (c: CampaignState): ScenarioId | undefined =>
       ? nextAngmarChapter(c)
       : c.kind === "dreamchaser"
         ? nextDreamchaserChapter(c)
-        : nextMirkwoodChapter(c);
+        : c.kind === "ered"
+          ? nextEredChapter(c)
+          : nextMirkwoodChapter(c);
 /** The hero title a campaign's next chapter forbids. */
 const forbiddenTitleOf = (c: CampaignState, next?: ScenarioId) =>
   !next
@@ -563,7 +591,9 @@ const forbiddenTitleOf = (c: CampaignState, next?: ScenarioId) =>
         ? angmarForbiddenTitle(next)
         : c.kind === "dreamchaser"
           ? dreamchaserForbiddenTitle(next)
-          : undefined;
+          : c.kind === "ered"
+            ? eredForbiddenTitle(next)
+            : undefined;
 const readMode = (): PlayMode => {
   try {
     return localStorage.getItem(MODE_KEY) === "campaign"
@@ -1137,7 +1167,9 @@ export default function App() {
         ? "intruders-in-chetwood"
         : campaignKind === "dreamchaser"
           ? "voyage-across-belegaer"
-          : mirkwoodStart;
+          : campaignKind === "ered"
+            ? "journey-up-the-anduin"
+            : mirkwoodStart;
   const [interlude, setInterlude] = useState(false);
   const [nextHeroes, setNextHeroes] = useState<string[]>([]);
   const [nextSeatDecks, setNextSeatDecks] = useState<string[]>([]);
@@ -1943,6 +1975,14 @@ export default function App() {
               )
               .map((code) => [code, c.deckBoons?.[code] ?? null] as const)
           : []),
+        // The Ered Mithrin campaign: a boon ally in the Campaign Pool and
+        // each discovered treasure may join one player's deck.
+        ...(c.kind === "ered"
+          ? [
+              ...ERED_DECK_BOONS.filter((code) => c.boons.includes(code)),
+              ...(c.treasures ?? []),
+            ].map((code) => [code, c.deckBoons?.[code] ?? null] as const)
+          : []),
         // Brace of Coneys: one entry per earned copy ("code#copy").
         ...COPY_BOONS.filter((code) => c.boons.includes(code)).flatMap((code) =>
           (c.boonCopies?.[code] ?? []).map(
@@ -1973,7 +2013,8 @@ export default function App() {
         game.campaign?.kind === "saga" ? nextChapter : undefined,
         game.campaign?.kind === "saga" ||
           game.campaign?.kind === "angmar" ||
-          game.campaign?.kind === "dreamchaser"
+          game.campaign?.kind === "dreamchaser" ||
+          game.campaign?.kind === "ered"
           ? nextDeckBoons
           : undefined,
         game.campaign?.kind === "dreamchaser"
@@ -2706,6 +2747,18 @@ export default function App() {
                       </small>
                     </span>
                   </button>
+                  <button
+                    aria-pressed={campaignKind === "ered"}
+                    onClick={() => setCampaignKind("ered")}
+                  >
+                    <span>
+                      Ered Mithrin
+                      <small>
+                        {ERED_CAMPAIGN_SUPPORTED.length} of{" "}
+                        {ERED_CAMPAIGN_ORDER.length} chapters · treasures
+                      </small>
+                    </span>
+                  </button>
                 </div>
               )}
               {playMode === "campaign" &&
@@ -2810,13 +2863,15 @@ export default function App() {
                         ? `ANGMAR AWAKENED · CHAPTER ${ANGMAR_CAMPAIGN_ORDER.indexOf(quest.id) + 1}`
                         : campaignKind === "dreamchaser"
                           ? `DREAM-CHASER · PART ${DREAMCHASER_CAMPAIGN_ORDER.indexOf(quest.id) + 1}`
-                          : mirkwoodStart === "the-oath" &&
-                              !(
-                                game?.campaign &&
-                                campaignKindOf(game.campaign) === "mirkwood"
-                              )
-                            ? `THE DARK OF MIRKWOOD · PART ${mirkwoodPart({ mini: true }, quest.id)}`
-                            : `MIRKWOOD PATHS · PART ${mirkwoodPart(game?.campaign && campaignKindOf(game.campaign) === "mirkwood" ? game.campaign : {}, quest.id)}`
+                          : campaignKind === "ered"
+                            ? `ERED MITHRIN · PART ${ERED_CAMPAIGN_ORDER.indexOf(quest.id) + 1}`
+                            : mirkwoodStart === "the-oath" &&
+                                !(
+                                  game?.campaign &&
+                                  campaignKindOf(game.campaign) === "mirkwood"
+                                )
+                              ? `THE DARK OF MIRKWOOD · PART ${mirkwoodPart({ mini: true }, quest.id)}`
+                              : `MIRKWOOD PATHS · PART ${mirkwoodPart(game?.campaign && campaignKindOf(game.campaign) === "mirkwood" ? game.campaign : {}, quest.id)}`
                     : quest.tagline.toUpperCase()}
                 </div>
                 <div className="adventure-preview-meta">
@@ -4538,6 +4593,7 @@ export default function App() {
                   ...angmarCampaignStatus(game),
                   ...dreamchaserCampaignStatus(game),
                   ...darkMirkwoodCampaignStatus(game),
+                  ...eredCampaignStatus(game),
                 ].map((line) => (
                   <p key={line} className="campaign-note">
                     {line}
@@ -4680,7 +4736,8 @@ export default function App() {
                     <Info size={17} />
                   </button>
                   {pile === "player" &&
-                    ["10121", "10145", "12006"].includes(code) &&
+                    // Durin's Dagger: an Ered Mithrin campaign treasure.
+                    ["10121", "10145", "12006", ERED.dagger].includes(code) &&
                     (() => {
                       const index = game.discard.length - 1 - i;
                       const reason = replayEventProblem(
@@ -5293,10 +5350,15 @@ export default function App() {
           {((game.campaign.kind === "saga" &&
             nextChapter !== "the-ring-goes-south") ||
             game.campaign.kind === "angmar" ||
-            game.campaign.kind === "dreamchaser") &&
+            game.campaign.kind === "dreamchaser" ||
+            game.campaign.kind === "ered") &&
             Object.keys(nextDeckBoons).length > 0 && (
               <fieldset className="saga-deck-boons">
-                <legend>Earned boon cards in your decks</legend>
+                <legend>
+                  {game.campaign.kind === "ered"
+                    ? "Boons and discovered treasures in your decks"
+                    : "Earned boon cards in your decks"}
+                </legend>
                 {Object.entries(nextDeckBoons).map(([key, seat]) => {
                   const [code, copy] = key.split("#");
                   const title = `${card(code).name}${copy === undefined ? "" : ` (copy ${Number(copy) + 1})`}`;
@@ -5558,9 +5620,11 @@ export default function App() {
                           ? applyAngmarResolution(game, answers)
                           : game.campaign?.kind === "dreamchaser"
                             ? applyDreamchaserResolution(game, answers)
-                            : !game.campaign?.kind
-                              ? applyMirkwoodResolution(game, answers)
-                              : applySagaResolution(game, answers),
+                            : game.campaign?.kind === "ered"
+                              ? applyEredResolution(game, answers)
+                              : !game.campaign?.kind
+                                ? applyMirkwoodResolution(game, answers)
+                                : applySagaResolution(game, answers),
                       );
                     } catch (e) {
                       notify((e as Error).message);
@@ -5578,7 +5642,9 @@ export default function App() {
                       ? dreamchaserChapterSupported(
                           nextChapterOf(game.campaign),
                         )
-                      : true) ? (
+                      : game.campaign.kind === "ered"
+                        ? eredChapterSupported(nextChapterOf(game.campaign))
+                        : true) ? (
                 <>
                   {game.status === "lost" && (
                     <p className="campaign-note">
@@ -5611,8 +5677,10 @@ export default function App() {
                 </p>
               ) : (game.campaign?.kind === "angmar"
                   ? angmarChapterComplete(game)
-                  : game.campaign?.kind === "dreamchaser" &&
-                    dreamchaserChapterComplete(game)) &&
+                  : game.campaign?.kind === "dreamchaser"
+                    ? dreamchaserChapterComplete(game)
+                    : game.campaign?.kind === "ered" &&
+                      eredChapterComplete(game)) &&
                 nextChapterOf(game.campaign!) ? (
                 <p className="campaign-note">
                   The campaign log is recorded. The next chapter,{" "}
@@ -5681,9 +5749,11 @@ function SagaResolution({
       ? angmarResolutionQuestions(game)
       : game.campaign?.kind === "dreamchaser"
         ? dreamchaserResolutionQuestions(game)
-        : !game.campaign?.kind
-          ? mirkwoodResolutionQuestions(game)
-          : sagaResolutionQuestions(game);
+        : game.campaign?.kind === "ered"
+          ? eredResolutionQuestions(game)
+          : !game.campaign?.kind
+            ? mirkwoodResolutionQuestions(game)
+            : sagaResolutionQuestions(game);
   const [answers, setAnswers] = useState<Record<string, string>>(() =>
     Object.fromEntries(questions.map((q) => [q.id, q.options[0]?.id ?? ""])),
   );
@@ -5739,6 +5809,10 @@ const freeHeroChange = (g: GameState, chosen?: ScenarioId) => {
     const next = nextAngmarChapter(c);
     return !!next && ANGMAR_FREE_CHANGES.includes(next);
   }
+  if (c?.kind === "ered") {
+    const next = nextEredChapter(c);
+    return !!next && ERED_FREE_CHANGES.includes(next);
+  }
   return false;
 };
 /** The campaign card of the chapter being played, in either campaign. */
@@ -5751,8 +5825,10 @@ const campaignCardOf = (game: GameState) =>
         ? ANGMAR_CAMPAIGN_CARDS[game.scenarioId]
         : game.campaign.kind === "dreamchaser"
           ? DREAMCHASER_CAMPAIGN_CARDS[game.scenarioId]
-          : (CORE_CAMPAIGN_CARDS[game.scenarioId] ??
-            DARK_MIRKWOOD_CAMPAIGN_CARDS[game.scenarioId]);
+          : game.campaign.kind === "ered"
+            ? ERED_CAMPAIGN_CARDS[game.scenarioId]
+            : (CORE_CAMPAIGN_CARDS[game.scenarioId] ??
+              DARK_MIRKWOOD_CAMPAIGN_CARDS[game.scenarioId]);
 /**
  * The Dream-chaser campaign's interlude: spend XP on the Campaign Log's
  * checkboxes, and choose the Hard/Expert Mode card for the next chapter.
@@ -5879,6 +5955,55 @@ function DarkMirkwoodNotes({ game }: { game: GameState }) {
   ) : null;
 }
 
+/** The Ered Mithrin Campaign Log: treasures, notes and the pool's encounter cards. */
+function EredNotes({
+  campaign: c,
+  inspect,
+}: {
+  campaign: CampaignState;
+  inspect: (c: Card) => void;
+}) {
+  const pool = Object.entries(c.encounterPool ?? {});
+  return (
+    <>
+      <p className="campaign-note" data-ered-treasures>
+        Notes · treasures:{" "}
+        {c.treasures?.length ? (
+          c.treasures.map((code, i) => (
+            <span key={code}>
+              {i ? ", " : ""}
+              <button className="text-link" onClick={() => inspect(card(code))}>
+                {card(code).name}
+              </button>
+            </span>
+          ))
+        ) : (
+          <>none discovered yet</>
+        )}
+      </p>
+      {c.notes?.map((note) => (
+        <p key={note} className="campaign-note" data-ered-note={note}>
+          Notes · “{ERED_NOTES[note] ?? note}”
+        </p>
+      ))}
+      {pool.length ? (
+        <p className="campaign-note" data-ered-pool>
+          Notes · encounter cards in the Campaign Pool:{" "}
+          {pool.map(([code, n], i) => (
+            <span key={code}>
+              {i ? ", " : ""}
+              <button className="text-link" onClick={() => inspect(card(code))}>
+                {card(code).name}
+              </button>
+              {n > 1 ? ` ×${n}` : ""}
+            </span>
+          ))}
+        </p>
+      ) : null}
+    </>
+  );
+}
+
 function CampaignJournal({
   game,
   inspect,
@@ -5925,6 +6050,8 @@ function CampaignJournal({
                   ANGMAR_CAMPAIGN_ORDER.indexOf(id) + 1
                 ) : c.kind === "dreamchaser" ? (
                   DREAMCHASER_CAMPAIGN_ORDER.indexOf(id) + 1
+                ) : c.kind === "ered" ? (
+                  ERED_CAMPAIGN_ORDER.indexOf(id) + 1
                 ) : (
                   mirkwoodPart(c, id)
                 )}
@@ -6000,6 +6127,7 @@ function CampaignJournal({
       </div>
       {/* The Dark of Mirkwood (Ranger Sense may join any later campaign). */}
       <DarkMirkwoodNotes game={game} />
+      {c.kind === "ered" ? <EredNotes campaign={c} inspect={inspect} /> : null}
       {c.captives?.length ? (
         <p className="campaign-note">
           Notes · captives:{" "}

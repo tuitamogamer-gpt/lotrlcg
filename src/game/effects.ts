@@ -5,6 +5,7 @@ import {
 } from "./dark-mirkwood-campaign";
 import * as DreamCards from "./dreamchaser-campaign-cards";
 import { dreamchaserCampaignEffect } from "./dreamchaser-campaign";
+import * as EredCards from "./ered-campaign-cards";
 import {
   angmarLootEffect,
   angmarLootEnemyAttackResolved,
@@ -692,6 +693,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (angmarCampaignEffect(s, e)) return;
   if (dreamchaserCampaignEffect(s, e)) return;
   if (darkMirkwoodEffect(s, e)) return;
+  if (EredCards.eredCampaignEffect(s, e)) return;
   if (angmarLootEffect(s, e)) return;
   if (HaradPlayers.handleHaradPlayerEffect(s, e)) return;
   if (MumakPlayers.handleMumakilPlayerEffect(s, e)) return;
@@ -1708,6 +1710,7 @@ function handleEffect(s: GameState, e: Effect) {
             sagaCampaignEncounter(s, e.code, true, true) ||
             angmarCampaignEncounter(s, e.code, true, true) ||
             darkMirkwoodEncounter(s, e.code, true, true) ||
+            EredCards.eredCampaignEncounter(s, e.code, true, true) ||
             batch4Scenario(s).encounter?.(s, e.code, true, true) ||
             City.cityEncounter(s, e.code, true) ||
             Umbar.umbarEncounter(s, e.code, true) ||
@@ -3075,6 +3078,13 @@ export function shadowResponse(s: GameState, code: string) {
     batch4Scenario(s).cannotCancel?.(s, true, code)
       ? []
       : ruinsBelegostShadowOptions(s, code, !!shadowText);
+  // Gondolin Shield (an Ered Mithrin campaign treasure).
+  const eredShieldOptions =
+    roadRivendellCannotCancel(s) ||
+    allActiveLocations(s).some((l) => l.code === "02016") ||
+    batch4Scenario(s).cannotCancel?.(s, true, code)
+      ? []
+      : EredCards.eredCampaignShadowOptions(s, code, !!shadowText);
   // Iârion's Pendant (an Angmar Awakened campaign boon).
   const pendantOptions =
     roadRivendellCannotCancel(s) ||
@@ -3084,6 +3094,7 @@ export function shadowResponse(s: GameState, code: string) {
       : angmarPendantShadowOptions(s, !!shadowText);
   if (
     swordOptions.length ||
+    eredShieldOptions.length ||
     pendantOptions.length ||
     sternerOptions.length ||
     balinOptions.length ||
@@ -3105,6 +3116,7 @@ export function shadowResponse(s: GameState, code: string) {
         ...balinOptions,
         ...sternerOptions,
         ...swordOptions,
+        ...eredShieldOptions,
         ...pendantOptions,
         ...brand,
         ...erkenbrand,

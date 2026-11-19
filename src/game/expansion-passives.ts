@@ -194,6 +194,17 @@ const rules: Record<string, AttachmentRule> = {
   // The Dream-chaser campaign: Ballista (Upgraded) "gains ranged" (its other
   // bonuses and Response are in dreamchaser-campaign-cards.ts).
   "11173.B": { keywords: ["Ranged"] },
+  // The Ered Mithrin campaign's treasures ("Attach to a character" unless
+  // noted); their Responses and Actions are in ered-campaign-cards.ts.
+  "12196": {},
+  "12197": { restricted: 1, attack: 2 },
+  "12198": { attack: 1 },
+  "12199": { type: "hero" },
+  "12200": { restricted: 1, will: 2 },
+  "12201": { restricted: 1, defense: 1, keywords: ["Sentinel"] },
+  "12202": { restricted: 1, defense: 2 },
+  "12203": { will: 1 },
+  "12204": { restricted: 1, attack: 1, keywords: ["Ranged"] },
   // The Battle of Carn Dûm's Raiment of the Second Age (its draw is in angmar-campaign-loot.ts).
   "10191": { attack: 2, health: 2, restricted: 1 },
   // The Battle of the Pelennor Fields' boons (Esquire of Rohan, Esquire of Gondor).

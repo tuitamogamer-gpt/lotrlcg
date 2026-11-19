@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2246,
+    "encounterCards": 2258,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3468,
-    "pending": 715
+    "scripted": 3480,
+    "pending": 703
   },
   "scenarioRecipes": {
     "total": 355,
@@ -787,6 +787,17 @@
     "12144",
     "12145",
     "12146",
+    "12166",
+    "12167",
+    "12196",
+    "12197",
+    "12198",
+    "12199",
+    "12200",
+    "12201",
+    "12202",
+    "12203",
+    "12204",
     "131001",
     "131002",
     "131003",
@@ -1351,6 +1362,7 @@
     "octgn:123bc772-2c27-4f26-a7f2-a3c4928a9dc4",
     "octgn:125e7884-7f75-42cd-80ba-065cf88eef9a",
     "octgn:12a9c24d-c09d-4fd8-a746-4d75d30b7548",
+    "octgn:12da9483-0fce-43c6-ae47-4cc2aea9cde9",
     "octgn:1339dfb5-49c1-46ce-a4c9-970d0e118cfa",
     "octgn:13543061-b855-4e58-9190-e2f56c17cd32",
     "octgn:1371a0af-e085-42e4-8cd7-a2007da158e1",
@@ -3824,9 +3836,9 @@
     {
       "product": "ered-mithrin-campaign-expansion",
       "total": 40,
-      "scripted": 0,
+      "scripted": 12,
       "player": 21,
-      "playerScripted": 0
+      "playerScripted": 10
     },
     {
       "product": "escape-from-khazad-dum",
@@ -9855,7 +9867,7 @@
       "name": "Turayn",
       "type": "ally",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -9863,7 +9875,7 @@
       "name": "A Growing Threat",
       "type": "treachery",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -10031,7 +10043,7 @@
       "name": "Anvil of Gundabad",
       "type": "treasure",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -10039,7 +10051,7 @@
       "name": "Axe of the Edain",
       "type": "treasure",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -10047,7 +10059,7 @@
       "name": "Durin's Dagger",
       "type": "treasure",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -10055,7 +10067,7 @@
       "name": "Dwarf-Lord's Crown",
       "type": "treasure",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -10063,7 +10075,7 @@
       "name": "Glittering Lute",
       "type": "treasure",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -10071,7 +10083,7 @@
       "name": "Gondolin Shield",
       "type": "treasure",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -10079,7 +10091,7 @@
       "name": "Helm of Heroes",
       "type": "treasure",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -10087,7 +10099,7 @@
       "name": "Jewels of Wilderland",
       "type": "treasure",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -10095,7 +10107,7 @@
       "name": "Masterwork Bow",
       "type": "treasure",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -14815,7 +14827,7 @@
       "name": "Journey Up the Anduin",
       "type": "campaign",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {

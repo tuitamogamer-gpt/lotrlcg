@@ -1,4 +1,5 @@
 import * as DreamCards from "./dreamchaser-campaign-cards";
+import * as EredCards from "./ered-campaign-cards";
 import {
   angmarClueUndeadBonus,
   angmarLootAttackKilled,
@@ -690,6 +691,7 @@ export function playerAttackKilled(
   TreasonPlayers.treasonPlayerAttackKilled(s, enemy, ids);
   MountainFirePlayers.mountainFirePlayerAttackKilled(s, enemy, ids);
   EredPlayers.eredMithrinPlayerAttackKilled(s, enemy, ids);
+  EredCards.eredCampaignAttackKilled(s, enemy, ids);
   BatchPlayers.batch4PlayerAttackKilled(s, enemy, ids);
   Realm.realmAttackKilled(s, ids);
   CobasPlayers.cobasPlayerAttackKilled(s);

@@ -134,6 +134,15 @@ import {
   nextDreamchaserChapter,
 } from "./dreamchaser-campaign";
 import {
+  eredCampaignDeckSetup,
+  eredCampaignSetup,
+  eredChapterSupported,
+  eredForbiddenTitle,
+  isEredCampaign,
+  newEredCampaign,
+  nextEredChapter,
+} from "./ered-campaign";
+import {
   isSagaCampaign,
   newSagaCampaign,
   sagaChapterOptions,
@@ -334,6 +343,12 @@ export function createGame(
     (options.campaign
       ? isDreamchaserCampaign(options.campaign)
       : scenarioId === "voyage-across-belegaer");
+  // The Ered Mithrin campaign begins with Journey Up the Anduin.
+  const eredCampaign =
+    playMode === "campaign" &&
+    (options.campaign
+      ? isEredCampaign(options.campaign)
+      : scenarioId === "journey-up-the-anduin");
   // Mirkwood Paths begins in Mirkwood; The Dark of Mirkwood's mini campaign
   // begins at The Oath with a blank Campaign Log.
   requireRule(
@@ -341,6 +356,7 @@ export function createGame(
       sagaCampaign ||
       angmarCampaign ||
       dreamchaserCampaign ||
+      eredCampaign ||
       options.campaign ||
       scenarioId === "mirkwood" ||
       scenarioId === "the-oath",
@@ -351,6 +367,7 @@ export function createGame(
       sagaCampaign ||
       angmarCampaign ||
       dreamchaserCampaign ||
+      eredCampaign ||
       (MIRKWOOD_PATHS_ORDER.includes(scenarioId) &&
         nextMirkwoodChapter({
           completed: options.campaign?.completed ?? [],
@@ -375,6 +392,12 @@ export function createGame(
     "The Dream-chaser campaign follows its chapters in order, beginning with Voyage Across Belegaer.",
   );
   requireRule(
+    !eredCampaign ||
+      (eredChapterSupported(scenarioId) &&
+        nextEredChapter(options.campaign ?? { completed: [] }) === scenarioId),
+    "The Ered Mithrin campaign follows its chapters in order, beginning with Journey Up the Anduin.",
+  );
+  requireRule(
     !options.dreamchaserMode || dreamchaserCampaign,
     "Hard and Expert Mode belong to the Dream-chaser campaign.",
   );
@@ -396,7 +419,9 @@ export function createGame(
       ? angmarForbiddenTitle(scenarioId)
       : dreamchaserCampaign
         ? dreamchaserForbiddenTitle(scenarioId)
-        : undefined;
+        : eredCampaign
+          ? eredForbiddenTitle(scenarioId)
+          : undefined;
   requireRule(
     !forbidden || !chosenHeroes.some((c) => card(c).name === forbidden),
     `No card titled ${forbidden} can be used in this chapter of the campaign.`,
@@ -421,7 +446,12 @@ export function createGame(
                       chosenLine,
                       options.seats?.map((p) => p.heroes.length),
                     )
-                  : newCampaign(chosenLine)),
+                  : eredCampaign
+                    ? newEredCampaign(
+                        chosenLine,
+                        options.seats?.map((p) => p.heroes.length),
+                      )
+                    : newCampaign(chosenLine)),
         )
       : null;
   // The Dark of Mirkwood's mini campaign: The Oath with a blank Campaign Log.
@@ -700,6 +730,8 @@ export function finishGameSetup(s: GameState) {
   dreamchaserDeckSetup(s);
   // Ranger Sense: a copy in the Campaign Pool joins its player's deck.
   darkMirkwoodDeckSetup(s);
+  // The Ered Mithrin campaign: boon allies and discovered treasures.
+  eredCampaignDeckSetup(s);
   eachSeat(s, () => {
     shuffle(s, s.deck);
     // Gandalf's Delay (a saga campaign burden): 1 less card.
@@ -863,9 +895,10 @@ export function finishGameSetup(s: GameState) {
   angmarCampaignSetup(s);
   dreamchaserCampaignSetup(s);
   darkMirkwoodCampaignSetup(s);
+  eredCampaignSetup(s);
   log(
     s,
-    `${scenario(scenarioId).name} · ${playMode === "campaign" ? (isSagaCampaign(campaign) ? "The Lord of the Rings campaign" : isAngmarCampaign(campaign) ? "The Angmar Awakened campaign" : isDreamchaserCampaign(campaign) ? "The Dream-chaser campaign" : campaign?.mini ? "The Dark of Mirkwood mini campaign" : "Mirkwood Paths campaign") : "Normal game"}.`,
+    `${scenario(scenarioId).name} · ${playMode === "campaign" ? (isSagaCampaign(campaign) ? "The Lord of the Rings campaign" : isAngmarCampaign(campaign) ? "The Angmar Awakened campaign" : isDreamchaserCampaign(campaign) ? "The Dream-chaser campaign" : isEredCampaign(campaign) ? "The Ered Mithrin campaign" : campaign?.mini ? "The Dark of Mirkwood mini campaign" : "Mirkwood Paths campaign") : "Normal game"}.`,
     "chapter",
   );
   if (s.flow)
