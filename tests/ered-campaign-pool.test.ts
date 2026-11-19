@@ -24,6 +24,8 @@ import {
 } from "../src/game/ered-campaign-pool";
 import { WILDS_RHOVANION as W } from "../src/game/wilds-rhovanion-support";
 import { WITHERED_HEATH as H } from "../src/game/withered-heath-support";
+import { ROAM_RHOVANION as R } from "../src/game/roam-rhovanion-support";
+import { FIRE_NIGHT as F } from "../src/game/fire-night-support";
 import { syncAttachmentText } from "../src/game/attachment-text";
 import { seatView } from "../src/game/table";
 import type { GameState, ScenarioId, Unit } from "../src/game/types";
@@ -104,15 +106,15 @@ function shadow(s: GameState, enemy: Unit, code: string, defender?: Unit) {
   return batch4Scenario(s).shadow!(s, code);
 }
 
-test("Ered Mithrin Campaign Pool: the 51 cards of the first four chapters are foreign wherever the later chapters' own modules do not script them", () => {
-  assert.equal(ERED_POOL_PORTABLE.length, 51);
-  assert.equal(new Set(ERED_POOL_PORTABLE).size, 51);
+test("Ered Mithrin Campaign Pool: the 60 cards of the first five chapters are foreign wherever the later chapters' own modules do not script them", () => {
+  assert.equal(ERED_POOL_PORTABLE.length, 60);
+  assert.equal(new Set(ERED_POOL_PORTABLE).size, 60);
   const counts = LATER.map((id) => {
     const s = chapter(id);
     assert.ok(eredPoolLive(s));
     return ERED_POOL_PORTABLE.filter((c) => eredForeign(s, c)).length;
   });
-  assert.deepEqual(counts, [30, 43, 45, 46, 36, 44]);
+  assert.deepEqual(counts, [39, 43, 54, 55, 45, 53]);
   // Every card is foreign in at least one later chapter.
   const heath = chapter("the-withered-heath"),
     roam = chapter("roam-across-rhovanion");
@@ -129,6 +131,10 @@ test("Ered Mithrin Campaign Pool: the 51 cards of the first four chapters are fo
   // The Withered Heath's own cards are foreign from Roam Across Rhovanion on.
   assert.equal(eredForeign(heath, H.troll), false);
   assert.equal(eredForeign(roam, H.troll), true);
+  // Roam Across Rhovanion's own cards are foreign from Fire in the Night on.
+  const fire = chapter("fire-in-the-night");
+  assert.equal(eredForeign(roam, R.giant), false);
+  assert.equal(eredForeign(fire, R.giant), true);
   // Outside the campaign the layer does nothing.
   const normal = createGame(5, d.cards, d.heroes, d.id, {
     scenarioId: "the-withered-heath",
@@ -148,6 +154,12 @@ test("Ered Mithrin Campaign Pool: each foreign card revealed in each later chapt
       if (t === "treachery")
         assert.ok(
           s.encounterDiscard.includes(code) ||
+            // Sneaking Off removes itself from the game.
+            s.removed.includes(code) ||
+            // Wild Creatures can discard the whole encounter deck looking
+            // for a Creature enemy; the empty deck is then refilled from
+            // the discard pile.
+            s.encounterDeck.includes(code) ||
             [...s.heroes, ...s.allies, ...s.staging, ...s.engaged].some((u) =>
               u.attachments.some((a) => a.code === code),
             ) ||
@@ -935,4 +947,175 @@ test("Ered Mithrin Campaign Pool: Heavy Snow and Deadly Cold resolve as Weather 
   w.heroes[1].damage = 1;
   shadow(w, enemy, H.cold, w.heroes[1]);
   assert.equal(w.combat!.attackBonus, 2);
+});
+
+test("Ered Mithrin Campaign Pool: Roam Across Rhovanion's enemies keep their printed text in Fire in the Night", () => {
+  // Grey Mountain Giant: no non-objective attachments; when it engages you,
+  // the top 5 cards of your deck are discarded and you assign 1 damage for
+  // each ally among them.
+  let s = calm(chapter("fire-in-the-night"), "encounter");
+  const giant = make(s, R.giant);
+  s.staging.push(giant);
+  assert.equal(batch4Scenario(s).cannotAttach!(s, giant, "01026"), true);
+  const allies = s.deck.filter((c) => card(c).type_code === "ally");
+  const others = s.deck.filter((c) => card(c).type_code !== "ally");
+  s.deck = [
+    allies[0],
+    others[0],
+    allies[1],
+    others[1],
+    others[2],
+    ...others.slice(3),
+  ];
+  const damage = (x: GameState) =>
+    [...x.heroes, ...x.allies].reduce((n, c) => n + c.damage, 0);
+  const before = damage(s);
+  engage(s, giant);
+  flush(s);
+  for (let i = 0; i < 4 && s.choice; i++)
+    s = choose(s, s.choice!.options[0].id);
+  assert.equal(damage(s), before + 2);
+  assert.ok(valid(s));
+  // Hunting Eagle cannot be optionally engaged, engages the first player
+  // when the encounter phase begins, and its shadow adds +1 attack (+2 for a
+  // Creature).
+  const t = calm(chapter("fire-in-the-night"), "encounter");
+  const eagle = make(t, R.eagle);
+  t.staging.push(eagle);
+  assert.equal(batch4Scenario(t).cannotOptionallyEngage!(t, eagle), true);
+  batch4Scenario(t).encounterBegin!(t);
+  flush(t);
+  assert.ok(t.engaged.some((e) => e.id === eagle.id));
+  const u = calm(chapter("fire-in-the-night"), "defense");
+  const orc = make(u, W.stray);
+  u.engaged.push(orc);
+  shadow(u, orc, R.eagle, u.heroes[0]);
+  assert.equal(u.combat!.attackBonus, 1);
+  const bear = make(u, R.bear);
+  u.engaged.push(bear);
+  shadow(u, bear, R.eagle, u.heroes[0]);
+  assert.equal(u.combat!.attackBonus, 2);
+  // Wilderland Bear: the first player chooses its immediate attack or a
+  // random discard for each player.
+  let v = calm(chapter("fire-in-the-night"), "staging");
+  const hand = v.hand.length;
+  v = reveal(v, R.bear, (x) =>
+    x.choice?.title.startsWith("Wilderland Bear") ? "discard" : undefined,
+  );
+  assert.equal(v.hand.length, hand - 1);
+  assert.ok(v.staging.some((e) => e.code === R.bear));
+  assert.ok(valid(v));
+});
+
+test("Ered Mithrin Campaign Pool: Roam Across Rhovanion's locations keep their printed text in Fire in the Night", () => {
+  // Grey Moorland: after it becomes the active location, the discard pile is
+  // shuffled in and the first treachery discarded resolves.
+  let s = calm(chapter("fire-in-the-night"), "travel");
+  s.encounterDeck = [W.mine, W.contested];
+  s.encounterDiscard = [H.cold];
+  const moor = make(s, R.moor);
+  s.activeLocation = moor;
+  batch4Scenario(s).travelEntered!(s, moor, true);
+  flush(s);
+  const titles: string[] = [];
+  for (let i = 0; i < 12 && s.choice; i++) {
+    titles.push(s.choice!.title);
+    s = choose(s, s.choice!.options[0].id);
+  }
+  assert.ok(titles.some((t) => t.startsWith("Deadly Cold")));
+  assert.ok(s.encounterDiscard.includes(H.cold));
+  assert.ok(valid(s));
+  // Its shadow returns the attacking enemy to the staging area.
+  const t = calm(chapter("fire-in-the-night"), "defense");
+  const orc = make(t, W.stray);
+  t.engaged.push(orc);
+  shadow(t, orc, R.moor, t.heroes[0]);
+  assert.equal(t.combat!.returnToStaging, true);
+  // Deep Ravine: no more than 1 progress on each staging location each
+  // round; its Travel cost raises each player's threat by 2 (no Urdug here).
+  const u = calm(chapter("fire-in-the-night"), "quest");
+  const ravine = make(u, R.ravine);
+  const mine = make(u, W.mine);
+  u.staging.push(ravine, mine);
+  assert.equal(batch4Scenario(u).locationProgressAmount!(u, mine, 3), 1);
+  assert.equal(batch4Scenario(u).locationProgressAmount!(u, mine, 2), 0);
+  const threat = u.threat;
+  prepend(u, ...batch4Scenario(u).travelEffects!(u, ravine)!);
+  flush(u);
+  assert.equal(u.threat, threat + 2);
+  // Slopes of Ered Mithrin: after the players travel there, the first player
+  // may ready a character; its shadow finds no Urdug to exhaust.
+  let v = calm(chapter("fire-in-the-night"), "travel");
+  v.heroes[0].exhausted = true;
+  const slopes = make(v, R.slopes);
+  v.activeLocation = slopes;
+  batch4Scenario(v).travelEntered!(v, slopes, true);
+  flush(v);
+  assert.match(v.choice!.title, /^Slopes of Ered Mithrin/);
+  v = choose(v, v.heroes[0].id);
+  assert.equal(v.heroes[0].exhausted, false);
+  const w = calm(chapter("fire-in-the-night"), "defense");
+  const enemy = make(w, W.stray);
+  w.engaged.push(enemy);
+  assert.equal(shadow(w, enemy, R.slopes, w.heroes[0]), true);
+  assert.equal(w.combat!.attackBonus, 0);
+});
+
+test("Ered Mithrin Campaign Pool: Sneaking Off, Harsh Weather and Wild Creatures resolve in Fire in the Night", () => {
+  // Sneaking Off finds no Urdug: +5 threat in the staging area this phase,
+  // and it is removed from the game.
+  const base = chapter("fire-in-the-night");
+  const s = reveal(calm(structuredClone(base), "staging"), R.sneaking);
+  assert.equal(batch4Scenario(s).stagingThreat!(s) >= 5, true);
+  assert.ok(s.removed.includes(R.sneaking));
+  assert.ok(!s.encounterDiscard.includes(R.sneaking));
+  assert.ok(valid(s));
+  // Harsh Weather: each ready character is exhausted or its player raises
+  // their threat by 1.
+  let t = calm(structuredClone(base), "staging");
+  const ready = [...t.heroes, ...t.allies].filter((c) => !c.exhausted).length;
+  const threat = t.threat;
+  t = reveal(t, R.weather, (x) =>
+    x.choice?.title.startsWith("Harsh Weather") ? "threat" : undefined,
+  );
+  assert.equal(t.threat, threat + ready);
+  // Its shadow: +1 attack, and when the attack destroys a character, the
+  // defending player exhausts a character.
+  let u = calm(structuredClone(base), "defense");
+  const orc = make(u, W.stray);
+  u.engaged.push(orc);
+  shadow(u, orc, R.weather, u.heroes[0]);
+  assert.equal(u.combat!.attackBonus, 1);
+  u.heroes = u.heroes.slice(1);
+  prepend(u, ...batch4Scenario(u).attackFinished!(u, u.combat!, false));
+  flush(u);
+  assert.match(u.choice!.title, /^Harsh Weather · Exhaust a character/);
+  u = choose(u, u.choice!.options[0].id);
+  assert.equal([...u.heroes, ...u.allies].filter((c) => c.exhausted).length, 1);
+  // Wild Creatures: each player engages an enemy in the staging area (Dagnir
+  // cannot be engaged); a player who cannot brings out a Creature enemy.
+  let v = calm(structuredClone(base), "staging");
+  const hatch = make(v, H.hatchling);
+  v.staging.push(hatch);
+  const offered: string[][] = [];
+  v = reveal(v, R.creatures, (x) => {
+    if (x.choice?.title.startsWith("Wild Creatures"))
+      offered.push(x.choice.options.map((o) => o.code!));
+    return undefined;
+  });
+  assert.deepEqual(offered, [[H.hatchling]]);
+  assert.ok(v.engaged.some((e) => e.id === hatch.id));
+  // Only Dagnir is in the staging area: no one engages, so a Creature enemy
+  // is discarded from the encounter deck and added to the staging area.
+  let w = calm(structuredClone(base), "staging");
+  w.staging = w.staging.filter(
+    (e) => card(e.code).type_code !== "enemy" || e.code === F.dagnir,
+  );
+  assert.ok(w.staging.some((e) => e.code === F.dagnir));
+  w.encounterDeck = [W.mine, R.eagle, ...w.encounterDeck];
+  w = reveal(w, R.creatures);
+  assert.ok(w.staging.some((e) => e.code === R.eagle));
+  assert.ok(w.staging.some((e) => e.code === F.dagnir));
+  assert.ok(w.encounterDiscard.includes(W.mine));
+  assert.ok(valid(w));
 });

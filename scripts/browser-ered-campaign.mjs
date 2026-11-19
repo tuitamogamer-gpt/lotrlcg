@@ -10,8 +10,8 @@ import {
   win,
 } from "../src/game/board.ts";
 import { flush } from "../src/game/effects.ts";
-import { fx, make, prepend } from "../src/game/core.ts";
-import { validateSave } from "../src/game/engine.ts";
+import { fx, get, make, prepend } from "../src/game/core.ts";
+import { availableAbilities, validateSave } from "../src/game/engine.ts";
 import { syncSeat } from "../src/game/table.ts";
 import { card } from "../src/game/cards.ts";
 import { ERED, ERED_TREASURES } from "../src/game/ered-campaign.ts";
@@ -126,6 +126,21 @@ async function victory(s, prepare = () => {}) {
 async function record() {
   await page
     .getByRole("button", { name: "Record the resolution", exact: false })
+    .click();
+  await reviewedState(page);
+  return campaign();
+}
+/** Use a card's ability through its button on the table. */
+async function ability(unit, attachmentId) {
+  const s = await campaign(),
+    u = get(s, unit.id);
+  const selected = availableAbilities(s, u).find(
+    (a) => a.id === attachmentId && !a.disabled,
+  );
+  assert.ok(selected, "an enabled card ability");
+  await page
+    .locator(`[data-motion-card="${unit.id}"]`)
+    .getByRole("button", { name: selected.label, exact: true })
     .click();
   await reviewedState(page);
   return campaign();
@@ -568,15 +583,77 @@ try {
     await checkpoint("roam-resolution", width);
     s = await record();
     assert.equal(s.campaign.encounterPool[ROAM_RHOVANION.slopes], 1);
+    await page.getByRole("button", { name: /^Continue campaign/ }).waitFor();
+    await checkpoint("roam-complete", width);
+    // Fire in the Night (Part 6): Beldis for the first player and her Action
+    // (a use marked in the Campaign Log); Misplaced Trust joins the deck; the
+    // resolution adds Beldis, a treasure for 5 progress and removes a card
+    // from the Campaign Pool.
+    await page.getByRole("button", { name: /^Continue campaign/ }).click();
+    await page.getByRole("button", { name: /^Begin next chapter/ }).click();
+    await reviewedState(page);
+    s = await opening();
+    assert.equal(s.scenarioId, "fire-in-the-night");
+    assert.ok(s.allies.some((u) => u.code === ERED.beldis));
+    assert.equal(
+      [...s.deck, ...s.hand.map((u) => u.code)].filter(
+        (code) => code === ERED.misplaced,
+      ).length +
+        s.heroes.filter((h) =>
+          h.attachments.some((a) => a.code === ERED.misplaced),
+        ).length,
+      1,
+    );
+    {
+      const t = quiet(s);
+      t.heroes[1].damage = 2;
+      t.heroes[0].resources = Math.max(1, t.heroes[0].resources);
+      s = await load(t);
+    }
+    await campaignCard(
+      /^Fire in the Night: 0 progress on Hrogar's Hill/,
+      "fire-setup",
+      width,
+    );
+    s = await ability(s.allies.find((u) => u.code === ERED.beldis));
+    assert.match(s.choice.title, /^Beldis · Spend 1 resource/);
+    s = await choose(s.heroes[0].id);
+    assert.match(s.choice.title, /^Beldis · Heal 3 damage/);
+    await checkpoint("fire-beldis", width);
+    s = await choose(s.heroes[1].id);
+    assert.equal(s.heroes[1].damage, 0);
+    assert.deepEqual(s.campaign.beldis, [1]);
+    s = await victory(s, (t) => {
+      t.progress = 5;
+    });
+    assert.equal(s.campaign.resolution, "fire-in-the-night");
+    await page
+      .getByLabel(/^While repairs begin on Hrogar's Hill/)
+      .selectOption("aid");
+    await page
+      .getByLabel(/^You may remove a non-burden card from the Campaign Pool/)
+      .selectOption(ROAM_RHOVANION.slopes);
+    await checkpoint("fire-resolution", width);
+    const looking = s.eredCampaign.looking;
+    s = await record();
+    assert.ok(s.campaign.boons.includes(ERED.beldis));
+    assert.ok(looking.some((code) => s.campaign.treasures.includes(code)));
+    assert.equal(s.campaign.encounterPool[ROAM_RHOVANION.slopes], undefined);
+    await page
+      .getByText(/^Notes · Beldis's uses marked: 1 of 4/)
+      .first()
+      .waitFor();
     await page
       .getByRole("dialog")
-      .getByText(/Fire in the Night, is not available in campaign mode yet/)
+      .getByText(
+        /The Ghost of Framsburg, is not available in campaign mode yet/,
+      )
       .waitFor();
     assert.equal(
       await page.getByRole("button", { name: /^Continue campaign/ }).count(),
       0,
     );
-    await checkpoint("roam-complete", width);
+    await checkpoint("fire-complete", width);
     await view.c.close();
   }
   const p = await browser.newPage();

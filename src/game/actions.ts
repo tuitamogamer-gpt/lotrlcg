@@ -2494,6 +2494,16 @@ function printedAbilities(s: GameState, u: Unit) {
       label: dreamLabel,
       disabled: !!DreamCards.dreamchaserAbilityProblem(s, u),
     });
+  // The Ered Mithrin campaign's Beldis (any player may trigger her Action).
+  const eredLabel =
+    s.campaign?.kind === "ered"
+      ? EredCards.eredCampaignUnitAbilityLabel(u.code)
+      : undefined;
+  if (eredLabel)
+    results.push({
+      label: eredLabel,
+      disabled: !!EredCards.eredCampaignUnitAbilityProblem(s, u),
+    });
   const finalRingLabel = finalRingAbilityLabel(u.code);
   if (finalRingLabel)
     results.push({
@@ -3486,11 +3496,18 @@ function applyActionCore(input: GameState, action: Action): GameState {
             DreamCards.dreamchaserAttachmentAbility(s, u, action.attachmentId)
           )
             return;
-          // The Ered Mithrin campaign's treasures.
+          // The Ered Mithrin campaign's treasures and Beldis.
           if (
             u &&
             action.attachmentId &&
             EredCards.eredCampaignAbility(s, u, action.attachmentId)
+          )
+            return;
+          if (
+            u &&
+            !action.attachmentId &&
+            s.campaign?.kind === "ered" &&
+            EredCards.eredCampaignUnitAbility(s, u)
           )
             return;
           if (

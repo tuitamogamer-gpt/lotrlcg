@@ -5,10 +5,10 @@ scenarios are played in order with the Revised Core Set's Campaign Log, and
 each campaign card, boon and burden changes the scenario it belongs to. Campaign
 mode offers it as **Ered Mithrin**, next to Mirkwood Paths, The Lord of the
 Rings, Angmar Awakened and Dream-chaser. The campaign begins with Journey Up
-the Anduin; **its first five chapters are supported** (Journey Up the Anduin,
-Lost in Mirkwood, The King's Quest, The Withered Heath and Roam Across
-Rhovanion), and the next chapters follow in publication order (Fire in the Night
-is not available in campaign mode yet).
+the Anduin; **its first six chapters are supported** (Journey Up the Anduin,
+Lost in Mirkwood, The King's Quest, The Withered Heath, Roam Across Rhovanion
+and Fire in the Night), and the next chapters follow in publication order (The
+Ghost of Framsburg is not available in campaign mode yet).
 
 ## Sources
 
@@ -134,6 +134,13 @@ Campaign Log) with that hero. The Songs join decks through the interlude.
 | Urdug's Cunning (burden, ×4) | Doomed 1. Surge. When Revealed: the top 5 encounter cards are discarded, and for each enemy among them each player deals 1 damage to a character they control (1 at a time). Shadow: the attacking enemy gets +2 defense this phase. The trust choice can shuffle in only the copies left in the collection (4, less those in the Campaign Pool).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | Misplaced Trust (burden, ×4) | Setup: shuffled into its player's deck after the starting hand (held out of a mulligan's new hand) in every later chapter. Forced: after its player draws it, they attach it to a hero they control: the hero's player card attachments are discarded (a Permanent Accolade stays), it cannot have player card attachments and it is immune to player card effects.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 
+## Fire in the Night (Part 6)
+
+| Card                      | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Campaign card             | Setup: the first player gains control of Beldis; with "Turayn has taken an oath of vigilance", the first player removes 3 non-unique locations from the encounter deck; with "Isolde is on the hunt", 3 non-unique enemies. The deep keyword is ignored (the scenario has no Caves deck). Resolution: Beldis joins the Campaign Pool or the Campaign Log notes that "Beldis's care has bolstered the heroes' spirits"; with at least 5 progress on Hrogar's Hill (the main quest) the players choose 1 of 3 random undiscovered treasures, discovered at once; the treasures the players control are discovered; each player may remove a non-burden encounter card from the Campaign Pool (1 copy each, never more copies than it holds; "Remove nothing" is the default, and the boons, whose removal never helps, are not offered). |
+| Beldis (unique boon ally) | Action, which any player may trigger: spend 1 resource from a hero you control and mark one of your uses in the Campaign Log to heal 3 damage from a character (not one immune to player card effects). Each player has 4 uses for the campaign, shown in the Campaign Log's notes and the quest inspector.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+
 ## The treasures
 
 | Treasure             | Behaviour                                                                                                                                                                                                                                                                                           |
@@ -158,12 +165,13 @@ of encounter set, so a card from one scenario must resolve in another scenario's
 module. The three Wilds of Rhovanion chapters share one module, and the Core
 Set's cards (the Evil Creatures enemies, the Spiders of Mirkwood and Dol Guldur
 Orcs cards) resolve in every scenario. For the chapters from The Withered Heath
-on, `src/game/ered-campaign-pool.ts` scripts the 51 cards of Journey Up the
-Anduin, Lost in Mirkwood, The King's Quest and The Withered Heath that can join
-the Campaign Pool (the non-unique, non-objective, non-burden cards A Growing
-Threat can set aside): each later chapter's hooks are composed with the pool's,
-which act only on a card foreign to that chapter (outside its own recipes; 30,
-43, 45, 46, 36 and 44 of them in chapters 4 to 9). Card text that refers to
+on, `src/game/ered-campaign-pool.ts` scripts the 60 cards of Journey Up the
+Anduin, Lost in Mirkwood, The King's Quest, The Withered Heath and Roam Across
+Rhovanion that can join the Campaign Pool (the non-unique, non-objective,
+non-burden cards A Growing Threat can set aside, and Roam Across Rhovanion's
+staging locations): each later chapter's hooks are composed with the pool's,
+which act only on a card foreign to that chapter (outside its own recipes; 39,
+43, 54, 55, 45 and 53 of them in chapters 4 to 9). Card text that refers to
 another scenario's components does as much as it can:
 
 - **The Evil Creatures deck** exists only in Journey Up the Anduin: Wooded
@@ -186,6 +194,13 @@ another scenario's components does as much as it can:
   Dwarven Door, High Falls, Heavy Snow and Deadly Cold keep their printed rules;
   Dwarven Door, Cave Entrance and High Falls use Mount Gundabad's Caves deck for
   the deep keyword.
+- **Urdug** is only Roam Across Rhovanion's: elsewhere Sneaking Off adds 5
+  to the staging area's threat until the end of the phase (and is removed from
+  the game), Deep Ravine's Travel cost raises each player's threat by 2, and
+  Slopes of Ered Mithrin's shadow does nothing. Grey Mountain Giant, Hunting
+  Eagle, Wilderland Bear, Grey Moorland, Harsh Weather and Wild Creatures keep
+  their printed rules (Wild Creatures offers only enemies the chapter lets a
+  player engage, so not Fire in the Night's Dagnir).
 - Lonely Lands keeps events played during the quest phase facedown under it
   (+2 threat each) and discards them when it leaves play; Lost in the Wild sits in
   a hand; the conditions (Weighed Down, Afraid of the Dark, Dragon Breath,
@@ -202,7 +217,7 @@ become portable with their chapters.
 ## Verification
 
 ```sh
-node --import tsx --test tests/ered-campaign.test.ts tests/ered-campaign-pool.test.ts tests/ered-campaign-heath.test.ts tests/ered-campaign-roam.test.ts
+node --import tsx --test tests/ered-campaign.test.ts tests/ered-campaign-pool.test.ts tests/ered-campaign-heath.test.ts tests/ered-campaign-roam.test.ts tests/ered-campaign-fire.test.ts
 npm run build
 npm run test:browser-ered-campaign
 ```
@@ -225,14 +240,22 @@ surge, discards and damage) and shadow, Misplaced Trust (after the starting
 hand, out of a mulligan, attached when drawn, its discards, restriction and
 immunity), and the resolution (Misplaced Trust or Urdug's Cunning, the staging
 location, different locations for two players when able, no question without
-a location, the next chapter not yet available).
+a location, Misplaced Trust in a deck of the next chapter).
 
-`tests/ered-campaign-pool.test.ts` (20 tests) covers the foreign cards of each
+`tests/ered-campaign-fire.test.ts` (5 tests) covers Fire in the Night's texts
+and faces, its setup (Beldis for the first player of one or two, Turayn's and
+Isolde's removals), Beldis's Action (its cost, the use marked, a target immune
+to player card effects, the 4 uses, another player triggering it), and the
+resolution (Beldis or the note, the treasure at 5 progress and none below, the
+removals, a burden never offered, two players and the copies held, the next
+chapter not yet available).
+
+`tests/ered-campaign-pool.test.ts` (23 tests) covers the foreign cards of each
 later chapter (each one revealed in each chapter where it is foreign, with a
 valid save), their passive values, triggers, shadows and choices, the Caves
 deck through The Withered Heath, the Lost Caves locations and The Withered
-Heath's nine cards in Roam Across Rhovanion, the When Revealed fallback, and a
-two-player game.
+Heath's nine cards in Roam Across Rhovanion, Roam Across Rhovanion's nine cards
+in Fire in the Night, the When Revealed fallback, and a two-player game.
 
 `tests/ered-campaign.test.ts` (28 tests) covers the registered texts and
 faces, the uniqueness corrections and the cards kept out of ordinary games;
@@ -276,6 +299,8 @@ shows its Dragon Signs in the inspector, attaches Master of the Hunt after the
 first stage and records it with Lay of Courage; Roam Across Rhovanion offers
 the trust in Urdug at setup and again when Tiny is claimed (declined: Urdug's
 Cunning is shuffled in), shows Urdug's resources in the inspector, and records
-Misplaced Trust and a staging location, after which Fire in the Night is not
-available yet; at 1280, 390 and 320 pixels (87 checkpoints); it checks the 36
-pinned faces.
+Misplaced Trust and a staging location; Fire in the Night gives Beldis, uses her
+Action through its button (a use marked in the Campaign Log), and records
+Beldis, a treasure for 5 progress and a removal from the Campaign Pool, after
+which The Ghost of Framsburg is not available yet; at 1280, 390 and 320 pixels
+(99 checkpoints); it checks the 39 pinned faces.

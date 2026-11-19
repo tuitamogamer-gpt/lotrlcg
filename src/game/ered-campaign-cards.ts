@@ -58,6 +58,7 @@ import {
   eredChapter,
   eredPart,
   eredState,
+  BELDIS_USES,
   growingThreatTarget,
   isEredCampaign,
 } from "./ered-campaign";
@@ -758,6 +759,61 @@ const ABILITY: Record<string, string> = {
   [ERED.unbroken]: "Unbroken · Discard a card to heal 1 damage from this hero",
 };
 export const eredCampaignAbilityLabel = (code: string) => ABILITY[code];
+
+/**
+ * Beldis: "Action: Spend 1 resource and mark a use in the campaign log to
+ * heal 3 damage from a character. Any player may trigger this ability. (Each
+ * player has 4 uses for the campaign.)"
+ */
+export const beldisUsesLeft = (s: GameState, p: number) =>
+  BELDIS_USES - (s.campaign?.beldis?.[p] ?? 0);
+const beldisTargets = (s: GameState) =>
+  allCharacters(s).filter((c) => c.damage > 0 && !playerCardImmune(c));
+export const eredCampaignUnitAbilityLabel = (code: string) =>
+  code === ERED.beldis
+    ? "Beldis · Spend 1 resource to heal 3 damage (marks a use)"
+    : undefined;
+export function eredCampaignUnitAbilityProblem(
+  s: GameState,
+  u: Unit,
+): string | null {
+  if (u.code !== ERED.beldis) return null;
+  if (!isEredCampaign(s.campaign))
+    return "Beldis's uses are marked in the Ered Mithrin Campaign Log.";
+  if (u.blanked) return "Beldis's text is blank.";
+  if (s.phase === "setup") return "Continue to the next action window.";
+  if (s.choice || s.flow?.pending) return "Resolve the current choice first.";
+  const p = activeSeat(s);
+  if (beldisUsesLeft(s, p) <= 0)
+    return `You have marked all ${BELDIS_USES} of your uses of Beldis.`;
+  if (!seatView(s, p).heroes.some((h) => h.resources > 0))
+    return "Spend 1 resource from a hero you control.";
+  if (!beldisTargets(s).length) return "No character has damage to heal.";
+  return null;
+}
+/** Trigger Beldis's Action (any player may). */
+export function eredCampaignUnitAbility(s: GameState, u: Unit): boolean {
+  if (u.code !== ERED.beldis) return false;
+  const problem = eredCampaignUnitAbilityProblem(s, u);
+  requireRule(!problem, problem ?? "");
+  const p = activeSeat(s);
+  choose(
+    s,
+    `Beldis · Spend 1 resource from a hero you control${seatLabel(s, p)}`,
+    seatView(s, p)
+      .heroes.filter((h) => h.resources > 0)
+      .map((h) => ({
+        id: h.id,
+        code: h.code,
+        label: `${name(h)} (${h.resources} ${h.resources === 1 ? "resource" : "resources"})`,
+        effects: [
+          fx("emcBeldisPay", { source: h.id, target: u.id, player: p }),
+        ],
+      })),
+    card(ERED.beldis).text,
+  );
+  return true;
+}
 /** The Item attachments in hand Anvil of Gundabad can play, with their targets. */
 function anvilPlays(s: GameState, a: Attachment) {
   const q = eredState(s);
@@ -1567,6 +1623,33 @@ export function eredCampaignEffect(s: GameState, e: Effect): boolean {
         `The Steadfast: ${name(hero)} commits with your threat at 40 or higher, placing 1 progress on the current quest.`,
         "good",
       );
+      return true;
+    }
+    case "emcBeldisPay": {
+      const h = get(s, e.source);
+      if (!h || h.resources <= 0 || !s.campaign) return true;
+      spendResources(s, h, 1);
+      const uses = [...(s.campaign.beldis ?? [])];
+      while (uses.length <= p) uses.push(0);
+      uses[p]++;
+      s.campaign.beldis = uses;
+      log(
+        s,
+        `Beldis: ${name(h)} spends 1 resource and a use is marked in the Campaign Log (${uses[p]} of ${BELDIS_USES}).`,
+        "good",
+      );
+      const targets = beldisTargets(s);
+      if (targets.length)
+        choose(
+          s,
+          "Beldis · Heal 3 damage from a character",
+          targets.map((c) => ({
+            id: c.id,
+            code: c.code,
+            label: `${name(c)} (${c.damage} damage)`,
+            effects: [fx("heal", { target: c.id, value: 3, player: p })],
+          })),
+        );
       return true;
     }
     case "emcUnbroken":

@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2277,
+    "encounterCards": 2279,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3499,
-    "pending": 684
+    "scripted": 3501,
+    "pending": 682
   },
   "scenarioRecipes": {
     "total": 355,
@@ -804,6 +804,7 @@
     "12183",
     "12185",
     "12186",
+    "12188",
     "12196",
     "12197",
     "12198",
@@ -1884,6 +1885,7 @@
     "octgn:48d2ea1f-449b-4af9-9f43-c70fffd66991",
     "octgn:490a363e-2f00-4c66-9c6f-5bdfb83f6b08",
     "octgn:49304bf6-63f3-4fd1-b3ec-072a034e4eb0",
+    "octgn:497b0bd9-1b46-49d4-9722-930914d8a4d7",
     "octgn:499195c5-389f-4a56-b67e-b6e5b8f2fb91",
     "octgn:49aa4e88-3774-43f7-ab8d-05268ed3fb7e",
     "octgn:49c77ce2-7305-4209-ad6a-f1ed983a556e",
@@ -3855,9 +3857,9 @@
     {
       "product": "ered-mithrin-campaign-expansion",
       "total": 40,
-      "scripted": 31,
+      "scripted": 33,
       "player": 21,
-      "playerScripted": 20
+      "playerScripted": 21
     },
     {
       "product": "escape-from-khazad-dum",
@@ -10022,7 +10024,7 @@
       "name": "Beldis",
       "type": "ally",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {
@@ -19886,7 +19888,7 @@
       "name": "Fire in the Night",
       "type": "campaign",
       "pack": "Ered Mithrin Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "ered-mithrin-campaign-expansion"
     },
     {

@@ -378,6 +378,7 @@ import {
   ERED_DECK_BOONS,
   ERED_FREE_CHANGES,
   ERED_NOTES,
+  BELDIS_USES,
   applyEredResolution,
   eredCampaignStatus,
   eredChapterComplete,
@@ -5988,6 +5989,17 @@ function EredNotes({
           Notes · “{ERED_NOTES[note] ?? note}”
         </p>
       ))}
+      {c.beldis?.some((n) => n > 0) ? (
+        <p className="campaign-note" data-ered-beldis>
+          Notes · Beldis's uses marked:{" "}
+          {c.beldis
+            .map(
+              (n, i) =>
+                `${c.beldis!.length > 1 ? `Player ${i + 1} ` : ""}${n} of ${BELDIS_USES}`,
+            )
+            .join(", ")}
+        </p>
+      ) : null}
       {Object.keys(c.permanent ?? {}).length ? (
         <p className="campaign-note" data-ered-accolades>
           Notes · Accolades:{" "}

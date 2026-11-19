@@ -53,12 +53,15 @@ export const ERED = {
   kingsCard: "octgn:3d3d4db9-873a-48a6-8a2d-e50abc5533f5",
   heathCard: "octgn:11d63f9f-a9c6-4e05-9768-8cf2234c277d",
   roamCard: "octgn:9d60ffd4-34c2-42db-9fb7-474b1410d1aa",
+  fireCard: "octgn:497b0bd9-1b46-49d4-9722-930914d8a4d7",
   /** Turayn (unique boon ally, Journey Up the Anduin). */
   turayn: "12166",
   /** Melanwar (unique boon ally, Lost in Mirkwood). */
   melanwar: "12169",
   /** Isolde (unique boon ally, The King's Quest). */
   isolde: "12171",
+  /** Beldis (unique boon ally, Fire in the Night). */
+  beldis: "12188",
   /** The King's Quest's burdens: The Threat to Wilderland (objective), Dagnir's Spawn (enemy) and Abandoned Ruin (location). */
   threat: "12172",
   spawn: "12173",
@@ -123,6 +126,7 @@ export const ERED_CAMPAIGN_SUPPORTED: readonly ScenarioId[] = [
   "the-kings-quest",
   "the-withered-heath",
   "roam-across-rhovanion",
+  "fire-in-the-night",
 ];
 /** The chapters whose campaign card lets each player change heroes without the +1 threat penalty. */
 export const ERED_FREE_CHANGES: readonly ScenarioId[] = [
@@ -136,6 +140,7 @@ export const ERED_CAMPAIGN_CARDS: Partial<Record<ScenarioId, string>> = {
   "the-kings-quest": ERED.kingsCard,
   "the-withered-heath": ERED.heathCard,
   "roam-across-rhovanion": ERED.roamCard,
+  "fire-in-the-night": ERED.fireCard,
 };
 /** The Withered Heath's Accolades, by the main quest stage that earns them. */
 export const ERED_ACCOLADES: readonly string[] = [
@@ -156,6 +161,7 @@ export const ERED_DECK_BOONS: readonly string[] = [
   ERED.turayn,
   ERED.melanwar,
   ERED.isolde,
+  ERED.beldis,
   ...ERED_SONGS,
 ];
 /** The unique boon allies ("A player may search their deck for a unique boon ally"). */
@@ -163,6 +169,7 @@ const BOON_ALLIES: readonly string[] = [
   ERED.turayn,
   ERED.melanwar,
   ERED.isolde,
+  ERED.beldis,
 ];
 export const ERED_BOONS: readonly string[] = [
   ...ERED_DECK_BOONS,
@@ -182,7 +189,10 @@ export const ERED_NOTES: Record<string, string> = {
   turayn: "Turayn has taken an oath of vigilance",
   melanwar: "Melanwar has given you guidance on traversing Wilderland",
   isolde: "Isolde is on the hunt",
+  beldis: "Beldis's care has bolstered the heroes' spirits",
 };
+/** Beldis: "Each player has 4 uses for the campaign." */
+export const BELDIS_USES = 4;
 /** The encounter sets Lost in Mirkwood's resolution adds to the Campaign Pool. */
 const SPIDERS_AND_ORCS = ["Spiders of Mirkwood", "Dol Guldur Orcs"];
 /** Each chapter's boon ally: "Any player gains control of …" and the resolution's choice. */
@@ -190,6 +200,7 @@ const BOON_ALLY: Partial<Record<ScenarioId, { code: string; note: string }>> = {
   "journey-up-the-anduin": { code: ERED.turayn, note: "turayn" },
   "lost-in-mirkwood": { code: ERED.melanwar, note: "melanwar" },
   "the-kings-quest": { code: ERED.isolde, note: "isolde" },
+  "fire-in-the-night": { code: ERED.beldis, note: "beldis" },
 };
 export const isEredCampaign = (c?: CampaignState | null) => c?.kind === "ered";
 /** A chapter of the Ered Mithrin campaign is being played. */
@@ -405,11 +416,28 @@ export function eredCampaignSetup(s: GameState) {
       s,
       fx("emcRemove", { text: "treachery", value: 3, player: firstPlayer(s) }),
     );
-  // "Any player gains control of Turayn/Melanwar."
+  // Fire in the Night: "If 'Turayn has taken an oath of vigilance,' search
+  // the encounter deck for 3 non-unique locations and remove them from the
+  // game. If 'Isolde is on the hunt,' search the encounter deck for 3
+  // non-unique enemies and remove them from the game."
+  const fire = s.scenarioId === "fire-in-the-night";
+  if (fire && c!.notes?.includes("turayn"))
+    enqueue(
+      s,
+      fx("emcRemove", { text: "location", value: 3, player: firstPlayer(s) }),
+    );
+  if (fire && c!.notes?.includes("isolde"))
+    enqueue(
+      s,
+      fx("emcRemove", { text: "enemy", value: 3, player: firstPlayer(s) }),
+    );
+  // "Any player gains control of Turayn/Melanwar/Isolde." Fire in the Night:
+  // "The first player gains control of Beldis."
   const ally = BOON_ALLY[s.scenarioId];
   if (ally) {
     const seats = playerOrder(s);
-    if (seats.length > 1)
+    if (fire) gainAlly(s, ally.code, firstPlayer(s));
+    else if (seats.length > 1)
       enqueue(
         s,
         fx("emcAllySeat", { code: ally.code, player: firstPlayer(s) }),
@@ -911,6 +939,14 @@ export function resolveEredCampaign(s: GameState) {
       eredState(s).looking = shuffle(s, [...pool]).slice(0, 3);
     }
   }
+  if (s.scenarioId === "fire-in-the-night" && s.progress >= 5) {
+    // "If there is at least 5 progress on Hrogar's Hill, the players look at
+    // 3 random undiscovered treasures and and choose 1 to attach to an
+    // eligible character" (chosen with the resolution, it is discovered at
+    // once).
+    const pool = ERED_TREASURES.filter((x) => !c.treasures?.includes(x));
+    eredState(s).looking = shuffle(s, [...pool]).slice(0, 3);
+  }
   if (s.scenarioId === "roam-across-rhovanion") {
     // "If there are 3 or more resources on Urdug, each player adds a copy of
     // Misplaced Trust to the campaign pool (and their deck). Otherwise, each
@@ -959,6 +995,7 @@ const RESOLUTION_CHAPTERS: readonly ScenarioId[] = [
   "the-kings-quest",
   "the-withered-heath",
   "roam-across-rhovanion",
+  "fire-in-the-night",
 ];
 /** The locations in the staging area, one code per title. */
 const stagedLocations = (s: GameState) => [
@@ -1069,6 +1106,9 @@ export function eredResolutionQuestions(s: GameState): {
         { id: "note", label: `“${ERED_NOTES[ally.note]}”` },
       ],
     },
+    // Fire in the Night: the treasure for 5 progress on Hrogar's Hill and
+    // "Each player may remove a non-burden card from the campaign pool."
+    ...(s.scenarioId === "fire-in-the-night" ? fireQuestions(s) : []),
     // The King's Quest: "The first player chooses either Threat to
     // Wilderland or Dagnir's Spawn and add it to the campaign pool."
     ...(s.scenarioId === "the-kings-quest"
@@ -1087,6 +1127,51 @@ export function eredResolutionQuestions(s: GameState): {
       : []),
   ];
 }
+/**
+ * The Campaign Pool's non-burden encounter cards with their copies. (Its
+ * boons are non-burden cards too, but removing one never helps the players.)
+ */
+const removablePool = (c: CampaignState) =>
+  Object.entries(c.encounterPool ?? {}).filter(
+    ([code, n]) => n > 0 && card(code).sphere_code !== "burden",
+  );
+/** Fire in the Night's treasure and its removals from the Campaign Pool. */
+function fireQuestions(s: GameState) {
+  const c = s.campaign!;
+  const looking = s.eredCampaign?.looking ?? [];
+  const removable = removablePool(c);
+  return [
+    ...(looking.length
+      ? [
+          {
+            id: "treasure",
+            label:
+              "There is at least 5 progress on Hrogar's Hill: the players look at 3 random undiscovered treasures and choose 1 (it is discovered).",
+            options: looking.map((code) => ({
+              id: code,
+              code,
+              label: card(code).name,
+            })),
+          },
+        ]
+      : []),
+    ...(removable.length
+      ? seatIndices(s).map((p) => ({
+          id: `remove-${p}`,
+          label: `${several(s) ? `${seatName(s, p)} may remove` : "You may remove"} a non-burden card from the Campaign Pool.`,
+          // (Nothing is removed unless a player chooses a card.)
+          options: [
+            { id: "none", label: "Remove nothing" },
+            ...removable.map(([code, n]) => ({
+              id: code,
+              code,
+              label: `Remove ${card(code).name}${n > 1 ? ` (1 of ${n} copies)` : ""}`,
+            })),
+          ],
+        }))
+      : []),
+  ];
+}
 const ALLY_QUESTION: Record<string, string> = {
   turayn:
     "The heroes' selfless valor has inspired Turayn. Do the heroes accept his aid?",
@@ -1094,6 +1179,8 @@ const ALLY_QUESTION: Record<string, string> = {
     "Melanwar pledged his friendship to the heroes. Do the heroes invite him to join their quest?",
   isolde:
     "Isolde has resolved to continue the hunt. Do the heroes choose to fight alongside her?",
+  beldis:
+    "While repairs begin on Hrogar's Hill, Beldis attends to the wounded heroes. Do the heroes accept her offer to join their quest?",
 };
 /** Record the players' resolution choices in the Campaign Log. */
 export function applyEredResolution(
@@ -1166,7 +1253,7 @@ export function applyEredResolution(
     if (!c.boons.includes(ally.code)) c.boons.push(ally.code);
     log(
       s,
-      `${title} · Resolution: ${card(ally.code).name} joins the Campaign Pool (any player may add ${ally.code === ERED.isolde ? "her" : "him"} to their deck).`,
+      `${title} · Resolution: ${card(ally.code).name} joins the Campaign Pool (any player may add ${ally.code === ERED.isolde || ally.code === ERED.beldis ? "her" : "him"} to their deck).`,
       "good",
     );
   } else {
@@ -1176,6 +1263,38 @@ export function applyEredResolution(
       `${title} · Resolution: the Campaign Log notes that “${ERED_NOTES[ally.note]}”.`,
       "good",
     );
+  }
+  if (s.scenarioId === "fire-in-the-night") {
+    const removed = seatIndices(s)
+      .map((p) => answers[`remove-${p}`])
+      .filter((code): code is string => !!code && code !== "none");
+    for (const code of new Set(removed)) {
+      const n = removed.filter((x) => x === code).length;
+      if (n > (c.encounterPool?.[code] ?? 0))
+        throw new RuleError(
+          `Only ${c.encounterPool?.[code] ?? 0} ${(c.encounterPool?.[code] ?? 0) === 1 ? "copy" : "copies"} of ${card(code).name} ${(c.encounterPool?.[code] ?? 0) === 1 ? "is" : "are"} in the Campaign Pool.`,
+        );
+    }
+    if (answers.treasure && !c.treasures?.includes(answers.treasure)) {
+      c.treasures = [...(c.treasures ?? []), answers.treasure];
+      log(
+        s,
+        `${title} · Resolution: ${card(answers.treasure).name} is discovered and recorded in the Campaign Log.`,
+        "good",
+      );
+    }
+    if (s.eredCampaign) delete s.eredCampaign.looking;
+    for (const code of removed) {
+      const pool = { ...(c.encounterPool ?? {}) };
+      pool[code] = (pool[code] ?? 0) - 1;
+      if (pool[code] <= 0) delete pool[code];
+      c.encounterPool = pool;
+      log(
+        s,
+        `${title} · Resolution: a copy of ${card(code).name} is removed from the Campaign Pool.`,
+        "good",
+      );
+    }
   }
   if (s.scenarioId === "the-kings-quest") {
     if (!c.burdens.includes(answers.burden)) c.burdens.push(answers.burden);
@@ -1234,6 +1353,22 @@ export function eredCampaignStatus(s: GameState): string[] {
         `${q.cunning} ${q.cunning === 1 ? "copy" : "copies"} of Urdug's Cunning ${q.cunning === 1 ? "was" : "were"} shuffled into the encounter deck this game.`,
       );
   }
+  if (s.scenarioId === "fire-in-the-night")
+    out.push(
+      `Fire in the Night: ${s.progress} progress on Hrogar's Hill${s.progress >= 5 ? " (the resolution offers a treasure)" : "; with 5 or more the resolution offers a treasure"}.`,
+    );
+  if (
+    allCharacters(s).some((u) => u.code === ERED.beldis) ||
+    c!.beldis?.some((n) => n > 0)
+  )
+    out.push(
+      `Beldis: ${seatIndices(s)
+        .map(
+          (p) =>
+            `${several(s) ? `${seatName(s, p)} ` : ""}${BELDIS_USES - (c!.beldis?.[p] ?? 0)} of ${BELDIS_USES} uses left`,
+        )
+        .join(", ")} (marked in the Campaign Log).`,
+    );
   if (c!.burdens.includes(ERED.misplaced) && c!.misplaced?.length)
     out.push(
       `Misplaced Trust is in ${several(s) ? c!.misplaced.map((p) => `${seatName(s, p)}'s`).join(" and ") : "your"} deck: when drawn, it attaches to a hero (no player card attachments, immune to player card effects).`,
@@ -1757,6 +1892,10 @@ export function validateEredCampaign(
             n >= 1 &&
             n <= ownedCopies(code),
         ))) &&
+    (c.beldis === undefined ||
+      (Array.isArray(c.beldis) &&
+        c.beldis.length <= seatCount &&
+        c.beldis.every((n) => integer(n) && n <= BELDIS_USES))) &&
     (c.misplaced === undefined ||
       (Array.isArray(c.misplaced) &&
         c.burdens.includes(ERED.misplaced) &&

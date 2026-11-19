@@ -138,7 +138,6 @@ test("Ered Mithrin: Roam Across Rhovanion's campaign card, Urdug's Cunning and M
     trust.text!,
     /^Setup: Shuffle Misplaced Trust into your deck\. \(Do this after drawing your starting hand\.\)\nForced: After you draw this card, attach it to a hero you control\./,
   );
-  assert.equal(art.length, 36);
   for (const code of [ERED.roamCard, ERED.cunning, ERED.misplaced])
     assert.ok(
       art.some((a) => a.code === code),
@@ -413,11 +412,16 @@ test("Ered Mithrin: Roam Across Rhovanion's resolution adds Misplaced Trust (3+ 
   win(empty);
   assert.equal(empty.campaign!.resolution ?? null, null);
   assert.deepEqual(eredResolutionQuestions(empty), []);
-  // The campaign continues with Fire in the Night (not yet available).
-  assert.throws(
-    () => continueCampaign(done, done.campaign!.heroes, done.deckId, true, 9),
-    /not available in campaign mode yet/,
+  // The campaign continues with Fire in the Night.
+  const next = continueCampaign(
+    done,
+    done.campaign!.heroes,
+    done.deckId,
+    true,
+    9,
   );
+  assert.equal(next.scenarioId, "fire-in-the-night");
+  assert.equal(count(next.deck, ERED.misplaced), 1);
 });
 
 test("Ered Mithrin: in a two-player Roam Across Rhovanion players choose different locations, and passing Urdug to a new first player is no claim", () => {

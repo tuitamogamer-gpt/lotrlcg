@@ -385,6 +385,11 @@ export interface CampaignState {
    * after the starting hand at each setup.
    */
   misplaced?: number[];
+  /**
+   * Ered Mithrin: the uses of Beldis marked in the Campaign Log, by seat
+   * (each player has 4 for the campaign).
+   */
+  beldis?: number[];
   /** Angmar Awakened: the damage noted for Protect the Innocent (and later Arnor Ravaged). */
   innocent?: number;
   /** Angmar Awakened: Protect the Innocent has been flipped to Arnor Ravaged (Deadmen's Dike). */

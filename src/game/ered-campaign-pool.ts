@@ -17,12 +17,14 @@ import type { DamageContext } from "./damage-context";
 import type { Batch4ScenarioHooks } from "./batch4-scenario-contract";
 import { card, name } from "./cards";
 import {
+  cannotReady,
   choose,
   fx,
   get,
   log,
   make,
   prepend,
+  random,
   removeShadowCard,
   shuffle,
   stats,
@@ -32,6 +34,7 @@ import {
   discardAttachment,
   discardCharacter,
   discardHandCard,
+  discardPlayerDeck,
   engage,
   enemyAddedToStaging,
   placeEncounter,
@@ -49,6 +52,7 @@ import {
   seatView,
 } from "./table";
 import { mainQuestUnit } from "./quest-state";
+import { batch4Scenario } from "./batch4-scenarios";
 import { WILDS_RHOVANION as W } from "./wilds-rhovanion-support";
 import {
   WITHERED_HEATH as H,
@@ -57,7 +61,10 @@ import {
 } from "./withered-heath-support";
 import { khazadCannotExhaust } from "./khazad-dum";
 import { watcherWaterCannotExhaust } from "./watcher-water";
-import { ROAM_RHOVANION_RECIPES } from "./roam-rhovanion-support";
+import {
+  ROAM_RHOVANION as R,
+  ROAM_RHOVANION_RECIPES,
+} from "./roam-rhovanion-support";
 import { FIRE_NIGHT_RECIPES } from "./fire-night-support";
 import { GHOST_FRAMSBURG_RECIPES } from "./ghost-framsburg-support";
 import { MOUNT_GUNDABAD_RECIPES } from "./mount-gundabad-support";
@@ -80,6 +87,8 @@ export interface EredPoolState {
   usedResponses: string[];
   /** Heavy Snow: the round in which characters cannot be readied by player card effects. */
   playerReadyBlockedRound?: number;
+  /** Wild Creatures: the players who engaged an enemy in the staging area. */
+  wildEngaged?: number[];
 }
 
 /** The chapters this layer serves, with their own modules' recipes. */
@@ -99,9 +108,11 @@ const NATIVE: Record<string, Set<string>> = Object.fromEntries(
 );
 /**
  * The encounter cards of Journey Up the Anduin, Lost in Mirkwood, The King's
- * Quest and The Withered Heath that can join the Campaign Pool (A Growing
- * Threat sets aside a non-unique, non-objective, non-burden card), scripted
- * here for later chapters. (The Core Set's cards resolve in every scenario.)
+ * Quest, The Withered Heath and Roam Across Rhovanion that can join the
+ * Campaign Pool (A Growing Threat sets aside a non-unique, non-objective,
+ * non-burden card; Roam Across Rhovanion's resolution adds staging
+ * locations), scripted here for later chapters. (The Core Set's cards resolve
+ * in every scenario.)
  */
 export const ERED_POOL_PORTABLE = [
   W.riverbank,
@@ -156,6 +167,16 @@ export const ERED_POOL_PORTABLE = [
   H.falls,
   H.snow,
   H.cold,
+  // Roam Across Rhovanion
+  R.giant,
+  R.eagle,
+  R.bear,
+  R.moor,
+  R.ravine,
+  R.slopes,
+  R.sneaking,
+  R.weather,
+  R.creatures,
 ];
 const PORTABLE = new Set(ERED_POOL_PORTABLE);
 
@@ -189,6 +210,8 @@ const pool = (s: GameState) => (s.eredPool ??= fresh());
 type Combat = NonNullable<GameState["combat"]> & {
   eredPoolBlankShadow?: boolean;
   eredPoolDiscardAlly?: boolean;
+  eredPoolWeather?: boolean;
+  eredPoolWeatherKill?: boolean;
 };
 
 // ------------------------------------------------------------- helpers
@@ -427,11 +450,15 @@ function poolLocationProgressAmount(s: GameState, u: Unit, amount: number) {
   )
     return 0;
   // Dark Black Woods: no more than 1 progress on each Forest location in the
-  // staging area each round.
+  // staging area each round. Deep Ravine: no more than 1 progress on each
+  // location in the staging area each round.
   if (
     !staged ||
-    !trait(u, "Forest") ||
-    !s.staging.some((l) => foreignUnit(s, l, W.darkWoods))
+    !(
+      (trait(u, "Forest") &&
+        s.staging.some((l) => foreignUnit(s, l, W.darkWoods))) ||
+      s.staging.some((l) => foreignUnit(s, l, R.ravine))
+    )
   )
     return amount;
   const q = pool(s),
@@ -468,11 +495,14 @@ const poolLocationProgressBlocked = (s: GameState, u: Unit) =>
 const poolCannotPlayerReady = (s: GameState) =>
   eredPoolLive(s) && s.eredPool?.playerReadyBlockedRound === s.round;
 const poolCannotOptionallyEngage = (s: GameState, u: Unit) =>
-  foreignUnit(s, u, W.stray);
+  foreignUnit(s, u, W.stray) || foreignUnit(s, u, R.eagle);
 const poolImmune = (s: GameState, u: Unit) =>
   foreignAttachments(s, u, W.frenzied) > 0;
 function poolCannotAttach(s: GameState, u: Unit, code?: string) {
   if (!foreignUnit(s, u, u.code)) return false;
+  // Grey Mountain Giant: "Cannot have non-objective attachments."
+  if (u.code === R.giant)
+    return !code || !card(code).type_code.startsWith("objective");
   if (u.code === W.troop || u.code === W.troll || u.code === H.troll)
     return (
       !code ||
@@ -547,6 +577,11 @@ function poolEngaged(s: GameState, u: Unit) {
   const effects: Effect[] = [];
   if (foreignUnit(s, u, W.spider))
     effects.push(fx("immediateAttack", { target: u.id, player: p }));
+  // Grey Mountain Giant: "Forced: When Grey Mountain Giant engages you,
+  // discard the top 5 cards of your deck. Assign damage among characters you
+  // control equal to the number of allies discarded by this effect."
+  if (foreignUnit(s, u, R.giant))
+    effects.push(fx("eredPoolGiant", { player: p }));
   // Stray Goblin: after a player engages an enemy, it engages that player.
   for (const stray of s.staging.filter(
     (e) => e.id !== u.id && foreignUnit(s, e, W.stray),
@@ -566,6 +601,23 @@ function poolEnemyAttackStarted(s: GameState, u: Unit, player: number) {
       ),
       fx("discardAttachment", { target: u.id, source: breath.id, player }),
     );
+}
+/** Hunting Eagle: "Forced: When the encounter phase begins, Hunting Eagle engages the first player." */
+function poolEncounterBegin(s: GameState) {
+  if (!eredPoolLive(s)) return;
+  prepend(
+    s,
+    ...s.staging
+      .filter((u) => foreignUnit(s, u, R.eagle))
+      .map((u) =>
+        fx("eredPoolEagle", { target: u.id, player: firstPlayer(s) }),
+      ),
+  );
+}
+/** Harsh Weather's shadow: a character destroyed by this attack. */
+function poolCharacterDestroyed(s: GameState, _u: Unit) {
+  const c = s.combat as Combat | null;
+  if (c?.eredPoolWeather) c.eredPoolWeatherKill = true;
 }
 /** Pack of Wargs and Werewolf: a shadow card with no shadow effect. */
 function poolShadowResolved(s: GameState, u: Unit, code: string) {
@@ -606,6 +658,18 @@ function poolAttackFinished(
     !get(s, c.defenderId)
   )
     effects.push(fx("eredPoolDiscardAlly", { player: p }));
+  // Harsh Weather's shadow: "If this attack destroys a character, exhaust a
+  // character you control."
+  if (
+    c.eredPoolWeather &&
+    (c.eredPoolWeatherKill ||
+      (c.defenderIds ?? (c.defenderId ? [c.defenderId] : [])).some(
+        (id) => !get(s, id),
+      ))
+  )
+    effects.push(
+      fx("eredPoolExhaust", { player: p, text: card(R.weather).name }),
+    );
   return effects;
 }
 function poolHostLeaves(s: GameState, u: Unit) {
@@ -686,6 +750,11 @@ function poolTravelEffects(s: GameState, u: Unit): Effect[] | undefined {
     ];
   if (u.code === H.creatureDen)
     return [fx("eredPoolCreatureDen", { player: firstPlayer(s) })];
+  // Deep Ravine: "The first player must either exhaust Urdug, or raise each
+  // player's threat by 2 to travel here." (Urdug is only Roam Across
+  // Rhovanion's.)
+  if (u.code === R.ravine)
+    return playerOrder(s).map((player) => fx("threat", { player, value: 2 }));
 }
 /** After the players travel to a foreign location, or it becomes the active location. */
 function poolTravelEntered(s: GameState, u: Unit, actual = true) {
@@ -715,6 +784,16 @@ function poolTravelEntered(s: GameState, u: Unit, actual = true) {
     effects.push(
       fx("eredPoolContested", { target: u.id, player: firstPlayer(s) }),
     );
+  // Grey Moorland: "Forced: After Grey Moorland becomes the active location,
+  // shuffle the encounter discard pile into the encounter deck and discard
+  // cards from it until a treachery is discarded. Resolve the 'When Revealed'
+  // effect on that treachery."
+  if (u.code === R.moor)
+    effects.push(fx("eredPoolMoor", { player: firstPlayer(s) }));
+  // Slopes of Ered Mithrin: "Response: After the players travel to Slopes of
+  // Ered Mithrin, the first player may ready a character he controls."
+  if (actual && u.code === R.slopes)
+    effects.push(fx("eredPoolSlopes", { player: firstPlayer(s) }));
   // Creature Den's Response searches the Caves deck for a Dragon Sign.
   if (actual && u.code === H.creatureDen)
     log(s, "Creature Den · There is no Dragon Sign in this scenario's decks.");
@@ -789,9 +868,14 @@ function poolRevealSurge(s: GameState, code: string) {
 function poolCardEntered(
   s: GameState,
   u: Unit,
-  _fromReveal = false,
+  fromReveal = false,
   cancelled = false,
 ) {
+  // Wilderland Bear: "When Revealed: The first player must choose: either
+  // Wilderland Bear makes an immediate attack against him, or each player
+  // discards 1 random card from his hand."
+  if (fromReveal && !cancelled && foreignUnit(s, u, R.bear))
+    prepend(s, fx("eredPoolBear", { target: u.id, player: firstPlayer(s) }));
   // Hobgoblin: the first player attaches the top card of their deck to it
   // faceup as a guarded attachment.
   if (!cancelled && foreignUnit(s, u, W.hobgoblin))
@@ -850,6 +934,9 @@ const TREACHERIES = [
   W.scales,
   H.snow,
   H.cold,
+  R.sneaking,
+  R.weather,
+  R.creatures,
 ];
 function poolEncounter(
   s: GameState,
@@ -934,6 +1021,21 @@ function poolShadow(s: GameState, code: string) {
     c.attackBonus += defenders.some((id) => (get(s, id)?.damage ?? 0) > 0)
       ? 2
       : 1;
+  // Hunting Eagle: +1 [attack] (+2 instead if the attacker is a Creature).
+  else if (code === R.eagle)
+    c.attackBonus += enemy && trait(enemy, "Creature") ? 2 : 1;
+  // Slopes of Ered Mithrin: "If the first player controls Urdug, exhaust him"
+  // (Urdug is only Roam Across Rhovanion's).
+  else if (code === R.slopes)
+    log(s, "Slopes of Ered Mithrin · No one controls Urdug in this scenario.");
+  // Harsh Weather: +1 [attack]; if this attack destroys a character, exhaust
+  // a character you control.
+  else if (code === R.weather) {
+    c.attackBonus++;
+    c.eredPoolWeather = true;
+  }
+  // Grey Moorland: return the attacking enemy to the staging area.
+  else if (code === R.moor) c.returnToStaging = true;
   // Snow-troll: attacking enemy makes an additional attack against you.
   else if (code === H.troll) c.extraAttacks = (c.extraAttacks ?? 0) + 1;
   // Dragon Hatchling: until the end of the phase, +1 [attack] and +1
@@ -1092,6 +1194,44 @@ function treachery(s: GameState, code: string) {
       const found = discardUntil(s, (c) => card(c).type_code === "location");
       if (found) add(s, found);
     }
+  } else if (code === R.sneaking) {
+    // "The first player loses control of Urdug, then attach Urdug to a
+    // location in the staging area as a guarded objective. If he cannot, add
+    // 5 to the total [threat] in the staging area until the end of the phase.
+    // In either case, remove Sneaking Off from the game." (Urdug is only Roam
+    // Across Rhovanion's.)
+    consume(s, code, false);
+    s.removed.push(code);
+    q.darkPlaces.push({ round: s.round, phase: s.phase, amount: 5 });
+    log(
+      s,
+      "Sneaking Off: no one controls Urdug, so the staging area gets +5 threat until the end of the phase; Sneaking Off is removed from the game.",
+      "danger",
+    );
+  } else if (code === R.weather) {
+    // "For each ready character a player controls, he must choose: either
+    // exhaust that character or raise his threat by 1."
+    consume(s, code);
+    prepend(
+      s,
+      ...playerOrder(s).flatMap((player) =>
+        own(s, player)
+          .filter((u) => !u.exhausted)
+          .map((u) => fx("eredPoolWeatherCharacter", { target: u.id, player })),
+      ),
+    );
+  } else if (code === R.creatures) {
+    // "Starting with the first player, each player chooses an enemy in the
+    // staging area and engages it. Then, if any player did not engage an
+    // enemy this way, discard cards from the encounter deck until a Creature
+    // enemy is discarded and add it to the staging area."
+    consume(s, code);
+    q.wildEngaged = [];
+    prepend(
+      s,
+      ...playerOrder(s).map((player) => fx("eredPoolWildEngage", { player })),
+      fx("eredPoolWildFinish", { player: firstPlayer(s) }),
+    );
   } else if (code === H.snow) {
     // "Exhaust a character. Until the end of the round, characters cannot be
     // readied by player card effects."
@@ -1186,14 +1326,15 @@ export function eredPoolEffect(s: GameState, e: Effect) {
       break;
     }
     case "eredPoolExhaust": {
-      // Heavy Snow (flag: any character, as its When Revealed effect).
+      // Heavy Snow (flag: any character, as its When Revealed effect) and
+      // Harsh Weather's shadow (text: its title).
       const targets = (e.flag ? allCharacters(s) : own(s, player)).filter(
         canExhaust,
       );
       if (targets.length)
         choose(
           s,
-          "Heavy Snow · Exhaust a character",
+          `${e.text ?? card(H.snow).name} · Exhaust a character`,
           targets.map((c) => ({
             id: c.id,
             code: c.code,
@@ -1222,6 +1363,127 @@ export function eredPoolEffect(s: GameState, e: Effect) {
           },
         ]);
       break;
+    case "eredPoolGiant": {
+      const n = discardPlayerDeck(s, 5, player).filter(
+        (code) => card(code).type_code === "ally",
+      ).length;
+      log(
+        s,
+        `Grey Mountain Giant discards the top 5 cards of Player ${player + 1}'s deck: ${n} ${n === 1 ? "ally" : "allies"}.`,
+        n ? "danger" : undefined,
+      );
+      if (n) prepend(s, fx("eredPoolAssignDamage", { player, value: n }));
+      break;
+    }
+    case "eredPoolEagle":
+      if (u && s.staging.some((x) => x.id === u.id))
+        forOwner(s, player, () => engage(s, u));
+      break;
+    case "eredPoolBear":
+      if (u)
+        choose(s, "Wilderland Bear · The first player must choose", [
+          {
+            id: "attack",
+            label: "Wilderland Bear makes an immediate attack against you",
+            effects: [fx("immediateAttack", { target: u.id, player })],
+          },
+          {
+            id: "discard",
+            label: "Each player discards 1 random card from their hand",
+            effects: playerOrder(s).map((p) =>
+              fx("eredPoolRandomDiscard", { player: p }),
+            ),
+          },
+        ]);
+      break;
+    case "eredPoolRandomDiscard":
+      forOwner(s, player, () => {
+        if (!s.hand.length) return;
+        const c = s.hand[Math.floor(random(s) * s.hand.length)];
+        discardHandCard(s, c.id, { encounterEffect: true });
+      });
+      break;
+    case "eredPoolMoor": {
+      // As Lightless Grotto: the treachery resolves through every scenario's
+      // scripts, which return it to the discard pile.
+      shuffleDiscard(s);
+      const code = discardUntil(s, (c) => card(c).type_code === "treachery");
+      if (code) placeEncounter(s, code, false, 0, undefined, true);
+      break;
+    }
+    case "eredPoolSlopes":
+      choose(s, "Slopes of Ered Mithrin · You may ready a character", [
+        ...own(s, player)
+          .filter((c) => c.exhausted && !cannotReady(c, s))
+          .map((c) => ({
+            id: c.id,
+            code: c.code,
+            label: `Ready ${name(c)}`,
+            effects: [fx("ready", { target: c.id, player })],
+          })),
+        { id: "decline", label: "Do not ready a character", effects: [] },
+      ]);
+      break;
+    case "eredPoolWeatherCharacter":
+      if (u && !u.exhausted && own(s, player).some((c) => c.id === u.id))
+        choose(s, `Harsh Weather · ${name(u)}`, [
+          ...(canExhaust(u)
+            ? [
+                {
+                  id: "exhaust",
+                  label: `Exhaust ${name(u)}`,
+                  effects: [fx("exhaust", { target: u.id, player })],
+                },
+              ]
+            : []),
+          {
+            id: "threat",
+            label: "Raise your threat by 1",
+            effects: [fx("threat", { player, value: 1 })],
+          },
+        ]);
+      break;
+    case "eredPoolWildEngage": {
+      // (An enemy the chapter forbids engaging, such as Dagnir, is no choice.)
+      const list = s.staging.filter(
+        (x) =>
+          card(x.code).type_code === "enemy" &&
+          !batch4Scenario(s).cannotEngage?.(s, x),
+      );
+      if (list.length)
+        choose(
+          s,
+          "Wild Creatures · Choose an enemy in the staging area to engage",
+          list.map((x) => ({
+            id: x.id,
+            code: x.code,
+            label: name(x),
+            effects: [fx("eredPoolWildEngageTake", { target: x.id, player })],
+          })),
+        );
+      break;
+    }
+    case "eredPoolWildEngageTake":
+      if (u && s.staging.some((x) => x.id === u.id)) {
+        forOwner(s, player, () => engage(s, u));
+        if (!s.staging.some((x) => x.id === u.id))
+          q.wildEngaged = [...(q.wildEngaged ?? []), player];
+      }
+      break;
+    case "eredPoolWildFinish": {
+      const engaged = new Set(q.wildEngaged ?? []).size;
+      delete q.wildEngaged;
+      if (engaged >= playerOrder(s).length) break;
+      const found = discardUntil(
+        s,
+        (c) => card(c).type_code === "enemy" && trait(c, "Creature"),
+      );
+      if (found) {
+        add(s, found);
+        log(s, `Wild Creatures adds ${card(found).name} to the staging area.`);
+      }
+      break;
+    }
     case "eredPoolCreatureDen": {
       // Creature Den's Travel cost: shuffle the encounter discard pile into
       // the encounter deck, discard until an enemy, add it to the staging area.
@@ -1768,6 +2030,11 @@ function poolHillsEffect(s: GameState, e: Effect) {
 /** Pool effects a player resolves in their own seat (the rest run in the first player's). */
 const PLAYER_EFFECTS = new Set([
   "eredPoolAssignDamage",
+  "eredPoolGiant",
+  "eredPoolRandomDiscard",
+  "eredPoolWeatherCharacter",
+  "eredPoolWildEngage",
+  "eredPoolWildEngageTake",
   "eredPoolExhaust",
   "eredPoolColdCharacter",
   "eredPoolDiscardHand",
@@ -1796,6 +2063,8 @@ export const ERED_POOL_HOOKS: Batch4ScenarioHooks = {
   damageAmount: poolDamageAmount,
   damageDealt: poolDamageDealt,
   engaged: poolEngaged,
+  encounterBegin: poolEncounterBegin,
+  characterDestroyed: poolCharacterDestroyed,
   enemyAttackStarted: poolEnemyAttackStarted,
   shadowResolved: poolShadowResolved,
   attackFinished: poolAttackFinished,
@@ -1888,6 +2157,14 @@ export function composeEredPool(
     engaged: (s, u, optional, fromStaging) => {
       h.engaged?.(s, u, optional, fromStaging);
       p.engaged!(s, u, optional, fromStaging);
+    },
+    encounterBegin: (s) => {
+      h.encounterBegin?.(s);
+      p.encounterBegin!(s);
+    },
+    characterDestroyed: (s, u, context) => {
+      h.characterDestroyed?.(s, u, context);
+      p.characterDestroyed!(s, u, context);
     },
     enemyAttackStarted: (s, u, player) => {
       h.enemyAttackStarted?.(s, u, player);
@@ -2033,7 +2310,9 @@ export function validEredPool(
     q.usedResponses.every((c) => [W.armory, W.treasury].includes(c)) &&
     new Set(q.usedResponses).size === q.usedResponses.length &&
     (q.playerReadyBlockedRound === undefined ||
-      round(q.playerReadyBlockedRound))
+      round(q.playerReadyBlockedRound)) &&
+    (q.wildEngaged === undefined ||
+      (Array.isArray(q.wildEngaged) && q.wildEngaged.every(player)))
   );
 }
 /** The pool's visible state: Lonely Lands' facedown events are counted. */
