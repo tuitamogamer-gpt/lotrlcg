@@ -573,6 +573,7 @@ export function exhaustCharacter(s: GameState, u: Unit): boolean {
   stewardFearCharacterExhausted(s, u);
   batch4Scenario(s).characterExhausted?.(s, u);
   sagaCampaignCharacterExhausted(s, u);
+  DreamCards.dreamchaserCharacterExhausted(s, u);
   return true;
 }
 /** Every addition to staging shares the response timing, including a return from engagement. */
@@ -780,6 +781,7 @@ export function discardPlayerDeck(
         s.discard.push(u.code);
         foundationsPlayerCardDiscarded(s, u);
         Dread.dreadPlayerCardDiscarded(s, u);
+        DreamCards.dreamchaserPlayerCardDiscarded(s, u);
       });
       discarded.push(u.code);
     }
@@ -817,6 +819,7 @@ export function discardHandCard(
     foundationsPlayerCardDiscarded(s, u);
     Dread.dreadPlayerCardDiscarded(s, u);
     Angmar.angmarHandDiscarded(s, u, controller, s.discard.length - 1);
+    DreamCards.dreamchaserPlayerCardDiscarded(s, u);
   });
   return u;
 }

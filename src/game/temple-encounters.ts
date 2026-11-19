@@ -50,6 +50,8 @@ import { resolveDoomed } from "./voice-isengard";
 import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import {
   TEMPLE as T,
+  isGateKey,
+  isTempleGuardian,
   templeActiveLocation,
   templeAdjacent,
   templeCell,
@@ -141,7 +143,7 @@ export function templeEncounterThreatBonus(s: GameState, u: Unit) {
   const q = templeState(s);
   if (!live(s) || !q) return 0;
   return (
-    (u.code === T.guardian && !u.blanked ? playerOrder(s).length : 0) +
+    (isTempleGuardian(u) && !u.blanked ? playerOrder(s).length : 0) +
     (samePhase(q.sunkenPhase, s.phase)
       ? q.sunkenBoosts
           .filter((b) => b.locationId === u.id)
@@ -167,11 +169,11 @@ export function templeEncounterEngagement(s: GameState, u: Unit) {
   if (!live(s) || card(u.code).type_code !== "enemy") return 0;
   return (
     (active(s, T.caverns) ? 10 : 0) +
-    (u.code === T.guardian && !u.blanked && active(s, T.cursed) ? -50 : 0)
+    (isTempleGuardian(u) && !u.blanked && active(s, T.cursed) ? -50 : 0)
   );
 }
 export const templeCannotOptionallyEngage = (s: GameState, u: Unit) =>
-  live(s) && !u.blanked && [T.guardian, T.watcher].includes(u.code);
+  live(s) && !u.blanked && (isTempleGuardian(u) || u.code === T.watcher);
 export const templeCannotSearch = (s: GameState, player = activeSeat(s)) =>
   live(s) &&
   seatView(s, player).engaged.some((u) => u.code === T.cadaver && !u.blanked);
@@ -258,7 +260,7 @@ export function templeEnemyDestroyed(
   const q = templeState(s);
   if (!live(s) || !q) return;
   if (
-    u.code === T.guardian &&
+    isTempleGuardian(u) &&
     s.victoryCards?.includes(u.code) &&
     !q.victoryEnemies.some((e) => e.id === u.id)
   )
@@ -508,9 +510,7 @@ export function templeShadow(s: GameState, code: string) {
   const c = s.combat as TempleCombat;
   if (code === T.supplies) c.defensePenalty = (c.defensePenalty ?? 0) + 2;
   else if (code === T.profane) {
-    if (
-      allCharacters(s).some((u) => u.attachments.some((a) => a.code === T.key))
-    )
+    if (allCharacters(s).some((u) => u.attachments.some(isGateKey)))
       c.attackBonus += 3;
   } else if (code === T.desecrator) c.attackBonus += ruins(s) ? 2 : 1;
   else if (code === T.rain) c.templeRainOnKill = (c.templeRainOnKill ?? 0) + 1;
@@ -640,7 +640,7 @@ export function templeEncounterEffect(s: GameState, e: Effect) {
       }
       break;
     case "templeECGuardianReturn":
-      if (q.victoryEnemies.length && s.victoryCards?.includes(T.guardian))
+      if (q.victoryEnemies.length && s.victoryCards?.some(isTempleGuardian))
         highest(
           s,
           fx("templeECHighest", {
@@ -661,10 +661,10 @@ export function templeEncounterEffect(s: GameState, e: Effect) {
       let enemy = u;
       if (!enemy && e.code === T.guardian) {
         enemy = q.victoryEnemies.find((x) => x.id === e.target);
-        if (!enemy || !s.victoryCards?.includes(T.guardian)) break;
+        if (!enemy || !s.victoryCards?.includes(enemy.code)) break;
         q.victoryEnemies = q.victoryEnemies.filter((x) => x.id !== enemy!.id);
-        removeOne(s.victoryCards, T.guardian);
-        s.victory = Math.max(0, s.victory - (card(T.guardian).victory ?? 0));
+        removeOne(s.victoryCards, enemy.code);
+        s.victory = Math.max(0, s.victory - (card(enemy.code).victory ?? 0));
         enemy.damage = 0;
         enemy.resources = 0;
         enemy.progress = 0;

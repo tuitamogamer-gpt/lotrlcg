@@ -1,4 +1,5 @@
 import * as DreamCards from "./dreamchaser-campaign-cards";
+import * as DreamTemple from "./dreamchaser-temple";
 import { angmarCampaignAttachmentPlayed } from "./angmar-campaign-loot";
 import { angmarCampaignCannotCommit } from "./angmar-campaign-support";
 import * as FortressPlayers from "./fortress-nurn-player";
@@ -3195,6 +3196,8 @@ function applyActionCore(input: GameState, action: Action): GameState {
         // The Searching Eye, Poisoned Counsels and Journey to the
         // Cross-roads' Brace of Coneys join the deck after the starting hand.
         const held = sagaHoldLateDeck(s);
+        // The Dream-chaser campaign's Recurring Nightmares, likewise.
+        const nightmares = DreamTemple.dreamchaserHoldLateDeck(s);
         shuffle(s, s.deck);
         // Gandalf's Delay: the new starting hand also has 1 less card.
         draw(
@@ -3203,6 +3206,7 @@ function applyActionCore(input: GameState, action: Action): GameState {
             sagaStartingHandPenalty(s),
         );
         sagaReturnLateDeck(s, held);
+        DreamTemple.dreamchaserReturnLateDeck(s, nightmares);
       }
       s.mulled = true;
       log(s, "You take your one mulligan.");

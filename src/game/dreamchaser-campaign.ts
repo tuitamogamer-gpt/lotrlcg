@@ -58,6 +58,11 @@ import { FATE } from "./fate-numenor-support";
 import { RAID } from "./raid-grey-havens-support";
 import { STORMCALLER } from "./stormcaller-support";
 import { DEPTHS } from "./depths-support";
+import { TEMPLE, templeMapUnits } from "./temple-support";
+import {
+  placeTempleSecrets,
+  shuffleCampaignNightmares,
+} from "./dreamchaser-temple";
 
 export {
   DREAMCHASER_CAMPAIGN_CARDS,
@@ -73,6 +78,7 @@ export const DREAMCHASER_CAMPAIGN_SUPPORTED: readonly ScenarioId[] = [
   "raid-on-the-grey-havens",
   "flight-of-the-stormcaller",
   "the-thing-in-the-depths",
+  "temple-of-the-deceived",
 ];
 /** The chapters whose campaign card shuffles Thunderstruck into the encounter deck and Crowley into the Corsair deck. */
 const CORSAIR_CHAPTERS: readonly ScenarioId[] = [
@@ -178,6 +184,14 @@ export interface DreamchaserGame {
   together?: number;
   /** Come Together: the Traits granted until the end of the round. */
   grants?: { target: string; trait: string; round: number }[];
+  /**
+   * Temple of the Deceived: the secrets facedown under the Temple of the
+   * Deceived locations (Starla and both Recurring Nightmares), by map
+   * location id.
+   */
+  secrets?: Record<string, string>;
+  /** The seats that looked at each secret with the Upgraded Gate Key. */
+  secretLooks?: Record<string, number[]>;
 }
 export const dreamchaserState = (s: GameState) => (s.dreamchaser ??= {});
 const several = (s: GameState) => (s.table?.seats.length ?? 1) > 1;
@@ -303,6 +317,10 @@ export function dreamchaserCampaignSetup(s: GameState) {
       shuffle(s, corsairs);
     }
   }
+  // Recurring Nightmare: "For the remainder of the campaign, that player
+  // shuffles that Recurring Nightmare into their deck after they draw their
+  // starting hand."
+  shuffleCampaignNightmares(s);
   if (pool.length) {
     s.encounterDeck.push(...pool);
     shuffle(s, s.encounterDeck);
@@ -457,6 +475,36 @@ export function dreamchaserSahirFlipped(s: GameState): Effect[] {
   enemyAddedToStaging(s, serpent);
   log(s, "Sea Serpent (Menacing) is added to the staging area.", "danger");
   return [fx("dcTogetherOffer", { player: firstPlayer(s) })];
+}
+/**
+ * Temple of the Deceived's campaign card, once the scenario's setup put
+ * Captain Sahír into play: "Attach Black Key (boon) to Captain Sahír. …
+ * Shuffle Starla and both Recurring Nightmares together and place one
+ * facedown under each Temple of the Deceived location, as secrets. For each
+ * character in play, its controller may deal 1 damage to it to reduce their
+ * threat by 1. One player may raise their threat by 4 to attach Spyglass to
+ * a hero." (Revenant was shuffled into the encounter deck.)
+ */
+export function dreamchaserTempleReady(s: GameState): Effect[] {
+  const c = s.campaign;
+  if (!isDreamchaserCampaign(c)) return [];
+  const sahir = seatIndices(s)
+    .flatMap((p) => seatView(s, p).allies)
+    .find((u) => u.code === TEMPLE.sahirAlly);
+  if (sahir) {
+    const key = dcFace(c, DC.keyBoon);
+    sahir.attachments.push({
+      id: `a${s.nextId++}`,
+      code: key,
+      exhausted: false,
+    });
+    log(s, `${card(key).name} (boon) is attached to Captain Sahír.`, "good");
+  }
+  placeTempleSecrets(s);
+  return [
+    ...dreamchaserWoundOffers(s),
+    fx("dcSpyglassOffer", { player: firstPlayer(s) }),
+  ];
 }
 export function dreamchaserFateReady(s: GameState, calphon: Unit): Effect[] {
   if (!isDreamchaserCampaign(s.campaign)) return [];
@@ -623,6 +671,37 @@ export function dreamchaserXpLines(s: GameState): XpLine[] {
       },
     );
   }
+  if (s.scenarioId === "temple-of-the-deceived") {
+    const map = s.temple ? templeMapUnits(s) : [];
+    lines.push(
+      {
+        label: "1 XP for each resource on this card (to a maximum of 3 XP)",
+        xp: Math.min(3, s.dreamchaser?.resources ?? 0),
+      },
+      {
+        label: "1 XP for each faceup Temple Halls",
+        xp: map.filter((u) => u.code === TEMPLE.halls).length,
+      },
+      {
+        label: "1 XP if 4 or fewer Uncharted locations are faceup",
+        xp:
+          map.filter((u) => [TEMPLE.lost, TEMPLE.temple].includes(u.code))
+            .length <= 4
+            ? 1
+            : 0,
+      },
+      {
+        label: "1 XP if Temple Guardian is in the victory display",
+        xp: inVictory(s, TEMPLE.guardian) ? 1 : 0,
+      },
+      {
+        label: "1 XP if each surviving player's threat is 40 or less",
+        xp: globalLivingSeats(s).every((p) => seatView(s, p).threat <= 40)
+          ? 1
+          : 0,
+      },
+    );
+  }
   if (s.scenarioId === "raid-on-the-grey-havens") {
     const burned = s.raidGreyHavens?.burned.length ?? 0;
     lines.push(
@@ -664,6 +743,14 @@ export function dreamchaserXpLines(s: GameState): XpLine[] {
     });
   return lines;
 }
+/** Temple of the Deceived: the Recurring Nightmares that are no longer secrets. */
+const templeFreedNightmares = (s: GameState) =>
+  s.scenarioId !== "temple-of-the-deceived" || !s.dreamchaser?.secrets
+    ? 0
+    : 2 -
+      Object.values(s.dreamchaser.secrets).filter(
+        (code) => code === DC.nightmare,
+      ).length;
 /** The chapter's resolution: XP and the Campaign Pool. */
 export function resolveDreamchaserCampaign(s: GameState) {
   const c = s.campaign!;
@@ -704,6 +791,36 @@ export function resolveDreamchaserCampaign(s: GameState) {
     // or Throwing Axe, add it to the Campaign Pool, and record which hero you
     // attach it to." The end-of-game dialog asks.
     if (inVictory(s, DC.graxar)) c.resolution = s.scenarioId;
+  }
+  if (s.scenarioId === "temple-of-the-deceived") {
+    // "If Starla is under a player's control, add her to the Campaign Pool."
+    // She joins the deck of the player who controls her.
+    const starla = seatIndices(s).find((p) =>
+      seatView(s, p).allies.some((u) => dcIs(u, DC.starla)),
+    );
+    if (starla !== undefined) {
+      if (!c.boons.includes(DC.starla)) c.boons.push(DC.starla);
+      c.deckBoons = { ...(c.deckBoons ?? {}), [DC.starla]: starla };
+      log(
+        s,
+        "Temple of the Deceived · Resolution: Starla joins the Campaign Pool.",
+        "good",
+      );
+    }
+    // "For each Recurring Nightmare that is not a secret, add it to the
+    // Campaign Pool and choose a player." With several players the
+    // end-of-game dialog asks.
+    const freed = templeFreedNightmares(s);
+    if (freed) {
+      if (!c.burdens.includes(DC.nightmare)) c.burdens.push(DC.nightmare);
+      if (several(s)) c.resolution = s.scenarioId;
+      else c.nightmares = Array<number>(freed).fill(firstPlayer(s));
+      log(
+        s,
+        `Temple of the Deceived · Resolution: ${freed === 1 ? "a Recurring Nightmare joins" : "both Recurring Nightmares join"} the Campaign Pool.`,
+        "danger",
+      );
+    }
   }
   // The Thing in the Depths: "The players may add Come Together to the
   // Campaign Pool." The end-of-game dialog asks.
@@ -761,6 +878,16 @@ export function dreamchaserResolutionQuestions(s: GameState): {
           .map((h) => ({ id: h, code: h, label: card(h).name })),
       },
     ];
+  if (s.scenarioId === "temple-of-the-deceived")
+    return Array.from({ length: templeFreedNightmares(s) }, (_, i) => ({
+      id: `nightmare-${i + 1}`,
+      label: `Recurring Nightmare${templeFreedNightmares(s) > 1 ? ` (copy ${i + 1})` : ""}: which player shuffles it into their deck after drawing their starting hand, for the rest of the campaign?`,
+      options: seatIndices(s).map((p) => ({
+        id: String(p),
+        code: DC.nightmare,
+        label: seatName(s, p),
+      })),
+    }));
   if (s.scenarioId === "the-thing-in-the-depths")
     return [
       {
@@ -799,6 +926,14 @@ export function applyDreamchaserResolution(
       s,
       `Raid on the Grey Havens · Resolution: ${card(code).name} joins the Campaign Pool, attached to ${card(hero).name}.`,
       "good",
+    );
+  }
+  if (s.scenarioId === "temple-of-the-deceived") {
+    c.nightmares = questions.map((q) => Number(answers[q.id]));
+    log(
+      s,
+      `Temple of the Deceived · Resolution: ${c.nightmares.map((p) => seatName(s, p)).join(" and ")} will shuffle ${c.nightmares.length === 1 ? "the Recurring Nightmare" : "a Recurring Nightmare each"} into their deck after drawing their starting hand.`,
+      "danger",
     );
   }
   if (
@@ -1119,6 +1254,12 @@ export function dreamchaserCampaignStatus(s: GameState): string[] {
     out.push(
       'The Thing in the Depths is on its "Campaign Mode only" side (each destroyed Creature deals it 2 damage). Captain Sahír carries Black Key (burden) as an enemy; when he flips, it becomes the boon, Sea Serpent (Menacing) enters the staging area and a player adds Come Together to their hand.',
     );
+  if (s.scenarioId === "temple-of-the-deceived") {
+    const left = Object.keys(s.dreamchaser?.secrets ?? {}).length;
+    out.push(
+      `The Temple Guardian is on its "Campaign Mode only" side (Archery X; X is its defense too). Captain Sahír carries Black Key (boon). Secrets still facedown under the Temple of the Deceived locations: ${left} of 3 (Starla and both Recurring Nightmares). Travel Action: flip over a secret at your location; a Recurring Nightmare engages you, Starla joins you ready.`,
+    );
+  }
   if (REVENANT_CHAPTERS.includes(s.scenarioId)) {
     const n = s.dreamchaser?.resources ?? 0;
     out.push(
@@ -1277,6 +1418,29 @@ export function validateDreamchaserCampaign(s: GameState): boolean {
                 typeof g.trait === "string" &&
                 !!g.trait &&
                 integer(g.round),
+            ))) &&
+        (q.secrets === undefined ||
+          (!!q.secrets &&
+            typeof q.secrets === "object" &&
+            !Array.isArray(q.secrets) &&
+            Object.keys(q.secrets).length <= 3 &&
+            Object.entries(q.secrets).every(
+              ([id, code]) =>
+                /^c\d+$/.test(id) &&
+                (code === DC.starla || code === DC.nightmare),
+            ) &&
+            Object.values(q.secrets).filter((code) => code === DC.starla)
+              .length <= 1)) &&
+        (q.secretLooks === undefined ||
+          (!!q.secretLooks &&
+            typeof q.secretLooks === "object" &&
+            !Array.isArray(q.secretLooks) &&
+            Object.entries(q.secretLooks).every(
+              ([id, looked]) =>
+                !!q.secrets?.[id] &&
+                Array.isArray(looked) &&
+                looked.every((p) => integer(p) && p < seats) &&
+                new Set(looked).size === looked.length,
             )))))
   );
 }

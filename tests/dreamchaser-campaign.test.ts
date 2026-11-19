@@ -6,6 +6,8 @@ import { card, STARTERS } from "../src/game/cards";
 import {
   damage,
   discardCharacter,
+  discardPlayerDeck,
+  exhaustCharacter,
   readyCharacter,
   win,
 } from "../src/game/board";
@@ -74,7 +76,18 @@ import { raidAflame } from "../src/game/raid-grey-havens";
 import { FATE } from "../src/game/fate-numenor-support";
 import { fateAbility, fateAbilityLabel } from "../src/game/fate-numenor";
 import { playerCardImmune } from "../src/game/card-immunity";
-import { seatView } from "../src/game/table";
+import { forOwner, seatView } from "../src/game/table";
+import { shuffleCampaignNightmares } from "../src/game/dreamchaser-temple";
+import {
+  TEMPLE,
+  templeMapUnit,
+  templeMapUnits,
+} from "../src/game/temple-support";
+import {
+  templeFlip,
+  templePublicState,
+  templeSyncMap,
+} from "../src/game/temple";
 import type { CampaignState, GameState, Unit } from "../src/game/types";
 import art from "./dreamchaser-campaign-art.json";
 
@@ -141,6 +154,7 @@ test("The Dream-chaser campaign: Voyage Across Belegaer's campaign card and the 
     "raid-on-the-grey-havens",
     "flight-of-the-stormcaller",
     "the-thing-in-the-depths",
+    "temple-of-the-deceived",
   ]);
   const campaignCard = card(
     DREAMCHASER_CAMPAIGN_CARDS["voyage-across-belegaer"]!,
@@ -1865,7 +1879,7 @@ test("Come Together: choose up to X characters (its level); each gets +2 defense
   assert.ok(!(l.heroes[0].dynamicTraits ?? []).includes(trait));
 });
 
-test("The Thing in the Depths' resolution: Captain Sahír's and Na'asiyah's resources, the Enraged Sea Serpent, undamaged heroes and threat give XP; Come Together may join the Campaign Pool; Temple of the Deceived is not available yet", () => {
+test("The Thing in the Depths' resolution: Captain Sahír's and Na'asiyah's resources, the Enraged Sea Serpent, undamaged heroes and threat give XP; Come Together may join the Campaign Pool, and Temple of the Deceived follows", () => {
   const s = calm(reload(opening(depths())));
   const sahir = make(s, DEPTHS.sahirAlly);
   sahir.resources = 5;
@@ -1886,15 +1900,388 @@ test("The Thing in the Depths' resolution: Captain Sahír's and Na'asiyah's reso
   const recorded = applyDreamchaserResolution(s, { together: "add" });
   assert.ok(recorded.campaign!.boons.includes(DC.together));
   assert.equal(recorded.campaign!.deckBoons![DC.together], 0);
+  const next = continueCampaign(
+    recorded,
+    recorded.campaign!.heroes,
+    recorded.deckId,
+    true,
+    9,
+  );
+  assert.equal(next.scenarioId, "temple-of-the-deceived");
+});
+
+// ------------------------------------------ Temple of the Deceived (Part 6)
+
+/** A Dream-chaser campaign after The Thing in the Depths. */
+function afterDepths(marks: Record<string, number> = {}): CampaignState {
+  const c = afterFlight(marks);
+  return {
+    ...c,
+    completed: [
+      ...c.completed,
+      { scenarioId: "the-thing-in-the-depths", score: 25, rounds: 8, xp: 6 },
+    ],
+  };
+}
+const temple = (campaign = afterDepths(), deck = STARTERS[0], seed = 5) =>
+  createGame(seed, deck.cards, deck.heroes, deck.id, {
+    scenarioId: "temple-of-the-deceived",
+    playMode: "campaign",
+    campaign: { ...campaign, heroes: [...deck.heroes] },
+  });
+/** The Temple of the Deceived location hiding a given secret. */
+const secretAt = (s: GameState, code: string) =>
+  Object.entries(s.dreamchaser!.secrets!).find(([, c]) => c === code)![0];
+/** Make a map location the active one, turned over to its own side. */
+function activate(s: GameState, id: string) {
+  const u = templeMapUnit(s, id)!;
+  if (s.temple!.hiddenBacks[id]) templeFlip(s, u, false);
+  const old = s.activeLocation;
+  if (old) s.temple!.outOfStaging.push(old);
+  s.activeLocation = null;
+  s.temple!.activeId = id;
+  templeSyncMap(s);
+  return templeMapUnit(s, id)!;
+}
+
+test("Temple of the Deceived: its campaign card, the Temple Guardian's campaign side, the Upgraded Gate Key, Starla and Recurring Nightmare are registered with the print-and-play texts", () => {
+  const campaignCard = card(DC.templeCard);
+  assert.equal(campaignCard.subtitle, "Dream-chaser Part 6");
+  assert.match(
+    campaignCard.text!,
+    /Shuffle Starla and both Recurring Nightmares together and place one facedown under each Temple of the Deceived location, as secrets\./,
+  );
+  assert.match(
+    campaignCard.text!,
+    /Travel Action: Flip over a secret at your location\. If it is a Recurring Nightmare, it engages you\. If it is Starla, you gain control of her \(ready\)\./,
+  );
+  assert.match(
+    campaignCard.back_text!,
+    /• 1 XP if 4 or fewer Uncharted locations are faceup\./,
+  );
+  const guardian = card(backFace(DC.guardian));
+  assert.deepEqual(
+    [guardian.attack, guardian.health, guardian.victory, guardian.engagement],
+    [5, 10, 5, 50],
+  );
+  assert.match(guardian.text!, /^Campaign Mode only\.\nArchery X\./);
+  assert.match(
+    card(backFace(DC.gateKey)).text!,
+    /Exhaust Gate Key and attached hero to look at the facedown side of a Temple of the Deceived location or secret\./,
+  );
+  const starla = card(DC.starla);
+  assert.deepEqual(
+    [starla.type_code, starla.sphere_code, starla.health],
+    ["ally", "boon", 4],
+  );
+  assert.match(
+    starla.text!,
+    /Response: After Starla exhausts, place 1 progress on a location\./,
+  );
+  const nightmare = card(DC.nightmare);
+  assert.deepEqual(
+    [
+      nightmare.type_code,
+      nightmare.sphere_code,
+      nightmare.threat,
+      nightmare.attack,
+      nightmare.health,
+      nightmare.engagement,
+      nightmare.quantity,
+    ],
+    ["enemy", "burden", 3, 5, 6, 35, 2],
+  );
+});
+
+test("Temple of the Deceived's setup: the Temple Guardian takes its campaign side, Captain Sahír carries Black Key (boon), Starla and both Recurring Nightmares hide under the three temples as secrets, Revenant is shuffled in, each character may trade 1 damage for 1 threat, and a player may raise their threat by 4 for Spyglass", () => {
+  let threat = -1;
+  let wounded = false;
+  let s = opening(temple(), (x) => {
+    const title = x.choice!.title;
+    if (/Deal 1 damage/.test(title) && !wounded) {
+      wounded = true;
+      threat = x.threat;
+      return x.heroes[0].id;
+    }
+    if (/Spyglass/.test(title)) return x.heroes[0].id;
+    return undefined;
+  });
+  s = calm(reload(s));
+  const guardian = s.staging.find((u) => dcIs(u, TEMPLE.guardian))!;
+  assert.equal(guardian.code, backFace(DC.guardian));
+  assert.equal(
+    guardian.guarding,
+    s.staging.find((u) => dcIs(u, TEMPLE.key))!.id,
+  );
+  assert.equal(s.staging.find((u) => dcIs(u, TEMPLE.key))!.code, TEMPLE.key);
+  const sahir = s.allies.find((u) => u.code === TEMPLE.sahirAlly)!;
+  assert.deepEqual(
+    sahir.attachments.map((a) => a.code),
+    [DC.keyBoon],
+  );
+  const temples = s.temple!.map.filter((c) => c.column === 4).map((c) => c.id);
+  assert.deepEqual(Object.keys(s.dreamchaser!.secrets!).sort(), temples.sort());
+  assert.deepEqual(
+    Object.values(s.dreamchaser!.secrets!).sort(),
+    [DC.starla, DC.nightmare, DC.nightmare].sort(),
+  );
+  assert.ok(s.encounterDeck.includes(DC.revenant));
+  assert.equal(s.heroes[0].damage, 1);
+  assert.ok(s.heroes[0].attachments.some((a) => a.code === DC.spyglass));
+  assert.equal(s.threat, threat - 1 + 4);
+  assert.ok(valid(s));
+  assert.match(
+    dreamchaserCampaignStatus(s).join("\n"),
+    /Secrets still facedown under the Temple of the Deceived locations: 3 of 3/,
+  );
+  // Both of the Gate Key's checkboxes marked: its Upgraded side.
+  const upgraded = calm(
+    reload(opening(temple(afterDepths({ [DC.gateKey]: 2 })))),
+  );
+  assert.equal(
+    upgraded.staging.find((u) => dcIs(u, TEMPLE.key))!.code,
+    backFace(DC.gateKey),
+  );
+  assert.ok(valid(upgraded));
+});
+
+test("The Temple Guardian's campaign side: X threat and defense, Archery X, immune to player card effects, victory 5, and it still returns from the victory display when a Temple Halls flips", () => {
+  const s = calm(reload(opening(temple())));
+  const guardian = s.staging.find((u) => dcIs(u, TEMPLE.guardian))!;
+  assert.equal(threatOf(s, guardian), 1);
+  assert.equal(stats(s, guardian).defense, 1);
+  assert.equal(stats(s, guardian).attack, 5);
+  assert.equal(dreamchaserArchery(s, guardian), 1);
+  assert.ok(playerCardImmune(guardian));
+  const before = s.victory;
+  damage(s, guardian.id, 10);
+  flush(s);
+  assert.ok(s.victoryCards!.includes(backFace(DC.guardian)));
+  assert.equal(s.victory, before + 5);
+  assert.ok(valid(s));
+  assert.equal(
+    dreamchaserXpLines(s).find((l) => /Temple Guardian/.test(l.label))!.xp,
+    1,
+  );
+  s.queue = [
+    makeEffect("templeECGuardianReturn", { player: 0, code: TEMPLE.halls }),
+  ];
+  flush(s);
+  assert.ok(!s.victoryCards!.includes(backFace(DC.guardian)));
+  assert.equal(s.victory, before);
+  assert.ok(s.engaged.some((u) => u.code === backFace(DC.guardian)));
+  assert.ok(valid(s));
+});
+
+test("The campaign card's Travel Action: during the travel phase a player flips over the secret at the active location; Starla joins them ready and a Recurring Nightmare engages them", () => {
+  let s = calm(reload(opening(temple())));
+  const starlaAt = secretAt(s, DC.starla);
+  const location = activate(s, starlaAt);
+  assert.ok(valid(s));
+  const [flip] = availableAbilities(s, location);
+  assert.equal(flip.label, "Travel Action · Flip over the secret here");
+  assert.ok(flip.disabled, "not outside the travel phase");
+  assert.match(
+    templePublicState(s)!.cells.find((c) => c.id === starlaAt)!.secret!
+      .flipProblem!,
+    /travel phase/,
+  );
+  s.phase = "travel";
+  assert.ok(!availableAbilities(s, location)[0].disabled);
+  s = applyAction(reload(s), { type: "ABILITY", id: location.id });
+  const starla = s.allies.find((u) => u.code === DC.starla)!;
+  assert.ok(starla && !starla.exhausted);
+  assert.equal(s.dreamchaser!.secrets![starlaAt], undefined);
+  assert.ok(valid(s));
+  // A secret elsewhere cannot be flipped from here.
+  const nightmareAt = secretAt(s, DC.nightmare);
+  assert.equal(
+    templePublicState(s)!.cells.find((c) => c.id === nightmareAt)!.secret!
+      .flipProblem,
+    "Only a secret at your location can be flipped over.",
+  );
+  activate(s, nightmareAt);
+  s = applyAction(reload(s), { type: "ABILITY", id: nightmareAt });
+  assert.ok(s.engaged.some((u) => u.code === DC.nightmare));
+  assert.equal(Object.keys(s.dreamchaser!.secrets!).length, 1);
+  assert.ok(valid(s));
+});
+
+test("The Upgraded Gate Key: exhaust it and its hero, without spending resources, to look at an Uncharted Temple or a secret; the secret stays facedown and only that player knows it", () => {
+  let s = calm(reload(opening(temple(afterDepths({ [DC.gateKey]: 2 })))));
+  const key = s.staging.find((u) => dcIs(u, TEMPLE.key))!;
+  const hero = s.heroes[0];
+  s.staging = s.staging.filter((u) => u.id !== key.id);
+  hero.attachments.push({ id: key.id, code: key.code, exhausted: false });
+  hero.resources = 0;
+  assert.ok(valid(s));
+  const ability = availableAbilities(s, hero).find((a) => a.id === key.id)!;
+  assert.equal(
+    ability.label,
+    "Exhaust Key and hero · Look inside a Temple or at a secret",
+  );
+  assert.ok(!ability.disabled);
+  s = applyAction(reload(s), {
+    type: "ABILITY",
+    id: hero.id,
+    attachmentId: key.id,
+  });
+  assert.match(s.choice!.title, /Choose a Temple or a secret/);
+  const target = secretAt(s, DC.starla);
+  s = choose(s, `secret-${target}`);
+  assert.equal(s.choice!.options[0].code, DC.starla);
+  assert.ok(s.heroes[0].exhausted);
+  assert.ok(s.heroes[0].attachments.find((a) => a.id === key.id)!.exhausted);
+  assert.equal(s.heroes[0].resources, 0);
+  assert.deepEqual(s.dreamchaser!.secretLooks![target], [0]);
+  assert.equal(
+    templePublicState(s)!.cells.find((c) => c.id === target)!.secret!.known!
+      .code,
+    DC.starla,
+  );
+  s = choose(s, "close");
+  assert.equal(s.dreamchaser!.secrets![target], DC.starla);
+  assert.ok(valid(s));
+});
+
+test("Starla: X is half her level, rounded up; after she exhausts she places 1 progress on a location, and when discarded from the hand or deck she may be played", () => {
+  let s = calm(reload(opening(temple(afterDepths({ [DC.starla]: 3 })))));
+  const starla = make(s, DC.starla);
+  starla.owner = 0;
+  s.allies.push(starla);
+  assert.deepEqual(
+    [stats(s, starla).will, stats(s, starla).attack, stats(s, starla).defense],
+    [2, 2, 2],
+  );
+  exhaustCharacter(s, starla);
+  assert.equal(s.queue[0].kind, "dcStarlaProgress");
+  flush(s);
+  assert.match(s.choice!.title, /Place 1 progress on a location/);
+  const target = s.choice!.options.find((o) => o.id !== "skip")!.id;
+  const progress = templeMapUnit(s, target)?.progress ?? 0;
+  s = choose(s, target);
+  assert.equal(templeMapUnit(s, target)!.progress, progress + 1);
+  // Discarded from the deck: play her.
+  s.deck.unshift(DC.starla);
+  discardPlayerDeck(s, 1);
+  flush(s);
+  assert.match(s.choice!.title, /Starla is discarded/);
+  s = choose(s, "play");
+  assert.equal(s.allies.filter((u) => u.code === DC.starla).length, 2);
+  assert.ok(!s.discard.includes(DC.starla));
+});
+
+test("Recurring Nightmare: X defense, shuffled into a player's deck when it leaves play, and added to the staging area when it enters a hand", () => {
+  const s = calm(reload(opening(temple())));
+  const nightmare = make(s, DC.nightmare);
+  s.engaged.push(nightmare);
+  assert.equal(stats(s, nightmare).defense, 1);
+  assert.equal(threatOf(s, nightmare), 3);
+  s.deck = s.deck.filter((c) => c !== DC.nightmare);
+  damage(s, nightmare.id, 6);
+  flush(s);
+  assert.ok(!s.engaged.some((u) => u.id === nightmare.id));
+  assert.equal(s.deck.filter((c) => c === DC.nightmare).length, 1);
+  assert.ok(!s.encounterDiscard.includes(DC.nightmare));
+  // Drawn: "Forced: When Recurring Nightmare enters your hand, add it to the staging area."
+  s.deck = [DC.nightmare, ...s.deck.filter((c) => c !== DC.nightmare)];
+  s.queue = [makeEffect("draw", { value: 1 })];
+  flush(s);
+  dreamchaserCheck(s);
+  assert.ok(!s.hand.some((h) => h.code === DC.nightmare));
+  assert.ok(s.staging.some((u) => u.code === DC.nightmare));
+  assert.ok(valid(s));
+});
+
+test("Temple of the Deceived's resolution: resources on the campaign card, faceup Temple Halls, 4 or fewer Uncharted faces, the Temple Guardian and threat give XP; Starla under control and each Recurring Nightmare no longer a secret join the Campaign Pool", () => {
+  const s = calm(reload(opening(temple())));
+  // Turn over every map location but four Lost Islands.
+  const lost = templeMapUnits(s).filter((u) => u.code === TEMPLE.lost);
+  for (const u of templeMapUnits(s).filter(
+    (u) => s.temple!.hiddenBacks[u.id] && !lost.slice(0, 4).includes(u),
+  ))
+    templeFlip(s, u, false);
+  s.dreamchaser!.resources = 2;
+  s.victoryCards = [...(s.victoryCards ?? []), backFace(DC.guardian)];
+  s.threat = 35;
+  const starla = make(s, DC.starla);
+  starla.owner = 0;
+  s.allies.push(starla);
+  delete s.dreamchaser!.secrets![secretAt(s, DC.starla)];
+  delete s.dreamchaser!.secrets![secretAt(s, DC.nightmare)];
+  const lines = dreamchaserXpLines(s);
+  assert.deepEqual(
+    lines.map((l) => l.xp),
+    [1, 2, 2, 1, 1, 1, 0],
+  );
+  win(s);
+  const c = s.campaign!;
+  assert.equal(c.completed[5].scenarioId, "temple-of-the-deceived");
+  assert.equal(c.completed[5].xp, 8);
+  assert.ok(c.boons.includes(DC.starla));
+  assert.equal(c.deckBoons![DC.starla], 0);
+  assert.ok(c.burdens.includes(DC.nightmare));
+  assert.deepEqual(c.nightmares, [0]);
+  assert.equal(c.resolution ?? null, null);
   assert.throws(
-    () =>
-      continueCampaign(
-        recorded,
-        recorded.campaign!.heroes,
-        recorded.deckId,
-        true,
-        9,
-      ),
+    () => continueCampaign(s, c.heroes, s.deckId, true, 9),
     /not available in campaign mode yet/,
   );
+});
+
+test("Temple of the Deceived's resolution with several players: each freed Recurring Nightmare is given to a chosen player, who shuffles it into their deck after their starting hand in later chapters; a mulligan holds it out", () => {
+  const seats = STARTERS.slice(0, 2).map((x) => ({
+    deckId: x.id,
+    heroes: [...x.heroes],
+  }));
+  const campaign = {
+    ...afterDepths(),
+    heroes: seats.flatMap((x) => x.heroes),
+    seatHeroes: [3, 3],
+  };
+  let s = createGame(5, d.cards, HEROES, d.id, {
+    scenarioId: "temple-of-the-deceived",
+    playMode: "campaign",
+    campaign,
+    seats,
+  });
+  s = calm(reload(opening(s)));
+  s.dreamchaser!.secrets = {};
+  win(s);
+  assert.equal(s.campaign!.resolution, "temple-of-the-deceived");
+  const questions = dreamchaserResolutionQuestions(s);
+  assert.deepEqual(
+    questions.map((q) => q.id),
+    ["nightmare-1", "nightmare-2"],
+  );
+  const recorded = applyDreamchaserResolution(s, {
+    "nightmare-1": "1",
+    "nightmare-2": "0",
+  });
+  assert.deepEqual(recorded.campaign!.nightmares, [1, 0]);
+  assert.equal(recorded.campaign!.resolution, null);
+  assert.ok(valid(recorded));
+  // A later chapter: the Recurring Nightmares join their players' decks
+  // after the starting hands …
+  const later = structuredClone(recorded);
+  later.scenarioId = "the-drowned-ruins";
+  for (const p of [0, 1])
+    forOwner(
+      later,
+      p,
+      () => (later.deck = later.deck.filter((c) => c !== DC.nightmare)),
+    );
+  shuffleCampaignNightmares(later);
+  for (const p of [0, 1])
+    assert.equal(
+      seatView(later, p).deck.filter((c) => c === DC.nightmare).length,
+      1,
+    );
+  // … and a mulligan holds them out of the new starting hand.
+  let fresh = temple();
+  assert.equal(fresh.phase, "setup");
+  fresh.deck.push(DC.nightmare, DC.nightmare);
+  fresh = applyAction(fresh, { type: "MULLIGAN" });
+  assert.ok(!fresh.hand.some((h) => h.code === DC.nightmare));
+  assert.equal(fresh.deck.filter((c) => c === DC.nightmare).length, 2);
 });

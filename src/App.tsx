@@ -164,7 +164,7 @@ import { WildsRhovanionScenarioState } from "./ui/wilds-rhovanion-state";
 import { BENEATH_SANDS_QUESTS } from "./game/beneath-sands-support";
 import { BeneathSandsScenarioState } from "./ui/beneath-sands-state";
 import { COBAS_OBJECTIVES } from "./game/cobas-support";
-import { TEMPLE } from "./game/temple-support";
+import { GATE_KEY_FACES, TEMPLE } from "./game/temple-support";
 import { templePrivateLookVisible } from "./game/temple";
 import { faceupShadowCards } from "./game/voice-isengard";
 import { AMON_DIN as A } from "./game/amon-din-support";
@@ -604,7 +604,7 @@ const objectiveClaimCode = (s: GameState, id: string) =>
     .flatMap((h) => h.attachments)
     .find((a) => a.id === id)?.code;
 const claimableObjectives: string[] = [
-  TEMPLE.key,
+  ...GATE_KEY_FACES,
   FANGORN.mugash,
   ...OBJECTIVES,
   RHOS.athelas,
@@ -617,7 +617,7 @@ const claimableObjectives: string[] = [
   LAKE.thrush,
 ];
 const exhaustedClaimObjectives: string[] = [
-  TEMPLE.key,
+  ...GATE_KEY_FACES,
   RHOS.athelas,
   KHAZAD.book,
   KHAZAD.tools,
@@ -632,7 +632,7 @@ const objectiveClaimExhausts = (s: GameState, id: string) =>
   exhaustedClaimObjectives.includes(objectiveClaimCode(s, id) ?? "");
 const objectiveClaimRestricted = (s: GameState, id: string) =>
   ![
-    TEMPLE.key,
+    ...GATE_KEY_FACES,
     RHOS.athelas,
     H.scroll,
     FANGORN.mugash,

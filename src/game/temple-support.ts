@@ -2,6 +2,7 @@ import encounters from "../data/temple-encounter-cards.json";
 import quests from "../data/temple-quest-cards.json";
 import recipes from "../data/temple-recipes.json";
 import type { Card, GameState, Phase, Unit } from "./types";
+import { DC, backFace, dcBase } from "./dreamchaser-campaign-support";
 
 /** Data-only exports deliberately avoid the cards/engine runtime graph. */
 export const TEMPLE_PUBLIC_FACES = encounters.filter((c) =>
@@ -47,6 +48,18 @@ export const TEMPLE = {
   sahirAlly: `${code("Captain Sahír")}:B`,
   naasiyahAlly: `${code("Na'asiyah")}:B`,
 };
+/**
+ * The Temple Guardian and the Gate Key, on either face: in the Dream-chaser
+ * campaign they are the campaign expansion's reprints (the Guardian on its
+ * "Campaign Mode only" side, the Key on its Upgraded side once its
+ * checkboxes are marked).
+ */
+export const isTempleGuardian = (u: { code: string } | string) =>
+  dcBase(typeof u === "string" ? u : u.code) === TEMPLE.guardian;
+export const isGateKey = (u: { code: string } | string) =>
+  dcBase(typeof u === "string" ? u : u.code) === TEMPLE.key;
+/** The Gate Key's codes: the original card and the campaign expansion's Upgraded side. */
+export const GATE_KEY_FACES = [TEMPLE.key, backFace(DC.gateKey)];
 export const TEMPLE_LOST_FACES = [
   TEMPLE.cliffs,
   TEMPLE.caverns,
@@ -329,19 +342,16 @@ export function validateTemple(
   )
     return false;
   if (
-    q.victoryEnemies.some((u) => u.code !== TEMPLE.guardian) ||
+    q.victoryEnemies.some((u) => !isTempleGuardian(u)) ||
     q.removedUnits.some(
       (u) => ![TEMPLE.sahirAlly, TEMPLE.naasiyahAlly].includes(u.code),
     ) ||
     new Set(q.removedUnits.map((u) => u.code)).size !== q.removedUnits.length ||
     q.setAside.some(
       (u) =>
-        ![
-          TEMPLE.guardian,
-          TEMPLE.key,
-          TEMPLE.sahirAlly,
-          TEMPLE.naasiyahAlly,
-        ].includes(u.code),
+        !isTempleGuardian(u) &&
+        !isGateKey(u) &&
+        ![TEMPLE.sahirAlly, TEMPLE.naasiyahAlly].includes(u.code),
     )
   )
     return false;
@@ -385,12 +395,12 @@ export function validateTemple(
     ...otherUnits.flatMap((u) => u.attachments),
   ];
   if (
-    physicalCards.filter((u) => u.code === TEMPLE.guardian).length !== 1 ||
-    physicalCards.filter((u) => u.code === TEMPLE.key).length !== 1
+    physicalCards.filter(isTempleGuardian).length !== 1 ||
+    physicalCards.filter(isGateKey).length !== 1
   )
     return false;
   if (
-    (s.victoryCards ?? []).filter((code) => code === TEMPLE.guardian).length !==
+    (s.victoryCards ?? []).filter(isTempleGuardian).length !==
     q.victoryEnemies.length
   )
     return false;

@@ -28,6 +28,8 @@ import { watcherWaterCannotExhaust } from "./watcher-water";
 import {
   TEMPLE as T,
   TEMPLE_RECIPES,
+  isGateKey,
+  isTempleGuardian,
   templeActiveLocation,
   templeAdjacent,
   templeCell,
@@ -36,6 +38,20 @@ import {
   templeMapUnits,
 } from "./temple-support";
 import { templeAfterMapMove, templeLocationFlipped } from "./temple-encounters";
+import {
+  DC,
+  backFace,
+  dcBackFace,
+  dcScenarioFace,
+  isDreamchaserGame,
+} from "./dreamchaser-campaign-support";
+import { dreamchaserTempleReady } from "./dreamchaser-campaign";
+import {
+  dreamchaserSecret,
+  dreamchaserSecretKnown,
+  dreamchaserSecretLocations,
+  dreamchaserSecretProblem,
+} from "./dreamchaser-temple";
 export {
   templeActiveLocation,
   templeAdjacent,
@@ -52,14 +68,30 @@ const live = (s: GameState) => !!s.temple;
 const uncharted = (u: Unit) => [T.lost, T.temple].includes(u.code);
 const keyInPlay = (s: GameState) => {
   for (const hero of allHeroes(s)) {
-    const attachment = hero.attachments.find((a) => a.code === T.key);
+    const attachment = hero.attachments.find(isGateKey);
     if (attachment) return { card: attachment, hero };
   }
-  const key = s.staging.find((u) => u.code === T.key);
+  const key = s.staging.find(isGateKey);
   return key ? { card: key, hero: undefined } : undefined;
 };
 const canExhaust = (u: Unit) =>
   !u.exhausted && !khazadCannotExhaust(u) && !watcherWaterCannotExhaust(u);
+/**
+ * The Dream-chaser campaign's faces: the Temple Guardian on its "Campaign
+ * Mode only" side, and the Gate Key on its Upgraded side once its
+ * checkboxes are marked.
+ */
+const templeCampaignFace = (s: GameState, code: string) =>
+  !isDreamchaserGame(s)
+    ? code
+    : code === T.guardian
+      ? backFace(DC.guardian)
+      : code === T.key
+        ? dcScenarioFace(s.campaign, DC.gateKey)
+        : code;
+/** The Dream-chaser campaign's secret at the active location (its Travel Action). */
+const secretHere = (s: GameState, u: Unit) =>
+  !!dreamchaserSecret(s, u.id) && s.temple?.activeId === u.id;
 
 /** Adjacent map cards use actual staging storage, without duplicating any Unit. */
 export function templeSyncMap(s: GameState) {
@@ -162,7 +194,7 @@ export function setupTemple(s: GameState) {
           ? T.sahirAlly
           : code === T.naasiyah
             ? T.naasiyahAlly
-            : code,
+            : templeCampaignFace(s, code),
       ),
     );
   s.encounterDeck = shuffle(s, pile("sharedEncounterDeck"));
@@ -266,8 +298,10 @@ export function templeFlip(s: GameState, u: Unit, resolve = true) {
   const q = s.temple;
   const face = q?.hiddenBacks[u.id];
   if (!q || !face) return false;
+  // The location's own side is its card's front (its back is the shared
+  // Uncharted face), so the unit shows the front's name and art.
   u.code = face;
-  u.flipped = true;
+  delete u.flipped;
   u.progress = 0;
   delete q.hiddenBacks[u.id];
   delete q.lookedBy[u.id];
@@ -295,7 +329,7 @@ export function templePeek(s: GameState, u: Unit, viewers = [activeSeat(s)]) {
   return true;
 }
 export function templeObjectiveFree(s: GameState, u: Unit) {
-  return live(s) && u.code === T.key
+  return live(s) && isGateKey(u)
     ? ![
         ...s.staging,
         ...(s.table?.seats.flatMap((p) => p.engaged) ?? []),
@@ -304,7 +338,7 @@ export function templeObjectiveFree(s: GameState, u: Unit) {
     : undefined;
 }
 export function templeClaim(s: GameState, objective: Unit, hero: Unit) {
-  if (!live(s) || objective.code !== T.key) return false;
+  if (!live(s) || !isGateKey(objective)) return false;
   requireRule(
     templeObjectiveFree(s, objective) && canExhaust(hero),
     "Exhaust a ready hero to claim the unguarded Gate Key.",
@@ -314,7 +348,7 @@ export function templeClaim(s: GameState, objective: Unit, hero: Unit) {
   s.staging = s.staging.filter((u) => u.id !== objective.id);
   hero.attachments.push({
     id: objective.id,
-    code: T.key,
+    code: objective.code,
     exhausted: objective.exhausted,
     controller: activeSeat(s),
     owner: activeSeat(s),
@@ -327,8 +361,8 @@ export function templeAttachmentLeaves(
   _host: Unit,
   a: Attachment,
 ) {
-  if (!live(s) || a.code !== T.key) return false;
-  const u = make(s, T.key);
+  if (!live(s) || !isGateKey(a)) return false;
+  const u = make(s, a.code);
   u.id = a.id;
   u.exhausted = a.exhausted;
   s.staging.push(u);
@@ -343,13 +377,17 @@ export function templeAbilityLabel(
   if (!live(s)) return null;
   if (!attachmentId && u.code === T.lost && !u.blanked)
     return "Remove 4 progress · Look at this island";
-  if (
+  if (!attachmentId && secretHere(s, u))
+    return "Travel Action · Flip over the secret here";
+  const key =
     attachmentId &&
-    u.attachments.some(
-      (a) => a.id === attachmentId && a.code === T.key && !a.blanked,
-    )
-  )
-    return "Exhaust Key and hero · Spend 3 · Look inside the Temple";
+    u.attachments.find(
+      (a) => a.id === attachmentId && isGateKey(a) && !a.blanked,
+    );
+  if (key)
+    return dcBackFace(key)
+      ? "Exhaust Key and hero · Look inside a Temple or at a secret"
+      : "Exhaust Key and hero · Spend 3 · Look inside the Temple";
   return null;
 }
 export function templeAbilityProblem(
@@ -361,15 +399,24 @@ export function templeAbilityProblem(
     return "This card has no available Temple action.";
   if (s.phase === "setup" || !s.temple!.initialized)
     return "Finish setup before taking actions.";
+  if (!attachmentId && secretHere(s, u)) return dreamchaserSecretProblem(s, u);
   if (!attachmentId)
     return u.progress >= 4 ? null : "Looking at this island costs 4 progress.";
   if (ownerOf(s, u) !== activeSeat(s))
     return "The Gate Key's attached hero must be under your control.";
   const key = u.attachments.find((a) => a.id === attachmentId)!;
-  if (key.exhausted || !canExhaust(u) || u.resources < 3)
-    return "The Key and attached hero must be ready, and that hero must have 3 resources.";
-  if (!templeMapUnits(s).some((l) => l.code === T.temple))
-    return "There is no Uncharted Temple left to look at.";
+  const upgraded = dcBackFace(key);
+  if (key.exhausted || !canExhaust(u) || (!upgraded && u.resources < 3))
+    return upgraded
+      ? "The Key and attached hero must be ready."
+      : "The Key and attached hero must be ready, and that hero must have 3 resources.";
+  if (
+    !templeMapUnits(s).some((l) => l.code === T.temple) &&
+    !(upgraded && dreamchaserSecretLocations(s).length)
+  )
+    return upgraded
+      ? "There is no Uncharted Temple or secret left to look at."
+      : "There is no Uncharted Temple left to look at.";
   return null;
 }
 export function templeAbility(s: GameState, u: Unit, attachmentId?: string) {
@@ -378,28 +425,55 @@ export function templeAbility(s: GameState, u: Unit, attachmentId?: string) {
     !templeAbilityProblem(s, u, attachmentId),
     templeAbilityProblem(s, u, attachmentId) ?? "",
   );
-  if (!attachmentId) {
+  if (!attachmentId && secretHere(s, u)) {
+    prepend(s, fx("dcSecretFlip", { target: u.id, player: activeSeat(s) }));
+  } else if (!attachmentId) {
     u.progress -= 4;
     templePeek(s, u);
   } else {
+    const upgraded = dcBackFace(
+      u.attachments.find((a) => a.id === attachmentId)!,
+    );
     choose(
       s,
-      "Gate Key · Choose a Temple to look at",
-      templeMapUnits(s)
-        .filter((l) => l.code === T.temple)
-        .map((l) => ({
-          id: l.id,
-          label: `Temple · row ${templeCell(s, l.id)!.row + 1}`,
-          code: T.temple,
-          effects: [
-            fx("templeKeyPeek", {
-              source: u.id,
-              target: l.id,
-              text: attachmentId,
-              player: activeSeat(s),
-            }),
-          ],
-        })),
+      upgraded
+        ? "Gate Key · Choose a Temple or a secret to look at"
+        : "Gate Key · Choose a Temple to look at",
+      [
+        ...templeMapUnits(s)
+          .filter((l) => l.code === T.temple)
+          .map((l) => ({
+            id: l.id,
+            label: `Temple · row ${templeCell(s, l.id)!.row + 1}`,
+            code: T.temple,
+            effects: [
+              fx("templeKeyPeek", {
+                source: u.id,
+                target: l.id,
+                text: attachmentId,
+                player: activeSeat(s),
+              }),
+            ],
+          })),
+        // The Upgraded side: "… or secret."
+        ...(upgraded ? dreamchaserSecretLocations(s) : []).map((id) => {
+          const l = templeMapUnit(s, id)!;
+          const cell = templeCell(s, id)!;
+          return {
+            id: `secret-${id}`,
+            label: `The secret under ${name(l)} · row ${cell.row + 1}, column ${cell.column + 1}`,
+            code: l.code,
+            effects: [
+              fx("templeKeySecret", {
+                source: u.id,
+                target: id,
+                text: attachmentId,
+                player: activeSeat(s),
+              }),
+            ],
+          };
+        }),
+      ],
     );
   }
   return true;
@@ -436,6 +510,7 @@ export function templePublicState(s: GameState) {
           u.code === T.lost
             ? templeAbilityProblem(s, u)
             : "Use the Gate Key to look at an Uncharted Temple.",
+        ...secretState(s, u),
         ...(looked
           ? {
               looked: {
@@ -447,6 +522,28 @@ export function templePublicState(s: GameState) {
           : {}),
       };
     }),
+  };
+}
+/** The Dream-chaser campaign's secret under a map location, as one seat sees it. */
+function secretState(s: GameState, u: Unit) {
+  const code = dreamchaserSecret(s, u.id);
+  if (!code) return {};
+  const known = dreamchaserSecretKnown(s, u.id);
+  return {
+    secret: {
+      ...(known
+        ? {
+            known: {
+              code,
+              name: card(code).name,
+              image: imageUrl(card(code)),
+            },
+          }
+        : {}),
+      flipProblem: secretHere(s, u)
+        ? templeAbilityProblem(s, u)
+        : "Only a secret at your location can be flipped over.",
+    },
   };
 }
 export function templePrivateLookVisible(s: GameState) {
@@ -475,13 +572,15 @@ export function templeEffect(s: GameState, e: Effect) {
         encounterCharacterEntered(s, captain);
         if (s.status !== "playing") return true;
       }
-      const guardian = q.setAside.find((u) => u.code === T.guardian)!;
-      const key = q.setAside.find((u) => u.code === T.key)!;
+      const guardian = q.setAside.find(isTempleGuardian)!;
+      const key = q.setAside.find(isGateKey)!;
       q.setAside = q.setAside.filter(
         (u) => ![guardian.id, key.id].includes(u.id),
       );
       guardian.guarding = key.id;
       s.staging.push(guardian, key);
+      // The Dream-chaser campaign card's Setup.
+      if (isDreamchaserGame(s)) prepend(s, ...dreamchaserTempleReady(s));
       const corners = q.map
         .filter((c) => c.column === 0 && [0, 2].includes(c.row))
         .map((c) => templeMapUnit(s, c.id)!);
@@ -601,10 +700,24 @@ export function templeEffect(s: GameState, e: Effect) {
         !templeAbilityProblem(s, hero, e.text),
         templeAbilityProblem(s, hero, e.text) ?? "",
       );
-      spendResources(s, hero, 3);
+      const key = hero.attachments.find((a) => a.id === e.text)!;
+      if (!dcBackFace(key)) spendResources(s, hero, 3);
+      exhaustCharacter(s, hero);
+      key.exhausted = true;
+      templePeek(s, u, [player]);
+      break;
+    }
+    case "templeKeySecret": {
+      // The Upgraded Gate Key looks at a Dream-chaser campaign secret.
+      const hero = allHeroes(s).find((h) => h.id === e.source);
+      if (!hero || !u || !dreamchaserSecret(s, u.id)) break;
+      requireRule(
+        !templeAbilityProblem(s, hero, e.text),
+        templeAbilityProblem(s, hero, e.text) ?? "",
+      );
       exhaustCharacter(s, hero);
       hero.attachments.find((a) => a.id === e.text)!.exhausted = true;
-      templePeek(s, u, [player]);
+      prepend(s, fx("dcSecretLook", { target: u.id, player }));
       break;
     }
     case "templeLook": {

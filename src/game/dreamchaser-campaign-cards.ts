@@ -71,6 +71,15 @@ import {
   isUncharted,
 } from "./dreamchaser-campaign-support";
 import { dreamchaserOminousX, dreamchaserState } from "./dreamchaser-campaign";
+import {
+  dreamchaserTempleArchery,
+  dreamchaserTempleEffect,
+  dreamchaserTempleStats,
+  nightmareHandCheck,
+  nightmareLeavesPlay,
+  starlaDiscarded,
+  starlaExhausted,
+} from "./dreamchaser-temple";
 
 const several = (s: GameState) => (s.table?.seats.length ?? 1) > 1;
 const enemiesInPlay = (s: GameState) =>
@@ -156,9 +165,12 @@ export function dreamchaserCampaignShadow(s: GameState, code: string) {
   return false;
 }
 
-/** Archery: Thunderstruck's "Archery 1". */
+/** Archery: Thunderstruck's "Archery 1"; the Temple Guardian's campaign side: "Archery X". */
 export const dreamchaserArchery = (s: GameState, u: Unit) =>
-  isDreamchaserGame(s) && dcIs(u, DC.thunderstruck) && !u.blanked ? 1 : 0;
+  !isDreamchaserGame(s)
+    ? 0
+    : (dcIs(u, DC.thunderstruck) && !u.blanked ? 1 : 0) +
+      dreamchaserTempleArchery(s, u);
 
 /** Stat changes of the campaign's enemies, boons and burdens. */
 export function dreamchaserStats(s: GameState, u: Unit) {
@@ -201,6 +213,11 @@ export function dreamchaserStats(s: GameState, u: Unit) {
   // Sea Serpent: "X is the number of players in the game" (twice the number
   // on its Enraged side) for its defense.
   if (dcIs(u, DC.serpent) && !u.blanked) out.defense += serpentX(s, u);
+  // Starla, Recurring Nightmare and the Temple Guardian's campaign side.
+  const temple = dreamchaserTempleStats(s, u);
+  out.will += temple.will;
+  out.attack += temple.attack;
+  out.defense += temple.defense;
   for (const a of u.attachments) {
     if (a.blanked) continue;
     const code = dcBase(a.code);
@@ -313,6 +330,9 @@ export function dreamchaserEnemyDestination(
   destruction: boolean,
 ) {
   if (!isDreamchaserGame(s)) return false;
+  // Recurring Nightmare: "When Recurring Nightmare leaves play, shuffle it
+  // into any player's deck."
+  if (nightmareLeavesPlay(s, u)) return true;
   if (dcIs(u, DC.crowley) && destruction && u.resources >= 3 && !u.blanked) {
     addVictoryCard(s, u.code);
     s.victory += 3;
@@ -932,6 +952,18 @@ export function dreamchaserCheck(s: GameState) {
   depthsKeyCheck(s);
   grantsCleanup(s);
   calphonCheck(s);
+  nightmareHandCheck(s);
+}
+/** Starla: "Response: After Starla exhausts, place 1 progress on a location." */
+export function dreamchaserCharacterExhausted(s: GameState, u: Unit) {
+  starlaExhausted(s, u);
+}
+/** A player card discarded from a hand or deck (Starla: "… play her"). */
+export function dreamchaserPlayerCardDiscarded(
+  s: GameState,
+  u: { code: string },
+) {
+  starlaDiscarded(s, u);
 }
 /**
  * The Thing in the Depths' campaign card: "Forced: After Captain Sahír
@@ -1784,6 +1816,7 @@ function raidEffect(s: GameState, e: Effect): boolean {
 }
 
 export function dreamchaserCardEffect(s: GameState, e: Effect): boolean {
+  if (dreamchaserTempleEffect(s, e)) return true;
   if (e.kind.startsWith("dcSpy")) return spyglassEffect(s, e);
   if (raidEffect(s, e)) return true;
   switch (e.kind) {

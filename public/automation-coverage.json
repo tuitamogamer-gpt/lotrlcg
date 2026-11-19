@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2205,
+    "encounterCards": 2212,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3433,
-    "pending": 750
+    "scripted": 3438,
+    "pending": 745
   },
   "scenarioRecipes": {
     "total": 355,
@@ -710,6 +710,8 @@
     "11195",
     "11196",
     "11196.B",
+    "11198",
+    "11199",
     "12001",
     "12002",
     "12003",
@@ -1227,6 +1229,8 @@
     "octgn:058c4067-9b8c-4631-ae6b-6cee784e71df",
     "octgn:05a0e539-e140-4dfc-a151-21cd8aaef094",
     "octgn:05bf91b3-8e8e-4a45-a6cf-ac8b936b032d",
+    "octgn:05ecd24a-f18c-4c11-8cf7-1d021e380751",
+    "octgn:05ecd24a-f18c-4c11-8cf7-1d021e380751.B",
     "octgn:0676e5a8-1637-42f8-95fa-37aa6e189070",
     "octgn:06b1e27e-6493-4f05-9203-1835058073df",
     "octgn:06badf71-8e85-479e-8ddf-1dec7a40e325",
@@ -2622,6 +2626,7 @@
     "octgn:867b61a1-4e23-4426-ad94-b912e89055b8",
     "octgn:86e8724b-32cb-4d63-b918-5754d39d2249",
     "octgn:86fe0f99-d978-40be-8f39-136bec2a3d58",
+    "octgn:870d08ac-097f-4bb7-8da8-439a2b05e838",
     "octgn:87379a08-2fe2-4e32-9341-d78fb4e0298b",
     "octgn:87464aa2-e890-4151-8a93-55c2be3e44b2",
     "octgn:874a98ba-9b90-49b3-9cd4-c06464696b5b",
@@ -3336,6 +3341,8 @@
     "octgn:e25328c2-1a6b-4dda-866e-02685eff4a88",
     "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43",
     "octgn:e2a70b1d-2d38-48bd-a591-cd2844fe50fd",
+    "octgn:e2bbbc36-80aa-479e-955a-21d723fdc9da",
+    "octgn:e2bbbc36-80aa-479e-955a-21d723fdc9da.B",
     "octgn:e2c02f11-fdfb-402b-89de-1729d1364e4c",
     "octgn:e2e8fe14-f019-4fd9-af2c-81f1a4282660",
     "octgn:e2f901ad-f5bc-4d29-b6c3-50c261e5668a",
@@ -3762,9 +3769,9 @@
     {
       "product": "dream-chaser-campaign-expansion",
       "total": 60,
-      "scripted": 36,
+      "scripted": 41,
       "player": 26,
-      "playerScripted": 13
+      "playerScripted": 14
     },
     {
       "product": "encounter-at-amon-din",
@@ -9206,7 +9213,7 @@
       "name": "Starla",
       "type": "ally",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -9214,7 +9221,7 @@
       "name": "Recurring Nightmare",
       "type": "enemy",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -13838,7 +13845,7 @@
       "name": "Temple Guardian",
       "type": "enemy",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -27358,7 +27365,7 @@
       "name": "Temple of the Deceived",
       "type": "campaign",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {
@@ -35094,7 +35101,7 @@
       "name": "Gate Key",
       "type": "objective",
       "pack": "Dream-chaser Campaign Expansion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "dream-chaser-campaign-expansion"
     },
     {

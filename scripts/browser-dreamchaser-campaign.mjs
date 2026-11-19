@@ -15,6 +15,8 @@ import {
 import { RAID } from "../src/game/raid-grey-havens-support.ts";
 import { STORMCALLER } from "../src/game/stormcaller-support.ts";
 import { DEPTHS } from "../src/game/depths-support.ts";
+import { TEMPLE, templeMapUnit } from "../src/game/temple-support.ts";
+import { templeFlip, templeSyncMap } from "../src/game/temple.ts";
 import { VOYAGE } from "../src/game/voyage-belegaer-support.ts";
 import { FATE } from "../src/game/fate-numenor-support.ts";
 import { card } from "../src/game/cards.ts";
@@ -420,8 +422,71 @@ try {
     s = await campaign();
     assert.ok(s.campaign.boons.includes(DC.together));
     assert.equal(s.campaign.completed.length, 5);
-    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await page.getByRole("button", { name: /^Continue campaign/ }).waitFor();
     await checkpoint("depths-complete", width);
+    // Temple of the Deceived: the Temple Guardian's campaign side, Black Key
+    // (boon) on Captain Sahír, the three secrets, and Spyglass for 4 threat.
+    await page.getByRole("button", { name: /^Continue campaign/ }).click();
+    await page.getByRole("button", { name: /^Begin next chapter/ }).click();
+    await reviewedState(page);
+    s = await opening((t) =>
+      /Spyglass/.test(t.choice.title) ? t.heroes[0].id : undefined,
+    );
+    assert.equal(s.scenarioId, "temple-of-the-deceived");
+    assert.equal(
+      s.staging.find((u) => dcIs(u, TEMPLE.guardian)).code,
+      backFace(DC.guardian),
+    );
+    assert.deepEqual(
+      s.allies
+        .find((u) => u.code === TEMPLE.sahirAlly)
+        .attachments.map((a) => a.code),
+      [DC.keyBoon],
+    );
+    assert.equal(Object.keys(s.dreamchaser.secrets).length, 3);
+    assert.ok(s.heroes[0].attachments.some((a) => a.code === DC.spyglass));
+    await campaignCard(
+      /Secrets still facedown under the Temple of the Deceived locations: 3 of 3/,
+      "temple-setup",
+      width,
+    );
+    // The Travel Action: the players stand on the temple hiding Starla.
+    {
+      const t = structuredClone(s);
+      const id = Object.keys(t.dreamchaser.secrets).find(
+        (k) => t.dreamchaser.secrets[k] === DC.starla,
+      );
+      templeFlip(t, templeMapUnit(t, id), false);
+      if (t.activeLocation) t.temple.outOfStaging.push(t.activeLocation);
+      t.activeLocation = null;
+      t.temple.activeId = id;
+      templeSyncMap(t);
+      Object.assign(t, { phase: "travel", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      s = await load(t);
+    }
+    await page
+      .getByRole("button", { name: /^Flip over the secret at / })
+      .click();
+    await reviewedState(page);
+    s = await campaign();
+    assert.ok(s.allies.some((u) => u.code === DC.starla));
+    assert.equal(Object.keys(s.dreamchaser.secrets).length, 2);
+    await checkpoint("temple-secret", width);
+    // The resolution: Starla joins the Campaign Pool; the freed Recurring
+    // Nightmare follows the player.
+    s = await victory(s, (t) => {
+      const id = Object.keys(t.dreamchaser.secrets).find(
+        (k) => t.dreamchaser.secrets[k] === DC.nightmare,
+      );
+      delete t.dreamchaser.secrets[id];
+    });
+    assert.equal(s.campaign.completed.length, 6);
+    assert.ok(s.campaign.boons.includes(DC.starla));
+    assert.ok(s.campaign.burdens.includes(DC.nightmare));
+    assert.deepEqual(s.campaign.nightmares, [0]);
+    await page.getByText(/is not available in campaign mode yet/).waitFor();
+    await checkpoint("temple-complete", width);
     await view.c.close();
   }
   const p = await browser.newPage();

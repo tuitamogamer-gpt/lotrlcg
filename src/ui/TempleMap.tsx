@@ -179,6 +179,41 @@ export function TempleMap({
                         Travel here
                       </button>
                     )}
+                  {cell.secret && (
+                    <span className="temple-cell-secret">
+                      A secret lies facedown here
+                    </span>
+                  )}
+                  {cell.secret?.known && (
+                    <button
+                      className="temple-map-action temple-secret-inspect"
+                      onClick={() =>
+                        inspect({
+                          ...card(cell.secret!.known!.code),
+                          name: cell.secret!.known!.name,
+                          imagesrc: cell.secret!.known!.image,
+                        })
+                      }
+                      aria-label={`Read the secret you looked at, ${coordinate}`}
+                    >
+                      Read the secret
+                    </button>
+                  )}
+                  {cell.secret && cell.active && (
+                    <button
+                      className="temple-map-action temple-secret-flip"
+                      disabled={cell.secret.flipProblem !== null}
+                      title={
+                        cell.secret.flipProblem ??
+                        "Travel Action: flip over the secret at your location."
+                      }
+                      aria-description={cell.secret.flipProblem ?? undefined}
+                      aria-label={`Flip over the secret at ${cell.name}, ${coordinate}`}
+                      onClick={() => dispatch({ type: "ABILITY", id: cell.id })}
+                    >
+                      Flip the secret
+                    </button>
+                  )}
                   {lostIsland && cell.progress >= 4 && (
                     <button
                       className="temple-map-action temple-map-peek"

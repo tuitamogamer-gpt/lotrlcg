@@ -5,10 +5,10 @@ cycle, with the Dream-chaser Campaign Expansion's campaign cards, boons,
 burdens, Upgraded faces and its new rules: experience (XP), scalable and
 upgradable cards, a fleet of six ships and the Hard/Expert Mode card. The
 lobby's campaign mode offers it as the fourth campaign, for one fellowship of
-one to four local players. Its first five chapters, from Voyage Across Belegaer
-through The Thing in the Depths, are supported; the Campaign Log is kept after
-them, and the end of the game says that the next chapter, Temple of the
-Deceived, is not available in campaign mode yet.
+one to four local players. Its first six chapters, from Voyage Across Belegaer
+through Temple of the Deceived, are supported; the Campaign Log is kept after
+them, and the end of the game says that the next chapter, The Drowned Ruins,
+is not available in campaign mode yet.
 
 ## Sources
 
@@ -141,12 +141,30 @@ in the Depths' "Campaign Mode only" side.
 | Sea Serpent (burden enemy, Creature)           | Immune to player card effects; X threat and X defense, X the number of players (Menacing; 6 attack, 6 hit points) or twice that (Enraged; 8 attack, 8 hit points, victory 8). When its attack destroys an ally, the defending player divides X damage among their characters. The Menacing side flips into play in the staging area when destroyed; the Enraged side attacks the first player at the end of each round.                                                                                                                                                                                                                                                                                                                                                                                                         |
 | Come Together (boon event, scalable, neutral)  | Choose up to X characters (its level), one at a time, and add it to the victory display; until the end of the round each gets +2 defense if the player controls a Leadership hero, +2 attack for a Tactics hero, +2 willpower for a Spirit hero, and with a Lore hero heals 2 damage and gains a Trait chosen from the players' cards.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 
+## Temple of the Deceived (Part 6)
+
+The rulebook's campaign setup adds Black Key (boon), Starla, both Recurring
+Nightmares, Spyglass, Revenant and every card in the Campaign Pool, and uses
+the Temple Guardian's "Campaign Mode only" side (and the Gate Key's Upgraded
+side once both of its checkboxes are marked).
+
+| Card                                       | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Campaign card                              | Setup, once the scenario's own setup put Captain Sahír into play: Black Key (boon) is attached to him, Revenant (and Ominous Fate from the Campaign Pool) is shuffled into the encounter deck, Starla and both Recurring Nightmares are shuffled and placed facedown under the three Temple of the Deceived locations (the map's right-hand column) as secrets, each player may deal 1 damage to each of their characters to reduce their threat by 1, and one player (chosen first when there are several) may raise their threat by 4 to attach Spyglass to any hero. Travel Action: during the travel phase a player flips over the secret under the active location (the Temple map's "Flip the secret" button, or the location's ability): a Recurring Nightmare engages that player, and Starla enters play under their control, ready. Resolution: Starla, if a player controls her, joins the Campaign Pool and that player's deck; each Recurring Nightmare that is no longer a secret joins the Campaign Pool and is given to a player (asked in the end-of-game dialog when there are several), who shuffles it into their deck after drawing their starting hand in every later chapter (a mulligan holds it out of the new hand); the XP of 1 per surviving player, 1 per resource on the campaign card (at most 3), 1 per faceup Temple Halls, 1 if 4 or fewer map locations still show their Uncharted side, 1 if the Temple Guardian is in the victory display, 1 if each surviving threat is 40 or less, −1 for Ominous Fate (and the Hard/Expert Mode card). |
+| Temple Guardian ("Campaign Mode only")     | 5 attack, 10 hit points, victory 5; X threat and X defense, X the number of players; Archery X; immune to player card effects; still guards the Gate Key, goes to the victory display and returns when a Temple Halls or The Grotto's Entrance flips over while active.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Gate Key (Upgraded, 2 checkboxes)          | Action: exhaust Gate Key and its hero, without spending resources, to look at the facedown side of an Uncharted Temple or at a secret under any location; a looked-at secret stays facedown, and the Temple map lets only that player read it again.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Starla (boon ally, scalable, 5 checkboxes) | X willpower, attack and defense, X half her level rounded up; 4 hit points. Response: after she exhausts (questing, attacking, defending or paying a cost), her controller may place 1 progress on a location that is not immune to player card effects. Response: after she is discarded from her owner's hand or deck, they may play her from the discard pile.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Recurring Nightmare (burden enemy, ×2)     | 3 threat, 5 attack, X defense (the number of players), 6 hit points, engagement cost 35. When it leaves play it is shuffled into a player's deck (the first player chooses when there are several). Forced: when it enters a player's hand it is added to the staging area.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+
+The Temple scenario itself now names a turned-over map location by its own
+side (Jagged Cliffs, Temple Halls, …) in the log, its choices and the table,
+instead of the shared Uncharted name on that card's back.
+
 ## Not supported yet
 
-Temple of the Deceived through The City of Corsairs follow, with their boons
-and burdens (Starla, Recurring Nightmare, Command, Círdan's Blessing, Gavin,
-Send for Help and The Black Sword) and the "Campaign Mode only" sides of their
-scenario cards.
+The Drowned Ruins through The City of Corsairs follow, with their boons and
+burdens (Command, Círdan's Blessing, Gavin, Send for Help and The Black Sword)
+and the "Campaign Mode only" sides of their scenario cards.
 
 ## Verification
 
@@ -156,7 +174,7 @@ npm run build
 npm run test:browser-dreamchaser-campaign
 ```
 
-`tests/dreamchaser-campaign.test.ts` (30 tests) covers the registered cards'
+`tests/dreamchaser-campaign.test.ts` (40 tests) covers the registered cards'
 texts and faces, the Campaign Log's checkboxes, the chapter order and the
 Na'asiyah rule; Voyage Across Belegaer's fleet of six ships, the Modification
 choices and the damage-for-resource offer; Upgraded ships and Modifications
@@ -187,8 +205,16 @@ Calaerion's Actions and Upgraded Response, and the resolution's XP; The Thing
 in the Depths' cards, the Thing's campaign side and its 2 damage per Creature,
 Black Key on Captain Sahír before and after his flip, Sea Serpent's X, flip,
 divided damage and round-end attack, Come Together on three spheres with its
-Trait and heal, and the resolution's XP and Come Together choice before the
-next chapter is refused. The browser suite starts a new
+Trait and heal, and the resolution's XP and Come Together choice; Temple of
+the Deceived's cards, its setup (the campaign Temple Guardian, Black Key on
+Captain Sahír, the three secrets, Revenant, the damage-for-threat and Spyglass
+offers, the Upgraded Gate Key), the Guardian's X, Archery, victory 5 and its
+return from the victory display, the Travel Action on both secrets through
+the table's ability controls, the Upgraded Gate Key's look at a secret,
+Starla's X and both Responses, Recurring Nightmare's X, its return to a deck
+and its Forced draw, the resolution's XP and Campaign Pool, the several-player
+Nightmare choice, the later chapters' shuffle after the starting hand and the
+mulligan's hold, before the next chapter is refused. The browser suite starts a new
 Dream-chaser campaign through the lobby on Hard Mode, prepares the fleet with
 two Modification boons, opens the campaign card's state in the quest
 inspector and records the resolution; the interlude spends 2 XP on Calphon's
@@ -201,5 +227,9 @@ through the end-of-game dialog; Flight of the Stormcaller begins with the
 campaign Stormcaller and its Black Key, Calaerion, the fleet and the Throwing
 Axe back on its hero, and its resolution is recorded; The Thing in the Depths
 begins with the Thing's campaign side and its resolution adds Come Together to
-the Campaign Pool through the end-of-game dialog, at 1280, 390 and 320 pixels
-(42 checkpoints); it checks the 64 pinned faces.
+the Campaign Pool through the end-of-game dialog; Temple of the Deceived
+begins with the campaign Temple Guardian, Black Key on Captain Sahír, three
+secrets and Spyglass taken for 4 threat, the Temple map's "Flip the secret"
+button brings Starla into play, and its resolution adds Starla and a Recurring
+Nightmare to the Campaign Pool, at 1280, 390 and 320 pixels (51 checkpoints);
+it checks the 72 pinned faces.
