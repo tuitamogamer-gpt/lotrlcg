@@ -7,6 +7,7 @@ import type {
   Unit,
 } from "./types";
 import type { DamageContext } from "./damage-context";
+import type { HealSource } from "./rhosgobel";
 
 type Combat = NonNullable<GameState["combat"]>;
 export interface Batch4ScenarioHooks {
@@ -36,10 +37,10 @@ export interface Batch4ScenarioHooks {
   drawBlocked?(s: GameState): boolean;
   /** The characters that archery damage must be assigned to, if able. */
   archeryTargets?(s: GameState, characters: Unit[]): Unit[] | undefined;
-  /** After damage is healed from a unit. */
-  healed?(s: GameState, u: Unit, amount: number): void;
-  /** The most damage that can be healed from this unit now (a per-round cap). */
-  healLimit?(s: GameState, u: Unit): number | undefined;
+  /** After damage is healed from a unit (by the effect `source`, when known). */
+  healed?(s: GameState, u: Unit, amount: number, source?: HealSource): void;
+  /** The most damage that can be healed from this unit now (a per-round cap, or the healing effect's). */
+  healLimit?(s: GameState, u: Unit, source?: HealSource): number | undefined;
   /** Attack added to one character of a player attack, knowing all its attackers. */
   playerAttackBonus?(
     s: GameState,
@@ -122,6 +123,8 @@ export interface Batch4ScenarioHooks {
   extraOptionalEngagements?(s: GameState, player: number): number;
   cannotCancel?(s: GameState, shadow?: boolean, code?: string): boolean;
   cannotReduceThreat?(s: GameState): boolean;
+  /** The character loses the keyword (as A Journey to Rhosgobel's Pitch-dark Thicket, its ranged). */
+  losesKeyword?(s: GameState, u: Unit, keyword: string): boolean;
   /** The hero cannot gain resources from card effects. */
   cannotGainResources?(s: GameState, u: Unit): boolean;
   /** The active player cannot draw cards from card effects. */

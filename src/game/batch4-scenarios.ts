@@ -66,6 +66,7 @@ import {
 } from "./ered-campaign-pool";
 import { NIGHTMARE_CORE_HOOKS } from "./nightmare-core";
 import { NIGHTMARE_SOM_HOOKS } from "./nightmare-som";
+import { NIGHTMARE_RHOS_HOOKS } from "./nightmare-rhosgobel";
 import { nightmareLive } from "./nightmare";
 
 const empty: Batch4ScenarioHooks = {};
@@ -81,6 +82,7 @@ const NIGHTMARE_LAYERS: Partial<Record<string, Batch4ScenarioHooks>> = {
   "dol-guldur": NIGHTMARE_CORE_HOOKS,
   "hunt-for-gollum": NIGHTMARE_SOM_HOOKS,
   "conflict-at-the-carrock": NIGHTMARE_SOM_HOOKS,
+  "journey-to-rhosgobel": NIGHTMARE_RHOS_HOOKS,
 };
 /**
  * The current scenario's hooks; in an Ered Mithrin campaign chapter from The
@@ -235,6 +237,7 @@ export const batch4SharedEffect = (effect: Effect) =>
     ERED_POOL_HOOKS,
     NIGHTMARE_CORE_HOOKS,
     NIGHTMARE_SOM_HOOKS,
+    NIGHTMARE_RHOS_HOOKS,
     BLACK_SERPENT_HOOKS,
     CIRITH_GURAT_HOOKS,
     CROSSINGS_POROS_HOOKS,

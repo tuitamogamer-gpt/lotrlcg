@@ -152,6 +152,7 @@ import {
   forOwner,
   allCharacters,
   hasKeyword,
+  losesRanged,
 } from "./table";
 
 import { fx, get, log, prepend, requireRule, stats } from "./core";
@@ -232,6 +233,7 @@ export function playerAttack(
               ownerOf(s, u) === activeSeat(s) &&
               canFight(u) &&
               hasKeyword(u, "Ranged") &&
+              !losesRanged(s, u) &&
               khazadCanAttack(u) &&
               khazadCanRangedAttack(s, enemy, u, false) &&
               rhosgobelCanFight(enemy, u),

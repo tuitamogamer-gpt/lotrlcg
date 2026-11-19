@@ -300,6 +300,9 @@ export const seatName = (s: GameState, i: number) =>
     .join(" & ");
 export const hasKeyword = (u: Unit, keyword: string) =>
   effectiveKeyword(u, keyword);
+/** A scenario effect that takes the ranged keyword away (A Journey to Rhosgobel's Pitch-dark Thicket in Nightmare mode). */
+export const losesRanged = (s: GameState, u: Unit) =>
+  !!batch4Scenario(s).losesKeyword?.(s, u, "Ranged");
 /** Characters the defending player must choose among, even if exhausted. */
 export const forcedDefenders = (s: GameState, enemy?: Unit) =>
   enemy ? batch4Scenario(s).forcedDefenders?.(s, enemy) : undefined;
@@ -357,7 +360,9 @@ export const attackersFor = (
       (amonPlayerCanAttackEnemy(s, enemy, u) ||
         (asIfEngaged &&
           (ownerOf(s, u) === activeSeat(s) ||
-            (hasKeyword(u, "Ranged") && !fateLoseRanged(s, u)))) ||
+            (hasKeyword(u, "Ranged") &&
+              !fateLoseRanged(s, u) &&
+              !losesRanged(s, u)))) ||
         (ownerOf(s, u) === activeSeat(s) &&
           (consideredEngaged(s, enemy) ||
             (s.staging.some((e) => e.id === enemy.id)
@@ -368,5 +373,6 @@ export const attackersFor = (
         ((!s.staging.some((e) => e.id === enemy.id) ||
           playerOrder(s).some((p) => consideredEngaged(s, enemy, p))) &&
           hasKeyword(u, "Ranged") &&
-          !fateLoseRanged(s, u))),
+          !fateLoseRanged(s, u) &&
+          !losesRanged(s, u))),
   );

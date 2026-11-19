@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2333,
+    "encounterCards": 2341,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3555,
-    "pending": 628
+    "scripted": 3563,
+    "pending": 620
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 275
+    "scripted": 276
   },
   "registeredCodes": [
     "01001",
@@ -3120,6 +3120,14 @@
     "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0008",
     "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0009",
     "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0010",
+    "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0031",
+    "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0033",
+    "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0034",
+    "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0035",
+    "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0036",
+    "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0037",
+    "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0038",
+    "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0039",
     "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0041",
     "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0043",
     "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0045",
@@ -3764,7 +3772,7 @@
     {
       "product": "a-journey-to-rhosgobel-nightmare",
       "total": 8,
-      "scripted": 0,
+      "scripted": 8,
       "player": 0,
       "playerScripted": 0
     },
@@ -31942,7 +31950,7 @@
       "name": "A Journey to Rhosgobel",
       "type": "nightmare",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-journey-to-rhosgobel-nightmare"
     },
     {
@@ -31950,7 +31958,7 @@
       "name": "Goblin Eagle-hunter",
       "type": "enemy",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-journey-to-rhosgobel-nightmare"
     },
     {
@@ -31958,7 +31966,7 @@
       "name": "Shot from the Sky",
       "type": "treachery",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-journey-to-rhosgobel-nightmare"
     },
     {
@@ -31966,7 +31974,7 @@
       "name": "Dark-wood Grove",
       "type": "location",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-journey-to-rhosgobel-nightmare"
     },
     {
@@ -31974,7 +31982,7 @@
       "name": "Noxious Supplies",
       "type": "treachery",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-journey-to-rhosgobel-nightmare"
     },
     {
@@ -31982,7 +31990,7 @@
       "name": "Labyrinthine Woods",
       "type": "location",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-journey-to-rhosgobel-nightmare"
     },
     {
@@ -31990,7 +31998,7 @@
       "name": "Pitch-dark Thicket",
       "type": "location",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-journey-to-rhosgobel-nightmare"
     },
     {
@@ -31998,7 +32006,7 @@
       "name": "Treetop Bird-eater",
       "type": "enemy",
       "pack": "Shadows of Mirkwood - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-journey-to-rhosgobel-nightmare"
     },
     {
@@ -39123,8 +39131,8 @@
       "id": "N01.6",
       "name": "A Journey to Rhosgobel (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "journey-to-rhosgobel",
+      "state": "scripted"
     },
     {
       "id": "N01.7",

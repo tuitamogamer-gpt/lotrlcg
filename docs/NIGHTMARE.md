@@ -11,9 +11,9 @@ not offered in campaign mode.
 
 **Supported so far:** the Core Set Nightmare Deck (Passage Through Mirkwood,
 Journey Along the Anduin and Escape from Dol Guldur) and, of Shadows of
-Mirkwood's, The Hunt for Gollum and Conflict at the Carrock. The other
-Nightmare Decks follow in publication order, beginning with A Journey to
-Rhosgobel.
+Mirkwood's, The Hunt for Gollum, Conflict at the Carrock and A Journey to
+Rhosgobel. The other Nightmare Decks follow in publication order, beginning
+with The Hills of Emyn Muil.
 
 ## Sources
 
@@ -21,8 +21,9 @@ Rhosgobel.
   (`public/catalog.json`), checked by eye against the DragnCards scans; the
   checked cards are written to `src/data/nightmare-encounter-cards.json` and
   their faces pinned in `tests/nightmare-art.json` (9 cards and 10 faces for
-  each scenario, and 11 cards and 13 faces for Conflict at the Carrock, whose
-  Nightmare Deck adds a stage to the quest deck).
+  the Core Set's scenarios and The Hunt for Gollum, 8 cards and 9 faces for A
+  Journey to Rhosgobel, and 11 cards and 13 faces for Conflict at the Carrock,
+  whose Nightmare Deck adds a stage to the quest deck).
 - The scans correct the catalogue: each setup card's front is the removal
   list ("Begin with the standard quest deck and encounter deck … Remove the
   following cards, in the specified quantities …"), where the catalogue had a
@@ -38,9 +39,11 @@ Rhosgobel.
   "guarding if first") and Hunting Warg searches for "Hunters from Mordor"
   (the catalogue had "Morder"); Grimbeorn's Folly's stage 3B says the players
   have "won the game" (the catalogue had "have won"), and keeps its stage
-  number (3).
+  number (3); A Journey to Rhosgobel's setup card says "Then, shuffle the
+  encounter deck", and its removal list prints "Chieftan Ufthak" (Chieftain
+  Ufthak).
 - The source recipe of each Nightmare scenario (`public/scenarios.json`,
-  N01.1 to N01.5 so far) is the standard encounter deck without the
+  N01.1 to N01.6 so far) is the standard encounter deck without the
   printed removals plus the Nightmare Deck (Escape from Dol Guldur's Nazgûl
   and Conflict at the Carrock's 5 unique Trolls set aside in both, the
   Carrock's stage 3 in its quest deck): a test compares the two.
@@ -53,8 +56,10 @@ Rhosgobel.
 - A game in Nightmare mode keeps `nightmareMode` (never with easy mode); the
   scenario's own setup then runs on the Nightmare encounter deck, and the
   setup card's setup rule follows.
-- `src/game/nightmare-core.ts` (the Core Set) and `src/game/nightmare-som.ts`
-  (Shadows of Mirkwood) script the setup cards' rules and the Nightmare
+- `src/game/nightmare-core.ts` (the Core Set), `src/game/nightmare-som.ts`
+  (The Hunt for Gollum and Conflict at the Carrock) and
+  `src/game/nightmare-rhosgobel.ts` (A Journey to Rhosgobel) script the setup
+  cards' rules and the Nightmare
   encounter cards as a layer, chosen by scenario and composed with its hooks
   (the composition the Ered Mithrin Campaign Pool uses, which also composes
   the doomed and combat-phase hooks, the state check, the indestructible,
@@ -126,6 +131,19 @@ Rhosgobel.
 | Hunter's Lookout (location ×2)     | Each Mordor enemy with a Clue gets +2 [defense] for each copy in play. Shadow: the attacking enemy gets +1 [defense] for each Clue in play until the end of the round.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | Dark Pools (location ×3)           | No progress can be placed on it in the staging area. When it becomes the active location, each player discards one of their allies with the highest printed cost (their choice among tied allies).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 
+## A Journey to Rhosgobel (Nightmare)
+
+| Card                             | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Setup card                       | Removes Forest Grove ×4, Exhaustion ×1, Swarming Insects ×2, Festering Wounds ×1, Mountains of Mirkwood ×3, Chieftain Ufthak ×1 (printed "Chieftan Ufthak"), Dol Guldur Beastmaster ×2, Driven by Shadow ×1, The Necromancer's Reach ×1, Necromancer's Pass ×2 and Enchanted Stream ×2 from the standard encounter deck. Setup: a Goblin Eagle-hunter from the encounter deck is added to the staging area, and the deck is shuffled. Forced: the first Creature enemy revealed during each quest phase (its staging, or a card revealed during the quest phase) gains surge. Response: after an Athelas reaches the encounter discard pile, the first player may shuffle it into the encounter deck (offered once for each Athelas, at the next state check). |
+| Goblin Eagle-hunter (enemy ×3)   | +1 hit point per player. At the end of the combat phase, each copy in play deals 1 damage to Wilyador. Shadow: 2 damage to Wilyador while he has 10 or less damage.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Shot from the Sky (treachery ×3) | Surge. Attached to an Eagle character (the first player chooses among several; Wilyador has "No attachments"; limit 1 per character): it loses the Eagle trait and takes 1 damage each time it readies; with no Eagle character, it is discarded. Shadow: the same, the card leaving the attacking enemy's shadow cards.                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Dark-wood Grove (location ×3)    | +1 [threat] and +1 quest point for each Athelas card in play (in the staging area or held by a hero). Shadow: if the defending player controls an Athelas, the attacking enemy makes an additional attack after this one (the engine's immediate attack, with a new shadow card).                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Noxious Supplies (treachery ×3)  | Surge. Attached to Wilyador (its instruction overrides his "No attachments"): a heal by a card effect other than Athelas (stage 3's Athelas treatment) heals him of only 1 damage, and each Noxious Supplies on him is discarded.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Labyrinthine Woods (location ×3) | While it is in the staging area, each Creature enemy gets +1 [threat] and +1 [attack] (each copy). Shadow: after this attack, the attacking enemy engages the next player (itself in a solo game) and makes an additional attack.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Pitch-dark Thicket (location ×2) | While it is the active location, every character loses the ranged keyword: no attack against another player's enemy through ranged, and only Eagles attack or defend against Black Forest Bats and Mirkwood Flock (player card effects keyed on the keyword still see it). Shadow: characters with ranged cannot attack the attacking enemy until the end of the phase.                                                                                                                                                                                                                                                                                                                                                                                        |
+| Treetop Bird-eater (enemy ×2)    | While it is engaged with a player, that player's characters cannot be healed. At the beginning of the encounter phase, each copy engages the player who controls Wilyador, from the staging area or another player's engagement area, whatever their threat.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+
 ## Conflict at the Carrock (Nightmare)
 
 | Card                           | Behaviour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
@@ -145,7 +163,7 @@ Rhosgobel.
 ## Verification
 
 ```sh
-node --import tsx --test tests/nightmare-core.test.ts tests/nightmare-anduin.test.ts tests/nightmare-dol-guldur.test.ts tests/nightmare-gollum.test.ts tests/nightmare-carrock.test.ts
+node --import tsx --test tests/nightmare-core.test.ts tests/nightmare-anduin.test.ts tests/nightmare-dol-guldur.test.ts tests/nightmare-gollum.test.ts tests/nightmare-carrock.test.ts tests/nightmare-rhosgobel.test.ts
 npm run build
 npm run test:browser-nightmare
 ```
@@ -191,6 +209,18 @@ display's effects, Morris's immunity, Stuart's attachments, Rupert's
 [defense] and Louis's threat raises; each treachery, location and shadow, and
 Rob & Bob's additional attack in a two-player game; and seeded solo and
 two-player games, from the start and from stage 3.
+`tests/nightmare-rhosgobel.test.ts` (6 tests) covers A Journey to Rhosgobel's
+texts, stats and faces; its Nightmare encounter deck against the source
+recipe and the setup's Goblin Eagle-hunter; the first Creature's surge (each
+quest phase, and only then) and the Athelas Response (shuffled, or kept and not
+offered again); Goblin Eagle-hunter's hit points, end of combat and shadow;
+Treetop Bird-eater's healing prohibition and its engagement, in a two-player
+game, with Wilyador's controller; Noxious Supplies (and stage 3's Athelas
+treatment, not reduced); Shot from the Sky (the Eagle trait lost, the damage on
+readying, its discard and its shadow); Dark-wood Grove's threat, quest points
+and additional attack; Labyrinthine Woods' Creatures and its shadow in a
+two-player game; Pitch-dark Thicket's lost ranged keyword and its shadow; and
+seeded solo and two-player games.
 
 The browser suite starts Passage Through Mirkwood in Nightmare mode from the
 lobby (easy mode turned off), checks the setup's staging area and reveal, the
@@ -204,5 +234,7 @@ Nightmare card, and a second prisoner in the prison banner with the table's
 from the lobby, checks its Nightmare card and a Clue attached to Hunters from
 Mordor; and it starts Conflict at the Carrock in Nightmare mode from the
 lobby, checks the 5 Trolls set aside and its Nightmare card, and stage 3
-(its face, the 3 / 3 stage count and its goal), at 1280, 390 and 320 pixels
-(36 checkpoints); it checks the 53 pinned faces.
+(its face, the 3 / 3 stage count and its goal); and it starts A Journey to
+Rhosgobel in Nightmare mode from the lobby, checks the setup's Goblin
+Eagle-hunter, its Nightmare card and Noxious Supplies on Wilyador, at 1280, 390
+and 320 pixels (42 checkpoints); it checks the 62 pinned faces.

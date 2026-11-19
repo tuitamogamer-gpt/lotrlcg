@@ -2846,6 +2846,22 @@ export function composeEredPool(
     },
     cannotReduceThreat: (s) =>
       !!h.cannotReduceThreat?.(s) || !!p.cannotReduceThreat?.(s),
+    cannotHeal: (s, u) => !!h.cannotHeal?.(s, u) || !!p.cannotHeal?.(s, u),
+    healLimit: (s, u, source) => {
+      const a = h.healLimit?.(s, u, source),
+        b = p.healLimit?.(s, u, source);
+      return a === undefined ? b : b === undefined ? a : Math.min(a, b);
+    },
+    healed: (s, u, amount, source) => {
+      h.healed?.(s, u, amount, source);
+      p.healed?.(s, u, amount, source);
+    },
+    revealed: (s, code, origin) => {
+      h.revealed?.(s, code, origin);
+      p.revealed?.(s, code, origin);
+    },
+    losesKeyword: (s, u, keyword) =>
+      !!h.losesKeyword?.(s, u, keyword) || !!p.losesKeyword?.(s, u, keyword),
   };
 }
 

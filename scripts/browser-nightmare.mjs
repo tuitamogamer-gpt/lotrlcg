@@ -357,6 +357,62 @@ try {
       .getByText("Defeat Rob & Bob to rescue Grimbeorn the Old")
       .waitFor();
     await checkpoint("carrock-grimbeorns-folly", width);
+    // A Journey to Rhosgobel in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-journey-to-rhosgobel").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await opening(page);
+    assert.equal(s.scenarioId, "journey-to-rhosgobel");
+    assert.equal(s.nightmareMode, true);
+    assert.equal(
+      s.staging.filter((u) => u.code === G.eagleHunter).length,
+      1,
+      "the setup's Goblin Eagle-hunter",
+    );
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/Goblin Eagle-hunter began in the staging area/)
+      .waitFor();
+    await checkpoint("rhosgobel-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // Noxious Supplies on Wilyador.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const eagle = t.allies.find((u) => u.code.endsWith("9019"));
+      eagle.attachments.push({
+        id: `a${t.nextId++}`,
+        code: G.noxious,
+        exhausted: false,
+      });
+      s = await load(page, t);
+    }
+    await page
+      .getByLabel("Attachments on Wilyador", { exact: true })
+      .getByRole("button", {
+        name: "Inspect attachment: Noxious Supplies",
+        exact: true,
+      })
+      .waitFor();
+    await checkpoint("rhosgobel-noxious-supplies", width);
     await view.c.close();
   }
   const p = await browser.newPage();

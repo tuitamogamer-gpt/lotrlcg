@@ -219,7 +219,7 @@ export function rhosgobelHeal(
     target.damage,
     Math.max(0, value),
     target.code === RHOS.wilyador ? 5 : Infinity,
-    batch4Scenario(s).healLimit?.(s, target) ?? Infinity,
+    batch4Scenario(s).healLimit?.(s, target, source) ?? Infinity,
   );
   if (!amount) return 0;
   target.damage -= amount;
@@ -232,7 +232,7 @@ export function rhosgobelHeal(
   )
     removeHealer(s, source);
   shadowFlamePlayerHealed(s, target, amount, source);
-  batch4Scenario(s).healed?.(s, target, amount);
+  batch4Scenario(s).healed?.(s, target, amount, source);
   dreamchaserPlayerCardHealedOrReadied(s, target, source.code);
   return amount;
 }

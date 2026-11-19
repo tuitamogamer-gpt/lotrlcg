@@ -67,6 +67,15 @@ export const NIGHTMARE_SOM = {
   supper: `${G}51`,
   lair: `${G}52`,
   hives: `${G}53`,
+  /** A Journey to Rhosgobel's setup card and Nightmare Deck. */
+  rhosCard: `${G}31`,
+  eagleHunter: `${G}33`,
+  shot: `${G}34`,
+  darkwood: `${G}35`,
+  noxious: `${G}36`,
+  labyrinth: `${G}37`,
+  thicket: `${G}38`,
+  birdEater: `${G}39`,
 } as const;
 
 interface NightmareDeck {
@@ -156,6 +165,23 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       Despair: 2,
       "The Brown Lands": 2,
       "The East Bight": 2,
+    },
+  },
+  "journey-to-rhosgobel": {
+    card: NIGHTMARE_SOM.rhosCard,
+    removals: {
+      "Forest Grove": 4,
+      Exhaustion: 1,
+      "Swarming Insects": 2,
+      "Festering Wounds": 1,
+      "Mountains of Mirkwood": 3,
+      // Printed "Chieftan Ufthak".
+      "Chieftain Ufthak": 1,
+      "Dol Guldur Beastmaster": 2,
+      "Driven by Shadow": 1,
+      "The Necromancer's Reach": 1,
+      "Necromancer's Pass": 2,
+      "Enchanted Stream": 2,
     },
   },
 };
@@ -292,6 +318,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "conflict-at-the-carrock")
     return [
       "Conflict at the Carrock · Nightmare mode: 5 unique Trolls were set aside, and stage 2B brings Louis, Morris, Rupert and Stuart; a quest phase that places no progress on the quest places 1 there at its end; after a unique Troll is defeated, a Sacked! card may be discarded; stage 3, Grimbeorn's Folly, is won by defeating Rob & Bob.",
+    ];
+  if (s.scenarioId === "journey-to-rhosgobel")
+    return [
+      "A Journey to Rhosgobel · Nightmare mode: a Goblin Eagle-hunter began in the staging area; the first Creature enemy revealed during each quest phase gains surge; an Athelas placed in the encounter discard pile may be shuffled back into the encounter deck.",
     ];
   return [];
 }

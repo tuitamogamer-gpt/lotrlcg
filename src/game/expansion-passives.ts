@@ -49,6 +49,8 @@ type AttachmentRule = {
   restricted?: number;
   keywords?: string[];
   grantsTraits?: string[];
+  /** Traits the attached character loses. */
+  removesTraits?: string[];
   will?: number;
   attack?: number;
   defense?: number;
@@ -60,6 +62,9 @@ type AttachmentRule = {
   unique?: boolean;
 };
 const rules: Record<string, AttachmentRule> = {
+  // A Journey to Rhosgobel (Nightmare): Shot from the Sky, "Attached
+  // character loses the Eagle trait".
+  "octgn:b91cc63a-7fa3-46b4-b5b2-9da1663f0034": { removesTraits: ["Eagle"] },
   // The Hobbit: Over Hill and Under Hill treasures.
   "131020": {
     names: ["Bilbo Baggins"],
@@ -353,6 +358,9 @@ const rules: Record<string, AttachmentRule> = {
 export const passiveRule = (code: string) => rules[code];
 export function effectiveTraits(u: Unit): string[] {
   const c = card(u.code) as Card & { back_traits?: string };
+  const lost = u.attachments.flatMap((a) =>
+    !a.blanked ? (rules[a.code]?.removesTraits ?? []) : [],
+  );
   return [
     ...new Set([
       ...(u.blanked && !u.printedKeywordsPreserved && !u.printedTraitsPreserved
@@ -372,7 +380,7 @@ export function effectiveTraits(u: Unit): string[] {
         ? ["Gondor"]
         : []),
     ]),
-  ];
+  ].filter((t) => !lost.includes(t));
 }
 export const hasTrait = (u: Unit, trait: string) =>
   effectiveTraits(u).includes(trait);

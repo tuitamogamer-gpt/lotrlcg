@@ -47,6 +47,7 @@ import {
 import {
   NIGHTMARE_CARROCK_SET_ASIDE,
   NIGHTMARE_CORE as N,
+  NIGHTMARE_SOM,
   nightmareCardOf,
   nightmareLive,
   nightmareRefillsEncounterDeck,
@@ -127,6 +128,23 @@ export function nightmareSetup(s: GameState) {
       s,
       "Conflict at the Carrock · Nightmare: Rob & Bob, Louis, Morris, Rupert and Stuart are set aside.",
     );
+  }
+  // A Journey to Rhosgobel: "Setup: Search the encounter deck for 1 copy of
+  // Goblin Eagle-hunter and add it to the staging area. Then, shuffle the
+  // encounter deck."
+  if (s.scenarioId === "journey-to-rhosgobel") {
+    const at = s.encounterDeck.indexOf(NIGHTMARE_SOM.eagleHunter);
+    if (at >= 0) {
+      s.encounterDeck.splice(at, 1);
+      const hunter = make(s, NIGHTMARE_SOM.eagleHunter);
+      s.staging.push(hunter);
+      enemyAddedToStaging(s, hunter);
+      log(
+        s,
+        "A Journey to Rhosgobel · Nightmare: a Goblin Eagle-hunter is added to the staging area.",
+      );
+    }
+    shuffle(s, s.encounterDeck);
   }
 }
 

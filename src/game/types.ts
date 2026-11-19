@@ -569,7 +569,8 @@ export interface GameState {
   eredPool?: import("./ered-campaign-pool").EredPoolState;
   /** Nightmare mode's lasting card effects. */
   nightmare?: import("./nightmare-core").NightmareCoreState &
-    import("./nightmare-som").NightmareSomState;
+    import("./nightmare-som").NightmareSomState &
+    import("./nightmare-rhosgobel").NightmareRhosState;
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;

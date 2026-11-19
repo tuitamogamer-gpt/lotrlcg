@@ -123,6 +123,7 @@ import { validEredPool } from "./ered-campaign-pool";
 import { nightmareStageCount, nightmareSupported } from "./nightmare";
 import { validNightmareCore } from "./nightmare-core";
 import { validNightmareSom } from "./nightmare-som";
+import { validNightmareRhos } from "./nightmare-rhosgobel";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
 import { validateUmbar } from "./escape-umbar-support";
@@ -1150,6 +1151,7 @@ export function validateSave(
         !validEredPool(s, validUnit as (value: unknown) => boolean) ||
         !validNightmareCore(s, validUnit as (value: unknown) => boolean) ||
         !validNightmareSom(s) ||
+        !validNightmareRhos(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,
