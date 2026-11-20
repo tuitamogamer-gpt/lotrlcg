@@ -121,9 +121,10 @@ test("Fangorn imports all sixteen designs, nineteen local faces and exact 35/25 
     automatedScenarioId({ name: "Into Fangorn (Easy)", mode: "easy" }),
     "into-fangorn",
   );
+  // Its Nightmare recipe plays through the Nightmare layer (tests/nightmare-fangorn.test.ts).
   assert.equal(
     automatedScenarioId({ name: "Into Fangorn", mode: "nightmare" }),
-    null,
+    "into-fangorn",
   );
   assert.equal(
     automatedScenarioId({ name: "Into Fangorn (Campaign)", mode: "campaign" }),

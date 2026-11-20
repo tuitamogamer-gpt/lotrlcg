@@ -347,6 +347,16 @@ export const NIGHTMARE_VOI = {
   cunning: "octgn:4a9980e2-9b62-4658-8128-3493060a0f92",
   patrolling: "octgn:69a5def2-08da-498c-83d6-406ecbd6bc04",
   rage: "octgn:fcf26273-b39d-413c-aece-0c007888e527",
+  /** Into Fangorn's setup card and Nightmare Deck (a Huorn engaged with each player; stages 1B and 2B wait for Edge of Fangorn). */
+  fangornCard: "octgn:d495b495-db4b-496a-9294-c956afd1db9f",
+  huornOfFangorn: "octgn:35376ae0-c807-4c16-8f4d-e14d36aec142",
+  blocking: "octgn:3dab12d3-6cf8-4d3c-9edc-df93db02eced",
+  wicked: "octgn:414a8370-1c4d-4e95-b33d-3b6f59db315c",
+  tangledForest: "octgn:c5e24012-cbaf-40aa-b4af-28d3464e72a7",
+  entwood: "octgn:726db6b7-4ff6-4ebc-b1c3-0e52b0fd3c95",
+  darkCorner: "octgn:1fc9cfde-aff7-4210-b3da-c7ddb00a9c1e",
+  stifling: "octgn:edc600d3-b128-45a9-9f15-9a651901a90a",
+  anger: "octgn:a753e0fd-510a-40e2-8a87-ed306f156358",
 } as const;
 /** Over the Misty Mountains Grim's Nightmare cards with The Great Goblin's encounter set icon: they join the second (Goblin) encounter deck. */
 export const NIGHTMARE_OMM_GOBLIN_DECK: readonly string[] = [
@@ -801,6 +811,14 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "The King's Road": 2,
     },
   },
+  "into-fangorn": {
+    card: NIGHTMARE_VOI.fangornCard,
+    removals: {
+      "Deadly Huorn": 3,
+      "Tangled Woods": 3,
+      "Turned Around": 3,
+    },
+  },
   "to-catch-an-orc": {
     card: NIGHTMARE_VOI.catchCard,
     removals: {
@@ -1163,6 +1181,14 @@ export function nightmareStatus(s: GameState): string[] {
     return [
       "The Fords of Isen · Nightmare mode: after the players advance to a new quest stage, each player with fewer than 3 cards in hand draws 3 cards.",
     ];
+  if (s.scenarioId === "into-fangorn") {
+    const edge = (s.victoryCards ?? []).some(
+      (c) => card(c).name === "Edge of Fangorn",
+    );
+    return [
+      `Into Fangorn · Nightmare mode: each player put a Huorn enemy from the encounter deck into play engaged with them at setup; the players cannot defeat stage 1B or 2B unless Edge of Fangorn is in the victory display (${edge ? "it is" : "it is not yet"}).`,
+    ];
+  }
   if (s.scenarioId === "to-catch-an-orc") {
     const rage = s.nightmare?.catchRageAside ?? 0;
     const vigilant = (s.catchOrc?.setAside ?? []).filter(

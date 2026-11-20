@@ -239,6 +239,7 @@ export function removeCurrentQuestProgress(s: GameState, amount: number) {
   if (selected) {
     if (quest) quest.progress -= removed;
   } else s.progress -= removed;
+  if (removed > 0) batch4Scenario(s).questProgressRemoved?.(s, removed);
   return removed;
 }
 

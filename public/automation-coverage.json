@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2591,
+    "encounterCards": 2600,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3813,
-    "pending": 370
+    "scripted": 3822,
+    "pending": 361
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 305
+    "scripted": 306
   },
   "registeredCodes": [
     "01001",
@@ -1504,6 +1504,7 @@
     "octgn:1f1ad7bb-68ca-4b48-b7fa-516e5314e272",
     "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
     "octgn:1fbeb20b-0018-4d18-ab53-66982543b04b",
+    "octgn:1fc9cfde-aff7-4210-b3da-c7ddb00a9c1e",
     "octgn:1fdfdb77-31e0-458d-85d1-9c158f12717f",
     "octgn:1fe22408-2fbc-40f8-a88c-980ab90137d8",
     "octgn:1ff3c8f4-e472-4c48-a1d4-5c239f5bb119",
@@ -1732,6 +1733,7 @@
     "octgn:34c61d95-cb2e-49c4-b85e-5d3c32b02342",
     "octgn:35055e3e-d806-4c21-ad37-8177d70be329",
     "octgn:351afed2-188b-42d4-9b3a-bccb510ae7d2",
+    "octgn:35376ae0-c807-4c16-8f4d-e14d36aec142",
     "octgn:3551cf11-1670-46de-b404-7b8fd20d3aff",
     "octgn:35617e02-f4ad-4e6d-af45-9b5e0b7ce682",
     "octgn:3566b6df-a1cd-4417-b202-27e0ecc0a966",
@@ -1795,6 +1797,7 @@
     "octgn:3d7adc18-c9cb-4e93-8b1e-1574747ba8ce",
     "octgn:3d948840-8118-4d63-b782-ba017e1cf5d5",
     "octgn:3d9db37c-4b51-4da8-be2b-25cd2d48e28b",
+    "octgn:3dab12d3-6cf8-4d3c-9edc-df93db02eced",
     "octgn:3ddece75-2906-4456-8a5a-b20dce9b95dd",
     "octgn:3de80480-6316-4c43-824c-44d3ad424a7b",
     "octgn:3dfaab4d-04b1-49a6-bd17-63c184784985",
@@ -1826,6 +1829,7 @@
     "octgn:40c7a675-d48f-4e71-8818-5f0ffb9fa0dd",
     "octgn:413fa654-8c2c-4245-9c6b-78d98db9903e",
     "octgn:414353af-e004-4e7c-b288-e168e2acfee7",
+    "octgn:414a8370-1c4d-4e95-b33d-3b6f59db315c",
     "octgn:415e5671-e9fa-458e-bc46-e9f869bee87f",
     "octgn:4174df7e-5bb2-4b0f-9e35-d025f132d4a1",
     "octgn:418e1e02-52fe-4aef-b543-3875837dd38a",
@@ -2608,6 +2612,7 @@
     "octgn:721bbc14-f14c-4464-9963-55a77ab2d9bc",
     "octgn:72230f13-1064-464a-aa14-283a1c61e2e6",
     "octgn:72276508-67e0-4133-8b9f-41fb8d44ffa9",
+    "octgn:726db6b7-4ff6-4ebc-b1c3-0e52b0fd3c95",
     "octgn:7271da0e-570b-461c-b632-b6f82ab2c146",
     "octgn:7275de5f-3f2f-47e0-a90a-58fc45c3bdcf",
     "octgn:727b90c5-46b3-4568-9ab9-cb7c6e662428",
@@ -3101,6 +3106,7 @@
     "octgn:a727d1ec-2bbf-452b-9e7d-92fffc39acd2",
     "octgn:a7280ef5-7a73-4c34-bc7e-e7aef7e4f3df",
     "octgn:a750ab9c-9b29-4ca4-8221-8fa27cd74fe2",
+    "octgn:a753e0fd-510a-40e2-8a87-ed306f156358",
     "octgn:a78c13d9-8acb-42eb-82a0-a216de3ed87a",
     "octgn:a7907eca-8205-40a3-95ba-f30e31aaad82",
     "octgn:a7a8a783-8a22-49fd-a1b7-42e92a44f78c",
@@ -3431,6 +3437,7 @@
     "octgn:c5b174ae-d1e5-4dac-bedf-7a6c741e26d6",
     "octgn:c5d1793e-a4e2-4a40-97e9-e5e6f8b1cdfb",
     "octgn:c5d9d3c6-9321-4909-918d-2b81d7aa296d",
+    "octgn:c5e24012-cbaf-40aa-b4af-28d3464e72a7",
     "octgn:c5e9ef20-a88f-40fb-861f-c44de8e12bd9",
     "octgn:c60642b2-4ce3-42e8-8cb5-41c9ac9251fb",
     "octgn:c616d30d-9242-401b-b386-4fe0660dc97b",
@@ -3552,6 +3559,7 @@
     "octgn:d4309384-8472-4385-8122-163d6c4c8396",
     "octgn:d4686e4d-2d50-4ffd-9b95-7bcdf9b2a494",
     "octgn:d47ece86-2645-4d35-8ab7-c439d12abe65",
+    "octgn:d495b495-db4b-496a-9294-c956afd1db9f",
     "octgn:d4a5f505-6cc6-4669-b9b9-8f5ad2a6e5df",
     "octgn:d4b4c172-dec4-4d31-91f8-24f3e3127713",
     "octgn:d4b810a1-7d10-4610-9609-fb7f7568e5f5",
@@ -3790,6 +3798,7 @@
     "octgn:ed68974c-45ea-4378-9fe3-818cae03f9ea",
     "octgn:ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d",
     "octgn:edae55ef-8025-4553-9ff8-e81526effd59",
+    "octgn:edc600d3-b128-45a9-9f15-9a651901a90a",
     "octgn:ede538df-8c8e-44b6-bab2-3a60e8a50449",
     "octgn:edfb7ef3-dee9-4cf4-986e-5698bb3fb320",
     "octgn:edfe479c-dc2b-43d0-9d4b-708e96320748",
@@ -4897,7 +4906,7 @@
     {
       "product": "the-voice-of-isengard-nightmare",
       "total": 26,
-      "scripted": 17,
+      "scripted": 26,
       "player": 0,
       "playerScripted": 0
     },
@@ -16128,7 +16137,7 @@
       "name": "Dark Corner of Fangorn",
       "type": "location",
       "pack": "The Voice of Isengard - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard-nightmare"
     },
     {
@@ -18176,7 +18185,7 @@
       "name": "Huorn of Fangorn",
       "type": "enemy",
       "pack": "The Voice of Isengard - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard-nightmare"
     },
     {
@@ -18800,7 +18809,7 @@
       "name": "Blocking Huorn",
       "type": "enemy",
       "pack": "The Voice of Isengard - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard-nightmare"
     },
     {
@@ -19096,7 +19105,7 @@
       "name": "Wicked Huorn",
       "type": "enemy",
       "pack": "The Voice of Isengard - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard-nightmare"
     },
     {
@@ -25872,7 +25881,7 @@
       "name": "Entwood",
       "type": "location",
       "pack": "The Voice of Isengard - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard-nightmare"
     },
     {
@@ -30392,7 +30401,7 @@
       "name": "Fangorn's Anger",
       "type": "treachery",
       "pack": "The Voice of Isengard - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard-nightmare"
     },
     {
@@ -33336,7 +33345,7 @@
       "name": "Tangled Forest",
       "type": "location",
       "pack": "The Voice of Isengard - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard-nightmare"
     },
     {
@@ -34512,7 +34521,7 @@
       "name": "Into Fangorn",
       "type": "nightmare",
       "pack": "The Voice of Isengard - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard-nightmare"
     },
     {
@@ -36608,7 +36617,7 @@
       "name": "Stifling Woods",
       "type": "treachery",
       "pack": "The Voice of Isengard - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard-nightmare"
     },
     {
@@ -39549,8 +39558,8 @@
       "id": "N04.3",
       "name": "Into Fangorn (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "into-fangorn",
+      "state": "scripted"
     },
     {
       "id": "N04.4",

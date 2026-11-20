@@ -93,6 +93,10 @@ export interface Batch4ScenarioHooks {
   setupFollowUp?(s: GameState): Effect[];
   /** The players cannot advance to this stage now (The Lonely Mountain's Nightmare setup card: stage 3). */
   cannotAdvanceStage?(s: GameState, stage: number): boolean;
+  /** The players cannot defeat this quest stage now (Into Fangorn's Nightmare setup card: stages 1B and 2B). */
+  cannotDefeatStage?(s: GameState, stage: number): boolean;
+  /** After progress is removed from the current quest (Into Fangorn's Nightmare Tangled Forest). */
+  questProgressRemoved?(s: GameState, amount: number): void;
   /** After a player fails a burgle attempt (The Lonely Mountain). */
   burgleFailed?(s: GameState): void;
   /**

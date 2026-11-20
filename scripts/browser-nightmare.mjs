@@ -2287,6 +2287,65 @@ try {
       "Methedras Lookout's face loads",
     );
     await checkpoint("catch-methedras-lookout", width);
+
+    // Into Fangorn in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-into-fangorn").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "into-fangorn");
+    assert.equal(s.nightmareMode, true);
+    assert.ok(
+      s.engaged.some((u) => /Huorn/.test(card(u.code)?.traits ?? "")),
+      "a Huorn is engaged at setup",
+    );
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/cannot defeat stage 1B or 2B unless Edge of Fangorn/)
+      .waitFor();
+    await checkpoint("fangorn-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // An Entwood beside a Tangled Forest in the staging area.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.staging = [
+        ...t.staging,
+        make(t, VOI.entwood),
+        make(t, VOI.tangledForest),
+      ];
+      s = await load(page, t);
+    }
+    const entwoodFace = page
+      .locator(`img[src*="${VOI.entwood.slice("octgn:".length)}"]`)
+      .first();
+    await entwoodFace.waitFor();
+    assert.ok(
+      (await entwoodFace.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "Entwood's face loads",
+    );
+    await checkpoint("fangorn-entwood", width);
     await view.c.close();
   }
   const p = await browser.newPage();

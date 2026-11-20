@@ -2837,6 +2837,10 @@ export function composeEredPool(
       !!h.missingHeroAllowed?.(s, player) ||
       !!p.missingHeroAllowed?.(s, player),
     cannotDraw: (s) => !!h.cannotDraw?.(s) || !!p.cannotDraw?.(s),
+    resourceStart: (s) => [
+      ...(h.resourceStart?.(s) ?? []),
+      ...(p.resourceStart?.(s) ?? []),
+    ],
     refreshEndForced: (s) => [
       ...(h.refreshEndForced?.(s) ?? []),
       ...(p.refreshEndForced?.(s) ?? []),
@@ -2983,6 +2987,12 @@ export function composeEredPool(
       !!p.attachmentCannotReady?.(s, host, a),
     cannotAdvanceStage: (s, stage) =>
       !!h.cannotAdvanceStage?.(s, stage) || !!p.cannotAdvanceStage?.(s, stage),
+    cannotDefeatStage: (s, stage) =>
+      !!h.cannotDefeatStage?.(s, stage) || !!p.cannotDefeatStage?.(s, stage),
+    questProgressRemoved: (s, amount) => {
+      h.questProgressRemoved?.(s, amount);
+      p.questProgressRemoved?.(s, amount);
+    },
     cardsDrawn: (s, player, count, cardEffect) => {
       h.cardsDrawn?.(s, player, count, cardEffect);
       p.cardsDrawn?.(s, player, count, cardEffect);

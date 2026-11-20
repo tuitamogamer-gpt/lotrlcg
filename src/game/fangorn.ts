@@ -48,6 +48,7 @@ import { khazadCannotExhaust } from "./khazad-dum";
 import { watcherWaterCannotExhaust } from "./watcher-water";
 import { currentQuestCode } from "./quest-state";
 import { FANGORN as F, fangornTimeLimit } from "./fangorn-support";
+import { batch4Scenario } from "./batch4-scenarios";
 
 const locations = (s: GameState) =>
   [...s.staging, ...allActiveLocations(s)].filter(
@@ -87,6 +88,8 @@ export function setupFangorn(s: GameState) {
     ...Array.from({ length: playerOrder(s).length - 1 }, () =>
       fx("reveal", { player: firstPlayer(s) }),
     ),
+    // A Nightmare setup card's setup rule follows the scenario's own.
+    ...(batch4Scenario(s).setupFollowUp?.(s) ?? []),
   );
 }
 export function fangornCheck(s: GameState) {
@@ -152,6 +155,9 @@ export function fangornProgressPlaced(s: GameState) {
 export function advanceFangorn(s: GameState) {
   if (!s.fangorn) return false;
   if (s.queue.length || s.choice || s.stageRevealing) return true;
+  // A Nightmare setup card may hold stages 1B and 2B (Edge of Fangorn).
+  if (s.stage !== 3 && batch4Scenario(s).cannotDefeatStage?.(s, s.stage))
+    return true;
   const advance =
     s.stage === 3
       ? s.fangorn.progressTrigger
@@ -167,13 +173,15 @@ export function advanceFangorn(s: GameState) {
   return true;
 }
 export function fangornCombatStart(s: GameState) {
-  const count = allEngaged(s).filter(hasHinder).length;
+  const count = allEngaged(s).filter(
+    (u) => hasHinder(u) && !batch4Scenario(s).losesKeyword?.(s, u, "Hinder"),
+  ).length;
   if (count)
     prepend(s, fx("fangornHinder", { value: count, player: firstPlayer(s) }));
 }
-/** Resolve beginning-of-resource Forced effects before resource collection and drawing. */
-export function fangornResourceStart(s: GameState) {
-  const effects = allEngaged(s)
+/** The engaged Huorns' beginning-of-resource Forced effects. */
+export const fangornResourceEffects = (s: GameState): Effect[] =>
+  allEngaged(s)
     .filter((u) => !u.blanked && [F.dark, F.angry, F.deadly].includes(u.code))
     .map((u) =>
       fx("fangornResource", {
@@ -182,6 +190,9 @@ export function fangornResourceStart(s: GameState) {
         player: ownerOf(s, u),
       }),
     );
+/** Resolve beginning-of-resource Forced effects before resource collection and drawing. */
+export function fangornResourceStart(s: GameState) {
+  const effects = fangornResourceEffects(s);
   if (!effects.length) return false;
   prepend(
     s,

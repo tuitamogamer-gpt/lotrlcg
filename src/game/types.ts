@@ -598,7 +598,8 @@ export interface GameState {
     import("./nightmare-tlm").NightmareTlmState &
     import("./nightmare-bofa").NightmareBofaState &
     import("./nightmare-fords").NightmareFordsState &
-    import("./nightmare-catch").NightmareCatchState;
+    import("./nightmare-catch").NightmareCatchState &
+    import("./nightmare-fangorn").NightmareFangornState;
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;
@@ -1244,6 +1245,10 @@ export interface GameState {
     nmThreatOnKill?: number;
     /** A Nightmare enemy's Forced effect after its attack destroys a character resolved for this attack (Great Warg, Vengeful Hillman). */
     nmKillResolved?: boolean;
+    /** Stifling Woods' shadow (Into Fangorn's Nightmare Deck): all progress leaves the current quest if this attack destroys a character, once for each copy. */
+    nmClearOnKill?: number;
+    /** Fangorn's Anger's shadow (Into Fangorn's Nightmare Deck): after this attack the attacker engages the player whose hero holds Mugash. */
+    nmEngageCarrier?: number;
     defenderIds?: string[];
     ignoreDefense?: boolean;
     returnToStaging?: boolean;
