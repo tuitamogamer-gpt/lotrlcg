@@ -3,7 +3,10 @@
 The first scenario of **The Hobbit: On the Doorstep** (2013), the second Saga
 expansion, follows [Dungeons Deep and Caverns Dim](DUNGEONS-DEEP.md). It is
 playable in classic solo and with one to four local players, in normal and
-easy mode. This import also adds the On the Doorstep Bilbo Baggins and the
+easy mode, and in Nightmare mode ([its Nightmare Deck](NIGHTMARE.md): the
+setup builds the encounter deck with the setup card's removals and its cards,
+and each player gives 1 poison to a hero once the setup has resolved). This
+import also adds the On the Doorstep Bilbo Baggins and the
 treasure Bilbo's Magic Ring. The other Saga rules are described with
 [We Must Away, Ere Break of Day](WE-MUST-AWAY.md), and
 [The Lonely Mountain](LONELY-MOUNTAIN.md) follows.

@@ -2977,6 +2977,14 @@ export function composeEredPool(
     attachmentCannotReady: (s, host, a) =>
       !!h.attachmentCannotReady?.(s, host, a) ||
       !!p.attachmentCannotReady?.(s, host, a),
+    setupFollowUp: (s) => [
+      ...(h.setupFollowUp?.(s) ?? []),
+      ...(p.setupFollowUp?.(s) ?? []),
+    ],
+    defendersDeclared: (s, enemy, defenders) => [
+      ...(h.defendersDeclared?.(s, enemy, defenders) ?? []),
+      ...(p.defendersDeclared?.(s, enemy, defenders) ?? []),
+    ],
     beforeDestroy: (s, u, destruction, context) =>
       !!h.beforeDestroy?.(s, u, destruction, context) ||
       !!p.beforeDestroy?.(s, u, destruction, context),

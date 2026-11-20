@@ -52,6 +52,8 @@ import {
   spendBaggins,
 } from "./hobbit-saga";
 import { hobbitRingDefense } from "./hobbit-player-cards";
+import { batch4Scenario } from "./batch4-scenarios";
+import { nightmareEncounterDeck, nightmareLive } from "./nightmare";
 import {
   WILDERLAND_SHARED_EFFECTS,
   wilderlandAttackFinished,
@@ -68,6 +70,7 @@ import {
 import {
   FAS as F,
   FAS_RECIPES,
+  FAS_SCENARIO,
   fasArea,
   fasCurrentQuest,
   fasSelectArea,
@@ -207,7 +210,12 @@ export function setupFliesSpiders(s: GameState) {
     r.cards
       .filter((c) => c.section === name)
       .flatMap((c) => Array<string>(c.quantity).fill(c.code));
-  s.encounterDeck = shuffle(s, section("sharedEncounterDeck"));
+  // Nightmare mode: the setup card's removals and the Nightmare Deck.
+  const deck = section("sharedEncounterDeck");
+  s.encounterDeck = shuffle(
+    s,
+    nightmareLive(s) ? nightmareEncounterDeck(FAS_SCENARIO, deck) : deck,
+  );
   const aside = section("sharedSetAside");
   s.fliesSpiders = {
     currentQuest: F.mirkwood,
@@ -655,6 +663,8 @@ export function fasEffect(s: GameState, e: Effect): boolean {
         s,
         ...playerOrder(s).map((player) => fx("fasRingOffer", { player })),
         ...playerOrder(s).map((player) => fx("reveal", { player })),
+        // A Nightmare setup card's setup rule follows the scenario's own.
+        ...(batch4Scenario(s).setupFollowUp?.(s) ?? []),
       );
       return true;
     case "fasRingOffer":

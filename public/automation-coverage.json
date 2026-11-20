@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2552,
+    "encounterCards": 2560,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3774,
-    "pending": 409
+    "scripted": 3782,
+    "pending": 401
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 300
+    "scripted": 301
   },
   "registeredCodes": [
     "01001",
@@ -1369,6 +1369,7 @@
     "octgn:0f5ffc36-fe0f-4097-ad67-dafda700d96f",
     "octgn:0f7ce386-9510-4fd5-93aa-145190f8d1de",
     "octgn:0f939a7b-8a2e-4358-b3b1-e50b3eef7c0b",
+    "octgn:0f9b520c-f5c8-4704-a887-feb72fe7cba5",
     "octgn:0fc7db5e-c389-4636-8c34-3d1dee3508ce",
     "octgn:0fd5a1d7-0791-4ab4-a50b-c5b2634ed94b",
     "octgn:0fffdddc-d9f9-498a-9669-e840304ebb9b",
@@ -1709,6 +1710,7 @@
     "octgn:3342238a-2680-4044-822e-39a7d3d767b3",
     "octgn:3360d53e-e01b-4d22-b2e3-4e1733a4896d",
     "octgn:3371c102-4aab-4b15-a738-a4b3483a6004",
+    "octgn:337906ff-c49f-4768-ad9f-57561a4c1eb1",
     "octgn:3385b644-5fd6-4473-9fec-45d7262f5824",
     "octgn:33a575b4-e373-46db-b11e-90f8fc41ef6e",
     "octgn:33c87224-ad8d-41a0-b08a-931e9205609b",
@@ -2769,6 +2771,7 @@
     "octgn:83dd1a59-118c-468d-a47e-e472b066ff3e",
     "octgn:846794c2-be0f-4016-b9fe-fe6266d7fddd",
     "octgn:846e56e8-ac94-41e0-b29a-aacf7ca8d39e",
+    "octgn:8471389d-5424-41f9-8ed8-e7f29e9e78f4",
     "octgn:8472068c-fdd7-4197-8046-b9da12c29135",
     "octgn:847e6b9c-f795-4625-86d3-4ab6460ccdfe",
     "octgn:84877af6-0720-4ef8-802b-69b792c32e15",
@@ -2785,6 +2788,7 @@
     "octgn:85d48eb0-3339-4db6-976f-a800213e7eea",
     "octgn:85eb724c-a258-4d94-83ba-5e9f21d82491",
     "octgn:85ee1e86-178d-40cf-81d3-c86f5a1f2678",
+    "octgn:8607dbe8-720a-436f-a946-af666e5db568",
     "octgn:8615beb7-a9f7-4852-bc0a-3d1a5f2c9532",
     "octgn:86180e01-76fb-4103-977c-0d55bbfc2250",
     "octgn:8657c425-d50d-4a14-b7c8-b528463376e6",
@@ -2902,6 +2906,7 @@
     "octgn:92576b76-6b3a-4bee-84dc-82f927e1caa1",
     "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
     "octgn:929a0f96-a029-4327-b8e5-03cb78293bdf",
+    "octgn:92d3dcbb-8ce7-40fa-9df1-44617ebf08b4",
     "octgn:92d8276b-0839-44b4-b7ce-e18e135fe407",
     "octgn:92ef70d1-b46c-454d-ab7d-2ab56227d9be",
     "octgn:92fec8c5-53e7-477a-9c47-8d97578bc1e7",
@@ -3108,6 +3113,7 @@
     "octgn:aa6914e2-4b79-4a95-ab3e-386d6a924bee",
     "octgn:aaa16a82-e6b6-4563-a523-b8d61e40e273",
     "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+    "octgn:aac8023b-431b-4cfa-8f6e-659a4e8dd04e",
     "octgn:ab2ac791-b266-43b2-b6ee-0d412a1100bc",
     "octgn:ab5fec4c-b353-47e5-ae47-db7daf7f9088",
     "octgn:ab7ef031-1d13-4623-a9c3-2f6e3ce15d38",
@@ -3354,6 +3360,7 @@
     "octgn:c0c522b2-5f5c-45a0-b6fc-e05c8bb835d8",
     "octgn:c0d85826-dc42-4ac8-851c-4ed671917e9d",
     "octgn:c0fd82d5-1d87-4120-9b4b-37f81c1b2c9c",
+    "octgn:c101383e-807d-44b7-992d-a8299c4402a0",
     "octgn:c10ac747-573f-46c7-a228-8b6d1cd8875a",
     "octgn:c12057ee-64d0-419a-adb8-17632e3182b0",
     "octgn:c1273c2f-a616-45ee-804d-a16c28b6e63d",
@@ -3741,6 +3748,7 @@
     "octgn:ebbb49f0-4466-44e5-b157-968cd5e80b06",
     "octgn:ebd1944a-928c-40ff-88de-dfebdfcf633c",
     "octgn:ebde9bba-fd89-4098-ad60-9d1d4e746d23",
+    "octgn:ebf0f1f6-8627-4d7d-986e-fd7ae9a2de55",
     "octgn:ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef",
     "octgn:ec1a2268-5e9d-4875-8089-2692d22fa180",
     "octgn:ec2049ab-c950-46f7-9f1b-30ada69db857",
@@ -4256,7 +4264,7 @@
     {
       "product": "on-the-doorstep-nightmare",
       "total": 22,
-      "scripted": 0,
+      "scripted": 8,
       "player": 0,
       "playerScripted": 0
     },
@@ -14905,7 +14913,7 @@
       "name": "A Horrible Battle",
       "type": "treachery",
       "pack": "The Hobbit - On the Doorstep - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep-nightmare"
     },
     {
@@ -17977,7 +17985,7 @@
       "name": "Flies and Spiders",
       "type": "nightmare",
       "pack": "The Hobbit - On the Doorstep - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep-nightmare"
     },
     {
@@ -27481,7 +27489,7 @@
       "name": "Spider Bite",
       "type": "treachery",
       "pack": "The Hobbit - On the Doorstep - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep-nightmare"
     },
     {
@@ -27617,7 +27625,7 @@
       "name": "Venomous Spider",
       "type": "enemy",
       "pack": "The Hobbit - On the Doorstep - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep-nightmare"
     },
     {
@@ -28737,7 +28745,7 @@
       "name": "Patch of Midnight",
       "type": "location",
       "pack": "The Hobbit - On the Doorstep - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep-nightmare"
     },
     {
@@ -30625,7 +30633,7 @@
       "name": "Mirkwood Path",
       "type": "location",
       "pack": "The Hobbit - On the Doorstep - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep-nightmare"
     },
     {
@@ -32825,7 +32833,7 @@
       "name": "Attercop",
       "type": "enemy",
       "pack": "The Hobbit - On the Doorstep - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep-nightmare"
     },
     {
@@ -36409,7 +36417,7 @@
       "name": "Dark Colony",
       "type": "location",
       "pack": "The Hobbit - On the Doorstep - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep-nightmare"
     },
     {
@@ -39706,8 +39714,8 @@
       "id": "N0A.4",
       "name": "Flies and Spiders (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "flies-and-spiders",
+      "state": "scripted"
     },
     {
       "id": "N0A.5",

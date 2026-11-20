@@ -298,6 +298,18 @@ export const NIGHTMARE_OHUH = {
   whereIsIt: "octgn:f631b06f-1f0c-45aa-b5af-c4f9b9a41455",
   weHates: "octgn:fb951af8-2bc7-4529-8e16-ca85a362aac1",
 } as const;
+/** The Hobbit: On the Doorstep Nightmare Deck's cards (OCTGN ids, as DragnCards keeps them). */
+export const NIGHTMARE_OTD = {
+  /** Flies and Spiders' setup card and Nightmare Deck (each player gives 1 poison to a hero at setup). */
+  fasCard: "octgn:337906ff-c49f-4768-ad9f-57561a4c1eb1",
+  attercop: "octgn:c101383e-807d-44b7-992d-a8299c4402a0",
+  venomous: "octgn:8607dbe8-720a-436f-a946-af666e5db568",
+  colony: "octgn:ebf0f1f6-8627-4d7d-986e-fd7ae9a2de55",
+  path: "octgn:aac8023b-431b-4cfa-8f6e-659a4e8dd04e",
+  patch: "octgn:92d3dcbb-8ce7-40fa-9df1-44617ebf08b4",
+  battle: "octgn:0f9b520c-f5c8-4704-a887-feb72fe7cba5",
+  bite: "octgn:8471389d-5424-41f9-8ed8-e7f29e9e78f4",
+} as const;
 /** Over the Misty Mountains Grim's Nightmare cards with The Great Goblin's encounter set icon: they join the second (Goblin) encounter deck. */
 export const NIGHTMARE_OMM_GOBLIN_DECK: readonly string[] = [
   NIGHTMARE_OHUH.greatGoblin,
@@ -741,6 +753,17 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Not fair! Not fair!": 1,
     },
   },
+  "flies-and-spiders": {
+    card: NIGHTMARE_OTD.fasCard,
+    removals: {
+      "Dark Bats": 3,
+      "Hidden Path": 3,
+      "Fighting Among Friends": 2,
+      "Wicked Spider": 5,
+      "Fat Spider": 1,
+      "Giant Web": 1,
+    },
+  },
   "the-morgul-vale": {
     card: NIGHTMARE_AS.morgulCard,
     removals: {
@@ -1053,6 +1076,10 @@ export function nightmareStatus(s: GameState): string[] {
       `The Blood of Gondor · Nightmare mode: each player took a hidden card at setup (${hidden} hidden now); the players cannot win unless The Cross-roads and the Nightmare Deck's Black Númenorean are in the victory display.`,
     ];
   }
+  if (s.scenarioId === "flies-and-spiders")
+    return [
+      "Flies and Spiders · Nightmare mode: each player gives 1 poison to a hero they control at setup, after the scenario's own setup.",
+    ];
   if (s.scenarioId === "dungeons-deep-and-caverns-dim")
     return [
       `Dungeons Deep and Caverns Dim · Nightmare mode: Gollum cannot take damage; The Lower Gate ${s.nightmare?.lowerGateAside ? "is set aside until stage 3B is revealed" : "has entered the staging area"}.`,

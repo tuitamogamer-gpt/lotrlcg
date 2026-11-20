@@ -85,6 +85,12 @@ export interface Batch4ScenarioHooks {
   questDiscard?(s: GameState, code: string): boolean;
   /** An attachment that does not ready during the refresh phase (Lower Gate Sentries: Bilbo's Magic Ring). */
   attachmentCannotReady?(s: GameState, host: Unit, a: Attachment): boolean;
+  /**
+   * Effects a layer's setup rule adds after the scenario's own setup, once the
+   * opening hands are kept (Flies and Spiders' Nightmare setup card: each
+   * player gives 1 poison to a hero they control).
+   */
+  setupFollowUp?(s: GameState): Effect[];
   combatBegin?(s: GameState): void;
   enemyEntered?(s: GameState, unit: Unit): void;
   openingHandsKept?(s: GameState): boolean;

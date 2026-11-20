@@ -13,6 +13,7 @@ import {
   NIGHTMARE_AS as AS,
   NIGHTMARE_KD as K,
   NIGHTMARE_OHUH as OHUH,
+  NIGHTMARE_OTD as OTD,
   NIGHTMARE_SOM as G,
 } from "../src/game/nightmare.ts";
 import { KHAZAD } from "../src/game/khazad-dum.ts";
@@ -2015,6 +2016,63 @@ try {
       "Wicked Wolf's face loads",
     );
     await checkpoint("ddcd-wicked-wolf", width);
+
+    // Flies and Spiders in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-flies-and-spiders").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "flies-and-spiders");
+    assert.equal(s.nightmareMode, true);
+    assert.ok(
+      [...s.heroes, ...s.allies].some((u) =>
+        u.attachments.some((a) => a.poison),
+      ),
+      "a hero took the setup card's poison",
+    );
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/gives 1 poison to a hero they control at setup/)
+      .waitFor();
+    await checkpoint("fas-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // An Attercop beside a Patch of Midnight in the staging area.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.staging = [...t.staging, make(t, OTD.attercop), make(t, OTD.patch)];
+      s = await load(page, t);
+    }
+    const attercopFace = page
+      .locator(`img[src*="${OTD.attercop.slice("octgn:".length)}"]`)
+      .first();
+    await attercopFace.waitFor();
+    assert.ok(
+      (await attercopFace.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "Attercop's face loads",
+    );
+    await checkpoint("fas-attercop", width);
     await view.c.close();
   }
   const p = await browser.newPage();

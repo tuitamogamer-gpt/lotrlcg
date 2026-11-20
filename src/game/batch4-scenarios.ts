@@ -91,6 +91,7 @@ import { NIGHTMARE_MORGUL_HOOKS } from "./nightmare-morgul";
 import { NIGHTMARE_WMA_HOOKS } from "./nightmare-wma";
 import { NIGHTMARE_OMM_HOOKS } from "./nightmare-omm";
 import { NIGHTMARE_DDCD_HOOKS } from "./nightmare-ddcd";
+import { NIGHTMARE_FAS_HOOKS } from "./nightmare-fas";
 import { nightmareLive } from "./nightmare";
 
 const empty: Batch4ScenarioHooks = {};
@@ -131,6 +132,7 @@ const NIGHTMARE_LAYERS: Partial<Record<string, Batch4ScenarioHooks>> = {
   "we-must-away-ere-break-of-day": NIGHTMARE_WMA_HOOKS,
   "over-the-misty-mountains-grim": NIGHTMARE_OMM_HOOKS,
   "dungeons-deep-and-caverns-dim": NIGHTMARE_DDCD_HOOKS,
+  "flies-and-spiders": NIGHTMARE_FAS_HOOKS,
 };
 /**
  * The current scenario's hooks; in an Ered Mithrin campaign chapter from The
@@ -310,6 +312,7 @@ export const batch4SharedEffect = (effect: Effect) =>
     NIGHTMARE_WMA_HOOKS,
     NIGHTMARE_OMM_HOOKS,
     NIGHTMARE_DDCD_HOOKS,
+    NIGHTMARE_FAS_HOOKS,
     BLACK_SERPENT_HOOKS,
     CIRITH_GURAT_HOOKS,
     CROSSINGS_POROS_HOOKS,
