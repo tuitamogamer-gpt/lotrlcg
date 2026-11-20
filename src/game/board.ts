@@ -854,6 +854,10 @@ export function takePlayerDiscard(
     index >= 0 && index < s.discard.length,
     "Choose an actual card in your discard pile.",
   );
+  requireRule(
+    !batch4Scenario(s).discardCardKept?.(s, s.discard[index]),
+    "This card cannot leave the discard pile.",
+  );
   Angmar.angmarDiscardTaken(s, index);
   const dreadIdentity = Dread.dreadPlayerDiscardTaken(s, index);
   const identity = foundationsPlayerDiscardTaken(s, index) ?? dreadIdentity,

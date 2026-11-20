@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2684,
+    "encounterCards": 2693,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3906,
-    "pending": 277
+    "scripted": 3915,
+    "pending": 268
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 316
+    "scripted": 317
   },
   "registeredCodes": [
     "01001",
@@ -1343,6 +1343,7 @@
     "octgn:0cb6d866-50dd-4eb0-a86a-8ed84bfeae0e",
     "octgn:0cdc4034-738d-487d-9a8c-8ef364772076",
     "octgn:0d30fbf1-6e8f-480f-9f2f-3196777f6e11",
+    "octgn:0d3586ef-3159-4066-8417-aba5c379739a",
     "octgn:0d74f863-83c9-4342-ac98-5bbaae0a573f",
     "octgn:0daf1963-a45f-4fe1-bd0b-ad901a1213fa",
     "octgn:0daf7bcd-4719-48e6-948a-0230aa96d34c",
@@ -1757,6 +1758,7 @@
     "octgn:3574e1dd-d730-485e-8c2b-16fb7d52f78b",
     "octgn:35787b76-d4d5-4bff-bc05-a270b6e4d98e",
     "octgn:35924e07-9473-4701-855a-11f69dc83185",
+    "octgn:35a5ec34-97ea-4b9e-9fdc-6a00c39c504d",
     "octgn:35b3cfde-9964-4173-88c5-e5e5cb8f84ac",
     "octgn:35caf8b5-dc14-4b56-827c-d2d85a1d13df",
     "octgn:35d72889-370e-4ee3-99c0-b7d0a605ec49",
@@ -2773,6 +2775,7 @@
     "octgn:7e6fec55-9dd6-4fdc-96b5-4922aa095544",
     "octgn:7e8ff46f-2d5a-49e3-bb97-15a3cbc254d6",
     "octgn:7e99e1de-9c4f-4dec-9703-359426ba6463",
+    "octgn:7e9a0e02-59cd-46de-83a8-4b8fe49c7021",
     "octgn:7ea102d6-77de-431f-9475-c9be874a5195",
     "octgn:7edae662-fc3f-40b3-868b-e5a43dbd0670",
     "octgn:7f03acd1-41d0-44db-9903-c6030e1548a1",
@@ -2861,6 +2864,7 @@
     "octgn:867b61a1-4e23-4426-ad94-b912e89055b8",
     "octgn:86e0fbfc-04da-46b0-807b-ac58bd60248b",
     "octgn:86e8724b-32cb-4d63-b918-5754d39d2249",
+    "octgn:86fb45b5-6fd4-44ce-98d7-ab8a7fe3b611",
     "octgn:86fe0f99-d978-40be-8f39-136bec2a3d58",
     "octgn:87025e60-afc4-410b-9b97-c5f527b524c8",
     "octgn:870d08ac-097f-4bb7-8da8-439a2b05e838",
@@ -3479,6 +3483,7 @@
     "octgn:c39c83bf-ee9e-4e4d-9689-b8f7559292bd",
     "octgn:c3a29d33-4096-4cce-871e-6673d2e4684e",
     "octgn:c3aff9c9-640f-4e90-85f3-6e245c2156fe",
+    "octgn:c3b3a3e0-1575-4094-a6b3-853b569f8046",
     "octgn:c3c34a86-6089-4a3f-b1b6-f81d8cbc2caa",
     "octgn:c3e07d8f-3af3-4f21-8951-d3300ca376fa",
     "octgn:c3f9965f-711d-4c51-b9aa-a0b5d5953b49",
@@ -3527,6 +3532,7 @@
     "octgn:c79ff551-f816-4106-9c55-e22d175e544c",
     "octgn:c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da",
     "octgn:c7bcb6fc-dde8-4df0-bd0e-3791b0fef4d0",
+    "octgn:c7c7761f-a4dd-4f09-ac10-f0483d0c931d",
     "octgn:c7e3bde9-8348-41d6-8272-aa733f60a108",
     "octgn:c7ef7b6e-4346-4b4c-a9fa-2b42e3c2ab5c",
     "octgn:c7f4c92b-e593-4c40-9ecb-64d8ab9c6368",
@@ -3620,6 +3626,7 @@
     "octgn:d34c9025-6380-4294-be3f-01c992922830",
     "octgn:d3650ee1-5225-4a8f-9114-e1123d941228",
     "octgn:d3a3d024-2321-4707-b319-eb62537e6d92",
+    "octgn:d3a5ad2f-39b9-4ec8-b1f2-da2049c470b4",
     "octgn:d3bd47e5-cf59-4097-9cec-92a15fe56bf4",
     "octgn:d3c68791-c3f9-4e8d-9515-2496f9ca1895",
     "octgn:d3eee887-e9fd-40f9-bd09-47a7b0732ee2",
@@ -3690,6 +3697,7 @@
     "octgn:dbf55659-b4ea-4a8a-82d1-20c0f2e4405e",
     "octgn:dc074506-e478-4b63-88e4-9d6e4f8eb6d4",
     "octgn:dc074506-e478-4b63-88e4-9d6e4f8eb6d4:B",
+    "octgn:dc2da597-7d44-4654-a3f4-860e3f7117d6",
     "octgn:dc5c51d1-7528-46b4-b438-aae0cb744e29",
     "octgn:dc8f31b6-73af-4aec-be26-8d297909d14d",
     "octgn:dce8ff38-bcc7-49b4-ba27-ae3e2cac1d32",
@@ -3758,6 +3766,7 @@
     "octgn:e40770a1-7b1b-4257-afca-443c55701850",
     "octgn:e428dad0-f116-40c3-82fd-6c78bfcdcb32",
     "octgn:e4432b9b-4969-44be-937f-ca2728d57ad4",
+    "octgn:e4660d9f-4779-4103-ad48-36337065931b",
     "octgn:e46a15c0-abbe-4a2e-8951-0e9950aa0288",
     "octgn:e476b426-a9db-4d95-ab93-a32f4a5b7f48",
     "octgn:e48c7313-d1cb-4291-9dc1-9fff6fb23e83",
@@ -4878,7 +4887,7 @@
     {
       "product": "the-road-darkens-nightmare",
       "total": 25,
-      "scripted": 8,
+      "scripted": 17,
       "player": 0,
       "playerScripted": 0
     },
@@ -14797,7 +14806,7 @@
       "name": "Very Weary",
       "type": "treachery",
       "pack": "The Road Darkens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens-nightmare"
     },
     {
@@ -18357,7 +18366,7 @@
       "name": "Darkened Mine",
       "type": "location",
       "pack": "The Road Darkens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens-nightmare"
     },
     {
@@ -27061,7 +27070,7 @@
       "name": "Cut Off",
       "type": "treachery",
       "pack": "The Road Darkens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens-nightmare"
     },
     {
@@ -27813,7 +27822,7 @@
       "name": "Slab-bearer",
       "type": "enemy",
       "pack": "The Road Darkens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens-nightmare"
     },
     {
@@ -33197,7 +33206,7 @@
       "name": "Glowing Fissure",
       "type": "location",
       "pack": "The Road Darkens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens-nightmare"
     },
     {
@@ -33637,7 +33646,7 @@
       "name": "Flaming Sword",
       "type": "treachery",
       "pack": "The Road Darkens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens-nightmare"
     },
     {
@@ -34525,7 +34534,7 @@
       "name": "Journey in the Dark",
       "type": "nightmare",
       "pack": "The Road Darkens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens-nightmare"
     },
     {
@@ -35157,7 +35166,7 @@
       "name": "Fiery Whip",
       "type": "treachery",
       "pack": "The Road Darkens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens-nightmare"
     },
     {
@@ -35749,7 +35758,7 @@
       "name": "Zirakzigil Archer",
       "type": "enemy",
       "pack": "The Road Darkens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens-nightmare"
     },
     {
@@ -39887,8 +39896,8 @@
       "id": "N0B.05",
       "name": "Journey in the Dark (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "journey-in-the-dark",
+      "state": "scripted"
     },
     {
       "id": "N0B.06",

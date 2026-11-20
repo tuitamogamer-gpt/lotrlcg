@@ -6,7 +6,10 @@ solo and with one to four local players, in normal and easy mode. Its
 campaign mode (recipe Q0C.05) is part of
 [The Lord of the Rings campaign](SAGA-CAMPAIGN.md): Shadow of Fear, Pursued by
 the Enemy, Grievous Wound and Overcome by Grief, all four earned while The
-Balrog is still in play.
+Balrog is still in play. Nightmare mode follows
+[its Nightmare Deck](NIGHTMARE.md) (heroes kept in the discard pile, stage 3B
+held until The Balrog is in the victory display; the Nightmare Weapons attach
+to the scenario's Balrog), outside campaign mode.
 
 ## Sources and corrections
 

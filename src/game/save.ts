@@ -159,6 +159,7 @@ import {
 } from "./nightmare-celeb";
 import { crownNightmareRaven, validNightmareCrown } from "./nightmare-crown";
 import { validNightmareRingSouth } from "./nightmare-trgs";
+import { validNightmareJourneyDark } from "./nightmare-jitd";
 import { nightmareEscapeTest } from "./nightmare-dead";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
@@ -1231,6 +1232,7 @@ export function validateSave(
         !validNightmareCeleb(s) ||
         !validNightmareCrown(s) ||
         !validNightmareRingSouth(s) ||
+        !validNightmareJourneyDark(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,

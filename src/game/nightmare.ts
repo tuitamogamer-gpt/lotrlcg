@@ -500,6 +500,16 @@ export const NIGHTMARE_TRD = {
   slopes: "octgn:958e2ca4-208c-4235-be56-afc463e9eb2f",
   hunted: "octgn:89a39894-f5d2-42a5-9927-fb057db778f4",
   shelterless: "octgn:c1b934af-a47f-4886-846f-c319b2efeca0",
+  /** Journey in the Dark's setup card and Nightmare Deck. */
+  darkCard: "octgn:d3a5ad2f-39b9-4ec8-b1f2-da2049c470b4",
+  slab: "octgn:86fb45b5-6fd4-44ce-98d7-ab8a7fe3b611",
+  zirak: "octgn:e4660d9f-4779-4103-ad48-36337065931b",
+  glowing: "octgn:c3b3a3e0-1575-4094-a6b3-853b569f8046",
+  mine: "octgn:35a5ec34-97ea-4b9e-9fdc-6a00c39c504d",
+  whip: "octgn:dc2da597-7d44-4654-a3f4-860e3f7117d6",
+  sword: "octgn:c7c7761f-a4dd-4f09-ac10-f0483d0c931d",
+  weary: "octgn:0d3586ef-3159-4066-8417-aba5c379739a",
+  cutOff: "octgn:7e9a0e02-59cd-46de-83a8-4b8fe49c7021",
 } as const;
 
 interface NightmareDeck {
@@ -997,6 +1007,15 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Storm of Howls": 1,
     },
   },
+  "journey-in-the-dark": {
+    card: NIGHTMARE_TRD.darkCard,
+    removals: {
+      "Moria Archer": 3,
+      "Mines of Moria": 4,
+      "We Cannot Get Out": 1,
+      "Deep Fissure": 3,
+    },
+  },
   "a-knife-in-the-dark": {
     card: NIGHTMARE_TBR.knifeCard,
     removals: {
@@ -1413,6 +1432,12 @@ export function nightmareStatus(s: GameState): string[] {
         .length ?? 0;
     return [
       `The Ring Goes South · Nightmare mode: when the players advance to stage 4B, each player puts a Pale-green Tentacle into play engaged with them, and the other copies and the encounter discard pile are shuffled into the encounter deck${aside ? ` (${aside} set aside now)` : ""}.`,
+    ];
+  }
+  if (s.scenarioId === "journey-in-the-dark") {
+    const weapons = s.nightmare?.darkWeapons?.length ?? 0;
+    return [
+      `Journey in the Dark · Nightmare mode: each hero in each player's discard pile cannot leave the discard pile, and the players cannot defeat stage 3B unless The Balrog is in the victory display${weapons ? ` (${weapons} Weapon${weapons === 1 ? "" : "s"} wait for The Balrog out of play)` : ""}.`,
     ];
   }
   if (s.scenarioId === "flight-to-the-ford")

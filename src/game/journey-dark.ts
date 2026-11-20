@@ -44,6 +44,8 @@ import { mainQuestUnit } from "./quest-state";
 import { engagedEnemies } from "./considered-engagement";
 import { removeCurrentQuestProgress } from "./side-quests";
 import { lotrSagaCheck } from "./lotr-saga";
+import { nightmareEncounterDecks, nightmareLive } from "./nightmare";
+import { batch4Scenario } from "./batch4-scenarios";
 import {
   JD,
   JD_BRIDGE_CAP,
@@ -115,17 +117,24 @@ export function setupJourneyDark(s: GameState) {
   // Stage 1A: each player searches the encounter deck for a setup location;
   // the recipe's prepared locations belong to that deck.
   const staged = section("sharedStagingArea");
-  s.encounterDeck = shuffle(s, [
-    ...section("sharedEncounterDeck"),
-    ...staged.filter((c) => c !== JD.doom),
-  ]);
+  const piles = [
+    section("sharedEncounterDeck"),
+    staged.filter((c) => c !== JD.doom),
+    section("sharedSetAside"),
+  ];
+  // Nightmare mode: the setup card's removals leave whichever pile holds
+  // them, and its encounter cards join the encounter deck.
+  const [deck, locations, aside] = nightmareLive(s)
+    ? nightmareEncounterDecks(s.scenarioId, piles, () => 0)
+    : piles;
+  s.encounterDeck = shuffle(s, [...deck, ...locations]);
   const doom = make(s, JD.doom);
   doom.damage = JD_DOOM_TOKENS;
   s.staging.push(doom);
   s.journeyDark = {
     currentQuest: JD.moria,
     advancing: false,
-    setAside: section("sharedSetAside"),
+    setAside: aside,
     resolving: [],
     drums: 0,
     drumsReveal: 0,
@@ -157,8 +166,10 @@ function advance(s: GameState) {
   // 2B: X resource tokens are needed to advance.
   if (s.stage === 2 && stageLive(s) && q.drums < jdDrumsGoal(s)) return true;
   if (s.stage === 3) {
-    // 3B: the stage cannot be defeated while The Great Bridge is in play.
-    if (inPlay(s, JD.bridge)) return true;
+    // 3B: the stage cannot be defeated while The Great Bridge is in play
+    // (nor, in Nightmare mode, before The Balrog is in the victory display).
+    if (inPlay(s, JD.bridge) || batch4Scenario(s).cannotDefeatStage?.(s, 3))
+      return true;
     win(
       s,
       "The Bridge of Khazad-dûm is defeated: the Company of the Ring escapes the Mines of Moria.",

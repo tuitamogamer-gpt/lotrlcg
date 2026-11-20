@@ -3025,6 +3025,86 @@ try {
       );
     }
     await checkpoint("trgs-pale-green-tentacle", width);
+
+    // Journey in the Dark in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-journey-in-the-dark").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "journey-in-the-dark");
+    assert.equal(s.nightmareMode, true);
+    {
+      const all = [
+        ...s.encounterDeck,
+        ...s.encounterDiscard,
+        ...s.staging.map((u) => u.code),
+      ];
+      assert.equal(
+        all.filter((c) => c === TRD.zirak).length,
+        4,
+        "the Nightmare Deck's 4 Zirakzigil Archers",
+      );
+      assert.ok(
+        !all.some((c) => card(c).name === "Mines of Moria"),
+        "the setup card removes the Mines of Moria",
+      );
+    }
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(
+        /cannot defeat stage 3B unless The Balrog is in the victory display/,
+      )
+      .waitFor();
+    await checkpoint("jitd-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A Slab-bearer beside a Glowing Fissure and a Darkened Mine.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.staging = [
+        ...t.staging,
+        make(t, TRD.slab),
+        make(t, TRD.glowing),
+        make(t, TRD.mine),
+      ];
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [TRD.slab, "Slab-bearer"],
+      [TRD.glowing, "Glowing Fissure"],
+      [TRD.mine, "Darkened Mine"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    await checkpoint("jitd-slab-bearer", width);
     await view.c.close();
   }
   const p = await browser.newPage();

@@ -1494,7 +1494,10 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     case "reshufflePlayer":
       if (ashEventShuffleBlocked(s) || dikeCannotLeaveDiscard(s)) break;
-      while (s.discard.length) putPlayerDeck(s, takePlayerDiscard(s, 0));
+      // Cards that cannot leave the discard pile stay there.
+      for (let i = 0; i < s.discard.length;)
+        if (batch4Scenario(s).discardCardKept?.(s, s.discard[i])) i++;
+        else putPlayerDeck(s, takePlayerDiscard(s, i));
       shuffle(s, s.deck);
       break;
     case "faramir":

@@ -126,6 +126,8 @@ export interface Batch4ScenarioHooks {
   secondDeckCodes?(s: GameState): readonly string[];
   /** The location cannot be discarded from play by player card effects (The Antlered Crown's Nightmare setup card). */
   playerDiscardBlocked?(s: GameState, u: Unit): boolean;
+  /** This card in a player's discard pile cannot leave it (Journey in the Dark's Nightmare heroes). */
+  discardCardKept?(s: GameState, code: string): boolean;
   /**
    * The quest cards a random stage is drawn from, in place of the printed
    * ones (The Nîn-in-Eilph's Nightmare Deck replaces a stage 2 and a stage 3).

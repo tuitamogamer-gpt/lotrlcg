@@ -3058,6 +3058,8 @@ export function composeEredPool(
     ],
     playerDiscardBlocked: (s, u) =>
       !!h.playerDiscardBlocked?.(s, u) || !!p.playerDiscardBlocked?.(s, u),
+    discardCardKept: (s, code) =>
+      !!h.discardCardKept?.(s, code) || !!p.discardCardKept?.(s, code),
     stageCandidates: (s, stage, printed) =>
       p.stageCandidates?.(s, stage, printed) ??
       h.stageCandidates?.(s, stage, printed),
