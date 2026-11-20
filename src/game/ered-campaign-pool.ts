@@ -2997,6 +2997,12 @@ export function composeEredPool(
       ...(h.cardsDrawnForced?.(s, player) ?? []),
       ...(p.cardsDrawnForced?.(s, player) ?? []),
     ],
+    cannotBeActiveLocation: (s, u) =>
+      !!h.cannotBeActiveLocation?.(s, u) || !!p.cannotBeActiveLocation?.(s, u),
+    enemyTimeRemoved: (s, u, count) => {
+      h.enemyTimeRemoved?.(s, u, count);
+      p.enemyTimeRemoved?.(s, u, count);
+    },
     cardsDrawn: (s, player, count, cardEffect) => {
       h.cardsDrawn?.(s, player, count, cardEffect);
       p.cardsDrawn?.(s, player, count, cardEffect);

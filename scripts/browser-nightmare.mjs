@@ -2398,6 +2398,57 @@ try {
       "Plains of Dunland's face loads",
     );
     await checkpoint("dunland-plains", width);
+
+    // The Three Trials in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-the-three-trials").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "the-three-trials");
+    assert.equal(s.nightmareMode, true);
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/each engaged Guardian enemy contributes its \[threat\]/)
+      .waitFor();
+    await checkpoint("trials-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A Sacred Forest beside a Haunted Pillars in the staging area.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.staging = [...t.staging, make(t, RM.sacred), make(t, RM.pillars)];
+      s = await load(page, t);
+    }
+    const sacredFace = page
+      .locator(`img[src*="${RM.sacred.slice("octgn:".length)}"]`)
+      .first();
+    await sacredFace.waitFor();
+    assert.ok(
+      (await sacredFace.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "Sacred Forest's face loads",
+    );
+    await checkpoint("trials-sacred-forest", width);
     await view.c.close();
   }
   const p = await browser.newPage();

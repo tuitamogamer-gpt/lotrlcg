@@ -150,6 +150,7 @@ import { validNightmareFords } from "./nightmare-fords";
 import { validNightmareCatch } from "./nightmare-catch";
 import { validNightmareFangorn } from "./nightmare-fangorn";
 import { validNightmareDunland } from "./nightmare-dunland";
+import { validNightmareTrials } from "./nightmare-trials";
 import { nightmareEscapeTest } from "./nightmare-dead";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
@@ -1210,6 +1211,7 @@ export function validateSave(
         !validNightmareCatch(s) ||
         !validNightmareFangorn(s) ||
         !validNightmareDunland(s) ||
+        !validNightmareTrials(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,

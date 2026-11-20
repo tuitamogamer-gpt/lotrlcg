@@ -369,6 +369,15 @@ export const NIGHTMARE_RINGMAKER = {
   woods: "octgn:ffbf96c9-ee9f-4462-b1c5-1acf8609015a",
   assault: "octgn:fea90493-29cd-4668-9e3b-eb3150cdc339",
   stalked: "octgn:81907a30-abb2-44de-b3be-eb44e43977d8",
+  /** The Three Trials' setup card and Nightmare Deck (engaged Guardians' threat; the Trial of Intuition's protections). */
+  trialsCard: "octgn:f096ca9b-c50e-4897-b0c6-216c9c520bee",
+  wolfSpirit: "octgn:b644346d-3791-41f4-9d8a-0fd281e36b8b",
+  boarSpirit: "octgn:bc629269-aa5b-4f5c-b071-c1413f85d24c",
+  ravenSpirit: "octgn:c8a7cd39-10e0-4d50-a75b-e8a7ac24e32f",
+  sacred: "octgn:f1dda3f9-e4cc-4c36-8167-a31dfdce2637",
+  pillars: "octgn:4008f69c-fda2-4fe4-a8bd-373d38203c87",
+  burden: "octgn:a142205c-6aa0-4fed-be81-312c2dd33673",
+  ancestors: "octgn:4aacc507-dfaf-4193-98c5-09dbf879423d",
 } as const;
 /** Over the Misty Mountains Grim's Nightmare cards with The Great Goblin's encounter set icon: they join the second (Goblin) encounter deck. */
 export const NIGHTMARE_OMM_GOBLIN_DECK: readonly string[] = [
@@ -823,6 +832,15 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "The King's Road": 2,
     },
   },
+  "the-three-trials": {
+    card: NIGHTMARE_RINGMAKER.trialsCard,
+    removals: {
+      "Spirit of the Wild": 3,
+      "Grim Foothills": 3,
+      "Tangled Woods": 1,
+      "Turned Around": 3,
+    },
+  },
   "the-dunland-trap": {
     card: NIGHTMARE_RINGMAKER.dunlandCard,
     removals: {
@@ -1203,6 +1221,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "fords-of-isen")
     return [
       "The Fords of Isen · Nightmare mode: after the players advance to a new quest stage, each player with fewer than 3 cards in hand draws 3 cards.",
+    ];
+  if (s.scenarioId === "the-three-trials")
+    return [
+      "The Three Trials · Nightmare mode: each engaged Guardian enemy contributes its [threat] to the staging area; while the Trial of Intuition is the current trial, Guardian enemies cannot be damaged and Barrow locations cannot be the active location and are immune to player card effects.",
     ];
   if (s.scenarioId === "the-dunland-trap")
     return [

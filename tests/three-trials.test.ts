@@ -136,8 +136,15 @@ test("Three Trials imports exact 36/28 recipes, sixteen encounters, five quests 
       automatedScenarioId({ name: "The Three Trials", mode }),
       "the-three-trials",
     );
-  for (const mode of ["nightmare", "campaign"])
-    assert.equal(automatedScenarioId({ name: "The Three Trials", mode }), null);
+  // Its Nightmare recipe plays through the Nightmare layer (tests/nightmare-trials.test.ts).
+  assert.equal(
+    automatedScenarioId({ name: "The Three Trials", mode: "nightmare" }),
+    "the-three-trials",
+  );
+  assert.equal(
+    automatedScenarioId({ name: "The Three Trials", mode: "campaign" }),
+    null,
+  );
 });
 for (const players of [1, 2, 3, 4])
   for (const easy of [false, true])

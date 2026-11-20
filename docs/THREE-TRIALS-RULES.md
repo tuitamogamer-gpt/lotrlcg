@@ -37,4 +37,4 @@ Shared Turned Around now offers individual enemy Time counters as well as its ex
 - `scripts/browser-three-trials.mjs`: 66 checkpoints across 1280/390/320 pixels. Actual menu, trial choices, saved claims, travel, Cave discards, Time ordering, progress allocation, final Guardian attacks, victory and four-player easy mode. All twenty-six local faces decode, with no page errors or horizontal overflow. Desktop final-stage and 320px Time-order screenshots were visually inspected.
 - `202610080001_three_trials_choices.sql` permits account choices and preserves the existing RLS policies, verified in local PGlite. No hosted Supabase migration was applied from this workspace.
 
-Nightmare and campaign variants remain reference-only.
+Its Nightmare version follows [its Nightmare Deck](NIGHTMARE.md) (engaged Guardians add their threat, the Trial of Intuition protects Guardians and Barrows, and the Nightmare cards use these Guardians, Keys, trials and time counters); the campaign variant remains reference-only.

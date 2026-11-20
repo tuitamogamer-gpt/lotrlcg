@@ -102,6 +102,10 @@ export interface Batch4ScenarioHooks {
    * scenario's own draw reactions (The Dunland Trap's Nightmare Deck).
    */
   cardsDrawnForced?(s: GameState, player: number): Effect[];
+  /** The location cannot be the active location (The Three Trials' Nightmare setup card: Barrows in the Trial of Intuition). */
+  cannotBeActiveLocation?(s: GameState, u: Unit): boolean;
+  /** After time counters are removed from an enemy (The Three Trials' Nightmare Sacred Forest). */
+  enemyTimeRemoved?(s: GameState, u: Unit, count: number): void;
   /** After a player fails a burgle attempt (The Lonely Mountain). */
   burgleFailed?(s: GameState): void;
   /**

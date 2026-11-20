@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2608,
+    "encounterCards": 2616,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3830,
-    "pending": 353
+    "scripted": 3838,
+    "pending": 345
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 307
+    "scripted": 308
   },
   "registeredCodes": [
     "01001",
@@ -1822,6 +1822,7 @@
     "octgn:3f9feb64-e4bd-4da5-b00a-05f58dce5fbf",
     "octgn:3fca46ae-c558-4666-8b0a-8c5c9ee5156a",
     "octgn:3ff62e7f-fc09-4569-a45c-1be7e2ba6747",
+    "octgn:4008f69c-fda2-4fe4-a8bd-373d38203c87",
     "octgn:40299169-8b0f-4462-ae58-03db71c0970f",
     "octgn:408148e1-3391-4734-aeac-3e3a7b69c1c1",
     "octgn:408752c0-cee3-41ba-86c2-d01085546cef",
@@ -1975,6 +1976,7 @@
     "octgn:4a6539aa-2404-430f-94ab-0f674d965adc",
     "octgn:4a6fe2e8-899b-4d4b-9b02-61516044fdc4",
     "octgn:4a9980e2-9b62-4658-8128-3493060a0f92",
+    "octgn:4aacc507-dfaf-4193-98c5-09dbf879423d",
     "octgn:4abe9f52-1e56-479a-a59f-c3f7075ec493",
     "octgn:4ae7d13b-4b73-477b-ab71-5bd6bfc7b912",
     "octgn:4af27413-5674-4352-b54a-7f12c4fa0afc",
@@ -3061,6 +3063,7 @@
     "octgn:a0f5082c-acc7-4884-a3d4-a7eed0f053e6",
     "octgn:a11ea1e0-372e-4932-86e4-f84737e842e9",
     "octgn:a11f08ac-541b-46ba-9528-467dcbdc90c6",
+    "octgn:a142205c-6aa0-4fed-be81-312c2dd33673",
     "octgn:a1827b45-42bd-44b3-a86d-d773e60ac1b5",
     "octgn:a1a8bd6e-4cd1-4641-9cb1-f693f053f62e",
     "octgn:a1e74757-c5c8-4b81-a01a-6406410f661d",
@@ -3250,6 +3253,7 @@
     "octgn:b5c7bf41-7642-4d25-9794-cb247f540182",
     "octgn:b622efab-65dd-4a49-af87-8984066ab4ae",
     "octgn:b640a0b7-f23e-4859-96fb-b558274b90a8",
+    "octgn:b644346d-3791-41f4-9d8a-0fd281e36b8b",
     "octgn:b645ea89-caa8-44ee-b290-fcd93204e838",
     "octgn:b64d2e55-f304-4356-a491-7ee80e149c5c",
     "octgn:b658345f-6282-440d-9004-35fd6ef2e0b7",
@@ -3363,6 +3367,7 @@
     "octgn:bc041e0b-dd7f-4b82-8eb0-d155b1b08398",
     "octgn:bc43ae57-6010-4924-919c-b37d1e33b958",
     "octgn:bc4f2e17-197c-4131-ad81-b892fe66ad88",
+    "octgn:bc629269-aa5b-4f5c-b071-c1413f85d24c",
     "octgn:bcd41784-d260-4165-ae0f-74cb844d10b3",
     "octgn:bd30f509-04f8-4135-a5e9-20d3cbbe7cd8",
     "octgn:bd837efe-9358-4fe9-8770-69b9b1fefb48",
@@ -3473,6 +3478,7 @@
     "octgn:c88d317b-d8b9-43ef-b41d-427ae4337f8d",
     "octgn:c88f14e5-1bd3-4829-ab70-02479df6cdfd",
     "octgn:c898c9f0-d4a7-4821-b075-1e412cde86a7",
+    "octgn:c8a7cd39-10e0-4d50-a75b-e8a7ac24e32f",
     "octgn:c8decb35-cb3e-4dc9-ad15-d0cc80c157cb",
     "octgn:c90db37c-2fdf-4f69-b4a8-869064e4650b",
     "octgn:c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc",
@@ -3837,6 +3843,7 @@
     "octgn:f054a6e2-71ae-4acb-ba62-2548ecbfcf9a",
     "octgn:f071a69f-34e3-4603-a632-80b6b45b0e36",
     "octgn:f079c496-20bf-4ce4-a5ca-d644172d83fe",
+    "octgn:f096ca9b-c50e-4897-b0c6-216c9c520bee",
     "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
     "octgn:f0d30258-7122-4004-a689-9ff50a00b3af:B",
     "octgn:f0eb44aa-e060-4d5d-b66b-39bd1f0801d7",
@@ -3848,6 +3855,7 @@
     "octgn:f1a07644-9fe2-4764-9999-091fb8fc05b7",
     "octgn:f1b632df-ecaa-410a-b2c2-e037adc0ef2c",
     "octgn:f1d2d99e-27e6-44d3-ad3d-ef727fa9ddc2",
+    "octgn:f1dda3f9-e4cc-4c36-8167-a31dfdce2637",
     "octgn:f214f533-374b-423c-86b5-dca1ab5d048f",
     "octgn:f2319b29-4236-4a66-87dd-36a4ed8e2880",
     "octgn:f2484786-8e29-4d43-866e-31c4adae3b1f",
@@ -4872,7 +4880,7 @@
     {
       "product": "the-three-trials-nightmare",
       "total": 8,
-      "scripted": 0,
+      "scripted": 8,
       "player": 0,
       "playerScripted": 0
     },
@@ -19017,7 +19025,7 @@
       "name": "Haunted Pillars",
       "type": "location",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials-nightmare"
     },
     {
@@ -20337,7 +20345,7 @@
       "name": "Trial of Ancestors",
       "type": "treachery",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials-nightmare"
     },
     {
@@ -29945,7 +29953,7 @@
       "name": "Cursed Burden",
       "type": "treachery",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials-nightmare"
     },
     {
@@ -31657,7 +31665,7 @@
       "name": "Wolf Spirit",
       "type": "enemy",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials-nightmare"
     },
     {
@@ -32601,7 +32609,7 @@
       "name": "Boar Spirit",
       "type": "enemy",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials-nightmare"
     },
     {
@@ -33657,7 +33665,7 @@
       "name": "Raven Spirit",
       "type": "enemy",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials-nightmare"
     },
     {
@@ -36905,7 +36913,7 @@
       "name": "The Three Trials",
       "type": "nightmare",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials-nightmare"
     },
     {
@@ -37017,7 +37025,7 @@
       "name": "Sacred Forest",
       "type": "location",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials-nightmare"
     },
     {
@@ -39580,8 +39588,8 @@
       "id": "N04.5",
       "name": "The Three Trials (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-three-trials",
+      "state": "scripted"
     },
     {
       "id": "N04.6",

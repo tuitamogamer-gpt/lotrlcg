@@ -45,6 +45,7 @@ import {
 import { hasTrait } from "./expansion-passives";
 import { heirsShadowDealt, heirsCannotHaveAttachments } from "./heirs-numenor";
 import { fangornTravel } from "./fangorn";
+import { batch4Scenario } from "./batch4-scenarios";
 import {
   TRIALS as T,
   TRIAL_QUESTS,
@@ -81,7 +82,9 @@ export const trialsCannotLeave = (s: GameState, u: Unit) =>
   s.threeTrials?.activeQuest === T.perseverance && trialsGuardian(u);
 export const trialsCannotDamage = trialsCannotLeave;
 export const trialsCannotMakeActive = (s: GameState, u: Unit) =>
-  s.threeTrials?.activeQuest === T.strength && hasTrait(u, "Barrow");
+  (s.threeTrials?.activeQuest === T.strength && hasTrait(u, "Barrow")) ||
+  // A Nightmare setup card may hold Barrows during another trial.
+  !!batch4Scenario(s).cannotBeActiveLocation?.(s, u);
 export const trialsCanAttach = (u: Unit, code: string) =>
   u.blanked ||
   !TRIAL_GUARDIANS.includes(u.code) ||
@@ -278,8 +281,10 @@ function victory(s: GameState, u: Unit) {
 }
 export function trialsRemoveTime(s: GameState, u: Unit, count = 1): Effect[] {
   if (u.blanked || !u.timeCounters || count <= 0) return [];
-  u.timeCounters = Math.max(0, u.timeCounters - count);
+  const removed = Math.min(u.timeCounters, count);
+  u.timeCounters -= removed;
   log(s, `${name(u)} · Time ${u.timeCounters}.`, "danger");
+  batch4Scenario(s).enemyTimeRemoved?.(s, u, removed);
   return u.timeCounters === 0
     ? [
         fx("trialsTimeExpired", {
@@ -419,7 +424,9 @@ export function trialsQuestProgress(s: GameState, n: number) {
 }
 export function trialsTravelProblem(s: GameState, u: Unit) {
   if (trialsCannotMakeActive(s, u))
-    return "Barrows cannot be active during the Trial of Strength.";
+    return s.threeTrials?.activeQuest === T.strength
+      ? "Barrows cannot be active during the Trial of Strength."
+      : "Barrows cannot be active during the Trial of Intuition (Nightmare mode).";
   if (u.blanked) return null;
   if (
     u.code === T.circle &&
