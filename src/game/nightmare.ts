@@ -533,6 +533,15 @@ export const NIGHTMARE_TLR = {
   killThem: "octgn:e7995075-7f11-4f8f-ab16-e7455b67afc2",
   shadowParty: "octgn:bfd46195-4981-47f4-95c1-84f9ec2cadc2",
   protect: "octgn:0569374c-0f0d-461e-8047-cf467393c38f",
+  /** The Weather Hills' setup card and Nightmare Deck (its Captive Villagers and Rearguard Ambushers in the Orc deck). */
+  weatherCard: "octgn:4ee09875-c105-4532-ba68-3701f3327696",
+  villager: "octgn:90f60cd2-e787-4b40-8b3a-35be274d0e9b",
+  ambusher: "octgn:cf123545-659f-41b9-8051-8ed29302ca2c",
+  raider: "octgn:0b6022c0-c46c-411f-90b3-b6ad267ebb8e",
+  valley: "octgn:7c01b52d-35ed-449a-83d1-5879f608ef42",
+  tower: "octgn:e62b817f-7806-40ad-95e3-a7c3e805e95d",
+  tracks: "octgn:db7a5fb4-f390-49c2-b555-d963350cd8ff",
+  track: "octgn:74c7150c-c65d-480b-8673-cd2509fc992b",
 } as const;
 
 interface NightmareDeck {
@@ -1062,6 +1071,18 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Sudden Assault": 2,
     },
   },
+  "the-weather-hills": {
+    card: NIGHTMARE_TLR.weatherCard,
+    removals: {
+      "Cornered Orc": 3,
+      "Sheltered Valley": 2,
+      "Concealed Orc-camp": 1,
+      "Angmar Marauder": 2,
+      "Angmar Orc": 2,
+      "Ruins of Arnor": 3,
+      "Tragic Discovery": 2,
+    },
+  },
   "a-knife-in-the-dark": {
     card: NIGHTMARE_TBR.knifeCard,
     removals: {
@@ -1494,6 +1515,14 @@ export function nightmareStatus(s: GameState): string[] {
     return [
       "Intruders in Chetwood · Nightmare mode: the setup card removed the printed standard encounter cards and shuffled in its Nightmare Deck.",
     ];
+  if (s.scenarioId === "the-weather-hills") {
+    const guarded = s.staging.filter(
+      (u) => u.code === NIGHTMARE_TLR.villager,
+    ).length;
+    return [
+      `The Weather Hills · Nightmare mode: each Captive Villager and Rearguard Ambusher was shuffled into the Orc deck; the players cannot win while a Captive Villager is guarded by an encounter card${guarded ? ` (${guarded} guarded now)` : ""}, and lose if one leaves play.`,
+    ];
+  }
   if (s.scenarioId === "flight-to-the-ford")
     return [
       "Flight to the Ford · Nightmare mode: the players cannot win while Ford of Bruinen is in play; the Nightmare Deck's Fell Riders are staged and its Ford of Bruinen set aside in place of the scenario's.",

@@ -45,6 +45,20 @@ function informantThreat(s: GameState, player: number) {
     ).length
   );
 }
+/** Captive Villager (The Weather Hills' Nightmare Deck). */
+const CAPTIVE_VILLAGER = "octgn:90f60cd2-e787-4b40-8b3a-35be274d0e9b";
+/**
+ * Captive Villager: "While Captive Villager is free of encounters, the first
+ * player gains control of it and is considered to have +5 threat while
+ * making engagement checks." (each copy the player controls)
+ */
+function villagerThreat(s: GameState, player: number) {
+  const seat = s.table && player !== s.table.active ? s.table.seats[player] : s;
+  return (
+    5 *
+    seat.allies.filter((u) => u.code === CAPTIVE_VILLAGER && !u.blanked).length
+  );
+}
 /**
  * The threat a player's engagement checks compare with an engagement cost:
  * Vicious Trackers, "While Vicious Trackers is engaged with a player, that
@@ -61,6 +75,7 @@ export function engagementCheckThreat(
     20 *
       seat.engaged.filter((u) => u.code === VICIOUS_TRACKERS && !u.blanked)
         .length +
-    informantThreat(s, player)
+    informantThreat(s, player) +
+    villagerThreat(s, player)
   );
 }

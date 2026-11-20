@@ -162,6 +162,7 @@ import { validNightmareRingSouth } from "./nightmare-trgs";
 import { validNightmareJourneyDark } from "./nightmare-jitd";
 import { validNightmareBreaking } from "./nightmare-botf";
 import { validNightmareChetwood } from "./nightmare-chetwood";
+import { validNightmareWeather } from "./nightmare-weather";
 import { nightmareEscapeTest } from "./nightmare-dead";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
@@ -1239,6 +1240,7 @@ export function validateSave(
         !validNightmareJourneyDark(s) ||
         !validNightmareBreaking(s) ||
         !validNightmareChetwood(s) ||
+        !validNightmareWeather(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,

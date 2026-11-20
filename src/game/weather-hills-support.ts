@@ -1,6 +1,7 @@
 import encounters from "../data/weather-hills-encounter-cards.json";
 import quests from "../data/weather-hills-quest-cards.json";
 import recipes from "../data/weather-hills-recipes.json";
+import nightmare from "../data/nightmare-encounter-cards.json";
 import { CHETWOOD } from "./chetwood-support";
 import type { Card, GameState, Unit } from "./types";
 
@@ -56,12 +57,26 @@ export function validateWeather(
   const q = s.weatherHills;
   if (q === undefined) return s.scenarioId !== "the-weather-hills";
   const missions = s.staging.filter((u) => u.code === WEATHER.mission);
+  // A Nightmare mode game's Orc deck holds its Captive Villagers and
+  // Rearguard Ambushers.
+  const orcCodes = [
+    ...WEATHER_ORC_CODES,
+    ...(s.nightmareMode
+      ? (nightmare as Card[])
+          .filter(
+            (c) =>
+              c.encounter_set === "The Weather Hills - Nightmare" &&
+              ["Captive Villager", "Rearguard Ambusher"].includes(c.name),
+          )
+          .map((c) => c.code)
+      : []),
+  ];
   return (
     !!q &&
     s.scenarioId === "the-weather-hills" &&
     typeof q.initialized === "boolean" &&
     Array.isArray(q.orcDeck) &&
-    q.orcDeck.every((c) => WEATHER_ORC_CODES.includes(c)) &&
+    q.orcDeck.every((c) => orcCodes.includes(c)) &&
     Array.isArray(q.setAside) &&
     q.setAside.every(
       (u) => validUnit(u) && [CHETWOOD.ambush, WEATHER.forn].includes(u.code),

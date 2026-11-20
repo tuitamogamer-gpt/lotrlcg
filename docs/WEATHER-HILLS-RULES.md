@@ -36,4 +36,4 @@ The interface shows the separate Orc-deck count, Mission tokens and reverse face
 
 The dedicated hot-seat sweep completes 64 further games: 32 standard and 32 easy, across 1–4 players and eight seeds. Every action resumes from a valid JSON save. All games end in losses under the unchanged starter-deck policy; this verifies execution and reload consistency, rather than playing strength. The dedicated Weather Hills multiplayer CI job runs this sweep.
 
-No hosted Supabase migration has been applied. Campaign and Nightmare variants remain reference-only.
+No hosted Supabase migration has been applied. The campaign variant remains reference-only. Nightmare mode follows [its Nightmare Deck](NIGHTMARE.md) (the Nightmare cards use the scenario's Orc deck, Mission objective, Weather cards and guarded encounters; its Captive Villagers and Rearguard Ambushers join the Orc deck), outside campaign mode.

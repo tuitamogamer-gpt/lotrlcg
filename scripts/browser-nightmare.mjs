@@ -3267,6 +3267,89 @@ try {
       "the staged Orc War Party",
     );
     await checkpoint("chetwood-shadow-war-party", width);
+
+    // The Weather Hills in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-the-weather-hills").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "the-weather-hills");
+    assert.equal(s.nightmareMode, true);
+    assert.equal(
+      s.weatherHills.orcDeck.filter((c) => c === TLR.villager).length,
+      3,
+      "the Nightmare Deck's 3 Captive Villagers in the Orc deck",
+    );
+    assert.ok(
+      ![...s.encounterDeck, ...s.encounterDiscard].some(
+        (c) => card(c).name === "Sheltered Valley",
+      ),
+      "the setup card removes the Sheltered Valleys",
+    );
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/cannot win while a Captive Villager is guarded/)
+      .waitFor();
+    await checkpoint("weather-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A Captive Villager guarded by an Angmar Captain, beside a Ruined
+    // Watch-tower and a Weather-torn Valley.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const villager = make(t, TLR.villager);
+      const guard = make(t, CHETWOOD.captain);
+      guard.guarding = villager.id;
+      t.staging = [
+        ...t.staging,
+        villager,
+        guard,
+        make(t, TLR.tower),
+        make(t, TLR.valley),
+      ];
+      t.nightmare = { ...(t.nightmare ?? {}), weatherVillagers: [villager.id] };
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [TLR.villager, "Captive Villager"],
+      [TLR.tower, "Ruined Watch-tower"],
+      [TLR.valley, "Weather-torn Valley"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    assert.ok(
+      s.staging.some((u) => u.code === TLR.villager),
+      "the guarded villager stays in the staging area",
+    );
+    await checkpoint("weather-captive-villager", width);
     await view.c.close();
   }
   const p = await browser.newPage();

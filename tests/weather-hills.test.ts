@@ -141,9 +141,10 @@ test("Weather Hills registers original encounters, both quest stages and authori
   assert.match(card(W.animals).text!, /Amon Forn/);
   for (const r of WEATHER_RECIPES)
     assert.equal(automatedScenarioId(r), "the-weather-hills");
+  // Its Nightmare Deck is supported (docs/NIGHTMARE.md).
   assert.equal(
     automatedScenarioId({ name: "The Weather Hills", mode: "nightmare" }),
-    null,
+    "the-weather-hills",
   );
   assert.equal(
     automatedScenarioId({

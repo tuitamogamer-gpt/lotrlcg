@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2711,
+    "encounterCards": 2719,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3933,
-    "pending": 250
+    "scripted": 3941,
+    "pending": 242
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 319
+    "scripted": 320
   },
   "registeredCodes": [
     "01001",
@@ -1331,6 +1331,7 @@
     "octgn:0b0ab8a2-f531-4a68-96f8-408cc0b87924",
     "octgn:0b215acb-56e1-4653-9cbf-38171c4af9c9",
     "octgn:0b3a7155-be2d-4fed-9674-bc696662372f",
+    "octgn:0b6022c0-c46c-411f-90b3-b6ad267ebb8e",
     "octgn:0bb77cd5-0340-4411-9e1f-997b1d6cb35a",
     "octgn:0bd34136-ae3d-44aa-b48f-7190c14f4b3b",
     "octgn:0c0f7215-3a7f-489c-9edc-4fd5b896e635",
@@ -2046,6 +2047,7 @@
     "octgn:4e12f20f-aec3-4311-a656-10a517fd97fe",
     "octgn:4ebd8ec5-79fe-4305-9c33-e06d37b1c8d5",
     "octgn:4ee0293f-5c0c-4f7a-bc10-680d84eb9214",
+    "octgn:4ee09875-c105-4532-ba68-3701f3327696",
     "octgn:4ee364f1-9e44-4dfb-a133-59d8d69fc9f6",
     "octgn:4f03a84f-6665-435f-aa3a-5002c835d13b",
     "octgn:4f47ef56-46c8-4a6b-85dd-656eb71c5828",
@@ -2682,6 +2684,7 @@
     "octgn:744536a0-0ff0-47e8-b938-ee0f379b1370",
     "octgn:744e45f8-a808-4d9f-96f4-59e26cff5874",
     "octgn:745919b3-e323-4368-a4ad-25d3bd5baab1",
+    "octgn:74c7150c-c65d-480b-8673-cd2509fc992b",
     "octgn:74c7a9e0-940f-4b66-bc23-c938eef5587f",
     "octgn:74ceb68a-a1c9-41bc-aeb8-41738b34a3bb",
     "octgn:74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc",
@@ -2757,6 +2760,7 @@
     "octgn:7bae4f1a-42b7-46ab-bfbb-0078ed0842a4",
     "octgn:7bb3db62-642f-4ab1-9ce7-a870fad8fecd",
     "octgn:7be3bdf4-dc81-4a3d-8fb1-08bfe4c9b1b5",
+    "octgn:7c01b52d-35ed-449a-83d1-5879f608ef42",
     "octgn:7c069b32-99b8-42b7-a310-893d925c8ca7",
     "octgn:7c463bf7-9a1a-4d8a-879b-f966f19d0695",
     "octgn:7c5f503a-61aa-4f12-acdf-e52fc51e295f",
@@ -2980,6 +2984,7 @@
     "octgn:90c7e192-2a1e-480c-96a2-7c643f0562d1",
     "octgn:90d620e5-d7be-42e6-9756-b92761ecd8c9",
     "octgn:90d64456-eceb-423b-866f-ece8ceb98ec3",
+    "octgn:90f60cd2-e787-4b40-8b3a-35be274d0e9b",
     "octgn:90fe2776-1001-4871-a5ae-679b91992e7e",
     "octgn:91143aee-41e7-4cac-8ec2-e112689fcc17",
     "octgn:91735f73-7dc8-48ee-8a61-b7c9648f5def",
@@ -3602,6 +3607,7 @@
     "octgn:cefd0596-2e3b-4496-95e0-57899ab83b04",
     "octgn:cefe5af1-a3d3-43fb-8b82-7ea9b4d2c861",
     "octgn:cf070c26-dd32-4ee8-bd6c-ffe9c011bd64",
+    "octgn:cf123545-659f-41b9-8051-8ed29302ca2c",
     "octgn:cf33276f-22e5-467d-9543-6b345d17e7bc",
     "octgn:cf435143-655b-4a7c-ac6b-f9f61b4cba72",
     "octgn:cf5fad0e-e1c3-4340-a467-567ff0611c6f",
@@ -3704,6 +3710,7 @@
     "octgn:db512bcc-1bc7-4008-ba2b-18d56abc3b67",
     "octgn:db6355c7-3edd-4573-a63c-1b6fc08bb8fa",
     "octgn:db69ea89-f018-4534-9661-7c748298e1f5",
+    "octgn:db7a5fb4-f390-49c2-b555-d963350cd8ff",
     "octgn:db960347-11ee-4ad7-8784-e4827fb7daaf",
     "octgn:dbdb65b4-924c-4d74-adcc-14b6d8e1e2f8",
     "octgn:dbf55659-b4ea-4a8a-82d1-20c0f2e4405e",
@@ -3792,6 +3799,7 @@
     "octgn:e53df85c-f6e6-41df-9fd1-03dd2d2a1c65",
     "octgn:e542f4f9-420f-40eb-8c95-d648f2589511",
     "octgn:e5b56e5a-3286-4ea6-bbdd-da7e47750125",
+    "octgn:e62b817f-7806-40ad-95e3-a7c3e805e95d",
     "octgn:e62c0943-c58d-4dc7-8948-adef14de0e9a",
     "octgn:e62cec6d-6b96-4662-9a86-bcc0f5aee453",
     "octgn:e6721e44-5706-4a0f-a895-ced75f9c6219",
@@ -4814,7 +4822,7 @@
     {
       "product": "the-lost-realm-nightmare",
       "total": 27,
-      "scripted": 10,
+      "scripted": 18,
       "player": 0,
       "playerScripted": 0
     },
@@ -14696,7 +14704,7 @@
       "name": "Angmar Raider",
       "type": "enemy",
       "pack": "The Lost Realm - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm-nightmare"
     },
     {
@@ -20800,7 +20808,7 @@
       "name": "The Weather Hills",
       "type": "nightmare",
       "pack": "The Lost Realm - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm-nightmare"
     },
     {
@@ -26200,7 +26208,7 @@
       "name": "Track the Orcs",
       "type": "encounter-side-quest",
       "pack": "The Lost Realm - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm-nightmare"
     },
     {
@@ -26864,7 +26872,7 @@
       "name": "Weather-torn Valley",
       "type": "location",
       "pack": "The Lost Realm - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm-nightmare"
     },
     {
@@ -28792,7 +28800,7 @@
       "name": "Captive Villager",
       "type": "objective-ally",
       "pack": "The Lost Realm - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm-nightmare"
     },
     {
@@ -34208,7 +34216,7 @@
       "name": "Rearguard Ambusher",
       "type": "enemy",
       "pack": "The Lost Realm - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm-nightmare"
     },
     {
@@ -35144,7 +35152,7 @@
       "name": "Rain-washed Tracks",
       "type": "treachery",
       "pack": "The Lost Realm - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm-nightmare"
     },
     {
@@ -35888,7 +35896,7 @@
       "name": "Ruined Watch-tower",
       "type": "location",
       "pack": "The Lost Realm - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm-nightmare"
     },
     {
@@ -39725,8 +39733,8 @@
       "id": "N05.2",
       "name": "The Weather Hills (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-weather-hills",
+      "state": "scripted"
     },
     {
       "id": "N05.3",

@@ -50,6 +50,12 @@ import {
 import { rhosgobelHeal, rhosgobelHealingAllowed } from "./rhosgobel";
 import { reduceThreat } from "./threat-reduction";
 import { syncAttachmentText } from "./attachment-text";
+import { batch4Scenario } from "./batch4-scenarios";
+import {
+  NIGHTMARE_TLR,
+  nightmareEncounterDecks,
+  nightmareLive,
+} from "./nightmare";
 
 const mission = (s: GameState) => s.staging.find((u) => u.code === W.mission);
 const locations = (s: GameState) =>
@@ -132,11 +138,24 @@ export function setupWeather(s: GameState) {
     recipe.cards
       .filter((r) => r.section === section)
       .flatMap((r) => Array<string>(r.quantity).fill(r.code));
-  s.encounterDeck = pile("sharedEncounterDeck");
+  // Nightmare mode: the setup card's removals and its Nightmare Deck, its
+  // Captive Villagers and Rearguard Ambushers in the Orc deck.
+  const orcs: string[] = [NIGHTMARE_TLR.villager, NIGHTMARE_TLR.ambusher];
+  const piles = [
+    pile("sharedEncounterDeck"),
+    pile("sharedEncounterDeck2"),
+    pile("sharedSetAside"),
+  ];
+  const [deck, orcDeck, aside] = nightmareLive(s)
+    ? nightmareEncounterDecks(s.scenarioId, piles, (c) =>
+        orcs.includes(c) ? 1 : 0,
+      )
+    : piles;
+  s.encounterDeck = deck;
   s.weatherHills = {
     initialized: false,
-    orcDeck: pile("sharedEncounterDeck2"),
-    setAside: pile("sharedSetAside").map((code) => make(s, code)),
+    orcDeck,
+    setAside: aside.map((code) => make(s, code)),
     weatherSurgeRound: 0,
   };
 }
@@ -370,7 +389,8 @@ export function weatherAdvance(s: GameState) {
     !s.queue.length &&
     !s.choice &&
     s.progress >= 20 &&
-    !locations(s).some((u) => u.code === W.forn && !u.blanked)
+    !locations(s).some((u) => u.code === W.forn && !u.blanked) &&
+    !batch4Scenario(s).cannotWin?.(s)
   ) {
     if (!questDefeated(s, W.animals)) win(s);
   }
