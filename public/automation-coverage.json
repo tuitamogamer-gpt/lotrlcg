@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2737,
+    "encounterCards": 2745,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3959,
-    "pending": 224
+    "scripted": 3967,
+    "pending": 216
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 322
+    "scripted": 323
   },
   "registeredCodes": [
     "01001",
@@ -1414,6 +1414,7 @@
     "octgn:13c23487-ad49-437b-be41-1c09dd5c30e4",
     "octgn:13e84f42-66ff-4abb-819d-a4b0ad088bb1",
     "octgn:14304a2f-f6f8-4f78-adc6-5ee35bc9a08e",
+    "octgn:14531c46-aad5-4090-bb7d-2edf9f78e5ff",
     "octgn:14a944ab-8301-4006-8e2a-d607eb614fab",
     "octgn:14be3661-3f3c-4a89-b27f-ab7c15f92e4e",
     "octgn:14f41245-2616-4358-a8bb-6b9bcf83cf56",
@@ -1478,6 +1479,7 @@
     "octgn:1b0de48c-a010-490f-b0e3-0ced635b3b3b",
     "octgn:1b3b1063-e102-4fea-a29b-5692fbfb9cd6",
     "octgn:1b5b129a-0c2c-4750-b1d6-dd3ea82acb84",
+    "octgn:1b66485b-7d01-47b6-8504-7fee5c2f2729",
     "octgn:1b770413-a3b1-41ae-b843-b3b9e78b2906",
     "octgn:1b9e02cc-d46e-4816-bdbd-9daa05590173",
     "octgn:1ba09574-9d2a-4687-bd58-ca37ceadb023",
@@ -1900,6 +1902,7 @@
     "octgn:456329e9-c7c4-42ac-9edd-e769aea198ea",
     "octgn:4576db5c-fdc2-45f2-ac8b-d1edb8150678",
     "octgn:45c91742-29a2-4409-a7e5-1f6234d73908",
+    "octgn:45f8c9d9-4911-484b-b203-a55a32977af5",
     "octgn:460a1e18-8a57-44a5-bd06-f0c1b13c86b5",
     "octgn:460b83ed-986a-496b-9b38-627c77a836e9",
     "octgn:463d0c53-2275-410f-b311-139f19561b46",
@@ -2497,6 +2500,7 @@
     "octgn:5d811a82-3729-4b54-8748-e0abffd96e90",
     "octgn:5d8db3c0-31da-4981-af11-1da3c6585bd8",
     "octgn:5d991933-f49d-4ece-a288-7484ebc75d14",
+    "octgn:5da26e76-9e95-4129-aea1-a3460f7b2132",
     "octgn:5dbc4cec-84c9-420b-809f-088296eb4a62",
     "octgn:5ddb243e-ee43-45fd-b4c2-2b197fdf70a9",
     "octgn:5df1bf1c-8dc0-4534-9380-6af6812dc6f8",
@@ -2581,6 +2585,7 @@
     "octgn:68384cac-543c-4e62-9866-e066f2ad27f0",
     "octgn:6860f9ad-0f09-450a-adf9-6ebe9b872a49",
     "octgn:6860f9ad-0f09-450a-adf9-6ebe9b872a49:B",
+    "octgn:687a4018-2f4f-4c37-a8ad-c293bb8f2f04",
     "octgn:687ca930-b64c-4a5c-b6a3-bc3b12d8641d",
     "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d",
     "octgn:688d04e8-80d8-4ea8-9274-0712f26fac9b",
@@ -2906,6 +2911,7 @@
     "octgn:8830070b-b918-4b74-8dfb-dced3866e53b",
     "octgn:888e1fe6-2fc4-407d-8bb3-df2c020e1e24",
     "octgn:8893eba4-1f9c-4661-bfc2-bb485e023066",
+    "octgn:88a7e17c-4733-48c1-ad95-c2b01b8db5df",
     "octgn:88d4f08d-3f1b-4d3b-9f46-b896c9b662b0",
     "octgn:88d4f08d-3f1b-4d3b-9f46-b896c9b662b0.B",
     "octgn:88df7c56-ee11-48f0-b6a0-0486e0a8ce92",
@@ -3566,6 +3572,7 @@
     "octgn:c7e3bde9-8348-41d6-8272-aa733f60a108",
     "octgn:c7ef7b6e-4346-4b4c-a9fa-2b42e3c2ab5c",
     "octgn:c7f4c92b-e593-4c40-9ecb-64d8ab9c6368",
+    "octgn:c828d0d2-0d82-49c2-b18d-7a819ee103b2",
     "octgn:c82f8ccc-d017-48ec-a611-49a77469d45d",
     "octgn:c857d5a3-2b1f-4ef9-a5c7-2368ec28d15c",
     "octgn:c88d317b-d8b9-43ef-b41d-427ae4337f8d",
@@ -4065,6 +4072,7 @@
     "octgn:fab3e5a6-f889-41f6-9877-169127ac4cb9",
     "octgn:fab58a26-eaa6-4e6b-aa59-575bab8a2599",
     "octgn:fac30859-0ad6-4d07-8b73-b5e2af044a52",
+    "octgn:fae22b80-f5aa-43b3-81dd-6c24c8a44a0d",
     "octgn:faf4a518-7e63-4675-9337-8cc5095c5a91",
     "octgn:fafbd12c-b97e-41d8-a696-5c89566927ba",
     "octgn:fb0f51c6-c96e-44f1-9f67-1235eb2351dc",
@@ -5029,7 +5037,7 @@
     {
       "product": "the-treason-of-saruman-nightmare",
       "total": 25,
-      "scripted": 9,
+      "scripted": 17,
       "player": 0,
       "playerScripted": 0
     },
@@ -15402,7 +15410,7 @@
       "name": "Blooded Berserker",
       "type": "enemy",
       "pack": "The Treason of Saruman - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman-nightmare"
     },
     {
@@ -15946,7 +15954,7 @@
       "name": "Hornburg Wall",
       "type": "location",
       "pack": "The Treason of Saruman - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman-nightmare"
     },
     {
@@ -19578,7 +19586,7 @@
       "name": "Host of Isengard",
       "type": "enemy",
       "pack": "The Treason of Saruman - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman-nightmare"
     },
     {
@@ -24506,7 +24514,7 @@
       "name": "Rain of Arrows",
       "type": "treachery",
       "pack": "The Treason of Saruman - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman-nightmare"
     },
     {
@@ -25226,7 +25234,7 @@
       "name": "Helm's Deep",
       "type": "nightmare",
       "pack": "The Treason of Saruman - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman-nightmare"
     },
     {
@@ -28042,7 +28050,7 @@
       "name": "Glittering Caves",
       "type": "location",
       "pack": "The Treason of Saruman - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman-nightmare"
     },
     {
@@ -33738,7 +33746,7 @@
       "name": "Crippling Weariness",
       "type": "treachery",
       "pack": "The Treason of Saruman - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman-nightmare"
     },
     {
@@ -37946,7 +37954,7 @@
       "name": "Helm's Dike",
       "type": "location",
       "pack": "The Treason of Saruman - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman-nightmare"
     },
     {
@@ -39961,8 +39969,8 @@
       "id": "N0B.08",
       "name": "Helm's Deep (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "helms-deep",
+      "state": "scripted"
     },
     {
       "id": "N0B.09",

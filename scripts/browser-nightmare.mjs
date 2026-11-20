@@ -3525,6 +3525,90 @@ try {
       );
     }
     await checkpoint("uruk-wold-of-rohan", width);
+
+    // Helm's Deep in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-helms-deep").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "helms-deep");
+    assert.equal(s.nightmareMode, true);
+    {
+      const all = [
+        ...s.encounterDeck,
+        ...s.encounterDiscard,
+        ...s.staging.map((u) => u.code),
+        ...s.engaged.map((u) => u.code),
+      ];
+      assert.equal(
+        all.filter((c) => c === TOS.berserker).length,
+        4,
+        "the Nightmare Deck's 4 Bloodied Berserkers",
+      );
+      assert.ok(
+        !all.some((c) => card(c).name === "The Hornburg"),
+        "the setup card removes The Hornburgs",
+      );
+    }
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/removed the printed standard encounter cards/)
+      .waitFor();
+    await checkpoint("helm-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A Host of Isengard and a Bloodied Berserker beside a Hornburg Wall,
+    // Helm's Dike and Glittering Caves.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.staging = [
+        ...t.staging,
+        make(t, TOS.host),
+        make(t, TOS.berserker),
+        make(t, TOS.hornburgWall),
+        make(t, TOS.helmsDike),
+        make(t, TOS.caves),
+      ];
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [TOS.host, "Host of Isengard"],
+      [TOS.berserker, "Bloodied Berserker"],
+      [TOS.hornburgWall, "Hornburg Wall"],
+      [TOS.helmsDike, "Helm's Dike"],
+      [TOS.caves, "Glittering Caves"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    await checkpoint("helm-host-of-isengard", width);
     await view.c.close();
   }
   const p = await browser.newPage();

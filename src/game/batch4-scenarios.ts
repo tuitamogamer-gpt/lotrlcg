@@ -113,6 +113,7 @@ import { NIGHTMARE_CHETWOOD_HOOKS } from "./nightmare-chetwood";
 import { NIGHTMARE_WEATHER_HOOKS } from "./nightmare-weather";
 import { NIGHTMARE_DIKE_HOOKS } from "./nightmare-dike";
 import { NIGHTMARE_URUK_HOOKS } from "./nightmare-uruk";
+import { NIGHTMARE_HELM_HOOKS } from "./nightmare-helm";
 import { nightmareLive } from "./nightmare";
 
 const empty: Batch4ScenarioHooks = {};
@@ -175,6 +176,7 @@ const NIGHTMARE_LAYERS: Partial<Record<string, Batch4ScenarioHooks>> = {
   "the-weather-hills": NIGHTMARE_WEATHER_HOOKS,
   "deadmens-dike": NIGHTMARE_DIKE_HOOKS,
   "the-uruk-hai": NIGHTMARE_URUK_HOOKS,
+  "helms-deep": NIGHTMARE_HELM_HOOKS,
 };
 /**
  * The current scenario's hooks; in an Ered Mithrin campaign chapter from The
@@ -376,6 +378,7 @@ export const batch4SharedEffect = (effect: Effect) =>
     NIGHTMARE_WEATHER_HOOKS,
     NIGHTMARE_DIKE_HOOKS,
     NIGHTMARE_URUK_HOOKS,
+    NIGHTMARE_HELM_HOOKS,
     BLACK_SERPENT_HOOKS,
     CIRITH_GURAT_HOOKS,
     CROSSINGS_POROS_HOOKS,

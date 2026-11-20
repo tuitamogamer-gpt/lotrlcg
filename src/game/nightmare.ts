@@ -565,6 +565,15 @@ export const NIGHTMARE_TOS = {
   trail: "octgn:196e8d0a-70c6-49f9-b26c-2ed2b7d3ac87",
   command: "octgn:bd44e9b4-5226-4fb5-a300-dffc9b35f6d4",
   draught: "octgn:ea7a8cd4-6e75-4ea7-85d1-9f89a66c9d19",
+  /** Helm's Deep's setup card and Nightmare Deck. */
+  helmCard: "octgn:687a4018-2f4f-4c37-a8ad-c293bb8f2f04",
+  host: "octgn:45f8c9d9-4911-484b-b203-a55a32977af5",
+  berserker: "octgn:14531c46-aad5-4090-bb7d-2edf9f78e5ff",
+  helmsDike: "octgn:fae22b80-f5aa-43b3-81dd-6c24c8a44a0d",
+  hornburgWall: "octgn:1b66485b-7d01-47b6-8504-7fee5c2f2729",
+  caves: "octgn:88a7e17c-4733-48c1-ad95-c2b01b8db5df",
+  arrows: "octgn:5da26e76-9e95-4129-aea1-a3460f7b2132",
+  crippling: "octgn:c828d0d2-0d82-49c2-b18d-7a819ee103b2",
 } as const;
 
 interface NightmareDeck {
@@ -1117,6 +1126,18 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Unseen Barrier": 2,
     },
   },
+  "helms-deep": {
+    card: NIGHTMARE_TOS.helmCard,
+    removals: {
+      "Isengard Uruk": 1,
+      "Uruk-hai Fighter": 3,
+      "Wild Hillman": 3,
+      "The Hornburg": 3,
+      "Deeping Wall": 1,
+      "Postern Door": 2,
+      "Reckless Hate": 2,
+    },
+  },
   "deadmens-dike": {
     card: NIGHTMARE_TLR.dikeCard,
     removals: {
@@ -1566,6 +1587,10 @@ export function nightmareStatus(s: GameState): string[] {
       `The Weather Hills · Nightmare mode: each Captive Villager and Rearguard Ambusher was shuffled into the Orc deck; the players cannot win while a Captive Villager is guarded by an encounter card${guarded ? ` (${guarded} guarded now)` : ""}, and lose if one leaves play.`,
     ];
   }
+  if (s.scenarioId === "helms-deep")
+    return [
+      "Helm's Deep · Nightmare mode: the setup card removed the printed standard encounter cards and shuffled in its Nightmare Deck.",
+    ];
   if (s.scenarioId === "the-uruk-hai") {
     const aside = !!s.nightmare?.urukMauhur;
     return [

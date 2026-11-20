@@ -52,6 +52,8 @@ import {
   whiteHandTreachery,
 } from "./white-hand";
 import { UH } from "./uruk-hai-support";
+import { batch4Scenario } from "./batch4-scenarios";
+import { nightmareEncounterDecks, nightmareLive } from "./nightmare";
 export * from "./helms-deep-support";
 
 const TREACHERIES: readonly string[] = [
@@ -137,7 +139,17 @@ export function setupHelmsDeep(s: GameState) {
     r.cards
       .filter((c) => c.section === name)
       .flatMap((c) => Array<string>(c.quantity).fill(c.code));
-  s.encounterDeck = shuffle(s, section("sharedEncounterDeck"));
+  // Nightmare mode: the setup card's removals and Nightmare Deck.
+  s.encounterDeck = shuffle(
+    s,
+    nightmareLive(s)
+      ? nightmareEncounterDecks(
+          s.scenarioId,
+          [section("sharedEncounterDeck")],
+          () => 0,
+        )[0]
+      : section("sharedEncounterDeck"),
+  );
   // 1A: The Defense of Helm's Deep and a Deeping Wall are set aside, and a
   // Soldier of Isengard for each player; the other Soldiers and the Poisoned
   // Counsels wait for the players' choice.
@@ -1049,8 +1061,12 @@ export const HELMS_DEEP_HOOKS: Batch4ScenarioHooks = {
   // Archery X from the staging area; The Hornburg reduces it by 1 for each player.
   combatBegin: (s) => {
     if (!s.helmsDeep) return;
+    // (A layer's archery a card gains, such as Rain of Arrows', joins it.)
     let archery = s.staging.reduce(
-      (n, x) => n + (x.blanked ? 0 : whiteHandArchery(x.code)),
+      (n, x) =>
+        n +
+        (x.blanked ? 0 : whiteHandArchery(x.code)) +
+        (batch4Scenario(s).unitArchery?.(s, x) ?? 0),
       0,
     );
     if (activeIs(s, HD.hornburg)) archery = Math.max(0, archery - players(s));
