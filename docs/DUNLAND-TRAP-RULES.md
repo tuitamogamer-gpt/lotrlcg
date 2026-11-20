@@ -36,4 +36,4 @@ Simultaneous draw reactions join the existing first-player ordering window for T
 - `scripts/browser-dunland-trap.mjs`: actual menu and table controls at 1280/390/320 pixels; pending choices resumed from saves, all three quest faces, setup, draws, trap, travel, Conditions, final combat, victory/loss and four-player easy mode. All seventeen original faces are decoded locally.
 - Additive SQL migration `202610070005_dunland_trap_choices.sql` admits the scenario in saved account choices; local PGlite checks preserve existing ownership policies. Hosted Supabase migration requires the project's configured database access, which is not present in this workspace.
 
-Nightmare and campaign recipes remain reference-only for this quest.
+Its Nightmare version follows [its Nightmare Deck](NIGHTMARE.md) (the setup card's removals and its cards, whose draw reactions join this quest's own order); its campaign recipe remains reference-only.

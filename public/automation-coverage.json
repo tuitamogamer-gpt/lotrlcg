@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2600,
+    "encounterCards": 2608,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3822,
-    "pending": 361
+    "scripted": 3830,
+    "pending": 353
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 306
+    "scripted": 307
   },
   "registeredCodes": [
     "01001",
@@ -1734,6 +1734,7 @@
     "octgn:35055e3e-d806-4c21-ad37-8177d70be329",
     "octgn:351afed2-188b-42d4-9b3a-bccb510ae7d2",
     "octgn:35376ae0-c807-4c16-8f4d-e14d36aec142",
+    "octgn:354f9e8d-aa47-4493-a697-b59f0bd178ea",
     "octgn:3551cf11-1670-46de-b404-7b8fd20d3aff",
     "octgn:35617e02-f4ad-4e6d-af45-9b5e0b7ce682",
     "octgn:3566b6df-a1cd-4417-b202-27e0ecc0a966",
@@ -2766,6 +2767,7 @@
     "octgn:8174f1b9-6fd0-4eeb-971d-98b2d7a4eaf4",
     "octgn:81779961-8776-4c1d-953d-ed7bf1324fbf",
     "octgn:818e2f2f-4070-4056-85bd-5e729ccbad30",
+    "octgn:81907a30-abb2-44de-b3be-eb44e43977d8",
     "octgn:81b31016-bcc3-4445-8f4d-64187e99aff3",
     "octgn:81de0a94-a871-42af-8497-d66b900c9620",
     "octgn:81e81787-13b1-4bbf-a9ef-b8516deebbbc",
@@ -3226,6 +3228,7 @@
     "octgn:b35ad07f-7862-4479-bc04-7dcf76e7cbc5",
     "octgn:b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8",
     "octgn:b41e6b34-4d6a-47de-9b07-b039013efbc5",
+    "octgn:b42cd34e-7eb6-4163-8ef6-4a2f66f45439",
     "octgn:b446fa27-d5f8-40e0-8985-fe15478cd79b",
     "octgn:b4543d6e-168b-4ac6-ae65-022e13ce4098",
     "octgn:b4769083-91fb-4e9c-9736-17e8c28ff971",
@@ -3821,6 +3824,7 @@
     "octgn:ef975c81-544a-4f1b-a3c4-d0bc42ef636c",
     "octgn:ef990329-db00-441a-8c7d-8b464321f093",
     "octgn:ef9c63c3-08f3-4e8a-9156-3887df213550",
+    "octgn:efb4a7ca-6892-43e8-9de4-ab8d2ffc7cdc",
     "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
     "octgn:efd4cef9-ce8b-4985-8825-853ba98baa2b",
     "octgn:efdbe76c-5b41-4f28-a390-a72ec784e5a3",
@@ -3855,6 +3859,7 @@
     "octgn:f2a34148-f5af-4a16-a1ae-953ea5d5482f",
     "octgn:f2bb7a4e-eca9-4889-b908-1da95fbb089f",
     "octgn:f2c22e9a-c3f6-450c-b891-98e0e5c18b6c",
+    "octgn:f2f7e1d5-9be6-4a8a-bb46-50ae4da2cb16",
     "octgn:f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695",
     "octgn:f330efb5-6263-48a1-9f08-0911f214bd96",
     "octgn:f35e7236-2e03-4e03-aa92-7c4803e79acf",
@@ -3882,6 +3887,7 @@
     "octgn:f5ba58db-76fc-497e-b0d7-0382c0b9c0c0",
     "octgn:f5c7c8e0-3616-4919-9761-85ab5440956d",
     "octgn:f5d539b2-0b65-493d-8493-5122a0761eed",
+    "octgn:f5f06bf8-82ae-437f-95e9-1d67312a78f2",
     "octgn:f60662b4-ebfe-4b89-9d1e-124976e6c5b7",
     "octgn:f607e8d7-ca95-4f83-80b9-a07726d38f65",
     "octgn:f631b06f-1f0c-45aa-b5af-c4f9b9a41455",
@@ -3993,6 +3999,7 @@
     "octgn:fe419fec-bc64-493c-aa23-fa3e62c57768",
     "octgn:fe580179-8f51-463e-a235-bde0f7b783d7",
     "octgn:fe7448a2-e2e2-4e81-95f4-2ac585160433",
+    "octgn:fea90493-29cd-4668-9e3b-eb3150cdc339",
     "octgn:fed61900-b526-41e6-b072-9c5eae29bc77",
     "octgn:ff0bc03a-e47d-4917-bf27-a0b97bc292ca",
     "octgn:ff23f4ed-4fc9-4835-91f1-16e8ab0870f0",
@@ -4002,6 +4009,7 @@
     "octgn:ff79510f-a6c3-4357-a582-853e5bb3e2bc",
     "octgn:ff815834-bf79-4914-8057-903f834190f1",
     "octgn:ffb334eb-991d-4615-93ce-b2215a02d74f",
+    "octgn:ffbf96c9-ee9f-4462-b1c5-1acf8609015a",
     "octgn:ffc5f529-5d18-4870-970b-7503c176f56b",
     "octgn:ffd2cfe7-e5fc-4f47-b85e-19e8b2df5171",
     "octgn:ffe307bf-dd8e-4df3-9355-55564137d311",
@@ -4577,7 +4585,7 @@
     {
       "product": "the-dunland-trap-nightmare",
       "total": 8,
-      "scripted": 0,
+      "scripted": 8,
       "player": 0,
       "playerScripted": 0
     },
@@ -18193,7 +18201,7 @@
       "name": "Boar Clan Skirmisher",
       "type": "enemy",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dunland-trap-nightmare"
     },
     {
@@ -27289,7 +27297,7 @@
       "name": "Stalked by Dunlendings",
       "type": "treachery",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dunland-trap-nightmare"
     },
     {
@@ -31441,7 +31449,7 @@
       "name": "The Dunland Trap",
       "type": "nightmare",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dunland-trap-nightmare"
     },
     {
@@ -36793,7 +36801,7 @@
       "name": "Plains of Dunland",
       "type": "location",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dunland-trap-nightmare"
     },
     {
@@ -37105,7 +37113,7 @@
       "name": "Munuv Dûv River",
       "type": "location",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dunland-trap-nightmare"
     },
     {
@@ -37345,7 +37353,7 @@
       "name": "Boar Clan Ambusher",
       "type": "enemy",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dunland-trap-nightmare"
     },
     {
@@ -38337,7 +38345,7 @@
       "name": "Boar Clan Assault",
       "type": "treachery",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dunland-trap-nightmare"
     },
     {
@@ -38417,7 +38425,7 @@
       "name": "Hithaeglir Woods",
       "type": "location",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dunland-trap-nightmare"
     },
     {
@@ -39565,8 +39573,8 @@
       "id": "N04.4",
       "name": "The Dunland Trap (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-dunland-trap",
+      "state": "scripted"
     },
     {
       "id": "N04.5",

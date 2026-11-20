@@ -2993,6 +2993,10 @@ export function composeEredPool(
       h.questProgressRemoved?.(s, amount);
       p.questProgressRemoved?.(s, amount);
     },
+    cardsDrawnForced: (s, player) => [
+      ...(h.cardsDrawnForced?.(s, player) ?? []),
+      ...(p.cardsDrawnForced?.(s, player) ?? []),
+    ],
     cardsDrawn: (s, player, count, cardEffect) => {
       h.cardsDrawn?.(s, player, count, cardEffect);
       p.cardsDrawn?.(s, player, count, cardEffect);

@@ -198,7 +198,11 @@ export function fordsTravelEntered(s: GameState, u: Unit) {
     );
 }
 export function fordsCardsDrawn(s: GameState, player = activeSeat(s)) {
-  const effects: Effect[] = dunlandDrawEffects(s, player);
+  const effects: Effect[] = [
+    ...dunlandDrawEffects(s, player),
+    // A Nightmare Deck's draw reactions join the scenario's in one order.
+    ...(batch4Scenario(s).cardsDrawnForced?.(s, player) ?? []),
+  ];
   for (const u of enemies(s)) {
     if (u.blanked) continue;
     if (u.code === F.tribesman)

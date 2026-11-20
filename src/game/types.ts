@@ -599,7 +599,8 @@ export interface GameState {
     import("./nightmare-bofa").NightmareBofaState &
     import("./nightmare-fords").NightmareFordsState &
     import("./nightmare-catch").NightmareCatchState &
-    import("./nightmare-fangorn").NightmareFangornState;
+    import("./nightmare-fangorn").NightmareFangornState &
+    import("./nightmare-dunland").NightmareDunlandState;
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;
@@ -1249,6 +1250,8 @@ export interface GameState {
     nmClearOnKill?: number;
     /** Fangorn's Anger's shadow (Into Fangorn's Nightmare Deck): after this attack the attacker engages the player whose hero holds Mugash. */
     nmEngageCarrier?: number;
+    /** Boar Clan Ambusher and its shadow (The Dunland Trap's Nightmare Deck): random hand discards if this attack destroys a character. */
+    nmHandDiscardOnKill?: number;
     defenderIds?: string[];
     ignoreDefense?: boolean;
     returnToStaging?: boolean;

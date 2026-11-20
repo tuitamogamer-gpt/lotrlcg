@@ -97,6 +97,11 @@ export interface Batch4ScenarioHooks {
   cannotDefeatStage?(s: GameState, stage: number): boolean;
   /** After progress is removed from the current quest (Into Fangorn's Nightmare Tangled Forest). */
   questProgressRemoved?(s: GameState, amount: number): void;
+  /**
+   * Forced effects after a player draws any number of cards, ordered with the
+   * scenario's own draw reactions (The Dunland Trap's Nightmare Deck).
+   */
+  cardsDrawnForced?(s: GameState, player: number): Effect[];
   /** After a player fails a burgle attempt (The Lonely Mountain). */
   burgleFailed?(s: GameState): void;
   /**

@@ -15,6 +15,7 @@ import {
   NIGHTMARE_OHUH as OHUH,
   NIGHTMARE_OTD as OTD,
   NIGHTMARE_VOI as VOI,
+  NIGHTMARE_RINGMAKER as RM,
   NIGHTMARE_SOM as G,
 } from "../src/game/nightmare.ts";
 import { KHAZAD } from "../src/game/khazad-dum.ts";
@@ -2346,6 +2347,57 @@ try {
       "Entwood's face loads",
     );
     await checkpoint("fangorn-entwood", width);
+
+    // The Dunland Trap in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-the-dunland-trap").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "the-dunland-trap");
+    assert.equal(s.nightmareMode, true);
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/removed the printed standard encounter cards/)
+      .waitFor();
+    await checkpoint("dunland-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A Plains of Dunland beside a Munuv Dûv River in the staging area.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.staging = [...t.staging, make(t, RM.plains), make(t, RM.river)];
+      s = await load(page, t);
+    }
+    const plainsFace = page
+      .locator(`img[src*="${RM.plains.slice("octgn:".length)}"]`)
+      .first();
+    await plainsFace.waitFor();
+    assert.ok(
+      (await plainsFace.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "Plains of Dunland's face loads",
+    );
+    await checkpoint("dunland-plains", width);
     await view.c.close();
   }
   const p = await browser.newPage();

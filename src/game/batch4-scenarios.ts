@@ -97,6 +97,7 @@ import { NIGHTMARE_BOFA_HOOKS } from "./nightmare-bofa";
 import { NIGHTMARE_FORDS_HOOKS } from "./nightmare-fords";
 import { NIGHTMARE_CATCH_HOOKS } from "./nightmare-catch";
 import { NIGHTMARE_FANGORN_HOOKS } from "./nightmare-fangorn";
+import { NIGHTMARE_DUNLAND_HOOKS } from "./nightmare-dunland";
 import { nightmareLive } from "./nightmare";
 
 const empty: Batch4ScenarioHooks = {};
@@ -143,6 +144,7 @@ const NIGHTMARE_LAYERS: Partial<Record<string, Batch4ScenarioHooks>> = {
   "fords-of-isen": NIGHTMARE_FORDS_HOOKS,
   "to-catch-an-orc": NIGHTMARE_CATCH_HOOKS,
   "into-fangorn": NIGHTMARE_FANGORN_HOOKS,
+  "the-dunland-trap": NIGHTMARE_DUNLAND_HOOKS,
 };
 /**
  * The current scenario's hooks; in an Ered Mithrin campaign chapter from The
@@ -328,6 +330,7 @@ export const batch4SharedEffect = (effect: Effect) =>
     NIGHTMARE_FORDS_HOOKS,
     NIGHTMARE_CATCH_HOOKS,
     NIGHTMARE_FANGORN_HOOKS,
+    NIGHTMARE_DUNLAND_HOOKS,
     BLACK_SERPENT_HOOKS,
     CIRITH_GURAT_HOOKS,
     CROSSINGS_POROS_HOOKS,

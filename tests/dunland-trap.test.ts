@@ -124,8 +124,15 @@ test("Dunland imports fourteen designs, seventeen local faces and exact 45/34 ph
     automatedScenarioId({ name: "The Dunland Trap (Easy)", mode: "easy" }),
     "the-dunland-trap",
   );
-  for (const mode of ["nightmare", "campaign"])
-    assert.equal(automatedScenarioId({ name: "The Dunland Trap", mode }), null);
+  // Its Nightmare recipe plays through the Nightmare layer (tests/nightmare-dunland.test.ts).
+  assert.equal(
+    automatedScenarioId({ name: "The Dunland Trap", mode: "nightmare" }),
+    "the-dunland-trap",
+  );
+  assert.equal(
+    automatedScenarioId({ name: "The Dunland Trap", mode: "campaign" }),
+    null,
+  );
 });
 for (const players of [1, 2, 3, 4])
   for (const easy of [false, true])

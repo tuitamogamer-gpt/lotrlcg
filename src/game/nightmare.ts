@@ -358,6 +358,18 @@ export const NIGHTMARE_VOI = {
   stifling: "octgn:edc600d3-b128-45a9-9f15-9a651901a90a",
   anger: "octgn:a753e0fd-510a-40e2-8a87-ed306f156358",
 } as const;
+/** The Ring-maker Nightmare Decks' cards (OCTGN ids, as DragnCards keeps them). */
+export const NIGHTMARE_RINGMAKER = {
+  /** The Dunland Trap's setup card and Nightmare Deck (printed removals only). */
+  dunlandCard: "octgn:b42cd34e-7eb6-4163-8ef6-4a2f66f45439",
+  ambusher: "octgn:f5f06bf8-82ae-437f-95e9-1d67312a78f2",
+  skirmisher: "octgn:354f9e8d-aa47-4493-a697-b59f0bd178ea",
+  plains: "octgn:efb4a7ca-6892-43e8-9de4-ab8d2ffc7cdc",
+  river: "octgn:f2f7e1d5-9be6-4a8a-bb46-50ae4da2cb16",
+  woods: "octgn:ffbf96c9-ee9f-4462-b1c5-1acf8609015a",
+  assault: "octgn:fea90493-29cd-4668-9e3b-eb3150cdc339",
+  stalked: "octgn:81907a30-abb2-44de-b3be-eb44e43977d8",
+} as const;
 /** Over the Misty Mountains Grim's Nightmare cards with The Great Goblin's encounter set icon: they join the second (Goblin) encounter deck. */
 export const NIGHTMARE_OMM_GOBLIN_DECK: readonly string[] = [
   NIGHTMARE_OHUH.greatGoblin,
@@ -811,6 +823,17 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "The King's Road": 2,
     },
   },
+  "the-dunland-trap": {
+    card: NIGHTMARE_RINGMAKER.dunlandCard,
+    removals: {
+      "Boar Clan Warrior": 4,
+      "Hithaeglir Stream": 4,
+      "Plains of Enedwaith": 3,
+      "Dunlending Ambush": 1,
+      "Frenzied Attack": 1,
+      "Low on Provisions": 1,
+    },
+  },
   "into-fangorn": {
     card: NIGHTMARE_VOI.fangornCard,
     removals: {
@@ -1180,6 +1203,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "fords-of-isen")
     return [
       "The Fords of Isen · Nightmare mode: after the players advance to a new quest stage, each player with fewer than 3 cards in hand draws 3 cards.",
+    ];
+  if (s.scenarioId === "the-dunland-trap")
+    return [
+      "The Dunland Trap · Nightmare mode: the setup card removed the printed standard encounter cards and shuffled in its Nightmare Deck.",
     ];
   if (s.scenarioId === "into-fangorn") {
     const edge = (s.victoryCards ?? []).some(
