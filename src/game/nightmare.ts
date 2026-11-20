@@ -631,6 +631,18 @@ export const NIGHTMARE_AA = {
   antechamber: "octgn:0377297f-ce7d-47ce-9166-29f5872d5c97",
   /** The Decipher Ancient Texts encounter set's card. */
   drain: "octgn:6e38a878-8211-4bbc-ba7c-ed460874fd67",
+  /** The Battle of Carn Dûm's setup card (the Siege keyword) and Nightmare Deck. */
+  carnCard: "octgn:9cb0fd46-5ff4-4286-9843-f598723bc51b",
+  orcWight: "octgn:5273452f-2d35-4a1c-91db-5bde684ed4a7",
+  elite: "octgn:6008ab23-bedb-4501-aa1a-35bc555f905b",
+  tower: "octgn:c5f58852-7f2a-4828-bd59-0b20c3059c40",
+  gates: "octgn:cb77d46f-e8af-42f0-9619-da6e077ade04",
+  decay: "octgn:40886c6a-0960-443b-8562-05b8fec9d34a",
+  howling: "octgn:0bc8f9e4-7eac-4ac6-ae91-f5ba5d5052aa",
+  blackMare: "octgn:8d99a2be-18d6-4bfb-85ab-7be54a18e6b7",
+  flanks: "octgn:cde8957d-c9c8-4dab-a38f-7fa262247092",
+  rally: "octgn:e2c4a5fe-dc9d-481b-b46b-91613e62d250",
+  sever: "octgn:fa377dbc-a99e-4554-8c99-51835697ff8a",
 } as const;
 
 interface NightmareDeck {
@@ -1255,6 +1267,22 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Cursed Dead": 5,
     },
   },
+  "the-battle-of-carn-dum": {
+    card: NIGHTMARE_AA.carnCard,
+    removals: {
+      "Vile Affliction": 1,
+      "Furious Charge": 1,
+      "Orc Ambush": 1,
+      "Angmar Orc": 1,
+      "Angmar Marauder": 3,
+      "Terror of the North": 3,
+      "Accursed Battlefield": 2,
+      "Blight of Carn Dûm": 1,
+    },
+    // The scenario's own sets (its cards' set is spelled without the accent);
+    // its setup rebuilds the deck from its recipe and applies the removals.
+    sets: ["The Battle of Carn Dum", "Angmar Orcs", "Dark Sorcery"],
+  },
   "deadmens-dike": {
     card: NIGHTMARE_TLR.dikeCard,
     removals: {
@@ -1736,6 +1764,10 @@ export function nightmareStatus(s: GameState): string[] {
       `The Treachery of Rhudaur · Nightmare mode: the Sift through the Debris, Decipher Ancient Texts and Quiet the Spirits encounter sets are set aside (${aside} cards); as stage 2B begins, the set of each side quest that was not defeated is shuffled into the encounter deck with its discard pile.`,
     ];
   }
+  if (s.scenarioId === "the-battle-of-carn-dum")
+    return [
+      "The Battle of Carn Dûm · Nightmare mode: characters committed to a quest with the siege keyword count their [defense] instead of their [willpower], against the staging area's [threat].",
+    ];
   if (s.scenarioId === "deadmens-dike") {
     const under = (s.nightmare?.dikeCourage ?? []).reduce(
       (n, c) => n + c.cards.length,

@@ -48,6 +48,7 @@ import { foundationsPlayerCardDiscarded } from "./foundations-player-cards";
 import { dwarfDeckDiscarded } from "./dwarf-player-cards";
 import { heirsShadowDealt } from "./heirs-numenor";
 import { CARN as C, CARN_RECIPES } from "./carn-dum-support";
+import { nightmareEncounterDeck, nightmareLive } from "./nightmare";
 
 type CarnCombat = NonNullable<GameState["combat"]> & {
   carnFlipAfter?: number;
@@ -94,6 +95,9 @@ export function setupCarnDum(s: GameState) {
   s.encounterDeck = recipe.cards
     .filter((r) => r.section === "sharedEncounterDeck")
     .flatMap((r) => Array<string>(r.quantity).fill(r.code));
+  // Nightmare mode: the setup card's removals and its Nightmare Deck.
+  if (nightmareLive(s))
+    s.encounterDeck = nightmareEncounterDeck(s.scenarioId, s.encounterDeck);
   s.carnDum = {
     initialized: false,
     furiousRound: -1,

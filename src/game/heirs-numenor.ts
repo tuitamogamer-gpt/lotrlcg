@@ -460,9 +460,14 @@ export function heirsCheck(s: GameState) {
     c.committed = !c.blanked;
   for (const u of enemies(s).filter(heirsCannotHaveAttachments))
     for (const a of [...u.attachments])
-      // The Angmar Awakened campaign attaches Thaurdir's burdens to him, and
-      // The Treachery of Rhudaur's Nightmare Deck its Life Drain.
-      if (!THAURDIR_BURDENS.includes(a.code) && a.code !== NIGHTMARE_AA.drain)
+      // The Angmar Awakened campaign attaches Thaurdir's burdens to him, The
+      // Treachery of Rhudaur's Nightmare Deck its Life Drain and The Battle
+      // of Carn Dûm's its Black Mare.
+      if (
+        !THAURDIR_BURDENS.includes(a.code) &&
+        a.code !== NIGHTMARE_AA.drain &&
+        a.code !== NIGHTMARE_AA.blackMare
+      )
         discardAttachment(s, u, a, true);
   for (const u of battlegrounds(s)) {
     const maximum =

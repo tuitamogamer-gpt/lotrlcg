@@ -4068,6 +4068,90 @@ try {
       );
     }
     await checkpoint("rhudaur-courtyard", width);
+    // The Battle of Carn Dûm in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-the-battle-of-carn-dum").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "the-battle-of-carn-dum");
+    assert.equal(s.nightmareMode, true);
+    {
+      const inDeck = (code) => s.encounterDeck.filter((c) => c === code).length;
+      assert.deepEqual(
+        [AA.orcWight, AA.elite, AA.tower, AA.gates, AA.decay].map(inDeck),
+        [3, 2, 3, 2, 3],
+        "the Nightmare Deck is in the encounter deck",
+      );
+      assert.equal(
+        s.encounterDeck.filter((c) => card(c).name === "Terror of the North")
+          .length,
+        0,
+        "the setup card removes Terror of the North",
+      );
+      assert.ok(s.staging.some((u) => card(u.code).name === "Thaurdir"));
+    }
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/a quest with the siege keyword|siege keyword count/)
+      .waitFor();
+    await checkpoint("carn-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // Its enemies, locations and side quests.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const wight = make(t, AA.orcWight);
+      wight.owner = 0;
+      t.engaged = [...t.engaged, wight];
+      t.staging = [
+        ...t.staging,
+        make(t, AA.elite),
+        make(t, AA.tower),
+        make(t, AA.gates),
+        make(t, AA.flanks),
+        make(t, AA.sever),
+      ];
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [AA.orcWight, "Orc Wight"],
+      [AA.elite, "Thaurdir's Elite"],
+      [AA.tower, "Stronghold Tower"],
+      [AA.gates, "Gates of Carn Dûm"],
+      [AA.flanks, "Protect the Flanks"],
+      [AA.sever, "Sever the Head"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    await checkpoint("carn-stronghold", width);
     await view.c.close();
   }
   const p = await browser.newPage();

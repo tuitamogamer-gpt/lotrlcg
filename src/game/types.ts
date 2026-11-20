@@ -617,7 +617,8 @@ export interface GameState {
     import("./nightmare-isengard").NightmareIsengardState &
     import("./nightmare-gram").NightmareGramState &
     import("./nightmare-ettenmoors").NightmareEttenState &
-    import("./nightmare-rhudaur").NightmareRhudaurState;
+    import("./nightmare-rhudaur").NightmareRhudaurState &
+    import("./nightmare-carn").NightmareCarnState;
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;
@@ -1291,6 +1292,8 @@ export interface GameState {
     nmUndeadHealOnKill?: number;
     /** Life Drain's shadow (The Treachery of Rhudaur's Nightmare Deck): copies that attach to Thaurdir if this attack destroys a character. */
     nmLifeDrain?: number;
+    /** Orc Wight's shadow (The Battle of Carn Dûm's Nightmare Deck): the attacker returns to the staging area after this attack. */
+    nmReturnAfter?: number;
     defenderIds?: string[];
     ignoreDefense?: boolean;
     returnToStaging?: boolean;

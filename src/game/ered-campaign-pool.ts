@@ -2843,6 +2843,8 @@ export function composeEredPool(
     },
     cannotGainResources: (s, u) =>
       !!h.cannotGainResources?.(s, u) || !!p.cannotGainResources?.(s, u),
+    shadowImmune: (s, enemy) =>
+      !!h.shadowImmune?.(s, enemy) || !!p.shadowImmune?.(s, enemy),
     beforeNormalDefense: (s, enemy, ids) =>
       !!h.beforeNormalDefense?.(s, enemy, ids) ||
       !!p.beforeNormalDefense?.(s, enemy, ids),

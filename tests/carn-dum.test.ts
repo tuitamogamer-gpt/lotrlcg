@@ -114,9 +114,10 @@ test("Carn Dûm registers every original runtime card and corrects catalog error
   assert.doesNotMatch(card(C.thaurdir).text!, /Immune to player card effects/);
   for (const r of CARN_RECIPES)
     assert.equal(automatedScenarioId(r), "the-battle-of-carn-dum");
+  // Its Nightmare Deck is supported (docs/NIGHTMARE.md).
   assert.equal(
     automatedScenarioId({ name: "The Battle of Carn Dûm", mode: "nightmare" }),
-    null,
+    "the-battle-of-carn-dum",
   );
 });
 

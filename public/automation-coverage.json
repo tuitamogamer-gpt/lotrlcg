@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2790,
+    "encounterCards": 2801,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 4012,
-    "pending": 171
+    "scripted": 4023,
+    "pending": 160
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 328
+    "scripted": 329
   },
   "registeredCodes": [
     "01001",
@@ -1336,6 +1336,7 @@
     "octgn:0b3a7155-be2d-4fed-9674-bc696662372f",
     "octgn:0b6022c0-c46c-411f-90b3-b6ad267ebb8e",
     "octgn:0bb77cd5-0340-4411-9e1f-997b1d6cb35a",
+    "octgn:0bc8f9e4-7eac-4ac6-ae91-f5ba5d5052aa",
     "octgn:0bd34136-ae3d-44aa-b48f-7190c14f4b3b",
     "octgn:0c0f7215-3a7f-489c-9edc-4fd5b896e635",
     "octgn:0c0fdef7-f55a-4bcf-91f9-317cd7a00777",
@@ -1866,6 +1867,7 @@
     "octgn:40299169-8b0f-4462-ae58-03db71c0970f",
     "octgn:408148e1-3391-4734-aeac-3e3a7b69c1c1",
     "octgn:408752c0-cee3-41ba-86c2-d01085546cef",
+    "octgn:40886c6a-0960-443b-8562-05b8fec9d34a",
     "octgn:40956aef-c093-489d-b74a-24502705c6bb",
     "octgn:409bc89e-b5af-4626-ade6-60bcfcb290b7",
     "octgn:40bcc7a9-044e-44b6-83d2-6e09294c19c3",
@@ -2407,6 +2409,7 @@
     "octgn:52248807-32d1-422b-b4b2-01097405e49f",
     "octgn:522c612d-5f3c-4a02-a1a7-7d87191922e0",
     "octgn:526faef8-5db5-48ab-ab22-109916e9fda7",
+    "octgn:5273452f-2d35-4a1c-91db-5bde684ed4a7",
     "octgn:52754c5f-30b8-4d55-b9c2-5dfa8020ead3",
     "octgn:5277b186-0c76-4ec6-9615-20cdceb49241",
     "octgn:528afc17-e78f-4b02-8080-e936955a77b9",
@@ -2535,6 +2538,7 @@
     "octgn:5fd6638a-3135-460f-bf5e-b3cb0128f939",
     "octgn:5fefdbc7-05e2-4c1b-96fd-46121f87d6b3",
     "octgn:60057e26-14f3-468c-ba70-4b14aea7d49a",
+    "octgn:6008ab23-bedb-4501-aa1a-35bc555f905b",
     "octgn:6036efda-3456-45d2-817a-4ef8b310db5a",
     "octgn:60546e25-329e-4846-852d-65c1a6ee6c5c",
     "octgn:607c3e44-5add-4c80-bb3b-55b016b6cd0e",
@@ -2987,6 +2991,7 @@
     "octgn:8d3c19e0-28f2-4a3d-91b2-8e9911ac4c91",
     "octgn:8d55b746-417d-4996-b69b-01c80a7e4602",
     "octgn:8d61982f-acf9-4b03-969f-6e75688ee1fd",
+    "octgn:8d99a2be-18d6-4bfb-85ab-7be54a18e6b7",
     "octgn:8da00775-fb2b-4abe-bde9-39ecce643d5d",
     "octgn:8dad9a85-eae9-4a39-a823-1c58d8c0f86b",
     "octgn:8db8a9b7-402f-40fe-943e-8a3e58662b38",
@@ -3132,6 +3137,7 @@
     "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b:B",
     "octgn:9c6c003c-b9c7-4240-9e59-414d31b4be3c",
     "octgn:9c81c18a-b143-48ae-a22c-821f52efc229",
+    "octgn:9cb0fd46-5ff4-4286-9843-f598723bc51b",
     "octgn:9cb47ff2-5dff-404f-8fed-6ec0b6478ded",
     "octgn:9ccd6851-ec1e-4d47-9e8d-486365c261e2",
     "octgn:9ce09230-e009-465f-9125-725f31c653b9",
@@ -3580,6 +3586,7 @@
     "octgn:c5d9d3c6-9321-4909-918d-2b81d7aa296d",
     "octgn:c5e24012-cbaf-40aa-b4af-28d3464e72a7",
     "octgn:c5e9ef20-a88f-40fb-861f-c44de8e12bd9",
+    "octgn:c5f58852-7f2a-4828-bd59-0b20c3059c40",
     "octgn:c60642b2-4ce3-42e8-8cb5-41c9ac9251fb",
     "octgn:c616d30d-9242-401b-b386-4fe0660dc97b",
     "octgn:c6204e5d-7020-4360-b2ad-7db4edcc7303",
@@ -3641,6 +3648,7 @@
     "octgn:cb3ca114-400e-4abf-87e6-124b75e92cb4:B",
     "octgn:cb628fb0-b66a-49b0-8063-12dd39f564ce",
     "octgn:cb64fac2-c5ea-4233-86ed-90e30181a520",
+    "octgn:cb77d46f-e8af-42f0-9619-da6e077ade04",
     "octgn:cbbc2de7-c8ab-4c7b-8b83-8d29debf1696",
     "octgn:cbbcf9d4-f9d8-448a-9454-3e36c493a31e",
     "octgn:cbf2984f-cfb8-4cc3-9d5c-fdadd4201451",
@@ -3653,6 +3661,7 @@
     "octgn:cd628acc-acdf-48c5-a9cc-136eb9bc3095",
     "octgn:cd883a3f-65b8-473e-97f7-b8ac12f91194",
     "octgn:cd974fa4-7f3a-4b46-b2d0-b99d086fe98a",
+    "octgn:cde8957d-c9c8-4dab-a38f-7fa262247092",
     "octgn:cdeea6e4-3167-4b43-bbf9-47d33e61fd6d",
     "octgn:cdf7a6c5-23f6-4314-a122-3b7df1b97501",
     "octgn:cdf8dee9-b2ac-4e5f-bf4c-0b9c15cac142",
@@ -3832,6 +3841,7 @@
     "octgn:e2bbbc36-80aa-479e-955a-21d723fdc9da",
     "octgn:e2bbbc36-80aa-479e-955a-21d723fdc9da.B",
     "octgn:e2c02f11-fdfb-402b-89de-1729d1364e4c",
+    "octgn:e2c4a5fe-dc9d-481b-b46b-91613e62d250",
     "octgn:e2e8fe14-f019-4fd9-af2c-81f1a4282660",
     "octgn:e2f901ad-f5bc-4d29-b6c3-50c261e5668a",
     "octgn:e30cfc82-bbb0-42f9-b25c-bc2152445368",
@@ -4104,6 +4114,7 @@
     "octgn:f9e9bc93-8044-474c-8f80-d3787edbca5f",
     "octgn:fa005422-98d7-4350-b080-b5fe31fce9b0",
     "octgn:fa005ccd-cf35-4d49-8259-23f3c8035954",
+    "octgn:fa377dbc-a99e-4554-8c99-51835697ff8a",
     "octgn:fa3a740d-36b7-4fa9-b5d5-6d70aa50f078",
     "octgn:fa4aaa97-c06d-42d5-b796-2f6200d9a404",
     "octgn:fa4ccbb8-76d4-4293-aa94-d117b14f042e",
@@ -4613,7 +4624,7 @@
     {
       "product": "the-battle-of-carn-dum-nightmare",
       "total": 11,
-      "scripted": 0,
+      "scripted": 11,
       "player": 0,
       "playerScripted": 0
     },
@@ -14791,7 +14802,7 @@
       "name": "Howling of Wargs",
       "type": "treachery",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-carn-dum-nightmare"
     },
     {
@@ -19239,7 +19250,7 @@
       "name": "Death and Decay",
       "type": "treachery",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-carn-dum-nightmare"
     },
     {
@@ -23671,7 +23682,7 @@
       "name": "Orc Wight",
       "type": "enemy",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-carn-dum-nightmare"
     },
     {
@@ -24759,7 +24770,7 @@
       "name": "Thaurdir's Elite",
       "type": "enemy",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-carn-dum-nightmare"
     },
     {
@@ -28583,7 +28594,7 @@
       "name": "Black Mare",
       "type": "treachery",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-carn-dum-nightmare"
     },
     {
@@ -29751,7 +29762,7 @@
       "name": "The Battle of Carn Dûm",
       "type": "nightmare",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-carn-dum-nightmare"
     },
     {
@@ -33551,7 +33562,7 @@
       "name": "Stronghold Tower",
       "type": "location",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-carn-dum-nightmare"
     },
     {
@@ -34055,7 +34066,7 @@
       "name": "Gates of Carn Dûm",
       "type": "location",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-carn-dum-nightmare"
     },
     {
@@ -34167,7 +34178,7 @@
       "name": "Protect the Flanks",
       "type": "encounter-side-quest",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-carn-dum-nightmare"
     },
     {
@@ -35695,7 +35706,7 @@
       "name": "Rally the Fighters",
       "type": "encounter-side-quest",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-carn-dum-nightmare"
     },
     {
@@ -37895,7 +37906,7 @@
       "name": "Sever the Head",
       "type": "encounter-side-quest",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-carn-dum-nightmare"
     },
     {
@@ -39846,8 +39857,8 @@
       "id": "N05.8",
       "name": "The Battle of Carn Dûm (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-battle-of-carn-dum",
+      "state": "scripted"
     },
     {
       "id": "N05.9",
