@@ -12,7 +12,7 @@ import {
   seatName,
   seatView,
 } from "./table";
-import { oneRing, oneRingExhausted } from "./lotr-saga";
+import { oneRing, oneRingExhausted, oneRingExhaustedForced } from "./lotr-saga";
 import { SP } from "./shadow-past-support";
 
 /**
@@ -213,6 +213,7 @@ export function huntedEffect(s: GameState, e: Effect): boolean {
       if (ring && !ring.exhausted) {
         ring.exhausted = true;
         log(s, "Lure of the Ring: The One Ring is exhausted.", "danger");
+        oneRingExhaustedForced(s);
       } else prepend(s, fx("spLureThreat", { player: first }));
       return true;
     }

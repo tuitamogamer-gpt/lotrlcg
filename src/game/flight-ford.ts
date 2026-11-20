@@ -47,6 +47,7 @@ import {
   oneRing,
   ringBearer,
   ringBearerFollowsFirstPlayer,
+  oneRingExhaustedForced,
 } from "./lotr-saga";
 import {
   huntedAttackFinished,
@@ -598,6 +599,7 @@ export function flightFordEffect(s: GameState, e: Effect): boolean {
           `${e.code ? card(e.code).name : "The One Ring"}: The One Ring is exhausted.`,
           "danger",
         );
+        oneRingExhaustedForced(s);
       }
       return true;
     }
@@ -678,6 +680,7 @@ export function flightFordEffect(s: GameState, e: Effect): boolean {
       if (ring && !ring.exhausted) {
         ring.exhausted = true;
         log(s, "Overcome by Terror: The One Ring is exhausted.", "danger");
+        oneRingExhaustedForced(s);
       } else discardRandom(s, first, 2, "Overcome by Terror");
       return true;
     }

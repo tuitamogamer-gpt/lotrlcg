@@ -468,6 +468,16 @@ export const NIGHTMARE_TBR = {
   mordor: "octgn:b0ed537a-1e96-4b46-af9b-3449be219781",
   followed: "octgn:86e0fbfc-04da-46b0-807b-ac58bd60248b",
   sniffing: "octgn:784aedb3-8bc3-437c-ba35-2a94949c498d",
+  /** A Knife in the Dark's setup card and Nightmare Deck (its Weathertop set aside). */
+  knifeCard: "octgn:12dd413b-fe0f-40ca-b871-480ca88ade09",
+  wraith: "octgn:90d64456-eceb-423b-866f-ece8ceb98ec3",
+  spy: "octgn:b73f14e3-f528-4a8f-bf3b-06936eeea9fd",
+  weathertop: "octgn:e8046e94-bc12-4055-b5f1-2cd34640b85e",
+  hills: "octgn:61b6316c-dfbd-4f90-ab71-99eee8056047",
+  oldRoad: "octgn:d3650ee1-5225-4a8f-9114-e1123d941228",
+  inn: "octgn:9834324f-1ad0-4922-a708-d07ca671d9b3",
+  ringsWill: "octgn:1698dbfd-7649-44ef-b618-6171e626caa6",
+  bladeTip: "octgn:7d5b9903-3521-4ecc-9225-e6216147e020",
 } as const;
 
 interface NightmareDeck {
@@ -940,6 +950,16 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Rode Like a Gale": 2,
     },
   },
+  "a-knife-in-the-dark": {
+    card: NIGHTMARE_TBR.knifeCard,
+    removals: {
+      "Shady Bree-lander": 4,
+      "Weather Hills": 3,
+      "Unwanted Attention": 1,
+      "Pathless Country": 3,
+      Weathertop: 1,
+    },
+  },
   "the-antlered-crown": {
     card: NIGHTMARE_RINGMAKER.crownCard,
     removals: {
@@ -1339,6 +1359,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "the-dunland-trap")
     return [
       "The Dunland Trap · Nightmare mode: the setup card removed the printed standard encounter cards and shuffled in its Nightmare Deck.",
+    ];
+  if (s.scenarioId === "a-knife-in-the-dark")
+    return [
+      "A Knife in the Dark · Nightmare mode: while Bill Ferny is in the staging area, he is immune to player card effects; the Nightmare Deck's Weathertop is set aside in place of the scenario's.",
     ];
   if (s.scenarioId === "a-shadow-of-the-past")
     return [

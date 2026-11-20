@@ -701,6 +701,7 @@ export function validateSave(
         c.nmHandDiscardOnKill,
         c.nmHandRefillOnKill,
         c.nmEngageNext,
+        c.nmBladeTip,
       ].every((v) => v === undefined || (integer(v) && v >= 0)) &&
       (c.dreadKilled === undefined ||
         (Array.isArray(c.dreadKilled) &&

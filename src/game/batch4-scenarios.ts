@@ -104,6 +104,7 @@ import { NIGHTMARE_NIN_HOOKS } from "./nightmare-nin";
 import { NIGHTMARE_CELEB_HOOKS } from "./nightmare-celeb";
 import { NIGHTMARE_CROWN_HOOKS } from "./nightmare-crown";
 import { NIGHTMARE_SHADOW_PAST_HOOKS } from "./nightmare-asotp";
+import { NIGHTMARE_KNIFE_DARK_HOOKS } from "./nightmare-kitd";
 import { nightmareLive } from "./nightmare";
 
 const empty: Batch4ScenarioHooks = {};
@@ -157,6 +158,7 @@ const NIGHTMARE_LAYERS: Partial<Record<string, Batch4ScenarioHooks>> = {
   "celebrimbors-secret": NIGHTMARE_CELEB_HOOKS,
   "the-antlered-crown": NIGHTMARE_CROWN_HOOKS,
   "a-shadow-of-the-past": NIGHTMARE_SHADOW_PAST_HOOKS,
+  "a-knife-in-the-dark": NIGHTMARE_KNIFE_DARK_HOOKS,
 };
 /**
  * The current scenario's hooks; in an Ered Mithrin campaign chapter from The
@@ -349,6 +351,7 @@ export const batch4SharedEffect = (effect: Effect) =>
     NIGHTMARE_CELEB_HOOKS,
     NIGHTMARE_CROWN_HOOKS,
     NIGHTMARE_SHADOW_PAST_HOOKS,
+    NIGHTMARE_KNIFE_DARK_HOOKS,
     BLACK_SERPENT_HOOKS,
     CIRITH_GURAT_HOOKS,
     CROSSINGS_POROS_HOOKS,

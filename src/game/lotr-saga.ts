@@ -53,6 +53,15 @@ export const ringBearer = (s: GameState): Unit | undefined =>
 export const oneRing = (s: GameState) =>
   ringBearer(s)?.attachments.find((a) => isOneRing(a.code));
 export const oneRingExhausted = (s: GameState) => !!oneRing(s)?.exhausted;
+/**
+ * After The One Ring exhausts: the scenario's Forced effects (a Nightmare
+ * card's among them: Menacing Wraith) and the saga campaign's Lust for the
+ * Ring, whatever exhausted it.
+ */
+export function oneRingExhaustedForced(s: GameState) {
+  batch4Scenario(s).oneRingExhausted?.(s);
+  sagaCampaignOneRingExhausted(s);
+}
 /** The Treason of Saruman: the Fellowship Aragorn stands in for the Ring-bearer. */
 export const treasonSaruman = (s: GameState) =>
   isTreasonSarumanScenarioId(s.scenarioId);
@@ -302,8 +311,7 @@ export function lotrSagaEffect(s: GameState, e: Effect): boolean {
       );
       for (const player of playerOrder(s))
         forOwner(s, player, () => raiseThreat(s, 2, "player-card"));
-      batch4Scenario(s).oneRingExhausted?.(s);
-      sagaCampaignOneRingExhausted(s);
+      oneRingExhaustedForced(s);
       return true;
     }
     case "sagaFrodoCancel": {
@@ -315,6 +323,7 @@ export function lotrSagaEffect(s: GameState, e: Effect): boolean {
       }
       spendResources(s, hero, 1);
       ring.exhausted = true;
+      oneRingExhaustedForced(s);
       s.encounterDeck.push(e.code);
       shuffle(s, s.encounterDeck);
       log(

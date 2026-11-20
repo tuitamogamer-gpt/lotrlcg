@@ -2809,6 +2809,75 @@ try {
       );
     }
     await checkpoint("asotp-khamul", width);
+
+    // A Knife in the Dark in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-a-knife-in-the-dark").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "a-knife-in-the-dark");
+    assert.equal(s.nightmareMode, true);
+    assert.ok(
+      ["Bill Ferny", "The Prancing Pony"].every((n) =>
+        s.staging.some((u) => card(u.code)?.name === n),
+      ),
+      "the scenario's setup",
+    );
+    assert.ok(
+      s.knifeDark.setAside.includes(TBR.weathertop),
+      "the Nightmare Deck's Weathertop is set aside",
+    );
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/he is immune to player card effects/)
+      .waitFor();
+    await checkpoint("kitd-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A Menacing Wraith beside The Old Road with 3 resource tokens and a Forsaken Inn.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const road = make(t, TBR.oldRoad);
+      road.resources = 3;
+      t.staging = [...t.staging, make(t, TBR.wraith), road, make(t, TBR.inn)];
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [TBR.wraith, "Menacing Wraith"],
+      [TBR.oldRoad, "The Old Road"],
+      [TBR.inn, "Forsaken Inn"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    await checkpoint("kitd-menacing-wraith", width);
     await view.c.close();
   }
   const p = await browser.newPage();

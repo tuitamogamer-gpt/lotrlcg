@@ -1261,6 +1261,8 @@ export interface GameState {
     nmHandRefillOnKill?: number;
     /** Green-Hill Country's shadow (A Shadow of the Past's Nightmare Deck): after this attack the attacker engages the next player and makes an immediate attack, once for each copy. */
     nmEngageNext?: number;
+    /** Blade Tip's shadow (A Knife in the Dark's Nightmare Deck): copies that attach to the defending character this attack damages. */
+    nmBladeTip?: number;
     defenderIds?: string[];
     ignoreDefense?: boolean;
     returnToStaging?: boolean;

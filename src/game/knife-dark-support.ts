@@ -2,6 +2,7 @@
 import encounters from "../data/knife-dark-encounter-cards.json";
 import quests from "../data/knife-dark-quest-cards.json";
 import recipes from "../data/knife-dark-recipes.json";
+import nightmare from "../data/nightmare-encounter-cards.json";
 import type { Card, GameState, Unit } from "./types";
 import { SP, SHADOW_PAST_ENCOUNTERS } from "./shadow-past-support";
 export type { KnifeDarkState } from "./knife-dark-types";
@@ -39,8 +40,18 @@ export const KD = {
   lure: SP.lure,
 } as const;
 
+/** The Nightmare Deck's cards (Menacing Wraith is a Nazgûl, Southern Spy a Spy, The Old Road a location). */
+const NIGHTMARE_CARDS = (nightmare as Card[]).filter(
+  (c) => c.encounter_set === "A Knife in the Dark - Nightmare",
+);
+/** The Nightmare Deck's Weathertop, set aside in place of the scenario's. */
+export const KD_NIGHTMARE_WEATHERTOP = NIGHTMARE_CARDS.find(
+  (c) => c.name === "Weathertop",
+)!.code;
 const byCode = new Map(
-  [...KNIFE_DARK_ENCOUNTERS, ...SHADOW_PAST_ENCOUNTERS].map((c) => [c.code, c]),
+  [...KNIFE_DARK_ENCOUNTERS, ...SHADOW_PAST_ENCOUNTERS, ...NIGHTMARE_CARDS].map(
+    (c) => [c.code, c],
+  ),
 );
 const traitsOf = (code: string) =>
   (byCode.get(code)?.traits ?? "").split(".").map((t) => t.trim());
@@ -94,9 +105,9 @@ export function knifeDarkPublicState(s: GameState) {
       : kdLocations(s).some((l) => l.code === KD.midgewater)
         ? ("in-play" as const)
         : ("explored" as const),
-    weathertop: (s.victoryCards ?? []).includes(KD.weathertop)
+    weathertop: (s.victoryCards ?? []).some((c) => WEATHERTOPS.includes(c))
       ? ("explored" as const)
-      : aside(KD.weathertop)
+      : WEATHERTOPS.some((c) => aside(c))
         ? ("aside" as const)
         : ("in-play" as const),
     ponyInPlay: kdLocations(s).some((l) => l.code === KD.pony),
@@ -106,11 +117,13 @@ export function knifeDarkPublicState(s: GameState) {
     resolving: q.resolving.length,
   };
 }
+const WEATHERTOPS: readonly string[] = [KD.weathertop, KD_NIGHTMARE_WEATHERTOP];
 const SET_ASIDE: readonly string[] = [
   KD.ringwraith,
   KD.witchKing,
   KD.midgewater,
   KD.weathertop,
+  KD_NIGHTMARE_WEATHERTOP,
 ];
 export function validateKnifeDark(s: GameState, unit: (u: unknown) => boolean) {
   const q = s.knifeDark;

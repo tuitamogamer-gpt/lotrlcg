@@ -31,7 +31,7 @@ import {
 import { allQuestUnits, attachToQuest, currentQuestCode } from "./quest-state";
 import { hideFailed, hideKeyword } from "./hide-test";
 import { nextPlayer, who } from "./black-riders-hunted";
-import { oneRing, oneRingExhausted } from "./lotr-saga";
+import { oneRing, oneRingExhausted, oneRingExhaustedForced } from "./lotr-saga";
 import { NIGHTMARE_TBR as N, nightmareLive } from "./nightmare";
 import { NEUTRAL_LAYER, live, seatLabel } from "./nightmare-core";
 
@@ -371,6 +371,7 @@ export function nightmareShadowPastEffect(s: GameState, e: Effect): boolean {
         "Sniffing and Hissing: The One Ring is exhausted, and an encounter card is revealed.",
         "danger",
       );
+      oneRingExhaustedForced(s);
       prepend(s, fx("reveal", { player: p }));
       return true;
     }

@@ -30,7 +30,13 @@ import {
   addCurrentQuestProgress,
   removeCurrentQuestProgress,
 } from "./side-quests";
-import { lotrSagaCheck, oneRing, oneRingExhausted } from "./lotr-saga";
+import {
+  lotrSagaCheck,
+  oneRing,
+  oneRingExhausted,
+  oneRingExhaustedForced,
+} from "./lotr-saga";
+import { nightmareEncounterDecks, nightmareLive } from "./nightmare";
 import {
   huntedAttackFinished,
   huntedEffect,
@@ -112,13 +118,22 @@ export function setupKnifeDark(s: GameState) {
     r.cards
       .filter((c) => c.section === name)
       .flatMap((c) => Array<string>(c.quantity).fill(c.code));
-  s.encounterDeck = shuffle(s, section("sharedEncounterDeck"));
+  // Nightmare mode: the setup card's removals (Weathertop from the set-aside
+  // cards) and its Nightmare Deck, whose Weathertop is set aside in its place.
+  const [deck, setAside] = nightmareLive(s)
+    ? nightmareEncounterDecks(
+        s.scenarioId,
+        [section("sharedEncounterDeck"), section("sharedSetAside")],
+        (code) => (card(code).name === "Weathertop" ? 1 : 0),
+      )
+    : [section("sharedEncounterDeck"), section("sharedSetAside")];
+  s.encounterDeck = shuffle(s, deck);
   for (const code of section("sharedStagingArea"))
     s.staging.push(make(s, code));
   s.knifeDark = {
     currentQuest: KD.bree,
     advancing: false,
-    setAside: section("sharedSetAside"),
+    setAside,
     resolving: [],
     hills: [],
     finale: false,
@@ -341,7 +356,10 @@ export function knifeDarkEffect(s: GameState, e: Effect): boolean {
     }
     case "kdRingwraithsAttack": {
       const added: Unit[] = [];
-      for (const code of [KD.weathertop, KD.witchKing]) {
+      // A Nightmare Deck's Weathertop stands in for the scenario's.
+      const weathertop =
+        q.setAside.find((c) => card(c).name === "Weathertop") ?? KD.weathertop;
+      for (const code of [weathertop, KD.witchKing]) {
         const i = q.setAside.indexOf(code);
         if (i < 0) continue;
         q.setAside.splice(i, 1);
@@ -670,6 +688,7 @@ export function knifeDarkEffect(s: GameState, e: Effect): boolean {
           "Weathertop: the first player exhausts The One Ring to travel here.",
           "danger",
         );
+        oneRingExhaustedForced(s);
       }
       return true;
     }

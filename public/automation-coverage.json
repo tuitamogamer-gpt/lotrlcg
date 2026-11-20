@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2658,
+    "encounterCards": 2667,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3880,
-    "pending": 303
+    "scripted": 3889,
+    "pending": 294
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 313
+    "scripted": 314
   },
   "registeredCodes": [
     "01001",
@@ -1399,6 +1399,7 @@
     "octgn:125e7884-7f75-42cd-80ba-065cf88eef9a",
     "octgn:12a9c24d-c09d-4fd8-a746-4d75d30b7548",
     "octgn:12da9483-0fce-43c6-ae47-4cc2aea9cde9",
+    "octgn:12dd413b-fe0f-40ca-b871-480ca88ade09",
     "octgn:1339dfb5-49c1-46ce-a4c9-970d0e118cfa",
     "octgn:13543061-b855-4e58-9190-e2f56c17cd32",
     "octgn:1371a0af-e085-42e4-8cd7-a2007da158e1",
@@ -1428,6 +1429,7 @@
     "octgn:160c8dcb-baa1-4176-9308-7328e500d62e",
     "octgn:16361c0e-f422-44d4-8f25-bc32b7a9aadd",
     "octgn:16436b20-60b2-4f40-9a20-72e86cc35d37",
+    "octgn:1698dbfd-7649-44ef-b618-6171e626caa6",
     "octgn:16b71211-85c1-4ad4-8879-831bc7b50ac4",
     "octgn:16fc9e92-cbc9-46ff-8312-a9c6491ca70b",
     "octgn:16fc9e92-cbc9-46ff-8312-a9c6491ca70b:B",
@@ -2508,6 +2510,7 @@
     "octgn:617bc2e6-05a9-4c99-b3ff-8304ecb6ef32",
     "octgn:617ce2f8-f33e-4898-9fa4-38787ee9c2b6",
     "octgn:61963ddc-1260-471f-afdf-96581602a444",
+    "octgn:61b6316c-dfbd-4f90-ab71-99eee8056047",
     "octgn:6220ef6b-f314-4cf9-92df-f9551d6cfde0",
     "octgn:624d5999-1a76-4783-b4e4-d9b596242d18",
     "octgn:626abd2c-11bc-416b-9db6-a72d5525d3de",
@@ -2748,6 +2751,7 @@
     "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
     "octgn:7d3ef70c-4107-4747-9913-048224ba6e76",
     "octgn:7d55e738-cc23-4e78-9a88-2a25fa4f3ca4",
+    "octgn:7d5b9903-3521-4ecc-9225-e6216147e020",
     "octgn:7d71a43e-a7ae-49bb-930c-437101a12d82",
     "octgn:7d71aa09-badb-4ba8-9d08-597a8d814020",
     "octgn:7d76b849-a3c7-4e2d-ab9d-f02ff0cca709",
@@ -2951,6 +2955,7 @@
     "octgn:90bdfcd8-0505-4f40-bf51-092f21525ef7",
     "octgn:90c7e192-2a1e-480c-96a2-7c643f0562d1",
     "octgn:90d620e5-d7be-42e6-9756-b92761ecd8c9",
+    "octgn:90d64456-eceb-423b-866f-ece8ceb98ec3",
     "octgn:90fe2776-1001-4871-a5ae-679b91992e7e",
     "octgn:91143aee-41e7-4cac-8ec2-e112689fcc17",
     "octgn:91735f73-7dc8-48ee-8a61-b7c9648f5def",
@@ -3004,6 +3009,7 @@
     "octgn:97f3e5c2-8ba8-44f9-a3e3-3bad40fd67e8",
     "octgn:97f3e879-eeee-4cc2-beb9-dc7c49c681ac",
     "octgn:9832252b-4c87-4a03-b249-aa8abe404459",
+    "octgn:9834324f-1ad0-4922-a708-d07ca671d9b3",
     "octgn:98358a49-2fba-45e3-8a26-5500bc7f04dd",
     "octgn:98461b3e-54c4-4eb9-9172-616c9bebb0f6",
     "octgn:984d2a01-f12a-4e8b-800c-6a04b1904049",
@@ -3296,6 +3302,7 @@
     "octgn:b6af7b48-e072-45e8-a745-4de2ac8ded8c",
     "octgn:b70846d1-3216-421a-9098-af2a4540b530",
     "octgn:b717f5f9-cd1a-4852-aa1d-36acd1f8d3b1",
+    "octgn:b73f14e3-f528-4a8f-bf3b-06936eeea9fd",
     "octgn:b7431f72-5157-4a6d-a6c0-86bcf88f2669",
     "octgn:b774e6b4-461c-46eb-9398-dcb2af4cfab5",
     "octgn:b77620fa-89a8-4f09-8552-ba4204e472d2",
@@ -3595,6 +3602,7 @@
     "octgn:d32ba7ec-fa7d-4a1a-b157-da4186e62ea6",
     "octgn:d33ef89b-13c9-49b2-a921-a527f27a415a",
     "octgn:d34c9025-6380-4294-be3f-01c992922830",
+    "octgn:d3650ee1-5225-4a8f-9114-e1123d941228",
     "octgn:d3a3d024-2321-4707-b319-eb62537e6d92",
     "octgn:d3bd47e5-cf59-4097-9cec-92a15fe56bf4",
     "octgn:d3c68791-c3f9-4e8d-9515-2496f9ca1895",
@@ -3767,6 +3775,7 @@
     "octgn:e7b0f67c-ad7e-442a-af9f-188e9cedddde",
     "octgn:e7f523e1-c898-42f8-93c2-889038de230f",
     "octgn:e7faf287-1288-48c2-86be-82449aa05193",
+    "octgn:e8046e94-bc12-4055-b5f1-2cd34640b85e",
     "octgn:e839fa89-15b4-451f-9fac-6a8f38e31d65",
     "octgn:e83f33da-6723-4730-8691-8d1a48b1f8e0",
     "octgn:e84369a8-89c8-4866-bd21-7c25ece2ca3f",
@@ -4502,7 +4511,7 @@
     {
       "product": "the-black-riders-nightmare",
       "total": 27,
-      "scripted": 9,
+      "scripted": 18,
       "player": 0,
       "playerScripted": 0
     },
@@ -15235,7 +15244,7 @@
       "name": "A Knife in the Dark",
       "type": "nightmare",
       "pack": "The Black Riders - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders-nightmare"
     },
     {
@@ -15499,7 +15508,7 @@
       "name": "The Ring's Will",
       "type": "treachery",
       "pack": "The Black Riders - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders-nightmare"
     },
     {
@@ -24771,7 +24780,7 @@
       "name": "Weather Hills",
       "type": "location",
       "pack": "The Black Riders - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders-nightmare"
     },
     {
@@ -26923,7 +26932,7 @@
       "name": "Blade Tip",
       "type": "treachery",
       "pack": "The Black Riders - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders-nightmare"
     },
     {
@@ -28731,7 +28740,7 @@
       "name": "Menacing Wraith",
       "type": "enemy",
       "pack": "The Black Riders - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders-nightmare"
     },
     {
@@ -29203,7 +29212,7 @@
       "name": "Forsaken Inn",
       "type": "location",
       "pack": "The Black Riders - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders-nightmare"
     },
     {
@@ -31795,7 +31804,7 @@
       "name": "Southern Spy",
       "type": "enemy",
       "pack": "The Black Riders - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders-nightmare"
     },
     {
@@ -34483,7 +34492,7 @@
       "name": "The Old Road",
       "type": "location",
       "pack": "The Black Riders - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders-nightmare"
     },
     {
@@ -36019,7 +36028,7 @@
       "name": "Weathertop",
       "type": "location",
       "pack": "The Black Riders - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders-nightmare"
     },
     {
@@ -39840,8 +39849,8 @@
       "id": "N0B.02",
       "name": "A Knife in the Dark (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "a-knife-in-the-dark",
+      "state": "scripted"
     },
     {
       "id": "N0B.03",

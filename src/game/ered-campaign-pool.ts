@@ -2932,6 +2932,10 @@ export function composeEredPool(
     ],
     engagementBonus: (s, u) =>
       (h.engagementBonus?.(s, u) ?? 0) + (p.engagementBonus?.(s, u) ?? 0),
+    oneRingExhausted: (s) => {
+      h.oneRingExhausted?.(s);
+      p.oneRingExhausted?.(s);
+    },
     hideWillpower: (s, u) =>
       (h.hideWillpower?.(s, u) ?? 0) + (p.hideWillpower?.(s, u) ?? 0),
     hideValueBonus: (s, player) =>
