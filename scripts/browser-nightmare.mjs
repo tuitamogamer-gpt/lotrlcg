@@ -2878,6 +2878,82 @@ try {
       );
     }
     await checkpoint("kitd-menacing-wraith", width);
+
+    // Flight to the Ford in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-flight-to-the-ford").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "flight-to-the-ford");
+    assert.equal(s.nightmareMode, true);
+    assert.equal(
+      s.staging.filter((u) => u.code === TBR.fellRider).length,
+      1,
+      "one Nightmare Fell Rider for one player",
+    );
+    assert.ok(
+      s.flightFord.setAside.includes(TBR.ford),
+      "the Nightmare Deck's Ford of Bruinen is set aside",
+    );
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/the players cannot win while Ford of Bruinen is in play/)
+      .waitFor();
+    await checkpoint("ftf-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // Ford of Bruinen beside a Great East Road and a Pathless Wilderness with 3 resource tokens.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const wilderness = make(t, TBR.wilderness);
+      wilderness.resources = 3;
+      t.staging = [
+        ...t.staging,
+        make(t, TBR.ford),
+        make(t, TBR.eastRoad),
+        wilderness,
+      ];
+      t.flightFord.setAside = t.flightFord.setAside.filter(
+        (c) => c !== TBR.ford,
+      );
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [TBR.ford, "Ford of Bruinen"],
+      [TBR.eastRoad, "Great East Road"],
+      [TBR.wilderness, "Pathless Wilderness"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    await checkpoint("ftf-ford-of-bruinen", width);
     await view.c.close();
   }
   const p = await browser.newPage();

@@ -2932,6 +2932,14 @@ export function composeEredPool(
     ],
     engagementBonus: (s, u) =>
       (h.engagementBonus?.(s, u) ?? 0) + (p.engagementBonus?.(s, u) ?? 0),
+    ringBearerCancelled: (s, code) => {
+      h.ringBearerCancelled?.(s, code);
+      p.ringBearerCancelled?.(s, code);
+    },
+    planningBegin: (s) => {
+      h.planningBegin?.(s);
+      p.planningBegin?.(s);
+    },
     oneRingExhausted: (s) => {
       h.oneRingExhausted?.(s);
       p.oneRingExhausted?.(s);

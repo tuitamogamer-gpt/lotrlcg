@@ -532,6 +532,8 @@ export interface Batch4ScenarioHooks {
   hidePassed?(s: GameState, player: number, source: string): Effect[];
   /** Effects after a player fails a Hide or Fortitude test. */
   hideFailed?(s: GameState, player: number, source: string): Effect[];
+  /** The Ring-bearer's effect (Frodo Baggins) canceled a revealed encounter card (Flight to the Ford's Nightmare Trollshaw Forest). */
+  ringBearerCancelled?(s: GameState, code: string): void;
   /** Hide tests: the most characters a player may commit (A Shadow of the Past's Nightmare Stock Woods). */
   hideCommitLimit?(s: GameState, player: number): number | undefined;
   /** Fortitude tests: a hero that cannot commit (Heavy and Tired). */

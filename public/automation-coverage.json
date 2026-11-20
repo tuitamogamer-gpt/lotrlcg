@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2667,
+    "encounterCards": 2676,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3889,
-    "pending": 294
+    "scripted": 3898,
+    "pending": 285
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 314
+    "scripted": 315
   },
   "registeredCodes": [
     "01001",
@@ -1305,6 +1305,7 @@
     "octgn:076e69c7-156b-46ef-8d11-d6a659da68b2",
     "octgn:0771f1dc-4baa-4181-9344-4ddd1e59136b",
     "octgn:07a8f60f-926c-4342-bf04-e3af9a24df10",
+    "octgn:07c4aed0-1673-438f-8e2b-371f34f215b4",
     "octgn:080f86b2-8cea-4134-8e79-de6312b51ed6",
     "octgn:0834d564-c1f1-4f16-8bc7-d7249d665d5c",
     "octgn:0856a4b4-ec02-4586-8147-93fbadf544cd",
@@ -1681,6 +1682,7 @@
     "octgn:2f1ba4e7-ddc6-4d97-93d3-31907840aed0",
     "octgn:2f273bdf-2c16-43e6-8845-5899cac1e3ab",
     "octgn:2f2e6076-2636-485b-874c-fd3bc4bcf5f0",
+    "octgn:2f380c3c-7de7-4961-b5f5-878f3e4e58c8",
     "octgn:2f5221a8-8afd-48d8-afd3-352151d87ed6",
     "octgn:2f7770cd-3102-4f35-a3bc-bd9afcab8303",
     "octgn:2fb27cc8-c3f5-4172-8ff0-456907f9b111",
@@ -1688,6 +1690,7 @@
     "octgn:2fd9f511-463b-42c8-bc6f-9bd1b3b91057",
     "octgn:2fe95d8c-0f30-4c20-b926-d92e4feea8e2",
     "octgn:30252ae6-2652-45b9-a245-41abd03d05d6",
+    "octgn:3029e445-173b-481b-9a62-61f79185ab30",
     "octgn:303b01b8-2d61-4c20-81a0-50800e18d617",
     "octgn:3043df29-f8e9-426e-bd14-5cb720ed8f10",
     "octgn:3065a397-5346-4148-8e0a-47009fe9b87d",
@@ -1719,6 +1722,7 @@
     "octgn:32993141-956c-4426-98d9-8705de6fee00:B",
     "octgn:32ac489f-7e40-47a0-acba-f199f3f5d8f7",
     "octgn:32ac7351-b154-4e94-8348-ed31385fb3a4",
+    "octgn:32bd5a1d-7273-4916-aa3b-cb152c1cd6f1",
     "octgn:32db1af6-e214-4958-9ca4-bdf3a73758b5",
     "octgn:32deb3d1-afe3-4fbc-bd6c-30f139003cc7",
     "octgn:3309e01a-db7f-4754-bd41-21a0b4316415",
@@ -1794,6 +1798,7 @@
     "octgn:3ad34bfd-3f2b-4b23-b09d-232f4640ddeb",
     "octgn:3b1df5e8-ce5e-4c66-a12b-25a322cfb0ba",
     "octgn:3b26d048-24cb-4978-86f9-d255048426d8",
+    "octgn:3b63d940-fcbc-4741-8840-cc276fcb558b",
     "octgn:3b7c4f67-7de4-4b77-be50-0fd86e4ef2bc",
     "octgn:3b855783-5b90-4788-802e-e7c1e81461d8",
     "octgn:3bc03452-6c37-45e2-9241-e626ea51f382",
@@ -1806,6 +1811,7 @@
     "octgn:3d1a7e6f-382a-49cb-9873-e6e5e86d12d2",
     "octgn:3d25a41e-6a10-4fd7-a159-2b25bfc54454",
     "octgn:3d3d4db9-873a-48a6-8a2d-e50abc5533f5",
+    "octgn:3d64b8b8-4805-49d5-b308-4bf3fb472c1d",
     "octgn:3d7adc18-c9cb-4e93-8b1e-1574747ba8ce",
     "octgn:3d948840-8118-4d63-b782-ba017e1cf5d5",
     "octgn:3d9db37c-4b51-4da8-be2b-25cd2d48e28b",
@@ -1981,6 +1987,7 @@
     "octgn:49aa4e88-3774-43f7-ab8d-05268ed3fb7e",
     "octgn:49c77ce2-7305-4209-ad6a-f1ed983a556e",
     "octgn:49d6a591-67b0-4d65-a384-ae0662b09814",
+    "octgn:49e734b0-3b71-45e4-8f31-ad1e09f1d9e4",
     "octgn:49e857d2-b78f-4b5f-8c07-604af73fd616",
     "octgn:4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a",
     "octgn:4a2696f1-65e1-41d5-8828-38ece23167df",
@@ -2481,6 +2488,7 @@
     "octgn:5e0ecd2d-d63e-4507-8707-641b974398ff",
     "octgn:5e24cde4-29e5-4f8f-82c5-67f96f9c3283",
     "octgn:5e39ebfc-287a-49d5-9369-49dbfb0fd665",
+    "octgn:5e6ece32-827a-4af7-af6b-0d21a0477c99",
     "octgn:5e7c36de-a2bb-44e3-951b-80123788d571",
     "octgn:5e8714e3-0581-4b6f-bf45-414098819626",
     "octgn:5eb195bb-390f-48be-97fa-0ec09d6c807b",
@@ -3269,6 +3277,7 @@
     "octgn:b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8",
     "octgn:b41e6b34-4d6a-47de-9b07-b039013efbc5",
     "octgn:b42cd34e-7eb6-4163-8ef6-4a2f66f45439",
+    "octgn:b432d02a-d0ca-496c-96c0-e8f5753b2e17",
     "octgn:b446fa27-d5f8-40e0-8985-fe15478cd79b",
     "octgn:b4543d6e-168b-4ac6-ae65-022e13ce4098",
     "octgn:b4769083-91fb-4e9c-9736-17e8c28ff971",
@@ -4511,7 +4520,7 @@
     {
       "product": "the-black-riders-nightmare",
       "total": 27,
-      "scripted": 18,
+      "scripted": 27,
       "player": 0,
       "playerScripted": 0
     },
@@ -14420,7 +14429,7 @@
       "name": "Flight to the Ford",
       "type": "nightmare",
       "pack": "The Black Riders - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders-nightmare"
     },
     {
@@ -17676,7 +17685,7 @@
       "name": "Pathless Wilderness",
       "type": "location",
       "pack": "The Black Riders - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders-nightmare"
     },
     {
@@ -17764,7 +17773,7 @@
       "name": "Trollshaw Forest",
       "type": "location",
       "pack": "The Black Riders - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders-nightmare"
     },
     {
@@ -18028,7 +18037,7 @@
       "name": "Great East Road",
       "type": "location",
       "pack": "The Black Riders - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders-nightmare"
     },
     {
@@ -18732,7 +18741,7 @@
       "name": "Come Back!",
       "type": "treachery",
       "pack": "The Black Riders - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders-nightmare"
     },
     {
@@ -18844,7 +18853,7 @@
       "name": "Ettendales",
       "type": "location",
       "pack": "The Black Riders - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders-nightmare"
     },
     {
@@ -20316,7 +20325,7 @@
       "name": "Ford of Bruinen",
       "type": "location",
       "pack": "The Black Riders - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders-nightmare"
     },
     {
@@ -24508,7 +24517,7 @@
       "name": "Fell Rider",
       "type": "enemy",
       "pack": "The Black Riders - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders-nightmare"
     },
     {
@@ -31516,7 +31525,7 @@
       "name": "The Twilight World",
       "type": "treachery",
       "pack": "The Black Riders - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders-nightmare"
     },
     {
@@ -39856,8 +39865,8 @@
       "id": "N0B.03",
       "name": "Flight to the Ford (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "flight-to-the-ford",
+      "state": "scripted"
     },
     {
       "id": "N0B.04",

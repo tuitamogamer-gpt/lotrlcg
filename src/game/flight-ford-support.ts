@@ -2,6 +2,7 @@
 import encounters from "../data/flight-ford-encounter-cards.json";
 import quests from "../data/flight-ford-quest-cards.json";
 import recipes from "../data/flight-ford-recipes.json";
+import nightmare from "../data/nightmare-encounter-cards.json";
 import type { Card, GameState, Unit } from "./types";
 import { SP, SHADOW_PAST_ENCOUNTERS } from "./shadow-past-support";
 import { KD, KNIFE_DARK_ENCOUNTERS } from "./knife-dark-support";
@@ -55,11 +56,22 @@ export const FF_BURDENS: readonly string[] = [
   FF.overcome,
 ];
 
+/** The Nightmare Deck's cards (its Fell Riders are Nazgûl, its locations locations). */
+const NIGHTMARE_CARDS = (nightmare as Card[]).filter(
+  (c) => c.encounter_set === "Flight to the Ford - Nightmare",
+);
+/** The Nightmare Deck's Ford of Bruinen, set aside in place of the scenario's. */
+export const FF_NIGHTMARE_FORD = NIGHTMARE_CARDS.find(
+  (c) => c.name === "Ford of Bruinen",
+)!.code;
+/** The scenario's Ford of Bruinen and its Nightmare Deck's. */
+const FORDS: readonly string[] = [code("Ford of Bruinen"), FF_NIGHTMARE_FORD];
 const byCode = new Map(
   [
     ...FLIGHT_FORD_ENCOUNTERS,
     ...KNIFE_DARK_ENCOUNTERS,
     ...SHADOW_PAST_ENCOUNTERS,
+    ...NIGHTMARE_CARDS,
   ].map((c) => [c.code, c]),
 );
 const traitsOf = (code: string) =>
@@ -109,16 +121,16 @@ export function flightFordPublicState(s: GameState) {
     currentQuest: q.currentQuest,
     life: q.life,
     burdens: q.burdens.length,
-    fordAside: q.setAside.includes(FF.ford),
+    fordAside: q.setAside.some((c) => FORDS.includes(c)),
     witchKingAside: q.setAside.includes(FF.witchKing),
     bridge: (s.victoryCards ?? []).includes(FF.bridge)
       ? ("explored" as const)
       : ffLocations(s).some((l) => l.code === FF.bridge)
         ? ("in-play" as const)
         : ("gone" as const),
-    ford: (s.victoryCards ?? []).includes(FF.ford)
+    ford: (s.victoryCards ?? []).some((c) => FORDS.includes(c))
       ? ("explored" as const)
-      : q.setAside.includes(FF.ford)
+      : q.setAside.some((c) => FORDS.includes(c))
         ? ("aside" as const)
         : ("in-play" as const),
     nazgul: ffNazgulInPlay(s).length,
@@ -146,7 +158,7 @@ export function validateFlightFord(
     q.life >= 0 &&
     q.life <= RING_BEARER_LIFE &&
     Array.isArray(q.setAside) &&
-    q.setAside.every((c) => c === FF.ford || c === FF.witchKing) &&
+    q.setAside.every((c) => FORDS.includes(c) || c === FF.witchKing) &&
     new Set(q.setAside).size === q.setAside.length &&
     Array.isArray(q.burdens) &&
     q.burdens.every((c) => FF_BURDENS.includes(c)) &&

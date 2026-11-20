@@ -478,6 +478,16 @@ export const NIGHTMARE_TBR = {
   inn: "octgn:9834324f-1ad0-4922-a708-d07ca671d9b3",
   ringsWill: "octgn:1698dbfd-7649-44ef-b618-6171e626caa6",
   bladeTip: "octgn:7d5b9903-3521-4ecc-9225-e6216147e020",
+  /** Flight to the Ford's setup card and Nightmare Deck (its Fell Riders staged, its Ford of Bruinen set aside). */
+  fordCard: "octgn:07c4aed0-1673-438f-8e2b-371f34f215b4",
+  fellRider: "octgn:5e6ece32-827a-4af7-af6b-0d21a0477c99",
+  ford: "octgn:49e734b0-3b71-45e4-8f31-ad1e09f1d9e4",
+  trollshaw: "octgn:3029e445-173b-481b-9a62-61f79185ab30",
+  eastRoad: "octgn:32bd5a1d-7273-4916-aa3b-cb152c1cd6f1",
+  wilderness: "octgn:2f380c3c-7de7-4961-b5f5-878f3e4e58c8",
+  ettendales: "octgn:3d64b8b8-4805-49d5-b308-4bf3fb472c1d",
+  comeBack: "octgn:3b63d940-fcbc-4741-8840-cc276fcb558b",
+  twilight: "octgn:b432d02a-d0ca-496c-96c0-e8f5753b2e17",
 } as const;
 
 interface NightmareDeck {
@@ -950,6 +960,20 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Rode Like a Gale": 2,
     },
   },
+  "flight-to-the-ford": {
+    card: NIGHTMARE_TBR.fordCard,
+    removals: {
+      "Fell Rider": 4,
+      "Ford of Bruinen": 1,
+      "The Troll's Camp": 1,
+      Ettenmoors: 3,
+      "Pain Assailed Him": 3,
+      "The Old Road": 3,
+      "Pathless Country": 3,
+      "Stricken Dumb": 3,
+      "Rode Like a Gale": 2,
+    },
+  },
   "a-knife-in-the-dark": {
     card: NIGHTMARE_TBR.knifeCard,
     removals: {
@@ -1359,6 +1383,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "the-dunland-trap")
     return [
       "The Dunland Trap · Nightmare mode: the setup card removed the printed standard encounter cards and shuffled in its Nightmare Deck.",
+    ];
+  if (s.scenarioId === "flight-to-the-ford")
+    return [
+      "Flight to the Ford · Nightmare mode: the players cannot win while Ford of Bruinen is in play; the Nightmare Deck's Fell Riders are staged and its Ford of Bruinen set aside in place of the scenario's.",
     ];
   if (s.scenarioId === "a-knife-in-the-dark")
     return [

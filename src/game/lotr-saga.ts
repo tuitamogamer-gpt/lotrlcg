@@ -324,6 +324,7 @@ export function lotrSagaEffect(s: GameState, e: Effect): boolean {
       spendResources(s, hero, 1);
       ring.exhausted = true;
       oneRingExhaustedForced(s);
+      batch4Scenario(s).ringBearerCancelled?.(s, e.code);
       s.encounterDeck.push(e.code);
       shuffle(s, s.encounterDeck);
       log(

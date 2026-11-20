@@ -1263,6 +1263,8 @@ export interface GameState {
     nmEngageNext?: number;
     /** Blade Tip's shadow (A Knife in the Dark's Nightmare Deck): copies that attach to the defending character this attack damages. */
     nmBladeTip?: number;
+    /** Ettendales' shadow (Flight to the Ford's Nightmare Deck): the Ring-bearer's life lost if this attack destroys a character. */
+    nmLifeOnKill?: number;
     defenderIds?: string[];
     ignoreDefense?: boolean;
     returnToStaging?: boolean;

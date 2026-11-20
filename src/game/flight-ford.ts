@@ -39,6 +39,8 @@ import {
   seatView,
 } from "./table";
 import { syncAttachmentText } from "./attachment-text";
+import { nightmareEncounterDecks, nightmareLive } from "./nightmare";
+import { batch4Scenario } from "./batch4-scenarios";
 import { mainQuestUnit } from "./quest-state";
 import { removeCurrentQuestProgress } from "./side-quests";
 import { surgeEffects } from "./surge";
@@ -153,14 +155,27 @@ export function setupFlightFord(s: GameState) {
     r.cards
       .filter((c) => c.section === name)
       .flatMap((c) => Array<string>(c.quantity).fill(c.code));
-  const staging = section("sharedStagingArea");
+  // Nightmare mode: the setup card's removals (the Fell Riders staged and
+  // Ford of Bruinen set aside among them) and its Nightmare Deck, whose Fell
+  // Riders are staged and whose Ford of Bruinen is set aside in their place.
+  const piles = [
+    section("sharedEncounterDeck"),
+    section("sharedStagingArea"),
+    section("sharedSetAside"),
+  ];
+  const [deck, staging, setAside] = nightmareLive(s)
+    ? nightmareEncounterDecks(s.scenarioId, piles, (c) =>
+        card(c).name === "Fell Rider"
+          ? 1
+          : card(c).name === "Ford of Bruinen"
+            ? 2
+            : 0,
+      )
+    : piles;
   // 1 Fell Rider per player; the other copies stay in the encounter deck.
-  const riders = staging.filter((c) => c === FF.fell);
+  const riders = staging.filter((c) => card(c).name === "Fell Rider");
   const x = playerOrder(s).length;
-  s.encounterDeck = shuffle(s, [
-    ...section("sharedEncounterDeck"),
-    ...riders.slice(x),
-  ]);
+  s.encounterDeck = shuffle(s, [...deck, ...riders.slice(x)]);
   for (const code of staging.filter((c) => c === FF.bridge))
     s.staging.push(make(s, code));
   for (const code of riders.slice(0, x)) s.staging.push(make(s, code));
@@ -173,7 +188,7 @@ export function setupFlightFord(s: GameState) {
     currentQuest: FF.pursued,
     advancing: false,
     life: RING_BEARER_LIFE,
-    setAside: section("sharedSetAside"),
+    setAside,
     burdens: shuffle(s, section("sharedEncounterDeck2")),
     resolving: [],
     extraReveals: 0,
@@ -208,6 +223,8 @@ function advance(s: GameState) {
   )
     return true;
   if (s.stage === 2) {
+    // A Nightmare setup card can forbid the win (while Ford of Bruinen is in play).
+    if (batch4Scenario(s).cannotWin?.(s)) return true;
     win(
       s,
       "Race to Rivendell is defeated: the Ring-bearer reaches the Ford of Bruinen and Rivendell.",
@@ -464,7 +481,10 @@ export function flightFordEffect(s: GameState, e: Effect): boolean {
     }
     case "ffRace": {
       const added: Unit[] = [];
-      for (const code of [FF.ford, FF.witchKing]) {
+      // A Nightmare Deck's Ford of Bruinen stands in for the scenario's.
+      const ford =
+        q.setAside.find((c) => card(c).name === "Ford of Bruinen") ?? FF.ford;
+      for (const code of [ford, FF.witchKing]) {
         const i = q.setAside.indexOf(code);
         if (i < 0) continue;
         q.setAside.splice(i, 1);
