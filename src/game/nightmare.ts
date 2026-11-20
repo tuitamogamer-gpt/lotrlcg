@@ -542,6 +542,16 @@ export const NIGHTMARE_TLR = {
   tower: "octgn:e62b817f-7806-40ad-95e3-a7c3e805e95d",
   tracks: "octgn:db7a5fb4-f390-49c2-b555-d963350cd8ff",
   track: "octgn:74c7150c-c65d-480b-8673-cd2509fc992b",
+  /** Deadmen's Dike's setup card and Nightmare Deck. */
+  dikeCard: "octgn:9d460d1a-45d9-4828-a40e-2dbddc51c086",
+  horde: "octgn:68ddf4d3-6336-40ed-862c-c68ae97ffb28",
+  cursedDead: "octgn:a9d496bb-46b8-4660-8ae8-430a4cafb997",
+  palace: "octgn:7ddffdc0-bb6f-4ab3-a6df-c2df039062e8",
+  street: "octgn:d1cc7784-d659-4b87-8ce5-ffea723ee715",
+  city: "octgn:d413aeaa-974a-478f-8a06-bd12d4ab661f",
+  fear: "octgn:3dd092db-4bb4-4f56-b3cd-447328ac97ac",
+  curse: "octgn:55dd30df-7b57-4cc9-b778-f8a4bfe72431",
+  courage: "octgn:66fc0634-c88c-4af2-a009-8ade84806f98",
 } as const;
 
 interface NightmareDeck {
@@ -1083,6 +1093,15 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Tragic Discovery": 2,
     },
   },
+  "deadmens-dike": {
+    card: NIGHTMARE_TLR.dikeCard,
+    removals: {
+      "Fornost Square": 2,
+      "Broken Battlements": 3,
+      "Norbury Tombs": 2,
+      "Restless Evil": 2,
+    },
+  },
   "a-knife-in-the-dark": {
     card: NIGHTMARE_TBR.knifeCard,
     removals: {
@@ -1521,6 +1540,15 @@ export function nightmareStatus(s: GameState): string[] {
     ).length;
     return [
       `The Weather Hills · Nightmare mode: each Captive Villager and Rearguard Ambusher was shuffled into the Orc deck; the players cannot win while a Captive Villager is guarded by an encounter card${guarded ? ` (${guarded} guarded now)` : ""}, and lose if one leaves play.`,
+    ];
+  }
+  if (s.scenarioId === "deadmens-dike") {
+    const under = (s.nightmare?.dikeCourage ?? []).reduce(
+      (n, c) => n + c.cards.length,
+      0,
+    );
+    return [
+      `Deadmen's Dike · Nightmare mode: each player's deck cannot include more than 50 total cards; during setup, each player placed a copy of Cursed Dead in the encounter discard pile${under ? ` (${under} card${under === 1 ? " is" : "s are"} facedown under Gather Your Courage)` : ""}.`,
     ];
   }
   if (s.scenarioId === "flight-to-the-ford")

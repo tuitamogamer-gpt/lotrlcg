@@ -193,6 +193,12 @@ export interface Batch4ScenarioHooks {
   sideDefeated?(s: GameState, u: Unit): void;
   sideQuestChosen?(s: GameState, u: Unit): void;
   cannotReady?(s: GameState, u: Unit): boolean;
+  /**
+   * An exhausted character would ready: true when a card replaces the ready
+   * (and resolves it itself), such as "it does not ready unless" a cost is
+   * paid. `cardEffect` is false for the refresh phase's framework ready.
+   */
+  readyIntercepted?(s: GameState, u: Unit, cardEffect: boolean): boolean;
   cannotPlayerReady?(s: GameState): boolean;
   cannotPlayerReadyCharacter?(s: GameState, u: Unit): boolean;
   characterBlanked?(s: GameState, u: Unit): boolean;

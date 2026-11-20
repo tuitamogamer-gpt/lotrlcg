@@ -163,6 +163,7 @@ import { validNightmareJourneyDark } from "./nightmare-jitd";
 import { validNightmareBreaking } from "./nightmare-botf";
 import { validNightmareChetwood } from "./nightmare-chetwood";
 import { validNightmareWeather } from "./nightmare-weather";
+import { validNightmareDike } from "./nightmare-dike";
 import { nightmareEscapeTest } from "./nightmare-dead";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
@@ -1241,6 +1242,7 @@ export function validateSave(
         !validNightmareBreaking(s) ||
         !validNightmareChetwood(s) ||
         !validNightmareWeather(s) ||
+        !validNightmareDike(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,

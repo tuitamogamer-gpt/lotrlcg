@@ -770,6 +770,8 @@ export function readyCharacter(s: GameState, u: Unit, cardEffect = true) {
   if (cardEffect && Drowned.drownedCannotReady(s)) return;
   syncAttachmentText(s, u);
   if (cannotReady(u, s)) return;
+  if (u.exhausted && batch4Scenario(s).readyIntercepted?.(s, u, cardEffect))
+    return;
   const wasExhausted = u.exhausted;
   u.exhausted = false;
   if (wasExhausted) Fangorn.fangornCharacterReadied(s, u);

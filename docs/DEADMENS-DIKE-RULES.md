@@ -36,4 +36,4 @@ Verified against the final local build `index-WWx0qhKk.js`:
 
 Production proof is recorded separately after deployment is ready in `output/deadmens-dike/production-report.json`, with the exact release SHA and loaded entry module. Reproduce the focused checks with `node --import tsx --test tests/deadmens-dike.test.ts` and `node --import tsx scripts/browser-deadmens-dike.mjs`.
 
-No hosted Supabase migration has been applied. Campaign and Nightmare variants remain reference-only.
+No hosted Supabase migration has been applied. The campaign variant remains reference-only. Nightmare mode follows [its Nightmare Deck](NIGHTMARE.md) (the Nightmare cards use the scenario's deck discards, with Fornost Square's tokens and the deck-out elimination, its enemy return from the encounter discard pile and Deadmen's Gate; each copy of Cursed Dead is resolved by title; each player's deck holds at most 50 cards), outside campaign mode.

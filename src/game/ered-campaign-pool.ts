@@ -3139,6 +3139,13 @@ export function composeEredPool(
         b = p.locationProgressCapacity?.(s, u);
       return a === undefined ? b : b === undefined ? a : Math.min(a, b);
     },
+    sideDefeated: (s, u) => {
+      h.sideDefeated?.(s, u);
+      p.sideDefeated?.(s, u);
+    },
+    readyIntercepted: (s, u, cardEffect) =>
+      !!h.readyIntercepted?.(s, u, cardEffect) ||
+      !!p.readyIntercepted?.(s, u, cardEffect),
   };
 }
 

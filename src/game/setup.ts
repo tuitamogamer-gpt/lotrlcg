@@ -165,17 +165,20 @@ import { setupRhosgobel } from "./rhosgobel";
 import { setupReturnMirkwood } from "./return-mirkwood";
 import { setupDeadMarshes } from "./dead-marshes";
 
-/** The official deck limits: at least 50 cards, at most 3 copies, scripted player cards only. */
-export function validateDeckList(
-  deck: Record<string, number>,
-  originalStarter = false,
-) {
-  const size = Object.entries(deck).reduce(
+/** A deck list's card count (a contract begins in play, outside the deck). */
+const deckListSize = (deck: Record<string, number>) =>
+  Object.entries(deck).reduce(
     (n, [code, count]) =>
       n +
       (SCRIPTED.has(code) && card(code).type_code === "contract" ? 0 : count),
     0,
   );
+/** The official deck limits: at least 50 cards, at most 3 copies, scripted player cards only. */
+export function validateDeckList(
+  deck: Record<string, number>,
+  originalStarter = false,
+) {
+  const size = deckListSize(deck);
   requireRule(
     Object.entries(deck).reduce(
       (n, [code, count]) =>
@@ -491,6 +494,22 @@ export function createGame(
     !options.nightmare ||
       (nightmareSupported(scenarioId) && playMode !== "campaign"),
     "This scenario's Nightmare Deck is not available in this game mode.",
+  );
+  // Deadmen's Dike's Nightmare setup card: "Each player's deck cannot
+  // include more than 50 total cards."
+  requireRule(
+    !options.nightmare ||
+      scenarioId !== "deadmens-dike" ||
+      (options.seats
+        ? options.seats.map(
+            (p) =>
+              p.cards ??
+              BUILT_IN_DECKS.find((d) => d.id === p.deckId)?.cards ??
+              {},
+          )
+        : [deck]
+      ).every((cards) => deckListSize(cards) <= 50),
+    "Deadmen's Dike's Nightmare Deck: each player's deck cannot include more than 50 total cards.",
   );
   const nightmare = !!options.nightmare;
   const s: GameState = {

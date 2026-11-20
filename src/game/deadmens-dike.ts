@@ -43,6 +43,7 @@ import {
   dikeLocationTime,
 } from "./deadmens-dike-support";
 import { choosePlayerResponse } from "./player-ability-triggers";
+import { nightmareEncounterDecks, nightmareLive } from "./nightmare";
 export { dikeCannotLeaveDiscard } from "./deadmens-discard";
 
 const isDike = (s: GameState) =>
@@ -66,6 +67,8 @@ const printedCost = (code?: string) => {
 };
 const sameTitle = (pile: string[], code: string) =>
   pile.some((c) => card(c).name === card(code).name);
+/** Each copy of Cursed Dead, the Nightmare Deck's included (same title and text). */
+const isCursed = (code: string) => card(code).name === card(D.cursed).name;
 const topEnemy = (s: GameState, onlyUndead = false) => {
   for (let i = s.encounterDiscard.length - 1; i >= 0; i--) {
     const code = s.encounterDiscard[i];
@@ -155,10 +158,22 @@ export function setupDeadmensDike(s: GameState) {
     recipe.cards
       .filter((r) => r.section === section)
       .flatMap((r) => Array<string>(r.quantity).fill(r.code));
-  s.encounterDeck = pile("sharedEncounterDeck");
+  const piles = [pile("sharedEncounterDeck"), pile("sharedSetAside")];
+  const [deck, aside] = nightmareLive(s)
+    ? nightmareEncounterDecks(s.scenarioId, piles, () => 0)
+    : piles;
+  s.encounterDeck = deck;
+  // The Nightmare setup card: "Setup: Each player searches the encounter
+  // deck for a copy of Cursed Dead and places it in the encounter discard
+  // pile. Shuffle the encounter deck." (The scenario's setup shuffles it.)
+  if (nightmareLive(s))
+    for (const _ of playerOrder(s)) {
+      const i = deck.findIndex(isCursed);
+      if (i >= 0) s.encounterDiscard.push(...deck.splice(i, 1));
+    }
   s.deadmensDike = {
     initialized: false,
-    setAside: pile("sharedSetAside").map((code) => make(s, code)),
+    setAside: aside.map((code) => make(s, code)),
     undeadRevealRound: -1,
     terrorRound: -1,
     terrorThreat: 0,
@@ -397,9 +412,9 @@ export function dikeAdvance(s: GameState) {
 
 export function dikeEncounter(s: GameState, code: string, replay = false) {
   if (!isDike(s)) return false;
-  if (code === D.cursed) {
+  if (isCursed(code)) {
     for (let i = s.encounterDiscard.length - 1; i >= 0; i--)
-      if (s.encounterDiscard[i] === D.cursed) {
+      if (isCursed(s.encounterDiscard[i])) {
         const u = make(s, s.encounterDiscard.splice(i, 1)[0]);
         s.staging.push(u);
         enemyAddedToStaging(s, u);
@@ -455,7 +470,7 @@ export function dikeShadow(s: GameState, code: string) {
   const defenders = (c.defenderIds ?? (c.defenderId ? [c.defenderId] : []))
     .map((id) => get(s, id))
     .filter((u): u is Unit => !!u);
-  if (code === D.cursed)
+  if (isCursed(code))
     c.attackBonus += defenders.some((u) =>
       sameTitle(seatView(s, u.owner ?? ownerOf(s, u)).discard, u.code),
     )

@@ -163,9 +163,18 @@ test("Deadmen's Dike registers every original encounter, both quests and exact p
   assert.doesNotMatch(card(D.thaurdir).text!, /Immune to player card effects/);
   for (const r of DIKE_RECIPES)
     assert.equal(automatedScenarioId(r), "deadmens-dike");
+  // Its Nightmare Deck is supported (docs/NIGHTMARE.md); the source recipe
+  // misspells the title.
   assert.equal(
     automatedScenarioId({ name: "Deadmen's Dike", mode: "nightmare" }),
-    null,
+    "deadmens-dike",
+  );
+  assert.equal(
+    automatedScenarioId({
+      name: "Deadman's Dike (Nightmare)",
+      mode: "nightmare",
+    }),
+    "deadmens-dike",
   );
 });
 for (const easy of [false, true])

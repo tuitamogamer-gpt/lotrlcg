@@ -61,8 +61,9 @@ export function automatedScenarioId(reference: {
   // (the epic multiplayer mode recipe stays unsupported).
   // The Starter's 2018 recipes are named after its Limited Collector's
   // Edition; the atlas names them after the Two-Player Limited Edition Starter.
-  // We Must Away's Nightmare recipe garbles its title, and The Fords of
-  // Isen's adds the article its standard recipes drop.
+  // We Must Away's Nightmare recipe garbles its title, The Fords of Isen's
+  // adds the article its standard recipes drop, and Deadmen's Dike's
+  // misspells it as its catalogue does ("Deadman's Dike").
   const lower = name.toLocaleLowerCase("en");
   const canonicalName =
     lower === "temple of doom"
@@ -73,10 +74,12 @@ export function automatedScenarioId(reference: {
           ? "We Must Away, Ere Break of Day"
           : lower === "the fords of isen"
             ? "Fords of Isen"
-            : name.replace(
-                /\s*\(Limited Collector['’]s Edition\)$/i,
-                " (Two-Player Limited Edition Starter)",
-              );
+            : lower === "deadman's dike" || lower === "deadman’s dike"
+              ? "Deadmen's Dike"
+              : name.replace(
+                  /\s*\(Limited Collector['’]s Edition\)$/i,
+                  " (Two-Player Limited Edition Starter)",
+                );
   // Some source recipes drop a title's accents ("The Druadan Forest").
   const fold = (t: string) =>
     t

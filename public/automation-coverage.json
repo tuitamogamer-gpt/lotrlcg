@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2719,
+    "encounterCards": 2728,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3941,
-    "pending": 242
+    "scripted": 3950,
+    "pending": 233
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 320
+    "scripted": 321
   },
   "registeredCodes": [
     "01001",
@@ -1824,6 +1824,7 @@
     "octgn:3d948840-8118-4d63-b782-ba017e1cf5d5",
     "octgn:3d9db37c-4b51-4da8-be2b-25cd2d48e28b",
     "octgn:3dab12d3-6cf8-4d3c-9edc-df93db02eced",
+    "octgn:3dd092db-4bb4-4f56-b3cd-447328ac97ac",
     "octgn:3ddece75-2906-4456-8a5a-b20dce9b95dd",
     "octgn:3de80480-6316-4c43-824c-44d3ad424a7b",
     "octgn:3dfaab4d-04b1-49a6-bd17-63c184784985",
@@ -2424,6 +2425,7 @@
     "octgn:55c8245d-e0f3-4d11-90f5-617caf78f079",
     "octgn:55d05b39-c993-45bb-874c-3eacbcf49278",
     "octgn:55d8f78d-2dd7-4b44-80db-fb539ff05f00",
+    "octgn:55dd30df-7b57-4cc9-b778-f8a4bfe72431",
     "octgn:56243a40-0019-406a-b502-34dd17d8b6cf",
     "octgn:5642b7b9-b194-46e3-bf69-7aa7ec9efc62",
     "octgn:56634de4-2ef2-4739-b549-fa591e7032eb",
@@ -2563,6 +2565,7 @@
     "octgn:666a449f-e103-4d70-932e-48e57c4d662c",
     "octgn:666a449f-e103-4d70-932e-48e57c4d662c:B",
     "octgn:66812347-fac2-4a76-aa69-ac0861071c0d",
+    "octgn:66fc0634-c88c-4af2-a009-8ade84806f98",
     "octgn:6709bafa-87b5-483e-9895-0f2edea7e47a",
     "octgn:67221212-2af6-4729-a8d7-3ea575befcbb",
     "octgn:67251171-ee5f-46d5-b3c8-10523350c60c",
@@ -2579,6 +2582,7 @@
     "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d",
     "octgn:688d04e8-80d8-4ea8-9274-0712f26fac9b",
     "octgn:68ba3515-4cbc-4e73-b8f3-69a3ab4b8110",
+    "octgn:68ddf4d3-6336-40ed-862c-c68ae97ffb28",
     "octgn:68e3c34a-1af7-410f-ad57-85386181c6d7",
     "octgn:694650d0-9ba6-4573-bf13-10ca8eb7995d",
     "octgn:6948a0fa-e13f-4023-865f-3c8b6599c6a0",
@@ -2780,6 +2784,7 @@
     "octgn:7d76b849-a3c7-4e2d-ab9d-f02ff0cca709",
     "octgn:7d9a3914-bc46-40d6-b489-3157d7430382",
     "octgn:7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00",
+    "octgn:7ddffdc0-bb6f-4ab3-a6df-c2df039062e8",
     "octgn:7e20690f-d1bb-4ac3-b2bf-da55f1f95bcc",
     "octgn:7e470346-1828-49c0-b241-58d0dbf27b4b",
     "octgn:7e6fec55-9dd6-4fdc-96b5-4922aa095544",
@@ -3094,6 +3099,7 @@
     "octgn:9d1daee2-2d6e-4d9a-87e4-b706779555d4",
     "octgn:9d2926dc-ab14-492a-8f1e-b07c1b32b2d8",
     "octgn:9d451960-2db3-43df-9cd8-d525ef58cf55",
+    "octgn:9d460d1a-45d9-4828-a40e-2dbddc51c086",
     "octgn:9d58de28-c518-4888-8e91-a52bb5c3e663",
     "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
     "octgn:9d60ffd4-34c2-42db-9fb7-474b1410d1aa",
@@ -3204,6 +3210,7 @@
     "octgn:a9502ae6-2df9-419a-b562-43550926cd73",
     "octgn:a961751d-414b-4a53-9da4-5708f8b7bb1f",
     "octgn:a9cdd0bf-1d77-415c-8820-d4974ec02ee0",
+    "octgn:a9d496bb-46b8-4660-8ae8-430a4cafb997",
     "octgn:a9e14405-1ac0-4db8-8357-1ac2e9d59624",
     "octgn:aa3355cb-57e1-4d8b-8a1b-9be22581a9f3",
     "octgn:aa632825-0b60-4dc7-9733-8aa554631d6e",
@@ -3630,6 +3637,7 @@
     "octgn:d198aa74-21ec-462a-ac1a-f9c2fcf526cb",
     "octgn:d1a3a535-7679-4757-871c-80c50c003cff",
     "octgn:d1cc0af9-7ab3-449b-baa2-da0bfdf6c987",
+    "octgn:d1cc7784-d659-4b87-8ce5-ffea723ee715",
     "octgn:d26e6602-0c2d-440e-8065-10cfa89687c1",
     "octgn:d2bf00ad-2e1e-4537-b662-f6f20f9a1cfe",
     "octgn:d2cd3802-0667-4124-b7b6-5e753ff71ec3",
@@ -3647,6 +3655,7 @@
     "octgn:d3bd47e5-cf59-4097-9cec-92a15fe56bf4",
     "octgn:d3c68791-c3f9-4e8d-9515-2496f9ca1895",
     "octgn:d3eee887-e9fd-40f9-bd09-47a7b0732ee2",
+    "octgn:d413aeaa-974a-478f-8a06-bd12d4ab661f",
     "octgn:d4309384-8472-4385-8122-163d6c4c8396",
     "octgn:d43b2298-a255-4afa-a95b-f7f1c8420757",
     "octgn:d4686e4d-2d50-4ffd-9b95-7bcdf9b2a494",
@@ -4822,7 +4831,7 @@
     {
       "product": "the-lost-realm-nightmare",
       "total": 27,
-      "scripted": 18,
+      "scripted": 27,
       "player": 0,
       "playerScripted": 0
     },
@@ -18936,7 +18945,7 @@
       "name": "Paralyzing Fear",
       "type": "treachery",
       "pack": "The Lost Realm - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm-nightmare"
     },
     {
@@ -23920,7 +23929,7 @@
       "name": "Curse of Angmar",
       "type": "treachery",
       "pack": "The Lost Realm - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm-nightmare"
     },
     {
@@ -25104,7 +25113,7 @@
       "name": "Gather Your Courage",
       "type": "encounter-side-quest",
       "pack": "The Lost Realm - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm-nightmare"
     },
     {
@@ -25256,7 +25265,7 @@
       "name": "Undead Horde",
       "type": "enemy",
       "pack": "The Lost Realm - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm-nightmare"
     },
     {
@@ -27040,7 +27049,7 @@
       "name": "Palace Ruins",
       "type": "location",
       "pack": "The Lost Realm - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm-nightmare"
     },
     {
@@ -29736,7 +29745,7 @@
       "name": "Deadman's Dike",
       "type": "nightmare",
       "pack": "The Lost Realm - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm-nightmare"
     },
     {
@@ -30728,7 +30737,7 @@
       "name": "Cursed Dead",
       "type": "enemy",
       "pack": "The Lost Realm - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm-nightmare"
     },
     {
@@ -34448,7 +34457,7 @@
       "name": "Fornost Street",
       "type": "location",
       "pack": "The Lost Realm - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm-nightmare"
     },
     {
@@ -34592,7 +34601,7 @@
       "name": "Decrepit City",
       "type": "location",
       "pack": "The Lost Realm - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm-nightmare"
     },
     {
@@ -39740,8 +39749,8 @@
       "id": "N05.3",
       "name": "Deadman's Dike (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "deadmens-dike",
+      "state": "scripted"
     },
     {
       "id": "N05.4",

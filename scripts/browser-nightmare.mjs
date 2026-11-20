@@ -3350,6 +3350,95 @@ try {
       "the guarded villager stays in the staging area",
     );
     await checkpoint("weather-captive-villager", width);
+
+    // Deadmen's Dike in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-deadmens-dike").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "deadmens-dike");
+    assert.equal(s.nightmareMode, true);
+    {
+      const all = [
+        ...s.encounterDeck,
+        ...s.encounterDiscard,
+        ...s.staging.map((u) => u.code),
+        ...s.engaged.map((u) => u.code),
+      ];
+      assert.equal(
+        all.filter((c) => c === TLR.street).length,
+        4,
+        "the Nightmare Deck's 4 Fornost Streets",
+      );
+      assert.ok(
+        !all.some((c) => card(c).name === "Restless Evil"),
+        "the setup card removes the Restless Evils",
+      );
+      assert.equal(
+        all.filter((c) => card(c).name === "Cursed Dead").length,
+        7,
+        "5 standard and 2 Nightmare copies of Cursed Dead",
+      );
+    }
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/cannot include more than 50 total cards/)
+      .waitFor();
+    await checkpoint("dike-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // Palace Ruins, Fornost Street and Decrepit City beside an Undead Horde
+    // and Gather Your Courage.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.staging = [
+        ...t.staging,
+        make(t, TLR.palace),
+        make(t, TLR.street),
+        make(t, TLR.city),
+        make(t, TLR.horde),
+        make(t, TLR.courage),
+      ];
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [TLR.palace, "Palace Ruins"],
+      [TLR.street, "Fornost Street"],
+      [TLR.city, "Decrepit City"],
+      [TLR.horde, "Undead Horde"],
+      [TLR.courage, "Gather Your Courage"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    await checkpoint("dike-palace-ruins", width);
     await view.c.close();
   }
   const p = await browser.newPage();
