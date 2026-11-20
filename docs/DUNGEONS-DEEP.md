@@ -4,7 +4,10 @@ The third and last scenario of **The Hobbit: Over Hill and Under Hill** follows
 [Over the Misty Mountains Grim](MISTY-MOUNTAINS.md). The shared Saga rules are
 described with [We Must Away, Ere Break of Day](WE-MUST-AWAY.md). It is
 playable in classic solo and with one to four local players, in normal and easy
-mode, and accepts the discovered treasures.
+mode, and in Nightmare mode ([its Nightmare Deck](NIGHTMARE.md): the setup
+builds the encounter deck with the setup card's removals and its cards, the
+riddles also name a card title or a Trait, and stage 3B brings The Lower
+Gate), and accepts the discovered treasures.
 
 ## Sources and corrections
 

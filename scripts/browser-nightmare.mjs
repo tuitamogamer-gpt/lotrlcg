@@ -1958,6 +1958,63 @@ try {
       "Goblin Prowler's face loads",
     );
     await checkpoint("omm-goblin-prowler", width);
+
+    // Dungeons Deep and Caverns Dim in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-dungeons-deep-and-caverns-dim").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "dungeons-deep-and-caverns-dim");
+    assert.equal(s.nightmareMode, true);
+    assert.equal(s.nightmare?.lowerGateAside, 1, "The Lower Gate is aside");
+    assert.ok(
+      !s.encounterDeck.includes(OHUH.lowerGate) &&
+        !s.staging.some((u) => u.code === OHUH.lowerGate),
+      "The Lower Gate waits for stage 3B",
+    );
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/Gollum cannot take damage; The Lower Gate is set aside/)
+      .waitFor();
+    await checkpoint("ddcd-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A Wicked Wolf beside a Pine Slopes in the staging area.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.staging = [...t.staging, make(t, OHUH.wickedWolf), make(t, OHUH.pine)];
+      s = await load(page, t);
+    }
+    const wolfFace = page
+      .locator(`img[src*="${OHUH.wickedWolf.slice("octgn:".length)}"]`)
+      .first();
+    await wolfFace.waitFor();
+    assert.ok(
+      (await wolfFace.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "Wicked Wolf's face loads",
+    );
+    await checkpoint("ddcd-wicked-wolf", width);
     await view.c.close();
   }
   const p = await browser.newPage();

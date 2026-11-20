@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2544,
+    "encounterCards": 2552,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3766,
-    "pending": 417
+    "scripted": 3774,
+    "pending": 409
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 299
+    "scripted": 300
   },
   "registeredCodes": [
     "01001",
@@ -1418,6 +1418,7 @@
     "octgn:159f5a8f-1e1f-4282-9936-94b10e348176",
     "octgn:15ccb88a-9a78-4aac-a1f2-839070a19016",
     "octgn:15e06e00-8d82-4590-b2ae-6e615330d78a",
+    "octgn:15e5feb5-73f4-4472-b279-1887ff29f691",
     "octgn:15ebc613-43fc-4c9b-ac71-91840d853e60",
     "octgn:15f9c6b7-2bb0-48ea-9a5d-b8ec3b1a7e2d",
     "octgn:1600dd03-7b19-4dd2-924c-30c30b09cb9d",
@@ -2345,6 +2346,7 @@
     "octgn:530e7365-0a5a-46e5-9720-5377dfa1a01b",
     "octgn:533a076a-be76-4528-9684-483d765bb2a3",
     "octgn:536cee93-e3d5-42fd-8182-0a939fd19f46",
+    "octgn:536fa3c6-a078-4e79-b316-70cdc826e5d7",
     "octgn:5388683d-3240-433a-9602-a7367e428406",
     "octgn:53ac8ba6-0487-4b1f-91e9-cf7ca9e7c1d0",
     "octgn:53b038f1-01c5-40d9-b583-7501b0d7c8df",
@@ -2916,6 +2918,7 @@
     "octgn:9497ef98-8f38-4647-bf77-28d8007a911a",
     "octgn:949e2607-cbb5-4ae3-af26-f9d7e00e09d2",
     "octgn:94befa92-9e5f-4838-b1e1-0b54d698bcb3",
+    "octgn:94c35d99-945d-470d-9914-331e480c8cce",
     "octgn:94ef148f-62f7-4659-8a49-9c42b9ed7cef",
     "octgn:94f2aa12-7d4c-4124-a642-a7f3fb2ca414",
     "octgn:94f2aa12-7d4c-4124-a642-a7f3fb2ca414.B",
@@ -3019,6 +3022,7 @@
     "octgn:a0417d08-1905-46f9-bd65-067c1c59f0a3",
     "octgn:a067986f-6c42-446d-8a23-58d0190c39f0",
     "octgn:a073c291-5f86-4b49-821e-d965baf369fa",
+    "octgn:a0a4d2cf-ed07-4942-9588-8fca05f75bbf",
     "octgn:a0b5c990-9acd-499c-befe-9a55e347f075",
     "octgn:a0d5be90-8618-4fe4-a917-d8d969c11264",
     "octgn:a0e1e091-fbbb-459e-9cb7-2cc63bd85711",
@@ -3033,6 +3037,7 @@
     "octgn:a246d29f-f370-4308-828d-c1ff09029b4a",
     "octgn:a258aec8-a5d9-4194-8612-ac2dd3b8f99e",
     "octgn:a25b4139-f1d0-4466-83f2-f06fa3e0c30b",
+    "octgn:a25d1abc-f24e-4ce7-bf14-cb5adb007a4d",
     "octgn:a264930c-e083-484a-bbe8-9b615942e83a",
     "octgn:a27a3045-58aa-4cbe-ab36-90bc6e7a5cdb",
     "octgn:a2b6cb8b-dacf-4c82-9097-2206610192ac",
@@ -3164,6 +3169,7 @@
     "octgn:b0a1f83b-f1b0-4945-afc8-91a1c25063e2",
     "octgn:b0b64e9f-0a9f-42f1-9ad0-0e54db93dc47",
     "octgn:b0b77537-0c91-42c0-b111-647bc445a419",
+    "octgn:b0caeaa6-2c96-4d92-9cca-7cb55387d8c0",
     "octgn:b0d31a1c-2155-4a97-a5ff-912e32a4809e",
     "octgn:b0e4169e-0dd1-4abc-a021-e6b16ebc0bd2",
     "octgn:b1217b87-40bd-442d-b7c8-0d9b7d262b04",
@@ -3833,6 +3839,7 @@
     "octgn:f5d539b2-0b65-493d-8493-5122a0761eed",
     "octgn:f60662b4-ebfe-4b89-9d1e-124976e6c5b7",
     "octgn:f607e8d7-ca95-4f83-80b9-a07726d38f65",
+    "octgn:f631b06f-1f0c-45aa-b5af-c4f9b9a41455",
     "octgn:f63c9a8e-23dc-4c3a-bbff-00bd585e27bc",
     "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd",
     "octgn:f6578eb7-1b94-458b-aba1-82b406507a4d",
@@ -3889,6 +3896,7 @@
     "octgn:fb5e0cb9-914f-49ee-8e21-534e89bc5533",
     "octgn:fb7d55c5-7198-45c5-97d7-be4c6a26fa68",
     "octgn:fb897d38-fce6-4061-aaa5-9311eaadd8e5",
+    "octgn:fb951af8-2bc7-4529-8e16-ca85a362aac1",
     "octgn:fba9d635-eeba-4cc1-b9fb-d6666a3a1cdf",
     "octgn:fbc99604-7183-41fe-b37c-d5a8f54bea0e",
     "octgn:fbfee53c-fec3-4b55-a8b4-c7329f8f973e",
@@ -4262,7 +4270,7 @@
     {
       "product": "over-hill-and-under-hill-nightmare",
       "total": 24,
-      "scripted": 16,
+      "scripted": 24,
       "player": 0,
       "playerScripted": 0
     },
@@ -15329,7 +15337,7 @@
       "name": "Pine Slopes",
       "type": "location",
       "pack": "The Hobbit - Over Hill and Under Hill - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill-nightmare"
     },
     {
@@ -23513,7 +23521,7 @@
       "name": "Fallen Stones",
       "type": "location",
       "pack": "The Hobbit - Over Hill and Under Hill - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill-nightmare"
     },
     {
@@ -28865,7 +28873,7 @@
       "name": "The Lower Gate",
       "type": "location",
       "pack": "The Hobbit - Over Hill and Under Hill - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill-nightmare"
     },
     {
@@ -29817,7 +29825,7 @@
       "name": "Dungeons Deep and Caverns Dim",
       "type": "nightmare",
       "pack": "The Hobbit - Over Hill and Under Hill - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill-nightmare"
     },
     {
@@ -29969,7 +29977,7 @@
       "name": "Lower Gate Sentries",
       "type": "enemy",
       "pack": "The Hobbit - Over Hill and Under Hill - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill-nightmare"
     },
     {
@@ -31169,7 +31177,7 @@
       "name": "Wicked Wolf",
       "type": "enemy",
       "pack": "The Hobbit - Over Hill and Under Hill - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill-nightmare"
     },
     {
@@ -37313,7 +37321,7 @@
       "name": "Where isss It?",
       "type": "treachery",
       "pack": "The Hobbit - Over Hill and Under Hill - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill-nightmare"
     },
     {
@@ -37833,7 +37841,7 @@
       "name": "We Hates It!",
       "type": "treachery",
       "pack": "The Hobbit - Over Hill and Under Hill - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill-nightmare"
     },
     {
@@ -39691,8 +39699,8 @@
       "id": "N0A.3",
       "name": "Dungeons Deep and Caverns Dim (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "dungeons-deep-and-caverns-dim",
+      "state": "scripted"
     },
     {
       "id": "N0A.4",

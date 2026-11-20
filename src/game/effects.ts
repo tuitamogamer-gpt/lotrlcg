@@ -2192,7 +2192,9 @@ function handleEffect(s: GameState, e: Effect) {
           u.committed = false;
           u.attacked = false;
           u.boost = 0;
-          for (const a of u.attachments) a.exhausted = false;
+          for (const a of u.attachments)
+            if (!batch4Scenario(s).attachmentCannotReady?.(s, u, a))
+              a.exhausted = false;
           if (!fangornReady && !landSorrowPlayerSkipsRefresh(u)) {
             if (!webAttachments(u.attachments).length)
               readyCharacter(s, u, false);

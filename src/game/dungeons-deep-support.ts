@@ -35,7 +35,13 @@ export const DDCD = {
   grip: OMM.grip,
   caves: OMM.caves,
 };
-export type RiddleItem = "type" | "sphere" | "cost";
+export type RiddleItem = "type" | "sphere" | "cost" | "title" | "trait";
+/** The Nightmare Deck's riddles (Fallen Stones, Where isss It? and We Hates It!). */
+export const DDCD_NIGHTMARE_RIDDLES = {
+  stones: "octgn:536fa3c6-a078-4e79-b316-70cdc826e5d7",
+  where: "octgn:f631b06f-1f0c-45aa-b5af-c4f9b9a41455",
+  hates: "octgn:fb951af8-2bc7-4529-8e16-ca85a362aac1",
+} as const;
 /** The items each riddle names and how many player cards it discards. */
 export const RIDDLES: Record<string, { items: RiddleItem[]; cards: number }> = {
   [DDCD.bird]: { items: ["type", "cost"], cards: 3 },
@@ -45,6 +51,12 @@ export const RIDDLES: Record<string, { items: RiddleItem[]; cards: number }> = {
   [DDCD.glade]: { items: ["sphere"], cards: 1 },
   [DDCD.pocket]: { items: ["sphere", "cost"], cards: 2 },
   [DDCD.wargs]: { items: ["type"], cards: 2 },
+  [DDCD_NIGHTMARE_RIDDLES.stones]: { items: ["title"], cards: 5 },
+  [DDCD_NIGHTMARE_RIDDLES.where]: {
+    items: ["sphere", "cost", "type"],
+    cards: 3,
+  },
+  [DDCD_NIGHTMARE_RIDDLES.hates]: { items: ["trait"], cards: 1 },
 };
 export const hasRiddle = (code: string) => code in RIDDLES;
 export const RIDDLE_TYPES = ["ally", "event", "attachment", "treasure"];
@@ -68,6 +80,15 @@ export function riddleMatch(
   if (named.sphere !== undefined && c.sphere_code !== named.sphere)
     return false;
   if (named.cost !== undefined && String(Number(c.cost)) !== named.cost)
+    return false;
+  if (named.title !== undefined && c.name !== named.title) return false;
+  if (
+    named.trait !== undefined &&
+    !(c.traits ?? "")
+      .split(".")
+      .map((t) => t.trim())
+      .includes(named.trait)
+  )
     return false;
   return true;
 }

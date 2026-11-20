@@ -83,6 +83,8 @@ export interface Batch4ScenarioHooks {
   cannotWin?(s: GameState): boolean;
   /** A card a quest card effect discarded from the top of the encounter deck; true stops the discards (Night Wanes Slow). */
   questDiscard?(s: GameState, code: string): boolean;
+  /** An attachment that does not ready during the refresh phase (Lower Gate Sentries: Bilbo's Magic Ring). */
+  attachmentCannotReady?(s: GameState, host: Unit, a: Attachment): boolean;
   combatBegin?(s: GameState): void;
   enemyEntered?(s: GameState, unit: Unit): void;
   openingHandsKept?(s: GameState): boolean;

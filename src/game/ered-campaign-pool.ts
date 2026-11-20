@@ -2974,6 +2974,9 @@ export function composeEredPool(
       !!h.locationDestination?.(s, u) || !!p.locationDestination?.(s, u),
     questDiscard: (s, code) =>
       !!h.questDiscard?.(s, code) || !!p.questDiscard?.(s, code),
+    attachmentCannotReady: (s, host, a) =>
+      !!h.attachmentCannotReady?.(s, host, a) ||
+      !!p.attachmentCannotReady?.(s, host, a),
     beforeDestroy: (s, u, destruction, context) =>
       !!h.beforeDestroy?.(s, u, destruction, context) ||
       !!p.beforeDestroy?.(s, u, destruction, context),

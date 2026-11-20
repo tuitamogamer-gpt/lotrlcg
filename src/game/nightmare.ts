@@ -288,6 +288,15 @@ export const NIGHTMARE_OHUH = {
   prowler: "octgn:c6582860-80cf-48d6-92f3-dde5e3e31333",
   passages: "octgn:f7a42b56-2a8e-4c6f-b60c-5031ad2a99db",
   swish: "octgn:7d3ef70c-4107-4747-9913-048224ba6e76",
+  /** Dungeons Deep and Caverns Dim's setup card and Nightmare Deck (The Lower Gate set aside until stage 3B). */
+  ddcdCard: "octgn:a0a4d2cf-ed07-4942-9588-8fca05f75bbf",
+  lowerGate: "octgn:94c35d99-945d-470d-9914-331e480c8cce",
+  wickedWolf: "octgn:b0caeaa6-2c96-4d92-9cca-7cb55387d8c0",
+  sentries: "octgn:a25d1abc-f24e-4ce7-bf14-cb5adb007a4d",
+  pine: "octgn:15e5feb5-73f4-4472-b279-1887ff29f691",
+  stones: "octgn:536fa3c6-a078-4e79-b316-70cdc826e5d7",
+  whereIsIt: "octgn:f631b06f-1f0c-45aa-b5af-c4f9b9a41455",
+  weHates: "octgn:fb951af8-2bc7-4529-8e16-ca85a362aac1",
 } as const;
 /** Over the Misty Mountains Grim's Nightmare cards with The Great Goblin's encounter set icon: they join the second (Goblin) encounter deck. */
 export const NIGHTMARE_OMM_GOBLIN_DECK: readonly string[] = [
@@ -722,6 +731,16 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Goblin Axeman": 3,
     },
   },
+  "dungeons-deep-and-caverns-dim": {
+    card: NIGHTMARE_OHUH.ddcdCard,
+    removals: {
+      "Goblin Miners": 3,
+      "Goblin Axeman": 3,
+      "The Goblins' Caves": 3,
+      "Grip, grab! Pinch, nab!": 3,
+      "Not fair! Not fair!": 1,
+    },
+  },
   "the-morgul-vale": {
     card: NIGHTMARE_AS.morgulCard,
     removals: {
@@ -1034,6 +1053,10 @@ export function nightmareStatus(s: GameState): string[] {
       `The Blood of Gondor · Nightmare mode: each player took a hidden card at setup (${hidden} hidden now); the players cannot win unless The Cross-roads and the Nightmare Deck's Black Númenorean are in the victory display.`,
     ];
   }
+  if (s.scenarioId === "dungeons-deep-and-caverns-dim")
+    return [
+      `Dungeons Deep and Caverns Dim · Nightmare mode: Gollum cannot take damage; The Lower Gate ${s.nightmare?.lowerGateAside ? "is set aside until stage 3B is revealed" : "has entered the staging area"}.`,
+    ];
   if (s.scenarioId === "over-the-misty-mountains-grim") {
     const players = s.table?.seats.length ?? 1;
     return [

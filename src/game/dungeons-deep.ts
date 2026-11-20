@@ -30,6 +30,8 @@ import {
   spendBaggins,
 } from "./hobbit-saga";
 import { holdTreachery, hobbitResolving, wmaEffect } from "./we-must-away";
+import { nightmareEncounterDeck, nightmareLive } from "./nightmare";
+import { batch4Scenario } from "./batch4-scenarios";
 import {
   goblinEncounter,
   goblinShadow,
@@ -87,17 +89,36 @@ const encodeNamed = (named: Partial<Record<RiddleItem, string>>) =>
     .map(([k, v]) => `${k}=${v}`)
     .join(";");
 const label = (item: RiddleItem, value: string) =>
-  item === "cost" ? `Cost ${value}` : value[0].toUpperCase() + value.slice(1);
+  item === "cost"
+    ? `Cost ${value}`
+    : !value
+      ? "Nothing (the deck is empty)"
+      : value[0].toUpperCase() + value.slice(1);
+/** The card titles or Traits the first player may name: those of their deck. */
+function deckNames(s: GameState, item: "title" | "trait") {
+  const names = new Set<string>();
+  forOwner(s, firstPlayer(s), () => {
+    for (const code of s.deck)
+      if (item === "title") names.add(card(code).name);
+      else
+        for (const t of (card(code).traits ?? "").split("."))
+          if (t.trim()) names.add(t.trim());
+  });
+  const list = [...names].sort((a, b) => a.localeCompare(b));
+  return list.length ? list : [""];
+}
 
 export function setupDungeonsDeep(s: GameState) {
   const r = DDCD_RECIPES.find(
     (r) => r.mode === (s.easyMode ? "easy" : "standard"),
   )!;
+  const deck = r.cards
+    .filter((c) => c.section === "sharedEncounterDeck")
+    .flatMap((c) => Array<string>(c.quantity).fill(c.code));
+  // Nightmare mode: the setup card's removals and its Nightmare Deck.
   s.encounterDeck = shuffle(
     s,
-    r.cards
-      .filter((c) => c.section === "sharedEncounterDeck")
-      .flatMap((c) => Array<string>(c.quantity).fill(c.code)),
+    nightmareLive(s) ? nightmareEncounterDeck(s.scenarioId, deck) : deck,
   );
   s.staging.push(make(s, D.lake));
   s.dungeonsDeep = {
@@ -316,6 +337,8 @@ export function ddcdEffect(s: GameState, e: Effect): boolean {
         "danger",
       );
       prepend(s, ...playerOrder(s).map((player) => fx("reveal", { player })));
+      // A Nightmare Deck's "When stage 3B is revealed" (The Lower Gate).
+      batch4Scenario(s).stageRevealed?.(s, 3);
       break;
     }
     case "ddcdAnswerUnit": {
@@ -365,10 +388,12 @@ export function ddcdEffect(s: GameState, e: Effect): boolean {
           ? RIDDLE_TYPES
           : item === "sphere"
             ? RIDDLE_SPHERES
-            : RIDDLE_COSTS.map(String);
+            : item === "cost"
+              ? RIDDLE_COSTS.map(String)
+              : deckNames(s, item);
       choose(
         s,
-        `${card(e.code!).name} · The first player names a ${item === "type" ? "card type" : item}`,
+        `${card(e.code!).name} · The first player names a ${item === "type" ? "card type" : item === "title" ? "card title" : item === "trait" ? "Trait" : item}`,
         values.map((value) => ({
           id: `${item}-${value}`,
           label: label(item, value),

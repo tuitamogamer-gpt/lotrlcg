@@ -53,6 +53,7 @@ import {
   NIGHTMARE_DD,
   NIGHTMARE_HON,
   NIGHTMARE_AS,
+  NIGHTMARE_OHUH,
   NIGHTMARE_SOM,
   nightmareCardOf,
   nightmareLive,
@@ -252,6 +253,19 @@ export function nightmareSetup(s: GameState) {
     log(
       s,
       "Assault on Osgiliath · Nightmare: Palace Remains is added to the staging area.",
+    );
+  }
+  // Dungeons Deep and Caverns Dim: "Setup: Search the encounter deck for
+  // The Lower Gate and set it aside, out of play."
+  if (s.scenarioId === "dungeons-deep-and-caverns-dim") {
+    const at = s.encounterDeck.indexOf(NIGHTMARE_OHUH.lowerGate);
+    if (at >= 0) {
+      s.encounterDeck.splice(at, 1);
+      (s.nightmare ??= {}).lowerGateAside = 1;
+    }
+    log(
+      s,
+      "Dungeons Deep and Caverns Dim · Nightmare: The Lower Gate is set aside until stage 3B is revealed.",
     );
   }
   // Into Ithilien: "Set both copies of Mûmak Elite aside, out of
