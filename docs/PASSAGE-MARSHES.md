@@ -2,8 +2,8 @@
 
 The first scenario of **The Lord of the Rings: The Land of Shadow** (November
 2015). It is playable in classic solo and with one to four local players, in
-normal and easy mode, with the box's Fellowship-sphere Frodo Baggins as the
-Ring-bearer. Its campaign mode (recipe Q0C.10) is part of
+normal and easy mode and in Nightmare mode (below), with the box's
+Fellowship-sphere Frodo Baggins as the Ring-bearer. Its campaign mode (recipe Q0C.10) is part of
 [The Lord of the Rings campaign](SAGA-CAMPAIGN.md): free hero changes without
 an Aragorn, The Searching Eye in each player's deck, and a resolution that
 gives each player a +2 starting threat penalty or a copy of The Searching Eye.
@@ -115,6 +115,23 @@ Interpretations:
   the trigger for Morgul Wraith until the refresh phase readies it.
 - Gollum's immunity applies to non-Fellowship player cards; a Fellowship
   card's effect can still target him.
+
+## Nightmare mode
+
+The Nightmare Deck (recipe `N0B.10`,
+[rules and cards](NIGHTMARE.md#the-passage-of-the-marshes-nightmare))
+removes Groping Dead ×3, Dead Things ×3, Soft Mires ×3, Haunted Mere ×3 and
+Bitter Reek ×3, and adds Festering Mire ×3, Candle-lit Pool ×3, Great Reed
+Thicket ×2, Pale Faces ×3, Rotting Thing ×3, Rot and Vapors ×3 and Gollum's
+Rage ×2 (40 encounter cards). Its setup card raises each player's threat by a
+location's Mire value whenever a location in the staging area is explored.
+The new locations use the scenario's Mire keyword: their mire tokens, their
+discard at their Mire value and their Forced effects (each hand discarded,
+an Undead enemy engaged with each player, Sméagol flipped or Gollum's
+attack). Pale Faces and Rotting Thing stop their engaged player's threat
+reduction as the scenario's Undead do, Rotting Thing's kills add mire tokens
+for the attack's excess damage, and Gollum's Rage waits facedown on Gollum
+for his next attack. Focused checks are in `tests/nightmare-marshes.test.ts`.
 
 ## Verification
 

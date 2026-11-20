@@ -654,6 +654,18 @@ export const NIGHTMARE_AA = {
   allIsLost: "octgn:d0968637-1ffc-4365-855f-ee35704a8128",
   gift: "octgn:ac5c7c07-591f-4ac0-9080-e46433a50ff3",
 } as const;
+/** The Land of Shadow's Nightmare Decks (The Lord of the Rings saga). */
+export const NIGHTMARE_LOS = {
+  /** The Passage of the Marshes' setup card (Mire on explored staging locations) and Nightmare Deck. */
+  marshesCard: "octgn:9f4fa8d5-eaa4-4089-82aa-1ea4563a237b",
+  festering: "octgn:77ee7ac0-7957-4cb2-9f01-05eea2c80d6e",
+  candle: "octgn:a6993cad-4a32-48f4-b5fc-289d39faf740",
+  thicket: "octgn:04029ea1-9780-4335-a8a2-74c08710c3f2",
+  pale: "octgn:b2113592-2485-4324-98c8-ab4bec23deae",
+  rotting: "octgn:6e82330b-ca0d-4d6b-a796-024de152ca56",
+  rot: "octgn:555dcce7-e705-4ba1-ba58-4880b449c178",
+  rage: "octgn:9b0f5fb4-4f7f-4e89-8565-b327980f2627",
+} as const;
 
 interface NightmareDeck {
   /** The setup card, flipped next to the quest deck. */
@@ -1293,6 +1305,16 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
     // its setup rebuilds the deck from its recipe and applies the removals.
     sets: ["The Battle of Carn Dum", "Angmar Orcs", "Dark Sorcery"],
   },
+  "the-passage-of-the-marshes": {
+    card: NIGHTMARE_LOS.marshesCard,
+    removals: {
+      "Groping Dead": 3,
+      "Dead Things": 3,
+      "Soft Mires": 3,
+      "Haunted Mere": 3,
+      "Bitter Reek": 3,
+    },
+  },
   "the-dread-realm": {
     card: NIGHTMARE_AA.dreadCard,
     removals: {
@@ -1788,6 +1810,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "the-battle-of-carn-dum")
     return [
       "The Battle of Carn Dûm · Nightmare mode: characters committed to a quest with the siege keyword count their [defense] instead of their [willpower], against the staging area's [threat].",
+    ];
+  if (s.scenarioId === "the-passage-of-the-marshes")
+    return [
+      "The Passage of the Marshes · Nightmare mode: when a location in the staging area is explored, each player raises their threat by that location's Mire value.",
     ];
   if (s.scenarioId === "the-dread-realm") {
     const curses = s.nightmare?.dreadCurses ?? [];

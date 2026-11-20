@@ -22,6 +22,7 @@ import {
   NIGHTMARE_TLR as TLR,
   NIGHTMARE_TOS as TOS,
   NIGHTMARE_AA as AA,
+  NIGHTMARE_LOS as LOS,
 } from "../src/game/nightmare.ts";
 import { CHETWOOD } from "../src/game/chetwood-support.ts";
 import { KHAZAD } from "../src/game/khazad-dum.ts";
@@ -4245,6 +4246,96 @@ try {
       .getByText("All is Lost")
       .waitFor();
     await checkpoint("dread-sanctum", width);
+    // The Passage of the Marshes in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-the-passage-of-the-marshes").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "the-passage-of-the-marshes");
+    assert.equal(s.nightmareMode, true);
+    {
+      const all = [
+        ...s.encounterDeck,
+        ...s.encounterDiscard,
+        ...s.staging.map((u) => u.code),
+        ...s.engaged.map((u) => u.code),
+      ];
+      assert.deepEqual(
+        [LOS.festering, LOS.candle, LOS.pale, LOS.rotting, LOS.rage].map(
+          (code) => all.filter((c) => c === code).length,
+        ),
+        [3, 3, 3, 3, 2],
+        "the Nightmare Deck is in the encounter deck",
+      );
+      assert.ok(
+        !all.some((c) => card(c).name === "Bitter Reek"),
+        "the setup card removes each Bitter Reek",
+      );
+    }
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(
+        /each player raises their threat by that location's Mire value/,
+      )
+      .waitFor();
+    await checkpoint("marshes-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // Pale Faces engaged, a Rotting Thing and the three Marsh locations.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const pale = make(t, LOS.pale);
+      pale.owner = 0;
+      t.engaged = [...t.engaged, pale];
+      const mire = make(t, LOS.festering);
+      mire.resources = 1;
+      t.staging = [
+        ...t.staging,
+        make(t, LOS.rotting),
+        mire,
+        make(t, LOS.candle),
+        make(t, LOS.thicket),
+      ];
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [LOS.pale, "Pale Faces"],
+      [LOS.rotting, "Rotting Thing"],
+      [LOS.festering, "Festering Mire"],
+      [LOS.candle, "Candle-lit Pool"],
+      [LOS.thicket, "Great Reed Thicket"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    await checkpoint("marshes-festering-mire", width);
     await view.c.close();
   }
   const p = await browser.newPage();

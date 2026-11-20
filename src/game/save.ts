@@ -731,6 +731,8 @@ export function validateSave(
         c.nmReturnAfter,
         c.nmPowerOnKill,
         c.nmAttackAgain,
+        c.nmMireOnKill,
+        c.nmExcess,
       ].every((v) => v === undefined || (integer(v) && v >= 0)) &&
       (c.dreadKilled === undefined ||
         (Array.isArray(c.dreadKilled) &&

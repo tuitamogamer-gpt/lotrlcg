@@ -1299,6 +1299,10 @@ export interface GameState {
     nmPowerOnKill?: number;
     /** All is Lost's shadow (The Dread Realm's Nightmare Deck): the Reanimated Dead attacks again after this attack, once for each copy. */
     nmAttackAgain?: number;
+    /** Rot and Vapors' shadow (The Passage of the Marshes' Nightmare Deck): mire tokens placed on the active location if this attack destroys a character, once for each copy. */
+    nmMireOnKill?: number;
+    /** Rotting Thing (The Passage of the Marshes' Nightmare Deck): the excess points of combat damage its attack dealt. */
+    nmExcess?: number;
     defenderIds?: string[];
     ignoreDefense?: boolean;
     returnToStaging?: boolean;

@@ -42,6 +42,7 @@ import { isAlly, isHero } from "./card-types";
 import { isEnemy } from "./ships";
 import { mainQuestCode, mainQuestUnit } from "./quest-state";
 import { lotrSagaCheck } from "./lotr-saga";
+import { nightmareEncounterDeck, nightmareLive } from "./nightmare";
 import { hasTrait } from "./expansion-passives";
 import {
   fellowshipPayers,
@@ -155,7 +156,13 @@ export function setupPassageMarshes(s: GameState) {
     r.cards
       .filter((c) => c.section === name)
       .flatMap((c) => Array<string>(c.quantity).fill(c.code));
-  s.encounterDeck = shuffle(s, section("sharedEncounterDeck"));
+  // Nightmare mode: the setup card's removals and its Nightmare Deck.
+  s.encounterDeck = shuffle(
+    s,
+    nightmareLive(s)
+      ? nightmareEncounterDeck(s.scenarioId, section("sharedEncounterDeck"))
+      : section("sharedEncounterDeck"),
+  );
   // 1A puts Gollum into play engaged with the first player once the players
   // have their opening hands.
   s.staging = section("sharedStagingArea").map((c) => make(s, c));
@@ -204,12 +211,17 @@ function advance(s: GameState) {
 // The Mire keyword.
 
 /** Place mire tokens on locations, then discard those that reached their Mire value. */
-function placeMire(s: GameState, targets: Unit[], text: string) {
-  for (const u of targets) u.resources += 1;
+export function placeMire(
+  s: GameState,
+  targets: Unit[],
+  text: string,
+  count = 1,
+) {
+  for (const u of targets) u.resources += count;
   if (targets.length)
     log(
       s,
-      `${text}: 1 mire token is placed on ${targets.map((u) => `${name(u)} (${u.resources} of ${mireValue(u.code)})`).join(", ")}.`,
+      `${text}: ${count} mire token${count === 1 ? " is" : "s are"} placed on ${targets.map((u) => `${name(u)} (${u.resources} of ${mireValue(u.code)})`).join(", ")}.`,
       "danger",
     );
   mireDiscard(s);

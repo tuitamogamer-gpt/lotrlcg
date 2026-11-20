@@ -2,6 +2,7 @@
 import encounters from "../data/passage-marshes-encounter-cards.json";
 import quests from "../data/passage-marshes-quest-cards.json";
 import recipes from "../data/passage-marshes-recipes.json";
+import nightmareCards from "../data/nightmare-encounter-cards.json";
 import type { Card, GameState, Unit } from "./types";
 export type { PassageMarshesState } from "./passage-marshes-types";
 
@@ -37,10 +38,15 @@ export const POM = {
 } as const;
 /** Across the Marshes: locations needed in the victory display to advance. */
 export const POM_VICTORY_LOCATIONS = 4;
-/** "Mire X": the location is discarded once it has X mire tokens. */
+/** "Mire X": the location is discarded once it has X mire tokens (the Nightmare Deck's locations too). */
 export function mireValue(c: string): number {
   const m = /(?:^|[.\n]\s*)Mire (\d+)/.exec(
-    (printed.find((x) => x.code === c)?.text ?? "").replace(/<[^>]*>/g, ""),
+    (
+      (
+        printed.find((x) => x.code === c) ??
+        (nightmareCards as Card[]).find((x) => x.code === c)
+      )?.text ?? ""
+    ).replace(/<[^>]*>/g, ""),
   );
   return m ? Number(m[1]) : 0;
 }
