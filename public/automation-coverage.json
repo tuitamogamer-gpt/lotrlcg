@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2492,
+    "encounterCards": 2501,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3714,
-    "pending": 469
+    "scripted": 3723,
+    "pending": 460
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 293
+    "scripted": 294
   },
   "registeredCodes": [
     "01001",
@@ -1263,6 +1263,7 @@
     "octgn:02d8e441-0c70-4ecb-886f-9ba6f673ac9d",
     "octgn:0323e852-a05c-4c2d-a038-3f2596af7a85",
     "octgn:03587572-2760-48b5-9b08-e01ccdc9788f",
+    "octgn:037cd2ac-cb12-4905-bd2b-86ae57350a1b",
     "octgn:039a688f-8bef-4a77-97c4-84b942f3d91a",
     "octgn:03abe728-0062-49bb-9a04-e78bff777e83",
     "octgn:03b041ad-049a-44bb-9079-12b666e1afbc",
@@ -1523,6 +1524,7 @@
     "octgn:21fec323-3155-4b64-8506-fa87d44f01fc",
     "octgn:2223ef81-40c3-422d-a593-a861c3af39fc",
     "octgn:2232bb8b-4b21-4315-9c6d-300b3a3ed7f9",
+    "octgn:22511a31-8420-4f18-b834-be80c89d5e6a",
     "octgn:2251670c-c03c-4fd7-9621-c179c9ce79f8",
     "octgn:228a03b8-ec05-4562-90f5-0c7d969490b0",
     "octgn:22c55625-210c-4843-81ee-d8d6430885b0",
@@ -2615,6 +2617,7 @@
     "octgn:77833ba7-253c-4d4b-9c45-1764ce014dce",
     "octgn:779079f4-d3a8-4832-9bd5-12e8ca828ba7",
     "octgn:77a7f095-bd59-45a1-a866-d58e17e3bd6d",
+    "octgn:77b11dde-8c66-4977-8ad9-3525a4b70a3f",
     "octgn:77bcda70-5126-4e58-919e-447c03d7ab02",
     "octgn:77dccc28-9be1-41ec-98c2-8b9099678660",
     "octgn:77dd117d-b2b6-4324-aa59-09fd1343fde9",
@@ -2629,6 +2632,7 @@
     "octgn:78f780fd-fcc0-495e-b132-772ce71dbfa9",
     "octgn:78f780fd-fcc0-495e-b132-772ce71dbfa9:B",
     "octgn:78fd9e40-f68d-46c9-b6bf-8fec3b77bfcf",
+    "octgn:791c7f2d-26ce-4719-a9ca-eaaa11b10924",
     "octgn:795579db-249d-4c9d-850f-6f39bc96c063",
     "octgn:79666b89-ec7b-4bc8-98d9-9c517f8ca6ed",
     "octgn:796c0aee-2aea-4999-931d-253fafe7fb26",
@@ -2987,6 +2991,7 @@
     "octgn:9ff94935-ae08-4d86-859f-f4d0776a66e5",
     "octgn:9ffc1d82-10b3-4703-91e5-865407f0cc1e",
     "octgn:a0417d08-1905-46f9-bd65-067c1c59f0a3",
+    "octgn:a067986f-6c42-446d-8a23-58d0190c39f0",
     "octgn:a073c291-5f86-4b49-821e-d965baf369fa",
     "octgn:a0b5c990-9acd-499c-befe-9a55e347f075",
     "octgn:a0d5be90-8618-4fe4-a917-d8d969c11264",
@@ -3150,6 +3155,7 @@
     "octgn:b32e4536-aa58-4a09-8025-12028cd28288",
     "octgn:b3405b30-27e3-4ba3-9518-9dec0f2b2eda",
     "octgn:b34e79d4-7806-4fd9-b12d-bb291e44f354",
+    "octgn:b35ad07f-7862-4479-bc04-7dcf76e7cbc5",
     "octgn:b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8",
     "octgn:b41e6b34-4d6a-47de-9b07-b039013efbc5",
     "octgn:b446fa27-d5f8-40e0-8985-fe15478cd79b",
@@ -3159,6 +3165,7 @@
     "octgn:b49b5be7-5bfc-4e65-bced-862a409e097d",
     "octgn:b4b0bdc8-5edb-40c9-a9ca-dac60fe7cb38",
     "octgn:b4cd6eea-17ec-4051-89b3-c4b735d8452f",
+    "octgn:b4dcd330-15c0-4700-b1aa-d235f253b1de",
     "octgn:b509154c-7596-4a48-941e-0dfa7277d0cf",
     "octgn:b53fd0fc-5734-4bdc-b26f-c2133da31c3d",
     "octgn:b546c9b7-7721-4275-ba8b-ba28364aeb95",
@@ -3219,10 +3226,12 @@
     "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0087",
     "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0088",
     "octgn:b7bd7ec2-fd79-4f9c-aba8-5bbb50cc0089",
+    "octgn:b7be2ad3-5ea1-4cc5-98dc-c7d3cf45cb71",
     "octgn:b7c19049-9587-48bc-8807-5cc7334399b9",
     "octgn:b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06",
     "octgn:b81a014a-af32-41a9-abdf-8dbebf29f685",
     "octgn:b81e837e-f4e8-43e9-892a-8bfaecbd1416",
+    "octgn:b86d305d-12ba-43bb-9356-fd424f63ace5",
     "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
     "octgn:b899f859-3c09-4cb3-9adf-7fb57e46e7ad",
     "octgn:b89a5a01-88c0-434a-a061-1654c6f84477",
@@ -4063,7 +4072,7 @@
     {
       "product": "encounter-at-amon-din-nightmare",
       "total": 9,
-      "scripted": 0,
+      "scripted": 9,
       "player": 0,
       "playerScripted": 0
     },
@@ -13901,7 +13910,7 @@
       "name": "Overrun Village",
       "type": "location",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "encounter-at-amon-din-nightmare"
     },
     {
@@ -16301,7 +16310,7 @@
       "name": "Trapped Villagers",
       "type": "treachery",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "encounter-at-amon-din-nightmare"
     },
     {
@@ -26237,7 +26246,7 @@
       "name": "Orc Raiders",
       "type": "enemy",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "encounter-at-amon-din-nightmare"
     },
     {
@@ -26365,7 +26374,7 @@
       "name": "Pillaging Orc.",
       "type": "enemy",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "encounter-at-amon-din-nightmare"
     },
     {
@@ -29741,7 +29750,7 @@
       "name": "Save Us!",
       "type": "treachery",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "encounter-at-amon-din-nightmare"
     },
     {
@@ -31301,7 +31310,7 @@
       "name": "Beseiged Homestead",
       "type": "location",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "encounter-at-amon-din-nightmare"
     },
     {
@@ -31429,7 +31438,7 @@
       "name": "Run for your Lives!",
       "type": "treachery",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "encounter-at-amon-din-nightmare"
     },
     {
@@ -31933,7 +31942,7 @@
       "name": "Encounter at Amon Dîn",
       "type": "nightmare",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "encounter-at-amon-din-nightmare"
     },
     {
@@ -31973,7 +31982,7 @@
       "name": "Those Now Sundered",
       "type": "treachery",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "encounter-at-amon-din-nightmare"
     },
     {
@@ -39408,8 +39417,8 @@
       "id": "N03.6",
       "name": "Encounter at Amon Dîn (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "encounter-at-amon-din",
+      "state": "scripted"
     },
     {
       "id": "N03.7",

@@ -227,6 +227,16 @@ export const NIGHTMARE_AS = {
   stonewain: "octgn:b509154c-7596-4a48-941e-0dfa7277d0cf",
   drums: "octgn:63b5d3fe-227a-4781-b9ef-52dc6fb656d5",
   darts: "octgn:27f961dd-c360-418e-9aac-6756d3a46dde",
+  /** Encounter at Amon Dîn's setup card and Nightmare Deck. */
+  amonCard: "octgn:b7be2ad3-5ea1-4cc5-98dc-c7d3cf45cb71",
+  raiders: "octgn:77b11dde-8c66-4977-8ad9-3525a4b70a3f",
+  pillaging: "octgn:791c7f2d-26ce-4719-a9ca-eaaa11b10924",
+  homestead: "octgn:b35ad07f-7862-4479-bc04-7dcf76e7cbc5",
+  village: "octgn:037cd2ac-cb12-4905-bd2b-86ae57350a1b",
+  trapped: "octgn:22511a31-8420-4f18-b834-be80c89d5e6a",
+  run: "octgn:b4dcd330-15c0-4700-b1aa-d235f253b1de",
+  saveUs: "octgn:a067986f-6c42-446d-8a23-58d0190c39f0",
+  sundered: "octgn:b86d305d-12ba-43bb-9356-fd424f63ace5",
 } as const;
 /** The Heirs of Númenor Nightmare Deck's cards (OCTGN ids, as DragnCards keeps them). */
 export const NIGHTMARE_HON = {
@@ -588,6 +598,20 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Men in the Dark": 1,
     },
   },
+  "encounter-at-amon-din": {
+    card: NIGHTMARE_AS.amonCard,
+    removals: {
+      "Burning Farmhouse": 2,
+      "Gondorian Hamlet": 2,
+      "Marauding Orc": 1,
+      "Orc Rabble": 1,
+      "Orc Ravager": 3,
+      "Craven Eagle": 2,
+      "Trapped Inside": 2,
+      "Panicked!": 2,
+      "Scourge of Mordor": 2,
+    },
+  },
   "watcher-in-the-water": {
     card: NIGHTMARE_DD.watcherCard,
     removals: {
@@ -829,6 +853,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "the-druadan-forest")
     return [
       "The Drúadan Forest · Nightmare mode: heroes collect no resources in the resource phase; each began with 5 and a Garden of Poisons in the staging area; after stage 2B is revealed, each hero has at least 3. The Nightmare Deck's Drû-buri-Drû waits for stage 3.",
+    ];
+  if (s.scenarioId === "encounter-at-amon-din")
+    return [
+      "Encounter at Amon Dîn · Nightmare mode: Ghulat cannot take damage unless there are at least 15 progress tokens on Protect the Villagers; Rescued Villagers began with 1 villager token; at the beginning of each quest phase, the players discard 1 villager token from Rescued Villagers or reveal an encounter card.",
     ];
   if (s.scenarioId === "watcher-in-the-water")
     return [

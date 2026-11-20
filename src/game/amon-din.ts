@@ -93,6 +93,13 @@ function discardVillagers(s: GameState, source: Unit, count: number) {
   prepend(s, fx("amonDinAlcaronOffer", { count: removed, player: first(s) }));
   return removed;
 }
+/** The Nightmare Deck's villager effects (src/game/nightmare-amondin.ts). */
+export {
+  rescued as amonDinRescued,
+  dead as amonDinDeadVillagers,
+  addDead as amonDinAddDead,
+  discardVillagers as amonDinDiscardVillagers,
+};
 export function setupAmonDin(s: GameState) {
   state(s);
   s.encounterDeck = s.encounterDeck.filter(

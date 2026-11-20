@@ -84,6 +84,7 @@ import { NIGHTMARE_ITHILIEN_HOOKS } from "./nightmare-ithilien";
 import { NIGHTMARE_CAIR_ANDROS_HOOKS } from "./nightmare-cairandros";
 import { NIGHTMARE_STEWARD_HOOKS } from "./nightmare-steward";
 import { NIGHTMARE_DRUADAN_HOOKS } from "./nightmare-druadan";
+import { NIGHTMARE_AMONDIN_HOOKS } from "./nightmare-amondin";
 import { nightmareLive } from "./nightmare";
 
 const empty: Batch4ScenarioHooks = {};
@@ -117,6 +118,7 @@ const NIGHTMARE_LAYERS: Partial<Record<string, Batch4ScenarioHooks>> = {
   "siege-of-cair-andros": NIGHTMARE_CAIR_ANDROS_HOOKS,
   "the-stewards-fear": NIGHTMARE_STEWARD_HOOKS,
   "the-druadan-forest": NIGHTMARE_DRUADAN_HOOKS,
+  "encounter-at-amon-din": NIGHTMARE_AMONDIN_HOOKS,
 };
 /**
  * The current scenario's hooks; in an Ered Mithrin campaign chapter from The
@@ -289,6 +291,7 @@ export const batch4SharedEffect = (effect: Effect) =>
     NIGHTMARE_CAIR_ANDROS_HOOKS,
     NIGHTMARE_STEWARD_HOOKS,
     NIGHTMARE_DRUADAN_HOOKS,
+    NIGHTMARE_AMONDIN_HOOKS,
     BLACK_SERPENT_HOOKS,
     CIRITH_GURAT_HOOKS,
     CROSSINGS_POROS_HOOKS,

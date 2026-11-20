@@ -19,6 +19,7 @@ import { mainQuestCode } from "../src/game/quest-state.ts";
 import { RETURN } from "../src/game/return-mirkwood.ts";
 import { ROAD } from "../src/game/road-rivendell.ts";
 import { WATCHER_WATER } from "../src/game/watcher-water-support.ts";
+import { AMON_DIN } from "../src/game/amon-din-support.ts";
 import { reviewedState } from "./browser-review-helpers.mjs";
 import {
   capture,
@@ -1620,6 +1621,73 @@ try {
       .getByLabel("Attachments on Drúadan Stalker", { exact: true })
       .waitFor();
     await checkpoint("druadan-poison-darts", width);
+    // Encounter at Amon Dîn in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-encounter-at-amon-din").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "encounter-at-amon-din");
+    assert.equal(s.nightmareMode, true);
+    assert.ok(
+      s.log.some((l) =>
+        /1 villager token is placed on Rescued Villagers/.test(l.text),
+      ),
+    );
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/Ghulat cannot take damage unless there are at least 15/)
+      .waitFor();
+    await checkpoint("amondin-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // Those Now Sundered on Rescued Villagers, beside a Besieged Homestead.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const rescued = t.staging.find((u) => u.code === AMON_DIN.rescued);
+      rescued.resources = 2;
+      rescued.attachments.push({
+        id: `${rescued.id}:sundered:${t.nextId++}`,
+        code: AS.sundered,
+        exhausted: false,
+      });
+      const homestead = make(t, AS.homestead);
+      homestead.resources = 2;
+      t.staging = [...t.staging, homestead];
+      s = await load(page, t);
+    }
+    const homesteadFace = page
+      .locator(`img[src*="${AS.homestead.slice("octgn:".length)}"]`)
+      .first();
+    await homesteadFace.waitFor();
+    assert.ok(
+      (await homesteadFace.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "Besieged Homestead's face loads",
+    );
+    await page
+      .getByLabel("Attachments on Rescued Villagers", { exact: true })
+      .waitFor();
+    await checkpoint("amondin-those-now-sundered", width);
     await view.c.close();
   }
   const p = await browser.newPage();

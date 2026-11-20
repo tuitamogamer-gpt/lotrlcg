@@ -324,7 +324,7 @@ export function nightmareDruadanEffect(s: GameState, e: Effect): boolean {
         return true;
       }
       u.attachments.push({
-        id: `${u.id}:darts:${u.attachments.length}`,
+        id: `${u.id}:darts:${s.nextId++}`,
         code: N.darts,
         exhausted: false,
       } as Attachment);

@@ -197,6 +197,18 @@ export function nightmareSetup(s: GameState) {
       "The Drúadan Forest · Nightmare: each hero has 5 resources, a Garden of Poisons is in the staging area, and the Nightmare Deck's Drû-buri-Drû is set aside.",
     );
   }
+  // Encounter at Amon Dîn: "Setup: Place 1 villager token on Rescued
+  // Villagers." (Its villager tokens are the objective's resources.)
+  if (s.scenarioId === "encounter-at-amon-din") {
+    const rescued = s.staging.find(
+      (u) => card(u.code).name === "Rescued Villagers",
+    );
+    if (rescued) rescued.resources += 1;
+    log(
+      s,
+      "Encounter at Amon Dîn · Nightmare: 1 villager token is placed on Rescued Villagers.",
+    );
+  }
   // Into Ithilien: "Set both copies of Mûmak Elite aside, out of
   // play."
   if (s.scenarioId === "into-ithilien") {

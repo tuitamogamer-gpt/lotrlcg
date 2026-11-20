@@ -1,6 +1,6 @@
 # Encounter at Amon Dîn — original and easy
 
-The scripted scenario uses the two original quest stages, all 13 printed encounter definitions from Encounter at Amon Dîn, and the existing Ravaging Orcs set from Heirs of Númenor. Nightmare and campaign variants remain separate catalog entries.
+The scripted scenario uses the two original quest stages, all 13 printed encounter definitions from Encounter at Amon Dîn, and the existing Ravaging Orcs set from Heirs of Númenor. Its Nightmare Deck (N03.6) is supported ([rules](NIGHTMARE.md)): its cards discard villagers through the same rule (Lord Alcaron's save included) and place damage tokens on Dead Villagers directly; the campaign variant remains a separate catalog entry.
 
 ## Printed sources
 
