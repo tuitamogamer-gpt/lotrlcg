@@ -6,7 +6,11 @@ normal and easy mode, with the box's Fellowship-sphere Aragorn as in The
 Uruk-hai and Helm's Deep. Its campaign mode (recipe Q0C.09) is part of
 [The Lord of the Rings campaign](SAGA-CAMPAIGN.md): Saruman's Voice joins the
 encounter deck, and the resolution earns it or the Palantír of Orthanc by the
-players' hand sizes.
+players' hand sizes. Nightmare mode follows
+[its Nightmare Deck](NIGHTMARE.md) (its locations join the scenario's
+Wizardry locations, Orthanc Archer's Archery joins its archery total, and
+Ent of Fangorn is removed from the game when it leaves play), outside
+campaign mode.
 
 ## Sources and corrections
 

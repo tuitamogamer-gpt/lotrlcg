@@ -166,6 +166,7 @@ import { validNightmareWeather } from "./nightmare-weather";
 import { validNightmareDike } from "./nightmare-dike";
 import { validNightmareUruk } from "./nightmare-uruk";
 import { validNightmareHelm } from "./nightmare-helm";
+import { validNightmareIsengard } from "./nightmare-isengard";
 import { nightmareEscapeTest } from "./nightmare-dead";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
@@ -1247,6 +1248,7 @@ export function validateSave(
         !validNightmareDike(s) ||
         !validNightmareUruk(s) ||
         !validNightmareHelm(s) ||
+        !validNightmareIsengard(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,

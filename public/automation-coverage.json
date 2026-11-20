@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2745,
+    "encounterCards": 2753,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3967,
-    "pending": 216
+    "scripted": 3975,
+    "pending": 208
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 323
+    "scripted": 324
   },
   "registeredCodes": [
     "01001",
@@ -1325,6 +1325,7 @@
     "octgn:0a53cafe-3137-4475-98f8-37818d1b91a5",
     "octgn:0a6774e7-f110-4917-84b5-1f81a7aefbf8",
     "octgn:0aa98b35-6958-4680-a4ed-b9fc16089126",
+    "octgn:0acfc1ee-22f6-41d9-8cce-594830b42ba8",
     "octgn:0ade7e4d-f04b-4e65-870e-f5d85e080130",
     "octgn:0ae0d2d5-b082-4cc7-b227-9b60c60de8b4",
     "octgn:0ae9f4f9-eec9-404f-ae93-7a54287d1bc2",
@@ -1746,6 +1747,7 @@
     "octgn:33f456cb-3119-444b-9bbe-a0db4e5e5de1",
     "octgn:3459889b-48a2-4401-b511-6e11dabec437",
     "octgn:34635348-ab17-4d00-bc6f-7ced07821168",
+    "octgn:3467d57f-412b-482a-8176-3d396a3a44f1",
     "octgn:346fda89-94df-410a-8027-41eacbf27238",
     "octgn:3470ed02-38dc-4387-8fe0-265b13fe96a1",
     "octgn:34a59958-0d34-49a9-8beb-b6f8ba8dcd4c",
@@ -2478,6 +2480,7 @@
     "octgn:5a654416-4449-4d0c-add8-8b3ca04bb401",
     "octgn:5a6f59a4-5beb-4281-898e-f4607056a160",
     "octgn:5a90429e-d5cf-442f-b8d8-af144b3ea861",
+    "octgn:5ab2daa0-b88d-47f2-8896-75bb6e76c350",
     "octgn:5abd3a4b-2769-401d-aa3c-c904da21b97a",
     "octgn:5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1",
     "octgn:5af4be18-af74-46ef-a235-9c1002b85338",
@@ -2769,6 +2772,7 @@
     "octgn:7b261ec7-bc90-4bd3-884d-d14a44e88942",
     "octgn:7b3e0874-fa4e-4ffb-8614-2bb088896d42",
     "octgn:7b491dcc-668a-431f-b0a1-ec2bf34840a7",
+    "octgn:7b4b95f6-5b2d-47ff-b6cb-7bc6c9504b08",
     "octgn:7b8369b4-cca1-4076-8985-1c7be238ccb0",
     "octgn:7b9dd852-ed19-4a00-b09e-f6c2cee549fa",
     "octgn:7bae4f1a-42b7-46ab-bfbb-0078ed0842a4",
@@ -3035,6 +3039,7 @@
     "octgn:94f2aa12-7d4c-4124-a642-a7f3fb2ca414.B",
     "octgn:9511bcf2-9c06-413e-bf09-3bc076eb76d4",
     "octgn:9550172a-c624-40fd-b654-f2430ed93df1",
+    "octgn:955203ad-c973-4bdb-ade7-2e4f0fd43e9c",
     "octgn:95604bc2-d030-4403-b3da-892402a38a39",
     "octgn:958e2ca4-208c-4235-be56-afc463e9eb2f",
     "octgn:95d26956-eda3-43b2-b68b-6f8010d076bd",
@@ -3163,6 +3168,7 @@
     "octgn:a312e181-9209-4460-b6ba-c90c99e011fe",
     "octgn:a3173fc4-1ddb-470d-ae12-a35e24ea63a3",
     "octgn:a34ffb4e-c821-42aa-8dab-2914d274b3b1",
+    "octgn:a39f7fcf-952c-4789-91a2-ef12bc6a8f43",
     "octgn:a3a28453-4292-49b3-9b78-fc958310a800",
     "octgn:a3f162a7-847d-47ed-8a05-4e930806765b",
     "octgn:a442dbd4-ec18-44e6-b762-b0ebf94a8897",
@@ -3329,6 +3335,7 @@
     "octgn:b490fe8e-4367-424d-8a5c-bc7b8e1a56a7",
     "octgn:b49b5be7-5bfc-4e65-bced-862a409e097d",
     "octgn:b4b0bdc8-5edb-40c9-a9ca-dac60fe7cb38",
+    "octgn:b4bdb916-7538-461f-9aa5-141ff2809254",
     "octgn:b4cd6eea-17ec-4051-89b3-c4b735d8452f",
     "octgn:b4dcd330-15c0-4700-b1aa-d235f253b1de",
     "octgn:b509154c-7596-4a48-941e-0dfa7277d0cf",
@@ -3897,6 +3904,7 @@
     "octgn:eaaececf-9322-43b5-a190-bdfadd7a695e",
     "octgn:ead7703f-43e0-464e-ac09-304b86a54b50",
     "octgn:eaeb6bc6-0064-4816-951c-b836e979fe01",
+    "octgn:eb01e452-e7ed-4617-9f4d-913d82753886",
     "octgn:eb232287-e39e-4358-b37f-23b2c45ca6a8",
     "octgn:eb2b56e7-d669-405b-b2d3-5d3c30cb3f4e",
     "octgn:eb2b84b4-40b3-4dda-bf87-4f59a78aa6b1",
@@ -5037,7 +5045,7 @@
     {
       "product": "the-treason-of-saruman-nightmare",
       "total": 25,
-      "scripted": 17,
+      "scripted": 25,
       "player": 0,
       "playerScripted": 0
     },
@@ -14674,7 +14682,7 @@
       "name": "Fire and Foul Fumes",
       "type": "treachery",
       "pack": "The Treason of Saruman - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman-nightmare"
     },
     {
@@ -18242,7 +18250,7 @@
       "name": "Orthanc Archer",
       "type": "enemy",
       "pack": "The Treason of Saruman - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman-nightmare"
     },
     {
@@ -24330,7 +24338,7 @@
       "name": "The Road to Isengard",
       "type": "nightmare",
       "pack": "The Treason of Saruman - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman-nightmare"
     },
     {
@@ -26850,7 +26858,7 @@
       "name": "Traitor of Many Colors",
       "type": "treachery",
       "pack": "The Treason of Saruman - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman-nightmare"
     },
     {
@@ -29106,7 +29114,7 @@
       "name": "Fortress of Isengard",
       "type": "location",
       "pack": "The Treason of Saruman - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman-nightmare"
     },
     {
@@ -30242,7 +30250,7 @@
       "name": "Poisonous Shaft",
       "type": "location",
       "pack": "The Treason of Saruman - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman-nightmare"
     },
     {
@@ -31666,7 +31674,7 @@
       "name": "Half-orc of Isengard",
       "type": "enemy",
       "pack": "The Treason of Saruman - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman-nightmare"
     },
     {
@@ -36514,7 +36522,7 @@
       "name": "Daunting Power",
       "type": "treachery",
       "pack": "The Treason of Saruman - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman-nightmare"
     },
     {
@@ -39976,8 +39984,8 @@
       "id": "N0B.09",
       "name": "The Road to Isengard (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-road-to-isengard",
+      "state": "scripted"
     },
     {
       "id": "N0B.10",

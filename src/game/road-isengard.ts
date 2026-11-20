@@ -46,6 +46,7 @@ import { mainQuestUnit } from "./quest-state";
 import { lotrSagaCheck } from "./lotr-saga";
 import { dealEnemyShadows } from "./considered-engagement";
 import { whiteHandArchery } from "./white-hand";
+import { nightmareEncounterDecks, nightmareLive } from "./nightmare";
 import { UH } from "./uruk-hai-support";
 import {
   snagaOrcsCharacterDestroyed,
@@ -143,7 +144,17 @@ export function setupRoadIsengard(s: GameState) {
     r.cards
       .filter((c) => c.section === name)
       .flatMap((c) => Array<string>(c.quantity).fill(c.code));
-  s.encounterDeck = shuffle(s, section("sharedEncounterDeck"));
+  // Nightmare mode: the setup card's removals and Nightmare Deck.
+  s.encounterDeck = shuffle(
+    s,
+    nightmareLive(s)
+      ? nightmareEncounterDecks(
+          s.scenarioId,
+          [section("sharedEncounterDeck")],
+          () => 0,
+        )[0]
+      : section("sharedEncounterDeck"),
+  );
   // 1A: each copy of Ent of Fangorn is added to the staging area.
   s.staging = section("sharedStagingArea").map((c) => make(s, c));
   s.roadIsengard = {

@@ -2,6 +2,7 @@
 import encounters from "../data/road-isengard-encounter-cards.json";
 import quests from "../data/road-isengard-quest-cards.json";
 import recipes from "../data/road-isengard-recipes.json";
+import nightmareCards from "../data/nightmare-encounter-cards.json";
 import type { Card, GameState, Unit } from "./types";
 export type { RoadIsengardState } from "./road-isengard-types";
 
@@ -43,11 +44,22 @@ export const RI_BREAKING_DAMAGE = 5;
 export const RI_VOICE_HAND = 6;
 /** Orthanc: the first player looks at the top 3 cards of the encounter deck. */
 export const RI_ORTHANC_LOOK = 3;
+const wizardry = (c: Card) => /(^|\n)Wizardry:/.test(c.text ?? "");
 /** The locations with a Wizardry effect. */
 export const RI_WIZARDRY: readonly string[] = printed
-  .filter((c) => /(^|\n)Wizardry:/.test(c.text ?? ""))
+  .filter(wizardry)
   .map((c) => c.code);
-export const hasWizardry = (c: string) => RI_WIZARDRY.includes(c);
+/** The Nightmare Deck's locations with a Wizardry effect (docs/NIGHTMARE.md). */
+export const RI_NIGHTMARE_WIZARDRY: readonly string[] = (
+  nightmareCards as Card[]
+)
+  .filter(
+    (c) =>
+      c.encounter_set === "The Road to Isengard - Nightmare" && wizardry(c),
+  )
+  .map((c) => c.code);
+export const hasWizardry = (c: string) =>
+  RI_WIZARDRY.includes(c) || RI_NIGHTMARE_WIZARDRY.includes(c);
 const quest = (c: string) => ROAD_ISENGARD_QUESTS.find((q) => q.code === c);
 
 export function roadIsengardStageInfo(s: GameState) {

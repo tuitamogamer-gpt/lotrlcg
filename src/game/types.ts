@@ -613,7 +613,8 @@ export interface GameState {
     import("./nightmare-weather").NightmareWeatherState &
     import("./nightmare-dike").NightmareDikeState &
     import("./nightmare-uruk").NightmareUrukState &
-    import("./nightmare-helm").NightmareHelmState;
+    import("./nightmare-helm").NightmareHelmState &
+    import("./nightmare-isengard").NightmareIsengardState;
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;
@@ -1263,7 +1264,7 @@ export interface GameState {
     nmClearOnKill?: number;
     /** Fangorn's Anger's shadow (Into Fangorn's Nightmare Deck): after this attack the attacker engages the player whose hero holds Mugash. */
     nmEngageCarrier?: number;
-    /** Boar Clan Ambusher and its shadow (The Dunland Trap's Nightmare Deck): random hand discards if this attack destroys a character. */
+    /** Boar Clan Ambusher and its shadow (The Dunland Trap's Nightmare Deck) and Half-orc of Isengard's shadow (The Road to Isengard's): random hand discards if this attack destroys a character. */
     nmHandDiscardOnKill?: number;
     /** Raven Talisman's shadow (The Antlered Crown's Nightmare Deck): the defending player discards their hand and draws 3 cards if this attack destroys a character. */
     nmHandRefillOnKill?: number;

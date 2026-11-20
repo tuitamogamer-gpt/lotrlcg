@@ -27,6 +27,7 @@ import { KHAZAD } from "../src/game/khazad-dum.ts";
 import { mainQuestCode } from "../src/game/quest-state.ts";
 import { RETURN } from "../src/game/return-mirkwood.ts";
 import { ROAD } from "../src/game/road-rivendell.ts";
+import { RI } from "../src/game/road-isengard-support.ts";
 import { WATCHER_WATER } from "../src/game/watcher-water-support.ts";
 import { AMON_DIN } from "../src/game/amon-din-support.ts";
 import { reviewedState } from "./browser-review-helpers.mjs";
@@ -3609,6 +3610,92 @@ try {
       );
     }
     await checkpoint("helm-host-of-isengard", width);
+    // The Road to Isengard in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-the-road-to-isengard").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "the-road-to-isengard");
+    assert.equal(s.nightmareMode, true);
+    {
+      const all = [
+        ...s.encounterDeck,
+        ...s.encounterDiscard,
+        ...s.staging.map((u) => u.code),
+        ...s.engaged.map((u) => u.code),
+      ];
+      assert.equal(
+        all.filter((c) => c === TOS.archer).length,
+        3,
+        "the Nightmare Deck's 3 Orthanc Archers",
+      );
+      assert.ok(
+        !all.includes(RI.blast),
+        "the setup card removes the Blasts of Sorcery",
+      );
+      assert.equal(
+        s.staging.filter((u) => u.code === RI.ent).length,
+        4,
+        "the four Ents of Fangorn",
+      );
+    }
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/when Ent of Fangorn leaves play, it is removed from the game/)
+      .waitFor();
+    await checkpoint("isengard-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // Orthanc Archer and Half-orc of Isengard beside a Poisonous Shaft and a
+    // Fortress of Isengard.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.staging = [
+        ...t.staging,
+        make(t, TOS.archer),
+        make(t, TOS.halfOrc),
+        make(t, TOS.shaft),
+        make(t, TOS.fortress),
+      ];
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [TOS.archer, "Orthanc Archer"],
+      [TOS.halfOrc, "Half-orc of Isengard"],
+      [TOS.shaft, "Poisonous Shaft"],
+      [TOS.fortress, "Fortress of Isengard"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    await checkpoint("isengard-fortress", width);
     await view.c.close();
   }
   const p = await browser.newPage();

@@ -574,6 +574,15 @@ export const NIGHTMARE_TOS = {
   caves: "octgn:88a7e17c-4733-48c1-ad95-c2b01b8db5df",
   arrows: "octgn:5da26e76-9e95-4129-aea1-a3460f7b2132",
   crippling: "octgn:c828d0d2-0d82-49c2-b18d-7a819ee103b2",
+  /** The Road to Isengard's setup card (Ent of Fangorn is removed from the game when it leaves play) and Nightmare Deck. */
+  isengardCard: "octgn:5ab2daa0-b88d-47f2-8896-75bb6e76c350",
+  archer: "octgn:3467d57f-412b-482a-8176-3d396a3a44f1",
+  halfOrc: "octgn:b4bdb916-7538-461f-9aa5-141ff2809254",
+  shaft: "octgn:a39f7fcf-952c-4789-91a2-ef12bc6a8f43",
+  fortress: "octgn:955203ad-c973-4bdb-ade7-2e4f0fd43e9c",
+  fumes: "octgn:0acfc1ee-22f6-41d9-8cce-594830b42ba8",
+  traitor: "octgn:7b4b95f6-5b2d-47ff-b6cb-7bc6c9504b08",
+  daunting: "octgn:eb01e452-e7ed-4617-9f4d-913d82753886",
 } as const;
 
 interface NightmareDeck {
@@ -1138,6 +1147,16 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Reckless Hate": 2,
     },
   },
+  "the-road-to-isengard": {
+    card: NIGHTMARE_TOS.isengardCard,
+    removals: {
+      Snaga: 3,
+      "Ring-wall of Isengard": 1,
+      "Open Pit": 2,
+      "Machines of Isengard": 1,
+      "Blast of Sorcery": 3,
+    },
+  },
   "deadmens-dike": {
     card: NIGHTMARE_TLR.dikeCard,
     removals: {
@@ -1590,6 +1609,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "helms-deep")
     return [
       "Helm's Deep · Nightmare mode: the setup card removed the printed standard encounter cards and shuffled in its Nightmare Deck.",
+    ];
+  if (s.scenarioId === "the-road-to-isengard")
+    return [
+      "The Road to Isengard · Nightmare mode: the setup card removed the printed standard encounter cards and shuffled in its Nightmare Deck; when Ent of Fangorn leaves play, it is removed from the game.",
     ];
   if (s.scenarioId === "the-uruk-hai") {
     const aside = !!s.nightmare?.urukMauhur;
