@@ -36,6 +36,8 @@ import { currentQuestUnit } from "./quest-state";
 import { removeCurrentQuestProgress } from "./side-quests";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { WASTES as W, WASTES_RECIPES } from "./wastes-eriador-support";
+import { batch4Scenario } from "./batch4-scenarios";
+import { nightmareEncounterDecks, nightmareLive } from "./nightmare";
 
 const isWastes = (s: GameState) =>
   s.scenarioId === "wastes-of-eriador" && !!s.wastesEriador;
@@ -147,7 +149,14 @@ export function setupWastes(s: GameState) {
     recipe.cards
       .filter((r) => r.section === section)
       .flatMap((r) => Array<string>(r.quantity).fill(r.code));
-  s.encounterDeck = pile("sharedEncounterDeck");
+  // Nightmare mode: the setup card's removals and Nightmare Deck.
+  s.encounterDeck = nightmareLive(s)
+    ? nightmareEncounterDecks(
+        s.scenarioId,
+        [pile("sharedEncounterDeck")],
+        () => 0,
+      )[0]
+    : pile("sharedEncounterDeck");
   s.wastesEriador = {
     initialized: false,
     setAside: pile("sharedSetAside").map((code) => make(s, code)),
@@ -320,7 +329,9 @@ export function wastesAdvance(s: GameState) {
     s.choice
   )
     return true;
-  if (s.stage < 3 && s.progress >= (s.stage === 1 ? 20 : 15)) {
+  // A Nightmare card attached to the stage adds to its quest points.
+  const bonus = batch4Scenario(s).mainQuestGoalBonus?.(s) ?? 0;
+  if (s.stage < 3 && s.progress >= (s.stage === 1 ? 20 : 15) + bonus) {
     const code = s.stage === 1 ? W.across : W.howling;
     if (questDefeated(s, code)) return true;
     s.stage++;
@@ -336,7 +347,7 @@ export function wastesAdvance(s: GameState) {
     prepend(s, fx("wastesStage", { value: s.stage, player: firstPlayer(s) }));
   } else if (
     s.stage === 3 &&
-    s.progress >= 5 &&
+    s.progress >= 5 + bonus &&
     !enemies(s).some((u) => u.code === W.leader) &&
     !questDefeated(s, W.battle)
   )

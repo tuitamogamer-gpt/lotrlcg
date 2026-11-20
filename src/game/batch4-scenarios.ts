@@ -115,6 +115,7 @@ import { NIGHTMARE_DIKE_HOOKS } from "./nightmare-dike";
 import { NIGHTMARE_URUK_HOOKS } from "./nightmare-uruk";
 import { NIGHTMARE_HELM_HOOKS } from "./nightmare-helm";
 import { NIGHTMARE_ISENGARD_HOOKS } from "./nightmare-isengard";
+import { NIGHTMARE_WASTES_HOOKS } from "./nightmare-wastes";
 import { nightmareLive } from "./nightmare";
 
 const empty: Batch4ScenarioHooks = {};
@@ -179,6 +180,7 @@ const NIGHTMARE_LAYERS: Partial<Record<string, Batch4ScenarioHooks>> = {
   "the-uruk-hai": NIGHTMARE_URUK_HOOKS,
   "helms-deep": NIGHTMARE_HELM_HOOKS,
   "the-road-to-isengard": NIGHTMARE_ISENGARD_HOOKS,
+  "wastes-of-eriador": NIGHTMARE_WASTES_HOOKS,
 };
 /**
  * The current scenario's hooks; in an Ered Mithrin campaign chapter from The
@@ -382,6 +384,7 @@ export const batch4SharedEffect = (effect: Effect) =>
     NIGHTMARE_URUK_HOOKS,
     NIGHTMARE_HELM_HOOKS,
     NIGHTMARE_ISENGARD_HOOKS,
+    NIGHTMARE_WASTES_HOOKS,
     BLACK_SERPENT_HOOKS,
     CIRITH_GURAT_HOOKS,
     CROSSINGS_POROS_HOOKS,

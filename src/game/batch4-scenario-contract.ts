@@ -519,6 +519,8 @@ export interface Batch4ScenarioHooks {
     enemy: Unit,
   ): number | undefined;
   sideQuestGoalBonus?(s: GameState, quest: Unit): number;
+  /** Quest points the main quest's current stage gains (a Nightmare card attached to it). */
+  mainQuestGoalBonus?(s: GameState): number;
   failedQuest?(s: GameState, amount: number): boolean;
   successfulQuestProgressBlocked?(s: GameState): boolean;
   questSucceeded?(s: GameState, amount: number): void;

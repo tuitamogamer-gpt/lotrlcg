@@ -1297,6 +1297,10 @@ export const mainStageInfo = (s: GameState) => {
   if (dynamic) return dynamic;
   if (s.scenarioId !== "mirkwood" || s.stage < 3) {
     const stage = scenario(s.scenarioId).stages[s.stage - 1];
+    // A Nightmare card attached to the stage adds to its quest points.
+    const bonus = batch4Scenario(s).mainQuestGoalBonus?.(s) ?? 0;
+    if (stage && bonus && s.scenarioId !== "the-treachery-of-rhudaur")
+      return { ...stage, quest: stage.quest + bonus };
     return stage && s.scenarioId === "the-treachery-of-rhudaur"
       ? {
           ...stage,

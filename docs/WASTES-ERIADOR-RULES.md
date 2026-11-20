@@ -1,6 +1,6 @@
 # The Wastes of Eriador
 
-The original scenario supports one to four fellowships in standard and easy mode. It uses the Wastes of Eriador, Eriador Wilds and Foul Weather encounter sets. The runtime retains the existing canonical Lost Realm card identities and rules; it adds thirteen original encounter definitions and three quest cards.
+The original scenario supports one to four fellowships in standard and easy mode. It uses the Wastes of Eriador, Eriador Wilds and Foul Weather encounter sets. The runtime retains the existing canonical Lost Realm card identities and rules; it adds thirteen original encounter definitions and three quest cards. Nightmare mode follows [its Nightmare Deck](NIGHTMARE.md) (the Nightmare cards use the scenario's Time objective for Day and Night, and its stage goals add the quest points Cunning Wolves gives the main quest).
 
 ## Sources
 

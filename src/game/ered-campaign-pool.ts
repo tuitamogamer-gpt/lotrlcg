@@ -3150,6 +3150,13 @@ export function composeEredPool(
     readyIntercepted: (s, u, cardEffect) =>
       !!h.readyIntercepted?.(s, u, cardEffect) ||
       !!p.readyIntercepted?.(s, u, cardEffect),
+    sideDefeatBlocked: (s, u) =>
+      !!h.sideDefeatBlocked?.(s, u) || !!p.sideDefeatBlocked?.(s, u),
+    sideQuestGoalBonus: (s, quest) =>
+      (h.sideQuestGoalBonus?.(s, quest) ?? 0) +
+      (p.sideQuestGoalBonus?.(s, quest) ?? 0),
+    mainQuestGoalBonus: (s) =>
+      (h.mainQuestGoalBonus?.(s) ?? 0) + (p.mainQuestGoalBonus?.(s) ?? 0),
   };
 }
 

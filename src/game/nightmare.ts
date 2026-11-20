@@ -585,6 +585,19 @@ export const NIGHTMARE_TOS = {
   daunting: "octgn:eb01e452-e7ed-4617-9f4d-913d82753886",
 } as const;
 
+/** Angmar Awakened's Nightmare Decks. */
+export const NIGHTMARE_AA = {
+  /** The Wastes of Eriador's setup card and Nightmare Deck (Day and Night follow the scenario's Time objective). */
+  wastesCard: "octgn:970eb6ec-5ec3-4444-9298-e0e8764fbda5",
+  packHunters: "octgn:964209a4-0219-4fc0-a734-b89abd3074f0",
+  wilderness: "octgn:8bfb1224-0a31-4ced-9e68-cb0b9d438035",
+  badlands: "octgn:a203a422-201a-4b2a-b9bd-687258687479",
+  wolves: "octgn:8bc37a15-f097-4471-8259-ac6f2cac3bc3",
+  hail: "octgn:4d3d40e7-fc9a-414b-aaf9-2bae207a2e42",
+  stand: "octgn:ec0c1c07-2d48-4fa8-948c-51d976ffe559",
+  track: "octgn:cd23a6ca-9c2d-429f-9926-2fc75a67603b",
+} as const;
+
 interface NightmareDeck {
   /** The setup card, flipped next to the quest deck. */
   card: string;
@@ -1157,6 +1170,22 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Blast of Sorcery": 3,
     },
   },
+  "wastes-of-eriador": {
+    card: NIGHTMARE_AA.wastesCard,
+    removals: {
+      "Northern Warg": 2,
+      "White Warg": 1,
+      "Sudden Darkness": 1,
+      "North Downs": 1,
+      "Eriador Wastes": 2,
+      "Cold from Angmar": 1,
+      "Biting Wind": 3,
+      "Freezing Blast": 1,
+      "Shrouded Hills": 1,
+      "Rugged Country": 3,
+      "Pressing Needs": 2,
+    },
+  },
   "deadmens-dike": {
     card: NIGHTMARE_TLR.dikeCard,
     removals: {
@@ -1620,6 +1649,10 @@ export function nightmareStatus(s: GameState): string[] {
       `The Uruk-hai · Nightmare mode: each Captive is immune to player card effects; when the players advance to stage 2A, Mauhúr is added to the staging area${aside ? " (set aside now)" : ""}.`,
     ];
   }
+  if (s.scenarioId === "wastes-of-eriador")
+    return [
+      "The Wastes of Eriador · Nightmare mode: the setup card removed the printed standard encounter cards and shuffled in its Nightmare Deck.",
+    ];
   if (s.scenarioId === "deadmens-dike") {
     const under = (s.nightmare?.dikeCourage ?? []).reduce(
       (n, c) => n + c.cards.length,

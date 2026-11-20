@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2753,
+    "encounterCards": 2761,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3975,
-    "pending": 208
+    "scripted": 3983,
+    "pending": 200
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 324
+    "scripted": 325
   },
   "registeredCodes": [
     "01001",
@@ -2041,6 +2041,7 @@
     "octgn:4ce7c4e4-c96c-4ee7-ae98-cfb497303cd0",
     "octgn:4cf56614-3155-4a84-85dc-74c6cef00ae3",
     "octgn:4d31f077-9f08-435b-ad3c-95d5b7967fa4",
+    "octgn:4d3d40e7-fc9a-414b-aaf9-2bae207a2e42",
     "octgn:4d423c39-09c1-4c0b-b46f-6983fae4c07b",
     "octgn:4d4f814c-57d6-4d19-b147-6ab5e321cdd6",
     "octgn:4d5a388c-d710-4663-ab96-a3a914da2a24",
@@ -2953,11 +2954,13 @@
     "octgn:8ba47620-aead-42a5-a057-41cb038f5234",
     "octgn:8bb270a0-72b4-49d5-a4d3-a962edd5f67b",
     "octgn:8bc0199c-09ff-463f-a6b5-886d14d843cc",
+    "octgn:8bc37a15-f097-4471-8259-ac6f2cac3bc3",
     "octgn:8bd2808a-55d4-41f7-946a-2726a3583eaf",
     "octgn:8bd42629-07e8-4d8e-ac82-1f463c1cb7e6",
     "octgn:8be23a53-ba85-4db3-8d1f-821da0323cbf",
     "octgn:8be49f80-c3ca-44f0-92d1-15ff0ac6c25b",
     "octgn:8bf452c7-09ab-482b-b44c-0861b7e63ecc",
+    "octgn:8bfb1224-0a31-4ced-9e68-cb0b9d438035",
     "octgn:8bfc0f18-87f6-410b-b3b1-8486ca3627c7",
     "octgn:8c15fd9d-0956-474a-9051-51f36890c7a5",
     "octgn:8c4cc797-13e6-4ee4-a991-7ec76866418a",
@@ -3046,12 +3049,14 @@
     "octgn:95f27b98-6375-48ff-bf2b-3f625b3d1b0d",
     "octgn:95f2f7ac-5d85-43e5-930d-d866b00bef26",
     "octgn:962991f0-44af-47ba-9ff0-0f7ed302a543",
+    "octgn:964209a4-0219-4fc0-a734-b89abd3074f0",
     "octgn:9656a1c9-dd90-4096-b2ba-eb2491d08403",
     "octgn:96580016-f869-4375-8937-3fb14dc0e264",
     "octgn:96b6e743-0f7b-4d7f-8623-437911137940",
     "octgn:96b72fe4-c42d-469d-9741-294c4da73278",
     "octgn:96e30879-9a56-428e-853d-93503f01ddb3",
     "octgn:96f8534a-2683-4c8f-981d-daa470b792b7",
+    "octgn:970eb6ec-5ec3-4444-9298-e0e8764fbda5",
     "octgn:97584fc2-835e-411c-aae3-eb841c90fc43",
     "octgn:976d7409-0e67-43f1-b1bd-56cdeac073ef",
     "octgn:977ebe93-58f5-44f9-81d8-66037501a86e",
@@ -3156,6 +3161,7 @@
     "octgn:a1827b45-42bd-44b3-a86d-d773e60ac1b5",
     "octgn:a1a8bd6e-4cd1-4641-9cb1-f693f053f62e",
     "octgn:a1e74757-c5c8-4b81-a01a-6406410f661d",
+    "octgn:a203a422-201a-4b2a-b9bd-687258687479",
     "octgn:a210439e-5670-476f-b933-c862b6e88602",
     "octgn:a246d29f-f370-4308-828d-c1ff09029b4a",
     "octgn:a258aec8-a5d9-4194-8612-ac2dd3b8f99e",
@@ -3620,6 +3626,7 @@
     "octgn:cc2cf907-a433-47e7-bc7f-21fa837aa025",
     "octgn:cc572a1a-2700-493c-9b82-309c9c9ba61c",
     "octgn:cc77ab8d-1968-4607-b18d-7db3c3c186c7",
+    "octgn:cd23a6ca-9c2d-429f-9926-2fc75a67603b",
     "octgn:cd628acc-acdf-48c5-a9cc-136eb9bc3095",
     "octgn:cd883a3f-65b8-473e-97f7-b8ac12f91194",
     "octgn:cd974fa4-7f3a-4b46-b2d0-b99d086fe98a",
@@ -3918,6 +3925,7 @@
     "octgn:ebde9bba-fd89-4098-ad60-9d1d4e746d23",
     "octgn:ebf0f1f6-8627-4d7d-986e-fd7ae9a2de55",
     "octgn:ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef",
+    "octgn:ec0c1c07-2d48-4fa8-948c-51d976ffe559",
     "octgn:ec1a2268-5e9d-4875-8089-2692d22fa180",
     "octgn:ec2049ab-c950-46f7-9f1b-30ada69db857",
     "octgn:ec21ab35-cc55-4e35-9ed7-b143bd94f17e",
@@ -5073,7 +5081,7 @@
     {
       "product": "the-wastes-of-eriador-nightmare",
       "total": 8,
-      "scripted": 0,
+      "scripted": 8,
       "player": 0,
       "playerScripted": 0
     },
@@ -20706,7 +20714,7 @@
       "name": "Torrent of Hail",
       "type": "treachery",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wastes-of-eriador-nightmare"
     },
     {
@@ -28394,7 +28402,7 @@
       "name": "Cunning Wolves",
       "type": "treachery",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wastes-of-eriador-nightmare"
     },
     {
@@ -28442,7 +28450,7 @@
       "name": "Shrouded Wilderness",
       "type": "location",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wastes-of-eriador-nightmare"
     },
     {
@@ -29170,7 +29178,7 @@
       "name": "Pack Hunters",
       "type": "enemy",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wastes-of-eriador-nightmare"
     },
     {
@@ -29226,7 +29234,7 @@
       "name": "The Wastes of Eriador",
       "type": "nightmare",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wastes-of-eriador-nightmare"
     },
     {
@@ -30138,7 +30146,7 @@
       "name": "Snowy Badlands",
       "type": "location",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wastes-of-eriador-nightmare"
     },
     {
@@ -34098,7 +34106,7 @@
       "name": "Forced off Track",
       "type": "encounter-side-quest",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wastes-of-eriador-nightmare"
     },
     {
@@ -36626,7 +36634,7 @@
       "name": "Make a Stand",
       "type": "encounter-side-quest",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wastes-of-eriador-nightmare"
     },
     {
@@ -39781,8 +39789,8 @@
       "id": "N05.4",
       "name": "The Wastes of Eriador (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "wastes-of-eriador",
+      "state": "scripted"
     },
     {
       "id": "N05.5",
