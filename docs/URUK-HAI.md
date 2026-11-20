@@ -7,7 +7,11 @@ easy mode. Its campaign mode (recipe Q0C.07) is part of
 [The Lord of the Rings campaign](SAGA-CAMPAIGN.md): the captives come from the
 Campaign Log, and the resolution earns the Skill boons or Beyond All Hope. The
 box's player cards follow in a later import, except the Fellowship-sphere
-Aragorn, whom the scenario puts into play.
+Aragorn, whom the scenario puts into play. Nightmare mode follows
+[its Nightmare Deck](NIGHTMARE.md) (the Nightmare cards use the scenario's
+pursuit value, its after-kill shadow pursuit and its Toughness and Archery;
+Mauhúr is set aside until the players advance to stage 2A), outside campaign
+mode.
 
 ## Sources and corrections
 

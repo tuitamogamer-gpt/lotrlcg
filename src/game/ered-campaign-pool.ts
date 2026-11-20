@@ -3143,6 +3143,10 @@ export function composeEredPool(
       h.sideDefeated?.(s, u);
       p.sideDefeated?.(s, u);
     },
+    shadowCancelled: (s, code) => {
+      h.shadowCancelled?.(s, code);
+      p.shadowCancelled?.(s, code);
+    },
     readyIntercepted: (s, u, cardEffect) =>
       !!h.readyIntercepted?.(s, u, cardEffect) ||
       !!p.readyIntercepted?.(s, u, cardEffect),

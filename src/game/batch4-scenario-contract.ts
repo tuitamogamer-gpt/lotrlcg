@@ -79,6 +79,8 @@ export interface Batch4ScenarioHooks {
   playerCardEconomyBlocked?(s: GameState): boolean;
   refreshCharacters?(s: GameState, player: number): Effect[] | undefined;
   whenRevealedCancelled?(s: GameState, code: string): void;
+  /** A shadow card's effect was canceled (a player chose a cancel option). */
+  shadowCancelled?(s: GameState, code: string): void;
   /** After a player takes control of a location (Assault on Osgiliath's controlled locations). */
   locationControlled?(s: GameState, u: Unit, player: number): void;
   /** After a hidden card is turned faceup in a player's play area (The Blood of Gondor). */

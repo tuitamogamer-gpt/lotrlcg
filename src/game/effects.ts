@@ -890,6 +890,9 @@ function handleEffect(s: GameState, e: Effect) {
     case "eventFinish":
       finishPlayedEvent(s, e.target!);
       break;
+    case "shadowCancelled":
+      if (e.code) batch4Scenario(s).shadowCancelled?.(s, e.code);
+      break;
     case "amonSurgeWindow":
       amonPlayerSurgeRevealed(s, { ...make(s, e.code!), code: e.code! });
       DepthsPlayers.depthsPlayerSurgeRevealed(s, e.code!);
@@ -3138,6 +3141,7 @@ export function shadowResponse(s: GameState, code: string) {
     choose(
       s,
       "A shadow falls",
+      // Each option but resolving it cancels the shadow effect.
       [
         ...eredOptions,
         ...wrathOptions,
@@ -3168,13 +3172,17 @@ export function shadowResponse(s: GameState, code: string) {
             }),
           ],
         })),
-        {
+      ]
+        .map((o) => ({
+          ...o,
+          effects: [...o.effects, fx("shadowCancelled", { code })],
+        }))
+        .concat({
           id: "resolve",
           label: "Resolve shadow effect",
           code,
           effects: [fx("shadowEffect", { code })],
-        },
-      ],
+        }),
       shadowText,
     );
   else prepend(s, fx("shadowEffect", { code }));

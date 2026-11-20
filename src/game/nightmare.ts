@@ -553,6 +553,19 @@ export const NIGHTMARE_TLR = {
   curse: "octgn:55dd30df-7b57-4cc9-b778-f8a4bfe72431",
   courage: "octgn:66fc0634-c88c-4af2-a009-8ade84806f98",
 } as const;
+/** The Treason of Saruman Nightmare Deck's cards (OCTGN ids, as DragnCards keeps them). */
+export const NIGHTMARE_TOS = {
+  /** The Uruk-hai's setup card and Nightmare Deck (Mauhúr set aside until stage 2A). */
+  urukCard: "octgn:94923076-b890-4a15-b576-5bba2e2ab2b4",
+  mauhur: "octgn:36384b25-2c8d-4999-9c38-70a461a45518",
+  lugdush: "octgn:7595e0f2-391c-4c39-9147-888d53031784",
+  whiteHand: "octgn:5b883ef3-a7f1-4c88-870b-af254e9d2151",
+  wold: "octgn:a58a4337-b935-4b6c-b6fb-72e71e8bb9a8",
+  enchanted: "octgn:69b6719b-07f5-4514-b747-21fd0e2e9463",
+  trail: "octgn:196e8d0a-70c6-49f9-b26c-2ed2b7d3ac87",
+  command: "octgn:bd44e9b4-5226-4fb5-a300-dffc9b35f6d4",
+  draught: "octgn:ea7a8cd4-6e75-4ea7-85d1-9f89a66c9d19",
+} as const;
 
 interface NightmareDeck {
   /** The setup card, flipped next to the quest deck. */
@@ -1093,6 +1106,17 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Tragic Discovery": 2,
     },
   },
+  "the-uruk-hai": {
+    card: NIGHTMARE_TOS.urukCard,
+    removals: {
+      "Uruk-hai Fighter": 3,
+      Snaga: 1,
+      Eastemnet: 2,
+      "Plains of Rohan": 2,
+      "The Wold": 3,
+      "Unseen Barrier": 2,
+    },
+  },
   "deadmens-dike": {
     card: NIGHTMARE_TLR.dikeCard,
     removals: {
@@ -1540,6 +1564,12 @@ export function nightmareStatus(s: GameState): string[] {
     ).length;
     return [
       `The Weather Hills · Nightmare mode: each Captive Villager and Rearguard Ambusher was shuffled into the Orc deck; the players cannot win while a Captive Villager is guarded by an encounter card${guarded ? ` (${guarded} guarded now)` : ""}, and lose if one leaves play.`,
+    ];
+  }
+  if (s.scenarioId === "the-uruk-hai") {
+    const aside = !!s.nightmare?.urukMauhur;
+    return [
+      `The Uruk-hai · Nightmare mode: each Captive is immune to player card effects; when the players advance to stage 2A, Mauhúr is added to the staging area${aside ? " (set aside now)" : ""}.`,
     ];
   }
   if (s.scenarioId === "deadmens-dike") {

@@ -17,6 +17,12 @@ import { isAlly, isHero } from "./card-types";
 import { isEnemy } from "./ships";
 import { mainQuestUnit } from "./quest-state";
 import { lotrSagaCheck } from "./lotr-saga";
+import { batch4Scenario } from "./batch4-scenarios";
+import {
+  NIGHTMARE_TOS,
+  nightmareEncounterDecks,
+  nightmareLive,
+} from "./nightmare";
 import {
   UH,
   UH_BARRIER_LIMIT,
@@ -112,7 +118,17 @@ export function setupUrukHai(s: GameState) {
     r.cards
       .filter((c) => c.section === name)
       .flatMap((c) => Array<string>(c.quantity).fill(c.code));
-  s.encounterDeck = shuffle(s, section("sharedEncounterDeck"));
+  // Nightmare mode: the setup card's removals and Nightmare Deck, with
+  // Mauhúr set aside, out of play (it joins the staging area at stage 2A).
+  const [deck, aside] = nightmareLive(s)
+    ? nightmareEncounterDecks(
+        s.scenarioId,
+        [section("sharedEncounterDeck"), []],
+        (c) => (c === NIGHTMARE_TOS.mauhur ? 1 : 0),
+      )
+    : [section("sharedEncounterDeck"), []];
+  s.encounterDeck = shuffle(s, deck);
+  if (aside.length) (s.nightmare ??= {}).urukMauhur = make(s, aside[0]);
   // Follow the Orcs: Eastemnet is the active location; Uglúk and To
   // Isengard! are in the staging area.
   const [eastemnet] = section("sharedActiveLocation");
@@ -391,6 +407,9 @@ export function urukHaiEffect(s: GameState, e: Effect): boolean {
       s.progress = 0;
       q.currentQuest = UH.rescue;
       log(s, "Rescue the Captives begins.", "chapter");
+      // Nightmare mode: "When the players advance to stage 2A, add Mauhúr to
+      // the staging area."
+      batch4Scenario(s).stageRevealed?.(s, 2);
       prepend(
         s,
         ...playerOrder(s).map((player) => fx("uhSearchUruk", { player })),

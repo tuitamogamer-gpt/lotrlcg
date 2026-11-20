@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2728,
+    "encounterCards": 2737,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3950,
-    "pending": 233
+    "scripted": 3959,
+    "pending": 224
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 321
+    "scripted": 322
   },
   "registeredCodes": [
     "01001",
@@ -1458,6 +1458,7 @@
     "octgn:19675b16-16ee-4477-a753-bd1cf7b51b7a",
     "octgn:196d6c69-845a-494d-a49d-54d3dc6c1b4b",
     "octgn:196dd43b-1df2-4eae-9dcf-2e8d2723af67",
+    "octgn:196e8d0a-70c6-49f9-b26c-2ed2b7d3ac87",
     "octgn:19b732b9-a26a-4535-a438-7dd83cd4ecf2",
     "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1",
     "octgn:19c23cd8-5935-4278-a5e1-943967004e0a",
@@ -1770,6 +1771,7 @@
     "octgn:35fb5564-b4a1-4730-9e4d-65bd2e6d43c4",
     "octgn:35fb5564-b4a1-4730-9e4d-65bd2e6d43c4.B",
     "octgn:3612e715-a474-4911-a247-58c76f2ef277",
+    "octgn:36384b25-2c8d-4999-9c38-70a461a45518",
     "octgn:364ef18d-2a93-4ea9-a2f6-799a4e1b7617",
     "octgn:365efac0-2631-483c-91ce-19da7585bd1a",
     "octgn:366f0662-7776-4b1a-bb09-334e06e0e174",
@@ -2479,6 +2481,7 @@
     "octgn:5afd0c41-3fe9-40a1-bdfc-f5e8bc323958",
     "octgn:5b038648-7a06-4014-b207-a5d68c99e76d",
     "octgn:5b3b0e1a-ff08-4d4d-8071-d4de3f3bc9aa",
+    "octgn:5b883ef3-a7f1-4c88-870b-af254e9d2151",
     "octgn:5bca670f-054d-41cd-93d7-0e318dc8c0e1",
     "octgn:5bca670f-054d-41cd-93d7-0e318dc8c0e1:B",
     "octgn:5bcec205-7f6b-44b9-bb4d-9addde372316",
@@ -2590,6 +2593,7 @@
     "octgn:6987d363-bcba-4f34-97b1-d26f080c843e",
     "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
     "octgn:69a5def2-08da-498c-83d6-406ecbd6bc04",
+    "octgn:69b6719b-07f5-4514-b747-21fd0e2e9463",
     "octgn:69c3d8f9-750a-4903-be32-588898fd766e",
     "octgn:6a24a5e8-80e9-4bba-af55-64be11742dde",
     "octgn:6a24bcba-e069-4951-9cb1-59b48d291c74",
@@ -2698,6 +2702,7 @@
     "octgn:74fc62c2-b1b6-4338-819a-1f00f871312c",
     "octgn:750a1952-58d9-4ab7-aa3f-8cc5fd2ea040",
     "octgn:7562e662-3b3e-4378-9a3f-c45908bc05cf",
+    "octgn:7595e0f2-391c-4c39-9147-888d53031784",
     "octgn:75b111c9-fb49-4a53-ac50-729ff2d06abe",
     "octgn:75c1d9eb-9ade-4c71-a918-74cf5b526ff2",
     "octgn:75c3ac9e-b4e2-4c26-95a3-df99e6f22c6d",
@@ -3014,6 +3019,7 @@
     "octgn:944aaafa-17e2-4352-9a04-384673089ee6",
     "octgn:947f8b80-5d96-43eb-89ac-95b7738f2d55",
     "octgn:948774da-a350-40cc-bb09-aca2c3ad8dcd",
+    "octgn:94923076-b890-4a15-b576-5bba2e2ab2b4",
     "octgn:9497ef98-8f38-4647-bf77-28d8007a911a",
     "octgn:949e2607-cbb5-4ae3-af26-f9d7e00e09d2",
     "octgn:94befa92-9e5f-4838-b1e1-0b54d698bcb3",
@@ -3169,6 +3175,7 @@
     "octgn:a56afdd4-343f-4b66-9bd2-f775d6372cd7",
     "octgn:a56cab99-d482-4aa3-b5e4-b1e5b857515f",
     "octgn:a589eabf-64a6-4400-aa3d-ad30b4f721c3",
+    "octgn:a58a4337-b935-4b6c-b6fb-72e71e8bb9a8",
     "octgn:a58dc702-4b9f-41ee-be83-136eda08906d",
     "octgn:a5aef3fe-7bb9-4165-ba0f-91127d8f21e3",
     "octgn:a5e60892-b524-43cf-a501-372a624e785e",
@@ -3448,6 +3455,7 @@
     "octgn:bc629269-aa5b-4f5c-b071-c1413f85d24c",
     "octgn:bcd41784-d260-4165-ae0f-74cb844d10b3",
     "octgn:bd30f509-04f8-4135-a5e9-20d3cbbe7cd8",
+    "octgn:bd44e9b4-5226-4fb5-a300-dffc9b35f6d4",
     "octgn:bd837efe-9358-4fe9-8770-69b9b1fefb48",
     "octgn:bdbf8bed-f63f-4797-abb4-79054a9dbcad",
     "octgn:bde125e7-6c33-4659-8713-e3374b93f414",
@@ -3876,6 +3884,7 @@
     "octgn:ea4bc222-6fb5-494e-8f1f-de30974694db",
     "octgn:ea5faa85-5a47-4ab3-a623-3f88df71f7fd",
     "octgn:ea6e8450-215c-4a7c-86a3-fe1b8da3791e",
+    "octgn:ea7a8cd4-6e75-4ea7-85d1-9f89a66c9d19",
     "octgn:ea80809a-c719-41a9-8729-5f58cdec149b",
     "octgn:eaad2b4a-3ac0-4672-ad43-036152d81322",
     "octgn:eaaececf-9322-43b5-a190-bdfadd7a695e",
@@ -5020,7 +5029,7 @@
     {
       "product": "the-treason-of-saruman-nightmare",
       "total": 25,
-      "scripted": 0,
+      "scripted": 9,
       "player": 0,
       "playerScripted": 0
     },
@@ -15785,7 +15794,7 @@
       "name": "The Uruk's Trail",
       "type": "location",
       "pack": "The Treason of Saruman - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman-nightmare"
     },
     {
@@ -18465,7 +18474,7 @@
       "name": "Mauhúr",
       "type": "enemy",
       "pack": "The Treason of Saruman - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman-nightmare"
     },
     {
@@ -24369,7 +24378,7 @@
       "name": "Orc of the White Hand",
       "type": "enemy",
       "pack": "The Treason of Saruman - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman-nightmare"
     },
     {
@@ -25329,7 +25338,7 @@
       "name": "Enchanted Land",
       "type": "location",
       "pack": "The Treason of Saruman - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman-nightmare"
     },
     {
@@ -26313,7 +26322,7 @@
       "name": "Lugdush",
       "type": "enemy",
       "pack": "The Treason of Saruman - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman-nightmare"
     },
     {
@@ -29017,7 +29026,7 @@
       "name": "The Uruk-hai",
       "type": "nightmare",
       "pack": "The Treason of Saruman - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman-nightmare"
     },
     {
@@ -30385,7 +30394,7 @@
       "name": "Wold of Rohan",
       "type": "location",
       "pack": "The Treason of Saruman - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman-nightmare"
     },
     {
@@ -32769,7 +32778,7 @@
       "name": "Ugluk's Command",
       "type": "treachery",
       "pack": "The Treason of Saruman - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman-nightmare"
     },
     {
@@ -36449,7 +36458,7 @@
       "name": "Orc-draught",
       "type": "treachery",
       "pack": "The Treason of Saruman - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treason-of-saruman-nightmare"
     },
     {
@@ -39945,8 +39954,8 @@
       "id": "N0B.07",
       "name": "The Uruk-hai (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-uruk-hai",
+      "state": "scripted"
     },
     {
       "id": "N0B.08",
