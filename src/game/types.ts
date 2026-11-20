@@ -608,7 +608,8 @@ export interface GameState {
     import("./nightmare-crown").NightmareCrownState &
     import("./nightmare-trgs").NightmareRingSouthState &
     import("./nightmare-jitd").NightmareJourneyDarkState &
-    import("./nightmare-botf").NightmareBreakingState;
+    import("./nightmare-botf").NightmareBreakingState &
+    import("./nightmare-chetwood").NightmareChetwoodState;
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;
@@ -1250,7 +1251,7 @@ export interface GameState {
     wilderKilledCharacter?: boolean;
     wilderPackAttacks?: number;
     wilderDiscardAlly?: number;
-    /** The threat raised if this attack destroys a character: each player's for Southern Spur's shadow (The Lonely Mountain's Nightmare Deck), the defending player's for Sniffing and Hissing's (A Shadow of the Past's). */
+    /** The threat raised if this attack destroys a character: each player's for Southern Spur's shadow (The Lonely Mountain's Nightmare Deck), the defending player's for Sniffing and Hissing's (A Shadow of the Past's) and Outskirts of Archet's (Intruders in Chetwood's). */
     nmThreatOnKill?: number;
     /** A Nightmare enemy's Forced effect after its attack destroys a character resolved for this attack (Great Warg, Vengeful Hillman). */
     nmKillResolved?: boolean;
@@ -1274,6 +1275,8 @@ export interface GameState {
     nmLocationsOnKill?: number;
     /** A Nightmare layer's record that this attack's enemy destroyed a character (Breaking of the Fellowship's Isengard Tracker). */
     nmDestroyed?: boolean;
+    /** Northern Chetwood's shadow (Intruders in Chetwood's Nightmare Deck): a card discarded at random from the defending player's hand for each point of damage this attack dealt, once for each copy. */
+    nmDiscardPerDamage?: number;
     defenderIds?: string[];
     ignoreDefense?: boolean;
     returnToStaging?: boolean;

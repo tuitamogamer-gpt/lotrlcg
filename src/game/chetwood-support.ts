@@ -1,6 +1,7 @@
 import encounters from "../data/chetwood-encounter-cards.json";
 import quests from "../data/chetwood-quest-cards.json";
 import recipes from "../data/chetwood-recipes.json";
+import nightmare from "../data/nightmare-encounter-cards.json";
 import type { Card, GameState, Unit } from "./types";
 
 export const CHETWOOD_ENCOUNTERS = encounters as Card[];
@@ -46,7 +47,15 @@ export function validateChetwood(
 ) {
   const q = s.chetwood;
   if (q === undefined) return s.scenarioId !== "intruders-in-chetwood";
-  const locations = encounters
+  // A Nightmare mode game's setup locations may come from its Nightmare Deck.
+  const locations = [
+    ...encounters,
+    ...(s.nightmareMode
+      ? (nightmare as Card[]).filter(
+          (c) => c.encounter_set === "Intruders in Chetwood - Nightmare",
+        )
+      : []),
+  ]
     .filter((c) => c.type_code === "location")
     .map((c) => c.code);
   const seatCount = s.table?.seats.length ?? 1;

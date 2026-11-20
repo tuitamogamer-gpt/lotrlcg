@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2701,
+    "encounterCards": 2711,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3923,
-    "pending": 260
+    "scripted": 3933,
+    "pending": 250
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 318
+    "scripted": 319
   },
   "registeredCodes": [
     "01001",
@@ -1283,6 +1283,7 @@
     "octgn:054189b9-c165-4561-9b62-f0384145da97",
     "octgn:0554f2f9-c578-4644-9c28-b617e846b787",
     "octgn:055e0afc-b257-43ef-9b74-02e6ee16d40c",
+    "octgn:0569374c-0f0d-461e-8047-cf467393c38f",
     "octgn:05738935-2cd4-4ce3-a977-9e4f59689a32",
     "octgn:057a8676-b610-4806-aa86-edf9b03060e8",
     "octgn:058a5508-6b20-4305-94ea-53d5d2f33595",
@@ -1405,6 +1406,7 @@
     "octgn:1339dfb5-49c1-46ce-a4c9-970d0e118cfa",
     "octgn:13543061-b855-4e58-9190-e2f56c17cd32",
     "octgn:1371a0af-e085-42e4-8cd7-a2007da158e1",
+    "octgn:1384425f-206b-47ab-96ed-c322e7295a75",
     "octgn:138ee2a3-0982-48ab-945e-60fab6f06586",
     "octgn:13a4b435-fa14-42b8-975e-804d3b8b929d",
     "octgn:13b4d81e-1bd7-4a56-a418-b60e58767c12",
@@ -1778,6 +1780,7 @@
     "octgn:36e1a766-7b31-4bb4-be01-4995a9f9c2f3",
     "octgn:37153373-7a82-484e-9aca-7ed47a6a7703",
     "octgn:3733b627-08bd-4d12-a2ec-dadfcbfc6695",
+    "octgn:3748b1e3-625d-4752-831d-4d52b2366359",
     "octgn:377d8e17-1c0d-4871-86a5-a69b9dee40d2",
     "octgn:379415fb-39c8-4cb8-aa19-ac54c46bcb4a",
     "octgn:37f0bdca-11d8-40ba-97cd-bbe2b8190cd5",
@@ -2380,6 +2383,7 @@
     "octgn:51b45e84-3f63-46ea-aa08-b83dd89244ff",
     "octgn:51b6030d-3ce7-4139-b3bc-a408949533e2",
     "octgn:51e187ea-691c-46bc-b74f-c03d110d02cd",
+    "octgn:5211f81c-288a-4243-889d-6e294fbc3b8c",
     "octgn:52248807-32d1-422b-b4b2-01097405e49f",
     "octgn:522c612d-5f3c-4a02-a1a7-7d87191922e0",
     "octgn:526faef8-5db5-48ab-ab22-109916e9fda7",
@@ -2525,6 +2529,7 @@
     "octgn:61b6316c-dfbd-4f90-ab71-99eee8056047",
     "octgn:6220ef6b-f314-4cf9-92df-f9551d6cfde0",
     "octgn:624d5999-1a76-4783-b4e4-d9b596242d18",
+    "octgn:6259c002-16d5-4499-baa8-f0e9b8b2ffda",
     "octgn:626abd2c-11bc-416b-9db6-a72d5525d3de",
     "octgn:62ceb94f-5838-4c5c-9547-8786c4c64051",
     "octgn:62d5807c-caef-49bd-8cbc-cb6429647fce",
@@ -2821,6 +2826,7 @@
     "octgn:82141d38-fb53-472c-a5e8-6a495447c9ad",
     "octgn:821a078b-ae42-4b69-bd49-cc235916be77",
     "octgn:822ca699-4763-4b8c-baff-d8d828c002a9",
+    "octgn:8231bc2d-f52d-429c-b969-a77a7e5aca52",
     "octgn:8239e81a-f779-4c7c-b586-cd5ad732f061",
     "octgn:82514713-7cc4-4b76-a5f2-42a69ccff76b",
     "octgn:826b71a9-3f90-454a-8009-24afa9a94ec8",
@@ -3447,6 +3453,7 @@
     "octgn:bf925a7c-b427-4fb6-ba6b-dbc86304a69f",
     "octgn:bfa3b9da-d0e3-4ad6-8d1d-f32975f69551",
     "octgn:bfae3bf9-24e1-46af-b202-fb6c676a5dd9",
+    "octgn:bfd46195-4981-47f4-95c1-84f9ec2cadc2",
     "octgn:c03a693c-4fcf-4df5-868b-88e1df8531d9",
     "octgn:c04f4018-e001-4a31-a003-9914e3f585ee",
     "octgn:c057b0ef-eb85-4afc-9ca8-60a0cca92bcc",
@@ -3635,6 +3642,7 @@
     "octgn:d3c68791-c3f9-4e8d-9515-2496f9ca1895",
     "octgn:d3eee887-e9fd-40f9-bd09-47a7b0732ee2",
     "octgn:d4309384-8472-4385-8122-163d6c4c8396",
+    "octgn:d43b2298-a255-4afa-a95b-f7f1c8420757",
     "octgn:d4686e4d-2d50-4ffd-9b95-7bcdf9b2a494",
     "octgn:d47ece86-2645-4d35-8ab7-c439d12abe65",
     "octgn:d495b495-db4b-496a-9294-c956afd1db9f",
@@ -3801,6 +3809,7 @@
     "octgn:e723be8b-ba65-4aaa-ba56-825ee9311a0e",
     "octgn:e7413cb0-3443-40d4-88f4-06d7cfa1ab1d",
     "octgn:e763a539-7fc8-49ab-8f8f-879070aa0e03",
+    "octgn:e7995075-7f11-4f8f-ab16-e7455b67afc2",
     "octgn:e7a6c9c3-9d45-478c-81e5-7811d43deb0e",
     "octgn:e7b0f67c-ad7e-442a-af9f-188e9cedddde",
     "octgn:e7f523e1-c898-42f8-93c2-889038de230f",
@@ -4090,6 +4099,7 @@
     "octgn:fe2c30ae-dd35-48de-a2c2-4886a0c0783e",
     "octgn:fe419fec-bc64-493c-aa23-fa3e62c57768",
     "octgn:fe580179-8f51-463e-a235-bde0f7b783d7",
+    "octgn:fe5ce9b0-2dd0-49f7-b3d3-6df03d367b33",
     "octgn:fe7448a2-e2e2-4e81-95f4-2ac585160433",
     "octgn:fea90493-29cd-4668-9e3b-eb3150cdc339",
     "octgn:fed61900-b526-41e6-b072-9c5eae29bc77",
@@ -4804,7 +4814,7 @@
     {
       "product": "the-lost-realm-nightmare",
       "total": 27,
-      "scripted": 0,
+      "scripted": 10,
       "player": 0,
       "playerScripted": 0
     },
@@ -14278,7 +14288,7 @@
       "name": "Protect the Bree-landers",
       "type": "encounter-side-quest",
       "pack": "The Lost Realm - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm-nightmare"
     },
     {
@@ -15310,7 +15320,7 @@
       "name": "Orc Abductor",
       "type": "enemy",
       "pack": "The Lost Realm - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm-nightmare"
     },
     {
@@ -18542,7 +18552,7 @@
       "name": "Northern Chetwood",
       "type": "location",
       "pack": "The Lost Realm - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm-nightmare"
     },
     {
@@ -23542,7 +23552,7 @@
       "name": "A Great Host",
       "type": "treachery",
       "pack": "The Lost Realm - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm-nightmare"
     },
     {
@@ -24838,7 +24848,7 @@
       "name": "Greenway Path",
       "type": "location",
       "pack": "The Lost Realm - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm-nightmare"
     },
     {
@@ -27470,7 +27480,7 @@
       "name": "Intruders in Chetwood",
       "type": "nightmare",
       "pack": "The Lost Realm - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm-nightmare"
     },
     {
@@ -32886,7 +32896,7 @@
       "name": "Shadow the War Party",
       "type": "encounter-side-quest",
       "pack": "The Lost Realm - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm-nightmare"
     },
     {
@@ -34598,7 +34608,7 @@
       "name": "Outskirts of Archet",
       "type": "location",
       "pack": "The Lost Realm - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm-nightmare"
     },
     {
@@ -36022,7 +36032,7 @@
       "name": "Kill Them!",
       "type": "treachery",
       "pack": "The Lost Realm - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm-nightmare"
     },
     {
@@ -38406,7 +38416,7 @@
       "name": "Soldier of Angmar",
       "type": "enemy",
       "pack": "The Lost Realm - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm-nightmare"
     },
     {
@@ -39708,8 +39718,8 @@
       "id": "N05.1",
       "name": "Intruders in Chetwood (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "intruders-in-chetwood",
+      "state": "scripted"
     },
     {
       "id": "N05.2",

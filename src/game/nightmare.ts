@@ -520,6 +520,20 @@ export const NIGHTMARE_TRD = {
   huntingRing: "octgn:c857d5a3-2b1f-4ef9-a5c7-2368ec28d15c",
   discord: "octgn:3b803986-90bc-441c-aec0-932d661eb8eb",
 } as const;
+/** The Lost Realm Nightmare Deck's cards (OCTGN ids, as DragnCards keeps them). */
+export const NIGHTMARE_TLR = {
+  /** Intruders in Chetwood's setup card and Nightmare Deck. */
+  chetwoodCard: "octgn:8231bc2d-f52d-429c-b969-a77a7e5aca52",
+  abductor: "octgn:1384425f-206b-47ab-96ed-c322e7295a75",
+  soldier: "octgn:fe5ce9b0-2dd0-49f7-b3d3-6df03d367b33",
+  northern: "octgn:3748b1e3-625d-4752-831d-4d52b2366359",
+  outskirts: "octgn:d43b2298-a255-4afa-a95b-f7f1c8420757",
+  greenway: "octgn:6259c002-16d5-4499-baa8-f0e9b8b2ffda",
+  greatHost: "octgn:5211f81c-288a-4243-889d-6e294fbc3b8c",
+  killThem: "octgn:e7995075-7f11-4f8f-ab16-e7455b67afc2",
+  shadowParty: "octgn:bfd46195-4981-47f4-95c1-84f9ec2cadc2",
+  protect: "octgn:0569374c-0f0d-461e-8047-cf467393c38f",
+} as const;
 
 interface NightmareDeck {
   /** The setup card, flipped next to the quest deck. */
@@ -1034,6 +1048,20 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Black Feathered Arrows": 2,
     },
   },
+  "intruders-in-chetwood": {
+    card: NIGHTMARE_TLR.chetwoodCard,
+    removals: {
+      "Angmar Orc": 1,
+      "Angmar Marauder": 3,
+      "Chetwood Forest": 2,
+      "Outlying Homestead": 1,
+      "Borders of Bree-land": 2,
+      "Rugged Country": 1,
+      "Shrouded Hills": 1,
+      "Surprising Speed": 3,
+      "Sudden Assault": 2,
+    },
+  },
   "a-knife-in-the-dark": {
     card: NIGHTMARE_TBR.knifeCard,
     removals: {
@@ -1461,6 +1489,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "breaking-of-the-fellowship")
     return [
       "Breaking of the Fellowship · Nightmare mode: the setup card removed the printed standard encounter cards and shuffled in its Nightmare Deck.",
+    ];
+  if (s.scenarioId === "intruders-in-chetwood")
+    return [
+      "Intruders in Chetwood · Nightmare mode: the setup card removed the printed standard encounter cards and shuffled in its Nightmare Deck.",
     ];
   if (s.scenarioId === "flight-to-the-ford")
     return [

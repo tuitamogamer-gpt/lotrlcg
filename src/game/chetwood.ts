@@ -46,6 +46,8 @@ import { canLeaveHand } from "./hand-rules";
 import { khazadCannotExhaust } from "./khazad-dum";
 import { currentQuestUnit, allQuestUnits } from "./quest-state";
 import { selectedSideQuest, sideQuestArea } from "./side-quest-support";
+import { batch4Scenario } from "./batch4-scenarios";
+import { nightmareEncounterDecks, nightmareLive } from "./nightmare";
 import {
   CHETWOOD as C,
   CHETWOOD_RECIPES,
@@ -56,6 +58,23 @@ const live = (s: GameState, code: string) =>
   s.staging.filter((u) => u.code === code && !u.blanked);
 const enemies = (s: GameState) =>
   s.staging.filter((u) => card(u.code).type_code === "enemy");
+/** A card not yet in play, for a rule that depends on its identity alone. */
+const probe = (code: string): Unit => ({
+  id: "",
+  code,
+  exhausted: false,
+  damage: 0,
+  progress: 0,
+  resources: 0,
+  committed: false,
+  attachments: [],
+  boost: 0,
+  attacked: false,
+  shadows: [],
+});
+/** Staged enemies a player may engage (Shadow the War Party's Orc War Party cannot be engaged). */
+const engageable = (s: GameState) =>
+  enemies(s).filter((u) => !batch4Scenario(s).cannotEngage?.(s, u));
 export const chetwoodQuestCount = (s: GameState) => allQuestUnits(s).length;
 const iarion = (s: GameState) =>
   allCharacters(s).find((u) => u.code === C.iarion);
@@ -97,9 +116,13 @@ export function setupChetwood(s: GameState) {
   const recipe = CHETWOOD_RECIPES.find(
     (r) => r.mode === (s.easyMode ? "easy" : "standard"),
   )!;
-  s.encounterDeck = recipe.cards
+  const deck = recipe.cards
     .filter((r) => r.section === "sharedEncounterDeck")
     .flatMap((r) => Array<string>(r.quantity).fill(r.code));
+  // Nightmare mode: the setup card's removals and its Nightmare Deck.
+  s.encounterDeck = nightmareLive(s)
+    ? nightmareEncounterDecks(s.scenarioId, [deck], () => 0)[0]
+    : deck;
   s.chetwood = {
     initialized: false,
     setupLocations: [],
@@ -362,7 +385,7 @@ export function chetwoodAttackFinished(
 }
 export function chetwoodTravelProblem(s: GameState, u: Unit) {
   if (u.blanked) return null;
-  if (u.code === C.forest && !enemies(s).length)
+  if (u.code === C.forest && !engageable(s).length)
     return "Chetwood Forest requires a staging enemy to engage.";
   if (
     u.code === C.homestead &&
@@ -541,7 +564,10 @@ function searchOptions(s: GameState, type: "orc" | "side"): Option[] {
               !(c.traits ?? "")
                 .split(".")
                 .map((s) => s.trim())
-                .includes("Orc")
+                .includes("Orc") ||
+              // An enemy that cannot be engaged cannot be put into play
+              // engaged (Shadow the War Party's Orc War Party).
+              !!batch4Scenario(s).cannotEngage?.(s, probe(code))
             : c.type_code !== "encounter-side-quest"
         )
           return [];
@@ -726,7 +752,7 @@ export function chetwoodEffect(s: GameState, e: Effect) {
         s,
         "Chetwood Forest · Choose a player and enemy",
         playerOrder(s).flatMap((player) =>
-          enemies(s).map((enemy) => ({
+          engageable(s).map((enemy) => ({
             id: `${player}-${enemy.id}`,
             code: enemy.code,
             label: `${seatName(s, player)} engages ${name(enemy)}`,

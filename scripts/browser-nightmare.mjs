@@ -19,7 +19,9 @@ import {
   NIGHTMARE_SOM as G,
   NIGHTMARE_TBR as TBR,
   NIGHTMARE_TRD as TRD,
+  NIGHTMARE_TLR as TLR,
 } from "../src/game/nightmare.ts";
+import { CHETWOOD } from "../src/game/chetwood-support.ts";
 import { KHAZAD } from "../src/game/khazad-dum.ts";
 import { mainQuestCode } from "../src/game/quest-state.ts";
 import { RETURN } from "../src/game/return-mirkwood.ts";
@@ -3183,6 +3185,88 @@ try {
       );
     }
     await checkpoint("botf-isengard-archer", width);
+
+    // Intruders in Chetwood in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-intruders-in-chetwood").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "intruders-in-chetwood");
+    assert.equal(s.nightmareMode, true);
+    {
+      const all = [
+        ...s.encounterDeck,
+        ...s.encounterDiscard,
+        ...s.staging.map((u) => u.code),
+      ];
+      assert.equal(
+        all.filter((c) => c === TLR.abductor).length,
+        3,
+        "the Nightmare Deck's 3 Orc Abductors",
+      );
+      assert.ok(
+        !all.some((c) => card(c).name === "Angmar Marauder"),
+        "the setup card removes the Angmar Marauders",
+      );
+    }
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/removed the printed standard encounter cards/)
+      .waitFor();
+    await checkpoint("chetwood-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // Shadow the War Party beside an Orc Abductor and a Northern Chetwood.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.staging = [
+        ...t.staging,
+        make(t, TLR.shadowParty),
+        make(t, TLR.abductor),
+        make(t, TLR.northern),
+      ];
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [TLR.shadowParty, "Shadow the War Party"],
+      [TLR.abductor, "Orc Abductor"],
+      [TLR.northern, "Northern Chetwood"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    assert.ok(
+      s.staging.some((u) => u.code === CHETWOOD.party),
+      "the staged Orc War Party",
+    );
+    await checkpoint("chetwood-shadow-war-party", width);
     await view.c.close();
   }
   const p = await browser.newPage();

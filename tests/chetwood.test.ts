@@ -139,9 +139,10 @@ test("Chetwood registers 18 original encounters, one 30-point quest and all twen
   assert.equal(card(C.iarion).is_unique, true);
   for (const r of CHETWOOD_RECIPES)
     assert.equal(automatedScenarioId(r), "intruders-in-chetwood");
+  // Its Nightmare Deck is supported (docs/NIGHTMARE.md).
   assert.equal(
     automatedScenarioId({ name: "Intruders in Chetwood", mode: "nightmare" }),
-    null,
+    "intruders-in-chetwood",
   );
   assert.equal(
     automatedScenarioId({

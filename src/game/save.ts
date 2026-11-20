@@ -161,6 +161,7 @@ import { crownNightmareRaven, validNightmareCrown } from "./nightmare-crown";
 import { validNightmareRingSouth } from "./nightmare-trgs";
 import { validNightmareJourneyDark } from "./nightmare-jitd";
 import { validNightmareBreaking } from "./nightmare-botf";
+import { validNightmareChetwood } from "./nightmare-chetwood";
 import { nightmareEscapeTest } from "./nightmare-dead";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
@@ -709,6 +710,7 @@ export function validateSave(
         c.nmLifeOnKill,
         c.nmLocationOnKill,
         c.nmLocationsOnKill,
+        c.nmDiscardPerDamage,
       ].every((v) => v === undefined || (integer(v) && v >= 0)) &&
       (c.dreadKilled === undefined ||
         (Array.isArray(c.dreadKilled) &&
@@ -1236,6 +1238,7 @@ export function validateSave(
         !validNightmareRingSouth(s) ||
         !validNightmareJourneyDark(s) ||
         !validNightmareBreaking(s) ||
+        !validNightmareChetwood(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,
