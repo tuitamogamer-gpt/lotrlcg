@@ -2,6 +2,7 @@
 import encounters from "../data/shadow-past-encounter-cards.json";
 import quests from "../data/shadow-past-quest-cards.json";
 import recipes from "../data/shadow-past-recipes.json";
+import nightmare from "../data/nightmare-encounter-cards.json";
 import type { Card, GameState, Unit } from "./types";
 export type { ShadowPastState } from "./shadow-past-types";
 
@@ -36,7 +37,15 @@ export const SP = {
   lure: code("Lure of the Ring"),
 };
 
-const byCode = new Map(SHADOW_PAST_ENCOUNTERS.map((c) => [c.code, c]));
+/** The scenario's cards, its Nightmare Deck's among them (Khamûl the Easterling is a Nazgûl, Stock Woods a location). */
+const byCode = new Map(
+  [
+    ...SHADOW_PAST_ENCOUNTERS,
+    ...(nightmare as Card[]).filter(
+      (c) => c.encounter_set === "A Shadow of the Past - Nightmare",
+    ),
+  ].map((c) => [c.code, c]),
+);
 const traitsOf = (code: string) =>
   (byCode.get(code)?.traits ?? "").split(".").map((t) => t.trim());
 export const spTrait = (u: Unit | string, trait: string) =>

@@ -48,7 +48,11 @@ export const automationSummary = () => ({
   scenarios: SCENARIOS.length,
   scenarioIds: SCENARIOS.map((s) => s.id),
 });
-export function automatedScenarioId(reference: { name: string; mode: string }) {
+export function automatedScenarioId(reference: {
+  name: string;
+  mode: string;
+  campaign?: boolean;
+}) {
   const name = reference.name
     .replace(/\s*\((?:Easy|Campaign|Nightmare)\)\s*$/i, "")
     .trim();
@@ -85,8 +89,10 @@ export function automatedScenarioId(reference: { name: string; mode: string }) {
     (reference.mode === "campaign" &&
       !CAMPAIGN_CHAPTERS.includes(match.id) &&
       !SAGA_CAMPAIGN_SUPPORTED.includes(match.id)) ||
-    // Nightmare mode: only the scenarios whose Nightmare Decks are supported.
-    (reference.mode === "nightmare" && !nightmareSupported(match.id))
+    // Nightmare mode: only the scenarios whose Nightmare Decks are supported,
+    // outside campaign mode (the saga's campaign mode Nightmare recipes).
+    (reference.mode === "nightmare" &&
+      (!nightmareSupported(match.id) || reference.campaign === true))
   )
     return null;
   return match.id;

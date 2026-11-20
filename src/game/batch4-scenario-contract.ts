@@ -532,6 +532,8 @@ export interface Batch4ScenarioHooks {
   hidePassed?(s: GameState, player: number, source: string): Effect[];
   /** Effects after a player fails a Hide or Fortitude test. */
   hideFailed?(s: GameState, player: number, source: string): Effect[];
+  /** Hide tests: the most characters a player may commit (A Shadow of the Past's Nightmare Stock Woods). */
+  hideCommitLimit?(s: GameState, player: number): number | undefined;
   /** Fortitude tests: a hero that cannot commit (Heavy and Tired). */
   fortitudeCommitBlocked?(s: GameState, u: Unit): boolean;
   /** Fortitude tests: after the encounter cards are discarded (Gollum). */

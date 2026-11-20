@@ -41,6 +41,8 @@ import {
   nazgulTreachery,
 } from "./black-riders-nazgul";
 import { lotrSagaCheck } from "./lotr-saga";
+import { nightmareEncounterDeck, nightmareLive } from "./nightmare";
+import { batch4Scenario } from "./batch4-scenarios";
 import {
   SHADOW_PAST_QUESTS,
   SHADOW_PAST_RECIPES,
@@ -76,7 +78,12 @@ export function setupShadowPast(s: GameState) {
     r.cards
       .filter((c) => c.section === name)
       .flatMap((c) => Array<string>(c.quantity).fill(c.code));
-  s.encounterDeck = shuffle(s, section("sharedEncounterDeck"));
+  const deck = section("sharedEncounterDeck");
+  // Nightmare mode: the setup card's removals and its Nightmare Deck.
+  s.encounterDeck = shuffle(
+    s,
+    nightmareLive(s) ? nightmareEncounterDeck(s.scenarioId, deck) : deck,
+  );
   for (const code of section("sharedStagingArea"))
     s.staging.push(make(s, code));
   const [bagEnd] = section("sharedActiveLocation");
@@ -272,6 +279,9 @@ export function shadowPastEffect(s: GameState, e: Effect): boolean {
       q.currentQuest = SHADOW_PAST_QUESTS[s.stage - 1].code;
       s.progress = 0;
       log(s, `${card(q.currentQuest).name} begins.`, "chapter");
+      // A Nightmare setup card's "When stage 3A is revealed" follows the
+      // stage's own effects.
+      batch4Scenario(s).stageRevealed?.(s, s.stage);
       prepend(
         s,
         ...(s.stage === 3 ? [fx("spFerry", { player: first })] : []),

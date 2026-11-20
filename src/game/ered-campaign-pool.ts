@@ -2932,6 +2932,27 @@ export function composeEredPool(
     ],
     engagementBonus: (s, u) =>
       (h.engagementBonus?.(s, u) ?? 0) + (p.engagementBonus?.(s, u) ?? 0),
+    hideWillpower: (s, u) =>
+      (h.hideWillpower?.(s, u) ?? 0) + (p.hideWillpower?.(s, u) ?? 0),
+    hideValueBonus: (s, player) =>
+      (h.hideValueBonus?.(s, player) ?? 0) +
+      (p.hideValueBonus?.(s, player) ?? 0),
+    hideThreatBonus: (s, player) =>
+      (h.hideThreatBonus?.(s, player) ?? 0) +
+      (p.hideThreatBonus?.(s, player) ?? 0),
+    hidePassed: (s, player, source) => [
+      ...(h.hidePassed?.(s, player, source) ?? []),
+      ...(p.hidePassed?.(s, player, source) ?? []),
+    ],
+    hideFailed: (s, player, source) => [
+      ...(h.hideFailed?.(s, player, source) ?? []),
+      ...(p.hideFailed?.(s, player, source) ?? []),
+    ],
+    hideCommitLimit: (s, player) => {
+      const a = h.hideCommitLimit?.(s, player),
+        b = p.hideCommitLimit?.(s, player);
+      return a === undefined ? b : b === undefined ? a : Math.min(a, b);
+    },
     enemyEntered: (s, u) => {
       h.enemyEntered?.(s, u);
       p.enemyEntered?.(s, u);

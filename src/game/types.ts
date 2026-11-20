@@ -1247,7 +1247,7 @@ export interface GameState {
     wilderKilledCharacter?: boolean;
     wilderPackAttacks?: number;
     wilderDiscardAlly?: number;
-    /** Southern Spur's shadow (The Lonely Mountain's Nightmare Deck): each player's threat if this attack destroys a character. */
+    /** The threat raised if this attack destroys a character: each player's for Southern Spur's shadow (The Lonely Mountain's Nightmare Deck), the defending player's for Sniffing and Hissing's (A Shadow of the Past's). */
     nmThreatOnKill?: number;
     /** A Nightmare enemy's Forced effect after its attack destroys a character resolved for this attack (Great Warg, Vengeful Hillman). */
     nmKillResolved?: boolean;
@@ -1259,6 +1259,8 @@ export interface GameState {
     nmHandDiscardOnKill?: number;
     /** Raven Talisman's shadow (The Antlered Crown's Nightmare Deck): the defending player discards their hand and draws 3 cards if this attack destroys a character. */
     nmHandRefillOnKill?: number;
+    /** Green-Hill Country's shadow (A Shadow of the Past's Nightmare Deck): after this attack the attacker engages the next player and makes an immediate attack, once for each copy. */
+    nmEngageNext?: number;
     defenderIds?: string[];
     ignoreDefense?: boolean;
     returnToStaging?: boolean;

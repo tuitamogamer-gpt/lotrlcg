@@ -456,6 +456,19 @@ export const NIGHTMARE_HON = {
   wharf: "octgn:f16bf495-bb88-4c5e-9a3f-5ba2d8bb916a",
   ruin: "octgn:49d6a591-67b0-4d65-a384-ae0662b09814",
 } as const;
+/** The Black Riders Nightmare Deck's cards (OCTGN ids, as DragnCards keeps them). */
+export const NIGHTMARE_TBR = {
+  /** A Shadow of the Past's setup card and Nightmare Deck. */
+  shadowCard: "octgn:4422e6ce-b272-4a2d-bd05-bf3f41063ea6",
+  khamul: "octgn:dd71d27f-b53e-453b-bcbc-bb479104461a",
+  horseman: "octgn:fcf4a99e-38f0-4809-8eb1-a1120776722b",
+  eastfarthing: "octgn:e07f95e5-8cae-4b4a-b3e7-92da7ddb1d68",
+  greenHill: "octgn:40bcc7a9-044e-44b6-83d2-6e09294c19c3",
+  stockWoods: "octgn:87b6ecff-219c-4002-b46b-ca683cb4c25b",
+  mordor: "octgn:b0ed537a-1e96-4b46-af9b-3449be219781",
+  followed: "octgn:86e0fbfc-04da-46b0-807b-ac58bd60248b",
+  sniffing: "octgn:784aedb3-8bc3-437c-ba35-2a94949c498d",
+} as const;
 
 interface NightmareDeck {
   /** The setup card, flipped next to the quest deck. */
@@ -915,6 +928,18 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Orc Hunting Party": 2,
     },
   },
+  "a-shadow-of-the-past": {
+    card: NIGHTMARE_TBR.shadowCard,
+    removals: {
+      "Evil Crow": 3,
+      "Woody End": 1,
+      Bamfurlong: 1,
+      "Stock-brook": 1,
+      "Green Hill Country": 3,
+      "Pathless Country": 3,
+      "Rode Like a Gale": 2,
+    },
+  },
   "the-antlered-crown": {
     card: NIGHTMARE_RINGMAKER.crownCard,
     removals: {
@@ -1314,6 +1339,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "the-dunland-trap")
     return [
       "The Dunland Trap · Nightmare mode: the setup card removed the printed standard encounter cards and shuffled in its Nightmare Deck.",
+    ];
+  if (s.scenarioId === "a-shadow-of-the-past")
+    return [
+      "A Shadow of the Past · Nightmare mode: when stage 3A is revealed, Khamûl the Easterling joins the staging area if he is not in play.",
     ];
   if (s.scenarioId === "the-antlered-crown")
     return [

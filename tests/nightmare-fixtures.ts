@@ -116,6 +116,8 @@ export function autoplay(s: GameState, steps = 1500) {
     else if (s.choice) action = { type: "CHOOSE", id: s.choice.options[0].id };
     // The Dead Marshes' escape tests resolve through their own action.
     else if (s.escapeTest) action = { type: "RESOLVE_ESCAPE" };
+    // The Black Riders' Hide tests resolve after their action window.
+    else if (s.hideTest?.phase === "actions") action = { type: "RESOLVE_HIDE" };
     else if (s.phase === "setup") action = { type: "KEEP" };
     else if (s.phase === "quest") {
       const ready = characters(s)

@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2649,
+    "encounterCards": 2658,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3871,
-    "pending": 312
+    "scripted": 3880,
+    "pending": 303
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 312
+    "scripted": 313
   },
   "registeredCodes": [
     "01001",
@@ -1837,6 +1837,7 @@
     "octgn:408752c0-cee3-41ba-86c2-d01085546cef",
     "octgn:40956aef-c093-489d-b74a-24502705c6bb",
     "octgn:409bc89e-b5af-4626-ade6-60bcfcb290b7",
+    "octgn:40bcc7a9-044e-44b6-83d2-6e09294c19c3",
     "octgn:40c7a675-d48f-4e71-8818-5f0ffb9fa0dd",
     "octgn:413fa654-8c2c-4245-9c6b-78d98db9903e",
     "octgn:414353af-e004-4e7c-b288-e168e2acfee7",
@@ -1868,6 +1869,7 @@
     "octgn:43bb02ff-9fcc-47e8-822c-ffcd620c9fc4",
     "octgn:43db612f-6c3c-4a3c-a4ba-816a85f47d16",
     "octgn:441a78e5-078f-433d-b092-5d94d1101aa1",
+    "octgn:4422e6ce-b272-4a2d-bd05-bf3f41063ea6",
     "octgn:447061f6-3399-4309-9885-1045f115820f",
     "octgn:447dd08d-693c-407f-8155-87164f212351",
     "octgn:4489214b-775c-4e63-b8ec-c504526e478f",
@@ -2691,6 +2693,7 @@
     "octgn:77dd117d-b2b6-4324-aa59-09fd1343fde9",
     "octgn:78393d15-048e-40ff-95b8-4dec18a77a8b",
     "octgn:783ecb94-e005-4ff7-8bc3-76196bba9249",
+    "octgn:784aedb3-8bc3-437c-ba35-2a94949c498d",
     "octgn:78520dc7-5891-47f3-8782-ca930c434374",
     "octgn:78689e20-d52f-4495-accc-b2cc39bb9ddc",
     "octgn:7869b9ba-7757-4d8e-a201-aaf247ec6f99",
@@ -2841,6 +2844,7 @@
     "octgn:8657c425-d50d-4a14-b7c8-b528463376e6",
     "octgn:866767a4-a4e9-4f61-b8eb-88f21e2fe6f2",
     "octgn:867b61a1-4e23-4426-ad94-b912e89055b8",
+    "octgn:86e0fbfc-04da-46b0-807b-ac58bd60248b",
     "octgn:86e8724b-32cb-4d63-b918-5754d39d2249",
     "octgn:86fe0f99-d978-40be-8f39-136bec2a3d58",
     "octgn:87025e60-afc4-410b-9b97-c5f527b524c8",
@@ -2852,6 +2856,7 @@
     "octgn:87539fa5-677d-4163-aff5-321841981cd4",
     "octgn:877a0217-9708-4139-b305-14c1b83c1d14",
     "octgn:877df84f-3f61-41e0-96ad-aab2aae56048",
+    "octgn:87b6ecff-219c-4002-b46b-ca683cb4c25b",
     "octgn:87c33692-599d-4914-a513-4353906fc6d4",
     "octgn:87c80644-57bb-4c66-8df6-c60cadc32d32",
     "octgn:87ca18e7-934a-4da9-bbb0-3a66f3d1b4c3",
@@ -3235,6 +3240,7 @@
     "octgn:b0caeaa6-2c96-4d92-9cca-7cb55387d8c0",
     "octgn:b0d31a1c-2155-4a97-a5ff-912e32a4809e",
     "octgn:b0e4169e-0dd1-4abc-a021-e6b16ebc0bd2",
+    "octgn:b0ed537a-1e96-4b46-af9b-3449be219781",
     "octgn:b1217b87-40bd-442d-b7c8-0d9b7d262b04",
     "octgn:b1612370-142d-4557-8884-b3da12b4baca",
     "octgn:b1662195-6d46-474c-9ee9-ccbf14c7b70e",
@@ -3664,6 +3670,7 @@
     "octgn:dc8f31b6-73af-4aec-be26-8d297909d14d",
     "octgn:dce8ff38-bcc7-49b4-ba27-ae3e2cac1d32",
     "octgn:dd394c76-c2b9-4b1c-8948-a056de97b779",
+    "octgn:dd71d27f-b53e-453b-bcbc-bb479104461a",
     "octgn:dd7ca673-fc3c-4caf-859a-ca32722e68dc",
     "octgn:ddac1c59-4e5d-4a90-9666-0753133d4de9",
     "octgn:ddb20145-e570-4099-8d8a-11d64895939b",
@@ -3688,6 +3695,7 @@
     "octgn:dfd0e951-2ba4-45c5-bed9-24caf8ae868f",
     "octgn:dff2fcb1-1231-4cda-9d10-029db96ef9e8",
     "octgn:e00490c1-cab9-4f99-ad19-04f7b81e4077",
+    "octgn:e07f95e5-8cae-4b4a-b3e7-92da7ddb1d68",
     "octgn:e0841275-753f-47bd-8d6d-807e4fb747ac",
     "octgn:e0928dc0-6f67-4611-843c-3354e949d879",
     "octgn:e0928dc0-6f67-4611-843c-3354e949d879:B",
@@ -4011,6 +4019,7 @@
     "octgn:fcb54294-8a36-4a51-bf1b-7d75ac1598e2",
     "octgn:fcc8ad22-ca1f-4fd1-8f84-4955bb683f50",
     "octgn:fcf26273-b39d-413c-aece-0c007888e527",
+    "octgn:fcf4a99e-38f0-4809-8eb1-a1120776722b",
     "octgn:fd00d162-0c0e-4ddb-b58d-653813396c52",
     "octgn:fd06cd6e-5741-4bd2-b50c-52052f973208",
     "octgn:fd1ed69d-287a-49bc-973c-93216ab4d674",
@@ -4493,7 +4502,7 @@
     {
       "product": "the-black-riders-nightmare",
       "total": 27,
-      "scripted": 0,
+      "scripted": 9,
       "player": 0,
       "playerScripted": 0
     },
@@ -19122,7 +19131,7 @@
       "name": "Green-Hill Country",
       "type": "location",
       "pack": "The Black Riders - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders-nightmare"
     },
     {
@@ -19386,7 +19395,7 @@
       "name": "A Shadow of the Past",
       "type": "nightmare",
       "pack": "The Black Riders - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders-nightmare"
     },
     {
@@ -26450,7 +26459,7 @@
       "name": "Sniffing and Hissing",
       "type": "treachery",
       "pack": "The Black Riders - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders-nightmare"
     },
     {
@@ -27762,7 +27771,7 @@
       "name": "Followed by Shadows",
       "type": "treachery",
       "pack": "The Black Riders - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders-nightmare"
     },
     {
@@ -27874,7 +27883,7 @@
       "name": "Stock Woods",
       "type": "location",
       "pack": "The Black Riders - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders-nightmare"
     },
     {
@@ -31298,7 +31307,7 @@
       "name": "In the Name of Mordor!",
       "type": "treachery",
       "pack": "The Black Riders - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders-nightmare"
     },
     {
@@ -35178,7 +35187,7 @@
       "name": "Khamûl the Easterling",
       "type": "enemy",
       "pack": "The Black Riders - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders-nightmare"
     },
     {
@@ -35394,7 +35403,7 @@
       "name": "Eastfarthing",
       "type": "location",
       "pack": "The Black Riders - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders-nightmare"
     },
     {
@@ -38106,7 +38115,7 @@
       "name": "Dark Horseman",
       "type": "enemy",
       "pack": "The Black Riders - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders-nightmare"
     },
     {
@@ -39824,8 +39833,8 @@
       "id": "N0B.01",
       "name": "A Shadow of the Past (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "a-shadow-of-the-past",
+      "state": "scripted"
     },
     {
       "id": "N0B.02",

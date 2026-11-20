@@ -17,6 +17,7 @@ import {
   NIGHTMARE_VOI as VOI,
   NIGHTMARE_RINGMAKER as RM,
   NIGHTMARE_SOM as G,
+  NIGHTMARE_TBR as TBR,
 } from "../src/game/nightmare.ts";
 import { KHAZAD } from "../src/game/khazad-dum.ts";
 import { mainQuestCode } from "../src/game/quest-state.ts";
@@ -2731,6 +2732,83 @@ try {
       );
     }
     await checkpoint("crown-raven-stronghold", width);
+
+    // A Shadow of the Past in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-a-shadow-of-the-past").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "a-shadow-of-the-past");
+    assert.equal(s.nightmareMode, true);
+    assert.ok(
+      s.staging.some((u) => card(u.code)?.name === "Black Rider") &&
+        !!s.activeLocation &&
+        card(s.activeLocation.code).name === "Bag End",
+      "the scenario's setup",
+    );
+    assert.equal(
+      [...s.encounterDeck, ...s.encounterDiscard].filter(
+        (c) => c === TBR.followed,
+      ).length,
+      3,
+      "the Nightmare Deck joined the encounter deck",
+    );
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/Khamûl the Easterling joins the staging area/)
+      .waitFor();
+    await checkpoint("asotp-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // Khamûl the Easterling beside an Eastfarthing with 2 resource tokens and a Stock Woods.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const eastfarthing = make(t, TBR.eastfarthing);
+      eastfarthing.resources = 2;
+      t.staging = [
+        ...t.staging,
+        make(t, TBR.khamul),
+        eastfarthing,
+        make(t, TBR.stockWoods),
+      ];
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [TBR.khamul, "Khamûl the Easterling"],
+      [TBR.eastfarthing, "Eastfarthing"],
+      [TBR.stockWoods, "Stock Woods"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    await checkpoint("asotp-khamul", width);
     await view.c.close();
   }
   const p = await browser.newPage();

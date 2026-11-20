@@ -3,7 +3,10 @@
 The first scenario of **The Lord of the Rings: The Black Riders** (2013), the
 first box of The Lord of the Rings Saga. It is playable in classic solo and
 with one to four local players, in normal and easy mode. Campaign mode, with
-its boons and burdens, is not part of this import.
+its boons and burdens, follows [the saga campaign](SAGA-CAMPAIGN.md), and
+Nightmare mode [its Nightmare Deck](NIGHTMARE.md) (Khamûl the Easterling at
+stage 3A; the Nightmare cards use the scenario's Hide tests), outside campaign
+mode.
 
 ## Sources and corrections
 

@@ -42,6 +42,12 @@ export interface HideTest {
   extra?: number;
   /** Fortitude: the index of the discarded card whose icons are ignored (Gollum). */
   ignored?: number;
+  /**
+   * The test's own consequence of failing ("If the engaged player fails the
+   * hide test, ..."), resolved before the Forced effects a failed Hide test
+   * triggers.
+   */
+  onFail?: Effect[];
 }
 export const isFortitude = (test: HideTest | undefined) =>
   test?.kind === "fortitude";
@@ -76,6 +82,9 @@ export function hideCandidates(s: GameState) {
         !test.committedIds.includes(u.id) &&
         !batch4Scenario(s).fortitudeCommitBlocked?.(s, u),
     );
+  // A limit on the characters committed (A Shadow of the Past's Nightmare Stock Woods).
+  const limit = batch4Scenario(s).hideCommitLimit?.(s, test.player);
+  if (limit !== undefined && test.committedIds.length >= limit) return [];
   return [...p.heroes, ...p.allies].filter(
     (u) => ready(u) && !test.committedIds.includes(u.id),
   );
@@ -154,6 +163,15 @@ export const hideFailed = (
       (scope === "round" || f.phase === s.phase),
   );
 
+/** " (at most 2 characters)" while a card limits the characters committed. */
+function limitNote(s: GameState) {
+  const test = s.hideTest;
+  if (!test || isFortitude(test)) return "";
+  const limit = batch4Scenario(s).hideCommitLimit?.(s, test.player);
+  return limit === undefined
+    ? ""
+    : ` (at most ${limit} ${limit === 1 ? "character" : "characters"})`;
+}
 function chooseCommitment(s: GameState) {
   const test = s.hideTest;
   if (!test) return;
@@ -177,7 +195,7 @@ function chooseCommitment(s: GameState) {
         effects: [fx("hideCommitDone", { player: test.player })],
       },
     ],
-    `${s.table ? `${seatName(s, test.player)} · ` : ""}${card(test.source).name}: ${hideWillpower(s)} willpower committed. Then the top ${hideValue(s)} encounter card${hideValue(s) === 1 ? "" : "s"} are discarded; ${fortitude ? "the test fails unless the committed willpower is greater than their Sauron's Eye icons" : "the test fails if their total threat is greater than the committed willpower"}.`,
+    `${s.table ? `${seatName(s, test.player)} · ` : ""}${card(test.source).name}: ${hideWillpower(s)} willpower committed${limitNote(s)}. Then the top ${hideValue(s)} encounter card${hideValue(s) === 1 ? "" : "s"} are discarded; ${fortitude ? "the test fails unless the committed willpower is greater than their Sauron's Eye icons" : "the test fails if their total threat is greater than the committed willpower"}.`,
   );
 }
 /** Begin a Hide test; the rest of the queue resumes once it resolves. */
@@ -195,6 +213,7 @@ export function beginHideTest(s: GameState, e: Effect, fortitude = false) {
     discarded: [],
     continuation: s.queue.splice(0),
     ...(fortitude && e.count ? { extra: e.count } : {}),
+    ...(!fortitude && e.effects?.length ? { onFail: [...e.effects] } : {}),
   };
   log(
     s,
@@ -268,7 +287,12 @@ export function resolveHideTest(s: GameState) {
     (passed
       ? batch4Scenario(s).hidePassed?.(s, test.player, test.source)
       : batch4Scenario(s).hideFailed?.(s, test.player, test.source)) ?? [];
-  prepend(s, ...follow, ...test.continuation);
+  prepend(
+    s,
+    ...(!passed && test.onFail ? test.onFail : []),
+    ...follow,
+    ...test.continuation,
+  );
 }
 export function hideTestEffect(s: GameState, e: Effect): boolean {
   if (!e.kind.startsWith("hide")) return false;
@@ -368,7 +392,11 @@ export function validateHideTest(
     t.discarded.every((c) => typeof c === "string" && !!card(c)) &&
     (t.phase === "actions" || t.discarded.length === 0) &&
     Array.isArray(t.continuation) &&
-    t.continuation.every(validEffect)
+    t.continuation.every(validEffect) &&
+    (t.onFail === undefined ||
+      (t.kind === undefined &&
+        Array.isArray(t.onFail) &&
+        t.onFail.every(validEffect)))
   );
 }
 export function hideTestPublic(s: GameState) {
