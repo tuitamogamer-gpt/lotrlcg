@@ -3,7 +3,6 @@ import { WEATHER } from "../game/weather-hills-support";
 import { DIKE } from "../game/deadmens-dike-support";
 import { stats } from "../game/engine";
 import { units } from "../game/core";
-import { ninQuestName } from "../game/nin-eilph-support";
 import { tharbadTimeLimit } from "../game/tharbad-support";
 import { tharbadEliminationLevel } from "../game/threat-elimination";
 import { TRIALS } from "../game/three-trials-support";
@@ -233,7 +232,10 @@ export function ScenarioState({
             value={s.ninEilph.time}
             max={Math.max(s.ninEilph.time, s.stage === 4 ? 2 : 3)}
           />
-          <span>{ninQuestName(s)}</span>
+          <span>
+            {card(s.ninEilph.activeQuest).back_name ??
+              card(s.ninEilph.activeQuest).name}
+          </span>
           <span>
             {s.stage === 4
               ? "When time expires, the Marsh-dweller attacks every player."

@@ -47,7 +47,16 @@ export const ninReadyLimit = (s: GameState) =>
   ninCurrentQuest(s) === NIN.treacherous && !s.stageRevealing;
 export const ninQuestName = (s: GameState) =>
   NIN_QUESTS.find((c) => c.code === ninCurrentQuest(s))?.back_name;
-export function validateNin(s: GameState, validUnit: (u: unknown) => boolean) {
+/** A Nightmare Deck's stage cards and setup locations a save may hold. */
+export interface NinExtras {
+  quests?: readonly { code: string; stage: number }[];
+  locations?: readonly string[];
+}
+export function validateNin(
+  s: GameState,
+  validUnit: (u: unknown) => boolean,
+  extra: NinExtras = {},
+) {
   const q = s.ninEilph;
   if (q === undefined) return s.scenarioId !== "the-nin-in-eilph";
   return (
@@ -57,12 +66,17 @@ export function validateNin(s: GameState, validUnit: (u: unknown) => boolean) {
     Number.isInteger(q.time) &&
     q.time >= 0 &&
     (q.advancing === undefined || typeof q.advancing === "boolean") &&
-    NIN_QUESTS.some((c) => c.code === q.activeQuest && c.cost === s.stage) &&
+    (NIN_QUESTS.some((c) => c.code === q.activeQuest && c.cost === s.stage) ||
+      !!extra.quests?.some(
+        (c) => c.code === q.activeQuest && c.stage === s.stage,
+      )) &&
     Array.isArray(q.setAside) &&
     q.setAside.length <= 1 &&
     q.setAside.every((u) => validUnit(u) && u.code === NIN.dweller) &&
     Array.isArray(q.setupLocations) &&
-    q.setupLocations.every((c) => NIN_LOCATIONS.includes(c)) &&
+    q.setupLocations.every(
+      (c) => NIN_LOCATIONS.includes(c) || !!extra.locations?.includes(c),
+    ) &&
     new Set(q.setupLocations).size === q.setupLocations.length
   );
 }

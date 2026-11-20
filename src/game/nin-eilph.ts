@@ -33,9 +33,9 @@ import {
   playerOrder,
   seatView,
 } from "./table";
+import { batch4Scenario } from "./batch4-scenarios";
 import {
   NIN as N,
-  NIN_QUESTS,
   NIN_STAGE_TWO,
   NIN_STAGE_THREE,
   NIN_LOCATIONS,
@@ -129,7 +129,7 @@ export function advanceNin(s: GameState) {
     ![2, 3].includes(s.stage)
   )
     return true;
-  const target = NIN_QUESTS.find((c) => c.code === q.activeQuest)!.back_quest!;
+  const target = card(q.activeQuest).back_quest ?? 0;
   if (s.progress >= target) {
     q.advancing = true;
     prepend(
@@ -143,7 +143,8 @@ export function advanceNin(s: GameState) {
   }
   return true;
 }
-function dwellerToStaging(s: GameState) {
+/** Ancient Marsh-dweller to the staging area, from out of play or engaged with a player (healed unless told otherwise). */
+function dwellerToStaging(s: GameState, heal = true) {
   const q = s.ninEilph!;
   let u = ninDweller(s);
   if (u) {
@@ -174,7 +175,7 @@ function dwellerToStaging(s: GameState) {
     s.staging.push(u);
     enemyAddedToStaging(s, u);
   }
-  u.damage = 0;
+  if (heal) u.damage = 0;
   return u;
 }
 export function ninEnemyDefeated(s: GameState, u: Unit, destruction: boolean) {
@@ -318,7 +319,13 @@ export function ninEffect(s: GameState, e: Effect) {
       );
       break;
     case "ninSetupLocation": {
-      const choices = NIN_LOCATIONS.filter(
+      // A different location from the encounter deck (a Nightmare Deck's own among them).
+      const choices = [
+        ...new Set([
+          ...NIN_LOCATIONS,
+          ...s.encounterDeck.filter((c) => card(c).type_code === "location"),
+        ]),
+      ].filter(
         (c) => !q.setupLocations.includes(c) && s.encounterDeck.includes(c),
       );
       choose(
@@ -350,12 +357,14 @@ export function ninEffect(s: GameState, e: Effect) {
         break;
       }
       if (!e.flag) discardQuestAttachments(s, q.activeQuest);
-      const candidates =
+      const printed =
         e.value === 2
           ? NIN_STAGE_TWO
           : e.value === 3
             ? NIN_STAGE_THREE
             : [N.out];
+      const candidates =
+        batch4Scenario(s).stageCandidates?.(s, e.value!, printed) ?? printed;
       const remaining = candidates.filter((c) => c !== q.activeQuest);
       q.activeQuest = remaining[Math.floor(random(s) * remaining.length)];
       s.stage = e.value!;
@@ -390,7 +399,7 @@ export function ninEffect(s: GameState, e: Effect) {
       raiseThreat(s, e.value ?? 0, "encounter");
       break;
     case "ninReturnDweller": {
-      const boss = dwellerToStaging(s);
+      const boss = dwellerToStaging(s, e.text !== "keep-damage");
       if (e.flag)
         prepend(
           s,
@@ -413,6 +422,8 @@ export function ninEffect(s: GameState, e: Effect) {
             ),
           ),
       );
+      // After the players advance to a quest stage (a Nightmare Deck's Forced effects).
+      batch4Scenario(s).stageRevealed?.(s, s.stage);
       break;
     case "ninExhaust": {
       const options = characters(s)

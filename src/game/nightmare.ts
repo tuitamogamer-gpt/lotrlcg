@@ -388,6 +388,16 @@ export const NIGHTMARE_RINGMAKER = {
   pathway: "octgn:be2d2c3f-db7a-43bc-b0e8-43587dfce5c9",
   waylaid: "octgn:4b748920-83c0-473a-a2fd-0ec8a6b3f1b8",
   patrol: "octgn:68384cac-543c-4e62-9866-e066f2ad27f0",
+  /** The Nîn-in-Eilph's setup card, new stages and Nightmare Deck (Ancient Marsh-dweller at stage 2A). */
+  ninCard: "octgn:30252ae6-2652-45b9-a245-41abd03d05d6",
+  arduous: "octgn:ec21ab35-cc55-4e35-9ed7-b143bd94f17e",
+  deadly: "octgn:9ad3750c-5cb8-45c7-be04-b454f1d7de82",
+  meadow: "octgn:1e2c314d-2673-41d5-9905-3d60b5f33d98",
+  marshAdder: "octgn:27393c24-6278-4202-91ef-ef3d708387e6",
+  quicksand: "octgn:5f93b0c2-fa71-43e3-bfd6-c68c283e5328",
+  stench: "octgn:5fd07c1e-b086-4618-aa6e-89ff34f85c28",
+  peat: "octgn:87025e60-afc4-410b-9b97-c5f527b524c8",
+  swarms: "octgn:cbbc2de7-c8ab-4c7b-8b83-8d29debf1696",
 } as const;
 /** Over the Misty Mountains Grim's Nightmare cards with The Great Goblin's encounter set icon: they join the second (Goblin) encounter deck. */
 export const NIGHTMARE_OMM_GOBLIN_DECK: readonly string[] = [
@@ -862,6 +872,17 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Orc Hunting Party": 2,
     },
   },
+  "the-nin-in-eilph": {
+    card: NIGHTMARE_RINGMAKER.ninCard,
+    removals: {
+      Neekerbreekers: 3,
+      "Hidden Eyot": 1,
+      "Finger of Glanduin": 3,
+      "Off Track": 2,
+      "Low on Provisions": 1,
+    },
+    questRemovals: { "A Weary Passage": 1, "Impassable Marshland": 1 },
+  },
   "the-dunland-trap": {
     card: NIGHTMARE_RINGMAKER.dunlandCard,
     removals: {
@@ -1250,6 +1271,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "the-dunland-trap")
     return [
       "The Dunland Trap · Nightmare mode: the setup card removed the printed standard encounter cards and shuffled in its Nightmare Deck.",
+    ];
+  if (s.scenarioId === "the-nin-in-eilph")
+    return [
+      "The Nîn-in-Eilph · Nightmare mode: when the players advance to stage 2A, Ancient Marsh-dweller joins the staging area (from out of play or engaged with a player); An Arduous Journey and Deadly Waters replace A Weary Passage and Impassable Marshland among the random stages.",
     ];
   if (s.scenarioId === "trouble-in-tharbad")
     return [

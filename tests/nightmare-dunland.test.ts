@@ -293,12 +293,14 @@ test("Nightmare: Boar Clan Assault sends each engaged enemy to attack, surging w
     /Boar Clan Assault: no attack was made; it gains surge/,
   );
   // Shadow: +1 [attack] for the engaged enemies until the phase ends.
-  const u = board("combat");
+  const u = board("defense");
   const x = add(u, N.ambusher, true);
   const y = add(u, N.skirmisher, true);
   const base = stats(u, y).attack;
   shadow(u, x, N.assault, u.heroes[0]);
   assert.equal(stats(u, y).attack, base + 1);
+  u.phase = "attack";
+  assert.equal(stats(u, y).attack, base + 1, "the combat phase's two steps");
   u.phase = "refresh";
   assert.equal(stats(u, y).attack, base);
 });

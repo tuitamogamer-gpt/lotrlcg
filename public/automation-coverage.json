@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2624,
+    "encounterCards": 2633,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3846,
-    "pending": 337
+    "scripted": 3855,
+    "pending": 328
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 309
+    "scripted": 310
   },
   "registeredCodes": [
     "01001",
@@ -1492,6 +1492,7 @@
     "octgn:1dcf16e8-8882-4b61-93ac-a7da643c52bd",
     "octgn:1de51c4f-659d-465f-bf45-4d6c00c6bdf1",
     "octgn:1e2560ab-00ce-45c3-a374-f7bb6a3e6889",
+    "octgn:1e2c314d-2673-41d5-9905-3d60b5f33d98",
     "octgn:1e392c0d-2fc3-4d57-8209-3a5e64292f3d",
     "octgn:1e54fa6e-c2a1-4456-ac48-8912ecc4722a",
     "octgn:1e5d3385-4362-4e76-91fc-30e5aebab5e2",
@@ -1596,6 +1597,7 @@
     "octgn:26eb433a-01e2-4b0e-83c4-680b0e0c4854",
     "octgn:271fa771-d678-461e-b5c6-483117059ed1",
     "octgn:27299002-f9b0-4f9d-a87b-012a6a6993ca",
+    "octgn:27393c24-6278-4202-91ef-ef3d708387e6",
     "octgn:2744032b-21e4-4b52-a66e-f4c1926f451b",
     "octgn:275c7232-3671-4092-bb9a-9a62f9538225",
     "octgn:276e1411-be34-44fa-af2b-ebe9b36541f0",
@@ -1681,6 +1683,7 @@
     "octgn:2fd16de8-3286-4003-9978-574738b2a337",
     "octgn:2fd9f511-463b-42c8-bc6f-9bd1b3b91057",
     "octgn:2fe95d8c-0f30-4c20-b926-d92e4feea8e2",
+    "octgn:30252ae6-2652-45b9-a245-41abd03d05d6",
     "octgn:303b01b8-2d61-4c20-81a0-50800e18d617",
     "octgn:3043df29-f8e9-426e-bd14-5cb720ed8f10",
     "octgn:3065a397-5346-4148-8e0a-47009fe9b87d",
@@ -2475,6 +2478,8 @@
     "octgn:5f18c4ca-fcda-46d2-874b-3a1a73ef7c53",
     "octgn:5f1ef9c5-ccb2-4f1e-bc5b-9a1de708d2ba",
     "octgn:5f2bf8db-d56f-4353-b9be-fd25b7b0650e",
+    "octgn:5f93b0c2-fa71-43e3-bfd6-c68c283e5328",
+    "octgn:5fd07c1e-b086-4618-aa6e-89ff34f85c28",
     "octgn:5fd6638a-3135-460f-bf5e-b3cb0128f939",
     "octgn:5fefdbc7-05e2-4c1b-96fd-46121f87d6b3",
     "octgn:60057e26-14f3-468c-ba70-4b14aea7d49a",
@@ -2826,6 +2831,7 @@
     "octgn:867b61a1-4e23-4426-ad94-b912e89055b8",
     "octgn:86e8724b-32cb-4d63-b918-5754d39d2249",
     "octgn:86fe0f99-d978-40be-8f39-136bec2a3d58",
+    "octgn:87025e60-afc4-410b-9b97-c5f527b524c8",
     "octgn:870d08ac-097f-4bb7-8da8-439a2b05e838",
     "octgn:87379a08-2fe2-4e32-9341-d78fb4e0298b",
     "octgn:87464aa2-e890-4151-8a93-55c2be3e44b2",
@@ -3006,6 +3012,7 @@
     "octgn:9a5fb929-296c-41ef-a0df-1d670d1c356d",
     "octgn:9a870606-9e85-4bdc-a70d-3d1831703eb8",
     "octgn:9a89ea1f-1835-4ed8-918e-28d248771378",
+    "octgn:9ad3750c-5cb8-45c7-be04-b454f1d7de82",
     "octgn:9adddbd0-458a-4810-b0db-502a5e125704",
     "octgn:9afed95c-399f-4823-a277-342ece74a9e4",
     "octgn:9b01e317-82e5-4f19-9375-917607d54aed",
@@ -3512,6 +3519,7 @@
     "octgn:cb3ca114-400e-4abf-87e6-124b75e92cb4:B",
     "octgn:cb628fb0-b66a-49b0-8063-12dd39f564ce",
     "octgn:cb64fac2-c5ea-4233-86ed-90e30181a520",
+    "octgn:cbbc2de7-c8ab-4c7b-8b83-8d29debf1696",
     "octgn:cbbcf9d4-f9d8-448a-9454-3e36c493a31e",
     "octgn:cbf2984f-cfb8-4cc3-9d5c-fdadd4201451",
     "octgn:cc0e7ed5-1a20-466d-84e7-355d690080cc",
@@ -3800,6 +3808,7 @@
     "octgn:ebfa8c86-1f8c-4c37-adf3-75dfb7b77cef",
     "octgn:ec1a2268-5e9d-4875-8089-2692d22fa180",
     "octgn:ec2049ab-c950-46f7-9f1b-30ada69db857",
+    "octgn:ec21ab35-cc55-4e35-9ed7-b143bd94f17e",
     "octgn:ec2f100d-22c8-4cc6-82d9-fb4f07446b0f",
     "octgn:ec97b3a4-4904-42ac-beb0-9d4d935241fb",
     "octgn:ec9d7726-89fa-41ee-a6ad-30761a6b79d3",
@@ -4783,7 +4792,7 @@
     {
       "product": "the-nin-in-eilph-nightmare",
       "total": 9,
-      "scripted": 0,
+      "scripted": 9,
       "player": 0,
       "playerScripted": 0
     },
@@ -16049,7 +16058,7 @@
       "name": "Desolate Meadow",
       "type": "location",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph-nightmare"
     },
     {
@@ -16937,7 +16946,7 @@
       "name": "Deadly Marsh Adder",
       "type": "enemy",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph-nightmare"
     },
     {
@@ -17713,7 +17722,7 @@
       "name": "The Nîn-in-Eilph",
       "type": "nightmare",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph-nightmare"
     },
     {
@@ -24545,7 +24554,7 @@
       "name": "Quicksand",
       "type": "treachery",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph-nightmare"
     },
     {
@@ -24561,7 +24570,7 @@
       "name": "Rotten Stench",
       "type": "treachery",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph-nightmare"
     },
     {
@@ -27769,7 +27778,7 @@
       "name": "Peat Bog",
       "type": "location",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph-nightmare"
     },
     {
@@ -29393,7 +29402,7 @@
       "name": "Lost in the Swanfleet",
       "type": "quest",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph-nightmare"
     },
     {
@@ -33897,7 +33906,7 @@
       "name": "Swarms of Mosquitoes",
       "type": "enemy",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph-nightmare"
     },
     {
@@ -36521,7 +36530,7 @@
       "name": "Through the Marshes",
       "type": "quest",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph-nightmare"
     },
     {
@@ -39610,8 +39619,8 @@
       "id": "N04.7",
       "name": "The Nîn-in-Eilph (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-nin-in-eilph",
+      "state": "scripted"
     },
     {
       "id": "N04.8",

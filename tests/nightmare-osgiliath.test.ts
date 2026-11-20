@@ -346,6 +346,8 @@ test("Nightmare: Relentless Attack, Overrun Defenses and Pressed on All Sides fo
   t = reveal(t, N.overrun);
   assert.equal(stagingThreat(t), staged + 1);
   assert.equal(t.threat, threat + 2, "doomed 2");
+  t.phase = "quest";
+  assert.equal(stagingThreat(t), staged + 1, "the quest phase's two steps");
   t.phase = "travel";
   assert.equal(stagingThreat(t), staged);
   // Its shadow: 1 character exhausted (2 with 4 locations).

@@ -152,6 +152,7 @@ import { validNightmareFangorn } from "./nightmare-fangorn";
 import { validNightmareDunland } from "./nightmare-dunland";
 import { validNightmareTrials } from "./nightmare-trials";
 import { validNightmareTharbad } from "./nightmare-tharbad";
+import { ninNightmareExtras, validNightmareNin } from "./nightmare-nin";
 import { nightmareEscapeTest } from "./nightmare-dead";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
@@ -1214,6 +1215,7 @@ export function validateSave(
         !validNightmareDunland(s) ||
         !validNightmareTrials(s) ||
         !validNightmareTharbad(s) ||
+        !validNightmareNin(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,
@@ -1244,7 +1246,11 @@ export function validateSave(
         !validateFordsIsenState(s) ||
         !validateFangornState(s) ||
         !validateTharbad(s, validUnit as (u: unknown) => boolean) ||
-        !validateNin(s, validUnit as (u: unknown) => boolean) ||
+        !validateNin(
+          s,
+          validUnit as (u: unknown) => boolean,
+          ninNightmareExtras(s),
+        ) ||
         !validateCelebrimbor(s, validUnit as (u: unknown) => boolean) ||
         !validateAntlered(s, validUnit as (u: unknown) => boolean) ||
         !validateWeather(s, validUnit as (u: unknown) => boolean) ||

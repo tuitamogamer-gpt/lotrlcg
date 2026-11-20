@@ -22,7 +22,13 @@ import {
 } from "./table";
 import { surgeEffects } from "./surge";
 import { NIGHTMARE_RINGMAKER as N, nightmareLive } from "./nightmare";
-import { NEUTRAL_LAYER, live, seatLabel, undefended } from "./nightmare-core";
+import {
+  NEUTRAL_LAYER,
+  live,
+  phaseKey,
+  seatLabel,
+  undefended,
+} from "./nightmare-core";
 
 export interface NightmareDunlandState {
   /** Boar Clan Assault: whether one of its immediate attacks has begun. */
@@ -145,7 +151,9 @@ function dtStats(s: GameState, u: Unit) {
   if (!dtLive(s)) return {};
   const n = (s.nightmare?.dunlandBoost ?? []).filter(
     (b) =>
-      b.round === s.round && b.phase === s.phase && b.enemies.includes(u.id),
+      b.round === s.round &&
+      b.phase === phaseKey(s) &&
+      b.enemies.includes(u.id),
   ).length;
   return n ? { attack: n } : {};
 }
@@ -247,7 +255,7 @@ function dtShadow(s: GameState, code: string) {
         {
           enemies: seatView(s, attacked).engaged.map((u) => u.id),
           round: s.round,
-          phase: s.phase,
+          phase: phaseKey(s),
         },
       ];
       return true;

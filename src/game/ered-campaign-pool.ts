@@ -3003,6 +3003,13 @@ export function composeEredPool(
       h.enemyTimeRemoved?.(s, u, count);
       p.enemyTimeRemoved?.(s, u, count);
     },
+    questTimeRemoved: (s, count) => [
+      ...(h.questTimeRemoved?.(s, count) ?? []),
+      ...(p.questTimeRemoved?.(s, count) ?? []),
+    ],
+    stageCandidates: (s, stage, printed) =>
+      p.stageCandidates?.(s, stage, printed) ??
+      h.stageCandidates?.(s, stage, printed),
     cardsDrawn: (s, player, count, cardEffect) => {
       h.cardsDrawn?.(s, player, count, cardEffect);
       p.cardsDrawn?.(s, player, count, cardEffect);

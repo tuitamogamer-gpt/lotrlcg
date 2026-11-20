@@ -7,6 +7,7 @@ import { card } from "./cards";
 import { fx, log, prepend } from "./core";
 import { currentQuestCode, mainQuestCode } from "./quest-state";
 import { firstPlayer } from "./table";
+import { batch4Scenario } from "./batch4-scenarios";
 
 /** Printed main-quest Time remains in play while a side quest is current. */
 export const questTime = (s: GameState) =>
@@ -37,6 +38,7 @@ export function removeQuestTime(s: GameState, count = 1) {
     ...fangornTimeRemoved(s, removed),
     ...tharbadTimeRemoved(s, removed),
     ...ninTimeRemoved(s),
+    ...(batch4Scenario(s).questTimeRemoved?.(s, removed) ?? []),
   ];
   if (!timer.time)
     effects.push(

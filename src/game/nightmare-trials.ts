@@ -33,7 +33,7 @@ import { canTravel } from "./actions";
 import { fangornTravel } from "./fangorn";
 import { TRIALS as T, TRIAL_KEYS } from "./three-trials-support";
 import { NIGHTMARE_RINGMAKER as N, nightmareLive } from "./nightmare";
-import { NEUTRAL_LAYER, live, seatLabel } from "./nightmare-core";
+import { NEUTRAL_LAYER, live, phaseKey, seatLabel } from "./nightmare-core";
 
 export interface NightmareTrialsState {
   /** Haunted Pillars' shadow: +3 [defense] until the end of the phase. */
@@ -128,7 +128,8 @@ function ttStats(s: GameState, u: Unit) {
     spiritBoost(s, u, N.boarSpirit) +
     3 *
       (s.nightmare?.trialsGuard ?? []).filter(
-        (g) => g.enemy === u.id && g.round === s.round && g.phase === s.phase,
+        (g) =>
+          g.enemy === u.id && g.round === s.round && g.phase === phaseKey(s),
       ).length;
   // Trial of Ancestors: "Each non-unique character gets -1 [willpower]."
   const will =
@@ -268,7 +269,7 @@ function ttShadow(s: GameState, code: string) {
       const q = (s.nightmare ??= {});
       q.trialsGuard = [
         ...(q.trialsGuard ?? []),
-        { enemy: c.enemyId, round: s.round, phase: s.phase },
+        { enemy: c.enemyId, round: s.round, phase: phaseKey(s) },
       ];
       return true;
     }

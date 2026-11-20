@@ -2517,6 +2517,75 @@ try {
       );
     }
     await checkpoint("tharbad-city-pathway", width);
+
+    // The Nîn-in-Eilph in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-the-nin-in-eilph").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "the-nin-in-eilph");
+    assert.equal(s.nightmareMode, true);
+    assert.equal(s.stage, 2);
+    assert.ok(
+      s.staging.some((u) => card(u.code)?.name === "Ancient Marsh-dweller"),
+      "Ancient Marsh-dweller joined the staging area at stage 2A",
+    );
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/advance to stage 2A, Ancient Marsh-dweller joins/)
+      .waitFor();
+    await checkpoint("nin-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // An Arduous Journey, with a Desolate Meadow and a Peat Bog beside a Swarms of Mosquitoes.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.ninEilph.activeQuest = RM.arduous;
+      t.staging = [
+        ...t.staging,
+        make(t, RM.meadow),
+        make(t, RM.peat),
+        make(t, RM.swarms),
+      ];
+      s = await load(page, t);
+    }
+    await page.getByText("An Arduous Journey").first().waitFor();
+    for (const [code, label] of [
+      [RM.meadow, "Desolate Meadow"],
+      [RM.peat, "Peat Bog"],
+      [RM.swarms, "Swarms of Mosquitoes"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    await checkpoint("nin-arduous-journey", width);
     await view.c.close();
   }
   const p = await browser.newPage();

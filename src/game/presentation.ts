@@ -1,5 +1,4 @@
 import { currentQuestProgress } from "./quest-state";
-import { ninQuestName } from "./nin-eilph-support";
 import { fangornCarrier } from "./fangorn";
 import { questTime } from "./quest-time";
 import { tharbadEliminationLevel } from "./threat-elimination";
@@ -60,7 +59,13 @@ export function observe(
     ...(s.celebrimbor
       ? { "The Orcs’ Search": String(s.celebrimbor.search.length) }
       : {}),
-    ...(s.ninEilph ? { "Quest stage": ninQuestName(s) ?? "" } : {}),
+    ...(s.ninEilph
+      ? {
+          "Quest stage":
+            card(s.ninEilph.activeQuest).back_name ??
+            card(s.ninEilph.activeQuest).name,
+        }
+      : {}),
     ...(s.tharbad
       ? { "Threat elimination level": String(tharbadEliminationLevel(s)) }
       : {}),

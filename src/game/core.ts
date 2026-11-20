@@ -1274,7 +1274,11 @@ export const mainStageInfo = (s: GameState) => {
   if (storm) return storm;
   const voyage = voyageStageInfo(s);
   if (voyage) return voyage;
-  const nin = NIN_QUESTS.find((c) => c.code === ninCurrentQuest(s));
+  const ninCode = ninCurrentQuest(s);
+  // A Nightmare Deck's stage cards come from the card registry.
+  const nin = ninCode
+    ? (NIN_QUESTS.find((c) => c.code === ninCode) ?? card(ninCode))
+    : undefined;
   if (nin)
     return {
       name: nin.back_name ?? nin.name,

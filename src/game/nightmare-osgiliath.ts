@@ -45,6 +45,7 @@ import {
   NEUTRAL_LAYER,
   defendingPlayer,
   live,
+  phaseKey,
   seatLabel,
 } from "./nightmare-core";
 
@@ -145,7 +146,7 @@ const aoEngagementBonus = (s: GameState) =>
 const aoStagingThreat = (s: GameState) =>
   aoLive(s)
     ? (s.nightmare?.overrun ?? [])
-        .filter((o) => o.round === s.round && o.phase === s.phase)
+        .filter((o) => o.round === s.round && o.phase === phaseKey(s))
         .reduce((n, o) => n + o.x, 0)
     : 0;
 /** Overrun Defenses: "If X is less than 4, Overrun Defenses gains doomed 2." */
@@ -459,7 +460,7 @@ export function nightmareOsgiliathEffect(s: GameState, e: Effect): boolean {
       const q = (s.nightmare ??= {});
       q.overrun = [
         ...(q.overrun ?? []).filter((o) => o.round === s.round),
-        { round: s.round, phase: s.phase, x },
+        { round: s.round, phase: phaseKey(s), x },
       ];
       log(
         s,

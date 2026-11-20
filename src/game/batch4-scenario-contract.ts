@@ -106,6 +106,21 @@ export interface Batch4ScenarioHooks {
   cannotBeActiveLocation?(s: GameState, u: Unit): boolean;
   /** After time counters are removed from an enemy (The Three Trials' Nightmare Sacred Forest). */
   enemyTimeRemoved?(s: GameState, u: Unit, count: number): void;
+  /**
+   * Forced effects after any number of time counters are removed from the
+   * current quest, ordered with the scenario's own (The Nîn-in-Eilph's
+   * Nightmare Desolate Meadow).
+   */
+  questTimeRemoved?(s: GameState, count: number): Effect[];
+  /**
+   * The quest cards a random stage is drawn from, in place of the printed
+   * ones (The Nîn-in-Eilph's Nightmare Deck replaces a stage 2 and a stage 3).
+   */
+  stageCandidates?(
+    s: GameState,
+    stage: number,
+    printed: readonly string[],
+  ): string[] | undefined;
   /** After a player fails a burgle attempt (The Lonely Mountain). */
   burgleFailed?(s: GameState): void;
   /**

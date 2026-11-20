@@ -330,10 +330,12 @@ test("Nightmare: Haunted Pillars must be traveled to, returns the active locatio
     u.log.map((l) => (typeof l === "string" ? l : l.text)).join("\n"),
     /Haunted Pillars: no active location to return; it gains surge/,
   );
-  // Shadow: +3 [defense] for the phase.
-  const v = board("combat");
+  // Shadow: +3 [defense] for the phase, through the players' attacks.
+  const v = board("defense");
   const enemy = add(v, N.wolfSpirit, true);
   shadow(v, enemy, N.pillars, v.heroes[0]);
+  assert.equal(stats(v, enemy).defense, card(N.wolfSpirit).defense! + 3);
+  v.phase = "attack";
   assert.equal(stats(v, enemy).defense, card(N.wolfSpirit).defense! + 3);
   v.phase = "refresh";
   assert.equal(stats(v, enemy).defense, card(N.wolfSpirit).defense!);

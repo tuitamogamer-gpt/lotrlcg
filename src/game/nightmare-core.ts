@@ -64,6 +64,7 @@ import { KHAZAD } from "./khazad-dum";
 import { OBJECTIVES } from "./scenarios";
 import { threatElimination } from "./threat-elimination";
 import { encodeDamageContext, type DamageContext } from "./damage-context";
+import { angmarPhase } from "./angmar-campaign-boost";
 
 type Combat = NonNullable<GameState["combat"]>;
 
@@ -106,6 +107,8 @@ export const traitOf = (code: string, t: string) =>
   (card(code).traits ?? "").split(".").some((x) => x.trim() === t);
 export const live = (s: GameState, u: Unit, code: string) =>
   u.code === code && !u.blanked && nightmareLive(s);
+/** The game phase of the current step ("until the end of the phase": the quest and combat phases have two steps here). */
+export const phaseKey = (s: GameState) => angmarPhase(s.phase);
 export const undefended = (s: GameState) =>
   !(s.combat?.defenderIds?.length ?? (s.combat?.defenderId ? 1 : 0));
 export const defendingPlayer = (s: GameState) =>
