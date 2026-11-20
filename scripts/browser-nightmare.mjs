@@ -12,6 +12,7 @@ import {
   NIGHTMARE_HON as HON,
   NIGHTMARE_AS as AS,
   NIGHTMARE_KD as K,
+  NIGHTMARE_OHUH as OHUH,
   NIGHTMARE_SOM as G,
 } from "../src/game/nightmare.ts";
 import { KHAZAD } from "../src/game/khazad-dum.ts";
@@ -1848,6 +1849,58 @@ try {
       "Sentry of the White Bridge's face loads",
     );
     await checkpoint("morgul-sentry", width);
+
+    // We Must Away, Ere Break of Day in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-we-must-away-ere-break-of-day").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "we-must-away-ere-break-of-day");
+    assert.equal(s.nightmareMode, true);
+    assert.equal(s.weMustAway.sackDeck.length, 7);
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/Troll Key and Troll Purse gain surge/)
+      .waitFor();
+    await checkpoint("wma-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A Murder of Crows beside a Comfortable Light in the staging area.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.staging = [...t.staging, make(t, OHUH.crows), make(t, OHUH.light)];
+      s = await load(page, t);
+    }
+    const crowsFace = page
+      .locator(`img[src*="${OHUH.crows.slice("octgn:".length)}"]`)
+      .first();
+    await crowsFace.waitFor();
+    assert.ok(
+      (await crowsFace.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "A Murder of Crows' face loads",
+    );
+    await checkpoint("wma-murder-of-crows", width);
     await view.c.close();
   }
   const p = await browser.newPage();

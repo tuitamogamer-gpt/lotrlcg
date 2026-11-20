@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2528,
+    "encounterCards": 2536,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3750,
-    "pending": 433
+    "scripted": 3758,
+    "pending": 425
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 297
+    "scripted": 298
   },
   "registeredCodes": [
     "01001",
@@ -1236,6 +1236,7 @@
     "octgn:00008179-c6a7-46d0-be2f-b4b3b748afc2",
     "octgn:0002f646-cdaf-40cf-9993-faccb260c583",
     "octgn:001dbc8b-3b8e-4f02-bdbd-7e78c6ecd348",
+    "octgn:0071049b-ca5b-4083-b955-a74da4aad5f1",
     "octgn:007721bf-3e80-4857-aaf4-aabb65d1827d",
     "octgn:008bcdb1-bac6-4c45-86c5-6bcfb0bf12cc",
     "octgn:00d81c85-395e-4990-b0ff-7cbd9908f541",
@@ -1469,6 +1470,7 @@
     "octgn:1bac61b0-ee27-43eb-bb39-85f64c6b4c94",
     "octgn:1c028523-9f37-4e16-83cf-c9ea1cfbc9d3",
     "octgn:1c240b63-841f-4b76-9808-13c0ee0f986e",
+    "octgn:1c31e98f-1c81-4d10-b434-3b4e66c49f3c",
     "octgn:1c446c6e-5665-446a-80f1-68cceaed05eb",
     "octgn:1c65b78b-6b68-458f-9510-a00a9576a042",
     "octgn:1c765fa8-9cb8-4cf4-8e93-daac5bae4fce",
@@ -1478,6 +1480,7 @@
     "octgn:1cdc36d4-fd78-4ebe-850b-13f24ee73244",
     "octgn:1ce63cb5-0022-48b2-a864-af49bdf18bef",
     "octgn:1d1adc93-c364-41d0-b987-6038d9df0c07",
+    "octgn:1d23916d-4e14-4b1f-ab4b-02a231870465",
     "octgn:1d4d59f4-def5-4c9e-ba3f-8a28e7f66c73",
     "octgn:1d7a27ca-e24b-4449-8f2c-3bb44b088330",
     "octgn:1dab3395-7a34-4b66-aa7f-7834045a7eba",
@@ -1994,6 +1997,7 @@
     "octgn:4f03a84f-6665-435f-aa3a-5002c835d13b",
     "octgn:4f47ef56-46c8-4a6b-85dd-656eb71c5828",
     "octgn:4f4df8ea-7f18-4a76-85b0-7ece828bb837",
+    "octgn:4f73ca81-67c1-44db-a7ca-63a762748fc4",
     "octgn:4fc6111a-93c3-4407-b067-1b82396b802f",
     "octgn:4fd47b8b-1132-4e90-967c-b15369215025",
     "octgn:5003227b-ebc3-454a-88b4-2d6e20cc48f7",
@@ -2419,6 +2423,7 @@
     "octgn:5c0a0aea-af43-441b-9d7f-86a1dfd09f00",
     "octgn:5c31f690-9802-4638-8316-5380ef32575b",
     "octgn:5c4188a5-5767-4c8c-8dfd-0b3f7c55e4a1",
+    "octgn:5c4fb1ac-a989-463d-a622-367882c56d4e",
     "octgn:5c5ce14a-332a-40fe-8f55-cfa2f53e8592",
     "octgn:5ce0a255-9914-4a4f-9630-d1fe8e00bbc0",
     "octgn:5ce149ca-3cca-41ce-9756-bf137d910966",
@@ -3138,6 +3143,7 @@
     "octgn:ae5727cb-4d88-4a28-99be-84a565292b67",
     "octgn:aeb2f711-4597-42c1-af8c-eb7d6f4fa79a",
     "octgn:aeba0e59-8dde-4422-bfb5-911ae8de42a1",
+    "octgn:aebb2c2f-859e-4f08-9017-1fcc4a4cc528",
     "octgn:aede410a-9d4c-4abd-9f55-143f5027f9c4",
     "octgn:aee4d9fb-2ef9-43b0-8459-1a390421052b",
     "octgn:aefb838f-b748-4249-8f24-8dce9e838880",
@@ -3766,6 +3772,7 @@
     "octgn:eff34048-3186-4613-b841-0cc29cfd357b",
     "octgn:f015bc92-42c1-405d-a54e-1a1c7bc0afae",
     "octgn:f02f15ee-3262-435a-b894-8f4003068c32",
+    "octgn:f036c797-cede-404b-8cc3-d975a9f86ebc",
     "octgn:f041d625-2075-4501-ad40-f17042c3d3df",
     "octgn:f054a6e2-71ae-4acb-ba62-2548ecbfcf9a",
     "octgn:f071a69f-34e3-4603-a632-80b6b45b0e36",
@@ -3809,6 +3816,7 @@
     "octgn:f49b1e33-6190-4e21-8779-ecfb3a39bb75",
     "octgn:f4b35e95-7f32-490d-9591-ac9eb050bb7e",
     "octgn:f4e81861-8cf6-41e7-b347-af7879fa8b06",
+    "octgn:f4f20186-79fb-4d53-9431-ecd719fd152b",
     "octgn:f542bca1-68d1-4975-aea9-3ff3e7801be5",
     "octgn:f57aeb37-4f19-4e5f-ae34-326c3b8b62f2",
     "octgn:f5a08708-ed75-45a0-91a1-59e10eeebfc9",
@@ -4246,7 +4254,7 @@
     {
       "product": "over-hill-and-under-hill-nightmare",
       "total": 24,
-      "scripted": 0,
+      "scripted": 8,
       "player": 0,
       "playerScripted": 0
     },
@@ -13689,7 +13697,7 @@
       "name": "Red River-bank",
       "type": "location",
       "pack": "The Hobbit - Over Hill and Under Hill - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill-nightmare"
     },
     {
@@ -15801,7 +15809,7 @@
       "name": "We Must Away, Ere Break of Day",
       "type": "nightmare",
       "pack": "The Hobbit - Over Hill and Under Hill - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill-nightmare"
     },
     {
@@ -15889,7 +15897,7 @@
       "name": "Night Wanes Slow",
       "type": "treachery",
       "pack": "The Hobbit - Over Hill and Under Hill - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill-nightmare"
     },
     {
@@ -20657,7 +20665,7 @@
       "name": "A Murder of Crows",
       "type": "enemy",
       "pack": "The Hobbit - Over Hill and Under Hill - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill-nightmare"
     },
     {
@@ -24217,7 +24225,7 @@
       "name": "One by One",
       "type": "treachery",
       "pack": "The Hobbit - Over Hill and Under Hill - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill-nightmare"
     },
     {
@@ -31001,7 +31009,7 @@
       "name": "Mince Them Fine",
       "type": "treachery",
       "pack": "The Hobbit - Over Hill and Under Hill - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill-nightmare"
     },
     {
@@ -36785,7 +36793,7 @@
       "name": "Wicked Hilltops",
       "type": "location",
       "pack": "The Hobbit - Over Hill and Under Hill - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill-nightmare"
     },
     {
@@ -37201,7 +37209,7 @@
       "name": "Comfortable Light",
       "type": "location",
       "pack": "The Hobbit - Over Hill and Under Hill - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill-nightmare"
     },
     {
@@ -39661,8 +39669,8 @@
       "id": "N0A.1",
       "name": "We Must Away Away, Ere of Day (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "we-must-away-ere-break-of-day",
+      "state": "scripted"
     },
     {
       "id": "N0A.2",

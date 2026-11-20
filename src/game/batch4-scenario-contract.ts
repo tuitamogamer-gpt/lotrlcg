@@ -81,6 +81,8 @@ export interface Batch4ScenarioHooks {
   hiddenCardTurned?(s: GameState, u: Unit, player: number): void;
   /** The players cannot win the game now (a Nightmare Deck's victory condition). */
   cannotWin?(s: GameState): boolean;
+  /** A card a quest card effect discarded from the top of the encounter deck; true stops the discards (Night Wanes Slow). */
+  questDiscard?(s: GameState, code: string): boolean;
   combatBegin?(s: GameState): void;
   enemyEntered?(s: GameState, unit: Unit): void;
   openingHandsKept?(s: GameState): boolean;

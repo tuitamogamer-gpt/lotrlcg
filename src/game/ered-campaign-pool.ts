@@ -2963,6 +2963,11 @@ export function composeEredPool(
     // An explored location goes where the scenario sends it first, then the layer.
     locationDestination: (s, u) =>
       !!h.locationDestination?.(s, u) || !!p.locationDestination?.(s, u),
+    questDiscard: (s, code) =>
+      !!h.questDiscard?.(s, code) || !!p.questDiscard?.(s, code),
+    beforeDestroy: (s, u, destruction, context) =>
+      !!h.beforeDestroy?.(s, u, destruction, context) ||
+      !!p.beforeDestroy?.(s, u, destruction, context),
     archeryBonus: (s) =>
       (h.archeryBonus?.(s) ?? 0) + (p.archeryBonus?.(s) ?? 0),
     unitArchery: (s, u) =>

@@ -36,6 +36,8 @@ import {
   seatView,
 } from "./table";
 import { mainQuestUnit } from "./quest-state";
+import { nightmareEncounterDeck, nightmareLive } from "./nightmare";
+import { batch4Scenario } from "./batch4-scenarios";
 import {
   HOBBIT_BILBO,
   bagginsBilbo,
@@ -274,7 +276,12 @@ export function setupWeMustAway(s: GameState) {
     r.cards
       .filter((c) => c.section === name)
       .flatMap((c) => Array<string>(c.quantity).fill(c.code));
-  s.encounterDeck = shuffle(s, section("sharedEncounterDeck"));
+  // Nightmare mode: the setup card's removals and its Nightmare Deck.
+  const deck = section("sharedEncounterDeck");
+  s.encounterDeck = shuffle(
+    s,
+    nightmareLive(s) ? nightmareEncounterDeck(s.scenarioId, deck) : deck,
+  );
   s.weMustAway = {
     currentQuest: W.party,
     advancing: false,
@@ -1071,9 +1078,15 @@ export function wmaEffect(s: GameState, e: Effect): boolean {
       break;
     }
     case "wmaMuttonDiscard": {
+      // One at a time: a discarded card may stop the rest (Night Wanes Slow).
       const n = e.value ?? 0;
-      const discarded = s.encounterDeck.splice(0, n);
-      s.encounterDiscard.push(...discarded);
+      const discarded: string[] = [];
+      while (discarded.length < n && s.encounterDeck.length) {
+        const code = s.encounterDeck.shift()!;
+        s.encounterDiscard.push(code);
+        discarded.push(code);
+        if (batch4Scenario(s).questDiscard?.(s, code)) break;
+      }
       if (discarded.length)
         log(
           s,

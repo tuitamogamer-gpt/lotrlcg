@@ -13,7 +13,7 @@ import type { Batch4ScenarioHooks } from "./batch4-scenario-contract";
 import type { DamageContext } from "./damage-context";
 import { card, name } from "./cards";
 import { choose, fx, log, prepend, random } from "./core";
-import { removeFromQuest } from "./board";
+import { discardAttachment, removeFromQuest } from "./board";
 import {
   activeSeat,
   allActiveLocations,
@@ -146,15 +146,14 @@ function bgReplaceDamage(
     return false;
   const players = playerOrder(s);
   const player = players[Math.floor(random(s) * players.length)];
+  // Its attachments go to their owners' discard piles as it leaves play.
+  for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
   s.staging = s.staging.filter((x) => x.id !== u.id);
   for (const p of players)
     forOwner(s, p, () => {
       s.engaged = s.engaged.filter((x) => x.id !== u.id);
     });
   s.encounterDiscard.push(...u.shadows);
-  for (const a of u.attachments)
-    if (card(a.code).type_code !== "player-attachment")
-      s.encounterDiscard.push(a.code);
   Object.assign(u, {
     damage: 0,
     progress: 0,

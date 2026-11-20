@@ -268,6 +268,18 @@ export const NIGHTMARE_AS = {
   beckons: "octgn:56fbff9f-2518-4ea3-918b-caf14a93738d",
   fumes: "octgn:18150bb4-3157-429c-b958-af1210acd4b2",
 } as const;
+/** The Hobbit: Over Hill and Under Hill Nightmare Deck's cards (OCTGN ids, as DragnCards keeps them). */
+export const NIGHTMARE_OHUH = {
+  /** We Must Away, Ere Break of Day's setup card and Nightmare Deck (Troll Key and Troll Purse gain surge). */
+  wmaCard: "octgn:1c31e98f-1c81-4d10-b434-3b4e66c49f3c",
+  crows: "octgn:4f73ca81-67c1-44db-a7ca-63a762748fc4",
+  river: "octgn:0071049b-ca5b-4083-b955-a74da4aad5f1",
+  hilltops: "octgn:f036c797-cede-404b-8cc3-d975a9f86ebc",
+  light: "octgn:f4f20186-79fb-4d53-9431-ecd719fd152b",
+  mince: "octgn:aebb2c2f-859e-4f08-9017-1fcc4a4cc528",
+  night: "octgn:1d23916d-4e14-4b1f-ab4b-02a231870465",
+  oneByOne: "octgn:5c4fb1ac-a989-463d-a622-367882c56d4e",
+} as const;
 /** The Heirs of Númenor Nightmare Deck's cards (OCTGN ids, as DragnCards keeps them). */
 export const NIGHTMARE_HON = {
   /** Peril in Pelargir's setup card and Nightmare Deck. */
@@ -671,6 +683,16 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Scourge of Mordor": 1,
     },
   },
+  "we-must-away-ere-break-of-day": {
+    card: NIGHTMARE_OHUH.wmaCard,
+    removals: {
+      "A Suspicious Crow": 3,
+      "Lone-Lands": 1,
+      "Dreary Hills": 1,
+      "Hobbit-lands": 2,
+      "A Nice Pickle": 2,
+    },
+  },
   "the-morgul-vale": {
     card: NIGHTMARE_AS.morgulCard,
     removals: {
@@ -946,6 +968,10 @@ export function nightmareStatus(s: GameState): string[] {
       `The Blood of Gondor · Nightmare mode: each player took a hidden card at setup (${hidden} hidden now); the players cannot win unless The Cross-roads and the Nightmare Deck's Black Númenorean are in the victory display.`,
     ];
   }
+  if (s.scenarioId === "we-must-away-ere-break-of-day")
+    return [
+      "We Must Away, Ere Break of Day · Nightmare mode: the objective cards Troll Key and Troll Purse gain surge.",
+    ];
   if (s.scenarioId === "the-morgul-vale") {
     const tower =
       s.staging.find((u) => card(u.code).name === "To the Tower")?.progress ??

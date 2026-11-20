@@ -57,16 +57,19 @@ export function automatedScenarioId(reference: { name: string; mode: string }) {
   // (the epic multiplayer mode recipe stays unsupported).
   // The Starter's 2018 recipes are named after its Limited Collector's
   // Edition; the atlas names them after the Two-Player Limited Edition Starter.
+  // We Must Away's Nightmare recipe garbles its title.
   const lower = name.toLocaleLowerCase("en");
   const canonicalName =
     lower === "temple of doom"
       ? "The Temple of Doom"
       : lower === "standard the siege of annúminas"
         ? "The Siege of Annúminas"
-        : name.replace(
-            /\s*\(Limited Collector['’]s Edition\)$/i,
-            " (Two-Player Limited Edition Starter)",
-          );
+        : lower === "we must away away, ere of day"
+          ? "We Must Away, Ere Break of Day"
+          : name.replace(
+              /\s*\(Limited Collector['’]s Edition\)$/i,
+              " (Two-Player Limited Edition Starter)",
+            );
   // Some source recipes drop a title's accents ("The Druadan Forest").
   const fold = (t: string) =>
     t

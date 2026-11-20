@@ -196,9 +196,17 @@ test("Nightmare: Orc Trickster attacks as it is turned faceup and hides again wh
   // Damage: a random player takes it facedown.
   const t = board("attack");
   const orc = add(t, N.trickster, true);
+  // Forest Snare goes to its owner's discard pile.
+  orc.attachments.push({
+    id: "snare",
+    code: "01069",
+    exhausted: false,
+    owner: 0,
+  });
   damage(t, orc.id, 3);
   assert.ok(!t.engaged.some((u) => u.id === orc.id));
   assert.ok(hiddenOf(t).some((u) => u.code === N.trickster));
+  assert.ok(t.discard.includes("01069"));
   assert.ok(valid(t));
   // Uruk Marksman: 3 damage to a character, then back to the staging area.
   let u = board("planning");
