@@ -95,6 +95,12 @@ export interface Batch4ScenarioHooks {
   cannotAdvanceStage?(s: GameState, stage: number): boolean;
   /** After a player fails a burgle attempt (The Lonely Mountain). */
   burgleFailed?(s: GameState): void;
+  /**
+   * An instruction to remove progress from a quest stage is replaced (The
+   * Battle of Five Armies' Nightmare setup card at stage 5B): true when the
+   * progress is not removed.
+   */
+  progressRemovalReplaced?(s: GameState, stage: string): boolean;
   combatBegin?(s: GameState): void;
   enemyEntered?(s: GameState, unit: Unit): void;
   openingHandsKept?(s: GameState): boolean;

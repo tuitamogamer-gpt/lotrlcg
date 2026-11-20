@@ -39,6 +39,8 @@ import {
   spendBaggins,
 } from "./hobbit-saga";
 import { hobbitRingDefense } from "./hobbit-player-cards";
+import { batch4Scenario } from "./batch4-scenarios";
+import { nightmareEncounterDeck, nightmareLive } from "./nightmare";
 import {
   WILDERLAND_SHARED_EFFECTS,
   WILDERLAND_TREACHERIES,
@@ -57,6 +59,7 @@ import {
   BOFA as B,
   BOFA_RECIPES,
   BOFA_RUINS,
+  BOFA_SCENARIO,
   BOFA_STAGES,
   bofaComplete,
   bofaEmptyStages,
@@ -97,7 +100,12 @@ export function setupBattleFiveArmies(s: GameState) {
     r.cards
       .filter((c) => c.section === name)
       .flatMap((c) => Array<string>(c.quantity).fill(c.code));
-  s.encounterDeck = shuffle(s, section("sharedEncounterDeck"));
+  // Nightmare mode: the setup card's removals and the Nightmare Deck.
+  const deck = section("sharedEncounterDeck");
+  s.encounterDeck = shuffle(
+    s,
+    nightmareLive(s) ? nightmareEncounterDeck(BOFA_SCENARIO, deck) : deck,
+  );
   for (const code of section("sharedStagingArea"))
     s.staging.push(make(s, code));
   s.battleFiveArmies = {
@@ -131,6 +139,9 @@ function setCurrent(s: GameState, code: string) {
 }
 function removeProgress(s: GameState, code: string, amount: number) {
   const q = s.battleFiveArmies!;
+  // A Nightmare setup card may replace the instruction (stage 5B).
+  if (amount > 0 && batch4Scenario(s).progressRemovalReplaced?.(s, code))
+    return 0;
   if (amount <= 0 || !bofaStagesInPlay(s).includes(code)) return 0;
   const before = bofaStageProgress(s, code);
   const after = Math.max(0, before - amount);
@@ -495,6 +506,18 @@ export function bofaEffect(s: GameState, e: Effect): boolean {
       if (!spendBaggins(s, e.value ?? 3))
         log(s, "Bilbo Baggins cannot pay for the travel cost.", "danger");
       return true;
+    // Progress another card removes from a quest stage (a Nightmare card's).
+    case "bofaRemoveProgress": {
+      const stage = e.code ?? q.currentQuest;
+      const removed = removeProgress(s, stage, e.value ?? 1);
+      if (removed)
+        log(
+          s,
+          `${e.text ?? "An encounter card"} removes ${plural(removed, "progress token")} from ${stageLabel(stage)}.`,
+          "danger",
+        );
+      return true;
+    }
     case "bofaRider":
       if (removeProgress(s, q.currentQuest, 1))
         log(
@@ -698,6 +721,7 @@ const STAGE_EFFECTS = [
   "bofaRider",
   "bofaSlopes",
   "bofaVanguardShadow",
+  "bofaRemoveProgress",
 ];
 export const BOFA_HOOKS: Batch4ScenarioHooks = {
   setup: setupBattleFiveArmies,

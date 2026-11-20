@@ -2,7 +2,11 @@
 
 The third and last scenario of **The Hobbit: On the Doorstep** (2013) follows
 [The Lonely Mountain](LONELY-MOUNTAIN.md). It is playable in classic solo and
-with one to four local players, in normal and easy mode. The On the Doorstep
+with one to four local players, in normal and easy mode, and in Nightmare
+mode ([its Nightmare Deck](NIGHTMARE.md): the setup builds the encounter deck
+with the setup card's removals and its cards, and at stage 5B each instruction
+to remove progress places 1 progress on the setup card, which loses the game
+at 3 + 2 × the number of players). The On the Doorstep
 Bilbo Baggins is described with [Flies and Spiders](FLIES-SPIDERS.md) and the
 other Saga rules with [We Must Away, Ere Break of Day](WE-MUST-AWAY.md).
 

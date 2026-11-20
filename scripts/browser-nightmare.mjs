@@ -2128,6 +2128,57 @@ try {
       "Erebor Bats' face loads",
     );
     await checkpoint("tlm-erebor-bats", width);
+
+    // The Battle of Five Armies in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-the-battle-of-five-armies").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "the-battle-of-five-armies");
+    assert.equal(s.nightmareMode, true);
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/with 5 \(0 now\) the players lose/)
+      .waitFor();
+    await checkpoint("bofa-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A Gundabad Elite beside an Embattled Valley in the staging area.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.staging = [...t.staging, make(t, OTD.elite), make(t, OTD.valley)];
+      s = await load(page, t);
+    }
+    const gundabadFace = page
+      .locator(`img[src*="${OTD.elite.slice("octgn:".length)}"]`)
+      .first();
+    await gundabadFace.waitFor();
+    assert.ok(
+      (await gundabadFace.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "Gundabad Elite's face loads",
+    );
+    await checkpoint("bofa-gundabad-elite", width);
     await view.c.close();
   }
   const p = await browser.newPage();

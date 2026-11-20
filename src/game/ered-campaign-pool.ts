@@ -2979,6 +2979,9 @@ export function composeEredPool(
       !!p.attachmentCannotReady?.(s, host, a),
     cannotAdvanceStage: (s, stage) =>
       !!h.cannotAdvanceStage?.(s, stage) || !!p.cannotAdvanceStage?.(s, stage),
+    progressRemovalReplaced: (s, stage) =>
+      !!h.progressRemovalReplaced?.(s, stage) ||
+      !!p.progressRemovalReplaced?.(s, stage),
     burgleFailed: (s) => {
       h.burgleFailed?.(s);
       p.burgleFailed?.(s);

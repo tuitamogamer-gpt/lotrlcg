@@ -317,6 +317,14 @@ export const NIGHTMARE_OTD = {
   frontGate: "octgn:2e77da31-a3ef-4bea-9af8-3f663c608a62",
   ire: "octgn:fa005ccd-cf35-4d49-8259-23f3c8035954",
   lust: "octgn:ece25a80-d4c6-4032-90eb-ca485da5373d",
+  /** The Battle of Five Armies' setup card and Nightmare Deck (progress on the setup card at stage 5B loses the game). */
+  bofaCard: "octgn:46ac76d7-4215-4840-a029-c4aceb051b94",
+  greatWarg: "octgn:d4309384-8472-4385-8122-163d6c4c8396",
+  frenzied: "octgn:b028411b-ab1d-4a54-a9d0-38cb70489f98",
+  elite: "octgn:40956aef-c093-489d-b74a-24502705c6bb",
+  valley: "octgn:29baa3ae-f954-49c1-b127-f364887f80a7",
+  ridge: "octgn:487955be-4805-427c-984b-23bb88e697a6",
+  dread: "octgn:1b770413-a3b1-41ae-b843-b3b9e78b2906",
 } as const;
 /** Over the Misty Mountains Grim's Nightmare cards with The Great Goblin's encounter set icon: they join the second (Goblin) encounter deck. */
 export const NIGHTMARE_OMM_GOBLIN_DECK: readonly string[] = [
@@ -761,6 +769,19 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Not fair! Not fair!": 1,
     },
   },
+  "the-battle-of-five-armies": {
+    card: NIGHTMARE_OTD.bofaCard,
+    removals: {
+      "Dark Bats": 3,
+      "Hidden Path": 3,
+      "Fighting Among Friends": 2,
+      "Vanguard of Bolg": 1,
+      "Ravenous Warg": 1,
+      "Gundabad Climber": 4,
+      "Gundabad Wolf Rider": 3,
+      "Misty Mountain Eagle": 1,
+    },
+  },
   "the-lonely-mountain": {
     card: NIGHTMARE_OTD.tlmCard,
     removals: {
@@ -1092,6 +1113,13 @@ export function nightmareStatus(s: GameState): string[] {
     const hidden = Object.values(s.bloodGondor?.hidden ?? {}).flat().length;
     return [
       `The Blood of Gondor · Nightmare mode: each player took a hidden card at setup (${hidden} hidden now); the players cannot win unless The Cross-roads and the Nightmare Deck's Black Númenorean are in the victory display.`,
+    ];
+  }
+  if (s.scenarioId === "the-battle-of-five-armies") {
+    const players = s.table?.seats.length ?? 1;
+    const tokens = s.nightmare?.bofaProgress ?? 0;
+    return [
+      `The Battle of Five Armies · Nightmare mode: at stage 5B each instruction to remove progress from a quest stage places 1 progress on the setup card instead; with ${3 + 2 * players} (${tokens} now) the players lose.`,
     ];
   }
   if (s.scenarioId === "the-lonely-mountain") {

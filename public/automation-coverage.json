@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2567,
+    "encounterCards": 2574,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3789,
-    "pending": 394
+    "scripted": 3796,
+    "pending": 387
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 302
+    "scripted": 303
   },
   "registeredCodes": [
     "01001",
@@ -1468,6 +1468,7 @@
     "octgn:1b0de48c-a010-490f-b0e3-0ced635b3b3b",
     "octgn:1b3b1063-e102-4fea-a29b-5692fbfb9cd6",
     "octgn:1b5b129a-0c2c-4750-b1d6-dd3ea82acb84",
+    "octgn:1b770413-a3b1-41ae-b843-b3b9e78b2906",
     "octgn:1b9e02cc-d46e-4816-bdbd-9daa05590173",
     "octgn:1ba09574-9d2a-4687-bd58-ca37ceadb023",
     "octgn:1bac61b0-ee27-43eb-bb39-85f64c6b4c94",
@@ -1620,6 +1621,7 @@
     "octgn:29662c71-2f27-405c-ae5a-db519ed91f33",
     "octgn:298c3181-5f6f-487c-adbd-741bb202b8e0",
     "octgn:29a12054-527c-41a3-9dd8-25565288fb4d",
+    "octgn:29baa3ae-f954-49c1-b127-f364887f80a7",
     "octgn:29f8a182-2e69-47d7-a742-296836371f41",
     "octgn:29fd0721-10ed-4315-b415-5fadeb010051",
     "octgn:2a49f405-1431-44ff-8316-573c23aaffcb",
@@ -1815,6 +1817,7 @@
     "octgn:3ff62e7f-fc09-4569-a45c-1be7e2ba6747",
     "octgn:408148e1-3391-4734-aeac-3e3a7b69c1c1",
     "octgn:408752c0-cee3-41ba-86c2-d01085546cef",
+    "octgn:40956aef-c093-489d-b74a-24502705c6bb",
     "octgn:409bc89e-b5af-4626-ade6-60bcfcb290b7",
     "octgn:40c7a675-d48f-4e71-8818-5f0ffb9fa0dd",
     "octgn:413fa654-8c2c-4245-9c6b-78d98db9903e",
@@ -1860,6 +1863,7 @@
     "octgn:460a1e18-8a57-44a5-bd06-f0c1b13c86b5",
     "octgn:460b83ed-986a-496b-9b38-627c77a836e9",
     "octgn:463d0c53-2275-410f-b311-139f19561b46",
+    "octgn:46ac76d7-4215-4840-a029-c4aceb051b94",
     "octgn:46affe37-a561-4c15-bc0e-7c36d78ba056",
     "octgn:46c6afb3-9a68-4f1a-acfa-e421c84da528",
     "octgn:46c7bfd7-96b7-4fe4-a110-3464ba6c0023",
@@ -1940,6 +1944,7 @@
     "octgn:4858bd5a-6d80-4351-849b-532fc2bc4ffe",
     "octgn:486a95af-e3af-4513-ae9a-d705d8557db6",
     "octgn:486f9475-98e1-42d9-ac90-e6190545a5b9",
+    "octgn:487955be-4805-427c-984b-23bb88e697a6",
     "octgn:48893e0f-bc7c-46f4-a5f7-18bd0d758d49",
     "octgn:4893d105-fada-4bee-a4bb-d26463b97b63",
     "octgn:48c071bf-b00f-4677-b43f-aa119f736428",
@@ -3172,6 +3177,7 @@
     "octgn:afd48fc2-1bca-44d1-9b30-380d2035f2fb",
     "octgn:b002c7a6-f827-4a7d-8432-c3f2f995089e",
     "octgn:b00c623e-2aaa-4286-9fba-499fe39eb204",
+    "octgn:b028411b-ab1d-4a54-a9d0-38cb70489f98",
     "octgn:b03a007c-42bc-433c-bd0e-efbf65a8696d",
     "octgn:b06030a9-7ab9-48a6-b7da-5ffd8ce3a1a6",
     "octgn:b07cec11-452d-423a-b33e-3f9345c9f6e1",
@@ -3530,6 +3536,7 @@
     "octgn:d3bd47e5-cf59-4097-9cec-92a15fe56bf4",
     "octgn:d3c68791-c3f9-4e8d-9515-2496f9ca1895",
     "octgn:d3eee887-e9fd-40f9-bd09-47a7b0732ee2",
+    "octgn:d4309384-8472-4385-8122-163d6c4c8396",
     "octgn:d4686e4d-2d50-4ffd-9b95-7bcdf9b2a494",
     "octgn:d47ece86-2645-4d35-8ab7-c439d12abe65",
     "octgn:d4a5f505-6cc6-4669-b9b9-8f5ad2a6e5df",
@@ -4271,7 +4278,7 @@
     {
       "product": "on-the-doorstep-nightmare",
       "total": 22,
-      "scripted": 15,
+      "scripted": 22,
       "player": 0,
       "playerScripted": 0
     },
@@ -15784,7 +15791,7 @@
       "name": "Dread Has Come!",
       "type": "treachery",
       "pack": "The Hobbit - On the Doorstep - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep-nightmare"
     },
     {
@@ -17128,7 +17135,7 @@
       "name": "Embattled Valley",
       "type": "location",
       "pack": "The Hobbit - On the Doorstep - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep-nightmare"
     },
     {
@@ -19024,7 +19031,7 @@
       "name": "Gundabad Elite",
       "type": "enemy",
       "pack": "The Hobbit - On the Doorstep - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep-nightmare"
     },
     {
@@ -19440,7 +19447,7 @@
       "name": "The Battle of Five Armies",
       "type": "nightmare",
       "pack": "The Hobbit - On the Doorstep - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep-nightmare"
     },
     {
@@ -20104,7 +20111,7 @@
       "name": "Eastern Ridge",
       "type": "location",
       "pack": "The Hobbit - On the Doorstep - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep-nightmare"
     },
     {
@@ -31128,7 +31135,7 @@
       "name": "Frenzied Warg-Rider",
       "type": "enemy",
       "pack": "The Hobbit - On the Doorstep - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep-nightmare"
     },
     {
@@ -34456,7 +34463,7 @@
       "name": "Great Warg",
       "type": "enemy",
       "pack": "The Hobbit - On the Doorstep - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep-nightmare"
     },
     {
@@ -39735,8 +39742,8 @@
       "id": "N0A.6",
       "name": "The Battle of Five Armies (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-battle-of-five-armies",
+      "state": "scripted"
     },
     {
       "id": "N0B.01",
