@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2616,
+    "encounterCards": 2624,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3838,
-    "pending": 345
+    "scripted": 3846,
+    "pending": 337
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 308
+    "scripted": 309
   },
   "registeredCodes": [
     "01001",
@@ -1642,6 +1642,7 @@
     "octgn:2b93afb6-38fd-4ded-bf92-ed86bc03635d",
     "octgn:2b9c8fa1-a5c3-441e-95c1-c10c85948dc1",
     "octgn:2ba77eca-870d-41d9-84cb-f0f33b6d9f15",
+    "octgn:2bc9f441-e922-4509-aef9-a27e485ed227",
     "octgn:2be47628-65a9-4809-87aa-6251eb68b4bc",
     "octgn:2bf5a4d1-9d74-4e1a-8725-cf4a3a47dde9",
     "octgn:2c1f75cf-a6b5-4aa6-abbd-e1beb803e2e2",
@@ -1984,6 +1985,7 @@
     "octgn:4b36df3f-d75b-4b3a-9324-9ab31c10d7b9",
     "octgn:4b3a4229-eb85-49b0-9f34-78cb17301b34",
     "octgn:4b678143-ec9f-4727-998a-85dfef48d47a",
+    "octgn:4b748920-83c0-473a-a2fd-0ec8a6b3f1b8",
     "octgn:4b7db087-febb-4e88-bd30-e0f7919511c7",
     "octgn:4b9d24ad-1ae3-4e49-a675-a27fc84c289b",
     "octgn:4bae8841-e3e4-4a93-b10f-8544eaab9cb3",
@@ -2533,6 +2535,7 @@
     "octgn:67ddffc2-652d-4892-97a6-fe2af59d4616",
     "octgn:6805d08f-84e0-412d-a728-35a42ea9a091",
     "octgn:680e0591-23db-402e-829d-bc2c15ec026f",
+    "octgn:68384cac-543c-4e62-9866-e066f2ad27f0",
     "octgn:6860f9ad-0f09-450a-adf9-6ebe9b872a49",
     "octgn:6860f9ad-0f09-450a-adf9-6ebe9b872a49:B",
     "octgn:687ca930-b64c-4a5c-b6a3-bc3b12d8641d",
@@ -2605,6 +2608,7 @@
     "octgn:71079813-3afe-41b7-8746-92dcc1f91084",
     "octgn:7108bf9e-3e91-4cbd-977a-fbab0a464512",
     "octgn:715625a1-320e-478c-afd3-bec7111105f2",
+    "octgn:715a7c96-17de-4e8d-8771-a8ae0e36e732",
     "octgn:7178f6f6-c2da-4f74-9c9a-9ec43c79232d",
     "octgn:718d940a-2b58-4986-af10-06a81546bc9f",
     "octgn:71a2ca21-ff50-4a8a-b30b-7c8eaf6bf6b6",
@@ -2995,6 +2999,7 @@
     "octgn:99ab7a92-0e3e-4ec2-9a40-0f467920879d",
     "octgn:99b98ca0-1320-4630-8791-984a578685d2",
     "octgn:99bdb330-27f2-4534-a355-0bb9f1682a8d",
+    "octgn:99d7fe5f-dcb5-43e2-9b73-8d47e661e6be",
     "octgn:9a29c251-6119-47b2-8e10-ba4d33c0747e",
     "octgn:9a37677f-6bb6-4ff1-bf0e-8d0798e268c9",
     "octgn:9a5884f4-c2a8-4696-97b5-f0c5c5e92b6d",
@@ -3048,6 +3053,7 @@
     "octgn:9f29199a-f40a-4198-b355-4d5e75d910e2",
     "octgn:9fa12306-d6ed-4fb8-89ce-8145bb81a58a",
     "octgn:9fb2a57c-5f37-4427-bb50-fc732194f4f3",
+    "octgn:9fb6747a-1dd1-4a38-8c55-9459fda296c1",
     "octgn:9fdacc4b-5de7-4b03-af30-cee4d09769d7",
     "octgn:9feef7b4-4ca7-4adc-aeb7-56947254588a",
     "octgn:9ff94935-ae08-4d86-859f-f4d0776a66e5",
@@ -3374,6 +3380,7 @@
     "octgn:bdbf8bed-f63f-4797-abb4-79054a9dbcad",
     "octgn:bde125e7-6c33-4659-8713-e3374b93f414",
     "octgn:bdfa990f-381b-4df3-bce6-71c46380223f",
+    "octgn:be2d2c3f-db7a-43bc-b0e8-43587dfce5c9",
     "octgn:be3ca12f-2550-48b4-9384-e71a1b401d4e",
     "octgn:be43a52a-370a-4481-bc84-8e004ecbfdca",
     "octgn:be6cf29d-bb8b-494a-9635-85ee9322a690",
@@ -3942,6 +3949,7 @@
     "octgn:fa4ccbb8-76d4-4293-aa94-d117b14f042e",
     "octgn:fa85988c-4530-414e-95a6-066002e0ef7a",
     "octgn:fa8e0538-d920-4f0e-9810-103c5186531f",
+    "octgn:fa961100-1d40-4614-b405-faf9c00e2a83",
     "octgn:fa9a87c8-ed31-44b9-b5d6-4f42ca6de2c9",
     "octgn:fa9df618-126b-4ea9-95d7-22cd5dad6d2f",
     "octgn:faacffc1-0c11-42ea-aca9-96982cc80e7a",
@@ -4992,7 +5000,7 @@
     {
       "product": "trouble-in-tharbad-nightmare",
       "total": 8,
-      "scripted": 0,
+      "scripted": 8,
       "player": 0,
       "playerScripted": 0
     },
@@ -17337,7 +17345,7 @@
       "name": "Bellach's Hunter",
       "type": "enemy",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad-nightmare"
     },
     {
@@ -20409,7 +20417,7 @@
       "name": "Waylaid by Agents",
       "type": "treachery",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad-nightmare"
     },
     {
@@ -25089,7 +25097,7 @@
       "name": "Tharbad Patrol",
       "type": "treachery",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad-nightmare"
     },
     {
@@ -25785,7 +25793,7 @@
       "name": "Orc Seeker",
       "type": "enemy",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad-nightmare"
     },
     {
@@ -29329,7 +29337,7 @@
       "name": "City of Spies",
       "type": "location",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad-nightmare"
     },
     {
@@ -29809,7 +29817,7 @@
       "name": "Trouble in Tharbad",
       "type": "nightmare",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad-nightmare"
     },
     {
@@ -32697,7 +32705,7 @@
       "name": "Dark Pathway",
       "type": "location",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad-nightmare"
     },
     {
@@ -37769,7 +37777,7 @@
       "name": "Blood Hound",
       "type": "enemy",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad-nightmare"
     },
     {
@@ -39595,8 +39603,8 @@
       "id": "N04.6",
       "name": "Trouble in Tharbad (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "trouble-in-tharbad",
+      "state": "scripted"
     },
     {
       "id": "N04.7",

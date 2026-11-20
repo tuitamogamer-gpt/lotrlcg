@@ -2,6 +2,7 @@ import { currentQuestProgress } from "./quest-state";
 import { ninQuestName } from "./nin-eilph-support";
 import { fangornCarrier } from "./fangorn";
 import { questTime } from "./quest-time";
+import { tharbadEliminationLevel } from "./threat-elimination";
 import { allActiveLocations } from "./table";
 import { card } from "./cards";
 import { locationQuest } from "./core";
@@ -61,7 +62,7 @@ export function observe(
       : {}),
     ...(s.ninEilph ? { "Quest stage": ninQuestName(s) ?? "" } : {}),
     ...(s.tharbad
-      ? { "Threat elimination level": String(s.tharbad.elimination) }
+      ? { "Threat elimination level": String(tharbadEliminationLevel(s)) }
       : {}),
     "Staging threat": String(getStagingThreat(s)),
     ...(questTime(s)

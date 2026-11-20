@@ -99,6 +99,7 @@ import { NIGHTMARE_CATCH_HOOKS } from "./nightmare-catch";
 import { NIGHTMARE_FANGORN_HOOKS } from "./nightmare-fangorn";
 import { NIGHTMARE_DUNLAND_HOOKS } from "./nightmare-dunland";
 import { NIGHTMARE_TRIALS_HOOKS } from "./nightmare-trials";
+import { NIGHTMARE_THARBAD_HOOKS } from "./nightmare-tharbad";
 import { nightmareLive } from "./nightmare";
 
 const empty: Batch4ScenarioHooks = {};
@@ -147,6 +148,7 @@ const NIGHTMARE_LAYERS: Partial<Record<string, Batch4ScenarioHooks>> = {
   "into-fangorn": NIGHTMARE_FANGORN_HOOKS,
   "the-dunland-trap": NIGHTMARE_DUNLAND_HOOKS,
   "the-three-trials": NIGHTMARE_TRIALS_HOOKS,
+  "trouble-in-tharbad": NIGHTMARE_THARBAD_HOOKS,
 };
 /**
  * The current scenario's hooks; in an Ered Mithrin campaign chapter from The
@@ -334,6 +336,7 @@ export const batch4SharedEffect = (effect: Effect) =>
     NIGHTMARE_FANGORN_HOOKS,
     NIGHTMARE_DUNLAND_HOOKS,
     NIGHTMARE_TRIALS_HOOKS,
+    NIGHTMARE_THARBAD_HOOKS,
     BLACK_SERPENT_HOOKS,
     CIRITH_GURAT_HOOKS,
     CROSSINGS_POROS_HOOKS,

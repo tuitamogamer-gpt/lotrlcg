@@ -2449,6 +2449,74 @@ try {
       "Sacred Forest's face loads",
     );
     await checkpoint("trials-sacred-forest", width);
+
+    // Trouble in Tharbad in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-trouble-in-tharbad").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "trouble-in-tharbad");
+    assert.equal(s.nightmareMode, true);
+    assert.equal(
+      s.threat,
+      s.heroes.reduce((n, h) => n + (card(h.code)?.threat ?? 0), 0) + 5,
+      "each starting threat is raised by 5",
+    );
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/starting threat was raised by 5/)
+      .waitFor();
+    await checkpoint("tharbad-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A City of Spies beside a Dark Pathway watched by a Tharbad Patrol.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const pathway = make(t, RM.pathway);
+      pathway.attachments.push({
+        id: `a${t.nextId++}`,
+        code: RM.patrol,
+        exhausted: false,
+      });
+      t.staging = [...t.staging, make(t, RM.city), pathway];
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [RM.city, "City of Spies"],
+      [RM.pathway, "Dark Pathway"],
+      [RM.patrol, "Tharbad Patrol"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    await checkpoint("tharbad-city-pathway", width);
     await view.c.close();
   }
   const p = await browser.newPage();

@@ -5,6 +5,7 @@ import { stats } from "../game/engine";
 import { units } from "../game/core";
 import { ninQuestName } from "../game/nin-eilph-support";
 import { tharbadTimeLimit } from "../game/tharbad-support";
+import { tharbadEliminationLevel } from "../game/threat-elimination";
 import { TRIALS } from "../game/three-trials-support";
 import { trialsKeys } from "../game/three-trials";
 import { allEngaged, seatIndices, seatView } from "../game/table";
@@ -250,7 +251,7 @@ export function ScenarioState({
             value={s.tharbad.time}
             max={Math.max(s.tharbad.time, tharbadTimeLimit(s.stage))}
           />
-          <span>Threat elimination · {s.tharbad.elimination}</span>
+          <span>Threat elimination · {tharbadEliminationLevel(s)}</span>
           <span>
             {s.stage === 1
               ? "Reduce every player's threat to zero. Protect Nalir."

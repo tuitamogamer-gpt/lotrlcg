@@ -135,11 +135,15 @@ test("Tharbad imports sixteen encounters, two quests, twenty faces and exact 40/
       automatedScenarioId({ name: "Trouble in Tharbad", mode }),
       "trouble-in-tharbad",
     );
-  for (const mode of ["campaign", "nightmare"])
-    assert.equal(
-      automatedScenarioId({ name: "Trouble in Tharbad", mode }),
-      null,
-    );
+  // Its Nightmare recipe plays through the Nightmare layer (tests/nightmare-tharbad.test.ts).
+  assert.equal(
+    automatedScenarioId({ name: "Trouble in Tharbad", mode: "nightmare" }),
+    "trouble-in-tharbad",
+  );
+  assert.equal(
+    automatedScenarioId({ name: "Trouble in Tharbad", mode: "campaign" }),
+    null,
+  );
 });
 for (const players of [1, 2, 3, 4])
   for (const easy of [false, true])

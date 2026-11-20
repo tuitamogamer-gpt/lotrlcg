@@ -42,6 +42,7 @@ import { reduceThreat } from "./threat-reduction";
 import { consumeLeaveCard } from "./leave-consumption";
 import { takePlayerDiscard } from "./board";
 import { THARBAD as T, tharbadTimeLimit } from "./tharbad-support";
+import { batch4Scenario } from "./batch4-scenarios";
 const enemies = (s: GameState) =>
   [...s.staging, ...allEngaged(s)].filter(
     (u) => card(u.code).type_code === "enemy",
@@ -362,6 +363,8 @@ export function tharbadEffect(s: GameState, e: Effect) {
           }
         }
         shuffle(s, s.encounterDeck);
+        // A Nightmare setup card's setup rule follows the scenario's own.
+        prepend(s, ...(batch4Scenario(s).setupFollowUp?.(s) ?? []));
       }
       break;
     case "tharbadThreat":

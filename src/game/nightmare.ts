@@ -8,6 +8,7 @@ import type { GameState, ScenarioId } from "./types";
 import { card, encounterCards } from "./cards";
 import { FOUNDATIONS_NIGHTMARE_REMOVALS } from "./foundations-stone-support";
 import { HEIRS_NUMENOR } from "./heirs-numenor-support";
+import { threatElimination } from "./threat-elimination";
 
 const P = "octgn:e84f94bf-201b-4adf-95d2-0012e0bb50";
 /** The Core Set Nightmare Deck's cards (OCTGN ids, as DragnCards keeps them). */
@@ -378,6 +379,15 @@ export const NIGHTMARE_RINGMAKER = {
   pillars: "octgn:4008f69c-fda2-4fe4-a8bd-373d38203c87",
   burden: "octgn:a142205c-6aa0-4fed-be81-312c2dd33673",
   ancestors: "octgn:4aacc507-dfaf-4193-98c5-09dbf879423d",
+  /** Trouble in Tharbad's setup card and Nightmare Deck (starting threat +5; The Crossing at Tharbad while Bellach is in play). */
+  tharbadCard: "octgn:9fb6747a-1dd1-4a38-8c55-9459fda296c1",
+  hunter: "octgn:2bc9f441-e922-4509-aef9-a27e485ed227",
+  seeker: "octgn:715a7c96-17de-4e8d-8771-a8ae0e36e732",
+  hound: "octgn:fa961100-1d40-4614-b405-faf9c00e2a83",
+  city: "octgn:99d7fe5f-dcb5-43e2-9b73-8d47e661e6be",
+  pathway: "octgn:be2d2c3f-db7a-43bc-b0e8-43587dfce5c9",
+  waylaid: "octgn:4b748920-83c0-473a-a2fd-0ec8a6b3f1b8",
+  patrol: "octgn:68384cac-543c-4e62-9866-e066f2ad27f0",
 } as const;
 /** Over the Misty Mountains Grim's Nightmare cards with The Great Goblin's encounter set icon: they join the second (Goblin) encounter deck. */
 export const NIGHTMARE_OMM_GOBLIN_DECK: readonly string[] = [
@@ -841,6 +851,17 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Turned Around": 3,
     },
   },
+  "trouble-in-tharbad": {
+    card: NIGHTMARE_RINGMAKER.tharbadCard,
+    removals: {
+      "Orc Hunter": 1,
+      "Orc Skirmisher": 2,
+      "Tharbad Hideout": 2,
+      "Hidden Alleyway": 2,
+      "Decrepit Rooftops": 1,
+      "Orc Hunting Party": 2,
+    },
+  },
   "the-dunland-trap": {
     card: NIGHTMARE_RINGMAKER.dunlandCard,
     removals: {
@@ -1229,6 +1250,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "the-dunland-trap")
     return [
       "The Dunland Trap · Nightmare mode: the setup card removed the printed standard encounter cards and shuffled in its Nightmare Deck.",
+    ];
+  if (s.scenarioId === "trouble-in-tharbad")
+    return [
+      `Trouble in Tharbad · Nightmare mode: each player's starting threat was raised by 5; progress cannot be placed on The Crossing at Tharbad while Bellach is in play. Threat elimination level: ${threatElimination(s)}.`,
     ];
   if (s.scenarioId === "into-fangorn") {
     const edge = (s.victoryCards ?? []).some(
