@@ -113,6 +113,16 @@ export interface Batch4ScenarioHooks {
    */
   questTimeRemoved?(s: GameState, count: number): Effect[];
   /**
+   * Encounter cards with a Scour effect beside the scenario's own: those in
+   * play, or those whose Scour can resolve from the encounter discard pile
+   * (Celebrimbor's Secret's Nightmare Deck).
+   */
+  scourCodes?(s: GameState, fromDiscard?: boolean): readonly string[];
+  /** Scour effects in play that are not encounter cards in play (Celebrimbor's Secret's Nightmare setup card). */
+  scourEffects?(s: GameState): Effect[];
+  /** After damage is placed on a location (Celebrimbor's Secret's Nightmare Bones of Hollin). */
+  locationDamaged?(s: GameState, u: Unit, amount: number): void;
+  /**
    * The quest cards a random stage is drawn from, in place of the printed
    * ones (The Nîn-in-Eilph's Nightmare Deck replaces a stage 2 and a stage 3).
    */

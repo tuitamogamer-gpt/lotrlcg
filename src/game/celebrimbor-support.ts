@@ -54,6 +54,8 @@ export const celebrimborProtected = (s: GameState, u: Unit) =>
 export function validateCelebrimbor(
   s: GameState,
   validUnit: (u: unknown) => boolean,
+  /** A Nightmare Deck's Ost-in-Edhil locations, which a setup may choose too. */
+  extraLocations: readonly string[] = [],
 ) {
   const q = s.celebrimbor;
   if (q === undefined) return s.scenarioId !== "celebrimbors-secret";
@@ -77,7 +79,9 @@ export function validateCelebrimbor(
         u.shadows.length === 0,
     ) &&
     Array.isArray(q.setupLocations) &&
-    q.setupLocations.every((c) => CELEBRIMBOR_LOCATIONS.includes(c)) &&
+    q.setupLocations.every(
+      (c) => CELEBRIMBOR_LOCATIONS.includes(c) || extraLocations.includes(c),
+    ) &&
     new Set(q.setupLocations).size === q.setupLocations.length &&
     Array.isArray(q.stagingLocations) &&
     q.stagingLocations.every((id) => typeof id === "string") &&

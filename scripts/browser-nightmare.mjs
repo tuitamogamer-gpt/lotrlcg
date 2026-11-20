@@ -2586,6 +2586,77 @@ try {
       );
     }
     await checkpoint("nin-arduous-journey", width);
+
+    // Celebrimbor's Secret in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-celebrimbors-secret").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "celebrimbors-secret");
+    assert.equal(s.nightmareMode, true);
+    assert.ok(
+      ["Bellach", "The Orcs' Search", "The Secret Chamber"].every((n) =>
+        s.staging.some((u) => card(u.code)?.name === n),
+      ),
+      "the scenario's setup",
+    );
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/in the staging area is reduced to 1/)
+      .waitFor();
+    await checkpoint("celeb-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A damaged Dusty Labyrinth and a Bones of Hollin beside Bellach's Bodyguard.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const dusty = make(t, RM.dusty);
+      dusty.damage = 2;
+      t.staging = [
+        ...t.staging,
+        dusty,
+        make(t, RM.bones),
+        make(t, RM.bodyguard),
+      ];
+      t.celebrimbor.stagingLocations = t.staging.map((u) => u.id);
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [RM.dusty, "Dusty Labyrinth"],
+      [RM.bones, "Bones of Hollin"],
+      [RM.bodyguard, "Bellach's Bodyguard"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    await checkpoint("celeb-dusty-labyrinth", width);
     await view.c.close();
   }
   const p = await browser.newPage();

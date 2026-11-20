@@ -46,6 +46,7 @@ import { exhaustCharacter } from "./board";
 import { khazadCannotExhaust } from "./khazad-dum";
 import { watcherWaterCannotExhaust } from "./watcher-water";
 import { consumeLeaveCard } from "./leave-consumption";
+import { batch4Scenario } from "./batch4-scenarios";
 import {
   CELEBRIMBOR as C,
   CELEBRIMBOR_LOCATIONS,
@@ -72,7 +73,8 @@ function lose(s: GameState, reason: string) {
   s.choice = null;
   log(s, reason, "danger");
 }
-function underSearch(s: GameState, u: Unit, hidden = false) {
+/** Place a card facedown underneath The Orcs' Search. */
+export function celebrimborUnderSearch(s: GameState, u: Unit, hidden = false) {
   const q = s.celebrimbor;
   if (!q || q.search.some((c) => c.id === u.id)) return;
   const physical = make(s, u.code);
@@ -94,6 +96,7 @@ export function celebrimborDamageLocation(
   if (amount <= 0 || !locations(s).some((l) => l.id === u.id)) return;
   u.damage += amount;
   log(s, `${name(u)} takes ${amount} damage.`, "danger");
+  batch4Scenario(s).locationDamaged?.(s, u, amount);
   if (!s.celebrimbor || u.damage < (card(u.code).quest ?? 0)) return;
   removeActiveLocation(s, u.id);
   s.staging = s.staging.filter((l) => l.id !== u.id);
@@ -103,7 +106,7 @@ export function celebrimborDamageLocation(
       "The Orcs have found The Secret Chamber. Celebrimbor’s secret is lost.",
     );
   for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
-  underSearch(s, u);
+  celebrimborUnderSearch(s, u);
 }
 export function setupCelebrimbor(s: GameState) {
   s.encounterDeck = s.encounterDeck.filter(
@@ -227,8 +230,14 @@ function scourEffect(
 }
 export function celebrimborScourAll(s: GameState) {
   let foundation = false;
+  // A Nightmare Deck's Scour cards, and its setup card's own Scour effect.
+  const extra = batch4Scenario(s).scourCodes?.(s) ?? [];
   const effects = encounters(s)
-    .filter((u) => !u.blanked && CELEBRIMBOR_SCOUR.includes(u.code))
+    .filter(
+      (u) =>
+        !u.blanked &&
+        (CELEBRIMBOR_SCOUR.includes(u.code) || extra.includes(u.code)),
+    )
     .filter((u) => {
       if (u.code !== C.foundation) return true;
       if (foundation) return false;
@@ -236,6 +245,7 @@ export function celebrimborScourAll(s: GameState) {
       return true;
     })
     .map((u) => scourEffect(u));
+  effects.push(...(batch4Scenario(s).scourEffects?.(s) ?? []));
   prepend(
     s,
     fx("fangornOrder", {
@@ -251,8 +261,12 @@ export function celebrimborProgressPlaced(
   value: number,
 ) {
   if (u.code !== C.remains || u.blanked || value <= 0) return;
+  const extra = batch4Scenario(s).scourCodes?.(s, true) ?? [];
   for (let i = s.encounterDiscard.length - 1; i >= 0; i--)
-    if (CELEBRIMBOR_SCOUR.includes(s.encounterDiscard[i])) {
+    if (
+      CELEBRIMBOR_SCOUR.includes(s.encounterDiscard[i]) ||
+      extra.includes(s.encounterDiscard[i])
+    ) {
       prepend(s, scourEffect({ code: s.encounterDiscard[i] }, `discard:${i}`));
       break;
     }
@@ -409,7 +423,7 @@ export function celebrimborCharacterLeft(
     pile[destination.index] === u.code
   ) {
     pile.splice(destination.index, 1);
-    underSearch(s, { ...u, owner: u.owner ?? destination.player });
+    celebrimborUnderSearch(s, { ...u, owner: u.owner ?? destination.player });
   }
 }
 export function celebrimborAttackFinished(
@@ -449,14 +463,26 @@ export function celebrimborEffect(s: GameState, e: Effect) {
       choose(
         s,
         "Choose a different Ost-in-Edhil location",
-        CELEBRIMBOR_LOCATIONS.filter(
-          (c) => !q.setupLocations.includes(c) && s.encounterDeck.includes(c),
-        ).map((code) => ({
-          id: code,
-          code,
-          label: card(code).name,
-          effects: [fx("celebSetupAdd", { code })],
-        })),
+        // Each different Ost-in-Edhil location of the encounter deck (a Nightmare Deck's among them).
+        [
+          ...new Set([
+            ...CELEBRIMBOR_LOCATIONS,
+            ...s.encounterDeck.filter(
+              (c) =>
+                card(c).type_code === "location" &&
+                /\bOst-in-Edhil\b/.test(card(c).traits ?? ""),
+            ),
+          ]),
+        ]
+          .filter(
+            (c) => !q.setupLocations.includes(c) && s.encounterDeck.includes(c),
+          )
+          .map((code) => ({
+            id: code,
+            code,
+            label: card(code).name,
+            effects: [fx("celebSetupAdd", { code })],
+          })),
       );
       break;
     case "celebSetupAdd": {
@@ -714,7 +740,11 @@ export function celebrimborEffect(s: GameState, e: Effect) {
       if (!s.hand.length) break;
       const i = Math.floor(random(s) * s.hand.length),
         hand = s.hand.splice(i, 1)[0];
-      underSearch(s, { ...hand, owner: hand.owner ?? activeSeat(s) }, true);
+      celebrimborUnderSearch(
+        s,
+        { ...hand, owner: hand.owner ?? activeSeat(s) },
+        true,
+      );
       break;
     }
     case "celebSpiesExhaust": {

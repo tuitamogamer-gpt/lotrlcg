@@ -35,4 +35,4 @@ The UI displays current Time, Search count, refresh consequences and the Mouldâ€
 - The browser suite passes 75 checkpoints at 1280/390/320 pixels for actual menu/opening/setup, travel, exploration, claims, stage transition, attack targeting, saved Scour/damage/exhaustion choices, hidden capture, victory/loss and four-player easy setup. All seventeen faces decode. Narrow damage-choice and desktop Bellach-stage screenshots were reviewed.
 - TypeScript, production build, coverage audit and the additive SQL/RLS account test pass. No hosted Supabase migration was applied.
 
-Nightmare and campaign variants remain reference-only.
+Its Nightmare version follows [its Nightmare Deck](NIGHTMARE.md) (progress on locations in the staging area is reduced to 1, the setup card's own Scour joins each Scour round, the setup's Ost-in-Edhil choice includes the Nightmare Deck's, and the Nightmare cards use these Scour effects, location damage and The Orcs' Search); the campaign variant remains reference-only.

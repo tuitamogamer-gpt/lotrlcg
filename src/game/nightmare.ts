@@ -398,6 +398,15 @@ export const NIGHTMARE_RINGMAKER = {
   stench: "octgn:5fd07c1e-b086-4618-aa6e-89ff34f85c28",
   peat: "octgn:87025e60-afc4-410b-9b97-c5f527b524c8",
   swarms: "octgn:cbbc2de7-c8ab-4c7b-8b83-8d29debf1696",
+  /** Celebrimbor's Secret's setup card and Nightmare Deck (progress on staged locations; its own Scour). */
+  celebCard: "octgn:79b22351-0e03-4bb9-87cb-b0cbefbefb60",
+  bodyguard: "octgn:58615245-a21c-4f45-9636-9f76e2a7f19e",
+  snuffler: "octgn:0db0ef38-f9c4-47b1-a6a9-0aa5b9c1f538",
+  bones: "octgn:30ccffbd-b86a-4f6e-a286-8e8c753266ed",
+  dusty: "octgn:d4afa945-f35f-4ae3-adb5-c90ed54f5e91",
+  hateful: "octgn:6c9c2d37-2ca5-4753-8e1d-655fa5cd3ae7",
+  agent: "octgn:730dcb7f-df08-450a-8e28-9b436e11bce8",
+  closing: "octgn:f0a7b02f-4d0f-49c6-8c27-1600af0022e7",
 } as const;
 /** Over the Misty Mountains Grim's Nightmare cards with The Great Goblin's encounter set icon: they join the second (Goblin) encounter deck. */
 export const NIGHTMARE_OMM_GOBLIN_DECK: readonly string[] = [
@@ -883,6 +892,20 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
     },
     questRemovals: { "A Weary Passage": 1, "Impassable Marshland": 1 },
   },
+  "celebrimbors-secret": {
+    card: NIGHTMARE_RINGMAKER.celebCard,
+    removals: {
+      "Orc Skirmisher": 1,
+      "Orc Hunter": 1,
+      "Prowling Wolf": 3,
+      "Ruined Plaza": 1,
+      "City Remains": 1,
+      "Ancient Foundation": 1,
+      "Broken Lands": 3,
+      "Spies from Mordor": 1,
+      "Orc Hunting Party": 2,
+    },
+  },
   "the-dunland-trap": {
     card: NIGHTMARE_RINGMAKER.dunlandCard,
     removals: {
@@ -1271,6 +1294,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "the-dunland-trap")
     return [
       "The Dunland Trap · Nightmare mode: the setup card removed the printed standard encounter cards and shuffled in its Nightmare Deck.",
+    ];
+  if (s.scenarioId === "celebrimbors-secret")
+    return [
+      "Celebrimbor's Secret · Nightmare mode: progress that would be placed on a location in the staging area is reduced to 1; the setup card's own Scour deals 1 damage to a location in play whenever each Scour effect in play is triggered.",
     ];
   if (s.scenarioId === "the-nin-in-eilph")
     return [

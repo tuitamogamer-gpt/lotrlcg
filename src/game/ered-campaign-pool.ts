@@ -3007,6 +3007,18 @@ export function composeEredPool(
       ...(h.questTimeRemoved?.(s, count) ?? []),
       ...(p.questTimeRemoved?.(s, count) ?? []),
     ],
+    scourCodes: (s, fromDiscard) => [
+      ...(h.scourCodes?.(s, fromDiscard) ?? []),
+      ...(p.scourCodes?.(s, fromDiscard) ?? []),
+    ],
+    scourEffects: (s) => [
+      ...(h.scourEffects?.(s) ?? []),
+      ...(p.scourEffects?.(s) ?? []),
+    ],
+    locationDamaged: (s, u, amount) => {
+      h.locationDamaged?.(s, u, amount);
+      p.locationDamaged?.(s, u, amount);
+    },
     stageCandidates: (s, stage, printed) =>
       p.stageCandidates?.(s, stage, printed) ??
       h.stageCandidates?.(s, stage, printed),
