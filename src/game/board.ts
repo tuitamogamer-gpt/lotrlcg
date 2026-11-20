@@ -2237,6 +2237,10 @@ export function discardLocation(
     encounterEffect || !playerCardImmune(u),
     "This location is immune to player card effects.",
   );
+  if (!encounterEffect && batch4Scenario(s).playerDiscardBlocked?.(s, u)) {
+    log(s, `${name(u)} cannot be discarded from play by player card effects.`);
+    return false;
+  }
   if (encounterEffect && EredCards.eredCampaignLocationProtected(s, u)) {
     log(
       s,

@@ -407,6 +407,15 @@ export const NIGHTMARE_RINGMAKER = {
   hateful: "octgn:6c9c2d37-2ca5-4753-8e1d-655fa5cd3ae7",
   agent: "octgn:730dcb7f-df08-450a-8e28-9b436e11bce8",
   closing: "octgn:f0a7b02f-4d0f-49c6-8c27-1600af0022e7",
+  /** The Antlered Crown's setup card and Nightmare Deck (locations with time counters; Dunlending Horde in the Raven deck). */
+  crownCard: "octgn:ed458b9f-c913-4cb6-9f47-7760bba94c5b",
+  elite: "octgn:381569ad-e2bf-4fb5-a045-a36b918deac4",
+  druid: "octgn:33a1b9de-6b17-49f8-8eb3-7dd98feaf1cb",
+  horde: "octgn:56243a40-0019-406a-b502-34dd17d8b6cf",
+  stronghold: "octgn:5c525922-8f10-4793-b7c8-3fec9b3ce3f6",
+  highlands: "octgn:be9453b3-7576-4893-88d5-d62f0331411e",
+  talisman: "octgn:7f16112f-596c-43aa-b73e-3870f0325d66",
+  gathering: "octgn:12429164-0155-45e4-aa1c-e94292084bdf",
 } as const;
 /** Over the Misty Mountains Grim's Nightmare cards with The Great Goblin's encounter set icon: they join the second (Goblin) encounter deck. */
 export const NIGHTMARE_OMM_GOBLIN_DECK: readonly string[] = [
@@ -906,6 +915,17 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Orc Hunting Party": 2,
     },
   },
+  "the-antlered-crown": {
+    card: NIGHTMARE_RINGMAKER.crownCard,
+    removals: {
+      "Dunland Prowler": 1,
+      "Dunland Berserker": 1,
+      "Dunlending Bandit": 2,
+      "Raven Skirmisher": 3,
+      "Raven War-camp": 3,
+      "Driven Back": 2,
+    },
+  },
   "the-dunland-trap": {
     card: NIGHTMARE_RINGMAKER.dunlandCard,
     removals: {
@@ -1294,6 +1314,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "the-dunland-trap")
     return [
       "The Dunland Trap · Nightmare mode: the setup card removed the printed standard encounter cards and shuffled in its Nightmare Deck.",
+    ];
+  if (s.scenarioId === "the-antlered-crown")
+    return [
+      "The Antlered Crown · Nightmare mode: locations with time counters cannot be discarded from play by player card effects; the Nightmare Deck's Dunlending Horde joined the Raven deck.",
     ];
   if (s.scenarioId === "celebrimbors-secret")
     return [

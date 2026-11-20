@@ -1,6 +1,7 @@
 import encounters from "../data/antlered-encounter-cards.json";
 import quests from "../data/antlered-quest-cards.json";
 import recipes from "../data/antlered-recipes.json";
+import nightmare from "../data/nightmare-encounter-cards.json";
 import type { Card, GameState, Unit } from "./types";
 export const ANTLERED_ENCOUNTERS = encounters as Card[],
   ANTLERED_QUESTS = quests as Card[],
@@ -33,12 +34,14 @@ export const RAVEN_CODES = [
     ),
   ),
 ];
+/** Each location's printed Time X, the Nightmare Decks' locations among them. */
+const LOCATION_TIME = new Map(
+  [...encounters, ...nightmare]
+    .filter((c) => c.type_code === "location")
+    .map((c) => [c.code, Number(/\bTime (\d+)/.exec(c.text ?? "")?.[1] ?? 0)]),
+);
 export const printedLocationTime = (code: string) =>
-  Number(
-    /\bTime (\d+)/.exec(
-      encounters.find((c) => c.code === code)?.text ?? "",
-    )?.[1] ?? 0,
-  );
+  LOCATION_TIME.get(code) ?? 0;
 export interface AntleredState {
   initialized: boolean;
   time: number;
@@ -52,6 +55,8 @@ export interface AntleredState {
 export function validateAntlered(
   s: GameState,
   validUnit: (u: unknown) => boolean,
+  /** A Nightmare Deck's cards in the Raven deck. */
+  extraRaven: readonly string[] = [],
 ) {
   const q = s.antlered;
   if (q === undefined) return s.scenarioId !== "the-antlered-crown";
@@ -62,7 +67,9 @@ export function validateAntlered(
     Number.isInteger(q.time) &&
     q.time >= 0 &&
     [q.ravenDeck, q.ravenDiscard, q.setupEnemies].every(
-      (a) => Array.isArray(a) && a.every((c) => RAVEN_CODES.includes(c)),
+      (a) =>
+        Array.isArray(a) &&
+        a.every((c) => RAVEN_CODES.includes(c) || extraRaven.includes(c)),
     ) &&
     new Set(q.setupEnemies).size === q.setupEnemies.length &&
     Array.isArray(q.setAside) &&

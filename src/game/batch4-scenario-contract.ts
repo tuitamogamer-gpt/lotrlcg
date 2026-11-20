@@ -122,6 +122,10 @@ export interface Batch4ScenarioHooks {
   scourEffects?(s: GameState): Effect[];
   /** After damage is placed on a location (Celebrimbor's Secret's Nightmare Bones of Hollin). */
   locationDamaged?(s: GameState, u: Unit, amount: number): void;
+  /** Encounter cards that join the scenario's second encounter deck (The Antlered Crown's Raven deck: its Nightmare Deck's Dunlending Horde). */
+  secondDeckCodes?(s: GameState): readonly string[];
+  /** The location cannot be discarded from play by player card effects (The Antlered Crown's Nightmare setup card). */
+  playerDiscardBlocked?(s: GameState, u: Unit): boolean;
   /**
    * The quest cards a random stage is drawn from, in place of the printed
    * ones (The Nîn-in-Eilph's Nightmare Deck replaces a stage 2 and a stage 3).

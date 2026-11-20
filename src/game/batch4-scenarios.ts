@@ -102,6 +102,7 @@ import { NIGHTMARE_TRIALS_HOOKS } from "./nightmare-trials";
 import { NIGHTMARE_THARBAD_HOOKS } from "./nightmare-tharbad";
 import { NIGHTMARE_NIN_HOOKS } from "./nightmare-nin";
 import { NIGHTMARE_CELEB_HOOKS } from "./nightmare-celeb";
+import { NIGHTMARE_CROWN_HOOKS } from "./nightmare-crown";
 import { nightmareLive } from "./nightmare";
 
 const empty: Batch4ScenarioHooks = {};
@@ -153,6 +154,7 @@ const NIGHTMARE_LAYERS: Partial<Record<string, Batch4ScenarioHooks>> = {
   "trouble-in-tharbad": NIGHTMARE_THARBAD_HOOKS,
   "the-nin-in-eilph": NIGHTMARE_NIN_HOOKS,
   "celebrimbors-secret": NIGHTMARE_CELEB_HOOKS,
+  "the-antlered-crown": NIGHTMARE_CROWN_HOOKS,
 };
 /**
  * The current scenario's hooks; in an Ered Mithrin campaign chapter from The
@@ -343,6 +345,7 @@ export const batch4SharedEffect = (effect: Effect) =>
     NIGHTMARE_THARBAD_HOOKS,
     NIGHTMARE_NIN_HOOKS,
     NIGHTMARE_CELEB_HOOKS,
+    NIGHTMARE_CROWN_HOOKS,
     BLACK_SERPENT_HOOKS,
     CIRITH_GURAT_HOOKS,
     CROSSINGS_POROS_HOOKS,

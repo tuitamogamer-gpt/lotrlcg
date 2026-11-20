@@ -41,6 +41,7 @@ import {
 import { currentQuestCode, mainQuestUnit } from "./quest-state";
 import { heirsEnemyEntered, heirsShadowDealt } from "./heirs-numenor";
 import { hasSilverLamp } from "./voice-isengard";
+import { batch4Scenario } from "./batch4-scenarios";
 import {
   ANTLERED as A,
   RAVEN_CODES,
@@ -50,14 +51,18 @@ const locations = (s: GameState) =>
   [...s.staging, ...allActiveLocations(s)].filter(
     (u) => card(u.code).type_code === "location",
   );
+/** The Raven deck's cards: the Dunlending Warriors and a Nightmare Deck's. */
+const ravenCodes = (s: GameState) => [
+  ...RAVEN_CODES,
+  ...(batch4Scenario(s).secondDeckCodes?.(s) ?? []),
+];
 export function antleredRoutePiles(s: GameState) {
   const q = s.antlered;
   if (!q) return;
-  const routed = s.encounterDiscard.filter((c) => RAVEN_CODES.includes(c));
+  const raven = ravenCodes(s);
+  const routed = s.encounterDiscard.filter((c) => raven.includes(c));
   if (routed.length) {
-    s.encounterDiscard = s.encounterDiscard.filter(
-      (c) => !RAVEN_CODES.includes(c),
-    );
+    s.encounterDiscard = s.encounterDiscard.filter((c) => !raven.includes(c));
     q.ravenDiscard.push(...routed);
   }
   if (!q.ravenDeck.length && q.ravenDiscard.length) {
@@ -73,16 +78,17 @@ export function ravenDraw(s: GameState) {
 }
 export function setupAntlered(s: GameState) {
   const fixed = [A.turch, A.chief, A.camp];
+  const raven = ravenCodes(s);
   s.antlered = {
     initialized: false,
     time: 0,
-    ravenDeck: s.encounterDeck.filter((c) => RAVEN_CODES.includes(c)),
+    ravenDeck: s.encounterDeck.filter((c) => raven.includes(c)),
     ravenDiscard: [],
     setAside: [make(s, A.chief), make(s, A.camp)],
     setupEnemies: [],
   };
   s.encounterDeck = s.encounterDeck.filter(
-    (c) => !fixed.includes(c) && !RAVEN_CODES.includes(c),
+    (c) => !fixed.includes(c) && !raven.includes(c),
   );
 }
 export function antleredOpeningHandsKept(s: GameState) {

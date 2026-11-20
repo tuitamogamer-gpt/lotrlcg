@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2641,
+    "encounterCards": 2649,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3863,
-    "pending": 320
+    "scripted": 3871,
+    "pending": 312
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 311
+    "scripted": 312
   },
   "registeredCodes": [
     "01001",
@@ -1395,6 +1395,7 @@
     "octgn:11e8544f-fe65-4365-8f51-10a3ef267dc8",
     "octgn:1208f735-6984-4c4d-ab8c-429664e4e060",
     "octgn:123bc772-2c27-4f26-a7f2-a3c4928a9dc4",
+    "octgn:12429164-0155-45e4-aa1c-e94292084bdf",
     "octgn:125e7884-7f75-42cd-80ba-065cf88eef9a",
     "octgn:12a9c24d-c09d-4fd8-a746-4d75d30b7548",
     "octgn:12da9483-0fce-43c6-ae47-4cc2aea9cde9",
@@ -1725,6 +1726,7 @@
     "octgn:3371c102-4aab-4b15-a738-a4b3483a6004",
     "octgn:337906ff-c49f-4768-ad9f-57561a4c1eb1",
     "octgn:3385b644-5fd6-4473-9fec-45d7262f5824",
+    "octgn:33a1b9de-6b17-49f8-8eb3-7dd98feaf1cb",
     "octgn:33a575b4-e373-46db-b11e-90f8fc41ef6e",
     "octgn:33c87224-ad8d-41a0-b08a-931e9205609b",
     "octgn:33ed5e88-f3ba-4970-9e4a-fbb8c2a6d959",
@@ -1771,6 +1773,7 @@
     "octgn:379415fb-39c8-4cb8-aa19-ac54c46bcb4a",
     "octgn:37f0bdca-11d8-40ba-97cd-bbe2b8190cd5",
     "octgn:37f205e5-5144-4987-8764-46909460797b",
+    "octgn:381569ad-e2bf-4fb5-a045-a36b918deac4",
     "octgn:3820df8d-531b-4c37-815d-536f645bb289",
     "octgn:38632ac4-e8c7-4d1e-819a-d16b3522915a",
     "octgn:38853a8e-09c2-44f8-a76e-62aac1809d18",
@@ -2400,6 +2403,7 @@
     "octgn:55c8245d-e0f3-4d11-90f5-617caf78f079",
     "octgn:55d05b39-c993-45bb-874c-3eacbcf49278",
     "octgn:55d8f78d-2dd7-4b44-80db-fb539ff05f00",
+    "octgn:56243a40-0019-406a-b502-34dd17d8b6cf",
     "octgn:5642b7b9-b194-46e3-bf69-7aa7ec9efc62",
     "octgn:56634de4-2ef2-4739-b549-fa591e7032eb",
     "octgn:5666ae7f-838c-4f18-ad78-c40302c444e6",
@@ -2459,6 +2463,7 @@
     "octgn:5c31f690-9802-4638-8316-5380ef32575b",
     "octgn:5c4188a5-5767-4c8c-8dfd-0b3f7c55e4a1",
     "octgn:5c4fb1ac-a989-463d-a622-367882c56d4e",
+    "octgn:5c525922-8f10-4793-b7c8-3fec9b3ce3f6",
     "octgn:5c5ce14a-332a-40fe-8f55-cfa2f53e8592",
     "octgn:5ce0a255-9914-4a4f-9630-d1fe8e00bbc0",
     "octgn:5ce149ca-3cca-41ce-9756-bf137d910966",
@@ -2754,6 +2759,7 @@
     "octgn:7edae662-fc3f-40b3-868b-e5a43dbd0670",
     "octgn:7f03acd1-41d0-44db-9903-c6030e1548a1",
     "octgn:7f0e7969-bca4-48a3-99b5-ba055bd376af",
+    "octgn:7f16112f-596c-43aa-b73e-3870f0325d66",
     "octgn:7f458303-66c1-45db-bf3f-20669fea6ff4",
     "octgn:7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3",
     "octgn:7f9cf578-980e-43af-995f-27a84fd54a01",
@@ -3398,6 +3404,7 @@
     "octgn:be43a52a-370a-4481-bc84-8e004ecbfdca",
     "octgn:be6cf29d-bb8b-494a-9635-85ee9322a690",
     "octgn:be784402-7f83-43aa-9e77-c2aac8dd3526",
+    "octgn:be9453b3-7576-4893-88d5-d62f0331411e",
     "octgn:bececd5f-87dd-4141-8ecf-69e43ecc0ff4",
     "octgn:beedf6c6-6214-47d8-bd82-81280543b141",
     "octgn:befbd3c9-45b3-4e68-b19e-5981a6571835",
@@ -3827,6 +3834,7 @@
     "octgn:ece25a80-d4c6-4032-90eb-ca485da5373d",
     "octgn:ed12d29f-d8f8-4689-8097-417b4d31f214",
     "octgn:ed3c4835-2741-406c-b43e-0ad72f6b2496",
+    "octgn:ed458b9f-c913-4cb6-9f47-7760bba94c5b",
     "octgn:ed68974c-45ea-4378-9fe3-818cae03f9ea",
     "octgn:ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d",
     "octgn:edae55ef-8025-4553-9ff8-e81526effd59",
@@ -4450,7 +4458,7 @@
     {
       "product": "the-antlered-crown-nightmare",
       "total": 8,
-      "scripted": 0,
+      "scripted": 8,
       "player": 0,
       "playerScripted": 0
     },
@@ -15186,7 +15194,7 @@
       "name": "Gathering Forces",
       "type": "treachery",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown-nightmare"
     },
     {
@@ -18082,7 +18090,7 @@
       "name": "Raven Clan Druid",
       "type": "enemy",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown-nightmare"
     },
     {
@@ -18538,7 +18546,7 @@
       "name": "Raven Clan Elite",
       "type": "enemy",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown-nightmare"
     },
     {
@@ -23850,7 +23858,7 @@
       "name": "Dunlending Horde",
       "type": "enemy",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown-nightmare"
     },
     {
@@ -24338,7 +24346,7 @@
       "name": "Raven Stronghold",
       "type": "location",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown-nightmare"
     },
     {
@@ -27058,7 +27066,7 @@
       "name": "Raven Talisman",
       "type": "treachery",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown-nightmare"
     },
     {
@@ -32762,7 +32770,7 @@
       "name": "Highlands of Dunland",
       "type": "location",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown-nightmare"
     },
     {
@@ -36626,7 +36634,7 @@
       "name": "The Antlered Crown",
       "type": "nightmare",
       "pack": "Ringmaker - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown-nightmare"
     },
     {
@@ -39641,8 +39649,8 @@
       "id": "N04.9",
       "name": "The Antlered Crown (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-antlered-crown",
+      "state": "scripted"
     },
     {
       "id": "N05.1",

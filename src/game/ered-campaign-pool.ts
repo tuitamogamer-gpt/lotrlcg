@@ -3019,6 +3019,12 @@ export function composeEredPool(
       h.locationDamaged?.(s, u, amount);
       p.locationDamaged?.(s, u, amount);
     },
+    secondDeckCodes: (s) => [
+      ...(h.secondDeckCodes?.(s) ?? []),
+      ...(p.secondDeckCodes?.(s) ?? []),
+    ],
+    playerDiscardBlocked: (s, u) =>
+      !!h.playerDiscardBlocked?.(s, u) || !!p.playerDiscardBlocked?.(s, u),
     stageCandidates: (s, stage, printed) =>
       p.stageCandidates?.(s, stage, printed) ??
       h.stageCandidates?.(s, stage, printed),

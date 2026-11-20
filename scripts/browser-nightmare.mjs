@@ -2657,6 +2657,80 @@ try {
       );
     }
     await checkpoint("celeb-dusty-labyrinth", width);
+
+    // The Antlered Crown in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-the-antlered-crown").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "the-antlered-crown");
+    assert.equal(s.nightmareMode, true);
+    assert.ok(
+      s.staging.some((u) => card(u.code)?.name === "Raven War-camp") &&
+        !!s.activeLocation &&
+        card(s.activeLocation.code).name === "Dunland Battlefield",
+      "the scenario's setup",
+    );
+    assert.equal(
+      s.antlered.ravenDeck.filter((c) => c === RM.horde).length +
+        s.staging.filter((u) => u.code === RM.horde).length,
+      2,
+      "Dunlending Horde joined the Raven deck",
+    );
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/locations with time counters cannot be discarded from play/)
+      .waitFor();
+    await checkpoint("crown-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A Raven Stronghold and a Highlands of Dunland with time counters, and an engaged Dunlending Horde.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const stronghold = make(t, RM.stronghold);
+      stronghold.timeCounters = 3;
+      const highlands = make(t, RM.highlands);
+      highlands.timeCounters = 2;
+      t.staging = [...t.staging, stronghold, highlands];
+      t.engaged = [...t.engaged, make(t, RM.horde)];
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [RM.stronghold, "Raven Stronghold"],
+      [RM.highlands, "Highlands of Dunland"],
+      [RM.horde, "Dunlending Horde"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    await checkpoint("crown-raven-stronghold", width);
     await view.c.close();
   }
   const p = await browser.newPage();

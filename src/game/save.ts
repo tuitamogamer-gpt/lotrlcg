@@ -157,6 +157,7 @@ import {
   celebNightmareLocations,
   validNightmareCeleb,
 } from "./nightmare-celeb";
+import { crownNightmareRaven, validNightmareCrown } from "./nightmare-crown";
 import { nightmareEscapeTest } from "./nightmare-dead";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
@@ -698,6 +699,7 @@ export function validateSave(
         c.nmClearOnKill,
         c.nmEngageCarrier,
         c.nmHandDiscardOnKill,
+        c.nmHandRefillOnKill,
       ].every((v) => v === undefined || (integer(v) && v >= 0)) &&
       (c.dreadKilled === undefined ||
         (Array.isArray(c.dreadKilled) &&
@@ -1221,6 +1223,7 @@ export function validateSave(
         !validNightmareTharbad(s) ||
         !validNightmareNin(s) ||
         !validNightmareCeleb(s) ||
+        !validNightmareCrown(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,
@@ -1261,7 +1264,11 @@ export function validateSave(
           validUnit as (u: unknown) => boolean,
           celebNightmareLocations(s),
         ) ||
-        !validateAntlered(s, validUnit as (u: unknown) => boolean) ||
+        !validateAntlered(
+          s,
+          validUnit as (u: unknown) => boolean,
+          crownNightmareRaven(s),
+        ) ||
         !validateWeather(s, validUnit as (u: unknown) => boolean) ||
         !validateDeadmensDike(s, validUnit as (u: unknown) => boolean) ||
         !validateWastes(s, validUnit as (u: unknown) => boolean) ||

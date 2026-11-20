@@ -604,7 +604,8 @@ export interface GameState {
     import("./nightmare-trials").NightmareTrialsState &
     import("./nightmare-tharbad").NightmareTharbadState &
     import("./nightmare-nin").NightmareNinState &
-    import("./nightmare-celeb").NightmareCelebState;
+    import("./nightmare-celeb").NightmareCelebState &
+    import("./nightmare-crown").NightmareCrownState;
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;
@@ -1256,6 +1257,8 @@ export interface GameState {
     nmEngageCarrier?: number;
     /** Boar Clan Ambusher and its shadow (The Dunland Trap's Nightmare Deck): random hand discards if this attack destroys a character. */
     nmHandDiscardOnKill?: number;
+    /** Raven Talisman's shadow (The Antlered Crown's Nightmare Deck): the defending player discards their hand and draws 3 cards if this attack destroys a character. */
+    nmHandRefillOnKill?: number;
     defenderIds?: string[];
     ignoreDefense?: boolean;
     returnToStaging?: boolean;
