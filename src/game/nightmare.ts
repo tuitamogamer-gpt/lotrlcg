@@ -204,6 +204,20 @@ export const NIGHTMARE_DD = {
   fiery: "octgn:ed12d29f-d8f8-4689-8097-417b4d31f214",
   stairs: "octgn:ce3322ab-b890-40e0-852a-a4638796a122",
 } as const;
+/** The Against the Shadow Nightmare Deck's cards (OCTGN ids, as DragnCards keeps them). */
+export const NIGHTMARE_AS = {
+  /** The Steward's Fear's setup card and Nightmare Deck. */
+  stewardCard: "octgn:3342238a-2680-4044-822e-39a7d3d767b3",
+  rise: "octgn:bb102bb7-e667-444c-b036-a65015452060",
+  assassination: "octgn:1fe22408-2fbc-40f8-a88c-980ab90137d8",
+  turncoat: "octgn:bbbad333-b966-4826-b98d-1a9e8b6a1c45",
+  conspirator: "octgn:1c446c6e-5665-446a-80f1-68cceaed05eb",
+  den: "octgn:eb4d41de-acaf-4cca-813b-3f1465cb5d4f",
+  rath: "octgn:045cf035-2ebf-4ebf-a7a3-7d44d3f9b2dc",
+  tunnel: "octgn:fc351158-b618-41f2-8ba0-a3ab18eb7dd3",
+  accusations: "octgn:f0eb44aa-e060-4d5d-b66b-39bd1f0801d7",
+  champion: "octgn:58aa1ac7-961f-4a44-ad11-7613d87d4eab",
+} as const;
 /** The Heirs of Númenor Nightmare Deck's cards (OCTGN ids, as DragnCards keeps them). */
 export const NIGHTMARE_HON = {
   /** Peril in Pelargir's setup card and Nightmare Deck. */
@@ -539,6 +553,17 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Scourge of Mordor": 2,
     },
   },
+  "the-stewards-fear": {
+    card: NIGHTMARE_AS.stewardCard,
+    // Its setup card's front is the Nightmare Deck's introduction: the
+    // removals follow the source recipes (Q03.4 to N03.4).
+    removals: {
+      "Underworld Dissident": 3,
+      Storehouse: 2,
+      "Market Square": 2,
+      Pickpocket: 3,
+    },
+  },
   "watcher-in-the-water": {
     card: NIGHTMARE_DD.watcherCard,
     removals: {
@@ -772,6 +797,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "siege-of-cair-andros")
     return [
       "The Siege of Cair Andros · Nightmare mode: player cards in the victory display contribute no victory points. Besieged Courtyard, Walls of Cair Andros and Anduin Wharf are discarded at 5, 4 and 6 damage, with their effects.",
+    ];
+  if (s.scenarioId === "the-stewards-fear")
+    return [
+      `The Steward's Fear · Nightmare mode: False Accusations and Murderous Turncoat are in the underworld deck (${s.stewardFear?.underworldDeck.length ?? 0} cards); the hidden Plot was chosen among 5; a destroyed enemy is shuffled into the underworld deck before stage 3; a Clue in the staging area is shuffled back at the beginning of the refresh phase.`,
     ];
   if (s.scenarioId === "watcher-in-the-water")
     return [

@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2473,
+    "encounterCards": 2483,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3695,
-    "pending": 488
+    "scripted": 3705,
+    "pending": 478
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 291
+    "scripted": 292
   },
   "registeredCodes": [
     "01001",
@@ -1269,6 +1269,7 @@
     "octgn:03b6d303-7722-4319-9623-e182b50c90b2",
     "octgn:041e412b-4d21-421a-a029-e1fdcb62e76d",
     "octgn:044a7b39-8ef6-41c7-bb99-ce209f700b09",
+    "octgn:045cf035-2ebf-4ebf-a7a3-7d44d3f9b2dc",
     "octgn:047ca6cd-733d-46aa-b2db-48a9c63bfc24",
     "octgn:048b6a57-f577-4dbe-a090-6eca1f266767",
     "octgn:049758ee-7fb1-4978-9ed0-1b4de1d5ae14",
@@ -1462,6 +1463,7 @@
     "octgn:1bac61b0-ee27-43eb-bb39-85f64c6b4c94",
     "octgn:1c028523-9f37-4e16-83cf-c9ea1cfbc9d3",
     "octgn:1c240b63-841f-4b76-9808-13c0ee0f986e",
+    "octgn:1c446c6e-5665-446a-80f1-68cceaed05eb",
     "octgn:1c65b78b-6b68-458f-9510-a00a9576a042",
     "octgn:1c765fa8-9cb8-4cf4-8e93-daac5bae4fce",
     "octgn:1c95d49a-5638-4f31-a42f-f93a5d1f50db",
@@ -1489,6 +1491,7 @@
     "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
     "octgn:1fbeb20b-0018-4d18-ab53-66982543b04b",
     "octgn:1fdfdb77-31e0-458d-85d1-9c158f12717f",
+    "octgn:1fe22408-2fbc-40f8-a88c-980ab90137d8",
     "octgn:1ff3c8f4-e472-4c48-a1d4-5c239f5bb119",
     "octgn:200ec48a-dd14-41c4-994b-2f5b753f47de",
     "octgn:201569b2-d203-4a2a-b3e4-5dd396b8341a",
@@ -1686,6 +1689,7 @@
     "octgn:32db1af6-e214-4958-9ca4-bdf3a73758b5",
     "octgn:32deb3d1-afe3-4fbc-bd6c-30f139003cc7",
     "octgn:3309e01a-db7f-4754-bd41-21a0b4316415",
+    "octgn:3342238a-2680-4044-822e-39a7d3d767b3",
     "octgn:3360d53e-e01b-4d22-b2e3-4e1733a4896d",
     "octgn:3371c102-4aab-4b15-a738-a4b3483a6004",
     "octgn:3385b644-5fd6-4473-9fec-45d7262f5824",
@@ -2369,6 +2373,7 @@
     "octgn:5855e76e-e807-4a8c-9035-de7b9cb4366e",
     "octgn:58616050-8a7f-4a9b-a8dc-e0d09e383741",
     "octgn:586c2dcd-2157-455b-a195-b9452149427c",
+    "octgn:58aa1ac7-961f-4a44-ad11-7613d87d4eab",
     "octgn:58d90f80-eb1a-46d9-a5c1-2e7b8c5b8451",
     "octgn:58f1cb80-d8de-4f96-98d0-0fdf61988da3",
     "octgn:58f1cb80-d8de-4f96-98d0-0fdf61988da3:B",
@@ -3257,6 +3262,7 @@
     "octgn:ba77505a-1def-4537-a194-0b7482433a72",
     "octgn:babeedb8-f7cd-4e8a-a5c4-fbfdd57238fb",
     "octgn:baf3e642-1f90-4db5-ac10-c8f4c5300f25",
+    "octgn:bb102bb7-e667-444c-b036-a65015452060",
     "octgn:bb1652ba-37e4-4a59-a7c7-39f398c0ab19",
     "octgn:bb38c7cf-8c76-4b87-b218-5516bc366470",
     "octgn:bb58f446-da73-47e3-98e8-70f69ee77d34",
@@ -3264,6 +3270,7 @@
     "octgn:bb5d1d76-663f-4261-94ec-7a9bfc025acf",
     "octgn:bb6dd4a6-a72c-400a-9cc6-903d7260ea1b",
     "octgn:bb81a9e4-3458-4893-bb85-788ef3f02184",
+    "octgn:bbbad333-b966-4826-b98d-1a9e8b6a1c45",
     "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
     "octgn:bc041e0b-dd7f-4b82-8eb0-d155b1b08398",
     "octgn:bc43ae57-6010-4924-919c-b37d1e33b958",
@@ -3669,6 +3676,7 @@
     "octgn:eb2b84b4-40b3-4dda-bf87-4f59a78aa6b1:B",
     "octgn:eb353293-1a80-445c-b4a9-422c83dadfd5",
     "octgn:eb3b5fc0-02a5-4e28-8744-c1e1b4553763",
+    "octgn:eb4d41de-acaf-4cca-813b-3f1465cb5d4f",
     "octgn:eb9f723d-0f74-4d10-89e7-b046313a1e91",
     "octgn:ebbb49f0-4466-44e5-b157-968cd5e80b06",
     "octgn:ebd1944a-928c-40ff-88de-dfebdfcf633c",
@@ -3722,6 +3730,7 @@
     "octgn:f079c496-20bf-4ce4-a5ca-d644172d83fe",
     "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
     "octgn:f0d30258-7122-4004-a689-9ff50a00b3af:B",
+    "octgn:f0eb44aa-e060-4d5d-b66b-39bd1f0801d7",
     "octgn:f13a2e94-0ece-45c3-a7ce-0248f9ff92b3",
     "octgn:f16aabcd-6a98-4e4a-89ca-0f0d69407d85",
     "octgn:f16bf495-bb88-4c5e-9a3f-5ba2d8bb916a",
@@ -3826,6 +3835,7 @@
     "octgn:fbff9077-b7c2-4670-92ea-8ebaed5fc477",
     "octgn:fc145eae-9671-4697-8d28-473f3b138295",
     "octgn:fc2ed0de-aba1-49ad-94b3-94024116eeeb",
+    "octgn:fc351158-b618-41f2-8ba0-a3ab18eb7dd3",
     "octgn:fc351b81-fc50-40a5-9f94-7ab885cb7a8c",
     "octgn:fc3ec643-ec75-4d49-beca-57f11d6b641a",
     "octgn:fc45fcc9-65b1-4c1f-ac9a-e392d86d93fd",
@@ -4702,7 +4712,7 @@
     {
       "product": "the-steward-s-fear-nightmare",
       "total": 10,
-      "scripted": 0,
+      "scripted": 10,
       "player": 0,
       "playerScripted": 0
     },
@@ -13946,7 +13956,7 @@
       "name": "Rath Celerdain",
       "type": "location",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear-nightmare"
     },
     {
@@ -15754,7 +15764,7 @@
       "name": "Faithless Conspirator",
       "type": "enemy",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear-nightmare"
     },
     {
@@ -16026,7 +16036,7 @@
       "name": "Assassination",
       "type": "objective",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear-nightmare"
     },
     {
@@ -17874,7 +17884,7 @@
       "name": "The Steward's Fear",
       "type": "nightmare",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear-nightmare"
     },
     {
@@ -23906,7 +23916,7 @@
       "name": "The Cabals's Champion",
       "type": "objective",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear-nightmare"
     },
     {
@@ -32354,7 +32364,7 @@
       "name": "Rise To Power",
       "type": "objective",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear-nightmare"
     },
     {
@@ -32418,7 +32428,7 @@
       "name": "Murderous Turncoat",
       "type": "enemy",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear-nightmare"
     },
     {
@@ -36290,7 +36300,7 @@
       "name": "Traitors' Den",
       "type": "location",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear-nightmare"
     },
     {
@@ -36794,7 +36804,7 @@
       "name": "False Accusations",
       "type": "treachery",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear-nightmare"
     },
     {
@@ -37818,7 +37828,7 @@
       "name": "Arched Tunnel",
       "type": "location",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear-nightmare"
     },
     {
@@ -39375,8 +39385,8 @@
       "id": "N03.4",
       "name": "The Steward's Fear (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-stewards-fear",
+      "state": "scripted"
     },
     {
       "id": "N03.5",

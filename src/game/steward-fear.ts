@@ -848,17 +848,27 @@ export function handleStewardFearEffect(s: GameState, e: Effect): boolean {
       discardPlayerDeck(s, e.count ?? 0);
       stewardFearCheck(s);
       break;
-    case "stewardKnife":
+    case "stewardKnife": {
+      // Assassination (the Nightmare Deck): "Damage from ... A Knife in the
+      // Back must be assigned to attached hero."
+      const marked = s.nightmareMode
+        ? s.heroes.find(
+            (h) =>
+              h.id === s.nightmare?.assassinated &&
+              h.attachments.some((a) => card(a.code).name === "Assassination"),
+          )
+        : undefined;
       choose(
         s,
         "A Knife in the Back · Damage a hero",
-        opts(s.heroes, (h) => [
+        opts(marked ? [marked] : s.heroes, (h) => [
           fx("damage", { target: h.id, value: e.value }),
           fx("stewardKnifeDiscard", { target: e.target }),
         ]),
         `${u ? name(u) : "The randomly selected ally"} has ${e.value ?? 0} attack.`,
       );
       break;
+    }
     case "stewardKnifeDiscard":
       if (u && s.allies.some((a) => a.id === u.id)) discardCharacter(s, u);
       else prepend(s, ...surgeEffects(S.knife));

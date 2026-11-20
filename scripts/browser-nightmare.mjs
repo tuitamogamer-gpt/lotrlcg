@@ -10,6 +10,7 @@ import {
   NIGHTMARE_CORE as N,
   NIGHTMARE_DD as DW,
   NIGHTMARE_HON as HON,
+  NIGHTMARE_AS as AS,
   NIGHTMARE_KD as K,
   NIGHTMARE_SOM as G,
 } from "../src/game/nightmare.ts";
@@ -1492,6 +1493,73 @@ try {
       )
       .waitFor();
     await checkpoint("siege-besieged-courtyard", width);
+    // The Steward's Fear in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-the-stewards-fear").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "the-stewards-fear");
+    assert.equal(s.nightmareMode, true);
+    {
+      const q = s.stewardFear;
+      const under = [
+        ...q.underworldDeck,
+        ...Object.values(q.underneath).flat(),
+      ];
+      assert.equal(
+        under.filter((c) => c === AS.turncoat || c === AS.accusations).length,
+        5,
+        "Murderous Turncoat and False Accusations in the underworld deck",
+      );
+    }
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/hidden Plot was chosen among 5/)
+      .waitFor();
+    await checkpoint("steward-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // Rise to Power in the staging area with 2 resources.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const q = t.stewardFear;
+      if (q.hiddenPlot === AS.rise) delete q.hiddenPlot;
+      q.removedHidden = q.removedHidden.filter((c) => c !== AS.rise);
+      const rise = make(t, AS.rise);
+      rise.resources = 2;
+      t.staging = [...t.staging, rise];
+      s = await load(page, t);
+    }
+    const riseFace = page
+      .locator(`img[src*="${AS.rise.slice("octgn:".length)}"]`)
+      .first();
+    await riseFace.waitFor();
+    assert.ok(
+      (await riseFace.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "Rise to Power's face loads",
+    );
+    await checkpoint("steward-rise-to-power", width);
     await view.c.close();
   }
   const p = await browser.newPage();

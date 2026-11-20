@@ -1,6 +1,6 @@
 # The Steward’s Fear: original and easy scripted adventure
 
-The complete original and easy recipes use the 18 encounter designs and three quest designs from The Steward’s Fear, the five shared Streets of Gondor designs, and the four shared Brigands designs implemented by the Heirs of Númenor module. Original/easy recipe quantities remain 51/45 cards before setup separates the hidden pools. Nightmare content is outside these recipes.
+The complete original and easy recipes use the 18 encounter designs and three quest designs from The Steward’s Fear, the five shared Streets of Gondor designs, and the four shared Brigands designs implemented by the Heirs of Númenor module. Original/easy recipe quantities remain 51/45 cards before setup separates the hidden pools. Its Nightmare Deck is supported (docs/NIGHTMARE.md): its cards join the hidden pools (two Plots, the underworld deck's Murderous Turncoat and False Accusations), and the scenario's save checks accept them, the destroyed enemies its setup card returns to the underworld deck, and its locations' facedown cards; A Knife in the Back's damage goes to the hero Assassination marks.
 
 The printed definitions are preserved in the dedicated data files. The scenario handlers, shared Streets handlers, and pure save validator live in `steward-fear.ts` and `steward-fear-support.ts`. Registry and framework integrations expose the adventure through the normal game controls.
 

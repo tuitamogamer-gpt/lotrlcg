@@ -50,6 +50,7 @@ import {
   NIGHTMARE_KD,
   NIGHTMARE_DD,
   NIGHTMARE_HON,
+  NIGHTMARE_AS,
   NIGHTMARE_SOM,
   nightmareCardOf,
   nightmareLive,
@@ -131,6 +132,42 @@ export function nightmareSetup(s: GameState) {
     log(
       s,
       "Conflict at the Carrock · Nightmare: Rob & Bob, Louis, Morris, Rupert and Stuart are set aside.",
+    );
+  }
+  // The Steward's Fear: "Setup: Shuffle each copy of False Accusations into
+  // the underworld deck. When randomly determining which Plot is the
+  // "hidden" plot card, include the 2 new Plot cards from this Nightmare
+  // Deck, as well as the 3 Plot cards from the original scenario."
+  // Murderous Turncoat carries the Brigands icon and joins the underworld
+  // deck as the scenario's Brigand enemies do; The Fourth Star's facedown
+  // cards are dealt again from the full underworld deck.
+  if (s.scenarioId === "the-stewards-fear" && s.stewardFear) {
+    const q = s.stewardFear;
+    const plot = (c: string) => traitOf(c, "Plot");
+    const turncoat = NIGHTMARE_AS.turncoat,
+      accusations = NIGHTMARE_AS.accusations;
+    const under = s.encounterDeck.filter(
+      (c) => c === turncoat || c === accusations,
+    );
+    const plots = s.encounterDeck.filter(plot);
+    s.encounterDeck = s.encounterDeck.filter(
+      (c) => c !== turncoat && c !== accusations && !plot(c),
+    );
+    const star = s.activeLocation;
+    const held = star ? (q.underneath[star.id] ?? []) : [];
+    q.underworldDeck = shuffle(s, [...q.underworldDeck, ...held, ...under]);
+    if (star && held.length)
+      q.underneath[star.id] = q.underworldDeck.splice(0, held.length);
+    const all = shuffle(s, [
+      ...(q.hiddenPlot ? [q.hiddenPlot] : []),
+      ...q.removedHidden.filter(plot),
+      ...plots,
+    ]);
+    q.hiddenPlot = all.shift();
+    q.removedHidden = [...q.removedHidden.filter((c) => !plot(c)), ...all];
+    log(
+      s,
+      `The Steward's Fear · Nightmare: False Accusations and Murderous Turncoat join the underworld deck (${q.underworldDeck.length} cards); the hidden Plot is one of ${all.length + 1}.`,
     );
   }
   // Into Ithilien: "Setup: Set both copies of Mûmak Elite aside, out of
