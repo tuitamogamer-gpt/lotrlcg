@@ -50,6 +50,7 @@ import { canLeaveHand } from "./hand-rules";
 import { khazadCannotExhaust } from "./khazad-dum";
 import { watcherWaterCannotExhaust } from "./watcher-water";
 import { CATCH_ORC as C } from "./catch-orc-support";
+import { batch4Scenario } from "./batch4-scenarios";
 
 const liveEnemies = (s: GameState) =>
   [...s.staging, ...allEngaged(s)].filter(
@@ -309,6 +310,8 @@ export function catchEffect(s: GameState, e: Effect): boolean {
         ...players.map((player) =>
           fx("catchLocationSearch", { flag: true, player }),
         ),
+        // A Nightmare setup card's setup rule follows the scenario's own.
+        ...(batch4Scenario(s).setupFollowUp?.(s) ?? []),
         fx("catchStageTwo", { player: firstPlayer(s) }),
       );
       log(
@@ -379,8 +382,11 @@ export function catchEffect(s: GameState, e: Effect): boolean {
     case "catchSearchChoose":
       if (!q) break;
       if (e.flag || !q.searched.length) {
+        const discarded = q.searched.length;
         for (const u of q.searched) discardSearched(s, u, activeSeat(s));
         q.searched = [];
+        if (discarded)
+          batch4Scenario(s).outOfPlayDiscarded?.(s, activeSeat(s), discarded);
       } else
         choose(
           s,
@@ -390,13 +396,34 @@ export function catchEffect(s: GameState, e: Effect): boolean {
       break;
     case "catchSearchTake":
       if (q) {
+        const discarded = q.searched.filter((u) => u.id !== e.target).length;
         for (const u of q.searched) {
           if (u.id === e.target) s.hand.push(u);
           else discardSearched(s, u, activeSeat(s));
         }
         q.searched = [];
+        if (discarded)
+          batch4Scenario(s).outOfPlayDiscarded?.(s, activeSeat(s), discarded);
       }
       break;
+    // Discard the top cards of the active player's out-of-play deck; each
+    // enemy discarded this way is added to the staging area (a Nightmare
+    // card's effect).
+    case "catchDiscardTop": {
+      if (!q) break;
+      const player = activeSeat(s),
+        found = (q.decks[player] ?? []).splice(0, e.value ?? 0);
+      for (const u of found)
+        if (card(u.code).type_code === "enemy") addHiddenEnemy(s, u);
+        else discardSearched(s, u, player);
+      log(
+        s,
+        `${found.length} card${found.length === 1 ? " is" : "s are"} discarded from player ${player + 1}'s out-of-play deck.`,
+      );
+      if (found.length)
+        batch4Scenario(s).outOfPlayDiscarded?.(s, player, found.length);
+      break;
+    }
     case "catchQuestResponse": {
       if (
         !q ||
@@ -452,6 +479,8 @@ export function catchEffect(s: GameState, e: Effect): boolean {
           "The Wizard's Prize · Capture Mugash and return to Isengard.",
           "chapter",
         );
+        // A Nightmare setup card's "When the players advance to stage 3A".
+        batch4Scenario(s).stageRevealed?.(s, 3);
       }
       break;
     case "catchQuestProgressDone":

@@ -27,6 +27,11 @@ export const CATCH_ORC = {
   lands: code("Broken Lands"),
   cover: code("Take Cover!"),
 };
+/** The Nightmare Deck's cards that join the out-of-play decks or wait set aside. */
+export const CATCH_ORC_NIGHTMARE = {
+  vigilant: "octgn:5e24cde4-29e5-4f8f-82c5-67f96f9c3283",
+  rage: "octgn:fcf26273-b39d-413c-aece-0c007888e527",
+} as const;
 export interface CatchOrcState {
   initialized: boolean;
   time: number;
@@ -62,6 +67,12 @@ export function validateCatchOrcState(
     return false;
   const count = s.table?.seats.length ?? 1;
   const playerCard = (u: Unit) => validUnit(u) && isPlayerCard(u.code);
+  // Nightmare mode: a Vigilant Orc joins each out-of-play deck.
+  const hidden: string[] = [
+    CATCH_ORC.mugash,
+    CATCH_ORC.guard,
+    ...(s.nightmareMode ? [CATCH_ORC_NIGHTMARE.vigilant] : []),
+  ];
   if (
     Object.entries(q.decks).some(
       ([p, cards]) =>
@@ -70,20 +81,14 @@ export function validateCatchOrcState(
         !Array.isArray(cards) ||
         (s.table?.seats[+p]?.eliminated && cards.length > 0) ||
         cards.some(
-          (u) =>
-            !validUnit(u) ||
-            (!playerCard(u) &&
-              ![CATCH_ORC.mugash, CATCH_ORC.guard].includes(u.code)),
+          (u) => !validUnit(u) || (!playerCard(u) && !hidden.includes(u.code)),
         ),
     )
   )
     return false;
   if (
     q.searched.some((u) => !playerCard(u)) ||
-    q.setAside.some(
-      (u) =>
-        !validUnit(u) || ![CATCH_ORC.mugash, CATCH_ORC.guard].includes(u.code),
-    ) ||
+    q.setAside.some((u) => !validUnit(u) || !hidden.includes(u.code)) ||
     (q.capturing &&
       (!validUnit(q.capturing) || q.capturing.code !== CATCH_ORC.mugash))
   )

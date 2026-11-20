@@ -101,12 +101,13 @@ test("Catch imports all 17 designs and exact 37/31 normal/easy quantities with o
     automatedScenarioId({ name: "To Catch an Orc", mode: "standard" }),
     "to-catch-an-orc",
   );
+  // Its Nightmare recipe plays through the Nightmare layer (tests/nightmare-catch.test.ts).
   assert.equal(
     automatedScenarioId({
       name: "To Catch an Orc (Nightmare)",
       mode: "nightmare",
     }),
-    null,
+    "to-catch-an-orc",
   );
 });
 for (const players of [1, 2, 3, 4])

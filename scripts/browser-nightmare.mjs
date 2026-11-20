@@ -2231,6 +2231,62 @@ try {
       "Dunland Assassin's face loads",
     );
     await checkpoint("fords-dunland-assassin", width);
+
+    // To Catch an Orc in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-to-catch-an-orc").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "to-catch-an-orc");
+    assert.equal(s.nightmareMode, true);
+    assert.equal(
+      s.catchOrc.decks[0].filter((u) => u.code === VOI.vigilant).length,
+      1,
+      "a Vigilant Orc hides in the out-of-play deck",
+    );
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/shuffled a Vigilant Orc into their out-of-play deck/)
+      .waitFor();
+    await checkpoint("catch-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A Methedras Lookout beside a Methedras Peak in the staging area.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.staging = [...t.staging, make(t, VOI.lookout), make(t, VOI.peak)];
+      s = await load(page, t);
+    }
+    const lookoutFace = page
+      .locator(`img[src*="${VOI.lookout.slice("octgn:".length)}"]`)
+      .first();
+    await lookoutFace.waitFor();
+    assert.ok(
+      (await lookoutFace.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "Methedras Lookout's face loads",
+    );
+    await checkpoint("catch-methedras-lookout", width);
     await view.c.close();
   }
   const p = await browser.newPage();

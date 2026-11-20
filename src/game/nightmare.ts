@@ -337,6 +337,16 @@ export const NIGHTMARE_VOI = {
   eastern: "octgn:6a768da7-6c40-4002-ad01-e405edd4f286",
   isenRiver: "octgn:d26e6602-0c2d-440e-8065-10cfa89687c1",
   brutal: "octgn:1e392c0d-2fc3-4d57-8209-3a5e64292f3d",
+  /** To Catch an Orc's setup card and Nightmare Deck (a Vigilant Orc in each out-of-play deck; Mugash's Rage waits for stage 3A). */
+  catchCard: "octgn:aae56769-69c1-4693-bcbe-dcd282c29568",
+  vigilant: "octgn:5e24cde4-29e5-4f8f-82c5-67f96f9c3283",
+  lookout: "octgn:20a4504c-13c1-4129-b04e-2025a0a180ff",
+  guardWarg: "octgn:2f273bdf-2c16-43e6-8845-5899cac1e3ab",
+  peak: "octgn:8a2a900e-3e98-4724-9350-93afa955016a",
+  trail: "octgn:50f22268-96bd-441f-bfab-b11f9e3c0f21",
+  cunning: "octgn:4a9980e2-9b62-4658-8128-3493060a0f92",
+  patrolling: "octgn:69a5def2-08da-498c-83d6-406ecbd6bc04",
+  rage: "octgn:fcf26273-b39d-413c-aece-0c007888e527",
 } as const;
 /** Over the Misty Mountains Grim's Nightmare cards with The Great Goblin's encounter set icon: they join the second (Goblin) encounter deck. */
 export const NIGHTMARE_OMM_GOBLIN_DECK: readonly string[] = [
@@ -791,6 +801,18 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "The King's Road": 2,
     },
   },
+  "to-catch-an-orc": {
+    card: NIGHTMARE_VOI.catchCard,
+    removals: {
+      "Methedras Orc": 1,
+      "Orc Skirmisher": 1,
+      "Orc Hunter": 1,
+      "Prowling Wolf": 3,
+      Methedras: 2,
+      "Orc Cave": 1,
+      "Orc Hunting Party": 2,
+    },
+  },
   "the-battle-of-five-armies": {
     card: NIGHTMARE_OTD.bofaCard,
     removals: {
@@ -1141,6 +1163,15 @@ export function nightmareStatus(s: GameState): string[] {
     return [
       "The Fords of Isen · Nightmare mode: after the players advance to a new quest stage, each player with fewer than 3 cards in hand draws 3 cards.",
     ];
+  if (s.scenarioId === "to-catch-an-orc") {
+    const rage = s.nightmare?.catchRageAside ?? 0;
+    const vigilant = (s.catchOrc?.setAside ?? []).filter(
+      (u) => u.code === NIGHTMARE_VOI.vigilant,
+    ).length;
+    return [
+      `To Catch an Orc · Nightmare mode: each player shuffled a Vigilant Orc into their out-of-play deck (${vigilant} more set aside); ${rage ? `both copies of Mugash's Rage are set aside until the players advance to stage 3A` : "Mugash's Rage has joined the encounter deck"}.`,
+    ];
+  }
   if (s.scenarioId === "the-battle-of-five-armies") {
     const players = s.table?.seats.length ?? 1;
     const tokens = s.nightmare?.bofaProgress ?? 0;

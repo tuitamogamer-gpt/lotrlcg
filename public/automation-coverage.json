@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2582,
+    "encounterCards": 2591,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3804,
-    "pending": 379
+    "scripted": 3813,
+    "pending": 370
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 304
+    "scripted": 305
   },
   "registeredCodes": [
     "01001",
@@ -1517,6 +1517,7 @@
     "octgn:207b3e48-c42c-42a8-b1ac-20950e6588d9",
     "octgn:2087cb2d-ce6f-4d3a-befc-01859ec82e6c",
     "octgn:20a011e7-0153-45b1-9c6c-a68753683a79",
+    "octgn:20a4504c-13c1-4129-b04e-2025a0a180ff",
     "octgn:20c5f7b7-cfc4-44e1-aaf5-0010ceb9a1b9",
     "octgn:20e1ee03-f6c4-4b63-a816-4c9660e51eb0",
     "octgn:2108c366-c09a-4952-9920-398f8d84b5a9",
@@ -1670,6 +1671,7 @@
     "octgn:2e810a9b-5d79-4828-8268-33e82c5fc1fa",
     "octgn:2efa631a-eb16-4078-84a5-18c7033b86f3",
     "octgn:2f1ba4e7-ddc6-4d97-93d3-31907840aed0",
+    "octgn:2f273bdf-2c16-43e6-8845-5899cac1e3ab",
     "octgn:2f2e6076-2636-485b-874c-fd3bc4bcf5f0",
     "octgn:2f5221a8-8afd-48d8-afd3-352151d87ed6",
     "octgn:2f7770cd-3102-4f35-a3bc-bd9afcab8303",
@@ -1967,6 +1969,7 @@
     "octgn:4a5c11eb-44b8-4c6e-a9fa-83112dbd57c0",
     "octgn:4a6539aa-2404-430f-94ab-0f674d965adc",
     "octgn:4a6fe2e8-899b-4d4b-9b02-61516044fdc4",
+    "octgn:4a9980e2-9b62-4658-8128-3493060a0f92",
     "octgn:4abe9f52-1e56-479a-a59f-c3f7075ec493",
     "octgn:4ae7d13b-4b73-477b-ab71-5bd6bfc7b912",
     "octgn:4af27413-5674-4352-b54a-7f12c4fa0afc",
@@ -2024,6 +2027,7 @@
     "octgn:509f3e41-385c-4b84-ad28-7cc2eed8028c",
     "octgn:50dda27b-1bf7-43d4-a6e2-eced8d60515a",
     "octgn:50e62ade-1958-439d-9314-383d8621ecf5",
+    "octgn:50f22268-96bd-441f-bfab-b11f9e3c0f21",
     "octgn:50f294ff-ee4b-4685-b7e1-86cd7f2e0a59",
     "octgn:5100f009-8c78-4f2a-b77e-1bd9ccbfef77",
     "octgn:51124d05-205c-49e6-ad19-aa67185c8bdc",
@@ -2451,6 +2455,7 @@
     "octgn:5ddb243e-ee43-45fd-b4c2-2b197fdf70a9",
     "octgn:5df1bf1c-8dc0-4534-9380-6af6812dc6f8",
     "octgn:5e0ecd2d-d63e-4507-8707-641b974398ff",
+    "octgn:5e24cde4-29e5-4f8f-82c5-67f96f9c3283",
     "octgn:5e39ebfc-287a-49d5-9369-49dbfb0fd665",
     "octgn:5e7c36de-a2bb-44e3-951b-80123788d571",
     "octgn:5e8714e3-0581-4b6f-bf45-414098819626",
@@ -2533,6 +2538,7 @@
     "octgn:6950e7ae-27be-4def-954c-8dabe8dd612b",
     "octgn:6987d363-bcba-4f34-97b1-d26f080c843e",
     "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
+    "octgn:69a5def2-08da-498c-83d6-406ecbd6bc04",
     "octgn:69c3d8f9-750a-4903-be32-588898fd766e",
     "octgn:6a24a5e8-80e9-4bba-af55-64be11742dde",
     "octgn:6a24bcba-e069-4951-9cb1-59b48d291c74",
@@ -2837,6 +2843,7 @@
     "octgn:8a0a834b-d10c-43b1-a43c-75b459c18374",
     "octgn:8a0c8aef-d820-495f-b8f6-f2148f0786ba",
     "octgn:8a1e8a49-0af8-4990-9c47-955927ff09b7",
+    "octgn:8a2a900e-3e98-4724-9350-93afa955016a",
     "octgn:8a2cbffd-43f8-4a61-9ccd-cb07293eac5f",
     "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
     "octgn:8a4aebc3-32db-4b2f-965c-548058440a7c",
@@ -3126,6 +3133,7 @@
     "octgn:aaa16a82-e6b6-4563-a523-b8d61e40e273",
     "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
     "octgn:aac8023b-431b-4cfa-8f6e-659a4e8dd04e",
+    "octgn:aae56769-69c1-4693-bcbe-dcd282c29568",
     "octgn:ab2ac791-b266-43b2-b6ee-0d412a1100bc",
     "octgn:ab5fec4c-b353-47e5-ae47-db7daf7f9088",
     "octgn:ab7ef031-1d13-4623-a9c3-2f6e3ce15d38",
@@ -3946,6 +3954,7 @@
     "octgn:fca6840a-ae90-42c7-b0cb-79ef8c7de099",
     "octgn:fcb54294-8a36-4a51-bf1b-7d75ac1598e2",
     "octgn:fcc8ad22-ca1f-4fd1-8f84-4955bb683f50",
+    "octgn:fcf26273-b39d-413c-aece-0c007888e527",
     "octgn:fd00d162-0c0e-4ddb-b58d-653813396c52",
     "octgn:fd06cd6e-5741-4bd2-b50c-52052f973208",
     "octgn:fd1ed69d-287a-49bc-973c-93216ab4d674",
@@ -4888,7 +4897,7 @@
     {
       "product": "the-voice-of-isengard-nightmare",
       "total": 26,
-      "scripted": 8,
+      "scripted": 17,
       "player": 0,
       "playerScripted": 0
     },
@@ -16231,7 +16240,7 @@
       "name": "Methedras Lookout",
       "type": "enemy",
       "pack": "The Voice of Isengard - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard-nightmare"
     },
     {
@@ -17575,7 +17584,7 @@
       "name": "Guard Wolf",
       "type": "enemy",
       "pack": "The Voice of Isengard - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard-nightmare"
     },
     {
@@ -20303,7 +20312,7 @@
       "name": "Mugash's Cunning",
       "type": "treachery",
       "pack": "The Voice of Isengard - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard-nightmare"
     },
     {
@@ -20815,7 +20824,7 @@
       "name": "Orc Trail",
       "type": "location",
       "pack": "The Voice of Isengard - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard-nightmare"
     },
     {
@@ -24399,7 +24408,7 @@
       "name": "Vigilant Orc",
       "type": "enemy",
       "pack": "The Voice of Isengard - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard-nightmare"
     },
     {
@@ -25175,7 +25184,7 @@
       "name": "Patrolling Orcs",
       "type": "treachery",
       "pack": "The Voice of Isengard - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard-nightmare"
     },
     {
@@ -28015,7 +28024,7 @@
       "name": "Methedras Peak",
       "type": "location",
       "pack": "The Voice of Isengard - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard-nightmare"
     },
     {
@@ -30663,7 +30672,7 @@
       "name": "To Catch an Orc",
       "type": "nightmare",
       "pack": "The Voice of Isengard - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard-nightmare"
     },
     {
@@ -38031,7 +38040,7 @@
       "name": "Mugash's Rage",
       "type": "treachery",
       "pack": "The Voice of Isengard - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard-nightmare"
     },
     {
@@ -39533,8 +39542,8 @@
       "id": "N04.2",
       "name": "To Catch an Orc (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "to-catch-an-orc",
+      "state": "scripted"
     },
     {
       "id": "N04.3",

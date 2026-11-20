@@ -923,6 +923,8 @@ function handleEffect(s: GameState, e: Effect) {
         ...(consideredEngaged(s, u) ? { freshConsideredShadows: true } : {}),
         ...(e.text === "cobas-ramming" ? { cobasRamming: true } : {}),
         ...(e.text === "wilder-command" ? { wilderAssaultOnKill: 1 } : {}),
+        // "If this attack destroys a character, remove 1 time counter from the current quest."
+        ...(e.text === "time-on-kill" ? { timeOnKill: 1 } : {}),
         immediatePendingDeclaration: true,
         immediatePreviousAttacked: previous.attacked,
         ...(!existingCarnShadows
@@ -1983,6 +1985,11 @@ function handleEffect(s: GameState, e: Effect) {
         Dike.dikeRefreshEnd(s);
         Gram.gramRefreshEnd(s);
         eachArea(s, () => Dread.dreadRefreshEnd(s));
+        // Collected before the printed Time counter is removed: a card its
+        // expiry brings into play missed this timing point.
+        eachArea(s, () =>
+          prepend(s, ...(batch4Scenario(s).refreshEndForced?.(s) ?? [])),
+        );
       }
       if (
         s.phase === "refresh" &&

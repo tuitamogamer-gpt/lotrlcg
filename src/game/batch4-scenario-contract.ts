@@ -101,6 +101,8 @@ export interface Batch4ScenarioHooks {
    * progress is not removed.
    */
   progressRemovalReplaced?(s: GameState, stage: string): boolean;
+  /** After a player discards cards from their out-of-play deck (To Catch an Orc). */
+  outOfPlayDiscarded?(s: GameState, player: number, count: number): void;
   combatBegin?(s: GameState): void;
   enemyEntered?(s: GameState, unit: Unit): void;
   openingHandsKept?(s: GameState): boolean;
@@ -222,6 +224,11 @@ export interface Batch4ScenarioHooks {
   combatEnd?(s: GameState): void;
   /** At the beginning of the refresh phase (Forced effects). */
   refreshStart?(s: GameState): Effect[];
+  /**
+   * At the end of the refresh phase: Forced effects collected as the printed
+   * Time counter is removed, which resolve after it (and after its expiry).
+   */
+  refreshEndForced?(s: GameState): Effect[];
   refreshThreatBonus?(s: GameState): number;
   roundEnd?(s: GameState): Effect[];
   endQuest?(s: GameState): void;

@@ -2837,6 +2837,10 @@ export function composeEredPool(
       !!h.missingHeroAllowed?.(s, player) ||
       !!p.missingHeroAllowed?.(s, player),
     cannotDraw: (s) => !!h.cannotDraw?.(s) || !!p.cannotDraw?.(s),
+    refreshEndForced: (s) => [
+      ...(h.refreshEndForced?.(s) ?? []),
+      ...(p.refreshEndForced?.(s) ?? []),
+    ],
     refreshStart: (s) => [
       ...(h.refreshStart?.(s) ?? []),
       ...(p.refreshStart?.(s) ?? []),
@@ -2985,6 +2989,10 @@ export function composeEredPool(
     },
     playProblem: (s, code) =>
       h.playProblem?.(s, code) ?? p.playProblem?.(s, code) ?? null,
+    outOfPlayDiscarded: (s, player, count) => {
+      h.outOfPlayDiscarded?.(s, player, count);
+      p.outOfPlayDiscarded?.(s, player, count);
+    },
     progressRemovalReplaced: (s, stage) =>
       !!h.progressRemovalReplaced?.(s, stage) ||
       !!p.progressRemovalReplaced?.(s, stage),

@@ -95,6 +95,7 @@ import { NIGHTMARE_FAS_HOOKS } from "./nightmare-fas";
 import { NIGHTMARE_TLM_HOOKS } from "./nightmare-tlm";
 import { NIGHTMARE_BOFA_HOOKS } from "./nightmare-bofa";
 import { NIGHTMARE_FORDS_HOOKS } from "./nightmare-fords";
+import { NIGHTMARE_CATCH_HOOKS } from "./nightmare-catch";
 import { nightmareLive } from "./nightmare";
 
 const empty: Batch4ScenarioHooks = {};
@@ -139,6 +140,7 @@ const NIGHTMARE_LAYERS: Partial<Record<string, Batch4ScenarioHooks>> = {
   "the-lonely-mountain": NIGHTMARE_TLM_HOOKS,
   "the-battle-of-five-armies": NIGHTMARE_BOFA_HOOKS,
   "fords-of-isen": NIGHTMARE_FORDS_HOOKS,
+  "to-catch-an-orc": NIGHTMARE_CATCH_HOOKS,
 };
 /**
  * The current scenario's hooks; in an Ered Mithrin campaign chapter from The
@@ -322,6 +324,7 @@ export const batch4SharedEffect = (effect: Effect) =>
     NIGHTMARE_TLM_HOOKS,
     NIGHTMARE_BOFA_HOOKS,
     NIGHTMARE_FORDS_HOOKS,
+    NIGHTMARE_CATCH_HOOKS,
     BLACK_SERPENT_HOOKS,
     CIRITH_GURAT_HOOKS,
     CROSSINGS_POROS_HOOKS,
