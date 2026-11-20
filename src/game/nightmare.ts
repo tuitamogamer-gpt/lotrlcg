@@ -257,6 +257,16 @@ export const NIGHTMARE_AS = {
   mountains: "octgn:866767a4-a4e9-4f61-b8eb-88f21e2fe6f2",
   surrounded: "octgn:3459889b-48a2-4401-b511-6e11dabec437",
   onslaught: "octgn:812dce54-8a84-4a44-94ee-5b2cd2bf1997",
+  /** The Morgul Vale's setup card and Nightmare Deck (1 progress token on To the Tower at setup). */
+  morgulCard: "octgn:d6d15b55-0418-48a4-8571-9495c1e52232",
+  nurn: "octgn:f1112857-2210-4087-b262-5862aed26b68",
+  captor: "octgn:740357cb-f22e-4888-aed5-ccc67728b69d",
+  sentry: "octgn:b490fe8e-4367-424d-8a5c-bc7b8e1a56a7",
+  banks: "octgn:43375421-21f6-4e77-855c-0d29d145c803",
+  ephel: "octgn:85ee1e86-178d-40cf-81d3-c86f5a1f2678",
+  fields: "octgn:a1e74757-c5c8-4b81-a01a-6406410f661d",
+  beckons: "octgn:56fbff9f-2518-4ea3-918b-caf14a93738d",
+  fumes: "octgn:18150bb4-3157-429c-b958-af1210acd4b2",
 } as const;
 /** The Heirs of Númenor Nightmare Deck's cards (OCTGN ids, as DragnCards keeps them). */
 export const NIGHTMARE_HON = {
@@ -661,6 +671,18 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Scourge of Mordor": 1,
     },
   },
+  "the-morgul-vale": {
+    card: NIGHTMARE_AS.morgulCard,
+    removals: {
+      "Forest Bat": 3,
+      "Watcher in the Wood": 1,
+      "Orc Arbalesters": 3,
+      "The Power of Mordor": 1,
+      "Morgul Sorcerer": 2,
+      "Morgul Tracker": 2,
+      "Morgul Road": 3,
+    },
+  },
   "watcher-in-the-water": {
     card: NIGHTMARE_DD.watcherCard,
     removals: {
@@ -922,6 +944,14 @@ export function nightmareStatus(s: GameState): string[] {
     const hidden = Object.values(s.bloodGondor?.hidden ?? {}).flat().length;
     return [
       `The Blood of Gondor · Nightmare mode: each player took a hidden card at setup (${hidden} hidden now); the players cannot win unless The Cross-roads and the Nightmare Deck's Black Númenorean are in the victory display.`,
+    ];
+  }
+  if (s.scenarioId === "the-morgul-vale") {
+    const tower =
+      s.staging.find((u) => card(u.code).name === "To the Tower")?.progress ??
+      0;
+    return [
+      `The Morgul Vale · Nightmare mode: 1 progress token was placed on To the Tower at setup (${tower} of 10 now).`,
     ];
   }
   if (s.scenarioId === "watcher-in-the-water")

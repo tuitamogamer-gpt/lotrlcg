@@ -2960,6 +2960,9 @@ export function composeEredPool(
       p.hiddenCardTurned?.(s, u, player);
     },
     cannotWin: (s) => !!h.cannotWin?.(s) || !!p.cannotWin?.(s),
+    // An explored location goes where the scenario sends it first, then the layer.
+    locationDestination: (s, u) =>
+      !!h.locationDestination?.(s, u) || !!p.locationDestination?.(s, u),
     archeryBonus: (s) =>
       (h.archeryBonus?.(s) ?? 0) + (p.archeryBonus?.(s) ?? 0),
     unitArchery: (s, u) =>

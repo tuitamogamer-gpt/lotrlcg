@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2519,
+    "encounterCards": 2528,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3741,
-    "pending": 442
+    "scripted": 3750,
+    "pending": 433
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 296
+    "scripted": 297
   },
   "registeredCodes": [
     "01001",
@@ -1431,6 +1431,7 @@
     "octgn:17353135-52af-42a8-a6af-3b2e9148bf5f",
     "octgn:174507ac-5617-4e3c-998b-75eeceb9db33",
     "octgn:178fd61d-ebb3-40b1-b854-4c7bc43c121e",
+    "octgn:18150bb4-3157-429c-b958-af1210acd4b2",
     "octgn:18484359-d4b5-4ed6-b7be-e013fae4df43",
     "octgn:1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567",
     "octgn:185d7d65-ebec-4d7a-aca0-b5b2e3449c3c",
@@ -1823,6 +1824,7 @@
     "octgn:42e22482-0281-4811-aa65-2b342319ee07",
     "octgn:4315467f-210f-40c8-aec2-76c09d4bb8c1",
     "octgn:432c306a-7a68-45f9-8621-d7ea2126ae0b",
+    "octgn:43375421-21f6-4e77-855c-0d29d145c803",
     "octgn:434cf78e-2e8e-4d79-9662-eb50e33bc3f9",
     "octgn:43509bf0-3250-420f-b743-e56c3ad5cd90",
     "octgn:4355352b-307e-407b-98f9-3d4fb2a14a49",
@@ -2368,6 +2370,7 @@
     "octgn:56b24d25-a04a-418b-add0-7b1971dae38e",
     "octgn:56da2e72-9580-4537-95e9-c138b4d9480e",
     "octgn:56e98bd5-c952-436e-b552-832031d4bb20",
+    "octgn:56fbff9f-2518-4ea3-918b-caf14a93738d",
     "octgn:57107fd1-0092-41d3-ae9d-8ff6c06933eb",
     "octgn:572ba251-0abb-4a81-b38b-d695123b7219",
     "octgn:573eebae-82fc-4e41-a3a8-343194c893bc",
@@ -2595,6 +2598,7 @@
     "octgn:737b346c-792e-48d2-b8da-5dae52ddc902",
     "octgn:738b3bad-7a2b-47ad-a34f-503028f4f4c1",
     "octgn:73969b8e-9591-4ab0-bd28-75c7780875b0",
+    "octgn:740357cb-f22e-4888-aed5-ccc67728b69d",
     "octgn:7445051f-ca99-4a2c-8a8c-656f325fa227",
     "octgn:744536a0-0ff0-47e8-b938-ee0f379b1370",
     "octgn:744e45f8-a808-4d9f-96f4-59e26cff5874",
@@ -2768,6 +2772,7 @@
     "octgn:85cf554d-25c5-47f4-96bb-c11f4e764155",
     "octgn:85d48eb0-3339-4db6-976f-a800213e7eea",
     "octgn:85eb724c-a258-4d94-83ba-5e9f21d82491",
+    "octgn:85ee1e86-178d-40cf-81d3-c86f5a1f2678",
     "octgn:8615beb7-a9f7-4852-bc0a-3d1a5f2c9532",
     "octgn:86180e01-76fb-4103-977c-0d55bbfc2250",
     "octgn:8657c425-d50d-4a14-b7c8-b528463376e6",
@@ -3013,6 +3018,7 @@
     "octgn:a11f08ac-541b-46ba-9528-467dcbdc90c6",
     "octgn:a1827b45-42bd-44b3-a86d-d773e60ac1b5",
     "octgn:a1a8bd6e-4cd1-4641-9cb1-f693f053f62e",
+    "octgn:a1e74757-c5c8-4b81-a01a-6406410f661d",
     "octgn:a210439e-5670-476f-b933-c862b6e88602",
     "octgn:a246d29f-f370-4308-828d-c1ff09029b4a",
     "octgn:a258aec8-a5d9-4194-8612-ac2dd3b8f99e",
@@ -3174,6 +3180,7 @@
     "octgn:b4543d6e-168b-4ac6-ae65-022e13ce4098",
     "octgn:b4769083-91fb-4e9c-9736-17e8c28ff971",
     "octgn:b477d0be-d70a-4eb4-8c35-89c17199cab3",
+    "octgn:b490fe8e-4367-424d-8a5c-bc7b8e1a56a7",
     "octgn:b49b5be7-5bfc-4e65-bced-862a409e097d",
     "octgn:b4b0bdc8-5edb-40c9-a9ca-dac60fe7cb38",
     "octgn:b4cd6eea-17ec-4051-89b3-c4b735d8452f",
@@ -3510,6 +3517,7 @@
     "octgn:d664e3bd-3f0d-47d8-91bb-d61b27a13c22",
     "octgn:d679e2f4-1762-4177-a0f8-bb074a58a0cc",
     "octgn:d69092af-f96b-4885-a194-5d5f31d90e6d",
+    "octgn:d6d15b55-0418-48a4-8571-9495c1e52232",
     "octgn:d6d4ea3a-402c-413b-9732-a07a21dd15b0",
     "octgn:d71de165-8632-4628-94ea-793a1c20e6f8",
     "octgn:d74119d9-703c-4d5a-998b-4788230254c9",
@@ -3765,6 +3773,7 @@
     "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
     "octgn:f0d30258-7122-4004-a689-9ff50a00b3af:B",
     "octgn:f0eb44aa-e060-4d5d-b66b-39bd1f0801d7",
+    "octgn:f1112857-2210-4087-b262-5862aed26b68",
     "octgn:f13a2e94-0ece-45c3-a7ce-0248f9ff92b3",
     "octgn:f16aabcd-6a98-4e4a-89ca-0f0d69407d85",
     "octgn:f16bf495-bb88-4c5e-9a3f-5ba2d8bb916a",
@@ -4650,7 +4659,7 @@
     {
       "product": "the-morgul-vale-nightmare",
       "total": 9,
-      "scripted": 0,
+      "scripted": 9,
       "player": 0,
       "playerScripted": 0
     },
@@ -15440,7 +15449,7 @@
       "name": "Noxious Fumes",
       "type": "treachery",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale-nightmare"
     },
     {
@@ -19160,7 +19169,7 @@
       "name": "Banks of Morgulduin",
       "type": "location",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale-nightmare"
     },
     {
@@ -23808,7 +23817,7 @@
       "name": "The Tower Beckons",
       "type": "treachery",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale-nightmare"
     },
     {
@@ -25968,7 +25977,7 @@
       "name": "Orc Captor",
       "type": "enemy",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale-nightmare"
     },
     {
@@ -27576,7 +27585,7 @@
       "name": "Ephel Dúath",
       "type": "location",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale-nightmare"
     },
     {
@@ -29896,7 +29905,7 @@
       "name": "White-flowered Fields",
       "type": "location",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale-nightmare"
     },
     {
@@ -31408,7 +31417,7 @@
       "name": "Sentry of the White Bridge",
       "type": "enemy",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale-nightmare"
     },
     {
@@ -34576,7 +34585,7 @@
       "name": "The Morgul Vale",
       "type": "nightmare",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale-nightmare"
     },
     {
@@ -36848,7 +36857,7 @@
       "name": "Warrior of Nurn",
       "type": "enemy",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale-nightmare"
     },
     {
@@ -39456,8 +39465,8 @@
       "id": "N03.9",
       "name": "The Morgul Vale (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-morgul-vale",
+      "state": "scripted"
     },
     {
       "id": "N04.1",

@@ -1,6 +1,6 @@
 # The Morgul Vale original/easy rules
 
-Runtime identity: `the-morgul-vale`. Recipes `Q03.9` and `E03.9` supply 48 and 35 encounter cards including staging/set-aside cards. Fourteen encounter designs and three quest stages are implemented, reusing Mordor Elite and Creatures of the Forest. Nightmare remains separately gated.
+Runtime identity: `the-morgul-vale`. Recipes `Q03.9` and `E03.9` supply 48 and 35 encounter cards including staging/set-aside cards. Fourteen encounter designs and three quest stages are implemented, reusing Mordor Elite and Creatures of the Forest. Its Nightmare Deck (N03.9) is supported ([rules](NIGHTMARE.md)): the setup places 1 progress token on To the Tower, the Nightmare cards place theirs through the scenario's own progress effect (its loss at 10 included), and an explored Banks of Morgulduin goes to a Captain as a shadow card.
 
 Sources: imported printed fronts/backs and recipes, [FFG rulesheet](https://images-cdn.fantasyflightgames.com/filer_public/f9/9c/f99ce117-719c-4441-a7fc-c5629468241d/rulesheet-the-morgul-vale.pdf), and [FAQ 1.9](https://images-cdn.fantasyflightgames.com/filer_public/2e/31/2e3129b3-dc51-4c27-81ed-6a72f13e82f3/lotr_faq_19.pdf).
 

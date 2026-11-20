@@ -141,6 +141,7 @@ import { validNightmareDruadan } from "./nightmare-druadan";
 import { validNightmareAmonDin } from "./nightmare-amondin";
 import { validNightmareOsgiliath } from "./nightmare-osgiliath";
 import { validNightmareBlood } from "./nightmare-blood";
+import { validNightmareMorgul } from "./nightmare-morgul";
 import { nightmareEscapeTest } from "./nightmare-dead";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
@@ -1188,6 +1189,7 @@ export function validateSave(
         !validNightmareAmonDin(s) ||
         !validNightmareOsgiliath(s) ||
         !validNightmareBlood(s) ||
+        !validNightmareMorgul(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,

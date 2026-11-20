@@ -232,6 +232,16 @@ export function nightmareSetup(s: GameState) {
       "The Blood of Gondor · Nightmare: the Nightmare Deck's Black Númenorean is in the staging area, and each player takes 1 hidden card.",
     );
   }
+  // The Morgul Vale: "Setup: Place 1 progress token on To the Tower."
+  if (s.scenarioId === "the-morgul-vale") {
+    const tower = s.staging.find((u) => card(u.code).name === "To the Tower");
+    if (tower) tower.progress += 1;
+    log(
+      s,
+      `The Morgul Vale · Nightmare: 1 progress token is placed on To the Tower (${tower?.progress ?? 0} of 10).`,
+      "danger",
+    );
+  }
   // Assault on Osgiliath: "Setup: Add Palace Remains to the staging area."
   if (s.scenarioId === "assault-on-osgiliath") {
     const palace = s.encounterDeck.indexOf(NIGHTMARE_AS.palace);

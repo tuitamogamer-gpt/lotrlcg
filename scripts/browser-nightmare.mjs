@@ -1792,6 +1792,62 @@ try {
       "Orc Trickster's face loads",
     );
     await checkpoint("blood-orc-trickster", width);
+
+    // The Morgul Vale in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-the-morgul-vale").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "the-morgul-vale");
+    assert.equal(s.nightmareMode, true);
+    assert.equal(
+      s.staging.find((u) => card(u.code).name === "To the Tower")?.progress,
+      1,
+      "1 progress token on To the Tower at setup",
+    );
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/1 progress token was placed on To the Tower/)
+      .waitFor();
+    await checkpoint("morgul-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A Sentry of the White Bridge beside an Ephel Dúath in the staging area.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.staging = [...t.staging, make(t, AS.sentry), make(t, AS.ephel)];
+      s = await load(page, t);
+    }
+    const sentryFace = page
+      .locator(`img[src*="${AS.sentry.slice("octgn:".length)}"]`)
+      .first();
+    await sentryFace.waitFor();
+    assert.ok(
+      (await sentryFace.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "Sentry of the White Bridge's face loads",
+    );
+    await checkpoint("morgul-sentry", width);
     await view.c.close();
   }
   const p = await browser.newPage();
