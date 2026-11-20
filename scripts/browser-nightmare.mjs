@@ -1741,6 +1741,57 @@ try {
       "Haradrim Warrior's face loads",
     );
     await checkpoint("osgiliath-haradrim-warrior", width);
+    // The Blood of Gondor in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-the-blood-of-gondor").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "the-blood-of-gondor");
+    assert.equal(s.nightmareMode, true);
+    assert.ok(s.staging.some((u) => u.code === AS.numenorean));
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/cannot win unless The Cross-roads/)
+      .waitFor();
+    await checkpoint("blood-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // An Orc Trickster beside an Edge of Ithilien in the staging area.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.staging = [...t.staging, make(t, AS.trickster), make(t, AS.edge)];
+      s = await load(page, t);
+    }
+    const tricksterFace = page
+      .locator(`img[src*="${AS.trickster.slice("octgn:".length)}"]`)
+      .first();
+    await tricksterFace.waitFor();
+    assert.ok(
+      (await tricksterFace.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "Orc Trickster's face loads",
+    );
+    await checkpoint("blood-orc-trickster", width);
     await view.c.close();
   }
   const p = await browser.newPage();

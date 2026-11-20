@@ -43,6 +43,7 @@ import { khazadCannotExhaust } from "./khazad-dum";
 import { watcherWaterCannotExhaust } from "./watcher-water";
 import { isSacked } from "./carrock";
 import { BLOOD_GONDOR as B } from "./blood-gondor-support";
+import { batch4Scenario } from "./batch4-scenarios";
 
 const first = (s: GameState) => s.table?.first ?? 0;
 const hidden = (s: GameState, p: number) => s.bloodGondor?.hidden[p] ?? [];
@@ -161,6 +162,8 @@ export function advanceBloodGondor(s: GameState) {
     return true;
   if (questDefeated(s, mainQuestCode(s)!)) return true;
   if (s.stage === 2) {
+    // A Nightmare Deck's victory condition.
+    if (batch4Scenario(s).cannotWin?.(s)) return true;
     win(
       s,
       "You break through the ambush and pursue the captives into the Morgul Vale.",
@@ -425,6 +428,8 @@ export function bloodGondorEffect(s: GameState, e: Effect): boolean {
         if (!bloodGondorEncounter(s, u.code, true))
           heirsEncounter(s, u.code, true);
       }
+      // A Nightmare Deck's "After ... is turned faceup as a hidden card".
+      batch4Scenario(s).hiddenCardTurned?.(s, u, player);
       break;
     }
     case "bloodDamage":

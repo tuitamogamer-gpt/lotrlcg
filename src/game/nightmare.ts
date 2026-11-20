@@ -248,6 +248,15 @@ export const NIGHTMARE_AS = {
   relentless: "octgn:15ccb88a-9a78-4aac-a1f2-839070a19016",
   overrun: "octgn:ffc5f529-5d18-4870-970b-7503c176f56b",
   pressed: "octgn:d74119d9-703c-4d5a-998b-4788230254c9",
+  /** The Blood of Gondor's setup card and Nightmare Deck (its Black Númenorean staged in place of the scenario's). */
+  bloodCard: "octgn:118672b6-c6e2-43ec-ae3d-8657d8b659d5",
+  numenorean: "octgn:13c23487-ad49-437b-be41-1c09dd5c30e4",
+  trickster: "octgn:ef8af2c9-e9c7-463a-8853-c9ccfc3eff69",
+  marksman: "octgn:330cc524-6e48-4aa8-a201-d80e1b67570e",
+  edge: "octgn:d2e0ef58-b688-4cf7-9289-246b0af56ba8",
+  mountains: "octgn:866767a4-a4e9-4f61-b8eb-88f21e2fe6f2",
+  surrounded: "octgn:3459889b-48a2-4401-b511-6e11dabec437",
+  onslaught: "octgn:812dce54-8a84-4a44-94ee-5b2cd2bf1997",
 } as const;
 /** The Heirs of Númenor Nightmare Deck's cards (OCTGN ids, as DragnCards keeps them). */
 export const NIGHTMARE_HON = {
@@ -640,6 +649,18 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "The Power of Mordor": 1,
     },
   },
+  "the-blood-of-gondor": {
+    card: NIGHTMARE_AS.bloodCard,
+    removals: {
+      "Black Númenorean": 1,
+      "Evil Crow": 2,
+      "Lying in Wait": 2,
+      "The Dark Woods": 4,
+      "Orc Rabble": 1,
+      "Orc Arsonist": 1,
+      "Scourge of Mordor": 1,
+    },
+  },
   "watcher-in-the-water": {
     card: NIGHTMARE_DD.watcherCard,
     removals: {
@@ -895,6 +916,12 @@ export function nightmareStatus(s: GameState): string[] {
     const players = s.table?.seats.length ?? 1;
     return [
       `Assault on Osgiliath · Nightmare mode: Palace Remains began in the staging area. While more Osgiliath locations are in the staging area than there are players (${staged} for ${players}), a non-unique location may take the quest's remaining progress each quest phase.`,
+    ];
+  }
+  if (s.scenarioId === "the-blood-of-gondor") {
+    const hidden = Object.values(s.bloodGondor?.hidden ?? {}).flat().length;
+    return [
+      `The Blood of Gondor · Nightmare mode: each player took a hidden card at setup (${hidden} hidden now); the players cannot win unless The Cross-roads and the Nightmare Deck's Black Númenorean are in the victory display.`,
     ];
   }
   if (s.scenarioId === "watcher-in-the-water")

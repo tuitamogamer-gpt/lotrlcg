@@ -209,6 +209,29 @@ export function nightmareSetup(s: GameState) {
       "Encounter at Amon Dîn · Nightmare: 1 villager token is placed on Rescued Villagers.",
     );
   }
+  // The Blood of Gondor: the Nightmare Deck's Black Númenorean is staged in
+  // place of the scenario's (its setup card removes it). "Setup: Each player
+  // takes 1 hidden card."
+  if (s.scenarioId === "the-blood-of-gondor") {
+    const standard = s.staging.findIndex(
+      (u) =>
+        card(u.code).name === "Black Númenorean" &&
+        u.code !== NIGHTMARE_AS.numenorean,
+    );
+    if (standard >= 0) s.staging.splice(standard, 1);
+    const at = s.encounterDeck.indexOf(NIGHTMARE_AS.numenorean);
+    if (at >= 0) s.encounterDeck.splice(at, 1);
+    if (!s.staging.some((u) => u.code === NIGHTMARE_AS.numenorean))
+      placeEncounter(s, NIGHTMARE_AS.numenorean);
+    prepend(
+      s,
+      ...globalPlayerOrder(s).map((player) => fx("bloodTake", { player })),
+    );
+    log(
+      s,
+      "The Blood of Gondor · Nightmare: the Nightmare Deck's Black Númenorean is in the staging area, and each player takes 1 hidden card.",
+    );
+  }
   // Assault on Osgiliath: "Setup: Add Palace Remains to the staging area."
   if (s.scenarioId === "assault-on-osgiliath") {
     const palace = s.encounterDeck.indexOf(NIGHTMARE_AS.palace);

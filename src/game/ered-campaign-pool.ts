@@ -2955,6 +2955,11 @@ export function composeEredPool(
       h.locationControlled?.(s, u, player);
       p.locationControlled?.(s, u, player);
     },
+    hiddenCardTurned: (s, u, player) => {
+      h.hiddenCardTurned?.(s, u, player);
+      p.hiddenCardTurned?.(s, u, player);
+    },
+    cannotWin: (s) => !!h.cannotWin?.(s) || !!p.cannotWin?.(s),
     archeryBonus: (s) =>
       (h.archeryBonus?.(s) ?? 0) + (p.archeryBonus?.(s) ?? 0),
     unitArchery: (s, u) =>

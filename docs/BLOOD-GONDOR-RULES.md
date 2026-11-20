@@ -1,6 +1,6 @@
 # The Blood of Gondor original/easy rules
 
-Runtime identity: `the-blood-of-gondor`. Recipes `Q03.8` and `E03.8` supply 38 and 29 encounter cards including setup cards. Fifteen encounter designs and both quest stages have native handlers. The Ravaging Orcs set reuses the Heirs of Númenor implementation. Nightmare remains separately gated.
+Runtime identity: `the-blood-of-gondor`. Recipes `Q03.8` and `E03.8` supply 38 and 29 encounter cards including setup cards. Fifteen encounter designs and both quest stages have native handlers. The Ravaging Orcs set reuses the Heirs of Númenor implementation. Its Nightmare Deck (N03.8) is supported ([rules](NIGHTMARE.md)): turning a hidden card faceup calls the Nightmare layer (Orc Trickster's attack, Uruk Marksman's damage, Mountains of Shadow's hidden card), and the stage two victory waits for The Cross-roads and Black Númenorean in the victory display.
 
 Sources: the imported printed fronts/backs and recipes, [FFG rulesheet](https://images-cdn.fantasyflightgames.com/filer_public/24/d9/24d94f36-9629-46cc-9101-ce2f3354afbe/rulesheet-the-blood-of-gondor.pdf), and [FAQ 1.9](https://images-cdn.fantasyflightgames.com/filer_public/2e/31/2e3129b3-dc51-4c27-81ed-6a72f13e82f3/lotr_faq_19.pdf). The FAQ's hidden-card clarification turns only the original group: cards subsequently gained through Evil Crow stay hidden. The corrected stage-one combat choice allows taking a hidden card even when the player has none.
 

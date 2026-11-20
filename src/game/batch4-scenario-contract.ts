@@ -77,6 +77,10 @@ export interface Batch4ScenarioHooks {
   whenRevealedCancelled?(s: GameState, code: string): void;
   /** After a player takes control of a location (Assault on Osgiliath's controlled locations). */
   locationControlled?(s: GameState, u: Unit, player: number): void;
+  /** After a hidden card is turned faceup in a player's play area (The Blood of Gondor). */
+  hiddenCardTurned?(s: GameState, u: Unit, player: number): void;
+  /** The players cannot win the game now (a Nightmare Deck's victory condition). */
+  cannotWin?(s: GameState): boolean;
   combatBegin?(s: GameState): void;
   enemyEntered?(s: GameState, unit: Unit): void;
   openingHandsKept?(s: GameState): boolean;

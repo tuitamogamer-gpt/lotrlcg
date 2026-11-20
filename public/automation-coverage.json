@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2511,
+    "encounterCards": 2519,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3733,
-    "pending": 450
+    "scripted": 3741,
+    "pending": 442
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 295
+    "scripted": 296
   },
   "registeredCodes": [
     "01001",
@@ -1382,6 +1382,7 @@
     "octgn:112fc5f3-9d26-4711-8a97-e4a83bb23663",
     "octgn:11381200-d546-4d40-a826-2c6c901e8d61",
     "octgn:1156ac5f-09cf-418b-9486-030b397a5514",
+    "octgn:118672b6-c6e2-43ec-ae3d-8657d8b659d5",
     "octgn:119cfabc-2cbf-4ffd-a25e-00ec140b8f26",
     "octgn:11a29b18-0e86-4383-a463-e020f8b1d0f6",
     "octgn:11c67697-29da-4c76-bf89-985c2c036940",
@@ -1400,6 +1401,7 @@
     "octgn:138ee2a3-0982-48ab-945e-60fab6f06586",
     "octgn:13a4b435-fa14-42b8-975e-804d3b8b929d",
     "octgn:13b4d81e-1bd7-4a56-a418-b60e58767c12",
+    "octgn:13c23487-ad49-437b-be41-1c09dd5c30e4",
     "octgn:13e84f42-66ff-4abb-819d-a4b0ad088bb1",
     "octgn:14304a2f-f6f8-4f78-adc6-5ee35bc9a08e",
     "octgn:14a944ab-8301-4006-8e2a-d607eb614fab",
@@ -1696,6 +1698,7 @@
     "octgn:32db1af6-e214-4958-9ca4-bdf3a73758b5",
     "octgn:32deb3d1-afe3-4fbc-bd6c-30f139003cc7",
     "octgn:3309e01a-db7f-4754-bd41-21a0b4316415",
+    "octgn:330cc524-6e48-4aa8-a201-d80e1b67570e",
     "octgn:3342238a-2680-4044-822e-39a7d3d767b3",
     "octgn:3360d53e-e01b-4d22-b2e3-4e1733a4896d",
     "octgn:3371c102-4aab-4b15-a738-a4b3483a6004",
@@ -1704,6 +1707,7 @@
     "octgn:33c87224-ad8d-41a0-b08a-931e9205609b",
     "octgn:33ed5e88-f3ba-4970-9e4a-fbb8c2a6d959",
     "octgn:33f456cb-3119-444b-9bbe-a0db4e5e5de1",
+    "octgn:3459889b-48a2-4401-b511-6e11dabec437",
     "octgn:34635348-ab17-4d00-bc6f-7ced07821168",
     "octgn:346fda89-94df-410a-8027-41eacbf27238",
     "octgn:3470ed02-38dc-4387-8fe0-265b13fe96a1",
@@ -2715,6 +2719,7 @@
     "octgn:80e25c61-e49c-40cb-b8e7-b4c45620163c",
     "octgn:8103129a-77e7-47a2-a039-b0eddf305184",
     "octgn:8104e805-08e3-4379-acde-0a9cc96837fe",
+    "octgn:812dce54-8a84-4a44-94ee-5b2cd2bf1997",
     "octgn:814fecd8-1d51-431e-a904-e12ba8747391",
     "octgn:814fecd8-1d51-431e-a904-e12ba8747391.B",
     "octgn:81632d10-625e-42f0-9e6b-09574a9ffbc3",
@@ -2766,6 +2771,7 @@
     "octgn:8615beb7-a9f7-4852-bc0a-3d1a5f2c9532",
     "octgn:86180e01-76fb-4103-977c-0d55bbfc2250",
     "octgn:8657c425-d50d-4a14-b7c8-b528463376e6",
+    "octgn:866767a4-a4e9-4f61-b8eb-88f21e2fe6f2",
     "octgn:867b61a1-4e23-4426-ad94-b912e89055b8",
     "octgn:86e8724b-32cb-4d63-b918-5754d39d2249",
     "octgn:86fe0f99-d978-40be-8f39-136bec2a3d58",
@@ -3479,6 +3485,7 @@
     "octgn:d2cd3802-0667-4124-b7b6-5e753ff71ec3",
     "octgn:d2d31f2a-4b80-48b5-b92a-e42d254cfd49",
     "octgn:d2d3aeae-58ae-497e-bc44-70863d49f25d",
+    "octgn:d2e0ef58-b688-4cf7-9289-246b0af56ba8",
     "octgn:d2e57235-6df7-40fc-9a47-1ad06b4ed7a3",
     "octgn:d30fcccc-2f1a-43bb-8bc4-ce0fccdd4a0f",
     "octgn:d32ba7ec-fa7d-4a1a-b157-da4186e62ea6",
@@ -3740,6 +3747,7 @@
     "octgn:ef719fc5-dddd-4455-87de-96fe22e4ff1a",
     "octgn:ef7c6601-a62d-440a-89b1-5a9d6208481b",
     "octgn:ef815939-8e88-4a70-a4f4-bdf36a84ea77",
+    "octgn:ef8af2c9-e9c7-463a-8853-c9ccfc3eff69",
     "octgn:ef94d441-715f-42e8-bb3a-764592cdf44c",
     "octgn:ef975c81-544a-4f1b-a3c4-d0bc42ef636c",
     "octgn:ef990329-db00-441a-8c7d-8b464321f093",
@@ -4376,7 +4384,7 @@
     {
       "product": "the-blood-of-gondor-nightmare",
       "total": 8,
-      "scripted": 0,
+      "scripted": 8,
       "player": 0,
       "playerScripted": 0
     },
@@ -14976,7 +14984,7 @@
       "name": "The Blood of Gondor",
       "type": "nightmare",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor-nightmare"
     },
     {
@@ -15152,7 +15160,7 @@
       "name": "Black Númenorean",
       "type": "enemy",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor-nightmare"
     },
     {
@@ -17904,7 +17912,7 @@
       "name": "Uruk Marksman",
       "type": "enemy",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor-nightmare"
     },
     {
@@ -17992,7 +18000,7 @@
       "name": "Surrounded by Shadow",
       "type": "treachery",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor-nightmare"
     },
     {
@@ -27144,7 +27152,7 @@
       "name": "Sudden Onslaught",
       "type": "treachery",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor-nightmare"
     },
     {
@@ -27608,7 +27616,7 @@
       "name": "Mountains of Shadow",
       "type": "location",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor-nightmare"
     },
     {
@@ -34288,7 +34296,7 @@
       "name": "Edge of Ithilien",
       "type": "location",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor-nightmare"
     },
     {
@@ -36664,7 +36672,7 @@
       "name": "Orc Trickster",
       "type": "enemy",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor-nightmare"
     },
     {
@@ -39441,8 +39449,8 @@
       "id": "N03.8",
       "name": "The Blood of Gondor (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-blood-of-gondor",
+      "state": "scripted"
     },
     {
       "id": "N03.9",
