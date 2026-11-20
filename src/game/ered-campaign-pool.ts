@@ -2788,10 +2788,19 @@ export function composeEredPool(
     shadow: (s, code) => p.shadow!(s, code) || !!h.shadow?.(s, code),
     effect: (s, e) => p.effect!(s, e) || !!h.effect?.(s, e),
     abilityLabel: (code) => h.abilityLabel?.(code) ?? p.abilityLabel!(code),
-    abilityProblem: (s, u, attachmentId) =>
-      p.abilityProblem!(s, u, attachmentId) ??
-      h.abilityProblem?.(s, u, attachmentId) ??
-      null,
+    abilityProblem: (s, u, attachmentId) => {
+      const own = p.abilityProblem!(s, u, attachmentId);
+      if (own !== undefined && own !== null) return own;
+      // An ability only the layer names answers to the layer alone (a
+      // Nightmare location's Action in a scenario whose own hooks refuse
+      // the cards they do not know).
+      const code = attachmentId
+        ? u.attachments.find((a) => a.id === attachmentId)?.code
+        : u.code;
+      if (code && p.abilityLabel?.(code) && !h.abilityLabel?.(code))
+        return null;
+      return h.abilityProblem?.(s, u, attachmentId) ?? null;
+    },
     ability: (s, u, attachmentId) =>
       p.ability!(s, u, attachmentId) || !!h.ability?.(s, u, attachmentId),
     // Hooks only a Nightmare Deck's layer defines (the Campaign Pool's

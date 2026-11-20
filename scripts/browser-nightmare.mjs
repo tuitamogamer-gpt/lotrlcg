@@ -1901,6 +1901,63 @@ try {
       "A Murder of Crows' face loads",
     );
     await checkpoint("wma-murder-of-crows", width);
+
+    // Over the Misty Mountains Grim in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-over-the-misty-mountains-grim").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "over-the-misty-mountains-grim");
+    assert.equal(s.nightmareMode, true);
+    assert.ok(
+      [...s.encounterDeck, ...s.mistyMountains.inactiveDeck].includes(
+        OHUH.greatGoblin,
+      ) || s.staging.some((u) => u.code === OHUH.greatGoblin),
+      "the Nightmare Great Goblin is in the Goblin deck",
+    );
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/no more than 1 Baggins resource/)
+      .waitFor();
+    await checkpoint("omm-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A Goblin Prowler beside a Dark Passages in the staging area.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.staging = [...t.staging, make(t, OHUH.prowler), make(t, OHUH.passages)];
+      s = await load(page, t);
+    }
+    const prowlerFace = page
+      .locator(`img[src*="${OHUH.prowler.slice("octgn:".length)}"]`)
+      .first();
+    await prowlerFace.waitFor();
+    assert.ok(
+      (await prowlerFace.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "Goblin Prowler's face loads",
+    );
+    await checkpoint("omm-goblin-prowler", width);
     await view.c.close();
   }
   const p = await browser.newPage();

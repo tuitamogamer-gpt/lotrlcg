@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2536,
+    "encounterCards": 2544,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3758,
-    "pending": 425
+    "scripted": 3766,
+    "pending": 417
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 298
+    "scripted": 299
   },
   "registeredCodes": [
     "01001",
@@ -1441,6 +1441,7 @@
     "octgn:1877b069-7015-4172-b5df-bbfd235b976f",
     "octgn:18b9cb80-a536-427f-8c76-a05a9477bb7f",
     "octgn:18d6f0aa-a62e-4ce5-b169-cae8836d8442",
+    "octgn:1919025a-6f04-497f-b024-8ed3fd91b0c9",
     "octgn:1920b1cc-8392-4fb6-9c9c-22b8bfd8d539",
     "octgn:194ceae6-a5e2-4a52-ba07-76e6c2611e8e",
     "octgn:19675b16-16ee-4477-a753-bd1cf7b51b7a",
@@ -1662,6 +1663,7 @@
     "octgn:2e5e6e97-003b-4500-8372-495f5ee86051",
     "octgn:2e810a9b-5d79-4828-8268-33e82c5fc1fa",
     "octgn:2efa631a-eb16-4078-84a5-18c7033b86f3",
+    "octgn:2f1ba4e7-ddc6-4d97-93d3-31907840aed0",
     "octgn:2f2e6076-2636-485b-874c-fd3bc4bcf5f0",
     "octgn:2f5221a8-8afd-48d8-afd3-352151d87ed6",
     "octgn:2f7770cd-3102-4f35-a3bc-bd9afcab8303",
@@ -1736,6 +1738,7 @@
     "octgn:35fb5564-b4a1-4730-9e4d-65bd2e6d43c4",
     "octgn:35fb5564-b4a1-4730-9e4d-65bd2e6d43c4.B",
     "octgn:3612e715-a474-4911-a247-58c76f2ef277",
+    "octgn:364ef18d-2a93-4ea9-a2f6-799a4e1b7617",
     "octgn:365efac0-2631-483c-91ce-19da7585bd1a",
     "octgn:366f0662-7776-4b1a-bb09-334e06e0e174",
     "octgn:36905f8f-3807-432b-bd0f-892c97504afd",
@@ -2692,9 +2695,11 @@
     "octgn:7cf91fea-06b4-43f3-ae5d-96f00884fd71",
     "octgn:7d0387db-eba6-44e0-8602-b031a2927ca4",
     "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
+    "octgn:7d3ef70c-4107-4747-9913-048224ba6e76",
     "octgn:7d55e738-cc23-4e78-9a88-2a25fa4f3ca4",
     "octgn:7d71a43e-a7ae-49bb-930c-437101a12d82",
     "octgn:7d71aa09-badb-4ba8-9d08-597a8d814020",
+    "octgn:7d76b849-a3c7-4e2d-ab9d-f02ff0cca709",
     "octgn:7d9a3914-bc46-40d6-b489-3157d7430382",
     "octgn:7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00",
     "octgn:7e20690f-d1bb-4ac3-b2bf-da55f1f95bcc",
@@ -3396,6 +3401,7 @@
     "octgn:c60642b2-4ce3-42e8-8cb5-41c9ac9251fb",
     "octgn:c616d30d-9242-401b-b386-4fe0660dc97b",
     "octgn:c6204e5d-7020-4360-b2ad-7db4edcc7303",
+    "octgn:c6582860-80cf-48d6-92f3-dde5e3e31333",
     "octgn:c67cae2c-941e-40ad-8c14-3cfc50267359",
     "octgn:c69c1fe9-076a-4a5b-8388-9f653015d84d",
     "octgn:c6adadf8-569a-4943-817b-44bf1418e07e",
@@ -3525,6 +3531,7 @@
     "octgn:d69092af-f96b-4885-a194-5d5f31d90e6d",
     "octgn:d6d15b55-0418-48a4-8571-9495c1e52232",
     "octgn:d6d4ea3a-402c-413b-9732-a07a21dd15b0",
+    "octgn:d70f1956-fa20-4237-8a75-ab7678ed9840",
     "octgn:d71de165-8632-4628-94ea-793a1c20e6f8",
     "octgn:d74119d9-703c-4d5a-998b-4788230254c9",
     "octgn:d760ba6c-e377-4d22-ac46-04bfb2b3c65f",
@@ -3838,6 +3845,7 @@
     "octgn:f77579e7-23f0-4c27-a4e3-e1edcc529e1e",
     "octgn:f77e471a-7dd2-4f05-ac8f-fbb534c66633",
     "octgn:f77ffb66-297c-49e0-8ed5-9cc3bd715926",
+    "octgn:f7a42b56-2a8e-4c6f-b60c-5031ad2a99db",
     "octgn:f7babd23-3133-4fdc-ab08-1f863d41ad96",
     "octgn:f7babd23-3133-4fdc-ab08-1f863d41ad96:B",
     "octgn:f7badc7a-4e37-4606-8557-0fa4719227c0",
@@ -4254,7 +4262,7 @@
     {
       "product": "over-hill-and-under-hill-nightmare",
       "total": 24,
-      "scripted": 8,
+      "scripted": 16,
       "player": 0,
       "playerScripted": 0
     },
@@ -15545,7 +15553,7 @@
       "name": "The Great Goblin",
       "type": "enemy",
       "pack": "The Hobbit - Over Hill and Under Hill - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill-nightmare"
     },
     {
@@ -17521,7 +17529,7 @@
       "name": "Narrow Ledge",
       "type": "location",
       "pack": "The Hobbit - Over Hill and Under Hill - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill-nightmare"
     },
     {
@@ -18281,7 +18289,7 @@
       "name": "Lightning Splinters",
       "type": "treachery",
       "pack": "The Hobbit - Over Hill and Under Hill - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill-nightmare"
     },
     {
@@ -26785,7 +26793,7 @@
       "name": "Swish, smack! Whip crack!",
       "type": "treachery",
       "pack": "The Hobbit - Over Hill and Under Hill - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill-nightmare"
     },
     {
@@ -26825,7 +26833,7 @@
       "name": "Dim Valley",
       "type": "location",
       "pack": "The Hobbit - Over Hill and Under Hill - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill-nightmare"
     },
     {
@@ -33329,7 +33337,7 @@
       "name": "Goblin Prowler",
       "type": "enemy",
       "pack": "The Hobbit - Over Hill and Under Hill - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill-nightmare"
     },
     {
@@ -34617,7 +34625,7 @@
       "name": "Over the Misty Mountains Grim",
       "type": "nightmare",
       "pack": "The Hobbit - Over Hill and Under Hill - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill-nightmare"
     },
     {
@@ -37433,7 +37441,7 @@
       "name": "Dark Passages",
       "type": "location",
       "pack": "The Hobbit - Over Hill and Under Hill - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill-nightmare"
     },
     {
@@ -39676,8 +39684,8 @@
       "id": "N0A.2",
       "name": "Over the Misty Mountains Grim (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "over-the-misty-mountains-grim",
+      "state": "scripted"
     },
     {
       "id": "N0A.3",

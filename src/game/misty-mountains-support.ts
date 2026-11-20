@@ -1,6 +1,7 @@
 import encounters from "../data/misty-mountains-encounter-cards.json";
 import quests from "../data/misty-mountains-quest-cards.json";
 import recipes from "../data/misty-mountains-recipes.json";
+import nightmareCards from "../data/nightmare-encounter-cards.json";
 import type { Card, GameState, Unit } from "./types";
 import { WMA } from "./we-must-away-support";
 export type { MistyMountainsState } from "./misty-mountains-types";
@@ -91,6 +92,11 @@ export function validateMistyMountains(
   const n = (x: unknown) => Number.isSafeInteger(x) && Number(x) >= 0;
   const round = (x: unknown) => n(x) && Number(x) <= s.round;
   const codes = new Set(OMM_RECIPES.flatMap((r) => r.cards.map((c) => c.code)));
+  // Nightmare mode: its Nightmare Deck's cards join both encounter decks.
+  if (s.nightmareMode)
+    for (const c of nightmareCards)
+      if (c.encounter_set === "Over the Misty Mountains Grim - Nightmare")
+        codes.add(c.code);
   return (
     !!q &&
     s.scenarioId === "over-the-misty-mountains-grim" &&

@@ -89,6 +89,7 @@ import { NIGHTMARE_OSGILIATH_HOOKS } from "./nightmare-osgiliath";
 import { NIGHTMARE_BLOOD_HOOKS } from "./nightmare-blood";
 import { NIGHTMARE_MORGUL_HOOKS } from "./nightmare-morgul";
 import { NIGHTMARE_WMA_HOOKS } from "./nightmare-wma";
+import { NIGHTMARE_OMM_HOOKS } from "./nightmare-omm";
 import { nightmareLive } from "./nightmare";
 
 const empty: Batch4ScenarioHooks = {};
@@ -127,6 +128,7 @@ const NIGHTMARE_LAYERS: Partial<Record<string, Batch4ScenarioHooks>> = {
   "the-blood-of-gondor": NIGHTMARE_BLOOD_HOOKS,
   "the-morgul-vale": NIGHTMARE_MORGUL_HOOKS,
   "we-must-away-ere-break-of-day": NIGHTMARE_WMA_HOOKS,
+  "over-the-misty-mountains-grim": NIGHTMARE_OMM_HOOKS,
 };
 /**
  * The current scenario's hooks; in an Ered Mithrin campaign chapter from The
@@ -304,6 +306,7 @@ export const batch4SharedEffect = (effect: Effect) =>
     NIGHTMARE_BLOOD_HOOKS,
     NIGHTMARE_MORGUL_HOOKS,
     NIGHTMARE_WMA_HOOKS,
+    NIGHTMARE_OMM_HOOKS,
     BLACK_SERPENT_HOOKS,
     CIRITH_GURAT_HOOKS,
     CROSSINGS_POROS_HOOKS,

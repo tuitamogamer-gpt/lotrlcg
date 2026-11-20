@@ -63,16 +63,28 @@ import {
   ommTrait,
 } from "./misty-mountains-support";
 export * from "./misty-mountains-support";
+import {
+  NIGHTMARE_OMM_GOBLIN_DECK,
+  nightmareEncounterDecks,
+  nightmareLive,
+} from "./nightmare";
 
 type Combat = NonNullable<GameState["combat"]>;
 const typeOf = (u: Unit | string) =>
   card(typeof u === "string" ? u : u.code).type_code;
+/** Printed traits, for the cards outside the scenario's sets (a Nightmare Deck's Goblins). */
+const printedTrait = (u: Unit | string, trait: string) =>
+  (card(typeof u === "string" ? u : u.code).traits ?? "")
+    .split(".")
+    .some((t) => t.trim() === trait);
 const isGoblin = (u: Unit | string) =>
-  typeOf(u) === "enemy" && ommTrait(u, "Goblin");
+  typeOf(u) === "enemy" && (ommTrait(u, "Goblin") || printedTrait(u, "Goblin"));
 const isGiant = (u: Unit) => typeOf(u) === "enemy" && ommTrait(u, "Giant");
 const players = (s: GameState) => playerOrder(s).length;
+/** The Great Goblin, the scenario's or a Nightmare Deck's. */
+const isGreatGoblin = (code: string) => card(code).name === "The Great Goblin";
 const greatGoblinDefeated = (s: GameState) =>
-  !!s.victoryCards?.includes(O.greatGoblin);
+  !!s.victoryCards?.some(isGreatGoblin);
 /** "Cave location in play": the staging area and the active location. */
 const hasTraitText = (u: Unit, trait: string) =>
   (card(u.code).traits ?? "").split(".").some((t) => t.trim() === trait);
@@ -186,16 +198,26 @@ export function setupMistyMountains(s: GameState) {
       .filter((c) => c.section === name)
       .flatMap((c) => Array<string>(c.quantity).fill(c.code));
   // Stage 2B, not setup, adds the first Stone-giant to the staging area.
-  s.encounterDeck = shuffle(s, [
+  let first = [
     ...section("sharedEncounterDeck"),
     ...section("sharedStagingArea"),
-  ]);
+  ];
+  let goblins = section("sharedEncounterDeck2");
+  // Nightmare mode: the setup card's removals from both decks, and each
+  // Nightmare card in the deck its encounter set icon names.
+  if (nightmareLive(s))
+    [first, goblins] = nightmareEncounterDecks(
+      s.scenarioId,
+      [first, goblins],
+      (code) => (NIGHTMARE_OMM_GOBLIN_DECK.includes(code) ? 1 : 0),
+    );
+  s.encounterDeck = shuffle(s, first);
   s.mistyMountains = {
     currentQuest: O.rest,
     advancing: false,
     initialized: false,
     goblinTown: false,
-    inactiveDeck: shuffle(s, section("sharedEncounterDeck2")),
+    inactiveDeck: shuffle(s, goblins),
     resolving: [],
     guffawing: [],
     chaos: [],
@@ -306,10 +328,10 @@ function goblinTown(s: GameState) {
   q.guffawing = [];
   q.chaos = [];
   q.porchBlank = [];
-  const i = s.encounterDeck.indexOf(O.greatGoblin);
+  const i = s.encounterDeck.findIndex(isGreatGoblin);
   if (i >= 0) {
-    s.encounterDeck.splice(i, 1);
-    const gg = make(s, O.greatGoblin);
+    const [code] = s.encounterDeck.splice(i, 1);
+    const gg = make(s, code);
     s.staging.push(gg);
     enemyAddedToStaging(s, gg);
   }
@@ -514,7 +536,13 @@ export function ommEffect(s: GameState, e: Effect): boolean {
       s.stageRevealing = false;
       const total = 3 * players(s);
       const bilbo = bagginsBilbo(s);
-      const max = Math.min(bilbo?.resources ?? 0, total - 1);
+      // Nightmare mode: "no more than X resources may be spent from Bilbo
+      // Baggins's resource pool, where X is the number of players."
+      const max = Math.min(
+        bilbo?.resources ?? 0,
+        total - 1,
+        nightmareLive(s) ? players(s) : Infinity,
+      );
       if (!max) {
         prepend(s, fx("ommTownReveal", { value: total, player: first }));
         break;

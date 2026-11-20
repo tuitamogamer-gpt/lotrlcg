@@ -279,7 +279,23 @@ export const NIGHTMARE_OHUH = {
   mince: "octgn:aebb2c2f-859e-4f08-9017-1fcc4a4cc528",
   night: "octgn:1d23916d-4e14-4b1f-ab4b-02a231870465",
   oneByOne: "octgn:5c4fb1ac-a989-463d-a622-367882c56d4e",
+  /** Over the Misty Mountains Grim's setup card and Nightmare Deck (shared between its two encounter decks). */
+  ommCard: "octgn:d70f1956-fa20-4237-8a75-ab7678ed9840",
+  ledge: "octgn:2f1ba4e7-ddc6-4d97-93d3-31907840aed0",
+  valley: "octgn:7d76b849-a3c7-4e2d-ab9d-f02ff0cca709",
+  splinters: "octgn:364ef18d-2a93-4ea9-a2f6-799a4e1b7617",
+  greatGoblin: "octgn:1919025a-6f04-497f-b024-8ed3fd91b0c9",
+  prowler: "octgn:c6582860-80cf-48d6-92f3-dde5e3e31333",
+  passages: "octgn:f7a42b56-2a8e-4c6f-b60c-5031ad2a99db",
+  swish: "octgn:7d3ef70c-4107-4747-9913-048224ba6e76",
 } as const;
+/** Over the Misty Mountains Grim's Nightmare cards with The Great Goblin's encounter set icon: they join the second (Goblin) encounter deck. */
+export const NIGHTMARE_OMM_GOBLIN_DECK: readonly string[] = [
+  NIGHTMARE_OHUH.greatGoblin,
+  NIGHTMARE_OHUH.prowler,
+  NIGHTMARE_OHUH.passages,
+  NIGHTMARE_OHUH.swish,
+];
 /** The Heirs of Númenor Nightmare Deck's cards (OCTGN ids, as DragnCards keeps them). */
 export const NIGHTMARE_HON = {
   /** Peril in Pelargir's setup card and Nightmare Deck. */
@@ -693,6 +709,19 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "A Nice Pickle": 2,
     },
   },
+  "over-the-misty-mountains-grim": {
+    card: NIGHTMARE_OHUH.ommCard,
+    removals: {
+      "Cave Entrance": 2,
+      "Lone-Lands": 2,
+      "Dreary Hills": 2,
+      "Overhanging Rock": 2,
+      "Great Cavern Room": 1,
+      "The Great Goblin": 1,
+      "Goblin Miners": 3,
+      "Goblin Axeman": 3,
+    },
+  },
   "the-morgul-vale": {
     card: NIGHTMARE_AS.morgulCard,
     removals: {
@@ -835,6 +864,43 @@ export function nightmareEncounterDeck(id: ScenarioId, standard: string[]) {
       out.push(...(Array(c.quantity ?? 1).fill(c.code) as string[]));
   return out;
 }
+/**
+ * A Nightmare Deck shared between two encounter decks (Over the Misty
+ * Mountains Grim's): the removals apply to whichever deck holds each card,
+ * and each Nightmare card joins the deck its encounter set icon names.
+ */
+export function nightmareEncounterDecks(
+  id: ScenarioId,
+  decks: string[][],
+  deckOf: (code: string) => number,
+) {
+  const out = decks.map((d) => [...d]);
+  const deck = NIGHTMARE[id];
+  if (!deck) return out;
+  for (const [title, n] of Object.entries(deck.removals))
+    for (let i = 0; i < n; i++) {
+      const pile = out.find((d) =>
+        d.some((code) => plainTitle(card(code).name) === title),
+      );
+      if (!pile)
+        throw new Error(`${title} is not in the standard encounter decks.`);
+      pile.splice(
+        pile.findIndex((code) => plainTitle(card(code).name) === title),
+        1,
+      );
+    }
+  const set = nightmareSet(id);
+  for (const c of encounterCards)
+    if (
+      c.encounter_set === set &&
+      c.type_code !== "nightmare" &&
+      c.type_code !== "quest"
+    )
+      out[deckOf(c.code)].push(
+        ...(Array(c.quantity ?? 1).fill(c.code) as string[]),
+      );
+  return out;
+}
 /** The quest inspector's lines for the Nightmare card. */
 export function nightmareStatus(s: GameState): string[] {
   if (!nightmareLive(s)) return [];
@@ -966,6 +1032,12 @@ export function nightmareStatus(s: GameState): string[] {
     const hidden = Object.values(s.bloodGondor?.hidden ?? {}).flat().length;
     return [
       `The Blood of Gondor · Nightmare mode: each player took a hidden card at setup (${hidden} hidden now); the players cannot win unless The Cross-roads and the Nightmare Deck's Black Númenorean are in the victory display.`,
+    ];
+  }
+  if (s.scenarioId === "over-the-misty-mountains-grim") {
+    const players = s.table?.seats.length ?? 1;
+    return [
+      `Over the Misty Mountains Grim · Nightmare mode: stage 3B's When Revealed effect may spend no more than ${players} Baggins resource${players === 1 ? "" : "s"} (the number of players). Its Nightmare cards joined both encounter decks.`,
     ];
   }
   if (s.scenarioId === "we-must-away-ere-break-of-day")
