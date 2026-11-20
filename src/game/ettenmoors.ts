@@ -39,6 +39,8 @@ import {
   seatName,
 } from "./table";
 import { allQuestUnits, mainQuestCode } from "./quest-state";
+import { batch4Scenario } from "./batch4-scenarios";
+import { nightmareEncounterDeck, nightmareLive } from "./nightmare";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { khazadCannotExhaust } from "./khazad-dum";
 import { watcherWaterCannotExhaust } from "./watcher-water";
@@ -149,6 +151,10 @@ export function setupEttenmoors(s: GameState) {
   // DragnCards separates all four Trollspawn for setup convenience. Only the
   // copies added to staging leave the deck; unused copies stay in the deck.
   s.encounterDeck.push(...Array<string>(4).fill(E.spawn));
+  // Nightmare mode: the setup card's removals and Nightmare Deck (its side
+  // quests are set aside with the others by its stage 1A).
+  if (nightmareLive(s))
+    s.encounterDeck = nightmareEncounterDeck(s.scenarioId, s.encounterDeck);
   s.ettenmoors = {
     initialized: false,
     lieLowProgressRound: {},
@@ -584,20 +590,34 @@ export function ettenEffect(s: GameState, e: Effect) {
       );
       break;
     }
-    case "ettenCampRecover":
-      if (!s.discard.length) break;
+    case "ettenCampRecover": {
+      // A card that cannot leave the discard pile is not offered.
+      const kept = (code: string) =>
+        !!batch4Scenario(s).discardCardKept?.(s, code);
+      if (!s.discard.some((code) => !kept(code))) break;
       choose(s, "Abandoned Camp · Return a card to your hand", [
-        ...s.discard.map((code, index) => ({
-          id: `card-${index}`,
-          code,
-          label: card(code).name,
-          effects: [fx("ettenCampTake", { code, value: index })],
-        })),
+        ...s.discard.flatMap((code, index) =>
+          kept(code)
+            ? []
+            : [
+                {
+                  id: `card-${index}`,
+                  code,
+                  label: card(code).name,
+                  effects: [fx("ettenCampTake", { code, value: index })],
+                },
+              ],
+        ),
         { id: "skip", label: "Do not return a card", effects: [] },
       ]);
       break;
+    }
     case "ettenCampTake":
-      if (e.value !== undefined && s.discard[e.value] === e.code)
+      if (
+        e.value !== undefined &&
+        s.discard[e.value] === e.code &&
+        !batch4Scenario(s).discardCardKept?.(s, e.code)
+      )
         s.hand.push(make(s, s.discard.splice(e.value, 1)[0]));
       break;
     case "ettenAmarthiulResponse": {

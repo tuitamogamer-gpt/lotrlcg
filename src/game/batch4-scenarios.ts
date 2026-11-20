@@ -117,6 +117,7 @@ import { NIGHTMARE_HELM_HOOKS } from "./nightmare-helm";
 import { NIGHTMARE_ISENGARD_HOOKS } from "./nightmare-isengard";
 import { NIGHTMARE_WASTES_HOOKS } from "./nightmare-wastes";
 import { NIGHTMARE_GRAM_HOOKS } from "./nightmare-gram";
+import { NIGHTMARE_ETTEN_HOOKS } from "./nightmare-ettenmoors";
 import { nightmareLive } from "./nightmare";
 
 const empty: Batch4ScenarioHooks = {};
@@ -183,6 +184,7 @@ const NIGHTMARE_LAYERS: Partial<Record<string, Batch4ScenarioHooks>> = {
   "the-road-to-isengard": NIGHTMARE_ISENGARD_HOOKS,
   "wastes-of-eriador": NIGHTMARE_WASTES_HOOKS,
   "escape-from-mount-gram": NIGHTMARE_GRAM_HOOKS,
+  "across-the-ettenmoors": NIGHTMARE_ETTEN_HOOKS,
 };
 /**
  * The current scenario's hooks; in an Ered Mithrin campaign chapter from The
@@ -388,6 +390,7 @@ export const batch4SharedEffect = (effect: Effect) =>
     NIGHTMARE_ISENGARD_HOOKS,
     NIGHTMARE_WASTES_HOOKS,
     NIGHTMARE_GRAM_HOOKS,
+    NIGHTMARE_ETTEN_HOOKS,
     BLACK_SERPENT_HOOKS,
     CIRITH_GURAT_HOOKS,
     CROSSINGS_POROS_HOOKS,

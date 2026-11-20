@@ -14,7 +14,12 @@ import { fbCurrentQuest } from "./fog-barrow-support";
 import { gramCurrentQuest, gramQuestUnit } from "./mount-gram-support";
 import { voyageCurrentQuest } from "./voyage-belegaer-support";
 import { fasCurrentQuest } from "./flies-spiders-support";
-import { NIGHTMARE_DD, NIGHTMARE_KD, NIGHTMARE_SOM } from "./nightmare";
+import {
+  NIGHTMARE_AA,
+  NIGHTMARE_DD,
+  NIGHTMARE_KD,
+  NIGHTMARE_SOM,
+} from "./nightmare";
 
 type QuestAttachmentState = GameState & {
   questAttachments?: Record<string, Attachment[]>;
@@ -125,6 +130,14 @@ export function mainQuestCode(s: GameState): string | undefined {
   // Road to Rivendell (Nightmare): stage 2, Ambush in the Night.
   if (s.scenarioId === "road-to-rivendell" && s.stage === 2 && s.nightmareMode)
     return NIGHTMARE_DD.night;
+  // Across the Ettenmoors (Nightmare): stage 1, the Nightmare Deck's Into
+  // the Ettenmoors.
+  if (
+    s.scenarioId === "across-the-ettenmoors" &&
+    s.stage === 1 &&
+    s.nightmareMode
+  )
+    return NIGHTMARE_AA.ettenQuest;
   const stage = scenario(s.scenarioId).stages[s.stage - 1];
   return stage && "cardCode" in stage
     ? stage.cardCode

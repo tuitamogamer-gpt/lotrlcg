@@ -3893,6 +3893,93 @@ try {
       assert.deepEqual(s.nightmare.gramUsed, [{ id: cellId, round: s.round }]);
     }
     await checkpoint("gram-prison-cell", width);
+    // Across the Ettenmoors in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-across-the-ettenmoors").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "across-the-ettenmoors");
+    assert.equal(s.nightmareMode, true);
+    {
+      const safe = s.staging.find((u) => card(u.code).text?.includes("Safe."));
+      assert.ok(safe, "a safe location is staged");
+      assert.ok(
+        s.staging.some(
+          (u) =>
+            u.guarding === safe.id &&
+            card(u.code).type_code === "encounter-side-quest",
+        ),
+        "a side quest guards it",
+      );
+      assert.ok(s.allies.some((u) => card(u.code).name === "Amarthiúl"));
+    }
+    // Stage 1 is the Nightmare Deck's Into the Ettenmoors.
+    await page
+      .locator(`img[src*="${AA.ettenQuest.slice("octgn:".length)}"]`)
+      .first()
+      .waitFor();
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/a safe location found in the encounter deck guards it/)
+      .waitFor();
+    await checkpoint("etten-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // Its enemies, locations and side quest beside the safe location.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const beetle = make(t, AA.beetle);
+      beetle.owner = 0;
+      t.engaged = [...t.engaged, beetle];
+      t.staging = [
+        ...t.staging,
+        make(t, AA.serpent),
+        make(t, AA.stoneTroll),
+        make(t, AA.foothills),
+        make(t, AA.vastFells),
+        make(t, AA.isolated),
+      ];
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [AA.serpent, "Hoarwell River Serpent"],
+      [AA.stoneTroll, "Scavenging Stone-troll"],
+      [AA.beetle, "Giant Beetle"],
+      [AA.foothills, "Rocky Foothills"],
+      [AA.vastFells, "Vast Troll-fells"],
+      [AA.isolated, "Isolated"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    await checkpoint("etten-troll-fells", width);
     await view.c.close();
   }
   const p = await browser.newPage();

@@ -77,9 +77,18 @@ export function AngmarQuestGoals({ s }: { s: GameState }) {
     goals = (
       <>
         {progress()}
-        {s.stage === 1 && (
-          <span>Defeated side quests add their quest points to this stage</span>
-        )}
+        {s.stage === 1 &&
+          (s.nightmareMode ? (
+            // The Nightmare Deck's stage 1 gives no progress for side quests.
+            <span>
+              A side quest is revealed at the beginning of the quest phase when
+              none is in play
+            </span>
+          ) : (
+            <span>
+              Defeated side quests add their quest points to this stage
+            </span>
+          ))}
         <span>Protect Amarthiúl · Seek active Safe locations</span>
       </>
     );

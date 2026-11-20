@@ -2837,6 +2837,8 @@ export function composeEredPool(
       !!h.missingHeroAllowed?.(s, player) ||
       !!p.missingHeroAllowed?.(s, player),
     cannotDraw: (s) => !!h.cannotDraw?.(s) || !!p.cannotDraw?.(s),
+    cannotGainResources: (s, u) =>
+      !!h.cannotGainResources?.(s, u) || !!p.cannotGainResources?.(s, u),
     resourceStart: (s) => [
       ...(h.resourceStart?.(s) ?? []),
       ...(p.resourceStart?.(s) ?? []),

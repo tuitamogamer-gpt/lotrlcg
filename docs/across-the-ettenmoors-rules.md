@@ -1,6 +1,6 @@
 # Across the Ettenmoors — original scenario
 
-The import uses the original Across the Ettenmoors cards, the two sides of its printed rules card, and the official normal/easy recipes `Q05.6` and `E05.6`. It supports one to four players. Campaign and Nightmare are separate products.
+The import uses the original Across the Ettenmoors cards, the two sides of its printed rules card, and the official normal/easy recipes `Q05.6` and `E05.6`. It supports one to four players. Campaign mode is a separate product; Nightmare mode follows [its Nightmare Deck](NIGHTMARE.md).
 
 Sources are preserved in `src/data/pending/across-the-ettenmoors-import.json`. The printed insert is available at [rules front](https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/788819a1-c0b5-4dd0-b778-f3011ca05175.jpg) and [rules back](https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/788819a1-c0b5-4dd0-b778-f3011ca05175.B.jpg). Runtime definitions preserve canonical encounter IDs; the nine Eriador Wilds/Foul Weather cards reuse their existing definitions and scripts. In particular, the original Cold from Angmar attachment is independent of its damage instruction; the catalog's added “Then” does not override the corrected original definition.
 
@@ -31,3 +31,16 @@ Trollspawn counts damaged characters controlled by the engaged player. Ruthless 
 Amarthiúl's engagement control transfer is an optional Response controlled by his current player. He does not follow the first-player token. His departure loses the game, including when his printed text is blank.
 
 Semantic/save/multiplayer checks are in `tests/ettenmoors.test.ts` and save-valid fixture helpers in `tests/ettenmoors-fixtures.ts`.
+
+## Nightmare mode
+
+The Nightmare Deck replaces stage 1 with its own Into the Ettenmoors: its setup
+sets every side quest (Make Camp, Lost in the Wilderness and its own two among
+them) and safe location aside, reveals a random side quest guarding a random
+safe location and stages the first enemies discarded from the encounter deck,
+one for each player. Its quest-phase Forced reveals the side quest it finds, and
+a defeated side quest gives it no progress. As stages 2A and 3A reveal their side
+quest, the setup card finds a safe location in the encounter deck to guard it.
+Its encounter cards add costs to travel to a safe location (Hoarwell River
+Serpent, Giant Beetle, Vast Troll-fells) or forbid it (Scavenging Stone-troll),
+and Abandoned Camp's Response offers no card that cannot leave its discard pile.

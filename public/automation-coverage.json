@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2770,
+    "encounterCards": 2781,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3992,
-    "pending": 191
+    "scripted": 4003,
+    "pending": 180
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 326
+    "scripted": 327
   },
   "registeredCodes": [
     "01001",
@@ -1239,6 +1239,7 @@
     "octgn:0071049b-ca5b-4083-b955-a74da4aad5f1",
     "octgn:007721bf-3e80-4857-aaf4-aabb65d1827d",
     "octgn:008bcdb1-bac6-4c45-86c5-6bcfb0bf12cc",
+    "octgn:00a0a007-10dd-4a05-bedf-3a4e8ff972dc",
     "octgn:00d81c85-395e-4990-b0ff-7cbd9908f541",
     "octgn:00e25526-9804-4b05-89d6-557d9ef7ad77",
     "octgn:011a4573-f21a-4897-9b23-8b64391f5136",
@@ -1692,6 +1693,7 @@
     "octgn:2f273bdf-2c16-43e6-8845-5899cac1e3ab",
     "octgn:2f2e6076-2636-485b-874c-fd3bc4bcf5f0",
     "octgn:2f380c3c-7de7-4961-b5f5-878f3e4e58c8",
+    "octgn:2f3a59dd-d404-426e-9e40-1589cf690618",
     "octgn:2f5221a8-8afd-48d8-afd3-352151d87ed6",
     "octgn:2f7770cd-3102-4f35-a3bc-bd9afcab8303",
     "octgn:2fb27cc8-c3f5-4172-8ff0-456907f9b111",
@@ -2056,6 +2058,7 @@
     "octgn:4d976fdd-1a4b-429a-98ef-28c4695fa20d",
     "octgn:4daa4ff5-625a-4949-aef5-fb1349e249fd",
     "octgn:4e12f20f-aec3-4311-a656-10a517fd97fe",
+    "octgn:4e309ae8-11c9-4326-a5ad-60e4d16e60c4",
     "octgn:4ebd8ec5-79fe-4305-9c33-e06d37b1c8d5",
     "octgn:4ee0293f-5c0c-4f7a-bc10-680d84eb9214",
     "octgn:4ee09875-c105-4532-ba68-3701f3327696",
@@ -2714,6 +2717,7 @@
     "octgn:74f47fcd-31fb-4034-924c-034e1615a3c4",
     "octgn:74fc62c2-b1b6-4338-819a-1f00f871312c",
     "octgn:750a1952-58d9-4ab7-aa3f-8cc5fd2ea040",
+    "octgn:753a527a-63b0-490e-9342-4ee4ac19bc1c",
     "octgn:7562e662-3b3e-4378-9a3f-c45908bc05cf",
     "octgn:7595e0f2-391c-4c39-9147-888d53031784",
     "octgn:75b111c9-fb49-4a53-ac50-729ff2d06abe",
@@ -2830,6 +2834,7 @@
     "octgn:8043cc1b-caa1-4f12-8abb-61322c9e9499.B",
     "octgn:804e57bd-26e8-495b-9676-2e39f009baba",
     "octgn:807175bd-1d09-41ff-a3ab-560a935eb259",
+    "octgn:8073dade-022c-4ad6-8891-5cb116506ed1",
     "octgn:80764232-a3c9-47f1-9034-9c9ac82002e4",
     "octgn:808f60ad-a63f-4504-9b67-4fd45d630add",
     "octgn:809ff5de-8273-4491-adfb-3a27d4b316f3",
@@ -3165,6 +3170,7 @@
     "octgn:a11f08ac-541b-46ba-9528-467dcbdc90c6",
     "octgn:a142205c-6aa0-4fed-be81-312c2dd33673",
     "octgn:a1827b45-42bd-44b3-a86d-d773e60ac1b5",
+    "octgn:a1893a93-326b-429c-acd4-cd569b12bf18",
     "octgn:a1a8bd6e-4cd1-4641-9cb1-f693f053f62e",
     "octgn:a1e74757-c5c8-4b81-a01a-6406410f661d",
     "octgn:a203a422-201a-4b2a-b9bd-687258687479",
@@ -3455,6 +3461,7 @@
     "octgn:b922eedf-eea0-471d-bc52-90becc2a0769",
     "octgn:b93c5b70-0655-4577-9f5e-68ca00d4bfc8",
     "octgn:b94e993e-27a6-4ef4-b6f6-a7719928aceb",
+    "octgn:b9acdd61-8007-41be-b986-e9809a587a70",
     "octgn:b9b2c1fc-2954-46f3-8b6c-71300a35eb5d",
     "octgn:ba090102-5f80-4dbc-aefd-2f965685e954",
     "octgn:ba2e4a33-edc6-4638-a3f5-b818b080aea8",
@@ -3480,6 +3487,7 @@
     "octgn:bc629269-aa5b-4f5c-b071-c1413f85d24c",
     "octgn:bcd41784-d260-4165-ae0f-74cb844d10b3",
     "octgn:bcd69c86-8dd5-4c60-8f0f-5d19985ce913",
+    "octgn:bcfbd822-5a8d-4090-9c36-e721488be682",
     "octgn:bd30f509-04f8-4135-a5e9-20d3cbbe7cd8",
     "octgn:bd44e9b4-5226-4fb5-a300-dffc9b35f6d4",
     "octgn:bd837efe-9358-4fe9-8770-69b9b1fefb48",
@@ -3557,6 +3565,7 @@
     "octgn:c4aea786-9987-451a-8924-e63c628be505",
     "octgn:c4efe804-2832-42f1-bebf-45d3072cc70f",
     "octgn:c5215a42-f064-46cc-a9a2-75ef4d57fcd2",
+    "octgn:c52272ad-0a46-4867-9873-e7ed1ffee0dd",
     "octgn:c5657436-d6c8-400d-ba1f-a723799ac685",
     "octgn:c57661b7-62f9-4906-b2eb-73af91fd8252",
     "octgn:c5b174ae-d1e5-4dac-bedf-7a6c741e26d6",
@@ -3767,6 +3776,7 @@
     "octgn:dc5c51d1-7528-46b4-b438-aae0cb744e29",
     "octgn:dc8f31b6-73af-4aec-be26-8d297909d14d",
     "octgn:dce8ff38-bcc7-49b4-ba27-ae3e2cac1d32",
+    "octgn:dd28d391-8eca-4a12-9455-3d705adb46a5",
     "octgn:dd394c76-c2b9-4b1c-8948-a056de97b779",
     "octgn:dd71d27f-b53e-453b-bcbc-bb479104461a",
     "octgn:dd7ca673-fc3c-4caf-859a-ca32722e68dc",
@@ -4157,6 +4167,7 @@
     "octgn:fdfc404e-67b0-44d6-a1e7-a5e568ac0265",
     "octgn:fe2c30ae-dd35-48de-a2c2-4886a0c0783e",
     "octgn:fe419fec-bc64-493c-aa23-fa3e62c57768",
+    "octgn:fe544acb-93c9-4f7a-8743-9526c8b57943",
     "octgn:fe580179-8f51-463e-a235-bde0f7b783d7",
     "octgn:fe5ce9b0-2dd0-49f7-b3d3-6df03d367b33",
     "octgn:fe7448a2-e2e2-4e81-95f4-2ac585160433",
@@ -4236,7 +4247,7 @@
     {
       "product": "across-the-ettenmoors-nightmare",
       "total": 11,
-      "scripted": 0,
+      "scripted": 11,
       "player": 0,
       "playerScripted": 0
     },
@@ -13963,7 +13974,7 @@
       "name": "Rescue from the Trolls",
       "type": "encounter-side-quest",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "across-the-ettenmoors-nightmare"
     },
     {
@@ -17787,7 +17798,7 @@
       "name": "Barren and Desolate",
       "type": "treachery",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "across-the-ettenmoors-nightmare"
     },
     {
@@ -20835,7 +20846,7 @@
       "name": "Across the Ettenmoors",
       "type": "nightmare",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "across-the-ettenmoors-nightmare"
     },
     {
@@ -26339,7 +26350,7 @@
       "name": "Giant Beetle",
       "type": "enemy",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "across-the-ettenmoors-nightmare"
     },
     {
@@ -27323,7 +27334,7 @@
       "name": "Scavenging Stone-troll",
       "type": "enemy",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "across-the-ettenmoors-nightmare"
     },
     {
@@ -30123,7 +30134,7 @@
       "name": "Hoarwell River Serpent",
       "type": "enemy",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "across-the-ettenmoors-nightmare"
     },
     {
@@ -32563,7 +32574,7 @@
       "name": "Into the Ettenmoors",
       "type": "quest",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "across-the-ettenmoors-nightmare"
     },
     {
@@ -32795,7 +32806,7 @@
       "name": "Crashing Thunder",
       "type": "treachery",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "across-the-ettenmoors-nightmare"
     },
     {
@@ -33443,7 +33454,7 @@
       "name": "Rocky Foothills",
       "type": "location",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "across-the-ettenmoors-nightmare"
     },
     {
@@ -35283,7 +35294,7 @@
       "name": "Isolated",
       "type": "encounter-side-quest",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "across-the-ettenmoors-nightmare"
     },
     {
@@ -38459,7 +38470,7 @@
       "name": "Vast Troll-fells",
       "type": "location",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "across-the-ettenmoors-nightmare"
     },
     {
@@ -39812,8 +39823,8 @@
       "id": "N05.6",
       "name": "Across the Ettenmoors (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "across-the-ettenmoors",
+      "state": "scripted"
     },
     {
       "id": "N05.7",

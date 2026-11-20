@@ -606,6 +606,18 @@ export const NIGHTMARE_AA = {
   goblinPatrol: "octgn:98ff43a9-a592-42da-8ea2-75558d0f7dea",
   vault: "octgn:66d1d599-0c19-46d2-9335-02d68c59a99f",
   thaurdir: "octgn:bcd69c86-8dd5-4c60-8f0f-5d19985ce913",
+  /** Across the Ettenmoors' setup card (stages 2A and 3A find a safe location to guard the side quest they reveal), its stage 1 and Nightmare Deck. */
+  ettenCard: "octgn:4e309ae8-11c9-4326-a5ad-60e4d16e60c4",
+  ettenQuest: "octgn:b9acdd61-8007-41be-b986-e9809a587a70",
+  serpent: "octgn:a1893a93-326b-429c-acd4-cd569b12bf18",
+  stoneTroll: "octgn:8073dade-022c-4ad6-8891-5cb116506ed1",
+  beetle: "octgn:753a527a-63b0-490e-9342-4ee4ac19bc1c",
+  foothills: "octgn:c52272ad-0a46-4867-9873-e7ed1ffee0dd",
+  vastFells: "octgn:fe544acb-93c9-4f7a-8743-9526c8b57943",
+  thunder: "octgn:bcfbd822-5a8d-4090-9c36-e721488be682",
+  barren: "octgn:2f3a59dd-d404-426e-9e40-1589cf690618",
+  isolated: "octgn:dd28d391-8eca-4a12-9455-3d705adb46a5",
+  rescue: "octgn:00a0a007-10dd-4a05-bedf-3a4e8ff972dc",
 } as const;
 
 interface NightmareDeck {
@@ -1207,6 +1219,18 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Cruel Torturer": 1,
     },
   },
+  "across-the-ettenmoors": {
+    card: NIGHTMARE_AA.ettenCard,
+    removals: {
+      "Shrouded Hills": 2,
+      "No Rest": 1,
+      "Arador's Bane": 2,
+      "Troll-fells": 2,
+      "Goblin Pursuer": 2,
+      "Cold from Angmar": 2,
+    },
+    questRemovals: { "Into the Ettenmoors": 1 },
+  },
   "deadmens-dike": {
     card: NIGHTMARE_TLR.dikeCard,
     removals: {
@@ -1677,6 +1701,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "escape-from-mount-gram")
     return [
       "Escape from Mount Gram · Nightmare mode: each player's other heroes were shuffled into their captured deck, with the hero set aside facedown at its bottom; the players cannot win while a hero is captured.",
+    ];
+  if (s.scenarioId === "across-the-ettenmoors")
+    return [
+      "Across the Ettenmoors · Nightmare mode: stage 1 is the Nightmare Deck's Into the Ettenmoors; as stages 2A and 3A reveal their side quest, a safe location found in the encounter deck guards it.",
     ];
   if (s.scenarioId === "deadmens-dike") {
     const under = (s.nightmare?.dikeCourage ?? []).reduce(
