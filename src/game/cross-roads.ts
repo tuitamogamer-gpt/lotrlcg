@@ -41,6 +41,11 @@ import { hasTrait } from "./expansion-passives";
 import { whiteHandArchery } from "./white-hand";
 import { returnToStaging } from "./black-riders-hunted";
 import {
+  NIGHTMARE_LOS,
+  nightmareEncounterDeck,
+  nightmareLive,
+} from "./nightmare";
+import {
   CROSS_ROADS_RECIPES,
   JTC,
   JTC_BLACK_GATE_BASE,
@@ -89,6 +94,12 @@ export const blackGateLimit = (s: GameState) =>
   JTC_BLACK_GATE_BASE + players(s);
 const blackGate = (s: GameState) =>
   s.staging.find((u) => u.code === JTC.blackGate);
+/**
+ * Southron Rearguard (the Nightmare Deck): "Cannot have attachments or be
+ * placed under The Black Gate."
+ */
+export const gateProof = (s: GameState, u: Unit) =>
+  nightmareLive(s) && u.code === NIGHTMARE_LOS.rearguard && !u.blanked;
 function lose(s: GameState, reason: string) {
   if (s.status !== "playing") return;
   s.status = "lost";
@@ -116,6 +127,10 @@ function underGate(s: GameState, u: Unit, text: string) {
   const staged = s.staging.some((x) => x.id === u.id);
   const owner = staged ? undefined : ownerOf(s, u);
   if (!staged && !globalEngaged(s).some((x) => x.id === u.id)) return false;
+  if (gateProof(s, u)) {
+    log(s, `${text}: ${name(u)} cannot be placed under The Black Gate.`);
+    return false;
+  }
   for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
   if (staged) s.staging = s.staging.filter((x) => x.id !== u.id);
   else
@@ -148,14 +163,29 @@ export function setupCrossRoads(s: GameState) {
     r.cards
       .filter((c) => c.section === name)
       .flatMap((c) => Array<string>(c.quantity).fill(c.code));
-  s.encounterDeck = shuffle(s, section("sharedEncounterDeck"));
+  const deck = nightmareLive(s)
+    ? nightmareEncounterDeck(s.scenarioId, section("sharedEncounterDeck"))
+    : section("sharedEncounterDeck");
+  // The Nightmare setup card: "Place 1 Southron Warrior per player facedown
+  // under The Cross-roads, then shuffle the facedown cards under The
+  // Cross-roads. Set any remaining Southron Warriors aside, out of play."
+  const warriors = deck
+    .filter((c) => c === NIGHTMARE_LOS.warrior)
+    .slice(0, players(s));
+  s.encounterDeck = shuffle(
+    s,
+    deck.filter((c) => c !== NIGHTMARE_LOS.warrior),
+  );
   // 1A: The Black Gate and The Cross-roads are added to the staging area,
   // and the Men of Harad lie facedown under The Cross-roads.
   s.staging = section("sharedStagingArea").map((c) => make(s, c));
   s.crossRoads = {
     currentQuest: JTC.ambush,
     resolving: [],
-    underCrossroads: shuffle(s, section("sharedEncounterDeck2")),
+    underCrossroads: shuffle(s, [
+      ...section("sharedEncounterDeck2"),
+      ...warriors,
+    ]),
     underBlackGate: [],
   };
   log(
@@ -163,6 +193,11 @@ export function setupCrossRoads(s: GameState) {
     "Ambush the Men of Harad: The Black Gate and The Cross-roads are added to the staging area, with the Men of Harad facedown under The Cross-roads.",
     "chapter",
   );
+  if (warriors.length)
+    log(
+      s,
+      `Journey to the Cross-roads · Nightmare: ${warriors.length === 1 ? "1 Southron Warrior is" : `${warriors.length} Southron Warriors are`} shuffled facedown under The Cross-roads; the others are set aside, out of play.`,
+    );
 }
 /** The stage is never defeated: exploring The Cross-roads wins the game. */
 function advance(s: GameState) {
@@ -568,7 +603,7 @@ export function crossRoadsEffect(s: GameState, e: Effect): boolean {
     }
     // Treacheries.
     case "jtcSummons": {
-      const engaged = s.engaged.filter(isHarad);
+      const engaged = s.engaged.filter((x) => isHarad(x) && !gateProof(s, x));
       const options: Option[] = [];
       if (engaged.length)
         options.push({
@@ -601,7 +636,7 @@ export function crossRoadsEffect(s: GameState, e: Effect): boolean {
     }
     case "jtcSummonsGate": {
       const candidates = lowest(
-        s.engaged.filter(isHarad),
+        s.engaged.filter((x) => isHarad(x) && !gateProof(s, x)),
         (x) => stats(s, x).attack,
       );
       if (candidates.length === 1)
@@ -689,7 +724,7 @@ export function crossRoadsEffect(s: GameState, e: Effect): boolean {
       return true;
     }
     case "jtcSouthrons": {
-      const harad = s.staging.filter(isHarad);
+      const harad = s.staging.filter((x) => isHarad(x) && !gateProof(s, x));
       const enemies = s.staging.filter((x) => isEnemy(x));
       const options: Option[] = [];
       if (harad.length)
@@ -715,8 +750,9 @@ export function crossRoadsEffect(s: GameState, e: Effect): boolean {
       return true;
     }
     case "jtcSouthronsGate": {
-      const candidates = lowest(s.staging.filter(isHarad), (x) =>
-        threatOf(s, x),
+      const candidates = lowest(
+        s.staging.filter((x) => isHarad(x) && !gateProof(s, x)),
+        (x) => threatOf(s, x),
       );
       const reveal = fx("reveal", { player: p });
       if (candidates.length === 1) {
@@ -762,6 +798,16 @@ export function crossRoadsEffect(s: GameState, e: Effect): boolean {
     case "jtcArrowsShadow": {
       const enemy = u;
       if (!enemy || !s.combat || s.combat.enemyId !== enemy.id) return true;
+      // Southron Rearguard cannot go under The Black Gate: the other option.
+      if (gateProof(s, enemy)) {
+        s.combat.extraAttacks = (s.combat.extraAttacks ?? 0) + 1;
+        log(
+          s,
+          `Arrows Thick in the Air: ${name(enemy)} cannot be placed under The Black Gate, so it makes an additional attack after this one.`,
+          "danger",
+        );
+        return true;
+      }
       choose(
         s,
         `Arrows Thick in the Air · Choose one${seatLabel(s, p)}`,
@@ -790,6 +836,7 @@ export function crossRoadsEffect(s: GameState, e: Effect): boolean {
         s.combat.extraAttacks = (s.combat.extraAttacks ?? 0) + 1;
       return true;
     case "jtcDiscardAttachment": {
+      const text = e.text ?? "Hills of Ithilien";
       const attachments = [...s.heroes, ...s.allies].flatMap((host) =>
         host.attachments
           .filter(
@@ -802,19 +849,24 @@ export function crossRoadsEffect(s: GameState, e: Effect): boolean {
       if (!attachments.length) {
         log(
           s,
-          `Hills of Ithilien: ${who(s, p)} ${s.table ? "controls" : "control"} no non-objective attachment.`,
+          `${text}: ${who(s, p)} ${s.table ? "controls" : "control"} no non-objective attachment.`,
         );
         return true;
       }
       choose(
         s,
-        `Hills of Ithilien · Discard a non-objective attachment you control${seatLabel(s, p)}`,
+        `${text} · Discard a non-objective attachment you control${seatLabel(s, p)}`,
         attachments.map(({ host, a }) => ({
           id: a.id,
           code: a.code,
           label: `${card(a.code).name} · ${name(host)}`,
           effects: [
-            fx("jtcDiscard", { target: host.id, source: a.id, player: p }),
+            fx("jtcDiscard", {
+              target: host.id,
+              source: a.id,
+              text,
+              player: p,
+            }),
           ],
         })),
         "Shadow: discard a non-objective attachment you control.",
@@ -828,7 +880,7 @@ export function crossRoadsEffect(s: GameState, e: Effect): boolean {
         discardAttachment(s, host, a);
         log(
           s,
-          `Hills of Ithilien: ${card(a.code).name} is discarded.`,
+          `${e.text ?? "Hills of Ithilien"}: ${card(a.code).name} is discarded.`,
           "danger",
         );
       }
@@ -866,7 +918,7 @@ export const CROSS_ROADS_HOOKS: Batch4ScenarioHooks = {
     if (blackGate(s) && q.underBlackGate.length >= blackGateLimit(s))
       lose(
         s,
-        `${q.underBlackGate.length} Harad enemies are under The Black Gate: the hosts of the Dark Tower are swelled, and the players lose the game.`,
+        `${q.underBlackGate.length} facedown cards are under The Black Gate: the hosts of the Dark Tower are swelled, and the players lose the game.`,
       );
   },
   encounter,

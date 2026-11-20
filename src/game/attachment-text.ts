@@ -76,7 +76,8 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
         (blanked && attachment.code !== "21001") ||
         attachment.facedown ||
         burglarGuardedObjective(s, attachment) ||
-        attachment.namelessCard
+        attachment.namelessCard ||
+        batch4Scenario(s).attachmentBlanked?.(s, host, attachment)
       )
         attachment.blanked = true;
       else delete attachment.blanked;

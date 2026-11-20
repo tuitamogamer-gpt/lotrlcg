@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2818,
+    "encounterCards": 2826,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 4040,
-    "pending": 143
+    "scripted": 4048,
+    "pending": 135
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 331
+    "scripted": 332
   },
   "registeredCodes": [
     "01001",
@@ -1378,6 +1378,7 @@
     "octgn:0f31d397-55d8-4988-b6bb-3d4101977515",
     "octgn:0f3c746e-2d23-4cb9-a481-f919ffc8cdee",
     "octgn:0f5ffc36-fe0f-4097-ad67-dafda700d96f",
+    "octgn:0f6dfe98-9645-4c52-93d1-cd6e9089c640",
     "octgn:0f7ce386-9510-4fd5-93aa-145190f8d1de",
     "octgn:0f939a7b-8a2e-4358-b3b1-e50b3eef7c0b",
     "octgn:0f9b520c-f5c8-4704-a887-feb72fe7cba5",
@@ -1523,6 +1524,7 @@
     "octgn:1ee75e10-bcc5-4243-ab28-3dc1978a50af",
     "octgn:1f1ad7bb-68ca-4b48-b7fa-516e5314e272",
     "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+    "octgn:1fa7117f-2e41-45ae-b81e-75da3ad36cf2",
     "octgn:1fbeb20b-0018-4d18-ab53-66982543b04b",
     "octgn:1fc9cfde-aff7-4210-b3da-c7ddb00a9c1e",
     "octgn:1fdfdb77-31e0-458d-85d1-9c158f12717f",
@@ -1614,6 +1616,7 @@
     "octgn:26bb74c2-3c66-4828-8188-404bc42e713e",
     "octgn:26e6135d-df1b-4221-ba45-a501858bafdf",
     "octgn:26eb433a-01e2-4b0e-83c4-680b0e0c4854",
+    "octgn:26fcc4f7-16bc-4134-b184-ede9bfe82906",
     "octgn:271fa771-d678-461e-b5c6-483117059ed1",
     "octgn:27299002-f9b0-4f9d-a87b-012a6a6993ca",
     "octgn:27393c24-6278-4202-91ef-ef3d708387e6",
@@ -1811,6 +1814,7 @@
     "octgn:388d173e-e32a-4e02-b029-99180e34b014",
     "octgn:389031d2-7a44-4c4d-82f2-cf79c08ce0ae",
     "octgn:389072e7-d59a-4a04-bed8-568cc367b06f",
+    "octgn:38e03ed2-9492-4522-8ef1-014f0444b40e",
     "octgn:390c3a3f-a5f2-44f2-bcc7-fbe22e46cbb5",
     "octgn:39262ffc-6819-422c-a72a-9baed00f648a",
     "octgn:39773513-ff69-4918-9323-6f04b7109b2f",
@@ -2775,6 +2779,7 @@
     "octgn:79666b89-ec7b-4bc8-98d9-9c517f8ca6ed",
     "octgn:796c0aee-2aea-4999-931d-253fafe7fb26",
     "octgn:797a1805-f347-4eb3-9f77-5c9e6b6a850f",
+    "octgn:797f8633-3df6-4e0e-b42e-c088f34e488f",
     "octgn:7991d705-7e2d-4303-abbc-f9999b2d2502",
     "octgn:79a2b4c2-7d0c-41a5-aa5f-1ec29644caab",
     "octgn:79a32e57-7973-43bb-92d2-a0da9c13c5c6",
@@ -2796,6 +2801,7 @@
     "octgn:7b0eb4e5-962c-4041-baea-3a09a83fb996",
     "octgn:7b261ec7-bc90-4bd3-884d-d14a44e88942",
     "octgn:7b3e0874-fa4e-4ffb-8614-2bb088896d42",
+    "octgn:7b41bc67-160e-4d01-90ba-d00481aa3b81",
     "octgn:7b491dcc-668a-431f-b0a1-ec2bf34840a7",
     "octgn:7b4b95f6-5b2d-47ff-b6cb-7bc6c9504b08",
     "octgn:7b8369b4-cca1-4076-8985-1c7be238ccb0",
@@ -2823,6 +2829,7 @@
     "octgn:7d76b849-a3c7-4e2d-ab9d-f02ff0cca709",
     "octgn:7d9a3914-bc46-40d6-b489-3157d7430382",
     "octgn:7dbe33ca-5c8f-411a-ae21-d4b8ceb46f00",
+    "octgn:7dcb70a6-4be1-4436-8e38-9ebdcc12d165",
     "octgn:7ddffdc0-bb6f-4ab3-a6df-c2df039062e8",
     "octgn:7e20690f-d1bb-4ac3-b2bf-da55f1f95bcc",
     "octgn:7e470346-1828-49c0-b241-58d0dbf27b4b",
@@ -2844,6 +2851,7 @@
     "octgn:7fc629f3-3115-47df-b997-4a5026d97d2b",
     "octgn:7fdde250-5b13-4c94-a9b8-4a3a0029928a",
     "octgn:7fe0f143-9d3b-461a-b6bd-bc86e1491311",
+    "octgn:7fe4a83b-8654-4599-ab5d-6c06e56a7cdc",
     "octgn:801078c6-56a9-45f2-b5a4-7e38cb5bc507",
     "octgn:8042f7de-6fed-49cf-95be-450f0fae1601",
     "octgn:8043cc1b-caa1-4f12-8abb-61322c9e9499",
@@ -4886,7 +4894,7 @@
     {
       "product": "the-land-of-shadow-nightmare",
       "total": 24,
-      "scripted": 8,
+      "scripted": 16,
       "player": 0,
       "playerScripted": 0
     },
@@ -15147,7 +15155,7 @@
       "name": "Shadowy Thicket",
       "type": "location",
       "pack": "The Land of Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow-nightmare"
     },
     {
@@ -16339,7 +16347,7 @@
       "name": "Dense Fern-brake",
       "type": "location",
       "pack": "The Land of Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow-nightmare"
     },
     {
@@ -17107,7 +17115,7 @@
       "name": "Ware! Ware!",
       "type": "treachery",
       "pack": "The Land of Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow-nightmare"
     },
     {
@@ -18779,7 +18787,7 @@
       "name": "Wooded Glade",
       "type": "location",
       "pack": "The Land of Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow-nightmare"
     },
     {
@@ -26731,7 +26739,7 @@
       "name": "Journey to the Cross-roads",
       "type": "nightmare",
       "pack": "The Land of Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow-nightmare"
     },
     {
@@ -26907,7 +26915,7 @@
       "name": "Southron Rearguard",
       "type": "enemy",
       "pack": "The Land of Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow-nightmare"
     },
     {
@@ -27131,7 +27139,7 @@
       "name": "Blind Wrath",
       "type": "treachery",
       "pack": "The Land of Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow-nightmare"
     },
     {
@@ -27323,7 +27331,7 @@
       "name": "Southron Warrior",
       "type": "enemy",
       "pack": "The Land of Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow-nightmare"
     },
     {
@@ -40063,8 +40071,8 @@
       "id": "N0B.11",
       "name": "Journey to the Cross-roads (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "journey-to-the-cross-roads",
+      "state": "scripted"
     },
     {
       "id": "N0B.12",

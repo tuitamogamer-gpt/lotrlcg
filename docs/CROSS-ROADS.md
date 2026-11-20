@@ -2,8 +2,8 @@
 
 The second scenario of **The Lord of the Rings: The Land of Shadow**
 (November 2015). It is playable in classic solo and with one to four local
-players, in normal and easy mode, with the box's Fellowship-sphere Frodo
-Baggins as the Ring-bearer. Its campaign mode (recipe Q0C.11) is part of
+players, in normal and easy mode and in Nightmare mode (below), with the
+box's Fellowship-sphere Frodo Baggins as the Ring-bearer. Its campaign mode (recipe Q0C.11) is part of
 [The Lord of the Rings campaign](SAGA-CAMPAIGN.md): each player chooses
 resources or Brace of Coneys at setup, and the resolution earns the shuffled
 copies and records the enemies under The Black Gate.
@@ -99,6 +99,25 @@ Interpretations:
 - **Hills of Ithilien's shadow** discards an attachment the player controls:
   objectives (such as The One Ring) and encounter cards are excluded.
 - **Peril** cards are resolved by the revealing player, who makes the choice.
+
+## Nightmare mode
+
+The Nightmare Deck (recipe `N0B.11`,
+[rules and cards](NIGHTMARE.md#journey-to-the-cross-roads-nightmare))
+removes Captain of Harad ×1, Henneth Annûn ×1, Southward Road ×2, Hills of
+Ithilien ×4 and The Dark Lord's Summons ×3, and adds Southron Rearguard ×2,
+Wooded Glade ×3, Dense Fern-brake ×2, Shadowy Thicket ×3, Blind Wrath ×3 and
+Ware! Ware! ×2 to the encounter deck (33 cards). Its setup card shuffles 1
+Southron Warrior per player facedown under The Cross-roads with the Men of
+Harad, the other Southron Warriors set aside out of play, so stage 1B and
+Shadowy Thicket's travel reveal them; each Southron Warrior that engages a
+player discards an ally. Southron Rearguard cannot go under The Black Gate,
+and its engagement cost falls with stage 1B's progress; Blind Wrath draws
+the staged Harad enemies down at once, Ware! Ware! either feeds The Black
+Gate (its loss counts every facedown card) or brings the next card from
+under The Cross-roads, and the Forest locations blank attachments, shield
+the staged enemies from player cards or grow with The Black Gate. Focused
+checks are in `tests/nightmare-crossroads.test.ts`.
 
 ## Verification
 

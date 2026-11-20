@@ -4336,6 +4336,110 @@ try {
       );
     }
     await checkpoint("marshes-festering-mire", width);
+    // Journey to the Cross-roads in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-journey-to-the-cross-roads").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "journey-to-the-cross-roads");
+    assert.equal(s.nightmareMode, true);
+    {
+      const all = [
+        ...s.encounterDeck,
+        ...s.encounterDiscard,
+        ...s.staging.map((u) => u.code),
+        ...s.engaged.map((u) => u.code),
+      ];
+      assert.deepEqual(
+        [
+          LOS.rearguard,
+          LOS.glade,
+          LOS.fern,
+          LOS.shadowy,
+          LOS.wrath,
+          LOS.ware,
+        ].map((code) => all.filter((c) => c === code).length),
+        [2, 3, 2, 3, 3, 2],
+        "the Nightmare Deck is in the encounter deck",
+      );
+      assert.ok(
+        !all.some((c) =>
+          ["Southward Road", "Hills of Ithilien", "Henneth Annûn"].includes(
+            card(c).name,
+          ),
+        ),
+        "the setup card removes each Southward Road, Hills of Ithilien and Henneth Annûn",
+      );
+      assert.equal(
+        s.crossRoads.underCrossroads.filter((c) => c === LOS.warrior).length,
+        1,
+        "1 Southron Warrior per player under The Cross-roads",
+      );
+      assert.ok(!all.includes(LOS.warrior), "the others are out of play");
+    }
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(
+        /1 Southron Warrior was shuffled facedown under The Cross-roads/,
+      )
+      .waitFor();
+    await checkpoint("crossroads-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A Southron Rearguard engaged; a Southron Warrior and the three Forest
+    // locations in the staging area.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const rearguard = make(t, LOS.rearguard);
+      rearguard.owner = 0;
+      t.engaged = [...t.engaged, rearguard];
+      t.staging = [
+        ...t.staging,
+        make(t, LOS.warrior),
+        make(t, LOS.glade),
+        make(t, LOS.fern),
+        make(t, LOS.shadowy),
+      ];
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [LOS.rearguard, "Southron Rearguard"],
+      [LOS.warrior, "Southron Warrior"],
+      [LOS.glade, "Wooded Glade"],
+      [LOS.fern, "Dense Fern-brake"],
+      [LOS.shadowy, "Shadowy Thicket"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    await checkpoint("crossroads-shadowy-thicket", width);
     await view.c.close();
   }
   const p = await browser.newPage();

@@ -176,6 +176,7 @@ import { validNightmareEtten } from "./nightmare-ettenmoors";
 import { validNightmareRhudaur } from "./nightmare-rhudaur";
 import { validNightmareCarn } from "./nightmare-carn";
 import { dreadSideTime, validNightmareDread } from "./nightmare-dread";
+import { validNightmareCrossroads } from "./nightmare-crossroads";
 import { nightmareEscapeTest } from "./nightmare-dead";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
@@ -1279,6 +1280,7 @@ export function validateSave(
         !validNightmareRhudaur(s) ||
         !validNightmareCarn(s) ||
         !validNightmareDread(s) ||
+        !validNightmareCrossroads(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,

@@ -665,6 +665,15 @@ export const NIGHTMARE_LOS = {
   rotting: "octgn:6e82330b-ca0d-4d6b-a796-024de152ca56",
   rot: "octgn:555dcce7-e705-4ba1-ba58-4880b449c178",
   rage: "octgn:9b0f5fb4-4f7f-4e89-8565-b327980f2627",
+  /** Journey to the Cross-roads' setup card (1 Southron Warrior per player under The Cross-roads) and Nightmare Deck. */
+  crossroadsCard: "octgn:797f8633-3df6-4e0e-b42e-c088f34e488f",
+  warrior: "octgn:7fe4a83b-8654-4599-ab5d-6c06e56a7cdc",
+  rearguard: "octgn:7b41bc67-160e-4d01-90ba-d00481aa3b81",
+  glade: "octgn:38e03ed2-9492-4522-8ef1-014f0444b40e",
+  fern: "octgn:1fa7117f-2e41-45ae-b81e-75da3ad36cf2",
+  shadowy: "octgn:0f6dfe98-9645-4c52-93d1-cd6e9089c640",
+  wrath: "octgn:7dcb70a6-4be1-4436-8e38-9ebdcc12d165",
+  ware: "octgn:26fcc4f7-16bc-4134-b184-ede9bfe82906",
 } as const;
 
 interface NightmareDeck {
@@ -1315,6 +1324,17 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Bitter Reek": 3,
     },
   },
+  "journey-to-the-cross-roads": {
+    card: NIGHTMARE_LOS.crossroadsCard,
+    // The setup card prints "Henneth Annun", without the accent.
+    removals: {
+      "Captain of Harad": 1,
+      "Henneth Annûn": 1,
+      "Southward Road": 2,
+      "Hills of Ithilien": 4,
+      "The Dark Lord's Summons": 3,
+    },
+  },
   "the-dread-realm": {
     card: NIGHTMARE_AA.dreadCard,
     removals: {
@@ -1815,6 +1835,13 @@ export function nightmareStatus(s: GameState): string[] {
     return [
       "The Passage of the Marshes · Nightmare mode: when a location in the staging area is explored, each player raises their threat by that location's Mire value.",
     ];
+  if (s.scenarioId === "journey-to-the-cross-roads") {
+    const players = s.table ? s.table.seats.length : 1;
+    const aside = Math.max(0, 4 - players);
+    return [
+      `Journey to the Cross-roads · Nightmare mode: during setup, ${players === 1 ? "1 Southron Warrior was" : `${players} Southron Warriors were`} shuffled facedown under The Cross-roads${aside ? ` (the other ${aside === 1 ? "one is" : `${aside} are`} set aside, out of play)` : ""}.`,
+    ];
+  }
   if (s.scenarioId === "the-dread-realm") {
     const curses = s.nightmare?.dreadCurses ?? [];
     const decks = [...new Set(curses.map((c) => c.player))].map((p) => {

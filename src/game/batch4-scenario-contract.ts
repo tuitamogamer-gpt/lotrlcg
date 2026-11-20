@@ -56,6 +56,8 @@ export interface Batch4ScenarioHooks {
   ): boolean;
   /** A defeated encounter side quest goes elsewhere than the victory display (true when moved). */
   sideQuestDestination?(s: GameState, u: Unit): boolean;
+  /** An attachment's text box is treated as blank (Journey to the Cross-roads' Nightmare Wooded Glade). */
+  attachmentBlanked?(s: GameState, host: Unit, a: Attachment): boolean;
   /** The characters that archery damage must be assigned to, if able. */
   /** The characters archery damage may be assigned to; `last` took the previous point. */
   archeryTargets?(
