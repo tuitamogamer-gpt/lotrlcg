@@ -91,6 +91,10 @@ export interface Batch4ScenarioHooks {
    * player gives 1 poison to a hero they control).
    */
   setupFollowUp?(s: GameState): Effect[];
+  /** The players cannot advance to this stage now (The Lonely Mountain's Nightmare setup card: stage 3). */
+  cannotAdvanceStage?(s: GameState, stage: number): boolean;
+  /** After a player fails a burgle attempt (The Lonely Mountain). */
+  burgleFailed?(s: GameState): void;
   combatBegin?(s: GameState): void;
   enemyEntered?(s: GameState, unit: Unit): void;
   openingHandsKept?(s: GameState): boolean;

@@ -2977,6 +2977,16 @@ export function composeEredPool(
     attachmentCannotReady: (s, host, a) =>
       !!h.attachmentCannotReady?.(s, host, a) ||
       !!p.attachmentCannotReady?.(s, host, a),
+    cannotAdvanceStage: (s, stage) =>
+      !!h.cannotAdvanceStage?.(s, stage) || !!p.cannotAdvanceStage?.(s, stage),
+    burgleFailed: (s) => {
+      h.burgleFailed?.(s);
+      p.burgleFailed?.(s);
+    },
+    planningEnd: (s) => {
+      h.planningEnd?.(s);
+      p.planningEnd?.(s);
+    },
     setupFollowUp: (s) => [
       ...(h.setupFollowUp?.(s) ?? []),
       ...(p.setupFollowUp?.(s) ?? []),

@@ -144,6 +144,7 @@ import { validNightmareBlood } from "./nightmare-blood";
 import { validNightmareMorgul } from "./nightmare-morgul";
 import { validNightmareOmm } from "./nightmare-omm";
 import { validNightmareDdcd } from "./nightmare-ddcd";
+import { validNightmareTlm } from "./nightmare-tlm";
 import { nightmareEscapeTest } from "./nightmare-dead";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
@@ -681,6 +682,7 @@ export function validateSave(
         c.voyageExcessCopies,
         c.raidFiresOnKill,
         c.templeRainOnKill,
+        c.nmThreatOnKill,
       ].every((v) => v === undefined || (integer(v) && v >= 0)) &&
       (c.dreadKilled === undefined ||
         (Array.isArray(c.dreadKilled) &&
@@ -1194,6 +1196,7 @@ export function validateSave(
         !validNightmareMorgul(s) ||
         !validNightmareOmm(s) ||
         !validNightmareDdcd(s) ||
+        !validNightmareTlm(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,

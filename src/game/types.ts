@@ -594,7 +594,8 @@ export interface GameState {
     import("./nightmare-blood").NightmareBloodState &
     import("./nightmare-morgul").NightmareMorgulState &
     import("./nightmare-omm").NightmareOmmState &
-    import("./nightmare-ddcd").NightmareDdcdState;
+    import("./nightmare-ddcd").NightmareDdcdState &
+    import("./nightmare-tlm").NightmareTlmState;
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;
@@ -1236,6 +1237,8 @@ export interface GameState {
     wilderKilledCharacter?: boolean;
     wilderPackAttacks?: number;
     wilderDiscardAlly?: number;
+    /** Southern Spur's shadow (The Lonely Mountain's Nightmare Deck): each player's threat if this attack destroys a character. */
+    nmThreatOnKill?: number;
     defenderIds?: string[];
     ignoreDefense?: boolean;
     returnToStaging?: boolean;

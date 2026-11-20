@@ -76,6 +76,9 @@ async function nightmareOpening(p) {
         p,
         s.choice.options.find((o) => o.id === "resolve")?.id ??
           s.choice.options.find((o) => o.id === "skip")?.id ??
+          // Followed by Night: no enemy is engaged at setup, so its attacks
+          // spare Arwen the damage a second copy would make lethal.
+          s.choice.options.find((o) => o.id === "attacks")?.id ??
           (s.choice.options.find(spare) ?? s.choice.options[0]).id,
       );
     else if (s.escapeTest && s.escapeTest.phase !== "committing")
@@ -2073,6 +2076,58 @@ try {
       "Attercop's face loads",
     );
     await checkpoint("fas-attercop", width);
+
+    // The Lonely Mountain in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-the-lonely-mountain").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "the-lonely-mountain");
+    assert.equal(s.nightmareMode, true);
+    assert.equal(s.lonelyMountain.stack.length, 5);
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/cannot advance to stage 3 while a card is stacked/)
+      .waitFor();
+    await checkpoint("tlm-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // Erebor Bats beside a Southern Spur in the staging area.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.staging = [...t.staging, make(t, OTD.ereborBats), make(t, OTD.spur)];
+      s = await load(page, t);
+    }
+    const batsFace = page
+      .locator(`img[src*="${OTD.ereborBats.slice("octgn:".length)}"]`)
+      .first();
+    await batsFace.waitFor();
+    assert.ok(
+      (await batsFace.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "Erebor Bats' face loads",
+    );
+    await checkpoint("tlm-erebor-bats", width);
     await view.c.close();
   }
   const p = await browser.newPage();

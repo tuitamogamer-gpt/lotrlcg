@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2560,
+    "encounterCards": 2567,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3782,
-    "pending": 401
+    "scripted": 3789,
+    "pending": 394
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 301
+    "scripted": 302
   },
   "registeredCodes": [
     "01001",
@@ -1663,6 +1663,7 @@
     "octgn:2e4aea1e-abb5-48c6-9f83-abbf9b6bcf72",
     "octgn:2e502d3d-5cf5-47eb-9577-3c14d74995fa",
     "octgn:2e5e6e97-003b-4500-8372-495f5ee86051",
+    "octgn:2e77da31-a3ef-4bea-9af8-3f663c608a62",
     "octgn:2e810a9b-5d79-4828-8268-33e82c5fc1fa",
     "octgn:2efa631a-eb16-4078-84a5-18c7033b86f3",
     "octgn:2f1ba4e7-ddc6-4d97-93d3-31907840aed0",
@@ -1826,6 +1827,7 @@
     "octgn:41c3779a-a28a-44db-8b9b-bc5e81d1111a",
     "octgn:41cf7fb0-1194-4654-b23a-0b49259faf63",
     "octgn:4233fe0f-ba63-4947-8c3c-f732ab09c472",
+    "octgn:424d4f29-d7c6-465f-9742-adb51177affc",
     "octgn:42621898-ffe0-435a-a0c2-34ed4383eadb",
     "octgn:4297aa1e-8d53-4bd4-a750-ae5490fbb82b",
     "octgn:42a5a608-0699-4cd5-b69d-f7c3413cd5cd",
@@ -2864,6 +2866,7 @@
     "octgn:8d3c19e0-28f2-4a3d-91b2-8e9911ac4c91",
     "octgn:8d55b746-417d-4996-b69b-01c80a7e4602",
     "octgn:8d61982f-acf9-4b03-969f-6e75688ee1fd",
+    "octgn:8da00775-fb2b-4abe-bde9-39ecce643d5d",
     "octgn:8dad9a85-eae9-4a39-a823-1c58d8c0f86b",
     "octgn:8df24501-bfd8-4602-92e1-61f5d5cf7035",
     "octgn:8df497f3-7857-4573-8467-8cf2e16fbc3f",
@@ -3760,6 +3763,7 @@
     "octgn:ecb91fb3-6ae6-4a96-9bb7-71abeb0a7ec5.B",
     "octgn:ecc8fd11-b2b9-4adc-91eb-6fcc1212e7ce",
     "octgn:eccef05c-0f43-4cfa-91c6-e9eaf0eff7c9",
+    "octgn:ece25a80-d4c6-4032-90eb-ca485da5373d",
     "octgn:ed12d29f-d8f8-4689-8097-417b4d31f214",
     "octgn:ed3c4835-2741-406c-b43e-0ad72f6b2496",
     "octgn:ed68974c-45ea-4378-9fe3-818cae03f9ea",
@@ -3790,6 +3794,7 @@
     "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
     "octgn:efd4cef9-ce8b-4985-8825-853ba98baa2b",
     "octgn:efdbe76c-5b41-4f28-a390-a72ec784e5a3",
+    "octgn:efe062c5-dcdc-47fb-a66a-5c31f4ed5f7c",
     "octgn:eff34048-3186-4613-b841-0cc29cfd357b",
     "octgn:f015bc92-42c1-405d-a54e-1a1c7bc0afae",
     "octgn:f02f15ee-3262-435a-b894-8f4003068c32",
@@ -3811,6 +3816,7 @@
     "octgn:f1d2d99e-27e6-44d3-ad3d-ef727fa9ddc2",
     "octgn:f214f533-374b-423c-86b5-dca1ab5d048f",
     "octgn:f2319b29-4236-4a66-87dd-36a4ed8e2880",
+    "octgn:f2484786-8e29-4d43-866e-31c4adae3b1f",
     "octgn:f24f8d3e-3193-4111-9fea-ecdbbafd921a",
     "octgn:f250a697-b5aa-4041-9bad-a66b2ab8ccba",
     "octgn:f28dc579-14b5-4623-848a-0a9383162b4c",
@@ -3884,6 +3890,7 @@
     "octgn:f9d0fb76-13bc-44f9-853f-8d2e417d0098",
     "octgn:f9e9bc93-8044-474c-8f80-d3787edbca5f",
     "octgn:fa005422-98d7-4350-b080-b5fe31fce9b0",
+    "octgn:fa005ccd-cf35-4d49-8259-23f3c8035954",
     "octgn:fa3a740d-36b7-4fa9-b5d5-6d70aa50f078",
     "octgn:fa4aaa97-c06d-42d5-b796-2f6200d9a404",
     "octgn:fa4ccbb8-76d4-4293-aa94-d117b14f042e",
@@ -4264,7 +4271,7 @@
     {
       "product": "on-the-doorstep-nightmare",
       "total": 22,
-      "scripted": 8,
+      "scripted": 15,
       "player": 0,
       "playerScripted": 0
     },
@@ -17521,7 +17528,7 @@
       "name": "The Front Gate",
       "type": "location",
       "pack": "The Hobbit - On the Doorstep - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep-nightmare"
     },
     {
@@ -19137,7 +19144,7 @@
       "name": "Erebor Bats",
       "type": "enemy",
       "pack": "The Hobbit - On the Doorstep - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep-nightmare"
     },
     {
@@ -28361,7 +28368,7 @@
       "name": "Secret Tunnel",
       "type": "location",
       "pack": "The Hobbit - On the Doorstep - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep-nightmare"
     },
     {
@@ -36521,7 +36528,7 @@
       "name": "Lust for Treasure",
       "type": "treachery",
       "pack": "The Hobbit - On the Doorstep - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep-nightmare"
     },
     {
@@ -36785,7 +36792,7 @@
       "name": "The Lonely Mountain",
       "type": "nightmare",
       "pack": "The Hobbit - On the Doorstep - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep-nightmare"
     },
     {
@@ -36993,7 +37000,7 @@
       "name": "Southern Spur",
       "type": "location",
       "pack": "The Hobbit - On the Doorstep - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep-nightmare"
     },
     {
@@ -37657,7 +37664,7 @@
       "name": "The Dragon's Ire",
       "type": "treachery",
       "pack": "The Hobbit - On the Doorstep - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep-nightmare"
     },
     {
@@ -39721,8 +39728,8 @@
       "id": "N0A.5",
       "name": "The Lonely Mountain (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-lonely-mountain",
+      "state": "scripted"
     },
     {
       "id": "N0A.6",

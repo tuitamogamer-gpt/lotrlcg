@@ -45,6 +45,8 @@ import {
   spendBaggins,
 } from "./hobbit-saga";
 import { hobbitRingDefense } from "./hobbit-player-cards";
+import { batch4Scenario } from "./batch4-scenarios";
+import { nightmareEncounterDeck, nightmareLive } from "./nightmare";
 import {
   WILDERLAND_SHARED_EFFECTS,
   WILDERLAND_TREACHERIES,
@@ -64,6 +66,7 @@ import {
   SMAUG_PROGRESS_LIMIT,
   TLM as T,
   TLM_RECIPES,
+  TLM_SCENARIO,
   burgleItemLabel,
   burgleMatch,
   hasBurgle,
@@ -102,7 +105,12 @@ export function setupLonelyMountain(s: GameState) {
     r.cards
       .filter((c) => c.section === name)
       .flatMap((c) => Array<string>(c.quantity).fill(c.code));
-  s.encounterDeck = shuffle(s, section("sharedEncounterDeck"));
+  // Nightmare mode: the setup card's removals and the Nightmare Deck.
+  const deck = section("sharedEncounterDeck");
+  s.encounterDeck = shuffle(
+    s,
+    nightmareLive(s) ? nightmareEncounterDeck(TLM_SCENARIO, deck) : deck,
+  );
   for (const code of section("sharedStagingArea"))
     s.staging.push(make(s, code));
   s.lonelyMountain = {
@@ -353,6 +361,15 @@ function burgleSucceeded(s: GameState, reason: BurgleReason) {
       `The first player takes ${card(treasure).name} from under The Lonely Mountain into hand.`,
       "good",
     );
+  }
+  // A Nightmare setup card can forbid stage 3 while treasures remain.
+  if (batch4Scenario(s).cannotAdvanceStage?.(s, 3)) {
+    log(
+      s,
+      "The players cannot advance to stage 3 while a card is stacked underneath The Lonely Mountain.",
+      "danger",
+    );
+    return;
   }
   choose(
     s,
@@ -691,6 +708,7 @@ export function tlmEffect(s: GameState, e: Effect): boolean {
     }
     case "tlmBurgleFail": {
       log(s, "The burgle attempt fails.", "danger");
+      batch4Scenario(s).burgleFailed?.(s);
       const g = golden(s);
       // Forced (stage 2B): Smaug the Golden attacks the first player.
       if (e.text === "stage" && q.currentQuest === T.burglar && g)
@@ -698,7 +716,11 @@ export function tlmEffect(s: GameState, e: Effect): boolean {
       return true;
     }
     case "tlmStageThree":
-      if (q.currentQuest !== T.burglar) return true;
+      if (
+        q.currentQuest !== T.burglar ||
+        batch4Scenario(s).cannotAdvanceStage?.(s, 3)
+      )
+        return true;
       setStage(s, T.inside);
       s.stageRevealing = true;
       log(s, "Inside Information begins.", "chapter");
@@ -798,6 +820,10 @@ export function tlmEffect(s: GameState, e: Effect): boolean {
       return true;
     case "tlmHallProgress":
       smaugProgress(s, 1, "Great Hall");
+      return true;
+    // Progress another card places on Smaug the Golden (a Nightmare card's).
+    case "tlmSmaugProgress":
+      smaugProgress(s, e.value ?? 1, e.text ?? "Smaug the Golden");
       return true;
     case "tlmSlopes": {
       const g = golden(s);
@@ -956,6 +982,7 @@ const STAGE_EFFECTS = [
   "tlmTreachery",
   "tlmTreacheryDone",
   "tlmHallProgress",
+  "tlmSmaugProgress",
 ];
 export const TLM_HOOKS: Batch4ScenarioHooks = {
   setup: setupLonelyMountain,

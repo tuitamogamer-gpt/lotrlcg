@@ -309,6 +309,14 @@ export const NIGHTMARE_OTD = {
   patch: "octgn:92d3dcbb-8ce7-40fa-9df1-44617ebf08b4",
   battle: "octgn:0f9b520c-f5c8-4704-a887-feb72fe7cba5",
   bite: "octgn:8471389d-5424-41f9-8ed8-e7f29e9e78f4",
+  /** The Lonely Mountain's setup card and Nightmare Deck (no stage 3 while a treasure remains under the Mountain). */
+  tlmCard: "octgn:efe062c5-dcdc-47fb-a66a-5c31f4ed5f7c",
+  ereborBats: "octgn:424d4f29-d7c6-465f-9742-adb51177affc",
+  tunnel: "octgn:8da00775-fb2b-4abe-bde9-39ecce643d5d",
+  spur: "octgn:f2484786-8e29-4d43-866e-31c4adae3b1f",
+  frontGate: "octgn:2e77da31-a3ef-4bea-9af8-3f663c608a62",
+  ire: "octgn:fa005ccd-cf35-4d49-8259-23f3c8035954",
+  lust: "octgn:ece25a80-d4c6-4032-90eb-ca485da5373d",
 } as const;
 /** Over the Misty Mountains Grim's Nightmare cards with The Great Goblin's encounter set icon: they join the second (Goblin) encounter deck. */
 export const NIGHTMARE_OMM_GOBLIN_DECK: readonly string[] = [
@@ -753,6 +761,16 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Not fair! Not fair!": 1,
     },
   },
+  "the-lonely-mountain": {
+    card: NIGHTMARE_OTD.tlmCard,
+    removals: {
+      "Dark Bats": 3,
+      "Fighting Among Friends": 2,
+      "Western Slopes": 3,
+      "Secret Entrance": 2,
+      "Belching Fire": 4,
+    },
+  },
   "flies-and-spiders": {
     card: NIGHTMARE_OTD.fasCard,
     removals: {
@@ -1074,6 +1092,12 @@ export function nightmareStatus(s: GameState): string[] {
     const hidden = Object.values(s.bloodGondor?.hidden ?? {}).flat().length;
     return [
       `The Blood of Gondor · Nightmare mode: each player took a hidden card at setup (${hidden} hidden now); the players cannot win unless The Cross-roads and the Nightmare Deck's Black Númenorean are in the victory display.`,
+    ];
+  }
+  if (s.scenarioId === "the-lonely-mountain") {
+    const stack = s.lonelyMountain?.stack.length ?? 0;
+    return [
+      `The Lonely Mountain · Nightmare mode: the players cannot advance to stage 3 while a card is stacked underneath The Lonely Mountain (${stack} now); Smaug the Magnificent cannot take damage unless A Bare Patch is attached to him.`,
     ];
   }
   if (s.scenarioId === "flies-and-spiders")

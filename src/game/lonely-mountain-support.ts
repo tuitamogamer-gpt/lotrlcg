@@ -49,6 +49,12 @@ export const isLonelyMountain = (s: GameState) =>
 export const SMAUG_PROGRESS_LIMIT = 6;
 
 export type BurgleItem = "type" | "sphere" | "cost";
+/** The Nightmare Deck's burgle cards (Erebor Bats, The Front Gate and Lust for Treasure). */
+export const TLM_NIGHTMARE_BURGLES = {
+  bats: "octgn:424d4f29-d7c6-465f-9742-adb51177affc",
+  gate: "octgn:2e77da31-a3ef-4bea-9af8-3f663c608a62",
+  lust: "octgn:ece25a80-d4c6-4032-90eb-ca485da5373d",
+} as const;
 /** Each burgle effect: what discarded cards match and how many are needed. */
 export const BURGLES: Readonly<
   Record<string, { items: readonly BurgleItem[]; cards: number }>
@@ -60,6 +66,9 @@ export const BURGLES: Readonly<
   [TLM.pretending]: { items: ["type"], cards: 2 },
   [TLM.crows]: { items: ["sphere", "type"], cards: 1 },
   [TLM.ounce]: { items: ["sphere", "cost"], cards: 1 },
+  [TLM_NIGHTMARE_BURGLES.bats]: { items: ["cost", "type"], cards: 2 },
+  [TLM_NIGHTMARE_BURGLES.gate]: { items: ["cost"], cards: 3 },
+  [TLM_NIGHTMARE_BURGLES.lust]: { items: ["sphere", "type", "cost"], cards: 1 },
 };
 export const hasBurgle = (code: string) => code in BURGLES;
 /** The printed item of a player card that a burgle effect compares. */

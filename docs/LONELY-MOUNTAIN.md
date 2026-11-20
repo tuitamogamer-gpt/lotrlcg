@@ -2,7 +2,11 @@
 
 The second scenario of **The Hobbit: On the Doorstep** (2013) follows
 [Flies and Spiders](FLIES-SPIDERS.md). It is playable in classic solo and with
-one to four local players, in normal and easy mode. This import also adds the
+one to four local players, in normal and easy mode, and in Nightmare mode
+([its Nightmare Deck](NIGHTMARE.md): the setup builds the encounter deck with
+the setup card's removals and its cards, stage 3 waits for the last treasure
+under the Mountain, and Smaug the Magnificent takes damage only with A Bare
+Patch attached). This import also adds the
 five Erebor treasures as player cards. The On the Doorstep Bilbo Baggins and
 Bilbo's Magic Ring are described with Flies and Spiders, and the other Saga
 rules with [We Must Away, Ere Break of Day](WE-MUST-AWAY.md).
