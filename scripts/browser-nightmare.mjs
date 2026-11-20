@@ -4152,6 +4152,99 @@ try {
       );
     }
     await checkpoint("carn-stronghold", width);
+    // The Dread Realm in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-the-dread-realm").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "the-dread-realm");
+    assert.equal(s.nightmareMode, true);
+    {
+      const count = (code) =>
+        [...s.encounterDeck, ...s.staging.map((u) => u.code)].filter(
+          (c) => c === code,
+        ).length;
+      assert.deepEqual(
+        [AA.guardian, AA.necromancer, AA.cursedHalls, AA.gift].map(count),
+        [2, 3, 3, 1],
+        "the Nightmare Deck is in the encounter deck",
+      );
+      assert.equal(
+        s.encounterDeck.filter((c) => card(c).name === "Witch of Angmar")
+          .length,
+        0,
+        "the setup card removes each Witch of Angmar",
+      );
+    }
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/The Dread Realm · Nightmare mode: the setup card removed/)
+      .waitFor();
+    await checkpoint("dread-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // Its enemies, locations, side quest and All is Lost on the threat dial.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const guardian = make(t, AA.guardian);
+      guardian.owner = 0;
+      t.engaged = [...t.engaged, guardian];
+      const gift = make(t, AA.gift);
+      gift.timeCounters = 5;
+      t.staging = [
+        ...t.staging,
+        make(t, AA.necromancer),
+        make(t, AA.sanctum),
+        make(t, AA.cursedHalls),
+        gift,
+      ];
+      t.threatAttachments = [
+        { id: `a${t.nextId++}`, code: AA.allIsLost, exhausted: false },
+      ];
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [AA.guardian, "Silent Guardian"],
+      [AA.necromancer, "Necromancer of Carn Dûm"],
+      [AA.sanctum, "Inner Sanctum"],
+      [AA.cursedHalls, "Cursed Halls"],
+      [AA.gift, "The Witch-king's Gift"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    await page
+      .getByLabel("Attachments on your threat dial")
+      .getByText("All is Lost")
+      .waitFor();
+    await checkpoint("dread-sanctum", width);
     await view.c.close();
   }
   const p = await browser.newPage();

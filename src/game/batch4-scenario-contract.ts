@@ -37,6 +37,25 @@ export interface Batch4ScenarioHooks {
   ): void;
   /** No card can be drawn at all, the resource phase draw included. */
   drawBlocked?(s: GameState): boolean;
+  /**
+   * The active player's draw of `count` cards (at least 1, from a deck that
+   * is not empty) is replaced by the scenario: true when it was.
+   */
+  drawReplaced?(
+    s: GameState,
+    count: number,
+    cardEffect: boolean,
+    fromBottom: boolean,
+  ): boolean;
+  /** An attachment is immune to the resolving player card effect (`source` is that card's code). */
+  attachmentImmune?(
+    s: GameState,
+    host: Unit,
+    a: Attachment,
+    source?: string,
+  ): boolean;
+  /** A defeated encounter side quest goes elsewhere than the victory display (true when moved). */
+  sideQuestDestination?(s: GameState, u: Unit): boolean;
   /** The characters that archery damage must be assigned to, if able. */
   /** The characters archery damage may be assigned to; `last` took the previous point. */
   archeryTargets?(

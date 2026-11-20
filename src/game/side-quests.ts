@@ -196,7 +196,8 @@ function defeatSideQuest(s: GameState, quest: Unit) {
       !mumakilSideQuestToDiscard(s, quest) &&
       !RacePlayerSupport.raceHaradSideQuestToDiscard(s, quest) &&
       !SandsPlayers.beneathSandsSideQuestToDiscard(s, quest) &&
-      !batch4PlayerSideQuestToDiscard(s, quest)
+      !batch4PlayerSideQuestToDiscard(s, quest) &&
+      !batch4Scenario(s).sideQuestDestination?.(s, quest)
     ) {
       addVictoryCard(s, quest.code);
       log(s, `${name(quest)} defeated · Added to the victory display.`, "good");

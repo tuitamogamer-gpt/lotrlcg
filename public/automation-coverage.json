@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2801,
+    "encounterCards": 2810,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 4023,
-    "pending": 160
+    "scripted": 4032,
+    "pending": 151
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 329
+    "scripted": 330
   },
   "registeredCodes": [
     "01001",
@@ -1431,6 +1431,7 @@
     "octgn:1574141b-b11e-4be9-82c9-ddc1fb2f5269",
     "octgn:1589883f-87ae-4f4d-a92b-e5e23c25c8e0",
     "octgn:159f5a8f-1e1f-4282-9936-94b10e348176",
+    "octgn:159f7a00-2c31-4e64-8adc-6143a5a7d8bb",
     "octgn:15ccb88a-9a78-4aac-a1f2-839070a19016",
     "octgn:15e06e00-8d82-4590-b2ae-6e615330d78a",
     "octgn:15e5feb5-73f4-4472-b279-1887ff29f691",
@@ -1755,6 +1756,7 @@
     "octgn:3459889b-48a2-4401-b511-6e11dabec437",
     "octgn:34635348-ab17-4d00-bc6f-7ced07821168",
     "octgn:3467d57f-412b-482a-8176-3d396a3a44f1",
+    "octgn:346f832a-27ba-4c71-83b5-f690d0953911",
     "octgn:346fda89-94df-410a-8027-41eacbf27238",
     "octgn:3470ed02-38dc-4387-8fe0-265b13fe96a1",
     "octgn:34a59958-0d34-49a9-8beb-b6f8ba8dcd4c",
@@ -2744,6 +2746,7 @@
     "octgn:76a512ea-3a6a-4c99-8c29-d980dea802ff",
     "octgn:76ceda47-fb5e-48de-8a6d-83feda48d197",
     "octgn:771c6c83-a602-4c35-92f6-5ac349c4ec8c",
+    "octgn:77414e71-92e8-4237-a627-4d92c02cddbc",
     "octgn:77833ba7-253c-4d4b-9c45-1764ce014dce",
     "octgn:779079f4-d3a8-4832-9bd5-12e8ca828ba7",
     "octgn:77a7f095-bd59-45a1-a866-d58e17e3bd6d",
@@ -2942,6 +2945,7 @@
     "octgn:88e75969-9e5d-4b83-a535-d58409a473b2",
     "octgn:88efb537-cea8-4c20-8b73-e51f0742f769",
     "octgn:8948aa81-f7fb-4979-9add-555598df529a",
+    "octgn:898579aa-324e-4e58-920e-30ab29c8700a",
     "octgn:89a39894-f5d2-42a5-9927-fb057db778f4",
     "octgn:89baec7c-4e60-4b12-9d7d-80b11e786d89",
     "octgn:89cd149f-69d3-4d75-887d-96b45730792a",
@@ -3287,6 +3291,7 @@
     "octgn:ac4724db-a3cc-4984-bef5-f51b0f4421f8",
     "octgn:ac4da79d-d966-45bf-b1d3-c4d0a348dd7e",
     "octgn:ac5a17df-dcd0-4bfb-91fe-a444910f30ec",
+    "octgn:ac5c7c07-591f-4ac0-9080-e46433a50ff3",
     "octgn:ac78aadc-9a58-42a6-a328-60dbb1e2191c",
     "octgn:ac9fe707-143f-492e-89e3-bdd02973a0f2",
     "octgn:aca1ee7f-ad29-4218-8dd5-f7f7a8e617fe",
@@ -3497,6 +3502,7 @@
     "octgn:bc43ae57-6010-4924-919c-b37d1e33b958",
     "octgn:bc4f2e17-197c-4131-ad81-b892fe66ad88",
     "octgn:bc629269-aa5b-4f5c-b071-c1413f85d24c",
+    "octgn:bc8020d9-4c85-4cf5-899f-3547d9d7efeb",
     "octgn:bcd41784-d260-4165-ae0f-74cb844d10b3",
     "octgn:bcd69c86-8dd5-4c60-8f0f-5d19985ce913",
     "octgn:bcfbd822-5a8d-4090-9c36-e721488be682",
@@ -3562,6 +3568,7 @@
     "octgn:c3aff9c9-640f-4e90-85f3-6e245c2156fe",
     "octgn:c3b3a3e0-1575-4094-a6b3-853b569f8046",
     "octgn:c3c34a86-6089-4a3f-b1b6-f81d8cbc2caa",
+    "octgn:c3d01d85-72cb-4d81-8b75-966ec4a1b9c4",
     "octgn:c3e07d8f-3af3-4f21-8951-d3300ca376fa",
     "octgn:c3f9965f-711d-4c51-b9aa-a0b5d5953b49",
     "octgn:c402e437-4d0c-41ed-8e82-c2923cd6984e",
@@ -3580,6 +3587,7 @@
     "octgn:c5215a42-f064-46cc-a9a2-75ef4d57fcd2",
     "octgn:c52272ad-0a46-4867-9873-e7ed1ffee0dd",
     "octgn:c5657436-d6c8-400d-ba1f-a723799ac685",
+    "octgn:c5711d74-8adb-427a-b0fe-e7a8c373659b",
     "octgn:c57661b7-62f9-4906-b2eb-73af91fd8252",
     "octgn:c5b174ae-d1e5-4dac-bedf-7a6c741e26d6",
     "octgn:c5d1793e-a4e2-4a40-97e9-e5e6f8b1cdfb",
@@ -3693,6 +3701,7 @@
     "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958",
     "octgn:d057a6d6-8eda-4aa2-8d2d-8f2af6b6eeb8",
     "octgn:d060f58b-3067-43c0-a480-d55c68c33305",
+    "octgn:d0968637-1ffc-4365-855f-ee35704a8128",
     "octgn:d0b6992d-9dc4-41fa-a483-b4ad0a3d60b3",
     "octgn:d0bf9c82-d626-4602-a383-4a5660a08c5f",
     "octgn:d12e280f-44f3-469e-a2e8-e3bfd541f909",
@@ -4729,7 +4738,7 @@
     {
       "product": "the-dread-realm-nightmare",
       "total": 9,
-      "scripted": 0,
+      "scripted": 9,
       "player": 0,
       "playerScripted": 0
     },
@@ -15562,7 +15571,7 @@
       "name": "Necromancer of Carn Dûm",
       "type": "enemy",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dread-realm-nightmare"
     },
     {
@@ -18306,7 +18315,7 @@
       "name": "Power Beyond Death",
       "type": "treachery",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dread-realm-nightmare"
     },
     {
@@ -26514,7 +26523,7 @@
       "name": "Daechannar's Curse",
       "type": "treachery",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dread-realm-nightmare"
     },
     {
@@ -28154,7 +28163,7 @@
       "name": "Silent Guardian",
       "type": "enemy",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dread-realm-nightmare"
     },
     {
@@ -31042,7 +31051,7 @@
       "name": "The Witch-King's Gift",
       "type": "encounter-side-quest",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dread-realm-nightmare"
     },
     {
@@ -32802,7 +32811,7 @@
       "name": "Cursed Halls",
       "type": "location",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dread-realm-nightmare"
     },
     {
@@ -33330,7 +33339,7 @@
       "name": "The Dread Realm",
       "type": "nightmare",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dread-realm-nightmare"
     },
     {
@@ -33490,7 +33499,7 @@
       "name": "Inner Sanctum",
       "type": "location",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dread-realm-nightmare"
     },
     {
@@ -34450,7 +34459,7 @@
       "name": "All is Lost",
       "type": "treachery",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dread-realm-nightmare"
     },
     {
@@ -39864,8 +39873,8 @@
       "id": "N05.9",
       "name": "The Dread Realm (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-dread-realm",
+      "state": "scripted"
     },
     {
       "id": "N06.1",

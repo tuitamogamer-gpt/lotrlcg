@@ -618,7 +618,8 @@ export interface GameState {
     import("./nightmare-gram").NightmareGramState &
     import("./nightmare-ettenmoors").NightmareEttenState &
     import("./nightmare-rhudaur").NightmareRhudaurState &
-    import("./nightmare-carn").NightmareCarnState;
+    import("./nightmare-carn").NightmareCarnState &
+    import("./nightmare-dread").NightmareDreadState;
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;
@@ -1294,6 +1295,10 @@ export interface GameState {
     nmLifeDrain?: number;
     /** Orc Wight's shadow (The Battle of Carn Dûm's Nightmare Deck): the attacker returns to the staging area after this attack. */
     nmReturnAfter?: number;
+    /** Power Beyond Death's shadow (The Dread Realm's Nightmare Deck): copies that attach to the main quest if this attack destroys a character. */
+    nmPowerOnKill?: number;
+    /** All is Lost's shadow (The Dread Realm's Nightmare Deck): the Reanimated Dead attacks again after this attack, once for each copy. */
+    nmAttackAgain?: number;
     defenderIds?: string[];
     ignoreDefense?: boolean;
     returnToStaging?: boolean;

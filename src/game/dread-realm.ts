@@ -48,6 +48,11 @@ import { allQuestUnits, attachToQuest, currentQuestUnit } from "./quest-state";
 import { syncAttachmentText } from "./attachment-text";
 import { playerCardImmune } from "./card-immunity";
 import { isAlly } from "./card-types";
+import {
+  NIGHTMARE_AA,
+  nightmareEncounterDeck,
+  nightmareLive,
+} from "./nightmare";
 
 type DreadCombat = NonNullable<GameState["combat"]> & {
   dreadKilled?: DreadKilledCharacter[];
@@ -82,6 +87,31 @@ const sorceries = (s: GameState) =>
   attachments(s).filter(
     ({ attachment: a }) => a.code === D.wraith || trait(a.code, "Sorcery"),
   );
+/**
+ * The Nightmare Deck's Sorcery cards in play on no card: Daechanar's Curse
+ * attached to the top of a player's deck, All is Lost to a threat dial.
+ */
+export function dreadPlacedSorceries(s: GameState) {
+  return playerOrder(s).flatMap((player) => [
+    ...(s.nightmare?.dreadCurses ?? [])
+      .filter((c) => c.player === player)
+      .map((c) => ({
+        player,
+        zone: "deck" as const,
+        attachment: {
+          id: c.id,
+          code: NIGHTMARE_AA.daechanarCurse,
+          exhausted: false,
+        } as Attachment,
+      })),
+    ...(seatView(s, player).threatAttachments ?? [])
+      .filter((a) => trait(a.code, "Sorcery"))
+      .map((attachment) => ({ player, zone: "dial" as const, attachment })),
+  ]);
+}
+/** "Each Sorcery card in play", attached to cards, decks and threat dials. */
+const sorceryCount = (s: GameState) =>
+  sorceries(s).length + dreadPlacedSorceries(s).length;
 const boss = (s: GameState) => enemies(s).find((u) => u.code === D.daechanar);
 function order(s: GameState, effects: Effect[], text: string) {
   if (effects.length === 1) prepend(s, effects[0]);
@@ -139,6 +169,9 @@ export function setupDreadRealm(s: GameState) {
       .filter((r) => r.section === section)
       .flatMap((r) => Array<string>(r.quantity).fill(r.code));
   s.encounterDeck = pile("sharedEncounterDeck");
+  // Nightmare mode: the setup card's removals and its Nightmare Deck.
+  if (nightmareLive(s))
+    s.encounterDeck = nightmareEncounterDeck(s.scenarioId, s.encounterDeck);
   s.dreadRealm = {
     initialized: false,
     daechanarDefeated: false,
@@ -170,19 +203,25 @@ export function dreadStats(s: GameState, u: Unit) {
     result.attack += halls;
     result.defense += halls;
   }
-  if (u.code === D.daechanar && !u.blanked)
-    result.attack += sorceries(s).length;
+  if (u.code === D.daechanar && !u.blanked) result.attack += sorceryCount(s);
   return result;
 }
 export const dreadWillZero = (s: GameState, u: Unit) =>
   isDread(s) && u.attachments.some((a) => a.code === D.fell && !a.blanked);
 export const dreadMustCommit = dreadWillZero;
 export const dreadIndestructible = (s: GameState, u: Unit) =>
-  isDread(s) && u.code === D.daechanar && !u.blanked && sorceries(s).length > 0;
+  isDread(s) && u.code === D.daechanar && !u.blanked && sorceryCount(s) > 0;
 export const dreadCannotAttach = (s: GameState, u: Unit) =>
   isDread(s) && u.code === D.daechanar && !u.blanked;
 export const dreadLocationProgressBlocked = (s: GameState, u: Unit) =>
-  isDread(s) && u.code === D.altar && !u.blanked && !!boss(s);
+  isDread(s) &&
+  !u.blanked &&
+  ((u.code === D.altar && !!boss(s)) ||
+    // Inner Sanctum (the Nightmare Deck): "Progress cannot be placed on
+    // Inner Sanctum while it is in the staging area."
+    (u.code === NIGHTMARE_AA.sanctum &&
+      nightmareLive(s) &&
+      s.staging.some((x) => x.id === u.id)));
 export const dreadLocationThreat = (s: GameState, u: Unit) =>
   isDread(s) && u.code === D.crypt && !u.blanked
     ? (card(u.code).threat ?? 0) +
@@ -206,7 +245,7 @@ export function dreadCancelEnemyDamage(s: GameState, u: Unit, value: number) {
     value <= 0 ||
     u.code !== D.daechanar ||
     u.blanked ||
-    !sorceries(s).length
+    !sorceryCount(s)
   )
     return false;
   prepend(s, fx("dreadRemoveSorcery", { player: firstPlayer(s) }));
@@ -587,7 +626,7 @@ export function dreadShadow(s: GameState, code: string) {
     .filter((u): u is Unit => !!u);
   if ([D.dwimmerlaik, D.crypt].includes(code))
     c.dreadReanimateOnKill = (c.dreadReanimateOnKill ?? 0) + 1;
-  else if (code === D.calamity) c.attackBonus += sorceries(s).length;
+  else if (code === D.calamity) c.attackBonus += sorceryCount(s);
   else if (code === D.halls) {
     const player = c.attackPlayer ?? activeSeat(s),
       pile = seatView(s, player).discard;
@@ -830,10 +869,8 @@ export function dreadEffect(s: GameState, e: Effect) {
       break;
     }
     case "dreadRemoveSorcery":
-      choose(
-        s,
-        "Daechanar · Remove a Sorcery card from the game",
-        sorceries(s).map(({ host, attachment: a }) => ({
+      choose(s, "Daechanar · Remove a Sorcery card from the game", [
+        ...sorceries(s).map(({ host, attachment: a }) => ({
           id: a.id,
           label: `${card(a.code).name} · ${name(host)}`,
           code: a.code,
@@ -845,9 +882,38 @@ export function dreadEffect(s: GameState, e: Effect) {
             }),
           ],
         })),
-      );
+        ...dreadPlacedSorceries(s).map(({ player, zone, attachment: a }) => ({
+          id: a.id,
+          label: `${card(a.code).name} · ${s.table ? `${seatName(s, player)}'s` : "your"} ${zone === "deck" ? "deck" : "threat dial"}`,
+          code: a.code,
+          effects: [
+            fx("dreadRemoveSorceryCard", {
+              source: a.id,
+              player: firstPlayer(s),
+            }),
+          ],
+        })),
+      ]);
       break;
     case "dreadRemoveSorceryCard": {
+      const placed = dreadPlacedSorceries(s).find(
+        ({ attachment: a }) => a.id === e.source,
+      );
+      if (placed) {
+        if (placed.zone === "deck") {
+          const q = s.nightmare!;
+          q.dreadCurses = q.dreadCurses!.filter((c) => c.id !== e.source);
+          if (!q.dreadCurses.length) delete q.dreadCurses;
+        } else
+          forOwner(s, placed.player, () => {
+            s.threatAttachments = s.threatAttachments!.filter(
+              (a) => a.id !== e.source,
+            );
+            if (!s.threatAttachments.length) delete s.threatAttachments;
+          });
+        (s.removedEncounter ??= []).push(placed.attachment.code);
+        break;
+      }
       const pair = sorceries(s).find(({ attachment: a }) => a.id === e.source);
       if (pair) {
         pair.host.attachments = pair.host.attachments.filter(

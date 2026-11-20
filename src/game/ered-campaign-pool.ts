@@ -2848,6 +2848,20 @@ export function composeEredPool(
     beforeNormalDefense: (s, enemy, ids) =>
       !!h.beforeNormalDefense?.(s, enemy, ids) ||
       !!p.beforeNormalDefense?.(s, enemy, ids),
+    eventDestination: (s, u, player) =>
+      !!h.eventDestination?.(s, u, player) ||
+      !!p.eventDestination?.(s, u, player),
+    playerAttackDeclared: (s, enemy, ids) =>
+      h.playerAttackDeclared?.(s, enemy, ids) !== false &&
+      p.playerAttackDeclared?.(s, enemy, ids) !== false,
+    drawReplaced: (s, count, cardEffect, fromBottom) =>
+      !!h.drawReplaced?.(s, count, cardEffect, fromBottom) ||
+      !!p.drawReplaced?.(s, count, cardEffect, fromBottom),
+    attachmentImmune: (s, host, a, source) =>
+      !!h.attachmentImmune?.(s, host, a, source) ||
+      !!p.attachmentImmune?.(s, host, a, source),
+    sideQuestDestination: (s, u) =>
+      !!h.sideQuestDestination?.(s, u) || !!p.sideQuestDestination?.(s, u),
     resourceStart: (s) => [
       ...(h.resourceStart?.(s) ?? []),
       ...(p.resourceStart?.(s) ?? []),

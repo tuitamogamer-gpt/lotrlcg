@@ -1717,7 +1717,8 @@ export function discardAttachment(
       ShadowEastSupport.shadowEastAttachmentImmune(
         a,
         activePlayerAbilityCode(s),
-      ))
+      ) ||
+      batch4Scenario(s).attachmentImmune?.(s, u, a, activePlayerAbilityCode(s)))
   )
     return;
   // The Tower of Cirith Ungol: an Item boon Shagrat guards returns to its

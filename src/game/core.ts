@@ -1634,6 +1634,13 @@ export function draw(
     log(s, "Iron Shackles prevents this draw and is discarded.", "danger");
     return;
   }
+  // Daechanar's Curse (The Dread Realm's Nightmare Deck) replaces the draw.
+  if (
+    count > 0 &&
+    s.deck.length &&
+    batch4Scenario(s).drawReplaced?.(s, count, cardEffect, fromBottom)
+  )
+    return;
   let n = 0;
   while (n < count && s.deck.length) {
     const u = takePlayerDeck(s, fromBottom ? s.deck.length - 1 : 0);

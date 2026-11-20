@@ -35,7 +35,7 @@ The six scenario panels show day/night, capture counts and isolated areas, Safe 
 
 Further rules notes: [Wastes](WASTES-ERIADOR-RULES.md), [Mount Gram](MOUNT-GRAM-RULES.md), [Ettenmoors](across-the-ettenmoors-rules.md), [Rhudaur](the-treachery-of-rhudaur-rules.md), [Carn Dûm](CARN-DUM-RULES.md), [Dread Realm](THE-DREAD-REALM.md) and [all sixty player designs](ANGMAR-AWAKENED-PLAYER-SCRIPTS.md). Dedicated scenario and player tests cover printed effects, ownership, real combat, interrupted choices and save/reload. Complete seeded games test normal/easy × 1–4 players with a restore after every action; browser checks exercise actual menus, dialogs, scenario panels, artwork and mobile layouts. Sampled automated losses establish termination and save invariants; semantic fixtures separately verify printed victory conditions.
 
-Campaign and Nightmare variants are retained in the reference catalog. The implemented Angmar scenarios use their original standard/easy recipes.
+The campaign mode ([rules](ANGMAR-CAMPAIGN.md)) and all six Nightmare Decks ([rules](NIGHTMARE.md)) are implemented as well; outside them, the Angmar scenarios use their original standard/easy recipes.
 
 ## Reproducing validation
 

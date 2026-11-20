@@ -120,6 +120,7 @@ import { NIGHTMARE_GRAM_HOOKS } from "./nightmare-gram";
 import { NIGHTMARE_ETTEN_HOOKS } from "./nightmare-ettenmoors";
 import { NIGHTMARE_RHUDAUR_HOOKS } from "./nightmare-rhudaur";
 import { NIGHTMARE_CARN_HOOKS } from "./nightmare-carn";
+import { NIGHTMARE_DREAD_HOOKS } from "./nightmare-dread";
 import { nightmareLive } from "./nightmare";
 
 const empty: Batch4ScenarioHooks = {};
@@ -189,6 +190,7 @@ const NIGHTMARE_LAYERS: Partial<Record<string, Batch4ScenarioHooks>> = {
   "across-the-ettenmoors": NIGHTMARE_ETTEN_HOOKS,
   "the-treachery-of-rhudaur": NIGHTMARE_RHUDAUR_HOOKS,
   "the-battle-of-carn-dum": NIGHTMARE_CARN_HOOKS,
+  "the-dread-realm": NIGHTMARE_DREAD_HOOKS,
 };
 /**
  * The current scenario's hooks; in an Ered Mithrin campaign chapter from The

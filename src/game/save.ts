@@ -120,7 +120,11 @@ import {
   WILDS_RHOVANION,
 } from "./wilds-rhovanion-support";
 import { validEredPool } from "./ered-campaign-pool";
-import { nightmareStageCount, nightmareSupported } from "./nightmare";
+import {
+  NIGHTMARE_AA,
+  nightmareStageCount,
+  nightmareSupported,
+} from "./nightmare";
 import { validNightmareCore } from "./nightmare-core";
 import { validNightmareSom } from "./nightmare-som";
 import { validNightmareRhos } from "./nightmare-rhosgobel";
@@ -171,6 +175,7 @@ import { validNightmareGram } from "./nightmare-gram";
 import { validNightmareEtten } from "./nightmare-ettenmoors";
 import { validNightmareRhudaur } from "./nightmare-rhudaur";
 import { validNightmareCarn } from "./nightmare-carn";
+import { dreadSideTime, validNightmareDread } from "./nightmare-dread";
 import { nightmareEscapeTest } from "./nightmare-dead";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
@@ -724,6 +729,8 @@ export function validateSave(
         c.nmUndeadHealOnKill,
         c.nmLifeDrain,
         c.nmReturnAfter,
+        c.nmPowerOnKill,
+        c.nmAttackAgain,
       ].every((v) => v === undefined || (integer(v) && v >= 0)) &&
       (c.dreadKilled === undefined ||
         (Array.isArray(c.dreadKilled) &&
@@ -808,6 +815,7 @@ export function validateSave(
               dikeLocationTimeLimit(s, u.code, seatCount),
               guardianTimeLimit(u.code),
               printedLocationTime(u.code),
+              dreadSideTime(u.code),
             ))) &&
       [
         u?.resourcesSpentRound,
@@ -952,11 +960,18 @@ export function validateSave(
     if (
       s.threatAttachments !== undefined &&
       (!Array.isArray(s.threatAttachments) ||
-        s.threatAttachments.length > 1 ||
+        s.threatAttachments.filter((a) => a?.code !== NIGHTMARE_AA.allIsLost)
+          .length > 1 ||
         !s.threatAttachments.every(
           (a) =>
             validAttachment(a) &&
             (a.code === ANGMAR.favor ||
+              // All is Lost (The Dread Realm's Nightmare Deck): an encounter
+              // card on the first player's threat dial, any number of copies.
+              (a.code === NIGHTMARE_AA.allIsLost &&
+                s.scenarioId === "the-dread-realm" &&
+                !!s.nightmareMode &&
+                a.controller === undefined) ||
               (a.code === GC.fear &&
                 // Overcome by Fear stays on the threat dials the Lord of the
                 // Rings campaign records after The Passing of the Grey Company
@@ -1261,6 +1276,7 @@ export function validateSave(
         !validNightmareEtten(s) ||
         !validNightmareRhudaur(s) ||
         !validNightmareCarn(s) ||
+        !validNightmareDread(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,

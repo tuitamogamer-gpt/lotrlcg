@@ -643,6 +643,16 @@ export const NIGHTMARE_AA = {
   flanks: "octgn:cde8957d-c9c8-4dab-a38f-7fa262247092",
   rally: "octgn:e2c4a5fe-dc9d-481b-b46b-91613e62d250",
   sever: "octgn:fa377dbc-a99e-4554-8c99-51835697ff8a",
+  /** The Dread Realm's setup card and Nightmare Deck. */
+  dreadCard: "octgn:c3d01d85-72cb-4d81-8b75-966ec4a1b9c4",
+  guardian: "octgn:898579aa-324e-4e58-920e-30ab29c8700a",
+  necromancer: "octgn:159f7a00-2c31-4e64-8adc-6143a5a7d8bb",
+  sanctum: "octgn:c5711d74-8adb-427a-b0fe-e7a8c373659b",
+  cursedHalls: "octgn:bc8020d9-4c85-4cf5-899f-3547d9d7efeb",
+  powerBeyond: "octgn:346f832a-27ba-4c71-83b5-f690d0953911",
+  daechanarCurse: "octgn:77414e71-92e8-4237-a627-4d92c02cddbc",
+  allIsLost: "octgn:d0968637-1ffc-4365-855f-ee35704a8128",
+  gift: "octgn:ac5c7c07-591f-4ac0-9080-e46433a50ff3",
 } as const;
 
 interface NightmareDeck {
@@ -1283,6 +1293,17 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
     // its setup rebuilds the deck from its recipe and applies the removals.
     sets: ["The Battle of Carn Dum", "Angmar Orcs", "Dark Sorcery"],
   },
+  "the-dread-realm": {
+    card: NIGHTMARE_AA.dreadCard,
+    removals: {
+      "Witch of Angmar": 3,
+      "A Fell Dread": 2,
+      "Unholy Crypt": 1,
+      "Sinister Dungeon": 1,
+      "Dead Lord": 2,
+      "Terror of the North": 3,
+    },
+  },
   "deadmens-dike": {
     card: NIGHTMARE_TLR.dikeCard,
     removals: {
@@ -1768,6 +1789,21 @@ export function nightmareStatus(s: GameState): string[] {
     return [
       "The Battle of Carn Dûm · Nightmare mode: characters committed to a quest with the siege keyword count their [defense] instead of their [willpower], against the staging area's [threat].",
     ];
+  if (s.scenarioId === "the-dread-realm") {
+    const curses = s.nightmare?.dreadCurses ?? [];
+    const decks = [...new Set(curses.map((c) => c.player))].map((p) => {
+      const n = curses.filter((c) => c.player === p).length;
+      const heroes = (
+        s.table && p !== s.table.active ? s.table.seats[p] : s
+      ).startingHeroes
+        .map((c) => card(c).name)
+        .join(" & ");
+      return `${n === 1 ? "Daechanar's Curse is" : `${n} copies of Daechanar's Curse are`} attached to the top of ${s.table ? `${heroes}'s` : "your"} deck`;
+    });
+    return [
+      `The Dread Realm · Nightmare mode: the setup card removed the printed standard encounter cards and shuffled in its Nightmare Deck${decks.length ? ` (${decks.join("; ")})` : ""}.`,
+    ];
+  }
   if (s.scenarioId === "deadmens-dike") {
     const under = (s.nightmare?.dikeCourage ?? []).reduce(
       (n, c) => n + c.cards.length,
