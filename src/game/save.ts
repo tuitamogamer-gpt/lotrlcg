@@ -160,6 +160,7 @@ import {
 import { crownNightmareRaven, validNightmareCrown } from "./nightmare-crown";
 import { validNightmareRingSouth } from "./nightmare-trgs";
 import { validNightmareJourneyDark } from "./nightmare-jitd";
+import { validNightmareBreaking } from "./nightmare-botf";
 import { nightmareEscapeTest } from "./nightmare-dead";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
@@ -487,6 +488,7 @@ export function validateSave(
         c.jtdFool,
         c.jtdDestroyed,
         c.btfGrowing,
+        c.nmDestroyed,
         c.fbChill,
         c.fbNorth,
         c.uhOrders,
@@ -1233,6 +1235,7 @@ export function validateSave(
         !validNightmareCrown(s) ||
         !validNightmareRingSouth(s) ||
         !validNightmareJourneyDark(s) ||
+        !validNightmareBreaking(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,

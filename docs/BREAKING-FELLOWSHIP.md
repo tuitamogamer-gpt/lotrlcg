@@ -6,6 +6,9 @@ with one to four local players, in normal and easy mode. Its campaign mode
 (recipe Q0C.06) is part of [The Lord of the Rings campaign](SAGA-CAMPAIGN.md):
 the Gifts of Lórien, Followed by Night and Ill Fate, Seat of Seeing's campaign
 response, Fallen into Evil heroes recorded as fallen, and the captives.
+Nightmare mode follows [its Nightmare Deck](NIGHTMARE.md) (the Nightmare
+cards use the scenario's separate stages, Toughness and archery for each
+stage), outside campaign mode.
 
 ## Sources and corrections
 

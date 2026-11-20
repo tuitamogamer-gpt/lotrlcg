@@ -108,6 +108,7 @@ import { NIGHTMARE_KNIFE_DARK_HOOKS } from "./nightmare-kitd";
 import { NIGHTMARE_FLIGHT_FORD_HOOKS } from "./nightmare-ftf";
 import { NIGHTMARE_RING_SOUTH_HOOKS } from "./nightmare-trgs";
 import { NIGHTMARE_JOURNEY_DARK_HOOKS } from "./nightmare-jitd";
+import { NIGHTMARE_BREAKING_HOOKS } from "./nightmare-botf";
 import { nightmareLive } from "./nightmare";
 
 const empty: Batch4ScenarioHooks = {};
@@ -165,6 +166,7 @@ const NIGHTMARE_LAYERS: Partial<Record<string, Batch4ScenarioHooks>> = {
   "flight-to-the-ford": NIGHTMARE_FLIGHT_FORD_HOOKS,
   "the-ring-goes-south": NIGHTMARE_RING_SOUTH_HOOKS,
   "journey-in-the-dark": NIGHTMARE_JOURNEY_DARK_HOOKS,
+  "breaking-of-the-fellowship": NIGHTMARE_BREAKING_HOOKS,
 };
 /**
  * The current scenario's hooks; in an Ered Mithrin campaign chapter from The
@@ -361,6 +363,7 @@ export const batch4SharedEffect = (effect: Effect) =>
     NIGHTMARE_FLIGHT_FORD_HOOKS,
     NIGHTMARE_RING_SOUTH_HOOKS,
     NIGHTMARE_JOURNEY_DARK_HOOKS,
+    NIGHTMARE_BREAKING_HOOKS,
     BLACK_SERPENT_HOOKS,
     CIRITH_GURAT_HOOKS,
     CROSSINGS_POROS_HOOKS,

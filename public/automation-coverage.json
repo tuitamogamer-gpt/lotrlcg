@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2693,
+    "encounterCards": 2701,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3915,
-    "pending": 268
+    "scripted": 3923,
+    "pending": 260
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 317
+    "scripted": 318
   },
   "registeredCodes": [
     "01001",
@@ -1803,6 +1803,7 @@
     "octgn:3b26d048-24cb-4978-86f9-d255048426d8",
     "octgn:3b63d940-fcbc-4741-8840-cc276fcb558b",
     "octgn:3b7c4f67-7de4-4b77-be50-0fd86e4ef2bc",
+    "octgn:3b803986-90bc-441c-aec0-932d661eb8eb",
     "octgn:3b855783-5b90-4788-802e-e7c1e81461d8",
     "octgn:3bc03452-6c37-45e2-9241-e626ea51f382",
     "octgn:3bd3e9f2-6411-4ea3-9ff4-1ea1d51e202d",
@@ -3134,6 +3135,7 @@
     "octgn:a3173fc4-1ddb-470d-ae12-a35e24ea63a3",
     "octgn:a34ffb4e-c821-42aa-8dab-2914d274b3b1",
     "octgn:a3a28453-4292-49b3-9b78-fc958310a800",
+    "octgn:a3f162a7-847d-47ed-8a05-4e930806765b",
     "octgn:a442dbd4-ec18-44e6-b762-b0ebf94a8897",
     "octgn:a44d6ee9-79a6-4e55-ab8a-a165c4dbb882",
     "octgn:a46578d6-303e-4f35-9a11-8b9f807427ba",
@@ -3195,6 +3197,7 @@
     "octgn:aa3355cb-57e1-4d8b-8a1b-9be22581a9f3",
     "octgn:aa632825-0b60-4dc7-9733-8aa554631d6e",
     "octgn:aa6914e2-4b79-4a95-ab3e-386d6a924bee",
+    "octgn:aa7977bd-06af-4a8f-bc94-7162250eff7a",
     "octgn:aaa16a82-e6b6-4563-a523-b8d61e40e273",
     "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
     "octgn:aac8023b-431b-4cfa-8f6e-659a4e8dd04e",
@@ -3537,6 +3540,7 @@
     "octgn:c7ef7b6e-4346-4b4c-a9fa-2b42e3c2ab5c",
     "octgn:c7f4c92b-e593-4c40-9ecb-64d8ab9c6368",
     "octgn:c82f8ccc-d017-48ec-a611-49a77469d45d",
+    "octgn:c857d5a3-2b1f-4ef9-a5c7-2368ec28d15c",
     "octgn:c88d317b-d8b9-43ef-b41d-427ae4337f8d",
     "octgn:c88f14e5-1bd3-4829-ab70-02479df6cdfd",
     "octgn:c898c9f0-d4a7-4821-b075-1e412cde86a7",
@@ -3704,6 +3708,7 @@
     "octgn:dd394c76-c2b9-4b1c-8948-a056de97b779",
     "octgn:dd71d27f-b53e-453b-bcbc-bb479104461a",
     "octgn:dd7ca673-fc3c-4caf-859a-ca32722e68dc",
+    "octgn:dda5488d-b1c3-40bf-b6c1-2c34b8c14cdd",
     "octgn:ddac1c59-4e5d-4a90-9666-0753133d4de9",
     "octgn:ddb20145-e570-4099-8d8a-11d64895939b",
     "octgn:dde0edf6-bc4d-4f21-8681-3e90098218db",
@@ -3840,6 +3845,7 @@
     "octgn:e9217231-de12-48ef-9351-f7d992643c2f",
     "octgn:e99d2892-b6c4-422f-b630-4bf156a3f776",
     "octgn:e9bdfb84-2f96-4288-bbed-31f52cc10b86",
+    "octgn:ea09c696-81a1-4e2f-95ec-3b8c6d9b8d0b",
     "octgn:ea225b12-75e1-4253-9458-c71c1c304a8f",
     "octgn:ea4bc222-6fb5-494e-8f1f-de30974694db",
     "octgn:ea5faa85-5a47-4ab3-a623-3f88df71f7fd",
@@ -3942,6 +3948,7 @@
     "octgn:f2bb7a4e-eca9-4889-b908-1da95fbb089f",
     "octgn:f2c22e9a-c3f6-450c-b891-98e0e5c18b6c",
     "octgn:f2f7e1d5-9be6-4a8a-bb46-50ae4da2cb16",
+    "octgn:f310684a-aa58-46f5-aa43-a6289e7c7b66",
     "octgn:f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695",
     "octgn:f330efb5-6263-48a1-9f08-0911f214bd96",
     "octgn:f35e7236-2e03-4e03-aa92-7c4803e79acf",
@@ -4096,6 +4103,7 @@
     "octgn:ffb334eb-991d-4615-93ce-b2215a02d74f",
     "octgn:ffbf96c9-ee9f-4462-b1c5-1acf8609015a",
     "octgn:ffc5f529-5d18-4870-970b-7503c176f56b",
+    "octgn:ffd14d9f-b3e4-46c4-b7b1-f7fcba350ba0",
     "octgn:ffd2cfe7-e5fc-4f47-b85e-19e8b2df5171",
     "octgn:ffe307bf-dd8e-4df3-9355-55564137d311",
     "octgn:ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e",
@@ -4887,7 +4895,7 @@
     {
       "product": "the-road-darkens-nightmare",
       "total": 25,
-      "scripted": 17,
+      "scripted": 25,
       "player": 0,
       "playerScripted": 0
     },
@@ -18774,7 +18782,7 @@
       "name": "Discord and Distrust",
       "type": "treachery",
       "pack": "The Road Darkens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens-nightmare"
     },
     {
@@ -30214,7 +30222,7 @@
       "name": "Western Emyn Muil",
       "type": "location",
       "pack": "The Road Darkens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens-nightmare"
     },
     {
@@ -30742,7 +30750,7 @@
       "name": "Arrows in the Night",
       "type": "treachery",
       "pack": "The Road Darkens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens-nightmare"
     },
     {
@@ -33710,7 +33718,7 @@
       "name": "Hunting the Ring",
       "type": "treachery",
       "pack": "The Road Darkens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens-nightmare"
     },
     {
@@ -35238,7 +35246,7 @@
       "name": "Breaking of the Fellowship",
       "type": "nightmare",
       "pack": "The Road Darkens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens-nightmare"
     },
     {
@@ -36374,7 +36382,7 @@
       "name": "Isengard Archer",
       "type": "enemy",
       "pack": "The Road Darkens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens-nightmare"
     },
     {
@@ -37206,7 +37214,7 @@
       "name": "Langflood River",
       "type": "location",
       "pack": "The Road Darkens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens-nightmare"
     },
     {
@@ -38526,7 +38534,7 @@
       "name": "Isengard Tracker",
       "type": "enemy",
       "pack": "The Road Darkens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens-nightmare"
     },
     {
@@ -39903,8 +39911,8 @@
       "id": "N0B.06",
       "name": "Breaking of the Fellowship (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "breaking-of-the-fellowship",
+      "state": "scripted"
     },
     {
       "id": "N0B.07",

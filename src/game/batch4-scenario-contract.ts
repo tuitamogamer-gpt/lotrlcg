@@ -45,6 +45,10 @@ export interface Batch4ScenarioHooks {
   ): Unit[] | undefined;
   /** Archery a layer adds to the beginning of the combat phase's total. */
   archeryBonus?(s: GameState): number;
+  /** Toughness a layer gives an enemy (Breaking of the Fellowship's Nightmare Western Emyn Muil). */
+  toughnessBonus?(s: GameState, u: Unit): number;
+  /** Archery a layer adds to (or takes from) one stage's total, by its staging area's id. */
+  areaArchery?(s: GameState, area: string): number;
   /** Archery a layer gives one encounter card (The Drúadan Forest counts it per card). */
   unitArchery?(s: GameState, u: Unit): number;
   /** After damage is healed from a unit (by the effect `source`, when known). */

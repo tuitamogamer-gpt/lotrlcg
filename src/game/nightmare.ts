@@ -510,6 +510,15 @@ export const NIGHTMARE_TRD = {
   sword: "octgn:c7c7761f-a4dd-4f09-ac10-f0483d0c931d",
   weary: "octgn:0d3586ef-3159-4066-8417-aba5c379739a",
   cutOff: "octgn:7e9a0e02-59cd-46de-83a8-4b8fe49c7021",
+  /** Breaking of the Fellowship's setup card and Nightmare Deck. */
+  breakingCard: "octgn:dda5488d-b1c3-40bf-b6c1-2c34b8c14cdd",
+  isengardArcher: "octgn:ea09c696-81a1-4e2f-95ec-3b8c6d9b8d0b",
+  isengardTracker: "octgn:ffd14d9f-b3e4-46c4-b7b1-f7fcba350ba0",
+  langflood: "octgn:f310684a-aa58-46f5-aa43-a6289e7c7b66",
+  emynMuil: "octgn:a3f162a7-847d-47ed-8a05-4e930806765b",
+  arrowsNight: "octgn:aa7977bd-06af-4a8f-bc94-7162250eff7a",
+  huntingRing: "octgn:c857d5a3-2b1f-4ef9-a5c7-2368ec28d15c",
+  discord: "octgn:3b803986-90bc-441c-aec0-932d661eb8eb",
 } as const;
 
 interface NightmareDeck {
@@ -1016,6 +1025,15 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Deep Fissure": 3,
     },
   },
+  "breaking-of-the-fellowship": {
+    card: NIGHTMARE_TRD.breakingCard,
+    removals: {
+      "Uruk-hai Archer": 4,
+      "River Anduin": 2,
+      "Slopes of Amon Hen": 1,
+      "Black Feathered Arrows": 2,
+    },
+  },
   "a-knife-in-the-dark": {
     card: NIGHTMARE_TBR.knifeCard,
     removals: {
@@ -1440,6 +1458,10 @@ export function nightmareStatus(s: GameState): string[] {
       `Journey in the Dark · Nightmare mode: each hero in each player's discard pile cannot leave the discard pile, and the players cannot defeat stage 3B unless The Balrog is in the victory display${weapons ? ` (${weapons} Weapon${weapons === 1 ? "" : "s"} wait for The Balrog out of play)` : ""}.`,
     ];
   }
+  if (s.scenarioId === "breaking-of-the-fellowship")
+    return [
+      "Breaking of the Fellowship · Nightmare mode: the setup card removed the printed standard encounter cards and shuffled in its Nightmare Deck.",
+    ];
   if (s.scenarioId === "flight-to-the-ford")
     return [
       "Flight to the Ford · Nightmare mode: the players cannot win while Ford of Bruinen is in play; the Nightmare Deck's Fell Riders are staged and its Ford of Bruinen set aside in place of the scenario's.",

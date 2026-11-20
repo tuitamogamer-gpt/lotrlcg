@@ -607,7 +607,8 @@ export interface GameState {
     import("./nightmare-celeb").NightmareCelebState &
     import("./nightmare-crown").NightmareCrownState &
     import("./nightmare-trgs").NightmareRingSouthState &
-    import("./nightmare-jitd").NightmareJourneyDarkState;
+    import("./nightmare-jitd").NightmareJourneyDarkState &
+    import("./nightmare-botf").NightmareBreakingState;
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;
@@ -1271,6 +1272,8 @@ export interface GameState {
     nmLocationOnKill?: number;
     /** Misty Mountain Warg's own attack (The Ring Goes South's Nightmare Deck): damage placed on each active location if this attack destroys a character. */
     nmLocationsOnKill?: number;
+    /** A Nightmare layer's record that this attack's enemy destroyed a character (Breaking of the Fellowship's Isengard Tracker). */
+    nmDestroyed?: boolean;
     defenderIds?: string[];
     ignoreDefense?: boolean;
     returnToStaging?: boolean;

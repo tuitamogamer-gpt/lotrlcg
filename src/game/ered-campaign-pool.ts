@@ -3099,6 +3099,12 @@ export function composeEredPool(
       (h.archeryBonus?.(s) ?? 0) + (p.archeryBonus?.(s) ?? 0),
     unitArchery: (s, u) =>
       (h.unitArchery?.(s, u) ?? 0) + (p.unitArchery?.(s, u) ?? 0),
+    toughnessBonus: (s, u) =>
+      (h.toughnessBonus?.(s, u) ?? 0) + (p.toughnessBonus?.(s, u) ?? 0),
+    areaArchery: (s, area) =>
+      (h.areaArchery?.(s, area) ?? 0) + (p.areaArchery?.(s, area) ?? 0),
+    abilitiesBlocked: (s, player) =>
+      !!h.abilitiesBlocked?.(s, player) || !!p.abilitiesBlocked?.(s, player),
     resourcesSpent: (s, hero, amount) => {
       h.resourcesSpent?.(s, hero, amount);
       p.resourcesSpent?.(s, hero, amount);

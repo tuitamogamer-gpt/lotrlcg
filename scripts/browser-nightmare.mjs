@@ -3105,6 +3105,84 @@ try {
       );
     }
     await checkpoint("jitd-slab-bearer", width);
+
+    // Breaking of the Fellowship in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-breaking-of-the-fellowship").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "breaking-of-the-fellowship");
+    assert.equal(s.nightmareMode, true);
+    {
+      const all = [
+        ...s.encounterDeck,
+        ...s.encounterDiscard,
+        ...s.staging.map((u) => u.code),
+      ];
+      assert.equal(
+        all.filter((c) => c === TRD.isengardTracker).length,
+        4,
+        "the Nightmare Deck's 4 Isengard Trackers",
+      );
+      assert.ok(
+        !all.some((c) => card(c).name === "Uruk-hai Archer"),
+        "the setup card removes the Uruk-hai Archers",
+      );
+    }
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/removed the printed standard encounter cards/)
+      .waitFor();
+    await checkpoint("botf-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // An Isengard Archer beside a Langflood River and a Western Emyn Muil.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.staging = [
+        ...t.staging,
+        make(t, TRD.isengardArcher),
+        make(t, TRD.langflood),
+        make(t, TRD.emynMuil),
+      ];
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [TRD.isengardArcher, "Isengard Archer"],
+      [TRD.langflood, "Langflood River"],
+      [TRD.emynMuil, "Western Emyn Muil"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    await checkpoint("botf-isengard-archer", width);
     await view.c.close();
   }
   const p = await browser.newPage();

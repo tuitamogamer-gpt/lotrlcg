@@ -53,6 +53,8 @@ import { isEnemy } from "./ships";
 import { mainQuestUnit } from "./quest-state";
 import { fasSelectArea, fasSyncArea } from "./flies-spiders-support";
 import { lotrSagaCheck, ringBearer } from "./lotr-saga";
+import { nightmareEncounterDecks, nightmareLive } from "./nightmare";
+import { batch4Scenario } from "./batch4-scenarios";
 import { FALLEN_INTO_EVIL } from "./enemy-conditions";
 import {
   BF,
@@ -85,10 +87,12 @@ const seatLabel = (s: GameState, p: number) =>
   s.table ? ` · ${seatName(s, p)}` : "";
 const who = (s: GameState, p: number) => (s.table ? seatName(s, p) : "you");
 const printedHealth = (u: Unit) => card(u.code).health ?? 0;
-const toughness = (u: Unit) =>
+/** Toughness X: printed, and given by a layer (a Nightmare Deck's location). */
+export const bfToughness = (s: GameState, u: Unit) =>
   u.blanked
     ? 0
-    : Number(/\bToughness (\d+)/.exec(card(u.code).text ?? "")?.[1] ?? 0);
+    : Number(/\bToughness (\d+)/.exec(card(u.code).text ?? "")?.[1] ?? 0) +
+      (batch4Scenario(s).toughnessBonus?.(s, u) ?? 0);
 /** The first player of the game (not only of an area). */
 const globalFirst = (s: GameState) =>
   globalPlayerOrder(s)[0] ?? s.table?.first ?? 0;
@@ -169,6 +173,38 @@ function engageAcross(s: GameState, u: Unit, player: number) {
     engage(s, u);
   });
 }
+/** The staging area of an enemy's stage: the one holding it, or its engaged player's. */
+export function bfStagingFor(s: GameState, u: Unit): Unit[] {
+  const q = s.breakingFellowship;
+  if (!q?.split || s.staging.some((x) => x.id === u.id)) return s.staging;
+  const held = q.areas.find((a) => a.staging.some((x) => x.id === u.id));
+  if (held) return areaStaging(s, held);
+  const owner = globalPlayerOrder(s).find((p) =>
+    seatView(s, p).engaged.some((x) => x.id === u.id),
+  );
+  const area = owner === undefined ? undefined : bfArea(s, owner);
+  return area ? areaStaging(s, area) : s.staging;
+}
+/** The first player of the staging area to the left of a player's (the next player's), if able. */
+export function bfLeftPlayer(s: GameState, player: number) {
+  const q = s.breakingFellowship;
+  const here = q?.split ? bfArea(s, player) : undefined;
+  if (!here || orderedAreas(s).length <= 1) return undefined;
+  const order = globalPlayerOrder(s);
+  const at = order.indexOf(firstOf(s, here));
+  const target = order
+    .slice(at + 1)
+    .concat(order.slice(0, at))
+    .map((x) => bfArea(s, x))
+    .find((a) => a && a.id !== here.id);
+  return target ? firstOf(s, target) : undefined;
+}
+/** The first player of a staging area (by its id; "shared" before the players separate). */
+export function bfAreaFirst(s: GameState, id: string) {
+  const area = s.breakingFellowship?.areas.find((a) => a.id === id);
+  return area ? firstOf(s, area) : globalFirst(s);
+}
+export { addToStaging as bfAddToStaging, globalFirst as bfGlobalFirst };
 const parthInPlay = (s: GameState) =>
   allStaging(s).some((u) => live(u, BF.parth)) ||
   bfAreaUnits(s).some((u) => live(u, BF.parth));
@@ -193,12 +229,22 @@ export function setupBreakingFellowship(s: GameState) {
     r.cards
       .filter((c) => c.section === name)
       .flatMap((c) => Array<string>(c.quantity).fill(c.code));
-  s.encounterDeck = shuffle(s, section("sharedEncounterDeck"));
-  for (const c of section("sharedStagingArea")) s.staging.push(make(s, c));
+  const piles = [
+    section("sharedEncounterDeck"),
+    section("sharedStagingArea"),
+    section("sharedSetAside"),
+  ];
+  // Nightmare mode: the setup card's removals leave the encounter deck, and
+  // its encounter cards join it.
+  const [deck, staged, aside] = nightmareLive(s)
+    ? nightmareEncounterDecks(s.scenarioId, piles, () => 0)
+    : piles;
+  s.encounterDeck = shuffle(s, deck);
+  for (const c of staged) s.staging.push(make(s, c));
   s.breakingFellowship = {
     currentQuest: BF.river,
     advancing: false,
-    setAside: section("sharedSetAside"),
+    setAside: aside,
     resolving: [],
     ringBearerOut: null,
     zeroEngagementRound: 0,
@@ -1457,12 +1503,14 @@ export const BREAKING_FELLOWSHIP_HOOKS: Batch4ScenarioHooks = {
                 ? a.players
                 : live(u, BF.shoreline)
                   ? 2
-                  : 0),
+                  : 0) +
+            (batch4Scenario(s).unitArchery?.(s, u) ?? 0),
           0,
         ) +
         q.arrows
           .filter((x) => x.area === a.id && x.round === s.round)
-          .reduce((n, x) => n + x.value, 0);
+          .reduce((n, x) => n + x.value, 0) +
+        (batch4Scenario(s).areaArchery?.(s, a.id) ?? 0);
       if (archery > 0)
         enqueue(s, fx("heirsArchery", { value: archery, player: a.player }));
     }
@@ -1543,7 +1591,7 @@ export const BREAKING_FELLOWSHIP_HOOKS: Batch4ScenarioHooks = {
   // Toughness X: each time damage is dealt to the enemy, reduce it by X.
   damageAmount: (s, u, amount) => {
     if (!s.breakingFellowship || !isEnemy(u) || amount <= 0) return amount;
-    const t = toughness(u);
+    const t = bfToughness(s, u);
     if (!t) return amount;
     const reduced = Math.max(0, amount - t);
     log(
