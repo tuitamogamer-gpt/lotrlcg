@@ -566,7 +566,7 @@ export function raiseThreat(
 ) {
   if (amount <= 0) return;
   s.threat += amount;
-  batch4Scenario(s).threatRaised?.(s, activeSeat(s), amount);
+  batch4Scenario(s).threatRaised?.(s, activeSeat(s), amount, reason);
   marshPlayerThreatRaised(s, activeSeat(s), amount, reason);
   roadPlayerThreatRaised(s, activeSeat(s), amount);
   heirsThreatRaised(s, activeSeat(s), amount);

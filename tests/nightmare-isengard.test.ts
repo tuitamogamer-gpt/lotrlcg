@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { card, encounterCards } from "../src/game/cards";
+import { applyAction } from "../src/game/engine";
 import {
   damage,
   destroy,
@@ -294,6 +295,26 @@ test("Nightmare: Orthanc Archer's Archery 2 joins the scenario's archery total, 
   assert.equal(damageOf(s), 0);
   assert.ok(
     s.log.some((l) => /Orthanc Archer: you have no card in hand/.test(l.text)),
+  );
+});
+
+test("Nightmare: Half-orc of Isengard's Forced effect comes with a normal attack, declared through the defense action", () => {
+  let s = board(1, 2);
+  const orc = engaged(s, N.halfOrc);
+  hand(s, [FILLER, FILLER]);
+  s.phase = "defense";
+  const hero = seatView(s, 0).heroes.find((h) => !h.exhausted)!;
+  s = applyAction(reload(s), {
+    type: "DEFEND",
+    enemyId: orc.id,
+    defenderId: hero.id,
+  });
+  assert.deepEqual(options(s), ["discard", "attack"]);
+  s = choose(s, "attack");
+  assert.ok(
+    s.log.some((l) =>
+      /Half-orc of Isengard gets \+3 \[attack\] for this attack/.test(l.text),
+    ),
   );
 });
 

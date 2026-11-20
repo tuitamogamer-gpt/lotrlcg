@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2781,
+    "encounterCards": 2790,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 4003,
-    "pending": 180
+    "scripted": 4012,
+    "pending": 171
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 327
+    "scripted": 328
   },
   "registeredCodes": [
     "01001",
@@ -1265,6 +1265,7 @@
     "octgn:02d8e441-0c70-4ecb-886f-9ba6f673ac9d",
     "octgn:0323e852-a05c-4c2d-a038-3f2596af7a85",
     "octgn:03587572-2760-48b5-9b08-e01ccdc9788f",
+    "octgn:0377297f-ce7d-47ce-9166-29f5872d5c97",
     "octgn:037cd2ac-cb12-4905-bd2b-86ae57350a1b",
     "octgn:039a688f-8bef-4a77-97c4-84b942f3d91a",
     "octgn:03abe728-0062-49bb-9a04-e78bff777e83",
@@ -1662,6 +1663,7 @@
     "octgn:2bc9f441-e922-4509-aef9-a27e485ed227",
     "octgn:2be47628-65a9-4809-87aa-6251eb68b4bc",
     "octgn:2bf5a4d1-9d74-4e1a-8725-cf4a3a47dde9",
+    "octgn:2c012cbe-2e29-4b5f-9828-0cf8a325a604",
     "octgn:2c1f75cf-a6b5-4aa6-abbd-e1beb803e2e2",
     "octgn:2c20ea14-e7bc-4a38-a809-8834d659adf5",
     "octgn:2c21eeec-9aa4-4278-b050-f4297426f89a",
@@ -1697,6 +1699,7 @@
     "octgn:2f5221a8-8afd-48d8-afd3-352151d87ed6",
     "octgn:2f7770cd-3102-4f35-a3bc-bd9afcab8303",
     "octgn:2fb27cc8-c3f5-4172-8ff0-456907f9b111",
+    "octgn:2fc8a29f-1de3-4821-8ea9-97d7385fa4d1",
     "octgn:2fd16de8-3286-4003-9978-574738b2a337",
     "octgn:2fd9f511-463b-42c8-bc6f-9bd1b3b91057",
     "octgn:2fe95d8c-0f30-4c20-b926-d92e4feea8e2",
@@ -1794,6 +1797,7 @@
     "octgn:377d8e17-1c0d-4871-86a5-a69b9dee40d2",
     "octgn:379415fb-39c8-4cb8-aa19-ac54c46bcb4a",
     "octgn:3798030e-df23-45db-ab29-0ef8a2a35cd6",
+    "octgn:37cd1ae2-e0fc-428b-9918-a4466f9a9d4c",
     "octgn:37f0bdca-11d8-40ba-97cd-bbe2b8190cd5",
     "octgn:37f205e5-5144-4987-8764-46909460797b",
     "octgn:381569ad-e2bf-4fb5-a045-a36b918deac4",
@@ -2652,6 +2656,7 @@
     "octgn:6def55a1-ee80-4570-831b-d591e6effc11",
     "octgn:6df2979e-ad8d-4c3b-a27c-5ed4b9b2f948",
     "octgn:6e193811-584d-4888-a1b8-5296522b5cd1",
+    "octgn:6e38a878-8211-4bbc-ba7c-ed460874fd67",
     "octgn:6e42b5b8-c708-4f2e-a483-4984db0d1084",
     "octgn:6e449166-50ab-4ec5-875f-3cc8adcbb64e",
     "octgn:6e4985a3-5501-41ef-bd15-ec58eadba12c",
@@ -3023,6 +3028,7 @@
     "octgn:91735f73-7dc8-48ee-8a61-b7c9648f5def",
     "octgn:918c4387-bf40-48f1-bf65-5ad5acb91784",
     "octgn:91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8",
+    "octgn:91d379b3-bbcb-48d1-81df-7b50e321e768",
     "octgn:92058ab4-7e65-4c78-9124-7338bca432fd",
     "octgn:9221e69b-0649-4585-9ee2-2dd2890531ea",
     "octgn:92576b76-6b3a-4bee-84dc-82f927e1caa1",
@@ -3523,6 +3529,7 @@
     "octgn:c12057ee-64d0-419a-adb8-17632e3182b0",
     "octgn:c1273c2f-a616-45ee-804d-a16c28b6e63d",
     "octgn:c1554b49-597c-4d1b-8871-dfbe867253d5",
+    "octgn:c167ea82-42c5-4f08-a1ce-cfffdbf24af4",
     "octgn:c179ea26-838b-449c-b0a0-f2049e20b01f",
     "octgn:c1b934af-a47f-4886-846f-c319b2efeca0",
     "octgn:c1db9a5b-1377-49b2-833f-4d8e95928b60",
@@ -3726,6 +3733,7 @@
     "octgn:d70f1956-fa20-4237-8a75-ab7678ed9840",
     "octgn:d71de165-8632-4628-94ea-793a1c20e6f8",
     "octgn:d74119d9-703c-4d5a-998b-4788230254c9",
+    "octgn:d75bd61b-ec33-431a-880f-cf9357314ea2",
     "octgn:d760ba6c-e377-4d22-ac46-04bfb2b3c65f",
     "octgn:d77287d1-d4d2-49bd-93c1-ae9d2590b8f7",
     "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
@@ -4062,6 +4070,7 @@
     "octgn:f642149c-2bfe-44c1-b4d6-dbf30ef5c988",
     "octgn:f6578eb7-1b94-458b-aba1-82b406507a4d",
     "octgn:f672b4f9-6ce8-4be0-95ab-fb5d2091f4ca",
+    "octgn:f6b545d9-8d93-4b10-866a-bfa15351ac69",
     "octgn:f6e8459b-b0d6-4d30-ad8e-6aacfa34ec32",
     "octgn:f6f49c59-637f-4ca2-b51f-e00c4332d33b",
     "octgn:f6f56327-cc71-458c-bcdb-51ca6dab2fa1",
@@ -5059,7 +5068,7 @@
     {
       "product": "the-treachery-of-rhudaur-nightmare",
       "total": 9,
-      "scripted": 0,
+      "scripted": 9,
       "player": 0,
       "playerScripted": 0
     },
@@ -14182,7 +14191,7 @@
       "name": "Secret Antechamber",
       "type": "treachery",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treachery-of-rhudaur-nightmare"
     },
     {
@@ -17526,7 +17535,7 @@
       "name": "Undead Thrall",
       "type": "enemy",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treachery-of-rhudaur-nightmare"
     },
     {
@@ -17838,7 +17847,7 @@
       "name": "Thaurdir's Hunter",
       "type": "enemy",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treachery-of-rhudaur-nightmare"
     },
     {
@@ -18654,7 +18663,7 @@
       "name": "Forgotten Courtyard",
       "type": "location",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treachery-of-rhudaur-nightmare"
     },
     {
@@ -25742,7 +25751,7 @@
       "name": "Life Drain",
       "type": "treachery",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treachery-of-rhudaur-nightmare"
     },
     {
@@ -28910,7 +28919,7 @@
       "name": "Malevolent Forces",
       "type": "treachery",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treachery-of-rhudaur-nightmare"
     },
     {
@@ -33094,7 +33103,7 @@
       "name": "Apostate of Angmar",
       "type": "treachery",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treachery-of-rhudaur-nightmare"
     },
     {
@@ -34886,7 +34895,7 @@
       "name": "Charred Cellar",
       "type": "location",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treachery-of-rhudaur-nightmare"
     },
     {
@@ -37598,7 +37607,7 @@
       "name": "The Treachery of Rhudaur",
       "type": "nightmare",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treachery-of-rhudaur-nightmare"
     },
     {
@@ -39830,8 +39839,8 @@
       "id": "N05.7",
       "name": "The Treachery of Rhudaur (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-treachery-of-rhudaur",
+      "state": "scripted"
     },
     {
       "id": "N05.8",

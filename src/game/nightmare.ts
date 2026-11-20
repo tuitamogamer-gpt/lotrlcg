@@ -618,6 +618,19 @@ export const NIGHTMARE_AA = {
   barren: "octgn:2f3a59dd-d404-426e-9e40-1589cf690618",
   isolated: "octgn:dd28d391-8eca-4a12-9455-3d705adb46a5",
   rescue: "octgn:00a0a007-10dd-4a05-bedf-3a4e8ff972dc",
+  /** The Treachery of Rhudaur's setup card (three encounter sets set aside until stage 2B) and Nightmare Deck. */
+  rhudaurCard: "octgn:f6b545d9-8d93-4b10-866a-bfa15351ac69",
+  hunter: "octgn:2fc8a29f-1de3-4821-8ea9-97d7385fa4d1",
+  thrall: "octgn:2c012cbe-2e29-4b5f-9828-0cf8a325a604",
+  courtyard: "octgn:37cd1ae2-e0fc-428b-9918-a4466f9a9d4c",
+  cellar: "octgn:d75bd61b-ec33-431a-880f-cf9357314ea2",
+  forces: "octgn:91d379b3-bbcb-48d1-81df-7b50e321e768",
+  /** The Quiet the Spirits encounter set's card. */
+  apostate: "octgn:c167ea82-42c5-4f08-a1ce-cfffdbf24af4",
+  /** The Sift through the Debris encounter set's card. */
+  antechamber: "octgn:0377297f-ce7d-47ce-9166-29f5872d5c97",
+  /** The Decipher Ancient Texts encounter set's card. */
+  drain: "octgn:6e38a878-8211-4bbc-ba7c-ed460874fd67",
 } as const;
 
 interface NightmareDeck {
@@ -1231,6 +1244,17 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
     },
     questRemovals: { "Into the Ettenmoors": 1 },
   },
+  "the-treachery-of-rhudaur": {
+    card: NIGHTMARE_AA.rhudaurCard,
+    removals: {
+      "Decrepit Remains": 2,
+      "Eerie Halls": 2,
+      "Dark Covenant": 1,
+      "Ruins of Arnor": 2,
+      "Tragic Discovery": 2,
+      "Cursed Dead": 5,
+    },
+  },
   "deadmens-dike": {
     card: NIGHTMARE_TLR.dikeCard,
     removals: {
@@ -1706,6 +1730,12 @@ export function nightmareStatus(s: GameState): string[] {
     return [
       "Across the Ettenmoors · Nightmare mode: stage 1 is the Nightmare Deck's Into the Ettenmoors; as stages 2A and 3A reveal their side quest, a safe location found in the encounter deck guards it.",
     ];
+  if (s.scenarioId === "the-treachery-of-rhudaur") {
+    const aside = s.nightmare?.rhudaurAside?.length ?? 0;
+    return [
+      `The Treachery of Rhudaur · Nightmare mode: the Sift through the Debris, Decipher Ancient Texts and Quiet the Spirits encounter sets are set aside (${aside} cards); as stage 2B begins, the set of each side quest that was not defeated is shuffled into the encounter deck with its discard pile.`,
+    ];
+  }
   if (s.scenarioId === "deadmens-dike") {
     const under = (s.nightmare?.dikeCourage ?? []).reduce(
       (n, c) => n + c.cards.length,

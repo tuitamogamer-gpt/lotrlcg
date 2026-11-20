@@ -78,7 +78,8 @@ npm run audit:rules
 ```
 
 The focused suite covers setup and inventory, the riddle area restrictions,
-answering and chained riddles, Gollum's attack, every card, both stage
+answering and chained riddles, Gollum's attack (Into the Fire's undefended
+damage on Bilbo, through a normal attack too), every card, both stage
 transitions and malformed saves. The complete-game matrix plays fourteen
 games with the treasures in the first player's deck, exact save restoration
 after every action, physical conservation and private-view checks. The browser

@@ -904,6 +904,11 @@ export function beginEnemyAttack(
   if (!shadowsPrepared && Depths.depthsBeforeNormalDefense(s, enemy)) return;
   if (!shadowsPrepared && Antlered.antleredBeforeNormalDefense(s, enemy))
     return;
+  if (
+    !shadowsPrepared &&
+    batch4Scenario(s).beforeNormalDefense?.(s, enemy, ids)
+  )
+    return;
   // Beastmaster's Forced effect precedes declaration responses (including Spearman).
   if (enemy.code === "01091") {
     const dealt = dealEnemyShadows(s, enemy);
@@ -918,7 +923,21 @@ export function beginEnemyAttack(
   const freshConsideredShadows =
     !shadowsPrepared && beginConsideredEnemyShadows(s, enemy);
   const beforeForced = s.queue.length;
-  if (!shadowsPrepared) enemyAttackStarted(s, enemy, activeSeat(s));
+  // A normal attack builds its combat below: its "when attacks" triggers
+  // mark a provisional one, and the attack keeps their marks.
+  let started: NonNullable<GameState["combat"]> | undefined;
+  if (!shadowsPrepared) {
+    if (!s.combat)
+      s.combat = started = {
+        enemyId: enemy.id,
+        attackPlayer: activeSeat(s),
+        defenderId: null,
+        defenderIds: [],
+        attackBonus: 0,
+        damageDealt: 0,
+      };
+    enemyAttackStarted(s, enemy, activeSeat(s));
+  }
   redhornDefendersDeclared(s, enemy, ids);
   const forcedResponses = s.queue.splice(0, s.queue.length - beforeForced);
   const priorQueue = s.queue.length;
@@ -946,6 +965,7 @@ export function beginEnemyAttack(
     // Declaration responses can suspend this function before it builds the attack.
     // Retain the pending immediate attack's source, bonuses and cleanup metadata.
     ...priorImmediate,
+    ...started,
     enemyId: enemy.id,
     ...(Trials.trialsGuardian(enemy)
       ? { trialsGuardianThreat: threatOf(s, enemy) }
@@ -955,7 +975,7 @@ export function beginEnemyAttack(
     ...(cobasRamming ? { cobasRamming: true } : {}),
     defenderId: ids[0] ?? null,
     defenderIds: ids,
-    attackBonus: priorImmediate?.attackBonus ?? 0,
+    attackBonus: (priorImmediate ?? started)?.attackBonus ?? 0,
     ...(freshConsideredShadows ? { freshConsideredShadows: true } : {}),
     ...(priorImmediate ? { immediatePendingDeclaration: false } : {}),
     returnWolf,

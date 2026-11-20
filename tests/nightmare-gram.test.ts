@@ -108,7 +108,9 @@ const GUARD = "01013",
   GANDALF = "01073",
   STONE = "01027",
   STEWARD = "01026",
-  SNEAK = "01023";
+  SNEAK = "01023",
+  /** Old Forest Road: no shadow effect. */
+  ROAD = "01099";
 /** Heroes the starter decks set aside (the first seat starts with 01001, the second with 01004). */
 const [SET_ASIDE_0, SET_ASIDE_1] = ["01002", "01005"];
 
@@ -499,6 +501,29 @@ test("Nightmare: Raid Golfimbul's Vault captures 3, captures from each hand afte
   assert.deepEqual(s.discard, [SCOUT]);
   assert.equal(captured(s, v).length, 0);
   assert.ok(valid(s));
+});
+
+test("Nightmare: Orc of Thaurdir's Forced effect comes with a normal attack, declared through the defense action", () => {
+  let s = board();
+  capturedDeck(s, []);
+  const orc = engaged(s, N.thaurdir);
+  orc.owner = 0;
+  s.encounterDeck = Array<string>(5).fill(ROAD);
+  s.encounterDiscard = [];
+  s.phase = "defense";
+  const hero = seatView(s, 0).heroes.find((h) => !h.exhausted)!;
+  s = settle(
+    applyAction(reload(s), {
+      type: "DEFEND",
+      enemyId: orc.id,
+      defenderId: hero.id,
+    }),
+  );
+  assert.equal(
+    s.log.filter((l) => /^Shadow: Old Forest Road/.test(l.text)).length,
+    2,
+    "2 additional shadow cards",
+  );
 });
 
 test("Nightmare: Orc of Thaurdir's attack discards the top 2 cards of the captured deck or takes 2 more shadow cards, and its shadow discards a captured card for each damage", () => {

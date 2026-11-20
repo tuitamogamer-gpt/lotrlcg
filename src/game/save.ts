@@ -169,6 +169,7 @@ import { validNightmareHelm } from "./nightmare-helm";
 import { validNightmareIsengard } from "./nightmare-isengard";
 import { validNightmareGram } from "./nightmare-gram";
 import { validNightmareEtten } from "./nightmare-ettenmoors";
+import { validNightmareRhudaur } from "./nightmare-rhudaur";
 import { nightmareEscapeTest } from "./nightmare-dead";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
@@ -497,6 +498,7 @@ export function validateSave(
         c.jtdDestroyed,
         c.btfGrowing,
         c.nmDestroyed,
+        c.nmUndefended,
         c.fbChill,
         c.fbNorth,
         c.uhOrders,
@@ -718,6 +720,8 @@ export function validateSave(
         c.nmLocationOnKill,
         c.nmLocationsOnKill,
         c.nmDiscardPerDamage,
+        c.nmUndeadHealOnKill,
+        c.nmLifeDrain,
       ].every((v) => v === undefined || (integer(v) && v >= 0)) &&
       (c.dreadKilled === undefined ||
         (Array.isArray(c.dreadKilled) &&
@@ -1253,6 +1257,7 @@ export function validateSave(
         !validNightmareIsengard(s) ||
         !validNightmareGram(s) ||
         !validNightmareEtten(s) ||
+        !validNightmareRhudaur(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,

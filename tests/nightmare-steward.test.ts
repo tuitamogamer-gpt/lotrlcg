@@ -5,7 +5,7 @@ import { card, encounterCards } from "../src/game/cards";
 import { check, damage, destroy, engage } from "../src/game/board";
 import { make, stats, threatOf } from "../src/game/core";
 import { flush } from "../src/game/effects";
-import { createGame } from "../src/game/engine";
+import { applyAction, createGame } from "../src/game/engine";
 import { batch4Scenario } from "../src/game/batch4-scenarios";
 import { STEWARD_FEAR as SF, STREETS } from "../src/game/steward-fear-support";
 import {
@@ -26,6 +26,7 @@ import {
   nightmareGame,
   opening,
   pick,
+  reload,
   reveal,
   shadow,
   valid,
@@ -317,6 +318,36 @@ test("Nightmare: Assassination marks the costliest hero: enemies strike harder, 
   check(s);
   assert.equal(s.status, "lost");
   assert.match(s.reason, /Assassination/);
+});
+
+test("Nightmare: Assassination's undefended damage reaches the marked hero in a normal attack too", () => {
+  let s = board("planning");
+  const plotUnit = make(s, N.assassination);
+  s.staging.push(plotUnit);
+  hooks(s).cardEntered!(s, plotUnit, true, false);
+  flush(s);
+  for (let i = 0; i < 5 && s.choice; i++) pick(s, s.choice.options[0].id);
+  const hero = nightmareStewardAssassinated(s)!;
+  const foe = add(s, STREETS.pickpocket, true);
+  calm(s, "defense");
+  s.combat = null;
+  s = applyAction(reload(s), {
+    type: "DEFEND",
+    enemyId: foe.id,
+    defenderId: null,
+  });
+  // The Pickpocket's own Forced effect comes first.
+  for (let i = 0; i < 5 && s.choice; i++) {
+    assert.doesNotMatch(s.choice.title, /^Assign/, "no choice of the target");
+    s = applyAction(reload(s), {
+      type: "CHOOSE",
+      id: s.choice.options[0].id,
+    });
+  }
+  assert.ok(
+    allHeroes(s).find((h) => h.id === hero.id)!.damage > 0,
+    "the assassinated hero takes it",
+  );
 });
 
 test("Nightmare: The Cabal's Champion joins a Villain, and False Accusations makes each player pay or its shadow returns an attacker to engage again", () => {

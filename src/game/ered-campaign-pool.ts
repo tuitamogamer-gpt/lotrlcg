@@ -2837,8 +2837,15 @@ export function composeEredPool(
       !!h.missingHeroAllowed?.(s, player) ||
       !!p.missingHeroAllowed?.(s, player),
     cannotDraw: (s) => !!h.cannotDraw?.(s) || !!p.cannotDraw?.(s),
+    threatRaised: (s, player, amount, reason) => {
+      h.threatRaised?.(s, player, amount, reason);
+      p.threatRaised?.(s, player, amount, reason);
+    },
     cannotGainResources: (s, u) =>
       !!h.cannotGainResources?.(s, u) || !!p.cannotGainResources?.(s, u),
+    beforeNormalDefense: (s, enemy, ids) =>
+      !!h.beforeNormalDefense?.(s, enemy, ids) ||
+      !!p.beforeNormalDefense?.(s, enemy, ids),
     resourceStart: (s) => [
       ...(h.resourceStart?.(s) ?? []),
       ...(p.resourceStart?.(s) ?? []),

@@ -1,3 +1,4 @@
+import type { ThreatReason } from "./board";
 import type {
   Attachment,
   Card,
@@ -69,7 +70,13 @@ export interface Batch4ScenarioHooks {
    * is canceled itself (code is the revealed card); the encounter card resolves.
    */
   revealCancelCountered?(s: GameState, code: string): boolean;
-  threatRaised?(s: GameState, player: number, amount: number): void;
+  /** After a player's threat is raised (with why: a Nightmare card reacts to an encounter card's raise). */
+  threatRaised?(
+    s: GameState,
+    player: number,
+    amount: number,
+    reason?: ThreatReason,
+  ): void;
   threatEliminationReduction?(s: GameState, player: number): number;
   cannotHeal?(s: GameState, unit: Unit): boolean;
   canSelectSideQuest?(s: GameState, unit: Unit): boolean;
@@ -444,6 +451,13 @@ export interface Batch4ScenarioHooks {
     remainingHealth: number,
   ): void;
   enemyAttackStarted?(s: GameState, enemy: Unit, player: number): void;
+  /**
+   * Before a normal attack begins, its defenders chosen but not yet declared
+   * (nothing exhausted, no "when attacks" trigger resolved): return true to
+   * suspend it. The layer resumes it with beginEnemyAttack(s, enemy, ids,
+   * false, false, true) after calling enemyAttackStarted itself.
+   */
+  beforeNormalDefense?(s: GameState, enemy: Unit, ids: string[]): boolean;
   attackFinished?(s: GameState, combat: Combat, skipped?: boolean): Effect[];
   /** The Long Dark: "Lost:" abilities in play beyond the scenario's own (a Nightmare Deck's setup card, enemies and attachments). */
   lostSources?(s: GameState): { id: string; code: string; label?: string }[];

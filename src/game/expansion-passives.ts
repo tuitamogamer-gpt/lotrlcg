@@ -390,8 +390,10 @@ export function attachmentHasTrait(a: Attachment, trait: string) {
   return (
     (card(a.code).traits ?? "").split(".").some((t) => t.trim() === trait) ||
     !!a.dynamicTraits?.includes(trait) ||
+    // An encounter card a shadow effect attaches may say so there (Blade
+    // Tip, Life Drain).
     [
-      ...(card(a.code).text ?? "").matchAll(
+      ...`${card(a.code).text ?? ""}\n${card(a.code).shadow ?? ""}`.matchAll(
         /counts as a (Condition|Mount|Weapon) attachment/gi,
       ),
     ].some((match) => match[1].toLowerCase() === trait.toLowerCase())

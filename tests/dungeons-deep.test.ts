@@ -245,6 +245,30 @@ test("The quest advances only with 14 progress on 1B and 9 on 2B; Into the Fire 
   assert.equal(s.status, "won");
 });
 
+test("Into the Fire: Gollum's normal undefended attack goes to Bilbo without a choice", () => {
+  let s = base(1);
+  stage(s, D.lake);
+  progress(s, 14);
+  s = run(s);
+  s.dungeonsDeep!.riddleProgress = 9;
+  check(s);
+  s = run(s);
+  assert.equal(s.stage, 3);
+  const gollum = seatView(s, 0).engaged.find((u) => u.code === D.gollum)!;
+  Object.assign(s, { phase: "defense", queue: [], choice: null, combat: null });
+  s = applyAction(reload(s), {
+    type: "DEFEND",
+    enemyId: gollum.id,
+    defenderId: null,
+  });
+  assert.doesNotMatch(s.choice?.title ?? "", /^Assign/);
+  assert.ok(
+    s.log.some((l) =>
+      /^Bilbo Baggins (takes \d+ damage|has fallen)/.test(l.text),
+    ),
+  );
+});
+
 test("Bilbo's Magic Ring exhausts to raise each player's threat by 2 and give Bilbo a Baggins resource", () => {
   let s = base(2);
   const b = bilbo(s);

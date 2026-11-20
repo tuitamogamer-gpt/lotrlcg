@@ -57,6 +57,18 @@ import {
   RHUDAUR_SIDES,
 } from "./rhudaur-support";
 import { WEATHER } from "./weather-hills-support";
+import {
+  NIGHTMARE_AA,
+  nightmareEncounterDecks,
+  nightmareLive,
+} from "./nightmare";
+
+/** The Nightmare Deck's three encounter sets, set aside until stage 2B (Sift through the Debris, Decipher Ancient Texts and Quiet the Spirits). */
+const NIGHTMARE_RHUDAUR_SETS: readonly string[] = [
+  NIGHTMARE_AA.antechamber,
+  NIGHTMARE_AA.drain,
+  NIGHTMARE_AA.apostate,
+];
 
 const isRhudaur = (s: GameState) => !!s.rhudaur;
 const undead = (code: string) =>
@@ -175,6 +187,18 @@ export function setupRhudaur(s: GameState) {
     .flatMap((r) => Array<string>(r.quantity).fill(r.code));
   // The recipe's one staged Causeway belongs to the original setup search.
   s.encounterDeck.push(WEATHER.causeway);
+  // Nightmare mode: the setup card's removals and Nightmare Deck; its three
+  // encounter sets (one for each investigation side quest) are set aside,
+  // out of play, until stage 2B.
+  if (nightmareLive(s)) {
+    const [deck, aside] = nightmareEncounterDecks(
+      s.scenarioId,
+      [s.encounterDeck, []],
+      (code) => (NIGHTMARE_RHUDAUR_SETS.includes(code) ? 1 : 0),
+    );
+    s.encounterDeck = deck;
+    (s.nightmare ??= {}).rhudaurAside = aside;
+  }
   s.rhudaur = {
     initialized: false,
     time: 5,

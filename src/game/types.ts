@@ -616,7 +616,8 @@ export interface GameState {
     import("./nightmare-helm").NightmareHelmState &
     import("./nightmare-isengard").NightmareIsengardState &
     import("./nightmare-gram").NightmareGramState &
-    import("./nightmare-ettenmoors").NightmareEttenState;
+    import("./nightmare-ettenmoors").NightmareEttenState &
+    import("./nightmare-rhudaur").NightmareRhudaurState;
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;
@@ -1284,6 +1285,12 @@ export interface GameState {
     nmDestroyed?: boolean;
     /** Northern Chetwood's shadow (Intruders in Chetwood's Nightmare Deck): a card discarded at random from the defending player's hand for each point of damage this attack dealt, once for each copy; Orc of Thaurdir's (Escape from Mount Gram's): the top card of their captured deck instead. */
     nmDiscardPerDamage?: number;
+    /** Thaurdir's Hunter (The Treachery of Rhudaur's Nightmare Deck): this attack is treated as undefended (no character can defend). */
+    nmUndefended?: boolean;
+    /** Malevolent Forces' shadow (The Treachery of Rhudaur's Nightmare Deck): all damage healed from each Undead enemy if this attack destroys a character, once for each copy. */
+    nmUndeadHealOnKill?: number;
+    /** Life Drain's shadow (The Treachery of Rhudaur's Nightmare Deck): copies that attach to Thaurdir if this attack destroys a character. */
+    nmLifeDrain?: number;
     defenderIds?: string[];
     ignoreDefense?: boolean;
     returnToStaging?: boolean;
