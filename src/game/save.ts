@@ -158,6 +158,7 @@ import {
   validNightmareCeleb,
 } from "./nightmare-celeb";
 import { crownNightmareRaven, validNightmareCrown } from "./nightmare-crown";
+import { validNightmareRingSouth } from "./nightmare-trgs";
 import { nightmareEscapeTest } from "./nightmare-dead";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
@@ -703,6 +704,8 @@ export function validateSave(
         c.nmEngageNext,
         c.nmBladeTip,
         c.nmLifeOnKill,
+        c.nmLocationOnKill,
+        c.nmLocationsOnKill,
       ].every((v) => v === undefined || (integer(v) && v >= 0)) &&
       (c.dreadKilled === undefined ||
         (Array.isArray(c.dreadKilled) &&
@@ -1227,6 +1230,7 @@ export function validateSave(
         !validNightmareNin(s) ||
         !validNightmareCeleb(s) ||
         !validNightmareCrown(s) ||
+        !validNightmareRingSouth(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,

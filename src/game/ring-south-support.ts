@@ -2,6 +2,7 @@
 import encounters from "../data/ring-south-encounter-cards.json";
 import quests from "../data/ring-south-quest-cards.json";
 import recipes from "../data/ring-south-recipes.json";
+import nightmare from "../data/nightmare-encounter-cards.json";
 import type { Card, GameState, Unit } from "./types";
 export type { RingSouthState } from "./ring-south-types";
 
@@ -41,11 +42,21 @@ export const RS_SET_ASIDE: readonly string[] = [
   RS.doors,
   RS.watcher,
 ];
+/** The Nightmare Deck's cards (its Misty Mountain Warg is a Warg). */
+const NIGHTMARE_CARDS = (nightmare as Card[]).filter(
+  (c) => c.encounter_set === "The Ring Goes South - Nightmare",
+);
+/** The Nightmare Deck's Pale-green Tentacles, set aside until stage 4B. */
+export const RS_NIGHTMARE_TENTACLE = NIGHTMARE_CARDS.find(
+  (c) => c.name === "Pale-green Tentacle",
+)!.code;
 /** The Watcher frees the Ring-bearer after its 6th damage. */
 export const RS_WATCHER_DAMAGE = 6;
 /** Doors of Durin: 9 damage tokens lose the game. */
 export const RS_DOORS_DAMAGE = 9;
-const byCode = new Map(RING_SOUTH_ENCOUNTERS.map((c) => [c.code, c]));
+const byCode = new Map(
+  [...RING_SOUTH_ENCOUNTERS, ...NIGHTMARE_CARDS].map((c) => [c.code, c]),
+);
 export const isRsWarg = (c: string) =>
   byCode.get(c)?.type_code === "enemy" &&
   (byCode.get(c)?.traits ?? "").split(".").some((t) => t.trim() === "Warg");
@@ -103,8 +114,15 @@ export function validateRingSouth(s: GameState, unit: (u: unknown) => boolean) {
     q.currentQuest === RING_SOUTH_QUESTS[s.stage - 1].code &&
     typeof q.advancing === "boolean" &&
     Array.isArray(q.setAside) &&
-    q.setAside.every((c) => RS_SET_ASIDE.includes(c)) &&
-    new Set(q.setAside).size === q.setAside.length &&
+    q.setAside.every(
+      (c) =>
+        RS_SET_ASIDE.includes(c) ||
+        (!!s.nightmareMode && c === RS_NIGHTMARE_TENTACLE),
+    ) &&
+    // Nightmare mode sets the 4 Pale-green Tentacles aside with the others.
+    new Set(q.setAside.filter((c) => c !== RS_NIGHTMARE_TENTACLE)).size ===
+      q.setAside.filter((c) => c !== RS_NIGHTMARE_TENTACLE).length &&
+    q.setAside.filter((c) => c === RS_NIGHTMARE_TENTACLE).length <= 4 &&
     Array.isArray(q.resolving) &&
     q.resolving.every(unit) &&
     Array.isArray(q.council) &&

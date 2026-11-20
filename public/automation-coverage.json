@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2676,
+    "encounterCards": 2684,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3898,
-    "pending": 285
+    "scripted": 3906,
+    "pending": 277
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 315
+    "scripted": 316
   },
   "registeredCodes": [
     "01001",
@@ -1745,6 +1745,7 @@
     "octgn:34a6c6ed-1dff-4264-815c-367ff47e73a6",
     "octgn:34bfcbad-5557-48bc-8abd-3ac472ee4d3b",
     "octgn:34c61d95-cb2e-49c4-b85e-5d3c32b02342",
+    "octgn:34e81b70-82c4-4fb4-8e6b-e3df7f587181",
     "octgn:35055e3e-d806-4c21-ad37-8177d70be329",
     "octgn:351afed2-188b-42d4-9b3a-bccb510ae7d2",
     "octgn:35376ae0-c807-4c16-8f4d-e14d36aec142",
@@ -2593,6 +2594,7 @@
     "octgn:6b8ca34a-1f6f-4eed-841c-a5d0db80619a",
     "octgn:6b928a6d-c90b-4e94-931e-ba5f8f1ebaf4",
     "octgn:6bd6a282-9f43-4b12-a4bb-501f554daf2b",
+    "octgn:6c01519b-bb2c-4c8b-b5d3-4951d2a32d13",
     "octgn:6c456def-a38c-409c-a085-37f027e9c7b0",
     "octgn:6c4bf737-20cf-4fc5-b473-8f1540430c45",
     "octgn:6c4bf737-20cf-4fc5-b473-8f1540430c45:B",
@@ -2664,6 +2666,7 @@
     "octgn:737724a5-2603-40b0-8a0b-4e72dbb3775e",
     "octgn:737a8d5f-2f82-47e4-844e-52fdae95ccf5",
     "octgn:737b346c-792e-48d2-b8da-5dae52ddc902",
+    "octgn:73867364-ecad-451c-b75f-3da7ea1f1b48",
     "octgn:738b3bad-7a2b-47ad-a34f-503028f4f4c1",
     "octgn:73969b8e-9591-4ab0-bd28-75c7780875b0",
     "octgn:740357cb-f22e-4888-aed5-ccc67728b69d",
@@ -2884,6 +2887,7 @@
     "octgn:88e75969-9e5d-4b83-a535-d58409a473b2",
     "octgn:88efb537-cea8-4c20-8b73-e51f0742f769",
     "octgn:8948aa81-f7fb-4979-9add-555598df529a",
+    "octgn:89a39894-f5d2-42a5-9927-fb057db778f4",
     "octgn:89baec7c-4e60-4b12-9d7d-80b11e786d89",
     "octgn:89cd149f-69d3-4d75-887d-96b45730792a",
     "octgn:89f263b0-c4a5-43ea-b59d-6207f9f65954",
@@ -2932,6 +2936,7 @@
     "octgn:8d61982f-acf9-4b03-969f-6e75688ee1fd",
     "octgn:8da00775-fb2b-4abe-bde9-39ecce643d5d",
     "octgn:8dad9a85-eae9-4a39-a823-1c58d8c0f86b",
+    "octgn:8db8a9b7-402f-40fe-943e-8a3e58662b38",
     "octgn:8df24501-bfd8-4602-92e1-61f5d5cf7035",
     "octgn:8df497f3-7857-4573-8467-8cf2e16fbc3f",
     "octgn:8e15ba46-125f-44fc-b67b-6006b96b20ea",
@@ -2998,6 +3003,7 @@
     "octgn:9511bcf2-9c06-413e-bf09-3bc076eb76d4",
     "octgn:9550172a-c624-40fd-b654-f2430ed93df1",
     "octgn:95604bc2-d030-4403-b3da-892402a38a39",
+    "octgn:958e2ca4-208c-4235-be56-afc463e9eb2f",
     "octgn:95d26956-eda3-43b2-b68b-6f8010d076bd",
     "octgn:95f27b98-6375-48ff-bf2b-3f625b3d1b0d",
     "octgn:95f2f7ac-5d85-43e5-930d-d866b00bef26",
@@ -3450,6 +3456,7 @@
     "octgn:c1273c2f-a616-45ee-804d-a16c28b6e63d",
     "octgn:c1554b49-597c-4d1b-8871-dfbe867253d5",
     "octgn:c179ea26-838b-449c-b0a0-f2049e20b01f",
+    "octgn:c1b934af-a47f-4886-846f-c319b2efeca0",
     "octgn:c1db9a5b-1377-49b2-833f-4d8e95928b60",
     "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
     "octgn:c2181617-ad55-4bf7-a6f3-60979d112ce6",
@@ -4060,6 +4067,7 @@
     "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93079",
     "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93080",
     "octgn:fd9398a9-9f4f-4134-875b-5527f3533c7d",
+    "octgn:fd9a5cdb-071c-4a2c-aa1e-b25d22d06a10",
     "octgn:fdd55ddc-2f18-4ae6-89bb-e54827a1bbdc",
     "octgn:fdf01cb8-5798-43f3-adbd-e2870c53f0cf",
     "octgn:fdfc404e-67b0-44d6-a1e7-a5e568ac0265",
@@ -4870,7 +4878,7 @@
     {
       "product": "the-road-darkens-nightmare",
       "total": 25,
-      "scripted": 0,
+      "scripted": 8,
       "player": 0,
       "playerScripted": 0
     },
@@ -18237,7 +18245,7 @@
       "name": "Pale-Green Tentacle",
       "type": "enemy",
       "pack": "The Road Darkens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens-nightmare"
     },
     {
@@ -25445,7 +25453,7 @@
       "name": "Misty Mountain Warg",
       "type": "enemy",
       "pack": "The Road Darkens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens-nightmare"
     },
     {
@@ -26101,7 +26109,7 @@
       "name": "Hunting Hawk",
       "type": "enemy",
       "pack": "The Road Darkens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens-nightmare"
     },
     {
@@ -28037,7 +28045,7 @@
       "name": "Hunted in Hollin",
       "type": "treachery",
       "pack": "The Road Darkens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens-nightmare"
     },
     {
@@ -28493,7 +28501,7 @@
       "name": "The Ring Goes South",
       "type": "nightmare",
       "pack": "The Road Darkens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens-nightmare"
     },
     {
@@ -29053,7 +29061,7 @@
       "name": "Slopes of Hithaeglir",
       "type": "location",
       "pack": "The Road Darkens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens-nightmare"
     },
     {
@@ -33005,7 +33013,7 @@
       "name": "Shelterless Land",
       "type": "treachery",
       "pack": "The Road Darkens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens-nightmare"
     },
     {
@@ -38317,7 +38325,7 @@
       "name": "Expanse of Hollin",
       "type": "location",
       "pack": "The Road Darkens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens-nightmare"
     },
     {
@@ -39872,8 +39880,8 @@
       "id": "N0B.04",
       "name": "The Ring Goes South (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-ring-goes-south",
+      "state": "scripted"
     },
     {
       "id": "N0B.05",

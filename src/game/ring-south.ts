@@ -52,9 +52,12 @@ import {
 import { khazadCannotExhaust } from "./khazad-dum";
 import { watcherWaterCannotExhaust } from "./watcher-water";
 import { lotrSagaCheck, ringBearer } from "./lotr-saga";
+import { nightmareEncounterDecks, nightmareLive } from "./nightmare";
+import { batch4Scenario } from "./batch4-scenarios";
 import {
   RING_SOUTH_RECIPES,
   RS,
+  RS_NIGHTMARE_TENTACLE,
   RS_DOORS_DAMAGE,
   RS_WATCHER_DAMAGE,
   isRsWarg,
@@ -132,17 +135,26 @@ export function setupRingSouth(s: GameState) {
     r.cards
       .filter((c) => c.section === name)
       .flatMap((c) => Array<string>(c.quantity).fill(c.code));
-  s.encounterDeck = shuffle(s, section("sharedEncounterDeck"));
+  const piles = [
+    section("sharedEncounterDeck"),
+    section("sharedStagingArea"),
+    section("sharedActiveLocation"),
+    section("sharedSetAside"),
+  ];
+  // Nightmare mode: the setup card's removals leave the encounter deck, and
+  // its Pale-green Tentacles are set aside with the scenario's cards.
+  const [deck, staged, active, aside] = nightmareLive(s)
+    ? nightmareEncounterDecks(s.scenarioId, piles, (c) =>
+        c === RS_NIGHTMARE_TENTACLE ? 3 : 0,
+      )
+    : piles;
+  s.encounterDeck = shuffle(s, deck);
   s.ringSouth = {
     currentQuest: RS.council,
     advancing: false,
     // Stage 1A sets these aside; the recipe stages Lust for the Ring and
     // makes Redhorn Pass active for convenience.
-    setAside: [
-      ...section("sharedStagingArea"),
-      ...section("sharedActiveLocation"),
-      ...section("sharedSetAside"),
-    ],
+    setAside: [...staged, ...active, ...aside],
     resolving: [],
     council: [],
     underWatcher: null,
@@ -853,6 +865,8 @@ export function ringSouthEffect(s: GameState, e: Effect): boolean {
           "danger",
         );
       }
+      // The players advance to stage 4B.
+      batch4Scenario(s).stageRevealed?.(s, 4);
       return true;
     }
     case "rgsFreeRingBearer": {
@@ -952,24 +966,31 @@ export function ringSouthEffect(s: GameState, e: Effect): boolean {
       return true;
     }
     case "rgsLocationDamage": {
+      // 1 damage (or `value`) on an active location, or on each of them.
       const locations = allActiveLocations(s);
       const all = e.flag;
+      const amount = e.value ?? 1;
       if (!locations.length) return true;
       if (all || locations.length === 1) {
         for (const l of all ? locations : locations.slice(0, 1))
-          damageLocation(s, l, 1, e.text ?? "The Road Darkens");
+          damageLocation(s, l, amount, e.text ?? "The Road Darkens");
         return true;
       }
       forOwner(s, first, () =>
         choose(
           s,
-          `${e.text ?? "Damage"} · Place 1 damage on an active location`,
+          `${e.text ?? "Damage"} · Place ${amount} damage on an active location`,
           locations.map((l) => ({
             id: l.id,
             code: l.code,
             label: `${name(l)} (${l.damage} damage)`,
             effects: [
-              fx("rgsDamageOne", { target: l.id, text: e.text, player: p }),
+              fx("rgsDamageOne", {
+                target: l.id,
+                text: e.text,
+                value: amount,
+                player: p,
+              }),
             ],
           })),
         ),
@@ -977,7 +998,7 @@ export function ringSouthEffect(s: GameState, e: Effect): boolean {
       return true;
     }
     case "rgsDamageOne":
-      if (u) damageLocation(s, u, 1, e.text ?? "Damage");
+      if (u) damageLocation(s, u, e.value ?? 1, e.text ?? "Damage");
       return true;
     case "rgsCrowsTarget":
       if (s.combat && u) {

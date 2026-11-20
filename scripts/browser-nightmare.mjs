@@ -18,6 +18,7 @@ import {
   NIGHTMARE_RINGMAKER as RM,
   NIGHTMARE_SOM as G,
   NIGHTMARE_TBR as TBR,
+  NIGHTMARE_TRD as TRD,
 } from "../src/game/nightmare.ts";
 import { KHAZAD } from "../src/game/khazad-dum.ts";
 import { mainQuestCode } from "../src/game/quest-state.ts";
@@ -2954,6 +2955,76 @@ try {
       );
     }
     await checkpoint("ftf-ford-of-bruinen", width);
+
+    // The Ring Goes South in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-the-ring-goes-south").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "the-ring-goes-south");
+    assert.equal(s.nightmareMode, true);
+    assert.equal(
+      s.ringSouth.setAside.filter((c) => c === TRD.tentacle).length,
+      4,
+      "the 4 Pale-green Tentacles are set aside",
+    );
+    assert.equal(s.encounterDeck.length, 34);
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/each player puts a Pale-green Tentacle into play engaged/)
+      .waitFor();
+    await checkpoint("trgs-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A Pale-green Tentacle beside a Hunting Hawk and an Expanse of Hollin.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.staging = [
+        ...t.staging,
+        make(t, TRD.tentacle),
+        make(t, TRD.hawk),
+        make(t, TRD.expanse),
+      ];
+      const i = t.ringSouth.setAside.indexOf(TRD.tentacle);
+      t.ringSouth.setAside.splice(i, 1);
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [TRD.tentacle, "Pale-green Tentacle"],
+      [TRD.hawk, "Hunting Hawk"],
+      [TRD.expanse, "Expanse of Hollin"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    await checkpoint("trgs-pale-green-tentacle", width);
     await view.c.close();
   }
   const p = await browser.newPage();

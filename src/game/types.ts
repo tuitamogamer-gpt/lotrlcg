@@ -605,7 +605,8 @@ export interface GameState {
     import("./nightmare-tharbad").NightmareTharbadState &
     import("./nightmare-nin").NightmareNinState &
     import("./nightmare-celeb").NightmareCelebState &
-    import("./nightmare-crown").NightmareCrownState;
+    import("./nightmare-crown").NightmareCrownState &
+    import("./nightmare-trgs").NightmareRingSouthState;
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;
@@ -1265,6 +1266,10 @@ export interface GameState {
     nmBladeTip?: number;
     /** Ettendales' shadow (Flight to the Ford's Nightmare Deck): the Ring-bearer's life lost if this attack destroys a character. */
     nmLifeOnKill?: number;
+    /** Misty Mountain Warg's shadow (The Ring Goes South's Nightmare Deck): 1 damage placed on an active location, once for each copy, if this attack destroys a character. */
+    nmLocationOnKill?: number;
+    /** Misty Mountain Warg's own attack (The Ring Goes South's Nightmare Deck): damage placed on each active location if this attack destroys a character. */
+    nmLocationsOnKill?: number;
     defenderIds?: string[];
     ignoreDefense?: boolean;
     returnToStaging?: boolean;

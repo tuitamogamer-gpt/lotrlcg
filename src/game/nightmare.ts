@@ -489,6 +489,18 @@ export const NIGHTMARE_TBR = {
   comeBack: "octgn:3b63d940-fcbc-4741-8840-cc276fcb558b",
   twilight: "octgn:b432d02a-d0ca-496c-96c0-e8f5753b2e17",
 } as const;
+/** The Road Darkens Nightmare Deck's cards (OCTGN ids, as DragnCards keeps them). */
+export const NIGHTMARE_TRD = {
+  /** The Ring Goes South's setup card and Nightmare Deck (its Pale-green Tentacles set aside). */
+  southCard: "octgn:8db8a9b7-402f-40fe-943e-8a3e58662b38",
+  tentacle: "octgn:34e81b70-82c4-4fb4-8e6b-e3df7f587181",
+  hawk: "octgn:73867364-ecad-451c-b75f-3da7ea1f1b48",
+  warg: "octgn:6c01519b-bb2c-4c8b-b5d3-4951d2a32d13",
+  expanse: "octgn:fd9a5cdb-071c-4a2c-aa1e-b25d22d06a10",
+  slopes: "octgn:958e2ca4-208c-4235-be56-afc463e9eb2f",
+  hunted: "octgn:89a39894-f5d2-42a5-9927-fb057db778f4",
+  shelterless: "octgn:c1b934af-a47f-4886-846f-c319b2efeca0",
+} as const;
 
 interface NightmareDeck {
   /** The setup card, flipped next to the quest deck. */
@@ -974,6 +986,17 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Rode Like a Gale": 2,
     },
   },
+  "the-ring-goes-south": {
+    card: NIGHTMARE_TRD.southCard,
+    removals: {
+      "Crebain from Dunland": 2,
+      "Howling Warg": 2,
+      "Tree-crowned Hill": 1,
+      "Hills of Hollin": 3,
+      Snowdrifts: 2,
+      "Storm of Howls": 1,
+    },
+  },
   "a-knife-in-the-dark": {
     card: NIGHTMARE_TBR.knifeCard,
     removals: {
@@ -1384,6 +1407,14 @@ export function nightmareStatus(s: GameState): string[] {
     return [
       "The Dunland Trap · Nightmare mode: the setup card removed the printed standard encounter cards and shuffled in its Nightmare Deck.",
     ];
+  if (s.scenarioId === "the-ring-goes-south") {
+    const aside =
+      s.ringSouth?.setAside.filter((c) => c === NIGHTMARE_TRD.tentacle)
+        .length ?? 0;
+    return [
+      `The Ring Goes South · Nightmare mode: when the players advance to stage 4B, each player puts a Pale-green Tentacle into play engaged with them, and the other copies and the encounter discard pile are shuffled into the encounter deck${aside ? ` (${aside} set aside now)` : ""}.`,
+    ];
+  }
   if (s.scenarioId === "flight-to-the-ford")
     return [
       "Flight to the Ford · Nightmare mode: the players cannot win while Ford of Bruinen is in play; the Nightmare Deck's Fell Riders are staged and its Ford of Bruinen set aside in place of the scenario's.",
