@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2761,
+    "encounterCards": 2770,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3983,
-    "pending": 200
+    "scripted": 3992,
+    "pending": 191
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 325
+    "scripted": 326
   },
   "registeredCodes": [
     "01001",
@@ -1343,6 +1343,7 @@
     "octgn:0c6923ad-efbd-46b0-b5fc-93f90334ecf5",
     "octgn:0c7a9790-0c68-47c0-bcf8-ed4e04b14a25",
     "octgn:0ca1652a-2733-4a38-9eff-53b527fb94a9",
+    "octgn:0cb30c28-b71c-4337-a4d1-6d5bc491bf81",
     "octgn:0cb6d866-50dd-4eb0-a86a-8ed84bfeae0e",
     "octgn:0cdc4034-738d-487d-9a8c-8ef364772076",
     "octgn:0d30fbf1-6e8f-480f-9f2f-3196777f6e11",
@@ -1790,6 +1791,7 @@
     "octgn:3748b1e3-625d-4752-831d-4d52b2366359",
     "octgn:377d8e17-1c0d-4871-86a5-a69b9dee40d2",
     "octgn:379415fb-39c8-4cb8-aa19-ac54c46bcb4a",
+    "octgn:3798030e-df23-45db-ab29-0ef8a2a35cd6",
     "octgn:37f0bdca-11d8-40ba-97cd-bbe2b8190cd5",
     "octgn:37f205e5-5144-4987-8764-46909460797b",
     "octgn:381569ad-e2bf-4fb5-a045-a36b918deac4",
@@ -2576,6 +2578,7 @@
     "octgn:666a449f-e103-4d70-932e-48e57c4d662c",
     "octgn:666a449f-e103-4d70-932e-48e57c4d662c:B",
     "octgn:66812347-fac2-4a76-aa69-ac0861071c0d",
+    "octgn:66d1d599-0c19-46d2-9335-02d68c59a99f",
     "octgn:66fc0634-c88c-4af2-a009-8ade84806f98",
     "octgn:6709bafa-87b5-483e-9895-0f2edea7e47a",
     "octgn:67221212-2af6-4729-a8d7-3ea575befcbb",
@@ -2593,6 +2596,7 @@
     "octgn:687ca930-b64c-4a5c-b6a3-bc3b12d8641d",
     "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d",
     "octgn:688d04e8-80d8-4ea8-9274-0712f26fac9b",
+    "octgn:688f685a-c89d-46d5-92b6-d827e3ee83d9",
     "octgn:68ba3515-4cbc-4e73-b8f3-69a3ab4b8110",
     "octgn:68ddf4d3-6336-40ed-862c-c68ae97ffb28",
     "octgn:68e3c34a-1af7-410f-ad57-85386181c6d7",
@@ -2843,6 +2847,7 @@
     "octgn:818e2f2f-4070-4056-85bd-5e729ccbad30",
     "octgn:81907a30-abb2-44de-b3be-eb44e43977d8",
     "octgn:81b31016-bcc3-4445-8f4d-64187e99aff3",
+    "octgn:81da79b7-cf26-462e-a6e5-36f01f0145f5",
     "octgn:81de0a94-a871-42af-8497-d66b900c9620",
     "octgn:81e81787-13b1-4bbf-a9ef-b8516deebbbc",
     "octgn:81f744b1-aa0e-4326-bd18-d701390141bf",
@@ -3077,6 +3082,7 @@
     "octgn:98cc592d-6e3e-494a-bddf-ef5e0908c279",
     "octgn:98dff367-a068-4aac-a46b-7dc201aff42d",
     "octgn:98fe6f91-977f-41a0-b7a4-a89d24836239",
+    "octgn:98ff43a9-a592-42da-8ea2-75558d0f7dea",
     "octgn:990e60bb-a627-4758-8230-81b40a57a382",
     "octgn:9944cbab-1c77-4cb4-87cc-36709f3143b5",
     "octgn:9945fdee-b56e-488d-a5bf-33d5a82afdad",
@@ -3473,6 +3479,7 @@
     "octgn:bc4f2e17-197c-4131-ad81-b892fe66ad88",
     "octgn:bc629269-aa5b-4f5c-b071-c1413f85d24c",
     "octgn:bcd41784-d260-4165-ae0f-74cb844d10b3",
+    "octgn:bcd69c86-8dd5-4c60-8f0f-5d19985ce913",
     "octgn:bd30f509-04f8-4135-a5e9-20d3cbbe7cd8",
     "octgn:bd44e9b4-5226-4fb5-a300-dffc9b35f6d4",
     "octgn:bd837efe-9358-4fe9-8770-69b9b1fefb48",
@@ -3644,6 +3651,7 @@
     "octgn:cefe5af1-a3d3-43fb-8b82-7ea9b4d2c861",
     "octgn:cf070c26-dd32-4ee8-bd6c-ffe9c011bd64",
     "octgn:cf123545-659f-41b9-8051-8ed29302ca2c",
+    "octgn:cf24afc6-3fa7-4b43-8ff6-75b78aab16e0",
     "octgn:cf33276f-22e5-467d-9543-6b345d17e7bc",
     "octgn:cf435143-655b-4a7c-ac6b-f9f61b4cba72",
     "octgn:cf5fad0e-e1c3-4340-a467-567ff0611c6f",
@@ -3731,6 +3739,7 @@
     "octgn:d97a8405-7c6b-4b27-a705-c165ab2c8977",
     "octgn:d985a0cd-4c06-4e2e-b05a-ad0ac9ac86be",
     "octgn:d99e07f6-7a57-4b5f-a108-13bd7ce6fa4b",
+    "octgn:d9a1e647-cd77-43b5-97a4-686564697225",
     "octgn:d9bde488-6391-492f-b3df-6dd6dbe4f9e9",
     "octgn:d9c04b71-93cd-455d-9f6e-4ee16cf7d1b4",
     "octgn:d9da588c-c96d-4971-813a-40e439e46764",
@@ -4360,7 +4369,7 @@
     {
       "product": "escape-from-mount-gram-nightmare",
       "total": 9,
-      "scripted": 0,
+      "scripted": 9,
       "player": 0,
       "playerScripted": 0
     },
@@ -14842,7 +14851,7 @@
       "name": "Prison Cell",
       "type": "location",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "escape-from-mount-gram-nightmare"
     },
     {
@@ -18626,7 +18635,7 @@
       "name": "Prison Guard",
       "type": "enemy",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "escape-from-mount-gram-nightmare"
     },
     {
@@ -25138,7 +25147,7 @@
       "name": "Raid Golfimbul's Vault",
       "type": "encounter-side-quest",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "escape-from-mount-gram-nightmare"
     },
     {
@@ -25282,7 +25291,7 @@
       "name": "Escape from Mount Gram",
       "type": "nightmare",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "escape-from-mount-gram-nightmare"
     },
     {
@@ -27466,7 +27475,7 @@
       "name": "Cruel Torment",
       "type": "treachery",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "escape-from-mount-gram-nightmare"
     },
     {
@@ -29402,7 +29411,7 @@
       "name": "Goblin Patrol",
       "type": "treachery",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "escape-from-mount-gram-nightmare"
     },
     {
@@ -32778,7 +32787,7 @@
       "name": "Orc of Thaurdir",
       "type": "enemy",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "escape-from-mount-gram-nightmare"
     },
     {
@@ -34266,7 +34275,7 @@
       "name": "Jailor Gornakh",
       "type": "enemy",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "escape-from-mount-gram-nightmare"
     },
     {
@@ -35050,7 +35059,7 @@
       "name": "Torture Chamber",
       "type": "location",
       "pack": "Angmar Awakened - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "escape-from-mount-gram-nightmare"
     },
     {
@@ -39796,8 +39805,8 @@
       "id": "N05.5",
       "name": "Escape from Mount Gram (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "escape-from-mount-gram",
+      "state": "scripted"
     },
     {
       "id": "N05.6",

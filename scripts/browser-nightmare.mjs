@@ -3783,6 +3783,116 @@ try {
       );
     }
     await checkpoint("wastes-pack-hunters", width);
+    // Escape from Mount Gram in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-escape-from-mount-gram").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "escape-from-mount-gram");
+    assert.equal(s.nightmareMode, true);
+    {
+      const q = s.mountGram;
+      assert.equal(
+        card(q.capturedDecks[0].at(-1).code).type_code,
+        "hero",
+        "the facedown set-aside hero is at the bottom of the captured deck",
+      );
+      assert.deepEqual(q.setAside.map((u) => card(u.code).name).sort(), [
+        "Jailor Gornákh",
+        "Southern Gate",
+      ]);
+      assert.ok(
+        q.setAside.some((u) => u.code === AA.jailor),
+        "the Nightmare Jailor is set aside",
+      );
+      assert.equal(q.orcDeck.filter((c) => c === AA.thaurdir).length, 3);
+    }
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/hero set aside facedown at its bottom/)
+      .waitFor();
+    await checkpoint("gram-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // Prison Cell, the active location, holds a captured card beside Torture
+    // Chamber and Raid Golfimbul's Vault, with a Prison Guard engaged: the
+    // Cell's Planning Action rescues it and raises the threat by its cost.
+    let cellId, rescued;
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const cell = make(t, AA.prisonCell);
+      const deck = t.mountGram.capturedDecks[0];
+      [rescued] = deck.splice(
+        deck.findIndex((u) => Number(card(u.code).cost) > 0),
+        1,
+      );
+      t.mountGram.captured[cell.id] = [rescued];
+      cellId = cell.id;
+      t.staging = [
+        ...t.staging,
+        ...(t.activeLocation ? [t.activeLocation] : []),
+        make(t, AA.chamber),
+        make(t, AA.vault),
+      ];
+      t.activeLocation = cell;
+      t.engaged = [...t.engaged, make(t, AA.prisonGuard)];
+      const area = t.mountGram.areas.find((a) => a.players.includes(0));
+      if (area)
+        Object.assign(area, {
+          staging: t.staging,
+          activeLocation: t.activeLocation,
+        });
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [AA.prisonCell, "Prison Cell"],
+      [AA.prisonGuard, "Prison Guard"],
+      [AA.chamber, "Torture Chamber"],
+      [AA.vault, "Raid Golfimbul's Vault"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    {
+      const threat = s.threat;
+      await page
+        .getByRole("button", { name: /^Prison Cell · Planning Action/ })
+        .first()
+        .click();
+      s = await saved(page);
+      assert.equal(s.mountGram.captured[cellId], undefined);
+      assert.ok(s.hand.some((u) => u.id === rescued.id));
+      assert.equal(s.threat, threat + Number(card(rescued.code).cost));
+      assert.deepEqual(s.nightmare.gramUsed, [{ id: cellId, round: s.round }]);
+    }
+    await checkpoint("gram-prison-cell", width);
     await view.c.close();
   }
   const p = await browser.newPage();

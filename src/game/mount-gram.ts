@@ -64,6 +64,12 @@ import { khazadBeforeStaging } from "./khazad-dum";
 import { rohanRevealReduction } from "./rohan-player-cards";
 import { emynPlayerRevealReduction } from "./emyn-player-cards";
 import { resolveDoomed } from "./voice-isengard";
+import { batch4Scenario } from "./batch4-scenarios";
+import {
+  NIGHTMARE_AA,
+  nightmareEncounterDecks,
+  nightmareLive,
+} from "./nightmare";
 import {
   GRAM as G,
   GRAM_ENCOUNTERS,
@@ -159,6 +165,75 @@ function captureTop(
     `${name(host)} captures ${cards.length} card${cards.length === 1 ? "" : "s"}.`,
     "danger",
   );
+  if (cards.length) batch4Scenario(s).cardsCaptured?.(s, host, cards.length);
+}
+/** The Nightmare Deck's printed Capture X (its cards are not in the standard list). */
+const nightmareCapture = (code: string) =>
+  card(code).nightmare
+    ? Number(/(?:^|\n|\. )Capture (\d+)/.exec(card(code).text ?? "")?.[1] ?? 0)
+    : 0;
+/** A Prison Cell, by title (the Nightmare Deck replaces the standard copies). */
+const isCell = (code: string) => card(code).name === "Prison Cell";
+/** Capture random cards from a player's hand underneath a card (a Nightmare card's effect). */
+export function gramCaptureFromHand(
+  s: GameState,
+  host: Unit,
+  player: number,
+  count: number,
+) {
+  let n = 0;
+  forOwner(s, player, () => {
+    for (; n < count && s.hand.length; n++) {
+      const [h] = s.hand.splice(Math.floor(random(s) * s.hand.length), 1);
+      (q(s).captured[host.id] ??= []).push(clean(h, h.owner ?? player));
+    }
+  });
+  if (!n) return 0;
+  log(
+    s,
+    `${name(host)} captures ${n} random card${n === 1 ? "" : "s"} from ${seatName(s, player)}'s hand.`,
+    "danger",
+  );
+  batch4Scenario(s).cardsCaptured?.(s, host, n);
+  return n;
+}
+/** Rescue a random card captured underneath a card; returns it. */
+export function gramRescueRandom(s: GameState, host: Unit) {
+  const cards = q(s).captured[host.id] ?? [];
+  if (!cards.length) return undefined;
+  const [u] = cards.splice(Math.floor(random(s) * cards.length), 1);
+  if (!cards.length) delete q(s).captured[host.id];
+  rescue(s, host, [u]);
+  return u;
+}
+/** Discard the top cards of a player's captured deck into their discard pile. */
+export function gramDiscardCaptured(
+  s: GameState,
+  player: number,
+  count: number,
+) {
+  const cards = (q(s).capturedDecks[player] ?? []).splice(0, count);
+  for (const u of cards) seatView(s, u.owner ?? player).discard.push(u.code);
+  return cards;
+}
+/** Capture each hero of each player's captured deck underneath a card. */
+export function gramCaptureDeckHeroes(s: GameState, host: Unit) {
+  let n = 0;
+  for (const p of playerOrder(s)) {
+    const deck = q(s).capturedDecks[p] ?? [];
+    const heroes = deck.filter((u) => card(u.code).type_code === "hero");
+    if (!heroes.length) continue;
+    q(s).capturedDecks[p] = deck.filter((u) => !heroes.includes(u));
+    (q(s).captured[host.id] ??= []).push(...heroes);
+    n += heroes.length;
+  }
+  if (n)
+    log(
+      s,
+      `${name(host)} captures ${n} hero${n === 1 ? "" : "es"} from the captured decks.`,
+      "danger",
+    );
+  return n;
 }
 function captureCharacter(s: GameState, host: Unit, u: Unit) {
   const controller = ownerOf(s, u),
@@ -197,10 +272,16 @@ function rescue(
 ) {
   if (!cards.length) return;
   const rescued: Unit[] = [];
+  const rescuer = activeSeat(s);
   for (const u of cards) {
     const owner = u.owner ?? activeSeat(s);
     if (s.table?.seats[owner].eliminated) {
       seatView(s, owner).discard.push(u.code);
+      continue;
+    }
+    // A Nightmare card can send its rescued cards elsewhere.
+    if (batch4Scenario(s).rescueDestination?.(s, source, clean(u, owner))) {
+      rescued.push(u);
       continue;
     }
     forOwner(s, owner, () => {
@@ -215,6 +296,7 @@ function rescue(
   }
   syncAttachmentText(s);
   if (!rescued.length) return;
+  batch4Scenario(s).cardsRescued?.(s, source, rescued.length, rescuer);
   const effects: Effect[] = enemies(s)
     .filter((u) => u.id !== source.id && u.code === G.jailor && !u.blanked)
     .map((u) => fx("gramJailor", { target: u.id, player: firstPlayer(s) }));
@@ -239,11 +321,25 @@ export function gramCardLeaves(s: GameState, u: Unit) {
 }
 export function gramCardEntered(s: GameState, u: Unit, _fromReveal: boolean) {
   if (!isGram(s)) return;
-  captureTop(s, u, gramCaptureCount(u.code));
+  captureTop(s, u, gramCaptureCount(u.code) || nightmareCapture(u.code));
   if (gramSideTime(u.code)) u.timeCounters = gramSideTime(u.code);
 }
 export function setupMountGram(s: GameState) {
   const r = gramRecipe(!!s.easyMode);
+  // Nightmare mode: the setup card's removals and Nightmare Deck (its Prison
+  // Cells start with the standard copies' place, its Jailor is set aside, and
+  // Orc of Thaurdir joins the Angmar Orcs).
+  if (nightmareLive(s))
+    [r.initial, r.setAside, r.orcs] = nightmareEncounterDecks(
+      s.scenarioId,
+      [r.initial, r.setAside, r.orcs],
+      (code) =>
+        code === NIGHTMARE_AA.jailor
+          ? 1
+          : code === NIGHTMARE_AA.thaurdir
+            ? 2
+            : 0,
+    );
   s.encounterDeck = r.initial;
   (s as GameState & { mountGram: ReturnType<typeof gramState> }).mountGram = {
     initialized: false,
@@ -338,6 +434,7 @@ export function gramAdvance(s: GameState) {
     s.stage === 3 &&
     s.progress >= 16 &&
     !hosts(s).some((u) => u.code === G.gate) &&
+    !batch4Scenario(s).cannotWin?.(s) &&
     !s.queue.length &&
     !s.choice &&
     !s.stageRevealing
@@ -701,7 +798,9 @@ export function gramEffect(s: GameState, e: Effect) {
           : undefined;
       captured.push(...other.map((h) => clean(h, activeSeat(s))));
       shuffle(s, captured);
-      if (top) captured.unshift(clean(top, activeSeat(s)));
+      // Nightmare mode: the facedown set-aside hero goes on the bottom.
+      if (top && nightmareLive(s)) captured.push(clean(top, activeSeat(s)));
+      else if (top) captured.unshift(clean(top, activeSeat(s)));
       q(s).capturedDecks[activeSeat(s)] = captured;
       s.heroes = [u];
       u.resources += 2;
@@ -750,13 +849,13 @@ export function gramEffect(s: GameState, e: Effect) {
       const a = gramArea(s);
       if (!a) break;
       captureTop(s, a.quest, 7);
-      const index = s.encounterDeck.indexOf(G.cell);
+      const index = s.encounterDeck.findIndex(isCell);
       if (index >= 0) {
-        s.encounterDeck.splice(index, 1);
+        const [cellCode] = s.encounterDeck.splice(index, 1);
         const before = new Set(s.staging.map((u) => u.id));
         const continuation = s.queue;
         s.queue = [];
-        revealed(s, G.cell, undefined, "encounter");
+        revealed(s, cellCode, undefined, "encounter");
         // Capture 1, reveal cancellation/response windows and any Surge resolve
         // before the printed Then captures two additional cards here.
         s.queue.push(
@@ -769,7 +868,7 @@ export function gramEffect(s: GameState, e: Effect) {
     case "gramCellSetupExtra": {
       const cell = [...s.staging]
         .reverse()
-        .find((u) => u.code === G.cell && !(e.ids ?? []).includes(u.id));
+        .find((u) => isCell(u.code) && !(e.ids ?? []).includes(u.id));
       if (cell) captureTop(s, cell, 2);
       break;
     }
@@ -899,6 +998,7 @@ export function gramEffect(s: GameState, e: Effect) {
         s.staging.push(card);
         enemyAddedToStaging(s, card);
         gramCardEntered(s, card, false);
+        batch4Scenario(s).cardEntered?.(s, card, false, false);
       }
       s.encounterDeck.push(...q(s).orcDeck.splice(0));
       shuffle(s, s.encounterDeck);

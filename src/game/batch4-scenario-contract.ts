@@ -521,6 +521,17 @@ export interface Batch4ScenarioHooks {
   sideQuestGoalBonus?(s: GameState, quest: Unit): number;
   /** Quest points the main quest's current stage gains (a Nightmare card attached to it). */
   mainQuestGoalBonus?(s: GameState): number;
+  /** Escape from Mount Gram: cards were captured underneath a card. */
+  cardsCaptured?(s: GameState, host: Unit, count: number): void;
+  /** Escape from Mount Gram: cards captured underneath a card were rescued (the player who rescued them). */
+  cardsRescued?(
+    s: GameState,
+    source: Unit,
+    count: number,
+    player: number,
+  ): void;
+  /** Escape from Mount Gram: a rescued card goes elsewhere (true when the layer placed it). */
+  rescueDestination?(s: GameState, source: Unit, u: Unit): boolean;
   failedQuest?(s: GameState, amount: number): boolean;
   successfulQuestProgressBlocked?(s: GameState): boolean;
   questSucceeded?(s: GameState, amount: number): void;

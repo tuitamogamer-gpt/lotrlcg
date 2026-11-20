@@ -52,3 +52,14 @@ dungeons remain separate, and elimination of one joined player does not cancel
 the remaining players' resolution. Cards captured from play also preserve their
 physical destination for leave-play Responses such as Eagles of the Misty
 Mountains.
+
+Nightmare mode follows [its Nightmare Deck](NIGHTMARE.md). The setup card's
+removals leave the three piles, its Nightmare Prison Cells take the standard
+copies' place (stage 2 finds a Prison Cell by its title), its Jailor Gornákh is
+set aside for the final stage and its Orcs of Thaurdir join the Angmar Orcs.
+Each captured deck ends with the facedown set-aside hero, and the players
+cannot win while a hero is captured. The Nightmare cards use the scenario's
+capture and rescue: their printed Capture X, a hook after cards are captured
+and after they are rescued (with the player who rescued them), and a rescue
+destination a card can replace (Raid Golfimbul's Vault). Cards captured from a
+hand stay valid in saves, events and side quests among them.

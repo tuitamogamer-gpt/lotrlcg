@@ -3157,6 +3157,17 @@ export function composeEredPool(
       (p.sideQuestGoalBonus?.(s, quest) ?? 0),
     mainQuestGoalBonus: (s) =>
       (h.mainQuestGoalBonus?.(s) ?? 0) + (p.mainQuestGoalBonus?.(s) ?? 0),
+    cardsCaptured: (s, host, count) => {
+      h.cardsCaptured?.(s, host, count);
+      p.cardsCaptured?.(s, host, count);
+    },
+    cardsRescued: (s, source, count, player) => {
+      h.cardsRescued?.(s, source, count, player);
+      p.cardsRescued?.(s, source, count, player);
+    },
+    rescueDestination: (s, source, u) =>
+      !!p.rescueDestination?.(s, source, u) ||
+      !!h.rescueDestination?.(s, source, u),
   };
 }
 

@@ -167,6 +167,7 @@ import { validNightmareDike } from "./nightmare-dike";
 import { validNightmareUruk } from "./nightmare-uruk";
 import { validNightmareHelm } from "./nightmare-helm";
 import { validNightmareIsengard } from "./nightmare-isengard";
+import { validNightmareGram } from "./nightmare-gram";
 import { nightmareEscapeTest } from "./nightmare-dead";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
@@ -1249,6 +1250,7 @@ export function validateSave(
         !validNightmareUruk(s) ||
         !validNightmareHelm(s) ||
         !validNightmareIsengard(s) ||
+        !validNightmareGram(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,
@@ -1297,10 +1299,16 @@ export function validateSave(
         !validateWeather(s, validUnit as (u: unknown) => boolean) ||
         !validateDeadmensDike(s, validUnit as (u: unknown) => boolean) ||
         !validateWastes(s, validUnit as (u: unknown) => boolean) ||
-        !validateMountGram(s, validUnit as (u: unknown) => boolean, (u) =>
-          ["hero", "ally", "objective-ally", "attachment"].includes(
-            card(u.code).type_code,
-          ),
+        !validateMountGram(
+          s,
+          validUnit as (u: unknown) => boolean,
+          (u) =>
+            ["hero", "ally", "objective-ally", "attachment"].includes(
+              card(u.code).type_code,
+            ) ||
+            // Nightmare mode captures cards from the players' hands too.
+            (!!s.nightmareMode &&
+              ["event", "player-side-quest"].includes(card(u.code).type_code)),
         ) ||
         !validateEttenmoors(s, validUnit as (u: unknown) => boolean) ||
         !validateRhudaur(s, validUnit as (u: unknown) => boolean) ||

@@ -596,6 +596,16 @@ export const NIGHTMARE_AA = {
   hail: "octgn:4d3d40e7-fc9a-414b-aaf9-2bae207a2e42",
   stand: "octgn:ec0c1c07-2d48-4fa8-948c-51d976ffe559",
   track: "octgn:cd23a6ca-9c2d-429f-9926-2fc75a67603b",
+  /** Escape from Mount Gram's setup card (its captured deck setup and the heroes it keeps captured) and Nightmare Deck (Orc of Thaurdir joins the Angmar Orcs). */
+  gramCard: "octgn:688f685a-c89d-46d5-92b6-d827e3ee83d9",
+  jailor: "octgn:cf24afc6-3fa7-4b43-8ff6-75b78aab16e0",
+  prisonGuard: "octgn:3798030e-df23-45db-ab29-0ef8a2a35cd6",
+  prisonCell: "octgn:0cb30c28-b71c-4337-a4d1-6d5bc491bf81",
+  chamber: "octgn:d9a1e647-cd77-43b5-97a4-686564697225",
+  torment: "octgn:81da79b7-cf26-462e-a6e5-36f01f0145f5",
+  goblinPatrol: "octgn:98ff43a9-a592-42da-8ea2-75558d0f7dea",
+  vault: "octgn:66d1d599-0c19-46d2-9335-02d68c59a99f",
+  thaurdir: "octgn:bcd69c86-8dd5-4c60-8f0f-5d19985ce913",
 } as const;
 
 interface NightmareDeck {
@@ -1186,6 +1196,17 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Pressing Needs": 2,
     },
   },
+  "escape-from-mount-gram": {
+    card: NIGHTMARE_AA.gramCard,
+    removals: {
+      "Prison Cell": 4,
+      "Dungeon Guard": 3,
+      "Jailor Gornákh": 1,
+      Interrogation: 2,
+      "Goblin Tormentor": 1,
+      "Cruel Torturer": 1,
+    },
+  },
   "deadmens-dike": {
     card: NIGHTMARE_TLR.dikeCard,
     removals: {
@@ -1652,6 +1673,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "wastes-of-eriador")
     return [
       "The Wastes of Eriador · Nightmare mode: the setup card removed the printed standard encounter cards and shuffled in its Nightmare Deck.",
+    ];
+  if (s.scenarioId === "escape-from-mount-gram")
+    return [
+      "Escape from Mount Gram · Nightmare mode: each player's other heroes were shuffled into their captured deck, with the hero set aside facedown at its bottom; the players cannot win while a hero is captured.",
     ];
   if (s.scenarioId === "deadmens-dike") {
     const under = (s.nightmare?.dikeCourage ?? []).reduce(

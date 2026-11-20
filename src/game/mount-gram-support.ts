@@ -2,6 +2,7 @@ import encounters from "../data/mount-gram-encounter-cards.json";
 import quests from "../data/mount-gram-quest-cards.json";
 import recipes from "../data/mount-gram-recipes.json";
 import { CHETWOOD } from "./chetwood-support";
+import { NIGHTMARE_AA } from "./nightmare";
 import type { Card, GameState, Unit } from "./types";
 
 export const GRAM_ENCOUNTERS = encounters as Card[];
@@ -250,7 +251,11 @@ export function validateMountGram(
         integer(a.copies),
     ) ||
     !Array.isArray(q.orcDeck) ||
-    !q.orcDeck.every((c) => gramRecipe(!!s.easyMode).orcs.includes(c)) ||
+    !q.orcDeck.every(
+      (c) =>
+        gramRecipe(!!s.easyMode).orcs.includes(c) ||
+        (!!s.nightmareMode && c === NIGHTMARE_AA.thaurdir),
+    ) ||
     !Array.isArray(q.travelResolvedAreas) ||
     !q.travelResolvedAreas.every((id) => typeof id === "string") ||
     new Set(q.travelResolvedAreas).size !== q.travelResolvedAreas.length ||
@@ -290,6 +295,8 @@ export function validateMountGram(
       ...(s.table?.seats.flatMap((p) => p.engaged) ?? []),
     ].map((u) => u.id),
   );
+  // Nightmare mode: Goblin Patrol captures underneath the final stage.
+  if (s.nightmareMode && s.stage === 3) hostIds.add(`quest:${GRAM.flight}`);
   for (const [host, list] of Object.entries(q.captured))
     if (!hostIds.has(host) || !units(list) || !playerUnits(list)) return false;
   const players: number[] = [];
@@ -324,7 +331,11 @@ export function validateMountGram(
           (s.status === "lost" && !q.areas.length)))) &&
     q.setAside.length <= 2 &&
     new Set(q.setAside.map((u) => u.code)).size === q.setAside.length &&
-    q.setAside.every((u) => [GRAM.gate, GRAM.jailor].includes(u.code)) &&
+    q.setAside.every(
+      (u) =>
+        [GRAM.gate, GRAM.jailor].includes(u.code) ||
+        (!!s.nightmareMode && u.code === NIGHTMARE_AA.jailor),
+    ) &&
     q.removedQuests.every((u) => u.code === GRAM.dungeons) &&
     q.removedQuests.length + q.areas.length <= count &&
     (!q.initialized || (s.stage === 2 ? q.split : s.stage === 3 && !q.split)) &&

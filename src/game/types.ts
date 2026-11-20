@@ -614,7 +614,8 @@ export interface GameState {
     import("./nightmare-dike").NightmareDikeState &
     import("./nightmare-uruk").NightmareUrukState &
     import("./nightmare-helm").NightmareHelmState &
-    import("./nightmare-isengard").NightmareIsengardState;
+    import("./nightmare-isengard").NightmareIsengardState &
+    import("./nightmare-gram").NightmareGramState;
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;
@@ -1280,7 +1281,7 @@ export interface GameState {
     nmLocationsOnKill?: number;
     /** A Nightmare layer's record that this attack's enemy destroyed a character (Breaking of the Fellowship's Isengard Tracker). */
     nmDestroyed?: boolean;
-    /** Northern Chetwood's shadow (Intruders in Chetwood's Nightmare Deck): a card discarded at random from the defending player's hand for each point of damage this attack dealt, once for each copy. */
+    /** Northern Chetwood's shadow (Intruders in Chetwood's Nightmare Deck): a card discarded at random from the defending player's hand for each point of damage this attack dealt, once for each copy; Orc of Thaurdir's (Escape from Mount Gram's): the top card of their captured deck instead. */
     nmDiscardPerDamage?: number;
     defenderIds?: string[];
     ignoreDefense?: boolean;
