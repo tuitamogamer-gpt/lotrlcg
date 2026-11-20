@@ -14,6 +14,7 @@ import {
   NIGHTMARE_KD as K,
   NIGHTMARE_OHUH as OHUH,
   NIGHTMARE_OTD as OTD,
+  NIGHTMARE_VOI as VOI,
   NIGHTMARE_SOM as G,
 } from "../src/game/nightmare.ts";
 import { KHAZAD } from "../src/game/khazad-dum.ts";
@@ -2179,6 +2180,57 @@ try {
       "Gundabad Elite's face loads",
     );
     await checkpoint("bofa-gundabad-elite", width);
+
+    // The Fords of Isen in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-fords-of-isen").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "fords-of-isen");
+    assert.equal(s.nightmareMode, true);
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/fewer than 3 cards in hand draws 3 cards/)
+      .waitFor();
+    await checkpoint("fords-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A Dunland Assassin beside a Western Shore in the staging area.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      t.staging = [...t.staging, make(t, VOI.assassin), make(t, VOI.western)];
+      s = await load(page, t);
+    }
+    const assassinFace = page
+      .locator(`img[src*="${VOI.assassin.slice("octgn:".length)}"]`)
+      .first();
+    await assassinFace.waitFor();
+    assert.ok(
+      (await assassinFace.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "Dunland Assassin's face loads",
+    );
+    await checkpoint("fords-dunland-assassin", width);
     await view.c.close();
   }
   const p = await browser.newPage();

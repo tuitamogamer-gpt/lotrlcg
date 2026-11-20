@@ -50,6 +50,7 @@ import {
 } from "./quest-state";
 import { hasTrait } from "./expansion-passives";
 import { FORDS as F, fordsTimeLimit } from "./fords-isen-support";
+import { batch4Scenario } from "./batch4-scenarios";
 
 const enemies = (s: GameState) =>
   [...s.staging, ...allEngaged(s)].filter(
@@ -346,6 +347,8 @@ export function fordsEffect(s: GameState, e: Effect): boolean {
   switch (e.kind) {
     case "fordsStageReady":
       s.stageRevealing = false;
+      // A Nightmare setup card's "After the players advance to a new quest stage".
+      batch4Scenario(s).stageRevealed?.(s, s.stage);
       break;
     case "fordsRemoveTime":
       fordsRemoveTime(s, e.value ?? 1);

@@ -120,8 +120,8 @@ function bfCharacterDestroyed(s: GameState, _u: Unit, ctx: DamageContext) {
   if (!bfLive(s) || !c || !ctx.combatDamage || ctx.enemyId !== c.enemyId)
     return;
   const enemy = get(s, c.enemyId);
-  if (enemy && live(s, enemy, N.greatWarg) && !c.nmGreatWarg) {
-    c.nmGreatWarg = true;
+  if (enemy && live(s, enemy, N.greatWarg) && !c.nmKillResolved) {
+    c.nmKillResolved = true;
     prepend(s, removeFx(s, 99, "Great Warg"));
   }
   if (s.nightmare?.bofaDread && enemy?.code === BOFA.bolg) {

@@ -146,6 +146,7 @@ import { validNightmareOmm } from "./nightmare-omm";
 import { validNightmareDdcd } from "./nightmare-ddcd";
 import { validNightmareTlm } from "./nightmare-tlm";
 import { validNightmareBofa } from "./nightmare-bofa";
+import { validNightmareFords } from "./nightmare-fords";
 import { nightmareEscapeTest } from "./nightmare-dead";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
@@ -1199,6 +1200,7 @@ export function validateSave(
         !validNightmareDdcd(s) ||
         !validNightmareTlm(s) ||
         !validNightmareBofa(s) ||
+        !validNightmareFords(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,

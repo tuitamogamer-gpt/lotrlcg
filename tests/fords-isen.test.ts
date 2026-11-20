@@ -92,12 +92,13 @@ test("Fords imports all 19 printed designs and original/easy encounter quantitie
     automatedScenarioId({ name: "Fords of Isen", mode: "standard" }),
     "fords-of-isen",
   );
+  // Its Nightmare recipe is supported with its Nightmare Deck.
   assert.equal(
     automatedScenarioId({
       name: "The Fords of Isen (Nightmare)",
       mode: "nightmare",
     }),
-    null,
+    "fords-of-isen",
   );
 });
 for (const players of [1, 2, 3, 4])

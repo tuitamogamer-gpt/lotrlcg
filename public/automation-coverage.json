@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2574,
+    "encounterCards": 2582,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3796,
-    "pending": 387
+    "scripted": 3804,
+    "pending": 379
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 303
+    "scripted": 304
   },
   "registeredCodes": [
     "01001",
@@ -1492,6 +1492,7 @@
     "octgn:1dcf16e8-8882-4b61-93ac-a7da643c52bd",
     "octgn:1de51c4f-659d-465f-bf45-4d6c00c6bdf1",
     "octgn:1e2560ab-00ce-45c3-a374-f7bb6a3e6889",
+    "octgn:1e392c0d-2fc3-4d57-8209-3a5e64292f3d",
     "octgn:1e54fa6e-c2a1-4456-ac48-8912ecc4722a",
     "octgn:1e5d3385-4362-4e76-91fc-30e5aebab5e2",
     "octgn:1e6bff06-79b2-4571-b584-c5b837176ded",
@@ -1815,6 +1816,7 @@
     "octgn:3f9feb64-e4bd-4da5-b00a-05f58dce5fbf",
     "octgn:3fca46ae-c558-4666-8b0a-8c5c9ee5156a",
     "octgn:3ff62e7f-fc09-4569-a45c-1be7e2ba6747",
+    "octgn:40299169-8b0f-4462-ae58-03db71c0970f",
     "octgn:408148e1-3391-4734-aeac-3e3a7b69c1c1",
     "octgn:408752c0-cee3-41ba-86c2-d01085546cef",
     "octgn:40956aef-c093-489d-b74a-24502705c6bb",
@@ -2538,6 +2540,7 @@
     "octgn:6a3ae84d-6c74-4fbf-9254-b8c1d17c8384:B",
     "octgn:6a3e1c91-accd-476b-9ecc-ace35274a052",
     "octgn:6a4b0ba7-c80b-4580-bc43-d5369b0c44aa",
+    "octgn:6a768da7-6c40-4002-ad01-e405edd4f286",
     "octgn:6aaf94eb-c656-4589-acf1-c6637a755946",
     "octgn:6ad8ed6c-4b09-4a2a-bc5f-a44b4f180b8e",
     "octgn:6b1a56ae-f173-4842-984c-d07b0545ad23",
@@ -2766,6 +2769,7 @@
     "octgn:8275a439-ebcd-4cc3-907b-1e217d222806",
     "octgn:82c68020-eb2e-4853-9919-df3066d13721",
     "octgn:82ca7902-f8fa-4352-8f54-f5f6a8875c51",
+    "octgn:82f9180c-0d38-4485-b99b-d15ed7910e17",
     "octgn:8304616a-8990-4d45-855e-3c106e5c76a7",
     "octgn:8345c4ad-4c5e-484d-bc6f-d1e4bc27805f",
     "octgn:8351cce0-b16e-4eba-93f2-24015bbc54c1",
@@ -3522,6 +3526,7 @@
     "octgn:d198aa74-21ec-462a-ac1a-f9c2fcf526cb",
     "octgn:d1a3a535-7679-4757-871c-80c50c003cff",
     "octgn:d1cc0af9-7ab3-449b-baa2-da0bfdf6c987",
+    "octgn:d26e6602-0c2d-440e-8065-10cfa89687c1",
     "octgn:d2bf00ad-2e1e-4537-b662-f6f20f9a1cfe",
     "octgn:d2cd3802-0667-4124-b7b6-5e753ff71ec3",
     "octgn:d2d31f2a-4b80-48b5-b92a-e42d254cfd49",
@@ -3577,6 +3582,7 @@
     "octgn:d90a8977-78e1-445d-b57d-a13e0e98f450",
     "octgn:d960e5a1-73eb-4699-b3c1-2eadeb2c6f23",
     "octgn:d97a8405-7c6b-4b27-a705-c165ab2c8977",
+    "octgn:d985a0cd-4c06-4e2e-b05a-ad0ac9ac86be",
     "octgn:d99e07f6-7a57-4b5f-a108-13bd7ce6fa4b",
     "octgn:d9bde488-6391-492f-b3df-6dd6dbe4f9e9",
     "octgn:d9c04b71-93cd-455d-9f6e-4ee16cf7d1b4",
@@ -3851,6 +3857,7 @@
     "octgn:f4b35e95-7f32-490d-9591-ac9eb050bb7e",
     "octgn:f4e81861-8cf6-41e7-b347-af7879fa8b06",
     "octgn:f4f20186-79fb-4d53-9431-ecd719fd152b",
+    "octgn:f53cd455-26e0-419c-967d-45ecc9990bab",
     "octgn:f542bca1-68d1-4975-aea9-3ff3e7801be5",
     "octgn:f57aeb37-4f19-4e5f-ae34-326c3b8b62f2",
     "octgn:f5a08708-ed75-45a0-91a1-59e10eeebfc9",
@@ -3863,6 +3870,7 @@
     "octgn:f631b06f-1f0c-45aa-b5af-c4f9b9a41455",
     "octgn:f63c9a8e-23dc-4c3a-bbff-00bd585e27bc",
     "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd",
+    "octgn:f642149c-2bfe-44c1-b4d6-dbf30ef5c988",
     "octgn:f6578eb7-1b94-458b-aba1-82b406507a4d",
     "octgn:f672b4f9-6ce8-4be0-95ab-fb5d2091f4ca",
     "octgn:f6e8459b-b0d6-4d30-ad8e-6aacfa34ec32",
@@ -4880,7 +4888,7 @@
     {
       "product": "the-voice-of-isengard-nightmare",
       "total": 26,
-      "scripted": 0,
+      "scripted": 8,
       "player": 0,
       "playerScripted": 0
     },
@@ -16007,7 +16015,7 @@
       "name": "Brutal Assault",
       "type": "treachery",
       "pack": "The Voice of Isengard - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard-nightmare"
     },
     {
@@ -18991,7 +18999,7 @@
       "name": "Vengeful Hillman",
       "type": "enemy",
       "pack": "The Voice of Isengard - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard-nightmare"
     },
     {
@@ -25247,7 +25255,7 @@
       "name": "Eastern Shore",
       "type": "location",
       "pack": "The Voice of Isengard - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard-nightmare"
     },
     {
@@ -27399,7 +27407,7 @@
       "name": "Savage Hillman",
       "type": "enemy",
       "pack": "The Voice of Isengard - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard-nightmare"
     },
     {
@@ -34311,7 +34319,7 @@
       "name": "Isen River",
       "type": "location",
       "pack": "The Voice of Isengard - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard-nightmare"
     },
     {
@@ -34847,7 +34855,7 @@
       "name": "The Fords of Isen",
       "type": "nightmare",
       "pack": "The Voice of Isengard - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard-nightmare"
     },
     {
@@ -37255,7 +37263,7 @@
       "name": "Dunland Assassin",
       "type": "enemy",
       "pack": "The Voice of Isengard - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard-nightmare"
     },
     {
@@ -37367,7 +37375,7 @@
       "name": "Western Shore",
       "type": "location",
       "pack": "The Voice of Isengard - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard-nightmare"
     },
     {
@@ -39518,8 +39526,8 @@
       "id": "N04.1",
       "name": "The Fords of Isen (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "fords-of-isen",
+      "state": "scripted"
     },
     {
       "id": "N04.2",

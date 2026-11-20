@@ -2979,6 +2979,12 @@ export function composeEredPool(
       !!p.attachmentCannotReady?.(s, host, a),
     cannotAdvanceStage: (s, stage) =>
       !!h.cannotAdvanceStage?.(s, stage) || !!p.cannotAdvanceStage?.(s, stage),
+    cardsDrawn: (s, player, count, cardEffect) => {
+      h.cardsDrawn?.(s, player, count, cardEffect);
+      p.cardsDrawn?.(s, player, count, cardEffect);
+    },
+    playProblem: (s, code) =>
+      h.playProblem?.(s, code) ?? p.playProblem?.(s, code) ?? null,
     progressRemovalReplaced: (s, stage) =>
       !!h.progressRemovalReplaced?.(s, stage) ||
       !!p.progressRemovalReplaced?.(s, stage),

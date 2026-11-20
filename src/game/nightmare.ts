@@ -326,6 +326,18 @@ export const NIGHTMARE_OTD = {
   ridge: "octgn:487955be-4805-427c-984b-23bb88e697a6",
   dread: "octgn:1b770413-a3b1-41ae-b843-b3b9e78b2906",
 } as const;
+/** The Voice of Isengard Nightmare Deck's cards (OCTGN ids, as DragnCards keeps them). */
+export const NIGHTMARE_VOI = {
+  /** The Fords of Isen's setup card and Nightmare Deck (hands refill to 3 as each new stage begins). */
+  fordsCard: "octgn:d985a0cd-4c06-4e2e-b05a-ad0ac9ac86be",
+  assassin: "octgn:f53cd455-26e0-419c-967d-45ecc9990bab",
+  vengeful: "octgn:40299169-8b0f-4462-ae58-03db71c0970f",
+  savage: "octgn:82f9180c-0d38-4485-b99b-d15ed7910e17",
+  western: "octgn:f642149c-2bfe-44c1-b4d6-dbf30ef5c988",
+  eastern: "octgn:6a768da7-6c40-4002-ad01-e405edd4f286",
+  isenRiver: "octgn:d26e6602-0c2d-440e-8065-10cfa89687c1",
+  brutal: "octgn:1e392c0d-2fc3-4d57-8209-3a5e64292f3d",
+} as const;
 /** Over the Misty Mountains Grim's Nightmare cards with The Great Goblin's encounter set icon: they join the second (Goblin) encounter deck. */
 export const NIGHTMARE_OMM_GOBLIN_DECK: readonly string[] = [
   NIGHTMARE_OHUH.greatGoblin,
@@ -769,6 +781,16 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Not fair! Not fair!": 1,
     },
   },
+  "fords-of-isen": {
+    card: NIGHTMARE_VOI.fordsCard,
+    removals: {
+      "Dunland Prowler": 3,
+      "Dunlending Bandit": 2,
+      "Dunland Berserker": 1,
+      "Gap of Rohan": 2,
+      "The King's Road": 2,
+    },
+  },
   "the-battle-of-five-armies": {
     card: NIGHTMARE_OTD.bofaCard,
     removals: {
@@ -1115,6 +1137,10 @@ export function nightmareStatus(s: GameState): string[] {
       `The Blood of Gondor · Nightmare mode: each player took a hidden card at setup (${hidden} hidden now); the players cannot win unless The Cross-roads and the Nightmare Deck's Black Númenorean are in the victory display.`,
     ];
   }
+  if (s.scenarioId === "fords-of-isen")
+    return [
+      "The Fords of Isen · Nightmare mode: after the players advance to a new quest stage, each player with fewer than 3 cards in hand draws 3 cards.",
+    ];
   if (s.scenarioId === "the-battle-of-five-armies") {
     const players = s.table?.seats.length ?? 1;
     const tokens = s.nightmare?.bofaProgress ?? 0;

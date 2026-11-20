@@ -38,4 +38,4 @@ The visible scenario counter and event history show remaining Time, while hidden
 
 `npm run test:ring-maker-quests` runs the actual browser controls at 1280×900, 390×844 and 320×750: fresh scenario selection, setup and reload, rescue and stage transition, Time damage/reset/loss, Gríma-triggered Berserker defence, Forced ordering, mandatory travel, multiplayer hills choices, locked Ill Tidings and four-player easy setup. All 22 original card faces are decoded. The suite passes 45 responsive checkpoints. It is included in GitHub CI. Screenshots and logs are kept under ignored `output/` paths.
 
-This registration enables only original/easy Fords of Isen. Its Nightmare version, To Catch an Orc, Into Fangorn and all six Ring-maker Adventure Pack encounter quests remain pending. The already completed Ring-maker player-card pool is unchanged.
+This registration enables original/easy Fords of Isen; its Nightmare version follows [its Nightmare Deck](NIGHTMARE.md) (the setup builds the encounter deck with the setup card's removals and its cards, and each new stage refills hands of fewer than 3 cards). The already completed Ring-maker player-card pool is unchanged.
