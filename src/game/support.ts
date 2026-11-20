@@ -67,10 +67,13 @@ export function automatedScenarioId(reference: { name: string; mode: string }) {
             /\s*\(Limited Collector['’]s Edition\)$/i,
             " (Two-Player Limited Edition Starter)",
           );
-  const match = SCENARIOS.find(
-    (s) =>
-      s.name.toLocaleLowerCase("en") === canonicalName.toLocaleLowerCase("en"),
-  );
+  // Some source recipes drop a title's accents ("The Druadan Forest").
+  const fold = (t: string) =>
+    t
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLocaleLowerCase("en");
+  const match = SCENARIOS.find((s) => fold(s.name) === fold(canonicalName));
   if (
     !match ||
     (reference.mode === "campaign" &&

@@ -22,6 +22,7 @@ import {
   threatOf,
 } from "./core";
 import {
+  placeEncounter,
   depositInFlightEncounterCards,
   destroy,
   discardAttachment,
@@ -33,6 +34,7 @@ import {
   raiseThreat,
 } from "./board";
 import {
+  globalPlayerOrder,
   activeSeat,
   allActiveLocations,
   allCharacters,
@@ -170,7 +172,32 @@ export function nightmareSetup(s: GameState) {
       `The Steward's Fear · Nightmare: False Accusations and Murderous Turncoat join the underworld deck (${q.underworldDeck.length} cards); the hidden Plot is one of ${all.length + 1}.`,
     );
   }
-  // Into Ithilien: "Setup: Set both copies of Mûmak Elite aside, out of
+  // The Drúadan Forest: "Setup: Add resources to each hero's resource pool
+  // until each hero has 5 resources. Search the encounter deck for 1 copy of
+  // Garden of Poisons and add it to the staging area. Shuffle the encounter
+  // deck." The Nightmare Deck's Drû-buri-Drû is set aside in place of the
+  // scenario's.
+  if (s.scenarioId === "the-druadan-forest") {
+    s.encounterDeck = s.encounterDeck.filter((c) => c !== NIGHTMARE_AS.boss);
+    (s.druadanForest ??= {}).bossSetAside = NIGHTMARE_AS.boss;
+    for (const player of globalPlayerOrder(s))
+      forOwner(s, player, () => {
+        for (const h of s.heroes) h.resources = Math.max(h.resources, 5);
+      });
+    const garden = s.encounterDeck.findIndex(
+      (c) => card(c).name === "Garden of Poisons",
+    );
+    if (garden >= 0) {
+      const [code] = s.encounterDeck.splice(garden, 1);
+      placeEncounter(s, code, true);
+    }
+    shuffle(s, s.encounterDeck);
+    log(
+      s,
+      "The Drúadan Forest · Nightmare: each hero has 5 resources, a Garden of Poisons is in the staging area, and the Nightmare Deck's Drû-buri-Drû is set aside.",
+    );
+  }
+  // Into Ithilien: "Set both copies of Mûmak Elite aside, out of
   // play."
   if (s.scenarioId === "into-ithilien") {
     const aside = s.encounterDeck.filter((c) => c === NIGHTMARE_HON.elite);

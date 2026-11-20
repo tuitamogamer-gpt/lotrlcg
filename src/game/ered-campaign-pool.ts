@@ -2949,6 +2949,12 @@ export function composeEredPool(
       (h.playCostReduction?.(s, c) ?? 0) + (p.playCostReduction?.(s, c) ?? 0),
     archeryBonus: (s) =>
       (h.archeryBonus?.(s) ?? 0) + (p.archeryBonus?.(s) ?? 0),
+    unitArchery: (s, u) =>
+      (h.unitArchery?.(s, u) ?? 0) + (p.unitArchery?.(s, u) ?? 0),
+    resourcesSpent: (s, hero, amount) => {
+      h.resourcesSpent?.(s, hero, amount);
+      p.resourcesSpent?.(s, hero, amount);
+    },
     archeryTargets: (s, characters, last) => {
       const own = h.archeryTargets?.(s, characters, last) ?? characters;
       return p.archeryTargets?.(s, own, last) ?? own;

@@ -27,6 +27,8 @@ export const DRUADAN_FOREST = {
   leaves: code("Leaves on Tree"),
 } as const;
 
+/** The Nightmare Deck's Drû-buri-Drû, set aside in place of the scenario's. */
+export const NIGHTMARE_BOSS = "octgn:c2a753b8-dfb3-4bdf-a0b4-523323c52f43";
 export interface DruadanForestState {
   /** The public setup card remains outside all decks until stage 3. */
   bossSetAside?: string;
@@ -39,7 +41,8 @@ export function validateDruadanForestState(s: GameState): boolean {
   if (s.scenarioId !== "the-druadan-forest" || !q || typeof q !== "object")
     return false;
   return (
-    (q.bossSetAside === undefined || q.bossSetAside === DRUADAN_FOREST.boss) &&
+    (q.bossSetAside === undefined ||
+      [DRUADAN_FOREST.boss, NIGHTMARE_BOSS].includes(q.bossSetAside)) &&
     (q.menDamageTaken === undefined || typeof q.menDamageTaken === "boolean") &&
     !(
       q.bossSetAside &&

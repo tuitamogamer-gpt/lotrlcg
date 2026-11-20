@@ -1,4 +1,5 @@
 import { removeFromQuest } from "./board";
+import { batch4Scenario } from "./batch4-scenarios";
 import { mainQuestCode } from "./quest-state";
 // Original/easy Drúadan Forest: group Prowl, Wose Archery and peaceful victory.
 import type { Effect, GameState, Unit } from "./types";
@@ -40,7 +41,7 @@ import { isSacked } from "./carrock";
 import { khazadCannotExhaust } from "./khazad-dum";
 import { watcherWaterCannotExhaust } from "./watcher-water";
 import { heirsCanSpendResources } from "./heirs-numenor";
-import { DRUADAN_FOREST as D } from "./druadan-forest-support";
+import { DRUADAN_FOREST as D, NIGHTMARE_BOSS } from "./druadan-forest-support";
 export { DRUADAN_FOREST } from "./druadan-forest-support";
 
 const isDruadan = (s: GameState) => s.scenarioId === "the-druadan-forest";
@@ -74,6 +75,16 @@ const controlledAttachments = (s: GameState, player: number) =>
       .filter((a) => !a.facedown && attachmentController(s, host, a) === player)
       .map((a) => ({ host, a })),
   );
+/**
+ * Resources discarded from a hero's pool (prowl, a payment, Stars in Sky):
+ * a Nightmare Stonewain Valley collects those of the first player.
+ */
+function discardResources(s: GameState, h: Unit, amount: number) {
+  const n = Math.min(Math.max(0, amount), h.resources);
+  if (!n) return;
+  h.resources -= n;
+  batch4Scenario(s).resourcesSpent?.(s, h, n);
+}
 function removeQuesting(s: GameState, h: Unit) {
   removeFromQuest(s, h);
   forOwner(s, ownerOf(s, h), () => {
@@ -105,7 +116,8 @@ export function advanceDruadanForest(s: GameState): boolean {
   if (s.progress < required) return true;
   if (s.stage === 3) {
     if (
-      s.victoryCards?.includes(D.boss) &&
+      // Nightmare mode: the Nightmare Deck's Drû-buri-Drû.
+      s.victoryCards?.some((c) => c === D.boss || c === NIGHTMARE_BOSS) &&
       !questDefeated(s, mainQuestCode(s)!)
     )
       win(s);
@@ -114,6 +126,7 @@ export function advanceDruadanForest(s: GameState): boolean {
   if (questDefeated(s, mainQuestCode(s)!)) return true;
   s.stage++;
   s.progress = 0;
+  batch4Scenario(s).stageRevealed?.(s, s.stage);
   if (s.stage === 3) {
     s.stageRevealing = true;
     prepend(s, fx("druadanStage3", { player: first(s) }));
@@ -151,7 +164,11 @@ export function druadanForestArchery(s: GameState, u: Unit): number {
       : u.code === D.hunter
         ? allHeroes(s).filter((h) => h.resources === 0).length
         : 0;
-  return base + (hasTrait(u, "Wose") ? active(s, D.glade).length : 0);
+  return (
+    base +
+    (hasTrait(u, "Wose") ? active(s, D.glade).length : 0) +
+    (batch4Scenario(s).unitArchery?.(s, u) ?? 0)
+  );
 }
 export function druadanForestCombatStart(s: GameState) {
   const amount = encounters(s).reduce(
@@ -222,8 +239,14 @@ export function druadanForestAttackProgress(
   amount: number,
 ): boolean {
   if (druadanForestAttackStat(s) !== "will") return false;
+  // A Nightmare Drû-buri-Drû cannot take more than 1 damage each round: the
+  // damage its progress replaces counts against that limit.
+  const hooks = batch4Scenario(s);
+  amount =
+    hooks.damageAmount?.(s, enemy, amount, { combatDamage: true }) ?? amount;
   if (amount <= 0) return true;
   enemy.progress = Math.min(stats(s, enemy).health, enemy.progress + amount);
+  hooks.damageDealt?.(s, enemy, amount, { combatDamage: true });
   log(
     s,
     `${name(enemy)} receives ${amount} progress instead of damage.`,
@@ -327,7 +350,7 @@ export function druadanForestShadow(s: GameState, code: string): boolean {
   else if (code === D.stars)
     for (const id of defenders) {
       const d = get(s, id);
-      if (d) d.resources = 0;
+      if (d) discardResources(s, d, d.resources);
     }
   else if (code === D.drummer)
     for (const e of s.engaged) {
@@ -373,7 +396,7 @@ export function handleDruadanForestEffect(s: GameState, e: Effect): boolean {
   switch (e.kind) {
     case "druadanStage3":
       if (state(s).bossSetAside) {
-        placeEncounter(s, D.boss);
+        placeEncounter(s, state(s).bossSetAside!);
         delete state(s).bossSetAside;
       }
       s.stageRevealing = false;
@@ -401,7 +424,7 @@ export function handleDruadanForestEffect(s: GameState, e: Effect): boolean {
       break;
     }
     case "druadanDiscardResource":
-      if (u) u.resources = Math.max(0, u.resources - 1);
+      if (u) discardResources(s, u, 1);
       break;
     case "druadanTravelExhaust":
       choose(

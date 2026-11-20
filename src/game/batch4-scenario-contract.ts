@@ -45,6 +45,8 @@ export interface Batch4ScenarioHooks {
   ): Unit[] | undefined;
   /** Archery a layer adds to the beginning of the combat phase's total. */
   archeryBonus?(s: GameState): number;
+  /** Archery a layer gives one encounter card (The Drúadan Forest counts it per card). */
+  unitArchery?(s: GameState, u: Unit): number;
   /** After damage is healed from a unit (by the effect `source`, when known). */
   healed?(s: GameState, u: Unit, amount: number, source?: HealSource): void;
   /** The most damage that can be healed from this unit now (a per-round cap, or the healing effect's). */

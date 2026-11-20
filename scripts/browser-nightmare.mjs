@@ -1560,6 +1560,66 @@ try {
       "Rise to Power's face loads",
     );
     await checkpoint("steward-rise-to-power", width);
+    // The Drúadan Forest in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-the-druadan-forest").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "the-druadan-forest");
+    assert.equal(s.nightmareMode, true);
+    assert.equal(s.druadanForest.bossSetAside, AS.boss);
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/heroes collect no resources in the resource phase/)
+      .waitFor();
+    await checkpoint("druadan-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A Drúadan Stalker armed with Poison-darts beside a Devil's Mirk.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const stalker = make(t, AS.stalker);
+      stalker.attachments.push({
+        id: `${stalker.id}:darts:0`,
+        code: AS.darts,
+        exhausted: false,
+      });
+      t.staging = [...t.staging, stalker, make(t, AS.mirk)];
+      s = await load(page, t);
+    }
+    const stalkerFace = page
+      .locator(`img[src*="${AS.stalker.slice("octgn:".length)}"]`)
+      .first();
+    await stalkerFace.waitFor();
+    assert.ok(
+      (await stalkerFace.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "Drúadan Stalker's face loads",
+    );
+    await page
+      .getByLabel("Attachments on Drúadan Stalker", { exact: true })
+      .waitFor();
+    await checkpoint("druadan-poison-darts", width);
     await view.c.close();
   }
   const p = await browser.newPage();

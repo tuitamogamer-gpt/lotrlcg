@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2483,
+    "encounterCards": 2492,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3705,
-    "pending": 478
+    "scripted": 3714,
+    "pending": 469
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 292
+    "scripted": 293
   },
   "registeredCodes": [
     "01001",
@@ -1424,6 +1424,7 @@
     "octgn:16fc9e92-cbc9-46ff-8312-a9c6491ca70b:B",
     "octgn:17039c31-d3fd-4730-8b74-8f08458071fe",
     "octgn:1733be6c-2101-4f83-816b-f730b4afc183",
+    "octgn:17353135-52af-42a8-a6af-3b2e9148bf5f",
     "octgn:174507ac-5617-4e3c-998b-75eeceb9db33",
     "octgn:178fd61d-ebb3-40b1-b854-4c7bc43c121e",
     "octgn:18484359-d4b5-4ed6-b7be-e013fae4df43",
@@ -1537,6 +1538,7 @@
     "octgn:2362af02-42b8-43fe-b3b6-f11f011b3197",
     "octgn:23670d99-7a26-4838-a112-2f6d8a7186f8",
     "octgn:23768a0d-bf6c-4405-9b09-ea8fdbfded31",
+    "octgn:2387ac72-763b-47e0-b9f3-29a08dbeb200",
     "octgn:23befee6-1e3f-4955-826d-62562a5433ed",
     "octgn:23c33968-01db-4f79-94bd-45ea1e0d50d0",
     "octgn:23dec64e-9e30-4329-9df7-4d2628d2a7a8",
@@ -1586,6 +1588,7 @@
     "octgn:27bdece4-dfac-438e-87cd-1dc653eab8d6",
     "octgn:27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb",
     "octgn:27da4ea2-7892-409e-b6e0-38ad215d5d0c",
+    "octgn:27f961dd-c360-418e-9aac-6756d3a46dde",
     "octgn:2809f147-b000-419c-bbb2-39e6221d72de",
     "octgn:280e4dce-aef9-4472-94a6-94b114be5a4e",
     "octgn:282bca71-ff04-4447-a4e9-a7e5f70e0083",
@@ -2454,6 +2457,7 @@
     "octgn:6302e603-fade-43b3-a6b3-235af412fdfa.B",
     "octgn:63284aea-d814-4ceb-bb8e-57f402edc54d",
     "octgn:63b0498f-9180-4e62-83c1-b9aa29f24712",
+    "octgn:63b5d3fe-227a-4781-b9ef-52dc6fb656d5",
     "octgn:63f46289-b5ef-44d1-b6cb-ce382031a768",
     "octgn:63f46289-b5ef-44d1-b6cb-ce382031a768:B",
     "octgn:6458d002-326f-45a6-af65-38025d301f07",
@@ -2515,6 +2519,7 @@
     "octgn:6c456def-a38c-409c-a085-37f027e9c7b0",
     "octgn:6c4bf737-20cf-4fc5-b473-8f1540430c45",
     "octgn:6c4bf737-20cf-4fc5-b473-8f1540430c45:B",
+    "octgn:6c86b76e-003d-40aa-af57-bd0e6536a2f6",
     "octgn:6c89f835-68f8-4882-90ea-83f84953fabf",
     "octgn:6c9419b0-e016-4ba8-b90a-575d4378984e",
     "octgn:6c97c646-1952-4080-ae56-ab7caeafb28f",
@@ -2815,6 +2820,7 @@
     "octgn:8bfc0f18-87f6-410b-b3b1-8486ca3627c7",
     "octgn:8c15fd9d-0956-474a-9051-51f36890c7a5",
     "octgn:8c4cc797-13e6-4ee4-a991-7ec76866418a",
+    "octgn:8c844d0e-74df-4def-a1e7-cb5d2e255908",
     "octgn:8c9df134-1740-42a5-a69e-32cd928e884f",
     "octgn:8cb63364-11e8-4044-9712-613ccbfcfa5f",
     "octgn:8cc366fb-68f0-4401-9df9-20f9258a728c",
@@ -3153,6 +3159,7 @@
     "octgn:b49b5be7-5bfc-4e65-bced-862a409e097d",
     "octgn:b4b0bdc8-5edb-40c9-a9ca-dac60fe7cb38",
     "octgn:b4cd6eea-17ec-4051-89b3-c4b735d8452f",
+    "octgn:b509154c-7596-4a48-941e-0dfa7277d0cf",
     "octgn:b53fd0fc-5734-4bdc-b26f-c2133da31c3d",
     "octgn:b546c9b7-7721-4275-ba8b-ba28364aeb95",
     "octgn:b56f7d39-ca8d-4979-baa6-8a2f875d6463",
@@ -3315,6 +3322,7 @@
     "octgn:c2720938-450b-4017-9ac3-f3130164bdf9",
     "octgn:c281bdda-e8d3-408c-bd5d-d7673b092576",
     "octgn:c29c98de-5660-498c-a5cc-a1800985d221",
+    "octgn:c2a753b8-dfb3-4bdf-a0b4-523323c52f43",
     "octgn:c2d8cd64-a1dc-4bf2-9e61-0336170e73af",
     "octgn:c2ff668a-6174-47d4-bbab-46f9c91403eb",
     "octgn:c31219da-1e72-4a0a-9ab0-117433a2c478",
@@ -3806,6 +3814,7 @@
     "octgn:f945cfde-271f-4e93-8eed-93eaaf0fb408",
     "octgn:f9824e39-fda8-4e4b-bc74-83b4bd40c72d",
     "octgn:f985bda2-5029-4c34-91f7-721f830cbd9c",
+    "octgn:f9a62ed6-f066-478d-9af0-0c39dea250dd",
     "octgn:f9d0fb76-13bc-44f9-853f-8d2e417d0098",
     "octgn:f9e9bc93-8044-474c-8f80-d3787edbca5f",
     "octgn:fa005422-98d7-4350-b080-b5fe31fce9b0",
@@ -4439,7 +4448,7 @@
     {
       "product": "the-druadan-forest-nightmare",
       "total": 9,
-      "scripted": 0,
+      "scripted": 9,
       "player": 0,
       "playerScripted": 0
     },
@@ -15364,7 +15373,7 @@
       "name": "Devil's Mirk",
       "type": "location",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-druadan-forest-nightmare"
     },
     {
@@ -16444,7 +16453,7 @@
       "name": "The Drúadan Forest",
       "type": "nightmare",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-druadan-forest-nightmare"
     },
     {
@@ -16868,7 +16877,7 @@
       "name": "Poison-darts",
       "type": "treachery",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-druadan-forest-nightmare"
     },
     {
@@ -24692,7 +24701,7 @@
       "name": "Drums of the Wild Men",
       "type": "treachery",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-druadan-forest-nightmare"
     },
     {
@@ -25276,7 +25285,7 @@
       "name": "Eilenach",
       "type": "location",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-druadan-forest-nightmare"
     },
     {
@@ -28204,7 +28213,7 @@
       "name": "Drúadan Stalker",
       "type": "enemy",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-druadan-forest-nightmare"
     },
     {
@@ -31428,7 +31437,7 @@
       "name": "Stonewain Valley",
       "type": "location",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-druadan-forest-nightmare"
     },
     {
@@ -32884,7 +32893,7 @@
       "name": "Dru-buri-Dru",
       "type": "enemy",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-druadan-forest-nightmare"
     },
     {
@@ -37548,7 +37557,7 @@
       "name": "Drúadan Warrior",
       "type": "enemy",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-druadan-forest-nightmare"
     },
     {
@@ -39392,8 +39401,8 @@
       "id": "N03.5",
       "name": "The Druadan Forest (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-druadan-forest",
+      "state": "scripted"
     },
     {
       "id": "N03.6",

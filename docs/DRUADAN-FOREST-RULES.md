@@ -1,6 +1,6 @@
 # The Drúadan Forest — original and easy
 
-The native scenario uses the original Drúadan Forest and Brooding Forest encounter sets, three printed quest stages (11 / 17 / 14), and canonical recipes Q03.5 and E03.5. Nightmare remains outside this implementation.
+The native scenario uses the original Drúadan Forest and Brooding Forest encounter sets, three printed quest stages (11 / 17 / 14), and canonical recipes Q03.5 and E03.5. Its Nightmare Deck (N03.5) is supported ([rules](NIGHTMARE.md)): the Nightmare Drû-buri-Drû is set aside in place of the scenario's and wins stage 3 from the victory display, the Nightmare enemies' archery joins the Wose Archery, the resources prowl, payments and Stars in Sky's shadow discard reach a Nightmare Stonewain Valley, and a willpower attack's progress counts against the Nightmare Drû-buri-Drû's limit of 1 damage each round.
 
 ## Sources and normalization
 

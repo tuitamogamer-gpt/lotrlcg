@@ -587,7 +587,8 @@ export interface GameState {
     import("./nightmare-pelargir").NightmarePelargirState &
     import("./nightmare-ithilien").NightmareIthilienState &
     import("./nightmare-cairandros").NightmareCairAndrosState &
-    import("./nightmare-steward").NightmareStewardState;
+    import("./nightmare-steward").NightmareStewardState &
+    import("./nightmare-druadan").NightmareDruadanState;
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;

@@ -217,6 +217,16 @@ export const NIGHTMARE_AS = {
   tunnel: "octgn:fc351158-b618-41f2-8ba0-a3ab18eb7dd3",
   accusations: "octgn:f0eb44aa-e060-4d5d-b66b-39bd1f0801d7",
   champion: "octgn:58aa1ac7-961f-4a44-ad11-7613d87d4eab",
+  /** The Drúadan Forest's setup card and Nightmare Deck (its Drû-buri-Drû set aside). */
+  druadanCard: "octgn:2387ac72-763b-47e0-b9f3-29a08dbeb200",
+  boss: "octgn:c2a753b8-dfb3-4bdf-a0b4-523323c52f43",
+  warrior: "octgn:f9a62ed6-f066-478d-9af0-0c39dea250dd",
+  stalker: "octgn:8c844d0e-74df-4def-a1e7-cb5d2e255908",
+  mirk: "octgn:17353135-52af-42a8-a6af-3b2e9148bf5f",
+  eilenach: "octgn:6c86b76e-003d-40aa-af57-bd0e6536a2f6",
+  stonewain: "octgn:b509154c-7596-4a48-941e-0dfa7277d0cf",
+  drums: "octgn:63b5d3fe-227a-4781-b9ef-52dc6fb656d5",
+  darts: "octgn:27f961dd-c360-418e-9aac-6756d3a46dde",
 } as const;
 /** The Heirs of Númenor Nightmare Deck's cards (OCTGN ids, as DragnCards keeps them). */
 export const NIGHTMARE_HON = {
@@ -564,6 +574,20 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       Pickpocket: 3,
     },
   },
+  "the-druadan-forest": {
+    card: NIGHTMARE_AS.druadanCard,
+    // The setup card prints "Drû-buri-Drû".
+    removals: {
+      "Lost Companion": 2,
+      "Secluded Glade": 3,
+      "Overgrown Trail": 1,
+      "Dru-buri-Dru": 1,
+      "Drúadan Elite": 1,
+      "Drúadan Hunter": 1,
+      "Stars in Sky": 1,
+      "Men in the Dark": 1,
+    },
+  },
   "watcher-in-the-water": {
     card: NIGHTMARE_DD.watcherCard,
     removals: {
@@ -801,6 +825,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "the-stewards-fear")
     return [
       `The Steward's Fear · Nightmare mode: False Accusations and Murderous Turncoat are in the underworld deck (${s.stewardFear?.underworldDeck.length ?? 0} cards); the hidden Plot was chosen among 5; a destroyed enemy is shuffled into the underworld deck before stage 3; a Clue in the staging area is shuffled back at the beginning of the refresh phase.`,
+    ];
+  if (s.scenarioId === "the-druadan-forest")
+    return [
+      "The Drúadan Forest · Nightmare mode: heroes collect no resources in the resource phase; each began with 5 and a Garden of Poisons in the staging area; after stage 2B is revealed, each hero has at least 3. The Nightmare Deck's Drû-buri-Drû waits for stage 3.",
     ];
   if (s.scenarioId === "watcher-in-the-water")
     return [
