@@ -1,6 +1,6 @@
 # Assault on Osgiliath original/easy rules
 
-Runtime identity: `assault-on-osgiliath`. Original recipe `Q03.7` contains 50 encounter cards; easy recipe `E03.7` contains 34. The only quest is Retake the City, with no quest-point victory. Nightmare remains separate and unimplemented.
+Runtime identity: `assault-on-osgiliath`. Original recipe `Q03.7` contains 50 encounter cards; easy recipe `E03.7` contains 34. The only quest is Retake the City, with no quest-point victory. Its Nightmare Deck (N03.7) is supported ([rules](NIGHTMARE.md)): taking control of a location calls the Nightmare layer (Palace Remains' tokens and the Nightmare locations' control effects), and the quest's discarded progress reaches it first (the setup card's chosen location).
 
 The local catalog and recipes supply the 15 original encounter designs, one quest design and exact quantities. The Mordor Elite and Southrons encounter sets reuse the native Heirs of Númenor rules (Archery, Haradrim Elite entry attacks, attachment/resource restrictions, Mumak's round damage cap, repeated treachery text, sphere damage and encounter searches).
 

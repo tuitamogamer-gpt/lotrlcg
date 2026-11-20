@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2501,
+    "encounterCards": 2511,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 3723,
-    "pending": 460
+    "scripted": 3733,
+    "pending": 450
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 294
+    "scripted": 295
   },
   "registeredCodes": [
     "01001",
@@ -1413,6 +1413,7 @@
     "octgn:1574141b-b11e-4be9-82c9-ddc1fb2f5269",
     "octgn:1589883f-87ae-4f4d-a92b-e5e23c25c8e0",
     "octgn:159f5a8f-1e1f-4282-9936-94b10e348176",
+    "octgn:15ccb88a-9a78-4aac-a1f2-839070a19016",
     "octgn:15e06e00-8d82-4590-b2ae-6e615330d78a",
     "octgn:15ebc613-43fc-4c9b-ac71-91840d853e60",
     "octgn:15f9c6b7-2bb0-48ea-9a5d-b8ec3b1a7e2d",
@@ -1651,6 +1652,7 @@
     "octgn:2e1bb6cc-2f05-47f1-8ea5-78955cd0cbf2",
     "octgn:2e441298-dafc-41bc-a46f-a0f483ac18bd",
     "octgn:2e4aea1e-abb5-48c6-9f83-abbf9b6bcf72",
+    "octgn:2e502d3d-5cf5-47eb-9577-3c14d74995fa",
     "octgn:2e5e6e97-003b-4500-8372-495f5ee86051",
     "octgn:2e810a9b-5d79-4828-8268-33e82c5fc1fa",
     "octgn:2efa631a-eb16-4078-84a5-18c7033b86f3",
@@ -2420,6 +2422,7 @@
     "octgn:5dbc4cec-84c9-420b-809f-088296eb4a62",
     "octgn:5ddb243e-ee43-45fd-b4c2-2b197fdf70a9",
     "octgn:5df1bf1c-8dc0-4534-9380-6af6812dc6f8",
+    "octgn:5e0ecd2d-d63e-4507-8707-641b974398ff",
     "octgn:5e39ebfc-287a-49d5-9369-49dbfb0fd665",
     "octgn:5e7c36de-a2bb-44e3-951b-80123788d571",
     "octgn:5e8714e3-0581-4b6f-bf45-414098819626",
@@ -2517,6 +2520,7 @@
     "octgn:6b61a3fd-1e84-4516-8a42-972524daaf50",
     "octgn:6b828300-4558-4a8b-a591-a9865202a630",
     "octgn:6b8ca34a-1f6f-4eed-841c-a5d0db80619a",
+    "octgn:6b928a6d-c90b-4e94-931e-ba5f8f1ebaf4",
     "octgn:6bd6a282-9f43-4b12-a4bb-501f554daf2b",
     "octgn:6c456def-a38c-409c-a085-37f027e9c7b0",
     "octgn:6c4bf737-20cf-4fc5-b473-8f1540430c45",
@@ -2532,6 +2536,7 @@
     "octgn:6d2cbe18-4504-46df-821c-d3ce588bcb3f",
     "octgn:6d485bbc-6876-4160-8111-77f3935123c9",
     "octgn:6d4c7a3b-e0e7-4267-8f53-6ba99054892c",
+    "octgn:6d567c10-864f-48a8-8104-14882b2b254e",
     "octgn:6d6d2d0f-7672-4f92-bb07-6a764f655306",
     "octgn:6d8f614d-ccd1-4416-aeee-6d30824cbbda",
     "octgn:6da65b9b-39a7-425d-baa1-00b406bcae36",
@@ -3092,6 +3097,7 @@
     "octgn:abf880a9-117c-4c23-8a29-9a152f36c4e9",
     "octgn:abfe3930-7bca-4ce8-9594-038ad4846205",
     "octgn:ac4724db-a3cc-4984-bef5-f51b0f4421f8",
+    "octgn:ac4da79d-d966-45bf-b1d3-c4d0a348dd7e",
     "octgn:ac5a17df-dcd0-4bfb-91fe-a444910f30ec",
     "octgn:ac78aadc-9a58-42a6-a328-60dbb1e2191c",
     "octgn:ac9fe707-143f-492e-89e3-bdd02973a0f2",
@@ -3405,6 +3411,7 @@
     "octgn:c9575426-59ea-4863-bf6a-407e9eae3f33",
     "octgn:c95b4c6a-3dd0-4f11-8620-df7af65c11bc",
     "octgn:c95b4c6a-3dd0-4f11-8620-df7af65c11bc:B",
+    "octgn:c9604830-bb2f-4016-b914-7c41248513b5",
     "octgn:c9b1ad84-a3ea-4ab5-9db1-4addb4ae383d",
     "octgn:c9bd8efc-b0df-4ab9-aeb2-07796818ff7d",
     "octgn:c9c2b094-c895-4714-bb2e-c6558c82a153",
@@ -3485,6 +3492,7 @@
     "octgn:d47ece86-2645-4d35-8ab7-c439d12abe65",
     "octgn:d4a5f505-6cc6-4669-b9b9-8f5ad2a6e5df",
     "octgn:d4b4c172-dec4-4d31-91f8-24f3e3127713",
+    "octgn:d4b810a1-7d10-4610-9609-fb7f7568e5f5",
     "octgn:d4de89b5-2e86-417a-baf1-81e7e852e5d4",
     "octgn:d4e4ab9d-d5ea-4d33-89f1-d8d24d166002",
     "octgn:d5134ddf-8c78-4e68-a603-7df5d48f5016",
@@ -3497,6 +3505,7 @@
     "octgn:d69092af-f96b-4885-a194-5d5f31d90e6d",
     "octgn:d6d4ea3a-402c-413b-9732-a07a21dd15b0",
     "octgn:d71de165-8632-4628-94ea-793a1c20e6f8",
+    "octgn:d74119d9-703c-4d5a-998b-4788230254c9",
     "octgn:d760ba6c-e377-4d22-ac46-04bfb2b3c65f",
     "octgn:d77287d1-d4d2-49bd-93c1-ae9d2590b8f7",
     "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
@@ -3904,6 +3913,7 @@
     "octgn:ff79510f-a6c3-4357-a582-853e5bb3e2bc",
     "octgn:ff815834-bf79-4914-8057-903f834190f1",
     "octgn:ffb334eb-991d-4615-93ce-b2215a02d74f",
+    "octgn:ffc5f529-5d18-4870-970b-7503c176f56b",
     "octgn:ffd2cfe7-e5fc-4f47-b85e-19e8b2df5171",
     "octgn:ffe307bf-dd8e-4df3-9355-55564137d311",
     "octgn:ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e",
@@ -3988,7 +3998,7 @@
     {
       "product": "assault-on-osgiliath-nightmare",
       "total": 10,
-      "scripted": 0,
+      "scripted": 10,
       "player": 0,
       "playerScripted": 0
     },
@@ -15270,7 +15280,7 @@
       "name": "Relentless Attack",
       "type": "treachery",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath-nightmare"
     },
     {
@@ -17438,7 +17448,7 @@
       "name": "Eastern Quarter",
       "type": "location",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath-nightmare"
     },
     {
@@ -24302,7 +24312,7 @@
       "name": "Assault on Osgiliath",
       "type": "nightmare",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath-nightmare"
     },
     {
@@ -25246,7 +25256,7 @@
       "name": "Haradhrim Warrior",
       "type": "enemy",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath-nightmare"
     },
     {
@@ -25398,7 +25408,7 @@
       "name": "Western Quarter",
       "type": "location",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath-nightmare"
     },
     {
@@ -30726,7 +30736,7 @@
       "name": "Palace Remains",
       "type": "location",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath-nightmare"
     },
     {
@@ -33614,7 +33624,7 @@
       "name": "Invading Orc",
       "type": "enemy",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath-nightmare"
     },
     {
@@ -34454,7 +34464,7 @@
       "name": "Crumbled Battlements",
       "type": "location",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath-nightmare"
     },
     {
@@ -34598,7 +34608,7 @@
       "name": "Pressed on All Sides",
       "type": "treachery",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath-nightmare"
     },
     {
@@ -38326,7 +38336,7 @@
       "name": "Overrun Defenses",
       "type": "treachery",
       "pack": "Against the Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath-nightmare"
     },
     {
@@ -39424,8 +39434,8 @@
       "id": "N03.7",
       "name": "Assault on Osgiliath (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "assault-on-osgiliath",
+      "state": "scripted"
     },
     {
       "id": "N03.8",

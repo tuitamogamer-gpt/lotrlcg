@@ -41,6 +41,7 @@ import { khazadCannotExhaust } from "./khazad-dum";
 import { watcherWaterCannotExhaust } from "./watcher-water";
 import { heirsCanSpendResources } from "./heirs-numenor";
 import { ASSAULT_OSGILIATH as A } from "./assault-osgiliath-support";
+import { batch4Scenario } from "./batch4-scenarios";
 export { ASSAULT_OSGILIATH } from "./assault-osgiliath-support";
 
 const isAssault = (s: GameState) => s.scenarioId === "assault-on-osgiliath";
@@ -100,6 +101,8 @@ export function assaultOsgiliathCapture(s: GameState, u: Unit): boolean {
   u.owner = first(s);
   q.controlled.push(u);
   log(s, `The first player takes control of ${name(u)}.`, "good");
+  // A Nightmare Deck's "When you take control" effects.
+  batch4Scenario(s).locationControlled?.(s, u, first(s));
   return true;
 }
 function returnTowers(s: GameState, player: number) {

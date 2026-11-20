@@ -2622,8 +2622,13 @@ function placeProgress(
   if (khazadQuestProgress(s, n)) return;
   if (stewardFearQuestProgress(s)) return;
   if (Amon.amonDinQuestProgress(s, n)) return;
-  if (["assault-on-osgiliath", "the-morgul-vale"].includes(s.scenarioId))
+  if (["assault-on-osgiliath", "the-morgul-vale"].includes(s.scenarioId)) {
+    // The quest takes no progress; a Nightmare Deck may place it elsewhere
+    // (Assault on Osgiliath's chosen location).
+    const quest = mainQuestUnit(s);
+    if (quest) batch4Scenario(s).progress?.(s, n, quest);
     return;
+  }
   if (s.wainriders && playerEffect) return;
   addCurrentQuestProgress(s, n);
   Fangorn.fangornProgressPlaced(s);

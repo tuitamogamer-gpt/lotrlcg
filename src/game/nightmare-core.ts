@@ -209,6 +209,18 @@ export function nightmareSetup(s: GameState) {
       "Encounter at Amon Dîn · Nightmare: 1 villager token is placed on Rescued Villagers.",
     );
   }
+  // Assault on Osgiliath: "Setup: Add Palace Remains to the staging area."
+  if (s.scenarioId === "assault-on-osgiliath") {
+    const palace = s.encounterDeck.indexOf(NIGHTMARE_AS.palace);
+    if (palace >= 0) {
+      s.encounterDeck.splice(palace, 1);
+      placeEncounter(s, NIGHTMARE_AS.palace, true);
+    }
+    log(
+      s,
+      "Assault on Osgiliath · Nightmare: Palace Remains is added to the staging area.",
+    );
+  }
   // Into Ithilien: "Set both copies of Mûmak Elite aside, out of
   // play."
   if (s.scenarioId === "into-ithilien") {

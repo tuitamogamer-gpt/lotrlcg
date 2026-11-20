@@ -2947,6 +2947,14 @@ export function composeEredPool(
       !!h.lostResolve?.(s, id) || !!p.lostResolve?.(s, id),
     playCostReduction: (s, c) =>
       (h.playCostReduction?.(s, c) ?? 0) + (p.playCostReduction?.(s, c) ?? 0),
+    whenRevealedCancelled: (s, code) => {
+      h.whenRevealedCancelled?.(s, code);
+      p.whenRevealedCancelled?.(s, code);
+    },
+    locationControlled: (s, u, player) => {
+      h.locationControlled?.(s, u, player);
+      p.locationControlled?.(s, u, player);
+    },
     archeryBonus: (s) =>
       (h.archeryBonus?.(s) ?? 0) + (p.archeryBonus?.(s) ?? 0),
     unitArchery: (s, u) =>

@@ -1688,6 +1688,59 @@ try {
       .getByLabel("Attachments on Rescued Villagers", { exact: true })
       .waitFor();
     await checkpoint("amondin-those-now-sundered", width);
+    // Assault on Osgiliath in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-assault-on-osgiliath").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "assault-on-osgiliath");
+    assert.equal(s.nightmareMode, true);
+    assert.ok(s.staging.some((u) => u.code === AS.palace));
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/Palace Remains began in the staging area/)
+      .waitFor();
+    await checkpoint("osgiliath-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A Haradrim Warrior beside Palace Remains with 3 resource tokens.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const palace = t.staging.find((u) => u.code === AS.palace);
+      palace.resources = 3;
+      t.staging = [...t.staging, make(t, AS.haradrim)];
+      s = await load(page, t);
+    }
+    const warriorFace = page
+      .locator(`img[src*="${AS.haradrim.slice("octgn:".length)}"]`)
+      .first();
+    await warriorFace.waitFor();
+    assert.ok(
+      (await warriorFace.evaluate(async (i) => {
+        await i.decode();
+        return i.naturalWidth;
+      })) > 0,
+      "Haradrim Warrior's face loads",
+    );
+    await checkpoint("osgiliath-haradrim-warrior", width);
     await view.c.close();
   }
   const p = await browser.newPage();

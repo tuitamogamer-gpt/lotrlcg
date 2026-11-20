@@ -237,6 +237,17 @@ export const NIGHTMARE_AS = {
   run: "octgn:b4dcd330-15c0-4700-b1aa-d235f253b1de",
   saveUs: "octgn:a067986f-6c42-446d-8a23-58d0190c39f0",
   sundered: "octgn:b86d305d-12ba-43bb-9356-fd424f63ace5",
+  /** Assault on Osgiliath's setup card and Nightmare Deck (its Palace Remains staged). */
+  osgiliathCard: "octgn:5e0ecd2d-d63e-4507-8707-641b974398ff",
+  invading: "octgn:c9604830-bb2f-4016-b914-7c41248513b5",
+  haradrim: "octgn:6b928a6d-c90b-4e94-931e-ba5f8f1ebaf4",
+  palace: "octgn:ac4da79d-d966-45bf-b1d3-c4d0a348dd7e",
+  battlements: "octgn:d4b810a1-7d10-4610-9609-fb7f7568e5f5",
+  eastern: "octgn:2e502d3d-5cf5-47eb-9577-3c14d74995fa",
+  western: "octgn:6d567c10-864f-48a8-8104-14882b2b254e",
+  relentless: "octgn:15ccb88a-9a78-4aac-a1f2-839070a19016",
+  overrun: "octgn:ffc5f529-5d18-4870-970b-7503c176f56b",
+  pressed: "octgn:d74119d9-703c-4d5a-998b-4788230254c9",
 } as const;
 /** The Heirs of Númenor Nightmare Deck's cards (OCTGN ids, as DragnCards keeps them). */
 export const NIGHTMARE_HON = {
@@ -612,6 +623,23 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Scourge of Mordor": 2,
     },
   },
+  "assault-on-osgiliath": {
+    card: NIGHTMARE_AS.osgiliathCard,
+    removals: {
+      "Uruk Soldier": 4,
+      "Southron Phalanx": 3,
+      "West Quarter": 2,
+      "East Quarter": 2,
+      "Ruined Tower": 1,
+      "Ruined Square": 1,
+      "The Master's Malice": 2,
+      "Street Fighting": 2,
+      "Southron Mercenaries": 3,
+      "Uruk Lieutenant": 1,
+      "Orc Arbalesters": 1,
+      "The Power of Mordor": 1,
+    },
+  },
   "watcher-in-the-water": {
     card: NIGHTMARE_DD.watcherCard,
     removals: {
@@ -858,6 +886,17 @@ export function nightmareStatus(s: GameState): string[] {
     return [
       "Encounter at Amon Dîn · Nightmare mode: Ghulat cannot take damage unless there are at least 15 progress tokens on Protect the Villagers; Rescued Villagers began with 1 villager token; at the beginning of each quest phase, the players discard 1 villager token from Rescued Villagers or reveal an encounter card.",
     ];
+  if (s.scenarioId === "assault-on-osgiliath") {
+    const staged = s.staging.filter(
+      (u) =>
+        card(u.code).type_code === "location" &&
+        /\bOsgiliath\b/.test(card(u.code).traits ?? ""),
+    ).length;
+    const players = s.table?.seats.length ?? 1;
+    return [
+      `Assault on Osgiliath · Nightmare mode: Palace Remains began in the staging area. While more Osgiliath locations are in the staging area than there are players (${staged} for ${players}), a non-unique location may take the quest's remaining progress each quest phase.`,
+    ];
+  }
   if (s.scenarioId === "watcher-in-the-water")
     return [
       "The Watcher in the Water · Nightmare mode: while Doors of Durin is in play, The Watcher cannot be engaged; a destroyed Tentacle enemy deals 1 damage to The Watcher; the players cannot win unless both Doors of Durin and The Watcher are in the victory display.",
