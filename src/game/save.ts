@@ -178,6 +178,7 @@ import { validNightmareCarn } from "./nightmare-carn";
 import { dreadSideTime, validNightmareDread } from "./nightmare-dread";
 import { validNightmareCrossroads } from "./nightmare-crossroads";
 import { validNightmareShelob } from "./nightmare-shelob";
+import { validNightmareFate } from "./nightmare-fate";
 import { nightmareEscapeTest } from "./nightmare-dead";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
@@ -1284,6 +1285,7 @@ export function validateSave(
         !validNightmareDread(s) ||
         !validNightmareCrossroads(s) ||
         !validNightmareShelob(s) ||
+        !validNightmareFate(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,

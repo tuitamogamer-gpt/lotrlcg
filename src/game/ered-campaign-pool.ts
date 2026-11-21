@@ -2812,6 +2812,14 @@ export function composeEredPool(
       h.combatBegin?.(s);
       p.combatBegin?.(s);
     },
+    attackersDeclared: (s, enemy, ids) => [
+      ...(h.attackersDeclared?.(s, enemy, ids) ?? []),
+      ...(p.attackersDeclared?.(s, enemy, ids) ?? []),
+    ],
+    travelBegin: (s) => {
+      h.travelBegin?.(s);
+      p.travelBegin?.(s);
+    },
     check: (s) => {
       h.check?.(s);
       p.check?.(s);

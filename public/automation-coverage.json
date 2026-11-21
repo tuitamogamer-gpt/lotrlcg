@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2844,
+    "encounterCards": 2856,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 4066,
-    "pending": 117
+    "scripted": 4078,
+    "pending": 105
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 334
+    "scripted": 335
   },
   "registeredCodes": [
     "01001",
@@ -1261,6 +1261,7 @@
     "octgn:027c61dd-3d54-4e11-af5f-19d4a63dd38e",
     "octgn:02a5e04c-d08f-49f4-a7b5-ba6a1cb86de7",
     "octgn:02a79046-aaa1-4b12-9e74-467f0b566889",
+    "octgn:02ba32c6-9442-4a69-b89b-b2ec4ee24be2",
     "octgn:02cae27a-3b0c-4396-aea3-8fc2bdd4ffe8",
     "octgn:02d8e441-0c70-4ecb-886f-9ba6f673ac9d",
     "octgn:0323e852-a05c-4c2d-a038-3f2596af7a85",
@@ -1322,6 +1323,7 @@
     "octgn:09a5cf0c-153e-4fa8-9f42-0e13ea70eb11",
     "octgn:09aeff64-6e0d-4dfa-af21-2e7805441376",
     "octgn:09b27f8f-60ab-4764-8c78-52fb09597921",
+    "octgn:09f14f19-b4c3-4e9e-aeea-21ed53d09138",
     "octgn:0a0e6044-c5ab-43ed-832a-71516c7d035a",
     "octgn:0a1166fb-fb90-4651-a8ae-7d532e41c2b6",
     "octgn:0a42a6ff-e693-484c-860d-3bc7e2780680",
@@ -1643,6 +1645,7 @@
     "octgn:28ba7c20-b660-40cb-9e2c-bf6ebaec723e",
     "octgn:28baceac-b941-4921-96ad-5df8dfb96544",
     "octgn:29005ca1-107a-4473-8769-ce7d944e9844",
+    "octgn:2929a83e-2da9-4f76-8300-8998784155d6",
     "octgn:2935fd55-6945-4c20-8586-c435ceec52f3",
     "octgn:2937b3c4-2e60-49a7-87cc-d6b708b6462d",
     "octgn:29562ee1-56d9-4a46-ba4b-1af24f85deb6",
@@ -1668,6 +1671,7 @@
     "octgn:2b93afb6-38fd-4ded-bf92-ed86bc03635d",
     "octgn:2b9c8fa1-a5c3-441e-95c1-c10c85948dc1",
     "octgn:2ba77eca-870d-41d9-84cb-f0f33b6d9f15",
+    "octgn:2bb3f0dd-6028-4cd5-bfdc-3d12f9b69c92",
     "octgn:2bc9f441-e922-4509-aef9-a27e485ed227",
     "octgn:2be47628-65a9-4809-87aa-6251eb68b4bc",
     "octgn:2bf5a4d1-9d74-4e1a-8725-cf4a3a47dde9",
@@ -1879,6 +1883,7 @@
     "octgn:3ff62e7f-fc09-4569-a45c-1be7e2ba6747",
     "octgn:4008f69c-fda2-4fe4-a8bd-373d38203c87",
     "octgn:40299169-8b0f-4462-ae58-03db71c0970f",
+    "octgn:406c33fc-8f5d-4d1d-a635-eb6ae9c33091",
     "octgn:408148e1-3391-4734-aeac-3e3a7b69c1c1",
     "octgn:408752c0-cee3-41ba-86c2-d01085546cef",
     "octgn:40886c6a-0960-443b-8562-05b8fec9d34a",
@@ -2542,6 +2547,7 @@
     "octgn:5e0ecd2d-d63e-4507-8707-641b974398ff",
     "octgn:5e24cde4-29e5-4f8f-82c5-67f96f9c3283",
     "octgn:5e39ebfc-287a-49d5-9369-49dbfb0fd665",
+    "octgn:5e4d1c14-315d-41a7-8ae1-76084554bfa7",
     "octgn:5e6ece32-827a-4af7-af6b-0d21a0477c99",
     "octgn:5e7c36de-a2bb-44e3-951b-80123788d571",
     "octgn:5e8714e3-0581-4b6f-bf45-414098819626",
@@ -2639,6 +2645,7 @@
     "octgn:69a5def2-08da-498c-83d6-406ecbd6bc04",
     "octgn:69b6719b-07f5-4514-b747-21fd0e2e9463",
     "octgn:69c3d8f9-750a-4903-be32-588898fd766e",
+    "octgn:6a03ecc3-716a-4499-9412-b3838c4b1cba",
     "octgn:6a24a5e8-80e9-4bba-af55-64be11742dde",
     "octgn:6a24bcba-e069-4951-9cb1-59b48d291c74",
     "octgn:6a3ae84d-6c74-4fbf-9254-b8c1d17c8384",
@@ -2681,6 +2688,7 @@
     "octgn:6df2979e-ad8d-4c3b-a27c-5ed4b9b2f948",
     "octgn:6e193811-584d-4888-a1b8-5296522b5cd1",
     "octgn:6e38a878-8211-4bbc-ba7c-ed460874fd67",
+    "octgn:6e3a151a-55de-402f-bff4-6e0813226ff9",
     "octgn:6e42b5b8-c708-4f2e-a483-4984db0d1084",
     "octgn:6e449166-50ab-4ec5-875f-3cc8adcbb64e",
     "octgn:6e4985a3-5501-41ef-bd15-ec58eadba12c",
@@ -3000,6 +3008,7 @@
     "octgn:8b225bb2-a809-45ce-af4a-aa98f1d53e82",
     "octgn:8b4dd0c5-3847-46f6-a69b-a4c7ee2b21c8",
     "octgn:8b7c17f3-09d1-45a4-93ff-3b17a3285f35",
+    "octgn:8b8149c8-a1c5-4183-bf0b-a26f93348076",
     "octgn:8ba47620-aead-42a5-a057-41cb038f5234",
     "octgn:8bb270a0-72b4-49d5-a4d3-a962edd5f67b",
     "octgn:8bc0199c-09ff-463f-a6b5-886d14d843cc",
@@ -3654,6 +3663,7 @@
     "octgn:c7e3bde9-8348-41d6-8272-aa733f60a108",
     "octgn:c7ef7b6e-4346-4b4c-a9fa-2b42e3c2ab5c",
     "octgn:c7f4c92b-e593-4c40-9ecb-64d8ab9c6368",
+    "octgn:c823de8a-c258-494f-8a4a-9cbb4e812e06",
     "octgn:c828d0d2-0d82-49c2-b18d-7a819ee103b2",
     "octgn:c82f8ccc-d017-48ec-a611-49a77469d45d",
     "octgn:c857d5a3-2b1f-4ef9-a5c7-2368ec28d15c",
@@ -3733,6 +3743,7 @@
     "octgn:d057a6d6-8eda-4aa2-8d2d-8f2af6b6eeb8",
     "octgn:d060f58b-3067-43c0-a480-d55c68c33305",
     "octgn:d0968637-1ffc-4365-855f-ee35704a8128",
+    "octgn:d09d5da8-4fb8-4c94-a344-25fbd40cbd46",
     "octgn:d0b6992d-9dc4-41fa-a483-b4ad0a3d60b3",
     "octgn:d0bf9c82-d626-4602-a383-4a5660a08c5f",
     "octgn:d12e280f-44f3-469e-a2e8-e3bfd541f909",
@@ -3779,6 +3790,7 @@
     "octgn:d69092af-f96b-4885-a194-5d5f31d90e6d",
     "octgn:d6d15b55-0418-48a4-8571-9495c1e52232",
     "octgn:d6d4ea3a-402c-413b-9732-a07a21dd15b0",
+    "octgn:d6fa1984-6016-4b44-8466-772160706d31",
     "octgn:d70f1956-fa20-4237-8a75-ab7678ed9840",
     "octgn:d71de165-8632-4628-94ea-793a1c20e6f8",
     "octgn:d74119d9-703c-4d5a-998b-4788230254c9",
@@ -4863,7 +4875,7 @@
     {
       "product": "the-grey-havens-nightmare",
       "total": 33,
-      "scripted": 10,
+      "scripted": 22,
       "player": 0,
       "playerScripted": 0
     },
@@ -14205,7 +14217,7 @@
       "name": "Shrine to Morgoth",
       "type": "location",
       "pack": "The Grey Havens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens-nightmare"
     },
     {
@@ -14717,7 +14729,7 @@
       "name": "Lush Jungle",
       "type": "location",
       "pack": "The Grey Havens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens-nightmare"
     },
     {
@@ -17341,7 +17353,7 @@
       "name": "Drowned Graves",
       "type": "location",
       "pack": "The Grey Havens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens-nightmare"
     },
     {
@@ -17557,7 +17569,7 @@
       "name": "Overgrown Steps",
       "type": "location",
       "pack": "The Grey Havens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens-nightmare"
     },
     {
@@ -19269,7 +19281,7 @@
       "name": "Corrupted Fauna",
       "type": "treachery",
       "pack": "The Grey Havens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens-nightmare"
     },
     {
@@ -24677,7 +24689,7 @@
       "name": "Desecrated Grounds",
       "type": "location",
       "pack": "The Grey Havens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens-nightmare"
     },
     {
@@ -25461,7 +25473,7 @@
       "name": "Calphon's Folly",
       "type": "treachery",
       "pack": "The Grey Havens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens-nightmare"
     },
     {
@@ -25813,7 +25825,7 @@
       "name": "Forsaken City",
       "type": "location",
       "pack": "The Grey Havens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens-nightmare"
     },
     {
@@ -28445,7 +28457,7 @@
       "name": "Cursed Temple",
       "type": "location",
       "pack": "The Grey Havens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens-nightmare"
     },
     {
@@ -33837,7 +33849,7 @@
       "name": "Flooded Ruins",
       "type": "location",
       "pack": "The Grey Havens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens-nightmare"
     },
     {
@@ -34501,7 +34513,7 @@
       "name": "Guardian of the Golden King",
       "type": "enemy",
       "pack": "The Grey Havens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens-nightmare"
     },
     {
@@ -34917,7 +34929,7 @@
       "name": "The Fate of Númenor",
       "type": "nightmare",
       "pack": "The Grey Havens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens-nightmare"
     },
     {
@@ -39921,8 +39933,8 @@
       "id": "N06.2",
       "name": "The Fate of Númenor (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-fate-of-numenor",
+      "state": "scripted"
     },
     {
       "id": "N06.3",

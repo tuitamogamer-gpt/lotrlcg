@@ -31,6 +31,31 @@ export const FATE = {
   curse: code("Curse of the Downfallen"),
   wandering: code("Aimless Wandering"),
 };
+/**
+ * The Nightmare Deck's Uncharted deck (docs/NIGHTMARE.md): reprints of five
+ * of the scenario's double-sided locations (print-on-demand cardstock), which
+ * follow their scripts, and two new ones, scripted by its layer.
+ */
+export const FATE_NIGHTMARE = {
+  shrine: "octgn:02ba32c6-9442-4a69-b89b-b2ec4ee24be2",
+  temple: "octgn:8b8149c8-a1c5-4183-bf0b-a26f93348076",
+  graves: "octgn:2929a83e-2da9-4f76-8300-8998784155d6",
+  flooded: "octgn:c823de8a-c258-494f-8a4a-9cbb4e812e06",
+  jungle: "octgn:09f14f19-b4c3-4e9e-aeea-21ed53d09138",
+  desecrated: "octgn:5e4d1c14-315d-41a7-8ae1-76084554bfa7",
+  forsaken: "octgn:6e3a151a-55de-402f-bff4-6e0813226ff9",
+  guardian: "octgn:d09d5da8-4fb8-4c94-a344-25fbd40cbd46",
+};
+const FATE_REPRINTS: Record<string, string> = {
+  [FATE_NIGHTMARE.shrine]: FATE.shrine,
+  [FATE_NIGHTMARE.temple]: FATE.temple,
+  [FATE_NIGHTMARE.graves]: FATE.graves,
+  [FATE_NIGHTMARE.flooded]: FATE.flooded,
+  [FATE_NIGHTMARE.jungle]: FATE.jungle,
+};
+/** The card, or the Nightmare Deck's reprint of it. */
+export const fateIs = (code: string, base: string) =>
+  code === base || FATE_REPRINTS[code] === base;
 export const FATE_UNCHARTED = [
   FATE.jungle,
   FATE.coast,
@@ -38,6 +63,9 @@ export const FATE_UNCHARTED = [
   FATE.graves,
   FATE.temple,
   FATE.shrine,
+  ...Object.keys(FATE_REPRINTS),
+  FATE_NIGHTMARE.desecrated,
+  FATE_NIGHTMARE.forsaken,
 ];
 export interface FateNumenorState {
   initialized: boolean;
@@ -77,7 +105,7 @@ export function validateFateNumenor(
     q.unchartedDeck.every((c) => FATE_UNCHARTED.includes(c)) &&
     Array.isArray(q.setAside) &&
     q.setAside.length <= 1 &&
-    q.setAside.every((u) => validUnit(u) && u.code === FATE.shrine) &&
+    q.setAside.every((u) => validUnit(u) && fateIs(u.code, FATE.shrine)) &&
     record(q.hiddenBacks) &&
     Object.entries(q.hiddenBacks).length === islands.length &&
     Object.entries(q.hiddenBacks).every(
@@ -117,7 +145,13 @@ export function validateFateNumenor(
       (Array.isArray(q.gravesPool) &&
         q.gravesPool.length <= 6 &&
         q.gravesPool.every((c) =>
-          [FATE.servant, FATE.cadaver, FATE.drowned, FATE.throngs].includes(c),
+          [
+            FATE.servant,
+            FATE.cadaver,
+            FATE.drowned,
+            FATE.throngs,
+            FATE_NIGHTMARE.guardian,
+          ].includes(c),
         ))) &&
     (!q.initialized ||
       s.status === "lost" ||

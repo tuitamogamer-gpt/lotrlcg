@@ -47,9 +47,12 @@ import {
 } from "./table";
 import {
   FATE as F,
+  FATE_NIGHTMARE,
   FATE_RECIPES,
   FATE_UNCHARTED,
+  fateIs,
 } from "./fate-numenor-support";
+import { nightmareEncounterDecks, nightmareLive } from "./nightmare";
 import {
   DC,
   dcBackFace,
@@ -83,7 +86,8 @@ const undead = (code: string) =>
 const cost = (code: string) => Number(card(code).cost) || 0;
 const lost = (s: GameState) => s.staging.filter((u) => u.code === F.lost);
 const active = (s: GameState, code: string) =>
-  isFate(s) && allActiveLocations(s).some((u) => u.code === code && !u.blanked);
+  isFate(s) &&
+  allActiveLocations(s).some((u) => fateIs(u.code, code) && !u.blanked);
 const samePhase = (a: string | null, b: string) =>
   a === b || (!!a && [a, b].every((p) => ["quest", "staging"].includes(p)));
 export const fateLocationQuest = (s: GameState, u: Unit) =>
@@ -102,7 +106,7 @@ export const fateStats = (s: GameState, u: Unit) => ({
   attack:
     isFate(s) &&
     ["hero", "ally", "objective-ally"].includes(card(u.code).type_code)
-      ? -s.staging.filter((l) => l.code === F.jungle && !l.blanked).length
+      ? -s.staging.filter((l) => fateIs(l.code, F.jungle) && !l.blanked).length
       : 0,
 });
 export const fateLoseRanged = (s: GameState, u: Unit) =>
@@ -117,7 +121,7 @@ export const fateThreatBonus = (s: GameState, u: Unit) =>
 export const fateStagingThreat = (s: GameState) =>
   active(s, F.flooded)
     ? allActiveLocations(s)
-        .filter((u) => u.code === F.flooded && !u.blanked)
+        .filter((u) => fateIs(u.code, F.flooded) && !u.blanked)
         .reduce(
           (n, u) =>
             n + Math.max(0, (card(u.code).threat ?? 0) + (u.tempThreat ?? 0)),
@@ -140,18 +144,37 @@ export function setupFateNumenor(s: GameState) {
   const recipe = FATE_RECIPES.find(
     (r) => r.mode === (s.easyMode ? "easy" : "standard"),
   )!;
-  s.encounterDeck = recipe.cards
-    .filter((r) => r.section === "sharedEncounterDeck")
-    .flatMap((r) => Array<string>(r.quantity).fill(r.code));
+  const section = (name: string) =>
+    recipe.cards
+      .filter((r) => r.section === name)
+      .flatMap((r) => Array<string>(r.quantity).fill(r.code));
+  // Nightmare mode: the setup card's removals take the Uncharted deck and
+  // Shrine to Morgoth, which the Nightmare Deck's reprints replace.
+  const [deck, uncharted, [shrine]] = nightmareLive(s)
+    ? nightmareEncounterDecks(
+        s.scenarioId,
+        [
+          section("sharedEncounterDeck"),
+          section("sharedEncounterDeck2"),
+          [F.shrine],
+        ],
+        (code) =>
+          code === FATE_NIGHTMARE.shrine
+            ? 2
+            : FATE_UNCHARTED.includes(code)
+              ? 1
+              : 0,
+      )
+    : [
+        section("sharedEncounterDeck"),
+        section("sharedEncounterDeck2"),
+        [F.shrine],
+      ];
+  s.encounterDeck = deck;
   s.fateNumenor = {
     initialized: false,
-    unchartedDeck: shuffle(
-      s,
-      recipe.cards
-        .filter((r) => r.section === "sharedEncounterDeck2")
-        .flatMap((r) => Array<string>(r.quantity).fill(r.code)),
-    ),
-    setAside: [make(s, F.shrine)],
+    unchartedDeck: shuffle(s, uncharted),
+    setAside: [make(s, shrine)],
     hiddenBacks: {},
     lookedBy: {},
     fogPhase: null,
@@ -230,7 +253,7 @@ export function fateLocationLeft(s: GameState, u: Unit, explored = false) {
   removeOne(s.encounterDiscard, u.code);
   if (explored && s.stage === 2) {
     addVictoryCard(s, original);
-    if (original === F.shrine) win(s);
+    if (fateIs(original, F.shrine)) win(s);
   } else {
     q.unchartedDeck.push(original);
     shuffle(s, q.unchartedDeck);
@@ -308,7 +331,7 @@ export function fateCheck(s: GameState) {
   }
   fateAdvance(s);
 }
-function bottomDiscard(s: GameState, player: number) {
+export function fateBottomDiscard(s: GameState, player: number) {
   let code: string | undefined;
   forOwner(s, player, () => {
     const n = s.deck.length;
@@ -442,7 +465,7 @@ export function fatePublicState(s: GameState) {
         ? { looked: q.hiddenBacks[u.id] }
         : {}),
     })),
-    shrineFound: (s.victoryCards ?? []).includes(F.shrine),
+    shrineFound: (s.victoryCards ?? []).some((c) => fateIs(c, F.shrine)),
   };
 }
 function lookOptions(s: GameState, effect = "fateLook"): Option[] {
@@ -575,9 +598,17 @@ export function fateEffect(s: GameState, e: Effect) {
       chooseLook(s, "Choose an Uncharted location to look at");
       break;
     case "fateFlipped":
-      if (!u || !allActiveLocations(s).some((l) => l.id === u.id) || u.blanked)
+      // Calphon's Folly (Nightmare) resolves a flipped location's Forced
+      // effect in the staging area, "as if that location were active".
+      if (
+        !u ||
+        !(e.flag ? s.staging : allActiveLocations(s)).some(
+          (l) => l.id === u.id,
+        ) ||
+        u.blanked
+      )
         break;
-      if (u.code === F.jungle)
+      if (fateIs(u.code, F.jungle))
         choose(s, "Lush Jungle · Exhaust the heroes?", [
           ...(allHeroes(s)
             .filter((h) => !h.exhausted)
@@ -594,21 +625,23 @@ export function fateEffect(s: GameState, e: Effect) {
             : []),
           {
             id: "return",
-            label: "Return Lush Jungle to the staging area",
+            label: e.flag
+              ? "Leave Lush Jungle in the staging area"
+              : "Return Lush Jungle to the staging area",
             effects: [fx("fateJungleReturn", { target: u.id })],
           },
         ]);
-      if (u.code === F.coast)
+      if (fateIs(u.code, F.coast))
         prepend(
           s,
           ...playerOrder(s).map((p) => fx("fateCoastDraw", { player: p })),
         );
-      if (u.code === F.graves)
+      if (fateIs(u.code, F.graves))
         prepend(
           s,
           fx("fateGravesDiscard", { value: playerOrder(s).length + 2 }),
         );
-      if (u.code === F.shrine) {
+      if (fateIs(u.code, F.shrine)) {
         for (const ally of allCharacters(s).filter(
           (a) =>
             ["ally", "objective-ally"].includes(unitType(a)) &&
@@ -768,7 +801,7 @@ export function fateEffect(s: GameState, e: Effect) {
       break;
     }
     case "fateThrongs": {
-      const bottom = bottomDiscard(s, player);
+      const bottom = fateBottomDiscard(s, player);
       if (
         bottom &&
         cost(bottom) <= 2 &&
@@ -781,7 +814,7 @@ export function fateEffect(s: GameState, e: Effect) {
       break;
     }
     case "fateBottomShadow": {
-      const bottom = bottomDiscard(s, player);
+      const bottom = fateBottomDiscard(s, player);
       if (!bottom || cost(bottom) > 2 || !s.combat) break;
       if (e.text === "attack") s.combat.attackBonus += 2;
       if (e.text === "exhaust")
@@ -791,7 +824,7 @@ export function fateEffect(s: GameState, e: Effect) {
       break;
     }
     case "fateMalevolence": {
-      const bottom = bottomDiscard(s, player);
+      const bottom = fateBottomDiscard(s, player);
       if (bottom)
         for (const h of [...s.hand].filter((h) => cost(h.code) > cost(bottom)))
           discardHandCard(s, h.id);

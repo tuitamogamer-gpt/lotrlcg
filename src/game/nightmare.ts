@@ -698,6 +698,15 @@ export const NIGHTMARE_GH = {
   rogue: "octgn:6ea88b3d-c675-4690-b993-ce4672eb3b16",
   dreams: "octgn:60df407c-b1d7-455b-b4b3-7c68739f73c3",
   squall: "octgn:a62a05a3-c982-4ee1-ac17-7298e6f1a525",
+  /**
+   * The Fate of Númenor's setup card and Nightmare Deck (its reprinted
+   * Uncharted deck and Shrine to Morgoth are in FATE_NIGHTMARE).
+   */
+  fateCard: "octgn:d6fa1984-6016-4b44-8466-772160706d31",
+  guardian: "octgn:d09d5da8-4fb8-4c94-a344-25fbd40cbd46",
+  steps: "octgn:2bb3f0dd-6028-4cd5-bfdc-3d12f9b69c92",
+  flora: "octgn:406c33fc-8f5d-4d1d-a635-eb6ae9c33091",
+  folly: "octgn:6a03ecc3-716a-4499-9412-b3838c4b1cba",
 } as const;
 
 interface NightmareDeck {
@@ -1372,6 +1381,26 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Scouting Ship": 1,
     },
   },
+  "the-fate-of-numenor": {
+    card: NIGHTMARE_GH.fateCard,
+    // The Uncharted deck and Shrine to Morgoth leave with the other removals;
+    // the scenario's setup applies them to its three piles, and the Nightmare
+    // Deck's reprints replace them.
+    removals: {
+      "Forbidden Coast": 2,
+      "Cursed Temple": 2,
+      "Flooded Ruins": 2,
+      "Drowned Graves": 2,
+      "Lush Jungle": 2,
+      "Shrine to Morgoth": 1,
+      "Steep Plateau": 3,
+      "Aimless Wandering": 3,
+      "Mysterious Fog": 1,
+      "Servant of the Deceiver": 1,
+      "Lingering Malevolence": 1,
+      "Drowned Dead": 1,
+    },
+  },
   "shelobs-lair": {
     card: NIGHTMARE_LOS.lairCard,
     removals: {
@@ -1884,6 +1913,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "voyage-across-belegaer")
     return [
       "Voyage Across Belegaer · Nightmare mode: the quest deck's stage 2 cards include Corsair Confrontation and Lost at Sea, and Brash Corsair joins the Corsair deck.",
+    ];
+  if (s.scenarioId === "the-fate-of-numenor")
+    return [
+      "The Fate of Númenor · Nightmare mode: progress cannot be placed on non-Uncharted locations in the staging area; while 3 or fewer double-sided locations are in the victory display, travelling to Shrine to Morgoth returns it to the staging area on its Lost Island side, and the Lost Islands lose their progress and are shuffled before the players choose a new location to travel to.",
     ];
   if (s.scenarioId === "shelobs-lair")
     return [

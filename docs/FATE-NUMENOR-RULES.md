@@ -1,6 +1,6 @@
 # The Fate of Númenor
 
-Original The Grey Havens scenario, with standard and easy recipes for one through four players. The original scenario is available as `the-fate-of-numenor`; the recipe identities are `Q06.2` and `E06.2`. Nightmare and revised campaign content remain separate catalog entries.
+Original The Grey Havens scenario, with standard and easy recipes for one through four players. The original scenario is available as `the-fate-of-numenor`; the recipe identities are `Q06.2` and `E06.2`. Its campaign version is part of the [Dream-chaser campaign](DREAMCHASER-CAMPAIGN.md), and its Nightmare version is described below.
 
 Primary rules source: the original [The Grey Havens rules PDF](https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/mec47_rules.pdf), particularly the Uncharted rules on pages 7–8. Printed cards and recipes come from the cached DragnCards catalog, with original card scans cached locally. The source bundle is `src/data/pending/the-fate-of-numenor-import.json`.
 
@@ -39,6 +39,10 @@ Drowned Dead and its shadow replace an ally's combat destruction destination wit
 Mysterious Fog offers group exhaustion or a stacking Lost Island threat bonus that ends with the phase. Lingering Malevolence discards the first player's bottom card, then every hand card of greater printed cost. Ruins of Ages Past retains Doomed 2 outside the cancellable When Revealed effect. Aimless Wandering lets the first player choose group quest removals until the required willpower is reached, then optionally applies Doomed 2 to inspect an unknown island.
 
 Every printed shadow is implemented: bottom card discard and conditional attack bonus, conditional character exhaustion, conditional additional attack, and the Drowned Dead ally destruction replacement. Empty player decks and higher-cost discarded cards do not satisfy the conditional portions. Shared reveal/shadow cancellation machinery applies before these effects.
+
+## Nightmare mode
+
+The Nightmare Deck (recipe `N06.2`, [rules and cards](NIGHTMARE.md#the-fate-of-númenor-nightmare)) removes Forbidden Coast ×2, Cursed Temple ×2, Flooded Ruins ×2, Drowned Graves ×2, Lush Jungle ×2, Shrine to Morgoth, Steep Plateau ×3, Aimless Wandering ×3, Mysterious Fog, Servant of the Deceiver, Lingering Malevolence and Drowned Dead. Its print-on-demand cardstock does not match the original scenario's, so its reprinted Uncharted deck (Cursed Temple, Drowned Graves ×2, Flooded Ruins, Lush Jungle ×2 and two new locations, Desecrated Grounds ×2 and Forsaken City ×2) and its Shrine to Morgoth replace the scenario's; the reprints follow the scripts above. Guardian of the Golden King ×2, Overgrown Steps ×3, Corrupted Flora ×3 and Calphon's Folly ×2 join the encounter deck (24 cards). Its setup card forbids progress on the staging area's non-Uncharted locations, and while 3 or fewer double-sided locations are in the victory display, travelling to Shrine to Morgoth returns it among the Lost Islands, which lose their progress and are shuffled before the players travel to a new location. Calphon's Folly can turn a Lost Island face up in the staging area: a Forced effect resolves there as if the location were active, and a location without one switches with the active location. Focused checks are in `tests/nightmare-fate.test.ts`.
 
 ## Persistence and checks
 

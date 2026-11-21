@@ -34,6 +34,7 @@ import { RI } from "../src/game/road-isengard-support.ts";
 import { WASTES } from "../src/game/wastes-eriador-support.ts";
 import { WATCHER_WATER } from "../src/game/watcher-water-support.ts";
 import { AMON_DIN } from "../src/game/amon-din-support.ts";
+import { FATE_NIGHTMARE as FN } from "../src/game/fate-numenor-support.ts";
 import { reviewedState } from "./browser-review-helpers.mjs";
 import {
   capture,
@@ -4631,6 +4632,108 @@ try {
       );
     }
     await checkpoint("voyage-open-waters", width);
+    // The Fate of Númenor in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-the-fate-of-numenor").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "the-fate-of-numenor");
+    assert.equal(s.nightmareMode, true);
+    {
+      const all = [...s.encounterDeck, ...s.encounterDiscard];
+      assert.deepEqual(
+        [GH.guardian, GH.steps, GH.flora, GH.folly].map(
+          (code) => all.filter((c) => c === code).length,
+        ),
+        [2, 3, 3, 2],
+        "the Nightmare Deck is in the encounter deck",
+      );
+      assert.ok(
+        !all.some((c) =>
+          ["Steep Plateau", "Aimless Wandering"].includes(card(c).name),
+        ),
+        "the setup card removes each Steep Plateau and Aimless Wandering",
+      );
+      const q = s.fateNumenor;
+      const uncharted = [...q.unchartedDeck, ...Object.values(q.hiddenBacks)];
+      assert.deepEqual(
+        [
+          FN.temple,
+          FN.graves,
+          FN.flooded,
+          FN.jungle,
+          FN.desecrated,
+          FN.forsaken,
+        ].map((code) => uncharted.filter((c) => c === code).length),
+        [1, 2, 1, 2, 2, 2],
+        "the reprinted Uncharted deck replaces the scenario's",
+      );
+      assert.deepEqual(
+        q.setAside.map((u) => u.code),
+        [FN.shrine],
+        "the reprinted Shrine to Morgoth is set aside",
+      );
+    }
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/progress cannot be placed on non-Uncharted locations/)
+      .waitFor();
+    await checkpoint("fate-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A Guardian of the Golden King engaged; an Overgrown Steps and, turned
+    // by Calphon's Folly, a Desecrated Grounds and a Forsaken City in the
+    // staging area.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const guardian = make(t, GH.guardian);
+      guardian.owner = 0;
+      t.engaged = [...t.engaged, guardian];
+      t.staging = [
+        ...t.staging,
+        make(t, GH.steps),
+        make(t, FN.desecrated),
+        make(t, FN.forsaken),
+      ];
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [GH.guardian, "Guardian of the Golden King"],
+      [GH.steps, "Overgrown Steps"],
+      [FN.desecrated, "Desecrated Grounds"],
+      [FN.forsaken, "Forsaken City"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    await checkpoint("fate-guardian", width);
     await view.c.close();
   }
   const p = await browser.newPage();
