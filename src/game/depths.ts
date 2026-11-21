@@ -56,14 +56,19 @@ import { isAlly, isHero } from "./card-types";
 import { khazadCannotExhaust } from "./khazad-dum";
 import { watcherWaterCannotExhaust } from "./watcher-water";
 import { heirsCanSpendResources } from "./heirs-numenor";
+import { nightmareEncounterDecks, nightmareLive } from "./nightmare";
+import { dealEnemyShadows } from "./considered-engagement";
 import {
   DEPTHS as D,
   DEPTHS_RECIPES,
   DEPTHS_MAIN_QUESTS,
   DEPTHS_TENTACLES,
   DEPTHS_CORSAIR_RAIDERS,
+  DEPTHS_NIGHTMARE as N,
+  DEPTHS_NIGHTMARE_BEAST,
   depthsState,
   depthsGrappledWith,
+  depthsQuartersGrappled,
   type DepthsCombat,
   type DepthsState,
 } from "./depths-support";
@@ -85,6 +90,9 @@ const own = (s: GameState, player: number) =>
 const ready = (u: Unit) =>
   !u.exhausted && !khazadCannotExhaust(u) && !watcherWaterCannotExhaust(u);
 const questLive = (s: GameState) => !mainQuestUnit(s)?.blanked;
+/** Captain's Quarters (the Nightmare Deck): grappled, it leaves Raider characters with no resources. */
+const raiderResources = (s: GameState, u: Unit) =>
+  depthsQuartersGrappled(s) && trait(u, "Raider") ? 0 : u.resources;
 /** The Thing in the Depths, on either face (the campaign uses its "Campaign Mode only" side). */
 const isThing = (u: Unit) => dcIs(u, D.thing);
 const boss = (s: GameState) => s.staging.find(isThing);
@@ -123,7 +131,17 @@ export function setupDepths(s: GameState) {
     r.cards
       .filter((c) => c.section === section)
       .flatMap((c) => Array<string>(c.quantity).fill(c.code));
-  s.encounterDeck = shuffle(s, pile("sharedEncounterDeck"));
+  // Nightmare mode: the setup card's removals span the encounter deck and the
+  // set aside The Thing in the Depths encounter set, whose Nightmare cards
+  // join it.
+  const [deck, beast] = nightmareLive(s)
+    ? nightmareEncounterDecks(
+        s.scenarioId,
+        [pile("sharedEncounterDeck"), pile("sharedEncounterDeck2")],
+        (code) => (DEPTHS_NIGHTMARE_BEAST.includes(code) ? 1 : 0),
+      )
+    : [pile("sharedEncounterDeck"), pile("sharedEncounterDeck2")];
+  s.encounterDeck = shuffle(s, deck);
   const q: DepthsState = {
     initialized: false,
     advancing: false,
@@ -136,7 +154,7 @@ export function setupDepths(s: GameState) {
       (c) =>
         make(s, c === D.thing && isDreamchaserGame(s) ? backFace(DC.thing) : c),
     ),
-    beastDeck: pile("sharedEncounterDeck2"),
+    beastDeck: beast,
     grappled: [],
     pendingEnemies: [],
     removed: [],
@@ -154,8 +172,19 @@ export function depthsOpeningHandsKept(s: GameState) {
 }
 export const depthsQuestProgressBlocked = (s: GameState) =>
   live(s) && s.stage === 1 && questLive(s) && !s.victoryCards?.includes(D.helm);
+/**
+ * Each grappled enemy adds 2 threat to its location; Aft Cabin (the Nightmare
+ * Deck): "While Aft Cabin is in the staging area, each enemy grappled with
+ * each Deck location adds 3 [threat] instead of 2 [threat]."
+ */
 export const depthsThreatBonus = (s: GameState, u: Unit) =>
-  live(s) ? 2 * depthsGrappledWith(s, u.id).length : 0;
+  live(s)
+    ? (nightmareLive(s) &&
+      trait(u, "Deck") &&
+      s.staging.some((l) => l.code === N.aftCabin && !l.blanked)
+        ? 3
+        : 2) * depthsGrappledWith(s, u.id).length
+    : 0;
 export const depthsLocationQuest = (s: GameState, u: Unit) =>
   live(s) && u.code === D.helm && !u.blanked
     ? (card(u.code).quest ?? 0) +
@@ -166,11 +195,11 @@ export const depthsLocationQuest = (s: GameState, u: Unit) =>
 export const depthsStats = (s: GameState, u: Unit) => ({
   will:
     live(s) && u.code === D.sahirAlly && !u.blanked
-      ? Math.min(6, u.resources)
+      ? Math.min(6, raiderResources(s, u))
       : 0,
   attack:
     live(s) && u.code === D.sahirAlly && !u.blanked
-      ? Math.min(6, u.resources)
+      ? Math.min(6, raiderResources(s, u))
       : 0,
   defense:
     live(s) && card(u.code).type_code === "enemy"
@@ -430,6 +459,10 @@ export function depthsTravelEffects(
     for (const player of playerOrder(s))
       effects.push(fx("depthsExhaust", { player, code: D.weather }));
   if (u.code === D.crew && !u.blanked) effects.push(fx("depthsCrewResources"));
+  // Captain's Quarters (the Nightmare Deck): its Travel cost resolves in
+  // the Nightmare layer.
+  if (nightmareLive(s) && u.code === N.quarters && !u.blanked)
+    effects.push(fx("ndpQuarters", { player: firstPlayer(s) }));
   return effects;
 }
 export function depthsBeforeTravelEnter(s: GameState, u: Unit) {
@@ -482,12 +515,17 @@ export function depthsDetach(s: GameState, location: Unit) {
     .filter((g) => g.locationId === location.id)
     .map((g) => g.enemy);
   q.grappled = q.grappled.filter((g) => g.locationId !== location.id);
+  // Aft Cabin (the Nightmare Deck): "Forced: After an enemy is detached
+  // from Aft Cabin, that enemy gets +3 [defense] until the end of the round."
+  const aft =
+    nightmareLive(s) && location.code === N.aftCabin && !location.blanked;
   const effects = detached.map((u) =>
     fx("depthsDetachEnemy", {
       target: u.id,
       code: u.code,
       text: `${name(u)} · detach from ${name(location)}`,
       player: firstPlayer(s),
+      ...(aft ? { flag: true } : {}),
     }),
   );
   q.pendingEnemies.push(...detached);
@@ -510,13 +548,20 @@ export function depthsCardEntered(
   prepend(s, fx("depthsGrappleHeld", { target: u.id, player: firstPlayer(s) }));
   return true;
 }
-function grappleLocations(s: GameState, u: Unit) {
+export function grappleLocations(s: GameState, u: Unit) {
   const ls = s.staging.filter((l) => card(l.code).type_code === "location");
   if (!ls.length) return [];
-  const byQuest = [D.crushing, D.giant].includes(u.code),
-    highest = [D.crushing, D.grasping].includes(u.code);
+  // The Nightmare Deck's Slithering Arm (most enemies grappled) and Crashing
+  // Arm (fewest enemies grappled) compare the enemies grappled with each.
+  const byGrappled = [N.slithering, N.crashing].includes(u.code),
+    byQuest = [D.crushing, D.giant].includes(u.code),
+    highest = [D.crushing, D.grasping, N.slithering].includes(u.code);
   const printed = (l: Unit) =>
-    Number(byQuest ? (card(l.code).quest ?? 0) : (card(l.code).threat ?? 0));
+    byGrappled
+      ? depthsGrappledWith(s, l.id).length
+      : Number(
+          byQuest ? (card(l.code).quest ?? 0) : (card(l.code).threat ?? 0),
+        );
   const target = (highest ? Math.max : Math.min)(...ls.map(printed));
   return ls.filter((l) => printed(l) === target);
 }
@@ -548,7 +593,9 @@ export function depthsGrapple(s: GameState, u: Unit) {
       ],
       () => "Attach the enemy facedown · +2 location threat",
     ),
-    "The first player chooses between locations tied for the printed value.",
+    [N.slithering, N.crashing].includes(u.code)
+      ? "The first player chooses between locations tied for the enemies grappled with them."
+      : "The first player chooses between locations tied for the printed value.",
   );
 }
 function attachGrapple(s: GameState, u: Unit, location: Unit) {
@@ -898,6 +945,25 @@ export function depthsEffect(s: GameState, e: Effect) {
         const before = s.queue.length;
         add(s, u);
         const entrance = s.queue.splice(0, s.queue.length - before);
+        // The Nightmare Deck: Aft Cabin's +3 [defense] for the round, and
+        // Crashing Arm: "Forced: After Crashing Arm is detached from a
+        // location, deal it 3 shadow cards."
+        if (e.flag && nightmareLive(s)) {
+          const aft = (s.nightmare ??= {}).depthsAft;
+          s.nightmare.depthsAft =
+            aft?.round === s.round
+              ? { round: s.round, ids: [...aft.ids, u.id] }
+              : { round: s.round, ids: [u.id] };
+          log(s, `${name(u)} gets +3 defense until the end of the round.`);
+        }
+        if (nightmareLive(s) && u.code === N.crashing && !u.blanked) {
+          const dealt = dealEnemyShadows(s, u, 3);
+          log(
+            s,
+            `Crashing Arm is detached and dealt ${dealt.length} shadow card${dealt.length === 1 ? "" : "s"}.`,
+            "danger",
+          );
+        }
         if (u.code === D.crushing && !u.blanked)
           prepend(
             s,
@@ -1196,7 +1262,7 @@ export function depthsEffect(s: GameState, e: Effect) {
       naasiyahWindow(s, e, u);
       break;
     case "depthsNaasiyahBoost":
-      if (u && u.resources > 0 && !u.blanked) {
+      if (u && raiderResources(s, u) > 0 && !u.blanked) {
         u.resources--;
         const attack = e.text === "attack" ? 2 : 0,
           defense = e.text === "defense" ? 2 : 0;
@@ -1227,7 +1293,7 @@ function naasiyahWindow(s: GameState, e: Effect, u?: Unit) {
   const options: Option[] = [
     { id: "continue", label: "Continue the attack", effects: [] },
   ];
-  if (u.resources > 0)
+  if (raiderResources(s, u) > 0)
     for (const stat of ["attack", "defense"] as const)
       options.push({
         id: stat,
@@ -1362,7 +1428,20 @@ function stageTwo(s: GameState) {
     ...s.encounterDiscard.splice(0),
     ...q.beastDeck.splice(0),
   ]);
-  prepend(s, fx("depthsStageThree", { player: firstPlayer(s) }));
+  // The Nightmare Deck's setup card: "Forced: After The Thing in the Depths
+  // enemy enters play, it attacks each player in turn order from the staging
+  // area" (after Change of Plans has shuffled the encounter deck).
+  const attacks =
+    nightmareLive(s) && thing
+      ? playerOrder(s).map((player) => fx("depthsBossAttack", { player }))
+      : [];
+  if (attacks.length)
+    log(
+      s,
+      "The Thing in the Depths enters play and attacks each player in turn order.",
+      "danger",
+    );
+  prepend(s, ...attacks, fx("depthsStageThree", { player: firstPlayer(s) }));
   // The campaign card: "Forced: After Captain Sahír flips over, …"
   if (isDreamchaserGame(s)) prepend(s, ...dreamchaserSahirFlipped(s));
 }

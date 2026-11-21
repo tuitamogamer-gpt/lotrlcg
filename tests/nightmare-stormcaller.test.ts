@@ -179,7 +179,9 @@ test("Nightmare: Flight of the Stormcaller's setup card and Nightmare Deck carry
       .reduce((n, x) => n + (x.quantity ?? 1), 0),
     19,
   );
-  for (const code of Object.values(D)) {
+  for (const code of Object.values(D).filter((c) =>
+    set.some((x) => x.code === c),
+  )) {
     const faces = art.filter((pin) => pin.code === code).map((pin) => pin.face);
     assert.deepEqual(
       faces,

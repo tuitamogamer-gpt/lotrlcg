@@ -2,8 +2,8 @@
 
 This import covers all nine original Adventure Pack player designs and the
 original standard/easy adventure for solo and 1–4 players in local hot-seat.
-The revised Dream-chaser campaign and Nightmare variants have separate support
-gates. The next chronological Adventure Pack is Temple of the Deceived.
+The revised Dream-chaser campaign and the Nightmare Deck are described in their
+own rules. The next chronological Adventure Pack is Temple of the Deceived.
 
 ## Sources and rules
 

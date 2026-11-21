@@ -737,6 +737,19 @@ export const NIGHTMARE_DC = {
   inlet: "octgn:c81aa8c4-969d-46f6-b0a6-a53e59e75db9",
   stormy: "octgn:6d34a654-ec8f-41b5-8fa9-a86a15cdf5e6",
   getaway: "octgn:17516d4f-8ce4-491e-8b2d-8dc9fe841934",
+  /**
+   * The Thing in the Depths' setup card and Nightmare Deck (Slithering Arm,
+   * Crashing Arm and Deep Maelstrom join the set aside The Thing in the
+   * Depths encounter set; Corsair Duelist bears the Corsair Raiders icon).
+   */
+  depthsCard: "octgn:a08d5b97-8055-40ea-8e98-20a7a608216b",
+  quarters: "octgn:5fa05845-7cdd-46da-9862-4f3f10525ef1",
+  aftCabin: "octgn:671e838c-630c-4bd7-91d8-20ec6c144f9f",
+  tumultuous: "octgn:26cf3d89-9cfe-45a9-8deb-c2840193ba0f",
+  duelist: "octgn:e5b4ba4a-99dc-4f01-9216-21406aa05bd0",
+  slithering: "octgn:5e1bbe70-dae7-404a-a420-93e393538fa3",
+  crashing: "octgn:a926afdc-c770-4315-b4eb-6b417e765c55",
+  maelstrom: "octgn:58f19ebb-2e0f-4ff9-9ec1-1984e9faca02",
 } as const;
 
 interface NightmareDeck {
@@ -1455,6 +1468,18 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Jagged Reef": 2,
     },
   },
+  "the-thing-in-the-depths": {
+    card: NIGHTMARE_DC.depthsCard,
+    // The Arms are in the set aside The Thing in the Depths encounter set;
+    // the scenario's setup applies the removals to both piles.
+    removals: {
+      "Corsair Infiltrator": 2,
+      "Crew Quarters": 1,
+      "Crushing Arm": 1,
+      "Grasping Arm": 1,
+      "Giant Arm": 1,
+    },
+  },
   "shelobs-lair": {
     card: NIGHTMARE_LOS.lairCard,
     removals: {
@@ -1979,6 +2004,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "flight-of-the-stormcaller")
     return [
       "Flight of the Stormcaller · Nightmare mode: Raider of the Storm joins the Corsair deck; while you are at the same stage as the Stormcaller, the main quest gets +X quest points, where X is the Stormcaller's remaining hit points (included in the stage's quest points).",
+    ];
+  if (s.scenarioId === "the-thing-in-the-depths")
+    return [
+      "The Thing in the Depths · Nightmare mode: after The Thing in the Depths enters play, it attacks each player in turn order. At stage 3, a quest phase begins by revealing a location from the encounter deck while there are fewer locations in play than players, and each Tentacle enemy in play resolves its Grapple keyword at the end of the refresh phase.",
     ];
   if (s.scenarioId === "shelobs-lair")
     return [

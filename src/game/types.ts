@@ -623,7 +623,8 @@ export interface GameState {
     import("./nightmare-crossroads").NightmareCrossroadsState &
     import("./nightmare-shelob").NightmareShelobState &
     import("./nightmare-fate").NightmareFateState &
-    import("./nightmare-stormcaller").NightmareStormcallerState;
+    import("./nightmare-stormcaller").NightmareStormcallerState &
+    import("./nightmare-depths").NightmareDepthsState;
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;

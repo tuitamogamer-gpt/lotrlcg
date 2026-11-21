@@ -128,6 +128,7 @@ import { NIGHTMARE_VOYAGE_HOOKS } from "./nightmare-voyage";
 import { NIGHTMARE_FATE_HOOKS } from "./nightmare-fate";
 import { NIGHTMARE_RAID_HOOKS } from "./nightmare-raid";
 import { NIGHTMARE_STORMCALLER_HOOKS } from "./nightmare-stormcaller";
+import { NIGHTMARE_DEPTHS_HOOKS } from "./nightmare-depths";
 import { nightmareLive } from "./nightmare";
 
 const empty: Batch4ScenarioHooks = {};
@@ -205,6 +206,7 @@ const NIGHTMARE_LAYERS: Partial<Record<string, Batch4ScenarioHooks>> = {
   "the-fate-of-numenor": NIGHTMARE_FATE_HOOKS,
   "raid-on-the-grey-havens": NIGHTMARE_RAID_HOOKS,
   "flight-of-the-stormcaller": NIGHTMARE_STORMCALLER_HOOKS,
+  "the-thing-in-the-depths": NIGHTMARE_DEPTHS_HOOKS,
 };
 /**
  * The current scenario's hooks; in an Ered Mithrin campaign chapter from The

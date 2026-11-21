@@ -4954,6 +4954,110 @@ try {
       );
     }
     await checkpoint("stormcaller-tide-runner", width);
+    // The Thing in the Depths in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-the-thing-in-the-depths").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "the-thing-in-the-depths");
+    assert.equal(s.nightmareMode, true);
+    {
+      const all = [...s.encounterDeck, ...s.encounterDiscard];
+      assert.deepEqual(
+        [DCN.quarters, DCN.aftCabin, DCN.tumultuous, DCN.duelist].map(
+          (code) => all.filter((c) => c === code).length,
+        ),
+        [1, 3, 3, 3],
+        "the Nightmare Deck's Stormcaller and Corsair Raiders cards are in the encounter deck",
+      );
+      assert.ok(
+        !all.some((c) => card(c).name === "Corsair Infiltrator"),
+        "the setup card removes each Corsair Infiltrator",
+      );
+      const beast = s.depths.beastDeck;
+      assert.deepEqual(
+        [DCN.slithering, DCN.crashing, DCN.maelstrom].map(
+          (code) => beast.filter((c) => c === code).length,
+        ),
+        [3, 3, 3],
+        "the Nightmare Deck's Thing in the Depths cards are set aside with that set",
+      );
+      assert.deepEqual(
+        ["Crushing Arm", "Grasping Arm", "Giant Arm"].map(
+          (title) => beast.filter((c) => card(c).name === title).length,
+        ),
+        [2, 2, 2],
+        "the setup card removes one of each of three Arms",
+      );
+    }
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(
+        /after The Thing in the Depths enters play, it attacks each player/,
+      )
+      .waitFor();
+    await checkpoint("depths-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A Corsair Duelist engaged; a Captain's Quarters, an Aft Cabin, a
+    // Slithering Arm and a Crashing Arm in the staging area.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const duelist = make(t, DCN.duelist);
+      duelist.owner = 0;
+      duelist.resources = 2;
+      t.engaged = [...t.engaged, duelist];
+      for (const code of [DCN.duelist, DCN.quarters, DCN.aftCabin])
+        t.encounterDeck.splice(t.encounterDeck.indexOf(code), 1);
+      for (const code of [DCN.slithering, DCN.crashing])
+        t.depths.beastDeck.splice(t.depths.beastDeck.indexOf(code), 1);
+      t.staging = [
+        ...t.staging,
+        make(t, DCN.quarters),
+        make(t, DCN.aftCabin),
+        make(t, DCN.slithering),
+        make(t, DCN.crashing),
+      ];
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [DCN.duelist, "Corsair Duelist"],
+      [DCN.quarters, "Captain's Quarters"],
+      [DCN.aftCabin, "Aft Cabin"],
+      [DCN.slithering, "Slithering Arm"],
+      [DCN.crashing, "Crashing Arm"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    await checkpoint("depths-captains-quarters", width);
     await view.c.close();
   }
   const p = await browser.newPage();

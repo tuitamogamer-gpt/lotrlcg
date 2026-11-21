@@ -2808,6 +2808,10 @@ export function composeEredPool(
     revealedDoomed: (s, code, revealOrigin) =>
       (h.revealedDoomed?.(s, code, revealOrigin) ?? 0) +
       (p.revealedDoomed?.(s, code, revealOrigin) ?? 0),
+    // A Nightmare card's conditional Doomed (The Thing in the Depths' Deep
+    // Maelstrom) is not its printed keyword.
+    printedDoomed: (s, code) =>
+      h.printedDoomed?.(s, code) ?? p.printedDoomed?.(s, code),
     combatBegin: (s) => {
       h.combatBegin?.(s);
       p.combatBegin?.(s);

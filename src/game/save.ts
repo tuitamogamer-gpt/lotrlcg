@@ -180,6 +180,7 @@ import { validNightmareCrossroads } from "./nightmare-crossroads";
 import { validNightmareShelob } from "./nightmare-shelob";
 import { validNightmareFate } from "./nightmare-fate";
 import { validNightmareStormcaller } from "./nightmare-stormcaller";
+import { validNightmareDepths } from "./nightmare-depths";
 import { nightmareEscapeTest } from "./nightmare-dead";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
@@ -1290,6 +1291,7 @@ export function validateSave(
         !validNightmareShelob(s) ||
         !validNightmareFate(s) ||
         !validNightmareStormcaller(s) ||
+        !validNightmareDepths(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,

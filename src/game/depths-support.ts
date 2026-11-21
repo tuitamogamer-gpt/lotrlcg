@@ -41,6 +41,31 @@ export const DEPTHS = {
   hardened: code("Battle-Hardened"),
 };
 export const DEPTHS_MAIN_QUESTS = [DEPTHS.take, DEPTHS.change, DEPTHS.defend];
+/**
+ * The Nightmare Deck's cards (docs/NIGHTMARE.md): the Arms and Deep Maelstrom
+ * bear The Thing in the Depths' icon (the set aside beast deck), the Ship
+ * locations and Tumultuous Waters The Stormcaller's, and Corsair Duelist the
+ * Corsair Raiders' (removed with that set at Change of Plans).
+ */
+export const DEPTHS_NIGHTMARE = {
+  quarters: "octgn:5fa05845-7cdd-46da-9862-4f3f10525ef1",
+  aftCabin: "octgn:671e838c-630c-4bd7-91d8-20ec6c144f9f",
+  tumultuous: "octgn:26cf3d89-9cfe-45a9-8deb-c2840193ba0f",
+  duelist: "octgn:e5b4ba4a-99dc-4f01-9216-21406aa05bd0",
+  slithering: "octgn:5e1bbe70-dae7-404a-a420-93e393538fa3",
+  crashing: "octgn:a926afdc-c770-4315-b4eb-6b417e765c55",
+  maelstrom: "octgn:58f19ebb-2e0f-4ff9-9ec1-1984e9faca02",
+};
+/** The Nightmare Deck's cards of the set aside The Thing in the Depths encounter set. */
+export const DEPTHS_NIGHTMARE_BEAST = [
+  DEPTHS_NIGHTMARE.slithering,
+  DEPTHS_NIGHTMARE.crashing,
+  DEPTHS_NIGHTMARE.maelstrom,
+];
+const DEPTHS_NIGHTMARE_LOCATIONS = [
+  DEPTHS_NIGHTMARE.quarters,
+  DEPTHS_NIGHTMARE.aftCabin,
+];
 export const DEPTHS_CREATURES = [
   DEPTHS.thing,
   DEPTHS.eye,
@@ -48,18 +73,23 @@ export const DEPTHS_CREATURES = [
   DEPTHS.crushing,
   DEPTHS.grasping,
   DEPTHS.giant,
+  DEPTHS_NIGHTMARE.slithering,
+  DEPTHS_NIGHTMARE.crashing,
 ];
 export const DEPTHS_TENTACLES = [
   DEPTHS.thrashing,
   DEPTHS.crushing,
   DEPTHS.grasping,
   DEPTHS.giant,
+  DEPTHS_NIGHTMARE.slithering,
+  DEPTHS_NIGHTMARE.crashing,
 ];
 export const DEPTHS_CORSAIR_RAIDERS = [
   DEPTHS.raider,
   DEPTHS.infiltrator,
   DEPTHS.leader,
   DEPTHS.hardened,
+  DEPTHS_NIGHTMARE.duelist,
 ];
 export interface DepthsState {
   initialized: boolean;
@@ -110,6 +140,15 @@ export const depthsGrappledWith = (s: GameState, locationId: string) =>
   depthsState(s)
     ?.grappled.filter((g) => g.locationId === locationId)
     .map((g) => g.enemy) ?? [];
+/** Captain's Quarters (the Nightmare Deck): "While Captain's Quarters is grappled, Raider characters are considered to have no resources." */
+export const depthsQuartersGrappled = (s: GameState) =>
+  !!s.nightmareMode &&
+  s.staging.some(
+    (l) =>
+      l.code === DEPTHS_NIGHTMARE.quarters &&
+      !l.blanked &&
+      depthsGrappledWith(s, l.id).length > 0,
+  );
 export function validateDepths(
   s: GameState,
   validUnit: (u: unknown) => boolean,
@@ -166,13 +205,15 @@ export function validateDepths(
   )
     return false;
   if (
-    !q.beastDeck.every((c) =>
-      DEPTHS_ENCOUNTERS.some(
-        (v) =>
-          v.code === c &&
-          v.encounter_set === "The Thing in the Depths" &&
-          c !== DEPTHS.thing,
-      ),
+    !q.beastDeck.every(
+      (c) =>
+        DEPTHS_ENCOUNTERS.some(
+          (v) =>
+            v.code === c &&
+            v.encounter_set === "The Thing in the Depths" &&
+            c !== DEPTHS.thing,
+        ) ||
+        (!!s.nightmareMode && DEPTHS_NIGHTMARE_BEAST.includes(c)),
     )
   )
     return false;
@@ -186,9 +227,10 @@ export function validateDepths(
         s.staging.some(
           (u) =>
             u.id === g.locationId &&
-            DEPTHS_ENCOUNTERS.some(
+            (DEPTHS_ENCOUNTERS.some(
               (c) => c.code === u.code && c.type_code === "location",
-            ),
+            ) ||
+              DEPTHS_NIGHTMARE_LOCATIONS.includes(u.code)),
         ),
     )
   )
