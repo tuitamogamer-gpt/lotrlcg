@@ -72,6 +72,7 @@ import { oathPublicState } from "./the-oath-support";
 import { ruinsBelegostPublicState } from "./ruins-belegost-support";
 import { prancingPonyPublicState } from "./prancing-pony-support";
 import { annuminasPublicState } from "./annuminas-support";
+import { mofEpicPublicState } from "./mof-epic-support";
 import { attackDolGuldurPublicState } from "./attack-dol-guldur-support";
 import { cavesPublicState } from "./caves-nibin-dum-support";
 import { wizardsQuestPublicState } from "./wizards-quest-support";
@@ -4067,6 +4068,7 @@ export function publicState(s: GameState) {
     ruinsBelegost: ruinsBelegostPublicState(s),
     prancingPony: prancingPonyPublicState(s),
     annuminas: annuminasPublicState(s),
+    mofEpic: mofEpicPublicState(s),
     attackDolGuldur: attackDolGuldurPublicState(s),
     caves: cavesPublicState(s),
     wizardsQuest: wizardsQuestPublicState(s),

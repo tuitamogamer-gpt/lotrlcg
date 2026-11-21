@@ -88,7 +88,7 @@ import {
   nightmareSupported,
 } from "./nightmare";
 import { nightmareSetup } from "./nightmare-core";
-import { EPIC_TEAMS } from "./epic";
+import { EPIC_SCENARIOS, epicKindOf, epicTeamCount } from "./epic";
 import type {
   GameState,
   ScenarioId,
@@ -763,8 +763,9 @@ export function createGame(
 
 /**
  * Epic multiplayer mode: three teams of one to four players, each with its
- * own game at stage 1A, 1C or 1E of The Siege of Annúminas. Team A's game
- * holds the others until their turns (src/game/epic.ts).
+ * own game at stage 1A, 1C or 1E of The Siege of Annúminas, or two teams at
+ * The Black Gate Opens and Mount Doom (no more players at Mount Doom). The
+ * first team's game holds the others until their turns (src/game/epic.ts).
  */
 function createEpicGame(
   seed: number,
@@ -774,19 +775,24 @@ function createEpicGame(
   options: Parameters<typeof createGame>[4] & {},
 ): GameState {
   const teams = options.epic!;
+  const kind = epicKindOf(options.scenarioId ?? "");
   requireRule(
-    options.scenarioId === "the-siege-of-annuminas" &&
+    !!kind &&
       (options.playMode ?? "normal") === "normal" &&
       !options.nightmare &&
       !options.campaign &&
       options.epicTeam === undefined &&
-      teams.length === EPIC_TEAMS &&
-      teams.every((seats) => seats.length >= 1 && seats.length <= 4),
-    "Epic multiplayer mode needs three teams of one to four players at The Siege of Annúminas.",
+      teams.length === epicTeamCount(kind) &&
+      teams.every((seats) => seats.length >= 1 && seats.length <= 4) &&
+      (kind !== "mountain-of-fire" || teams[1].length <= teams[0].length),
+    "Epic multiplayer mode needs three teams of one to four players at The Siege of Annúminas, or two teams of one to four players at The Black Gate Opens and Mount Doom (no more at Mount Doom than at The Black Gate Opens).",
   );
+  const players = (seats: SeatConfig[]) =>
+    `${seats.length} ${seats.length === 1 ? "player" : "players"}`;
   const games = teams.map((seats, team) =>
     createGame(seed + team * 7919, deck, heroCodes, deckId, {
       ...options,
+      scenarioId: EPIC_SCENARIOS[kind!][team],
       epic: undefined,
       epicTeam: team,
       seats,
@@ -794,16 +800,18 @@ function createEpicGame(
   );
   const s = games[0];
   s.epic = {
-    kind: "annuminas",
+    kind: kind!,
     active: 0,
-    teams: [null, games[1], games[2]],
+    teams: [null, ...games.slice(1)],
     held: [],
     pass: [],
-    cityStrength: 50,
+    cityStrength: kind === "annuminas" ? 50 : 0,
   };
   log(
     s,
-    `Epic multiplayer mode: three teams (${teams.map((seats, i) => `stage 1${"ACE"[i]}: ${seats.length} ${seats.length === 1 ? "player" : "players"}`).join(", ")}) play The Siege of Annúminas at three stages. Within each round the teams take turns: every team resolves the beginning of the round, then plays the round, then resolves the end of the round in stage order.`,
+    kind === "annuminas"
+      ? `Epic multiplayer mode: three teams (${teams.map((seats, i) => `stage 1${"ACE"[i]}: ${players(seats)}`).join(", ")}) play The Siege of Annúminas at three stages. Within each round the teams take turns: every team resolves the beginning of the round, then plays the round, then resolves the end of the round in stage order.`
+      : `Epic multiplayer mode: two teams (The Black Gate Opens: ${players(teams[0])}; Mount Doom: ${players(teams[1])}) play The Black Gate Opens and Mount Doom at once. Within each round the teams take turns: The Black Gate Opens' team plays the round, then Mount Doom's, and the end of the round resolves in the same order.`,
     "chapter",
   );
   return s;

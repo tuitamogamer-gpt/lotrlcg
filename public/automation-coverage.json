@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2931,
+    "encounterCards": 2935,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 4152,
-    "pending": 31
+    "scripted": 4156,
+    "pending": 27
   },
   "scenarioRecipes": {
     "total": 355,
@@ -1585,6 +1585,7 @@
     "octgn:231bf335-bf9b-44d9-a919-e59aa1d46473",
     "octgn:232256cb-40ee-4cec-84ac-995b3ba43eb2",
     "octgn:233a2687-04a8-4c18-90cc-e90b9574b282",
+    "octgn:23402087-6d53-45c7-86be-3c6b9f5a651c",
     "octgn:2351fadd-4348-4a17-b062-f0e8142f2e6f",
     "octgn:23522905-189e-4f08-a19f-5f9cf0dae9c4",
     "octgn:2362af02-42b8-43fe-b3b6-f11f011b3197",
@@ -1723,6 +1724,7 @@
     "octgn:2f380c3c-7de7-4961-b5f5-878f3e4e58c8",
     "octgn:2f3a59dd-d404-426e-9e40-1589cf690618",
     "octgn:2f5221a8-8afd-48d8-afd3-352151d87ed6",
+    "octgn:2f6a81bb-951f-434a-9cfd-7605a7122fd2",
     "octgn:2f7770cd-3102-4f35-a3bc-bd9afcab8303",
     "octgn:2fb27cc8-c3f5-4172-8ff0-456907f9b111",
     "octgn:2fc8a29f-1de3-4821-8ea9-97d7385fa4d1",
@@ -1967,6 +1969,7 @@
     "octgn:475d31c0-45d5-4a9f-aaac-c23b93c73f03",
     "octgn:4765cbea-5ae8-4e39-a811-a67f1f6ca2a0",
     "octgn:47744d79-27d4-4ea2-aee7-30597fb0b47f",
+    "octgn:477558e9-dc31-4766-b97d-311d5668aa1a",
     "octgn:47aada3f-9ee6-455d-8c2d-786962633f34",
     "octgn:47afd15f-ffe3-4a90-9128-f2a79ba3b070",
     "octgn:47b1cd0f-5d56-483c-956c-7851eb4b0a9a",
@@ -3683,6 +3686,7 @@
     "octgn:c4993a31-1e07-469c-a3cb-13e90e44253f",
     "octgn:c49ec585-e306-4fda-a55b-497cb0fd1174",
     "octgn:c4aea786-9987-451a-8924-e63c628be505",
+    "octgn:c4b7ea64-91b2-4037-bfce-45e487a96b01",
     "octgn:c4efe804-2832-42f1-bebf-45d3072cc70f",
     "octgn:c5215a42-f064-46cc-a9a2-75ef4d57fcd2",
     "octgn:c52272ad-0a46-4867-9873-e7ed1ffee0dd",
@@ -5075,7 +5079,7 @@
     {
       "product": "the-mountain-of-fire",
       "total": 81,
-      "scripted": 77,
+      "scripted": 81,
       "player": 13,
       "playerScripted": 13
     },
@@ -16850,7 +16854,7 @@
       "name": "In Darkness Bind Them",
       "type": "treachery",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -17970,7 +17974,7 @@
       "name": "The Eye of Sauron",
       "type": "objective",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -19914,7 +19918,7 @@
       "name": "Epic Multiplayer Mode",
       "type": "campaign",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {
@@ -33586,7 +33590,7 @@
       "name": "The Eye of Sauron",
       "type": "objective",
       "pack": "The Mountain of Fire",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mountain-of-fire"
     },
     {

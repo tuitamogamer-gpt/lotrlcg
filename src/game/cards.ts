@@ -95,6 +95,7 @@ import {
   MOUNT_DOOM_ENCOUNTERS,
   MOUNT_DOOM_QUESTS,
 } from "./mount-doom-scenario-data";
+import { MOF_EPIC_CARDS } from "./mof-epic-support";
 import { OATH_ENCOUNTERS, OATH_QUESTS } from "./the-oath-scenario-data";
 import { RB_ENCOUNTERS, RB_QUESTS } from "./ruins-belegost-scenario-data";
 import { PP_ENCOUNTERS, PP_QUESTS } from "./prancing-pony-scenario-data";
@@ -631,6 +632,7 @@ export const encounterCards = [
       ...CIRITH_UNGOL_ENCOUNTERS,
       ...BLACK_GATE_ENCOUNTERS,
       ...MOUNT_DOOM_ENCOUNTERS,
+      ...MOF_EPIC_CARDS,
       ...OATH_ENCOUNTERS,
       ...RB_ENCOUNTERS,
       ...PP_ENCOUNTERS,

@@ -1,0 +1,131 @@
+[
+  {
+    "code": "octgn:477558e9-dc31-4766-b97d-311d5668aa1a",
+    "octgnid": "477558e9-dc31-4766-b97d-311d5668aa1a",
+    "name": "Epic Multiplayer Mode",
+    "type_code": "campaign",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Create two separate staging areas: one for The Black Gate Opens and one for Mount Doom. Divide the players into 2 teams, one for each scenario. No more than 4 players can be assigned to each scenario and the number of players assigned to Mount Doom cannot be more than the number assigned to The Black Gate Opens. Shuffle 1 copy of In Darkness Bind Them into each encounter deck. Place The Eye of Sauron in the Mount Doom staging area with its corresponding side faceup. Flip this card over and set it next to the Mount Doom quest deck.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 80,
+    "quantity": 1,
+    "encounter_set": "Epic Multiplayer Mode",
+    "back_name": "Epic Multiplayer Mode",
+    "back_text": "Ignore the Forced effect on the Mount Doom campaign card if it is in play.\nForced: At the end of the round, the first player chooses a scenario (The Black Gate Opens or Mount Doom). Each player at the chosen scenario draws 1 card. Each player at the other scenario reduces his threat by 3. Then, the player who controls the Gwaihir objective-ally may give control of it to another player (at either scenario).\nAt the end of the round, if the last player at either scenario is eliminated, both teams lose the game. If the Mount Doom scenario is defeated, both teams win the game.",
+    "back_type_code": "campaign",
+    "back_imagesrc": "/cards/477558e9-dc31-4766-b97d-311d5668aa1a.B.jpg",
+    "printed_stats": {},
+    "imagesrc": "/cards/477558e9-dc31-4766-b97d-311d5668aa1a.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 80,
+        "quantity": 1,
+        "octgnid": "477558e9-dc31-4766-b97d-311d5668aa1a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/477558e9-dc31-4766-b97d-311d5668aa1a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:c4b7ea64-91b2-4037-bfce-45e487a96b01",
+    "octgnid": "c4b7ea64-91b2-4037-bfce-45e487a96b01",
+    "name": "The Eye of Sauron",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Mordor.",
+    "text": "Add [sauron] to each Fortitude test.\nForced: At the end of the round, flip The Eye of Sauron, then move it and each Nazgûl enemy in the staging area to The Black Gate Opens staging area. The first player may raise each player's threat by 3 to cancel this effect.",
+    "is_unique": true,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 81,
+    "quantity": 1,
+    "encounter_set": "Epic Multiplayer Mode",
+    "printed_stats": {},
+    "imagesrc": "/cards/c4b7ea64-91b2-4037-bfce-45e487a96b01.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 81,
+        "quantity": 1,
+        "octgnid": "c4b7ea64-91b2-4037-bfce-45e487a96b01",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c4b7ea64-91b2-4037-bfce-45e487a96b01.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:2f6a81bb-951f-434a-9cfd-7605a7122fd2",
+    "octgnid": "2f6a81bb-951f-434a-9cfd-7605a7122fd2",
+    "name": "The Eye of Sauron",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Mordor.",
+    "text": "Each enemy in the staging area gets +1 [threat] and -10 engagement cost.\nForced: At the end of the round, flip The Eye of Sauron, then move it and each Nazgûl enemy in the staging area to the Mount Doom staging area. The first player may raise each player's threat by 3 to cancel this effect.",
+    "is_unique": true,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 82,
+    "quantity": 1,
+    "encounter_set": "Epic Multiplayer Mode",
+    "printed_stats": {},
+    "imagesrc": "/cards/2f6a81bb-951f-434a-9cfd-7605a7122fd2.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 82,
+        "quantity": 1,
+        "octgnid": "2f6a81bb-951f-434a-9cfd-7605a7122fd2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2f6a81bb-951f-434a-9cfd-7605a7122fd2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:23402087-6d53-45c7-86be-3c6b9f5a651c",
+    "octgnid": "23402087-6d53-45c7-86be-3c6b9f5a651c",
+    "name": "In Darkness Bind Them",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player exhausts a character he controls. If The Eye of Sauron is in the staging area, characters cannot be readied by player card effects this round.",
+    "shadow": "Shadow: If The Eye of Sauron is in the staging area, attacking enemy gets +2 [attack] and returns to the staging area after this attack.",
+    "is_unique": false,
+    "pack_code": "MoF",
+    "pack_name": "The Mountain of Fire",
+    "position": 64,
+    "quantity": 2,
+    "encounter_set": "Epic Multiplayer Mode",
+    "printed_stats": {},
+    "imagesrc": "/cards/23402087-6d53-45c7-86be-3c6b9f5a651c.jpg",
+    "packs": [
+      {
+        "pack_code": "MoF",
+        "pack_name": "The Mountain of Fire",
+        "position": 64,
+        "quantity": 2,
+        "octgnid": "23402087-6d53-45c7-86be-3c6b9f5a651c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/23402087-6d53-45c7-86be-3c6b9f5a651c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

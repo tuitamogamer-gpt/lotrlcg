@@ -340,8 +340,10 @@ campaign's chapters and its saves.
 ## Not supported yet
 
 The Mountain of Fire's Epic Multiplayer Mode (The Black Gate Opens and Mount
-Doom played at once by two groups, the Ring-bearer's controller choosing which
-scenario receives each boon and burden) is not offered. Saruman's Voice does
+Doom played at once by two teams) is playable as a standalone adventure
+([MOUNTAIN-FIRE-EPIC.md](MOUNTAIN-FIRE-EPIC.md)); as the campaign's grand
+finale (the campaign cards' setups, the Ring-bearer's controller choosing which
+scenario receives each boon and burden) it is not offered. Saruman's Voice does
 not yet react to its hero's own abilities, and Beyond All Hope does not yet
 stop the other scenarios' treachery attachments. One campaign is saved at a
 time: starting a new campaign replaces the saved one.

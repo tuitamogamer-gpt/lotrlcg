@@ -3532,6 +3532,8 @@ export function flush(s: GameState) {
       recordObservation(s, before, observation(s)!, effect);
     if (s.epic && s.epic.active !== team) n = 0;
   }
+  // A game ended outside an effect (an action's rule check) ends every team's.
+  epicSettle(s);
   if (
     s.table &&
     !s.escapeTest &&

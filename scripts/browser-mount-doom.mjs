@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { chromium } from "playwright";
-import { card } from "../src/game/cards.ts";
+import { STARTERS, card } from "../src/game/cards.ts";
 import { fx } from "../src/game/core.ts";
 import { flush } from "../src/game/effects.ts";
 import { check, engage } from "../src/game/board.ts";
@@ -27,24 +27,86 @@ import {
   settle,
   stage,
 } from "../tests/mount-doom-fixtures.ts";
-import { applyAction } from "../src/game/engine.ts";
+import { applyAction, createGame } from "../src/game/engine.ts";
+import { make } from "../src/game/core.ts";
+import { epicTeams } from "../src/game/epic.ts";
+import { ME } from "../src/game/mof-epic-support.ts";
+import { BG } from "../src/game/black-gate-support.ts";
+import { autoplay } from "../tests/nightmare-fixtures.ts";
 import { reviewedState } from "./browser-review-helpers.mjs";
 import {
   capture,
+  choose,
   context,
   fresh,
   load,
+  next,
   opening,
   report,
   resume,
+  saved,
   url,
 } from "./browser-angmar-helpers.mjs";
-const art = JSON.parse(
-  await fs.readFile(
-    new URL("../tests/mount-doom-art.json", import.meta.url),
-    "utf8",
+const art = [
+  ...JSON.parse(
+    await fs.readFile(
+      new URL("../tests/mount-doom-art.json", import.meta.url),
+      "utf8",
+    ),
   ),
-);
+  // The Mountain of Fire's epic multiplayer cards.
+  ...JSON.parse(
+    await fs.readFile(
+      new URL("../tests/mof-epic-art.json", import.meta.url),
+      "utf8",
+    ),
+  ),
+];
+/** The Mountain of Fire's epic mode: two teams of two, set up and played up to a condition. */
+function epicGame(until) {
+  let s = createGame(
+    41,
+    STARTERS[0].cards,
+    STARTERS[0].heroes,
+    STARTERS[0].id,
+    {
+      scenarioId: "the-black-gate-opens",
+      epic: [0, 1].map(() =>
+        STARTERS.slice(0, 2).map((d) => ({
+          deckId: d.id,
+          heroes: [...d.heroes],
+        })),
+      ),
+    },
+  );
+  for (let n = 0; n < 800 && s.status === "playing" && !until(s); n++)
+    s = autoplay(s, 1);
+  assert.equal(s.status, "playing");
+  return s;
+}
+const epicPlanning = (s) =>
+  s.round === 1 &&
+  s.epicTeam === 0 &&
+  s.phase === "planning" &&
+  !s.choice &&
+  !s.flow?.pending;
+/** Each team in its planning phase of the same round, nothing queued. */
+function quietEpic(s) {
+  for (const t of epicTeams(s))
+    Object.assign(t, {
+      round: s.round,
+      phase: "planning",
+      queue: [],
+      choice: null,
+      combat: null,
+      suspendedCombats: [],
+      stageRevealing: false,
+    });
+  s.epic.held = [];
+  s.epic.pass = [];
+  return s;
+}
+const epicPanel = "[data-scenario-panel='mof-epic']";
 const dir = "output/mount-doom-browser";
 await fs.mkdir(dir, { recursive: true });
 const errors = [],
@@ -434,6 +496,78 @@ try {
     shadow = defend(shadow, enemy, hero(shadow), [MD.fumes]);
     await load(page, shadow);
     await checkpoint("foul-fumes-shadow", width);
+    // The Mountain of Fire's epic multiplayer mode.
+    if (width === 1280) {
+      // The lobby's switch on a hot-seat table: two teams of two players.
+      await fresh(page, "the-black-gate-opens", 2, false);
+      await page.locator(".epic-toggle input").setChecked(true);
+      await page.locator("#start-btn").click();
+      let e = await opening(page);
+      assert.equal(e.epic.kind, "mountain-of-fire");
+      assert.deepEqual(
+        [e, e.epic.teams[1]].map((t) => [t.scenarioId, t.table.seats.length]),
+        [
+          ["the-black-gate-opens", 2],
+          ["mount-doom", 2],
+        ],
+      );
+      await page
+        .getByText("Epic multiplayer mode · The Black Gate Opens team", {
+          exact: true,
+        })
+        .waitFor();
+      await page.locator(`${epicPanel} [data-eye='doom']`).waitFor();
+      await page
+        .locator(`${epicPanel} li[data-epic-scenario='0'][aria-current='true']`)
+        .waitFor();
+      await page.locator(`${epicPanel} li[data-epic-scenario='1']`).waitFor();
+      assert.equal((await resume(page)).epic.kind, "mountain-of-fire");
+      await checkpoint("epic-gate-team", width);
+      // The Black Gate Opens' round ends on the table: Mount Doom's turn.
+      const refresh = epicGame(
+        (s) =>
+          s.round === 1 &&
+          s.epicTeam === 0 &&
+          s.phase === "refresh" &&
+          !s.choice &&
+          !s.flow?.pending,
+      );
+      await load(page, refresh);
+      await next(page);
+      e = await saved(page);
+      assert.equal(e.epicTeam, 1);
+      assert.deepEqual(e.epic.held, [0]);
+      await page
+        .getByText("Epic multiplayer mode · Mount Doom team", { exact: true })
+        .waitFor();
+      await page
+        .locator(`${epicPanel} li[data-epic-scenario='1'][aria-current='true']`)
+        .waitFor();
+      await checkpoint("epic-doom-team", width);
+      // The Eye of Sauron's Forced effect at The Black Gate Opens.
+      const eye = quietEpic(epicGame(epicPlanning));
+      const doomTeam = epicTeams(eye)[1];
+      doomTeam.staging = doomTeam.staging.filter((u) => u.code !== ME.eyeDoom);
+      eye.staging.push(make(eye, ME.eyeGate), make(eye, BG.nazgul));
+      run(eye, fx("meEye", { player: 0 }));
+      assert.match(eye.choice.title, /^The Eye of Sauron · /);
+      await load(page, eye);
+      await checkpoint("epic-eye-choice", width);
+      const moved = await choose(page, "move");
+      assert.ok(moved.epic.teams[1].staging.some((u) => u.code === ME.eyeDoom));
+      assert.ok(moved.epic.teams[1].staging.some((u) => u.code === BG.nazgul));
+      await page.locator(`${epicPanel} [data-eye='doom']`).waitFor();
+    }
+    // The Eye of Sauron at The Black Gate Opens, after In Darkness Bind Them.
+    const bound = quietEpic(epicGame(epicPlanning));
+    const doomSide = epicTeams(bound)[1];
+    doomSide.staging = doomSide.staging.filter((u) => u.code !== ME.eyeDoom);
+    bound.staging.push(make(bound, ME.eyeGate));
+    bound.epicBound = bound.round;
+    await load(page, bound);
+    await page.locator(`${epicPanel} [data-eye='gate']`).waitFor();
+    await page.locator(`${epicPanel} [data-bound='true']`).waitFor();
+    await checkpoint("epic-eye-gate", width);
     await view.c.close();
   }
   const p = await browser.newPage();

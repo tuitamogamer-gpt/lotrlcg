@@ -710,6 +710,12 @@ export interface GameState {
    * (the other teams' games wait in it until their turn).
    */
   epic?: import("./epic").EpicState;
+  /**
+   * Epic multiplayer mode (The Mountain of Fire): In Darkness Bind Them, with
+   * The Eye of Sauron in the staging area: in this round, characters cannot
+   * be readied by player card effects.
+   */
+  epicBound?: number;
   attackDolGuldur?: import("./attack-dol-guldur-types").AttackDolGuldurState;
   caves?: import("./caves-nibin-dum-types").CavesState;
   wizardsQuest?: import("./wizards-quest-types").WizardsQuestState;

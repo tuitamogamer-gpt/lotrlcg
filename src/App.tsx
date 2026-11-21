@@ -59,12 +59,14 @@ import { CIRITH_UNGOL_QUESTS } from "./game/cirith-ungol-support";
 import { BlackGateState } from "./ui/black-gate-state";
 import { BLACK_GATE_QUESTS } from "./game/black-gate-support";
 import { MountDoomState } from "./ui/mount-doom-state";
+import { MofEpicState } from "./ui/mof-epic-state";
 import { isFortitude } from "./game/hide-test";
 import { MOUNT_DOOM_QUESTS } from "./game/mount-doom-support";
 import { OATH_QUESTS } from "./game/the-oath-support";
 import { RB_QUESTS } from "./game/ruins-belegost-support";
 import { PP_QUESTS } from "./game/prancing-pony-support";
 import { SA_EPIC_QUESTS, SA_QUESTS } from "./game/annuminas-support";
+import { epicKindOf, epicTeamCount } from "./game/epic";
 import { ADG_QUESTS } from "./game/attack-dol-guldur-support";
 import { CAVES_QUESTS } from "./game/caves-nibin-dum-support";
 import { WQ_QUESTS } from "./game/wizards-quest-support";
@@ -1887,13 +1889,14 @@ export default function App() {
           ...(style === "hotseat" &&
           playMode !== "campaign" &&
           epicMode === "on" &&
-          selectedScenario === "the-siege-of-annuminas"
+          epicKindOf(selectedScenario)
             ? {
-                epic: [
-                  seats.map(seatConfig),
-                  seats.map(seatConfig),
-                  seats.map(seatConfig),
-                ],
+                // Each team plays with the table's decks: three teams at
+                // The Siege of Annúminas, two at The Mountain of Fire.
+                epic: Array.from(
+                  { length: epicTeamCount(epicKindOf(selectedScenario)!) },
+                  () => seats.map(seatConfig),
+                ),
               }
             : {}),
           // The Caves of Nibin-Dûm's legacy for the next campaign.
@@ -3037,15 +3040,14 @@ export default function App() {
                 {!(resumable && game?.status === "playing") &&
                   playMode !== "campaign" &&
                   setupMode === "hotseat" &&
-                  selectedScenario === "the-siege-of-annuminas" && (
+                  !!epicKindOf(selectedScenario) && (
                     <label className="preference-check epic-toggle">
                       <div>
                         <strong>Epic multiplayer mode</strong>
                         <small>
-                          Three teams, each with these {seats.length}{" "}
-                          {seats.length === 1 ? "deck" : "decks"}, defend
-                          Annúminas at stages 1A, 1C and 1E (city strength 50);
-                          within each round the teams take turns.
+                          {epicKindOf(selectedScenario) === "annuminas"
+                            ? `Three teams, each with these ${seats.length} ${seats.length === 1 ? "deck" : "decks"}, defend Annúminas at stages 1A, 1C and 1E (city strength 50); within each round the teams take turns.`
+                            : `Two teams, each with these ${seats.length} ${seats.length === 1 ? "deck" : "decks"}, play The Black Gate Opens and Mount Doom at once, with The Eye of Sauron moving between them; within each round the teams take turns.`}
                         </small>
                       </div>
                       <input
@@ -3749,11 +3751,13 @@ export default function App() {
                 <span className="game-mode-label">
                   {game.playMode === "campaign"
                     ? `${CAMPAIGN_TITLES[campaignKindOf(game.campaign)]} · Campaign${game.nightmareMode ? " · Nightmare mode" : ""}`
-                    : game.epic
-                      ? `Epic multiplayer mode · team ${"ACE"[game.epicTeam ?? 0]} (quest deck 1${"ACE"[game.epicTeam ?? 0]}–3${"ACE"[game.epicTeam ?? 0]})`
-                      : game.nightmareMode
-                        ? "Nightmare mode"
-                        : "Normal game"}
+                    : game.epic?.kind === "mountain-of-fire"
+                      ? `Epic multiplayer mode · ${game.epicTeam === 1 ? "Mount Doom" : "The Black Gate Opens"} team`
+                      : game.epic
+                        ? `Epic multiplayer mode · team ${"ACE"[game.epicTeam ?? 0]} (quest deck 1${"ACE"[game.epicTeam ?? 0]}–3${"ACE"[game.epicTeam ?? 0]})`
+                        : game.nightmareMode
+                          ? "Nightmare mode"
+                          : "Normal game"}
                 </span>
               </div>
               <div className="table-tools">
@@ -3949,6 +3953,7 @@ export default function App() {
             <CirithUngolState s={game} inspect={setDetail} />
             <BlackGateState s={game} inspect={setDetail} />
             <MountDoomState s={game} inspect={setDetail} />
+            <MofEpicState s={game} inspect={setDetail} />
             <OathState s={game} inspect={setDetail} />
             <RuinsBelegostState s={game} inspect={setDetail} />
             <PrancingPonyState s={game} inspect={setDetail} />

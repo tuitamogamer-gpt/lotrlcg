@@ -24,6 +24,7 @@ import { PELENNOR_FIELDS_HOOKS } from "./pelennor-fields";
 import { CIRITH_UNGOL_HOOKS } from "./cirith-ungol";
 import { BLACK_GATE_HOOKS } from "./black-gate";
 import { MOUNT_DOOM_HOOKS } from "./mount-doom";
+import { composeMofEpic, mofEpicLive } from "./mof-epic";
 import { OATH_HOOKS } from "./the-oath";
 import { RUINS_BELEGOST_HOOKS } from "./ruins-belegost";
 import { PRANCING_PONY_HOOKS } from "./prancing-pony";
@@ -137,6 +138,8 @@ import { nightmareLive } from "./nightmare";
 
 const empty: Batch4ScenarioHooks = {};
 const pooled = new WeakMap<Batch4ScenarioHooks, Batch4ScenarioHooks>();
+/** The Mountain of Fire's epic multiplayer mode: each scenario's composed hooks. */
+const epicMof = new WeakMap<Batch4ScenarioHooks, Batch4ScenarioHooks>();
 const nightmares = new Map<
   Batch4ScenarioHooks,
   WeakMap<Batch4ScenarioHooks, Batch4ScenarioHooks>
@@ -223,6 +226,13 @@ const NIGHTMARE_LAYERS: Partial<Record<string, Batch4ScenarioHooks>> = {
  */
 export function batch4Scenario(s: GameState): Batch4ScenarioHooks {
   const hooks = scenarioHooks(s);
+  // The Mountain of Fire's epic multiplayer mode: its cards join both
+  // scenarios (never with a Nightmare Deck or a Campaign Pool).
+  if (mofEpicLive(s)) {
+    let composed = epicMof.get(hooks);
+    if (!composed) epicMof.set(hooks, (composed = composeMofEpic(hooks)));
+    return composed;
+  }
   const layer = nightmareLive(s) ? NIGHTMARE_LAYERS[s.scenarioId] : undefined;
   if (layer) {
     let cache = nightmares.get(layer);

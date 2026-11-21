@@ -9,7 +9,8 @@ resources on The Black Gate when they fall. In The Lord of the Rings campaign
 ([SAGA-CAMPAIGN.md](SAGA-CAMPAIGN.md)) that defeat completes the chapter: its
 campaign card records the resource tokens on The Black Gate for Mount Doom,
 removes each slain Wraith on Wings from the Campaign Pool and earns Gwaihir
-for a first player who controls him.
+for a first player who controls him. Its epic multiplayer mode with Mount Doom,
+for two teams, is described in [MOUNTAIN-FIRE-EPIC.md](MOUNTAIN-FIRE-EPIC.md).
 
 ## Sources and corrections
 

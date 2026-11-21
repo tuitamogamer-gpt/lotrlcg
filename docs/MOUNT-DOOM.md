@@ -10,7 +10,8 @@ box's The One Ring. Every stage has the **Dire** keyword, and the box's
 tokens recorded at The Black Gate Opens (one leaves at the end of each round,
 and the players lose with none left), and its resolution ends the campaign:
 the first player destroys The One Ring and the players win, or keeps it and
-they lose.
+they lose. Its epic multiplayer mode with The Black Gate Opens, for two teams,
+is described in [MOUNTAIN-FIRE-EPIC.md](MOUNTAIN-FIRE-EPIC.md).
 
 ## Sources and corrections
 

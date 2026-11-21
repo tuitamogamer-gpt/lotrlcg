@@ -82,7 +82,10 @@ import { wrathRuinSavedExtraUnits } from "./wrath-ruin-state";
 import { validateUlfast } from "./ulfast-support";
 import { validateUlfastPlayers } from "./ulfast-player-support";
 import { isSagaCampaign, validateSagaCampaign } from "./saga-campaign";
-import { EPIC_TEAMS } from "./epic";
+import { EPIC_SCENARIOS, epicKindOf, epicTeamCount } from "./epic";
+import { ME } from "./mof-epic-support";
+const MOF_EYE_DOOM: string = ME.eyeDoom;
+const MOF_EYE_GATE: string = ME.eyeGate;
 import { isAngmarCampaign, validateAngmarCampaign } from "./angmar-campaign";
 import {
   isEredCampaign,
@@ -282,26 +285,48 @@ let validatingEpicTeam = false;
 /** Epic multiplayer mode: the teams' games, the barriers and the shared city strength. */
 function validEpic(s: GameState): boolean {
   const e = s.epic!;
-  const teams = [...Array(EPIC_TEAMS).keys()];
+  if (!e || !(e.kind in EPIC_SCENARIOS)) return false;
+  const scenarios = EPIC_SCENARIOS[e.kind];
+  const teams = [...Array(epicTeamCount(e.kind)).keys()];
   const subset = (v: unknown) =>
     Array.isArray(v) &&
     v.every((x) => teams.includes(x)) &&
     new Set(v).size === v.length;
+  const round = (v: unknown) =>
+    v === undefined || (Number.isSafeInteger(v) && (v as number) >= 0);
+  const annuminas = e.kind === "annuminas";
   if (
-    !e ||
-    e.kind !== "annuminas" ||
     !teams.includes(e.active) ||
     e.active !== s.epicTeam ||
+    scenarios[e.active] !== s.scenarioId ||
     !Array.isArray(e.teams) ||
-    e.teams.length !== EPIC_TEAMS ||
+    e.teams.length !== teams.length ||
     e.teams[e.active] !== null ||
     !subset(e.held) ||
     !subset(e.pass) ||
     e.held.some((x) => e.pass.includes(x)) ||
     !Number.isSafeInteger(e.cityStrength) ||
     e.cityStrength < 0 ||
-    (e.lieutenantRound !== undefined &&
-      !(Number.isSafeInteger(e.lieutenantRound) && e.lieutenantRound >= 0))
+    (!annuminas && e.cityStrength !== 0) ||
+    !round(e.lieutenantRound) ||
+    (!annuminas && e.lieutenantRound !== undefined) ||
+    !round(e.eyeRound) ||
+    (annuminas && e.eyeRound !== undefined)
+  )
+    return false;
+  // The Mountain of Fire: The Eye of Sauron is in one staging area.
+  if (
+    !annuminas &&
+    e.teams
+      .map((t, i) => (i === e.active ? s : t))
+      .reduce(
+        (n, t) =>
+          n +
+          (t?.staging ?? []).filter((u) =>
+            [MOF_EYE_DOOM, MOF_EYE_GATE].includes(u.code),
+          ).length,
+        0,
+      ) !== 1
   )
     return false;
   validatingEpicTeam = true;
@@ -312,7 +337,7 @@ function validEpic(s: GameState): boolean {
         (!!t &&
           typeof t === "object" &&
           t.epicTeam === i &&
-          t.scenarioId === s.scenarioId &&
+          t.scenarioId === scenarios[i] &&
           t.playMode === s.playMode &&
           validateSave(t)),
     );
@@ -338,13 +363,22 @@ export function validateSave(
         !(
           Number.isInteger(s.epicTeam) &&
           s.epicTeam >= 0 &&
-          s.epicTeam < EPIC_TEAMS &&
-          s.scenarioId === "the-siege-of-annuminas" &&
+          !!epicKindOf(s.scenarioId) &&
+          EPIC_SCENARIOS[epicKindOf(s.scenarioId)!][s.epicTeam] ===
+            s.scenarioId &&
           !!s.table
         )) ||
         (validatingEpicTeam
           ? s.epic !== undefined || s.epicTeam === undefined
           : (s.epic === undefined) !== (s.epicTeam === undefined)) ||
+        // In Darkness Bind Them's round (The Mountain of Fire's epic mode).
+        (s.epicBound !== undefined &&
+          !(
+            Number.isSafeInteger(s.epicBound) &&
+            s.epicBound >= 0 &&
+            s.epicTeam !== undefined &&
+            epicKindOf(s.scenarioId) === "mountain-of-fire"
+          )) ||
         (s.epic !== undefined && !validatingEpicTeam && !validEpic(s)))
     )
       return false;

@@ -1541,8 +1541,9 @@ export const BLACK_GATE_HOOKS: Batch4ScenarioHooks = {
   threatReduction: (s, amount, reason, source) =>
     s.blackGate ? direThreatReduction(s, amount, reason, source) : amount,
   // The players cannot win: their result is the resources on The Black Gate.
+  // Epic multiplayer mode: the game ends for both teams (no score).
   lossReason: (s, reason) => {
-    if (!s.blackGate) return reason;
+    if (!s.blackGate || s.epicTeam !== undefined) return reason;
     const n = bgScore(s);
     return `${reason} The players held the Morannon for ${n} round${n === 1 ? "" : "s"}: ${n} resource${n === 1 ? "" : "s"} on The Black Gate.`;
   },

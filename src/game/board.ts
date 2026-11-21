@@ -5,6 +5,7 @@ import {
   darkMirkwoodShadow,
   mendorLossChapter,
 } from "./dark-mirkwood-campaign";
+import { epicEliminationReason } from "./epic";
 import * as DreamCards from "./dreamchaser-campaign-cards";
 import * as EredCards from "./ered-campaign-cards";
 import {
@@ -1274,10 +1275,10 @@ export function check(s: GameState) {
     if (alive.length && s.sagaCards) delete s.sagaCards.gwaihirAtLoss;
     if (!alive.length) {
       s.status = "lost";
-      // Epic multiplayer mode (The Siege of Annúminas): every team loses.
+      // Epic multiplayer mode: every team loses.
       s.reason =
         s.epicTeam !== undefined
-          ? `The last player at stage ${s.stage}${"BDF"[s.epicTeam]} is eliminated: the enemy has broken through the city's defenses and all teams lose the game.`
+          ? epicEliminationReason(s)
           : "Every hero’s fellowship has fallen to the shadow.";
     } else {
       if (!alive.includes(s.table.first))
