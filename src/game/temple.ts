@@ -27,16 +27,24 @@ import { khazadCannotExhaust } from "./khazad-dum";
 import { watcherWaterCannotExhaust } from "./watcher-water";
 import {
   TEMPLE as T,
+  TEMPLE_EDGE_FACES,
+  TEMPLE_NIGHTMARE as TN,
   TEMPLE_RECIPES,
+  TEMPLE_TEMPLE_FACES,
+  TEMPLE_UNCHARTED_FACES,
   isGateKey,
   isTempleGuardian,
   templeActiveLocation,
   templeAdjacent,
   templeCell,
+  templeColumns,
+  templeFrontOf,
   templeIsMapLocation,
   templeMapUnit,
   templeMapUnits,
+  templeNightmare,
 } from "./temple-support";
+import { nightmareEncounterDecks } from "./nightmare";
 import { templeAfterMapMove, templeLocationFlipped } from "./temple-encounters";
 import {
   DC,
@@ -65,7 +73,10 @@ export {
 } from "./temple-support";
 
 const live = (s: GameState) => !!s.temple;
-const uncharted = (u: Unit) => [T.lost, T.temple].includes(u.code);
+const uncharted = (u: Unit) => TEMPLE_UNCHARTED_FACES.includes(u.code);
+/** The progress a shared side's Action removes to look at its facedown side. */
+const peekCost = (u: Unit) =>
+  u.blanked ? null : u.code === T.lost ? 4 : u.code === TN.edge ? 8 : null;
 const keyInPlay = (s: GameState) => {
   for (const hero of allHeroes(s)) {
     const attachment = hero.attachments.find(isGateKey);
@@ -145,15 +156,32 @@ export function setupTemple(s: GameState) {
     recipe.cards
       .filter((c) => c.section === section)
       .flatMap((c) => Array<string>(c.quantity).fill(c.code));
-  const maps = pile("sharedEncounterDeck2");
+  const nightmare = templeNightmare(s);
+  // The Nightmare setup card's removals and its Nightmare Deck: the six Edge
+  // of the Temple cards join the Island Map.
+  const [encounter, maps] = nightmare
+    ? nightmareEncounterDecks(
+        s.scenarioId,
+        [pile("sharedEncounterDeck"), pile("sharedEncounterDeck2")],
+        (code) => (TEMPLE_EDGE_FACES.includes(code) ? 1 : 0),
+      )
+    : [pile("sharedEncounterDeck"), pile("sharedEncounterDeck2")];
   const temples = shuffle(
     s,
-    maps.filter((c) => [T.grotto, T.halls].includes(c)),
+    maps.filter((c) => TEMPLE_TEMPLE_FACES.includes(c)),
   );
   const islands = shuffle(
     s,
-    maps.filter((c) => ![T.grotto, T.halls].includes(c)),
+    maps.filter(
+      (c) => !TEMPLE_TEMPLE_FACES.includes(c) && !TEMPLE_EDGE_FACES.includes(c),
+    ),
   );
+  const edges = nightmare
+    ? shuffle(
+        s,
+        maps.filter((c) => TEMPLE_EDGE_FACES.includes(c)),
+      )
+    : [];
   s.temple = {
     initialized: false,
     map: [],
@@ -176,10 +204,18 @@ export function setupTemple(s: GameState) {
     combatBoosts: [],
   };
   const q = s.temple;
+  // The setup card's Island Map: three Lost Island columns, two Edge of the
+  // Temple columns, then the Temple column.
+  const columns = templeColumns(s);
   for (let row = 0; row < 3; row++)
-    for (let column = 0; column < 5; column++) {
-      const original = column === 4 ? temples[row] : islands.shift()!;
-      const u = make(s, column === 4 ? T.temple : T.lost);
+    for (let column = 0; column < columns; column++) {
+      const original =
+        column === columns - 1
+          ? temples[row]
+          : nightmare && column >= 3
+            ? edges.shift()!
+            : islands.shift()!;
+      const u = make(s, templeFrontOf(original));
       q.map.push({ id: u.id, row, column });
       q.outOfStaging.push(u);
       q.originalCodes[u.id] = original;
@@ -197,7 +233,7 @@ export function setupTemple(s: GameState) {
             : templeCampaignFace(s, code),
       ),
     );
-  s.encounterDeck = shuffle(s, pile("sharedEncounterDeck"));
+  s.encounterDeck = shuffle(s, encounter);
   s.encounterDiscard = [];
   s.staging = [];
   s.activeLocation = null;
@@ -216,8 +252,9 @@ export const templeCannotLeave = (s: GameState, u: Pick<Unit, "id">) =>
   templeIsMapLocation(s, u);
 /** Normal exploration travel has its own effect, never a player make-active effect. */
 export const templeCannotMakeActive = (s: GameState, _u?: Unit) => live(s);
+/** Lost Island and Edge of the Temple: "Cannot have player card attachments." */
 export const templeCannotAttach = (s: GameState, u: Unit) =>
-  live(s) && u.code === T.lost && !u.blanked;
+  live(s) && (u.code === T.lost || u.code === TN.edge) && !u.blanked;
 export function templeProgressLocation(s: GameState, u: Unit, value: number) {
   if (!templeIsMapLocation(s, u)) return false;
   const before = u.progress;
@@ -377,6 +414,8 @@ export function templeAbilityLabel(
   if (!live(s)) return null;
   if (!attachmentId && u.code === T.lost && !u.blanked)
     return "Remove 4 progress · Look at this island";
+  if (!attachmentId && u.code === TN.edge && !u.blanked)
+    return "Remove 8 progress · Look at this location";
   if (!attachmentId && secretHere(s, u))
     return "Travel Action · Flip over the secret here";
   const key =
@@ -400,8 +439,14 @@ export function templeAbilityProblem(
   if (s.phase === "setup" || !s.temple!.initialized)
     return "Finish setup before taking actions.";
   if (!attachmentId && secretHere(s, u)) return dreamchaserSecretProblem(s, u);
-  if (!attachmentId)
-    return u.progress >= 4 ? null : "Looking at this island costs 4 progress.";
+  if (!attachmentId) {
+    const cost = peekCost(u) ?? 4;
+    return u.progress >= cost
+      ? null
+      : u.code === TN.edge
+        ? `Looking at Edge of the Temple costs ${cost} progress.`
+        : `Looking at this island costs ${cost} progress.`;
+  }
   if (ownerOf(s, u) !== activeSeat(s))
     return "The Gate Key's attached hero must be under your control.";
   const key = u.attachments.find((a) => a.id === attachmentId)!;
@@ -428,7 +473,7 @@ export function templeAbility(s: GameState, u: Unit, attachmentId?: string) {
   if (!attachmentId && secretHere(s, u)) {
     prepend(s, fx("dcSecretFlip", { target: u.id, player: activeSeat(s) }));
   } else if (!attachmentId) {
-    u.progress -= 4;
+    u.progress -= peekCost(u) ?? 4;
     templePeek(s, u);
   } else {
     const upgraded = dcBackFace(
@@ -485,6 +530,7 @@ export function templePublicState(s: GameState) {
   return {
     initialized: q.initialized,
     activeId: q.activeId,
+    columns: templeColumns(s),
     cells: q.map.map((cell) => {
       const u = templeMapUnit(s, cell.id)!;
       const definition = card(u.code);
@@ -500,14 +546,24 @@ export function templePublicState(s: GameState) {
         progress: u.progress,
         quest: Number.isFinite(quest) ? quest : null,
         threat: threatOf(s, u),
+        // Attachments are public, as Sudden Precipice on a facedown location.
+        attachments: u.attachments
+          .filter((a) => !a.facedown)
+          .map((a) => ({
+            id: a.id,
+            code: a.code,
+            name: card(a.code).name,
+            image: imageUrl(card(a.code)),
+          })),
         active: q.activeId === cell.id,
         adjacent:
           !!q.activeId &&
           templeAdjacent(s, q.activeId).some((x) => x.id === cell.id),
         staged: s.staging.some((x) => x.id === cell.id),
         travelProblem: templeTravelProblem(s, u),
+        peekCost: peekCost(u),
         peekProblem:
-          u.code === T.lost
+          u.code === T.lost || u.code === TN.edge
             ? templeAbilityProblem(s, u)
             : "Use the Gate Key to look at an Uncharted Temple.",
         ...secretState(s, u),

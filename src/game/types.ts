@@ -624,7 +624,8 @@ export interface GameState {
     import("./nightmare-shelob").NightmareShelobState &
     import("./nightmare-fate").NightmareFateState &
     import("./nightmare-stormcaller").NightmareStormcallerState &
-    import("./nightmare-depths").NightmareDepthsState;
+    import("./nightmare-depths").NightmareDepthsState &
+    import("./nightmare-temple").NightmareTempleState;
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;
@@ -1314,6 +1315,8 @@ export interface GameState {
     nrdInfiltration?: boolean;
     /** Sahír's Getting Away!'s shadow (Flight of the Stormcaller's Nightmare Deck): progress on the Stormcaller's quest stage if this attack damages a Ship objective, once for each copy. */
     nfcGetaway?: number;
+    /** King's Knight's shadow (Temple of the Deceived's Nightmare Deck): if this attack deals no damage, the attacker returns to the staging area after it. */
+    ntdKnightReturn?: boolean;
     defenderIds?: string[];
     ignoreDefense?: boolean;
     returnToStaging?: boolean;

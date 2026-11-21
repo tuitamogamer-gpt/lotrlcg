@@ -5058,6 +5058,141 @@ try {
       );
     }
     await checkpoint("depths-captains-quarters", width);
+    // Temple of the Deceived in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-temple-of-the-deceived").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "temple-of-the-deceived");
+    assert.equal(s.nightmareMode, true);
+    {
+      const all = [...s.encounterDeck, ...s.encounterDiscard];
+      assert.deepEqual(
+        [DCN.knight, DCN.soldier, DCN.deceitful, DCN.call, DCN.precipice].map(
+          (code) => all.filter((c) => c === code).length,
+        ),
+        [2, 3, 2, 3, 3],
+        "the Nightmare Deck's encounter cards are in the encounter deck",
+      );
+      assert.ok(
+        !all.some((c) => card(c).name === "Faithless Desecrator"),
+        "the setup card removes each Faithless Desecrator",
+      );
+      assert.equal(s.temple.map.length, 18, "the Island Map has 18 cards");
+      const originals = Object.values(s.temple.originalCodes);
+      assert.deepEqual(
+        [DCN.desecrated, DCN.foothills, DCN.cursedTemple].map(
+          (code) => originals.filter((c) => c === code).length,
+        ),
+        [2, 2, 2],
+        "the six Edge of the Temple cards join the Island Map",
+      );
+    }
+    // Three rows of six locations; the Edge of the Temple cards show only
+    // their shared side.
+    const templeCells = page.locator(
+      '[data-scenario-panel="temple"] [data-temple-map-cell]',
+    );
+    await templeCells.nth(17).waitFor();
+    assert.equal(await templeCells.count(), 18);
+    assert.equal(
+      await page
+        .locator('[data-scenario-panel="temple"] [data-temple-column="5"]')
+        .count(),
+      3,
+    );
+    assert.equal(
+      await page
+        .locator(
+          '[data-scenario-panel="temple"] img[src*="temple-edge-of-the-temple"]',
+        )
+        .count(),
+      6,
+    );
+    for (const code of [DCN.desecrated, DCN.foothills, DCN.cursedTemple])
+      assert.equal(
+        await page
+          .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+          .count(),
+        0,
+        "a facedown Edge card's identity stays hidden",
+      );
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/two Edge of the Temple columns/)
+      .waitFor();
+    await checkpoint("temple-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A King's Knight engaged, a Cursed Soldier in the staging area, a
+    // Sudden Precipice on the active location and an Edge of the Temple
+    // with 8 progress.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const take = (code) => {
+        for (const pile of [t.encounterDeck, t.encounterDiscard]) {
+          const i = pile.indexOf(code);
+          if (i >= 0) return pile.splice(i, 1);
+        }
+        throw Error(`${code} is not in the encounter deck`);
+      };
+      for (const code of [DCN.knight, DCN.soldier, DCN.precipice]) take(code);
+      const knight = make(t, DCN.knight);
+      knight.owner = 0;
+      t.engaged = [...t.engaged, knight];
+      t.staging = [...t.staging, make(t, DCN.soldier)];
+      t.activeLocation.attachments = [
+        ...t.activeLocation.attachments,
+        { id: `a${t.nextId++}`, code: DCN.precipice, exhausted: false },
+      ];
+      t.temple.outOfStaging.find((u) => u.code === DCN.edge).progress = 8;
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [DCN.knight, "King's Knight"],
+      [DCN.soldier, "Cursed Soldier"],
+      [DCN.precipice, "Sudden Precipice"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    {
+      const look = page
+        .getByRole("button", {
+          name: /^Look at Edge of the Temple, row \d, column \d: remove 8 progress$/,
+        })
+        .first();
+      await look.waitFor();
+      assert.ok(await look.isEnabled(), "8 progress pays for a look");
+    }
+    await checkpoint("temple-edge-of-the-temple", width);
     await view.c.close();
   }
   const p = await browser.newPage();

@@ -69,6 +69,48 @@ export const TEMPLE_LOST_FACES = [
   TEMPLE.cursed,
 ];
 export const TEMPLE_TEMPLE_FACES = [TEMPLE.grotto, TEMPLE.halls];
+/**
+ * Temple of the Deceived's Nightmare Deck (src/game/nightmare-temple.ts): its
+ * setup card, the six Edge of the Temple cards (their revealed sides are the
+ * runtime faces, behind the shared public Edge of the Temple side) and its
+ * encounter cards.
+ */
+export const TEMPLE_NIGHTMARE = {
+  card: "octgn:9e9e209e-9629-449e-9cc4-d345f68892b8",
+  /** The shared public side of the six Edge of the Temple cards. */
+  edge: "temple-edge-of-the-temple",
+  desecrated: "octgn:717d63f2-2674-4f20-af8f-2251bc4617f0",
+  foothills: "octgn:8a6687f9-25d5-47c2-8ceb-0fd9a37bd308",
+  cursed: "octgn:6a071291-7135-4137-b57a-20c97d242444",
+  knight: "octgn:56eebf01-713c-470e-beb1-cc141b8be928",
+  soldier: "octgn:bc3a69cf-4bf8-4473-aeb1-afeb233815d9",
+  deceitful: "octgn:3579da3e-dd28-41a3-b21b-e6dc49e417d7",
+  call: "octgn:b3e97670-b41b-45a7-9c47-7fb885fc1f04",
+  precipice: "octgn:724f33d4-1305-4ea1-a6ee-d4e6c8de01b3",
+};
+export const TEMPLE_EDGE_FACES = [
+  TEMPLE_NIGHTMARE.desecrated,
+  TEMPLE_NIGHTMARE.foothills,
+  TEMPLE_NIGHTMARE.cursed,
+];
+/** The shared public Uncharted sides of the map cards. */
+export const TEMPLE_UNCHARTED_FACES = [
+  TEMPLE.lost,
+  TEMPLE.temple,
+  TEMPLE_NIGHTMARE.edge,
+];
+/** A Nightmare mode game (its setup card's Island Map). */
+export const templeNightmare = (s: GameState) =>
+  !!s.nightmareMode && s.scenarioId === "temple-of-the-deceived";
+/** The Island Map's columns: in Nightmare mode, two Edge of the Temple columns precede the Temple column. */
+export const templeColumns = (s: GameState) => (templeNightmare(s) ? 6 : 5);
+/** The public Uncharted side of a map card, from its printed identity. */
+export const templeFrontOf = (original: string) =>
+  TEMPLE_TEMPLE_FACES.includes(original)
+    ? TEMPLE.temple
+    : TEMPLE_EDGE_FACES.includes(original)
+      ? TEMPLE_NIGHTMARE.edge
+      : TEMPLE.lost;
 export interface TempleMapCell {
   /** Canonical cN physical ID, independent of either hidden face or position. */
   id: string;
@@ -77,7 +119,10 @@ export interface TempleMapCell {
 }
 export interface TempleState {
   initialized: boolean;
-  /** Permanent positions; this metadata never duplicates a physical Unit. */
+  /**
+   * Positions (permanent, except for the Nightmare Deck's Deceitful Island);
+   * this metadata never duplicates a physical Unit.
+   */
   map: TempleMapCell[];
   activeId: string | null;
   travelUsed: boolean;
@@ -154,12 +199,15 @@ export function templeLocationsLeft(s: GameState): Unit[] {
     : [];
 }
 
-/** Map metadata and private faces must account for all 15 physical cards once. */
+/** Map metadata and private faces must account for all 15 (18 in Nightmare mode) physical cards once. */
 export function validateTemple(
   s: GameState,
   validUnit: (u: unknown) => boolean,
 ) {
   const q = s.temple;
+  const nightmare = templeNightmare(s);
+  const columns = templeColumns(s);
+  const size = 3 * columns;
   if (q === undefined) return s.scenarioId !== "temple-of-the-deceived";
   if (
     !q ||
@@ -188,7 +236,7 @@ export function validateTemple(
     ].includes(String(v));
   if (
     !Array.isArray(q.map) ||
-    q.map.length !== 15 ||
+    q.map.length !== size ||
     !Array.isArray(q.outOfStaging) ||
     !Array.isArray(q.setAside) ||
     !Array.isArray(q.victoryEnemies) ||
@@ -196,7 +244,7 @@ export function validateTemple(
   )
     return false;
   if (
-    q.outOfStaging.length > 15 ||
+    q.outOfStaging.length > size ||
     q.setAside.length > 4 ||
     q.victoryEnemies.length > 1 ||
     q.removedUnits.length > 2 ||
@@ -219,51 +267,63 @@ export function validateTemple(
         c.row > 2 ||
         !Number.isInteger(c.column) ||
         c.column < 0 ||
-        c.column > 4,
+        c.column >= columns,
     )
   )
     return false;
   if (
-    new Set(q.map.map((c) => c.id)).size !== 15 ||
-    new Set(q.map.map((c) => `${c.row}:${c.column}`)).size !== 15
+    new Set(q.map.map((c) => c.id)).size !== size ||
+    new Set(q.map.map((c) => `${c.row}:${c.column}`)).size !== size
   )
     return false;
-  if (q.map.some((c, i) => c.row !== Math.floor(i / 5) || c.column !== i % 5))
+  if (
+    q.map.some(
+      (c, i) => c.row !== Math.floor(i / columns) || c.column !== i % columns,
+    )
+  )
     return false;
   if (!record(q.originalCodes) || !record(q.hiddenBacks) || !record(q.lookedBy))
     return false;
   const units = templeMapUnits(s);
   if (
-    units.length !== 15 ||
-    new Set(units.map((u) => u.id)).size !== 15 ||
+    units.length !== size ||
+    new Set(units.map((u) => u.id)).size !== size ||
     q.map.some((c) => !units.some((u) => u.id === c.id))
   )
     return false;
   if (
-    Object.keys(q.originalCodes).length !== 15 ||
+    Object.keys(q.originalCodes).length !== size ||
     Object.keys(q.originalCodes).some((id) => !q.map.some((c) => c.id === id))
   )
     return false;
   const count = (code: string) =>
     Object.values(q.originalCodes).filter((c) => c === code).length;
+  // The Nightmare setup card removes 1 Jungle Path and both Cursed Temples
+  // and adds the six Edge of the Temple cards.
+  const copies = (c: string) =>
+    !nightmare ? 2 : c === TEMPLE.jungle ? 1 : c === TEMPLE.cursed ? 0 : 2;
   if (
-    TEMPLE_LOST_FACES.some((c) => count(c) !== 2) ||
+    TEMPLE_LOST_FACES.some((c) => count(c) !== copies(c)) ||
     count(TEMPLE.grotto) !== 1 ||
-    count(TEMPLE.halls) !== 2
+    count(TEMPLE.halls) !== 2 ||
+    TEMPLE_EDGE_FACES.some((c) => count(c) !== (nightmare ? 2 : 0))
   )
     return false;
   for (const cell of q.map) {
     const u = units.find((u) => u.id === cell.id)!;
     const original = q.originalCodes[cell.id];
-    const group = cell.column === 4 ? TEMPLE_TEMPLE_FACES : TEMPLE_LOST_FACES;
-    const front = cell.column === 4 ? TEMPLE.temple : TEMPLE.lost;
+    // Without Deceitful Island, the columns keep their printed groups.
+    const group = nightmare
+      ? [...TEMPLE_LOST_FACES, ...TEMPLE_EDGE_FACES, ...TEMPLE_TEMPLE_FACES]
+      : cell.column === 4
+        ? TEMPLE_TEMPLE_FACES
+        : TEMPLE_LOST_FACES;
+    const front = templeFrontOf(original);
     if (!group.includes(original) || (u.code !== original && u.code !== front))
       return false;
     if ((u.code === front) !== (q.hiddenBacks[u.id] === original)) return false;
   }
-  const hidden = units.filter((u) =>
-    [TEMPLE.lost, TEMPLE.temple].includes(u.code),
-  );
+  const hidden = units.filter((u) => TEMPLE_UNCHARTED_FACES.includes(u.code));
   if (
     Object.keys(q.hiddenBacks).length !== hidden.length ||
     Object.entries(q.lookedBy).some(
@@ -366,8 +426,7 @@ export function validateTemple(
     ...q.removedUnits,
   ];
   const mapCodes = new Set([
-    TEMPLE.lost,
-    TEMPLE.temple,
+    ...TEMPLE_UNCHARTED_FACES,
     ...Object.values(q.originalCodes),
   ]);
   if (

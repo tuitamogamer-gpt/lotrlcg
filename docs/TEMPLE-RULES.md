@@ -3,7 +3,9 @@
 This contract transcribes the original MEC50 insert and cached original card
 faces checked on 13 October 2026. [TEMPLE-SOURCES.md](TEMPLE-SOURCES.md) records
 their identities, hashes, recipes and printed corrections. It describes the
-original standard/easy adventure, without revised campaign or Nightmare rules.
+original standard/easy adventure; its Nightmare version is described
+[below](#nightmare-mode) and its Dream-chaser campaign version in the
+[campaign rules](DREAMCHASER-CAMPAIGN.md).
 
 ## Setup and the Island Map
 
@@ -139,6 +141,36 @@ new cards or duplicate physical IDs.
   attack. Her other Action spends one resource from a hero the controlling
   player controls to add a resource to her, once per round. If she leaves play,
   the players lose.
+
+## Nightmare mode
+
+The Nightmare Deck (recipe `N06.6`,
+[rules and cards](NIGHTMARE.md#temple-of-the-deceived-nightmare)) removes
+Jungle Path ×1 and Cursed Temple ×2 from the Island Map deck and Deeper into
+the Ruins ×1, Sunken Ruins ×3, Aimless Wandering ×2, Curse of the Downfallen ×2,
+Dwindling Supplies ×1 and Faithless Desecrator ×3 from the encounter deck. Its
+six Edge of the Temple cards join the map, which becomes a **three-row,
+six-column** grid: the nine Lost Island cards make the three leftmost columns,
+the six Edge of the Temple cards the two middle columns and the three Temple
+of the Deceived cards the rightmost column, each group shuffled. Edge of the
+Temple is a shared Uncharted side like Lost Island: 3 threat, a printed
+quest-point dash, no traits and no player card attachments; it flips after it
+becomes active, and its Action removes **eight** progress to look at its
+facedown side (Desecrated Ruins, Temple Foothills or Cursed Temple). The
+setup card's back also discards the player cards attached to the active
+location after it is explored, as the players travel away from it.
+
+Deceitful Island is the only effect that changes positions: it switches the
+active location with the location above, below or to its left (the first
+player chooses), then flips each adjacent revealed Lost Island or Edge of
+the Temple card back to that shared side, removing its progress and player
+card attachments. Every player keeps knowing that side, so it is recorded as
+looked at by all players. A Temple card keeps its side. Save validation then
+accepts any arrangement of the 18 physical cards, with each card's public
+side derived from its printed identity. Sudden Precipice stays attached to
+its map location, which never leaves play; the Island Map shows each
+location's attachments. Focused checks are in
+`tests/nightmare-temple.test.ts`.
 
 ## Player printed clauses
 

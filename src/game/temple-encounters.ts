@@ -50,12 +50,14 @@ import { resolveDoomed } from "./voice-isengard";
 import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import {
   TEMPLE as T,
+  TEMPLE_NIGHTMARE as TN,
   isGateKey,
   isTempleGuardian,
   templeActiveLocation,
   templeAdjacent,
   templeCell,
   templeLocationsLeft,
+  templeMapUnits,
   templeState,
 } from "./temple-support";
 
@@ -209,6 +211,11 @@ export function templeLocationFlipped(s: GameState, u: Unit): Effect[] {
     ];
   if ([T.halls, T.grotto].includes(u.code))
     return [fx("templeECGuardianReturn", { player, code: u.code })];
+  // The Nightmare Deck's Edge of the Temple cards (src/game/nightmare-temple.ts).
+  if (u.code === TN.desecrated)
+    return [fx("ntdDesecrated", { player, code: u.code })];
+  if (u.code === TN.cursed)
+    return [fx("ntdCursedTemple", { player, code: u.code })];
   return [];
 }
 export function templeAfterMapMove(
@@ -221,16 +228,33 @@ export function templeAfterMapMove(
     (templeCell(s, toId)?.column ?? 0) <= (templeCell(s, fromId)?.column ?? 0)
   )
     return [];
-  return allEngaged(s)
-    .filter((u) => u.code === T.profane && !u.blanked)
-    .map((u) =>
-      fx("templeECProfaneAttack", {
-        target: u.id,
-        player: ownerOf(s, u),
-        code: u.code,
-        text: `${name(u)} · Immediate attack against ${seatName(s, ownerOf(s, u))}`,
+  // The Nightmare Deck's Sudden Precipice, a Condition attached to the
+  // departed location: "Forced: After you travel from attached location to
+  // the right, deal 2 damage to each exhausted character."
+  const from = templeMapUnits(s).find((u) => u.id === fromId);
+  const precipices = (from?.attachments ?? []).filter(
+    (a) => a.code === TN.precipice && !a.blanked,
+  );
+  return [
+    ...allEngaged(s)
+      .filter((u) => u.code === T.profane && !u.blanked)
+      .map((u) =>
+        fx("templeECProfaneAttack", {
+          target: u.id,
+          player: ownerOf(s, u),
+          code: u.code,
+          text: `${name(u)} · Immediate attack against ${seatName(s, ownerOf(s, u))}`,
+        }),
+      ),
+    ...precipices.map((a) =>
+      fx("ntdPrecipice", {
+        source: a.id,
+        player: firstPlayer(s),
+        code: a.code,
+        text: "Sudden Precipice · Deal 2 damage to each exhausted character",
       }),
-    );
+    ),
+  ];
 }
 export function templeEncounterStart(s: GameState): Effect[] {
   return live(s) && ruins(s)

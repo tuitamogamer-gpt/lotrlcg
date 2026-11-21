@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2883,
+    "encounterCards": 2893,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 4105,
-    "pending": 78
+    "scripted": 4114,
+    "pending": 69
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 338
+    "scripted": 339
   },
   "registeredCodes": [
     "01001",
@@ -1791,6 +1791,7 @@
     "octgn:356f37d9-34c9-4fae-864d-c34dff7eaaa4",
     "octgn:3574e1dd-d730-485e-8c2b-16fb7d52f78b",
     "octgn:35787b76-d4d5-4bff-bc05-a270b6e4d98e",
+    "octgn:3579da3e-dd28-41a3-b21b-e6dc49e417d7",
     "octgn:35924e07-9473-4701-855a-11f69dc83185",
     "octgn:35a5ec34-97ea-4b9e-9fdc-6a00c39c504d",
     "octgn:35b3cfde-9964-4173-88c5-e5e5cb8f84ac",
@@ -2485,6 +2486,7 @@
     "octgn:56b24d25-a04a-418b-add0-7b1971dae38e",
     "octgn:56da2e72-9580-4537-95e9-c138b4d9480e",
     "octgn:56e98bd5-c952-436e-b552-832031d4bb20",
+    "octgn:56eebf01-713c-470e-beb1-cc141b8be928",
     "octgn:56fbff9f-2518-4ea3-918b-caf14a93738d",
     "octgn:57107fd1-0092-41d3-ae9d-8ff6c06933eb",
     "octgn:572ba251-0abb-4a81-b38b-d695123b7219",
@@ -2657,6 +2659,7 @@
     "octgn:69b6719b-07f5-4514-b747-21fd0e2e9463",
     "octgn:69c3d8f9-750a-4903-be32-588898fd766e",
     "octgn:6a03ecc3-716a-4499-9412-b3838c4b1cba",
+    "octgn:6a071291-7135-4137-b57a-20c97d242444",
     "octgn:6a24a5e8-80e9-4bba-af55-64be11742dde",
     "octgn:6a24bcba-e069-4951-9cb1-59b48d291c74",
     "octgn:6a3ae84d-6c74-4fbf-9254-b8c1d17c8384",
@@ -2725,6 +2728,7 @@
     "octgn:715625a1-320e-478c-afd3-bec7111105f2",
     "octgn:715a7c96-17de-4e8d-8771-a8ae0e36e732",
     "octgn:7178f6f6-c2da-4f74-9c9a-9ec43c79232d",
+    "octgn:717d63f2-2674-4f20-af8f-2251bc4617f0",
     "octgn:718d940a-2b58-4986-af10-06a81546bc9f",
     "octgn:71a2ca21-ff50-4a8a-b30b-7c8eaf6bf6b6",
     "octgn:71d7dd78-a967-43dd-ab73-e46a5d4d4519",
@@ -2734,6 +2738,7 @@
     "octgn:721bbc14-f14c-4464-9963-55a77ab2d9bc",
     "octgn:72230f13-1064-464a-aa14-283a1c61e2e6",
     "octgn:72276508-67e0-4133-8b9f-41fb8d44ffa9",
+    "octgn:724f33d4-1305-4ea1-a6ee-d4e6c8de01b3",
     "octgn:726db6b7-4ff6-4ebc-b1c3-0e52b0fd3c95",
     "octgn:7271da0e-570b-461c-b632-b6f82ab2c146",
     "octgn:7275de5f-3f2f-47e0-a90a-58fc45c3bdcf",
@@ -3007,6 +3012,7 @@
     "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
     "octgn:8a4aebc3-32db-4b2f-965c-548058440a7c",
     "octgn:8a5f4d2e-9558-413f-9913-376ec6a0c184",
+    "octgn:8a6687f9-25d5-47c2-8ceb-0fd9a37bd308",
     "octgn:8a703700-ca1b-46fa-b5fc-67544c5ad254",
     "octgn:8a7a0942-0bd2-44b1-9a9b-057f38b225e9",
     "octgn:8aa74679-5918-46ca-99b1-18cdb150f17d",
@@ -3211,6 +3217,7 @@
     "octgn:9e490f6c-3873-4cd7-8c80-98a6640b9043",
     "octgn:9e678947-2687-4b3b-b98c-f05f289793ff",
     "octgn:9e864a49-89b3-4ea0-be1f-f4336adfa088",
+    "octgn:9e9e209e-9629-449e-9cc4-d345f68892b8",
     "octgn:9e9e76b7-ef3c-4c7c-baf2-061dc0d2ccd0",
     "octgn:9eac32f5-dd08-4d1e-99bd-0722984cd32f",
     "octgn:9eb0298a-cb92-426d-87c6-37749aaae44b",
@@ -3419,6 +3426,7 @@
     "octgn:b34e79d4-7806-4fd9-b12d-bb291e44f354",
     "octgn:b35ad07f-7862-4479-bc04-7dcf76e7cbc5",
     "octgn:b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8",
+    "octgn:b3e97670-b41b-45a7-9c47-7fb885fc1f04",
     "octgn:b41e6b34-4d6a-47de-9b07-b039013efbc5",
     "octgn:b42cd34e-7eb6-4163-8ef6-4a2f66f45439",
     "octgn:b432d02a-d0ca-496c-96c0-e8f5753b2e17",
@@ -3559,6 +3567,7 @@
     "octgn:bbbad333-b966-4826-b98d-1a9e8b6a1c45",
     "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
     "octgn:bc041e0b-dd7f-4b82-8eb0-d155b1b08398",
+    "octgn:bc3a69cf-4bf8-4473-aeb1-afeb233815d9",
     "octgn:bc43ae57-6010-4924-919c-b37d1e33b958",
     "octgn:bc4f2e17-197c-4131-ad81-b892fe66ad88",
     "octgn:bc629269-aa5b-4f5c-b071-c1413f85d24c",
@@ -4299,6 +4308,7 @@
     "rc138",
     "roam-tiny-enemy",
     "roam-urdug-enemy",
+    "temple-edge-of-the-temple",
     "temple-lost-island",
     "temple-uncharted-temple",
     "wilds-haldan"
@@ -4678,7 +4688,7 @@
     {
       "product": "temple-of-the-deceived-nightmare",
       "total": 9,
-      "scripted": 0,
+      "scripted": 9,
       "player": 0,
       "playerScripted": 0
     },
@@ -18540,7 +18550,7 @@
       "name": "Deceitful Island",
       "type": "treachery",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived-nightmare"
     },
     {
@@ -24164,7 +24174,7 @@
       "name": "King's Knight",
       "type": "enemy",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived-nightmare"
     },
     {
@@ -25508,7 +25518,7 @@
       "name": "Edge of the Temple",
       "type": "location",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived-nightmare"
     },
     {
@@ -26068,7 +26078,7 @@
       "name": "Edge of the Temple",
       "type": "location",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived-nightmare"
     },
     {
@@ -26156,7 +26166,7 @@
       "name": "Sudden Precipice",
       "type": "treachery",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived-nightmare"
     },
     {
@@ -28356,7 +28366,7 @@
       "name": "Edge of the Temple",
       "type": "location",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived-nightmare"
     },
     {
@@ -29996,7 +30006,7 @@
       "name": "Temple of the Deceived",
       "type": "nightmare",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived-nightmare"
     },
     {
@@ -31708,7 +31718,7 @@
       "name": "Call of the Curse",
       "type": "treachery",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived-nightmare"
     },
     {
@@ -32852,7 +32862,7 @@
       "name": "Cursed Soldier",
       "type": "enemy",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived-nightmare"
     },
     {
@@ -39988,8 +39998,8 @@
       "id": "N06.6",
       "name": "Temple of the Deceived (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "temple-of-the-deceived",
+      "state": "scripted"
     },
     {
       "id": "N06.7",

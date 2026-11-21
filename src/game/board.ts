@@ -2331,6 +2331,9 @@ export function templeMapLocationExplored(s: GameState, u: Unit) {
         ]
       : burglarEffects),
   );
+  // The departed location was the active location (the Nightmare setup
+  // card's Forced effect resolves first).
+  batch4Scenario(s).explored?.(s, u, true);
 }
 
 export function progressLocation(s: GameState, u: Unit, value: number) {

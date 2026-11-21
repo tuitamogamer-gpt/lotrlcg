@@ -3,10 +3,9 @@
 This import covers all ten original Adventure Pack player designs and the
 original standard/easy adventure for solo and 1–4 players in local hot-seat.
 Ered Luin Miner already had an implementation, so the pack adds nine player
-definitions. The original pack contains 60 physical cards. Revised Dream-chaser
-campaign and Nightmare variants retain
-separate support gates. The next chronological Adventure Pack is
-The Drowned Ruins.
+definitions. The original pack contains 60 physical cards. The revised
+Dream-chaser campaign and the Nightmare Deck are described in their own rules.
+The next chronological Adventure Pack is The Drowned Ruins.
 
 ## Sources and setup
 

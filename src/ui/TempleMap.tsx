@@ -1,5 +1,5 @@
 import { useId, useRef } from "react";
-import type { KeyboardEvent } from "react";
+import type { CSSProperties, KeyboardEvent } from "react";
 import type { Action, Card, GameState } from "../game/types";
 import { card } from "../game/cards";
 import { templePublicState } from "../game/temple";
@@ -21,6 +21,7 @@ export function TempleMap({
   const map = templePublicState(s);
   if (!map) return null;
   const active = map.cells.find((cell) => cell.active);
+  const columnWord = map.columns === 6 ? "six" : "five";
 
   const navigateMap = (
     event: KeyboardEvent<HTMLButtonElement>,
@@ -88,11 +89,15 @@ export function TempleMap({
         className="temple-map-scroll"
         ref={scrollRef}
         role="region"
-        aria-label="Three-row, five-column island map"
+        aria-label={`Three-row, ${columnWord}-column island map`}
         aria-describedby={descriptionId}
         tabIndex={0}
       >
-        <div className="temple-map-grid" role="list">
+        <div
+          className="temple-map-grid"
+          role="list"
+          style={{ "--temple-columns": map.columns } as CSSProperties}
+        >
           {[...map.cells]
             .sort((a, b) => a.row - b.row || a.column - b.column)
             .map((cell) => {
@@ -103,7 +108,7 @@ export function TempleMap({
                 imagesrc: cell.image,
               };
               const coordinate = `row ${cell.row + 1}, column ${cell.column + 1}`;
-              const lostIsland = cell.code === "temple-lost-island";
+              const peekCost = cell.peekCost;
               return (
                 <article
                   key={cell.id}
@@ -144,6 +149,30 @@ export function TempleMap({
                     <Art c={visibleCard} imageSrc={cell.image} />
                   </button>
                   <strong className="temple-cell-name">{cell.name}</strong>
+                  {cell.attachments.length > 0 && (
+                    <div
+                      className="temple-cell-attachments"
+                      aria-label={`Attached to ${cell.name}, ${coordinate}`}
+                    >
+                      {cell.attachments.map((a) => {
+                        const attached = {
+                          ...card(a.code),
+                          name: a.name,
+                          imagesrc: a.image,
+                        };
+                        return (
+                          <button
+                            key={a.id}
+                            className="temple-cell-attachment"
+                            aria-label={`Inspect ${a.name}, attached to ${cell.name}, ${coordinate}`}
+                            onClick={() => inspect(attached)}
+                          >
+                            <Art c={attached} imageSrc={a.image} />
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
                   <span className="temple-cell-progress">
                     {cell.staged ? `${cell.threat} threat · ` : ""}
                     {cell.progress}
@@ -214,19 +243,19 @@ export function TempleMap({
                       Flip the secret
                     </button>
                   )}
-                  {lostIsland && cell.progress >= 4 && (
+                  {peekCost !== null && cell.progress >= peekCost && (
                     <button
                       className="temple-map-action temple-map-peek"
                       disabled={cell.peekProblem !== null}
                       title={
                         cell.peekProblem ??
-                        "Remove 4 progress to look at the hidden side."
+                        `Remove ${peekCost} progress to look at the hidden side.`
                       }
                       aria-description={cell.peekProblem ?? undefined}
-                      aria-label={`Look at Lost Island, ${coordinate}: remove 4 progress`}
+                      aria-label={`Look at ${cell.name}, ${coordinate}: remove ${peekCost} progress`}
                       onClick={() => dispatch({ type: "ABILITY", id: cell.id })}
                     >
-                      Look · remove 4 progress
+                      Look · remove {peekCost} progress
                     </button>
                   )}
                 </article>

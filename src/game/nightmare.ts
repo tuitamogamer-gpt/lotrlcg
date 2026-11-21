@@ -750,6 +750,21 @@ export const NIGHTMARE_DC = {
   slithering: "octgn:5e1bbe70-dae7-404a-a420-93e393538fa3",
   crashing: "octgn:a926afdc-c770-4315-b4eb-6b417e765c55",
   maelstrom: "octgn:58f19ebb-2e0f-4ff9-9ec1-1984e9faca02",
+  /**
+   * Temple of the Deceived's setup card and Nightmare Deck (the six Edge of
+   * the Temple cards join the Island Map; their revealed sides are their
+   * runtime faces, behind the shared public Edge of the Temple side).
+   */
+  templeCard: "octgn:9e9e209e-9629-449e-9cc4-d345f68892b8",
+  edge: "temple-edge-of-the-temple",
+  desecrated: "octgn:717d63f2-2674-4f20-af8f-2251bc4617f0",
+  foothills: "octgn:8a6687f9-25d5-47c2-8ceb-0fd9a37bd308",
+  cursedTemple: "octgn:6a071291-7135-4137-b57a-20c97d242444",
+  knight: "octgn:56eebf01-713c-470e-beb1-cc141b8be928",
+  soldier: "octgn:bc3a69cf-4bf8-4473-aeb1-afeb233815d9",
+  deceitful: "octgn:3579da3e-dd28-41a3-b21b-e6dc49e417d7",
+  call: "octgn:b3e97670-b41b-45a7-9c47-7fb885fc1f04",
+  precipice: "octgn:724f33d4-1305-4ea1-a6ee-d4e6c8de01b3",
 } as const;
 
 interface NightmareDeck {
@@ -1480,6 +1495,21 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Giant Arm": 1,
     },
   },
+  "temple-of-the-deceived": {
+    card: NIGHTMARE_DC.templeCard,
+    // Jungle Path and both Cursed Temples are Island Map cards; the
+    // scenario's setup applies the removals to both piles.
+    removals: {
+      "Jungle Path": 1,
+      "Cursed Temple": 2,
+      "Deeper into the Ruins": 1,
+      "Sunken Ruins": 3,
+      "Aimless Wandering": 2,
+      "Curse of the Downfallen": 2,
+      "Dwindling Supplies": 1,
+      "Faithless Desecrator": 3,
+    },
+  },
   "shelobs-lair": {
     card: NIGHTMARE_LOS.lairCard,
     removals: {
@@ -2008,6 +2038,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "the-thing-in-the-depths")
     return [
       "The Thing in the Depths · Nightmare mode: after The Thing in the Depths enters play, it attacks each player in turn order. At stage 3, a quest phase begins by revealing a location from the encounter deck while there are fewer locations in play than players, and each Tentacle enemy in play resolves its Grapple keyword at the end of the refresh phase.",
+    ];
+  if (s.scenarioId === "temple-of-the-deceived")
+    return [
+      "Temple of the Deceived · Nightmare mode: the Island Map has three Lost Island columns, then two Edge of the Temple columns, then the Temple column; after the active location is explored, the player cards attached to it are discarded.",
     ];
   if (s.scenarioId === "shelobs-lair")
     return [
