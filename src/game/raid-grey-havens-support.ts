@@ -1,6 +1,7 @@
 import encounters from "../data/raid-grey-havens-encounter-cards.json";
 import quests from "../data/raid-grey-havens-quest-cards.json";
 import recipes from "../data/raid-grey-havens-recipes.json";
+import nightmareCards from "../data/nightmare-encounter-cards.json";
 import type { Card, GameState, Unit } from "./types";
 import { dcBase, dcIs } from "./dreamchaser-campaign-support";
 
@@ -31,6 +32,15 @@ export const RAID = {
   leader: code("Raid Leader"),
   hardened: code("Battle-Hardened"),
 };
+/** The Nightmare Deck's cards the scenario's own rules refer to (docs/NIGHTMARE.md). */
+export const RAID_NIGHTMARE = {
+  advance: "octgn:ccba3aa6-5129-47d8-839c-b20aff126e62",
+  pyromaniac: "octgn:5d491420-2c69-41b8-8023-a7020f5a33df",
+  tower: "octgn:98763910-365c-452a-b7ed-24512c3962a8",
+};
+const NIGHTMARE_ENCOUNTERS = (nightmareCards as Card[]).filter(
+  (c) => c.encounter_set === "Raid on the Grey Havens - Nightmare",
+);
 export interface RaidGreyHavensState {
   initialized: boolean;
   setAside: Unit[];
@@ -66,7 +76,9 @@ export function validateRaidGreyHavens(
       (u) =>
         validUnit(u) &&
         /Aflame\s+\d+/.test(
-          encounters.find((c) => c.code === dcBase(u.code))?.text ?? "",
+          [...(encounters as Card[]), ...NIGHTMARE_ENCOUNTERS].find(
+            (c) => c.code === dcBase(u.code),
+          )?.text ?? "",
         ),
     ) ||
     new Set([...q.setAside, ...q.burned].map((u) => u.id)).size !==

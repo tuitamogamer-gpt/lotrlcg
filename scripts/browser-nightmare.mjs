@@ -4734,6 +4734,111 @@ try {
       );
     }
     await checkpoint("fate-guardian", width);
+    // Raid on the Grey Havens in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-raid-on-the-grey-havens").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "raid-on-the-grey-havens");
+    assert.equal(s.nightmareMode, true);
+    {
+      const all = [
+        ...s.encounterDeck,
+        ...s.encounterDiscard,
+        ...s.staging.map((u) => u.code),
+      ];
+      assert.deepEqual(
+        [
+          GH.pillager,
+          GH.pyromaniac,
+          GH.marauder,
+          GH.tower,
+          GH.sudden,
+          GH.infiltration,
+          GH.narelenya,
+          GH.dawnStar,
+          GH.silverWing,
+        ].map((code) => all.filter((c) => c === code).length),
+        [3, 3, 1, 2, 3, 2, 1, 1, 1],
+        "the Nightmare Deck is in the encounter deck",
+      );
+      assert.ok(
+        !all.some((c) =>
+          ["Corsair Arsonist", "Elven Wave-runner"].includes(card(c).name),
+        ),
+        "the setup card removes each Corsair Arsonist and Elven Wave-runner",
+      );
+      assert.equal(
+        s.staging.filter((u) => card(u.code).name === "Dream-chaser").length,
+        1,
+        "the setup search adds the Dream-chaser",
+      );
+    }
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/Captain Sahír and Na'asiyah cannot have attachments/)
+      .waitFor();
+    await checkpoint("raid-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A Corsair Pillager engaged; a Corsair Pyromaniac, a Burning Tower and
+    // the three Nightmare Ships in the staging area.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const pillager = make(t, GH.pillager);
+      pillager.owner = 0;
+      t.engaged = [...t.engaged, pillager];
+      const ships = [GH.narelenya, GH.dawnStar, GH.silverWing].filter(
+        (code) => !t.staging.some((u) => u.code === code),
+      );
+      t.encounterDeck = t.encounterDeck.filter((c) => !ships.includes(c));
+      t.staging = [
+        ...t.staging,
+        make(t, GH.pyromaniac),
+        make(t, GH.tower),
+        ...ships.map((code) => make(t, code)),
+      ];
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [GH.pillager, "Corsair Pillager"],
+      [GH.pyromaniac, "Corsair Pyromaniac"],
+      [GH.tower, "Burning Tower"],
+      [GH.narelenya, "Nárelenya"],
+      [GH.dawnStar, "Dawn Star"],
+      [GH.silverWing, "Silver Wing"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    await checkpoint("raid-pyromaniac", width);
     await view.c.close();
   }
   const p = await browser.newPage();

@@ -1308,6 +1308,8 @@ export interface GameState {
     nmExcess?: number;
     /** Growing Stench's shadow on Shelob (Shelob's Lair's Nightmare Deck): resources placed on her if this attack destroys a character, once for each copy. */
     nlrStench?: number;
+    /** Infiltration's shadow (Raid on the Grey Havens' Nightmare Deck): the attack's damage to a defender is dealt to an Aflame location instead. */
+    nrdInfiltration?: boolean;
     defenderIds?: string[];
     ignoreDefense?: boolean;
     returnToStaging?: boolean;

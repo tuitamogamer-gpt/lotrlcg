@@ -3,8 +3,10 @@ import type { DamageContext } from "./damage-context";
 import {
   RAID as R,
   RAID_ENCOUNTERS,
+  RAID_NIGHTMARE as RN,
   RAID_RECIPES,
 } from "./raid-grey-havens-support";
+import { nightmareEncounterDeck, nightmareLive } from "./nightmare";
 import { card, name } from "./cards";
 import {
   choose,
@@ -80,6 +82,8 @@ const enemies = (s: GameState) =>
 const raiders = (s: GameState) => enemies(s).filter((u) => trait(u, "Raider"));
 const damageLocations = (s: GameState) =>
   locations(s).filter((u) => raidAflame(u) > 0);
+/** The Aflame locations in play (the staging area and the active location). */
+export const raidAflameLocations = (s: GameState) => damageLocations(s);
 export const raidAflame = (u: Unit) =>
   !u.blanked || u.printedKeywordsPreserved
     ? Number(/Aflame\s+(\d+)/i.exec(card(u.code).text ?? "")?.[1] ?? 0)
@@ -161,12 +165,39 @@ export function setupRaidGreyHavens(s: GameState) {
           RAID_ENCOUNTERS.some((v) => v.code === c.code),
       )
       .flatMap((c) => Array<string>(c.quantity).fill(c.code));
-  s.encounterDeck = pile("sharedEncounterDeck");
+  // Nightmare mode: the setup card's removals, and the Dream-chaser in the
+  // encounter deck, where its setup search finds it.
+  const nightmare = nightmareLive(s);
+  s.encounterDeck = nightmare
+    ? [
+        ...nightmareEncounterDeck(s.scenarioId, pile("sharedEncounterDeck")),
+        R.dream,
+      ]
+    : pile("sharedEncounterDeck");
   s.raidGreyHavens = {
     initialized: false,
-    setAside: pile("sharedSetAside").map((c) => make(s, c)),
+    setAside: pile("sharedSetAside")
+      .filter((c) => !nightmare || c !== R.dream)
+      .map((c) => make(s, c)),
     burned: [],
   };
+}
+/** The setup's Aflame locations, discarded from the shuffled encounter deck. */
+function raidSetupAflame(s: GameState) {
+  shuffle(s, s.encounterDeck);
+  let remaining = playerOrder(s).length;
+  while (remaining > 0 && s.encounterDeck.length) {
+    const co = s.encounterDeck.shift()!;
+    const v = make(s, co);
+    if (raidAflame(v) > 0) {
+      s.staging.push(v);
+      remaining--;
+    } else s.encounterDiscard.push(co);
+  }
+  s.encounterDeck.push(...s.encounterDiscard.splice(0));
+  shuffle(s, s.encounterDeck);
+  // The campaign card's setup follows the scenario's.
+  if (isDreamchaserGame(s)) prepend(s, ...dreamchaserRaidReady(s));
 }
 export function raidOpeningHandsKept(s: GameState) {
   if (!isRaid(s) || s.raidGreyHavens!.initialized) return false;
@@ -221,7 +252,16 @@ export function raidDamageLocation(
   if (value <= 0) return false;
   u.damage += value;
   log(s, `${name(u)} takes ${value} fire damage.`, "danger");
+  // Burning Tower (Nightmare): "Forced: After damage is placed on Burning
+  // Tower, choose X characters, where X is the amount of damage on Burning
+  // Tower. Deal 1 damage to each chosen character."
+  const tower = nightmareLive(s) && u.code === RN.tower && !u.blanked;
   if (u.damage >= raidAflame(u)) raidBurn(s, u);
+  if (tower)
+    prepend(
+      s,
+      fx("nrdTower", { value: u.damage, code: u.code, player: firstPlayer(s) }),
+    );
   return true;
 }
 function raidBurn(s: GameState, u: Unit) {
@@ -243,14 +283,36 @@ function raidBurn(s: GameState, u: Unit) {
     effects.push(fx("raidCaravelBurn", { player: firstPlayer(s) }));
   if (s.staging.some((l) => isBurn(l) && !l.blanked))
     effects.push(fx("raidHavensBurn", { player: firstPlayer(s) }));
+  // Corsair Pyromaniac (Nightmare): "Forced: After a card is placed
+  // underneath The Havens Burn, place 1 resource on Corsair Pyromaniac."
+  if (
+    nightmareLive(s) &&
+    enemies(s).some((v) => v.code === RN.pyromaniac && !v.blanked)
+  )
+    effects.push(
+      fx("nrdPyromaniac", {
+        code: RN.pyromaniac,
+        text: "Corsair Pyromaniac · place 1 resource on each Corsair Pyromaniac",
+        player: firstPlayer(s),
+      }),
+    );
   ordered(s, effects, "Choose the next burning-location Forced effect");
 }
 /** Sahír cancels only the points for which he can discard a token. */
 export function raidDamageAmount(s: GameState, u: Unit, amount: number) {
   if (!isRaid(s) || u.code !== R.sahir || u.blanked || amount <= 0)
     return amount;
-  const cancelled = Math.min(amount, u.resources);
-  u.resources -= cancelled;
+  // Sahír's Advance (Nightmare) 2B: "Resources on Na'asiyah are considered
+  // to be on Captain Sahír, as well (and can be removed as if they were on
+  // him)." His own are discarded first.
+  const naasiyah =
+    nightmareLive(s) && s.stage === 2
+      ? enemies(s).find((v) => v.code === R.naasiyah)
+      : undefined;
+  const cancelled = Math.min(amount, u.resources + (naasiyah?.resources ?? 0));
+  const own = Math.min(cancelled, u.resources);
+  u.resources -= own;
+  if (naasiyah) naasiyah.resources -= cancelled - own;
   if (cancelled)
     log(
       s,
@@ -388,7 +450,8 @@ export function raidCombatEnd(s: GameState): Effect[] {
     : [];
 }
 export function raidQuestProgress(s: GameState, value: number) {
-  if (!isRaid(s) || s.stage !== 2) return false;
+  // The Nightmare Deck's Sahír's Advance has no such effect.
+  if (!isRaid(s) || s.stage !== 2 || nightmareLive(s)) return false;
   prepend(s, fx("raidRemoveFire", { value, player: firstPlayer(s) }));
   return true;
 }
@@ -410,6 +473,16 @@ export function raidAdvance(s: GameState) {
     prepend(s, fx("raidStageTwo", { player: firstPlayer(s) }));
   } else if (
     s.stage === 2 &&
+    nightmareLive(s) &&
+    s.victoryCards?.includes(R.sahir) &&
+    s.victoryCards.includes(R.naasiyah)
+  ) {
+    // Sahír's Advance (Nightmare) 2B: "If both Captain Sahír and Na'asiyah
+    // are in the victory display, the players win the game."
+    win(s, "Captain Sahír and Na'asiyah are defeated.");
+  } else if (
+    s.stage === 2 &&
+    !nightmareLive(s) &&
     s.victoryCards?.includes(R.sahir) &&
     locations(s).every((u) => u.damage === 0)
   ) {
@@ -566,6 +639,7 @@ export function raidShadow(s: GameState, code: string) {
 }
 const SHARED = new Set([
   "raidSetup",
+  "raidSetupAflame",
   "raidStageTwo",
   "raidEliteEntered",
   "raidStageTwoResources",
@@ -605,7 +679,14 @@ export function raidEffect(s: GameState, e: Effect) {
     case "raidSetup": {
       if (!q) break;
       q.initialized = true;
-      for (const co of [R.burn, R.dream, R.ravager]) {
+      // Nightmare mode: "Instead of adding the Dream-chaser to the staging
+      // area during setup, each player must search the encounter deck for a
+      // different unique location and add it to the staging area, one of
+      // which must be the Dream-chaser."
+      const nightmare = nightmareLive(s);
+      for (const co of nightmare
+        ? [R.burn, R.ravager]
+        : [R.burn, R.dream, R.ravager]) {
         const index = q.setAside.findIndex((u) => u.code === co);
         if (index >= 0) {
           const v = q.setAside.splice(index, 1)[0];
@@ -621,22 +702,20 @@ export function raidEffect(s: GameState, e: Effect) {
           if (card(co).type_code === "enemy") enemyAddedToStaging(s, v);
         }
       }
-      shuffle(s, s.encounterDeck);
-      let remaining = playerOrder(s).length;
-      while (remaining > 0 && s.encounterDeck.length) {
-        const co = s.encounterDeck.shift()!;
-        const v = make(s, co);
-        if (raidAflame(v) > 0) {
-          s.staging.push(v);
-          remaining--;
-        } else s.encounterDiscard.push(co);
+      if (nightmare) {
+        prepend(
+          s,
+          fx("nrdShips", { player: firstPlayer(s) }),
+          fx("raidSetupAflame", { player: firstPlayer(s) }),
+        );
+        break;
       }
-      s.encounterDeck.push(...s.encounterDiscard.splice(0));
-      shuffle(s, s.encounterDeck);
-      // The campaign card's setup follows the scenario's.
-      if (isDreamchaserGame(s)) prepend(s, ...dreamchaserRaidReady(s));
+      raidSetupAflame(s);
       break;
     }
+    case "raidSetupAflame":
+      raidSetupAflame(s);
+      break;
     case "raidStageTwo":
       if (q) {
         const elites = q.setAside.splice(0);

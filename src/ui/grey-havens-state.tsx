@@ -203,7 +203,9 @@ export function GreyHavensQuestGoals({ s }: { s: GameState }) {
           <span>
             {s.stage === 1
               ? `Place 18 quest progress · ${Math.min(18, s.progress)} / 18`
-              : "Defeat Captain Sahír and remove all damage from locations to win."}
+              : s.nightmareMode
+                ? "Defeat Captain Sahír and Na'asiyah to win."
+                : "Defeat Captain Sahír and remove all damage from locations to win."}
           </span>
           <span>Prevent the fires from consuming the Havens.</span>
         </>

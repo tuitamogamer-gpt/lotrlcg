@@ -17,6 +17,7 @@ import { fasCurrentQuest } from "./flies-spiders-support";
 import {
   NIGHTMARE_AA,
   NIGHTMARE_DD,
+  NIGHTMARE_GH,
   NIGHTMARE_KD,
   NIGHTMARE_SOM,
 } from "./nightmare";
@@ -138,6 +139,14 @@ export function mainQuestCode(s: GameState): string | undefined {
     s.nightmareMode
   )
     return NIGHTMARE_AA.ettenQuest;
+  // Raid on the Grey Havens (Nightmare): stage 2, the Nightmare Deck's
+  // Sahír's Advance.
+  if (
+    s.scenarioId === "raid-on-the-grey-havens" &&
+    s.stage === 2 &&
+    s.nightmareMode
+  )
+    return NIGHTMARE_GH.advance;
   const stage = scenario(s.scenarioId).stages[s.stage - 1];
   return stage && "cardCode" in stage
     ? stage.cardCode

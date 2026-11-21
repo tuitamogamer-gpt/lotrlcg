@@ -2820,6 +2820,10 @@ export function composeEredPool(
       h.travelBegin?.(s);
       p.travelBegin?.(s);
     },
+    playerAttackResolved: (s, enemy, ids, amount, remaining) => {
+      h.playerAttackResolved?.(s, enemy, ids, amount, remaining);
+      p.playerAttackResolved?.(s, enemy, ids, amount, remaining);
+    },
     check: (s) => {
       h.check?.(s);
       p.check?.(s);

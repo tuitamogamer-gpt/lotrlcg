@@ -707,6 +707,21 @@ export const NIGHTMARE_GH = {
   steps: "octgn:2bb3f0dd-6028-4cd5-bfdc-3d12f9b69c92",
   flora: "octgn:406c33fc-8f5d-4d1d-a635-eb6ae9c33091",
   folly: "octgn:6a03ecc3-716a-4499-9412-b3838c4b1cba",
+  /**
+   * Raid on the Grey Havens' setup card and Nightmare Deck (its stage 2,
+   * Sahír's Advance, and three unique Ship locations among them).
+   */
+  raidCard: "octgn:a33274da-588d-4430-b730-0e82942c0605",
+  advance: "octgn:ccba3aa6-5129-47d8-839c-b20aff126e62",
+  pillager: "octgn:c4993a31-1e07-469c-a3cb-13e90e44253f",
+  pyromaniac: "octgn:5d491420-2c69-41b8-8023-a7020f5a33df",
+  marauder: "octgn:4a9282c0-44e5-4438-9b97-4b93dc29282d",
+  narelenya: "octgn:e0c17eeb-3231-49a4-a807-1e176247573c",
+  dawnStar: "octgn:7e8c1439-0d73-459d-b3d9-29c7c2c56e76",
+  silverWing: "octgn:f40d0756-8603-4bf3-ad66-2890552bd60e",
+  tower: "octgn:98763910-365c-452a-b7ed-24512c3962a8",
+  sudden: "octgn:6e765a17-9c2e-4b30-b023-5f08450553c4",
+  infiltration: "octgn:b52b72ae-574d-4736-96d6-3531a0aae7ae",
 } as const;
 
 interface NightmareDeck {
@@ -1401,6 +1416,17 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Drowned Dead": 1,
     },
   },
+  "raid-on-the-grey-havens": {
+    card: NIGHTMARE_GH.raidCard,
+    // The scenario's setup applies the removals and shuffles the
+    // Dream-chaser into the encounter deck for the setup card's search.
+    removals: {
+      "Corsair Arsonist": 3,
+      "Elven Wave-runner": 2,
+      "Umbar Raider": 1,
+    },
+    questRemovals: { "Sahír's Advance": 1 },
+  },
   "shelobs-lair": {
     card: NIGHTMARE_LOS.lairCard,
     removals: {
@@ -1917,6 +1943,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "the-fate-of-numenor")
     return [
       "The Fate of Númenor · Nightmare mode: progress cannot be placed on non-Uncharted locations in the staging area; while 3 or fewer double-sided locations are in the victory display, travelling to Shrine to Morgoth returns it to the staging area on its Lost Island side, and the Lost Islands lose their progress and are shuffled before the players choose a new location to travel to.",
+    ];
+  if (s.scenarioId === "raid-on-the-grey-havens")
+    return [
+      "Raid on the Grey Havens · Nightmare mode: Captain Sahír and Na'asiyah cannot have attachments; during setup, each player added a different unique location from the encounter deck to the staging area, the Dream-chaser among them. Stage 2 is the Nightmare Deck's Sahír's Advance: the players win when Captain Sahír and Na'asiyah are both in the victory display.",
     ];
   if (s.scenarioId === "shelobs-lair")
     return [

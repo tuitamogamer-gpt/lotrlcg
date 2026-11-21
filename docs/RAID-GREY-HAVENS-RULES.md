@@ -30,6 +30,10 @@ Arsonist searches the highest Aflame value in deck and discard; Pillaged Ship re
 
 Every printed shadow has a separate handler. Burning Piers' shadow moves the actual shadow card to staging, removing it from the attacking enemy's shadow pile. Fires Spread's after-kill shadow uses actual combat destruction, and remains cancelable through the normal shadow window. Test of Will cancels When Revealed text; Doomed, printed Surge and the stage-2 Raider entry token retain their normal timing. Conditional Surge is granted only by a resolving When Revealed effect.
 
+## Nightmare mode
+
+The Nightmare Deck (recipe `N06.3`, [rules and cards](NIGHTMARE.md#raid-on-the-grey-havens-nightmare)) replaces Sahír's Advance with its own stage 2 and removes Corsair Arsonist ×3, Elven Wave-runner ×2 and Umbar Raider; Corsair Pillager ×3, Corsair Pyromaniac ×3, Elite Marauder, the unique Ship locations Nárelenya, Dawn Star and Silver Wing, Burning Tower ×2, Sudden Assault ×3 and Infiltration ×2 join the encounter deck. Captain Sahír and Na'asiyah cannot have attachments. At setup the Dream-chaser is shuffled into the encounter deck, and instead of adding it to the staging area each player searches for a different unique location (the first player's search takes the Dream-chaser, the others choose among the Ships) before the Aflame locations are discarded. The Nightmare Sahír's Advance has no quest points and no progress-for-fire replacement; Captain Sahír may discard Na'asiyah's resources to cancel damage, and the players win when both elites are in the victory display. Focused checks are in `tests/nightmare-raid.test.ts`.
+
 ## Persistence and verification
 
 Save state preserves set-aside elite identities, every burned location, attack snapshots, character-kill flags, queued choices and shadow continuations. Validation rejects foreign burned cards and duplicate physical IDs. The scenario panel shows the destroyed-location count, round timing and the current quest's win condition.

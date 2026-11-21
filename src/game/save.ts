@@ -629,6 +629,7 @@ export function validateSave(
         c.voyageCharacterKilled,
         c.voyageShipDamaged,
         c.raidKilledCharacter,
+        c.nrdInfiltration,
         c.immediatePendingDeclaration,
         c.immediatePreviousShadowCancelsDamage,
         c.immediatePreviousShadowCancelsCombatDamage,
