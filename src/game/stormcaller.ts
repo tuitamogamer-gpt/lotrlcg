@@ -14,6 +14,7 @@ import {
   stats,
   threatOf,
   locationQuest,
+  mainStageInfo,
 } from "./core";
 import {
   enemyAddedToStaging,
@@ -53,14 +54,16 @@ import {
 } from "./dreamchaser-campaign-support";
 import { dreamchaserFlightReady } from "./dreamchaser-campaign";
 import { dreamchaserEncounterDiscarded } from "./dreamchaser-campaign-cards";
+import { nightmareEncounterDecks, nightmareLive } from "./nightmare";
+import { batch4Scenario } from "./batch4-scenarios";
 import {
   STORMCALLER as V,
+  STORMCALLER_NIGHTMARE_CORSAIRS,
   STORMCALLER_RECIPES,
   STORMCALLER_SHIPS,
   STORMCALLER_MAIN_QUESTS,
   STORMCALLER_ENEMY_QUESTS,
   stormcallerCurrentQuest,
-  stormcallerStageInfo,
   stormcallerState,
   type StormcallerState,
 } from "./stormcaller-support";
@@ -127,6 +130,17 @@ function addArea(s: GameState, u: Unit) {
   (u as AreaUnit).stormcallerArea = true;
   q.area.push(u);
   stormcallerSyncArea(s);
+}
+/**
+ * Moves a card into the Stormcaller's area (at the same stage it stays in the
+ * staging area with its area marker); a card put into play there enters the
+ * staging area's enemy checks when it is materialized (the Nightmare Deck's
+ * Tide-runner, Venom's Bite and Cliffside Inlet).
+ */
+export function stormcallerAddToArea(s: GameState, u: Unit, entering = false) {
+  addArea(s, u);
+  if (entering && shipEnemy(u) && s.staging.some((a) => a.id === u.id))
+    enemyAddedToStaging(s, u);
 }
 export function stormcallerCardEntered(
   s: GameState,
@@ -243,7 +257,16 @@ export function setupStormcaller(s: GameState) {
     recipe.cards
       .filter((r) => r.section === section)
       .flatMap((r) => Array<string>(r.quantity).fill(r.code));
-  s.encounterDeck = pile("sharedEncounterDeck");
+  // Nightmare mode: the setup card's removals span both decks, and Raider of
+  // the Storm joins the Corsair deck.
+  const [deck, corsairs] = nightmareLive(s)
+    ? nightmareEncounterDecks(
+        s.scenarioId,
+        [pile("sharedEncounterDeck"), pile("sharedEncounterDeck2")],
+        (code) => (STORMCALLER_NIGHTMARE_CORSAIRS.includes(code) ? 1 : 0),
+      )
+    : [pile("sharedEncounterDeck"), pile("sharedEncounterDeck2")];
+  s.encounterDeck = deck;
   // The recipe preplaces two standard/one easy Rolling Seas; printed setup always requires one/two by player count.
   const rolls = Math.min(
       playerOrder(s).length >= 3 ? 2 : 1,
@@ -273,7 +296,7 @@ export function setupStormcaller(s: GameState) {
       ? dreamchaserFleet(s.campaign)
       : STORMCALLER_SHIPS
     ).map((c) => make(s, c)),
-    corsairDeck: shuffle(s, pile("sharedEncounterDeck2")),
+    corsairDeck: shuffle(s, corsairs),
     corsairDiscard: [],
     area: [target],
     enemyQuest: V.fullEnemy,
@@ -311,7 +334,7 @@ export function stormcallerAdvance(s: GameState) {
     s.phase === "setup"
   )
     return true;
-  if (s.progress >= (stormcallerStageInfo(s)?.quest ?? Infinity)) {
+  if (s.progress >= (mainStageInfo(s)?.quest ?? Infinity)) {
     if (questDefeated(s, q.currentQuest)) return true;
     q.advancing = true;
     prepend(s, fx("stormcallerAdvance", { player: firstPlayer(s) }));
@@ -770,7 +793,13 @@ export function stormcallerEffect(s: GameState, e: Effect) {
         const index = s.encounterDiscard.lastIndexOf(code);
         if (index >= 0) s.encounterDiscard.splice(index, 1);
       }
-      if (code && !stormcallerEncounter(s, code, true))
+      // A Nightmare Deck's Weather treachery (Dark and Stormy) resolves its
+      // When Revealed effect in the Nightmare layer.
+      if (
+        code &&
+        !batch4Scenario(s).encounter?.(s, code, true, true) &&
+        !stormcallerEncounter(s, code, true)
+      )
         voyageEncounter(s, code, true);
       break;
     }

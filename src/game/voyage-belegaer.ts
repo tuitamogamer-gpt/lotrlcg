@@ -13,7 +13,11 @@ import {
 } from "./dreamchaser-campaign-support";
 import { dreamchaserFleetReady } from "./dreamchaser-campaign";
 import { dreamchaserBoardingOffer } from "./dreamchaser-campaign-cards";
-import { stormcallerState, STORMCALLER_CORSAIRS } from "./stormcaller-support";
+import {
+  stormcallerState,
+  STORMCALLER_CORSAIRS,
+  STORMCALLER_NIGHTMARE_CORSAIRS,
+} from "./stormcaller-support";
 import type { Card, Effect, GameState, Option, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
 import { card, name } from "./cards";
@@ -390,7 +394,7 @@ export function voyageCorsairDiscard(s: GameState, code: string) {
     ? COBAS_CORSAIRS
     : isVoyage(s)
       ? [...VOYAGE_CORSAIRS, ...VOYAGE_NIGHTMARE_CORSAIRS]
-      : STORMCALLER_CORSAIRS;
+      : [...STORMCALLER_CORSAIRS, ...STORMCALLER_NIGHTMARE_CORSAIRS];
   // The Dream-chaser campaign: Crowley is shuffled into the Corsair deck.
   if (
     !q ||

@@ -179,6 +179,7 @@ import { dreadSideTime, validNightmareDread } from "./nightmare-dread";
 import { validNightmareCrossroads } from "./nightmare-crossroads";
 import { validNightmareShelob } from "./nightmare-shelob";
 import { validNightmareFate } from "./nightmare-fate";
+import { validNightmareStormcaller } from "./nightmare-stormcaller";
 import { nightmareEscapeTest } from "./nightmare-dead";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
@@ -738,6 +739,7 @@ export function validateSave(
         c.nmMireOnKill,
         c.nmExcess,
         c.nlrStench,
+        c.nfcGetaway,
       ].every((v) => v === undefined || (integer(v) && v >= 0)) &&
       (c.dreadKilled === undefined ||
         (Array.isArray(c.dreadKilled) &&
@@ -1287,6 +1289,7 @@ export function validateSave(
         !validNightmareCrossroads(s) ||
         !validNightmareShelob(s) ||
         !validNightmareFate(s) ||
+        !validNightmareStormcaller(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,

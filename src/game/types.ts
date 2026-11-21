@@ -622,7 +622,8 @@ export interface GameState {
     import("./nightmare-dread").NightmareDreadState &
     import("./nightmare-crossroads").NightmareCrossroadsState &
     import("./nightmare-shelob").NightmareShelobState &
-    import("./nightmare-fate").NightmareFateState;
+    import("./nightmare-fate").NightmareFateState &
+    import("./nightmare-stormcaller").NightmareStormcallerState;
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;
@@ -1310,6 +1311,8 @@ export interface GameState {
     nlrStench?: number;
     /** Infiltration's shadow (Raid on the Grey Havens' Nightmare Deck): the attack's damage to a defender is dealt to an Aflame location instead. */
     nrdInfiltration?: boolean;
+    /** Sahír's Getting Away!'s shadow (Flight of the Stormcaller's Nightmare Deck): progress on the Stormcaller's quest stage if this attack damages a Ship objective, once for each copy. */
+    nfcGetaway?: number;
     defenderIds?: string[];
     ignoreDefense?: boolean;
     returnToStaging?: boolean;

@@ -723,6 +723,21 @@ export const NIGHTMARE_GH = {
   sudden: "octgn:6e765a17-9c2e-4b30-b023-5f08450553c4",
   infiltration: "octgn:b52b72ae-574d-4736-96d6-3531a0aae7ae",
 } as const;
+/** The Dream-chaser cycle's Nightmare Decks. */
+export const NIGHTMARE_DC = {
+  /**
+   * Flight of the Stormcaller's setup card and Nightmare Deck (Raider of the
+   * Storm joins the Corsair deck).
+   */
+  stormcallerCard: "octgn:00724f28-cae7-4d45-95b4-076d91bd2a86",
+  raider: "octgn:a3ac80dc-be8b-4d45-a9c4-f611183eb4be",
+  tideRunner: "octgn:dd13a7d6-b58e-41ce-a73c-c86a45996607",
+  venom: "octgn:51c3083f-3a95-44aa-bb34-4b28c9189c05",
+  jetties: "octgn:35524392-598c-4980-93ea-91d7702242ab",
+  inlet: "octgn:c81aa8c4-969d-46f6-b0a6-a53e59e75db9",
+  stormy: "octgn:6d34a654-ec8f-41b5-8fa9-a86a15cdf5e6",
+  getaway: "octgn:17516d4f-8ce4-491e-8b2d-8dc9fe841934",
+} as const;
 
 interface NightmareDeck {
   /** The setup card, flipped next to the quest deck. */
@@ -1427,6 +1442,19 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
     },
     questRemovals: { "Sahír's Advance": 1 },
   },
+  "flight-of-the-stormcaller": {
+    card: NIGHTMARE_DC.stormcallerCard,
+    // Southron Sailor and Serpent's Blade are in the Corsair deck; the
+    // scenario's setup applies the removals to both decks.
+    removals: {
+      "Calm Waters": 2,
+      "Corsair Skiff": 2,
+      "Southron Sailor": 2,
+      "Serpent's Blade": 2,
+      "Hidden Cove": 1,
+      "Jagged Reef": 2,
+    },
+  },
   "shelobs-lair": {
     card: NIGHTMARE_LOS.lairCard,
     removals: {
@@ -1947,6 +1975,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "raid-on-the-grey-havens")
     return [
       "Raid on the Grey Havens · Nightmare mode: Captain Sahír and Na'asiyah cannot have attachments; during setup, each player added a different unique location from the encounter deck to the staging area, the Dream-chaser among them. Stage 2 is the Nightmare Deck's Sahír's Advance: the players win when Captain Sahír and Na'asiyah are both in the victory display.",
+    ];
+  if (s.scenarioId === "flight-of-the-stormcaller")
+    return [
+      "Flight of the Stormcaller · Nightmare mode: Raider of the Storm joins the Corsair deck; while you are at the same stage as the Stormcaller, the main quest gets +X quest points, where X is the Stormcaller's remaining hit points (included in the stage's quest points).",
     ];
   if (s.scenarioId === "shelobs-lair")
     return [

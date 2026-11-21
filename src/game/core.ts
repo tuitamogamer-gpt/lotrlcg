@@ -1271,7 +1271,12 @@ export const mainStageInfo = (s: GameState) => {
   const depths = depthsStageInfo(s);
   if (depths) return depths;
   const storm = stormcallerStageInfo(s);
-  if (storm) return storm;
+  // Flight of the Stormcaller's Nightmare Deck adds quest points to the main
+  // quest (its setup card and Cliffside Inlet).
+  if (storm) {
+    const bonus = batch4Scenario(s).mainQuestGoalBonus?.(s) ?? 0;
+    return bonus ? { ...storm, quest: storm.quest + bonus } : storm;
+  }
   const voyage = voyageStageInfo(s);
   if (voyage) return voyage;
   const ninCode = ninCurrentQuest(s);

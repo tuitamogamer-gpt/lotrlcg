@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2867,
+    "encounterCards": 2875,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 4089,
-    "pending": 94
+    "scripted": 4097,
+    "pending": 86
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 336
+    "scripted": 337
   },
   "registeredCodes": [
     "01001",
@@ -1237,6 +1237,7 @@
     "octgn:0002f646-cdaf-40cf-9993-faccb260c583",
     "octgn:001dbc8b-3b8e-4f02-bdbd-7e78c6ecd348",
     "octgn:0071049b-ca5b-4083-b955-a74da4aad5f1",
+    "octgn:00724f28-cae7-4d45-95b4-076d91bd2a86",
     "octgn:007721bf-3e80-4857-aaf4-aabb65d1827d",
     "octgn:008bcdb1-bac6-4c45-86c5-6bcfb0bf12cc",
     "octgn:00a0a007-10dd-4a05-bedf-3a4e8ff972dc",
@@ -1453,6 +1454,7 @@
     "octgn:1733be6c-2101-4f83-816b-f730b4afc183",
     "octgn:17353135-52af-42a8-a6af-3b2e9148bf5f",
     "octgn:174507ac-5617-4e3c-998b-75eeceb9db33",
+    "octgn:17516d4f-8ce4-491e-8b2d-8dc9fe841934",
     "octgn:178fd61d-ebb3-40b1-b854-4c7bc43c121e",
     "octgn:18150bb4-3157-429c-b958-af1210acd4b2",
     "octgn:18484359-d4b5-4ed6-b7be-e013fae4df43",
@@ -1782,6 +1784,7 @@
     "octgn:35376ae0-c807-4c16-8f4d-e14d36aec142",
     "octgn:354f9e8d-aa47-4493-a697-b59f0bd178ea",
     "octgn:3551cf11-1670-46de-b404-7b8fd20d3aff",
+    "octgn:35524392-598c-4980-93ea-91d7702242ab",
     "octgn:35617e02-f4ad-4e6d-af45-9b5e0b7ce682",
     "octgn:3566b6df-a1cd-4417-b202-27e0ecc0a966",
     "octgn:356f37d9-34c9-4fae-864d-c34dff7eaaa4",
@@ -2426,6 +2429,7 @@
     "octgn:51b186ac-ddf5-4909-a484-20d273be27c9",
     "octgn:51b45e84-3f63-46ea-aa08-b83dd89244ff",
     "octgn:51b6030d-3ce7-4139-b3bc-a408949533e2",
+    "octgn:51c3083f-3a95-44aa-bb34-4b28c9189c05",
     "octgn:51e187ea-691c-46bc-b74f-c03d110d02cd",
     "octgn:5211f81c-288a-4243-889d-6e294fbc3b8c",
     "octgn:5212a036-a6f3-4979-a4cf-6f4a221bdf36",
@@ -2679,6 +2683,7 @@
     "octgn:6d012dfd-07bb-40d5-8da7-2e4d9bad9bcd",
     "octgn:6d1eb802-0cb1-427a-9aa3-4e0c3b403681",
     "octgn:6d2cbe18-4504-46df-821c-d3ce588bcb3f",
+    "octgn:6d34a654-ec8f-41b5-8fa9-a86a15cdf5e6",
     "octgn:6d485bbc-6876-4160-8111-77f3935123c9",
     "octgn:6d4c7a3b-e0e7-4267-8f53-6ba99054892c",
     "octgn:6d567c10-864f-48a8-8104-14882b2b254e",
@@ -3247,6 +3252,7 @@
     "octgn:a34ffb4e-c821-42aa-8dab-2914d274b3b1",
     "octgn:a39f7fcf-952c-4789-91a2-ef12bc6a8f43",
     "octgn:a3a28453-4292-49b3-9b78-fc958310a800",
+    "octgn:a3ac80dc-be8b-4d45-a9c4-f611183eb4be",
     "octgn:a3f162a7-847d-47ed-8a05-4e930806765b",
     "octgn:a442dbd4-ec18-44e6-b762-b0ebf94a8897",
     "octgn:a44d6ee9-79a6-4e55-ab8a-a165c4dbb882",
@@ -3671,6 +3677,7 @@
     "octgn:c7e3bde9-8348-41d6-8272-aa733f60a108",
     "octgn:c7ef7b6e-4346-4b4c-a9fa-2b42e3c2ab5c",
     "octgn:c7f4c92b-e593-4c40-9ecb-64d8ab9c6368",
+    "octgn:c81aa8c4-969d-46f6-b0a6-a53e59e75db9",
     "octgn:c823de8a-c258-494f-8a4a-9cbb4e812e06",
     "octgn:c828d0d2-0d82-49c2-b18d-7a819ee103b2",
     "octgn:c82f8ccc-d017-48ec-a611-49a77469d45d",
@@ -3854,6 +3861,7 @@
     "octgn:dc5c51d1-7528-46b4-b438-aae0cb744e29",
     "octgn:dc8f31b6-73af-4aec-be26-8d297909d14d",
     "octgn:dce8ff38-bcc7-49b4-ba27-ae3e2cac1d32",
+    "octgn:dd13a7d6-b58e-41ce-a73c-c86a45996607",
     "octgn:dd28d391-8eca-4a12-9455-3d705adb46a5",
     "octgn:dd394c76-c2b9-4b1c-8948-a056de97b779",
     "octgn:dd71d27f-b53e-453b-bcbc-bb479104461a",
@@ -4487,7 +4495,7 @@
     {
       "product": "flight-of-the-stormcaller-nightmare",
       "total": 8,
-      "scripted": 0,
+      "scripted": 8,
       "player": 0,
       "playerScripted": 0
     },
@@ -14036,7 +14044,7 @@
       "name": "Flight of the Stormcaller",
       "type": "nightmare",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "flight-of-the-stormcaller-nightmare"
     },
     {
@@ -15764,7 +15772,7 @@
       "name": "Sahir's Getting Away!",
       "type": "treachery",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "flight-of-the-stormcaller-nightmare"
     },
     {
@@ -18476,7 +18484,7 @@
       "name": "Sharp Jetties",
       "type": "location",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "flight-of-the-stormcaller-nightmare"
     },
     {
@@ -23692,7 +23700,7 @@
       "name": "Venom's Bite",
       "type": "ship-enemy",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "flight-of-the-stormcaller-nightmare"
     },
     {
@@ -25740,7 +25748,7 @@
       "name": "Dark and Stormy",
       "type": "treachery",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "flight-of-the-stormcaller-nightmare"
     },
     {
@@ -30380,7 +30388,7 @@
       "name": "Raider of the Storm",
       "type": "enemy",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "flight-of-the-stormcaller-nightmare"
     },
     {
@@ -33852,7 +33860,7 @@
       "name": "Cliffside Inlet",
       "type": "location",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "flight-of-the-stormcaller-nightmare"
     },
     {
@@ -35372,7 +35380,7 @@
       "name": "Tide-Runner",
       "type": "ship-enemy",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "flight-of-the-stormcaller-nightmare"
     },
     {
@@ -39958,8 +39966,8 @@
       "id": "N06.4",
       "name": "Flight of the Stormcaller (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "flight-of-the-stormcaller",
+      "state": "scripted"
     },
     {
       "id": "N06.5",

@@ -1,11 +1,27 @@
 import encounters from "../data/stormcaller-encounter-cards.json";
 import quests from "../data/stormcaller-quest-cards.json";
 import recipes from "../data/stormcaller-recipes.json";
+import nightmareCards from "../data/nightmare-encounter-cards.json";
 import type { Card, GameState, Unit } from "./types";
 import { DC, dcBase, isFleetShip } from "./dreamchaser-campaign-support";
 export const STORMCALLER_ENCOUNTERS = encounters as Card[];
 export const STORMCALLER_QUESTS = quests as Card[];
 export const STORMCALLER_RECIPES = recipes;
+/** The Nightmare Deck's encounter cards (docs/NIGHTMARE.md). */
+export const STORMCALLER_NIGHTMARE_ENCOUNTERS = (
+  nightmareCards as Card[]
+).filter((c) => c.encounter_set === "Flight of the Stormcaller - Nightmare");
+/** The Nightmare Deck's Corsair: Raider of the Storm joins the Corsair deck. */
+export const STORMCALLER_NIGHTMARE_CORSAIRS = [
+  "octgn:a3ac80dc-be8b-4d45-a9c4-f611183eb4be",
+];
+/** A Ship enemy or location of the scenario, or of its Nightmare Deck, that the Stormcaller's area can hold. */
+const areaCard = (code: string) =>
+  ["ship-enemy", "location"].includes(
+    [...STORMCALLER_ENCOUNTERS, ...STORMCALLER_NIGHTMARE_ENCOUNTERS].find(
+      (c) => c.code === code,
+    )?.type_code ?? "",
+  );
 const code = (name: string, side?: string) =>
   [...encounters, ...quests].find(
     (c) => c.name === name && (!side || ("side" in c && c.side === side)),
@@ -160,16 +176,7 @@ export function validateStormcaller(
     s.stage === q.enemyStage &&
     q.currentQuest === STORMCALLER_MAIN_QUESTS[q.enemyStage - 1];
   if (same ? q.area.length > 0 : tagged.length > 0) return false;
-  if (
-    tagged.some(
-      (u) =>
-        !["ship-enemy", "location"].includes(
-          STORMCALLER_ENCOUNTERS.find((c) => c.code === dcBase(u.code))
-            ?.type_code ?? "",
-        ),
-    )
-  )
-    return false;
+  if (tagged.some((u) => !areaCard(dcBase(u.code)))) return false;
   const physical = [...q.area, ...s.staging, ...external, ...q.setAside];
   if (new Set(physical.map((u) => u.id)).size !== physical.length) return false;
   const target = physical.find((u) => u.id === q.stormcallerId),
@@ -179,6 +186,11 @@ export function validateStormcaller(
   if (q.counterRound > s.round) return false;
   const main = [...q.completedQuests, q.currentQuest, ...q.questDeck],
     enemy = [...q.enemyCompletedQuests, q.enemyQuest, ...q.enemyQuestDeck];
+  // Nightmare mode: Raider of the Storm is in the Corsair deck.
+  const corsair = (c: string) =>
+    STORMCALLER_CORSAIRS.includes(c) ||
+    c === DC.crowley ||
+    (!!s.nightmareMode && STORMCALLER_NIGHTMARE_CORSAIRS.includes(c));
   return (
     typeof q.initialized === "boolean" &&
     typeof q.advancing === "boolean" &&
@@ -209,22 +221,11 @@ export function validateStormcaller(
     ) &&
     new Set(q.setAside.map((u) => u.code)).size === q.setAside.length &&
     Array.isArray(q.area) &&
-    q.area.every(
-      (u) =>
-        validUnit(u) &&
-        ["ship-enemy", "location"].includes(
-          STORMCALLER_ENCOUNTERS.find((c) => c.code === dcBase(u.code))
-            ?.type_code ?? "",
-        ),
-    ) &&
+    q.area.every((u) => validUnit(u) && areaCard(dcBase(u.code))) &&
     new Set(q.area.map((u) => u.id)).size === q.area.length &&
     Array.isArray(q.corsairDeck) &&
-    q.corsairDeck.every(
-      (c) => STORMCALLER_CORSAIRS.includes(c) || c === DC.crowley,
-    ) &&
+    q.corsairDeck.every(corsair) &&
     Array.isArray(q.corsairDiscard) &&
-    q.corsairDiscard.every(
-      (c) => STORMCALLER_CORSAIRS.includes(c) || c === DC.crowley,
-    )
+    q.corsairDiscard.every(corsair)
   );
 }
