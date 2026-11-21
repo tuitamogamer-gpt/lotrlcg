@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2834,
+    "encounterCards": 2844,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 4056,
-    "pending": 127
+    "scripted": 4066,
+    "pending": 117
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 333
+    "scripted": 334
   },
   "registeredCodes": [
     "01001",
@@ -1654,6 +1654,7 @@
     "octgn:29fd0721-10ed-4315-b415-5fadeb010051",
     "octgn:2a49f405-1431-44ff-8316-573c23aaffcb",
     "octgn:2a7b5607-d7ed-4580-b27b-39cf12879297",
+    "octgn:2a9e1288-4e94-497b-b1c4-41fd8ba34c65",
     "octgn:2ab79807-7f6b-4b8b-8295-fb8645cdee8a",
     "octgn:2af71d2e-0b70-43a2-b94e-89770992ef9c",
     "octgn:2b10aa08-31ac-4133-b613-f7fde8a2444c",
@@ -1694,6 +1695,7 @@
     "octgn:2e441298-dafc-41bc-a46f-a0f483ac18bd",
     "octgn:2e4aea1e-abb5-48c6-9f83-abbf9b6bcf72",
     "octgn:2e502d3d-5cf5-47eb-9577-3c14d74995fa",
+    "octgn:2e5c938b-9b70-4d8b-b632-479fedda84de",
     "octgn:2e5e6e97-003b-4500-8372-495f5ee86051",
     "octgn:2e77da31-a3ef-4bea-9af8-3f663c608a62",
     "octgn:2e810a9b-5d79-4828-8268-33e82c5fc1fa",
@@ -1734,6 +1736,7 @@
     "octgn:31f8955f-40d5-41de-b886-77018b59d717",
     "octgn:321abaed-0b0c-465b-9f2a-bb9796e6b8c5",
     "octgn:32267333-091c-4bbf-bb29-5f21c8b79188",
+    "octgn:322a9715-116f-4cc8-91b5-e090f3074dbb",
     "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb",
     "octgn:32416ec8-b50d-4cd2-a62f-10f97c87be73",
     "octgn:3254a776-09e5-4576-9b3c-164cc93e1e26",
@@ -2099,6 +2102,7 @@
     "octgn:50f22268-96bd-441f-bfab-b11f9e3c0f21",
     "octgn:50f294ff-ee4b-4685-b7e1-86cd7f2e0a59",
     "octgn:5100f009-8c78-4f2a-b77e-1bd9ccbfef77",
+    "octgn:5111c160-ad76-4d33-bc50-52d171880e47",
     "octgn:51124d05-205c-49e6-ad19-aa67185c8bdc",
     "octgn:51223bd0-ffd1-11df-a976-0801202c9002",
     "octgn:51223bd0-ffd1-11df-a976-0801202c9005",
@@ -2418,6 +2422,7 @@
     "octgn:51b6030d-3ce7-4139-b3bc-a408949533e2",
     "octgn:51e187ea-691c-46bc-b74f-c03d110d02cd",
     "octgn:5211f81c-288a-4243-889d-6e294fbc3b8c",
+    "octgn:5212a036-a6f3-4979-a4cf-6f4a221bdf36",
     "octgn:52248807-32d1-422b-b4b2-01097405e49f",
     "octgn:522c612d-5f3c-4a02-a1a7-7d87191922e0",
     "octgn:526faef8-5db5-48ab-ab22-109916e9fda7",
@@ -2454,6 +2459,7 @@
     "octgn:55436edb-0e1f-4b25-a59e-1b131b408db4",
     "octgn:555dcce7-e705-4ba1-ba58-4880b449c178",
     "octgn:5571b159-9889-4fcd-bc0e-13bea7443348",
+    "octgn:5583464f-f2e7-44cc-9d8f-87ea065b7e08",
     "octgn:5585680f-0609-4cc4-96b5-37e53992af56",
     "octgn:55c8245d-e0f3-4d11-90f5-617caf78f079",
     "octgn:55d05b39-c993-45bb-874c-3eacbcf49278",
@@ -2559,6 +2565,7 @@
     "octgn:60b96a86-77b5-4184-9703-f55b8c857eb9",
     "octgn:60ba0781-d051-46f0-97b1-e02fb637b94e",
     "octgn:60de774d-eafb-4faa-851e-c28ce6d62f9f",
+    "octgn:60df407c-b1d7-455b-b4b3-7c68739f73c3",
     "octgn:60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b",
     "octgn:60fe85d1-4dae-4c74-8776-424b4a306054",
     "octgn:610f3112-1123-4956-a955-df9d42b937bf",
@@ -2679,6 +2686,7 @@
     "octgn:6e4985a3-5501-41ef-bd15-ec58eadba12c",
     "octgn:6e82330b-ca0d-4d6b-a796-024de152ca56",
     "octgn:6e85113d-a2a6-44a7-895c-ca5115f7b7d2",
+    "octgn:6ea88b3d-c675-4690-b993-ce4672eb3b16",
     "octgn:6f300089-29ce-42e7-9bd4-2dda667cdd4a",
     "octgn:6f7cdfa5-f61f-44b1-8b6c-2b3f477f7557",
     "octgn:6f9211cc-a523-4a0f-9d44-c757e2f9947b",
@@ -3245,6 +3253,7 @@
     "octgn:a58dc702-4b9f-41ee-be83-136eda08906d",
     "octgn:a5aef3fe-7bb9-4165-ba0f-91127d8f21e3",
     "octgn:a5e60892-b524-43cf-a501-372a624e785e",
+    "octgn:a62a05a3-c982-4ee1-ac17-7298e6f1a525",
     "octgn:a62b42dc-ab4a-4573-a281-53742e2739f5",
     "octgn:a643c446-15e1-4dc0-95f7-9146a59991b3",
     "octgn:a652a7ef-25ad-4e43-94b4-f18c68e34e83",
@@ -4224,6 +4233,7 @@
     "octgn:fe580179-8f51-463e-a235-bde0f7b783d7",
     "octgn:fe5ce9b0-2dd0-49f7-b3d3-6df03d367b33",
     "octgn:fe7448a2-e2e2-4e81-95f4-2ac585160433",
+    "octgn:fe88f19e-2ea8-45d7-afee-86f8d35630a6",
     "octgn:fea90493-29cd-4668-9e3b-eb3150cdc339",
     "octgn:fed61900-b526-41e6-b072-9c5eae29bc77",
     "octgn:ff0bc03a-e47d-4917-bf27-a0b97bc292ca",
@@ -4853,7 +4863,7 @@
     {
       "product": "the-grey-havens-nightmare",
       "total": 33,
-      "scripted": 0,
+      "scripted": 10,
       "player": 0,
       "playerScripted": 0
     },
@@ -17435,7 +17445,7 @@
       "name": "Sahir's Pursuer",
       "type": "ship-enemy",
       "pack": "The Grey Havens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens-nightmare"
     },
     {
@@ -17779,7 +17789,7 @@
       "name": "Corsair Confrontation",
       "type": "quest",
       "pack": "The Grey Havens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens-nightmare"
     },
     {
@@ -18115,7 +18125,7 @@
       "name": "Open Waters",
       "type": "location",
       "pack": "The Grey Havens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens-nightmare"
     },
     {
@@ -21091,7 +21101,7 @@
       "name": "Voyage Across Belegaer",
       "type": "nightmare",
       "pack": "The Grey Havens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens-nightmare"
     },
     {
@@ -23683,7 +23693,7 @@
       "name": "Brash Corsair",
       "type": "enemy",
       "pack": "The Grey Havens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens-nightmare"
     },
     {
@@ -23995,7 +24005,7 @@
       "name": "Lost at Sea",
       "type": "quest",
       "pack": "The Grey Havens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens-nightmare"
     },
     {
@@ -24875,7 +24885,7 @@
       "name": "Dreams of Númenor",
       "type": "treachery",
       "pack": "The Grey Havens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens-nightmare"
     },
     {
@@ -25859,7 +25869,7 @@
       "name": "Rogue Wave",
       "type": "treachery",
       "pack": "The Grey Havens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens-nightmare"
     },
     {
@@ -30523,7 +30533,7 @@
       "name": "Raging Squall",
       "type": "treachery",
       "pack": "The Grey Havens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens-nightmare"
     },
     {
@@ -38563,7 +38573,7 @@
       "name": "Shattered Sea",
       "type": "location",
       "pack": "The Grey Havens - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens-nightmare"
     },
     {
@@ -39904,8 +39914,8 @@
       "id": "N06.1",
       "name": "Voyage Across Belegaer (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "voyage-across-belegaer",
+      "state": "scripted"
     },
     {
       "id": "N06.2",

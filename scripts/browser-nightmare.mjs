@@ -23,6 +23,7 @@ import {
   NIGHTMARE_TOS as TOS,
   NIGHTMARE_AA as AA,
   NIGHTMARE_LOS as LOS,
+  NIGHTMARE_GH as GH,
 } from "../src/game/nightmare.ts";
 import { CHETWOOD } from "../src/game/chetwood-support.ts";
 import { KHAZAD } from "../src/game/khazad-dum.ts";
@@ -4537,6 +4538,99 @@ try {
       );
     }
     await checkpoint("lair-cobwebbed-tunnel", width);
+    // Voyage Across Belegaer in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-voyage-across-belegaer").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "voyage-across-belegaer");
+    assert.equal(s.nightmareMode, true);
+    {
+      const all = [...s.encounterDeck, ...s.encounterDiscard];
+      assert.deepEqual(
+        [GH.pursuer, GH.open, GH.shattered, GH.rogue, GH.dreams, GH.squall].map(
+          (code) => all.filter((c) => c === code).length,
+        ),
+        [2, 2, 2, 3, 2, 2],
+        "the Nightmare Deck is in the encounter deck",
+      );
+      assert.ok(
+        !all.some((c) =>
+          ["Calm Waters", "Thrown Off Course"].includes(card(c).name),
+        ),
+        "the setup card removes each Calm Waters and Thrown Off Course",
+      );
+      const q = s.voyageBelegaer;
+      assert.equal(
+        [...q.corsairDeck, ...q.corsairDiscard].filter((c) => c === GH.brash)
+          .length,
+        3,
+        "Brash Corsair joins the Corsair deck",
+      );
+      assert.ok(
+        [GH.confrontation, GH.lost].every((c) => q.questDeck.includes(c)),
+        "the Nightmare stages join the quest deck",
+      );
+    }
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/stage 2 cards include Corsair Confrontation and Lost at Sea/)
+      .waitFor();
+    await checkpoint("voyage-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A Brash Corsair engaged; Sahír's Pursuer and the two Oceans in the
+    // staging area.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const brash = make(t, GH.brash);
+      brash.owner = 0;
+      t.engaged = [...t.engaged, brash];
+      t.staging = [
+        ...t.staging,
+        make(t, GH.pursuer),
+        make(t, GH.open),
+        make(t, GH.shattered),
+      ];
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [GH.brash, "Brash Corsair"],
+      [GH.pursuer, "Sahír's Pursuer"],
+      [GH.open, "Open Waters"],
+      [GH.shattered, "Shattered Sea"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    await checkpoint("voyage-open-waters", width);
     await view.c.close();
   }
   const p = await browser.newPage();

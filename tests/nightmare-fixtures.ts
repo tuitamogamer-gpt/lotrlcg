@@ -118,6 +118,9 @@ export function autoplay(s: GameState, steps = 1500) {
     else if (s.escapeTest) action = { type: "RESOLVE_ESCAPE" };
     // The Black Riders' Hide tests resolve after their action window.
     else if (s.hideTest?.phase === "actions") action = { type: "RESOLVE_HIDE" };
+    // The Grey Havens' Sailing tests resolve after their action window.
+    else if (s.sailing?.test?.phase === "actions")
+      action = { type: "RESOLVE_SAILING" };
     else if (s.phase === "setup") action = { type: "KEEP" };
     else if (s.phase === "quest") {
       const ready = characters(s)

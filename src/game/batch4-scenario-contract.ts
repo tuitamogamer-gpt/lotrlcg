@@ -56,6 +56,12 @@ export interface Batch4ScenarioHooks {
   ): boolean;
   /** A defeated encounter side quest goes elsewhere than the victory display (true when moved). */
   sideQuestDestination?(s: GameState, u: Unit): boolean;
+  /** Cards discarded from the encounter deck by a Sailing test, with the committed characters (Voyage Across Belegaer's Nightmare Raging Squall). */
+  sailingDiscarded?(
+    s: GameState,
+    looked: string[],
+    committedIds: string[],
+  ): Effect[];
   /** An attachment's text box is treated as blank (Journey to the Cross-roads' Nightmare Wooded Glade). */
   attachmentBlanked?(s: GameState, host: Unit, a: Attachment): boolean;
   /** The characters that archery damage must be assigned to, if able. */

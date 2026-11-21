@@ -10,6 +10,7 @@ import { card, name } from "./cards";
 import type { Effect, GameState, Unit } from "./types";
 import { choose, fx, get, log, prepend, requireRule, shuffle } from "./core";
 import { exhaustCharacter } from "./board";
+import { batch4Scenario } from "./batch4-scenarios";
 import {
   allCharacters,
   firstPlayer,
@@ -218,6 +219,15 @@ function finishSailing(s: GameState, shifts: number) {
   s.encounterDiscard.push(...(test.looked ?? []));
   delete s.sailing!.test;
   prepend(s, ...test.continuation);
+  // A Nightmare card discarded during the test (Raging Squall's Forced effect).
+  prepend(
+    s,
+    ...(batch4Scenario(s).sailingDiscarded?.(
+      s,
+      test.looked ?? [],
+      test.committedIds,
+    ) ?? []),
+  );
   // Calaerion (Upgraded) may shuffle one of the discarded cards back.
   dreamchaserEncounterDiscarded(s, test.looked ?? []);
 }

@@ -1231,6 +1231,14 @@ export function check(s: GameState) {
           !key.startsWith("game:foundations-hero-deck:"),
       );
       s.committedIds = [];
+      // A Sailing test in progress loses the characters that left with the
+      // player (the Dream-chaser committed by its eliminated controller).
+      if (s.sailing?.test) {
+        const gone = new Set(leavingCharacters.map((u) => u.id));
+        s.sailing.test.committedIds = s.sailing.test.committedIds.filter(
+          (id) => !gone.has(id),
+        );
+      }
       for (const u of s.engaged) {
         s.encounterDiscard.push(...u.shadows);
         u.shadows = [];
@@ -1270,6 +1278,18 @@ export function check(s: GameState) {
     } else {
       if (!alive.includes(s.table.first))
         s.table.first = globalPlayerOrder(s)[0];
+      // The first player's Sailing test passes with the first player token;
+      // its commitment choice reopens for the new first player.
+      const test = s.sailing?.test;
+      if (test && !alive.includes(test.player)) {
+        test.player = s.table.first;
+        if (
+          test.phase === "committing" &&
+          !s.choice &&
+          !s.queue.some((e) => e.kind === "sailingChoose")
+        )
+          s.queue.push(fx("sailingChoose"));
+      }
       if (!alive.includes(s.table.turn))
         s.table.turn =
           globalPlayerOrder(s).find((i) => !s.table!.passed.includes(i)) ??

@@ -1,6 +1,6 @@
 # Voyage Across Belegaer — original scenario rules
 
-The playable scenario uses the original **Q06.1** recipe and the original easy **E06.1** recipe from the immutable DragnCards snapshot in `src/data/pending/voyage-across-belegaer-import.json`. It implements all six quest cards, four Ship objectives, Heading, thirteen normal encounter definitions and four Corsair definitions. The three OCTGN rules-reference cards remain reference material, not automated cards. Campaign and Nightmare versions are not registered by this import.
+The playable scenario uses the original **Q06.1** recipe and the original easy **E06.1** recipe from the immutable DragnCards snapshot in `src/data/pending/voyage-across-belegaer-import.json`. It implements all six quest cards, four Ship objectives, Heading, thirteen normal encounter definitions and four Corsair definitions. The three OCTGN rules-reference cards remain reference material, not automated cards. Its campaign version is part of the [Dream-chaser campaign](DREAMCHASER-CAMPAIGN.md), and its Nightmare version is described below.
 
 Primary rules source: [Fantasy Flight Games, The Grey Havens rules](https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/mec47_rules.pdf), pages 4–6. The downloaded text is `output/mec47_rules.txt`; card fronts and quest reverses are cached in `public/cards/` under their source OCTGN identifiers.
 
@@ -25,7 +25,7 @@ Ships count as allies and characters, retain their printed immunity to player ca
 
 ## Sailing and private decks
 
-At the beginning of every quest phase, the main quest's Sailing keyword makes the first player test. Heading first shifts one setting off-course, clamped at the worst setting. The first player exhausts any number of eligible ready characters, including the Dream-chaser under another player's control. Actual exhaustion responses resolve, but player Actions wait until before or after the test.
+At the beginning of every quest phase, the main quest's Sailing keyword makes the first player test. Heading first shifts one setting off-course, clamped at the worst setting. The first player exhausts any number of eligible ready characters, including the Dream-chaser under another player's control. Actual exhaustion responses resolve, but player Actions wait until before or after the test. If the first player is eliminated during the test (an attack made in response to a commitment, for one), the test passes with the first player token, without the characters that left play with the eliminated player, and the new first player continues the commitment.
 
 The test looks at encounter cards rather than revealing them. It looks at one card per character, two for the Dream-chaser, and two additional cards per active Calm Waters. If the encounter deck is too small, its discard pile is shuffled into it before the look. Rough Waters in staging cancels one success per copy. The player chooses how many remaining success symbols to use, shifting one setting on-course per used success, then discards the looked cards. No Surge, Doomed, When Revealed, Thalin or other reveal effects run on looked cards.
 
@@ -71,6 +71,10 @@ Defeating stages 1 or 2 on-course permits looking at exactly the top two hidden 
 | Sudden Storms | Explicit choice: shift off-course or one damage to every exhausted character. | Excess attack damage is assigned to a ship controlled by the attacked player. Each shadow copy resolves separately. |
 
 Damage choices preserve the affected player through hot-seat switches. Shadow consequences preserve the completed attack's damage/destruction facts; heading changes and extra attacks resolve at attack completion. Immune ships can still take encounter and framework damage. Ship destruction, exhaustion, resource costs, source-card blanking and save/reload use the shared engine pathways.
+
+## Nightmare mode
+
+The Nightmare Deck (recipe `N06.1`, [rules and cards](NIGHTMARE.md#voyage-across-belegaer-nightmare)) removes Southron Sailor ×2 from the Corsair deck and Starlit Sea ×1, Fog Bank ×1, Calm Waters ×2, Thrown Off Course ×2 and Scouting Ship ×1 from the encounter deck. Brash Corsair ×3 joins the Corsair deck; Sahír's Pursuer ×2, Open Waters ×2, Shattered Sea ×2, Rogue Wave ×3, Dreams of Númenor ×2 and Raging Squall ×2 join the encounter deck, and the two Nightmare stage 2 cards, Corsair Confrontation and Lost at Sea, are shuffled with the four standard stage 2 cards above Corsair Pursuit. Corsair Confrontation brings a Corsair Warship back (even from the victory display) and is defeated when no Corsair Warship is in play at the end of a quest phase; Lost at Sea sets the worst heading, cancels a Sailing symbol in each test, and when the players end a quest phase on-course lets them choose the next stage among the top 3. The new cards' Sailing symbols (one on Open Waters, Shattered Sea, Dreams of Númenor and Raging Squall) count in Sailing tests. Focused checks are in `tests/nightmare-voyage.test.ts`.
 
 ## Verification
 

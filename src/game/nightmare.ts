@@ -685,6 +685,21 @@ export const NIGHTMARE_LOS = {
   stench: "octgn:807c78ee-ec6b-4df0-9721-1e475f0d04dc",
 } as const;
 
+/** The Grey Havens' Nightmare Decks (the Dream-chaser cycle). */
+export const NIGHTMARE_GH = {
+  /** Voyage Across Belegaer's setup card and Nightmare Deck (two stage 2 quest cards, Brash Corsair in the Corsair deck). */
+  voyageCard: "octgn:5111c160-ad76-4d33-bc50-52d171880e47",
+  confrontation: "octgn:2e5c938b-9b70-4d8b-b632-479fedda84de",
+  lost: "octgn:5583464f-f2e7-44cc-9d8f-87ea065b7e08",
+  brash: "octgn:5212a036-a6f3-4979-a4cf-6f4a221bdf36",
+  pursuer: "octgn:2a9e1288-4e94-497b-b1c4-41fd8ba34c65",
+  open: "octgn:322a9715-116f-4cc8-91b5-e090f3074dbb",
+  shattered: "octgn:fe88f19e-2ea8-45d7-afee-86f8d35630a6",
+  rogue: "octgn:6ea88b3d-c675-4690-b993-ce4672eb3b16",
+  dreams: "octgn:60df407c-b1d7-455b-b4b3-7c68739f73c3",
+  squall: "octgn:a62a05a3-c982-4ee1-ac17-7298e6f1a525",
+} as const;
+
 interface NightmareDeck {
   /** The setup card, flipped next to the quest deck. */
   card: string;
@@ -1344,6 +1359,19 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "The Dark Lord's Summons": 3,
     },
   },
+  "voyage-across-belegaer": {
+    card: NIGHTMARE_GH.voyageCard,
+    // Southron Sailor is in the Corsair deck; the scenario's setup applies
+    // the removals to both decks.
+    removals: {
+      "Southron Sailor": 2,
+      "Starlit Sea": 1,
+      "Fog Bank": 1,
+      "Calm Waters": 2,
+      "Thrown Off Course": 2,
+      "Scouting Ship": 1,
+    },
+  },
   "shelobs-lair": {
     card: NIGHTMARE_LOS.lairCard,
     removals: {
@@ -1852,6 +1880,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "the-passage-of-the-marshes")
     return [
       "The Passage of the Marshes · Nightmare mode: when a location in the staging area is explored, each player raises their threat by that location's Mire value.",
+    ];
+  if (s.scenarioId === "voyage-across-belegaer")
+    return [
+      "Voyage Across Belegaer · Nightmare mode: the quest deck's stage 2 cards include Corsair Confrontation and Lost at Sea, and Brash Corsair joins the Corsair deck.",
     ];
   if (s.scenarioId === "shelobs-lair")
     return [

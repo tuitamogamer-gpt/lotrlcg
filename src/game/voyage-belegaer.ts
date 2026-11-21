@@ -56,9 +56,12 @@ import {
 import { allQuestUnits, currentQuestUnit, mainQuestUnit } from "./quest-state";
 import { removeCurrentQuestProgress } from "./side-quests";
 import { shiftHeading, sailingOnCourse } from "./sailing";
+import { nightmareEncounterDecks, nightmareLive } from "./nightmare";
 import {
   VOYAGE as V,
   VOYAGE_CORSAIRS,
+  VOYAGE_NIGHTMARE_CORSAIRS,
+  VOYAGE_NIGHTMARE_STAGE_TWO,
   VOYAGE_RECIPES,
   VOYAGE_SHIPS,
   VOYAGE_STAGE_TWO,
@@ -101,7 +104,12 @@ export const voyageSailingExtraCards = (s: GameState) =>
         .length
     : 0;
 export const voyageSailingCancelledIcons = (s: GameState) =>
-  isFleet(s) ? live(s, V.rough).length : 0;
+  isFleet(s)
+    ? live(s, V.rough).length +
+      // Lost at Sea (the Nightmare Deck): "Cancel the first 1 symbol found
+      // during each Sailing test."
+      (isVoyage(s) && questLive(s, VOYAGE_NIGHTMARE_STAGE_TWO[1]) ? 1 : 0)
+    : 0;
 export const voyageCannotDamage = (s: GameState, u: Unit) =>
   isFleet(s) &&
   u.code === V.warship &&
@@ -257,26 +265,39 @@ export function setupVoyage(s: GameState) {
   const recipe = VOYAGE_RECIPES.find(
     (r) => r.mode === (s.easyMode ? "easy" : "standard"),
   )!;
-  s.encounterDeck = recipe.cards
-    .filter((r) => r.section === "sharedEncounterDeck")
-    .flatMap((r) => Array<string>(r.quantity).fill(r.code));
+  const section = (name: string) =>
+    recipe.cards
+      .filter((r) => r.section === name)
+      .flatMap((r) => Array<string>(r.quantity).fill(r.code));
+  // Nightmare mode: the setup card's removals span both decks, and Brash
+  // Corsair joins the Corsair deck; its two stage 2 cards join the quest deck.
+  const nightmare = nightmareLive(s);
+  const [deck, corsairs] = nightmare
+    ? nightmareEncounterDecks(
+        s.scenarioId,
+        [section("sharedEncounterDeck"), section("sharedEncounterDeck2")],
+        (code) => (VOYAGE_NIGHTMARE_CORSAIRS.includes(code) ? 1 : 0),
+      )
+    : [section("sharedEncounterDeck"), section("sharedEncounterDeck2")];
+  s.encounterDeck = deck;
   const q: VoyageState = {
     initialized: false,
     advancing: false,
     currentQuest: V.departure,
-    questDeck: [...shuffle(s, [...VOYAGE_STAGE_TWO]), V.pursuit],
+    questDeck: [
+      ...shuffle(s, [
+        ...VOYAGE_STAGE_TWO,
+        ...(nightmare ? VOYAGE_NIGHTMARE_STAGE_TWO : []),
+      ]),
+      V.pursuit,
+    ],
     completedQuests: [],
     // The Dream-chaser campaign prepares its fleet from six ships.
     setAside: (isDreamchaserGame(s)
       ? dreamchaserFleet(s.campaign)
       : VOYAGE_SHIPS
     ).map((c) => make(s, c)),
-    corsairDeck: shuffle(
-      s,
-      recipe.cards
-        .filter((r) => r.section === "sharedEncounterDeck2")
-        .flatMap((r) => Array<string>(r.quantity).fill(r.code)),
-    ),
+    corsairDeck: shuffle(s, corsairs),
     corsairDiscard: [],
   };
   (s as GameState & { voyageBelegaer?: VoyageState }).voyageBelegaer = q;
@@ -319,6 +340,9 @@ export function voyageAdvance(s: GameState) {
     }
     return true;
   }
+  // The Nightmare Deck's stages have no quest points: their Forced effects
+  // defeat them at the end of the quest phase.
+  if (VOYAGE_NIGHTMARE_STAGE_TWO.includes(q.currentQuest)) return true;
   if (s.progress >= (voyageStageInfo(s)?.quest ?? Infinity)) {
     if (questDefeated(s, q.currentQuest)) return true;
     q.advancing = true;
@@ -327,6 +351,31 @@ export function voyageAdvance(s: GameState) {
   return true;
 }
 export function voyageEndQuest(s: GameState) {
+  const q = voyageState(s);
+  // The Nightmare Deck's stages. Corsair Confrontation: "Forced: At the end
+  // of the quest phase, if there is no Corsair Warship in play, this stage is
+  // defeated." Lost at Sea: "... if your heading is on-course (o), this stage
+  // is defeated" (and the next stage is chosen among the top 3).
+  if (q && !q.advancing && !s.stageRevealing) {
+    const defeated =
+      (questLive(s, VOYAGE_NIGHTMARE_STAGE_TWO[0]) &&
+        ![...s.staging, ...allEngaged(s)].some((u) => u.code === V.warship)) ||
+      (questLive(s, VOYAGE_NIGHTMARE_STAGE_TWO[1]) && sailingOnCourse(s));
+    if (defeated) {
+      const lost = q.currentQuest === VOYAGE_NIGHTMARE_STAGE_TWO[1];
+      log(s, `${card(q.currentQuest).name} is defeated.`, "good");
+      if (!questDefeated(s, q.currentQuest)) {
+        q.advancing = true;
+        prepend(
+          s,
+          fx("voyageAdvance", {
+            ...(lost ? { value: 3 } : {}),
+            player: firstPlayer(s),
+          }),
+        );
+      }
+    }
+  }
   if (isVoyage(s) && off(s) && questLive(s, V.storm))
     prepend(
       s,
@@ -340,7 +389,7 @@ export function voyageCorsairDiscard(s: GameState, code: string) {
   const corsairs = s.cobas
     ? COBAS_CORSAIRS
     : isVoyage(s)
-      ? VOYAGE_CORSAIRS
+      ? [...VOYAGE_CORSAIRS, ...VOYAGE_NIGHTMARE_CORSAIRS]
       : STORMCALLER_CORSAIRS;
   // The Dream-chaser campaign: Crowley is shuffled into the Corsair deck.
   if (
@@ -682,11 +731,14 @@ export function voyageEffect(s: GameState, e: Effect) {
       break;
     case "voyageAdvance": {
       if (!isVoyage(s)) break;
-      const top = q.questDeck.slice(0, sailingOnCourse(s) ? 2 : 1);
+      // Lost at Sea (the Nightmare Deck) looks at the top 3 stages.
+      const top = q.questDeck.slice(0, e.value ?? (sailingOnCourse(s) ? 2 : 1));
       if (top.length > 1)
         choose(
           s,
-          "On-course · Choose the next quest stage",
+          e.value === 3
+            ? "Lost at Sea · Choose the next quest stage"
+            : "On-course · Choose the next quest stage",
           top.map((code) => ({
             id: code,
             code,
@@ -695,11 +747,14 @@ export function voyageEffect(s: GameState, e: Effect) {
               fx("voyageAdvanceTake", {
                 code,
                 flag: true,
+                value: top.length,
                 player: firstPlayer(s),
               }),
             ],
           })),
-          "Look at the top two quest stages. Advance to one and place the other on the bottom of the quest deck.",
+          e.value === 3
+            ? "Look at the top 3 stages of the quest deck. Advance to one and place the others on the bottom of the quest deck."
+            : "Look at the top two quest stages. Advance to one and place the other on the bottom of the quest deck.",
         );
       else if (top[0])
         prepend(
@@ -710,7 +765,7 @@ export function voyageEffect(s: GameState, e: Effect) {
     }
     case "voyageAdvanceTake": {
       if (!isVoyage(s)) break;
-      const top = q.questDeck.splice(0, e.flag ? 2 : 1);
+      const top = q.questDeck.splice(0, e.value ?? (e.flag ? 2 : 1));
       if (!e.code || !top.includes(e.code)) break;
       q.questDeck.push(...top.filter((code) => code !== e.code));
       q.completedQuests.push(q.currentQuest);
@@ -730,7 +785,16 @@ export function voyageEffect(s: GameState, e: Effect) {
     }
     case "voyageStageReveal":
       if (!isVoyage(s)) break;
-      if (q.currentQuest === V.pursuit)
+      // The Nightmare Deck's stages resolve in its layer.
+      if (VOYAGE_NIGHTMARE_STAGE_TWO.includes(q.currentQuest))
+        prepend(
+          s,
+          fx("nvbStageReveal", {
+            code: q.currentQuest,
+            player: firstPlayer(s),
+          }),
+        );
+      else if (q.currentQuest === V.pursuit)
         prepend(
           s,
           fx("voyagePursuitSearch", {

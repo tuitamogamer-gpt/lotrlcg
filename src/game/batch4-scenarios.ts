@@ -124,6 +124,7 @@ import { NIGHTMARE_DREAD_HOOKS } from "./nightmare-dread";
 import { NIGHTMARE_MARSHES_HOOKS } from "./nightmare-marshes";
 import { NIGHTMARE_CROSSROADS_HOOKS } from "./nightmare-crossroads";
 import { NIGHTMARE_SHELOB_HOOKS } from "./nightmare-shelob";
+import { NIGHTMARE_VOYAGE_HOOKS } from "./nightmare-voyage";
 import { nightmareLive } from "./nightmare";
 
 const empty: Batch4ScenarioHooks = {};
@@ -197,6 +198,7 @@ const NIGHTMARE_LAYERS: Partial<Record<string, Batch4ScenarioHooks>> = {
   "the-passage-of-the-marshes": NIGHTMARE_MARSHES_HOOKS,
   "journey-to-the-cross-roads": NIGHTMARE_CROSSROADS_HOOKS,
   "shelobs-lair": NIGHTMARE_SHELOB_HOOKS,
+  "voyage-across-belegaer": NIGHTMARE_VOYAGE_HOOKS,
 };
 /**
  * The current scenario's hooks; in an Ered Mithrin campaign chapter from The
