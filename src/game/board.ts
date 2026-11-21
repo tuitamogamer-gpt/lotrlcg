@@ -1274,7 +1274,11 @@ export function check(s: GameState) {
     if (alive.length && s.sagaCards) delete s.sagaCards.gwaihirAtLoss;
     if (!alive.length) {
       s.status = "lost";
-      s.reason = "Every hero’s fellowship has fallen to the shadow.";
+      // Epic multiplayer mode (The Siege of Annúminas): every team loses.
+      s.reason =
+        s.epicTeam !== undefined
+          ? `The last player at stage ${s.stage}${"BDF"[s.epicTeam]} is eliminated: the enemy has broken through the city's defenses and all teams lose the game.`
+          : "Every hero’s fellowship has fallen to the shadow.";
     } else {
       if (!alive.includes(s.table.first))
         s.table.first = globalPlayerOrder(s)[0];

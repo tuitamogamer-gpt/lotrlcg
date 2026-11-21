@@ -5,6 +5,7 @@ import { createHash } from "node:crypto";
 import {
   SA,
   SA_ENCOUNTERS,
+  SA_EPIC_QUESTS,
   SA_QUESTS,
   SA_RECIPES,
   saRecipe,
@@ -17,6 +18,7 @@ import quantities from "./annuminas-source-quantities.json";
 const hash = (path: string) =>
   createHash("sha256").update(readFileSync(path)).digest("hex");
 const original = (code: string) => snapshot.cards.find((c) => c.code === code)!;
+const EPIC_CODES = new Set([SA.epicMode, ...SA_EPIC_QUESTS.map((q) => q.code)]);
 const total = (code: string) =>
   saRecipe()
     .cards.filter((c) => c.code === code)
@@ -25,13 +27,18 @@ const total = (code: string) =>
 test("The Siege of Annúminas keeps Hall of Beorn's standard-mode quantities and pins an immutable snapshot", () => {
   assert.equal(snapshot.cards.length, 28);
   assert.equal(snapshot.artwork.length, 35);
+  // The epic multiplayer cards come from their own reviewed import
+  // (tests/annuminas-epic.test.ts).
   assert.deepEqual(
-    [...SA_ENCOUNTERS, ...SA_QUESTS].map((c) => c.code).sort(),
+    [...SA_ENCOUNTERS.filter((c) => c.code !== SA.epicMode), ...SA_QUESTS]
+      .map((c) => c.code)
+      .sort(),
     snapshot.cards.map((c) => c.code).sort(),
   );
   assert.deepEqual(SA_RECIPES, snapshot.recipes);
-  // Standard game mode only: the epic multiplayer recipe (Q99.09) needs three
-  // copies and three teams; the scenario predates official easy mode.
+  // One recipe: the epic multiplayer recipe (Q99.09) is three copies of this
+  // one, one for each team (tests/annuminas-epic.test.ts); the scenario
+  // predates official easy mode.
   assert.deepEqual(
     SA_RECIPES.map((r) => r.id),
     ["Q99.08"],
@@ -49,7 +56,7 @@ test("The Siege of Annúminas keeps Hall of Beorn's standard-mode quantities and
       name: "Epic The Siege of Annúminas",
       mode: "standard",
     }),
-    null,
+    "the-siege-of-annuminas",
   );
   assert.equal(quantities.length, 28);
   for (const row of quantities) {
@@ -91,15 +98,19 @@ test("The Siege of Annúminas keeps Hall of Beorn's standard-mode quantities and
   );
 });
 
-test("All 35 faces are pinned and the reviewed scans correct the catalog", () => {
-  assert.equal(art.length, 35);
+test("All 49 faces are pinned and the reviewed scans correct the catalog", () => {
+  // 35 standard faces and the 14 faces of the epic multiplayer cards.
+  assert.equal(art.length, 49);
   for (const a of art) {
     assert.equal(readFileSync(`public${a.localPath}`).length, a.bytes);
     assert.equal(hash(`public${a.localPath}`), a.sha256);
   }
   assert.deepEqual(
     snapshot.artwork.map((a) => a.sha256).sort(),
-    art.map((a) => a.sha256).sort(),
+    art
+      .filter((a) => !EPIC_CODES.has(a.code))
+      .map((a) => a.sha256)
+      .sort(),
   );
   assert.deepEqual(
     SA_QUESTS.map((q) => [q.name, q.back_quest ?? null]),

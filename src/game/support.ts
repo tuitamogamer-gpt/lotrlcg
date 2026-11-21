@@ -57,8 +57,8 @@ export function automatedScenarioId(reference: {
     .replace(/\s*\((?:Easy|Campaign|Nightmare)\)\s*$/i, "")
     .trim();
   // The frozen source recipe drops the article printed in the MEC77 title,
-  // and names The Siege of Annúminas' standard game mode after its setup card
-  // (the epic multiplayer mode recipe stays unsupported).
+  // and names The Siege of Annúminas' standard and epic multiplayer game
+  // modes after their setup cards.
   // The Starter's 2018 recipes are named after its Limited Collector's
   // Edition; the atlas names them after the Two-Player Limited Edition Starter.
   // We Must Away's Nightmare recipe garbles its title, The Fords of Isen's
@@ -68,7 +68,8 @@ export function automatedScenarioId(reference: {
   const canonicalName =
     lower === "temple of doom"
       ? "The Temple of Doom"
-      : lower === "standard the siege of annúminas"
+      : lower === "standard the siege of annúminas" ||
+          lower === "epic the siege of annúminas"
         ? "The Siege of Annúminas"
         : lower === "we must away away, ere of day"
           ? "We Must Away, Ere Break of Day"

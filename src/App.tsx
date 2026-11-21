@@ -64,7 +64,7 @@ import { MOUNT_DOOM_QUESTS } from "./game/mount-doom-support";
 import { OATH_QUESTS } from "./game/the-oath-support";
 import { RB_QUESTS } from "./game/ruins-belegost-support";
 import { PP_QUESTS } from "./game/prancing-pony-support";
-import { SA_QUESTS } from "./game/annuminas-support";
+import { SA_EPIC_QUESTS, SA_QUESTS } from "./game/annuminas-support";
 import { ADG_QUESTS } from "./game/attack-dol-guldur-support";
 import { CAVES_QUESTS } from "./game/caves-nibin-dum-support";
 import { WQ_QUESTS } from "./game/wizards-quest-support";
@@ -1487,6 +1487,12 @@ export default function App() {
     "off",
     ["off", "on"] as const,
   );
+  // The Siege of Annúminas' epic multiplayer mode: three teams, each with the
+  // hot-seat fellowship's decks.
+  const [epicMode, setEpicMode] = usePreference("epic-mode", "off", [
+    "off",
+    "on",
+  ] as const);
   const [showRecords, setShowRecords] = useState(false);
   const [records, setRecords] = useState(readRecords);
   const resumable =
@@ -1878,6 +1884,18 @@ export default function App() {
             ? { dreamchaserMode: dcMode }
             : {}),
           ...(style === "hotseat" ? { seats: seats.map(seatConfig) } : {}),
+          ...(style === "hotseat" &&
+          playMode !== "campaign" &&
+          epicMode === "on" &&
+          selectedScenario === "the-siege-of-annuminas"
+            ? {
+                epic: [
+                  seats.map(seatConfig),
+                  seats.map(seatConfig),
+                  seats.map(seatConfig),
+                ],
+              }
+            : {}),
           // The Caves of Nibin-Dûm's legacy for the next campaign.
           ...(playMode === "campaign" && mirkwoodLegacy(game?.campaign).ranger
             ? {
@@ -3016,6 +3034,29 @@ export default function App() {
                       />
                     </label>
                   )}
+                {!(resumable && game?.status === "playing") &&
+                  playMode !== "campaign" &&
+                  setupMode === "hotseat" &&
+                  selectedScenario === "the-siege-of-annuminas" && (
+                    <label className="preference-check epic-toggle">
+                      <div>
+                        <strong>Epic multiplayer mode</strong>
+                        <small>
+                          Three teams, each with these {seats.length}{" "}
+                          {seats.length === 1 ? "deck" : "decks"}, defend
+                          Annúminas at stages 1A, 1C and 1E (city strength 50);
+                          within each round the teams take turns.
+                        </small>
+                      </div>
+                      <input
+                        type="checkbox"
+                        checked={epicMode === "on"}
+                        onChange={(e) =>
+                          setEpicMode(e.target.checked ? "on" : "off")
+                        }
+                      />
+                    </label>
+                  )}
                 <button
                   className="primary hero-cta"
                   id="start-btn"
@@ -3708,9 +3749,11 @@ export default function App() {
                 <span className="game-mode-label">
                   {game.playMode === "campaign"
                     ? `${CAMPAIGN_TITLES[campaignKindOf(game.campaign)]} · Campaign${game.nightmareMode ? " · Nightmare mode" : ""}`
-                    : game.nightmareMode
-                      ? "Nightmare mode"
-                      : "Normal game"}
+                    : game.epic
+                      ? `Epic multiplayer mode · team ${"ACE"[game.epicTeam ?? 0]} (quest deck 1${"ACE"[game.epicTeam ?? 0]}–3${"ACE"[game.epicTeam ?? 0]})`
+                      : game.nightmareMode
+                        ? "Nightmare mode"
+                        : "Normal game"}
                 </span>
               </div>
               <div className="table-tools">
@@ -4765,6 +4808,7 @@ export default function App() {
                       ...RB_QUESTS,
                       ...PP_QUESTS,
                       ...SA_QUESTS,
+                      ...SA_EPIC_QUESTS,
                       ...ADG_QUESTS,
                       ...CAVES_QUESTS,
                       ...WQ_QUESTS,

@@ -8,6 +8,7 @@ import { allCharacters, allHeroes, seatIndices, seatView } from "./table";
 import { log, random, requireRule } from "./core";
 
 import { createGame } from "./setup";
+import { epicTeams } from "./epic";
 import { score } from "./actions";
 import { fellowshipAragornCode } from "./lotr-saga-codes";
 import {
@@ -485,16 +486,16 @@ export function retryAdventure(s: GameState, seed = Date.now()): GameState {
     s.status !== "won",
     "A won campaign chapter cannot be retried from its resolved log.",
   );
+  const seatsOf = (table: NonNullable<GameState["table"]>) =>
+    table.seats.map((p) => ({
+      heroes: [...p.startingHeroes],
+      deckId: p.deckId,
+      ...(p.customDeck ? { cards: { ...p.customDeck } } : {}),
+    }));
   return createGame(seed, cards, s.startingHeroes, d?.id ?? "custom", {
-    ...(s.table
-      ? {
-          seats: s.table.seats.map((p) => ({
-            heroes: [...p.startingHeroes],
-            deckId: p.deckId,
-            ...(p.customDeck ? { cards: { ...p.customDeck } } : {}),
-          })),
-        }
-      : {}),
+    ...(s.table ? { seats: seatsOf(s.table) } : {}),
+    // Epic multiplayer mode: the same three teams play again.
+    ...(s.epic ? { epic: epicTeams(s).map((t) => seatsOf(t.table!)) } : {}),
     scenarioId: s.scenarioId,
     playMode: s.playMode,
     campaign: s.campaign ?? undefined,

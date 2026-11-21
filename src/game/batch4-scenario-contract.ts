@@ -213,7 +213,8 @@ export interface Batch4ScenarioHooks {
         quest: number;
         story: string;
         questImage?: string;
-        side?: "A" | "B";
+        /** The side's letter in the quest stage's label: A or B (C–F at the other stages of an epic game). */
+        side?: string;
       }
     | undefined;
   stats?(

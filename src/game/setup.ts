@@ -88,6 +88,7 @@ import {
   nightmareSupported,
 } from "./nightmare";
 import { nightmareSetup } from "./nightmare-core";
+import { EPIC_TEAMS } from "./epic";
 import type {
   GameState,
   ScenarioId,
@@ -248,8 +249,18 @@ export function createGame(
      * the Campaign Pool.
      */
     rangerLegacy?: number[];
+    /**
+     * Epic multiplayer mode (The Siege of Annúminas): the three teams' seats,
+     * at stages A, C and E.
+     */
+    epic?: SeatConfig[][];
+    /** Epic multiplayer mode: the team this game is for (set by the epic setup). */
+    epicTeam?: number;
   } = {},
 ): GameState {
+  // Epic multiplayer mode: each team plays its own game of the scenario.
+  if (options.epic)
+    return createEpicGame(seed, deck, heroCodes, deckId, options);
   const starter = BUILT_IN_DECKS.find((d) => d.id === deckId);
   const original =
     !!starter &&
@@ -528,6 +539,7 @@ export function createGame(
     ? !!campaign.nightmare && nightmareSupported(scenarioId)
     : !!options.nightmare;
   const s: GameState = {
+    ...(options.epicTeam !== undefined ? { epicTeam: options.epicTeam } : {}),
     // The Dream-chaser campaign: the Hard/Expert Mode card for this chapter.
     ...(options.dreamchaserMode
       ? { dreamchaser: { mode: options.dreamchaserMode } }
@@ -746,6 +758,54 @@ export function createGame(
   } else finishGameSetup(s);
   flush(s);
   syncAttachmentText(s);
+  return s;
+}
+
+/**
+ * Epic multiplayer mode: three teams of one to four players, each with its
+ * own game at stage 1A, 1C or 1E of The Siege of Annúminas. Team A's game
+ * holds the others until their turns (src/game/epic.ts).
+ */
+function createEpicGame(
+  seed: number,
+  deck: Record<string, number>,
+  heroCodes: string[],
+  deckId: string,
+  options: Parameters<typeof createGame>[4] & {},
+): GameState {
+  const teams = options.epic!;
+  requireRule(
+    options.scenarioId === "the-siege-of-annuminas" &&
+      (options.playMode ?? "normal") === "normal" &&
+      !options.nightmare &&
+      !options.campaign &&
+      options.epicTeam === undefined &&
+      teams.length === EPIC_TEAMS &&
+      teams.every((seats) => seats.length >= 1 && seats.length <= 4),
+    "Epic multiplayer mode needs three teams of one to four players at The Siege of Annúminas.",
+  );
+  const games = teams.map((seats, team) =>
+    createGame(seed + team * 7919, deck, heroCodes, deckId, {
+      ...options,
+      epic: undefined,
+      epicTeam: team,
+      seats,
+    }),
+  );
+  const s = games[0];
+  s.epic = {
+    kind: "annuminas",
+    active: 0,
+    teams: [null, games[1], games[2]],
+    held: [],
+    pass: [],
+    cityStrength: 50,
+  };
+  log(
+    s,
+    `Epic multiplayer mode: three teams (${teams.map((seats, i) => `stage 1${"ACE"[i]}: ${seats.length} ${seats.length === 1 ? "player" : "players"}`).join(", ")}) play The Siege of Annúminas at three stages. Within each round the teams take turns: every team resolves the beginning of the round, then plays the round, then resolves the end of the round in stage order.`,
+    "chapter",
+  );
   return s;
 }
 

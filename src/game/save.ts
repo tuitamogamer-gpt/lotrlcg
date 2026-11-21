@@ -82,6 +82,7 @@ import { wrathRuinSavedExtraUnits } from "./wrath-ruin-state";
 import { validateUlfast } from "./ulfast-support";
 import { validateUlfastPlayers } from "./ulfast-player-support";
 import { isSagaCampaign, validateSagaCampaign } from "./saga-campaign";
+import { EPIC_TEAMS } from "./epic";
 import { isAngmarCampaign, validateAngmarCampaign } from "./angmar-campaign";
 import {
   isEredCampaign,
@@ -276,6 +277,50 @@ import { validateFoundationsState } from "./foundations-stone-support";
 import { validateStewardFearState } from "./steward-fear-support";
 import { validateHeirsState } from "./heirs-numenor";
 
+/** Epic multiplayer mode: a waiting team's game is validated without the teams it does not hold. */
+let validatingEpicTeam = false;
+/** Epic multiplayer mode: the teams' games, the barriers and the shared city strength. */
+function validEpic(s: GameState): boolean {
+  const e = s.epic!;
+  const teams = [...Array(EPIC_TEAMS).keys()];
+  const subset = (v: unknown) =>
+    Array.isArray(v) &&
+    v.every((x) => teams.includes(x)) &&
+    new Set(v).size === v.length;
+  if (
+    !e ||
+    e.kind !== "annuminas" ||
+    !teams.includes(e.active) ||
+    e.active !== s.epicTeam ||
+    !Array.isArray(e.teams) ||
+    e.teams.length !== EPIC_TEAMS ||
+    e.teams[e.active] !== null ||
+    !subset(e.held) ||
+    !subset(e.pass) ||
+    e.held.some((x) => e.pass.includes(x)) ||
+    !Number.isSafeInteger(e.cityStrength) ||
+    e.cityStrength < 0 ||
+    (e.lieutenantRound !== undefined &&
+      !(Number.isSafeInteger(e.lieutenantRound) && e.lieutenantRound >= 0))
+  )
+    return false;
+  validatingEpicTeam = true;
+  try {
+    return e.teams.every(
+      (t, i) =>
+        i === e.active ||
+        (!!t &&
+          typeof t === "object" &&
+          t.epicTeam === i &&
+          t.scenarioId === s.scenarioId &&
+          t.playMode === s.playMode &&
+          validateSave(t)),
+    );
+  } finally {
+    validatingEpicTeam = false;
+  }
+}
+
 export function validateSave(
   value: unknown,
   inheritedSeatCount?: number,
@@ -285,6 +330,24 @@ export function validateSave(
     const s = value as GameState;
     const seatCount = inheritedSeatCount ?? s.table?.seats.length ?? 1;
     if (!validFlow(s.flow)) return false;
+    // Epic multiplayer mode: every team's game has its team; the active
+    // team's holds the others (a waiting team's game holds none).
+    if (
+      inheritedSeatCount === undefined &&
+      ((s.epicTeam !== undefined &&
+        !(
+          Number.isInteger(s.epicTeam) &&
+          s.epicTeam >= 0 &&
+          s.epicTeam < EPIC_TEAMS &&
+          s.scenarioId === "the-siege-of-annuminas" &&
+          !!s.table
+        )) ||
+        (validatingEpicTeam
+          ? s.epic !== undefined || s.epicTeam === undefined
+          : (s.epic === undefined) !== (s.epicTeam === undefined)) ||
+        (s.epic !== undefined && !validatingEpicTeam && !validEpic(s)))
+    )
+      return false;
     if (
       inheritedSeatCount === undefined &&
       s.setupPending !== undefined &&

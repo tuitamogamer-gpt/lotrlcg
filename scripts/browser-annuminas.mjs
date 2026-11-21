@@ -2,12 +2,21 @@ import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { chromium } from "playwright";
-import { card } from "../src/game/cards.ts";
-import { fx } from "../src/game/core.ts";
+import { STARTERS, card } from "../src/game/cards.ts";
+import { fx, make } from "../src/game/core.ts";
 import { flush } from "../src/game/effects.ts";
 import { addVictoryCard } from "../src/game/board.ts";
-import { SA, SA_QUEST_CODES, saRecipe } from "../src/game/annuminas-support.ts";
+import { createGame } from "../src/game/engine.ts";
+import { selectTeam } from "../src/game/epic.ts";
+import { seatView } from "../src/game/table.ts";
+import {
+  SA,
+  SA_TEAM_QUESTS,
+  saRecipe,
+  saTeams,
+} from "../src/game/annuminas-support.ts";
 import { atQuest, base, engaged, stage } from "../tests/annuminas-fixtures.ts";
+import { autoplay } from "../tests/nightmare-fixtures.ts";
 import { reviewedState } from "./browser-review-helpers.mjs";
 import {
   capture,
@@ -15,6 +24,7 @@ import {
   context,
   fresh,
   load,
+  next,
   opening,
   report,
   resume,
@@ -61,6 +71,50 @@ async function travel() {
   await reviewedState(page);
   return saved(page);
 }
+/** Epic multiplayer mode: three teams set up and at team A's first planning phase, quiet. */
+function epicGame(sizes = [1, 1, 1], seed = 41) {
+  let offset = 0;
+  const epic = sizes.map((n) =>
+    Array.from({ length: n }, () => {
+      const d = STARTERS[offset++ % STARTERS.length];
+      return { deckId: d.id, heroes: [...d.heroes] };
+    }),
+  );
+  const d = STARTERS[0];
+  let s = createGame(seed, d.cards, d.heroes, d.id, {
+    scenarioId: "the-siege-of-annuminas",
+    epic,
+  });
+  for (
+    let n = 0;
+    n < 3000 &&
+    !(
+      s.round === 1 &&
+      s.epicTeam === 0 &&
+      s.phase === "planning" &&
+      !s.choice &&
+      !s.flow?.pending
+    );
+    n++
+  )
+    s = autoplay(s, 1);
+  for (const t of saTeams(s))
+    Object.assign(t, {
+      phase: "planning",
+      queue: [],
+      choice: null,
+      combat: null,
+      suspendedCombats: [],
+      stageRevealing: false,
+    });
+  s.epic.held = [];
+  s.epic.pass = [];
+  return s;
+}
+const epicStage = (t, n) => {
+  t.annuminas.currentQuest = SA_TEAM_QUESTS[t.epicTeam][n - 1];
+  t.stage = n;
+};
 async function settleAll(s) {
   for (let n = 0; s.choice && n < 40; n++)
     s = await choose(
@@ -99,7 +153,7 @@ try {
             ...s.encounterDiscard,
             ...s.staging.map((u) => u.code),
             ...q.setAside,
-            ...SA_QUEST_CODES,
+            ...SA_TEAM_QUESTS[0],
           ].sort();
           assert.deepEqual(
             physical,
@@ -122,10 +176,19 @@ try {
             width,
           );
         }
-    // All three printed quest cards, both faces.
-    for (const code of SA_QUEST_CODES) {
-      const s = base(1);
-      atQuest(s, code);
+    // All nine printed quest cards, both faces: 1A–3A in standard mode, 1C–3C
+    // and 1E–3E at their teams' stages in epic multiplayer mode.
+    for (const code of SA_TEAM_QUESTS.flat()) {
+      const team = SA_TEAM_QUESTS.findIndex((deck) => deck.includes(code));
+      let s;
+      if (team === 0) {
+        s = base(1);
+        atQuest(s, code);
+      } else {
+        s = epicGame();
+        selectTeam(s, team);
+        epicStage(s, SA_TEAM_QUESTS[team].indexOf(code) + 1);
+      }
       await load(page, s);
       await page
         .getByRole("button", {
@@ -236,6 +299,141 @@ try {
     assert.equal(lost.status, "lost");
     await load(page, lost);
     await checkpoint("city-overrun", width);
+    // Epic multiplayer mode (Q99.09).
+    if (width === 1280) {
+      // Another scenario offers no epic switch.
+      await fresh(page, "mirkwood", 2, false);
+      assert.equal(await page.locator(".epic-toggle").count(), 0);
+      // The lobby's switch on a hot-seat table: three teams of two players.
+      await fresh(page, "the-siege-of-annuminas", 2, false);
+      await page.locator(".epic-toggle input").setChecked(true);
+      await page.locator("#start-btn").click();
+      let e = await opening(page);
+      assert.equal(e.epicTeam, 0);
+      assert.equal(e.epic.cityStrength, 50);
+      assert.deepEqual(
+        [e, e.epic.teams[1], e.epic.teams[2]].map((t) => [
+          t.epicTeam,
+          t.table.seats.length,
+          t.annuminas.currentQuest,
+        ]),
+        [
+          [0, 2, SA.rebuild],
+          [1, 2, SA.levee],
+          [2, 2, SA.delay],
+        ],
+      );
+      await page
+        .getByText("Epic multiplayer mode · team A (quest deck 1A–3A)", {
+          exact: true,
+        })
+        .waitFor();
+      await page.locator(`${panel} [data-epic-team='1B']`).waitFor();
+      await page.locator(`${panel} [data-city-strength='50']`).waitFor();
+      await page
+        .locator(`${panel} [data-epic-stage='1B'][aria-current='true']`)
+        .waitFor();
+      for (const side of ["1D", "1F"])
+        await page.locator(`${panel} [data-epic-stage='${side}']`).waitFor();
+      assert.equal((await resume(page)).epic.cityStrength, 50);
+      await checkpoint("epic-team-a", width);
+      // Team A's round (a fixed game, played here up to its refresh phase):
+      // its last action on the table ends its round, and team C's turn begins.
+      let a = createGame(
+        41,
+        STARTERS[0].cards,
+        STARTERS[0].heroes,
+        STARTERS[0].id,
+        {
+          scenarioId: "the-siege-of-annuminas",
+          epic: [0, 1, 2].map(() =>
+            STARTERS.slice(0, 2).map((d) => ({
+              deckId: d.id,
+              heroes: [...d.heroes],
+            })),
+          ),
+        },
+      );
+      for (
+        let n = 0;
+        n < 600 &&
+        !(
+          a.round === 1 &&
+          a.epicTeam === 0 &&
+          a.phase === "refresh" &&
+          !a.choice &&
+          !a.flow?.pending
+        );
+        n++
+      )
+        a = autoplay(a, 1);
+      assert.equal(a.status, "playing");
+      assert.equal(a.phase, "refresh");
+      await load(page, a);
+      await next(page);
+      e = await saved(page);
+      assert.equal(e.status, "playing");
+      assert.equal(e.epicTeam, 1);
+      assert.deepEqual(e.epic.held, [0]);
+      assert.equal(e.epic.teams[0].queue[0].kind, "endRound");
+      await page
+        .getByText("Epic multiplayer mode · team C (quest deck 1C–3C)", {
+          exact: true,
+        })
+        .waitFor();
+      await page
+        .locator(`${panel} [data-epic-stage='1D'][aria-current='true']`)
+        .waitFor();
+      assert.equal((await resume(page)).epicTeam, 1);
+      await checkpoint("epic-team-c", width);
+    }
+    // Stage 3 at every stage: team E at 3F with Siege Tunnel, Lieutenant of
+    // Angmar and Enemy Camp at 3D, and a captive hero under each stage.
+    const epicSortie = epicGame([1, 2, 1]);
+    for (const t of saTeams(epicSortie)) {
+      epicStage(t, 3);
+      const view = seatView(t, 0);
+      const hero = view.heroes.shift();
+      t.annuminas.captives.push({ code: hero.code, owner: 0 });
+    }
+    const teamC = saTeams(epicSortie)[1];
+    teamC.staging.push(make(teamC, SA.lieutenant), make(teamC, SA.camp));
+    for (const t of saTeams(epicSortie))
+      t.annuminas.setAside = t.annuminas.setAside.filter(
+        (c) => !(t === teamC && [SA.lieutenant, SA.camp].includes(c)),
+      );
+    selectTeam(epicSortie, 2);
+    epicSortie.staging.push(make(epicSortie, SA.tunnel));
+    epicSortie.annuminas.setAside = epicSortie.annuminas.setAside.filter(
+      (c) => c !== SA.tunnel,
+    );
+    await load(page, epicSortie);
+    await page.locator(`${panel} [data-side='3F']`).waitFor();
+    await page.locator(`${panel} [data-lieutenant='play']`).waitFor();
+    await page.locator(`${panel} [data-captives='1']`).waitFor();
+    assert.match(
+      await page.locator(`${panel} [data-lieutenant='play']`).innerText(),
+      /in play at stage 3D\.$/,
+    );
+    await page
+      .locator(`${panel} [data-epic-stage='3F'][aria-current='true']`)
+      .waitFor();
+    for (const side of ["3B", "3D"])
+      await page.locator(`${panel} [data-epic-stage='${side}']`).waitFor();
+    await checkpoint("epic-stage-3", width);
+    if (width === 1280) {
+      // The Lieutenant in any team's victory display: every team wins.
+      const routed = structuredClone(epicSortie);
+      selectTeam(routed, 0);
+      routed.victoryCards = [SA.lieutenant];
+      selectTeam(routed, 2);
+      routed.queue.push(fx("saSortieWin", { player: 0 }));
+      flush(routed);
+      assert.equal(routed.status, "won");
+      assert.ok(saTeams(routed).every((t) => t.status === "won"));
+      await load(page, routed);
+      await checkpoint("epic-enemy-routed", width);
+    }
     await view.c.close();
   }
   const p = await browser.newPage();

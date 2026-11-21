@@ -98,7 +98,11 @@ import {
 import { OATH_ENCOUNTERS, OATH_QUESTS } from "./the-oath-scenario-data";
 import { RB_ENCOUNTERS, RB_QUESTS } from "./ruins-belegost-scenario-data";
 import { PP_ENCOUNTERS, PP_QUESTS } from "./prancing-pony-scenario-data";
-import { SA_ENCOUNTERS, SA_QUESTS } from "./annuminas-scenario-data";
+import {
+  SA_ENCOUNTERS,
+  SA_EPIC_QUESTS,
+  SA_QUESTS,
+} from "./annuminas-scenario-data";
 import { ADG_ENCOUNTERS, ADG_QUESTS } from "./attack-dol-guldur-scenario-data";
 import {
   CAVES_ENCOUNTERS,
@@ -752,6 +756,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...RB_QUESTS,
     ...PP_QUESTS,
     ...SA_QUESTS,
+    ...SA_EPIC_QUESTS,
     ...ADG_QUESTS,
     ...CAVES_QUESTS,
     ...WQ_QUESTS,
@@ -905,6 +910,7 @@ export const SCRIPTED = new Set(
     ...RB_QUESTS,
     ...PP_QUESTS,
     ...SA_QUESTS,
+    ...SA_EPIC_QUESTS,
     ...ADG_QUESTS,
     ...CAVES_QUESTS,
     ...WQ_QUESTS,

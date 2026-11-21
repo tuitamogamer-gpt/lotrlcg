@@ -700,6 +700,16 @@ export interface GameState {
   ruinsBelegost?: import("./ruins-belegost-types").RuinsBelegostState;
   prancingPony?: import("./prancing-pony-types").PrancingPonyState;
   annuminas?: import("./annuminas-types").AnnuminasState;
+  /**
+   * Epic multiplayer mode (The Siege of Annúminas): this game's team, at
+   * stage A, C or E (0, 1 or 2).
+   */
+  epicTeam?: number;
+  /**
+   * Epic multiplayer mode: the teams' games, held on the active team's state
+   * (the other teams' games wait in it until their turn).
+   */
+  epic?: import("./epic").EpicState;
   attackDolGuldur?: import("./attack-dol-guldur-types").AttackDolGuldurState;
   caves?: import("./caves-nibin-dum-types").CavesState;
   wizardsQuest?: import("./wizards-quest-types").WizardsQuestState;

@@ -1,7 +1,18 @@
 import type { Effect, GameState, Unit } from "./types";
 import type { Batch4ScenarioHooks } from "./batch4-scenario-contract";
 import { card, name } from "./cards";
-import { choose, fx, get, log, make, prepend, shuffle, stats } from "./core";
+import {
+  choose,
+  fx,
+  get,
+  log,
+  make,
+  prepend,
+  random,
+  shuffle,
+  stagingThreat,
+  stats,
+} from "./core";
 import {
   depositInFlightEncounterCards,
   discardAttachment,
@@ -28,8 +39,12 @@ import {
   SA,
   SA_ARCHERY,
   SA_STAGE,
+  SA_TEAM_QUESTS,
+  saCityStrength,
   saRecipe,
   saStageInfo,
+  saTeams,
+  saVictory,
 } from "./annuminas-support";
 export * from "./annuminas-support";
 
@@ -65,8 +80,8 @@ const enemiesInPlay = (s: GameState) => [
 ];
 const anyLive = (s: GameState, c: string) =>
   [...s.staging, ...allActiveLocations(s)].some((u) => live(u, c));
-const inVictory = (s: GameState, c: string) =>
-  (s.victoryCards ?? []).includes(c);
+/** In epic multiplayer mode, a card is in a victory display if it is in any team's. */
+const inVictory = (s: GameState, c: string) => saVictory(s).includes(c);
 const charactersOf = (s: GameState, p: number) => [
   ...seatView(s, p).heroes,
   ...seatView(s, p).allies,
@@ -82,15 +97,15 @@ function lose(s: GameState, reason: string) {
 }
 /** Annúminas takes damage: the city strength falls; at 0 the players lose. */
 function damageCity(s: GameState, n: number, source: string) {
-  const q = s.annuminas!;
   if (n <= 0 || s.status !== "playing") return;
-  q.cityStrength = Math.max(0, q.cityStrength - n);
+  const strength = Math.max(0, saCityStrength(s) - n);
+  setCity(s, strength);
   log(
     s,
-    `${source}: Annúminas takes ${n} damage (city strength ${q.cityStrength}).`,
+    `${source}: Annúminas takes ${n} damage (city strength ${strength}).`,
     "danger",
   );
-  if (q.cityStrength <= 0)
+  if (strength <= 0)
     lose(
       s,
       "The city strength of Annúminas reaches 0: the city is overrun by the forces of Angmar and the players lose the game.",
@@ -162,6 +177,75 @@ function returnToStaging(s: GameState, u: Unit) {
 }
 
 // ---------------------------------------------------------------------------
+// Epic multiplayer mode: three teams at stages A, C and E (src/game/epic.ts).
+
+const epic = (s: GameState) => s.epicTeam !== undefined;
+/** A team's stage as its back side reads (1B, 2D, 3F…). */
+const sideOf = (t: GameState) => `${t.stage}${"BDF"[t.epicTeam ?? 0]}`;
+/** The city strength of Annúminas: one for every team in epic multiplayer mode. */
+function setCity(s: GameState, value: number) {
+  if (s.epic) s.epic.cityStrength = value;
+  else s.annuminas!.cityStrength = value;
+}
+/** Effects for a team's players: at once for the active team, at another team's next turn. */
+function queueFor(s: GameState, team: GameState, effects: Effect[]) {
+  if (!effects.length) return;
+  if (team === s) prepend(s, ...effects);
+  else team.queue = [...effects, ...team.queue];
+}
+/** An encounter card moves to another team's staging area (its damage and resources stay). */
+function moveToTeam(team: GameState, u: Unit) {
+  const moved: Unit = {
+    ...structuredClone(u),
+    id: `c${team.nextId++}`,
+    attachments: u.attachments.map((a) => ({
+      ...structuredClone(a),
+      id: `a${team.nextId++}`,
+    })),
+    shadows: [],
+    revealedShadowCount: 0,
+    ...(team.table ? { owner: firstPlayer(team) } : {}),
+  };
+  delete moved.faceupShadows;
+  if (!team.table) delete moved.owner;
+  team.staging.push(moved);
+  enemyAddedToStaging(team, moved);
+  return moved;
+}
+/** An encounter card leaves its team's staging area or engaged player (its shadow cards are discarded). */
+function removeFromPlay(t: GameState, u: Unit) {
+  if (t.staging.some((x) => x.id === u.id))
+    t.staging = t.staging.filter((x) => x.id !== u.id);
+  else {
+    const owner = playerOrder(t).find((x) =>
+      seatView(t, x).engaged.some((e) => e.id === u.id),
+    );
+    if (owner === undefined) return false;
+    forOwner(t, owner, () => {
+      t.engaged = t.engaged.filter((e) => e.id !== u.id);
+    });
+  }
+  t.encounterDiscard.push(...u.shadows);
+  u.shadows = [];
+  return true;
+}
+const teamEnemies = (t: GameState) => [
+  ...t.staging.filter((u) => isEnemy(u)),
+  ...playerOrder(t).flatMap((x) => seatView(t, x).engaged),
+];
+/** The non-unique enemies worth no victory points at the other stages. */
+const otherEnemies = (s: GameState) =>
+  saTeams(s)
+    .filter((team) => team !== s && team.status === "playing")
+    .flatMap((team) =>
+      teamEnemies(team)
+        .filter((u) => !card(u.code).is_unique && !card(u.code).victory)
+        .map((u) => ({ team, u })),
+    );
+/** The stage-1 quests whose Forced effect places a resource at the beginning of each round. */
+const STAGE_ONE: readonly string[] = [SA.rebuild, SA.levee, SA.delay];
+
+// ---------------------------------------------------------------------------
 // Setup and the quest stages.
 
 export function setupAnnuminas(s: GameState) {
@@ -172,6 +256,7 @@ export function setupAnnuminas(s: GameState) {
       .flatMap((c) => Array<string>(c.quantity).fill(c.code));
   const aside = section("sharedSetAside");
   const deck = section("sharedEncounterDeck");
+  if (epic(s)) return setupEpicTeam(s, aside, deck);
   // 1A: the first player's location is Gate of Annúminas; the other players
   // search for a different location once the opening hands are kept.
   takeFrom(deck, SA.gate);
@@ -198,9 +283,70 @@ export function setupAnnuminas(s: GameState) {
     "chapter",
   );
 }
+/**
+ * Epic multiplayer mode: each team sets up its own copy of the scenario. The
+ * team at stage 1A adds Annúminas to its staging area (city strength 50);
+ * the other teams remove their copies. 1A's first player adds Gate of
+ * Annúminas, 1C's players each discard until an enemy or location, and 1E's
+ * first player adds Vanguard of Carn Dûm (the other players choose once the
+ * opening hands are kept).
+ */
+function setupEpicTeam(s: GameState, aside: string[], deck: string[]) {
+  const team = s.epicTeam!;
+  const quest = SA_TEAM_QUESTS[team][0];
+  const staged: string[] = [];
+  if (team === 0) {
+    takeFrom(deck, SA.gate);
+    staged.push(SA.city, SA.gate);
+    s.encounterDeck = shuffle(s, deck);
+  } else if (team === 2) {
+    takeFrom(deck, SA.vanguard);
+    staged.push(SA.vanguard);
+    s.encounterDeck = shuffle(s, deck);
+  } else {
+    s.encounterDeck = shuffle(s, deck);
+    for (const _ of playerOrder(s)) {
+      void _;
+      const c = discardUntil(s, (x) => isEnemyCode(x) || isLocationCode(x));
+      if (!c) break;
+      takeFrom(s.encounterDiscard, c);
+      staged.push(c);
+    }
+  }
+  for (const c of staged) toStaging(s, c);
+  s.annuminas = {
+    currentQuest: quest,
+    advancing: false,
+    setAside: [SA.epicMode, ...aside.filter((c) => c !== SA.city)],
+    cityStrength: team === 0 ? 50 : 0,
+    questResources: 0,
+    questProgress: null,
+    resolving: [],
+    weakened: [],
+    braced: [],
+    pressed: [],
+    weary: null,
+    unready: [],
+    captives: [],
+  };
+  log(
+    s,
+    `Epic multiplayer mode · stage 1${"ACE"[team]}, ${card(quest).name}: ${
+      team === 0
+        ? "Annúminas is added to the staging area with a city strength of 50, and Gate of Annúminas is added to the staging area"
+        : team === 2
+          ? "Vanguard of Carn Dûm is added to the staging area"
+          : `each player discards until an enemy or location: ${staged.map((c) => card(c).name).join(", ") || "none"} ${staged.length === 1 ? "is" : "are"} added to the staging area`
+    }. Lieutenant of Angmar, Battering Ram, Enemy Camp, Siege Tunnel, each Host of Angmar and each Dúnedain of Annúminas are set aside.`,
+    "chapter",
+  );
+}
 function advance(s: GameState) {
   const q = s.annuminas;
   if (!q) return false;
+  // Epic multiplayer mode: each stage 2 is defeated only at the beginning of
+  // the round, once every stage 2 is complete.
+  if (epic(s) && SA_STAGE[q.currentQuest] === 2) return true;
   const goal = saStageInfo(s)?.quest ?? 0;
   if (
     q.advancing ||
@@ -216,25 +362,36 @@ function advance(s: GameState) {
   prepend(s, fx("saDefeatQuest", { player: firstPlayer(s) }));
   return true;
 }
-const NEXT: Record<string, string> = {
-  [SA.rebuild]: SA.defend,
-  [SA.defend]: SA.sortie,
-};
+const NEXT: Record<string, string> = Object.fromEntries(
+  SA_TEAM_QUESTS.flatMap((deck) =>
+    deck.slice(0, -1).map((c, i) => [c, deck[i + 1]] as const),
+  ),
+);
 function stageEntry(s: GameState): Effect[] {
   const q = s.annuminas!;
   const first = firstPlayer(s);
-  if (q.currentQuest === SA.defend)
+  const others = playerOrder(s)
+    .filter((p) => p !== first)
+    .map((player) => fx("reveal", { player }));
+  // Stage 2: the Standard Game Mode card's reinforcements, then X enemies.
+  if (SA_STAGE[q.currentQuest] === 2)
     return [
-      fx("saReinforce", { player: first }),
+      ...(epic(s) ? [] : [fx("saReinforce", { player: first })]),
       fx("saDefendCity", { player: first }),
     ];
   if (q.currentQuest === SA.sortie)
+    return [fx("saSortie", { player: first }), ...others];
+  // 3C: Enemy Camp; then each player at each stage puts a hero under the
+  // main quest at their stage.
+  if (q.currentQuest === SA.captives)
     return [
-      fx("saSortie", { player: first }),
-      ...playerOrder(s)
-        .filter((p) => p !== first)
-        .map((player) => fx("reveal", { player })),
+      fx("saCaptivesEntry", { player: first }),
+      ...others,
+      fx("saCaptiveAll", { player: first }),
     ];
+  // 3E: Siege Tunnel.
+  if (q.currentQuest === SA.stopAttack)
+    return [fx("saStopAttackEntry", { player: first }), ...others];
   return [];
 }
 
@@ -421,12 +578,13 @@ function saEffect(s: GameState, e: Effect): boolean {
       prepend(s, ...stageEntry(s));
       return true;
     }
-    // 1B: a resource at the beginning of each round; at 4, stage 2.
+    // 1B (1D, 1F): a resource at the beginning of each round; at 4, stage 2.
     case "saRebuild": {
+      if (!STAGE_ONE.includes(q.currentQuest)) return true;
       q.questResources += 1;
       log(
         s,
-        `Rebuild the Defenses: a resource is placed on the stage (${q.questResources} of 4).`,
+        `${card(q.currentQuest).name}: a resource is placed on the stage (${q.questResources} of 4).`,
       );
       if (q.questResources >= 4) {
         q.advancing = true;
@@ -464,7 +622,7 @@ function saEffect(s: GameState, e: Effect): boolean {
       for (const c of found) toStaging(s, c);
       log(
         s,
-        `Defend the City: ${found.map((c) => card(c).name).join(", ") || "no enemy"} ${found.length === 1 ? "is" : "are"} added to the staging area.`,
+        `${card(q.currentQuest).name}: ${found.map((c) => card(c).name).join(", ") || "no enemy"} ${found.length === 1 ? "is" : "are"} added to the staging area.`,
         "danger",
       );
       return true;
@@ -509,8 +667,11 @@ function saEffect(s: GameState, e: Effect): boolean {
       return true;
     }
     // End of the round.
+    // Annúminas: 1 damage for each enemy at each stage.
     case "saCityDamage": {
-      const n = enemiesInPlay(s).length;
+      const n = epic(s)
+        ? saTeams(s).reduce((sum, t) => sum + teamEnemies(t).length, 0)
+        : enemiesInPlay(s).length;
       if (n) damageCity(s, n, "Annúminas");
       return true;
     }
@@ -543,22 +704,58 @@ function saEffect(s: GameState, e: Effect): boolean {
       }
       return true;
     }
+    // Siege Tunnel: each team discards until an enemy, which it stages.
     case "saTunnel": {
-      const c = discardUntil(s, isEnemyCode);
-      if (c) {
-        takeFrom(s.encounterDiscard, c);
-        toStaging(s, c);
+      for (const t of saTeams(s)) {
+        const c = discardUntil(t, isEnemyCode);
+        if (c) {
+          takeFrom(t.encounterDiscard, c);
+          toStaging(t, c);
+        }
+        log(
+          s,
+          `Siege Tunnel${epic(s) ? ` · stage ${sideOf(t)}` : ""}: ${c ? `${card(c).name} is added to the staging area` : "no enemy is discarded"}.`,
+          "danger",
+        );
       }
-      log(
-        s,
-        `Siege Tunnel: ${c ? `${card(c).name} is added to the staging area` : "no enemy is discarded"}.`,
-        "danger",
-      );
       return true;
     }
     case "saLieutenant": {
       const lt = enemiesInPlay(s).find((u) => live(u, SA.lieutenant));
       if (!lt) return true;
+      // Epic multiplayer mode: he moves once a round, to the staging area
+      // with the lowest total threat at any stage (this one when tied).
+      if (s.epic) {
+        if (s.epic.lieutenantRound === s.round) return true;
+        s.epic.lieutenantRound = s.round;
+        const teams = saTeams(s);
+        const threat = teams.map((t) => stagingThreat(t));
+        const low = Math.min(...threat);
+        const to =
+          threat[s.epicTeam!] === low ? s.epicTeam! : threat.indexOf(low);
+        if (to !== s.epicTeam) {
+          const target = teams[to];
+          removeFromPlay(s, lt);
+          const moved = moveToTeam(target, lt);
+          log(
+            s,
+            `Lieutenant of Angmar moves to the staging area at stage ${sideOf(target)} (the lowest total threat, ${low}) and makes an immediate attack against its first player.`,
+            "danger",
+          );
+          log(
+            target,
+            `Lieutenant of Angmar moves here from stage ${sideOf(s)} and makes an immediate attack against the first player.`,
+            "danger",
+          );
+          queueFor(s, target, [
+            fx("immediateAttack", {
+              target: moved.id,
+              player: firstPlayer(target),
+            }),
+          ]);
+          return true;
+        }
+      }
       returnToStaging(s, lt);
       log(
         s,
@@ -586,10 +783,10 @@ function saEffect(s: GameState, e: Effect): boolean {
     case "saStrengthen":
       if (s.progress < 10) return true;
       s.progress -= 10;
-      q.cityStrength += 10;
+      setCity(s, saCityStrength(s) + 10);
       log(
         s,
-        `Rebuild the Defenses: 10 progress is removed; the city strength of Annúminas rises to ${q.cityStrength}.`,
+        `Rebuild the Defenses: 10 progress is removed; the city strength of Annúminas rises to ${saCityStrength(s)}.`,
         "good",
       );
       return true;
@@ -615,9 +812,398 @@ function saEffect(s: GameState, e: Effect): boolean {
       if (inVictory(s, SA.lieutenant))
         win(
           s,
-          "Lieutenant of Angmar is in the victory display at the end of the round: the players have routed the enemy and win the game.",
+          epic(s)
+            ? "Lieutenant of Angmar is in a victory display at the end of the round: the players have routed the enemy and won the game."
+            : "Lieutenant of Angmar is in the victory display at the end of the round: the players have routed the enemy and win the game.",
         );
       return true;
+    // -----------------------------------------------------------------------
+    // Epic multiplayer mode.
+    // 1E Setup: each other player searches for a different enemy.
+    case "saSetupEnemy": {
+      const taken = new Set(s.staging.map((u) => u.code));
+      const options = [
+        ...new Set(
+          s.encounterDeck.filter((c) => isEnemyCode(c) && !taken.has(c)),
+        ),
+      ];
+      if (!options.length) return true;
+      choose(
+        s,
+        `Delay the Enemy · Search for a different enemy${seatLabel(s, p)}`,
+        options.map((c) => ({
+          id: c,
+          code: c,
+          label: card(c).name,
+          effects: [fx("saSearchTake", { text: c, player: p })],
+        })),
+        card(SA.delay).text,
+      );
+      return true;
+    }
+    // Each stage 2 is defeated at the beginning of the round, and only once
+    // every stage 2 is complete (a stage already past it counts as complete).
+    case "saEpicDefeat": {
+      if (SA_STAGE[q.currentQuest] !== 2 || q.advancing || s.stageRevealing)
+        return true;
+      const hosts = saVictory(s).filter((c) => c === SA.host).length;
+      const goal = Math.max(0, 50 - 10 * hosts);
+      const complete = (team: GameState) =>
+        team.stage > 2 || (team.stage === 2 && team.progress >= goal);
+      if (!saTeams(s).every(complete)) return true;
+      log(
+        s,
+        `Each stage 2 is complete (${goal} quest points): ${card(q.currentQuest).name} is defeated at the beginning of the round.`,
+        "good",
+      );
+      q.advancing = true;
+      prepend(s, fx("saDefeatQuest", { player: first }));
+      return true;
+    }
+    // 2F: a set-aside Host of Angmar (from any stage's set aside area).
+    case "saManWalls": {
+      if (!at(s, SA.manWalls)) return true;
+      const from = [s, ...saTeams(s).filter((team) => team !== s)].find(
+        (team) => team.annuminas?.setAside.includes(SA.host),
+      );
+      if (!from) return true;
+      takeFrom(from.annuminas!.setAside, SA.host);
+      toStaging(s, SA.host);
+      log(
+        s,
+        `Man the Walls: a set-aside Host of Angmar${from === s ? "" : ` (from stage ${sideOf(from)})`} is added to the staging area.`,
+        "danger",
+      );
+      return true;
+    }
+    // 3C: Enemy Camp enters the staging area.
+    case "saCaptivesEntry": {
+      reshuffle(s);
+      if (fromAside(s, SA.camp)) toStaging(s, SA.camp);
+      log(
+        s,
+        "Rescue the Captives: Enemy Camp is added to the staging area.",
+        "danger",
+      );
+      return true;
+    }
+    // 3C: each player at each stage puts a hero under their stage's main quest.
+    case "saCaptiveAll":
+      for (const team of saTeams(s))
+        queueFor(
+          s,
+          team,
+          playerOrder(team).map((player) => fx("saCaptive", { player })),
+        );
+      return true;
+    case "saCaptive": {
+      const heroes = seatView(s, p).heroes;
+      if (!heroes.length) return true;
+      choose(
+        s,
+        `Rescue the Captives · Choose a hero to place facedown under the main quest${seatLabel(s, p)}`,
+        heroes.map((h) => ({
+          id: h.id,
+          code: h.code,
+          label: name(h),
+          effects: [fx("saCaptiveTake", { target: h.id, player: p })],
+        })),
+        card(SA.captives).text,
+      );
+      return true;
+    }
+    case "saCaptiveTake": {
+      const hero = seatView(s, p).heroes.find((h) => h.id === e.target);
+      if (!hero) return true;
+      for (const a of [...hero.attachments])
+        discardAttachment(s, hero, a, true);
+      forOwner(s, p, () => {
+        s.heroes = s.heroes.filter((h) => h.id !== hero.id);
+      });
+      (q.captives ??= []).push({ code: hero.code, owner: p });
+      log(
+        s,
+        `${name(hero)} is placed facedown under the main quest (its tokens and attachments are discarded).`,
+        "danger",
+      );
+      return true;
+    }
+    // 3E: Siege Tunnel enters the staging area.
+    case "saStopAttackEntry": {
+      reshuffle(s);
+      if (fromAside(s, SA.tunnel)) toStaging(s, SA.tunnel);
+      log(
+        s,
+        "Stop the Attack: Siege Tunnel is added to the staging area.",
+        "danger",
+      );
+      return true;
+    }
+    // Enemy Camp: a random captive hero at each stage 3 is discarded, or,
+    // with Enemy Camp in a victory display, each captive returns.
+    case "saCamp": {
+      const freed = inVictory(s, SA.camp);
+      for (const team of saTeams(s)) {
+        const held = team.annuminas?.captives ?? [];
+        if (!held.length) continue;
+        if (freed) {
+          for (const h of held.splice(0))
+            forOwner(team, h.owner, () => {
+              const hero = make(team, h.code);
+              hero.owner = team.table ? h.owner : hero.owner;
+              team.heroes.push(hero);
+            });
+          log(
+            s,
+            `Enemy Camp is in a victory display: each hero under stage ${sideOf(team)} returns to its owner's control.`,
+            "good",
+          );
+        } else {
+          const [h] = held.splice(Math.floor(random(s) * held.length), 1);
+          forOwner(team, h.owner, () => team.discard.push(h.code));
+          log(
+            s,
+            `Enemy Camp: ${card(h.code).name} is discarded from under stage ${sideOf(team)}.`,
+            "danger",
+          );
+        }
+      }
+      return true;
+    }
+    // 1D: remove 10 progress; the first player at each stage takes control
+    // of a set-aside Dúnedain of Annúminas.
+    case "saLeveeResponse":
+      choose(
+        s,
+        `Raise the Levee · Remove 10 progress to give each stage's first player a Dúnedain of Annúminas?${seatLabel(s, first)}`,
+        [
+          {
+            id: "use",
+            label:
+              "Remove 10 progress: the first player at each stage takes control of a set-aside Dúnedain of Annúminas",
+            effects: [fx("saLevee", { player: first })],
+          },
+          { id: "skip", label: "Keep the progress", effects: [] },
+        ],
+        card(SA.levee).back_text,
+      );
+      return true;
+    case "saLevee": {
+      if (s.progress < 10) return true;
+      s.progress -= 10;
+      for (const team of saTeams(s)) {
+        if (!team.annuminas || !takeFrom(team.annuminas.setAside, SA.dunedain))
+          continue;
+        const lead = firstPlayer(team);
+        forOwner(team, lead, () => {
+          const ally = make(team, SA.dunedain);
+          if (team.table) ally.owner = lead;
+          team.allies.push(ally);
+        });
+        log(
+          s,
+          `Raise the Levee: the first player at stage ${sideOf(team)} takes control of a set-aside Dúnedain of Annúminas.`,
+          "good",
+        );
+      }
+      return true;
+    }
+    // 1F: remove 10 progress; the players at each other stage reveal 1 fewer
+    // encounter card during their next quest phase.
+    case "saDelayResponse":
+      choose(
+        s,
+        `Delay the Enemy · Remove 10 progress so that each other stage reveals 1 fewer encounter card?${seatLabel(s, first)}`,
+        [
+          {
+            id: "use",
+            label:
+              "Remove 10 progress: the players at each other stage reveal 1 fewer encounter card during their next quest phase",
+            effects: [fx("saDelayFewer", { player: first })],
+          },
+          { id: "skip", label: "Keep the progress", effects: [] },
+        ],
+        card(SA.delay).back_text,
+      );
+      return true;
+    case "saDelayFewer": {
+      if (s.progress < 10) return true;
+      s.progress -= 10;
+      for (const team of saTeams(s).filter((x) => x !== s))
+        if (team.annuminas)
+          team.annuminas.fewerReveals = { round: s.round + 1, value: 1 };
+      log(
+        s,
+        "Delay the Enemy: 10 progress is removed; the players at each other stage reveal 1 fewer encounter card during their next quest phase.",
+        "good",
+      );
+      return true;
+    }
+    // 2B, 2D and 2F: choose a stage; each player at that stage heals 1
+    // damage, adds 1 resource to a hero or draws 1 card.
+    case "saChooseStage": {
+      const kind = e.text ?? "heal";
+      const what =
+        kind === "heal"
+          ? "each player heals 1 damage from a character he controls"
+          : kind === "resource"
+            ? "each player adds 1 resource to a hero he controls"
+            : "each player draws 1 card";
+      choose(
+        s,
+        `${card(q.currentQuest).name} · Choose a stage: ${what}${seatLabel(s, first)}`,
+        [
+          ...saTeams(s)
+            .filter((team) => team.status === "playing")
+            .map((team) => ({
+              id: `stage-${team.epicTeam}`,
+              label: `Stage ${sideOf(team)}${team === s ? " (this stage)" : ""}: ${what}`,
+              effects: [
+                fx("saStageReward", {
+                  text: kind,
+                  value: team.epicTeam,
+                  player: first,
+                }),
+              ],
+            })),
+          { id: "skip", label: "Choose no stage", effects: [] },
+        ],
+        card(q.currentQuest).back_text,
+      );
+      return true;
+    }
+    case "saStageReward": {
+      const team = saTeams(s)[e.value ?? 0];
+      if (!team) return true;
+      const kind = e.text ?? "heal";
+      queueFor(
+        s,
+        team,
+        playerOrder(team).map((player) =>
+          kind === "heal"
+            ? fx("saHeal", { player })
+            : kind === "resource"
+              ? fx("saGateResource", { player })
+              : fx("draw", { value: 1, player }),
+        ),
+      );
+      log(
+        s,
+        `${card(q.currentQuest).name}: stage ${sideOf(team)} is chosen.`,
+        "good",
+      );
+      return true;
+    }
+    case "saGateResource": {
+      const heroes = seatView(s, p).heroes;
+      if (!heroes.length) return true;
+      choose(
+        s,
+        `Guard the Gate · Add 1 resource to a hero you control${seatLabel(s, p)}`,
+        heroes.map((h) => ({
+          id: h.id,
+          code: h.code,
+          label: name(h),
+          effects: [fx("resource", { target: h.id, value: 1, player: p })],
+        })),
+        card(SA.guard).back_text,
+      );
+      return true;
+    }
+    // Epic Multiplayer Mode (stage 2): each Host of Angmar in the staging
+    // area moves to the next staging area (2F to 2D, 2D to 2B); at 2B it is
+    // discarded and Annúminas takes 9 damage.
+    case "saHostsMove": {
+      const hosts = s.staging.filter((u) => u.code === SA.host);
+      if (!hosts.length) return true;
+      const team = s.epicTeam!;
+      const target = team > 0 ? saTeams(s)[team - 1] : undefined;
+      for (const host of hosts) {
+        removeFromPlay(s, host);
+        if (!target) {
+          s.encounterDiscard.push(host.code);
+          damageCity(s, 9, "Host of Angmar cannot move and is discarded");
+        } else {
+          moveToTeam(target, host);
+          log(
+            s,
+            `Host of Angmar moves to the staging area at stage ${sideOf(target)}.`,
+            "danger",
+          );
+          log(
+            target,
+            `Host of Angmar moves here from stage ${sideOf(s)}.`,
+            "danger",
+          );
+        }
+      }
+      return true;
+    }
+    // 3B, 3D and 3F: raise each player's threat by 1 and reveal an encounter
+    // card to discard a non-unique enemy worth no victory points at another
+    // stage.
+    case "saThreeResponse": {
+      if (!otherEnemies(s).length) return true;
+      choose(
+        s,
+        `${card(q.currentQuest).name} · Raise each player's threat by 1 and reveal an encounter card to discard an enemy at another stage?${seatLabel(s, first)}`,
+        [
+          {
+            id: "use",
+            label:
+              "Raise each player's threat by 1 and reveal an encounter card, then discard a non-unique enemy worth no victory points at another stage",
+            effects: [fx("saThreeUse", { player: first })],
+          },
+          { id: "skip", label: "Do not use it", effects: [] },
+        ],
+        card(q.currentQuest).back_text,
+      );
+      return true;
+    }
+    case "saThreeUse":
+      for (const player of playerOrder(s))
+        forOwner(s, player, () => raiseThreat(s, 1, "encounter"));
+      prepend(
+        s,
+        fx("reveal", { player: first }),
+        fx("saDiscardOther", { player: first }),
+      );
+      return true;
+    case "saDiscardOther": {
+      const candidates = otherEnemies(s);
+      if (!candidates.length) return true;
+      choose(
+        s,
+        `${card(q.currentQuest).name} · Discard a non-unique enemy worth no victory points at another stage${seatLabel(s, first)}`,
+        candidates.map(({ team, u }) => ({
+          id: `${team.epicTeam}-${u.id}`,
+          code: u.code,
+          label: `${name(u)} · stage ${sideOf(team)}`,
+          effects: [
+            fx("saDiscardOtherTake", {
+              value: team.epicTeam,
+              target: u.id,
+              player: first,
+            }),
+          ],
+        })),
+        card(q.currentQuest).back_text,
+      );
+      return true;
+    }
+    case "saDiscardOtherTake": {
+      const team = saTeams(s)[e.value ?? -1];
+      const u = team && teamEnemies(team).find((x) => x.id === e.target);
+      if (!team || !u || !removeFromPlay(team, u)) return true;
+      team.encounterDiscard.push(u.code);
+      log(s, `${name(u)} is discarded from stage ${sideOf(team)}.`, "good");
+      log(
+        team,
+        `${name(u)} is discarded by the players at stage ${sideOf(s)}.`,
+        "good",
+      );
+      return true;
+    }
     // Dúnedain of Annúminas.
     case "saDunedain": {
       const payers = playerOrder(s).filter((x) =>
@@ -1138,15 +1724,27 @@ const marked = (
 export const ANNUMINAS_HOOKS: Batch4ScenarioHooks = {
   setup: setupAnnuminas,
   // 1A Setup: each other player searches for a different location.
+  // Epic multiplayer mode: 1C has nothing left to do; 1E's other players
+  // each search for a different enemy.
   openingHandsKept: (s) => {
     if (!s.annuminas || s.round > 0) return false;
     const first = firstPlayer(s);
+    const search =
+      s.epicTeam === 1
+        ? undefined
+        : s.epicTeam === 2
+          ? "saSetupEnemy"
+          : "saSetupSearch";
     prepend(
       s,
-      ...playerOrder(s)
-        .filter((p) => p !== first)
-        .map((player) => fx("saSetupSearch", { player })),
-      fx("saShuffle", { player: first }),
+      ...(search
+        ? [
+            ...playerOrder(s)
+              .filter((p) => p !== first)
+              .map((player) => fx(search, { player })),
+            fx("saShuffle", { player: first }),
+          ]
+        : []),
       fx("nextRound"),
     );
     return true;
@@ -1155,11 +1753,30 @@ export const ANNUMINAS_HOOKS: Batch4ScenarioHooks = {
   stageInfo: saStageInfo,
   encounter,
   shadow,
-  // 1B: a resource at the beginning of each round.
-  resourceStart: (s) =>
-    s.annuminas && at(s, SA.rebuild)
-      ? [fx("saRebuild", { player: firstPlayer(s) })]
-      : [],
+  // 1B (1D, 1F): a resource at the beginning of each round. Epic multiplayer
+  // mode: each stage 2 can be defeated then, 2F adds a Host of Angmar, and
+  // each team waits for the others before the resource phase.
+  resourceStart: (s) => {
+    const q = s.annuminas;
+    if (!q) return [];
+    const first = firstPlayer(s);
+    const effects: Effect[] = STAGE_ONE.some((c) => at(s, c))
+      ? [fx("saRebuild", { player: first })]
+      : [];
+    if (!epic(s)) return effects;
+    if (s.stage === 2) effects.push(fx("saEpicDefeat", { player: first }));
+    if (at(s, SA.manWalls)) effects.push(fx("saManWalls", { player: first }));
+    return [...effects, fx("epicRoundBegun")];
+  },
+  // 2D: 1 additional card; 1F's Response: 1 fewer at the other stages.
+  extraStagingReveals: (s) => {
+    const q = s.annuminas;
+    if (!q) return 0;
+    return (
+      (at(s, SA.guard) ? 1 : 0) -
+      (q.fewerReveals?.round === s.round ? q.fewerReveals.value : 0)
+    );
+  },
   // 2B: after the commitments, the strongest staged enemy attacks each player.
   committed: (s) => {
     if (s.annuminas && at(s, SA.defend))
@@ -1182,7 +1799,11 @@ export const ANNUMINAS_HOOKS: Batch4ScenarioHooks = {
     const q = s.annuminas;
     if (!q) return [];
     const first = firstPlayer(s);
-    const effects: Effect[] = [fx("saCityDamage", { player: first })];
+    // Epic multiplayer mode: Annúminas is at stage A only.
+    const effects: Effect[] =
+      !epic(s) || s.epicTeam === 0
+        ? [fx("saCityDamage", { player: first })]
+        : [];
     if (anyLive(s, SA.ram)) effects.push(fx("saRam", { player: first }));
     for (const wall of [...s.staging, ...allActiveLocations(s)].filter((u) =>
       live(u, SA.wall),
@@ -1191,22 +1812,51 @@ export const ANNUMINAS_HOOKS: Batch4ScenarioHooks = {
     if (anyLive(s, SA.tunnel)) effects.push(fx("saTunnel", { player: first }));
     if (enemiesInPlay(s).some((u) => live(u, SA.lieutenant)))
       effects.push(fx("saLieutenant", { player: first }));
+    // Enemy Camp, in play here or in this team's victory display.
+    if (
+      epic(s) &&
+      (anyLive(s, SA.camp) || (s.victoryCards ?? []).includes(SA.camp))
+    )
+      effects.push(fx("saCamp", { player: first }));
     if (at(s, SA.rebuild) && s.progress >= 10)
       effects.push(fx("saRebuildResponse", { player: first }));
-    if (at(s, SA.defend))
+    if (at(s, SA.levee) && s.progress >= 10)
+      effects.push(fx("saLeveeResponse", { player: first }));
+    if (at(s, SA.delay) && s.progress >= 10)
+      effects.push(fx("saDelayResponse", { player: first }));
+    // 2B, 2D, 2F: choose a stage (standard mode has only this one).
+    if (at(s, SA.defend) && !epic(s))
       effects.push(...playerOrder(s).map((player) => fx("saHeal", { player })));
-    if (at(s, SA.sortie)) effects.push(fx("saSortieWin", { player: first }));
+    else if (at(s, SA.defend))
+      effects.push(fx("saChooseStage", { text: "heal", player: first }));
+    if (at(s, SA.guard))
+      effects.push(fx("saChooseStage", { text: "resource", player: first }));
+    if (at(s, SA.manWalls))
+      effects.push(fx("saChooseStage", { text: "draw", player: first }));
+    // Epic Multiplayer Mode: at stage 2, each staged Host of Angmar moves on.
+    const stageTwo = [SA.defend, SA.guard, SA.manWalls].some((c) => at(s, c));
+    const stageThree = [SA.sortie, SA.captives, SA.stopAttack].some((c) =>
+      at(s, c),
+    );
+    if (epic(s) && stageTwo) effects.push(fx("saHostsMove", { player: first }));
+    if (epic(s) && stageThree)
+      effects.push(fx("saThreeResponse", { player: first }));
+    if (stageThree) effects.push(fx("saSortieWin", { player: first }));
     return effects;
   },
-  // A player eliminated from the game: Annúminas takes 9 damage.
+  // Standard Game Mode: a player eliminated from the game deals Annúminas 9
+  // damage (the epic card has its own rule for the last player at a stage).
   playerEliminated: (s) => {
-    if (s.annuminas) damageCity(s, 9, "A player is eliminated");
+    if (s.annuminas && !epic(s)) damageCity(s, 9, "A player is eliminated");
   },
   progress: (s, amount, quest) => {
     const q = s.annuminas;
     if (!q || quest.id !== mainQuestUnit(s)?.id) return amount;
-    // 3B: no progress while Battering Ram is in play.
+    // 3B: no progress while Battering Ram is in play; 3D while Enemy Camp
+    // is; 3F while Siege Tunnel is.
     if (at(s, SA.sortie) && anyLive(s, SA.ram)) return 0;
+    if (at(s, SA.captives) && anyLive(s, SA.camp)) return 0;
+    if (at(s, SA.stopAttack) && anyLive(s, SA.tunnel)) return 0;
     // Vanguard of Carn Dûm: no more than 5 progress on the main quest each round.
     if (s.staging.some((u) => live(u, SA.vanguard))) {
       const placed =
@@ -1412,5 +2062,22 @@ export const ANNUMINAS_HOOKS: Batch4ScenarioHooks = {
       "saTravelThreat",
       "saEvendim",
       "saRevealOnKill",
+      "saEpicDefeat",
+      "saManWalls",
+      "saCaptivesEntry",
+      "saCaptiveAll",
+      "saStopAttackEntry",
+      "saCamp",
+      "saLeveeResponse",
+      "saLevee",
+      "saDelayResponse",
+      "saDelayFewer",
+      "saChooseStage",
+      "saStageReward",
+      "saHostsMove",
+      "saThreeResponse",
+      "saThreeUse",
+      "saDiscardOther",
+      "saDiscardOtherTake",
     ].includes(e.kind),
 };

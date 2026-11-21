@@ -1,0 +1,273 @@
+[
+  {
+    "code": "octgn:1b93017d-9590-4515-80da-970f396e0a45",
+    "octgnid": "1b93017d-9590-4515-80da-970f396e0a45",
+    "name": "Epic Multiplayer Mode",
+    "type_code": "campaign",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Arrange the quest cards into three separate quest decks: 1A-3A, 1C-3C, and 1E-3E. Create three separate staging areas, one for each quest deck. Give each stage its own encounter deck. Divide the players into 3 teams, one team for each stage. The team at stage 1A searches the encounter deck for Annúminas, adds it to their staging area and sets its city strength to 50. Each other team removes their copy of Annúminas from the game. Flip over all 3 Setup cards and place 1 next to each quest deck.",
+    "is_unique": false,
+    "pack_code": "TSoA",
+    "pack_name": "The Siege of Annúminas",
+    "position": 2,
+    "quantity": 1,
+    "encounter_set": "The Siege of Annuminas",
+    "back_name": "Epic Multiplayer Mode",
+    "back_text": "Each stage 2 can only be defeated at the beginning of the round, and only if each other stage 2 is complete.\nWhile the players are at stage 2, each stage gains: \"Forced: At the end of the round, each Host of Angmar in the staging area moves to the next staging area in descending alphabetical order. If it cannot move, discard it and deal 9 damage to Annúminas.\"\nFor example: At the end of the round, there is a Host of Angmar in the staging area at stage 2F. After the teams at stage 2B and 2D resolve their end-of-round effects, the Host of Angmar in the staging area at stage 2F moves to the staging area of stage 2D.\nIf the last player at a stage is eliminated, the enemy has broken through the city's defenses and all teams lose the game.",
+    "back_type_code": "campaign",
+    "back_imagesrc": "/cards/1b93017d-9590-4515-80da-970f396e0a45.B.jpg",
+    "printed_stats": {},
+    "imagesrc": "/cards/1b93017d-9590-4515-80da-970f396e0a45.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoA",
+        "pack_name": "The Siege of Annúminas",
+        "position": 2,
+        "quantity": 1,
+        "octgnid": "1b93017d-9590-4515-80da-970f396e0a45",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1b93017d-9590-4515-80da-970f396e0a45.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:c9f0d8a8-fd7d-40d9-b040-deb48b6325b9",
+    "octgnid": "c9f0d8a8-fd7d-40d9-b040-deb48b6325b9",
+    "name": "Raise the Levee",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set Lieutenant of Angmar, Battering Ram, Enemy Camp, Siege Tunnel, each copy of Host of Angmar, and each copy Dúnedain of Annúminas aside, out of play. Shuffle the encounter deck. Each player discards cards from the top of the encounter deck until he discards an enemy or location. Add each enemy and location discarded in this way to the staging area.",
+    "is_unique": false,
+    "pack_code": "TSoA",
+    "pack_name": "The Siege of Annúminas",
+    "position": 6,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Siege of Annuminas",
+    "side": "C",
+    "back_name": "Raise the Levee",
+    "back_text": "Forced: At the beginning of the round (before the resource phase), place 1 resource here. Then, if there are 4 resources here, advance to stage 2.\nResponse: At the end of the round, remove 10 progress from this stage. Then, the first player at each stage takes control of a set aside Dúnedain of Annúminas.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/c9f0d8a8-fd7d-40d9-b040-deb48b6325b9.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/c9f0d8a8-fd7d-40d9-b040-deb48b6325b9.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoA",
+        "pack_name": "The Siege of Annúminas",
+        "position": 6,
+        "quantity": 1,
+        "octgnid": "c9f0d8a8-fd7d-40d9-b040-deb48b6325b9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c9f0d8a8-fd7d-40d9-b040-deb48b6325b9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:23522905-189e-4f08-a19f-5f9cf0dae9c4",
+    "octgnid": "23522905-189e-4f08-a19f-5f9cf0dae9c4",
+    "name": "Guard the Gate",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck and discard cards from the top until X enemies are discarded. X is one less than the number of players at this stage, to a minimum of 1. Add each enemy discarded in this way to the staging area.",
+    "is_unique": false,
+    "pack_code": "TSoA",
+    "pack_name": "The Siege of Annúminas",
+    "position": 7,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Siege of Annuminas",
+    "side": "C",
+    "back_name": "Guard the Gate",
+    "back_text": "This stage gets -10 quest points for each Host of Angmar in a victory display.\nForced: Reveal 1 additional card during the quest phase.\nResponse: At the end of the round, choose a stage. Each player at that stage chooses a hero he controls and adds 1 resource to that hero's pool.",
+    "back_type_code": "quest",
+    "back_quest": 50,
+    "back_imagesrc": "/cards/23522905-189e-4f08-a19f-5f9cf0dae9c4.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/23522905-189e-4f08-a19f-5f9cf0dae9c4.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoA",
+        "pack_name": "The Siege of Annúminas",
+        "position": 7,
+        "quantity": 1,
+        "octgnid": "23522905-189e-4f08-a19f-5f9cf0dae9c4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/23522905-189e-4f08-a19f-5f9cf0dae9c4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:d16a5c80-ba9e-482f-81ce-effaad09f893",
+    "octgnid": "d16a5c80-ba9e-482f-81ce-effaad09f893",
+    "name": "Rescue the Captives",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck. The first player adds Enemy Camp to the staging area. Each other player reveals an encounter card. Each player at each stage chooses a hero he controls, discards all tokens and attachments from it, and places it facedown under the main quest at their stage.",
+    "is_unique": false,
+    "pack_code": "TSoA",
+    "pack_name": "The Siege of Annúminas",
+    "position": 8,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Siege of Annuminas",
+    "side": "C",
+    "back_name": "Rescue the Captives",
+    "back_text": "Progress cannot be placed here while Enemy Camp is in play.\nResponse: At the end of the round, raise each player's threat by 1 and reveal an encounter card to choose a non-unique enemy worth no victory points at another stage. Discard the chosen enemy.\nIf Lieutenant of Angmar is in a victory display at the end of the round, the players have routed the enemy and won the game.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/d16a5c80-ba9e-482f-81ce-effaad09f893.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/d16a5c80-ba9e-482f-81ce-effaad09f893.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoA",
+        "pack_name": "The Siege of Annúminas",
+        "position": 8,
+        "quantity": 1,
+        "octgnid": "d16a5c80-ba9e-482f-81ce-effaad09f893",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d16a5c80-ba9e-482f-81ce-effaad09f893.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f186de1a-4463-482a-bdee-a3cd058823b6",
+    "octgnid": "f186de1a-4463-482a-bdee-a3cd058823b6",
+    "name": "Delay the Enemy",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set Lieutenant of Angmar, Battering Ram, Enemy Camp, Siege Tunnel, each copy of Host of Angmar, and each copy Dúnedain of Annúminas aside, out of play. Each player searches the encounter deck for a different enemy and adds it to the staging area. One of those enemies must be Vanguard of Carn Dûm. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TSoA",
+    "pack_name": "The Siege of Annúminas",
+    "position": 9,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Siege of Annuminas",
+    "side": "E",
+    "back_name": "Delay the Enemy",
+    "back_text": "Forced: At the beginning of the round (before the resource phase), place 1 resource here. Then, if there are 4 resources here, advance to stage 2.\nResponse: At the end of the round, remove 10 progress from this stage, then the players at each other stage reveal 1 fewer encounter card during their next quest phase (to a minimum of 0).",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/f186de1a-4463-482a-bdee-a3cd058823b6.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/f186de1a-4463-482a-bdee-a3cd058823b6.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoA",
+        "pack_name": "The Siege of Annúminas",
+        "position": 9,
+        "quantity": 1,
+        "octgnid": "f186de1a-4463-482a-bdee-a3cd058823b6",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f186de1a-4463-482a-bdee-a3cd058823b6.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:09046590-21d9-4e12-ae30-767b759b7ba4",
+    "octgnid": "09046590-21d9-4e12-ae30-767b759b7ba4",
+    "name": "Man the Walls",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck and discard cards from the top until X enemies are discarded. X is one less than the number of players at this stage, to a minimum of 1. Add each enemy discarded in this way to the staging area.",
+    "is_unique": false,
+    "pack_code": "TSoA",
+    "pack_name": "The Siege of Annúminas",
+    "position": 10,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Siege of Annuminas",
+    "side": "E",
+    "back_name": "Man the Walls",
+    "back_text": "This stage gets -10 quest points for each Host of Angmar in a victory display.\nForced: At the beginning of the round, add 1 set aside Host of Angmar (from any stage's set aside area) to this staging area.\nResponse: At the end of the round, choose a stage. Each player at that stage draws 1 card.",
+    "back_type_code": "quest",
+    "back_quest": 50,
+    "back_imagesrc": "/cards/09046590-21d9-4e12-ae30-767b759b7ba4.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/09046590-21d9-4e12-ae30-767b759b7ba4.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoA",
+        "pack_name": "The Siege of Annúminas",
+        "position": 10,
+        "quantity": 1,
+        "octgnid": "09046590-21d9-4e12-ae30-767b759b7ba4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/09046590-21d9-4e12-ae30-767b759b7ba4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:fe815306-f89c-4ed1-b2aa-c3f8fa7dfc42",
+    "octgnid": "fe815306-f89c-4ed1-b2aa-c3f8fa7dfc42",
+    "name": "Stop the Attack",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck. The first player adds Siege Tunnel to the staging area. Each other player reveals an encounter card.",
+    "is_unique": false,
+    "pack_code": "TSoA",
+    "pack_name": "The Siege of Annúminas",
+    "position": 11,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Siege of Annuminas",
+    "side": "E",
+    "back_name": "Stop the Attack",
+    "back_text": "Progress cannot be placed here while Siege Tunnel is in play.\nResponse: At the end of the round, raise each player's threat by 1 and reveal an encounter card to choose a non-unique enemy worth no victory points at another stage. Discard the chosen enemy.\nIf Lieutenant of Angmar is in a victory display at the end of the round, the players have routed the enemy and won the game.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/fe815306-f89c-4ed1-b2aa-c3f8fa7dfc42.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/fe815306-f89c-4ed1-b2aa-c3f8fa7dfc42.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoA",
+        "pack_name": "The Siege of Annúminas",
+        "position": 11,
+        "quantity": 1,
+        "octgnid": "fe815306-f89c-4ed1-b2aa-c3f8fa7dfc42",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fe815306-f89c-4ed1-b2aa-c3f8fa7dfc42.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

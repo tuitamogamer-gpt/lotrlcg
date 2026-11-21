@@ -1,0 +1,20 @@
+.epic-teams {
+  display: grid;
+  gap: 6px;
+  width: 100%;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.epic-teams li {
+  padding: 6px 8px;
+  overflow-wrap: anywhere;
+  background: #f5efdf;
+  border: 1px solid #846b3680;
+}
+
+.epic-teams li[aria-current="true"] {
+  border-color: #846b36;
+  box-shadow: inset 4px 0 0 #846b36;
+}

@@ -1,6 +1,6 @@
-import { SA_ENCOUNTERS, SA_QUESTS } from "./annuminas-support";
+import { SA_ENCOUNTERS, SA_EPIC_QUESTS, SA_QUESTS } from "./annuminas-support";
 import type { ScenarioId } from "./types";
-export { SA_ENCOUNTERS, SA_QUESTS };
+export { SA_ENCOUNTERS, SA_EPIC_QUESTS, SA_QUESTS };
 export const ANNUMINAS_ADVENTURES = [
   {
     id: "the-siege-of-annuminas" as ScenarioId,

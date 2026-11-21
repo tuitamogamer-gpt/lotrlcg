@@ -29,4 +29,14 @@ export interface AnnuminasState {
   weary: { ids: string[]; round: number } | null;
   /** Vanguard of Carn Dûm's shadow: defenders that cannot ready this round. */
   unready: { id: string; round: number }[];
+  /**
+   * Epic multiplayer mode (Rescue the Captives): the heroes facedown under
+   * this team's main quest, and their owners.
+   */
+  captives?: { code: string; owner: number }[];
+  /**
+   * Epic multiplayer mode (Delay the Enemy's Response): the players reveal
+   * this many fewer encounter cards during the quest phase of this round.
+   */
+  fewerReveals?: { round: number; value: number };
 }

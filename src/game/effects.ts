@@ -4,6 +4,7 @@ import {
   darkMirkwoodRoundEnd,
 } from "./dark-mirkwood-campaign";
 import * as DreamCards from "./dreamchaser-campaign-cards";
+import { epicBarrier, epicSettle } from "./epic";
 import { dreamchaserCampaignEffect } from "./dreamchaser-campaign";
 import * as EredCards from "./ered-campaign-cards";
 import {
@@ -2220,6 +2221,9 @@ function handleEffect(s: GameState, e: Effect) {
       enqueue(s, fx("refreshEnd"));
       break;
     case "endRound": {
+      // Epic multiplayer mode: each team waits here until the last team has
+      // played the round; the end of the round then resolves in stage order.
+      if (epicBarrier(s, "endRound")) break;
       const passives: Effect[] = ringMakerRoundEnd(s),
         forced: Effect[] = [];
       eachArea(s, () => {
@@ -2336,7 +2340,15 @@ function handleEffect(s: GameState, e: Effect) {
       collectResources(s);
       break;
     case "nextRound":
+      // Epic multiplayer mode: each team waits here until the last team has
+      // ended the round.
+      if (epicBarrier(s, "nextRound")) break;
       nextRound(s);
+      break;
+    case "epicRoundBegun":
+      // Epic multiplayer mode: each team waits after the beginning of the
+      // round until the last team has resolved its own.
+      epicBarrier(s, "epicRoundBegun");
       break;
     case "travelDone":
       prepend(s, fx("phaseEnd"), fx("startEncounter"));
@@ -3190,13 +3202,14 @@ export function shadowResponse(s: GameState, code: string) {
 
 export function flush(s: GameState) {
   let n = 0;
+  let total = 0;
   while (
     s.queue.length &&
     !s.choice &&
     !s.flow?.pending &&
     s.status === "playing"
   ) {
-    requireRule(++n < 200, "Effect queue overflow.");
+    requireRule(++n < 200 && ++total < 2000, "Effect queue overflow.");
     // Actual spending may originate in an action before its card effects enqueue.
     const costIndex = s.queue.findIndex((effect) =>
       ["ettenForageDamage", "carnResourceTax"].includes(effect.kind),
@@ -3446,6 +3459,7 @@ export function flush(s: GameState) {
           : effect.player!,
       );
     const before = observation(s);
+    const team = s.epic?.active;
     if (
       sharedEffect ||
       !s.table?.seats[activeSeat(s)].eliminated ||
@@ -3504,13 +3518,19 @@ export function flush(s: GameState) {
         "fangornMaliceDone",
         "fangornShuffle",
         "endRound",
+        "epicRoundBegun",
         "endRoundAfterCollector",
         "finishQuestDefeat",
       ].includes(effect.kind)
     )
       handle(s, effect);
     if (!s.flow?.pending) check(s);
-    if (before) recordObservation(s, before, observation(s)!, effect);
+    epicSettle(s);
+    // Another team's turn (epic multiplayer mode) is not this effect's
+    // change, and each team's turn has its own effect budget.
+    if (before && s.epic?.active === team)
+      recordObservation(s, before, observation(s)!, effect);
+    if (s.epic && s.epic.active !== team) n = 0;
   }
   if (
     s.table &&
