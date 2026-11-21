@@ -5509,6 +5509,116 @@ try {
       await discard.waitFor();
     }
     await checkpoint("cobas-aearlang", width);
+    // The City of Corsairs in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-the-city-of-corsairs").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "the-city-of-corsairs");
+    assert.equal(s.nightmareMode, true);
+    {
+      const sea = [
+        ...s.encounterDeck,
+        ...s.encounterDiscard,
+        ...s.staging.map((u) => u.code),
+        ...s.engaged.map((u) => u.code),
+      ];
+      assert.deepEqual(
+        [
+          DCN.patrolShip,
+          DCN.loyalist,
+          DCN.walls,
+          DCN.bridge,
+          DCN.inspiringFury,
+        ].map((code) => sea.filter((c) => c === code).length),
+        [2, 2, 2, 2, 2],
+        "the Coast of Umbar cards are in the sea encounter deck",
+      );
+      assert.deepEqual(
+        [DCN.cursedSword, DCN.umbarPatrol, DCN.alarm, DCN.slaveTrade].map(
+          (code) => s.city.secondDeck.filter((c) => c === code).length,
+        ),
+        [1, 3, 2, 3],
+        "The City of Corsairs cards are in the second encounter deck",
+      );
+      assert.ok(
+        !sea.some((c) =>
+          ["Fog Bank", "Starlit Sea", "Serpent's Tail"].includes(card(c).name),
+        ),
+        "the setup card removes each Fog Bank, Starlit Sea and Serpent's Tail",
+      );
+      assert.equal(
+        s.city.corsairDeck.length,
+        8,
+        "the Corsair deck loses its Corsair Infiltrators",
+      );
+    }
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/The Cursed Sword attaches to the set-aside Captain Sahír/)
+      .waitFor();
+    await checkpoint("city-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A Patrol Ship and a Corsair Loyalist engaged, a Walls of Umbar and an
+    // Umbar Bridge in the staging area.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const take = (code) => {
+        for (const pile of [t.encounterDeck, t.encounterDiscard]) {
+          const i = pile.indexOf(code);
+          if (i >= 0) return pile.splice(i, 1);
+        }
+        return [];
+      };
+      for (const code of [DCN.patrolShip, DCN.loyalist, DCN.walls, DCN.bridge])
+        take(code);
+      const ship = make(t, DCN.patrolShip),
+        loyalist = make(t, DCN.loyalist);
+      ship.owner = 0;
+      loyalist.owner = 0;
+      loyalist.resources = 4;
+      t.engaged = [...t.engaged, ship, loyalist];
+      t.staging = [...t.staging, make(t, DCN.walls), make(t, DCN.bridge)];
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [DCN.patrolShip, "Patrol Ship"],
+      [DCN.loyalist, "Corsair Loyalist"],
+      [DCN.walls, "Walls of Umbar"],
+      [DCN.bridge, "Umbar Bridge"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    await checkpoint("city-walls-of-umbar", width);
     await view.c.close();
   }
   const p = await browser.newPage();

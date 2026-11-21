@@ -39,9 +39,13 @@ import { carnShadowDealt } from "./carn-dum";
 import {
   CITY as C,
   CITY_MAIN_QUESTS,
+  CITY_NIGHTMARE as CN,
+  CITY_NIGHTMARE_LAND,
   CITY_RECIPES,
   CITY_SHIPS,
+  cityNightmare,
 } from "./city-support";
+import { nightmareEncounterDecks } from "./nightmare";
 import * as Encounters from "./city-encounters";
 import {
   CITY_STORMCALLER,
@@ -75,7 +79,26 @@ export function setupCity(s: GameState) {
     recipe.cards
       .filter((c) => c.section === section)
       .flatMap((c) => Array<string>(c.quantity).fill(c.code));
-  s.encounterDeck = pile("sharedEncounterDeck");
+  // The Nightmare setup card's removals, from the sea encounter deck, the
+  // Corsair deck and the set-aside City of Corsairs set, and its Nightmare
+  // Deck: the Coast of Umbar cards join the sea encounter deck, The City of
+  // Corsairs cards the second encounter deck.
+  const [sea, corsairs, land] = cityNightmare(s)
+    ? nightmareEncounterDecks(
+        s.scenarioId,
+        [
+          pile("sharedEncounterDeck"),
+          pile("sharedEncounterDeck2"),
+          pile("sharedEncounterDeck3"),
+        ],
+        (code) => (CITY_NIGHTMARE_LAND.includes(code) ? 2 : 0),
+      )
+    : [
+        pile("sharedEncounterDeck"),
+        pile("sharedEncounterDeck2"),
+        pile("sharedEncounterDeck3"),
+      ];
+  s.encounterDeck = sea;
   if (playerOrder(s).length < 3) s.encounterDeck.push(C.belfalas);
   s.city = {
     initialized: false,
@@ -88,10 +111,10 @@ export function setupCity(s: GameState) {
       ? dreamchaserFleet(s.campaign)
       : CITY_SHIPS
     ).map((code) => make(s, code)),
-    corsairDeck: shuffle(s, pile("sharedEncounterDeck2")),
+    corsairDeck: shuffle(s, corsairs),
     corsairDiscard: [],
     secondDeck: shuffle(s, [
-      ...pile("sharedEncounterDeck3"),
+      ...land,
       C.sahir,
       // The Shattered Monument's Upgraded side once its checkboxes are marked.
       isDreamchaserGame(s)
@@ -505,10 +528,16 @@ export function cityEffect(s: GameState, e: Effect) {
         ...q.corsairDeck.splice(0),
         ...q.corsairDiscard.splice(0),
       ];
+      // The Nightmare setup card: stage 2B also moves each Umbar Bridge and
+      // Inspiring Fury in the encounter deck and discard pile.
+      const moved = [
+        C.watch,
+        C.battle,
+        ...(cityNightmare(s) ? [CN.bridge, CN.fury] : []),
+      ];
       for (const pile of [s.encounterDeck, s.encounterDiscard])
         for (let i = pile.length - 1; i >= 0; i--)
-          if ([C.watch, C.battle].includes(pile[i]))
-            land.push(pile.splice(i, 1)[0]);
+          if (moved.includes(pile[i])) land.push(pile.splice(i, 1)[0]);
       q.inactiveDeck = s.encounterDeck.splice(0);
       q.inactiveDiscard = s.encounterDiscard.splice(0);
       s.encounterDeck = shuffle(s, land);
@@ -519,6 +548,19 @@ export function cityEffect(s: GameState, e: Effect) {
         const index = s.encounterDeck.findIndex((c) => dcBase(c) === code);
         if (index >= 0)
           q.setAside.push(make(s, s.encounterDeck.splice(index, 1)[0]));
+      }
+      // The Nightmare setup card: stage 3A also attaches The Cursed Sword to
+      // the set-aside Captain Sahír.
+      const sword = s.encounterDeck.indexOf(CN.sword),
+        aside = q.setAside.find((u) => u.code === C.sahir);
+      if (cityNightmare(s) && sword >= 0 && aside) {
+        s.encounterDeck.splice(sword, 1);
+        aside.attachments.push({
+          id: `a${s.nextId++}`,
+          code: CN.sword,
+          exhausted: false,
+        });
+        log(s, "The Cursed Sword is attached to the set-aside Captain Sahír.");
       }
       prepend(
         s,

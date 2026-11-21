@@ -627,7 +627,8 @@ export interface GameState {
     import("./nightmare-depths").NightmareDepthsState &
     import("./nightmare-temple").NightmareTempleState &
     import("./nightmare-drowned").NightmareDrownedState &
-    import("./nightmare-cobas").NightmareCobasState;
+    import("./nightmare-cobas").NightmareCobasState &
+    import("./nightmare-city").NightmareCityState;
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;
@@ -1321,6 +1322,10 @@ export interface GameState {
     ntdKnightReturn?: boolean;
     /** City Under Siege's shadow (A Storm on Cobas Haven's Nightmare Deck): the attacker, guarding an objective, returns to the staging area after this attack. */
     ncbReturn?: boolean;
+    /** Inspiring Fury's shadow (The City of Corsairs' Nightmare Deck): shadow effects cannot be canceled during this attack. */
+    ncoFury?: boolean;
+    /** Raise the Alarm!'s shadow (The City of Corsairs' Nightmare Deck): after this attack, the Raider gets a resource for each damage it dealt, once for each copy. */
+    ncoAlarm?: number;
     defenderIds?: string[];
     ignoreDefense?: boolean;
     returnToStaging?: boolean;

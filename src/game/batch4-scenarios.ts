@@ -132,6 +132,7 @@ import { NIGHTMARE_DEPTHS_HOOKS } from "./nightmare-depths";
 import { NIGHTMARE_TEMPLE_HOOKS } from "./nightmare-temple";
 import { NIGHTMARE_DROWNED_HOOKS } from "./nightmare-drowned";
 import { NIGHTMARE_COBAS_HOOKS } from "./nightmare-cobas";
+import { NIGHTMARE_CITY_HOOKS } from "./nightmare-city";
 import { nightmareLive } from "./nightmare";
 
 const empty: Batch4ScenarioHooks = {};
@@ -213,6 +214,7 @@ const NIGHTMARE_LAYERS: Partial<Record<string, Batch4ScenarioHooks>> = {
   "temple-of-the-deceived": NIGHTMARE_TEMPLE_HOOKS,
   "the-drowned-ruins": NIGHTMARE_DROWNED_HOOKS,
   "a-storm-on-cobas-haven": NIGHTMARE_COBAS_HOOKS,
+  "the-city-of-corsairs": NIGHTMARE_CITY_HOOKS,
 };
 /**
  * The current scenario's hooks; in an Ered Mithrin campaign chapter from The

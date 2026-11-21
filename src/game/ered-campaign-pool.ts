@@ -2889,6 +2889,14 @@ export function composeEredPool(
     sailingSymbolsFound: (s, successes) =>
       !!h.sailingSymbolsFound?.(s, successes) ||
       !!p.sailingSymbolsFound?.(s, successes),
+    sailingCommitted: (s, u) => {
+      h.sailingCommitted?.(s, u);
+      p.sailingCommitted?.(s, u);
+    },
+    headingShifted: (s, before, after) => {
+      h.headingShifted?.(s, before, after);
+      p.headingShifted?.(s, before, after);
+    },
     combatEndShadows: (s, u) =>
       !!h.combatEndShadows?.(s, u) || !!p.combatEndShadows?.(s, u),
     attachmentBlanked: (s, host, a) =>

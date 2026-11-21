@@ -4,8 +4,8 @@ This import covers all nine original Adventure Pack player designs and the origi
 standard/easy adventure for solo and one to four players in local hot-seat.
 Knight of the White Tower reuses its existing registration, adding eight player
 definitions. The adventure completes the original Dream-chaser cycle. The next
-chronological import is The Sands of Harad. Revised campaign and
-Nightmare variants retain their own support gates.
+chronological import is The Sands of Harad. The revised Dream-chaser campaign
+and the Nightmare Deck are described in their own rules.
 
 The [original-source record](CITY-SOURCES.md) documents the original MEC53 rules,
 the 38 scenario identities and all 43 artwork faces, corrected runtime values,
@@ -34,6 +34,20 @@ See [player rules and interactions](CITY-PLAYER-SCRIPTS.md) and the detailed
 
 The account-choice SQL migration is additive. Local migration checks do not
 configure or migrate a hosted account database.
+
+## Nightmare mode
+
+The Nightmare Deck (recipe `N06.9`,
+[rules and cards](NIGHTMARE.md#the-city-of-corsairs-nightmare)) removes cards
+from all three piles: the sea encounter deck, the Corsair deck and the
+set-aside City of Corsairs set that becomes the second encounter deck. Its
+cards follow their set icons: the five Coast of Umbar designs join the sea
+encounter deck and the four The City of Corsairs designs the second encounter
+deck, whose save checks accept them. Stage 2B also moves each Umbar Bridge and
+Inspiring Fury to the land deck, and stage 3A attaches The Cursed Sword to the
+set-aside Captain Sahír, so it enters play with him. The Sailing test lets
+Patrol Ship leave its looked cards for the staging area while its symbol still
+counts, and Walls of Umbar reads the characters committed to a test.
 
 ## Verification
 

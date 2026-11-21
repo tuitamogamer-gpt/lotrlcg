@@ -49,6 +49,11 @@ export interface SailingTest {
   committedIds: string[];
   continuation: Effect[];
   looked?: string[];
+  /**
+   * Looked cards that left the test for the staging area (The City of
+   * Corsairs' Nightmare Patrol Ship): their symbols were still found.
+   */
+  kept?: string[];
   successes?: number;
 }
 export interface SailingState {
@@ -68,12 +73,16 @@ export function shiftHeading(s: GameState, delta: number) {
   if (!s.sailing) return;
   const before = s.sailing.heading;
   s.sailing.heading = Math.max(0, Math.min(3, before + delta)) as Heading;
-  if (s.sailing.heading !== before)
+  if (s.sailing.heading !== before) {
     log(
       s,
       `Heading shifts to ${sailingHeadingLabel(s.sailing.heading)}.`,
       delta < 0 ? "good" : "danger",
     );
+    // The City of Corsairs' Nightmare Patrol Ship: "After you shift your
+    // heading on-course ..."
+    batch4Scenario(s).headingShifted?.(s, before, s.sailing.heading);
+  }
 }
 
 export const isDreamChaser = (u: Unit) =>
@@ -268,6 +277,7 @@ export function sailingEffect(s: GameState, e: Effect): boolean {
       );
       test.committedIds.push(u.id);
       stormcallerSailingCommitted(s, u);
+      batch4Scenario(s).sailingCommitted?.(s, u);
       log(s, `${name(u)} commits to the Sailing test.`);
       // Actual exhaustion responses resolve before the next mandatory commitment choice.
       s.queue.push(fx("sailingChoose"));
@@ -360,6 +370,13 @@ export function validateSailing(
   )
     return false;
   if (
+    t.kept !== undefined &&
+    (t.looked === undefined ||
+      !Array.isArray(t.kept) ||
+      t.kept.some((code) => card(code).type_code !== "ship-enemy"))
+  )
+    return false;
+  if (
     t.looked !== undefined &&
     (!Array.isArray(t.looked) ||
       t.looked.some((code) => {
@@ -387,11 +404,15 @@ export function validateSailing(
       Array.isArray(t.looked) &&
       Number.isInteger(t.successes) &&
       t.successes! >= 0 &&
-      t.looked.length <=
+      t.looked.length + (t.kept?.length ?? 0) <=
         sailingCommitCount(s) +
           voyageSailingExtraCards(s) +
           cobasSailingExtraCards(s) &&
-      t.successes! <= t.looked.reduce((n, code) => n + sailingSymbols(code), 0)
+      t.successes! <=
+        [...t.looked, ...(t.kept ?? [])].reduce(
+          (n, code) => n + sailingSymbols(code),
+          0,
+        )
     );
   return t.looked === undefined && t.successes === undefined;
 }

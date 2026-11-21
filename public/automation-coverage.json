@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2920,
+    "encounterCards": 2930,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 4135,
-    "pending": 48
+    "scripted": 4145,
+    "pending": 38
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 341
+    "scripted": 342
   },
   "registeredCodes": [
     "01001",
@@ -1618,6 +1618,7 @@
     "octgn:25cf58f2-9d92-4971-8817-a7e335d9ac5d",
     "octgn:25e58441-df9d-4935-a3c7-0a5b210538c5",
     "octgn:25eb1da3-b559-4e47-ae20-e6096a8cbc96",
+    "octgn:260708f2-17f2-4ffc-b7e3-43806d5c842f",
     "octgn:2608ba25-8375-4093-9d93-3c8cfa7b697c",
     "octgn:2629ae83-bfb8-4be1-84a5-fa9e8b1fc20b",
     "octgn:262d615b-5b5d-4f16-975e-335d34e6c733",
@@ -2591,6 +2592,7 @@
     "octgn:60ac6ce9-7aad-415d-a4af-61f67db59454",
     "octgn:60b96a86-77b5-4184-9703-f55b8c857eb9",
     "octgn:60ba0781-d051-46f0-97b1-e02fb637b94e",
+    "octgn:60d839a5-7b1c-4ad7-b2dd-f7344b97d7fb",
     "octgn:60de774d-eafb-4faa-851e-c28ce6d62f9f",
     "octgn:60df407c-b1d7-455b-b4b3-7c68739f73c3",
     "octgn:60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b",
@@ -2720,6 +2722,7 @@
     "octgn:6e82330b-ca0d-4d6b-a796-024de152ca56",
     "octgn:6e85113d-a2a6-44a7-895c-ca5115f7b7d2",
     "octgn:6ea88b3d-c675-4690-b993-ce4672eb3b16",
+    "octgn:6eea3254-9a47-494b-a19c-6a9efb7fc793",
     "octgn:6f300089-29ce-42e7-9bd4-2dda667cdd4a",
     "octgn:6f7cdfa5-f61f-44b1-8b6c-2b3f477f7557",
     "octgn:6f9211cc-a523-4a0f-9d44-c757e2f9947b",
@@ -3013,6 +3016,7 @@
     "octgn:8948aa81-f7fb-4979-9add-555598df529a",
     "octgn:898579aa-324e-4e58-920e-30ab29c8700a",
     "octgn:89a39894-f5d2-42a5-9927-fb057db778f4",
+    "octgn:89b9eb6d-21a5-463b-b80a-586b531e56de",
     "octgn:89baec7c-4e60-4b12-9d7d-80b11e786d89",
     "octgn:89cd149f-69d3-4d75-887d-96b45730792a",
     "octgn:89f263b0-c4a5-43ea-b59d-6207f9f65954",
@@ -3063,6 +3067,7 @@
     "octgn:8cc366fb-68f0-4401-9df9-20f9258a728c",
     "octgn:8cfe3fbe-f6bb-43ab-89af-8f9fb6dc2bd6",
     "octgn:8d3c19e0-28f2-4a3d-91b2-8e9911ac4c91",
+    "octgn:8d546f2d-2296-4d52-b8f0-5803be8d9b84",
     "octgn:8d55b746-417d-4996-b69b-01c80a7e4602",
     "octgn:8d61982f-acf9-4b03-969f-6e75688ee1fd",
     "octgn:8d99a2be-18d6-4bfb-85ab-7be54a18e6b7",
@@ -3374,6 +3379,7 @@
     "octgn:ac5a17df-dcd0-4bfb-91fe-a444910f30ec",
     "octgn:ac5c7c07-591f-4ac0-9080-e46433a50ff3",
     "octgn:ac78aadc-9a58-42a6-a328-60dbb1e2191c",
+    "octgn:ac878445-4c48-46b3-8664-c8572b2f93f2",
     "octgn:ac9fe707-143f-492e-89e3-bdd02973a0f2",
     "octgn:aca1ee7f-ad29-4218-8dd5-f7f7a8e617fe",
     "octgn:acbf7fd1-9f93-4d0b-b18a-8f0854e028f5",
@@ -3455,6 +3461,7 @@
     "octgn:b490fe8e-4367-424d-8a5c-bc7b8e1a56a7",
     "octgn:b49b5be7-5bfc-4e65-bced-862a409e097d",
     "octgn:b4b0bdc8-5edb-40c9-a9ca-dac60fe7cb38",
+    "octgn:b4b93598-b2f1-4a7c-84df-32fe5a58ccc4",
     "octgn:b4bdb916-7538-461f-9aa5-141ff2809254",
     "octgn:b4cd6eea-17ec-4051-89b3-c4b735d8452f",
     "octgn:b4dcd330-15c0-4700-b1aa-d235f253b1de",
@@ -3836,10 +3843,12 @@
     "octgn:d4b4c172-dec4-4d31-91f8-24f3e3127713",
     "octgn:d4b810a1-7d10-4610-9609-fb7f7568e5f5",
     "octgn:d4de89b5-2e86-417a-baf1-81e7e852e5d4",
+    "octgn:d4e0a9cb-6739-457c-9ce7-ca06c27183d3",
     "octgn:d4e4ab9d-d5ea-4d33-89f1-d8d24d166002",
     "octgn:d5134ddf-8c78-4e68-a603-7df5d48f5016",
     "octgn:d51db5d2-cd6d-4e28-9c46-c5f0a1c242d9",
     "octgn:d5286130-d03a-49f3-bd70-d40e9320c292",
+    "octgn:d583f6a7-c86f-47c9-aa75-f17f3befbdfd",
     "octgn:d63f87da-45b4-4c5c-b3b5-970a4277c263",
     "octgn:d658967b-662e-4dfb-afb6-4b3444074b79",
     "octgn:d664e3bd-3f0d-47d8-91bb-d61b27a13c22",
@@ -3853,6 +3862,7 @@
     "octgn:d74119d9-703c-4d5a-998b-4788230254c9",
     "octgn:d75bd61b-ec33-431a-880f-cf9357314ea2",
     "octgn:d760ba6c-e377-4d22-ac46-04bfb2b3c65f",
+    "octgn:d76823ec-0216-42cc-aa40-8c6b284c62e1",
     "octgn:d77287d1-d4d2-49bd-93c1-ae9d2590b8f7",
     "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
     "octgn:d777af13-989a-40b7-8825-61a7dc8e793c",
@@ -4799,7 +4809,7 @@
     {
       "product": "the-city-of-corsairs-nightmare",
       "total": 10,
-      "scripted": 0,
+      "scripted": 10,
       "player": 0,
       "playerScripted": 0
     },
@@ -17121,7 +17131,7 @@
       "name": "Slave Trade",
       "type": "treachery",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs-nightmare"
     },
     {
@@ -24945,7 +24955,7 @@
       "name": "Umbar Patrol",
       "type": "enemy",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs-nightmare"
     },
     {
@@ -25953,7 +25963,7 @@
       "name": "Walls of Umbar",
       "type": "location",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs-nightmare"
     },
     {
@@ -28289,7 +28299,7 @@
       "name": "Patrol Ship",
       "type": "ship-enemy",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs-nightmare"
     },
     {
@@ -28689,7 +28699,7 @@
       "name": "The Cursed Sword",
       "type": "objective",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs-nightmare"
     },
     {
@@ -31177,7 +31187,7 @@
       "name": "Corsair Loyalist",
       "type": "enemy",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs-nightmare"
     },
     {
@@ -31833,7 +31843,7 @@
       "name": "The City of Corsairs",
       "type": "nightmare",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs-nightmare"
     },
     {
@@ -34889,7 +34899,7 @@
       "name": "Inspiring Fury",
       "type": "treachery",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs-nightmare"
     },
     {
@@ -34929,7 +34939,7 @@
       "name": "Umbar Bridge",
       "type": "location",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs-nightmare"
     },
     {
@@ -35041,7 +35051,7 @@
       "name": "Raise the Alarm!",
       "type": "treachery",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs-nightmare"
     },
     {
@@ -40046,8 +40056,8 @@
       "id": "N06.9",
       "name": "The City of Corsairs (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-city-of-corsairs",
+      "state": "scripted"
     },
     {
       "id": "N0A.1",

@@ -794,6 +794,21 @@ export const NIGHTMARE_DC = {
   warTorn: "octgn:1cd6ee90-545a-4e41-b1bc-24b2b6b1d512",
   rudder: "octgn:7fa155cf-ba79-40de-b0eb-a80cefa2b48b",
   grappled: "octgn:44668bf1-b1cb-4d39-8ed9-71a5cb9c3a9c",
+  /**
+   * The City of Corsairs' setup card and Nightmare Deck (its Coast of Umbar
+   * cards join the sea encounter deck, its The City of Corsairs cards the
+   * set-aside second encounter deck).
+   */
+  cityCard: "octgn:b4b93598-b2f1-4a7c-84df-32fe5a58ccc4",
+  patrolShip: "octgn:89b9eb6d-21a5-463b-b80a-586b531e56de",
+  loyalist: "octgn:ac878445-4c48-46b3-8664-c8572b2f93f2",
+  walls: "octgn:6eea3254-9a47-494b-a19c-6a9efb7fc793",
+  bridge: "octgn:d583f6a7-c86f-47c9-aa75-f17f3befbdfd",
+  inspiringFury: "octgn:d4e0a9cb-6739-457c-9ce7-ca06c27183d3",
+  cursedSword: "octgn:8d546f2d-2296-4d52-b8f0-5803be8d9b84",
+  umbarPatrol: "octgn:60d839a5-7b1c-4ad7-b2dd-f7344b97d7fb",
+  alarm: "octgn:d76823ec-0216-42cc-aa40-8c6b284c62e1",
+  slaveTrade: "octgn:260708f2-17f2-4ffc-b7e3-43806d5c842f",
 } as const;
 
 interface NightmareDeck {
@@ -1570,6 +1585,20 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Umbar Raider": 1,
     },
   },
+  "the-city-of-corsairs": {
+    card: NIGHTMARE_DC.cityCard,
+    // Corsair Infiltrator is in the Corsair deck and Streets of Umbar in the
+    // set-aside City of Corsairs set; the scenario's setup applies the
+    // removals to all three piles.
+    removals: {
+      "Corsair Infiltrator": 2,
+      "Fog Bank": 2,
+      "Starlit Sea": 2,
+      "Scouting Ship": 2,
+      "Serpent's Tail": 2,
+      "Streets of Umbar": 1,
+    },
+  },
   "shelobs-lair": {
     card: NIGHTMARE_LOS.lairCard,
     removals: {
@@ -2116,6 +2145,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "the-drowned-ruins")
     return [
       "The Drowned Ruins · Nightmare mode: while the active location is Underwater, encounter card effects cannot be canceled; as stage 2A's When Revealed effect resolves, Captain Sahír makes an immediate attack against each player in turn order.",
+    ];
+  if (s.scenarioId === "the-city-of-corsairs")
+    return [
+      "The City of Corsairs · Nightmare mode: as stage 2B's When Revealed effect resolves, each Umbar Bridge and Inspiring Fury in the encounter deck and discard pile joins the second encounter deck; as stage 3A's resolves, The Cursed Sword attaches to the set-aside Captain Sahír.",
     ];
   if (s.scenarioId === "a-storm-on-cobas-haven") {
     const t = s.nightmare?.cobasProgress;

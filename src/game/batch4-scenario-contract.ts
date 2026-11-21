@@ -69,6 +69,10 @@ export interface Batch4ScenarioHooks {
    * effect carrying the symbols left.
    */
   sailingSymbolsFound?(s: GameState, successes: number): boolean;
+  /** After a character is committed to a Sailing test (The City of Corsairs' Nightmare Walls of Umbar). */
+  sailingCommitted?(s: GameState, u: Unit): void;
+  /** After the heading shifts, from `before` to `after` (lower is on-course). */
+  headingShifted?(s: GameState, before: number, after: number): void;
   /** An attachment's text box is treated as blank (Journey to the Cross-roads' Nightmare Wooded Glade). */
   attachmentBlanked?(s: GameState, host: Unit, a: Attachment): boolean;
   /** The characters that archery damage must be assigned to, if able. */

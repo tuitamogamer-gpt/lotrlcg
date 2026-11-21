@@ -43,6 +43,35 @@ export const CITY = {
   leader: code("Raid Leader"),
 };
 export const CITY_MAIN_QUESTS = [CITY.coast, CITY.fate, CITY.haven, CITY.final];
+/**
+ * The City of Corsairs' Nightmare Deck (docs/NIGHTMARE.md): its setup card,
+ * its five Coast of Umbar cards (the standard encounter deck) and its four
+ * The City of Corsairs cards (the set-aside second encounter deck).
+ */
+export const CITY_NIGHTMARE = {
+  card: "octgn:b4b93598-b2f1-4a7c-84df-32fe5a58ccc4",
+  patrolShip: "octgn:89b9eb6d-21a5-463b-b80a-586b531e56de",
+  loyalist: "octgn:ac878445-4c48-46b3-8664-c8572b2f93f2",
+  walls: "octgn:6eea3254-9a47-494b-a19c-6a9efb7fc793",
+  bridge: "octgn:d583f6a7-c86f-47c9-aa75-f17f3befbdfd",
+  fury: "octgn:d4e0a9cb-6739-457c-9ce7-ca06c27183d3",
+  sword: "octgn:8d546f2d-2296-4d52-b8f0-5803be8d9b84",
+  patrol: "octgn:60d839a5-7b1c-4ad7-b2dd-f7344b97d7fb",
+  alarm: "octgn:d76823ec-0216-42cc-aa40-8c6b284c62e1",
+  slaveTrade: "octgn:260708f2-17f2-4ffc-b7e3-43806d5c842f",
+} as const;
+/** The Nightmare cards with The City of Corsairs encounter set icon. */
+export const CITY_NIGHTMARE_LAND: string[] = [
+  CITY_NIGHTMARE.sword,
+  CITY_NIGHTMARE.patrol,
+  CITY_NIGHTMARE.alarm,
+  CITY_NIGHTMARE.slaveTrade,
+];
+const CITY_NIGHTMARE_CODES = new Set<string>(
+  Object.values(CITY_NIGHTMARE).filter((c) => c !== CITY_NIGHTMARE.card),
+);
+export const cityNightmare = (s: GameState) =>
+  !!s.nightmareMode && s.scenarioId === "the-city-of-corsairs";
 export const CITY_SHIPS = [CITY.dream, CITY.narelenya, CITY.dawn, CITY.silver];
 export const CITY_CORSAIRS = [
   CITY.slaver,
@@ -145,7 +174,12 @@ export function validateCity(s: GameState, validUnit: (u: unknown) => boolean) {
     // The Dream-chaser campaign adds its own cards (the Upgraded Monument,
     // boons, burdens and Crowley).
     [q.secondDeck, q.inactiveDeck, q.inactiveDiscard].every((p) =>
-      p.every((c) => definitions.has(c) || CAMPAIGN_CODES.has(c)),
+      p.every(
+        (c) =>
+          definitions.has(c) ||
+          CAMPAIGN_CODES.has(c) ||
+          (cityNightmare(s) && CITY_NIGHTMARE_CODES.has(c)),
+      ),
     ) &&
     q.corsairDeck.every((c) => CITY_CORSAIRS.includes(c) || c === DC.crowley) &&
     q.corsairDiscard.every(
