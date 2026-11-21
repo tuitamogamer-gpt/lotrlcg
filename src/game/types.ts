@@ -620,7 +620,8 @@ export interface GameState {
     import("./nightmare-rhudaur").NightmareRhudaurState &
     import("./nightmare-carn").NightmareCarnState &
     import("./nightmare-dread").NightmareDreadState &
-    import("./nightmare-crossroads").NightmareCrossroadsState;
+    import("./nightmare-crossroads").NightmareCrossroadsState &
+    import("./nightmare-shelob").NightmareShelobState;
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;
@@ -1304,6 +1305,8 @@ export interface GameState {
     nmMireOnKill?: number;
     /** Rotting Thing (The Passage of the Marshes' Nightmare Deck): the excess points of combat damage its attack dealt. */
     nmExcess?: number;
+    /** Growing Stench's shadow on Shelob (Shelob's Lair's Nightmare Deck): resources placed on her if this attack destroys a character, once for each copy. */
+    nlrStench?: number;
     defenderIds?: string[];
     ignoreDefense?: boolean;
     returnToStaging?: boolean;

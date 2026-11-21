@@ -4440,6 +4440,103 @@ try {
       );
     }
     await checkpoint("crossroads-shadowy-thicket", width);
+    // Shelob's Lair in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-shelobs-lair").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "shelobs-lair");
+    assert.equal(s.nightmareMode, true);
+    {
+      const all = [
+        ...s.encounterDeck,
+        ...s.encounterDiscard,
+        ...s.staging.map((u) => u.code),
+        ...s.engaged.map((u) => u.code),
+      ];
+      assert.deepEqual(
+        [
+          LOS.foulCave,
+          LOS.torech,
+          LOS.cobwebbed,
+          LOS.minasOrc,
+          LOS.sentry,
+          LOS.impenetrable,
+          LOS.stench,
+        ].map((code) => all.filter((c) => c === code).length),
+        [2, 3, 3, 3, 3, 3, 2],
+        "the Nightmare Deck is in the encounter deck",
+      );
+      assert.ok(
+        !all.some((c) =>
+          ["Morgul Orc", "The Under-way", "Deep Dark Passage"].includes(
+            card(c).name,
+          ),
+        ),
+        "the setup card removes each Morgul Orc, The Under-way and Deep Dark Passage",
+      );
+    }
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/unresolved shadow cards stay on Shelob/)
+      .waitFor();
+    await checkpoint("lair-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // An Under-gate Sentry engaged; an Orc of Minas Morgul and the three
+    // Underground locations in the staging area.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const sentry = make(t, LOS.sentry);
+      sentry.owner = 0;
+      t.engaged = [...t.engaged, sentry];
+      t.staging = [
+        ...t.staging,
+        make(t, LOS.minasOrc),
+        make(t, LOS.foulCave),
+        make(t, LOS.torech),
+        make(t, LOS.cobwebbed),
+      ];
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [LOS.sentry, "Under-gate Sentry"],
+      [LOS.minasOrc, "Orc of Minas Morgul"],
+      [LOS.foulCave, "Foul-smelling Cave"],
+      [LOS.torech, "Torech Ungol"],
+      [LOS.cobwebbed, "Cobwebbed Tunnel"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    await checkpoint("lair-cobwebbed-tunnel", width);
     await view.c.close();
   }
   const p = await browser.newPage();

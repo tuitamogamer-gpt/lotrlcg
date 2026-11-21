@@ -31,6 +31,7 @@ import { mainQuestUnit } from "./quest-state";
 import { lotrSagaCheck, oneRing } from "./lotr-saga";
 import { hasTrait } from "./expansion-passives";
 import { dealEnemyShadows } from "./considered-engagement";
+import { nightmareEncounterDeck, nightmareLive } from "./nightmare";
 import {
   GOLLUM_SHARED_EFFECTS,
   flipToGollum,
@@ -156,7 +157,12 @@ export function setupShelobLair(s: GameState) {
     r.cards
       .filter((c) => c.section === name)
       .flatMap((c) => Array<string>(c.quantity).fill(c.code));
-  s.encounterDeck = shuffle(s, section("sharedEncounterDeck"));
+  s.encounterDeck = shuffle(
+    s,
+    nightmareLive(s)
+      ? nightmareEncounterDeck(s.scenarioId, section("sharedEncounterDeck"))
+      : section("sharedEncounterDeck"),
+  );
   // 1A: Morgul Vale is the active location and Sméagol's Secret Way is in the
   // staging area; Sméagol joins the first player once the opening hands are
   // kept (his card waits in the staging area until then).

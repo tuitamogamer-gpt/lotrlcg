@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2826,
+    "encounterCards": 2834,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 4048,
-    "pending": 135
+    "scripted": 4056,
+    "pending": 127
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 332
+    "scripted": 333
   },
   "registeredCodes": [
     "01001",
@@ -1562,6 +1562,7 @@
     "octgn:2232bb8b-4b21-4315-9c6d-300b3a3ed7f9",
     "octgn:22511a31-8420-4f18-b834-be80c89d5e6a",
     "octgn:2251670c-c03c-4fd7-9621-c179c9ce79f8",
+    "octgn:227857db-5332-4c3a-b253-93f5886d8451",
     "octgn:228a03b8-ec05-4562-90f5-0c7d969490b0",
     "octgn:22c55625-210c-4843-81ee-d8d6430885b0",
     "octgn:22d6a151-ee2a-4ad0-9d97-5eddd5cc0391",
@@ -1729,6 +1730,7 @@
     "octgn:31ada226-448d-48f8-9f9a-c1f5046ad041",
     "octgn:31bd075d-e116-4a0f-81dd-942b52a6267c",
     "octgn:31c36264-7e6f-45df-a345-167d4df70885",
+    "octgn:31da2071-cc8e-4fb4-a3f8-062a235eb209",
     "octgn:31f8955f-40d5-41de-b886-77018b59d717",
     "octgn:321abaed-0b0c-465b-9f2a-bb9796e6b8c5",
     "octgn:32267333-091c-4bbf-bb29-5f21c8b79188",
@@ -1796,6 +1798,7 @@
     "octgn:36a22f2b-56d9-4148-a962-f7fbdf60f3a1",
     "octgn:36ac198d-0248-464a-8919-36f96b8e7caf",
     "octgn:36b82b22-4432-488a-8a88-d6486b7c75a3",
+    "octgn:36becc00-6e06-4b75-985e-9073f009defd",
     "octgn:36dd0d2a-ba57-4ca0-b750-967c958e8bfb",
     "octgn:36e1a766-7b31-4bb4-be01-4995a9f9c2f3",
     "octgn:37153373-7a82-484e-9aca-7ed47a6a7703",
@@ -1809,6 +1812,7 @@
     "octgn:37f205e5-5144-4987-8764-46909460797b",
     "octgn:381569ad-e2bf-4fb5-a045-a36b918deac4",
     "octgn:3820df8d-531b-4c37-815d-536f645bb289",
+    "octgn:38421493-b5f5-4399-b543-b59f69bbb43a",
     "octgn:38632ac4-e8c7-4d1e-819a-d16b3522915a",
     "octgn:38853a8e-09c2-44f8-a76e-62aac1809d18",
     "octgn:388d173e-e32a-4e02-b029-99180e34b014",
@@ -2070,6 +2074,7 @@
     "octgn:4d925556-3a39-4e49-aafa-0adac6cacc52",
     "octgn:4d976fdd-1a4b-429a-98ef-28c4695fa20d",
     "octgn:4daa4ff5-625a-4949-aef5-fb1349e249fd",
+    "octgn:4de10000-6646-4e25-8208-4c277bbbcf80",
     "octgn:4e12f20f-aec3-4311-a656-10a517fd97fe",
     "octgn:4e309ae8-11c9-4326-a5ad-60e4d16e60c4",
     "octgn:4ebd8ec5-79fe-4305-9c33-e06d37b1c8d5",
@@ -2860,6 +2865,7 @@
     "octgn:807175bd-1d09-41ff-a3ab-560a935eb259",
     "octgn:8073dade-022c-4ad6-8891-5cb116506ed1",
     "octgn:80764232-a3c9-47f1-9034-9c9ac82002e4",
+    "octgn:807c78ee-ec6b-4df0-9721-1e475f0d04dc",
     "octgn:808f60ad-a63f-4504-9b67-4fd45d630add",
     "octgn:809ff5de-8273-4491-adfb-3a27d4b316f3",
     "octgn:80af82a2-4377-4049-bb9d-2d79ad66d1db",
@@ -4111,6 +4117,7 @@
     "octgn:f6f56327-cc71-458c-bcdb-51ca6dab2fa1",
     "octgn:f7117e07-e8d2-4e7d-a5c3-5dd0f1c0d455",
     "octgn:f75180d3-29c9-4184-85ce-8b805b9aa8c6",
+    "octgn:f774288a-fe38-4da1-ba57-3c3c2ada62a1",
     "octgn:f77579e7-23f0-4c27-a4e3-e1edcc529e1e",
     "octgn:f77e471a-7dd2-4f05-ac8f-fbb534c66633",
     "octgn:f77ffb66-297c-49e0-8ed5-9cc3bd715926",
@@ -4132,6 +4139,7 @@
     "octgn:f939f43c-51b5-4d96-9a1e-86f606c7dcc6",
     "octgn:f93a8fda-7383-41c9-b86d-c5ba1fec760d",
     "octgn:f945cfde-271f-4e93-8eed-93eaaf0fb408",
+    "octgn:f951fa4a-6087-442d-a8cf-0e80facba040",
     "octgn:f9824e39-fda8-4e4b-bc74-83b4bd40c72d",
     "octgn:f985bda2-5029-4c34-91f7-721f830cbd9c",
     "octgn:f9a62ed6-f066-478d-9af0-0c39dea250dd",
@@ -4894,7 +4902,7 @@
     {
       "product": "the-land-of-shadow-nightmare",
       "total": 24,
-      "scripted": 16,
+      "scripted": 24,
       "player": 0,
       "playerScripted": 0
     },
@@ -16651,7 +16659,7 @@
       "name": "Shelob's Lair",
       "type": "nightmare",
       "pack": "The Land of Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow-nightmare"
     },
     {
@@ -18075,7 +18083,7 @@
       "name": "Torech Ungol",
       "type": "location",
       "pack": "The Land of Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow-nightmare"
     },
     {
@@ -18627,7 +18635,7 @@
       "name": "Impenetrable Dark",
       "type": "treachery",
       "pack": "The Land of Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow-nightmare"
     },
     {
@@ -18739,7 +18747,7 @@
       "name": "Under-gate Sentry",
       "type": "enemy",
       "pack": "The Land of Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow-nightmare"
     },
     {
@@ -20875,7 +20883,7 @@
       "name": "Foul-smelling Cave",
       "type": "location",
       "pack": "The Land of Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow-nightmare"
     },
     {
@@ -27395,7 +27403,7 @@
       "name": "Growing Stench",
       "type": "treachery",
       "pack": "The Land of Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow-nightmare"
     },
     {
@@ -37691,7 +37699,7 @@
       "name": "Cobwebbed Tunnel",
       "type": "location",
       "pack": "The Land of Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow-nightmare"
     },
     {
@@ -37867,7 +37875,7 @@
       "name": "Orc of Minas Morgul",
       "type": "enemy",
       "pack": "The Land of Shadow - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow-nightmare"
     },
     {
@@ -40078,8 +40086,8 @@
       "id": "N0B.12",
       "name": "Shelob's Lair (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "shelobs-lair",
+      "state": "scripted"
     },
     {
       "id": "N0C.01",

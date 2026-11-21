@@ -177,6 +177,7 @@ import { validNightmareRhudaur } from "./nightmare-rhudaur";
 import { validNightmareCarn } from "./nightmare-carn";
 import { dreadSideTime, validNightmareDread } from "./nightmare-dread";
 import { validNightmareCrossroads } from "./nightmare-crossroads";
+import { validNightmareShelob } from "./nightmare-shelob";
 import { nightmareEscapeTest } from "./nightmare-dead";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
@@ -734,6 +735,7 @@ export function validateSave(
         c.nmAttackAgain,
         c.nmMireOnKill,
         c.nmExcess,
+        c.nlrStench,
       ].every((v) => v === undefined || (integer(v) && v >= 0)) &&
       (c.dreadKilled === undefined ||
         (Array.isArray(c.dreadKilled) &&
@@ -1281,6 +1283,7 @@ export function validateSave(
         !validNightmareCarn(s) ||
         !validNightmareDread(s) ||
         !validNightmareCrossroads(s) ||
+        !validNightmareShelob(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,

@@ -674,6 +674,15 @@ export const NIGHTMARE_LOS = {
   shadowy: "octgn:0f6dfe98-9645-4c52-93d1-cd6e9089c640",
   wrath: "octgn:7dcb70a6-4be1-4436-8e38-9ebdcc12d165",
   ware: "octgn:26fcc4f7-16bc-4134-b184-ede9bfe82906",
+  /** Shelob's Lair's setup card (Shelob keeps her unresolved shadow cards; only Cleft of Cirith Ungol while it is staged) and Nightmare Deck. */
+  lairCard: "octgn:227857db-5332-4c3a-b253-93f5886d8451",
+  foulCave: "octgn:4de10000-6646-4e25-8208-4c277bbbcf80",
+  torech: "octgn:31da2071-cc8e-4fb4-a3f8-062a235eb209",
+  cobwebbed: "octgn:f774288a-fe38-4da1-ba57-3c3c2ada62a1",
+  minasOrc: "octgn:f951fa4a-6087-442d-a8cf-0e80facba040",
+  sentry: "octgn:38421493-b5f5-4399-b543-b59f69bbb43a",
+  impenetrable: "octgn:36becc00-6e06-4b75-985e-9073f009defd",
+  stench: "octgn:807c78ee-ec6b-4df0-9721-1e475f0d04dc",
 } as const;
 
 interface NightmareDeck {
@@ -1335,6 +1344,15 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "The Dark Lord's Summons": 3,
     },
   },
+  "shelobs-lair": {
+    card: NIGHTMARE_LOS.lairCard,
+    removals: {
+      "Morgul Orc": 4,
+      "The Under-way": 2,
+      "Deep Dark Passage": 3,
+      "Many Openings": 2,
+    },
+  },
   "the-dread-realm": {
     card: NIGHTMARE_AA.dreadCard,
     removals: {
@@ -1834,6 +1852,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "the-passage-of-the-marshes")
     return [
       "The Passage of the Marshes · Nightmare mode: when a location in the staging area is explored, each player raises their threat by that location's Mire value.",
+    ];
+  if (s.scenarioId === "shelobs-lair")
+    return [
+      "Shelob's Lair · Nightmare mode: unresolved shadow cards stay on Shelob at the end of the combat phase; while Cleft of Cirith Ungol is in the staging area, the players can travel only to it.",
     ];
   if (s.scenarioId === "journey-to-the-cross-roads") {
     const players = s.table ? s.table.seats.length : 1;

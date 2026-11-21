@@ -2862,6 +2862,8 @@ export function composeEredPool(
       !!p.attachmentImmune?.(s, host, a, source),
     sideQuestDestination: (s, u) =>
       !!h.sideQuestDestination?.(s, u) || !!p.sideQuestDestination?.(s, u),
+    combatEndShadows: (s, u) =>
+      !!h.combatEndShadows?.(s, u) || !!p.combatEndShadows?.(s, u),
     attachmentBlanked: (s, host, a) =>
       !!h.attachmentBlanked?.(s, host, a) ||
       !!p.attachmentBlanked?.(s, host, a),

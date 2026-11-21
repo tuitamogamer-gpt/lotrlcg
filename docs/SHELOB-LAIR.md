@@ -2,8 +2,8 @@
 
 The third scenario of **The Lord of the Rings: The Land of Shadow**
 (November 2015). It is playable in classic solo and with one to four local
-players, in normal and easy mode, with the box's Fellowship-sphere Frodo
-Baggins as the Ring-bearer. Its campaign mode (recipe Q0C.12) is part of
+players, in normal and easy mode and in Nightmare mode (below), with the
+box's Fellowship-sphere Frodo Baggins as the Ring-bearer. Its campaign mode (recipe Q0C.12) is part of
 [The Lord of the Rings campaign](SAGA-CAMPAIGN.md): A Heavy Burden is attached
 to the Ring-bearer, and the resolution earns it.
 
@@ -101,6 +101,22 @@ Interpretations:
   a ready character he controls with a Weapon attachment.
 - **Peril** cards are resolved by the revealing player, who makes the
   choice.
+
+## Nightmare mode
+
+The Nightmare Deck (recipe `N0B.12`,
+[rules and cards](NIGHTMARE.md#shelobs-lair-nightmare)) removes Morgul Orc ×4,
+The Under-way ×2, Deep Dark Passage ×3 and Many Openings ×2, and adds
+Foul-smelling Cave ×2, Torech Ungol ×3, Cobwebbed Tunnel ×3, Orc of Minas
+Morgul ×3, Under-gate Sentry ×3, Impenetrable Dark ×3 and Growing Stench ×2
+to the encounter deck (35 cards). Its setup card keeps Shelob's unresolved
+shadow cards on her at the end of the combat phase, so Growing Stench, dealt
+facedown to her, waits for her next attack (an immediate one included), and
+while Cleft of Cirith Ungol is in the staging area the players can travel
+only to it. The new Underground locations feed and strengthen Shelob, swell
+each other while Cobwebbed Tunnel is staged and take no progress at stage
+1B; the Orcs take cards from hand, and Impenetrable Dark keeps characters
+exhausted. Focused checks are in `tests/nightmare-shelob.test.ts`.
 
 ## Verification
 
