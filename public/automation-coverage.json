@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2910,
+    "encounterCards": 2920,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 4125,
-    "pending": 58
+    "scripted": 4135,
+    "pending": 48
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 340
+    "scripted": 341
   },
   "registeredCodes": [
     "01001",
@@ -1281,6 +1281,7 @@
     "octgn:045cf035-2ebf-4ebf-a7a3-7d44d3f9b2dc",
     "octgn:047ca6cd-733d-46aa-b2db-48a9c63bfc24",
     "octgn:048b6a57-f577-4dbe-a090-6eca1f266767",
+    "octgn:049298a9-9232-43f3-8c63-2b5598143812",
     "octgn:049758ee-7fb1-4978-9ed0-1b4de1d5ae14",
     "octgn:04a23a2e-a14f-4c54-b54f-eeef36d3a92b",
     "octgn:04eb1904-64a4-4b89-ae71-38ee175aa093",
@@ -1509,6 +1510,7 @@
     "octgn:1c95d49a-5638-4f31-a42f-f93a5d1f50db",
     "octgn:1c9d4501-fa65-41b9-977f-896f2286511d",
     "octgn:1cd05eb5-2456-467a-8d24-efaadd027145",
+    "octgn:1cd6ee90-545a-4e41-b1bc-24b2b6b1d512",
     "octgn:1cdc36d4-fd78-4ebe-850b-13f24ee73244",
     "octgn:1ce63cb5-0022-48b2-a864-af49bdf18bef",
     "octgn:1d1adc93-c364-41d0-b987-6038d9df0c07",
@@ -1928,9 +1930,11 @@
     "octgn:43777005-d391-48bc-b84d-d40932ffc66b",
     "octgn:43867521-f76f-48be-9911-a90ac0f539f6",
     "octgn:43bb02ff-9fcc-47e8-822c-ffcd620c9fc4",
+    "octgn:43c0ac02-4d9b-416e-978c-b00897654220",
     "octgn:43db612f-6c3c-4a3c-a4ba-816a85f47d16",
     "octgn:441a78e5-078f-433d-b092-5d94d1101aa1",
     "octgn:4422e6ce-b272-4a2d-bd05-bf3f41063ea6",
+    "octgn:44668bf1-b1cb-4d39-8ed9-71a5cb9c3a9c",
     "octgn:447061f6-3399-4309-9885-1045f115820f",
     "octgn:447dd08d-693c-407f-8155-87164f212351",
     "octgn:4489214b-775c-4e63-b8ec-c504526e478f",
@@ -2458,6 +2462,7 @@
     "octgn:53ac8ba6-0487-4b1f-91e9-cf7ca9e7c1d0",
     "octgn:53b038f1-01c5-40d9-b583-7501b0d7c8df",
     "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376",
+    "octgn:53cbbb3d-ec71-49f2-b9e1-07eb1cd87a7b",
     "octgn:53f207b7-6670-4cc1-ad0f-d0190386d2b5",
     "octgn:54014fda-7adc-49b0-96ac-656e849eaf7b",
     "octgn:540e3fbc-a066-4dc6-a156-598f1b2751c0",
@@ -2890,6 +2895,7 @@
     "octgn:7f458303-66c1-45db-bf3f-20669fea6ff4",
     "octgn:7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3",
     "octgn:7f9cf578-980e-43af-995f-27a84fd54a01",
+    "octgn:7fa155cf-ba79-40de-b0eb-a80cefa2b48b",
     "octgn:7fa34ed7-6c3d-41a2-9c03-d8a766a35ece",
     "octgn:7fb1c173-03d7-4136-af14-58eedb58fcab",
     "octgn:7fbf49c1-fae7-4968-bc60-503d92f8aa18",
@@ -2987,6 +2993,7 @@
     "octgn:87539fa5-677d-4163-aff5-321841981cd4",
     "octgn:877a0217-9708-4139-b305-14c1b83c1d14",
     "octgn:877df84f-3f61-41e0-96ad-aab2aae56048",
+    "octgn:877f5f1e-133b-4d23-883d-9938cd07ba3b",
     "octgn:87b6ecff-219c-4002-b46b-ca683cb4c25b",
     "octgn:87c33692-599d-4914-a513-4353906fc6d4",
     "octgn:87c80644-57bb-4c66-8df6-c60cadc32d32",
@@ -3405,6 +3412,7 @@
     "octgn:b002c7a6-f827-4a7d-8432-c3f2f995089e",
     "octgn:b00c623e-2aaa-4286-9fba-499fe39eb204",
     "octgn:b028411b-ab1d-4a54-a9d0-38cb70489f98",
+    "octgn:b029e7a4-d2a1-4cc8-ba60-6a6244e8a48f",
     "octgn:b03a007c-42bc-433c-bd0e-efbf65a8696d",
     "octgn:b06030a9-7ab9-48a6-b7da-5ffd8ce3a1a6",
     "octgn:b07cec11-452d-423a-b33e-3f9345c9f6e1",
@@ -3672,6 +3680,7 @@
     "octgn:c5711d74-8adb-427a-b0fe-e7a8c373659b",
     "octgn:c57661b7-62f9-4906-b2eb-73af91fd8252",
     "octgn:c5b174ae-d1e5-4dac-bedf-7a6c741e26d6",
+    "octgn:c5c142e5-ab8a-416c-a82d-fd7e1d12df1b",
     "octgn:c5d1793e-a4e2-4a40-97e9-e5e6f8b1cdfb",
     "octgn:c5d9d3c6-9321-4909-918d-2b81d7aa296d",
     "octgn:c5e24012-cbaf-40aa-b4af-28d3464e72a7",
@@ -4199,6 +4208,7 @@
     "octgn:f7babd23-3133-4fdc-ab08-1f863d41ad96",
     "octgn:f7babd23-3133-4fdc-ab08-1f863d41ad96:B",
     "octgn:f7badc7a-4e37-4606-8557-0fa4719227c0",
+    "octgn:f7d92d48-16a4-4460-a0d7-d1cf2737d10a",
     "octgn:f7f5ca4e-42db-48f9-b4a5-efe419f53fa3",
     "octgn:f810a9d2-b2c2-49fd-966a-7bf9f0827030",
     "octgn:f811f153-81f4-4688-8b4d-400215e6748a",
@@ -4362,7 +4372,7 @@
     {
       "product": "a-storm-on-cobas-haven-nightmare",
       "total": 10,
-      "scripted": 0,
+      "scripted": 10,
       "player": 0,
       "playerScripted": 0
     },
@@ -14407,7 +14417,7 @@
       "name": "Fang of Sahír",
       "type": "enemy",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven-nightmare"
     },
     {
@@ -16239,7 +16249,7 @@
       "name": "War-torn Waters",
       "type": "location",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven-nightmare"
     },
     {
@@ -19623,7 +19633,7 @@
       "name": "Aearlang",
       "type": "objective",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven-nightmare"
     },
     {
@@ -19655,7 +19665,7 @@
       "name": "Grappled!",
       "type": "treachery",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven-nightmare"
     },
     {
@@ -23919,7 +23929,7 @@
       "name": "Ramming Ship",
       "type": "ship-enemy",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven-nightmare"
     },
     {
@@ -27359,7 +27369,7 @@
       "name": "Broken Rudder",
       "type": "treachery",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven-nightmare"
     },
     {
@@ -28127,7 +28137,7 @@
       "name": "Docks of Dol Amroth",
       "type": "objective",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven-nightmare"
     },
     {
@@ -31479,7 +31489,7 @@
       "name": "A Storm on Cobas Haven",
       "type": "nightmare",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven-nightmare"
     },
     {
@@ -33631,7 +33641,7 @@
       "name": "City Under Siege",
       "type": "location",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven-nightmare"
     },
     {
@@ -37831,7 +37841,7 @@
       "name": "Sea-wall",
       "type": "location",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven-nightmare"
     },
     {
@@ -40029,8 +40039,8 @@
       "id": "N06.8",
       "name": "A Storm on Cobas Haven (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "a-storm-on-cobas-haven",
+      "state": "scripted"
     },
     {
       "id": "N06.9",

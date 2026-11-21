@@ -3,9 +3,9 @@
 This import covers all eleven original Adventure Pack player designs and the
 original standard/easy adventure for solo and 1–4 players in local hot-seat.
 Ioreth reuses her existing Collector's Edition implementation; the other ten
-designs add player definitions. Revised Dream-chaser campaign and Nightmare
-variants retain separate support gates. The next chronological Adventure Pack
-is The City of Corsairs.
+designs add player definitions. The revised Dream-chaser campaign and the
+Nightmare Deck are described in their own rules. The next chronological
+Adventure Pack is The City of Corsairs.
 
 ## Original sources
 
@@ -62,6 +62,25 @@ format. See [player rules and interactions](COBAS-PLAYER-SCRIPTS.md).
 
 The additive account-choice SQL migration accepts the new scenario and is
 tested locally. It does not configure or migrate a hosted account database.
+
+## Nightmare mode
+
+The Nightmare Deck (recipe `N06.8`,
+[rules and cards](NIGHTMARE.md#a-storm-on-cobas-haven-nightmare)) removes nine
+cards from the encounter deck and four from the Corsair deck, which keeps 12.
+Its two unique Dol Amroth objectives, Aearlang and Docks of Dol Amroth, join
+the four coastal objectives: setup shuffles all six into the encounter deck
+and puts one into play at random, without a choice, and the Heavy Cruiser,
+the guards, stage 2's goal and the interface treat them as the others. Raider
+Flagship never guards an objective, and while any player is engaged with it,
+no more than five progress is placed on the current quest each round. City
+Under Siege's archery joins the combined total that Tower of the Heron
+reduces, War-torn Waters' end-of-quest guard is ordered with Siege Ship's,
+and Broken Rudder and Grappled! share Taking on Water's Action that exhausts
+three characters. Broken Rudder lets each attached ship's controller keep
+Sailing symbols by dealing damage to it before the heading shifts. The
+recipe's two City Under Siege are three on the printed cards, and the deck
+keeps three.
 
 ## Verification
 

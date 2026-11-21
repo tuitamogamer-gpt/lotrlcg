@@ -62,6 +62,13 @@ export interface Batch4ScenarioHooks {
     looked: string[],
     committedIds: string[],
   ): Effect[];
+  /**
+   * The uncancelled Sailing symbols a Sailing test found, before the heading
+   * shifts: true when a layer resolves them itself (A Storm on Cobas Haven's
+   * Nightmare Broken Rudder) and resumes the test with a sailingHeading
+   * effect carrying the symbols left.
+   */
+  sailingSymbolsFound?(s: GameState, successes: number): boolean;
   /** An attachment's text box is treated as blank (Journey to the Cross-roads' Nightmare Wooded Glade). */
   attachmentBlanked?(s: GameState, host: Unit, a: Attachment): boolean;
   /** The characters that archery damage must be assigned to, if able. */

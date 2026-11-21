@@ -183,6 +183,7 @@ import { validNightmareStormcaller } from "./nightmare-stormcaller";
 import { validNightmareDepths } from "./nightmare-depths";
 import { validNightmareTemple } from "./nightmare-temple";
 import { validNightmareDrowned } from "./nightmare-drowned";
+import { validNightmareCobas } from "./nightmare-cobas";
 import { nightmareEscapeTest } from "./nightmare-dead";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
@@ -635,6 +636,7 @@ export function validateSave(
         c.raidKilledCharacter,
         c.nrdInfiltration,
         c.ntdKnightReturn,
+        c.ncbReturn,
         c.immediatePendingDeclaration,
         c.immediatePreviousShadowCancelsDamage,
         c.immediatePreviousShadowCancelsCombatDamage,
@@ -1297,6 +1299,7 @@ export function validateSave(
         !validNightmareDepths(s) ||
         !validNightmareTemple(s) ||
         !validNightmareDrowned(s) ||
+        !validNightmareCobas(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,

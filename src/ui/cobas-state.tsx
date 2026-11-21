@@ -1,7 +1,7 @@
 import type { Card, GameState } from "../game/types";
 import { card, name } from "../game/cards";
 import { allActiveLocations, allEngaged } from "../game/table";
-import { COBAS, COBAS_OBJECTIVES, cobasStageInfo } from "../game/cobas-support";
+import { COBAS, COBAS_DOL_AMROTH, cobasStageInfo } from "../game/cobas-support";
 import { sailingOnCourse } from "../game/sailing";
 import { cobasGuardsObjective, cobasObjectiveControlled } from "../game/cobas";
 import "./cobas.css";
@@ -16,7 +16,7 @@ export function CobasScenarioState({
   const q = s.cobas;
   if (!q) return null;
   const inPlay = [...s.staging, ...allEngaged(s), ...allActiveLocations(s)];
-  const objectives = s.staging.filter((u) => COBAS_OBJECTIVES.includes(u.code));
+  const objectives = s.staging.filter((u) => COBAS_DOL_AMROTH.includes(u.code));
   const guarded = objectives.filter((u) => !cobasObjectiveControlled(s, u));
   const warships = q.setAside.filter((u) => u.code === COBAS.warship).length;
   return (
@@ -104,7 +104,7 @@ export function CobasQuestGoals({ s }: { s: GameState }) {
   const stage = cobasStageInfo(s);
   if (!stage) return null;
   const guardedObjectives = s.staging.filter(
-    (u) => COBAS_OBJECTIVES.includes(u.code) && !cobasObjectiveControlled(s, u),
+    (u) => COBAS_DOL_AMROTH.includes(u.code) && !cobasObjectiveControlled(s, u),
   );
   return (
     <div className="quest-goals" data-cobas-quest-goals>

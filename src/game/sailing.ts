@@ -180,11 +180,25 @@ export function sailingContinue(s: GameState) {
       voyageSailingCancelledIcons(s),
   );
   test.phase = "results";
-  const shifts = Math.min(test.successes, s.sailing!.heading);
   log(
     s,
     `Sailing test: ${test.looked.length} cards looked at; ${test.successes} uncancelled Sailing symbol${test.successes === 1 ? "" : "s"}.`,
   );
+  // A Nightmare Deck may cancel the symbols found unless a cost is paid
+  // (Broken Rudder); it resumes the test with sailingHeading.
+  if (
+    Math.min(test.successes, s.sailing!.heading) > 0 &&
+    batch4Scenario(s).sailingSymbolsFound?.(s, test.successes)
+  )
+    return;
+  sailingHeading(s);
+}
+/** The first player shifts the heading on-course by up to the uncancelled symbols. */
+function sailingHeading(s: GameState) {
+  const test = s.sailing!.test!;
+  test.successes ??= 0;
+  selectSeat(s, test.player);
+  const shifts = Math.min(test.successes, s.sailing!.heading);
   if (!shifts) {
     finishSailing(s, 0);
     return;
@@ -200,7 +214,7 @@ export function sailingContinue(s: GameState) {
       detail: sailingHeadingLabel(Math.max(0, s.sailing!.heading - value)),
       effects: [fx("sailingFinish", { value, player: test.player })],
     })),
-    `${test.successes} successes; ${sailingHeadingLabel(s.sailing!.heading)}. Looked cards: ${test.looked.map((c) => card(c).name).join(", ")}.`,
+    `${test.successes} successes; ${sailingHeadingLabel(s.sailing!.heading)}. Looked cards: ${(test.looked ?? []).map((c) => card(c).name).join(", ")}.`,
   );
 }
 function finishSailing(s: GameState, shifts: number) {
@@ -277,6 +291,16 @@ export function sailingEffect(s: GameState, e: Effect): boolean {
     case "sailingFinish":
       finishSailing(s, e.value ?? 0);
       break;
+    case "sailingHeading": {
+      const test = s.sailing?.test;
+      requireRule(
+        test?.phase === "results",
+        "There are no Sailing results to resolve.",
+      );
+      test.successes = Math.max(0, Math.min(test.successes ?? 0, e.value ?? 0));
+      sailingHeading(s);
+      break;
+    }
     default:
       return false;
   }

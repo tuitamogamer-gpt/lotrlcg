@@ -2886,6 +2886,9 @@ export function composeEredPool(
       ...(h.sailingDiscarded?.(s, looked, committedIds) ?? []),
       ...(p.sailingDiscarded?.(s, looked, committedIds) ?? []),
     ],
+    sailingSymbolsFound: (s, successes) =>
+      !!h.sailingSymbolsFound?.(s, successes) ||
+      !!p.sailingSymbolsFound?.(s, successes),
     combatEndShadows: (s, u) =>
       !!h.combatEndShadows?.(s, u) || !!p.combatEndShadows?.(s, u),
     attachmentBlanked: (s, host, a) =>

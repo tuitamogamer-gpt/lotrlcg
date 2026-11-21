@@ -163,7 +163,7 @@ import { CrossingsPorosScenarioState } from "./ui/crossings-poros-state";
 import { WildsRhovanionScenarioState } from "./ui/wilds-rhovanion-state";
 import { BENEATH_SANDS_QUESTS } from "./game/beneath-sands-support";
 import { BeneathSandsScenarioState } from "./ui/beneath-sands-state";
-import { COBAS_OBJECTIVES } from "./game/cobas-support";
+import { COBAS_DOL_AMROTH } from "./game/cobas-support";
 import { GATE_KEY_FACES, TEMPLE } from "./game/temple-support";
 import { templePrivateLookVisible } from "./game/temple";
 import { faceupShadowCards } from "./game/voice-isengard";
@@ -6695,7 +6695,7 @@ function BoardCard({
               ? `${s.celebrimbor?.search.length ?? 0} cards underneath`
               : isGuarded(s, u)
                 ? "Guarded"
-                : s.cobas && COBAS_OBJECTIVES.includes(u.code)
+                : s.cobas && COBAS_DOL_AMROTH.includes(u.code)
                   ? "Controlled by the players"
                   : "Unguarded"}
           </span>

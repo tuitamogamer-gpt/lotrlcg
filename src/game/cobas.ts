@@ -20,6 +20,7 @@ import {
   shuffle,
   spendResources,
   stats,
+  random,
   removeShadowCard,
 } from "./core";
 import {
@@ -47,13 +48,18 @@ import {
 import { sailingOnCourse } from "./sailing";
 import {
   COBAS as C,
+  COBAS_CONDITIONS,
+  COBAS_DOL_AMROTH,
+  COBAS_NIGHTMARE as CN,
   COBAS_OBJECTIVES,
   COBAS_RECIPES,
   COBAS_SHIPS,
   COBAS_MAIN_QUESTS,
+  cobasNightmare,
   cobasStageInfo,
   cobasGuardsObjective,
 } from "./cobas-support";
+import { nightmareEncounterDecks } from "./nightmare";
 import {
   DC,
   dcIs,
@@ -74,7 +80,7 @@ const ships = (s: GameState) => allCharacters(s).filter(isShipObjective);
 const own = (s: GameState, player: number) =>
   allCharacters(s).filter((u) => ownerOf(s, u) === player);
 const objectives = (s: GameState) =>
-  s.staging.filter((u) => COBAS_OBJECTIVES.includes(u.code));
+  s.staging.filter((u) => COBAS_DOL_AMROTH.includes(u.code));
 const guards = (s: GameState, objective: Unit) =>
   [...s.staging, ...allEngaged(s), ...allActiveLocations(s)].filter((u) =>
     cobasGuardsObjective(u, objective.id),
@@ -88,7 +94,7 @@ const controlled = cobasObjectiveControlled;
 export function cobasGuardedStarted(s: GameState, u: Unit) {
   if (
     s.cobas &&
-    COBAS_OBJECTIVES.includes(u.code) &&
+    COBAS_DOL_AMROTH.includes(u.code) &&
     !s.cobas.pendingGuarded.includes(u.id)
   )
     s.cobas.pendingGuarded.push(u.id);
@@ -108,6 +114,12 @@ const unguarded = (s: GameState) =>
   objectives(s).filter((u) => controlled(s, u));
 const guarding = (s: GameState, u: Unit) =>
   objectives(s).some((o) => cobasGuardsObjective(u, o.id));
+/** The Nightmare setup card: "Raider Flagship cannot guard objectives." */
+const cannotGuard = (s: GameState, u: Unit) =>
+  cobasNightmare(s) && u.code === C.flagship;
+/** The Dol Amroth objectives an encounter card guards (the Nightmare Deck's Sea-wall). */
+export const cobasGuardedObjectives = (s: GameState) =>
+  objectives(s).filter((o) => guards(s, o).length > 0).length;
 const stageLive = (s: GameState, stage: number) =>
   active(s) && s.stage === stage && !mainQuestUnit(s)?.blanked;
 export const cobasSailingExtraCards = (s: GameState) =>
@@ -148,7 +160,10 @@ export const cobasArchery = (s: GameState, base: number) =>
         0,
         base +
           2 *
-            enemies(s).filter((u) => u.code === C.siege && !u.blanked).length -
+            enemies(s).filter((u) => u.code === C.siege && !u.blanked).length +
+          // The Nightmare Deck's City Under Siege: "While City Under Siege is
+          // in the staging area, it gains archery 2" (in the combined total).
+          2 * s.staging.filter((u) => u.code === CN.city && !u.blanked).length -
           (bonus(s, C.heron) ? 4 : 0),
       )
     : base;
@@ -186,7 +201,17 @@ export function setupCobas(s: GameState) {
     recipe.cards
       .filter((c) => c.section === section)
       .flatMap((c) => Array<string>(c.quantity).fill(c.code));
-  s.encounterDeck = [...pile("sharedEncounterDeck"), ...COBAS_OBJECTIVES];
+  // The Nightmare setup card's removals (Corsair Infiltrator, Cunning Pirate
+  // and Umbar Raider from the Corsair deck) and its Nightmare Deck, whose two
+  // Dol Amroth objectives join the other four.
+  const [encounter, corsairs] = cobasNightmare(s)
+    ? nightmareEncounterDecks(
+        s.scenarioId,
+        [pile("sharedEncounterDeck"), pile("sharedEncounterDeck2")],
+        () => 0,
+      )
+    : [pile("sharedEncounterDeck"), pile("sharedEncounterDeck2")];
+  s.encounterDeck = [...encounter, ...COBAS_OBJECTIVES];
   s.cobas = {
     initialized: false,
     advancing: false,
@@ -203,7 +228,7 @@ export function setupCobas(s: GameState) {
           : C.warship,
       ),
     ].map((c) => make(s, c)),
-    corsairDeck: shuffle(s, pile("sharedEncounterDeck2")),
+    corsairDeck: shuffle(s, corsairs),
     corsairDiscard: [],
     belfalas: [],
     capturePending: [],
@@ -282,8 +307,15 @@ export function cobasEngaged(s: GameState, u: Unit) {
 }
 export function cobasQuestEnd(s: GameState) {
   if (!active(s)) return;
+  // The Nightmare Deck's War-torn Waters gains the same Forced effect while
+  // it is in the staging area.
   const effects = s.staging
-    .filter((u) => u.code === C.siege && !u.blanked && !guarding(s, u))
+    .filter(
+      (u) =>
+        (u.code === C.siege || (u.code === CN.warTorn && cobasNightmare(s))) &&
+        !u.blanked &&
+        !guarding(s, u),
+    )
     .map((u) =>
       fx("cobasSiege", {
         target: u.id,
@@ -298,7 +330,9 @@ export function cobasQuestEnd(s: GameState) {
       fx("fangornOrder", {
         effects,
         player: firstPlayer(s),
-        text: "Choose the next Siege Ship Forced effect",
+        text: effects.every((e) => e.code === C.siege)
+          ? "Choose the next Siege Ship Forced effect"
+          : "Choose the next Forced effect that guards an objective",
       }),
     );
   else prepend(s, ...effects);
@@ -458,10 +492,10 @@ export function cobasAbilityProblem(s: GameState, u: Unit) {
 export function cobasWaterAbilities(s: GameState, u: Unit) {
   if (!active(s)) return [];
   return u.attachments
-    .filter((a) => a.code === C.water && !a.blanked)
+    .filter((a) => COBAS_CONDITIONS.includes(a.code) && !a.blanked)
     .map((a) => ({
       id: a.id,
-      label: "Taking on Water · Exhaust 3 characters you control to discard",
+      label: `${card(a.code).name} · Exhaust 3 characters you control to discard`,
       disabled: own(s, activeSeat(s)).filter(canExhaust).length < 3,
     }));
 }
@@ -470,7 +504,10 @@ export function cobasAbility(s: GameState, u: Unit, attachmentId?: string) {
   if (attachmentId) {
     if (
       !u.attachments.some(
-        (a) => a.id === attachmentId && a.code === C.water && !a.blanked,
+        (a) =>
+          a.id === attachmentId &&
+          COBAS_CONDITIONS.includes(a.code) &&
+          !a.blanked,
       )
     )
       return false;
@@ -564,7 +601,11 @@ function attachGuard(
   objective: Unit,
   additional = false,
 ) {
-  if ((!additional && guarding(s, enemy)) || !controlled(s, objective))
+  if (
+    (!additional && guarding(s, enemy)) ||
+    !controlled(s, objective) ||
+    cannotGuard(s, enemy)
+  )
     return false;
   const engaged = allEngaged(s).some((u) => u.id === enemy.id);
   if (engaged)
@@ -586,7 +627,7 @@ export function cobasCardEntered(
   cancel: boolean,
 ) {
   if (!active(s)) return;
-  if (COBAS_OBJECTIVES.includes(u.code)) cobasGuardedStarted(s, u);
+  if (COBAS_DOL_AMROTH.includes(u.code)) cobasGuardedStarted(s, u);
   if (!fromReveal || cancel || u.code !== C.heavy) return;
   prepend(s, fx("cobasHeavySearch", { target: u.id, player: firstPlayer(s) }));
 }
@@ -647,6 +688,22 @@ export function cobasEffect(s: GameState, e: Effect) {
         const unit = make(s, code);
         s.staging.push(unit);
         enemyAddedToStaging(s, unit);
+      }
+      // The Nightmare setup card: "When choosing a Dol Amroth objective to put
+      // into play during setup, players must choose randomly among all 6 Dol
+      // Amroth objectives."
+      if (cobasNightmare(s)) {
+        const pool = s.encounterDeck.filter((c) =>
+          COBAS_DOL_AMROTH.includes(c),
+        );
+        const code = pool[Math.floor(random(s) * pool.length)];
+        log(
+          s,
+          `Nightmare setup · ${card(code).name} is chosen at random among the ${pool.length} Dol Amroth objectives.`,
+          "chapter",
+        );
+        prepend(s, fx("cobasSetupObjective", { code, player: firstPlayer(s) }));
+        break;
       }
       choose(
         s,
@@ -800,14 +857,15 @@ export function cobasEffect(s: GameState, e: Effect) {
         label: `Guard ${name(o)}`,
         effects: [fx("cobasGuard", { target: u.id, source: o.id })],
       }));
-      if (options.length) choose(s, "Siege Ship · Guard an objective", options);
+      if (options.length)
+        choose(s, `${card(u.code).name} · Guard an objective`, options);
       break;
     }
     case "cobasHeavySearch": {
       if (!u) break;
       const options = search(
         s,
-        (code) => COBAS_OBJECTIVES.includes(code),
+        (code) => COBAS_DOL_AMROTH.includes(code),
         "cobasHeavyTake",
       ).map((o) => ({
         ...o,
@@ -829,7 +887,7 @@ export function cobasEffect(s: GameState, e: Effect) {
     }
     case "cobasAssault": {
       const available = enemies(s).filter(
-          (u) => isShipEnemy(u) && !guarding(s, u),
+          (u) => isShipEnemy(u) && !guarding(s, u) && !cannotGuard(s, u),
         ),
         targets = unguarded(s);
       if (!available.length || !targets.length) {
@@ -1010,12 +1068,11 @@ export function cobasEffect(s: GameState, e: Effect) {
       break;
     case "cobasWaterPay": {
       const selected = e.ids ?? [];
-      if (
-        !u?.attachments.some(
-          (a) => a.id === e.source && a.code === C.water && !a.blanked,
-        )
-      )
-        break;
+      const condition = u?.attachments.find(
+        (a) =>
+          a.id === e.source && COBAS_CONDITIONS.includes(a.code) && !a.blanked,
+      );
+      if (!u || !condition) break;
       if (selected.length === 3) {
         const chars = selected.map((id) => get(s, id));
         if (chars.some((u) => !u || !canExhaust(u) || ownerOf(s, u) !== player))
@@ -1027,7 +1084,7 @@ export function cobasEffect(s: GameState, e: Effect) {
       }
       choose(
         s,
-        "Taking on Water · Choose 3 ready characters",
+        `${card(condition.code).name} · Choose 3 ready characters`,
         own(s, player)
           .filter((u) => canExhaust(u) && !selected.includes(u.id))
           .map((char) => ({

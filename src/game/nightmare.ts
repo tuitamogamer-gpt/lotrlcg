@@ -780,6 +780,20 @@ export const NIGHTMARE_DC = {
   sulfur: "octgn:8093af80-f939-49cc-a8be-b54a454e2a55",
   flooded: "octgn:9fd0166e-dd9b-46a8-830a-b3a1a9fe84db",
   pit: "octgn:dfc6d0c9-0ea2-40ac-b883-6be2a5f4b36b",
+  /**
+   * A Storm on Cobas Haven's setup card and Nightmare Deck (Aearlang and
+   * Docks of Dol Amroth join the Dol Amroth objectives).
+   */
+  cobasCard: "octgn:b029e7a4-d2a1-4cc8-ba60-6a6244e8a48f",
+  aearlang: "octgn:43c0ac02-4d9b-416e-978c-b00897654220",
+  docks: "octgn:877f5f1e-133b-4d23-883d-9938cd07ba3b",
+  ramming: "octgn:53cbbb3d-ec71-49f2-b9e1-07eb1cd87a7b",
+  fang: "octgn:049298a9-9232-43f3-8c63-2b5598143812",
+  citySiege: "octgn:c5c142e5-ab8a-416c-a82d-fd7e1d12df1b",
+  seaWall: "octgn:f7d92d48-16a4-4460-a0d7-d1cf2737d10a",
+  warTorn: "octgn:1cd6ee90-545a-4e41-b1bc-24b2b6b1d512",
+  rudder: "octgn:7fa155cf-ba79-40de-b0eb-a80cefa2b48b",
+  grappled: "octgn:44668bf1-b1cb-4d39-8ed9-71a5cb9c3a9c",
 } as const;
 
 interface NightmareDeck {
@@ -1541,6 +1555,21 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Cave Eel": 2,
     },
   },
+  "a-storm-on-cobas-haven": {
+    card: NIGHTMARE_DC.cobasCard,
+    // Corsair Infiltrator, Cunning Pirate and Umbar Raider are in the Corsair
+    // deck; the scenario's setup applies the removals to both piles.
+    removals: {
+      "Belfalas Islet": 2,
+      "Cobas Haven": 2,
+      "Fog Bank": 2,
+      "Corsair Skirmisher": 2,
+      "Ramming Speed!": 1,
+      "Corsair Infiltrator": 2,
+      "Cunning Pirate": 1,
+      "Umbar Raider": 1,
+    },
+  },
   "shelobs-lair": {
     card: NIGHTMARE_LOS.lairCard,
     removals: {
@@ -2088,6 +2117,13 @@ export function nightmareStatus(s: GameState): string[] {
     return [
       "The Drowned Ruins · Nightmare mode: while the active location is Underwater, encounter card effects cannot be canceled; as stage 2A's When Revealed effect resolves, Captain Sahír makes an immediate attack against each player in turn order.",
     ];
+  if (s.scenarioId === "a-storm-on-cobas-haven") {
+    const t = s.nightmare?.cobasProgress;
+    const placed = t && t.round === s.round ? t.placed : 0;
+    return [
+      `A Storm on Cobas Haven · Nightmare mode: the Dol Amroth objective put into play during setup was chosen at random among all 6; Raider Flagship cannot guard objectives; while any player is engaged with Raider Flagship, no more than 5 progress can be placed on the current quest each round (${placed} placed this round).`,
+    ];
+  }
   if (s.scenarioId === "shelobs-lair")
     return [
       "Shelob's Lair · Nightmare mode: unresolved shadow cards stay on Shelob at the end of the combat phase; while Cleft of Cirith Ungol is in the staging area, the players can travel only to it.",

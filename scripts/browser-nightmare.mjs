@@ -5334,6 +5334,181 @@ try {
       );
     }
     await checkpoint("drowned-great-shark", width);
+    // A Storm on Cobas Haven in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-a-storm-on-cobas-haven").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "a-storm-on-cobas-haven");
+    assert.equal(s.nightmareMode, true);
+    {
+      const attached = [
+        ...s.heroes,
+        ...s.allies,
+        ...s.staging,
+        ...s.engaged,
+      ].flatMap((u) => u.attachments.map((a) => a.code));
+      const all = [
+        ...s.encounterDeck,
+        ...s.encounterDiscard,
+        ...s.staging.map((u) => u.code),
+        ...s.engaged.map((u) => u.code),
+        ...attached,
+      ];
+      assert.deepEqual(
+        [
+          DCN.ramming,
+          DCN.fang,
+          DCN.citySiege,
+          DCN.seaWall,
+          DCN.warTorn,
+          DCN.rudder,
+          DCN.grappled,
+        ].map((code) => all.filter((c) => c === code).length),
+        [2, 3, 3, 3, 2, 2, 2],
+        "the Nightmare Deck's encounter cards are in the encounter deck",
+      );
+      assert.deepEqual(
+        [DCN.aearlang, DCN.docks].map(
+          (code) => all.filter((c) => c === code).length,
+        ),
+        [1, 1],
+        "Aearlang and Docks of Dol Amroth join the Dol Amroth objectives",
+      );
+      assert.ok(
+        !all.some((c) =>
+          ["Belfalas Islet", "Cobas Haven", "Fog Bank"].includes(card(c).name),
+        ),
+        "the setup card removes each Belfalas Islet, Cobas Haven and Fog Bank",
+      );
+      assert.equal(
+        s.cobas.corsairDeck.length,
+        12,
+        "the Corsair deck loses 2 Corsair Infiltrators, a Cunning Pirate and an Umbar Raider",
+      );
+    }
+    assert.ok(
+      !(await page
+        .getByText("Prepare Dol Amroth’s defenses", { exact: true })
+        .count()),
+      "the setup's Dol Amroth objective is chosen at random",
+    );
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/Raider Flagship cannot guard objectives/)
+      .waitFor();
+    await checkpoint("cobas-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // Aearlang free of encounters with a hero exhausted, a Ramming Ship
+    // engaged, a City Under Siege, a Sea-wall and a War-torn Waters in the
+    // staging area, and Grappled! on a Ship objective.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const take = (code) => {
+        for (const pile of [t.encounterDeck, t.encounterDiscard]) {
+          const i = pile.indexOf(code);
+          if (i >= 0) return pile.splice(i, 1);
+        }
+        return [];
+      };
+      for (const code of [
+        DCN.aearlang,
+        DCN.ramming,
+        DCN.citySiege,
+        DCN.seaWall,
+        DCN.warTorn,
+        DCN.grappled,
+      ])
+        take(code);
+      // Aearlang may be the setup's random objective: free it of its guard.
+      const staged = t.staging.find((u) => u.code === DCN.aearlang);
+      if (staged) {
+        for (const u of [...t.staging, ...t.engaged]) {
+          if (u.guarding === staged.id) {
+            u.guarding = u.cobasGuarding?.shift();
+            if (!u.guarding) delete u.guarding;
+          }
+          if (u.cobasGuarding) {
+            u.cobasGuarding = u.cobasGuarding.filter((id) => id !== staged.id);
+            if (!u.cobasGuarding.length) delete u.cobasGuarding;
+          }
+        }
+        t.cobas.pendingGuarded = t.cobas.pendingGuarded.filter(
+          (id) => id !== staged.id,
+        );
+      }
+      const ram = make(t, DCN.ramming);
+      ram.owner = 0;
+      t.engaged = [...t.engaged, ram];
+      t.staging = [
+        ...t.staging,
+        ...(staged ? [] : [make(t, DCN.aearlang)]),
+        make(t, DCN.citySiege),
+        make(t, DCN.seaWall),
+        make(t, DCN.warTorn),
+      ];
+      t.heroes[0].exhausted = true;
+      const ship = t.allies.find(
+        (u) => card(u.code).type_code === "ship-objective",
+      );
+      ship.attachments = [
+        ...ship.attachments,
+        { id: `a${t.nextId++}`, code: DCN.grappled, exhausted: false },
+      ];
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [DCN.aearlang, "Aearlang"],
+      [DCN.ramming, "Ramming Ship"],
+      [DCN.citySiege, "City Under Siege"],
+      [DCN.seaWall, "Sea-wall"],
+      [DCN.warTorn, "War-torn Waters"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    {
+      const ready = page
+        .getByRole("button", { name: "Exhaust Aearlang · Ready a hero" })
+        .first();
+      await ready.waitFor();
+      assert.ok(await ready.isEnabled(), "Aearlang can ready the hero");
+      const discard = page
+        .getByRole("button", {
+          name: "Grappled! · Exhaust 3 characters you control to discard",
+        })
+        .first();
+      await discard.waitFor();
+    }
+    await checkpoint("cobas-aearlang", width);
     await view.c.close();
   }
   const p = await browser.newPage();

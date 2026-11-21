@@ -626,7 +626,8 @@ export interface GameState {
     import("./nightmare-stormcaller").NightmareStormcallerState &
     import("./nightmare-depths").NightmareDepthsState &
     import("./nightmare-temple").NightmareTempleState &
-    import("./nightmare-drowned").NightmareDrownedState;
+    import("./nightmare-drowned").NightmareDrownedState &
+    import("./nightmare-cobas").NightmareCobasState;
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;
@@ -1318,6 +1319,8 @@ export interface GameState {
     nfcGetaway?: number;
     /** King's Knight's shadow (Temple of the Deceived's Nightmare Deck): if this attack deals no damage, the attacker returns to the staging area after it. */
     ntdKnightReturn?: boolean;
+    /** City Under Siege's shadow (A Storm on Cobas Haven's Nightmare Deck): the attacker, guarding an objective, returns to the staging area after this attack. */
+    ncbReturn?: boolean;
     defenderIds?: string[];
     ignoreDefense?: boolean;
     returnToStaging?: boolean;
