@@ -5193,6 +5193,147 @@ try {
       assert.ok(await look.isEnabled(), "8 progress pays for a look");
     }
     await checkpoint("temple-edge-of-the-temple", width);
+    // The Drowned Ruins in Nightmare mode, from the lobby.
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page.locator(".mission-the-drowned-ruins").click();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    s = await nightmareOpening(page);
+    assert.equal(s.scenarioId, "the-drowned-ruins");
+    assert.equal(s.nightmareMode, true);
+    {
+      const all = [...s.encounterDeck, ...s.encounterDiscard];
+      assert.deepEqual(
+        [
+          DCN.submerged,
+          DCN.shark,
+          DCN.troll,
+          DCN.flooded,
+          DCN.pit,
+          DCN.sulfur,
+        ].map((code) => all.filter((c) => c === code).length),
+        [4, 2, 2, 2, 3, 2],
+        "the Nightmare Deck's encounter cards are in the encounter deck",
+      );
+      assert.ok(
+        !all.some((c) => card(c).name === "Into the Abyss"),
+        "the setup card removes each Into the Abyss",
+      );
+      const grotto = Object.values(s.drowned.originalCodes);
+      assert.deepEqual(
+        [
+          DCN.passageJagged,
+          DCN.passageCrawlway,
+          DCN.precipiceJagged,
+          DCN.precipiceCrawlway,
+        ].map((code) => grotto.filter((c) => c === code).length),
+        [1, 1, 1, 1],
+        "Overgrown Passage and Sharp Precipice join the Grotto deck",
+      );
+      assert.equal(grotto.length, 11, "10 Grotto cards and the Shrine");
+    }
+    for (const code of [
+      DCN.passageJagged,
+      DCN.passageCrawlway,
+      DCN.precipiceJagged,
+      DCN.precipiceCrawlway,
+    ])
+      assert.equal(
+        await page
+          .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+          .count(),
+        0,
+        "a Grotto card's Underwater side stays hidden",
+      );
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/encounter card effects cannot be canceled/)
+      .waitFor();
+    await checkpoint("drowned-nightmare-card", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // A Submerged Dead engaged; a Great Shark, an Undersea Cave Troll and a
+    // Flooded Caverns in the staging area; an Overgrown Passage active.
+    {
+      const t = structuredClone(s);
+      Object.assign(t, { phase: "planning", choice: null, queue: [] });
+      if (t.flow) t.flow.pending = null;
+      const take = (code) => {
+        for (const pile of [t.encounterDeck, t.encounterDiscard]) {
+          const i = pile.indexOf(code);
+          if (i >= 0) return pile.splice(i, 1);
+        }
+        throw Error(`${code} is not in the encounter deck`);
+      };
+      for (const code of [DCN.submerged, DCN.shark, DCN.troll, DCN.flooded])
+        take(code);
+      const dead = make(t, DCN.submerged);
+      dead.owner = 0;
+      t.engaged = [...t.engaged, dead];
+      t.staging = [
+        ...t.staging,
+        make(t, DCN.shark),
+        make(t, DCN.troll),
+        make(t, DCN.flooded),
+      ];
+      const q = t.drowned;
+      const passage = q.grottoDeck.find(
+        (u) => q.originalCodes[u.id] === DCN.passageJagged,
+      );
+      if (passage) {
+        q.grottoDeck = q.grottoDeck.filter((u) => u.id !== passage.id);
+        if (t.activeLocation) t.staging.push(t.activeLocation);
+        t.activeLocation = passage;
+      }
+      s = await load(page, t);
+    }
+    for (const [code, label] of [
+      [DCN.submerged, "Submerged Dead"],
+      [DCN.shark, "Great Shark"],
+      [DCN.troll, "Undersea Cave Troll"],
+      [DCN.flooded, "Flooded Caverns"],
+    ]) {
+      const face = page
+        .locator(`img[src*="${code.slice("octgn:".length)}"]`)
+        .first();
+      await face.waitFor();
+      assert.ok(
+        (await face.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        `${label}'s face loads`,
+      );
+    }
+    if (s.activeLocation?.code === "drowned-overgrown-passage") {
+      const generic = page
+        .locator('img[src*="drowned-overgrown-passage"]')
+        .first();
+      await generic.waitFor();
+      assert.ok(
+        (await generic.evaluate(async (i) => {
+          await i.decode();
+          return i.naturalWidth;
+        })) > 0,
+        "Overgrown Passage's shared side loads",
+      );
+    }
+    await checkpoint("drowned-great-shark", width);
     await view.c.close();
   }
   const p = await browser.newPage();

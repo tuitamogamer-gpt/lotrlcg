@@ -1,7 +1,13 @@
 import recipes from "../data/drowned-recipes.json";
+import nightmareCards from "../data/nightmare-encounter-cards.json";
 import { DROWNED_ENCOUNTERS, DROWNED_QUESTS } from "./drowned-scenario-data";
-import type { GameState, Unit } from "./types";
+import type { Card, GameState, Unit } from "./types";
 export { DROWNED_ENCOUNTERS, DROWNED_QUESTS };
+/** The Nightmare Deck's cards (src/game/nightmare-drowned.ts), with their Underwater sides and shared Grotto sides. */
+export const DROWNED_NIGHTMARE_CARDS = (nightmareCards as Card[]).filter(
+  (c) => c.encounter_set === "The Drowned Ruins - Nightmare",
+);
+const DROWNED_CARDS = [...DROWNED_ENCOUNTERS, ...DROWNED_NIGHTMARE_CARDS];
 export const DROWNED_RECIPES = recipes;
 const code = (name: string) =>
   [...DROWNED_ENCOUNTERS, ...DROWNED_QUESTS].find(
@@ -36,8 +42,48 @@ export const DROWNED = {
 export const DROWNED_GROTTO_CODES = recipes[0].cards
   .filter((c) => c.section === "sharedEncounterDeck2")
   .flatMap((c) => Array<string>(c.quantity).fill(c.code));
+export const DROWNED_NIGHTMARE = {
+  card: "octgn:ad1fbfb1-a45a-474a-bf30-eb5c9e642d16",
+  passageJagged: "octgn:cec23012-fe4a-4c06-a3de-3123e2986d59",
+  passageCrawlway: "octgn:cfb44b9d-0865-45ed-948d-3b28c36b9d61",
+  precipiceJagged: "octgn:8b906fda-69b7-461f-bfb2-2e50ced157a6",
+  precipiceCrawlway: "octgn:b9835b1a-609d-4cec-87e8-dd524b5685a8",
+  submerged: "octgn:08e743d7-0613-4863-b977-763b68256183",
+  shark: "octgn:18b0c2b8-c88d-4621-a7a9-583b7c00cc67",
+  troll: "octgn:70907f02-3a93-4292-ad21-e736d08232be",
+  sulfur: "octgn:8093af80-f939-49cc-a8be-b54a454e2a55",
+  flooded: "octgn:9fd0166e-dd9b-46a8-830a-b3a1a9fe84db",
+  pit: "octgn:dfc6d0c9-0ea2-40ac-b883-6be2a5f4b36b",
+  passage: "drowned-overgrown-passage",
+  precipice: "drowned-sharp-precipice",
+};
+/** The Nightmare Deck's Grotto locations, which join the Grotto deck. */
+export const DROWNED_NIGHTMARE_GROTTO = [
+  DROWNED_NIGHTMARE.passageJagged,
+  DROWNED_NIGHTMARE.passageCrawlway,
+  DROWNED_NIGHTMARE.precipiceJagged,
+  DROWNED_NIGHTMARE.precipiceCrawlway,
+];
+export const drownedNightmare = (s: GameState) =>
+  !!s.nightmareMode && s.scenarioId === "the-drowned-ruins";
+/** The Grotto deck's physical cards: the setup card removes a Cursed Caverns / Twisting Hollow and an Undersea Grotto / Dark Abyss and adds its four. */
+export const drownedGrottoCodes = (s: GameState) => {
+  if (!drownedNightmare(s)) return DROWNED_GROTTO_CODES;
+  const out = [...DROWNED_GROTTO_CODES];
+  for (const [front, back] of [
+    ["Cursed Caverns", "Twisting Hollow"],
+    ["Undersea Grotto", "Dark Abyss"],
+  ]) {
+    const i = out.findIndex((code) => {
+      const c = DROWNED_CARDS.find((c) => c.code === code)!;
+      return c.name === front && c.back_name === back;
+    });
+    out.splice(i, 1);
+  }
+  return [...out, ...DROWNED_NIGHTMARE_GROTTO];
+};
 export const drownedFront = (physical: string) => {
-  const c = DROWNED_ENCOUNTERS.find((c) => c.code === physical)!;
+  const c = DROWNED_CARDS.find((c) => c.code === physical)!;
   return physical === DROWNED.shrine
     ? physical
     : `drowned-${c.name.toLowerCase().replaceAll(" ", "-")}`;
@@ -80,7 +126,7 @@ export const drownedUnderwater = (s: GameState) =>
     ...(s.activeLocation ? [s.activeLocation] : []),
     ...(s.extraActiveLocations ?? []),
   ].some((u) =>
-    (DROWNED_ENCOUNTERS.find((c) => c.code === u.code)?.traits ?? "").includes(
+    (DROWNED_CARDS.find((c) => c.code === u.code)?.traits ?? "").includes(
       "Underwater.",
     ),
   );
@@ -173,7 +219,7 @@ export function validateDrowned(
     new Set(hidden.map((u) => u.id)).size !== hidden.length
   )
     return false;
-  const expected = [...DROWNED_GROTTO_CODES, DROWNED.shrine].sort();
+  const expected = [...drownedGrottoCodes(s), DROWNED.shrine].sort();
   if (Object.values(q.originalCodes).sort().join("|") !== expected.join("|"))
     return false;
   const locations = [

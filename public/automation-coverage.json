@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2893,
+    "encounterCards": 2910,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,12 +135,12 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 4114,
-    "pending": 69
+    "scripted": 4125,
+    "pending": 58
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 339
+    "scripted": 340
   },
   "registeredCodes": [
     "01001",
@@ -1230,6 +1230,8 @@
     "41049",
     "dread:reanimated-dead",
     "drowned-cursed-caverns",
+    "drowned-overgrown-passage",
+    "drowned-sharp-precipice",
     "drowned-undersea-grotto",
     "drowned-water-logged-halls",
     "fate-lost-island",
@@ -1319,6 +1321,7 @@
     "octgn:08a094d3-de00-4ea3-9dc3-141da9944763",
     "octgn:08af0240-fb38-4a33-a1f0-af07fd496b42",
     "octgn:08b55b0b-93e5-42d3-a746-703c7ce9146f",
+    "octgn:08e743d7-0613-4863-b977-763b68256183",
     "octgn:0909409e-d2d3-4304-b239-76bb6da0dceb",
     "octgn:097b7d54-bfa9-4b13-a1b8-337b03cac21d",
     "octgn:09a5cf0c-153e-4fa8-9f42-0e13ea70eb11",
@@ -1463,6 +1466,7 @@
     "octgn:1866ce74-8552-4ac5-8b0a-1e7a6f3b4338",
     "octgn:187017b6-8632-49ee-9275-8126d313424e",
     "octgn:1877b069-7015-4172-b5df-bbfd235b976f",
+    "octgn:18b0c2b8-c88d-4621-a7a9-583b7c00cc67",
     "octgn:18b9cb80-a536-427f-8c76-a05a9477bb7f",
     "octgn:18d6f0aa-a62e-4ce5-b169-cae8836d8442",
     "octgn:1919025a-6f04-497f-b024-8ed3fd91b0c9",
@@ -2718,6 +2722,7 @@
     "octgn:6fe8d036-9b7a-4ca4-bab4-272d2a6a8949",
     "octgn:702e659f-949c-491d-84ab-e1d5b4166f46",
     "octgn:70494c1c-405f-481a-b330-12643c80587e",
+    "octgn:70907f02-3a93-4292-ad21-e736d08232be",
     "octgn:70cc4fe9-8e97-4d83-8f48-06dc6a43c43e",
     "octgn:70decac2-b07f-4c96-9684-4c008f19610b",
     "octgn:70e85866-2f0a-4f4b-b39d-34d36adfc7ab",
@@ -2902,6 +2907,7 @@
     "octgn:80764232-a3c9-47f1-9034-9c9ac82002e4",
     "octgn:807c78ee-ec6b-4df0-9721-1e475f0d04dc",
     "octgn:808f60ad-a63f-4504-9b67-4fd45d630add",
+    "octgn:8093af80-f939-49cc-a8be-b54a454e2a55",
     "octgn:809ff5de-8273-4491-adfb-3a27d4b316f3",
     "octgn:80af82a2-4377-4049-bb9d-2d79ad66d1db",
     "octgn:80e25c61-e49c-40cb-b8e7-b4c45620163c",
@@ -3029,6 +3035,8 @@
     "octgn:8b4dd0c5-3847-46f6-a69b-a4c7ee2b21c8",
     "octgn:8b7c17f3-09d1-45a4-93ff-3b17a3285f35",
     "octgn:8b8149c8-a1c5-4183-bf0b-a26f93348076",
+    "octgn:8b906fda-69b7-461f-bfb2-2e50ced157a6",
+    "octgn:8b906fda-69b7-461f-bfb2-2e50ced157a6:B",
     "octgn:8ba47620-aead-42a5-a057-41cb038f5234",
     "octgn:8bb270a0-72b4-49d5-a4d3-a962edd5f67b",
     "octgn:8bc0199c-09ff-463f-a6b5-886d14d843cc",
@@ -3228,6 +3236,7 @@
     "octgn:9fa12306-d6ed-4fb8-89ce-8145bb81a58a",
     "octgn:9fb2a57c-5f37-4427-bb50-fc732194f4f3",
     "octgn:9fb6747a-1dd1-4a38-8c55-9459fda296c1",
+    "octgn:9fd0166e-dd9b-46a8-830a-b3a1a9fe84db",
     "octgn:9fdacc4b-5de7-4b03-af30-cee4d09769d7",
     "octgn:9feef7b4-4ca7-4adc-aeb7-56947254588a",
     "octgn:9ff94935-ae08-4d86-859f-f4d0776a66e5",
@@ -3363,6 +3372,7 @@
     "octgn:acbf7fd1-9f93-4d0b-b18a-8f0854e028f5",
     "octgn:acd10bf3-4af4-41f0-888f-55eb777be3d8",
     "octgn:ad09f848-9430-41c8-8723-671f08b79078",
+    "octgn:ad1fbfb1-a45a-474a-bf30-eb5c9e642d16",
     "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc",
     "octgn:ad2fdaaa-90d8-4d56-8112-37278e369dbd",
     "octgn:ad3509b5-b4b4-4fe5-bfdc-e655cc2470d3",
@@ -3546,6 +3556,8 @@
     "octgn:b922eedf-eea0-471d-bc52-90becc2a0769",
     "octgn:b93c5b70-0655-4577-9f5e-68ca00d4bfc8",
     "octgn:b94e993e-27a6-4ef4-b6f6-a7719928aceb",
+    "octgn:b9835b1a-609d-4cec-87e8-dd524b5685a8",
+    "octgn:b9835b1a-609d-4cec-87e8-dd524b5685a8:B",
     "octgn:b9acdd61-8007-41be-b986-e9809a587a70",
     "octgn:b9b2c1fc-2954-46f3-8b6c-71300a35eb5d",
     "octgn:ba090102-5f80-4dbc-aefd-2f965685e954",
@@ -3752,6 +3764,8 @@
     "octgn:ce3322ab-b890-40e0-852a-a4638796a122",
     "octgn:ce5c7298-f5ff-478f-b70a-9efa27bd071e",
     "octgn:ceb5ede8-0acc-40b6-ac43-b9f1ff006d9e",
+    "octgn:cec23012-fe4a-4c06-a3de-3123e2986d59",
+    "octgn:cec23012-fe4a-4c06-a3de-3123e2986d59:B",
     "octgn:cedfcb4c-9f28-46c6-b6ec-7986be79f7b1",
     "octgn:cefd0596-2e3b-4496-95e0-57899ab83b04",
     "octgn:cefe5af1-a3d3-43fb-8b82-7ea9b4d2c861",
@@ -3767,6 +3781,8 @@
     "octgn:cf9443b5-735d-4c8f-bd88-8643345f9632",
     "octgn:cfa94470-c25c-4af3-ba71-941d1fa48a9c",
     "octgn:cfaa761e-c273-451f-bb1e-84d25c4bedbb",
+    "octgn:cfb44b9d-0865-45ed-948d-3b28c36b9d61",
+    "octgn:cfb44b9d-0865-45ed-948d-3b28c36b9d61:B",
     "octgn:cfcee6c8-9eee-4623-afd1-a49ea77e2322",
     "octgn:cfddac0a-3055-46bd-af9a-8bdda8c9abb6",
     "octgn:cfe00736-4ac0-4f51-b698-705b04eca9a4",
@@ -3902,6 +3918,7 @@
     "octgn:df908f24-8927-42cf-a6dd-9dfc41de74c1",
     "octgn:df9ba79f-91a3-4fc7-a2af-6bddcc795f29",
     "octgn:dfb04502-e86f-41bc-83a0-b77048b9668c",
+    "octgn:dfc6d0c9-0ea2-40ac-b883-6be2a5f4b36b",
     "octgn:dfd05c9f-1dc1-4af6-a22f-fe39969c6371",
     "octgn:dfd0e951-2ba4-45c5-bed9-24caf8ae868f",
     "octgn:dff2fcb1-1231-4cda-9d10-029db96ef9e8",
@@ -4835,7 +4852,7 @@
     {
       "product": "the-drowned-ruins-nightmare",
       "total": 11,
-      "scripted": 0,
+      "scripted": 11,
       "player": 0,
       "playerScripted": 0
     },
@@ -14710,7 +14727,7 @@
       "name": "Submerged Dead",
       "type": "enemy",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins-nightmare"
     },
     {
@@ -15878,7 +15895,7 @@
       "name": "Great Shark",
       "type": "enemy",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins-nightmare"
     },
     {
@@ -25990,7 +26007,7 @@
       "name": "Undersea Cave Troll",
       "type": "enemy",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins-nightmare"
     },
     {
@@ -27478,7 +27495,7 @@
       "name": "Sulfur Cloud",
       "type": "treachery",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins-nightmare"
     },
     {
@@ -28502,7 +28519,7 @@
       "name": "Sharp Precipice",
       "type": "location",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins-nightmare"
     },
     {
@@ -30094,7 +30111,7 @@
       "name": "Flooded Caverns",
       "type": "location",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins-nightmare"
     },
     {
@@ -31198,7 +31215,7 @@
       "name": "The Drowned Ruins",
       "type": "nightmare",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins-nightmare"
     },
     {
@@ -32678,7 +32695,7 @@
       "name": "Sharp Precipice",
       "type": "location",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins-nightmare"
     },
     {
@@ -34350,7 +34367,7 @@
       "name": "Overgrown Passage",
       "type": "location",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins-nightmare"
     },
     {
@@ -34478,7 +34495,7 @@
       "name": "Overgrown Passage",
       "type": "location",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins-nightmare"
     },
     {
@@ -35598,7 +35615,7 @@
       "name": "Pit into the Depths",
       "type": "treachery",
       "pack": "Dreamchaser - Nightmare",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins-nightmare"
     },
     {
@@ -40005,8 +40022,8 @@
       "id": "N06.7",
       "name": "The Drowned Ruins (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-drowned-ruins",
+      "state": "scripted"
     },
     {
       "id": "N06.8",

@@ -765,6 +765,21 @@ export const NIGHTMARE_DC = {
   deceitful: "octgn:3579da3e-dd28-41a3-b21b-e6dc49e417d7",
   call: "octgn:b3e97670-b41b-45a7-9c47-7fb885fc1f04",
   precipice: "octgn:724f33d4-1305-4ea1-a6ee-d4e6c8de01b3",
+  /**
+   * The Drowned Ruins' setup card and Nightmare Deck (Overgrown Passage and
+   * Sharp Precipice join the Grotto deck, their Underwater sides behind).
+   */
+  drownedCard: "octgn:ad1fbfb1-a45a-474a-bf30-eb5c9e642d16",
+  passageJagged: "octgn:cec23012-fe4a-4c06-a3de-3123e2986d59",
+  passageCrawlway: "octgn:cfb44b9d-0865-45ed-948d-3b28c36b9d61",
+  precipiceJagged: "octgn:8b906fda-69b7-461f-bfb2-2e50ced157a6",
+  precipiceCrawlway: "octgn:b9835b1a-609d-4cec-87e8-dd524b5685a8",
+  submerged: "octgn:08e743d7-0613-4863-b977-763b68256183",
+  shark: "octgn:18b0c2b8-c88d-4621-a7a9-583b7c00cc67",
+  troll: "octgn:70907f02-3a93-4292-ad21-e736d08232be",
+  sulfur: "octgn:8093af80-f939-49cc-a8be-b54a454e2a55",
+  flooded: "octgn:9fd0166e-dd9b-46a8-830a-b3a1a9fe84db",
+  pit: "octgn:dfc6d0c9-0ea2-40ac-b883-6be2a5f4b36b",
 } as const;
 
 interface NightmareDeck {
@@ -1510,6 +1525,22 @@ export const NIGHTMARE: Partial<Record<ScenarioId, NightmareDeck>> = {
       "Faithless Desecrator": 3,
     },
   },
+  "the-drowned-ruins": {
+    card: NIGHTMARE_DC.drownedCard,
+    // The two Grotto locations are in the Grotto deck; the scenario's setup
+    // applies the removals to both piles.
+    removals: {
+      "Cursed Caverns / Twisting Hollow": 1,
+      "Undersea Grotto / Dark Abyss": 1,
+      "Throngs of Unfaithful": 2,
+      "Soulless Cadaver": 2,
+      "Drowned Cave": 2,
+      "Into the Abyss": 3,
+      "Tangling and Grasping": 1,
+      "Sea-Scorpion": 2,
+      "Cave Eel": 2,
+    },
+  },
   "shelobs-lair": {
     card: NIGHTMARE_LOS.lairCard,
     removals: {
@@ -1740,6 +1771,18 @@ const nightmareSet = (id: ScenarioId) =>
   card(NIGHTMARE[id]!.card).encounter_set;
 const plainTitle = (name: string) => name.replace(/’/g, "'");
 /**
+ * A removal names a card by its title, or a double-sided card by both sides'
+ * titles ("Cursed Caverns / Twisting Hollow": The Drowned Ruins' Grotto
+ * locations share their fronts' titles).
+ */
+const removalTitle = (code: string, title: string) => {
+  const c = card(code);
+  return (
+    plainTitle(c.name) === title ||
+    (!!c.back_name && plainTitle(`${c.name} / ${c.back_name}`) === title)
+  );
+};
+/**
  * The Nightmare encounter deck: the standard encounter deck without the
  * removed cards, with the Nightmare Deck's encounter cards shuffled in (the
  * caller shuffles).
@@ -1752,7 +1795,7 @@ export function nightmareEncounterDeck(id: ScenarioId, standard: string[]) {
   const out = [...standard];
   for (const [title, n] of Object.entries(deck.removals))
     for (let i = 0; i < n; i++) {
-      const at = out.findIndex((code) => plainTitle(card(code).name) === title);
+      const at = out.findIndex((code) => removalTitle(code, title));
       if (at < 0)
         throw new Error(`${title} is not in the standard encounter deck.`);
       out.splice(at, 1);
@@ -1782,13 +1825,11 @@ export function nightmareEncounterDecks(
   if (!deck) return out;
   for (const [title, n] of Object.entries(deck.removals))
     for (let i = 0; i < n; i++) {
-      const pile = out.find((d) =>
-        d.some((code) => plainTitle(card(code).name) === title),
-      );
+      const pile = out.find((d) => d.some((code) => removalTitle(code, title)));
       if (!pile)
         throw new Error(`${title} is not in the standard encounter decks.`);
       pile.splice(
-        pile.findIndex((code) => plainTitle(card(code).name) === title),
+        pile.findIndex((code) => removalTitle(code, title)),
         1,
       );
     }
@@ -2042,6 +2083,10 @@ export function nightmareStatus(s: GameState): string[] {
   if (s.scenarioId === "temple-of-the-deceived")
     return [
       "Temple of the Deceived · Nightmare mode: the Island Map has three Lost Island columns, then two Edge of the Temple columns, then the Temple column; after the active location is explored, the player cards attached to it are discarded.",
+    ];
+  if (s.scenarioId === "the-drowned-ruins")
+    return [
+      "The Drowned Ruins · Nightmare mode: while the active location is Underwater, encounter card effects cannot be canceled; as stage 2A's When Revealed effect resolves, Captain Sahír makes an immediate attack against each player in turn order.",
     ];
   if (s.scenarioId === "shelobs-lair")
     return [

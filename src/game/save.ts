@@ -182,6 +182,7 @@ import { validNightmareFate } from "./nightmare-fate";
 import { validNightmareStormcaller } from "./nightmare-stormcaller";
 import { validNightmareDepths } from "./nightmare-depths";
 import { validNightmareTemple } from "./nightmare-temple";
+import { validNightmareDrowned } from "./nightmare-drowned";
 import { nightmareEscapeTest } from "./nightmare-dead";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
@@ -1295,6 +1296,7 @@ export function validateSave(
         !validNightmareStormcaller(s) ||
         !validNightmareDepths(s) ||
         !validNightmareTemple(s) ||
+        !validNightmareDrowned(s) ||
         !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
         !validateRoamRhovanion(
           s,

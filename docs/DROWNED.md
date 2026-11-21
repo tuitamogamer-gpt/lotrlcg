@@ -4,9 +4,9 @@ This import covers the ten original Adventure Pack player designs and the
 original standard/easy adventure for solo and 1–4 players in local hot-seat.
 Dwarven Sellsword, Woodland Courier and Strider reuse existing implementations,
 so the pack adds seven player definitions.
-Revised Dream-chaser campaign and Nightmare variants are not enabled by this
-import and retain separate support gates. The next chronological Adventure
-Pack is A Storm on Cobas Haven.
+The revised Dream-chaser campaign and the Nightmare Deck are described in
+their own rules. The next chronological Adventure Pack is A Storm on Cobas
+Haven.
 
 ## Sources and physical cards
 
@@ -60,6 +60,26 @@ Scenario choices use the ordinary decision controls and are included in
 saved games. The local account migration adds the scenario to saved fellowship
 choices and is checked with the existing ownership/RLS suite; it is not a
 hosted database migration.
+
+## Nightmare mode
+
+The Nightmare Deck (recipe `N06.7`,
+[rules and cards](NIGHTMARE.md#the-drowned-ruins-nightmare)) removes a Cursed
+Caverns / Twisting Hollow and an Undersea Grotto / Dark Abyss from the Grotto
+deck (named by both sides' titles) and 14 cards from the encounter deck. Its
+four Grotto locations, two Overgrown Passages and two Sharp Precipices, join
+the Grotto deck: each shows a generic shared Grotto side, so its Underwater
+side (Jagged Cavern or Submerged Crawlway) stays hidden until it flips, and
+save validation expects the Nightmare Grotto deck's 10 physical cards. Sharp
+Precipice flips as the players travel to it, without a choice. The new
+Underwater sides' and Flooded Caverns' end-of-quest Forced effects use the
+scenario's Then receipts: a flip or Flooded Caverns' return to the staging
+area follows only when every player's discard, search or return resolved.
+While the active location is Underwater, encounter card effects cannot be
+canceled, and at stage 2A Captain Sahír attacks each player in turn order.
+Great Shark shares Cave Eel's engagement rule and its return at the beginning
+of the encounter phase. Focused checks are in
+`tests/nightmare-drowned.test.ts`.
 
 ## Verification
 

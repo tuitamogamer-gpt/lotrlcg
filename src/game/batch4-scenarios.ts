@@ -130,6 +130,7 @@ import { NIGHTMARE_RAID_HOOKS } from "./nightmare-raid";
 import { NIGHTMARE_STORMCALLER_HOOKS } from "./nightmare-stormcaller";
 import { NIGHTMARE_DEPTHS_HOOKS } from "./nightmare-depths";
 import { NIGHTMARE_TEMPLE_HOOKS } from "./nightmare-temple";
+import { NIGHTMARE_DROWNED_HOOKS } from "./nightmare-drowned";
 import { nightmareLive } from "./nightmare";
 
 const empty: Batch4ScenarioHooks = {};
@@ -209,6 +210,7 @@ const NIGHTMARE_LAYERS: Partial<Record<string, Batch4ScenarioHooks>> = {
   "flight-of-the-stormcaller": NIGHTMARE_STORMCALLER_HOOKS,
   "the-thing-in-the-depths": NIGHTMARE_DEPTHS_HOOKS,
   "temple-of-the-deceived": NIGHTMARE_TEMPLE_HOOKS,
+  "the-drowned-ruins": NIGHTMARE_DROWNED_HOOKS,
 };
 /**
  * The current scenario's hooks; in an Ered Mithrin campaign chapter from The

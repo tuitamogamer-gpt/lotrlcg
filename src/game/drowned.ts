@@ -21,6 +21,7 @@ import {
   addVictoryCard,
   damage,
   discardAttachment,
+  discardHandCard,
   discardCharacter,
   discardPlayerDeck,
   enemyAddedToStaging,
@@ -45,10 +46,14 @@ import { resolveDoomed } from "./voice-isengard";
 import { surgeEffects } from "./surge";
 import {
   DROWNED as D,
+  DROWNED_NIGHTMARE as DN,
+  DROWNED_NIGHTMARE_GROTTO,
   DROWNED_RECIPES,
   drownedFront,
+  drownedNightmare,
   drownedUnderwater,
 } from "./drowned-support";
+import { nightmareEncounterDecks } from "./nightmare";
 import { isDreamchaserGame } from "./dreamchaser-campaign-support";
 import { dreamchaserDrownedReady } from "./dreamchaser-campaign";
 export { drownedUnderwater, drownedState } from "./drowned-support";
@@ -73,10 +78,14 @@ export const drownedCannotReady = (s: GameState) =>
   activeNamed(s, "Twisting Hollow");
 export const drownedAttachmentsBlanked = (s: GameState) =>
   activeNamed(s, "Sunken Temple");
+/** Cave Eel, and the Nightmare Deck's Great Shark: "cannot be engaged … unless the active location is Underwater". */
+const waterEnemy = (s: GameState, u: Unit) =>
+  (u.code === D.eel || u.code === DN.shark) &&
+  !u.blanked &&
+  !drownedUnderwater(s);
 export const drownedCannotEngage = (s: GameState, u: Unit) =>
   live(s) &&
-  ((activeNamed(s, "Drowned Cave") && trait(u, "Undead")) ||
-    (u.code === D.eel && !u.blanked && !drownedUnderwater(s)));
+  ((activeNamed(s, "Drowned Cave") && trait(u, "Undead")) || waterEnemy(s, u));
 export const drownedCannotCancel = (s: GameState, code: string) =>
   live(s) && code === D.ancient;
 export const drownedQuestProgressBlocked = (s: GameState) =>
@@ -130,6 +139,15 @@ export function setupDrowned(s: GameState) {
     r.cards
       .filter((c) => c.section === section)
       .flatMap((c) => Array<string>(c.quantity).fill(c.code));
+  // The Nightmare setup card's removals and its Nightmare Deck: Overgrown
+  // Passage and Sharp Precipice join the Grotto deck.
+  const [encounter, grotto] = drownedNightmare(s)
+    ? nightmareEncounterDecks(
+        s.scenarioId,
+        [pile("sharedEncounterDeck"), pile("sharedEncounterDeck2")],
+        (code) => (DROWNED_NIGHTMARE_GROTTO.includes(code) ? 1 : 0),
+      )
+    : [pile("sharedEncounterDeck"), pile("sharedEncounterDeck2")];
   const originalCodes: Record<string, string> = {};
   const location = (code: string) => {
     const u = make(s, drownedFront(code));
@@ -140,7 +158,7 @@ export function setupDrowned(s: GameState) {
     initialized: false,
     advancing: false,
     currentQuest: D.grotto,
-    grottoDeck: shuffle(s, pile("sharedEncounterDeck2")).map(location),
+    grottoDeck: shuffle(s, grotto).map(location),
     setAside: [
       location(D.shrine),
       make(s, D.sahirAlly),
@@ -155,7 +173,7 @@ export function setupDrowned(s: GameState) {
     blankedDepartures: [],
     combatBoosts: [],
   };
-  s.encounterDeck = shuffle(s, pile("sharedEncounterDeck"));
+  s.encounterDeck = shuffle(s, encounter);
   s.encounterDiscard = [];
   s.staging = [];
   s.activeLocation = null;
@@ -213,7 +231,12 @@ export function drownedTravelEntered(
   )
     prepend(
       s,
-      fx("drownedFlipResponse", { target: u.id, player: firstPlayer(s) }),
+      // Sharp Precipice: "Forced: After you travel to Sharp Precipice, flip
+      // it to its Underwater side."
+      fx(u.code === DN.precipice ? "drownedFlip" : "drownedFlipResponse", {
+        target: u.id,
+        player: firstPlayer(s),
+      }),
     );
 }
 function returnEnemy(s: GameState, u: Unit) {
@@ -236,7 +259,10 @@ export function drownedCheck(s: GameState) {
 }
 export function drownedEncounterStart(s: GameState) {
   if (!live(s) || drownedUnderwater(s)) return;
-  for (const u of allEngaged(s).filter((u) => u.code === D.eel && !u.blanked))
+  // Cave Eel, and the Nightmare Deck's Great Shark.
+  for (const u of allEngaged(s).filter(
+    (u) => (u.code === D.eel || u.code === DN.shark) && !u.blanked,
+  ))
     returnEnemy(s, u);
 }
 export function drownedQuestStart(s: GameState) {
@@ -483,6 +509,25 @@ export function drownedEffect(s: GameState, e: Effect) {
         );
         break;
       }
+      // The Nightmare Deck's Flooded Caverns: "return an Underwater location
+      // from the victory display to the bottom of the Grotto deck, Grotto
+      // side faceup. Then, return Flooded Caverns to the staging area."
+      if (title === "Flooded Caverns") {
+        const receipt = drownedThenStart(s, u, ["location"]);
+        prepend(
+          s,
+          fx("drownedFloodedReturn", {
+            text: receipt.expected[0],
+            player: firstPlayer(s),
+          }),
+          fx("drownedThenFinish", {
+            target: u.id,
+            source: receipt.id,
+            player: firstPlayer(s),
+          }),
+        );
+        break;
+      }
       const characters =
         title === "Sunken Temple"
           ? allCharacters(s).filter(
@@ -535,6 +580,22 @@ export function drownedEffect(s: GameState, e: Effect) {
               value: 10,
               player,
               text: receipt.expected[i],
+            }),
+          ),
+        );
+      // The Nightmare Deck's Underwater sides.
+      else if (title === "Jagged Cavern")
+        effects.push(
+          ...players.map((player, i) =>
+            fx("drownedDiscardHand", { player, text: receipt.expected[i] }),
+          ),
+        );
+      else if (title === "Submerged Crawlway")
+        effects.push(
+          ...players.map((player, i) =>
+            fx("drownedSearchEnemy", {
+              player,
+              source: receipt.expected[i],
             }),
           ),
         );
@@ -592,11 +653,63 @@ export function drownedEffect(s: GameState, e: Effect) {
       )
         prepend(
           s,
-          fx(u.code === D.cave ? "drownedCaveReturn" : "drownedFlipResponse", {
-            target: u.id,
-            player: firstPlayer(s),
-          }),
+          fx(
+            u.code === D.cave
+              ? "drownedCaveReturn"
+              : u.code === DN.flooded
+                ? "drownedReturnLocation"
+                : "drownedFlipResponse",
+            { target: u.id, player: firstPlayer(s) },
+          ),
         );
+      break;
+    }
+    // Jagged Cavern: "each player must discard each card in his or her hand."
+    case "drownedDiscardHand":
+      forOwner(s, player, () => {
+        for (const h of [...s.hand])
+          discardHandCard(s, h.id, { encounterEffect: true });
+        if (!s.hand.length) drownedThenResolved(s, e.text);
+      });
+      break;
+    case "drownedFloodedReturn": {
+      const underwater = q.victoryLocations.filter((v) =>
+        trait(v, "Underwater"),
+      );
+      if (!underwater.length) break;
+      choose(
+        s,
+        "Flooded Caverns · Return an Underwater location to the Grotto deck",
+        underwater.map((v) => ({
+          id: v.id,
+          code: v.code,
+          label: `${name(v)} · to the bottom of the Grotto deck`,
+          effects: [
+            fx("drownedFloodedBottom", {
+              target: v.id,
+              text: e.text,
+              player,
+            }),
+          ],
+        })),
+      );
+      break;
+    }
+    case "drownedFloodedBottom": {
+      const v = q.victoryLocations.find((x) => x.id === e.target);
+      if (!v) break;
+      q.victoryLocations = q.victoryLocations.filter((x) => x.id !== v.id);
+      const i = s.victoryCards?.lastIndexOf(v.code) ?? -1;
+      if (i >= 0) s.victoryCards!.splice(i, 1);
+      v.code = drownedFront(q.originalCodes[v.id]);
+      v.progress = 0;
+      q.grottoDeck.push(v);
+      log(
+        s,
+        `Flooded Caverns: ${name(v)} returns to the bottom of the Grotto deck.`,
+        "danger",
+      );
+      drownedThenResolved(s, e.text);
       break;
     }
     case "drownedCaveReturn":
@@ -613,7 +726,7 @@ export function drownedEffect(s: GameState, e: Effect) {
     case "drownedReturnLocation":
       if (
         u &&
-        u.code === D.cave &&
+        (u.code === D.cave || u.code === DN.flooded) &&
         allActiveLocations(s).some((l) => l.id === u.id)
       ) {
         if (s.activeLocation?.id === u.id) s.activeLocation = null;
@@ -784,10 +897,11 @@ export function drownedEffect(s: GameState, e: Effect) {
         s,
         ...(sahir
           ? [
-              fx("immediateAttack", {
-                target: sahir.id,
-                player: firstPlayer(s),
-              }),
+              // The Nightmare setup card: he attacks each player in turn
+              // order, instead of only the first player.
+              ...(drownedNightmare(s) ? playerOrder(s) : [firstPlayer(s)]).map(
+                (player) => fx("immediateAttack", { target: sahir.id, player }),
+              ),
               fx("drownedRemoveSahir", {
                 target: sahir.id,
                 player: firstPlayer(s),
@@ -815,22 +929,28 @@ export function drownedEffect(s: GameState, e: Effect) {
       }
       break;
     case "drownedSearchEnemy": {
+      // Without a trait (Submerged Crawlway), any enemy.
       const codes = [
         ...new Set([...s.encounterDeck, ...s.encounterDiscard]),
       ].filter(
         (code) =>
           card(code).type_code === "enemy" &&
-          (card(code).traits ?? "").split(".").some((t) => t.trim() === e.text),
+          (!e.text ||
+            (card(code).traits ?? "")
+              .split(".")
+              .some((t) => t.trim() === e.text)),
       );
       if (codes.length)
         choose(
           s,
-          `Search for an ${e.text} enemy`,
+          e.text ? `Search for an ${e.text} enemy` : "Search for an enemy",
           codes.map((code) => ({
             id: code,
             code,
             label: card(code).name,
-            effects: [fx("drownedAddEnemy", { code, player })],
+            effects: [
+              fx("drownedAddEnemy", { code, player, source: e.source }),
+            ],
           })),
         );
       else shuffle(s, s.encounterDeck);
@@ -847,6 +967,7 @@ export function drownedEffect(s: GameState, e: Effect) {
       s.staging.push(enemy);
       enemyAddedToStaging(s, enemy);
       shuffle(s, s.encounterDeck);
+      drownedThenResolved(s, e.source);
       break;
     }
     case "drownedStageReady":
