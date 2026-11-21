@@ -140,7 +140,7 @@
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 342
+    "scripted": 354
   },
   "registeredCodes": [
     "01001",
@@ -40189,85 +40189,85 @@
       "id": "N0C.01",
       "name": "A Shadow of the Past (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "a-shadow-of-the-past",
+      "state": "scripted"
     },
     {
       "id": "N0C.02",
       "name": "A Knife in the Dark (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "a-knife-in-the-dark",
+      "state": "scripted"
     },
     {
       "id": "N0C.03",
       "name": "Flight to the Ford (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "flight-to-the-ford",
+      "state": "scripted"
     },
     {
       "id": "N0C.04",
       "name": "The Ring Goes South (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-ring-goes-south",
+      "state": "scripted"
     },
     {
       "id": "N0C.05",
       "name": "Journey in the Dark (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "journey-in-the-dark",
+      "state": "scripted"
     },
     {
       "id": "N0C.06",
       "name": "Breaking of the Fellowship (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "breaking-of-the-fellowship",
+      "state": "scripted"
     },
     {
       "id": "N0C.07",
       "name": "The Uruk-hai (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-uruk-hai",
+      "state": "scripted"
     },
     {
       "id": "N0C.08",
       "name": "Helm's Deep (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "helms-deep",
+      "state": "scripted"
     },
     {
       "id": "N0C.09",
       "name": "The Road to Isengard (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-road-to-isengard",
+      "state": "scripted"
     },
     {
       "id": "N0C.10",
       "name": "The Passage of the Marshes (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-passage-of-the-marshes",
+      "state": "scripted"
     },
     {
       "id": "N0C.11",
       "name": "Journey to the Cross-roads (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "journey-to-the-cross-roads",
+      "state": "scripted"
     },
     {
       "id": "N0C.12",
       "name": "Shelob's Lair (Nightmare)",
       "mode": "nightmare",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "shelobs-lair",
+      "state": "scripted"
     },
     {
       "id": "Q00.01A",

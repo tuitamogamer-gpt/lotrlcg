@@ -10,11 +10,16 @@ interface Recipe {
   id: string;
   name: string;
   mode: string;
+  /** A campaign mode list (its easy and Nightmare recipes among them). */
+  campaign?: boolean;
   pack_codes: string[];
   card_codes: string[];
   cards: { code: string; quantity: number; section: string }[];
   source_url: string;
 }
+/** A campaign mode list in easy or Nightmare mode shares its title and mode with the standalone one. */
+const modeLabel = (r: Recipe) =>
+  r.campaign && r.mode !== "campaign" ? `${r.mode} · campaign` : r.mode;
 const sectionNames: Record<string, string> = {
   player1Play1: "Cards in play",
   sharedActiveLocation: "Active location",
@@ -45,7 +50,7 @@ export default function ScenarioArchive({
   inspect: (c: Card) => void;
   clearFilters: () => void;
   resetVersion: number;
-  chooseAdventure?: (id: ScenarioId, mode: string) => void;
+  chooseAdventure?: (id: ScenarioId, mode: string, campaign?: boolean) => void;
 }) {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [status, setStatus] = useState("Loading scenario lists…");
@@ -143,7 +148,7 @@ export default function ScenarioArchive({
             aria-pressed={r.id === selected}
             onClick={() => setSelected(r.id)}
           >
-            <span className="published-product-kind">{r.mode}</span>
+            <span className="published-product-kind">{modeLabel(r)}</span>
             <strong>{r.name}</strong>
             <span>
               {automatedScenarioId(r)
@@ -185,7 +190,7 @@ export default function ScenarioArchive({
         <div className="published-deck-detail">
           <h2>{recipe.name}</h2>
           <p className="published-support">
-            {recipe.mode} ·{" "}
+            {modeLabel(recipe)} ·{" "}
             {supported
               ? "Automated play is available for this adventure. Review its fellowship and difficulty before beginning."
               : "Imported scenario list. Its rules are not automated yet."}
@@ -195,7 +200,8 @@ export default function ScenarioArchive({
               className="secondary"
               disabled={!supported}
               onClick={() =>
-                supported && chooseAdventure(supported, recipe.mode)
+                supported &&
+                chooseAdventure(supported, recipe.mode, recipe.campaign)
               }
             >
               Choose adventure <ArrowRight size={16} />

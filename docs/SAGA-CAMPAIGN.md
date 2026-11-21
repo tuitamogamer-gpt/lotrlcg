@@ -318,6 +318,25 @@ Pool), and the encounter deck is shuffled.
 | Wraith on Wings (burden, enemy)                                                     | 1 copy per player is earned at The Battle of the Pelennor Fields; the log counts the copies. Setup: each copy is added to the staging area. Forced: at the beginning of each quest phase, 1 resource is placed on it (limit 5); +1 threat and -1 engagement cost for each resource; no non-Morgul attachments. Each copy in the victory display at the end of The Black Gate Opens leaves the Campaign Pool.                                                     |
 | Followed by Night, Ill Fate (burdens, treacheries)                                  | Peril. Surge. Followed by Night puts the topmost enemy of the encounter discard pile into play engaged with you (in the staging area where enemies cannot engage). Ill Fate attaches to a hero you control; after a character you control is destroyed, raise your threat by 2.                                                                                                                                                                                  |
 
+## Nightmare mode
+
+The campaign can be played with the saga's Nightmare Decks: the lobby's
+Nightmare mode, chosen as the campaign begins (never with easy mode, and
+offered by the scenario archive's campaign mode Nightmare lists), is recorded
+in the Campaign Log. Each chapter with a Nightmare Deck (the twelve
+chapters of The Black Riders, The Road Darkens, The Treason of Saruman and The
+Land of Shadow) follows its campaign mode Nightmare recipe (N0C.01–12): its
+Nightmare setup card's removals and Nightmare Deck build the encounter deck,
+the campaign card adds its own cards to it as in a standard chapter, and both
+cards stay next to the quest deck. The Old Forest, Fog on the Barrow-downs and
+the chapters of The Flame of the West and The Mountain of Fire have no
+Nightmare Deck and are played as usual. The table heading and the Campaign Log
+mark the Nightmare chapters, and a retried chapter keeps the campaign's
+choice. The Nightmare Decks' cards and rules are listed in
+[NIGHTMARE.md](NIGHTMARE.md#the-lord-of-the-rings-campaign-nightmare), and
+`tests/nightmare-saga-campaign.test.ts` covers the recipes, the setups, the
+campaign's chapters and its saves.
+
 ## Not supported yet
 
 The Mountain of Fire's Epic Multiplayer Mode (The Black Gate Opens and Mount

@@ -3,10 +3,11 @@
 The second scenario of **The Lord of the Rings: The Black Riders** (2013), in
 The Lord of the Rings Saga. It is playable in classic solo and with one to
 four local players, in normal and easy mode. Campaign mode, with its boons,
-follows [the saga campaign](SAGA-CAMPAIGN.md), and Nightmare mode
-[its Nightmare Deck](NIGHTMARE.md) (an immune Bill Ferny in the staging area
-and the Nightmare Weathertop set aside; the Nightmare cards use the
-scenario's out of play Ringwraiths and The One Ring), outside campaign mode.
+follows [the saga campaign](SAGA-CAMPAIGN.md), and Nightmare mode [its
+Nightmare Deck](NIGHTMARE.md) (an immune Bill Ferny in the staging area and
+the Nightmare Weathertop set aside; the Nightmare cards use the scenario's out
+of play Ringwraiths and The One Ring), also in [the
+campaign](SAGA-CAMPAIGN.md#nightmare-mode) (recipe N0C.02).
 
 ## Sources and corrections
 

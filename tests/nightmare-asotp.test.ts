@@ -229,15 +229,15 @@ test("Nightmare: A Shadow of the Past's Nightmare deck matches its source recipe
     nightmareStatus(opening(game())).join("\n"),
     /when stage 3A is revealed, Khamûl the Easterling joins the staging area/,
   );
-  // The audit counts the standard Nightmare recipe, not the campaign mode one
-  // (Nightmare mode is played outside campaign mode).
+  // The audit counts the standard Nightmare recipe and the campaign mode one
+  // (The Lord of the Rings campaign played with the Nightmare Decks).
   for (const id of ["N0B.01", "N0C.01"]) {
     const r = recipes.find((x) => x.id === id) as unknown as {
       name: string;
       mode: string;
       campaign: boolean;
     };
-    assert.equal(automatedScenarioId(r), id === "N0B.01" ? ID : null, id);
+    assert.equal(automatedScenarioId(r), ID, id);
   }
 });
 

@@ -2,13 +2,13 @@
 
 The third scenario of **The Lord of the Rings: The Black Riders** (2013), in
 The Lord of the Rings Saga. It is playable in classic solo and with one to
-four local players, in normal and easy mode. In campaign mode (see
-[The Lord of the Rings campaign](SAGA-CAMPAIGN.md)) the campaign card's
-Response and The Old Road's campaign-only Action are offered as well.
-Nightmare mode follows [its Nightmare Deck](NIGHTMARE.md) (one Nightmare
-Fell Rider for each player in the staging area and the Nightmare Ford of
-Bruinen set aside; the players cannot win while Ford of Bruinen is in play),
-outside campaign mode.
+four local players, in normal and easy mode. In campaign mode (see [The Lord
+of the Rings campaign](SAGA-CAMPAIGN.md)) the campaign card's Response and The
+Old Road's campaign-only Action are offered as well. Nightmare mode follows
+[its Nightmare Deck](NIGHTMARE.md) (one Nightmare Fell Rider for each player
+in the staging area and the Nightmare Ford of Bruinen set aside; the players
+cannot win while Ford of Bruinen is in play), also in [the
+campaign](SAGA-CAMPAIGN.md#nightmare-mode) (recipe N0C.03).
 
 ## Sources and corrections
 

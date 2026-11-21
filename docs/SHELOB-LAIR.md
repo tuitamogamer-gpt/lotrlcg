@@ -118,6 +118,10 @@ each other while Cobwebbed Tunnel is staged and take no progress at stage
 1B; the Orcs take cards from hand, and Impenetrable Dark keeps characters
 exhausted. Focused checks are in `tests/nightmare-shelob.test.ts`.
 
+In [The Lord of the Rings campaign](SAGA-CAMPAIGN.md#nightmare-mode) the
+chapter can use its Nightmare Deck too (recipe `N0C.12`): the campaign card's
+cards join it as they join the standard deck.
+
 ## Verification
 
 ```sh

@@ -215,7 +215,7 @@ test("Nightmare: A Knife in the Dark's Nightmare deck and set-aside cards match 
   for (const id of ["N0B.02", "N0C.02"])
     assert.equal(
       automatedScenarioId(recipes.find((r) => r.id === id)!),
-      id === "N0B.02" ? ID : null,
+      ID,
       id,
     );
 });

@@ -3,14 +3,14 @@
 The third scenario of **The Lord of the Rings: The Treason of Saruman** (April
 2015). It is playable in classic solo and with one to four local players, in
 normal and easy mode, with the box's Fellowship-sphere Aragorn as in The
-Uruk-hai and Helm's Deep. Its campaign mode (recipe Q0C.09) is part of
-[The Lord of the Rings campaign](SAGA-CAMPAIGN.md): Saruman's Voice joins the
+Uruk-hai and Helm's Deep. Its campaign mode (recipe Q0C.09) is part of [The
+Lord of the Rings campaign](SAGA-CAMPAIGN.md): Saruman's Voice joins the
 encounter deck, and the resolution earns it or the Palantír of Orthanc by the
-players' hand sizes. Nightmare mode follows
-[its Nightmare Deck](NIGHTMARE.md) (its locations join the scenario's
-Wizardry locations, Orthanc Archer's Archery joins its archery total, and
-Ent of Fangorn is removed from the game when it leaves play), outside
-campaign mode.
+players' hand sizes. Nightmare mode follows [its Nightmare Deck](NIGHTMARE.md)
+(its locations join the scenario's Wizardry locations, Orthanc Archer's
+Archery joins its archery total, and Ent of Fangorn is removed from the game
+when it leaves play), also in [the campaign](SAGA-CAMPAIGN.md#nightmare-mode)
+(recipe N0C.09).
 
 ## Sources and corrections
 

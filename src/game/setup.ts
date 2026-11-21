@@ -225,7 +225,11 @@ export function createGame(
     reviewMode?: ReviewMode;
     /** Official easy mode: each hero starts with one additional resource. */
     easy?: boolean;
-    /** Nightmare mode, for a scenario with a supported Nightmare Deck (never with easy mode). */
+    /**
+     * Nightmare mode, for a scenario with a supported Nightmare Deck (never
+     * with easy mode); as a new Lord of the Rings campaign begins, the
+     * Nightmare Decks for each of its chapters that has one.
+     */
     nightmare?: boolean;
     rangerReserves?: Record<number, number>;
     /** Each Encounter design has an independent zero-to-three reserve. */
@@ -489,11 +493,20 @@ export function createGame(
     );
     campaign!.rangerSense = [...options.rangerLegacy].sort((a, b) => a - b);
   }
-  // Nightmare mode replaces easy mode, outside campaign mode.
+  // Nightmare mode replaces easy mode. In campaign mode only The Lord of the
+  // Rings campaign uses the Nightmare Decks: chosen as the campaign begins,
+  // each later chapter with a supported Nightmare Deck follows its campaign
+  // mode Nightmare recipe (N0C), and the other chapters are played as usual.
   requireRule(
     !options.nightmare ||
-      (nightmareSupported(scenarioId) && playMode !== "campaign"),
+      (nightmareSupported(scenarioId) &&
+        (playMode !== "campaign" || (sagaCampaign && !options.campaign))),
     "This scenario's Nightmare Deck is not available in this game mode.",
+  );
+  if (options.nightmare && campaign) campaign.nightmare = true;
+  requireRule(
+    !campaign?.nightmare || (sagaCampaign && !options.easy),
+    "The Nightmare Decks belong to The Lord of the Rings campaign, never with easy mode.",
   );
   // Deadmen's Dike's Nightmare setup card: "Each player's deck cannot
   // include more than 50 total cards."
@@ -511,7 +524,9 @@ export function createGame(
       ).every((cards) => deckListSize(cards) <= 50),
     "Deadmen's Dike's Nightmare Deck: each player's deck cannot include more than 50 total cards.",
   );
-  const nightmare = !!options.nightmare;
+  const nightmare = campaign
+    ? !!campaign.nightmare && nightmareSupported(scenarioId)
+    : !!options.nightmare;
   const s: GameState = {
     // The Dream-chaser campaign: the Hard/Expert Mode card for this chapter.
     ...(options.dreamchaserMode
@@ -944,7 +959,7 @@ export function finishGameSetup(s: GameState) {
   nightmareSetup(s);
   log(
     s,
-    `${scenario(scenarioId).name} · ${playMode === "campaign" ? (isSagaCampaign(campaign) ? "The Lord of the Rings campaign" : isAngmarCampaign(campaign) ? "The Angmar Awakened campaign" : isDreamchaserCampaign(campaign) ? "The Dream-chaser campaign" : isEredCampaign(campaign) ? "The Ered Mithrin campaign" : campaign?.mini ? "The Dark of Mirkwood mini campaign" : "Mirkwood Paths campaign") : s.nightmareMode ? "Nightmare mode" : "Normal game"}.`,
+    `${scenario(scenarioId).name} · ${playMode === "campaign" ? `${isSagaCampaign(campaign) ? "The Lord of the Rings campaign" : isAngmarCampaign(campaign) ? "The Angmar Awakened campaign" : isDreamchaserCampaign(campaign) ? "The Dream-chaser campaign" : isEredCampaign(campaign) ? "The Ered Mithrin campaign" : campaign?.mini ? "The Dark of Mirkwood mini campaign" : "Mirkwood Paths campaign"}${s.nightmareMode ? " · Nightmare mode" : campaign?.nightmare ? " · no Nightmare Deck for this chapter" : ""}` : s.nightmareMode ? "Nightmare mode" : "Normal game"}.`,
     "chapter",
   );
   if (s.flow)

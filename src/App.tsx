@@ -1218,7 +1218,9 @@ export default function App() {
       if (saved.table) setSeats(savedSeats(saved, recovered));
       setSelectedDeck(savedDeckId(saved, recovered));
       setEasyMode(saved.easyMode ? "on" : "off");
-      setNightmareMode(saved.nightmareMode ? "on" : "off");
+      setNightmareMode(
+        saved.nightmareMode || saved.campaign?.nightmare ? "on" : "off",
+      );
     }
     setSelectedScenario(saved?.scenarioId ?? "mirkwood");
     setHistory([]);
@@ -1859,9 +1861,12 @@ export default function App() {
           wrathBombadilReserves,
           burglarLoot,
           hobbitTreasures: selectedTreasures(style),
-          ...(playMode !== "campaign" &&
-          nightmareMode === "on" &&
-          nightmareSupported(selectedScenario)
+          // The Lord of the Rings campaign may be played with the Nightmare
+          // Decks (chosen as it begins).
+          ...(nightmareMode === "on" &&
+          (playMode === "campaign"
+            ? campaignKind === "saga"
+            : nightmareSupported(selectedScenario))
             ? { nightmare: true }
             : { easy: easyMode === "on" }),
           scenarioId:
@@ -2205,7 +2210,7 @@ export default function App() {
     setSelectedScenario(s.scenarioId);
     setSelectedDeck(savedDeckId(s, recovered));
     setEasyMode(s.easyMode ? "on" : "off");
-    setNightmareMode(s.nightmareMode ? "on" : "off");
+    setNightmareMode(s.nightmareMode || s.campaign?.nightmare ? "on" : "off");
     setHistory([]);
     setPage("table");
     const shelfIssue = deckStorageProblem(recovered);
@@ -2989,16 +2994,16 @@ export default function App() {
                   </label>
                 )}
                 {!(resumable && game?.status === "playing") &&
-                  playMode !== "campaign" &&
-                  nightmareSupported(selectedScenario) && (
+                  (playMode === "campaign"
+                    ? campaignKind === "saga"
+                    : nightmareSupported(selectedScenario)) && (
                     <label className="preference-check nightmare-toggle">
                       <div>
                         <strong>Nightmare mode</strong>
                         <small>
-                          The scenario's Nightmare Deck: its setup card removes
-                          standard encounter cards and shuffles in its own, and
-                          its rules stay active for the whole game (never with
-                          easy mode).
+                          {playMode === "campaign"
+                            ? "For a new campaign: each chapter with a Nightmare Deck (The Black Riders, The Road Darkens, The Treason of Saruman and The Land of Shadow) adds its Nightmare setup card to the campaign card, and the other chapters are played as usual (never with easy mode)."
+                            : "The scenario's Nightmare Deck: its setup card removes standard encounter cards and shuffles in its own, and its rules stay active for the whole game (never with easy mode)."}
                         </small>
                       </div>
                       <input
@@ -3274,11 +3279,17 @@ export default function App() {
               inspect={setDetail}
               notify={notify}
               initialProduct={libraryProduct}
-              chooseAdventure={(id, mode) => {
+              chooseAdventure={(id, mode, campaign) => {
                 const chosenDeck = selectedDeck;
                 const chosenSetup = setupMode;
                 const chosenSeats = seats;
-                switchMode(mode === "campaign" ? "campaign" : "normal");
+                // A campaign mode list (its easy and Nightmare recipes among
+                // them) opens the campaign lobby; a saga chapter's opens The
+                // Lord of the Rings campaign.
+                const inCampaign = mode === "campaign" || !!campaign;
+                switchMode(inCampaign ? "campaign" : "normal");
+                if (inCampaign && SAGA_CAMPAIGN_JOURNAL.includes(id))
+                  setCampaignKind("saga");
                 setSelectedDeck(chosenDeck);
                 setSetupMode(chosenSetup);
                 setSeats(chosenSeats);
@@ -3696,7 +3707,7 @@ export default function App() {
                 <h1>{scenario(game.scenarioId).name}</h1>
                 <span className="game-mode-label">
                   {game.playMode === "campaign"
-                    ? `${CAMPAIGN_TITLES[campaignKindOf(game.campaign)]} · Campaign`
+                    ? `${CAMPAIGN_TITLES[campaignKindOf(game.campaign)]} · Campaign${game.nightmareMode ? " · Nightmare mode" : ""}`
                     : game.nightmareMode
                       ? "Nightmare mode"
                       : "Normal game"}
@@ -6154,6 +6165,7 @@ function CampaignJournal({
         <h3>
           <Books size={18} /> {CAMPAIGN_TITLES[campaignKindOf(c)]}
           {c.mini ? " · The Dark of Mirkwood" : ""}
+          {c.nightmare ? " · Nightmare Decks" : ""}
         </h3>
         <span>{campaignProgress(c)} chapters</span>
       </div>
@@ -6196,7 +6208,7 @@ function CampaignJournal({
                 {result
                   ? `Score ${result.score}${result.xp !== undefined ? ` · ${result.xp} XP` : ""}`
                   : q.id === game.scenarioId
-                    ? "Current chapter"
+                    ? `Current chapter${game.nightmareMode ? " · Nightmare" : ""}`
                     : skipped
                       ? "Not included"
                       : insert

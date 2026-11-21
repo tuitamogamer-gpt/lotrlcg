@@ -2,14 +2,14 @@
 
 The first scenario of **The Lord of the Rings: The Road Darkens** (October
 2014), the second box of The Lord of the Rings Saga. It is playable in classic
-solo and with one to four local players, in normal and easy mode. Its
-campaign mode (recipe Q0C.04) is part of
-[The Lord of the Rings campaign](SAGA-CAMPAIGN.md): free hero changes, the
-boons Sting, Mithril Shirt, Glamdring and Andúril, and Lust for the Ring earned
-when it is attached to a hero. Nightmare mode follows
-[its Nightmare Deck](NIGHTMARE.md) (the Pale-green Tentacles set aside until
-stage 4B; the Nightmare cards use the scenario's damage on locations), outside
-campaign mode.
+solo and with one to four local players, in normal and easy mode. Its campaign
+mode (recipe Q0C.04) is part of [The Lord of the Rings
+campaign](SAGA-CAMPAIGN.md): free hero changes, the boons Sting, Mithril
+Shirt, Glamdring and Andúril, and Lust for the Ring earned when it is attached
+to a hero. Nightmare mode follows [its Nightmare Deck](NIGHTMARE.md) (the
+Pale-green Tentacles set aside until stage 4B; the Nightmare cards use the
+scenario's damage on locations), also in [the
+campaign](SAGA-CAMPAIGN.md#nightmare-mode) (recipe N0C.04).
 
 ## Sources and corrections
 

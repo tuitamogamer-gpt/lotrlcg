@@ -5619,6 +5619,148 @@ try {
       );
     }
     await checkpoint("city-walls-of-umbar", width);
+    // The Lord of the Rings campaign with the Nightmare Decks, from the lobby:
+    // A Shadow of the Past follows its campaign mode Nightmare recipe (N0C.01).
+    await page.evaluate(() => {
+      for (const k of [
+        "there-and-back-again.campaign.v1",
+        "there-and-back-again.save.v1",
+        "there-and-back-again.choices.v1",
+      ])
+        localStorage.removeItem(k);
+      localStorage.setItem("there-and-back-again.mode.v1", "campaign");
+    });
+    await page.reload();
+    await page.getByRole("button", { name: /Solo hot-seat/ }).click();
+    await page
+      .getByRole("group", { name: "Number of players", exact: true })
+      .getByRole("button", { name: "1 player", exact: true })
+      .click();
+    await page
+      .getByRole("group", { name: "Campaign", exact: true })
+      .getByRole("button", { name: /The Lord of the Rings/ })
+      .click();
+    await page
+      .locator(".nightmare-toggle")
+      .getByText(/each chapter with a Nightmare Deck/)
+      .waitFor();
+    await page.locator(".nightmare-toggle input").setChecked(true);
+    await page.locator("#start-btn").click();
+    // The campaign keeps its own save slot.
+    for (let i = 0; i < 300; i++) {
+      await reviewedState(page);
+      s = await page.evaluate(() =>
+        JSON.parse(localStorage.getItem("there-and-back-again.campaign.v1")),
+      );
+      assert.equal(s?.status, "playing", "The campaign opening keeps the game");
+      assert.equal(s.choice, null, "A Shadow of the Past's setup asks nothing");
+      if (s.phase === "setup")
+        await page
+          .getByRole("button", { name: "Keep hand", exact: true })
+          .click();
+      else if (!s.queue.length && !s.flow?.pending) break;
+      else await page.waitForTimeout(25);
+    }
+    assert.equal(s.scenarioId, "a-shadow-of-the-past");
+    assert.equal(s.playMode, "campaign");
+    assert.equal(s.campaign.kind, "saga");
+    assert.equal(s.campaign.nightmare, true);
+    assert.equal(s.nightmareMode, true);
+    assert.ok(
+      [...s.encounterDeck, ...s.encounterDiscard].includes(TBR.khamul),
+      "Khamûl the Easterling is in the Nightmare Deck",
+    );
+    for (const name of ["Gildor Inglorion", "The Ring Draws Them"])
+      assert.ok(
+        [...s.encounterDeck, ...s.encounterDiscard].some(
+          (c) => card(c).name === name,
+        ),
+        `the campaign card shuffles ${name} into the encounter deck`,
+      );
+    assert.ok(
+      s.staging.some((u) => card(u.code).name === "Gandalf's Delay"),
+      "Gandalf's Delay waits in the staging area",
+    );
+    await page
+      .locator(".game-mode-label")
+      .getByText(/Campaign · Nightmare mode/)
+      .waitFor();
+    await page.getByRole("button", { name: /^Inspect quest: / }).click();
+    await page
+      .getByLabel("Nightmare card", { exact: true })
+      .getByText(/Khamûl the Easterling joins the staging area/)
+      .waitFor();
+    await page
+      .getByLabel("Campaign card", { exact: true })
+      .getByText(/A Shadow of the Past/)
+      .first()
+      .waitFor();
+    await checkpoint("saga-campaign-nightmare", width);
+    await page
+      .getByRole("button", { name: "Close dialog", exact: true })
+      .last()
+      .click();
+    // From the scenario archive, the campaign mode Nightmare recipe N0C.01
+    // opens The Lord of the Rings campaign with the Nightmare Decks.
+    await page.evaluate(() => {
+      localStorage.removeItem("there-and-back-again.campaign.v1");
+      localStorage.setItem("there-and-back-again.nightmare-mode", "off");
+      localStorage.setItem("there-and-back-again.mode.v1", "normal");
+    });
+    await page.reload();
+    {
+      const menu = page.getByRole("button", {
+        name: "Open navigation",
+        exact: true,
+      });
+      if (await menu.isVisible()) await menu.click();
+      await page
+        .locator("#navigation-panel")
+        .getByRole("button", { name: "Card library", exact: true })
+        .click();
+      await page
+        .getByRole("button", { name: "Scenario lists", exact: true })
+        .click();
+      await page
+        .getByRole("textbox", { name: "Search scenarios", exact: true })
+        .fill("A Shadow of the Past");
+      await page
+        .getByRole("combobox", { name: "Filter scenario mode", exact: true })
+        .selectOption("nightmare");
+      await page.locator(".scenario-recipe").first().waitFor();
+      assert.deepEqual(
+        (
+          await page
+            .locator(".scenario-recipe .published-product-kind")
+            .allTextContents()
+        ).sort(),
+        ["nightmare", "nightmare · campaign"],
+        "the archive tells the campaign mode Nightmare recipe apart",
+      );
+      await page
+        .locator(".scenario-recipe", { hasText: "nightmare · campaign" })
+        .click();
+      await page
+        .getByRole("button", { name: "Choose adventure", exact: true })
+        .click();
+      await page
+        .locator(".nightmare-toggle")
+        .getByText(/each chapter with a Nightmare Deck/)
+        .waitFor();
+      assert.equal(
+        await page.locator(".nightmare-toggle input").isChecked(),
+        true,
+        "the campaign begins with the Nightmare Decks",
+      );
+      assert.equal(
+        await page
+          .getByRole("group", { name: "Campaign", exact: true })
+          .getByRole("button", { name: /The Lord of the Rings/ })
+          .getAttribute("aria-pressed"),
+        "true",
+      );
+    }
+    await checkpoint("saga-campaign-nightmare-archive", width);
     await view.c.close();
   }
   const p = await browser.newPage();

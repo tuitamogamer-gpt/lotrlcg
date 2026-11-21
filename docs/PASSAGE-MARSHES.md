@@ -133,6 +133,10 @@ reduction as the scenario's Undead do, Rotting Thing's kills add mire tokens
 for the attack's excess damage, and Gollum's Rage waits facedown on Gollum
 for his next attack. Focused checks are in `tests/nightmare-marshes.test.ts`.
 
+In [The Lord of the Rings campaign](SAGA-CAMPAIGN.md#nightmare-mode) the
+chapter can use its Nightmare Deck too (recipe `N0C.10`): the campaign card's
+cards join it as they join the standard deck.
+
 ## Verification
 
 ```sh

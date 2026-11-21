@@ -244,7 +244,7 @@ test("Nightmare: Flight to the Ford's Nightmare deck matches its source recipe, 
   for (const id of ["N0B.03", "N0C.03"])
     assert.equal(
       automatedScenarioId(recipes.find((r) => r.id === id)!),
-      id === "N0B.03" ? ID : null,
+      ID,
       id,
     );
 });

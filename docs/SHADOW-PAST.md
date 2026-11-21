@@ -5,8 +5,8 @@ first box of The Lord of the Rings Saga. It is playable in classic solo and
 with one to four local players, in normal and easy mode. Campaign mode, with
 its boons and burdens, follows [the saga campaign](SAGA-CAMPAIGN.md), and
 Nightmare mode [its Nightmare Deck](NIGHTMARE.md) (Khamûl the Easterling at
-stage 3A; the Nightmare cards use the scenario's Hide tests), outside campaign
-mode.
+stage 3A; the Nightmare cards use the scenario's Hide tests), also in [the
+campaign](SAGA-CAMPAIGN.md#nightmare-mode) (recipe N0C.01).
 
 ## Sources and corrections
 

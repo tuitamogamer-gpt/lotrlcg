@@ -225,7 +225,7 @@ test("Nightmare: Breaking of the Fellowship's Nightmare deck matches its source 
   for (const id of ["N0B.06", "N0C.06"])
     assert.equal(
       automatedScenarioId(recipes.find((r) => r.id === id)!),
-      id === "N0B.06" ? ID : null,
+      ID,
       id,
     );
 });

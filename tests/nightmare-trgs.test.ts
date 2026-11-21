@@ -263,7 +263,7 @@ test("Nightmare: The Ring Goes South's Nightmare deck matches its source recipe,
   for (const id of ["N0B.04", "N0C.04"])
     assert.equal(
       automatedScenarioId(recipes.find((r) => r.id === id)!),
-      id === "N0B.04" ? ID : null,
+      ID,
       id,
     );
 });

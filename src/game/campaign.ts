@@ -502,6 +502,11 @@ export function retryAdventure(s: GameState, seed = Date.now()): GameState {
     guided: !!s.flow,
     reviewMode: s.flow?.mode,
     easy: s.easyMode,
+    // A replayed Nightmare game keeps its Nightmare Deck (a campaign chapter
+    // follows its Campaign Log).
+    ...(s.nightmareMode && s.playMode !== "campaign"
+      ? { nightmare: true }
+      : {}),
     // The Dream-chaser campaign: a replayed chapter keeps its Hard/Expert Mode card.
     ...(s.dreamchaser?.mode ? { dreamchaserMode: s.dreamchaser.mode } : {}),
   });

@@ -265,7 +265,7 @@ test("Nightmare: Journey in the Dark's Nightmare deck matches its source recipe 
   for (const id of ["N0B.05", "N0C.05"])
     assert.equal(
       automatedScenarioId(recipes.find((r) => r.id === id)!),
-      id === "N0B.05" ? ID : null,
+      ID,
       id,
     );
 });

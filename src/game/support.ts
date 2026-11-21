@@ -92,10 +92,13 @@ export function automatedScenarioId(reference: {
     (reference.mode === "campaign" &&
       !CAMPAIGN_CHAPTERS.includes(match.id) &&
       !SAGA_CAMPAIGN_SUPPORTED.includes(match.id)) ||
-    // Nightmare mode: only the scenarios whose Nightmare Decks are supported,
-    // outside campaign mode (the saga's campaign mode Nightmare recipes).
+    // Nightmare mode: only the scenarios whose Nightmare Decks are supported;
+    // a campaign mode Nightmare recipe (N0C) belongs to a chapter of The Lord
+    // of the Rings campaign played with the Nightmare Decks.
     (reference.mode === "nightmare" &&
-      (!nightmareSupported(match.id) || reference.campaign === true))
+      (!nightmareSupported(match.id) ||
+        (reference.campaign === true &&
+          !SAGA_CAMPAIGN_SUPPORTED.includes(match.id))))
   )
     return null;
   return match.id;

@@ -34,7 +34,7 @@ export default function Library({
   inspect: (c: Card) => void;
   notify: (s: string) => void;
   initialProduct?: string;
-  chooseAdventure?: (id: ScenarioId, mode: string) => void;
+  chooseAdventure?: (id: ScenarioId, mode: string, campaign?: boolean) => void;
 }) {
   const [catalog, setCatalog] = useState<Card[]>(playerCards);
   const [loading, setLoading] = useState(true);

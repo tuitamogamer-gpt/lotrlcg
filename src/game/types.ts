@@ -335,6 +335,12 @@ export interface CampaignState {
    * absent for Mirkwood Paths.
    */
   kind?: "saga" | "angmar" | "dreamchaser" | "ered";
+  /**
+   * The Lord of the Rings campaign played with the Nightmare Decks: each
+   * chapter with a supported Nightmare Deck is set up in Nightmare mode (its
+   * campaign mode Nightmare recipe), the others as usual.
+   */
+  nightmare?: boolean;
   /** The Dream-chaser campaign: unspent XP. */
   xp?: number;
   /** The Dream-chaser campaign: the checkboxes marked next to each scalable or upgradable card's title. */

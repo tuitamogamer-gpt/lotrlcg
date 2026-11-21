@@ -1135,12 +1135,20 @@ export function validateSave(
       (!BUILT_IN_DECKS.some((d) => d.id === s.deckId) &&
         s.deckId !== "custom") ||
       (s.easyMode !== undefined && typeof s.easyMode !== "boolean") ||
-      // Nightmare mode: a supported Nightmare Deck, never with easy mode.
+      // Nightmare mode: a supported Nightmare Deck, never with easy mode; in
+      // campaign mode, each chapter of a Nightmare Lord of the Rings campaign
+      // whose Nightmare Deck is supported, and no other.
       (s.nightmareMode !== undefined &&
         (s.nightmareMode !== true ||
           !nightmareSupported(s.scenarioId) ||
-          !!s.easyMode ||
-          s.playMode === "campaign")) ||
+          !!s.easyMode)) ||
+      (s.playMode === "campaign" &&
+        ((s.campaign?.nightmare !== undefined &&
+          (s.campaign.nightmare !== true ||
+            !isSagaCampaign(s.campaign) ||
+            !!s.easyMode)) ||
+          !!s.nightmareMode !==
+            (!!s.campaign?.nightmare && nightmareSupported(s.scenarioId)))) ||
       (s.customDeck !== undefined && !customList(s.customDeck)) ||
       (s.earlyAttackPlayers !== undefined &&
         (s.phase !== "attack" ||

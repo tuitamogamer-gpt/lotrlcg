@@ -1,15 +1,16 @@
 # Helm's Deep
 
-The second scenario of **The Lord of the Rings: The Treason of Saruman** (April
-2015). It is playable in classic solo and with one to four local players, in
-normal and easy mode, with the box's Fellowship-sphere Aragorn as in The
-Uruk-hai. The Poisoned Counsels burden is used as stage 1A offers it. Its
-campaign mode (recipe Q0C.08) is part of
-[The Lord of the Rings campaign](SAGA-CAMPAIGN.md): free hero changes, and
-Poisoned Counsels earned by each player who holds a copy. Nightmare mode
-follows [its Nightmare Deck](NIGHTMARE.md) (the Nightmare cards use the
-scenario's active-location progress, its Toughness and its archery total, and
-The Defense of Helm's Deep's tokens), outside campaign mode.
+The second scenario of **The Lord of the Rings: The Treason of Saruman**
+(April 2015). It is playable in classic solo and with one to four local
+players, in normal and easy mode, with the box's Fellowship-sphere Aragorn as
+in The Uruk-hai. The Poisoned Counsels burden is used as stage 1A offers it.
+Its campaign mode (recipe Q0C.08) is part of [The Lord of the Rings
+campaign](SAGA-CAMPAIGN.md): free hero changes, and Poisoned Counsels earned
+by each player who holds a copy. Nightmare mode follows [its Nightmare
+Deck](NIGHTMARE.md) (the Nightmare cards use the scenario's active-location
+progress, its Toughness and its archery total, and The Defense of Helm's
+Deep's tokens), also in [the campaign](SAGA-CAMPAIGN.md#nightmare-mode)
+(recipe N0C.08).
 
 ## Sources and corrections
 

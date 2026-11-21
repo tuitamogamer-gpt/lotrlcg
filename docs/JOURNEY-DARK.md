@@ -2,14 +2,14 @@
 
 The second scenario of **The Lord of the Rings: The Road Darkens** (October
 2014), the second box of The Lord of the Rings Saga. It is playable in classic
-solo and with one to four local players, in normal and easy mode. Its
-campaign mode (recipe Q0C.05) is part of
-[The Lord of the Rings campaign](SAGA-CAMPAIGN.md): Shadow of Fear, Pursued by
-the Enemy, Grievous Wound and Overcome by Grief, all four earned while The
-Balrog is still in play. Nightmare mode follows
-[its Nightmare Deck](NIGHTMARE.md) (heroes kept in the discard pile, stage 3B
-held until The Balrog is in the victory display; the Nightmare Weapons attach
-to the scenario's Balrog), outside campaign mode.
+solo and with one to four local players, in normal and easy mode. Its campaign
+mode (recipe Q0C.05) is part of [The Lord of the Rings
+campaign](SAGA-CAMPAIGN.md): Shadow of Fear, Pursued by the Enemy, Grievous
+Wound and Overcome by Grief, all four earned while The Balrog is still in
+play. Nightmare mode follows [its Nightmare Deck](NIGHTMARE.md) (heroes kept
+in the discard pile, stage 3B held until The Balrog is in the victory display;
+the Nightmare Weapons attach to the scenario's Balrog), also in [the
+campaign](SAGA-CAMPAIGN.md#nightmare-mode) (recipe N0C.05).
 
 ## Sources and corrections
 
