@@ -7,6 +7,7 @@ import encounters from "../src/data/temple-encounter-cards.json";
 import quests from "../src/data/temple-quest-cards.json";
 import recipes from "../src/data/temple-recipes.json";
 import players from "../src/data/temple-player-cards.json";
+import rulesSheet from "../src/data/rules-sheet-cards.json";
 import { SCRIPTED, playerCards } from "../src/game/cards";
 import { cachedImageSource } from "../src/game/scenario-image-source";
 
@@ -31,10 +32,13 @@ test("Temple import: the original reference catalog and recipes retain their pin
   const references = snapshot.cards.filter((c) => c.type_code === "rules");
   assert.equal(references.length, 2);
   for (const c of snapshot.cards)
-    assert.equal(
-      SCRIPTED.has(c.code),
-      c.type_code !== "rules",
-      `${c.name}: rulesheet proxies never become gameplay cards`,
+    // Rulesheet cards are registered references (quantity 0): they never
+    // become gameplay cards.
+    assert.ok(
+      SCRIPTED.has(c.code) &&
+        (c.type_code !== "rules" ||
+          rulesSheet.find((r) => r.code === c.code)?.quantity === 0),
+      `${c.name}: rulesheet cards stay references`,
     );
 });
 

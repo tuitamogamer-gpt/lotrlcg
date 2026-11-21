@@ -7,6 +7,7 @@ import encounters from "../src/data/cobas-encounter-cards.json";
 import quests from "../src/data/cobas-quest-cards.json";
 import recipes from "../src/data/cobas-recipes.json";
 import players from "../src/data/cobas-player-cards.json";
+import rulesSheet from "../src/data/rules-sheet-cards.json";
 import symbols from "../src/data/cobas-sailing-icons.json";
 import { SCRIPTED, playerCards } from "../src/game/cards";
 import { cachedImageSource } from "../src/game/scenario-image-source";
@@ -69,11 +70,14 @@ test("Cobas import: immutable sources retain all 38 original identities", () => 
     19,
   );
   for (const card of snapshot.cards) {
-    assert.equal(
-      SCRIPTED.has(card.code),
-      card.type_code !== "rules",
-      card.name,
-    );
+    // The rulesheet card is a registered reference (quantity 0).
+    assert.ok(SCRIPTED.has(card.code), card.name);
+    if (card.type_code === "rules")
+      assert.equal(
+        rulesSheet.find((c) => c.code === card.code)?.quantity,
+        0,
+        card.name,
+      );
     if (card.type_code === "rules") continue;
     const promoted = runtimeCards.find((entry) => entry.code === card.code)!;
     assert.ok(promoted, `${card.name}: original physical identity is retained`);

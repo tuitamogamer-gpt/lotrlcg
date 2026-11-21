@@ -5,7 +5,7 @@
     "playerCards": 861,
     "heroes": 112,
     "deckCards": 745,
-    "encounterCards": 2935,
+    "encounterCards": 2961,
     "scenarios": 123,
     "scenarioIds": [
       "mirkwood",
@@ -135,8 +135,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 4156,
-    "pending": 27
+    "scripted": 4182,
+    "pending": 1
   },
   "scenarioRecipes": {
     "total": 355,
@@ -1461,7 +1461,9 @@
     "octgn:174507ac-5617-4e3c-998b-75eeceb9db33",
     "octgn:17516d4f-8ce4-491e-8b2d-8dc9fe841934",
     "octgn:178fd61d-ebb3-40b1-b854-4c7bc43c121e",
+    "octgn:17b3b108-af37-4894-9d09-4b34f995c0a3",
     "octgn:18150bb4-3157-429c-b958-af1210acd4b2",
+    "octgn:18237a67-26d2-4863-bde7-5ac45b498de2",
     "octgn:18484359-d4b5-4ed6-b7be-e013fae4df43",
     "octgn:1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567",
     "octgn:185d7d65-ebec-4d7a-aca0-b5b2e3449c3c",
@@ -1604,6 +1606,7 @@
     "octgn:246b941e-f8a7-46ba-966d-d0515111ab46",
     "octgn:24772594-75f3-4789-aeec-41526d845e11",
     "octgn:2491fe6d-38e2-4767-8e09-0174deb85ff8",
+    "octgn:24a555aa-6987-4189-ac1d-60a74263bd87",
     "octgn:24a816f2-172f-4945-8d9b-21eb7fb68263",
     "octgn:24a841df-854e-444b-9b2f-0214f0e26002",
     "octgn:24e431be-cde9-4f93-943a-de5e5ca9108b",
@@ -1660,6 +1663,7 @@
     "octgn:28baceac-b941-4921-96ad-5df8dfb96544",
     "octgn:29005ca1-107a-4473-8769-ce7d944e9844",
     "octgn:2929a83e-2da9-4f76-8300-8998784155d6",
+    "octgn:29349448-e37d-4741-a7df-4bb57c195437",
     "octgn:2935fd55-6945-4c20-8586-c435ceec52f3",
     "octgn:2937b3c4-2e60-49a7-87cc-d6b708b6462d",
     "octgn:29562ee1-56d9-4a46-ba4b-1af24f85deb6",
@@ -1697,6 +1701,7 @@
     "octgn:2c3f8a11-c7a5-4709-ab8d-7435763f558b",
     "octgn:2c7390c5-06a8-451e-9895-88fb705e18e8",
     "octgn:2c7e2c6c-ecaa-48dc-a19e-4477d4fc693d",
+    "octgn:2cb311f2-2715-4b0a-a666-0cf0d5dbcf1b",
     "octgn:2ce0c7c6-e7ae-4847-a02d-2be874afa3d4",
     "octgn:2d14c8ba-a35a-491b-867b-d43b5547f235",
     "octgn:2d1d915f-f889-4100-81b7-910ce93edff7",
@@ -1976,6 +1981,7 @@
     "octgn:47c0a2e6-0b38-4142-9891-fcb3b3e0bbd8",
     "octgn:47ecf6a6-84e9-4aa7-ba23-9afe914027cd",
     "octgn:47f627da-150c-41b2-9442-390d8d2a897a",
+    "octgn:47f8f7e5-d5d0-4e11-9c43-22c4bc42b840",
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9001",
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9003",
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9006",
@@ -2115,6 +2121,7 @@
     "octgn:4f4df8ea-7f18-4a76-85b0-7ece828bb837",
     "octgn:4f73ca81-67c1-44db-a7ca-63a762748fc4",
     "octgn:4fc6111a-93c3-4407-b067-1b82396b802f",
+    "octgn:4fcbffac-5e31-4c8f-bf94-d8ad96927e2e",
     "octgn:4fd47b8b-1132-4e90-967c-b15369215025",
     "octgn:5003227b-ebc3-454a-88b4-2d6e20cc48f7",
     "octgn:500d3f5b-2de3-4770-bb2a-7db2b104bbf2",
@@ -2474,6 +2481,7 @@
     "octgn:54014fda-7adc-49b0-96ac-656e849eaf7b",
     "octgn:540e3fbc-a066-4dc6-a156-598f1b2751c0",
     "octgn:54665391-02fa-4402-b7ea-2f8b5aa95a57",
+    "octgn:5484e07e-b5a2-470a-84ba-be78062a61f2",
     "octgn:5497d938-1549-498c-abeb-2ed617222b76",
     "octgn:54981b6b-c247-40f9-9321-fd7913b897dd",
     "octgn:54a26608-eebd-4bd6-855a-ceccb4507bab",
@@ -2644,6 +2652,7 @@
     "octgn:666a449f-e103-4d70-932e-48e57c4d662c",
     "octgn:666a449f-e103-4d70-932e-48e57c4d662c:B",
     "octgn:66812347-fac2-4a76-aa69-ac0861071c0d",
+    "octgn:668faef5-929f-46d6-90cd-1812edc5d436",
     "octgn:66d1d599-0c19-46d2-9335-02d68c59a99f",
     "octgn:66fc0634-c88c-4af2-a009-8ade84806f98",
     "octgn:6709bafa-87b5-483e-9895-0f2edea7e47a",
@@ -2694,6 +2703,7 @@
     "octgn:6b8ca34a-1f6f-4eed-841c-a5d0db80619a",
     "octgn:6b928a6d-c90b-4e94-931e-ba5f8f1ebaf4",
     "octgn:6bd6a282-9f43-4b12-a4bb-501f554daf2b",
+    "octgn:6bfd4958-3d16-444d-9fce-d95ed07990b4",
     "octgn:6c01519b-bb2c-4c8b-b5d3-4951d2a32d13",
     "octgn:6c456def-a38c-409c-a085-37f027e9c7b0",
     "octgn:6c4bf737-20cf-4fc5-b473-8f1540430c45",
@@ -2754,6 +2764,7 @@
     "octgn:71f1436f-bc66-4bf9-ac87-369ddea7dc64",
     "octgn:72025370-07e1-4797-acb2-1d2371a7f3b0",
     "octgn:720b2482-f69c-4a88-8352-721d854704d2",
+    "octgn:7217415c-c4c1-4e03-8a62-90611f5d6ecf",
     "octgn:721bbc14-f14c-4464-9963-55a77ab2d9bc",
     "octgn:72230f13-1064-464a-aa14-283a1c61e2e6",
     "octgn:72276508-67e0-4133-8b9f-41fb8d44ffa9",
@@ -2788,6 +2799,7 @@
     "octgn:74c7a9e0-940f-4b66-bc23-c938eef5587f",
     "octgn:74ceb68a-a1c9-41bc-aeb8-41738b34a3bb",
     "octgn:74d1310a-6c88-49cd-bac1-a1d4b5bbbcdc",
+    "octgn:74f12c0b-6c63-4b2e-a15f-41b179b9dec9",
     "octgn:74f297ed-3cb6-4c2d-83d8-c27b447a9250",
     "octgn:74f40d23-068a-40ea-9965-81df44294490",
     "octgn:74f47fcd-31fb-4034-924c-034e1615a3c4",
@@ -2826,6 +2838,7 @@
     "octgn:78520dc7-5891-47f3-8782-ca930c434374",
     "octgn:78689e20-d52f-4495-accc-b2cc39bb9ddc",
     "octgn:7869b9ba-7757-4d8e-a201-aaf247ec6f99",
+    "octgn:788819a1-c0b5-4dd0-b778-f3011ca05175",
     "octgn:78a03d01-99f6-4c8c-9251-ec20f85ec609",
     "octgn:78d40f21-ce85-4600-8f5e-5159d83c50cb",
     "octgn:78d40f21-ce85-4600-8f5e-5159d83c50cb:B",
@@ -3089,6 +3102,7 @@
     "octgn:8eae3ce5-c37e-4092-b91d-02c0721ffc0d",
     "octgn:8eb1ca03-da9e-4e84-abf2-090804eeb1aa",
     "octgn:8ece887c-6ca7-467d-80d4-3f28afa13433",
+    "octgn:8ed3dcd6-b234-4ab2-b6c4-1eae855d5835",
     "octgn:8ef56cb3-b483-4b38-b208-6c16e16bdb6d",
     "octgn:8f106a70-0102-41ad-8752-fb5667748850",
     "octgn:8f133b99-75d7-43b8-acec-3e298724134a",
@@ -3124,6 +3138,7 @@
     "octgn:92576b76-6b3a-4bee-84dc-82f927e1caa1",
     "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
     "octgn:929a0f96-a029-4327-b8e5-03cb78293bdf",
+    "octgn:92b2ea69-3f7f-4bbd-b3e0-c6c98cbbde9d",
     "octgn:92d3dcbb-8ce7-40fa-9df1-44617ebf08b4",
     "octgn:92d8276b-0839-44b4-b7ce-e18e135fe407",
     "octgn:92ef70d1-b46c-454d-ab7d-2ab56227d9be",
@@ -3224,6 +3239,7 @@
     "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b:B",
     "octgn:9c6c003c-b9c7-4240-9e59-414d31b4be3c",
     "octgn:9c81c18a-b143-48ae-a22c-821f52efc229",
+    "octgn:9ca8dc18-a6f5-478b-8870-e151d853a28d",
     "octgn:9cb0fd46-5ff4-4286-9843-f598723bc51b",
     "octgn:9cb47ff2-5dff-404f-8fed-6ec0b6478ded",
     "octgn:9ccd6851-ec1e-4d47-9e8d-486365c261e2",
@@ -3275,6 +3291,7 @@
     "octgn:a1827b45-42bd-44b3-a86d-d773e60ac1b5",
     "octgn:a1893a93-326b-429c-acd4-cd569b12bf18",
     "octgn:a1a8bd6e-4cd1-4641-9cb1-f693f053f62e",
+    "octgn:a1bb437e-1cbc-4780-bbee-f9ad07cb8d7a",
     "octgn:a1e74757-c5c8-4b81-a01a-6406410f661d",
     "octgn:a203a422-201a-4b2a-b9bd-687258687479",
     "octgn:a210439e-5670-476f-b933-c862b6e88602",
@@ -3380,6 +3397,7 @@
     "octgn:abeec7e9-ccf6-4145-ae1a-d7179c5a4b4d",
     "octgn:abf880a9-117c-4c23-8a29-9a152f36c4e9",
     "octgn:abfe3930-7bca-4ce8-9594-038ad4846205",
+    "octgn:ac1958aa-f119-423f-ac1e-cb04c58e641b",
     "octgn:ac4724db-a3cc-4984-bef5-f51b0f4421f8",
     "octgn:ac4da79d-d966-45bf-b1d3-c4d0a348dd7e",
     "octgn:ac5a17df-dcd0-4bfb-91fe-a444910f30ec",
@@ -3414,6 +3432,7 @@
     "octgn:aeb2f711-4597-42c1-af8c-eb7d6f4fa79a",
     "octgn:aeba0e59-8dde-4422-bfb5-911ae8de42a1",
     "octgn:aebb2c2f-859e-4f08-9017-1fcc4a4cc528",
+    "octgn:aed476de-1dc2-4116-9b53-a01e7b86537e",
     "octgn:aede410a-9d4c-4abd-9f55-143f5027f9c4",
     "octgn:aee4d9fb-2ef9-43b0-8459-1a390421052b",
     "octgn:aefb838f-b748-4249-8f24-8dce9e838880",
@@ -3585,6 +3604,7 @@
     "octgn:ba2e4a33-edc6-4638-a3f5-b818b080aea8",
     "octgn:ba3a1d31-578e-49ee-a309-e16fa5f18df8",
     "octgn:ba4f0abd-bd8c-4b25-b045-1599e5c92ce7",
+    "octgn:ba62a8f1-1857-4449-8f49-7b584b9aaa7d",
     "octgn:ba630f98-6ad5-4c4a-adfd-aeeac5485722",
     "octgn:ba77505a-1def-4537-a194-0b7482433a72",
     "octgn:babeedb8-f7cd-4e8a-a5c4-fbfdd57238fb",
@@ -3693,6 +3713,7 @@
     "octgn:c5657436-d6c8-400d-ba1f-a723799ac685",
     "octgn:c5711d74-8adb-427a-b0fe-e7a8c373659b",
     "octgn:c57661b7-62f9-4906-b2eb-73af91fd8252",
+    "octgn:c59be48d-ccec-4409-92b3-9f2e74f01012",
     "octgn:c5b174ae-d1e5-4dac-bedf-7a6c741e26d6",
     "octgn:c5c142e5-ab8a-416c-a82d-fd7e1d12df1b",
     "octgn:c5d1793e-a4e2-4a40-97e9-e5e6f8b1cdfb",
@@ -3737,6 +3758,7 @@
     "octgn:c88f14e5-1bd3-4829-ab70-02479df6cdfd",
     "octgn:c898c9f0-d4a7-4821-b075-1e412cde86a7",
     "octgn:c8a7cd39-10e0-4d50-a75b-e8a7ac24e32f",
+    "octgn:c8b7732f-8513-4797-a5a3-c579e5d353da",
     "octgn:c8decb35-cb3e-4dc9-ad15-d0cc80c157cb",
     "octgn:c90db37c-2fdf-4f69-b4a8-869064e4650b",
     "octgn:c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc",
@@ -3816,6 +3838,7 @@
     "octgn:d060f58b-3067-43c0-a480-d55c68c33305",
     "octgn:d0968637-1ffc-4365-855f-ee35704a8128",
     "octgn:d09d5da8-4fb8-4c94-a344-25fbd40cbd46",
+    "octgn:d0ab3d77-e84b-41b8-bb9b-f9be302ef1ef",
     "octgn:d0b6992d-9dc4-41fa-a483-b4ad0a3d60b3",
     "octgn:d0bf9c82-d626-4602-a383-4a5660a08c5f",
     "octgn:d12e280f-44f3-469e-a2e8-e3bfd541f909",
@@ -3842,6 +3865,7 @@
     "octgn:d3c68791-c3f9-4e8d-9515-2496f9ca1895",
     "octgn:d3eee887-e9fd-40f9-bd09-47a7b0732ee2",
     "octgn:d413aeaa-974a-478f-8a06-bd12d4ab661f",
+    "octgn:d41a03fa-e124-4e40-99b2-2ea4f71930f1",
     "octgn:d4309384-8472-4385-8122-163d6c4c8396",
     "octgn:d43b2298-a255-4afa-a95b-f7f1c8420757",
     "octgn:d4686e4d-2d50-4ffd-9b95-7bcdf9b2a494",
@@ -3968,6 +3992,7 @@
     "octgn:e22fc95d-9729-40ea-b81c-1432a4a57e41",
     "octgn:e25328c2-1a6b-4dda-866e-02685eff4a88",
     "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43",
+    "octgn:e2a2f3af-8cfe-4038-845c-443246682a81",
     "octgn:e2a70b1d-2d38-48bd-a591-cd2844fe50fd",
     "octgn:e2bbbc36-80aa-479e-955a-21d723fdc9da",
     "octgn:e2bbbc36-80aa-479e-955a-21d723fdc9da.B",
@@ -4161,6 +4186,7 @@
     "octgn:f186de1a-4463-482a-bdee-a3cd058823b6",
     "octgn:f18b362f-1669-4743-8802-daf58e638198",
     "octgn:f1a07644-9fe2-4764-9999-091fb8fc05b7",
+    "octgn:f1a0f23e-266d-4c2b-8c95-821bf97da6c9",
     "octgn:f1b632df-ecaa-410a-b2c2-e037adc0ef2c",
     "octgn:f1d2d99e-27e6-44d3-ad3d-ef727fa9ddc2",
     "octgn:f1dda3f9-e4cc-4c36-8167-a31dfdce2637",
@@ -4386,7 +4412,7 @@
     {
       "product": "a-storm-on-cobas-haven",
       "total": 30,
-      "scripted": 29,
+      "scripted": 30,
       "player": 11,
       "playerScripted": 11
     },
@@ -4400,7 +4426,7 @@
     {
       "product": "across-the-ettenmoors",
       "total": 31,
-      "scripted": 30,
+      "scripted": 31,
       "player": 10,
       "playerScripted": 10
     },
@@ -4442,7 +4468,7 @@
     {
       "product": "beneath-the-sands",
       "total": 26,
-      "scripted": 25,
+      "scripted": 26,
       "player": 10,
       "playerScripted": 10
     },
@@ -4533,7 +4559,7 @@
     {
       "product": "escape-from-mount-gram",
       "total": 28,
-      "scripted": 26,
+      "scripted": 28,
       "player": 10,
       "playerScripted": 10
     },
@@ -4554,7 +4580,7 @@
     {
       "product": "flight-of-the-stormcaller",
       "total": 30,
-      "scripted": 29,
+      "scripted": 30,
       "player": 11,
       "playerScripted": 11
     },
@@ -4729,7 +4755,7 @@
     {
       "product": "temple-of-the-deceived",
       "total": 27,
-      "scripted": 25,
+      "scripted": 27,
       "player": 10,
       "playerScripted": 10
     },
@@ -4757,7 +4783,7 @@
     {
       "product": "the-battle-of-carn-dum",
       "total": 25,
-      "scripted": 24,
+      "scripted": 25,
       "player": 10,
       "playerScripted": 10
     },
@@ -4792,7 +4818,7 @@
     {
       "product": "the-black-serpent",
       "total": 28,
-      "scripted": 27,
+      "scripted": 28,
       "player": 10,
       "playerScripted": 10
     },
@@ -4813,7 +4839,7 @@
     {
       "product": "the-city-of-corsairs",
       "total": 29,
-      "scripted": 28,
+      "scripted": 29,
       "player": 9,
       "playerScripted": 9
     },
@@ -4862,7 +4888,7 @@
     {
       "product": "the-dread-realm",
       "total": 26,
-      "scripted": 25,
+      "scripted": 26,
       "player": 10,
       "playerScripted": 10
     },
@@ -4876,7 +4902,7 @@
     {
       "product": "the-drowned-ruins",
       "total": 27,
-      "scripted": 26,
+      "scripted": 27,
       "player": 10,
       "playerScripted": 10
     },
@@ -4904,7 +4930,7 @@
     {
       "product": "the-dungeons-of-cirith-gurat",
       "total": 27,
-      "scripted": 26,
+      "scripted": 27,
       "player": 10,
       "playerScripted": 10
     },
@@ -4953,7 +4979,7 @@
     {
       "product": "the-grey-havens",
       "total": 87,
-      "scripted": 82,
+      "scripted": 87,
       "player": 15,
       "playerScripted": 15
     },
@@ -5002,7 +5028,7 @@
     {
       "product": "the-land-of-shadow",
       "total": 75,
-      "scripted": 74,
+      "scripted": 75,
       "player": 14,
       "playerScripted": 14
     },
@@ -5086,7 +5112,7 @@
     {
       "product": "the-mumakil",
       "total": 28,
-      "scripted": 27,
+      "scripted": 28,
       "player": 10,
       "playerScripted": 10
     },
@@ -5149,7 +5175,7 @@
     {
       "product": "the-sands-of-harad",
       "total": 77,
-      "scripted": 74,
+      "scripted": 77,
       "player": 13,
       "playerScripted": 13
     },
@@ -5184,7 +5210,7 @@
     {
       "product": "the-thing-in-the-depths",
       "total": 28,
-      "scripted": 27,
+      "scripted": 28,
       "player": 9,
       "playerScripted": 9
     },
@@ -5212,7 +5238,7 @@
     {
       "product": "the-treachery-of-rhudaur",
       "total": 32,
-      "scripted": 31,
+      "scripted": 32,
       "player": 10,
       "playerScripted": 10
     },
@@ -15854,7 +15880,7 @@
       "name": "Escape from Mount Gram",
       "type": "rules",
       "pack": "Escape from Mount Gram",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "escape-from-mount-gram"
     },
     {
@@ -15870,7 +15896,7 @@
       "name": "The City of Corsairs",
       "type": "rules",
       "pack": "The City of Corsairs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs"
     },
     {
@@ -16990,7 +17016,7 @@
       "name": "Raid on the Grey Havens",
       "type": "rules",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -17446,7 +17472,7 @@
       "name": "Voyage Across Belegaer",
       "type": "rules",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -17750,7 +17776,7 @@
       "name": "The Dungeons of Cirith Gurat",
       "type": "rules",
       "pack": "The Dungeons of Cirith Gurat",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dungeons-of-cirith-gurat"
     },
     {
@@ -19974,7 +20000,7 @@
       "name": "Beneath the Sands",
       "type": "rules",
       "pack": "Beneath the Sands",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "beneath-the-sands"
     },
     {
@@ -21086,7 +21112,7 @@
       "name": "Temple of the Deceived",
       "type": "rules",
       "pack": "Temple of the Deceived",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived"
     },
     {
@@ -23990,7 +24016,7 @@
       "name": "Flight of the Stormcaller",
       "type": "rules",
       "pack": "Flight of the Stormcaller",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "flight-of-the-stormcaller"
     },
     {
@@ -25310,7 +25336,7 @@
       "name": "Desert Crossing",
       "type": "rules",
       "pack": "The Sands of Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-sands-of-harad"
     },
     {
@@ -25702,7 +25728,7 @@
       "name": "The Black Serpent",
       "type": "rules",
       "pack": "The Black Serpent",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-serpent"
     },
     {
@@ -26182,7 +26208,7 @@
       "name": "Temple of the Deceived",
       "type": "rules",
       "pack": "Temple of the Deceived",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived"
     },
     {
@@ -26462,7 +26488,7 @@
       "name": "The Dread Realm",
       "type": "rules",
       "pack": "The Dread Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dread-realm"
     },
     {
@@ -26774,7 +26800,7 @@
       "name": "Across the Ettenmoors",
       "type": "rules",
       "pack": "Across the Ettenmoors",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "across-the-ettenmoors"
     },
     {
@@ -28838,7 +28864,7 @@
       "name": "A Storm on Cobas Haven",
       "type": "rules",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -29118,7 +29144,7 @@
       "name": "The Thing in the Depths",
       "type": "rules",
       "pack": "The Thing in the Depths",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-thing-in-the-depths"
     },
     {
@@ -29894,7 +29920,7 @@
       "name": "The Battle of Carn Dûm",
       "type": "rules",
       "pack": "The Battle of Carn Dûm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-carn-dum"
     },
     {
@@ -30310,7 +30336,7 @@
       "name": "Voyage Across Belegaer",
       "type": "rules",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -31150,7 +31176,7 @@
       "name": "The Fate of Númenor",
       "type": "rules",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -31422,7 +31448,7 @@
       "name": "Escape from Umbar",
       "type": "rules",
       "pack": "The Sands of Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-sands-of-harad"
     },
     {
@@ -32782,7 +32808,7 @@
       "name": "The Passage of the Marshes",
       "type": "rules",
       "pack": "The Land of Shadow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-shadow"
     },
     {
@@ -33646,7 +33672,7 @@
       "name": "Voyage Across Belegaer",
       "type": "rules",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -33998,7 +34024,7 @@
       "name": "The Long Arm of Mordor",
       "type": "rules",
       "pack": "The Sands of Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-sands-of-harad"
     },
     {
@@ -34606,7 +34632,7 @@
       "name": "The Treachery of Rhudaur",
       "type": "rules",
       "pack": "The Treachery of Rhudaur",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-treachery-of-rhudaur"
     },
     {
@@ -34822,7 +34848,7 @@
       "name": "The Drowned Ruins",
       "type": "rules",
       "pack": "The Drowned Ruins",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins"
     },
     {
@@ -35814,7 +35840,7 @@
       "name": "Escape from Mount Gram",
       "type": "rules",
       "pack": "Escape from Mount Gram",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "escape-from-mount-gram"
     },
     {
@@ -37326,7 +37352,7 @@
       "name": "Race Across Harad",
       "type": "rules",
       "pack": "The Mûmakil",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mumakil"
     },
     {

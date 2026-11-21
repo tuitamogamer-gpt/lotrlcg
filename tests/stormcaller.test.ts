@@ -126,7 +126,12 @@ test("Stormcaller supported originals retain source identities and printed corre
   assert.match(card(C.foulEnemy).text!, /Search.*Sahír's Escort/);
   assert.equal(card(C.squall).traits, "Weather.");
   assert.equal(card(C.stormcaller).name, "Stormcaller");
-  assert.ok(!SCRIPTED.has("octgn:5484e07e-b5a2-470a-84ba-be78062a61f2"));
+  // The rulesheet card is a registered reference with the rulesheet's text.
+  assert.ok(SCRIPTED.has("octgn:5484e07e-b5a2-470a-84ba-be78062a61f2"));
+  assert.match(
+    card("octgn:5484e07e-b5a2-470a-84ba-be78062a61f2").text!,
+    /\nPreparing the Stormcaller's Area\n/,
+  );
   assert.equal(sailingSymbols(C.skiff), 1);
   assert.equal(sailingSymbols(C.coast), 1);
   assert.equal(sailingSymbols(C.escort), 0);

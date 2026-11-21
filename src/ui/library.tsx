@@ -5,7 +5,7 @@ import {
   MagnifyingGlass,
   Plus,
 } from "@phosphor-icons/react";
-import { playerCards } from "../game/cards";
+import { cards, playerCards } from "../game/cards";
 import { isScriptedCard, loadCatalog, searchCards } from "../game/catalog";
 import { PRODUCTS, cardProductInfo } from "../game/products";
 import type { Card, ScenarioId } from "../game/types";
@@ -337,7 +337,11 @@ export default function Library({
               <button
                 className="catalog-card"
                 key={c.code}
-                onClick={() => inspect(c)}
+                onClick={() =>
+                  // A rulesheet card's snapshot text is a placeholder; open the
+                  // registered definition with its transcribed rules instead.
+                  inspect(c.type_code === "rules" ? (cards[c.code] ?? c) : c)
+                }
               >
                 <Art c={c} />
                 <div>

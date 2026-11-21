@@ -7,6 +7,7 @@ import encounters from "../src/data/drowned-encounter-cards.json";
 import quests from "../src/data/drowned-quest-cards.json";
 import recipes from "../src/data/drowned-recipes.json";
 import players from "../src/data/drowned-player-cards.json";
+import rulesSheet from "../src/data/rules-sheet-cards.json";
 import { SCRIPTED, playerCards } from "../src/game/cards";
 import { cachedImageSource } from "../src/game/scenario-image-source";
 
@@ -52,11 +53,15 @@ test("Drowned import: immutable references retain every original source identity
     1,
   );
   for (const card of snapshot.cards) {
-    assert.equal(
-      SCRIPTED.has(card.code),
-      card.type_code !== "rules",
-      `${card.name}: the rulesheet proxy is retained only as a reference`,
-    );
+    // The rulesheet card is a registered reference with its transcribed
+    // text (src/data/rules-sheet-cards.json): quantity 0, never in a deck.
+    assert.ok(SCRIPTED.has(card.code), card.name);
+    if (card.type_code === "rules")
+      assert.equal(
+        rulesSheet.find((c) => c.code === card.code)?.quantity,
+        0,
+        `${card.name}: the rulesheet card is retained only as a reference`,
+      );
     if (card.type_code === "rules") continue;
     const runtime = runtimeCards.find((entry) => entry.code === card.code)!;
     assert.ok(

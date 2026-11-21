@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import pending from "../src/data/pending/intruders-in-chetwood-import.json";
+import rulesSheet from "../src/data/rules-sheet-cards.json";
 import { cachedImageSource, imageUrl, SCRIPTED } from "../src/game/cards";
 import { automatedScenarioId, isAutomatedCard } from "../src/game/support";
 import type { Card } from "../src/game/types";
@@ -106,11 +107,15 @@ for (const [slug, count, faces, encounterDeck, engineId] of [
       if (c.back_imagesrc) restored.back_imagesrc = source.back_imagesrc;
       assert.deepEqual(restored, source);
       assert.equal(isAutomatedCard(c), SCRIPTED.has(c.engine_code ?? c.code));
-      assert.equal(
-        isAutomatedCard(c),
-        c.type_code !== "rules",
-        `${c.name}: rulesheet references remain outside the playable card pool`,
-      );
+      // Rulesheet cards are registered references (quantity 0) that never
+      // join a deck.
+      assert.ok(isAutomatedCard(c), c.name);
+      if (c.type_code === "rules")
+        assert.equal(
+          rulesSheet.find((r) => r.code === c.code)?.quantity,
+          0,
+          `${c.name}: rulesheet cards stay references outside every deck`,
+        );
     }
     for (const recipe of bundle.recipes) {
       assert.deepEqual(
@@ -168,10 +173,13 @@ for (const [slug, count, faces, engineId] of [
       if (sourceCard.back_imagesrc)
         restored.back_imagesrc = original.back_imagesrc;
       assert.deepEqual(restored, original);
-      assert.equal(
-        isAutomatedCard(sourceCard),
-        sourceCard.type_code !== "rules",
-      );
+      assert.ok(isAutomatedCard(sourceCard), sourceCard.name);
+      if (sourceCard.type_code === "rules")
+        assert.equal(
+          rulesSheet.find((r) => r.code === sourceCard.code)?.quantity,
+          0,
+          sourceCard.name,
+        );
     }
     for (const recipe of bundle.recipes) {
       assert.deepEqual(
